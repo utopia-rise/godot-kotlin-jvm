@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,14 +23,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
- * toggle the [ColorPicker]'s visibility.
+ * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will toggle the [ColorPicker]'s visibility.
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** By default, the button may not be wide enough for the color preview swatch to be
- * visible. Make sure to set [Control.customMinimumSize] to a big enough value to give the button
- * enough space.
+ * **Note:** By default, the button may not be wide enough for the color preview swatch to be visible. Make sure to set [Control.customMinimumSize] to a big enough value to give the button enough space.
  */
 @GodotBaseType
 public open class ColorPickerButton : Button() {
@@ -56,11 +50,8 @@ public open class ColorPickerButton : Button() {
    * The currently selected color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -82,7 +73,7 @@ public open class ColorPickerButton : Button() {
       setEditAlpha(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(162, scriptIndex)
   }
 
@@ -105,7 +96,7 @@ public open class ColorPickerButton : Button() {
      color = this
   }
 
-  public final fun setPickColor(color: Color): Unit {
+  public final fun setPickColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setPickColorPtr, NIL)
   }
@@ -119,8 +110,7 @@ public open class ColorPickerButton : Button() {
   /**
    * Returns the [ColorPicker] that this node toggles.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getPicker(): ColorPicker? {
     TransferContext.writeArguments()
@@ -129,11 +119,9 @@ public open class ColorPickerButton : Button() {
   }
 
   /**
-   * Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows
-   * you to handle events when the ColorPicker is shown or hidden.
+   * Returns the control's [PopupPanel] which allows you to connect to popup signals. This allows you to handle events when the ColorPicker is shown or hidden.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupPanel? {
     TransferContext.writeArguments()
@@ -141,7 +129,7 @@ public open class ColorPickerButton : Button() {
     return (TransferContext.readReturnValue(OBJECT) as PopupPanel?)
   }
 
-  public final fun setEditAlpha(show: Boolean): Unit {
+  public final fun setEditAlpha(show: Boolean) {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(ptr, MethodBindings.setEditAlphaPtr, NIL)
   }
@@ -156,21 +144,21 @@ public open class ColorPickerButton : Button() {
 
   public object MethodBindings {
     internal val setPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_pick_color", 2_920_490_490)
 
     internal val getPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color", 3444240500)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_pick_color", 3_444_240_500)
 
     internal val getPickerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker", 331835996)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_picker", 331_835_996)
 
     internal val getPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup", 1322440207)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "get_popup", 1_322_440_207)
 
     internal val setEditAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_alpha", 2_586_408_642)
 
     internal val isEditingAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36873697)
+        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36_873_697)
   }
 }

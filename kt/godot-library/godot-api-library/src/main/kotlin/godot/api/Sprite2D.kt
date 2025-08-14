@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,8 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas
- * texture, or a frame from a sprite sheet animation.
+ * A node that displays a 2D texture. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation.
  */
 @GodotBaseType
 public open class Sprite2D : Node2D() {
@@ -60,10 +56,7 @@ public open class Sprite2D : Node2D() {
   /**
    * If `true`, texture is centered.
    *
-   * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered.
-   * This is caused by their position being between pixels. To prevent this, set this property to
-   * `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and
-   * [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
+   * **Note:** For games with a pixel art aesthetic, textures may appear deformed when centered. This is caused by their position being between pixels. To prevent this, set this property to `false`, or consider enabling [ProjectSettings.rendering/2d/snap/snap2dVerticesToPixel] and [ProjectSettings.rendering/2d/snap/snap2dTransformsToPixel].
    */
   public final inline var centered: Boolean
     @JvmName("centeredProperty")
@@ -77,11 +70,8 @@ public open class Sprite2D : Node2D() {
    * The texture's drawing offset.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -115,9 +105,7 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted
-   * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
-   * is reset to `0`.
+   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
    */
   public final inline var hframes: Int
     @JvmName("hframesProperty")
@@ -128,9 +116,7 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so
-   * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
-   * reset to `0`.
+   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
    */
   public final inline var vframes: Int
     @JvmName("vframesProperty")
@@ -141,9 +127,7 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This
-   * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
-   * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public final inline var frame: Int
     @JvmName("frameProperty")
@@ -154,15 +138,11 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frameCoords: Vector2i
@@ -188,11 +168,8 @@ public open class Sprite2D : Node2D() {
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -204,8 +181,7 @@ public open class Sprite2D : Node2D() {
     }
 
   /**
-   * If `true`, the area outside of the [regionRect] is clipped to avoid bleeding of the surrounding
-   * texture pixels. [regionEnabled] must be `true`.
+   * If `true`, the area outside of the [regionRect] is clipped to avoid bleeding of the surrounding texture pixels. [regionEnabled] must be `true`.
    */
   public final inline var regionFilterClipEnabled: Boolean
     @JvmName("regionFilterClipEnabledProperty")
@@ -215,7 +191,7 @@ public open class Sprite2D : Node2D() {
       setRegionFilterClipEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(626, scriptIndex)
   }
 
@@ -249,8 +225,7 @@ public open class Sprite2D : Node2D() {
    * sprite2d.frameCoords = myCoreType
    * ``````
    *
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeHelper
   public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply {
@@ -277,7 +252,7 @@ public open class Sprite2D : Node2D() {
      regionRect = this
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -288,7 +263,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setCentered(centered: Boolean): Unit {
+  public final fun setCentered(centered: Boolean) {
     TransferContext.writeArguments(BOOL to centered)
     TransferContext.callMethod(ptr, MethodBindings.setCenteredPtr, NIL)
   }
@@ -299,7 +274,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -310,7 +285,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFlipH(flipH: Boolean): Unit {
+  public final fun setFlipH(flipH: Boolean) {
     TransferContext.writeArguments(BOOL to flipH)
     TransferContext.callMethod(ptr, MethodBindings.setFlipHPtr, NIL)
   }
@@ -321,7 +296,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFlipV(flipV: Boolean): Unit {
+  public final fun setFlipV(flipV: Boolean) {
     TransferContext.writeArguments(BOOL to flipV)
     TransferContext.callMethod(ptr, MethodBindings.setFlipVPtr, NIL)
   }
@@ -332,7 +307,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRegionEnabled(enabled: Boolean): Unit {
+  public final fun setRegionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRegionEnabledPtr, NIL)
   }
@@ -344,11 +319,9 @@ public open class Sprite2D : Node2D() {
   }
 
   /**
-   * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The
-   * position is in local coordinates.
+   * Returns `true`, if the pixel at the given position is opaque and `false` in other case. The position is in local coordinates.
    *
-   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position
-   * is invalid.
+   * **Note:** It also returns `false`, if the sprite's texture is `null` or if the given position is invalid.
    */
   public final fun isPixelOpaque(pos: Vector2): Boolean {
     TransferContext.writeArguments(VECTOR2 to pos)
@@ -356,7 +329,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRegionRect(rect: Rect2): Unit {
+  public final fun setRegionRect(rect: Rect2) {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setRegionRectPtr, NIL)
   }
@@ -367,7 +340,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setRegionFilterClipEnabled(enabled: Boolean): Unit {
+  public final fun setRegionFilterClipEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRegionFilterClipEnabledPtr, NIL)
   }
@@ -378,7 +351,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int) {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFramePtr, NIL)
   }
@@ -389,7 +362,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFrameCoords(coords: Vector2i): Unit {
+  public final fun setFrameCoords(coords: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(ptr, MethodBindings.setFrameCoordsPtr, NIL)
   }
@@ -400,7 +373,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setVframes(vframes: Int): Unit {
+  public final fun setVframes(vframes: Int) {
     TransferContext.writeArguments(LONG to vframes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVframesPtr, NIL)
   }
@@ -411,7 +384,7 @@ public open class Sprite2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHframes(hframes: Int): Unit {
+  public final fun setHframes(hframes: Int) {
     TransferContext.writeArguments(LONG to hframes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHframesPtr, NIL)
   }
@@ -430,8 +403,7 @@ public open class Sprite2D : Node2D() {
    * ```gdscript
    * //gdscript
    * func _input(event):
-   *     if event is InputEventMouseButton and event.pressed and event.button_index ==
-   * MOUSE_BUTTON_LEFT:
+   *     if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
    *         if get_rect().has_point(to_local(event.position)):
    *             print("A click!")
    * ```
@@ -463,81 +435,81 @@ public open class Sprite2D : Node2D() {
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_texture", 3_635_182_373)
 
     internal val setCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_centered", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_centered", 2_586_408_642)
 
     internal val isCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_centered", 36873697)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_centered", 36_873_697)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_offset", 3_341_600_327)
 
     internal val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_flip_h", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_flip_h", 2_586_408_642)
 
     internal val isFlippedHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_h", 36873697)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_h", 36_873_697)
 
     internal val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_flip_v", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_flip_v", 2_586_408_642)
 
     internal val isFlippedVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_v", 36873697)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_flipped_v", 36_873_697)
 
     internal val setRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_region_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_enabled", 2_586_408_642)
 
     internal val isRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_region_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_region_enabled", 36_873_697)
 
     internal val isPixelOpaquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_pixel_opaque", 556197845)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_pixel_opaque", 556_197_845)
 
     internal val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_region_rect", 2046264180)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_rect", 2_046_264_180)
 
     internal val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_region_rect", 1639390495)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_region_rect", 1_639_390_495)
 
     internal val setRegionFilterClipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_region_filter_clip_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_region_filter_clip_enabled", 2_586_408_642)
 
     internal val isRegionFilterClipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "is_region_filter_clip_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Sprite2D", "is_region_filter_clip_enabled", 36_873_697)
 
     internal val setFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_frame", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_frame", 1_286_410_249)
 
     internal val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_frame", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_frame", 3_905_245_786)
 
     internal val setFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_frame_coords", 1130785943)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_frame_coords", 1_130_785_943)
 
     internal val getFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_frame_coords", 3690982128)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_frame_coords", 3_690_982_128)
 
     internal val setVframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_vframes", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_vframes", 1_286_410_249)
 
     internal val getVframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_vframes", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_vframes", 3_905_245_786)
 
     internal val setHframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "set_hframes", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite2D", "set_hframes", 1_286_410_249)
 
     internal val getHframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_hframes", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_hframes", 3_905_245_786)
 
     internal val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite2D", "get_rect", 1639390495)
+        TypeManager.getMethodBindPtr("Sprite2D", "get_rect", 1_639_390_495)
   }
 }

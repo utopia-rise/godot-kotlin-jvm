@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,17 +12,11 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by
- * [SceneTree], which is the default game loop implementation used in Godot projects, though it is also
- * possible to write and use one's own [MainLoop] subclass instead of the scene tree.
+ * [MainLoop] is the abstract base class for a Godot project's game loop. It is inherited by [SceneTree], which is the default game loop implementation used in Godot projects, though it is also possible to write and use one's own [MainLoop] subclass instead of the scene tree.
  *
- * Upon the application start, a [MainLoop] implementation must be provided to the OS; otherwise,
- * the application will exit. This happens automatically (and a [SceneTree] is created) unless a
- * [MainLoop] [Script] is provided from the command line (with e.g. `godot -s my_loop.gd`) or the
- * [ProjectSettings.application/run/mainLoopType] project setting is overwritten.
+ * Upon the application start, a [MainLoop] implementation must be provided to the OS; otherwise, the application will exit. This happens automatically (and a [SceneTree] is created) unless a [MainLoop] [Script] is provided from the command line (with e.g. `godot -s my_loop.gd`) or the [ProjectSettings.application/run/mainLoopType] project setting is overwritten.
  *
  * Here is an example script implementing a simple [MainLoop]:
  *
@@ -87,48 +78,34 @@ public open class MainLoop : Object() {
    */
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(343, scriptIndex)
   }
 
   /**
    * Called once during initialization.
    */
-  public open fun _initialize(): Unit {
+  public open fun _initialize() {
     throw NotImplementedError("MainLoop::_initialize is not implemented.")
   }
 
   /**
-   * Called each physics frame with the time since the last physics frame as argument ([delta], in
-   * seconds). Equivalent to [Node.PhysicsProcess].
+   * Called each physics frame with the time since the last physics frame as argument ([delta], in seconds). Equivalent to [Node.PhysicsProcess].
    *
-   * If implemented, the method must return a boolean value. `true` ends the main loop, while
-   * `false` lets it proceed to the next frame.
+   * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
     throw NotImplementedError("MainLoop::_physicsProcess is not implemented.")
   }
 
   /**
-   * Called each process (idle) frame with the time since the last process frame as argument (in
-   * seconds). Equivalent to [Node.Process].
+   * Called each process (idle) frame with the time since the last process frame as argument (in seconds). Equivalent to [Node.Process].
    *
-   * If implemented, the method must return a boolean value. `true` ends the main loop, while
-   * `false` lets it proceed to the next frame.
+   * If implemented, the method must return a boolean value. `true` ends the main loop, while `false` lets it proceed to the next frame.
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** [delta] will be larger than expected if running at a framerate lower than [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid "spiral of death" scenarios where performance would plummet due to an ever-increasing number of physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result, avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Boolean {
     throw NotImplementedError("MainLoop::_process is not implemented.")
@@ -137,7 +114,7 @@ public open class MainLoop : Object() {
   /**
    * Called before the program exits.
    */
-  public open fun _finalize(): Unit {
+  public open fun _finalize() {
     throw NotImplementedError("MainLoop::_finalize is not implemented.")
   }
 
@@ -150,9 +127,7 @@ public open class MainLoop : Object() {
     public final const val NOTIFICATION_OS_MEMORY_WARNING: Long = 2009
 
     /**
-     * Notification received when translations may have changed. Can be triggered by the user
-     * changing the locale. Can be used to respond to language changes, for example to change the UI
-     * strings on the fly. Useful when working with the built-in translation support, like [Object.tr].
+     * Notification received when translations may have changed. Can be triggered by the user changing the locale. Can be used to respond to language changes, for example to change the UI strings on the fly. Useful when working with the built-in translation support, like [Object.tr].
      */
     public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010
 
@@ -171,8 +146,7 @@ public open class MainLoop : Object() {
     public final const val NOTIFICATION_CRASH: Long = 2012
 
     /**
-     * Notification received from the OS when an update of the Input Method Engine occurs (e.g.
-     * change of IME cursor position or composition string).
+     * Notification received from the OS when an update of the Input Method Engine occurs (e.g. change of IME cursor position or composition string).
      *
      * Specific to the macOS platform.
      */
@@ -190,22 +164,19 @@ public open class MainLoop : Object() {
      *
      * Specific to the Android and iOS platforms.
      *
-     * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this
-     * signal. If you go over this allotment, iOS will kill the app instead of pausing it.
+     * **Note:** On iOS, you only have approximately 5 seconds to finish a task started by this signal. If you go over this allotment, iOS will kill the app instead of pausing it.
      */
     public final const val NOTIFICATION_APPLICATION_PAUSED: Long = 2015
 
     /**
-     * Notification received from the OS when the application is focused, i.e. when changing the
-     * focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
+     * Notification received from the OS when the application is focused, i.e. when changing the focus from the OS desktop or a thirdparty application to any open window of the Godot instance.
      *
      * Implemented on desktop and mobile platforms.
      */
     public final const val NOTIFICATION_APPLICATION_FOCUS_IN: Long = 2016
 
     /**
-     * Notification received from the OS when the application is defocused, i.e. when changing the
-     * focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
+     * Notification received from the OS when the application is defocused, i.e. when changing the focus from any open window of the Godot instance to the OS desktop or a thirdparty application.
      *
      * Implemented on desktop and mobile platforms.
      */

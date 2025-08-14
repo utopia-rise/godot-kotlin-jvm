@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,26 +29,19 @@ import kotlin.jvm.JvmOverloads
 /**
  * A resource used by [AnimationNodeBlendTree].
  *
- * [AnimationNodeBlendSpace2D] represents a virtual 2D space on which [AnimationRootNode]s are
- * placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent
- * in this context means the three [AnimationRootNode]s making up the triangle that contains the
- * current value.
+ * [AnimationNodeBlendSpace2D] represents a virtual 2D space on which [AnimationRootNode]s are placed. Outputs the linear blend of the three adjacent animations using a [Vector2] weight. Adjacent in this context means the three [AnimationRootNode]s making up the triangle that contains the current value.
  *
- * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by
- * setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate
- * the blend space by hand.
+ * You can add vertices to the blend space with [addBlendPoint] and automatically triangulate it by setting [autoTriangles] to `true`. Otherwise, use [addTriangle] and [removeTriangle] to triangulate the blend space by hand.
  */
 @GodotBaseType
 public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
-   * Emitted every time the blend space's triangles are created, removed, or when one of their
-   * vertices changes position.
+   * Emitted every time the blend space's triangles are created, removed, or when one of their vertices changes position.
    */
   public val trianglesUpdated: Signal0 by Signal0
 
   /**
-   * If `true`, the blend space is triangulated automatically. The mesh updates every time you add
-   * or remove points with [addBlendPoint] and [removeBlendPoint].
+   * If `true`, the blend space is triangulated automatically. The mesh updates every time you add or remove points with [addBlendPoint] and [removeBlendPoint].
    */
   public final inline var autoTriangles: Boolean
     @JvmName("autoTrianglesProperty")
@@ -65,11 +55,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * The blend space's X and Y axes' lower limit for the points' position. See [addBlendPoint].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minSpace: Vector2
@@ -84,11 +71,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * The blend space's X and Y axes' upper limit for the points' position. See [addBlendPoint].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var maxSpace: Vector2
@@ -103,11 +87,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
    * Position increment to snap to when moving a point.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var snap: Vector2
@@ -164,7 +145,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
       setUseSync(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(22, scriptIndex)
   }
 
@@ -226,16 +207,14 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a
-   * specific index using the [atIndex] argument. If you use the default value for [atIndex], the point
-   * is inserted at the end of the blend points array.
+   * Adds a new point that represents a [node] at the position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public final fun addBlendPoint(
     node: AnimationRootNode?,
     pos: Vector2,
     atIndex: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to node, VECTOR2 to pos, LONG to atIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addBlendPointPtr, NIL)
   }
@@ -243,7 +222,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Updates the position of the point at index [point] in the blend space.
    */
-  public final fun setBlendPointPosition(point: Int, pos: Vector2): Unit {
+  public final fun setBlendPointPosition(point: Int, pos: Vector2) {
     TransferContext.writeArguments(LONG to point.toLong(), VECTOR2 to pos)
     TransferContext.callMethod(ptr, MethodBindings.setBlendPointPositionPtr, NIL)
   }
@@ -260,7 +239,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Changes the [AnimationNode] referenced by the point at index [point].
    */
-  public final fun setBlendPointNode(point: Int, node: AnimationRootNode?): Unit {
+  public final fun setBlendPointNode(point: Int, node: AnimationRootNode?) {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.setBlendPointNodePtr, NIL)
   }
@@ -277,7 +256,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Removes the point at index [point] from the blend space.
    */
-  public final fun removeBlendPoint(point: Int): Unit {
+  public final fun removeBlendPoint(point: Int) {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeBlendPointPtr, NIL)
   }
@@ -292,9 +271,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   /**
-   * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can
-   * insert the triangle at a specific index using the [atIndex] argument. If you use the default value
-   * for [atIndex], the point is inserted at the end of the blend points array.
+   * Creates a new triangle using three points [x], [y], and [z]. Triangles can overlap. You can insert the triangle at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public final fun addTriangle(
@@ -302,7 +279,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     y: Int,
     z: Int,
     atIndex: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to x.toLong(), LONG to y.toLong(), LONG to z.toLong(), LONG to atIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addTrianglePtr, NIL)
   }
@@ -319,7 +296,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   /**
    * Removes the triangle at index [triangle] from the blend space.
    */
-  public final fun removeTriangle(triangle: Int): Unit {
+  public final fun removeTriangle(triangle: Int) {
     TransferContext.writeArguments(LONG to triangle.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeTrianglePtr, NIL)
   }
@@ -333,7 +310,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMinSpace(minSpace: Vector2): Unit {
+  public final fun setMinSpace(minSpace: Vector2) {
     TransferContext.writeArguments(VECTOR2 to minSpace)
     TransferContext.callMethod(ptr, MethodBindings.setMinSpacePtr, NIL)
   }
@@ -344,7 +321,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setMaxSpace(maxSpace: Vector2): Unit {
+  public final fun setMaxSpace(maxSpace: Vector2) {
     TransferContext.writeArguments(VECTOR2 to maxSpace)
     TransferContext.callMethod(ptr, MethodBindings.setMaxSpacePtr, NIL)
   }
@@ -355,7 +332,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setSnap(snap: Vector2): Unit {
+  public final fun setSnap(snap: Vector2) {
     TransferContext.writeArguments(VECTOR2 to snap)
     TransferContext.callMethod(ptr, MethodBindings.setSnapPtr, NIL)
   }
@@ -366,7 +343,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setXLabel(text: String): Unit {
+  public final fun setXLabel(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setXLabelPtr, NIL)
   }
@@ -377,7 +354,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setYLabel(text: String): Unit {
+  public final fun setYLabel(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setYLabelPtr, NIL)
   }
@@ -388,7 +365,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setAutoTriangles(enable: Boolean): Unit {
+  public final fun setAutoTriangles(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTrianglesPtr, NIL)
   }
@@ -399,7 +376,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBlendMode(mode: BlendMode): Unit {
+  public final fun setBlendMode(mode: BlendMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
@@ -410,7 +387,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseSync(enable: Boolean): Unit {
+  public final fun setUseSync(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseSyncPtr, NIL)
   }
@@ -429,13 +406,11 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
      */
     INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the animation node which blending position is closest
-     * to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
      */
     DISCRETE(1),
     /**
-     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's
-     * playback position.
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
      */
     DISCRETE_CARRY(2),
     ;
@@ -454,84 +429,84 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
 
   public object MethodBindings {
     internal val addBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point", 402261981)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_blend_point", 402_261_981)
 
     internal val setBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_position", 163021252)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_position", 163_021_252)
 
     internal val getBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_position", 2299179447)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_position", 2_299_179_447)
 
     internal val setBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_node", 4240341528)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_point_node", 4_240_341_528)
 
     internal val getBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_node", 665599029)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_node", 665_599_029)
 
     internal val removeBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_blend_point", 1286410249)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_blend_point", 1_286_410_249)
 
     internal val getBlendPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_point_count", 3_905_245_786)
 
     internal val addTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_triangle", 753017335)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "add_triangle", 753_017_335)
 
     internal val getTrianglePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_point", 50157827)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_point", 50_157_827)
 
     internal val removeTrianglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_triangle", 1286410249)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "remove_triangle", 1_286_410_249)
 
     internal val getTriangleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_count", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_triangle_count", 3_905_245_786)
 
     internal val setMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_min_space", 743155724)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_min_space", 743_155_724)
 
     internal val getMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_min_space", 3341600327)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_min_space", 3_341_600_327)
 
     internal val setMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_max_space", 743155724)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_max_space", 743_155_724)
 
     internal val getMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_max_space", 3341600327)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_max_space", 3_341_600_327)
 
     internal val setSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_snap", 743155724)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_snap", 743_155_724)
 
     internal val getSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_snap", 3341600327)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_snap", 3_341_600_327)
 
     internal val setXLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_x_label", 83702148)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_x_label", 83_702_148)
 
     internal val getXLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_x_label", 201670096)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_x_label", 201_670_096)
 
     internal val setYLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_y_label", 83702148)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_y_label", 83_702_148)
 
     internal val getYLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_y_label", 201670096)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_y_label", 201_670_096)
 
     internal val setAutoTrianglesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_auto_triangles", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_auto_triangles", 2_586_408_642)
 
     internal val getAutoTrianglesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_auto_triangles", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_auto_triangles", 36_873_697)
 
     internal val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_mode", 81193520)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_blend_mode", 81_193_520)
 
     internal val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_mode", 1398433632)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "get_blend_mode", 1_398_433_632)
 
     internal val setUseSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_use_sync", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "set_use_sync", 2_586_408_642)
 
     internal val isUsingSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "is_using_sync", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace2D", "is_using_sync", 36_873_697)
   }
 }

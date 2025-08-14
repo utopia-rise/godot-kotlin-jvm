@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
- * particles. Connect it to the Velocity output port.
+ * Particle accelerator can be used in "process" step of particle shader. It will accelerate the particles. Connect it to the Velocity output port.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
       setMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(772, scriptIndex)
   }
 
-  public final fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
@@ -62,8 +57,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
      */
     RADIAL(1),
     /**
-     * The particles will be accelerated tangentially to the radius vector from center to their
-     * position.
+     * The particles will be accelerated tangentially to the radius vector from center to their position.
      */
     TANGENTIAL(2),
     /**
@@ -86,9 +80,9 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3457585749)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "set_mode", 3_457_585_749)
 
     internal val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2660365633)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleAccelerator", "get_mode", 2_660_365_633)
   }
 }

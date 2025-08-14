@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,8 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
- * ([nodeA] and [nodeB]) and apply a constraint.
+ * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies ([nodeA] and [nodeB]) and apply a constraint.
  */
 @GodotBaseType
 public open class Joint2D internal constructor() : Node2D() {
@@ -56,12 +52,9 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   /**
-   * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint
-   * pulls them back to their original position. The lower the [bias] the more the two bodies can pull
-   * on the joint.
+   * When [nodeA] and [nodeB] move in different directions the [bias] controls how fast the joint pulls them back to their original position. The lower the [bias] the more the two bodies can pull on the joint.
    *
-   * When set to `0`, the default value from
-   * [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
+   * When set to `0`, the default value from [ProjectSettings.physics/2d/solver/defaultConstraintBias] is used.
    */
   public final inline var bias: Float
     @JvmName("biasProperty")
@@ -82,11 +75,11 @@ public open class Joint2D internal constructor() : Node2D() {
       setExcludeNodesFromCollision(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(322, scriptIndex)
   }
 
-  public final fun setNodeA(node: NodePath): Unit {
+  public final fun setNodeA(node: NodePath) {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(ptr, MethodBindings.setNodeAPtr, NIL)
   }
@@ -97,7 +90,7 @@ public open class Joint2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setNodeB(node: NodePath): Unit {
+  public final fun setNodeB(node: NodePath) {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(ptr, MethodBindings.setNodeBPtr, NIL)
   }
@@ -108,7 +101,7 @@ public open class Joint2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setBias(bias: Float): Unit {
+  public final fun setBias(bias: Float) {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBiasPtr, NIL)
   }
@@ -119,7 +112,7 @@ public open class Joint2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setExcludeNodesFromCollision(enable: Boolean): Unit {
+  public final fun setExcludeNodesFromCollision(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setExcludeNodesFromCollisionPtr, NIL)
   }
@@ -139,37 +132,38 @@ public open class Joint2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setNodeA(node: String) = setNodeA(node.asCachedNodePath())
+  public final fun setNodeA(node: String): Unit = setNodeA(node.asCachedNodePath())
 
-  public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
+  public final fun setNodeB(node: String): Unit = setNodeB(node.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_node_a", 1348162250)
+        TypeManager.getMethodBindPtr("Joint2D", "set_node_a", 1_348_162_250)
 
     internal val getNodeAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_node_a", 4075236667)
+        TypeManager.getMethodBindPtr("Joint2D", "get_node_a", 4_075_236_667)
 
     internal val setNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_node_b", 1348162250)
+        TypeManager.getMethodBindPtr("Joint2D", "set_node_b", 1_348_162_250)
 
     internal val getNodeBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_node_b", 4075236667)
+        TypeManager.getMethodBindPtr("Joint2D", "get_node_b", 4_075_236_667)
 
     internal val setBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_bias", 373806689)
+        TypeManager.getMethodBindPtr("Joint2D", "set_bias", 373_806_689)
 
     internal val getBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_bias", 1740695150)
+        TypeManager.getMethodBindPtr("Joint2D", "get_bias", 1_740_695_150)
 
     internal val setExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2586408642)
+        TypeManager.getMethodBindPtr("Joint2D", "set_exclude_nodes_from_collision", 2_586_408_642)
 
     internal val getExcludeNodesFromCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36873697)
+        TypeManager.getMethodBindPtr("Joint2D", "get_exclude_nodes_from_collision", 36_873_697)
 
-    internal val getRidPtr: VoidPtr = TypeManager.getMethodBindPtr("Joint2D", "get_rid", 2944877500)
+    internal val getRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Joint2D", "get_rid", 2_944_877_500)
   }
 }

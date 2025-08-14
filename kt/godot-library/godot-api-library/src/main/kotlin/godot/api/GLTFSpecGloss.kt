@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,8 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * KHR_materials_pbrSpecularGlossiness is an archived glTF extension. This means that it is
- * deprecated and not recommended for new files. However, it is still supported for loading old files.
+ * KHR_materials_pbrSpecularGlossiness is an archived glTF extension. This means that it is deprecated and not recommended for new files. However, it is still supported for loading old files.
  */
 @GodotBaseType
 public open class GLTFSpecGloss : Resource() {
@@ -45,11 +41,8 @@ public open class GLTFSpecGloss : Resource() {
    * The reflected diffuse factor of the material.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var diffuseFactor: Color
@@ -75,11 +68,8 @@ public open class GLTFSpecGloss : Resource() {
    * The specular RGB color of the material. The alpha channel is unused.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var specularFactor: Color
@@ -101,7 +91,7 @@ public open class GLTFSpecGloss : Resource() {
       setSpecGlossImg(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(239, scriptIndex)
   }
 
@@ -149,7 +139,7 @@ public open class GLTFSpecGloss : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
-  public final fun setDiffuseImg(diffuseImg: Image?): Unit {
+  public final fun setDiffuseImg(diffuseImg: Image?) {
     TransferContext.writeArguments(OBJECT to diffuseImg)
     TransferContext.callMethod(ptr, MethodBindings.setDiffuseImgPtr, NIL)
   }
@@ -160,7 +150,7 @@ public open class GLTFSpecGloss : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setDiffuseFactor(diffuseFactor: Color): Unit {
+  public final fun setDiffuseFactor(diffuseFactor: Color) {
     TransferContext.writeArguments(COLOR to diffuseFactor)
     TransferContext.callMethod(ptr, MethodBindings.setDiffuseFactorPtr, NIL)
   }
@@ -171,7 +161,7 @@ public open class GLTFSpecGloss : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlossFactor(glossFactor: Float): Unit {
+  public final fun setGlossFactor(glossFactor: Float) {
     TransferContext.writeArguments(DOUBLE to glossFactor.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlossFactorPtr, NIL)
   }
@@ -182,7 +172,7 @@ public open class GLTFSpecGloss : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setSpecularFactor(specularFactor: Color): Unit {
+  public final fun setSpecularFactor(specularFactor: Color) {
     TransferContext.writeArguments(COLOR to specularFactor)
     TransferContext.callMethod(ptr, MethodBindings.setSpecularFactorPtr, NIL)
   }
@@ -193,7 +183,7 @@ public open class GLTFSpecGloss : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Image?)
   }
 
-  public final fun setSpecGlossImg(specGlossImg: Image?): Unit {
+  public final fun setSpecGlossImg(specGlossImg: Image?) {
     TransferContext.writeArguments(OBJECT to specGlossImg)
     TransferContext.callMethod(ptr, MethodBindings.setSpecGlossImgPtr, NIL)
   }
@@ -202,33 +192,33 @@ public open class GLTFSpecGloss : Resource() {
 
   public object MethodBindings {
     internal val getDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564927088)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_img", 564_927_088)
 
     internal val setDiffuseImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532598488)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_img", 532_598_488)
 
     internal val getDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3200896285)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_diffuse_factor", 3_200_896_285)
 
     internal val setDiffuseFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2920490490)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_diffuse_factor", 2_920_490_490)
 
     internal val getGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191475506)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_gloss_factor", 191_475_506)
 
     internal val setGlossFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373806689)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_gloss_factor", 373_806_689)
 
     internal val getSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3200896285)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_specular_factor", 3_200_896_285)
 
     internal val setSpecularFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2920490490)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_specular_factor", 2_920_490_490)
 
     internal val getSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564927088)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "get_spec_gloss_img", 564_927_088)
 
     internal val setSpecGlossImgPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532598488)
+        TypeManager.getMethodBindPtr("GLTFSpecGloss", "set_spec_gloss_img", 532_598_488)
   }
 }

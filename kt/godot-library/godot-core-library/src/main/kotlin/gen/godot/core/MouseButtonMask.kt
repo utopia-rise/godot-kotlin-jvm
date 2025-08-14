@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.core
 
@@ -20,18 +17,15 @@ public infix fun Long.and(other: MouseButtonMask): Long = this.and(other.flag)
 public class MouseButtonMask(
   public val flag: Long,
 ) {
-  public infix fun or(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.or(other.flag))
+  public infix fun or(other: MouseButtonMask): MouseButtonMask = MouseButtonMask(flag.or(other.flag))
 
   public infix fun or(other: Long): MouseButtonMask = MouseButtonMask(flag.or(other))
 
-  public infix fun xor(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.xor(other.flag))
+  public infix fun xor(other: MouseButtonMask): MouseButtonMask = MouseButtonMask(flag.xor(other.flag))
 
   public infix fun xor(other: Long): MouseButtonMask = MouseButtonMask(flag.xor(other))
 
-  public infix fun and(other: MouseButtonMask): MouseButtonMask =
-      MouseButtonMask(flag.and(other.flag))
+  public infix fun and(other: MouseButtonMask): MouseButtonMask = MouseButtonMask(flag.and(other.flag))
 
   public infix fun and(other: Long): MouseButtonMask = MouseButtonMask(flag.and(other))
 

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,7 +9,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedFloat32Array
 import godot.core.Transform2D
@@ -32,22 +28,19 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
- * MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance3D] nodes can be
- * slow, since each object is submitted to the GPU then drawn individually.
+ * MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance3D] nodes can be slow, since each object is submitted to the GPU then drawn individually.
  *
- * MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting
- * in less API overhead.
+ * MultiMesh is much faster as it can draw thousands of instances with a single draw call, resulting in less API overhead.
  *
- * As a drawback, if the instances are too far away from each other, performance may be reduced as
- * every single instance will always render (they are spatially indexed as one, for the whole object).
+ * As a drawback, if the instances are too far away from each other, performance may be reduced as every single instance will always render (they are spatially indexed as one, for the whole object).
  *
  * Since instances may have any behavior, the AABB used for visibility must be provided by the user.
  *
- * **Note:** A MultiMesh is a single object, therefore the same maximum lights per object
- * restriction applies. This means, that once the maximum lights are consumed by one or more instances,
- * the rest of the MultiMesh instances will **not** receive any lighting.
+ * **Note:** A MultiMesh is a single object, therefore the same maximum lights per object restriction applies. This means, that once the maximum lights are consumed by one or more instances, the rest of the MultiMesh instances will **not** receive any lighting.
  *
  * **Note:** Blend Shapes will be ignored if used in a MultiMesh.
  */
@@ -65,9 +58,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * If `true`, the [MultiMesh] will use color data (see [setInstanceColor]). Can only be set when
-   * [instanceCount] is `0` or less. This means that you need to call this method before setting the
-   * instance count, or temporarily reset it to `0`.
+   * If `true`, the [MultiMesh] will use color data (see [setInstanceColor]). Can only be set when [instanceCount] is `0` or less. This means that you need to call this method before setting the instance count, or temporarily reset it to `0`.
    */
   public final inline var useColors: Boolean
     @JvmName("useColorsProperty")
@@ -78,9 +69,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * If `true`, the [MultiMesh] will use custom data (see [setInstanceCustomData]). Can only be set
-   * when [instanceCount] is `0` or less. This means that you need to call this method before setting
-   * the instance count, or temporarily reset it to `0`.
+   * If `true`, the [MultiMesh] will use custom data (see [setInstanceCustomData]). Can only be set when [instanceCount] is `0` or less. This means that you need to call this method before setting the instance count, or temporarily reset it to `0`.
    */
   public final inline var useCustomData: Boolean
     @JvmName("useCustomDataProperty")
@@ -91,18 +80,14 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
-   * recalculations.
+   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB recalculations.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
-  public final inline var customAabb: AABB
+  public final inline var customAabb: CoreAABB
     @JvmName("customAabbProperty")
     get() = getCustomAabb()
     @JvmName("customAabbProperty")
@@ -111,8 +96,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * Number of instances that will get drawn. This clears and (re)sizes the buffers. Setting data
-   * format or flags afterwards will have no effect.
+   * Number of instances that will get drawn. This clears and (re)sizes the buffers. Setting data format or flags afterwards will have no effect.
    *
    * By default, all instances are drawn but you can limit this with [visibleInstanceCount].
    */
@@ -125,8 +109,7 @@ public open class MultiMesh : Resource() {
     }
 
   /**
-   * Limits the number of instances drawn, -1 draws all instances. Changing this does not change the
-   * sizes of the buffers.
+   * Limits the number of instances drawn, -1 draws all instances. Changing this does not change the sizes of the buffers.
    */
   public final inline var visibleInstanceCount: Int
     @JvmName("visibleInstanceCountProperty")
@@ -139,8 +122,7 @@ public open class MultiMesh : Resource() {
   /**
    * [Mesh] resource to be instanced.
    *
-   * The looks of the individual instances can be modified using [setInstanceColor] and
-   * [setInstanceCustomData].
+   * The looks of the individual instances can be modified using [setInstanceColor] and [setInstanceCustomData].
    */
   public final inline var mesh: Mesh?
     @JvmName("meshProperty")
@@ -154,11 +136,8 @@ public open class MultiMesh : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var buffer: PackedFloat32Array
@@ -172,11 +151,9 @@ public open class MultiMesh : Resource() {
   /**
    * Choose whether to use an interpolation method that favors speed or quality.
    *
-   * When using low physics tick rates (typically below 20) or high rates of object rotation, you
-   * may get better results from the high quality setting.
+   * When using low physics tick rates (typically below 20) or high rates of object rotation, you may get better results from the high quality setting.
    *
-   * **Note:** Fast quality does not equate to low quality. Except in the special cases mentioned
-   * above, the quality should be comparable to high quality.
+   * **Note:** Fast quality does not equate to low quality. Except in the special cases mentioned above, the quality should be comparable to high quality.
    */
   public final inline var physicsInterpolationQuality: PhysicsInterpolationQuality
     @JvmName("physicsInterpolationQualityProperty")
@@ -186,7 +163,7 @@ public open class MultiMesh : Resource() {
       setPhysicsInterpolationQuality(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(363, scriptIndex)
   }
 
@@ -201,11 +178,10 @@ public open class MultiMesh : Resource() {
    * multimesh.customAabb = myCoreType
    * ``````
    *
-   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB
-   * recalculations.
+   * Custom AABB for this MultiMesh resource. Setting this manually prevents costly runtime AABB recalculations.
    */
   @CoreTypeHelper
-  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply {
+  public final fun customAabbMutate(block: CoreAABB.() -> Unit): CoreAABB = customAabb.apply {
      block(this)
      customAabb = this
   }
@@ -222,20 +198,17 @@ public open class MultiMesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun bufferMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      buffer.apply {
+  public final fun bufferMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = buffer.apply {
      block(this)
      buffer = this
   }
 
   /**
    * This is a helper function for [buffer] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun bufferMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array
-      = buffer.apply {
+  public final fun bufferMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = buffer.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -243,7 +216,7 @@ public open class MultiMesh : Resource() {
      buffer = this
   }
 
-  public final fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -254,7 +227,7 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public final fun setUseColors(enable: Boolean): Unit {
+  public final fun setUseColors(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseColorsPtr, NIL)
   }
@@ -265,7 +238,7 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseCustomData(enable: Boolean): Unit {
+  public final fun setUseCustomData(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseCustomDataPtr, NIL)
   }
@@ -276,7 +249,7 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTransformFormat(format: TransformFormat): Unit {
+  public final fun setTransformFormat(format: TransformFormat) {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.setTransformFormatPtr, NIL)
   }
@@ -287,7 +260,7 @@ public open class MultiMesh : Resource() {
     return TransformFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setInstanceCount(count: Int): Unit {
+  public final fun setInstanceCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInstanceCountPtr, NIL)
   }
@@ -298,7 +271,7 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setVisibleInstanceCount(count: Int): Unit {
+  public final fun setVisibleInstanceCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVisibleInstanceCountPtr, NIL)
   }
@@ -309,7 +282,7 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPhysicsInterpolationQuality(quality: PhysicsInterpolationQuality): Unit {
+  public final fun setPhysicsInterpolationQuality(quality: PhysicsInterpolationQuality) {
     TransferContext.writeArguments(LONG to quality.id)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsInterpolationQualityPtr, NIL)
   }
@@ -323,7 +296,7 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the [Transform3D] for a specific instance.
    */
-  public final fun setInstanceTransform(instance: Int, transform: Transform3D): Unit {
+  public final fun setInstanceTransform(instance: Int, transform: Transform3D) {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setInstanceTransformPtr, NIL)
   }
@@ -331,7 +304,7 @@ public open class MultiMesh : Resource() {
   /**
    * Sets the [Transform2D] for a specific instance.
    */
-  public final fun setInstanceTransform2d(instance: Int, transform: Transform2D): Unit {
+  public final fun setInstanceTransform2d(instance: Int, transform: Transform2D) {
     TransferContext.writeArguments(LONG to instance.toLong(), TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setInstanceTransform2dPtr, NIL)
   }
@@ -355,18 +328,13 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors. This
-   * allows for different color tinting per instance.
+   * Sets the color of a specific instance by *multiplying* the mesh's existing vertex colors. This allows for different color tinting per instance.
    *
-   * **Note:** Each component is stored in 32 bits in the Forward+ and Mobile rendering methods, but
-   * is packed into 16 bits in the Compatibility rendering method.
+   * **Note:** Each component is stored in 32 bits in the Forward+ and Mobile rendering methods, but is packed into 16 bits in the Compatibility rendering method.
    *
-   * For the color to take effect, ensure that [useColors] is `true` on the [MultiMesh] and
-   * [BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material. If you intend to set an
-   * absolute color instead of tinting, make sure the material's albedo color is set to pure white
-   * (`Color(1, 1, 1)`).
+   * For the color to take effect, ensure that [useColors] is `true` on the [MultiMesh] and [BaseMaterial3D.vertexColorUseAsAlbedo] is `true` on the material. If you intend to set an absolute color instead of tinting, make sure the material's albedo color is set to pure white (`Color(1, 1, 1)`).
    */
-  public final fun setInstanceColor(instance: Int, color: Color): Unit {
+  public final fun setInstanceColor(instance: Int, color: Color) {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setInstanceColorPtr, NIL)
   }
@@ -381,18 +349,15 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * Sets custom data for a specific instance. [customData] is a [Color] type only to contain 4
-   * floating-point numbers.
+   * Sets custom data for a specific instance. [customData] is a [Color] type only to contain 4 floating-point numbers.
    *
-   * **Note:** Each number is stored in 32 bits in the Forward+ and Mobile rendering methods, but is
-   * packed into 16 bits in the Compatibility rendering method.
+   * **Note:** Each number is stored in 32 bits in the Forward+ and Mobile rendering methods, but is packed into 16 bits in the Compatibility rendering method.
    *
    * For the custom data to be used, ensure that [useCustomData] is `true`.
    *
-   * This custom instance data has to be manually accessed in your custom shader using
-   * `INSTANCE_CUSTOM`.
+   * This custom instance data has to be manually accessed in your custom shader using `INSTANCE_CUSTOM`.
    */
-  public final fun setInstanceCustomData(instance: Int, customData: Color): Unit {
+  public final fun setInstanceCustomData(instance: Int, customData: Color) {
     TransferContext.writeArguments(LONG to instance.toLong(), COLOR to customData)
     TransferContext.callMethod(ptr, MethodBindings.setInstanceCustomDataPtr, NIL)
   }
@@ -407,35 +372,33 @@ public open class MultiMesh : Resource() {
   }
 
   /**
-   * When using *physics interpolation*, this function allows you to prevent interpolation on an
-   * instance in the current physics tick.
+   * When using *physics interpolation*, this function allows you to prevent interpolation on an instance in the current physics tick.
    *
-   * This allows you to move instances instantaneously, and should usually be used when initially
-   * placing an instance such as a bullet to prevent graphical glitches.
+   * This allows you to move instances instantaneously, and should usually be used when initially placing an instance such as a bullet to prevent graphical glitches.
    */
-  public final fun resetInstancePhysicsInterpolation(instance: Int): Unit {
+  public final fun resetInstancePhysicsInterpolation(instance: Int) {
     TransferContext.writeArguments(LONG to instance.toLong())
     TransferContext.callMethod(ptr, MethodBindings.resetInstancePhysicsInterpolationPtr, NIL)
   }
 
-  public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
+  public final fun setCustomAabb(aabb: CoreAABB) {
+    TransferContext.writeArguments(VariantParserAABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
-  public final fun getCustomAabb(): AABB {
+  public final fun getCustomAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   /**
    * Returns the visibility axis-aligned bounding box in local space.
    */
-  public final fun getAabb(): AABB {
+  public final fun getAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   public final fun getBuffer(): PackedFloat32Array {
@@ -444,24 +407,19 @@ public open class MultiMesh : Resource() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
-  public final fun setBuffer(buffer: PackedFloat32Array): Unit {
+  public final fun setBuffer(buffer: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to buffer)
     TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
 
   /**
-   * An alternative to setting the [buffer] property, which can be used with *physics
-   * interpolation*. This method takes two arrays, and can set the data for the current and previous
-   * tick in one go. The renderer will automatically interpolate the data at each frame.
+   * An alternative to setting the [buffer] property, which can be used with *physics interpolation*. This method takes two arrays, and can set the data for the current and previous tick in one go. The renderer will automatically interpolate the data at each frame.
    *
-   * This is useful for situations where the order of instances may change from physics tick to
-   * tick, such as particle systems.
+   * This is useful for situations where the order of instances may change from physics tick to tick, such as particle systems.
    *
-   * When the order of instances is coherent, the simpler alternative of setting [buffer] can still
-   * be used with interpolation.
+   * When the order of instances is coherent, the simpler alternative of setting [buffer] can still be used with interpolation.
    */
-  public final fun setBufferInterpolated(bufferCurr: PackedFloat32Array,
-      bufferPrev: PackedFloat32Array): Unit {
+  public final fun setBufferInterpolated(bufferCurr: PackedFloat32Array, bufferPrev: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to bufferCurr, PACKED_FLOAT_32_ARRAY to bufferPrev)
     TransferContext.callMethod(ptr, MethodBindings.setBufferInterpolatedPtr, NIL)
   }
@@ -493,13 +451,11 @@ public open class MultiMesh : Resource() {
     id: Long,
   ) {
     /**
-     * Always interpolate using Basis lerping, which can produce warping artifacts in some
-     * situations.
+     * Always interpolate using Basis lerping, which can produce warping artifacts in some situations.
      */
     INTERP_QUALITY_FAST(0),
     /**
-     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible,
-     * otherwise fall back to lerping.
+     * Attempt to interpolate using Basis slerping (spherical linear interpolation) where possible, otherwise fall back to lerping.
      */
     INTERP_QUALITY_HIGH(1),
     ;
@@ -510,8 +466,7 @@ public open class MultiMesh : Resource() {
     }
 
     public companion object {
-      public fun from(`value`: Long): PhysicsInterpolationQuality =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): PhysicsInterpolationQuality = entries.single { it.id == `value` }
     }
   }
 
@@ -519,90 +474,90 @@ public open class MultiMesh : Resource() {
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_mesh", 194775623)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_mesh", 194_775_623)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_mesh", 1808005922)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_mesh", 1_808_005_922)
 
     internal val setUseColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors", 2586408642)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_colors", 2_586_408_642)
 
     internal val isUsingColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors", 36873697)
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_colors", 36_873_697)
 
     internal val setUseCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data", 2586408642)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_use_custom_data", 2_586_408_642)
 
     internal val isUsingCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data", 36873697)
+        TypeManager.getMethodBindPtr("MultiMesh", "is_using_custom_data", 36_873_697)
 
     internal val setTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format", 2404750322)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_transform_format", 2_404_750_322)
 
     internal val getTransformFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format", 2444156481)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_transform_format", 2_444_156_481)
 
     internal val setInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count", 1286410249)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_count", 1_286_410_249)
 
     internal val getInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count", 3905245786)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_count", 3_905_245_786)
 
     internal val setVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count", 1286410249)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_visible_instance_count", 1_286_410_249)
 
     internal val getVisibleInstanceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3905245786)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_visible_instance_count", 3_905_245_786)
 
     internal val setPhysicsInterpolationQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_physics_interpolation_quality", 1819488408)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_physics_interpolation_quality", 1_819_488_408)
 
     internal val getPhysicsInterpolationQualityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_physics_interpolation_quality", 1465701882)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_physics_interpolation_quality", 1_465_701_882)
 
     internal val setInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform", 3616898986)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform", 3_616_898_986)
 
     internal val setInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d", 30160968)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_transform_2d", 30_160_968)
 
     internal val getInstanceTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform", 1965739696)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform", 1_965_739_696)
 
     internal val getInstanceTransform2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d", 3836996910)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_transform_2d", 3_836_996_910)
 
     internal val setInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color", 2878471219)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_color", 2_878_471_219)
 
     internal val getInstanceColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color", 3457211756)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_color", 3_457_211_756)
 
     internal val setInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data", 2878471219)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_instance_custom_data", 2_878_471_219)
 
     internal val getInstanceCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3457211756)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_instance_custom_data", 3_457_211_756)
 
     internal val resetInstancePhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "reset_instance_physics_interpolation", 1286410249)
+        TypeManager.getMethodBindPtr("MultiMesh", "reset_instance_physics_interpolation", 1_286_410_249)
 
     internal val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259215842)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_custom_aabb", 259_215_842)
 
     internal val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_custom_aabb", 1_068_685_055)
 
     internal val getAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_aabb", 1_068_685_055)
 
     internal val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "get_buffer", 675695659)
+        TypeManager.getMethodBindPtr("MultiMesh", "get_buffer", 675_695_659)
 
     internal val setBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer", 2899603908)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer", 2_899_603_908)
 
     internal val setBufferInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer_interpolated", 3514430332)
+        TypeManager.getMethodBindPtr("MultiMesh", "set_buffer_interpolated", 3_514_430_332)
   }
 }

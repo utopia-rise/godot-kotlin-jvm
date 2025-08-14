@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -10,7 +7,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Color
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
@@ -46,13 +42,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
- * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It
- * can be used to construct a [Mesh] from a script. All properties except indices need to be added
- * before calling [addVertex]. For example, to add vertex colors and UVs:
+ * The [SurfaceTool] is used to construct a [Mesh] by specifying vertex attributes individually. It can be used to construct a [Mesh] from a script. All properties except indices need to be added before calling [addVertex]. For example, to add vertex colors and UVs:
  *
  * ```gdscript
  * //gdscript
@@ -72,25 +67,19 @@ import kotlin.jvm.JvmOverloads
  * st.AddVertex(new Vector3(0, 0, 0));
  * ```
  *
- * The above [SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a
- * specified [Color]. If another vertex were added without calling [setUv] or [setColor], then the last
- * values would be used.
+ * The above [SurfaceTool] now contains one vertex of a triangle which has a UV coordinate and a specified [Color]. If another vertex were added without calling [setUv] or [setColor], then the last values would be used.
  *
- * Vertex attributes must be passed **before** calling [addVertex]. Failure to do so will result in
- * an error when committing the vertex information to a mesh.
+ * Vertex attributes must be passed **before** calling [addVertex]. Failure to do so will result in an error when committing the vertex information to a mesh.
  *
- * Additionally, the attributes used before the first vertex is added determine the format of the
- * mesh. For example, if you only add UVs to the first vertex, you cannot add color to any of the
- * subsequent vertices.
+ * Additionally, the attributes used before the first vertex is added determine the format of the mesh. For example, if you only add UVs to the first vertex, you cannot add color to any of the subsequent vertices.
  *
  * See also [ArrayMesh], [ImmediateMesh] and [MeshDataTool] for procedural geometry generation.
  *
- * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
- * order[/url] for front faces of triangle primitive modes.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class SurfaceTool : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(648, scriptIndex)
   }
 
@@ -101,7 +90,7 @@ public open class SurfaceTool : RefCounted() {
    *
    * **Note:** This function takes an enum, not the exact number of weights.
    */
-  public final fun setSkinWeightCount(count: SkinWeightCount): Unit {
+  public final fun setSkinWeightCount(count: SkinWeightCount) {
     TransferContext.writeArguments(LONG to count.id)
     TransferContext.callMethod(ptr, MethodBindings.setSkinWeightCountPtr, NIL)
   }
@@ -124,14 +113,13 @@ public open class SurfaceTool : RefCounted() {
    *
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
-  public final fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
+  public final fun setCustomFormat(channelIndex: Int, format: CustomFormat) {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.setCustomFormatPtr, NIL)
   }
 
   /**
-   * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this
-   * custom channel is unused.
+   * Returns the format for custom [channelIndex] (currently up to 4). Returns [CUSTOM_MAX] if this custom channel is unused.
    */
   public final fun getCustomFormat(channelIndex: Int): CustomFormat {
     TransferContext.writeArguments(LONG to channelIndex.toLong())
@@ -140,71 +128,59 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Called before adding any vertices. Takes the primitive type as an argument (e.g.
-   * [Mesh.PRIMITIVE_TRIANGLES]).
+   * Called before adding any vertices. Takes the primitive type as an argument (e.g. [Mesh.PRIMITIVE_TRIANGLES]).
    */
-  public final fun begin(primitive: Mesh.PrimitiveType): Unit {
+  public final fun begin(primitive: Mesh.PrimitiveType) {
     TransferContext.writeArguments(LONG to primitive.id)
     TransferContext.callMethod(ptr, MethodBindings.beginPtr, NIL)
   }
 
   /**
-   * Specifies the position of current vertex. Should be called after specifying other vertex
-   * properties (e.g. Color, UV).
+   * Specifies the position of current vertex. Should be called after specifying other vertex properties (e.g. Color, UV).
    */
-  public final fun addVertex(vertex: Vector3): Unit {
+  public final fun addVertex(vertex: Vector3) {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(ptr, MethodBindings.addVertexPtr, NIL)
   }
 
   /**
-   * Specifies a [Color] to use for the *next* vertex. If every vertex needs to have this
-   * information set and you fail to submit it for the first vertex, this information may not be used
-   * at all.
+   * Specifies a [Color] to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    *
-   * **Note:** The material must have [BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex
-   * color to be visible.
+   * **Note:** The material must have [BaseMaterial3D.vertexColorUseAsAlbedo] enabled for the vertex color to be visible.
    */
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
 
   /**
-   * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information
-   * set and you fail to submit it for the first vertex, this information may not be used at all.
+   * Specifies a normal to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public final fun setNormal(normal: Vector3): Unit {
+  public final fun setNormal(normal: Vector3) {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(ptr, MethodBindings.setNormalPtr, NIL)
   }
 
   /**
-   * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this
-   * information set and you fail to submit it for the first vertex, this information may not be used
-   * at all.
+   * Specifies a tangent to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public final fun setTangent(tangent: Plane): Unit {
+  public final fun setTangent(tangent: Plane) {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(ptr, MethodBindings.setTangentPtr, NIL)
   }
 
   /**
-   * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have
-   * this information set and you fail to submit it for the first vertex, this information may not be
-   * used at all.
+   * Specifies a set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public final fun setUv(uv: Vector2): Unit {
+  public final fun setUv(uv: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(ptr, MethodBindings.setUvPtr, NIL)
   }
 
   /**
-   * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every
-   * vertex needs to have this information set and you fail to submit it for the first vertex, this
-   * information may not be used at all.
+   * Specifies an optional second set of UV coordinates to use for the *next* vertex. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public final fun setUv2(uv2: Vector2): Unit {
+  public final fun setUv2(uv2: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(ptr, MethodBindings.setUv2Ptr, NIL)
   }
@@ -212,17 +188,15 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Specifies an array of bones to use for the *next* vertex. [bones] must contain 4 integers.
    */
-  public final fun setBones(bones: PackedInt32Array): Unit {
+  public final fun setBones(bones: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.setBonesPtr, NIL)
   }
 
   /**
-   * Specifies weight values to use for the *next* vertex. [weights] must contain 4 values. If every
-   * vertex needs to have this information set and you fail to submit it for the first vertex, this
-   * information may not be used at all.
+   * Specifies weight values to use for the *next* vertex. [weights] must contain 4 values. If every vertex needs to have this information set and you fail to submit it for the first vertex, this information may not be used at all.
    */
-  public final fun setWeights(weights: PackedFloat32Array): Unit {
+  public final fun setWeights(weights: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(ptr, MethodBindings.setWeightsPtr, NIL)
   }
@@ -230,23 +204,19 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Sets the custom value on this vertex for [channelIndex].
    *
-   * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will
-   * ignore other color channels.
+   * [setCustomFormat] must be called first for this [channelIndex]. Formats which are not RGBA will ignore other color channels.
    */
-  public final fun setCustom(channelIndex: Int, customColor: Color): Unit {
+  public final fun setCustom(channelIndex: Int, customColor: Color) {
     TransferContext.writeArguments(LONG to channelIndex.toLong(), COLOR to customColor)
     TransferContext.callMethod(ptr, MethodBindings.setCustomPtr, NIL)
   }
 
   /**
-   * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices
-   * will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same
-   * group. To produce a mesh with flat normals, set the smooth group to `-1`.
+   * Specifies the smooth group to use for the *next* vertex. If this is never called, all vertices will have the default smooth group of `0` and will be smoothed with adjacent vertices of the same group. To produce a mesh with flat normals, set the smooth group to `-1`.
    *
-   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue`
-   * instead of `-1` to produce a mesh with flat normals.
+   * **Note:** This function actually takes a `uint32_t`, so C# users should use `uint32.MaxValue` instead of `-1` to produce a mesh with flat normals.
    */
-  public final fun setSmoothGroup(index: Long): Unit {
+  public final fun setSmoothGroup(index: Long) {
     TransferContext.writeArguments(LONG to index)
     TransferContext.callMethod(ptr, MethodBindings.setSmoothGroupPtr, NIL)
   }
@@ -264,25 +234,23 @@ public open class SurfaceTool : RefCounted() {
     uv2s: PackedVector2Array = PackedVector2Array(),
     normals: PackedVector3Array = PackedVector3Array(),
     tangents: VariantArray<Plane> = godot.core.variantArrayOf(),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_VECTOR2_ARRAY to uvs, PACKED_COLOR_ARRAY to colors, PACKED_VECTOR2_ARRAY to uv2s, PACKED_VECTOR3_ARRAY to normals, ARRAY to tangents)
     TransferContext.callMethod(ptr, MethodBindings.addTriangleFanPtr, NIL)
   }
 
   /**
-   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called
-   * before adding vertices.
+   * Adds a vertex to index array if you are using indexed vertices. Does not need to be called before adding vertices.
    */
-  public final fun addIndex(index: Int): Unit {
+  public final fun addIndex(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addIndexPtr, NIL)
   }
 
   /**
-   * Shrinks the vertex array by creating an index array. This can improve performance by avoiding
-   * vertex reuse.
+   * Shrinks the vertex array by creating an index array. This can improve performance by avoiding vertex reuse.
    */
-  public final fun index(): Unit {
+  public final fun index() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.indexPtr, NIL)
   }
@@ -290,45 +258,36 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Removes the index array by expanding the vertex array.
    */
-  public final fun deindex(): Unit {
+  public final fun deindex() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deindexPtr, NIL)
   }
 
   /**
-   * Generates normals from vertices so you do not have to do it manually. If [flip] is `true`, the
-   * resulting normals will be inverted. [generateNormals] should be called *after* generating geometry
-   * and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of
-   * normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
+   * Generates normals from vertices so you do not have to do it manually. If [flip] is `true`, the resulting normals will be inverted. [generateNormals] should be called *after* generating geometry and *before* committing the mesh using [commit] or [commitToArrays]. For correct display of normal-mapped surfaces, you will also have to generate tangents using [generateTangents].
    *
-   * **Note:** [generateNormals] only works if the primitive type is set to
-   * [Mesh.PRIMITIVE_TRIANGLES].
+   * **Note:** [generateNormals] only works if the primitive type is set to [Mesh.PRIMITIVE_TRIANGLES].
    *
-   * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set
-   * the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the
-   * smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using
-   * [setSmoothGroup] prior to adding vertices.
+   * **Note:** [generateNormals] takes smooth groups into account. To generate smooth normals, set the smooth group to a value greater than or equal to `0` using [setSmoothGroup] or leave the smooth group at the default of `0`. To generate flat normals, set the smooth group to `-1` using [setSmoothGroup] prior to adding vertices.
    */
   @JvmOverloads
-  public final fun generateNormals(flip: Boolean = false): Unit {
+  public final fun generateNormals(flip: Boolean = false) {
     TransferContext.writeArguments(BOOL to flip)
     TransferContext.callMethod(ptr, MethodBindings.generateNormalsPtr, NIL)
   }
 
   /**
-   * Generates a tangent vector for each vertex. Requires that each vertex already has UVs and
-   * normals set (see [generateNormals]).
+   * Generates a tangent vector for each vertex. Requires that each vertex already has UVs and normals set (see [generateNormals]).
    */
-  public final fun generateTangents(): Unit {
+  public final fun generateTangents() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.generateTangentsPtr, NIL)
   }
 
   /**
-   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is
-   * [Mesh.PRIMITIVE_TRIANGLES].
+   * Optimizes triangle sorting for performance. Requires that [getPrimitiveType] is [Mesh.PRIMITIVE_TRIANGLES].
    */
-  public final fun optimizeIndicesForCache(): Unit {
+  public final fun optimizeIndicesForCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.optimizeIndicesForCachePtr, NIL)
   }
@@ -336,15 +295,14 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Returns the axis-aligned bounding box of the vertex positions.
    */
-  public final fun getAabb(): AABB {
+  public final fun getAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   /**
-   * Generates an LOD for a given [ndThreshold] in linear units (square root of quadric error
-   * metric), using at most [targetIndexCount] indices.
+   * Generates an LOD for a given [ndThreshold] in linear units (square root of quadric error metric), using at most [targetIndexCount] indices.
    */
   @JvmOverloads
   public final fun generateLod(ndThreshold: Float, targetIndexCount: Int = 3): PackedInt32Array {
@@ -356,7 +314,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Sets [Material] to be used by the [Mesh] you are constructing.
    */
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -373,7 +331,7 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Clear all information passed into the surface tool so far.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -381,56 +339,48 @@ public open class SurfaceTool : RefCounted() {
   /**
    * Creates a vertex array from an existing [Mesh].
    */
-  public final fun createFrom(existing: Mesh?, surface: Int): Unit {
+  public final fun createFrom(existing: Mesh?, surface: Int) {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong())
     TransferContext.callMethod(ptr, MethodBindings.createFromPtr, NIL)
   }
 
   /**
-   * Creates this SurfaceTool from existing vertex arrays such as returned by [commitToArrays],
-   * [Mesh.surfaceGetArrays], [Mesh.surfaceGetBlendShapeArrays], [ImporterMesh.getSurfaceArrays], and
-   * [ImporterMesh.getSurfaceBlendShapeArrays]. [primitiveType] controls the type of mesh data,
-   * defaulting to [Mesh.PRIMITIVE_TRIANGLES].
+   * Creates this SurfaceTool from existing vertex arrays such as returned by [commitToArrays], [Mesh.surfaceGetArrays], [Mesh.surfaceGetBlendShapeArrays], [ImporterMesh.getSurfaceArrays], and [ImporterMesh.getSurfaceBlendShapeArrays]. [primitiveType] controls the type of mesh data, defaulting to [Mesh.PRIMITIVE_TRIANGLES].
    */
   @JvmOverloads
-  public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
-      Mesh.PrimitiveType.TRIANGLES): Unit {
+  public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType = Mesh.PrimitiveType.TRIANGLES) {
     TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
     TransferContext.callMethod(ptr, MethodBindings.createFromArraysPtr, NIL)
   }
 
   /**
-   * Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used
-   * to extract a specific pose from a blend shape.
+   * Creates a vertex array from the specified blend shape of an existing [Mesh]. This can be used to extract a specific pose from a blend shape.
    */
   public final fun createFromBlendShape(
     existing: Mesh?,
     surface: Int,
     blendShape: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), STRING to blendShape)
     TransferContext.callMethod(ptr, MethodBindings.createFromBlendShapePtr, NIL)
   }
 
   /**
-   * Append vertices from a given [Mesh] surface onto the current vertex array with specified
-   * [Transform3D].
+   * Append vertices from a given [Mesh] surface onto the current vertex array with specified [Transform3D].
    */
   public final fun appendFrom(
     existing: Mesh?,
     surface: Int,
     transform: Transform3D,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to existing, LONG to surface.toLong(), TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.appendFromPtr, NIL)
   }
 
   /**
-   * Returns a constructed [ArrayMesh] from current information passed in. If an existing
-   * [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
+   * Returns a constructed [ArrayMesh] from current information passed in. If an existing [ArrayMesh] is passed in as an argument, will add an extra surface to the existing [ArrayMesh].
    *
-   * The [flags] argument can be the bitwise OR of [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE],
-   * [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+   * The [flags] argument can be the bitwise OR of [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    */
   @JvmOverloads
   public final fun commit(existing: ArrayMesh? = null, flags: Long = 0): ArrayMesh? {
@@ -440,9 +390,7 @@ public open class SurfaceTool : RefCounted() {
   }
 
   /**
-   * Commits the data to the same format used by [ArrayMesh.addSurfaceFromArrays],
-   * [ImporterMesh.addSurface], and [createFromArrays]. This way you can further process the mesh data
-   * using the [ArrayMesh] or [ImporterMesh] APIs.
+   * Commits the data to the same format used by [ArrayMesh.addSurfaceFromArrays], [ImporterMesh.addSurface], and [createFromArrays]. This way you can further process the mesh data using the [ArrayMesh] or [ImporterMesh] APIs.
    */
   public final fun commitToArrays(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -454,43 +402,35 @@ public open class SurfaceTool : RefCounted() {
     id: Long,
   ) {
     /**
-     * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
-     * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
+     * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
      */
     RGBA8_UNORM(0),
     /**
-     * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per
-     * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
+     * Limits range of data passed to [setCustom] to signed normalized -1 to 1 stored in 8 bits per channel. See [Mesh.ARRAY_CUSTOM_RGBA8_SNORM].
      */
     RGBA8_SNORM(1),
     /**
-     * Stores data passed to [setCustom] as half precision floats, and uses only red and green color
-     * channels. See [Mesh.ARRAY_CUSTOM_RG_HALF].
+     * Stores data passed to [setCustom] as half precision floats, and uses only red and green color channels. See [Mesh.ARRAY_CUSTOM_RG_HALF].
      */
     RG_HALF(2),
     /**
-     * Stores data passed to [setCustom] as half precision floats and uses all color channels. See
-     * [Mesh.ARRAY_CUSTOM_RGBA_HALF].
+     * Stores data passed to [setCustom] as half precision floats and uses all color channels. See [Mesh.ARRAY_CUSTOM_RGBA_HALF].
      */
     RGBA_HALF(3),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red color channel.
-     * See [Mesh.ARRAY_CUSTOM_R_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red color channel. See [Mesh.ARRAY_CUSTOM_R_FLOAT].
      */
     R_FLOAT(4),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red and green color
-     * channels. See [Mesh.ARRAY_CUSTOM_RG_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red and green color channels. See [Mesh.ARRAY_CUSTOM_RG_FLOAT].
      */
     RG_FLOAT(5),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue
-     * color channels. See [Mesh.ARRAY_CUSTOM_RGB_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses only red, green and blue color channels. See [Mesh.ARRAY_CUSTOM_RGB_FLOAT].
      */
     RGB_FLOAT(6),
     /**
-     * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See
-     * [Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
+     * Stores data passed to [setCustom] as full precision floats, and uses all color channels. See [Mesh.ARRAY_CUSTOM_RGBA_FLOAT].
      */
     RGBA_FLOAT(7),
     /**
@@ -536,102 +476,102 @@ public open class SurfaceTool : RefCounted() {
 
   public object MethodBindings {
     internal val setSkinWeightCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_skin_weight_count", 618679515)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_skin_weight_count", 618_679_515)
 
     internal val getSkinWeightCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_skin_weight_count", 1072401130)
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_skin_weight_count", 1_072_401_130)
 
     internal val setCustomFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom_format", 4087759856)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom_format", 4_087_759_856)
 
     internal val getCustomFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_custom_format", 839863283)
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_custom_format", 839_863_283)
 
     internal val beginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "begin", 2230304113)
+        TypeManager.getMethodBindPtr("SurfaceTool", "begin", 2_230_304_113)
 
     internal val addVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "add_vertex", 3460891852)
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_vertex", 3_460_891_852)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_color", 2_920_490_490)
 
     internal val setNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_normal", 3460891852)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_normal", 3_460_891_852)
 
     internal val setTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_tangent", 3505987427)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_tangent", 3_505_987_427)
 
     internal val setUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_uv", 743155724)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_uv", 743_155_724)
 
     internal val setUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_uv2", 743155724)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_uv2", 743_155_724)
 
     internal val setBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_bones", 3614634198)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_bones", 3_614_634_198)
 
     internal val setWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_weights", 2899603908)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_weights", 2_899_603_908)
 
     internal val setCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom", 2878471219)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_custom", 2_878_471_219)
 
     internal val setSmoothGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_smooth_group", 1286410249)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_smooth_group", 1_286_410_249)
 
     internal val addTriangleFanPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "add_triangle_fan", 2235017613)
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_triangle_fan", 2_235_017_613)
 
     internal val addIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "add_index", 1286410249)
+        TypeManager.getMethodBindPtr("SurfaceTool", "add_index", 1_286_410_249)
 
     internal val indexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "index", 3218959716)
+        TypeManager.getMethodBindPtr("SurfaceTool", "index", 3_218_959_716)
 
     internal val deindexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "deindex", 3218959716)
+        TypeManager.getMethodBindPtr("SurfaceTool", "deindex", 3_218_959_716)
 
     internal val generateNormalsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "generate_normals", 107499316)
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_normals", 107_499_316)
 
     internal val generateTangentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "generate_tangents", 3218959716)
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_tangents", 3_218_959_716)
 
     internal val optimizeIndicesForCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "optimize_indices_for_cache", 3218959716)
+        TypeManager.getMethodBindPtr("SurfaceTool", "optimize_indices_for_cache", 3_218_959_716)
 
     internal val getAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_aabb", 1_068_685_055)
 
     internal val generateLodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "generate_lod", 1938056459)
+        TypeManager.getMethodBindPtr("SurfaceTool", "generate_lod", 1_938_056_459)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("SurfaceTool", "set_material", 2_757_459_619)
 
     internal val getPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "get_primitive_type", 768822145)
+        TypeManager.getMethodBindPtr("SurfaceTool", "get_primitive_type", 768_822_145)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("SurfaceTool", "clear", 3_218_959_716)
 
     internal val createFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "create_from", 1767024570)
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from", 1_767_024_570)
 
     internal val createFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_arrays", 1894639680)
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_arrays", 1_894_639_680)
 
     internal val createFromBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape", 1306185582)
+        TypeManager.getMethodBindPtr("SurfaceTool", "create_from_blend_shape", 1_306_185_582)
 
     internal val appendFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "append_from", 2217967155)
+        TypeManager.getMethodBindPtr("SurfaceTool", "append_from", 2_217_967_155)
 
     internal val commitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "commit", 4107864055)
+        TypeManager.getMethodBindPtr("SurfaceTool", "commit", 4_107_864_055)
 
     internal val commitToArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SurfaceTool", "commit_to_arrays", 2915620761)
+        TypeManager.getMethodBindPtr("SurfaceTool", "commit_to_arrays", 2_915_620_761)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,10 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound
- * space. 3D nodes register their resources into the current 3D world.
+ * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound space. 3D nodes register their resources into the current 3D world.
  */
 @GodotBaseType
 public open class World3D : Resource() {
@@ -80,15 +75,13 @@ public open class World3D : Resource() {
     get() = getScenario()
 
   /**
-   * Direct access to the world's physics 3D space state. Used for querying current and potential
-   * collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the
-   * main thread.
+   * Direct access to the world's physics 3D space state. Used for querying current and potential collisions. When using multi-threaded physics, access is limited to [Node.PhysicsProcess] in the main thread.
    */
   public final inline val directSpaceState: PhysicsDirectSpaceState3D?
     @JvmName("directSpaceStateProperty")
     get() = getDirectSpaceState()
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(852, scriptIndex)
   }
 
@@ -110,7 +103,7 @@ public open class World3D : Resource() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setEnvironment(env: Environment?): Unit {
+  public final fun setEnvironment(env: Environment?) {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentPtr, NIL)
   }
@@ -121,7 +114,7 @@ public open class World3D : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
-  public final fun setFallbackEnvironment(env: Environment?): Unit {
+  public final fun setFallbackEnvironment(env: Environment?) {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(ptr, MethodBindings.setFallbackEnvironmentPtr, NIL)
   }
@@ -132,7 +125,7 @@ public open class World3D : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
-  public final fun setCameraAttributes(attributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(attributes: CameraAttributes?) {
     TransferContext.writeArguments(OBJECT to attributes)
     TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
@@ -153,33 +146,33 @@ public open class World3D : Resource() {
 
   public object MethodBindings {
     internal val getSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_space", 2944877500)
+        TypeManager.getMethodBindPtr("World3D", "get_space", 2_944_877_500)
 
     internal val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_navigation_map", 2944877500)
+        TypeManager.getMethodBindPtr("World3D", "get_navigation_map", 2_944_877_500)
 
     internal val getScenarioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_scenario", 2944877500)
+        TypeManager.getMethodBindPtr("World3D", "get_scenario", 2_944_877_500)
 
     internal val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_environment", 4143518816)
+        TypeManager.getMethodBindPtr("World3D", "set_environment", 4_143_518_816)
 
     internal val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_environment", 3082064660)
+        TypeManager.getMethodBindPtr("World3D", "get_environment", 3_082_064_660)
 
     internal val setFallbackEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_fallback_environment", 4143518816)
+        TypeManager.getMethodBindPtr("World3D", "set_fallback_environment", 4_143_518_816)
 
     internal val getFallbackEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_fallback_environment", 3082064660)
+        TypeManager.getMethodBindPtr("World3D", "get_fallback_environment", 3_082_064_660)
 
     internal val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "set_camera_attributes", 2817810567)
+        TypeManager.getMethodBindPtr("World3D", "set_camera_attributes", 2_817_810_567)
 
     internal val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_camera_attributes", 3921283215)
+        TypeManager.getMethodBindPtr("World3D", "get_camera_attributes", 3_921_283_215)
 
     internal val getDirectSpaceStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World3D", "get_direct_space_state", 2069328350)
+        TypeManager.getMethodBindPtr("World3D", "get_direct_space_state", 2_069_328_350)
   }
 }

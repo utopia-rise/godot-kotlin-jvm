@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -43,15 +40,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it
- * to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is
- * internal to the [Tree].
+ * A single item of a [Tree] control. It can contain other [TreeItem]s as children, which allows it to create a hierarchy. It can also contain text and buttons. [TreeItem] is not a [Node], it is internal to the [Tree].
  *
- * To create a [TreeItem], use [Tree.createItem] or [TreeItem.createChild]. To remove a [TreeItem],
- * use [Object.free].
+ * To create a [TreeItem], use [Tree.createItem] or [TreeItem.createChild]. To remove a [TreeItem], use [Object.free].
  *
- * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go
- * from `-2147483648` to `2147483647`.
+ * **Note:** The ID values used for buttons are 32-bit, unlike [int] which is always 64-bit. They go from `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class TreeItem internal constructor() : Object() {
@@ -69,8 +62,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If `true`, the [TreeItem] is visible (default).
    *
-   * Note that if a [TreeItem] is set to not be visible, none of its children will be visible
-   * either.
+   * Note that if a [TreeItem] is set to not be visible, none of its children will be visible either.
    */
   public final inline var visible: Boolean
     @JvmName("visibleProperty")
@@ -102,15 +94,14 @@ public open class TreeItem internal constructor() : Object() {
       setCustomMinimumHeight(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(697, scriptIndex)
   }
 
   /**
-   * Sets the given column's cell mode to [mode]. This determines how the cell is displayed and
-   * edited. See [TreeCellMode] constants for details.
+   * Sets the given column's cell mode to [mode]. This determines how the cell is displayed and edited. See [TreeCellMode] constants for details.
    */
-  public final fun setCellMode(column: Int, mode: TreeCellMode): Unit {
+  public final fun setCellMode(column: Int, mode: TreeCellMode) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCellModePtr, NIL)
   }
@@ -127,10 +118,9 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's auto translate mode to [mode].
    *
-   * All columns use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto
-   * translate mode as the [Tree] itself.
+   * All columns use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate mode as the [Tree] itself.
    */
-  public final fun setAutoTranslateMode(column: Int, mode: Node.AutoTranslateMode): Unit {
+  public final fun setAutoTranslateMode(column: Int, mode: Node.AutoTranslateMode) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTranslateModePtr, NIL)
   }
@@ -147,11 +137,9 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If [multiline] is `true`, the given [column] is multiline editable.
    *
-   * **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears
-   * when editing the column. You can set multiline values with [setText] even if the column is not
-   * multiline editable.
+   * **Note:** This option only affects the type of control ([LineEdit] or [TextEdit]) that appears when editing the column. You can set multiline values with [setText] even if the column is not multiline editable.
    */
-  public final fun setEditMultiline(column: Int, multiline: Boolean): Unit {
+  public final fun setEditMultiline(column: Int, multiline: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to multiline)
     TransferContext.callMethod(ptr, MethodBindings.setEditMultilinePtr, NIL)
   }
@@ -168,7 +156,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If [checked] is `true`, the given [column] is checked. Clears column's indeterminate status.
    */
-  public final fun setChecked(column: Int, checked: Boolean): Unit {
+  public final fun setChecked(column: Int, checked: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to checked)
     TransferContext.callMethod(ptr, MethodBindings.setCheckedPtr, NIL)
   }
@@ -178,7 +166,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * **Note:** If set `true` from `false`, then column is cleared of checked status.
    */
-  public final fun setIndeterminate(column: Int, indeterminate: Boolean): Unit {
+  public final fun setIndeterminate(column: Int, indeterminate: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to indeterminate)
     TransferContext.callMethod(ptr, MethodBindings.setIndeterminatePtr, NIL)
   }
@@ -202,14 +190,10 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Propagates this item's checked status to its children and parents for the given [column]. It is
-   * possible to process the items affected by this method call by connecting to [signal
-   * Tree.check_propagated_to_item]. The order that the items affected will be processed is as follows:
-   * the item invoking this method, children of that item, and finally parents of that item. If
-   * [emitSignal] is `false`, then [signal Tree.check_propagated_to_item] will not be emitted.
+   * Propagates this item's checked status to its children and parents for the given [column]. It is possible to process the items affected by this method call by connecting to [signal Tree.check_propagated_to_item]. The order that the items affected will be processed is as follows: the item invoking this method, children of that item, and finally parents of that item. If [emitSignal] is `false`, then [signal Tree.check_propagated_to_item] will not be emitted.
    */
   @JvmOverloads
-  public final fun propagateCheck(column: Int, emitSignal: Boolean = true): Unit {
+  public final fun propagateCheck(column: Int, emitSignal: Boolean = true) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to emitSignal)
     TransferContext.callMethod(ptr, MethodBindings.propagateCheckPtr, NIL)
   }
@@ -217,7 +201,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's text value.
    */
-  public final fun setText(column: Int, text: String): Unit {
+  public final fun setText(column: Int, text: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -234,7 +218,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets item's text base writing direction.
    */
-  public final fun setTextDirection(column: Int, direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(column: Int, direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -249,17 +233,15 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the autowrap mode in the given [column]. If set to something other than
-   * [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
+   * Sets the autowrap mode in the given [column]. If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
    */
-  public final fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
   /**
-   * Returns the text autowrap mode in the given [column]. By default it is
-   * [TextServer.AUTOWRAP_OFF].
+   * Returns the text autowrap mode in the given [column]. By default it is [TextServer.AUTOWRAP_OFF].
    */
   public final fun getAutowrapMode(column: Int): TextServer.AutowrapMode {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -268,18 +250,15 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given
-   * [column].
+   * Sets the clipping behavior when the text exceeds the item's bounding rectangle in the given [column].
    */
-  public final fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
-      Unit {
+  public final fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
   /**
-   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given
-   * [column]. By default it is [TextServer.OVERRUN_TRIM_ELLIPSIS].
+   * Returns the clipping behavior when the text exceeds the item's bounding rectangle in the given [column]. By default it is [TextServer.OVERRUN_TRIM_ELLIPSIS].
    */
   public final fun getTextOverrunBehavior(column: Int): TextServer.OverrunBehavior {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -290,8 +269,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Set BiDi algorithm override for the structured text. Has effect for cells that display text.
    */
-  public final fun setStructuredTextBidiOverride(column: Int,
-      parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(column: Int, parser: TextServer.StructuredTextParser) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
@@ -308,8 +286,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Set additional options for BiDi override. Has effect for cells that display text.
    */
-  public final fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>):
-      Unit {
+  public final fun setStructuredTextBidiOverrideOptions(column: Int, args: VariantArray<Any?>) {
     TransferContext.writeArguments(LONG to column.toLong(), ARRAY to args)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
@@ -324,10 +301,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public final fun setLanguage(column: Int, language: String): Unit {
+  public final fun setLanguage(column: Int, language: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -344,7 +320,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets a string to be shown after a column's value (for example, a unit abbreviation).
    */
-  public final fun setSuffix(column: Int, text: String): Unit {
+  public final fun setSuffix(column: Int, text: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setSuffixPtr, NIL)
   }
@@ -359,11 +335,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given cell's icon [Texture2D]. If the cell is in [CELL_MODE_ICON] mode, the icon is
-   * displayed in the center of the cell. Otherwise, the icon is displayed before the cell's text.
-   * [CELL_MODE_RANGE] does not display an icon.
+   * Sets the given cell's icon [Texture2D]. If the cell is in [CELL_MODE_ICON] mode, the icon is displayed in the center of the cell. Otherwise, the icon is displayed before the cell's text. [CELL_MODE_RANGE] does not display an icon.
    */
-  public final fun setIcon(column: Int, texture: Texture2D?): Unit {
+  public final fun setIcon(column: Int, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setIconPtr, NIL)
   }
@@ -378,10 +352,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given cell's icon overlay [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode,
-   * and icon has to be set. Overlay is drawn on top of icon, in the bottom left corner.
+   * Sets the given cell's icon overlay [Texture2D]. The cell has to be in [CELL_MODE_ICON] mode, and icon has to be set. Overlay is drawn on top of icon, in the bottom left corner.
    */
-  public final fun setIconOverlay(column: Int, texture: Texture2D?): Unit {
+  public final fun setIconOverlay(column: Int, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setIconOverlayPtr, NIL)
   }
@@ -398,7 +371,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's icon's texture region.
    */
-  public final fun setIconRegion(column: Int, region: Rect2): Unit {
+  public final fun setIconRegion(column: Int, region: Rect2) {
     TransferContext.writeArguments(LONG to column.toLong(), RECT2 to region)
     TransferContext.callMethod(ptr, MethodBindings.setIconRegionPtr, NIL)
   }
@@ -413,11 +386,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top
-   * of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is
-   * adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon in the given [column]. This limit is applied on top of the default size of the icon and on top of [theme_item Tree.icon_max_width]. The height is adjusted according to the icon's ratio.
    */
-  public final fun setIconMaxWidth(column: Int, width: Int): Unit {
+  public final fun setIconMaxWidth(column: Int, width: Int) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setIconMaxWidthPtr, NIL)
   }
@@ -434,7 +405,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Modulates the given column's icon with [modulate].
    */
-  public final fun setIconModulate(column: Int, modulate: Color): Unit {
+  public final fun setIconModulate(column: Int, modulate: Color) {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.setIconModulatePtr, NIL)
   }
@@ -451,7 +422,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the value of a [CELL_MODE_RANGE] column.
    */
-  public final fun setRange(column: Int, `value`: Double): Unit {
+  public final fun setRange(column: Int, `value`: Double) {
     TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to value)
     TransferContext.callMethod(ptr, MethodBindings.setRangePtr, NIL)
   }
@@ -466,11 +437,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE]
-   * mode.
+   * Sets the range of accepted values for a column. The column must be in the [CELL_MODE_RANGE] mode.
    *
-   * If [expr] is `true`, the edit mode slider will use an exponential scale as with
-   * [Range.expEdit].
+   * If [expr] is `true`, the edit mode slider will use an exponential scale as with [Range.expEdit].
    */
   @JvmOverloads
   public final fun setRangeConfig(
@@ -479,14 +448,13 @@ public open class TreeItem internal constructor() : Object() {
     max: Double,
     step: Double,
     expr: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), DOUBLE to min, DOUBLE to max, DOUBLE to step, BOOL to expr)
     TransferContext.callMethod(ptr, MethodBindings.setRangeConfigPtr, NIL)
   }
 
   /**
-   * Returns a dictionary containing the range parameters for a given column. The keys are "min",
-   * "max", "step", and "expr".
+   * Returns a dictionary containing the range parameters for a given column. The keys are "min", "max", "step", and "expr".
    */
   public final fun getRangeConfig(column: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to column.toLong())
@@ -495,10 +463,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the metadata value for the given column, which can be retrieved later using [getMetadata].
-   * This can be used, for example, to store a reference to the original data.
+   * Sets the metadata value for the given column, which can be retrieved later using [getMetadata]. This can be used, for example, to store a reference to the original data.
    */
-  public final fun setMetadata(column: Int, meta: Any?): Unit {
+  public final fun setMetadata(column: Int, meta: Any?) {
     TransferContext.writeArguments(LONG to column.toLong(), ANY to meta)
     TransferContext.callMethod(ptr, MethodBindings.setMetadataPtr, NIL)
   }
@@ -515,27 +482,23 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's custom draw callback to the [callback] method on [object].
    *
-   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its
-   * position and size as a [Rect2].
+   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
    */
   public final fun setCustomDraw(
     column: Int,
     `object`: Object?,
     callback: StringName,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to `object`, STRING_NAME to callback)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDrawPtr, NIL)
   }
 
   /**
-   * Sets the given column's custom draw callback. Use an empty [Callable] ([code
-   * skip-lint]Callable()[/code]) to clear the custom callback. The cell has to be in
-   * [CELL_MODE_CUSTOM] to use this feature.
+   * Sets the given column's custom draw callback. Use an empty [Callable] ([code skip-lint]Callable()[/code]) to clear the custom callback. The cell has to be in [CELL_MODE_CUSTOM] to use this feature.
    *
-   * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and
-   * size as a [Rect2].
+   * The [callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
    */
-  public final fun setCustomDrawCallback(column: Int, callback: Callable): Unit {
+  public final fun setCustomDrawCallback(column: Int, callback: Callable) {
     TransferContext.writeArguments(LONG to column.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDrawCallbackPtr, NIL)
   }
@@ -549,7 +512,7 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(CALLABLE) as Callable)
   }
 
-  public final fun setCollapsed(enable: Boolean): Unit {
+  public final fun setCollapsed(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollapsedPtr, NIL)
   }
@@ -563,7 +526,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Collapses or uncollapses this [TreeItem] and all the descendants of this item.
    */
-  public final fun setCollapsedRecursive(enable: Boolean): Unit {
+  public final fun setCollapsedRecursive(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollapsedRecursivePtr, NIL)
   }
@@ -580,7 +543,7 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVisible(enable: Boolean): Unit {
+  public final fun setVisible(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
@@ -603,12 +566,12 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Uncollapses all [TreeItem]s necessary to reveal this [TreeItem], i.e. all ancestor [TreeItem]s.
    */
-  public final fun uncollapseTree(): Unit {
+  public final fun uncollapseTree() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.uncollapseTreePtr, NIL)
   }
 
-  public final fun setCustomMinimumHeight(height: Int): Unit {
+  public final fun setCustomMinimumHeight(height: Int) {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCustomMinimumHeightPtr, NIL)
   }
@@ -622,7 +585,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If [selectable] is `true`, the given [column] is selectable.
    */
-  public final fun setSelectable(column: Int, selectable: Boolean): Unit {
+  public final fun setSelectable(column: Int, selectable: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to selectable)
     TransferContext.callMethod(ptr, MethodBindings.setSelectablePtr, NIL)
   }
@@ -648,7 +611,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Selects the given [column].
    */
-  public final fun select(column: Int): Unit {
+  public final fun select(column: Int) {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
@@ -656,7 +619,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Deselects the given column.
    */
-  public final fun deselect(column: Int): Unit {
+  public final fun deselect(column: Int) {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
   }
@@ -664,7 +627,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If [enabled] is `true`, the given [column] is editable.
    */
-  public final fun setEditable(column: Int, enabled: Boolean): Unit {
+  public final fun setEditable(column: Int, enabled: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
   }
@@ -681,7 +644,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's custom color.
    */
-  public final fun setCustomColor(column: Int, color: Color): Unit {
+  public final fun setCustomColor(column: Int, color: Color) {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setCustomColorPtr, NIL)
   }
@@ -698,7 +661,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Resets the color for the given column to default.
    */
-  public final fun clearCustomColor(column: Int): Unit {
+  public final fun clearCustomColor(column: Int) {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clearCustomColorPtr, NIL)
   }
@@ -706,7 +669,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets custom font used to draw text in the given [column].
    */
-  public final fun setCustomFont(column: Int, font: Font?): Unit {
+  public final fun setCustomFont(column: Int, font: Font?) {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setCustomFontPtr, NIL)
   }
@@ -723,7 +686,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets custom font size used to draw text in the given [column].
    */
-  public final fun setCustomFontSize(column: Int, fontSize: Int): Unit {
+  public final fun setCustomFontSize(column: Int, fontSize: Int) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to fontSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCustomFontSizePtr, NIL)
   }
@@ -745,7 +708,7 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     color: Color,
     justOutline: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), COLOR to color, BOOL to justOutline)
     TransferContext.callMethod(ptr, MethodBindings.setCustomBgColorPtr, NIL)
   }
@@ -753,7 +716,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Resets the background color for the given column to default.
    */
-  public final fun clearCustomBgColor(column: Int): Unit {
+  public final fun clearCustomBgColor(column: Int) {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clearCustomBgColorPtr, NIL)
   }
@@ -770,7 +733,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Makes a cell with [CELL_MODE_CUSTOM] display as a non-flat button with a [StyleBox].
    */
-  public final fun setCustomAsButton(column: Int, enable: Boolean): Unit {
+  public final fun setCustomAsButton(column: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCustomAsButtonPtr, NIL)
   }
@@ -787,17 +750,13 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Removes all buttons from all columns of this item.
    */
-  public final fun clearButtons(): Unit {
+  public final fun clearButtons() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearButtonsPtr, NIL)
   }
 
   /**
-   * Adds a button with [Texture2D] [button] to the end of the cell at column [column]. The [id] is
-   * used to identify the button in the according [signal Tree.button_clicked] signal and can be
-   * different from the buttons index. If not specified, the next available index is used, which may be
-   * retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can
-   * be [disabled] and have a [tooltipText].
+   * Adds a button with [Texture2D] [button] to the end of the cell at column [column]. The [id] is used to identify the button in the according [signal Tree.button_clicked] signal and can be different from the buttons index. If not specified, the next available index is used, which may be retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can be [disabled] and have a [tooltipText].
    */
   @JvmOverloads
   public final fun addButton(
@@ -806,7 +765,7 @@ public open class TreeItem internal constructor() : Object() {
     id: Int = -1,
     disabled: Boolean = false,
     tooltipText: String = "",
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), OBJECT to button, LONG to id.toLong(), BOOL to disabled, STRING to tooltipText)
     TransferContext.callMethod(ptr, MethodBindings.addButtonPtr, NIL)
   }
@@ -839,8 +798,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the button index if there is a button with ID [id] in column [column], otherwise
-   * returns -1.
+   * Returns the button index if there is a button with ID [id] in column [column], otherwise returns -1.
    */
   public final fun getButtonById(column: Int, id: Int): Int {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
@@ -849,8 +807,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the color of the button with ID [id] in column [column]. If the specified button does
-   * not exist, returns [Color.BLACK].
+   * Returns the color of the button with ID [id] in column [column]. If the specified button does not exist, returns [Color.BLACK].
    */
   public final fun getButtonColor(column: Int, id: Int): Color {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to id.toLong())
@@ -874,7 +831,7 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     buttonIndex: Int,
     tooltip: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setButtonTooltipTextPtr, NIL)
   }
@@ -886,7 +843,7 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     buttonIndex: Int,
     button: Texture2D?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), OBJECT to button)
     TransferContext.callMethod(ptr, MethodBindings.setButtonPtr, NIL)
   }
@@ -894,7 +851,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Removes the button at index [buttonIndex] in column [column].
    */
-  public final fun eraseButton(column: Int, buttonIndex: Int): Unit {
+  public final fun eraseButton(column: Int, buttonIndex: Int) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.eraseButtonPtr, NIL)
   }
@@ -906,7 +863,7 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     buttonIndex: Int,
     disabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setButtonDisabledPtr, NIL)
   }
@@ -918,7 +875,7 @@ public open class TreeItem internal constructor() : Object() {
     column: Int,
     buttonIndex: Int,
     color: Color,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setButtonColorPtr, NIL)
   }
@@ -935,7 +892,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's tooltip text.
    */
-  public final fun setTooltipText(column: Int, tooltip: String): Unit {
+  public final fun setTooltipText(column: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setTooltipTextPtr, NIL)
   }
@@ -952,7 +909,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's text alignment. See [HorizontalAlignment] for possible values.
    */
-  public final fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
+  public final fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextAlignmentPtr, NIL)
   }
@@ -969,7 +926,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * If [enable] is `true`, the given [column] is expanded to the right.
    */
-  public final fun setExpandRight(column: Int, enable: Boolean): Unit {
+  public final fun setExpandRight(column: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setExpandRightPtr, NIL)
   }
@@ -983,7 +940,7 @@ public open class TreeItem internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDisableFolding(disable: Boolean): Unit {
+  public final fun setDisableFolding(disable: Boolean) {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(ptr, MethodBindings.setDisableFoldingPtr, NIL)
   }
@@ -997,8 +954,7 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Creates an item and adds it as a child.
    *
-   * The new item will be inserted as position [index] (the default value `-1` means the last
-   * position), or it will be the last child if [index] is higher than the child count.
+   * The new item will be inserted as position [index] (the default value `-1` means the last position), or it will be the last child if [index] is higher than the child count.
    */
   @JvmOverloads
   public final fun createChild(index: Int = -1): TreeItem? {
@@ -1008,23 +964,19 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Adds a previously unparented [TreeItem] as a direct child of this one. The [child] item must
-   * not be a part of any [Tree] or parented to any [TreeItem]. See also [removeChild].
+   * Adds a previously unparented [TreeItem] as a direct child of this one. The [child] item must not be a part of any [Tree] or parented to any [TreeItem]. See also [removeChild].
    */
-  public final fun addChild(child: TreeItem?): Unit {
+  public final fun addChild(child: TreeItem?) {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(ptr, MethodBindings.addChildPtr, NIL)
   }
 
   /**
-   * Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't
-   * free the item from memory, so it can be reused later (see [addChild]). To completely remove a
-   * [TreeItem] use [Object.free].
+   * Removes the given child [TreeItem] and all its children from the [Tree]. Note that it doesn't free the item from memory, so it can be reused later (see [addChild]). To completely remove a [TreeItem] use [Object.free].
    *
-   * **Note:** If you want to move a child from one [Tree] to another, then instead of removing and
-   * adding it manually you can use [moveBefore] or [moveAfter].
+   * **Note:** If you want to move a child from one [Tree] to another, then instead of removing and adding it manually you can use [moveBefore] or [moveAfter].
    */
-  public final fun removeChild(child: TreeItem?): Unit {
+  public final fun removeChild(child: TreeItem?) {
     TransferContext.writeArguments(OBJECT to child)
     TransferContext.callMethod(ptr, MethodBindings.removeChildPtr, NIL)
   }
@@ -1075,11 +1027,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null`
-   * object if there is none.
+   * Returns the next TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
-   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called
-   * on the last element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the first element in the tree when called on the last element, otherwise it returns `null`.
    */
   @JvmOverloads
   public final fun getNextInTree(wrap: Boolean = false): TreeItem? {
@@ -1089,11 +1039,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null`
-   * object if there is none.
+   * Returns the previous TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
-   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called
-   * on the first visible element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the last element in the tree when called on the first visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public final fun getPrevInTree(wrap: Boolean = false): TreeItem? {
@@ -1103,11 +1051,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a
-   * `null` object if there is none.
+   * Returns the next visible TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
-   * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when
-   * called on the last visible element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the first visible element in the tree when called on the last visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public final fun getNextVisible(wrap: Boolean = false): TreeItem? {
@@ -1117,11 +1063,9 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first
-   * search) or a `null` object if there is none.
+   * Returns the previous visible sibling TreeItem in the tree (in the context of a depth-first search) or a `null` object if there is none.
    *
-   * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when
-   * called on the first visible element, otherwise it returns `null`.
+   * If [wrap] is enabled, the method will wrap around to the last visible element in the tree when called on the first visible element, otherwise it returns `null`.
    */
   @JvmOverloads
   public final fun getPrevVisible(wrap: Boolean = false): TreeItem? {
@@ -1131,8 +1075,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns a child item by its [index] (see [getChildCount]). This method is often used for
-   * iterating all children of an item.
+   * Returns a child item by its [index] (see [getChildCount]). This method is often used for iterating all children of an item.
    *
    * Negative indices access the children from the last one.
    */
@@ -1161,8 +1104,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Returns the node's order in the tree. For example, if called on the first child item the
-   * position is `0`.
+   * Returns the node's order in the tree. For example, if called on the first child item the position is `0`.
    */
   public final fun getIndex(): Int {
     TransferContext.writeArguments()
@@ -1175,7 +1117,7 @@ public open class TreeItem internal constructor() : Object() {
    *
    * **Note:** You can't move to the root or move the root.
    */
-  public final fun moveBefore(item: TreeItem?): Unit {
+  public final fun moveBefore(item: TreeItem?) {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(ptr, MethodBindings.moveBeforePtr, NIL)
   }
@@ -1185,16 +1127,15 @@ public open class TreeItem internal constructor() : Object() {
    *
    * **Note:** You can't move to the root or move the root.
    */
-  public final fun moveAfter(item: TreeItem?): Unit {
+  public final fun moveAfter(item: TreeItem?) {
     TransferContext.writeArguments(OBJECT to item)
     TransferContext.callMethod(ptr, MethodBindings.moveAfterPtr, NIL)
   }
 
   /**
-   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
-   * comma separated list.
+   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
    */
-  public final fun callRecursive(method: StringName, vararg args: Any?): Unit {
+  public final fun callRecursive(method: StringName, vararg args: Any?) {
     TransferContext.writeArguments(STRING_NAME to method,  *args.map { ANY to it }.toTypedArray())
     TransferContext.callMethod(ptr, MethodBindings.callRecursivePtr, NIL)
   }
@@ -1202,54 +1143,42 @@ public open class TreeItem internal constructor() : Object() {
   /**
    * Sets the given column's custom draw callback to the [callback] method on [object].
    *
-   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its
-   * position and size as a [Rect2].
+   * The method named [callback] should accept two arguments: the [TreeItem] that is drawn and its position and size as a [Rect2].
    */
   public final fun setCustomDraw(
     column: Int,
     `object`: Object?,
     callback: String,
-  ) = setCustomDraw(column, `object`, callback.asCachedStringName())
+  ): Unit = setCustomDraw(column, `object`, callback.asCachedStringName())
 
   /**
-   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a
-   * comma separated list.
+   * Calls the [method] on the actual TreeItem and its children recursively. Pass parameters as a comma separated list.
    */
-  public final fun callRecursive(method: String, vararg args: Any?) =
-      callRecursive(method.asCachedStringName(), )
+  public final fun callRecursive(method: String, vararg args: Any?): Unit = callRecursive(method.asCachedStringName(), )
 
   public enum class TreeCellMode(
     id: Long,
   ) {
     /**
-     * Cell shows a string label, optionally with an icon. When editable, the text can be edited
-     * using a [LineEdit], or a [TextEdit] popup if [setEditMultiline] is used.
+     * Cell shows a string label, optionally with an icon. When editable, the text can be edited using a [LineEdit], or a [TextEdit] popup if [setEditMultiline] is used.
      */
     CELL_MODE_STRING(0),
     /**
-     * Cell shows a checkbox, optionally with text and an icon. The checkbox can be pressed,
-     * released, or indeterminate (via [setIndeterminate]). The checkbox can't be clicked unless the
-     * cell is editable.
+     * Cell shows a checkbox, optionally with text and an icon. The checkbox can be pressed, released, or indeterminate (via [setIndeterminate]). The checkbox can't be clicked unless the cell is editable.
      */
     CELL_MODE_CHECK(1),
     /**
-     * Cell shows a numeric range. When editable, it can be edited using a range slider. Use
-     * [setRange] to set the value and [setRangeConfig] to configure the range.
+     * Cell shows a numeric range. When editable, it can be edited using a range slider. Use [setRange] to set the value and [setRangeConfig] to configure the range.
      *
-     * This cell can also be used in a text dropdown mode when you assign a text with [setText].
-     * Separate options with a comma, e.g. `"Option1,Option2,Option3"`.
+     * This cell can also be used in a text dropdown mode when you assign a text with [setText]. Separate options with a comma, e.g. `"Option1,Option2,Option3"`.
      */
     CELL_MODE_RANGE(2),
     /**
-     * Cell shows an icon. It can't be edited nor display text. The icon is always centered within
-     * the cell.
+     * Cell shows an icon. It can't be edited nor display text. The icon is always centered within the cell.
      */
     CELL_MODE_ICON(3),
     /**
-     * Cell shows as a clickable button. It will display an arrow similar to [OptionButton], but
-     * doesn't feature a dropdown (for that you can use [CELL_MODE_RANGE]). Clicking the button emits
-     * the [signal Tree.item_edited] signal. The button is flat by default, you can use
-     * [setCustomAsButton] to display it with a [StyleBox].
+     * Cell shows as a clickable button. It will display an arrow similar to [OptionButton], but doesn't feature a dropdown (for that you can use [CELL_MODE_RANGE]). Clicking the button emits the [signal Tree.item_edited] signal. The button is flat by default, you can use [setCustomAsButton] to display it with a [StyleBox].
      *
      * This mode also supports custom drawing using [setCustomDrawCallback].
      */
@@ -1270,350 +1199,351 @@ public open class TreeItem internal constructor() : Object() {
 
   public object MethodBindings {
     internal val setCellModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_cell_mode", 289920701)
+        TypeManager.getMethodBindPtr("TreeItem", "set_cell_mode", 289_920_701)
 
     internal val getCellModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_cell_mode", 3406114978)
+        TypeManager.getMethodBindPtr("TreeItem", "get_cell_mode", 3_406_114_978)
 
     internal val setAutoTranslateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_auto_translate_mode", 287402019)
+        TypeManager.getMethodBindPtr("TreeItem", "set_auto_translate_mode", 287_402_019)
 
     internal val getAutoTranslateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_auto_translate_mode", 906302372)
+        TypeManager.getMethodBindPtr("TreeItem", "get_auto_translate_mode", 906_302_372)
 
     internal val setEditMultilinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_edit_multiline", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_edit_multiline", 300_928_843)
 
     internal val isEditMultilinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_edit_multiline", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "is_edit_multiline", 1_116_898_809)
 
     internal val setCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_checked", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_checked", 300_928_843)
 
     internal val setIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_indeterminate", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_indeterminate", 300_928_843)
 
     internal val isCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_checked", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "is_checked", 1_116_898_809)
 
     internal val isIndeterminatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_indeterminate", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "is_indeterminate", 1_116_898_809)
 
     internal val propagateCheckPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "propagate_check", 972357352)
+        TypeManager.getMethodBindPtr("TreeItem", "propagate_check", 972_357_352)
 
     internal val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text", 501894301)
+        TypeManager.getMethodBindPtr("TreeItem", "set_text", 501_894_301)
 
     internal val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text", 844755477)
+        TypeManager.getMethodBindPtr("TreeItem", "get_text", 844_755_477)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_direction", 1707680378)
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_direction", 1_707_680_378)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_direction", 4235602388)
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_direction", 4_235_602_388)
 
     internal val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_autowrap_mode", 3633006561)
+        TypeManager.getMethodBindPtr("TreeItem", "set_autowrap_mode", 3_633_006_561)
 
     internal val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode", 2902757236)
+        TypeManager.getMethodBindPtr("TreeItem", "get_autowrap_mode", 2_902_757_236)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior", 1940772195)
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_overrun_behavior", 1_940_772_195)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior", 3782727860)
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_overrun_behavior", 3_782_727_860)
 
     internal val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override", 868756907)
+        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override", 868_756_907)
 
     internal val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override", 3377823772)
+        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override", 3_377_823_772)
 
     internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override_options", 537221740)
+        TypeManager.getMethodBindPtr("TreeItem", "set_structured_text_bidi_override_options", 537_221_740)
 
     internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override_options", 663333327)
+        TypeManager.getMethodBindPtr("TreeItem", "get_structured_text_bidi_override_options", 663_333_327)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_language", 501894301)
+        TypeManager.getMethodBindPtr("TreeItem", "set_language", 501_894_301)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_language", 844755477)
+        TypeManager.getMethodBindPtr("TreeItem", "get_language", 844_755_477)
 
     internal val setSuffixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_suffix", 501894301)
+        TypeManager.getMethodBindPtr("TreeItem", "set_suffix", 501_894_301)
 
     internal val getSuffixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_suffix", 844755477)
+        TypeManager.getMethodBindPtr("TreeItem", "get_suffix", 844_755_477)
 
     internal val setIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon", 666127730)
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon", 666_127_730)
 
     internal val getIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon", 3536238170)
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon", 3_536_238_170)
 
     internal val setIconOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_overlay", 666127730)
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_overlay", 666_127_730)
 
     internal val getIconOverlayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_overlay", 3536238170)
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_overlay", 3_536_238_170)
 
     internal val setIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_region", 1356297692)
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_region", 1_356_297_692)
 
     internal val getIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_region", 3327874267)
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_region", 3_327_874_267)
 
     internal val setIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_max_width", 3937882851)
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_max_width", 3_937_882_851)
 
     internal val getIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_max_width", 923996154)
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_max_width", 923_996_154)
 
     internal val setIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_icon_modulate", 2878471219)
+        TypeManager.getMethodBindPtr("TreeItem", "set_icon_modulate", 2_878_471_219)
 
     internal val getIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_icon_modulate", 3457211756)
+        TypeManager.getMethodBindPtr("TreeItem", "get_icon_modulate", 3_457_211_756)
 
     internal val setRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_range", 1602489585)
+        TypeManager.getMethodBindPtr("TreeItem", "set_range", 1_602_489_585)
 
     internal val getRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_range", 2339986948)
+        TypeManager.getMethodBindPtr("TreeItem", "get_range", 2_339_986_948)
 
     internal val setRangeConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_range_config", 1547181014)
+        TypeManager.getMethodBindPtr("TreeItem", "set_range_config", 1_547_181_014)
 
     internal val getRangeConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_range_config", 3554694381)
+        TypeManager.getMethodBindPtr("TreeItem", "get_range_config", 3_554_694_381)
 
     internal val setMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_metadata", 2152698145)
+        TypeManager.getMethodBindPtr("TreeItem", "set_metadata", 2_152_698_145)
 
     internal val getMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_metadata", 4227898402)
+        TypeManager.getMethodBindPtr("TreeItem", "get_metadata", 4_227_898_402)
 
     internal val setCustomDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw", 272420368)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw", 272_420_368)
 
     internal val setCustomDrawCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw_callback", 957362965)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_draw_callback", 957_362_965)
 
     internal val getCustomDrawCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback", 1317077508)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_draw_callback", 1_317_077_508)
 
     internal val setCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed", 2586408642)
+        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed", 2_586_408_642)
 
     internal val isCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_collapsed", 2240911060)
+        TypeManager.getMethodBindPtr("TreeItem", "is_collapsed", 2_240_911_060)
 
     internal val setCollapsedRecursivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed_recursive", 2586408642)
+        TypeManager.getMethodBindPtr("TreeItem", "set_collapsed_recursive", 2_586_408_642)
 
     internal val isAnyCollapsedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_any_collapsed", 2595650253)
+        TypeManager.getMethodBindPtr("TreeItem", "is_any_collapsed", 2_595_650_253)
 
     internal val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_visible", 2586408642)
+        TypeManager.getMethodBindPtr("TreeItem", "set_visible", 2_586_408_642)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_visible", 2240911060)
+        TypeManager.getMethodBindPtr("TreeItem", "is_visible", 2_240_911_060)
 
     internal val isVisibleInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_visible_in_tree", 36873697)
+        TypeManager.getMethodBindPtr("TreeItem", "is_visible_in_tree", 36_873_697)
 
     internal val uncollapseTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "uncollapse_tree", 3218959716)
+        TypeManager.getMethodBindPtr("TreeItem", "uncollapse_tree", 3_218_959_716)
 
     internal val setCustomMinimumHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_minimum_height", 1286410249)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_minimum_height", 1_286_410_249)
 
     internal val getCustomMinimumHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_minimum_height", 3905245786)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_minimum_height", 3_905_245_786)
 
     internal val setSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_selectable", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_selectable", 300_928_843)
 
     internal val isSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_selectable", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "is_selectable", 1_116_898_809)
 
     internal val isSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_selected", 3067735520)
+        TypeManager.getMethodBindPtr("TreeItem", "is_selected", 3_067_735_520)
 
-    internal val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("TreeItem", "select", 1286410249)
+    internal val selectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "select", 1_286_410_249)
 
     internal val deselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "deselect", 1286410249)
+        TypeManager.getMethodBindPtr("TreeItem", "deselect", 1_286_410_249)
 
     internal val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_editable", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_editable", 300_928_843)
 
     internal val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_editable", 3067735520)
+        TypeManager.getMethodBindPtr("TreeItem", "is_editable", 3_067_735_520)
 
     internal val setCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_color", 2878471219)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_color", 2_878_471_219)
 
     internal val getCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_color", 3457211756)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_color", 3_457_211_756)
 
     internal val clearCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_color", 1286410249)
+        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_color", 1_286_410_249)
 
     internal val setCustomFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font", 2637609184)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font", 2_637_609_184)
 
     internal val getCustomFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font", 4244553094)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font", 4_244_553_094)
 
     internal val setCustomFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font_size", 3937882851)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_font_size", 3_937_882_851)
 
     internal val getCustomFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font_size", 923996154)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_font_size", 923_996_154)
 
     internal val setCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_bg_color", 894174518)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_bg_color", 894_174_518)
 
     internal val clearCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_bg_color", 1286410249)
+        TypeManager.getMethodBindPtr("TreeItem", "clear_custom_bg_color", 1_286_410_249)
 
     internal val getCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_custom_bg_color", 3457211756)
+        TypeManager.getMethodBindPtr("TreeItem", "get_custom_bg_color", 3_457_211_756)
 
     internal val setCustomAsButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_custom_as_button", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_custom_as_button", 300_928_843)
 
     internal val isCustomSetAsButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_custom_set_as_button", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "is_custom_set_as_button", 1_116_898_809)
 
     internal val clearButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "clear_buttons", 3218959716)
+        TypeManager.getMethodBindPtr("TreeItem", "clear_buttons", 3_218_959_716)
 
     internal val addButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "add_button", 1688223362)
+        TypeManager.getMethodBindPtr("TreeItem", "add_button", 1_688_223_362)
 
     internal val getButtonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_count", 923996154)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_count", 923_996_154)
 
     internal val getButtonTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_tooltip_text", 1391810591)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_tooltip_text", 1_391_810_591)
 
     internal val getButtonIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_id", 3175239445)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_id", 3_175_239_445)
 
     internal val getButtonByIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id", 3175239445)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_by_id", 3_175_239_445)
 
     internal val getButtonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button_color", 2165839948)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button_color", 2_165_839_948)
 
     internal val getButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_button", 2584904275)
+        TypeManager.getMethodBindPtr("TreeItem", "get_button", 2_584_904_275)
 
     internal val setButtonTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text", 2285447957)
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_tooltip_text", 2_285_447_957)
 
     internal val setButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button", 176101966)
+        TypeManager.getMethodBindPtr("TreeItem", "set_button", 176_101_966)
 
     internal val eraseButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "erase_button", 3937882851)
+        TypeManager.getMethodBindPtr("TreeItem", "erase_button", 3_937_882_851)
 
     internal val setButtonDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_disabled", 1383440665)
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_disabled", 1_383_440_665)
 
     internal val setButtonColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_button_color", 3733378741)
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_color", 3_733_378_741)
 
     internal val isButtonDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_button_disabled", 2522259332)
+        TypeManager.getMethodBindPtr("TreeItem", "is_button_disabled", 2_522_259_332)
 
     internal val setTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_tooltip_text", 501894301)
+        TypeManager.getMethodBindPtr("TreeItem", "set_tooltip_text", 501_894_301)
 
     internal val getTooltipTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_tooltip_text", 844755477)
+        TypeManager.getMethodBindPtr("TreeItem", "get_tooltip_text", 844_755_477)
 
     internal val setTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_text_alignment", 3276431499)
+        TypeManager.getMethodBindPtr("TreeItem", "set_text_alignment", 3_276_431_499)
 
     internal val getTextAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_text_alignment", 4171562184)
+        TypeManager.getMethodBindPtr("TreeItem", "get_text_alignment", 4_171_562_184)
 
     internal val setExpandRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_expand_right", 300928843)
+        TypeManager.getMethodBindPtr("TreeItem", "set_expand_right", 300_928_843)
 
     internal val getExpandRightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_expand_right", 1116898809)
+        TypeManager.getMethodBindPtr("TreeItem", "get_expand_right", 1_116_898_809)
 
     internal val setDisableFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "set_disable_folding", 2586408642)
+        TypeManager.getMethodBindPtr("TreeItem", "set_disable_folding", 2_586_408_642)
 
     internal val isFoldingDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "is_folding_disabled", 36873697)
+        TypeManager.getMethodBindPtr("TreeItem", "is_folding_disabled", 36_873_697)
 
     internal val createChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "create_child", 954243986)
+        TypeManager.getMethodBindPtr("TreeItem", "create_child", 954_243_986)
 
     internal val addChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "add_child", 1819951137)
+        TypeManager.getMethodBindPtr("TreeItem", "add_child", 1_819_951_137)
 
     internal val removeChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "remove_child", 1819951137)
+        TypeManager.getMethodBindPtr("TreeItem", "remove_child", 1_819_951_137)
 
     internal val getTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_tree", 2243340556)
+        TypeManager.getMethodBindPtr("TreeItem", "get_tree", 2_243_340_556)
 
     internal val getNextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_next", 1514277247)
+        TypeManager.getMethodBindPtr("TreeItem", "get_next", 1_514_277_247)
 
     internal val getPrevPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_prev", 2768121250)
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev", 2_768_121_250)
 
     internal val getParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_parent", 1514277247)
+        TypeManager.getMethodBindPtr("TreeItem", "get_parent", 1_514_277_247)
 
     internal val getFirstChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_first_child", 1514277247)
+        TypeManager.getMethodBindPtr("TreeItem", "get_first_child", 1_514_277_247)
 
     internal val getNextInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_next_in_tree", 1666920593)
+        TypeManager.getMethodBindPtr("TreeItem", "get_next_in_tree", 1_666_920_593)
 
     internal val getPrevInTreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_prev_in_tree", 1666920593)
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev_in_tree", 1_666_920_593)
 
     internal val getNextVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_next_visible", 1666920593)
+        TypeManager.getMethodBindPtr("TreeItem", "get_next_visible", 1_666_920_593)
 
     internal val getPrevVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_prev_visible", 1666920593)
+        TypeManager.getMethodBindPtr("TreeItem", "get_prev_visible", 1_666_920_593)
 
     internal val getChildPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_child", 306700752)
+        TypeManager.getMethodBindPtr("TreeItem", "get_child", 306_700_752)
 
     internal val getChildCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_child_count", 2455072627)
+        TypeManager.getMethodBindPtr("TreeItem", "get_child_count", 2_455_072_627)
 
     internal val getChildrenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_children", 2915620761)
+        TypeManager.getMethodBindPtr("TreeItem", "get_children", 2_915_620_761)
 
     internal val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "get_index", 2455072627)
+        TypeManager.getMethodBindPtr("TreeItem", "get_index", 2_455_072_627)
 
     internal val moveBeforePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "move_before", 1819951137)
+        TypeManager.getMethodBindPtr("TreeItem", "move_before", 1_819_951_137)
 
     internal val moveAfterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "move_after", 1819951137)
+        TypeManager.getMethodBindPtr("TreeItem", "move_after", 1_819_951_137)
 
     internal val callRecursivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "call_recursive", 2866548813)
+        TypeManager.getMethodBindPtr("TreeItem", "call_recursive", 2_866_548_813)
   }
 }

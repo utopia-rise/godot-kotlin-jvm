@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,13 +22,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
- * binary data from network sessions. To handle binary data stored in files, [FileAccess] can be used
- * directly.
+ * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle binary data from network sessions. To handle binary data stored in files, [FileAccess] can be used directly.
  *
- * A [StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of
- * the buffer. Get and put operations are performed at the cursor position and will move the cursor
- * accordingly.
+ * A [StreamPeerBuffer] object keeps an internal cursor which is the offset in bytes to the start of the buffer. Get and put operations are performed at the cursor position and will move the cursor accordingly.
  */
 @GodotBaseType
 public open class StreamPeerBuffer : StreamPeer() {
@@ -39,11 +32,8 @@ public open class StreamPeerBuffer : StreamPeer() {
    * The underlying data buffer. Setting this value resets the cursor.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var dataArray: PackedByteArray
@@ -54,7 +44,7 @@ public open class StreamPeerBuffer : StreamPeer() {
       setDataArray(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(635, scriptIndex)
   }
 
@@ -72,22 +62,19 @@ public open class StreamPeerBuffer : StreamPeer() {
    * The underlying data buffer. Setting this value resets the cursor.
    */
   @CoreTypeHelper
-  public final fun dataArrayMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
-      dataArray.apply {
+  public final fun dataArrayMutate(block: PackedByteArray.() -> Unit): PackedByteArray = dataArray.apply {
      block(this)
      dataArray = this
   }
 
   /**
    * This is a helper function for [dataArray] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The underlying data buffer. Setting this value resets the cursor.
    */
   @CoreTypeHelper
-  public final fun dataArrayMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray
-      = dataArray.apply {
+  public final fun dataArrayMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray = dataArray.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -98,7 +85,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Moves the cursor to the specified position. [position] must be a valid index of [dataArray].
    */
-  public final fun seek(position: Int): Unit {
+  public final fun seek(position: Int) {
     TransferContext.writeArguments(LONG to position.toLong())
     TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
@@ -124,12 +111,12 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Resizes the [dataArray]. This *doesn't* update the cursor.
    */
-  public final fun resize(size: Int): Unit {
+  public final fun resize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
   }
 
-  public final fun setDataArray(`data`: PackedByteArray): Unit {
+  public final fun setDataArray(`data`: PackedByteArray) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataArrayPtr, NIL)
   }
@@ -143,7 +130,7 @@ public open class StreamPeerBuffer : StreamPeer() {
   /**
    * Clears the [dataArray] and resets the cursor.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -161,27 +148,27 @@ public open class StreamPeerBuffer : StreamPeer() {
 
   public object MethodBindings {
     internal val seekPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "seek", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "seek", 1_286_410_249)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_size", 3905245786)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_size", 3_905_245_786)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_position", 3905245786)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_position", 3_905_245_786)
 
     internal val resizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "resize", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "resize", 1_286_410_249)
 
     internal val setDataArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "set_data_array", 2971499966)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "set_data_array", 2_971_499_966)
 
     internal val getDataArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_data_array", 2362200018)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "get_data_array", 2_362_200_018)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "clear", 3_218_959_716)
 
     internal val duplicatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerBuffer", "duplicate", 2474064677)
+        TypeManager.getMethodBindPtr("StreamPeerBuffer", "duplicate", 2_474_064_677)
   }
 }

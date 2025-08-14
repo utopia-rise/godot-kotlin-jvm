@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,12 +26,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
- * configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved,
- * all the attached [GraphElement]s inside it will be moved as well.
+ * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be configured to automatically resize to enclose all attached [GraphElement]s. If the frame is moved, all the attached [GraphElement]s inside it will be moved as well.
  *
- * A GraphFrame is always kept behind the connection layer and other [GraphElement]s inside a
- * [GraphEdit].
+ * A GraphFrame is always kept behind the connection layer and other [GraphElement]s inside a [GraphEdit].
  */
 @GodotBaseType
 public open class GraphFrame : GraphElement() {
@@ -55,8 +49,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   /**
-   * If `true`, the frame's rect will be adjusted automatically to enclose all attached
-   * [GraphElement]s.
+   * If `true`, the frame's rect will be adjusted automatically to enclose all attached [GraphElement]s.
    */
   public final inline var autoshrinkEnabled: Boolean
     @JvmName("autoshrinkEnabledProperty")
@@ -67,8 +60,7 @@ public open class GraphFrame : GraphElement() {
     }
 
   /**
-   * The margin around the attached nodes that is used to calculate the size of the frame when
-   * [autoshrinkEnabled] is `true`.
+   * The margin around the attached nodes that is used to calculate the size of the frame when [autoshrinkEnabled] is `true`.
    */
   public final inline var autoshrinkMargin: Int
     @JvmName("autoshrinkMarginProperty")
@@ -104,11 +96,8 @@ public open class GraphFrame : GraphElement() {
    * The color of the frame when [tintColorEnabled] is `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintColor: Color
@@ -119,7 +108,7 @@ public open class GraphFrame : GraphElement() {
       setTintColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(264, scriptIndex)
   }
 
@@ -142,7 +131,7 @@ public open class GraphFrame : GraphElement() {
      tintColor = this
   }
 
-  public final fun setTitle(title: String): Unit {
+  public final fun setTitle(title: String) {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
@@ -154,8 +143,7 @@ public open class GraphFrame : GraphElement() {
   }
 
   /**
-   * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying
-   * the title by default.
+   * Returns the [HBoxContainer] used for the title bar, only containing a [Label] for displaying the title by default.
    *
    * This can be used to add custom controls to the title bar such as option or close buttons.
    */
@@ -165,7 +153,7 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(OBJECT) as HBoxContainer?)
   }
 
-  public final fun setAutoshrinkEnabled(shrink: Boolean): Unit {
+  public final fun setAutoshrinkEnabled(shrink: Boolean) {
     TransferContext.writeArguments(BOOL to shrink)
     TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
@@ -176,7 +164,7 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoshrinkMargin(autoshrinkMargin: Int): Unit {
+  public final fun setAutoshrinkMargin(autoshrinkMargin: Int) {
     TransferContext.writeArguments(LONG to autoshrinkMargin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkMarginPtr, NIL)
   }
@@ -187,7 +175,7 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setDragMargin(dragMargin: Int): Unit {
+  public final fun setDragMargin(dragMargin: Int) {
     TransferContext.writeArguments(LONG to dragMargin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDragMarginPtr, NIL)
   }
@@ -198,7 +186,7 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTintColorEnabled(enable: Boolean): Unit {
+  public final fun setTintColorEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
@@ -209,7 +197,7 @@ public open class GraphFrame : GraphElement() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTintColor(color: Color): Unit {
+  public final fun setTintColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setTintColorPtr, NIL)
   }
@@ -224,42 +212,42 @@ public open class GraphFrame : GraphElement() {
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_title", 83702148)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_title", 83_702_148)
 
     internal val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_title", 201670096)
+        TypeManager.getMethodBindPtr("GraphFrame", "get_title", 201_670_096)
 
     internal val getTitlebarHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_titlebar_hbox", 3590609951)
+        TypeManager.getMethodBindPtr("GraphFrame", "get_titlebar_hbox", 3_590_609_951)
 
     internal val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_enabled", 2_586_408_642)
 
     internal val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GraphFrame", "is_autoshrink_enabled", 36_873_697)
 
     internal val setAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_margin", 1286410249)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_autoshrink_margin", 1_286_410_249)
 
     internal val getAutoshrinkMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_autoshrink_margin", 3905245786)
+        TypeManager.getMethodBindPtr("GraphFrame", "get_autoshrink_margin", 3_905_245_786)
 
     internal val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_drag_margin", 1286410249)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_drag_margin", 1_286_410_249)
 
     internal val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_drag_margin", 3905245786)
+        TypeManager.getMethodBindPtr("GraphFrame", "get_drag_margin", 3_905_245_786)
 
     internal val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color_enabled", 2_586_408_642)
 
     internal val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "is_tint_color_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GraphFrame", "is_tint_color_enabled", 36_873_697)
 
     internal val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color", 2920490490)
+        TypeManager.getMethodBindPtr("GraphFrame", "set_tint_color", 2_920_490_490)
 
     internal val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphFrame", "get_tint_color", 3444240500)
+        TypeManager.getMethodBindPtr("GraphFrame", "get_tint_color", 3_444_240_500)
   }
 }

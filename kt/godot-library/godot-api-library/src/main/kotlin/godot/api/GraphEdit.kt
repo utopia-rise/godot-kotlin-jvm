@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -50,35 +47,23 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
- * purpose in the engine is to power the visual programming systems, such as visual shaders, but it is
- * also available for use in user projects.
+ * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main purpose in the engine is to power the visual programming systems, such as visual shaders, but it is also available for use in user projects.
  *
- * [GraphEdit] by itself is only an empty container, representing an infinite grid where
- * [GraphNode]s can be placed. Each [GraphNode] represents a node in the graph, a single unit of data
- * in the connected scheme. [GraphEdit], in turn, helps to control various interactions with nodes and
- * between nodes. When the user attempts to connect, disconnect, or delete a [GraphNode], a signal is
- * emitted in the [GraphEdit], but no action is taken by default. It is the responsibility of the
- * programmer utilizing this control to implement the necessary logic to determine how each request
- * should be handled.
+ * [GraphEdit] by itself is only an empty container, representing an infinite grid where [GraphNode]s can be placed. Each [GraphNode] represents a node in the graph, a single unit of data in the connected scheme. [GraphEdit], in turn, helps to control various interactions with nodes and between nodes. When the user attempts to connect, disconnect, or delete a [GraphNode], a signal is emitted in the [GraphEdit], but no action is taken by default. It is the responsibility of the programmer utilizing this control to implement the necessary logic to determine how each request should be handled.
  *
- * **Performance:** It is greatly advised to enable low-processor usage mode (see
- * [OS.lowProcessorUsageMode]) when using GraphEdits.
+ * **Performance:** It is greatly advised to enable low-processor usage mode (see [OS.lowProcessorUsageMode]) when using GraphEdits.
  *
- * **Note:** Keep in mind that [Node.getChildren] will also return the connection layer node named
- * `_connection_layer` due to technical limitations. This behavior may change in future releases.
+ * **Note:** Keep in mind that [Node.getChildren] will also return the connection layer node named `_connection_layer` due to technical limitations. This behavior may change in future releases.
  */
 @GodotBaseType
 public open class GraphEdit : Control() {
   /**
-   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode]
-   * [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
+   * Emitted to the GraphEdit when the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of the [toNode] [GraphNode] is attempted to be created.
    */
   public val connectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
   /**
-   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and
-   * [toPort] of [toNode] [GraphNode] is attempted to be removed.
+   * Emitted to the GraphEdit when the connection between [fromPort] of [fromNode] [GraphNode] and [toPort] of [toNode] [GraphNode] is attempted to be removed.
    */
   public val disconnectionRequest: Signal4<StringName, Long, StringName, Long> by Signal4
 
@@ -103,36 +88,29 @@ public open class GraphEdit : Control() {
   public val connectionDragEnded: Signal0 by Signal0
 
   /**
-   * Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In
-   * general, this signal indicates that the selected [GraphElement]s should be copied.
+   * Emitted when this [GraphEdit] captures a `ui_copy` action ([kbd]Ctrl + C[/kbd] by default). In general, this signal indicates that the selected [GraphElement]s should be copied.
    */
   public val copyNodesRequest: Signal0 by Signal0
 
   /**
-   * Emitted when this [GraphEdit] captures a `ui_cut` action ([kbd]Ctrl + X[/kbd] by default). In
-   * general, this signal indicates that the selected [GraphElement]s should be cut.
+   * Emitted when this [GraphEdit] captures a `ui_cut` action ([kbd]Ctrl + X[/kbd] by default). In general, this signal indicates that the selected [GraphElement]s should be cut.
    */
   public val cutNodesRequest: Signal0 by Signal0
 
   /**
-   * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In
-   * general, this signal indicates that previously copied [GraphElement]s should be pasted.
+   * Emitted when this [GraphEdit] captures a `ui_paste` action ([kbd]Ctrl + V[/kbd] by default). In general, this signal indicates that previously copied [GraphElement]s should be pasted.
    */
   public val pasteNodesRequest: Signal0 by Signal0
 
   /**
-   * Emitted when this [GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by
-   * default). In general, this signal indicates that the selected [GraphElement]s should be
-   * duplicated.
+   * Emitted when this [GraphEdit] captures a `ui_graph_duplicate` action ([kbd]Ctrl + D[/kbd] by default). In general, this signal indicates that the selected [GraphElement]s should be duplicated.
    */
   public val duplicateNodesRequest: Signal0 by Signal0
 
   /**
-   * Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by
-   * default).
+   * Emitted when this [GraphEdit] captures a `ui_graph_delete` action ([kbd]Delete[/kbd] by default).
    *
-   * [nodes] is an array of node names that should be removed. These usually include all selected
-   * nodes.
+   * [nodes] is an array of node names that should be removed. These usually include all selected nodes.
    */
   public val deleteNodesRequest: Signal1<VariantArray<StringName>> by Signal1
 
@@ -152,8 +130,7 @@ public open class GraphEdit : Control() {
   public val frameRectChanged: Signal2<GraphFrame, Rect2> by Signal2
 
   /**
-   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is
-   * the position of the mouse pointer when the signal is sent.
+   * Emitted when a popup is requested. Happens on right-clicking in the GraphEdit. [atPosition] is the position of the mouse pointer when the signal is sent.
    */
   public val popupRequest: Signal1<Vector2> by Signal1
 
@@ -168,16 +145,14 @@ public open class GraphEdit : Control() {
   public val endNodeMove: Signal0 by Signal0
 
   /**
-   * Emitted when one or more [GraphElement]s are dropped onto the [GraphFrame] named [frame], when
-   * they were not previously attached to any other one.
+   * Emitted when one or more [GraphElement]s are dropped onto the [GraphFrame] named [frame], when they were not previously attached to any other one.
    *
    * [elements] is an array of [GraphElement]s to be attached.
    */
   public val graphElementsLinkedToFrameRequest: Signal2<VariantArray<Any?>, StringName> by Signal2
 
   /**
-   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in
-   * code.
+   * Emitted when the scroll offset is changed by the user. It will not be emitted when changed in code.
    */
   public val scrollOffsetChanged: Signal1<Vector2> by Signal1
 
@@ -185,11 +160,8 @@ public open class GraphEdit : Control() {
    * The scroll offset.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -256,8 +228,7 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right
-   * end.
+   * If `true`, enables disconnection of existing connections in the GraphEdit by dragging the right end.
    */
   public final inline var rightDisconnects: Boolean
     @JvmName("rightDisconnectsProperty")
@@ -315,8 +286,7 @@ public open class GraphEdit : Control() {
    * }
    * ```
    *
-   * Connections with `keep_alive` set to `false` may be deleted automatically if invalid during a
-   * redraw.
+   * Connections with `keep_alive` set to `false` may be deleted automatically if invalid during a redraw.
    */
   public final inline var connections: VariantArray<Dictionary<Any?, Any?>>
     @JvmName("connectionsProperty")
@@ -382,15 +352,11 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
-   * scaled to fit this rectangle.
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minimapSize: Vector2
@@ -424,8 +390,7 @@ public open class GraphEdit : Control() {
     }
 
   /**
-   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in
-   * percents.
+   * If `true`, the label with the current zoom level is visible. The zoom level is displayed in percents.
    */
   public final inline var showZoomLabel: Boolean
     @JvmName("showZoomLabelProperty")
@@ -479,7 +444,7 @@ public open class GraphEdit : Control() {
       setShowArrangeButton(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(262, scriptIndex)
   }
 
@@ -513,8 +478,7 @@ public open class GraphEdit : Control() {
    * graphedit.minimapSize = myCoreType
    * ``````
    *
-   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is
-   * scaled to fit this rectangle.
+   * The size of the minimap rectangle. The map itself is based on the size of the grid area and is scaled to fit this rectangle.
    */
   @CoreTypeHelper
   public final fun minimapSizeMutate(block: Vector2.() -> Unit): Vector2 = minimapSize.apply {
@@ -525,19 +489,14 @@ public open class GraphEdit : Control() {
   /**
    * Returns whether the [mousePosition] is in the input hot zone.
    *
-   * By default, a hot zone is a [Rect2] positioned such that its center is at
-   * [inNode].[GraphNode.getInputPortPosition]([inPort]) (For output's case, call
-   * [GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property
-   * `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
+   * By default, a hot zone is a [Rect2] positioned such that its center is at [inNode].[GraphNode.getInputPortPosition]([inPort]) (For output's case, call [GraphNode.getOutputPortPosition] instead). The hot zone's width is twice the Theme Property `port_grab_distance_horizontal`, and its height is twice the `port_grab_distance_vertical`.
    *
    * Below is a sample code to help get started:
    *
    * ```
    * func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
-   * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) -
-   * port_size / 2
+   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   *     var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size / 2
    *     var rect = Rect2(port_pos, port_size)
    *
    *     return rect.has_point(mouse_position)
@@ -552,17 +511,14 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot
-   * zones, see [_isInInputHotzone].
+   * Returns whether the [mousePosition] is in the output hot zone. For more information on hot zones, see [_isInInputHotzone].
    *
    * Below is a sample code to help get started:
    *
    * ```
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
-   * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) -
-   * port_size / 2
+   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"), get_theme_constant("port_grab_distance_vertical"))
+   *     var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size / 2
    *     var rect = Rect2(port_pos, port_size)
    *
    *     return rect.has_point(mouse_position)
@@ -579,18 +535,14 @@ public open class GraphEdit : Control() {
   /**
    * Virtual method which can be overridden to customize how connections are drawn.
    */
-  public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2):
-      PackedVector2Array {
+  public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2): PackedVector2Array {
     throw NotImplementedError("GraphEdit::_getConnectionLine is not implemented.")
   }
 
   /**
-   * This virtual method can be used to insert additional error detection while the user is dragging
-   * a connection over a valid port.
+   * This virtual method can be used to insert additional error detection while the user is dragging a connection over a valid port.
    *
-   * Return `true` if the connection is indeed valid or return `false` if the connection is
-   * impossible. If the connection is impossible, no snapping to the port and thus no connection
-   * request to that port will happen.
+   * Return `true` if the connection is indeed valid or return `false` if the connection is impossible. If the connection is impossible, no snapping to the port and thus no connection request to that port will happen.
    *
    * In this example a connection to same node is suppressed:
    *
@@ -602,8 +554,7 @@ public open class GraphEdit : Control() {
    *
    * ```csharp
    * //csharp
-   * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode,
-   * int toPort)
+   * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode, int toPort)
    * {
    *     return fromNode != toNode;
    * }
@@ -619,11 +570,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
-   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of the [toNode] [GraphNode]. If the connection already exists, no connection is created.
    *
-   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
-   * redraw.
+   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a redraw.
    */
   @JvmOverloads
   public final fun connectNode(
@@ -639,8 +588,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
-   * the [toNode] [GraphNode].
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of the [toNode] [GraphNode].
    */
   public final fun isNodeConnected(
     fromNode: StringName,
@@ -654,23 +602,20 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
-   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
    */
   public final fun disconnectNode(
     fromNode: StringName,
     fromPort: Int,
     toNode: StringName,
     toPort: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.disconnectNodePtr, NIL)
   }
 
   /**
-   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
-   * with the color provided in the [theme_item activity] theme property. The color is linearly
-   * interpolated between the connection color and the activity color using [amount] as weight.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property. The color is linearly interpolated between the connection color and the activity color using [amount] as weight.
    */
   public final fun setConnectionActivity(
     fromNode: StringName,
@@ -678,12 +623,12 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
     amount: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to fromNode, LONG to fromPort.toLong(), STRING_NAME to toNode, LONG to toPort.toLong(), DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConnectionActivityPtr, NIL)
   }
 
-  public final fun setConnections(connections: VariantArray<Dictionary<Any?, Any?>>): Unit {
+  public final fun setConnections(connections: VariantArray<Dictionary<Any?, Any?>>) {
     TransferContext.writeArguments(ARRAY to connections)
     TransferContext.callMethod(ptr, MethodBindings.setConnectionsPtr, NIL)
   }
@@ -704,8 +649,7 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Returns the closest connection to the given point in screen space. If no connection is found
-   * within [maxDistance] pixels, an empty [Dictionary] is returned.
+   * Returns the closest connection to the given point in screen space. If no connection is found within [maxDistance] pixels, an empty [Dictionary] is returned.
    *
    * A connection is represented as a [Dictionary] in the form of:
    *
@@ -727,8 +671,7 @@ public open class GraphEdit : Control() {
    * ```
    */
   @JvmOverloads
-  public final fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f):
-      Dictionary<Any?, Any?> {
+  public final fun getClosestConnectionAtPoint(point: Vector2, maxDistance: Float = 4.0f): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(VECTOR2 to point, DOUBLE to maxDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.getClosestConnectionAtPointPtr, DICTIONARY)
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
@@ -749,8 +692,7 @@ public open class GraphEdit : Control() {
    * }
    * ```
    */
-  public final fun getConnectionsIntersectingWithRect(rect: Rect2):
-      VariantArray<Dictionary<Any?, Any?>> {
+  public final fun getConnectionsIntersectingWithRect(rect: Rect2): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.getConnectionsIntersectingWithRectPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
@@ -759,22 +701,19 @@ public open class GraphEdit : Control() {
   /**
    * Removes all connections between nodes.
    */
-  public final fun clearConnections(): Unit {
+  public final fun clearConnections() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearConnectionsPtr, NIL)
   }
 
   /**
-   * Ends the creation of the current connection. In other words, if you are dragging a connection
-   * you can use this method to abort the process and remove the line that followed your cursor.
+   * Ends the creation of the current connection. In other words, if you are dragging a connection you can use this method to abort the process and remove the line that followed your cursor.
    *
-   * This is best used together with [signal connection_drag_started] and [signal
-   * connection_drag_ended] to add custom behavior like node addition through shortcuts.
+   * This is best used together with [signal connection_drag_started] and [signal connection_drag_ended] to add custom behavior like node addition through shortcuts.
    *
-   * **Note:** This method suppresses any other connection request signals apart from [signal
-   * connection_drag_ended].
+   * **Note:** This method suppresses any other connection request signals apart from [signal connection_drag_ended].
    */
-  public final fun forceConnectionDragEnd(): Unit {
+  public final fun forceConnectionDragEnd() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceConnectionDragEndPtr, NIL)
   }
@@ -785,76 +724,65 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScrollOffset(offset: Vector2): Unit {
+  public final fun setScrollOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setScrollOffsetPtr, NIL)
   }
 
   /**
-   * Allows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
-   * has the specified type. See also [removeValidRightDisconnectType].
+   * Allows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it has the specified type. See also [removeValidRightDisconnectType].
    */
-  public final fun addValidRightDisconnectType(type: Int): Unit {
+  public final fun addValidRightDisconnectType(type: Int) {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addValidRightDisconnectTypePtr, NIL)
   }
 
   /**
-   * Disallows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it
-   * has the specified type. Use this to disable disconnection previously allowed with
-   * [addValidRightDisconnectType].
+   * Disallows to disconnect nodes when dragging from the right port of the [GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidRightDisconnectType].
    */
-  public final fun removeValidRightDisconnectType(type: Int): Unit {
+  public final fun removeValidRightDisconnectType(type: Int) {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeValidRightDisconnectTypePtr, NIL)
   }
 
   /**
-   * Allows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it has
-   * the specified type. See also [removeValidLeftDisconnectType].
+   * Allows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it has the specified type. See also [removeValidLeftDisconnectType].
    */
-  public final fun addValidLeftDisconnectType(type: Int): Unit {
+  public final fun addValidLeftDisconnectType(type: Int) {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
-   * Disallows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it
-   * has the specified type. Use this to disable disconnection previously allowed with
-   * [addValidLeftDisconnectType].
+   * Disallows to disconnect nodes when dragging from the left port of the [GraphNode]'s slot if it has the specified type. Use this to disable disconnection previously allowed with [addValidLeftDisconnectType].
    */
-  public final fun removeValidLeftDisconnectType(type: Int): Unit {
+  public final fun removeValidLeftDisconnectType(type: Int) {
     TransferContext.writeArguments(LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeValidLeftDisconnectTypePtr, NIL)
   }
 
   /**
-   * Allows the connection between two different port types. The port type is defined individually
-   * for the left and the right port of each slot with the [GraphNode.setSlot] method.
+   * Allows the connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [GraphNode.setSlot] method.
    *
    * See also [isValidConnectionType] and [removeValidConnectionType].
    */
-  public final fun addValidConnectionType(fromType: Int, toType: Int): Unit {
+  public final fun addValidConnectionType(fromType: Int, toType: Int) {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addValidConnectionTypePtr, NIL)
   }
 
   /**
-   * Disallows the connection between two different port types previously allowed by
-   * [addValidConnectionType]. The port type is defined individually for the left and the right port of
-   * each slot with the [GraphNode.setSlot] method.
+   * Disallows the connection between two different port types previously allowed by [addValidConnectionType]. The port type is defined individually for the left and the right port of each slot with the [GraphNode.setSlot] method.
    *
    * See also [isValidConnectionType].
    */
-  public final fun removeValidConnectionType(fromType: Int, toType: Int): Unit {
+  public final fun removeValidConnectionType(fromType: Int, toType: Int) {
     TransferContext.writeArguments(LONG to fromType.toLong(), LONG to toType.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeValidConnectionTypePtr, NIL)
   }
 
   /**
-   * Returns whether it's possible to make a connection between two different port types. The port
-   * type is defined individually for the left and the right port of each slot with the
-   * [GraphNode.setSlot] method.
+   * Returns whether it's possible to make a connection between two different port types. The port type is defined individually for the left and the right port of each slot with the [GraphNode.setSlot] method.
    *
    * See also [addValidConnectionType] and [removeValidConnectionType].
    */
@@ -876,7 +804,7 @@ public open class GraphEdit : Control() {
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
    */
-  public final fun attachGraphElementToFrame(element: StringName, frame: StringName): Unit {
+  public final fun attachGraphElementToFrame(element: StringName, frame: StringName) {
     TransferContext.writeArguments(STRING_NAME to element, STRING_NAME to frame)
     TransferContext.callMethod(ptr, MethodBindings.attachGraphElementToFramePtr, NIL)
   }
@@ -884,7 +812,7 @@ public open class GraphEdit : Control() {
   /**
    * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
    */
-  public final fun detachGraphElementFromFrame(element: StringName): Unit {
+  public final fun detachGraphElementFromFrame(element: StringName) {
     TransferContext.writeArguments(STRING_NAME to element)
     TransferContext.callMethod(ptr, MethodBindings.detachGraphElementFromFramePtr, NIL)
   }
@@ -907,7 +835,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
-  public final fun setPanningScheme(scheme: PanningScheme): Unit {
+  public final fun setPanningScheme(scheme: PanningScheme) {
     TransferContext.writeArguments(LONG to scheme.id)
     TransferContext.callMethod(ptr, MethodBindings.setPanningSchemePtr, NIL)
   }
@@ -918,7 +846,7 @@ public open class GraphEdit : Control() {
     return PanningScheme.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setZoom(zoom: Float): Unit {
+  public final fun setZoom(zoom: Float) {
     TransferContext.writeArguments(DOUBLE to zoom.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setZoomPtr, NIL)
   }
@@ -929,7 +857,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setZoomMin(zoomMin: Float): Unit {
+  public final fun setZoomMin(zoomMin: Float) {
     TransferContext.writeArguments(DOUBLE to zoomMin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setZoomMinPtr, NIL)
   }
@@ -940,7 +868,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setZoomMax(zoomMax: Float): Unit {
+  public final fun setZoomMax(zoomMax: Float) {
     TransferContext.writeArguments(DOUBLE to zoomMax.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setZoomMaxPtr, NIL)
   }
@@ -951,7 +879,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setZoomStep(zoomStep: Float): Unit {
+  public final fun setZoomStep(zoomStep: Float) {
     TransferContext.writeArguments(DOUBLE to zoomStep.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setZoomStepPtr, NIL)
   }
@@ -962,7 +890,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setShowGrid(enable: Boolean): Unit {
+  public final fun setShowGrid(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setShowGridPtr, NIL)
   }
@@ -973,7 +901,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGridPattern(pattern: GridPattern): Unit {
+  public final fun setGridPattern(pattern: GridPattern) {
     TransferContext.writeArguments(LONG to pattern.id)
     TransferContext.callMethod(ptr, MethodBindings.setGridPatternPtr, NIL)
   }
@@ -984,7 +912,7 @@ public open class GraphEdit : Control() {
     return GridPattern.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSnappingEnabled(enable: Boolean): Unit {
+  public final fun setSnappingEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSnappingEnabledPtr, NIL)
   }
@@ -995,7 +923,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSnappingDistance(pixels: Int): Unit {
+  public final fun setSnappingDistance(pixels: Int) {
     TransferContext.writeArguments(LONG to pixels.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSnappingDistancePtr, NIL)
   }
@@ -1006,7 +934,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setConnectionLinesCurvature(curvature: Float): Unit {
+  public final fun setConnectionLinesCurvature(curvature: Float) {
     TransferContext.writeArguments(DOUBLE to curvature.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConnectionLinesCurvaturePtr, NIL)
   }
@@ -1017,7 +945,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setConnectionLinesThickness(pixels: Float): Unit {
+  public final fun setConnectionLinesThickness(pixels: Float) {
     TransferContext.writeArguments(DOUBLE to pixels.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConnectionLinesThicknessPtr, NIL)
   }
@@ -1028,7 +956,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setConnectionLinesAntialiased(pixels: Boolean): Unit {
+  public final fun setConnectionLinesAntialiased(pixels: Boolean) {
     TransferContext.writeArguments(BOOL to pixels)
     TransferContext.callMethod(ptr, MethodBindings.setConnectionLinesAntialiasedPtr, NIL)
   }
@@ -1039,7 +967,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMinimapSize(size: Vector2): Unit {
+  public final fun setMinimapSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setMinimapSizePtr, NIL)
   }
@@ -1050,7 +978,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setMinimapOpacity(opacity: Float): Unit {
+  public final fun setMinimapOpacity(opacity: Float) {
     TransferContext.writeArguments(DOUBLE to opacity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinimapOpacityPtr, NIL)
   }
@@ -1061,7 +989,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMinimapEnabled(enable: Boolean): Unit {
+  public final fun setMinimapEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setMinimapEnabledPtr, NIL)
   }
@@ -1072,7 +1000,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowMenu(hidden: Boolean): Unit {
+  public final fun setShowMenu(hidden: Boolean) {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setShowMenuPtr, NIL)
   }
@@ -1083,7 +1011,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowZoomLabel(enable: Boolean): Unit {
+  public final fun setShowZoomLabel(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setShowZoomLabelPtr, NIL)
   }
@@ -1094,7 +1022,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowGridButtons(hidden: Boolean): Unit {
+  public final fun setShowGridButtons(hidden: Boolean) {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setShowGridButtonsPtr, NIL)
   }
@@ -1105,7 +1033,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowZoomButtons(hidden: Boolean): Unit {
+  public final fun setShowZoomButtons(hidden: Boolean) {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setShowZoomButtonsPtr, NIL)
   }
@@ -1116,7 +1044,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowMinimapButton(hidden: Boolean): Unit {
+  public final fun setShowMinimapButton(hidden: Boolean) {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setShowMinimapButtonPtr, NIL)
   }
@@ -1127,7 +1055,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShowArrangeButton(hidden: Boolean): Unit {
+  public final fun setShowArrangeButton(hidden: Boolean) {
     TransferContext.writeArguments(BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setShowArrangeButtonPtr, NIL)
   }
@@ -1138,7 +1066,7 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRightDisconnects(enable: Boolean): Unit {
+  public final fun setRightDisconnects(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setRightDisconnectsPtr, NIL)
   }
@@ -1150,12 +1078,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of
-   * the graph. You can use this method to reposition the toolbar or to add your own custom controls to
-   * it.
+   * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of the graph. You can use this method to reposition the toolbar or to add your own custom controls to it.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getMenuHbox(): HBoxContainer? {
     TransferContext.writeArguments()
@@ -1164,10 +1089,9 @@ public open class GraphEdit : Control() {
   }
 
   /**
-   * Rearranges selected nodes in a layout with minimum crossings between connections and uniform
-   * horizontal and vertical gap between nodes.
+   * Rearranges selected nodes in a layout with minimum crossings between connections and uniform horizontal and vertical gap between nodes.
    */
-  public final fun arrangeNodes(): Unit {
+  public final fun arrangeNodes() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.arrangeNodesPtr, NIL)
   }
@@ -1175,17 +1099,15 @@ public open class GraphEdit : Control() {
   /**
    * Sets the specified [node] as the one selected.
    */
-  public final fun setSelected(node: Node?): Unit {
+  public final fun setSelected(node: Node?) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
 
   /**
-   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
-   * the [toNode] [GraphNode]. If the connection already exists, no connection is created.
+   * Create a connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of the [toNode] [GraphNode]. If the connection already exists, no connection is created.
    *
-   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a
-   * redraw.
+   * Connections with [keepAlive] set to `false` may be deleted automatically if invalid during a redraw.
    */
   @JvmOverloads
   public final fun connectNode(
@@ -1194,36 +1116,30 @@ public open class GraphEdit : Control() {
     toNode: String,
     toPort: Int,
     keepAlive: Boolean = false,
-  ): Error =
-      connectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, keepAlive)
+  ): Error = connectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, keepAlive)
 
   /**
-   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of
-   * the [toNode] [GraphNode].
+   * Returns `true` if the [fromPort] of the [fromNode] [GraphNode] is connected to the [toPort] of the [toNode] [GraphNode].
    */
   public final fun isNodeConnected(
     fromNode: String,
     fromPort: Int,
     toNode: String,
     toPort: Int,
-  ): Boolean =
-      isNodeConnected(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+  ): Boolean = isNodeConnected(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
 
   /**
-   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of
-   * the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
+   * Removes the connection between the [fromPort] of the [fromNode] [GraphNode] and the [toPort] of the [toNode] [GraphNode]. If the connection does not exist, no connection is removed.
    */
   public final fun disconnectNode(
     fromNode: String,
     fromPort: Int,
     toNode: String,
     toPort: Int,
-  ) = disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
+  ): Unit = disconnectNode(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort)
 
   /**
-   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort]
-   * with the color provided in the [theme_item activity] theme property. The color is linearly
-   * interpolated between the connection color and the activity color using [amount] as weight.
+   * Sets the coloration of the connection between [fromNode]'s [fromPort] and [toNode]'s [toPort] with the color provided in the [theme_item activity] theme property. The color is linearly interpolated between the connection color and the activity color using [amount] as weight.
    */
   public final fun setConnectionActivity(
     fromNode: String,
@@ -1231,38 +1147,32 @@ public open class GraphEdit : Control() {
     toNode: String,
     toPort: Int,
     amount: Float,
-  ) =
-      setConnectionActivity(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, amount)
+  ): Unit = setConnectionActivity(fromNode.asCachedStringName(), fromPort, toNode.asCachedStringName(), toPort, amount)
 
   /**
    * Returns the number of connections from [fromPort] of [fromNode].
    */
-  public final fun getConnectionCount(fromNode: String, fromPort: Int): Int =
-      getConnectionCount(fromNode.asCachedStringName(), fromPort)
+  public final fun getConnectionCount(fromNode: String, fromPort: Int): Int = getConnectionCount(fromNode.asCachedStringName(), fromPort)
 
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
    */
-  public final fun attachGraphElementToFrame(element: String, frame: String) =
-      attachGraphElementToFrame(element.asCachedStringName(), frame.asCachedStringName())
+  public final fun attachGraphElementToFrame(element: String, frame: String): Unit = attachGraphElementToFrame(element.asCachedStringName(), frame.asCachedStringName())
 
   /**
    * Detaches the [element] [GraphElement] from the [GraphFrame] it is currently attached to.
    */
-  public final fun detachGraphElementFromFrame(element: String) =
-      detachGraphElementFromFrame(element.asCachedStringName())
+  public final fun detachGraphElementFromFrame(element: String): Unit = detachGraphElementFromFrame(element.asCachedStringName())
 
   /**
    * Returns the [GraphFrame] that contains the [GraphElement] with the given name.
    */
-  public final fun getElementFrame(element: String): GraphFrame? =
-      getElementFrame(element.asCachedStringName())
+  public final fun getElementFrame(element: String): GraphFrame? = getElementFrame(element.asCachedStringName())
 
   /**
    * Returns an array of node names that are attached to the [GraphFrame] with the given name.
    */
-  public final fun getAttachedNodesOfFrame(frame: String): VariantArray<StringName> =
-      getAttachedNodesOfFrame(frame.asCachedStringName())
+  public final fun getAttachedNodesOfFrame(frame: String): VariantArray<StringName> = getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
     id: Long,
@@ -1314,219 +1224,219 @@ public open class GraphEdit : Control() {
 
   public object MethodBindings {
     internal val connectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "connect_node", 1376144231)
+        TypeManager.getMethodBindPtr("GraphEdit", "connect_node", 1_376_144_231)
 
     internal val isNodeConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_node_connected", 4216241294)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_node_connected", 4_216_241_294)
 
     internal val disconnectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "disconnect_node", 1933654315)
+        TypeManager.getMethodBindPtr("GraphEdit", "disconnect_node", 1_933_654_315)
 
     internal val setConnectionActivityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_activity", 1141899943)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_activity", 1_141_899_943)
 
     internal val setConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connections", 381264803)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connections", 381_264_803)
 
     internal val getConnectionListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list", 3995934104)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list", 3_995_934_104)
 
     internal val getConnectionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_count", 861718734)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_count", 861_718_734)
 
     internal val getClosestConnectionAtPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453_879_819)
 
     internal val getConnectionsIntersectingWithRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2709748719)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2_709_748_719)
 
     internal val clearConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "clear_connections", 3218959716)
+        TypeManager.getMethodBindPtr("GraphEdit", "clear_connections", 3_218_959_716)
 
     internal val forceConnectionDragEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "force_connection_drag_end", 3218959716)
+        TypeManager.getMethodBindPtr("GraphEdit", "force_connection_drag_end", 3_218_959_716)
 
     internal val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_offset", 3341600327)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_scroll_offset", 3_341_600_327)
 
     internal val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_offset", 743155724)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_scroll_offset", 743_155_724)
 
     internal val addValidRightDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type", 1286410249)
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_right_disconnect_type", 1_286_410_249)
 
     internal val removeValidRightDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type", 1286410249)
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_right_disconnect_type", 1_286_410_249)
 
     internal val addValidLeftDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type", 1286410249)
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_left_disconnect_type", 1_286_410_249)
 
     internal val removeValidLeftDisconnectTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type", 1286410249)
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_left_disconnect_type", 1_286_410_249)
 
     internal val addValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_connection_type", 3937882851)
+        TypeManager.getMethodBindPtr("GraphEdit", "add_valid_connection_type", 3_937_882_851)
 
     internal val removeValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_connection_type", 3937882851)
+        TypeManager.getMethodBindPtr("GraphEdit", "remove_valid_connection_type", 3_937_882_851)
 
     internal val isValidConnectionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_valid_connection_type", 2522259332)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_valid_connection_type", 2_522_259_332)
 
     internal val getConnectionLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_line", 3932192302)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_line", 3_932_192_302)
 
     internal val attachGraphElementToFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame", 3740211285)
+        TypeManager.getMethodBindPtr("GraphEdit", "attach_graph_element_to_frame", 3_740_211_285)
 
     internal val detachGraphElementFromFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame", 3304788590)
+        TypeManager.getMethodBindPtr("GraphEdit", "detach_graph_element_from_frame", 3_304_788_590)
 
     internal val getElementFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_element_frame", 988084372)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_element_frame", 988_084_372)
 
     internal val getAttachedNodesOfFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame", 689397652)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_attached_nodes_of_frame", 689_397_652)
 
     internal val setPanningSchemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_panning_scheme", 18893313)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_panning_scheme", 18_893_313)
 
     internal val getPanningSchemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_panning_scheme", 549924446)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_panning_scheme", 549_924_446)
 
     internal val setZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom", 373_806_689)
 
     internal val getZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom", 1_740_695_150)
 
     internal val setZoomMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_min", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_min", 373_806_689)
 
     internal val getZoomMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_min", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_min", 1_740_695_150)
 
     internal val setZoomMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_max", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_max", 373_806_689)
 
     internal val getZoomMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_max", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_max", 1_740_695_150)
 
     internal val setZoomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_step", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_zoom_step", 373_806_689)
 
     internal val getZoomStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_step", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_zoom_step", 1_740_695_150)
 
     internal val setShowGridPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid", 2_586_408_642)
 
     internal val isShowingGridPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid", 36_873_697)
 
     internal val setGridPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_grid_pattern", 1074098205)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_grid_pattern", 1_074_098_205)
 
     internal val getGridPatternPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_grid_pattern", 1286127528)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_grid_pattern", 1_286_127_528)
 
     internal val setSnappingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_enabled", 2_586_408_642)
 
     internal val isSnappingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_snapping_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_snapping_enabled", 36_873_697)
 
     internal val setSnappingDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_distance", 1286410249)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_snapping_distance", 1_286_410_249)
 
     internal val getSnappingDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_snapping_distance", 3905245786)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_snapping_distance", 3_905_245_786)
 
     internal val setConnectionLinesCurvaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_curvature", 373_806_689)
 
     internal val getConnectionLinesCurvaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_curvature", 1_740_695_150)
 
     internal val setConnectionLinesThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_thickness", 373_806_689)
 
     internal val getConnectionLinesThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_lines_thickness", 1_740_695_150)
 
     internal val setConnectionLinesAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_connection_lines_antialiased", 2_586_408_642)
 
     internal val isConnectionLinesAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_connection_lines_antialiased", 36_873_697)
 
     internal val setMinimapSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_size", 743155724)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_size", 743_155_724)
 
     internal val getMinimapSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_size", 3341600327)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_size", 3_341_600_327)
 
     internal val setMinimapOpacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_opacity", 373806689)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_opacity", 373_806_689)
 
     internal val getMinimapOpacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_opacity", 1740695150)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_minimap_opacity", 1_740_695_150)
 
     internal val setMinimapEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_minimap_enabled", 2_586_408_642)
 
     internal val isMinimapEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_minimap_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_minimap_enabled", 36_873_697)
 
     internal val setShowMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_menu", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_menu", 2_586_408_642)
 
     internal val isShowingMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_menu", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_menu", 36_873_697)
 
     internal val setShowZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_label", 2_586_408_642)
 
     internal val isShowingZoomLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_label", 36_873_697)
 
     internal val setShowGridButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid_buttons", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_grid_buttons", 2_586_408_642)
 
     internal val isShowingGridButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_grid_buttons", 36_873_697)
 
     internal val setShowZoomButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_zoom_buttons", 2_586_408_642)
 
     internal val isShowingZoomButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_zoom_buttons", 36_873_697)
 
     internal val setShowMinimapButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_minimap_button", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_minimap_button", 2_586_408_642)
 
     internal val isShowingMinimapButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_minimap_button", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_minimap_button", 36_873_697)
 
     internal val setShowArrangeButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_show_arrange_button", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_show_arrange_button", 2_586_408_642)
 
     internal val isShowingArrangeButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_arrange_button", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_showing_arrange_button", 36_873_697)
 
     internal val setRightDisconnectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_right_disconnects", 2586408642)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_right_disconnects", 2_586_408_642)
 
     internal val isRightDisconnectsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36_873_697)
 
     internal val getMenuHboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3590609951)
+        TypeManager.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3_590_609_951)
 
     internal val arrangeNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "arrange_nodes", 3218959716)
+        TypeManager.getMethodBindPtr("GraphEdit", "arrange_nodes", 3_218_959_716)
 
     internal val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphEdit", "set_selected", 1078189570)
+        TypeManager.getMethodBindPtr("GraphEdit", "set_selected", 1_078_189_570)
   }
 }

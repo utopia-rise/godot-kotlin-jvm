@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,27 +31,20 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.
- * [Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended
- * for rendering and it can be colored and optionally textured.
+ * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments. [Line2D] is not a mathematical polyline, i.e. the segments are not infinitely thin. It is intended for rendering and it can be colored and optionally textured.
  *
- * **Warning:** Certain configurations may be impossible to draw nicely, such as very sharp angles.
- * In these situations, the node uses fallback drawing logic to look decent.
+ * **Warning:** Certain configurations may be impossible to draw nicely, such as very sharp angles. In these situations, the node uses fallback drawing logic to look decent.
  *
  * **Note:** [Line2D] is drawn using a 2D mesh.
  */
 @GodotBaseType
 public open class Line2D : Node2D() {
   /**
-   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
-   * adjacent points in this array.
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the adjacent points in this array.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var points: PackedVector2Array
@@ -66,15 +56,11 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * If `true` and the polyline has more than 2 points, the last point and the first one will be
-   * connected by a segment.
+   * If `true` and the polyline has more than 2 points, the last point and the first one will be connected by a segment.
    *
-   * **Note:** The shape of the closing segment is not guaranteed to be seamless if a [widthCurve]
-   * is provided.
+   * **Note:** The shape of the closing segment is not guaranteed to be seamless if a [widthCurve] is provided.
    *
-   * **Note:** The joint between the closing segment and the first segment is drawn first and it
-   * samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail
-   * that might change in a future version.
+   * **Note:** The joint between the closing segment and the first segment is drawn first and it samples the [gradient] and the [widthCurve] at the beginning. This is an implementation detail that might change in a future version.
    */
   public final inline var closed: Boolean
     @JvmName("closedProperty")
@@ -96,8 +82,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The polyline's width curve. The width of the polyline over its length will be equivalent to the
-   * value of the width curve over its domain. The width curve should be a unit [Curve].
+   * The polyline's width curve. The width of the polyline over its length will be equivalent to the value of the width curve over its domain. The width curve should be a unit [Curve].
    */
   public final inline var widthCurve: Curve?
     @JvmName("widthCurveProperty")
@@ -111,11 +96,8 @@ public open class Line2D : Node2D() {
    * The color of the polyline. Will not be used if a gradient is set.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var defaultColor: Color
@@ -127,8 +109,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The gradient is drawn through the whole line from start to finish. The [defaultColor] will not
-   * be used if this property is set.
+   * The gradient is drawn through the whole line from start to finish. The [defaultColor] will not be used if this property is set.
    */
   public final inline var gradient: Gradient?
     @JvmName("gradientProperty")
@@ -172,8 +153,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the beginning of the polyline, if [closed] is `false`. Use [LineCapMode]
-   * constants.
+   * The style of the beginning of the polyline, if [closed] is `false`. Use [LineCapMode] constants.
    */
   public final inline var beginCapMode: LineCapMode
     @JvmName("beginCapModeProperty")
@@ -195,10 +175,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * Determines the miter limit of the polyline. Normally, when [jointMode] is set to
-   * [LINE_JOINT_SHARP], sharp angles fall back to using the logic of [LINE_JOINT_BEVEL] joints to
-   * prevent very long miters. Higher values of this property mean that the fallback to a bevel joint
-   * will happen at sharper angles.
+   * Determines the miter limit of the polyline. Normally, when [jointMode] is set to [LINE_JOINT_SHARP], sharp angles fall back to using the logic of [LINE_JOINT_BEVEL] joints to prevent very long miters. Higher values of this property mean that the fallback to a bevel joint will happen at sharper angles.
    */
   public final inline var sharpLimit: Float
     @JvmName("sharpLimitProperty")
@@ -209,8 +186,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The smoothness used for rounded joints and caps. Higher values result in smoother corners, but
-   * are more demanding to render and update.
+   * The smoothness used for rounded joints and caps. Higher values result in smoother corners, but are more demanding to render and update.
    */
   public final inline var roundPrecision: Int
     @JvmName("roundPrecisionProperty")
@@ -233,7 +209,7 @@ public open class Line2D : Node2D() {
       setAntialiased(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(339, scriptIndex)
   }
 
@@ -248,27 +224,22 @@ public open class Line2D : Node2D() {
    * line2d.points = myCoreType
    * ``````
    *
-   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
-   * adjacent points in this array.
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the adjacent points in this array.
    */
   @CoreTypeHelper
-  public final fun pointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      points.apply {
+  public final fun pointsMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = points.apply {
      block(this)
      points = this
   }
 
   /**
    * This is a helper function for [points] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the
-   * adjacent points in this array.
+   * The points of the polyline, interpreted in local 2D coordinates. Segments are drawn between the adjacent points in this array.
    */
   @CoreTypeHelper
-  public final fun pointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = points.apply {
+  public final fun pointsMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = points.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -295,7 +266,7 @@ public open class Line2D : Node2D() {
      defaultColor = this
   }
 
-  public final fun setPoints(points: PackedVector2Array): Unit {
+  public final fun setPoints(points: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to points)
     TransferContext.callMethod(ptr, MethodBindings.setPointsPtr, NIL)
   }
@@ -309,7 +280,7 @@ public open class Line2D : Node2D() {
   /**
    * Overwrites the position of the point at the given [index] with the supplied [position].
    */
-  public final fun setPointPosition(index: Int, position: Vector2): Unit {
+  public final fun setPointPosition(index: Int, position: Vector2) {
     TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPointPositionPtr, NIL)
   }
@@ -333,15 +304,12 @@ public open class Line2D : Node2D() {
   }
 
   /**
-   * Adds a point with the specified [position] relative to the polyline's own position. If no
-   * [index] is provided, the new point will be added to the end of the points array.
+   * Adds a point with the specified [position] relative to the polyline's own position. If no [index] is provided, the new point will be added to the end of the points array.
    *
-   * If [index] is given, the new point is inserted before the existing point identified by index
-   * [index]. The indices of the points after the new point get increased by 1. The provided [index]
-   * must not exceed the number of existing points in the polyline. See [getPointCount].
+   * If [index] is given, the new point is inserted before the existing point identified by index [index]. The indices of the points after the new point get increased by 1. The provided [index] must not exceed the number of existing points in the polyline. See [getPointCount].
    */
   @JvmOverloads
-  public final fun addPoint(position: Vector2, index: Int = -1): Unit {
+  public final fun addPoint(position: Vector2, index: Int = -1) {
     TransferContext.writeArguments(VECTOR2 to position, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, NIL)
   }
@@ -349,7 +317,7 @@ public open class Line2D : Node2D() {
   /**
    * Removes the point at index [index] from the polyline.
    */
-  public final fun removePoint(index: Int): Unit {
+  public final fun removePoint(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
   }
@@ -357,12 +325,12 @@ public open class Line2D : Node2D() {
   /**
    * Removes all points from the polyline, making it empty.
    */
-  public final fun clearPoints(): Unit {
+  public final fun clearPoints() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
   }
 
-  public final fun setClosed(closed: Boolean): Unit {
+  public final fun setClosed(closed: Boolean) {
     TransferContext.writeArguments(BOOL to closed)
     TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
   }
@@ -373,7 +341,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWidth(width: Float): Unit {
+  public final fun setWidth(width: Float) {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
@@ -384,7 +352,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCurve(curve: Curve?): Unit {
+  public final fun setCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
@@ -395,7 +363,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setDefaultColor(color: Color): Unit {
+  public final fun setDefaultColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultColorPtr, NIL)
   }
@@ -406,7 +374,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setGradient(color: Gradient?): Unit {
+  public final fun setGradient(color: Gradient?) {
     TransferContext.writeArguments(OBJECT to color)
     TransferContext.callMethod(ptr, MethodBindings.setGradientPtr, NIL)
   }
@@ -417,7 +385,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -428,7 +396,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setTextureMode(mode: LineTextureMode): Unit {
+  public final fun setTextureMode(mode: LineTextureMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureModePtr, NIL)
   }
@@ -439,7 +407,7 @@ public open class Line2D : Node2D() {
     return LineTextureMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJointMode(mode: LineJointMode): Unit {
+  public final fun setJointMode(mode: LineJointMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setJointModePtr, NIL)
   }
@@ -450,7 +418,7 @@ public open class Line2D : Node2D() {
     return LineJointMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBeginCapMode(mode: LineCapMode): Unit {
+  public final fun setBeginCapMode(mode: LineCapMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBeginCapModePtr, NIL)
   }
@@ -461,7 +429,7 @@ public open class Line2D : Node2D() {
     return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEndCapMode(mode: LineCapMode): Unit {
+  public final fun setEndCapMode(mode: LineCapMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setEndCapModePtr, NIL)
   }
@@ -472,7 +440,7 @@ public open class Line2D : Node2D() {
     return LineCapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSharpLimit(limit: Float): Unit {
+  public final fun setSharpLimit(limit: Float) {
     TransferContext.writeArguments(DOUBLE to limit.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSharpLimitPtr, NIL)
   }
@@ -483,7 +451,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRoundPrecision(precision: Int): Unit {
+  public final fun setRoundPrecision(precision: Int) {
     TransferContext.writeArguments(LONG to precision.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRoundPrecisionPtr, NIL)
   }
@@ -494,7 +462,7 @@ public open class Line2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAntialiased(antialiased: Boolean): Unit {
+  public final fun setAntialiased(antialiased: Boolean) {
     TransferContext.writeArguments(BOOL to antialiased)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasedPtr, NIL)
   }
@@ -509,19 +477,15 @@ public open class Line2D : Node2D() {
     id: Long,
   ) {
     /**
-     * Makes the polyline's joints pointy, connecting the sides of the two segments by extending
-     * them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the
-     * joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
+     * Makes the polyline's joints pointy, connecting the sides of the two segments by extending them until they intersect. If the rotation of a joint is too big (based on [sharpLimit]), the joint falls back to [LINE_JOINT_BEVEL] to prevent very long miters.
      */
     SHARP(0),
     /**
-     * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with
-     * a simple line.
+     * Makes the polyline's joints bevelled/chamfered, connecting the sides of the two segments with a simple line.
      */
     BEVEL(1),
     /**
-     * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc.
-     * The detail of this arc depends on [roundPrecision].
+     * Makes the polyline's joints rounded, connecting the sides of the two segments with an arc. The detail of this arc depends on [roundPrecision].
      */
     ROUND(2),
     ;
@@ -571,14 +535,11 @@ public open class Line2D : Node2D() {
      */
     NONE(0),
     /**
-     * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be
-     * [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work
-     * properly.
+     * Tiles the texture over the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be [CanvasItem.TEXTURE_REPEAT_ENABLED] or [CanvasItem.TEXTURE_REPEAT_MIRROR] for it to work properly.
      */
     TILE(1),
     /**
-     * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node
-     * must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
+     * Stretches the texture across the polyline. [CanvasItem.textureRepeat] of the [Line2D] node must be [CanvasItem.TEXTURE_REPEAT_DISABLED] for best results.
      */
     STRETCH(2),
     ;
@@ -597,105 +558,105 @@ public open class Line2D : Node2D() {
 
   public object MethodBindings {
     internal val setPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_points", 1509147220)
+        TypeManager.getMethodBindPtr("Line2D", "set_points", 1_509_147_220)
 
     internal val getPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_points", 2961356807)
+        TypeManager.getMethodBindPtr("Line2D", "get_points", 2_961_356_807)
 
     internal val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_point_position", 163021252)
+        TypeManager.getMethodBindPtr("Line2D", "set_point_position", 163_021_252)
 
     internal val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_point_position", 2299179447)
+        TypeManager.getMethodBindPtr("Line2D", "get_point_position", 2_299_179_447)
 
     internal val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("Line2D", "get_point_count", 3_905_245_786)
 
     internal val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "add_point", 2654014372)
+        TypeManager.getMethodBindPtr("Line2D", "add_point", 2_654_014_372)
 
     internal val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "remove_point", 1286410249)
+        TypeManager.getMethodBindPtr("Line2D", "remove_point", 1_286_410_249)
 
     internal val clearPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "clear_points", 3218959716)
+        TypeManager.getMethodBindPtr("Line2D", "clear_points", 3_218_959_716)
 
     internal val setClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_closed", 2586408642)
+        TypeManager.getMethodBindPtr("Line2D", "set_closed", 2_586_408_642)
 
     internal val isClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "is_closed", 36873697)
+        TypeManager.getMethodBindPtr("Line2D", "is_closed", 36_873_697)
 
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_width", 373806689)
+        TypeManager.getMethodBindPtr("Line2D", "set_width", 373_806_689)
 
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_width", 1740695150)
+        TypeManager.getMethodBindPtr("Line2D", "get_width", 1_740_695_150)
 
     internal val setCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_curve", 270443179)
+        TypeManager.getMethodBindPtr("Line2D", "set_curve", 270_443_179)
 
     internal val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_curve", 2460114913)
+        TypeManager.getMethodBindPtr("Line2D", "get_curve", 2_460_114_913)
 
     internal val setDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_default_color", 2920490490)
+        TypeManager.getMethodBindPtr("Line2D", "set_default_color", 2_920_490_490)
 
     internal val getDefaultColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_default_color", 3444240500)
+        TypeManager.getMethodBindPtr("Line2D", "get_default_color", 3_444_240_500)
 
     internal val setGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_gradient", 2756054477)
+        TypeManager.getMethodBindPtr("Line2D", "set_gradient", 2_756_054_477)
 
     internal val getGradientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_gradient", 132272999)
+        TypeManager.getMethodBindPtr("Line2D", "get_gradient", 132_272_999)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("Line2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("Line2D", "get_texture", 3_635_182_373)
 
     internal val setTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode", 1952559516)
+        TypeManager.getMethodBindPtr("Line2D", "set_texture_mode", 1_952_559_516)
 
     internal val getTextureModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode", 2341040722)
+        TypeManager.getMethodBindPtr("Line2D", "get_texture_mode", 2_341_040_722)
 
     internal val setJointModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_joint_mode", 604292979)
+        TypeManager.getMethodBindPtr("Line2D", "set_joint_mode", 604_292_979)
 
     internal val getJointModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_joint_mode", 2546544037)
+        TypeManager.getMethodBindPtr("Line2D", "get_joint_mode", 2_546_544_037)
 
     internal val setBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode", 1669024546)
+        TypeManager.getMethodBindPtr("Line2D", "set_begin_cap_mode", 1_669_024_546)
 
     internal val getBeginCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode", 1107511441)
+        TypeManager.getMethodBindPtr("Line2D", "get_begin_cap_mode", 1_107_511_441)
 
     internal val setEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode", 1669024546)
+        TypeManager.getMethodBindPtr("Line2D", "set_end_cap_mode", 1_669_024_546)
 
     internal val getEndCapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode", 1107511441)
+        TypeManager.getMethodBindPtr("Line2D", "get_end_cap_mode", 1_107_511_441)
 
     internal val setSharpLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit", 373806689)
+        TypeManager.getMethodBindPtr("Line2D", "set_sharp_limit", 373_806_689)
 
     internal val getSharpLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit", 1740695150)
+        TypeManager.getMethodBindPtr("Line2D", "get_sharp_limit", 1_740_695_150)
 
     internal val setRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_round_precision", 1286410249)
+        TypeManager.getMethodBindPtr("Line2D", "set_round_precision", 1_286_410_249)
 
     internal val getRoundPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_round_precision", 3905245786)
+        TypeManager.getMethodBindPtr("Line2D", "get_round_precision", 3_905_245_786)
 
     internal val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "set_antialiased", 2586408642)
+        TypeManager.getMethodBindPtr("Line2D", "set_antialiased", 2_586_408_642)
 
     internal val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Line2D", "get_antialiased", 36873697)
+        TypeManager.getMethodBindPtr("Line2D", "get_antialiased", 36_873_697)
   }
 }

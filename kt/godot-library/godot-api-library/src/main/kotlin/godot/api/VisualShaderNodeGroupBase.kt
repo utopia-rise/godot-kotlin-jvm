@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,30 +16,26 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Currently, has no direct usage, use the derived classes instead.
  */
 @GodotBaseType
-public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
-    {
-  public override fun new(scriptIndex: Int): Unit {
+public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase() {
+  override fun new(scriptIndex: Int) {
     createNativeObject(757, scriptIndex)
   }
 
   /**
-   * Defines all input ports using a [String] formatted as a colon-separated list: `id,type,name;`
-   * (see [addInputPort]).
+   * Defines all input ports using a [String] formatted as a colon-separated list: `id,type,name;` (see [addInputPort]).
    */
-  public final fun setInputs(inputs: String): Unit {
+  public final fun setInputs(inputs: String) {
     TransferContext.writeArguments(STRING to inputs)
     TransferContext.callMethod(ptr, MethodBindings.setInputsPtr, NIL)
   }
 
   /**
-   * Returns a [String] description of the input ports as a colon-separated list using the format
-   * `id,type,name;` (see [addInputPort]).
+   * Returns a [String] description of the input ports as a colon-separated list using the format `id,type,name;` (see [addInputPort]).
    */
   public final fun getInputs(): String {
     TransferContext.writeArguments()
@@ -51,17 +44,15 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Defines all output ports using a [String] formatted as a colon-separated list: `id,type,name;`
-   * (see [addOutputPort]).
+   * Defines all output ports using a [String] formatted as a colon-separated list: `id,type,name;` (see [addOutputPort]).
    */
-  public final fun setOutputs(outputs: String): Unit {
+  public final fun setOutputs(outputs: String) {
     TransferContext.writeArguments(STRING to outputs)
     TransferContext.callMethod(ptr, MethodBindings.setOutputsPtr, NIL)
   }
 
   /**
-   * Returns a [String] description of the output ports as a colon-separated list using the format
-   * `id,type,name;` (see [addOutputPort]).
+   * Returns a [String] description of the output ports as a colon-separated list using the format `id,type,name;` (see [addOutputPort]).
    */
   public final fun getOutputs(): String {
     TransferContext.writeArguments()
@@ -70,8 +61,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   /**
-   * Returns `true` if the specified port name does not override an existed port name and is valid
-   * within the shader.
+   * Returns `true` if the specified port name does not override an existed port name and is valid within the shader.
    */
   public final fun isValidPortName(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -86,7 +76,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     id: Int,
     type: Int,
     name: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.addInputPortPtr, NIL)
   }
@@ -94,7 +84,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes the specified input port.
    */
-  public final fun removeInputPort(id: Int): Unit {
+  public final fun removeInputPort(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeInputPortPtr, NIL)
   }
@@ -120,7 +110,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes all previously specified input ports.
    */
-  public final fun clearInputPorts(): Unit {
+  public final fun clearInputPorts() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearInputPortsPtr, NIL)
   }
@@ -132,7 +122,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
     id: Int,
     type: Int,
     name: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.addOutputPortPtr, NIL)
   }
@@ -140,7 +130,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes the specified output port.
    */
-  public final fun removeOutputPort(id: Int): Unit {
+  public final fun removeOutputPort(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeOutputPortPtr, NIL)
   }
@@ -166,7 +156,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Removes all previously specified output ports.
    */
-  public final fun clearOutputPorts(): Unit {
+  public final fun clearOutputPorts() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearOutputPortsPtr, NIL)
   }
@@ -174,7 +164,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Renames the specified input port.
    */
-  public final fun setInputPortName(id: Int, name: String): Unit {
+  public final fun setInputPortName(id: Int, name: String) {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setInputPortNamePtr, NIL)
   }
@@ -182,7 +172,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Sets the specified input port's type (see [VisualShaderNode.PortType]).
    */
-  public final fun setInputPortType(id: Int, type: Int): Unit {
+  public final fun setInputPortType(id: Int, type: Int) {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInputPortTypePtr, NIL)
   }
@@ -190,7 +180,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Renames the specified output port.
    */
-  public final fun setOutputPortName(id: Int, name: String): Unit {
+  public final fun setOutputPortName(id: Int, name: String) {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setOutputPortNamePtr, NIL)
   }
@@ -198,7 +188,7 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   /**
    * Sets the specified output port's type (see [VisualShaderNode.PortType]).
    */
-  public final fun setOutputPortType(id: Int, type: Int): Unit {
+  public final fun setOutputPortType(id: Int, type: Int) {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to type.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutputPortTypePtr, NIL)
   }
@@ -225,66 +215,66 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
 
   public object MethodBindings {
     internal val setInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_inputs", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_inputs", 83_702_148)
 
     internal val getInputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_inputs", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_inputs", 201_670_096)
 
     internal val setOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_outputs", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_outputs", 83_702_148)
 
     internal val getOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_outputs", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_outputs", 201_670_096)
 
     internal val isValidPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "is_valid_port_name", 3927539163)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "is_valid_port_name", 3_927_539_163)
 
     internal val addInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_input_port", 2285447957)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_input_port", 2_285_447_957)
 
     internal val removeInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_input_port", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_input_port", 1_286_410_249)
 
     internal val getInputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_input_port_count", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_input_port_count", 3_905_245_786)
 
     internal val hasInputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_input_port", 1116898809)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_input_port", 1_116_898_809)
 
     internal val clearInputPortsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_input_ports", 3218959716)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_input_ports", 3_218_959_716)
 
     internal val addOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_output_port", 2285447957)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "add_output_port", 2_285_447_957)
 
     internal val removeOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_output_port", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "remove_output_port", 1_286_410_249)
 
     internal val getOutputPortCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_output_port_count", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_output_port_count", 3_905_245_786)
 
     internal val hasOutputPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_output_port", 1116898809)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "has_output_port", 1_116_898_809)
 
     internal val clearOutputPortsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_output_ports", 3218959716)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "clear_output_ports", 3_218_959_716)
 
     internal val setInputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_name", 501894301)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_name", 501_894_301)
 
     internal val setInputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_type", 3937882851)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_input_port_type", 3_937_882_851)
 
     internal val setOutputPortNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_name", 501894301)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_name", 501_894_301)
 
     internal val setOutputPortTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_type", 3937882851)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "set_output_port_type", 3_937_882_851)
 
     internal val getFreeInputPortIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_input_port_id", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_input_port_id", 3_905_245_786)
 
     internal val getFreeOutputPortIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_output_port_id", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeGroupBase", "get_free_output_port_id", 3_905_245_786)
   }
 }

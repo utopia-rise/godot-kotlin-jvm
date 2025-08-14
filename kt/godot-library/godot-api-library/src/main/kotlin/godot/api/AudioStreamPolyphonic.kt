@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,18 +12,12 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
- * single player.
+ * AudioStream that lets the user play custom streams at any time from code, simultaneously using a single player.
  *
- * Playback control is done via the [AudioStreamPlaybackPolyphonic] instance set inside the player,
- * which can be obtained via [AudioStreamPlayer.getStreamPlayback],
- * [AudioStreamPlayer2D.getStreamPlayback] or [AudioStreamPlayer3D.getStreamPlayback] methods.
- * Obtaining the playback instance is only valid after the `stream` property is set as an
- * [AudioStreamPolyphonic] in those players.
+ * Playback control is done via the [AudioStreamPlaybackPolyphonic] instance set inside the player, which can be obtained via [AudioStreamPlayer.getStreamPlayback], [AudioStreamPlayer2D.getStreamPlayback] or [AudioStreamPlayer3D.getStreamPlayback] methods. Obtaining the playback instance is only valid after the `stream` property is set as an [AudioStreamPolyphonic] in those players.
  */
 @GodotBaseType
 public open class AudioStreamPolyphonic : AudioStream() {
@@ -41,11 +32,11 @@ public open class AudioStreamPolyphonic : AudioStream() {
       setPolyphony(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(98, scriptIndex)
   }
 
-  public final fun setPolyphony(voices: Int): Unit {
+  public final fun setPolyphony(voices: Int) {
     TransferContext.writeArguments(LONG to voices.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPolyphonyPtr, NIL)
   }
@@ -60,9 +51,9 @@ public open class AudioStreamPolyphonic : AudioStream() {
 
   public object MethodBindings {
     internal val setPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "set_polyphony", 1_286_410_249)
 
     internal val getPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPolyphonic", "get_polyphony", 3_905_245_786)
   }
 }

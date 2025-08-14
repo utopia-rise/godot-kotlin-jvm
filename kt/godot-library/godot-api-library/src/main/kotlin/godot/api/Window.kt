@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -47,24 +44,19 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A node that creates a window. The window can either be a native system window or embedded inside
- * another [Window] (see [Viewport.guiEmbedSubwindows]).
+ * A node that creates a window. The window can either be a native system window or embedded inside another [Window] (see [Viewport.guiEmbedSubwindows]).
  *
- * At runtime, [Window]s will not close automatically when requested. You need to handle it manually
- * using the [signal close_requested] signal (this applies both to pressing the close button and
- * clicking outside of a popup).
+ * At runtime, [Window]s will not close automatically when requested. You need to handle it manually using the [signal close_requested] signal (this applies both to pressing the close button and clicking outside of a popup).
  */
 @GodotBaseType
 public open class Window : Viewport() {
   /**
-   * Emitted when the [Window] is currently focused and receives any input, passing the received
-   * event as an argument. The event's position, if present, is in the embedder's coordinate system.
+   * Emitted when the [Window] is currently focused and receives any input, passing the received event as an argument. The event's position, if present, is in the embedder's coordinate system.
    */
   public val windowInput: Signal1<InputEvent> by Signal1
 
   /**
-   * Emitted when files are dragged from the OS file manager and dropped in the game window. The
-   * argument is a list of file paths.
+   * Emitted when files are dragged from the OS file manager and dropped in the game window. The argument is a list of file paths.
    *
    * ```
    * func _ready():
@@ -74,22 +66,17 @@ public open class Window : Viewport() {
    *     print(files)
    * ```
    *
-   * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived
-   * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
+   * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
   public val filesDropped: Signal1<PackedStringArray> by Signal1
 
   /**
-   * Emitted when the mouse cursor enters the [Window]'s visible area, that is not occluded behind
-   * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
-   * it's currently focused or not.
+   * Emitted when the mouse cursor enters the [Window]'s visible area, that is not occluded behind other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
    */
   public val mouseEntered: Signal0 by Signal0
 
   /**
-   * Emitted when the mouse cursor leaves the [Window]'s visible area, that is not occluded behind
-   * other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if
-   * it's currently focused or not.
+   * Emitted when the mouse cursor leaves the [Window]'s visible area, that is not occluded behind other [Control]s or windows, provided its [Viewport.guiDisableInput] is `false` and regardless if it's currently focused or not.
    */
   public val mouseExited: Signal0 by Signal0
 
@@ -104,16 +91,14 @@ public open class Window : Viewport() {
   public val focusExited: Signal0 by Signal0
 
   /**
-   * Emitted when the [Window]'s close button is pressed or when [popupWindow] is enabled and user
-   * clicks outside the window.
+   * Emitted when the [Window]'s close button is pressed or when [popupWindow] is enabled and user clicks outside the window.
    *
    * This signal can be used to handle window closing, e.g. by connecting it to [hide].
    */
   public val closeRequested: Signal0 by Signal0
 
   /**
-   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right
-   * after [Node.NOTIFICATION_WM_GO_BACK_REQUEST].
+   * Emitted when a go back request is sent (e.g. pressing the "Back" button on Android), right after [Node.NOTIFICATION_WM_GO_BACK_REQUEST].
    */
   public val goBackRequested: Signal0 by Signal0
 
@@ -133,16 +118,14 @@ public open class Window : Viewport() {
   public val themeChanged: Signal0 by Signal0
 
   /**
-   * Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window
-   * from a Retina display to a lower resolution one).
+   * Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window from a Retina display to a lower resolution one).
    *
    * **Note:** Only implemented on macOS.
    */
   public val dpiChanged: Signal0 by Signal0
 
   /**
-   * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen
-   * mode, or extend-to-title flag is changed.
+   * Emitted when window title bar decorations are changed, e.g. macOS window enter/exit full screen mode, or extend-to-title flag is changed.
    */
   public val titlebarChanged: Signal0 by Signal0
 
@@ -156,8 +139,7 @@ public open class Window : Viewport() {
    *
    * **Note:** Fullscreen mode is not exclusive full screen on Windows and Linux.
    *
-   * **Note:** This method only works with native windows, i.e. the main window and [Window]-derived
-   * nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
+   * **Note:** This method only works with native windows, i.e. the main window and [Window]-derived nodes when [Viewport.guiEmbedSubwindows] is disabled in the main viewport.
    */
   public final inline var mode: Mode
     @JvmName("modeProperty")
@@ -192,19 +174,13 @@ public open class Window : Viewport() {
   /**
    * The window's position in pixels.
    *
-   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
-   * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
-   * the window's position is in the coordinates of its parent [Viewport].
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [Viewport].
    *
-   * **Note:** This property only works if [initialPosition] is set to
-   * [WINDOW_INITIAL_POSITION_ABSOLUTE].
+   * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2i
@@ -219,11 +195,8 @@ public open class Window : Viewport() {
    * The window's size in pixels.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -246,11 +219,9 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
-   * region will be passed through.
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
    *
-   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
-   * by the window, which is the default behavior).
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
    *
    * ```gdscript
    * //gdscript
@@ -267,8 +238,7 @@ public open class Window : Viewport() {
    * ```csharp
    * //csharp
    * // Set region, using Path2D node.
-   * GetNode<Window>("Window").MousePassthroughPolygon =
-   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
    *
    * // Set region, using Polygon2D node.
    * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
@@ -279,17 +249,13 @@ public open class Window : Viewport() {
    *
    * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
    *
-   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
-   * on Linux (X11) and macOS it is.
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
    *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var mousePassthroughPolygon: PackedVector2Array
@@ -312,8 +278,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the window's size will automatically update when a child node is added or removed,
-   * ignoring [minSize] if the new size is bigger.
+   * If `true`, the window's size will automatically update when a child node is added or removed, ignoring [minSize] if the new size is bigger.
    *
    * If `false`, you need to call [childControlsChanged] manually.
    */
@@ -326,10 +291,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [Window] is transient, i.e. it's considered a child of another [Window]. The
-   * transient window will be destroyed with its transient parent and will return focus to their parent
-   * when closed. The transient window is displayed on top of a non-exclusive full-screen parent
-   * window. Transient windows can't enter full-screen mode.
+   * If `true`, the [Window] is transient, i.e. it's considered a child of another [Window]. The transient window will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    *
    * Note that behavior might be different depending on the platform.
    */
@@ -342,10 +304,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, and the [Window] is [transient], this window will (at the time of becoming visible)
-   * become transient to the currently focused window instead of the immediate parent window in the
-   * hierarchy. Note that the transient parent is assigned at the time this window becomes visible, so
-   * changing it afterwards has no effect until re-shown.
+   * If `true`, and the [Window] is [transient], this window will (at the time of becoming visible) become transient to the currently focused window instead of the immediate parent window in the hierarchy. Note that the transient parent is assigned at the time this window becomes visible, so changing it afterwards has no effect until re-shown.
    */
   public final inline var transientToFocused: Boolean
     @JvmName("transientToFocusedProperty")
@@ -356,8 +315,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [Window] will be in exclusive mode. Exclusive windows are always on top of their
-   * parent and will block all input going to the parent [Window].
+   * If `true`, the [Window] will be in exclusive mode. Exclusive windows are always on top of their parent and will block all input going to the parent [Window].
    *
    * Needs [transient] enabled to work.
    */
@@ -392,8 +350,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the window will be on top of all other windows. Does not work if [transient] is
-   * enabled.
+   * If `true`, the window will be on top of all other windows. Does not work if [transient] is enabled.
    */
   public final inline var alwaysOnTop: Boolean
     @JvmName("alwaysOnTopProperty")
@@ -404,14 +361,11 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [Window]'s background can be transparent. This is best used with embedded
-   * windows.
+   * If `true`, the [Window]'s background can be transparent. This is best used with embedded windows.
    *
-   * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability
-   * might vary depending on GPU driver, display manager, and compositor capabilities.
+   * **Note:** Transparency support is implemented on Linux, macOS and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
    *
-   * **Note:** This property has no effect if
-   * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
+   * **Note:** This property has no effect if [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`.
    */
   public final inline var transparent: Boolean
     @JvmName("transparentProperty")
@@ -433,9 +387,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [Window] will be considered a popup. Popups are sub-windows that don't show as
-   * separate windows in system's window manager's window list and will send close request when
-   * anything is clicked outside of them (unless [exclusive] is enabled).
+   * If `true`, the [Window] will be considered a popup. Popups are sub-windows that don't show as separate windows in system's window manager's window list and will send close request when anything is clicked outside of them (unless [exclusive] is enabled).
    */
   public final inline var popupWindow: Boolean
     @JvmName("popupWindowProperty")
@@ -446,8 +398,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the [Window] contents is expanded to the full size of the window, window title bar
-   * is transparent.
+   * If `true`, the [Window] contents is expanded to the full size of the window, window title bar is transparent.
    *
    * **Note:** This property is implemented only on macOS.
    *
@@ -462,8 +413,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, all mouse events will be passed to the underlying window of the same application.
-   * See also [mousePassthroughPolygon].
+   * If `true`, all mouse events will be passed to the underlying window of the same application. See also [mousePassthroughPolygon].
    *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    *
@@ -493,8 +443,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
-   * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+   * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage], [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
    */
   public final inline var excludeFromCapture: Boolean
     @JvmName("excludeFromCaptureProperty")
@@ -518,15 +467,11 @@ public open class Window : Viewport() {
   /**
    * If non-zero, the [Window] can't be resized to be smaller than this size.
    *
-   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
-   * is enabled and if its size is bigger.
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var minSize: Vector2i
@@ -543,11 +488,8 @@ public open class Window : Viewport() {
    * **Note:** This property will be ignored if the value is lower than [minSize].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var maxSize: Vector2i
@@ -570,15 +512,11 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
-   * content will be scaled when the window is resized to a different size.
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s content will be scaled when the window is resized to a different size.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var contentScaleSize: Vector2i
@@ -601,8 +539,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Specifies how the content's aspect behaves when the [Window] is resized. The base aspect is
-   * determined by [contentScaleSize].
+   * Specifies how the content's aspect behaves when the [Window] is resized. The base aspect is determined by [contentScaleSize].
    */
   public final inline var contentScaleAspect: ContentScaleAspect
     @JvmName("contentScaleAspectProperty")
@@ -613,9 +550,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The policy to use to determine the final scale factor for 2D elements. This affects how
-   * [contentScaleFactor] is applied, in addition to the automatic scale factor determined by
-   * [contentScaleSize].
+   * The policy to use to determine the final scale factor for 2D elements. This affects how [contentScaleFactor] is applied, in addition to the automatic scale factor determined by [contentScaleSize].
    */
   public final inline var contentScaleStretch: ContentScaleStretch
     @JvmName("contentScaleStretchProperty")
@@ -626,8 +561,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Specifies the base scale of [Window]'s content when its [size] is equal to [contentScaleSize].
-   * See also [Viewport.getStretchTransform].
+   * Specifies the base scale of [Window]'s content when its [size] is equal to [contentScaleSize]. See also [Viewport.getStretchTransform].
    */
   public final inline var contentScaleFactor: Float
     @JvmName("contentScaleFactorProperty")
@@ -638,8 +572,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Toggles if any text should automatically change to its translated version depending on the
-   * current locale.
+   * Toggles if any text should automatically change to its translated version depending on the current locale.
    */
   public final inline var autoTranslate: Boolean
     @JvmName("autoTranslateProperty")
@@ -650,9 +583,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
-   * has its own [Theme] resource set, theme items are merged with child's definitions having higher
-   * priority.
+   * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node has its own [Theme] resource set, theme items are merged with child's definitions having higher priority.
    *
    * **Note:** [Window] styles will have no effect unless the window is embedded.
    */
@@ -665,8 +596,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * The name of a theme type variation used by this [Window] to look up its own theme items. See
-   * [Control.themeTypeVariation] for more details.
+   * The name of a theme type variation used by this [Window] to look up its own theme items. See [Control.themeTypeVariation] for more details.
    */
   public final inline var themeTypeVariation: StringName
     @JvmName("themeTypeVariationProperty")
@@ -676,7 +606,7 @@ public open class Window : Viewport() {
       setThemeTypeVariation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(849, scriptIndex)
   }
 
@@ -693,12 +623,9 @@ public open class Window : Viewport() {
    *
    * The window's position in pixels.
    *
-   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in
-   * absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`,
-   * the window's position is in the coordinates of its parent [Viewport].
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false`, the position is in absolute screen coordinates. This typically applies to editor plugins. If the setting is `true`, the window's position is in the coordinates of its parent [Viewport].
    *
-   * **Note:** This property only works if [initialPosition] is set to
-   * [WINDOW_INITIAL_POSITION_ABSOLUTE].
+   * **Note:** This property only works if [initialPosition] is set to [WINDOW_INITIAL_POSITION_ABSOLUTE].
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector2i.() -> Unit): Vector2i = position.apply {
@@ -726,8 +653,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies
-   * easier.
+   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -737,11 +663,9 @@ public open class Window : Viewport() {
    * window.mousePassthroughPolygon = myCoreType
    * ``````
    *
-   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
-   * region will be passed through.
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
    *
-   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
-   * by the window, which is the default behavior).
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
    *
    * ```gdscript
    * //gdscript
@@ -758,8 +682,7 @@ public open class Window : Viewport() {
    * ```csharp
    * //csharp
    * // Set region, using Path2D node.
-   * GetNode<Window>("Window").MousePassthroughPolygon =
-   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
    *
    * // Set region, using Polygon2D node.
    * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
@@ -770,29 +693,23 @@ public open class Window : Viewport() {
    *
    * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
    *
-   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
-   * on Linux (X11) and macOS it is.
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
    *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    */
   @CoreTypeHelper
-  public final fun mousePassthroughPolygonMutate(block: PackedVector2Array.() -> Unit):
-      PackedVector2Array = mousePassthroughPolygon.apply {
+  public final fun mousePassthroughPolygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = mousePassthroughPolygon.apply {
      block(this)
      mousePassthroughPolygon = this
   }
 
   /**
-   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies
-   * easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * This is a helper function for [mousePassthroughPolygon] to make dealing with local copies easier.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
-   * region will be passed through.
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
    *
-   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
-   * by the window, which is the default behavior).
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
    *
    * ```gdscript
    * //gdscript
@@ -809,8 +726,7 @@ public open class Window : Viewport() {
    * ```csharp
    * //csharp
    * // Set region, using Path2D node.
-   * GetNode<Window>("Window").MousePassthroughPolygon =
-   * GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
+   * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Path2D>("Path2D").Curve.GetBakedPoints();
    *
    * // Set region, using Polygon2D node.
    * GetNode<Window>("Window").MousePassthroughPolygon = GetNode<Polygon2D>("Polygon2D").Polygon;
@@ -821,14 +737,12 @@ public open class Window : Viewport() {
    *
    * **Note:** This property is ignored if [mousePassthrough] is set to `true`.
    *
-   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
-   * on Linux (X11) and macOS it is.
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
    *
    * **Note:** This property is implemented on Linux (X11), macOS and Windows.
    */
   @CoreTypeHelper
-  public final fun mousePassthroughPolygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = mousePassthroughPolygon.apply {
+  public final fun mousePassthroughPolygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = mousePassthroughPolygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -849,8 +763,7 @@ public open class Window : Viewport() {
    *
    * If non-zero, the [Window] can't be resized to be smaller than this size.
    *
-   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls]
-   * is enabled and if its size is bigger.
+   * **Note:** This property will be ignored in favor of [getContentsMinimumSize] if [wrapControls] is enabled and if its size is bigger.
    */
   @CoreTypeHelper
   public final fun minSizeMutate(block: Vector2i.() -> Unit): Vector2i = minSize.apply {
@@ -890,25 +803,22 @@ public open class Window : Viewport() {
    * window.contentScaleSize = myCoreType
    * ``````
    *
-   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s
-   * content will be scaled when the window is resized to a different size.
+   * Base size of the content (i.e. nodes that are drawn inside the window). If non-zero, [Window]'s content will be scaled when the window is resized to a different size.
    */
   @CoreTypeHelper
-  public final fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      contentScaleSize.apply {
+  public final fun contentScaleSizeMutate(block: Vector2i.() -> Unit): Vector2i = contentScaleSize.apply {
      block(this)
      contentScaleSize = this
   }
 
   /**
-   * Virtual method to be implemented by the user. Overrides the value returned by
-   * [getContentsMinimumSize].
+   * Virtual method to be implemented by the user. Overrides the value returned by [getContentsMinimumSize].
    */
   public open fun _getContentsMinimumSize(): Vector2 {
     throw NotImplementedError("Window::_getContentsMinimumSize is not implemented.")
   }
 
-  public final fun setTitle(title: String): Unit {
+  public final fun setTitle(title: String) {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
@@ -928,7 +838,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInitialPosition(initialPosition: WindowInitialPosition): Unit {
+  public final fun setInitialPosition(initialPosition: WindowInitialPosition) {
     TransferContext.writeArguments(LONG to initialPosition.id)
     TransferContext.callMethod(ptr, MethodBindings.setInitialPositionPtr, NIL)
   }
@@ -939,7 +849,7 @@ public open class Window : Viewport() {
     return WindowInitialPosition.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCurrentScreen(index: Int): Unit {
+  public final fun setCurrentScreen(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCurrentScreenPtr, NIL)
   }
@@ -950,7 +860,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPosition(position: Vector2i): Unit {
+  public final fun setPosition(position: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -962,15 +872,14 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Centers a native window on the current screen and an embedded window on its embedder
-   * [Viewport].
+   * Centers a native window on the current screen and an embedded window on its embedder [Viewport].
    */
-  public final fun moveToCenter(): Unit {
+  public final fun moveToCenter() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToCenterPtr, NIL)
   }
 
-  public final fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -982,11 +891,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Resets the size to the minimum size, which is the max of [minSize] and (if [wrapControls] is
-   * enabled) [getContentsMinimumSize]. This is equivalent to calling `set_size(Vector2i())` (or any
-   * size below the minimum).
+   * Resets the size to the minimum size, which is the max of [minSize] and (if [wrapControls] is enabled) [getContentsMinimumSize]. This is equivalent to calling `set_size(Vector2i())` (or any size below the minimum).
    */
-  public final fun resetSize(): Unit {
+  public final fun resetSize() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSizePtr, NIL)
   }
@@ -1013,7 +920,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setMaxSize(maxSize: Vector2i): Unit {
+  public final fun setMaxSize(maxSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to maxSize)
     TransferContext.callMethod(ptr, MethodBindings.setMaxSizePtr, NIL)
   }
@@ -1024,7 +931,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setMinSize(minSize: Vector2i): Unit {
+  public final fun setMinSize(minSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to minSize)
     TransferContext.callMethod(ptr, MethodBindings.setMinSizePtr, NIL)
   }
@@ -1035,7 +942,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setMode(mode: Mode): Unit {
+  public final fun setMode(mode: Mode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
@@ -1049,7 +956,7 @@ public open class Window : Viewport() {
   /**
    * Sets a specified window flag.
    */
-  public final fun setFlag(flag: Flags, enabled: Boolean): Unit {
+  public final fun setFlag(flag: Flags, enabled: Boolean) {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
@@ -1073,10 +980,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Tells the OS that the [Window] needs an attention. This makes the window stand out in some way
-   * depending on the system, e.g. it might blink on the task bar.
+   * Tells the OS that the [Window] needs an attention. This makes the window stand out in some way depending on the system, e.g. it might blink on the task bar.
    */
-  public final fun requestAttention(): Unit {
+  public final fun requestAttention() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.requestAttentionPtr, NIL)
   }
@@ -1084,12 +990,12 @@ public open class Window : Viewport() {
   /**
    * Causes the window to grab focus, allowing it to receive user input.
    */
-  public final fun moveToForeground(): Unit {
+  public final fun moveToForeground() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.moveToForegroundPtr, NIL)
   }
 
-  public final fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
@@ -1101,24 +1007,22 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Hides the window. This is not the same as minimized state. Hidden window can't be interacted
-   * with and needs to be made visible with [show].
+   * Hides the window. This is not the same as minimized state. Hidden window can't be interacted with and needs to be made visible with [show].
    */
-  public final fun hide(): Unit {
+  public final fun hide() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
   /**
-   * Makes the [Window] appear. This enables interactions with the [Window] and doesn't change any
-   * of its property other than visibility (unlike e.g. [popup]).
+   * Makes the [Window] appear. This enables interactions with the [Window] and doesn't change any of its property other than visibility (unlike e.g. [popup]).
    */
-  public final fun show(): Unit {
+  public final fun show() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
 
-  public final fun setTransient(transient: Boolean): Unit {
+  public final fun setTransient(transient: Boolean) {
     TransferContext.writeArguments(BOOL to transient)
     TransferContext.callMethod(ptr, MethodBindings.setTransientPtr, NIL)
   }
@@ -1129,7 +1033,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTransientToFocused(enable: Boolean): Unit {
+  public final fun setTransientToFocused(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setTransientToFocusedPtr, NIL)
   }
@@ -1140,7 +1044,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setExclusive(exclusive: Boolean): Unit {
+  public final fun setExclusive(exclusive: Boolean) {
     TransferContext.writeArguments(BOOL to exclusive)
     TransferContext.callMethod(ptr, MethodBindings.setExclusivePtr, NIL)
   }
@@ -1154,10 +1058,9 @@ public open class Window : Viewport() {
   /**
    * If [unparent] is `true`, the window is automatically unparented when going invisible.
    *
-   * **Note:** Make sure to keep a reference to the node, otherwise it will be orphaned. You also
-   * need to manually call [Node.queueFree] to free the window if it's not parented.
+   * **Note:** Make sure to keep a reference to the node, otherwise it will be orphaned. You also need to manually call [Node.queueFree] to free the window if it's not parented.
    */
-  public final fun setUnparentWhenInvisible(unparent: Boolean): Unit {
+  public final fun setUnparentWhenInvisible(unparent: Boolean) {
     TransferContext.writeArguments(BOOL to unparent)
     TransferContext.callMethod(ptr, MethodBindings.setUnparentWhenInvisiblePtr, NIL)
   }
@@ -1183,28 +1086,23 @@ public open class Window : Viewport() {
   /**
    * Causes the window to grab focus, allowing it to receive user input.
    */
-  public final fun grabFocus(): Unit {
+  public final fun grabFocus() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.grabFocusPtr, NIL)
   }
 
   /**
-   * Starts an interactive drag operation on the window, using the current mouse position. Call this
-   * method when handling a mouse button being pressed to simulate a pressed event on the window's
-   * title bar. Using this method allows the window to participate in space switching, tiling, and
-   * other system features.
+   * Starts an interactive drag operation on the window, using the current mouse position. Call this method when handling a mouse button being pressed to simulate a pressed event on the window's title bar. Using this method allows the window to participate in space switching, tiling, and other system features.
    */
-  public final fun startDrag(): Unit {
+  public final fun startDrag() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.startDragPtr, NIL)
   }
 
   /**
-   * Starts an interactive resize operation on the window, using the current mouse position. Call
-   * this method when handling a mouse button being pressed to simulate a pressed event on the window's
-   * edge.
+   * Starts an interactive resize operation on the window, using the current mouse position. Call this method when handling a mouse button being pressed to simulate a pressed event on the window's edge.
    */
-  public final fun startResize(edge: DisplayServer.WindowResizeEdge): Unit {
+  public final fun startResize(edge: DisplayServer.WindowResizeEdge) {
     TransferContext.writeArguments(LONG to edge.id)
     TransferContext.callMethod(ptr, MethodBindings.startResizePtr, NIL)
   }
@@ -1212,7 +1110,7 @@ public open class Window : Viewport() {
   /**
    * If [active] is `true`, enables system's native IME (Input Method Editor).
    */
-  public final fun setImeActive(active: Boolean): Unit {
+  public final fun setImeActive(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setImeActivePtr, NIL)
   }
@@ -1220,7 +1118,7 @@ public open class Window : Viewport() {
   /**
    * Moves IME to the given position.
    */
-  public final fun setImePosition(position: Vector2i): Unit {
+  public final fun setImePosition(position: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(ptr, MethodBindings.setImePositionPtr, NIL)
   }
@@ -1235,8 +1133,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the combined minimum size from the child [Control] nodes of the window. Use
-   * [childControlsChanged] to update it when child nodes have changed.
+   * Returns the combined minimum size from the child [Control] nodes of the window. Use [childControlsChanged] to update it when child nodes have changed.
    *
    * The value returned by this method can be overridden with [_getContentsMinimumSize].
    */
@@ -1246,7 +1143,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setForceNative(forceNative: Boolean): Unit {
+  public final fun setForceNative(forceNative: Boolean) {
     TransferContext.writeArguments(BOOL to forceNative)
     TransferContext.callMethod(ptr, MethodBindings.setForceNativePtr, NIL)
   }
@@ -1257,7 +1154,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setContentScaleSize(size: Vector2i): Unit {
+  public final fun setContentScaleSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleSizePtr, NIL)
   }
@@ -1268,7 +1165,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setContentScaleMode(mode: ContentScaleMode): Unit {
+  public final fun setContentScaleMode(mode: ContentScaleMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleModePtr, NIL)
   }
@@ -1279,7 +1176,7 @@ public open class Window : Viewport() {
     return ContentScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setContentScaleAspect(aspect: ContentScaleAspect): Unit {
+  public final fun setContentScaleAspect(aspect: ContentScaleAspect) {
     TransferContext.writeArguments(LONG to aspect.id)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleAspectPtr, NIL)
   }
@@ -1290,7 +1187,7 @@ public open class Window : Viewport() {
     return ContentScaleAspect.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setContentScaleStretch(stretch: ContentScaleStretch): Unit {
+  public final fun setContentScaleStretch(stretch: ContentScaleStretch) {
     TransferContext.writeArguments(LONG to stretch.id)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleStretchPtr, NIL)
   }
@@ -1301,7 +1198,7 @@ public open class Window : Viewport() {
     return ContentScaleStretch.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setKeepTitleVisible(titleVisible: Boolean): Unit {
+  public final fun setKeepTitleVisible(titleVisible: Boolean) {
     TransferContext.writeArguments(BOOL to titleVisible)
     TransferContext.callMethod(ptr, MethodBindings.setKeepTitleVisiblePtr, NIL)
   }
@@ -1312,7 +1209,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setContentScaleFactor(factor: Float): Unit {
+  public final fun setContentScaleFactor(factor: Float) {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleFactorPtr, NIL)
   }
@@ -1326,7 +1223,7 @@ public open class Window : Viewport() {
   /**
    * Enables font oversampling. This makes fonts look better when they are scaled up.
    */
-  public final fun setUseFontOversampling(enable: Boolean): Unit {
+  public final fun setUseFontOversampling(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseFontOversamplingPtr, NIL)
   }
@@ -1340,19 +1237,18 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMousePassthroughPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setMousePassthroughPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setMousePassthroughPolygonPtr, NIL)
   }
 
   public final fun getMousePassthroughPolygon(): PackedVector2Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getMousePassthroughPolygonPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setWrapControls(enable: Boolean): Unit {
+  public final fun setWrapControls(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setWrapControlsPtr, NIL)
   }
@@ -1366,12 +1262,12 @@ public open class Window : Viewport() {
   /**
    * Requests an update of the [Window] size to fit underlying [Control] nodes.
    */
-  public final fun childControlsChanged(): Unit {
+  public final fun childControlsChanged() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.childControlsChangedPtr, NIL)
   }
 
-  public final fun setTheme(theme: Theme?): Unit {
+  public final fun setTheme(theme: Theme?) {
     TransferContext.writeArguments(OBJECT to theme)
     TransferContext.callMethod(ptr, MethodBindings.setThemePtr, NIL)
   }
@@ -1382,7 +1278,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(OBJECT) as Theme?)
   }
 
-  public final fun setThemeTypeVariation(themeType: StringName): Unit {
+  public final fun setThemeTypeVariation(themeType: StringName) {
     TransferContext.writeArguments(STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.setThemeTypeVariationPtr, NIL)
   }
@@ -1394,10 +1290,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until
-   * [endBulkThemeOverride] is called.
+   * Prevents `*_theme_*_override` methods from emitting [NOTIFICATION_THEME_CHANGED] until [endBulkThemeOverride] is called.
    */
-  public final fun beginBulkThemeOverride(): Unit {
+  public final fun beginBulkThemeOverride() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beginBulkThemeOverridePtr, NIL)
   }
@@ -1405,166 +1300,143 @@ public open class Window : Viewport() {
   /**
    * Ends a bulk theme override update. See [beginBulkThemeOverride].
    */
-  public final fun endBulkThemeOverride(): Unit {
+  public final fun endBulkThemeOverride() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endBulkThemeOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme icon with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeIconOverride].
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
    *
    * See also [getThemeIcon].
    */
-  public final fun addThemeIconOverride(name: StringName, texture: Texture2D?): Unit {
+  public final fun addThemeIconOverride(name: StringName, texture: Texture2D?) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.addThemeIconOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeStyleboxOverride].
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
    *
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
-  public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?): Unit {
+  public final fun addThemeStyleboxOverride(name: StringName, stylebox: StyleBox?) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to stylebox)
     TransferContext.callMethod(ptr, MethodBindings.addThemeStyleboxOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeFontOverride].
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
    *
    * See also [getThemeFont].
    */
-  public final fun addThemeFontOverride(name: StringName, font: Font?): Unit {
+  public final fun addThemeFontOverride(name: StringName, font: Font?) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.addThemeFontOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme font size with the specified [name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeFontSizeOverride].
+   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
    *
    * See also [getThemeFontSize].
    */
-  public final fun addThemeFontSizeOverride(name: StringName, fontSize: Int): Unit {
+  public final fun addThemeFontSizeOverride(name: StringName, fontSize: Int) {
     TransferContext.writeArguments(STRING_NAME to name, LONG to fontSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addThemeFontSizeOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeColorOverride].
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
    *
    * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
    */
-  public final fun addThemeColorOverride(name: StringName, color: Color): Unit {
+  public final fun addThemeColorOverride(name: StringName, color: Color) {
     TransferContext.writeArguments(STRING_NAME to name, COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addThemeColorOverridePtr, NIL)
   }
 
   /**
-   * Creates a local override for a theme constant with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeConstantOverride].
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
    *
    * See also [getThemeConstant].
    */
-  public final fun addThemeConstantOverride(name: StringName, constant: Int): Unit {
+  public final fun addThemeConstantOverride(name: StringName, constant: Int) {
     TransferContext.writeArguments(STRING_NAME to name, LONG to constant.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addThemeConstantOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme icon with the specified [name] previously added by
-   * [addThemeIconOverride] or via the Inspector dock.
+   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
    */
-  public final fun removeThemeIconOverride(name: StringName): Unit {
+  public final fun removeThemeIconOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeIconOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
-   * [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
    */
-  public final fun removeThemeStyleboxOverride(name: StringName): Unit {
+  public final fun removeThemeStyleboxOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeStyleboxOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme [Font] with the specified [name] previously added by
-   * [addThemeFontOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontOverride(name: StringName): Unit {
+  public final fun removeThemeFontOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeFontOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme font size with the specified [name] previously added by
-   * [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontSizeOverride(name: StringName): Unit {
+  public final fun removeThemeFontSizeOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeFontSizeOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme [Color] with the specified [name] previously added by
-   * [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
    */
-  public final fun removeThemeColorOverride(name: StringName): Unit {
+  public final fun removeThemeColorOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeColorOverridePtr, NIL)
   }
 
   /**
-   * Removes a local override for a theme constant with the specified [name] previously added by
-   * [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
    */
-  public final fun removeThemeConstantOverride(name: StringName): Unit {
+  public final fun removeThemeConstantOverride(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeThemeConstantOverridePtr, NIL)
   }
 
   /**
-   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
-   * with the specified [name] and [themeType].
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")):
-      Texture2D? {
+  public final fun getThemeIcon(name: StringName, themeType: StringName = StringName("")): Texture2D? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeIconPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   /**
-   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
-   * item with the specified [name] and [themeType].
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      StyleBox? {
+  public final fun getThemeStylebox(name: StringName, themeType: StringName = StringName("")): StyleBox? {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeStyleboxPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as StyleBox?)
   }
 
   /**
-   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
-   * with the specified [name] and [themeType].
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1575,8 +1447,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
-   * item with the specified [name] and [themeType].
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1587,8 +1458,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
-   * with the specified [name] and [themeType].
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for more details.
    */
@@ -1599,8 +1469,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
-   * item with the specified [name] and [themeType].
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for more details.
    */
@@ -1611,8 +1480,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
-   * [Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [Control] node.
    *
    * See [addThemeIconOverride].
    */
@@ -1623,8 +1491,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in this [Control] node.
    *
    * See [addThemeStyleboxOverride].
    */
@@ -1635,8 +1502,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in this [Control] node.
    *
    * See [addThemeFontOverride].
    */
@@ -1647,8 +1513,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [Control] node.
    *
    * See [addThemeFontSizeOverride].
    */
@@ -1659,8 +1524,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in this [Control] node.
    *
    * See [addThemeColorOverride].
    */
@@ -1671,8 +1535,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [Control] node.
    *
    * See [addThemeConstantOverride].
    */
@@ -1683,8 +1546,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1695,21 +1557,18 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public final fun hasThemeStylebox(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeStyleboxPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1720,47 +1579,40 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public final fun hasThemeFontSize(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeFontSizePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public final fun hasThemeColor(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeColorPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")):
-      Boolean {
+  public final fun hasThemeConstant(name: StringName, themeType: StringName = StringName("")): Boolean {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeConstantPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
-   * Returns the default base scale value from the first matching [Theme] in the tree if that
-   * [Theme] has a valid [Theme.defaultBaseScale] value.
+   * Returns the default base scale value from the first matching [Theme] in the tree if that [Theme] has a valid [Theme.defaultBaseScale] value.
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1771,8 +1623,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default font from the first matching [Theme] in the tree if that [Theme] has a
-   * valid [Theme.defaultFont] value.
+   * Returns the default font from the first matching [Theme] in the tree if that [Theme] has a valid [Theme.defaultFont] value.
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1783,8 +1634,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns the default font size value from the first matching [Theme] in the tree if that [Theme]
-   * has a valid [Theme.defaultFontSize] value.
+   * Returns the default font size value from the first matching [Theme] in the tree if that [Theme] has a valid [Theme.defaultFontSize] value.
    *
    * See [Control.getThemeColor] for details.
    */
@@ -1795,10 +1645,9 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Sets layout direction and text writing direction. Right-to-left layouts are necessary for
-   * certain languages (e.g. Arabic and Hebrew).
+   * Sets layout direction and text writing direction. Right-to-left layouts are necessary for certain languages (e.g. Arabic and Hebrew).
    */
-  public final fun setLayoutDirection(direction: LayoutDirection): Unit {
+  public final fun setLayoutDirection(direction: LayoutDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setLayoutDirectionPtr, NIL)
   }
@@ -1821,7 +1670,7 @@ public open class Window : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoTranslate(enable: Boolean): Unit {
+  public final fun setAutoTranslate(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTranslatePtr, NIL)
   }
@@ -1833,131 +1682,106 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be
-   * set as the [Window]'s size. Fails if called on the main window.
+   * Shows the [Window] and makes it transient (see [transient]). If [rect] is provided, it will be set as the [Window]'s size. Fails if called on the main window.
    *
-   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `true` (single-window mode),
-   * [rect]'s coordinates are global and relative to the main window's top-left corner (excluding
-   * window decorations). If [rect]'s position coordinates are negative, the window will be located
-   * outside the main window and may not be visible as a result.
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `true` (single-window mode), [rect]'s coordinates are global and relative to the main window's top-left corner (excluding window decorations). If [rect]'s position coordinates are negative, the window will be located outside the main window and may not be visible as a result.
    *
-   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false` (multi-window mode),
-   * [rect]'s coordinates are global and relative to the top-left corner of the leftmost screen. If
-   * [rect]'s position coordinates are negative, the window will be placed at the top-left corner of
-   * the screen.
+   * If [ProjectSettings.display/window/subwindows/embedSubwindows] is `false` (multi-window mode), [rect]'s coordinates are global and relative to the top-left corner of the leftmost screen. If [rect]'s position coordinates are negative, the window will be placed at the top-left corner of the screen.
    *
    * **Note:** [rect] must be in global coordinates if specified.
    */
   @JvmOverloads
-  public final fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
+  public final fun popup(rect: Rect2i = Rect2i(0, 0, 0, 0)) {
     TransferContext.writeArguments(RECT2I to rect)
     TransferContext.callMethod(ptr, MethodBindings.popupPtr, NIL)
   }
 
   /**
-   * Popups the [Window] with a position shifted by parent [Window]'s position. If the [Window] is
-   * embedded, has the same effect as [popup].
+   * Popups the [Window] with a position shifted by parent [Window]'s position. If the [Window] is embedded, has the same effect as [popup].
    */
-  public final fun popupOnParent(parentRect: Rect2i): Unit {
+  public final fun popupOnParent(parentRect: Rect2i) {
     TransferContext.writeArguments(RECT2I to parentRect)
     TransferContext.callMethod(ptr, MethodBindings.popupOnParentPtr, NIL)
   }
 
   /**
-   * Popups the [Window] at the center of the current screen, with optionally given minimum size. If
-   * the [Window] is embedded, it will be centered in the parent [Viewport] instead.
+   * Popups the [Window] at the center of the current screen, with optionally given minimum size. If the [Window] is embedded, it will be centered in the parent [Viewport] instead.
    *
-   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
-   * [size].
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
   @JvmOverloads
-  public final fun popupCentered(minsize: Vector2i = Vector2i(0, 0)): Unit {
+  public final fun popupCentered(minsize: Vector2i = Vector2i(0, 0)) {
     TransferContext.writeArguments(VECTOR2I to minsize)
     TransferContext.callMethod(ptr, MethodBindings.popupCenteredPtr, NIL)
   }
 
   /**
-   * If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as
-   * a [ratio] of embedder's size.
+   * If [Window] is embedded, popups the [Window] centered inside its embedder and sets its size as a [ratio] of embedder's size.
    *
-   * If [Window] is a native window, popups the [Window] centered inside the screen of its parent
-   * [Window] and sets its size as a [ratio] of the screen size.
+   * If [Window] is a native window, popups the [Window] centered inside the screen of its parent [Window] and sets its size as a [ratio] of the screen size.
    */
   @JvmOverloads
-  public final fun popupCenteredRatio(ratio: Float = 0.8f): Unit {
+  public final fun popupCenteredRatio(ratio: Float = 0.8f) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.popupCenteredRatioPtr, NIL)
   }
 
   /**
-   * Popups the [Window] centered inside its parent [Window]. [fallbackRatio] determines the maximum
-   * size of the [Window], in relation to its parent.
+   * Popups the [Window] centered inside its parent [Window]. [fallbackRatio] determines the maximum size of the [Window], in relation to its parent.
    *
-   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with
-   * [size].
+   * **Note:** Calling it with the default value of [minsize] is equivalent to calling it with [size].
    */
   @JvmOverloads
-  public final fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Float =
-      0.75f): Unit {
+  public final fun popupCenteredClamped(minsize: Vector2i = Vector2i(0, 0), fallbackRatio: Float = 0.75f) {
     TransferContext.writeArguments(VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.popupCenteredClampedPtr, NIL)
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
-   * calls [Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [Window.popup] on it. The dialog must have no current parent, otherwise the method fails.
    *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public final fun popupExclusive(fromNode: Node?, rect: Rect2i = Rect2i(0, 0, 0, 0)): Unit {
+  public final fun popupExclusive(fromNode: Node?, rect: Rect2i = Rect2i(0, 0, 0, 0)) {
     TransferContext.writeArguments(OBJECT to fromNode, RECT2I to rect)
     TransferContext.callMethod(ptr, MethodBindings.popupExclusivePtr, NIL)
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
-   * calls [Window.popupOnParent] on it. The dialog must have no current parent, otherwise the method
-   * fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [Window.popupOnParent] on it. The dialog must have no current parent, otherwise the method fails.
    *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
-  public final fun popupExclusiveOnParent(fromNode: Node?, parentRect: Rect2i): Unit {
+  public final fun popupExclusiveOnParent(fromNode: Node?, parentRect: Rect2i) {
     TransferContext.writeArguments(OBJECT to fromNode, RECT2I to parentRect)
     TransferContext.callMethod(ptr, MethodBindings.popupExclusiveOnParentPtr, NIL)
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
-   * calls [Window.popupCentered] on it. The dialog must have no current parent, otherwise the method
-   * fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [Window.popupCentered] on it. The dialog must have no current parent, otherwise the method fails.
    *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public final fun popupExclusiveCentered(fromNode: Node?, minsize: Vector2i = Vector2i(0, 0)):
-      Unit {
+  public final fun popupExclusiveCentered(fromNode: Node?, minsize: Vector2i = Vector2i(0, 0)) {
     TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize)
     TransferContext.callMethod(ptr, MethodBindings.popupExclusiveCenteredPtr, NIL)
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
-   * calls [Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise the
-   * method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [Window.popupCenteredRatio] on it. The dialog must have no current parent, otherwise the method fails.
    *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
   @JvmOverloads
-  public final fun popupExclusiveCenteredRatio(fromNode: Node?, ratio: Float = 0.8f): Unit {
+  public final fun popupExclusiveCenteredRatio(fromNode: Node?, ratio: Float = 0.8f) {
     TransferContext.writeArguments(OBJECT to fromNode, DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.popupExclusiveCenteredRatioPtr, NIL)
   }
 
   /**
-   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then
-   * calls [Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise the
-   * method fails.
+   * Attempts to parent this dialog to the last exclusive window relative to [fromNode], and then calls [Window.popupCenteredClamped] on it. The dialog must have no current parent, otherwise the method fails.
    *
    * See also [setUnparentWhenInvisible] and [Node.getLastExclusiveWindow].
    */
@@ -1966,338 +1790,254 @@ public open class Window : Viewport() {
     fromNode: Node?,
     minsize: Vector2i = Vector2i(0, 0),
     fallbackRatio: Float = 0.75f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to fromNode, VECTOR2I to minsize, DOUBLE to fallbackRatio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.popupExclusiveCenteredClampedPtr, NIL)
   }
 
-  public final fun setThemeTypeVariation(themeType: String) =
-      setThemeTypeVariation(themeType.asCachedStringName())
+  public final fun setThemeTypeVariation(themeType: String): Unit = setThemeTypeVariation(themeType.asCachedStringName())
 
   /**
-   * Creates a local override for a theme icon with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeIconOverride].
+   * Creates a local override for a theme icon with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeIconOverride].
    *
    * See also [getThemeIcon].
    */
-  public final fun addThemeIconOverride(name: String, texture: Texture2D?) =
-      addThemeIconOverride(name.asCachedStringName(), texture)
+  public final fun addThemeIconOverride(name: String, texture: Texture2D?): Unit = addThemeIconOverride(name.asCachedStringName(), texture)
 
   /**
-   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeStyleboxOverride].
+   * Creates a local override for a theme [StyleBox] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeStyleboxOverride].
    *
    * See also [getThemeStylebox] and [Control.addThemeStyleboxOverride] for more details.
    */
-  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?) =
-      addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
+  public final fun addThemeStyleboxOverride(name: String, stylebox: StyleBox?): Unit = addThemeStyleboxOverride(name.asCachedStringName(), stylebox)
 
   /**
-   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeFontOverride].
+   * Creates a local override for a theme [Font] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontOverride].
    *
    * See also [getThemeFont].
    */
-  public final fun addThemeFontOverride(name: String, font: Font?) =
-      addThemeFontOverride(name.asCachedStringName(), font)
+  public final fun addThemeFontOverride(name: String, font: Font?): Unit = addThemeFontOverride(name.asCachedStringName(), font)
 
   /**
-   * Creates a local override for a theme font size with the specified [name]. Local overrides
-   * always take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeFontSizeOverride].
+   * Creates a local override for a theme font size with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeFontSizeOverride].
    *
    * See also [getThemeFontSize].
    */
-  public final fun addThemeFontSizeOverride(name: String, fontSize: Int) =
-      addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
+  public final fun addThemeFontSizeOverride(name: String, fontSize: Int): Unit = addThemeFontSizeOverride(name.asCachedStringName(), fontSize)
 
   /**
-   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeColorOverride].
+   * Creates a local override for a theme [Color] with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeColorOverride].
    *
    * See also [getThemeColor] and [Control.addThemeColorOverride] for more details.
    */
-  public final fun addThemeColorOverride(name: String, color: Color) =
-      addThemeColorOverride(name.asCachedStringName(), color)
+  public final fun addThemeColorOverride(name: String, color: Color): Unit = addThemeColorOverride(name.asCachedStringName(), color)
 
   /**
-   * Creates a local override for a theme constant with the specified [name]. Local overrides always
-   * take precedence when fetching theme items for the control. An override can be removed with
-   * [removeThemeConstantOverride].
+   * Creates a local override for a theme constant with the specified [name]. Local overrides always take precedence when fetching theme items for the control. An override can be removed with [removeThemeConstantOverride].
    *
    * See also [getThemeConstant].
    */
-  public final fun addThemeConstantOverride(name: String, constant: Int) =
-      addThemeConstantOverride(name.asCachedStringName(), constant)
+  public final fun addThemeConstantOverride(name: String, constant: Int): Unit = addThemeConstantOverride(name.asCachedStringName(), constant)
 
   /**
-   * Removes a local override for a theme icon with the specified [name] previously added by
-   * [addThemeIconOverride] or via the Inspector dock.
+   * Removes a local override for a theme icon with the specified [name] previously added by [addThemeIconOverride] or via the Inspector dock.
    */
-  public final fun removeThemeIconOverride(name: String) =
-      removeThemeIconOverride(name.asCachedStringName())
+  public final fun removeThemeIconOverride(name: String): Unit = removeThemeIconOverride(name.asCachedStringName())
 
   /**
-   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by
-   * [addThemeStyleboxOverride] or via the Inspector dock.
+   * Removes a local override for a theme [StyleBox] with the specified [name] previously added by [addThemeStyleboxOverride] or via the Inspector dock.
    */
-  public final fun removeThemeStyleboxOverride(name: String) =
-      removeThemeStyleboxOverride(name.asCachedStringName())
+  public final fun removeThemeStyleboxOverride(name: String): Unit = removeThemeStyleboxOverride(name.asCachedStringName())
 
   /**
-   * Removes a local override for a theme [Font] with the specified [name] previously added by
-   * [addThemeFontOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Font] with the specified [name] previously added by [addThemeFontOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontOverride(name: String) =
-      removeThemeFontOverride(name.asCachedStringName())
+  public final fun removeThemeFontOverride(name: String): Unit = removeThemeFontOverride(name.asCachedStringName())
 
   /**
-   * Removes a local override for a theme font size with the specified [name] previously added by
-   * [addThemeFontSizeOverride] or via the Inspector dock.
+   * Removes a local override for a theme font size with the specified [name] previously added by [addThemeFontSizeOverride] or via the Inspector dock.
    */
-  public final fun removeThemeFontSizeOverride(name: String) =
-      removeThemeFontSizeOverride(name.asCachedStringName())
+  public final fun removeThemeFontSizeOverride(name: String): Unit = removeThemeFontSizeOverride(name.asCachedStringName())
 
   /**
-   * Removes a local override for a theme [Color] with the specified [name] previously added by
-   * [addThemeColorOverride] or via the Inspector dock.
+   * Removes a local override for a theme [Color] with the specified [name] previously added by [addThemeColorOverride] or via the Inspector dock.
    */
-  public final fun removeThemeColorOverride(name: String) =
-      removeThemeColorOverride(name.asCachedStringName())
+  public final fun removeThemeColorOverride(name: String): Unit = removeThemeColorOverride(name.asCachedStringName())
 
   /**
-   * Removes a local override for a theme constant with the specified [name] previously added by
-   * [addThemeConstantOverride] or via the Inspector dock.
+   * Removes a local override for a theme constant with the specified [name] previously added by [addThemeConstantOverride] or via the Inspector dock.
    */
-  public final fun removeThemeConstantOverride(name: String) =
-      removeThemeConstantOverride(name.asCachedStringName())
+  public final fun removeThemeConstantOverride(name: String): Unit = removeThemeConstantOverride(name.asCachedStringName())
 
   /**
-   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item
-   * with the specified [name] and [themeType].
+   * Returns an icon from the first matching [Theme] in the tree if that [Theme] has an icon item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeIcon(name: String, themeType: String): Texture2D? =
-      getThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeIcon(name: String, themeType: String): Texture2D? = getThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox
-   * item with the specified [name] and [themeType].
+   * Returns a [StyleBox] from the first matching [Theme] in the tree if that [Theme] has a stylebox item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeStylebox(name: String, themeType: String): StyleBox? =
-      getThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeStylebox(name: String, themeType: String): StyleBox? = getThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item
-   * with the specified [name] and [themeType].
+   * Returns a [Font] from the first matching [Theme] in the tree if that [Theme] has a font item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeFont(name: String, themeType: String): Font? =
-      getThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeFont(name: String, themeType: String): Font? = getThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size
-   * item with the specified [name] and [themeType].
+   * Returns a font size from the first matching [Theme] in the tree if that [Theme] has a font size item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun getThemeFontSize(name: String, themeType: String): Int =
-      getThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeFontSize(name: String, themeType: String): Int = getThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item
-   * with the specified [name] and [themeType].
+   * Returns a [Color] from the first matching [Theme] in the tree if that [Theme] has a color item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for more details.
    */
-  public final fun getThemeColor(name: String, themeType: String): Color =
-      getThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeColor(name: String, themeType: String): Color = getThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant
-   * item with the specified [name] and [themeType].
+   * Returns a constant from the first matching [Theme] in the tree if that [Theme] has a constant item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for more details.
    */
-  public final fun getThemeConstant(name: String, themeType: String): Int =
-      getThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun getThemeConstant(name: String, themeType: String): Int = getThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme icon with the specified [name] in this
-   * [Control] node.
+   * Returns `true` if there is a local override for a theme icon with the specified [name] in this [Control] node.
    *
    * See [addThemeIconOverride].
    */
-  public final fun hasThemeIconOverride(name: String): Boolean =
-      hasThemeIconOverride(name.asCachedStringName())
+  public final fun hasThemeIconOverride(name: String): Boolean = hasThemeIconOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [StyleBox] with the specified [name] in this [Control] node.
    *
    * See [addThemeStyleboxOverride].
    */
-  public final fun hasThemeStyleboxOverride(name: String): Boolean =
-      hasThemeStyleboxOverride(name.asCachedStringName())
+  public final fun hasThemeStyleboxOverride(name: String): Boolean = hasThemeStyleboxOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [Font] with the specified [name] in this [Control] node.
    *
    * See [addThemeFontOverride].
    */
-  public final fun hasThemeFontOverride(name: String): Boolean =
-      hasThemeFontOverride(name.asCachedStringName())
+  public final fun hasThemeFontOverride(name: String): Boolean = hasThemeFontOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme font size with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme font size with the specified [name] in this [Control] node.
    *
    * See [addThemeFontSizeOverride].
    */
-  public final fun hasThemeFontSizeOverride(name: String): Boolean =
-      hasThemeFontSizeOverride(name.asCachedStringName())
+  public final fun hasThemeFontSizeOverride(name: String): Boolean = hasThemeFontSizeOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme [Color] with the specified [name] in this [Control] node.
    *
    * See [addThemeColorOverride].
    */
-  public final fun hasThemeColorOverride(name: String): Boolean =
-      hasThemeColorOverride(name.asCachedStringName())
+  public final fun hasThemeColorOverride(name: String): Boolean = hasThemeColorOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a local override for a theme constant with the specified [name] in
-   * this [Control] node.
+   * Returns `true` if there is a local override for a theme constant with the specified [name] in this [Control] node.
    *
    * See [addThemeConstantOverride].
    */
-  public final fun hasThemeConstantOverride(name: String): Boolean =
-      hasThemeConstantOverride(name.asCachedStringName())
+  public final fun hasThemeConstantOverride(name: String): Boolean = hasThemeConstantOverride(name.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has an icon item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeIcon(name: String, themeType: String): Boolean =
-      hasThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeIcon(name: String, themeType: String): Boolean = hasThemeIcon(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a stylebox item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeStylebox(name: String, themeType: String): Boolean =
-      hasThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeStylebox(name: String, themeType: String): Boolean = hasThemeStylebox(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a font item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeFont(name: String, themeType: String): Boolean =
-      hasThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeFont(name: String, themeType: String): Boolean = hasThemeFont(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a font size item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeFontSize(name: String, themeType: String): Boolean =
-      hasThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeFontSize(name: String, themeType: String): Boolean = hasThemeFontSize(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a color item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeColor(name: String, themeType: String): Boolean =
-      hasThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeColor(name: String, themeType: String): Boolean = hasThemeColor(name.asCachedStringName(), themeType.asCachedStringName())
 
   /**
-   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the
-   * specified [name] and [themeType].
+   * Returns `true` if there is a matching [Theme] in the tree that has a constant item with the specified [name] and [themeType].
    *
    * See [Control.getThemeColor] for details.
    */
-  public final fun hasThemeConstant(name: String, themeType: String): Boolean =
-      hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
+  public final fun hasThemeConstant(name: String, themeType: String): Boolean = hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   public enum class Mode(
     id: Long,
   ) {
     /**
-     * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
-     * screen).
+     * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
     WINDOWED(0),
     /**
-     * Minimized window mode, i.e. [Window] is not visible and available on window manager's window
-     * list. Normally happens when the minimize button is pressed.
+     * Minimized window mode, i.e. [Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
     MINIMIZED(1),
     /**
-     * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still
-     * display its borders. Normally happens when the maximize button is pressed.
+     * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
     MAXIMIZED(2),
     /**
      * Full screen mode with full multi-window support.
      *
-     * Full screen window covers the entire display area of a screen and has no decorations. The
-     * display's video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no decorations. The display's video mode is not changed.
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Multi-window full-screen mode has a 1px border of the
-     * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     * **On Windows:** Multi-window full-screen mode has a 1px border of the [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
      *
      * **On macOS:** A new desktop is used to display the running project.
      *
-     * **Note:** Regardless of the platform, enabling full screen will change the window size to
-     * match the monitor's size. Therefore, make sure your project supports
-     * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
-     * enabling full screen mode.
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.
      */
     FULLSCREEN(3),
     /**
-     * A single window full screen mode. This mode has less overhead, but only one window can be
-     * open on a given screen at a time (opening a child window or application switching will trigger a
-     * full screen transition).
+     * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * Full screen window covers the entire display area of a screen and has no border or
-     * decorations. The display's video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no border or decorations. The display's video mode is not changed.
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Depending on video driver, full screen transition might cause screens to go
-     * black for a moment.
+     * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
      *
-     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen
-     * mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the
-     * screen.
+     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
      *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
      *
-     * **Note:** Regardless of the platform, enabling full screen will change the window size to
-     * match the monitor's size. Therefore, make sure your project supports
-     * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
-     * enabling full screen mode.
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.
      */
     EXCLUSIVE_FULLSCREEN(4),
     ;
@@ -2316,46 +2056,35 @@ public open class Window : Viewport() {
     id: Long,
   ) {
     /**
-     * The window can't be resized by dragging its resize grip. It's still possible to resize the
-     * window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
+     * The window can't be resized by dragging its resize grip. It's still possible to resize the window using [size]. This flag is ignored for full screen windows. Set with [unresizable].
      */
     RESIZE_DISABLED(0),
     /**
-     * The window do not have native title bar and other decorations. This flag is ignored for
-     * full-screen windows. Set with [borderless].
+     * The window do not have native title bar and other decorations. This flag is ignored for full-screen windows. Set with [borderless].
      */
     BORDERLESS(1),
     /**
-     * The window is floating on top of all other windows. This flag is ignored for full-screen
-     * windows. Set with [alwaysOnTop].
+     * The window is floating on top of all other windows. This flag is ignored for full-screen windows. Set with [alwaysOnTop].
      */
     ALWAYS_ON_TOP(2),
     /**
      * The window background can be transparent. Set with [transparent].
      *
-     * **Note:** This flag has no effect if either
-     * [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's
-     * [Viewport.transparentBg] is set to `false`.
+     * **Note:** This flag has no effect if either [ProjectSettings.display/window/perPixelTransparency/allowed], or the window's [Viewport.transparentBg] is set to `false`.
      */
     TRANSPARENT(3),
     /**
-     * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set
-     * with [unfocusable].
+     * The window can't be focused. No-focus window will ignore all input, except mouse clicks. Set with [unfocusable].
      */
     NO_FOCUS(4),
     /**
-     * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window
-     * is visible. An active popup window will exclusively receive all input, without stealing focus
-     * from its parent. Popup windows are automatically closed when uses click outside it, or when an
-     * application is switched. Popup window must have transient parent set (see [transient]).
+     * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have transient parent set (see [transient]).
      *
      * **Note:** This flag has no effect in embedded windows (unless said window is a [Popup]).
      */
     POPUP(5),
     /**
-     * Window content is expanded to the full size of the window. Unlike borderless window, the
-     * frame is left intact and can be used to resize the window, title bar is transparent, but have
-     * minimize/maximize/close buttons. Set with [extendToTitle].
+     * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons. Set with [extendToTitle].
      *
      * **Note:** This flag is implemented only on macOS.
      *
@@ -2377,13 +2106,11 @@ public open class Window : Viewport() {
      */
     SHARP_CORNERS(8),
     /**
-     * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
-     * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+     * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage], [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
      *
      * **Note:** This flag is implemented on macOS and Windows.
      *
-     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
-     * should not be used as a security measure.
+     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it should not be used as a security measure.
      */
     EXCLUDE_FROM_CAPTURE(9),
     /**
@@ -2410,13 +2137,11 @@ public open class Window : Viewport() {
      */
     DISABLED(0),
     /**
-     * The content will be rendered at the target size. This is more performance-expensive than
-     * [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
+     * The content will be rendered at the target size. This is more performance-expensive than [CONTENT_SCALE_MODE_VIEWPORT], but provides better results.
      */
     CANVAS_ITEMS(1),
     /**
-     * The content will be rendered at the base size and then scaled to the target size. More
-     * performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
+     * The content will be rendered at the base size and then scaled to the target size. More performant than [CONTENT_SCALE_MODE_CANVAS_ITEMS], but results in pixelated image.
      */
     VIEWPORT(2),
     ;
@@ -2439,24 +2164,19 @@ public open class Window : Viewport() {
      */
     IGNORE(0),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base
-     * one, the image will be centered and black bars will appear on left and right sides.
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the image will be centered and black bars will appear on left and right sides.
      */
     KEEP(1),
     /**
-     * The content can be expanded vertically. Scaling horizontally will result in keeping the width
-     * ratio and then black bars on left and right sides.
+     * The content can be expanded vertically. Scaling horizontally will result in keeping the width ratio and then black bars on left and right sides.
      */
     KEEP_WIDTH(2),
     /**
-     * The content can be expanded horizontally. Scaling vertically will result in keeping the
-     * height ratio and then black bars on top and bottom sides.
+     * The content can be expanded horizontally. Scaling vertically will result in keeping the height ratio and then black bars on top and bottom sides.
      */
     KEEP_HEIGHT(3),
     /**
-     * The content's aspect will be preserved. If the target size has different aspect from the base
-     * one, the content will stay in the top-left corner and add an extra visible area in the stretched
-     * space.
+     * The content's aspect will be preserved. If the target size has different aspect from the base one, the content will stay in the top-left corner and add an extra visible area in the stretched space.
      */
     EXPAND(4),
     ;
@@ -2475,13 +2195,11 @@ public open class Window : Viewport() {
     id: Long,
   ) {
     /**
-     * The content will be stretched according to a fractional factor. This fills all the space
-     * available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
+     * The content will be stretched according to a fractional factor. This fills all the space available in the window, but allows "pixel wobble" to occur due to uneven pixel scaling.
      */
     FRACTIONAL(0),
     /**
-     * The content will be stretched only according to an integer factor, preserving sharp pixels.
-     * This may leave a black background visible on the window's edges depending on the window size.
+     * The content will be stretched only according to an integer factor, preserving sharp pixels. This may leave a black background visible on the window's edges depending on the window size.
      */
     INTEGER(1),
     ;
@@ -2560,8 +2278,7 @@ public open class Window : Viewport() {
      */
     CENTER_SCREEN_WITH_MOUSE_FOCUS(4),
     /**
-     * Initial window position is the center of the screen containing the window with the keyboard
-     * focus.
+     * Initial window position is the center of the screen containing the window with the keyboard focus.
      */
     CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
@@ -2583,8 +2300,7 @@ public open class Window : Viewport() {
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 30
 
     /**
-     * Sent when the node needs to refresh its theme items. This happens in one of the following
-     * cases:
+     * Sent when the node needs to refresh its theme items. This happens in one of the following cases:
      *
      * - The [theme] property is changed on this node or any of its ancestors.
      *
@@ -2592,371 +2308,370 @@ public open class Window : Viewport() {
      *
      * - The node enters the scene tree.
      *
-     * **Note:** As an optimization, this notification won't be sent from changes that occur while
-     * this node is outside of the scene tree. Instead, all of the theme item updates can be applied at
-     * once when the node enters the scene tree.
+     * **Note:** As an optimization, this notification won't be sent from changes that occur while this node is outside of the scene tree. Instead, all of the theme item updates can be applied at once when the node enters the scene tree.
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 32
   }
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_title", 83702148)
+        TypeManager.getMethodBindPtr("Window", "set_title", 83_702_148)
 
     internal val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_title", 201670096)
+        TypeManager.getMethodBindPtr("Window", "get_title", 201_670_096)
 
     internal val getWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_window_id", 3905245786)
+        TypeManager.getMethodBindPtr("Window", "get_window_id", 3_905_245_786)
 
     internal val setInitialPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_initial_position", 4084468099)
+        TypeManager.getMethodBindPtr("Window", "set_initial_position", 4_084_468_099)
 
     internal val getInitialPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_initial_position", 4294066647)
+        TypeManager.getMethodBindPtr("Window", "get_initial_position", 4_294_066_647)
 
     internal val setCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_current_screen", 1286410249)
+        TypeManager.getMethodBindPtr("Window", "set_current_screen", 1_286_410_249)
 
     internal val getCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_current_screen", 3905245786)
+        TypeManager.getMethodBindPtr("Window", "get_current_screen", 3_905_245_786)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_position", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_position", 1_130_785_943)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_position", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_position", 3_690_982_128)
 
     internal val moveToCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "move_to_center", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "move_to_center", 3_218_959_716)
 
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_size", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_size", 1_130_785_943)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_size", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_size", 3_690_982_128)
 
     internal val resetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "reset_size", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "reset_size", 3_218_959_716)
 
     internal val getPositionWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_position_with_decorations", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_position_with_decorations", 3_690_982_128)
 
     internal val getSizeWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_size_with_decorations", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_size_with_decorations", 3_690_982_128)
 
     internal val setMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_max_size", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_max_size", 1_130_785_943)
 
     internal val getMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_max_size", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_max_size", 3_690_982_128)
 
     internal val setMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_min_size", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_min_size", 1_130_785_943)
 
     internal val getMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_min_size", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_min_size", 3_690_982_128)
 
     internal val setModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_mode", 3095236531)
+        TypeManager.getMethodBindPtr("Window", "set_mode", 3_095_236_531)
 
     internal val getModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_mode", 2566346114)
+        TypeManager.getMethodBindPtr("Window", "get_mode", 2_566_346_114)
 
     internal val setFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_flag", 3426449779)
+        TypeManager.getMethodBindPtr("Window", "set_flag", 3_426_449_779)
 
     internal val getFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_flag", 3062752289)
+        TypeManager.getMethodBindPtr("Window", "get_flag", 3_062_752_289)
 
     internal val isMaximizeAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_maximize_allowed", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_maximize_allowed", 36_873_697)
 
     internal val requestAttentionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "request_attention", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "request_attention", 3_218_959_716)
 
     internal val moveToForegroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "move_to_foreground", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "move_to_foreground", 3_218_959_716)
 
     internal val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_visible", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_visible", 2_586_408_642)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_visible", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_visible", 36_873_697)
 
-    internal val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "hide", 3218959716)
+    internal val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "hide", 3_218_959_716)
 
-    internal val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "show", 3218959716)
+    internal val showPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "show", 3_218_959_716)
 
     internal val setTransientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_transient", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_transient", 2_586_408_642)
 
     internal val isTransientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_transient", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_transient", 36_873_697)
 
     internal val setTransientToFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_transient_to_focused", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_transient_to_focused", 2_586_408_642)
 
     internal val isTransientToFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_transient_to_focused", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_transient_to_focused", 36_873_697)
 
     internal val setExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_exclusive", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_exclusive", 2_586_408_642)
 
     internal val isExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_exclusive", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_exclusive", 36_873_697)
 
     internal val setUnparentWhenInvisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_unparent_when_invisible", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_unparent_when_invisible", 2_586_408_642)
 
-    internal val canDrawPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "can_draw", 36873697)
+    internal val canDrawPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "can_draw", 36_873_697)
 
     internal val hasFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_focus", 36873697)
+        TypeManager.getMethodBindPtr("Window", "has_focus", 36_873_697)
 
     internal val grabFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "grab_focus", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "grab_focus", 3_218_959_716)
 
     internal val startDragPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "start_drag", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "start_drag", 3_218_959_716)
 
     internal val startResizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "start_resize", 122288853)
+        TypeManager.getMethodBindPtr("Window", "start_resize", 122_288_853)
 
     internal val setImeActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_ime_active", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_ime_active", 2_586_408_642)
 
     internal val setImePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_ime_position", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_ime_position", 1_130_785_943)
 
     internal val isEmbeddedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_embedded", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_embedded", 36_873_697)
 
     internal val getContentsMinimumSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_contents_minimum_size", 3341600327)
+        TypeManager.getMethodBindPtr("Window", "get_contents_minimum_size", 3_341_600_327)
 
     internal val setForceNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_force_native", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_force_native", 2_586_408_642)
 
     internal val getForceNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_force_native", 36873697)
+        TypeManager.getMethodBindPtr("Window", "get_force_native", 36_873_697)
 
     internal val setContentScaleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_size", 1130785943)
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_size", 1_130_785_943)
 
     internal val getContentScaleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_size", 3690982128)
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_size", 3_690_982_128)
 
     internal val setContentScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_mode", 2937716473)
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_mode", 2_937_716_473)
 
     internal val getContentScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_mode", 161585230)
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_mode", 161_585_230)
 
     internal val setContentScaleAspectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_aspect", 2370399418)
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_aspect", 2_370_399_418)
 
     internal val getContentScaleAspectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_aspect", 4158790715)
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_aspect", 4_158_790_715)
 
     internal val setContentScaleStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_stretch", 349355940)
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_stretch", 349_355_940)
 
     internal val getContentScaleStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch", 536857316)
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_stretch", 536_857_316)
 
     internal val setKeepTitleVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_keep_title_visible", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_keep_title_visible", 2_586_408_642)
 
     internal val getKeepTitleVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_keep_title_visible", 36873697)
+        TypeManager.getMethodBindPtr("Window", "get_keep_title_visible", 36_873_697)
 
     internal val setContentScaleFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_content_scale_factor", 373806689)
+        TypeManager.getMethodBindPtr("Window", "set_content_scale_factor", 373_806_689)
 
     internal val getContentScaleFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_content_scale_factor", 1740695150)
+        TypeManager.getMethodBindPtr("Window", "get_content_scale_factor", 1_740_695_150)
 
     internal val setUseFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling", 2_586_408_642)
 
     internal val isUsingFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling", 36_873_697)
 
     internal val setMousePassthroughPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_mouse_passthrough_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("Window", "set_mouse_passthrough_polygon", 1_509_147_220)
 
     internal val getMousePassthroughPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_mouse_passthrough_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("Window", "get_mouse_passthrough_polygon", 2_961_356_807)
 
     internal val setWrapControlsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_wrap_controls", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_wrap_controls", 2_586_408_642)
 
     internal val isWrappingControlsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_wrapping_controls", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_wrapping_controls", 36_873_697)
 
     internal val childControlsChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "child_controls_changed", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "child_controls_changed", 3_218_959_716)
 
     internal val setThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_theme", 2326690814)
+        TypeManager.getMethodBindPtr("Window", "set_theme", 2_326_690_814)
 
     internal val getThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme", 3846893731)
+        TypeManager.getMethodBindPtr("Window", "get_theme", 3_846_893_731)
 
     internal val setThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_theme_type_variation", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "set_theme_type_variation", 3_304_788_590)
 
     internal val getThemeTypeVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_type_variation", 2002593661)
+        TypeManager.getMethodBindPtr("Window", "get_theme_type_variation", 2_002_593_661)
 
     internal val beginBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "begin_bulk_theme_override", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "begin_bulk_theme_override", 3_218_959_716)
 
     internal val endBulkThemeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "end_bulk_theme_override", 3218959716)
+        TypeManager.getMethodBindPtr("Window", "end_bulk_theme_override", 3_218_959_716)
 
     internal val addThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_icon_override", 1373065600)
+        TypeManager.getMethodBindPtr("Window", "add_theme_icon_override", 1_373_065_600)
 
     internal val addThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_stylebox_override", 4188838905)
+        TypeManager.getMethodBindPtr("Window", "add_theme_stylebox_override", 4_188_838_905)
 
     internal val addThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_font_override", 3518018674)
+        TypeManager.getMethodBindPtr("Window", "add_theme_font_override", 3_518_018_674)
 
     internal val addThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_font_size_override", 2415702435)
+        TypeManager.getMethodBindPtr("Window", "add_theme_font_size_override", 2_415_702_435)
 
     internal val addThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_color_override", 4260178595)
+        TypeManager.getMethodBindPtr("Window", "add_theme_color_override", 4_260_178_595)
 
     internal val addThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "add_theme_constant_override", 2415702435)
+        TypeManager.getMethodBindPtr("Window", "add_theme_constant_override", 2_415_702_435)
 
     internal val removeThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_icon_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_icon_override", 3_304_788_590)
 
     internal val removeThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_stylebox_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_stylebox_override", 3_304_788_590)
 
     internal val removeThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_font_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_font_override", 3_304_788_590)
 
     internal val removeThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_font_size_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_font_size_override", 3_304_788_590)
 
     internal val removeThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_color_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_color_override", 3_304_788_590)
 
     internal val removeThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "remove_theme_constant_override", 3304788590)
+        TypeManager.getMethodBindPtr("Window", "remove_theme_constant_override", 3_304_788_590)
 
     internal val getThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_icon", 3163973443)
+        TypeManager.getMethodBindPtr("Window", "get_theme_icon", 3_163_973_443)
 
     internal val getThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox", 604739069)
+        TypeManager.getMethodBindPtr("Window", "get_theme_stylebox", 604_739_069)
 
     internal val getThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_font", 2826986490)
+        TypeManager.getMethodBindPtr("Window", "get_theme_font", 2_826_986_490)
 
     internal val getThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_font_size", 1327056374)
+        TypeManager.getMethodBindPtr("Window", "get_theme_font_size", 1_327_056_374)
 
     internal val getThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_color", 2798751242)
+        TypeManager.getMethodBindPtr("Window", "get_theme_color", 2_798_751_242)
 
     internal val getThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_constant", 1327056374)
+        TypeManager.getMethodBindPtr("Window", "get_theme_constant", 1_327_056_374)
 
     internal val hasThemeIconOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_icon_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_icon_override", 2_619_796_661)
 
     internal val hasThemeStyleboxOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox_override", 2_619_796_661)
 
     internal val hasThemeFontOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_override", 2_619_796_661)
 
     internal val hasThemeFontSizeOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_size_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_size_override", 2_619_796_661)
 
     internal val hasThemeColorOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_color_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_color_override", 2_619_796_661)
 
     internal val hasThemeConstantOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_constant_override", 2619796661)
+        TypeManager.getMethodBindPtr("Window", "has_theme_constant_override", 2_619_796_661)
 
     internal val hasThemeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_icon", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_icon", 866_386_512)
 
     internal val hasThemeStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_stylebox", 866_386_512)
 
     internal val hasThemeFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font", 866_386_512)
 
     internal val hasThemeFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_font_size", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_font_size", 866_386_512)
 
     internal val hasThemeColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_color", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_color", 866_386_512)
 
     internal val hasThemeConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "has_theme_constant", 866386512)
+        TypeManager.getMethodBindPtr("Window", "has_theme_constant", 866_386_512)
 
     internal val getThemeDefaultBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_base_scale", 1740695150)
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_base_scale", 1_740_695_150)
 
     internal val getThemeDefaultFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_font", 3229501585)
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_font", 3_229_501_585)
 
     internal val getThemeDefaultFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_theme_default_font_size", 3905245786)
+        TypeManager.getMethodBindPtr("Window", "get_theme_default_font_size", 3_905_245_786)
 
     internal val setLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_layout_direction", 3094704184)
+        TypeManager.getMethodBindPtr("Window", "set_layout_direction", 3_094_704_184)
 
     internal val getLayoutDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_layout_direction", 3909617982)
+        TypeManager.getMethodBindPtr("Window", "get_layout_direction", 3_909_617_982)
 
     internal val isLayoutRtlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_layout_rtl", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_layout_rtl", 36_873_697)
 
     internal val setAutoTranslatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_auto_translate", 2586408642)
+        TypeManager.getMethodBindPtr("Window", "set_auto_translate", 2_586_408_642)
 
     internal val isAutoTranslatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_auto_translating", 36873697)
+        TypeManager.getMethodBindPtr("Window", "is_auto_translating", 36_873_697)
 
-    internal val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup", 1680304321)
+    internal val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup", 1_680_304_321)
 
     internal val popupOnParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_on_parent", 1763793166)
+        TypeManager.getMethodBindPtr("Window", "popup_on_parent", 1_763_793_166)
 
     internal val popupCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_centered", 3447975422)
+        TypeManager.getMethodBindPtr("Window", "popup_centered", 3_447_975_422)
 
     internal val popupCenteredRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_centered_ratio", 1014814997)
+        TypeManager.getMethodBindPtr("Window", "popup_centered_ratio", 1_014_814_997)
 
     internal val popupCenteredClampedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_centered_clamped", 2613752477)
+        TypeManager.getMethodBindPtr("Window", "popup_centered_clamped", 2_613_752_477)
 
     internal val popupExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive", 2134721627)
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive", 2_134_721_627)
 
     internal val popupExclusiveOnParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_on_parent", 2344671043)
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_on_parent", 2_344_671_043)
 
     internal val popupExclusiveCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered", 3357594017)
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered", 3_357_594_017)
 
     internal val popupExclusiveCenteredRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_ratio", 2284776287)
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_ratio", 2_284_776_287)
 
     internal val popupExclusiveCenteredClampedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_clamped", 2612708785)
+        TypeManager.getMethodBindPtr("Window", "popup_exclusive_centered_clamped", 2_612_708_785)
   }
 }

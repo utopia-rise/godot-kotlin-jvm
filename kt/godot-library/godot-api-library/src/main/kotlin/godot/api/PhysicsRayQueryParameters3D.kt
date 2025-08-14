@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,8 +28,7 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * By changing various properties of this object, such as the ray position, you can configure the
- * parameters for [PhysicsDirectSpaceState3D.intersectRay].
+ * By changing various properties of this object, such as the ray position, you can configure the parameters for [PhysicsDirectSpaceState3D.intersectRay].
  */
 @GodotBaseType
 public open class PhysicsRayQueryParameters3D : RefCounted() {
@@ -40,11 +36,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * The starting point of the ray being queried for, in global coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Vector3
@@ -59,11 +52,8 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
    * The ending point of the ray being queried for, in global coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var to: Vector3
@@ -75,10 +65,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
-   * detected. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -89,12 +76,9 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
-   * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid] to get the [RID] associated with a [CollisionObject3D]-derived node.
    *
-   * **Note:** The returned array is copied and any changes to it will not update the original
-   * property value. To update the value you need to modify the returned array, and then assign it to
-   * the property again.
+   * **Note:** The returned array is copied and any changes to it will not update the original property value. To update the value you need to modify the returned array, and then assign it to the property again.
    */
   public final inline var exclude: VariantArray<RID>
     @JvmName("excludeProperty")
@@ -127,8 +111,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision
-   * normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes.
+   * If `true`, the query will detect a hit when starting inside shapes. In this case the collision normal will be `Vector3(0, 0, 0)`. Does not affect concave polygon shapes or heightmap shapes.
    */
   public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
@@ -139,8 +122,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true`, the query will hit back faces with concave polygon shapes with back face enabled or
-   * heightmap shapes.
+   * If `true`, the query will hit back faces with concave polygon shapes with back face enabled or heightmap shapes.
    */
   public final inline var hitBackFaces: Boolean
     @JvmName("hitBackFacesProperty")
@@ -150,7 +132,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
       setHitBackFaces(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(473, scriptIndex)
   }
 
@@ -192,7 +174,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
      to = this
   }
 
-  public final fun setFrom(from: Vector3): Unit {
+  public final fun setFrom(from: Vector3) {
     TransferContext.writeArguments(VECTOR3 to from)
     TransferContext.callMethod(ptr, MethodBindings.setFromPtr, NIL)
   }
@@ -203,7 +185,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setTo(to: Vector3): Unit {
+  public final fun setTo(to: Vector3) {
     TransferContext.writeArguments(VECTOR3 to to)
     TransferContext.callMethod(ptr, MethodBindings.setToPtr, NIL)
   }
@@ -214,7 +196,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setCollisionMask(collisionMask: Long): Unit {
+  public final fun setCollisionMask(collisionMask: Long) {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -225,7 +207,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setExclude(exclude: VariantArray<RID>): Unit {
+  public final fun setExclude(exclude: VariantArray<RID>) {
     TransferContext.writeArguments(ARRAY to exclude)
     TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
   }
@@ -236,7 +218,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public final fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
@@ -247,7 +229,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
@@ -258,7 +240,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHitFromInsidePtr, NIL)
   }
@@ -269,7 +251,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHitBackFaces(enable: Boolean): Unit {
+  public final fun setHitBackFaces(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHitBackFacesPtr, NIL)
   }
@@ -282,8 +264,7 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   public companion object {
     /**
-     * Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create
-     * query parameters using the most common options.
+     * Returns a new, pre-configured [PhysicsRayQueryParameters3D] object. Use it to quickly create query parameters using the most common options.
      *
      * ```
      * var query = PhysicsRayQueryParameters3D.create(position, position + Vector3(0, -10, 0))
@@ -306,54 +287,54 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
 
   public object MethodBindings {
     internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3110599579)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "create", 3_110_599_579)
 
     internal val setFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_from", 3_460_891_852)
 
     internal val getFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_from", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_from", 3_360_562_783)
 
     internal val setToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_to", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_to", 3_460_891_852)
 
     internal val getToPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_to", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_to", 3_360_562_783)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_collision_mask", 3_905_245_786)
 
     internal val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_exclude", 381264803)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_exclude", 381_264_803)
 
     internal val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_exclude", 3995934104)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "get_exclude", 3_995_934_104)
 
     internal val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_bodies", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_bodies", 2_586_408_642)
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_bodies_enabled", 36_873_697)
 
     internal val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_areas", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_collide_with_areas", 2_586_408_642)
 
     internal val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_collide_with_areas_enabled", 36_873_697)
 
     internal val setHitFromInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_from_inside", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_from_inside", 2_586_408_642)
 
     internal val isHitFromInsideEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_from_inside_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_from_inside_enabled", 36_873_697)
 
     internal val setHitBackFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_back_faces", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "set_hit_back_faces", 2_586_408_642)
 
     internal val isHitBackFacesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsRayQueryParameters3D", "is_hit_back_faces_enabled", 36_873_697)
   }
 }

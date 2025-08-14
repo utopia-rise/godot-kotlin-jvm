@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,20 +29,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines
- * can not cross or overlap.
+ * An obstacle needs a navigation map and outline [vertices] defined to work correctly. The outlines can not cross or overlap.
  *
- * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is
- * enabled. They do not add walkable geometry, instead their role is to discard other source geometry
- * inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places. If
- * [carveNavigationMesh] is enabled the baked shape will not be affected by offsets of the navigation
- * mesh baking, e.g. the agent radius.
+ * Obstacles can be included in the navigation mesh baking process when [affectNavigationMesh] is enabled. They do not add walkable geometry, instead their role is to discard other source geometry inside the shape. This can be used to prevent navigation mesh from appearing in unwanted places. If [carveNavigationMesh] is enabled the baked shape will not be affected by offsets of the navigation mesh baking, e.g. the agent radius.
  *
- * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using
- * agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in
- * by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and
- * avoidance can warp to a new position but should not be moved every single frame as each change
- * requires a rebuild of the avoidance map.
+ * With [avoidanceEnabled] the obstacle can constrain the avoidance velocities of avoidance using agents. If the obstacle's vertices are wound in clockwise order, avoidance agents will be pushed in by the obstacle, otherwise, avoidance agents will be pushed out. Obstacles using vertices and avoidance can warp to a new position but should not be moved every single frame as each change requires a rebuild of the avoidance map.
  */
 @GodotBaseType
 public open class NavigationObstacle2D : Node2D() {
@@ -61,17 +49,11 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
-   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
-   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
-   * this movement and may get trapped inside the obstacle.
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var vertices: PackedVector2Array
@@ -83,8 +65,7 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * If enabled and parsed in a navigation mesh baking process the obstacle will discard source
-   * geometry inside its [vertices] defined shape.
+   * If enabled and parsed in a navigation mesh baking process the obstacle will discard source geometry inside its [vertices] defined shape.
    */
   public final inline var affectNavigationMesh: Boolean
     @JvmName("affectNavigationMeshProperty")
@@ -95,11 +76,9 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape
-   * unaffected by additional offsets (e.g. agent radius).
+   * If enabled the obstacle vertices will carve into the baked navigation mesh with the shape unaffected by additional offsets (e.g. agent radius).
    *
-   * It will still be affected by further postprocessing of the baking process, like edge and
-   * polygon simplification.
+   * It will still be affected by further postprocessing of the baking process, like edge and polygon simplification.
    *
    * Requires [affectNavigationMesh] to be enabled.
    */
@@ -123,16 +102,11 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
-   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
-   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -144,8 +118,7 @@ public open class NavigationObstacle2D : Node2D() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on
-   * the their avoidance mask will avoid this obstacle.
+   * A bitfield determining the avoidance layers for this obstacle. Agents with a matching bit on the their avoidance mask will avoid this obstacle.
    */
   public final inline var avoidanceLayers: Long
     @JvmName("avoidanceLayersProperty")
@@ -155,7 +128,7 @@ public open class NavigationObstacle2D : Node2D() {
       setAvoidanceLayers(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(382, scriptIndex)
   }
 
@@ -170,31 +143,22 @@ public open class NavigationObstacle2D : Node2D() {
    * navigationobstacle2d.vertices = myCoreType
    * ``````
    *
-   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
-   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
-   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
-   * this movement and may get trapped inside the obstacle.
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle.
    */
   @CoreTypeHelper
-  public final fun verticesMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      vertices.apply {
+  public final fun verticesMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = vertices.apply {
      block(this)
      vertices = this
   }
 
   /**
    * This is a helper function for [vertices] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will
-   * be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or
-   * overlap. Should the vertices using obstacle be warped to a new position agent's can not predict
-   * this movement and may get trapped inside the obstacle.
+   * The outline vertices of the obstacle. If the vertices are winded in clockwise order agents will be pushed in by the obstacle, else they will be pushed out. Outlines can not be crossed or overlap. Should the vertices using obstacle be warped to a new position agent's can not predict this movement and may get trapped inside the obstacle.
    */
   @CoreTypeHelper
-  public final fun verticesMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = vertices.apply {
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = vertices.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -213,9 +177,7 @@ public open class NavigationObstacle2D : Node2D() {
    * navigationobstacle2d.velocity = myCoreType
    * ``````
    *
-   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if
-   * it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only
-   * affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
+   * Sets the wanted velocity for the obstacle so other agent's can better predict the obstacle if it is moved with a velocity regularly (every frame) instead of warped to a new position. Does only affect avoidance for the obstacles [radius]. Does nothing for the obstacles static vertices.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -232,7 +194,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
+  public final fun setAvoidanceEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceEnabledPtr, NIL)
   }
@@ -244,20 +206,15 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates
-   * the `obstacle` on the NavigationServer.
+   * Sets the [RID] of the navigation map this NavigationObstacle node should use and also updates the `obstacle` on the NavigationServer.
    */
-  public final fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID) {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
-   * Returns the [RID] of the navigation map for this NavigationObstacle node. This function returns
-   * always the map set on the NavigationObstacle node and not the map of the abstract obstacle on the
-   * NavigationServer. If the obstacle map is changed directly with the NavigationServer API the
-   * NavigationObstacle node will not be aware of the map change. Use [setNavigationMap] to change the
-   * navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
+   * Returns the [RID] of the navigation map for this NavigationObstacle node. This function returns always the map set on the NavigationObstacle node and not the map of the abstract obstacle on the NavigationServer. If the obstacle map is changed directly with the NavigationServer API the NavigationObstacle node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationObstacle and also update the obstacle on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
@@ -265,7 +222,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -276,7 +233,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVelocity(velocity: Vector2): Unit {
+  public final fun setVelocity(velocity: Vector2) {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
   }
@@ -287,7 +244,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setVertices(vertices: PackedVector2Array): Unit {
+  public final fun setVertices(vertices: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to vertices)
     TransferContext.callMethod(ptr, MethodBindings.setVerticesPtr, NIL)
   }
@@ -298,7 +255,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setAvoidanceLayers(layers: Long): Unit {
+  public final fun setAvoidanceLayers(layers: Long) {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceLayersPtr, NIL)
   }
@@ -310,17 +267,15 @@ public open class NavigationObstacle2D : Node2D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
-   * given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
-  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -328,7 +283,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAffectNavigationMesh(enabled: Boolean): Unit {
+  public final fun setAffectNavigationMesh(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAffectNavigationMeshPtr, NIL)
   }
@@ -339,7 +294,7 @@ public open class NavigationObstacle2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCarveNavigationMesh(enabled: Boolean): Unit {
+  public final fun setCarveNavigationMesh(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCarveNavigationMeshPtr, NIL)
   }
@@ -354,60 +309,60 @@ public open class NavigationObstacle2D : Node2D() {
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_rid", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_rid", 2_944_877_500)
 
     internal val setAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_enabled", 2_586_408_642)
 
     internal val getAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled", 36873697)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_enabled", 36_873_697)
 
     internal val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map", 2722037293)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_navigation_map", 2_722_037_293)
 
     internal val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_navigation_map", 2_944_877_500)
 
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_radius", 1_740_695_150)
 
     internal val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_velocity", 743155724)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_velocity", 743_155_724)
 
     internal val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_velocity", 3_341_600_327)
 
     internal val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_vertices", 1509147220)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_vertices", 1_509_147_220)
 
     internal val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_vertices", 2961356807)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_vertices", 2_961_356_807)
 
     internal val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layers", 1_286_410_249)
 
     internal val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layers", 3_905_245_786)
 
     internal val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_avoidance_layer_value", 300_928_843)
 
     internal val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_avoidance_layer_value", 1_116_898_809)
 
     internal val setAffectNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_affect_navigation_mesh", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_affect_navigation_mesh", 2_586_408_642)
 
     internal val getAffectNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_affect_navigation_mesh", 36873697)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_affect_navigation_mesh", 36_873_697)
 
     internal val setCarveNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_carve_navigation_mesh", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "set_carve_navigation_mesh", 2_586_408_642)
 
     internal val getCarveNavigationMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_carve_navigation_mesh", 36873697)
+        TypeManager.getMethodBindPtr("NavigationObstacle2D", "get_carve_navigation_mesh", 36_873_697)
   }
 }

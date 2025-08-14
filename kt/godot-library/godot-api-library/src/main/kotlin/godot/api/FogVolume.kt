@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,42 +21,24 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s
- * can also remove volumetric fog from specific areas if using a [FogMaterial] with a negative
- * [FogMaterial.density].
+ * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s can also remove volumetric fog from specific areas if using a [FogMaterial] with a negative [FogMaterial.density].
  *
- * Performance of [FogVolume]s is directly related to their relative size on the screen and the
- * complexity of their attached [FogMaterial]. It is best to keep [FogVolume]s relatively small and
- * simple where possible.
+ * Performance of [FogVolume]s is directly related to their relative size on the screen and the complexity of their attached [FogMaterial]. It is best to keep [FogVolume]s relatively small and simple where possible.
  *
- * **Note:** [FogVolume]s only have a visible effect if [Environment.volumetricFogEnabled] is
- * `true`. If you don't want fog to be globally visible (but only within [FogVolume] nodes), set
- * [Environment.volumetricFogDensity] to `0.0`.
+ * **Note:** [FogVolume]s only have a visible effect if [Environment.volumetricFogEnabled] is `true`. If you don't want fog to be globally visible (but only within [FogVolume] nodes), set [Environment.volumetricFogDensity] to `0.0`.
  */
 @GodotBaseType
 public open class FogVolume : VisualInstance3D() {
   /**
-   * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
-   * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
-   * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [RenderingServer.FOG_VOLUME_SHAPE_BOX].
    *
-   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
-   * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
-   * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
-   * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
-   * lower density in the [material].
+   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a lower density in the [material].
    *
-   * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or
-   * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
-   * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
-   * you can scale the [FogVolume] node instead.
+   * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but you can scale the [FogVolume] node instead.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -71,10 +50,7 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   /**
-   * The shape of the [FogVolume]. This can be set to either
-   * [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [RenderingServer.FOG_VOLUME_SHAPE_CONE],
-   * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [RenderingServer.FOG_VOLUME_SHAPE_BOX] or
-   * [RenderingServer.FOG_VOLUME_SHAPE_WORLD].
+   * The shape of the [FogVolume]. This can be set to either [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], [RenderingServer.FOG_VOLUME_SHAPE_BOX] or [RenderingServer.FOG_VOLUME_SHAPE_WORLD].
    */
   public final inline var shape: RenderingServer.FogVolumeShape
     @JvmName("shapeProperty")
@@ -85,8 +61,7 @@ public open class FogVolume : VisualInstance3D() {
     }
 
   /**
-   * The [Material] used by the [FogVolume]. Can be either a built-in [FogMaterial] or a custom
-   * [ShaderMaterial].
+   * The [Material] used by the [FogVolume]. Can be either a built-in [FogMaterial] or a custom [ShaderMaterial].
    */
   public final inline var material: Material?
     @JvmName("materialProperty")
@@ -96,7 +71,7 @@ public open class FogVolume : VisualInstance3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(216, scriptIndex)
   }
 
@@ -111,20 +86,11 @@ public open class FogVolume : VisualInstance3D() {
    * fogvolume.size = myCoreType
    * ``````
    *
-   * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID],
-   * [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or
-   * [RenderingServer.FOG_VOLUME_SHAPE_BOX].
+   * The size of the [FogVolume] when [shape] is [RenderingServer.FOG_VOLUME_SHAPE_ELLIPSOID], [RenderingServer.FOG_VOLUME_SHAPE_CONE], [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER] or [RenderingServer.FOG_VOLUME_SHAPE_BOX].
    *
-   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be
-   * alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a
-   * performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but
-   * at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a
-   * lower density in the [material].
+   * **Note:** Thin fog volumes may appear to flicker when the camera moves or rotates. This can be alleviated by increasing [ProjectSettings.rendering/environment/volumetricFog/volumeDepth] (at a performance cost) or by decreasing [Environment.volumetricFogLength] (at no performance cost, but at the cost of lower fog range). Alternatively, the [FogVolume] can be made thicker and use a lower density in the [material].
    *
-   * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or
-   * [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the
-   * size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but
-   * you can scale the [FogVolume] node instead.
+   * **Note:** If [shape] is [RenderingServer.FOG_VOLUME_SHAPE_CONE] or [RenderingServer.FOG_VOLUME_SHAPE_CYLINDER], the cone/cylinder will be adjusted to fit within the size. Non-uniform scaling of cone/cylinder shapes via the [size] property is not supported, but you can scale the [FogVolume] node instead.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
@@ -132,7 +98,7 @@ public open class FogVolume : VisualInstance3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -143,7 +109,7 @@ public open class FogVolume : VisualInstance3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setShape(shape: RenderingServer.FogVolumeShape): Unit {
+  public final fun setShape(shape: RenderingServer.FogVolumeShape) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -154,7 +120,7 @@ public open class FogVolume : VisualInstance3D() {
     return RenderingServer.FogVolumeShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -169,21 +135,21 @@ public open class FogVolume : VisualInstance3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("FogVolume", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("FogVolume", "get_size", 3_360_562_783)
 
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_shape", 1416323362)
+        TypeManager.getMethodBindPtr("FogVolume", "set_shape", 1_416_323_362)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_shape", 3920334604)
+        TypeManager.getMethodBindPtr("FogVolume", "get_shape", 3_920_334_604)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("FogVolume", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FogVolume", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("FogVolume", "get_material", 5_934_680)
   }
 }

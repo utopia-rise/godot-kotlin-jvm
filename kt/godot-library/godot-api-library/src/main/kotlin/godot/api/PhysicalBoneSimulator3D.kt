@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,22 +17,19 @@ import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to
- * [Skeleton3D].
+ * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to [Skeleton3D].
  */
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(457, scriptIndex)
   }
 
   /**
-   * Returns a boolean that indicates whether the [PhysicalBoneSimulator3D] is running and
-   * simulating.
+   * Returns a boolean that indicates whether the [PhysicalBoneSimulator3D] is running and simulating.
    */
   public final fun isSimulatingPhysics(): Boolean {
     TransferContext.writeArguments()
@@ -46,21 +40,18 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   /**
    * Tells the [PhysicalBone3D] nodes in the Skeleton to stop simulating.
    */
-  public final fun physicalBonesStopSimulation(): Unit {
+  public final fun physicalBonesStopSimulation() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesStopSimulationPtr, NIL)
   }
 
   /**
-   * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the
-   * physics world.
+   * Tells the [PhysicalBone3D] nodes in the Skeleton to start simulating and reacting to the physics world.
    *
-   * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be
-   * simulated.
+   * Optionally, a list of bone names can be passed-in, allowing only the passed-in bones to be simulated.
    */
   @JvmOverloads
-  public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> =
-      godot.core.variantArrayOf()): Unit {
+  public final fun physicalBonesStartSimulation(bones: VariantArray<StringName> = godot.core.variantArrayOf()) {
     TransferContext.writeArguments(ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesStartSimulationPtr, NIL)
   }
@@ -70,7 +61,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    *
    * Works just like the [RigidBody3D] node.
    */
-  public final fun physicalBonesAddCollisionException(exception: RID): Unit {
+  public final fun physicalBonesAddCollisionException(exception: RID) {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesAddCollisionExceptionPtr, NIL)
   }
@@ -80,7 +71,7 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
    *
    * Works just like the [RigidBody3D] node.
    */
-  public final fun physicalBonesRemoveCollisionException(exception: RID): Unit {
+  public final fun physicalBonesRemoveCollisionException(exception: RID) {
     TransferContext.writeArguments(_RID to exception)
     TransferContext.callMethod(ptr, MethodBindings.physicalBonesRemoveCollisionExceptionPtr, NIL)
   }
@@ -89,18 +80,18 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
 
   public object MethodBindings {
     internal val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "is_simulating_physics", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "is_simulating_physics", 36_873_697)
 
     internal val physicalBonesStopSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_stop_simulation", 3218959716)
+        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_stop_simulation", 3_218_959_716)
 
     internal val physicalBonesStartSimulationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_start_simulation", 2787316981)
+        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_start_simulation", 2_787_316_981)
 
     internal val physicalBonesAddCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_add_collision_exception", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_add_collision_exception", 2_722_037_293)
 
     internal val physicalBonesRemoveCollisionExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_remove_collision_exception", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicalBoneSimulator3D", "physical_bones_remove_collision_exception", 2_722_037_293)
   }
 }

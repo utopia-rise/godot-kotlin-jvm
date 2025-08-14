@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -38,21 +35,16 @@ import kotlin.jvm.JvmName
 /**
  * Generate an [PrimitiveMesh] from the text.
  *
- * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
- * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
- * supported.
+ * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not supported.
  *
- * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the
- * front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
+ * The UV layout is arranged in 4 horizontal strips, top to bottom: 40&#37; of the height for the front face, 40&#37; for the back face, 10&#37; for the outer edges and 10&#37; for the inner edges.
  */
 @GodotBaseType
 public open class TextMesh : PrimitiveMesh() {
   /**
    * The text to generate mesh from.
    *
-   * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode].
-   * If disabling translation is desired, it should be done manually with
-   * [Object.setMessageTranslation].
+   * **Note:** Due to being a [Resource], it doesn't follow the rules of [Node.autoTranslateMode]. If disabling translation is desired, it should be done manually with [Object.setMessageTranslation].
    */
   public final inline var text: String
     @JvmName("textProperty")
@@ -85,8 +77,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify. Set it to one of the [HorizontalAlignment] constants.
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -97,8 +88,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
-   * [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the [VerticalAlignment] constants.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -120,8 +110,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
-   * value can be negative.
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -132,9 +121,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
-   * node's bounding rectangle. If you resize the node, it will change its height automatically to show
-   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the node's bounding rectangle. If you resize the node, it will change its height automatically to show all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -178,8 +165,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed
-   * to use full texture for the front face only.
+   * Depths of the mesh, if set to `0.0` only front surface, is generated, and UV layout is changed to use full texture for the front face only.
    */
   public final inline var depth: Float
     @JvmName("depthProperty")
@@ -204,11 +190,8 @@ public open class TextMesh : PrimitiveMesh() {
    * The text drawing offset (in pixels).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -263,7 +246,7 @@ public open class TextMesh : PrimitiveMesh() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(657, scriptIndex)
   }
 
@@ -286,7 +269,7 @@ public open class TextMesh : PrimitiveMesh() {
      offset = this
   }
 
-  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
@@ -297,7 +280,7 @@ public open class TextMesh : PrimitiveMesh() {
     return HorizontalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
+  public final fun setVerticalAlignment(alignment: VerticalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
@@ -308,7 +291,7 @@ public open class TextMesh : PrimitiveMesh() {
     return VerticalAlignment.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -319,7 +302,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setFont(font: Font?): Unit {
+  public final fun setFont(font: Font?) {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
   }
@@ -330,7 +313,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
-  public final fun setFontSize(fontSize: Int): Unit {
+  public final fun setFontSize(fontSize: Int) {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontSizePtr, NIL)
   }
@@ -341,7 +324,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLineSpacing(lineSpacing: Float): Unit {
+  public final fun setLineSpacing(lineSpacing: Float) {
     TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
   }
@@ -352,7 +335,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
+  public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode) {
     TransferContext.writeArguments(LONG to autowrapMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
@@ -363,7 +346,7 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag) {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
@@ -374,7 +357,7 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDepth(depth: Float): Unit {
+  public final fun setDepth(depth: Float) {
     TransferContext.writeArguments(DOUBLE to depth.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDepthPtr, NIL)
   }
@@ -385,7 +368,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setWidth(width: Float): Unit {
+  public final fun setWidth(width: Float) {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
@@ -396,7 +379,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPixelSize(pixelSize: Float): Unit {
+  public final fun setPixelSize(pixelSize: Float) {
     TransferContext.writeArguments(DOUBLE to pixelSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPixelSizePtr, NIL)
   }
@@ -407,7 +390,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -418,7 +401,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setCurveStep(curveStep: Float): Unit {
+  public final fun setCurveStep(curveStep: Float) {
     TransferContext.writeArguments(DOUBLE to curveStep.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCurveStepPtr, NIL)
   }
@@ -429,7 +412,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTextDirection(direction: TextServer.Direction): Unit {
+  public final fun setTextDirection(direction: TextServer.Direction) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -440,7 +423,7 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -451,7 +434,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser) {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
@@ -462,7 +445,7 @@ public open class TextMesh : PrimitiveMesh() {
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
@@ -473,7 +456,7 @@ public open class TextMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public final fun setUppercase(enable: Boolean): Unit {
+  public final fun setUppercase(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUppercasePtr, NIL)
   }
@@ -488,111 +471,111 @@ public open class TextMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_horizontal_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("TextMesh", "set_horizontal_alignment", 2_312_603_777)
 
     internal val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_horizontal_alignment", 341400642)
+        TypeManager.getMethodBindPtr("TextMesh", "get_horizontal_alignment", 341_400_642)
 
     internal val setVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_vertical_alignment", 1796458609)
+        TypeManager.getMethodBindPtr("TextMesh", "set_vertical_alignment", 1_796_458_609)
 
     internal val getVerticalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_vertical_alignment", 3274884059)
+        TypeManager.getMethodBindPtr("TextMesh", "get_vertical_alignment", 3_274_884_059)
 
     internal val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_text", 83702148)
+        TypeManager.getMethodBindPtr("TextMesh", "set_text", 83_702_148)
 
     internal val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_text", 201670096)
+        TypeManager.getMethodBindPtr("TextMesh", "get_text", 201_670_096)
 
     internal val setFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_font", 1262170328)
+        TypeManager.getMethodBindPtr("TextMesh", "set_font", 1_262_170_328)
 
     internal val getFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_font", 3229501585)
+        TypeManager.getMethodBindPtr("TextMesh", "get_font", 3_229_501_585)
 
     internal val setFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_font_size", 1286410249)
+        TypeManager.getMethodBindPtr("TextMesh", "set_font_size", 1_286_410_249)
 
     internal val getFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_font_size", 3905245786)
+        TypeManager.getMethodBindPtr("TextMesh", "get_font_size", 3_905_245_786)
 
     internal val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_line_spacing", 373806689)
+        TypeManager.getMethodBindPtr("TextMesh", "set_line_spacing", 373_806_689)
 
     internal val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_line_spacing", 1740695150)
+        TypeManager.getMethodBindPtr("TextMesh", "get_line_spacing", 1_740_695_150)
 
     internal val setAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_autowrap_mode", 3289138044)
+        TypeManager.getMethodBindPtr("TextMesh", "set_autowrap_mode", 3_289_138_044)
 
     internal val getAutowrapModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_autowrap_mode", 1549071663)
+        TypeManager.getMethodBindPtr("TextMesh", "get_autowrap_mode", 1_549_071_663)
 
     internal val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_justification_flags", 2877345813)
+        TypeManager.getMethodBindPtr("TextMesh", "set_justification_flags", 2_877_345_813)
 
     internal val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_justification_flags", 1583363614)
+        TypeManager.getMethodBindPtr("TextMesh", "get_justification_flags", 1_583_363_614)
 
     internal val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_depth", 373806689)
+        TypeManager.getMethodBindPtr("TextMesh", "set_depth", 373_806_689)
 
     internal val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_depth", 1740695150)
+        TypeManager.getMethodBindPtr("TextMesh", "get_depth", 1_740_695_150)
 
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_width", 373806689)
+        TypeManager.getMethodBindPtr("TextMesh", "set_width", 373_806_689)
 
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_width", 1740695150)
+        TypeManager.getMethodBindPtr("TextMesh", "get_width", 1_740_695_150)
 
     internal val setPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_pixel_size", 373806689)
+        TypeManager.getMethodBindPtr("TextMesh", "set_pixel_size", 373_806_689)
 
     internal val getPixelSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_pixel_size", 1740695150)
+        TypeManager.getMethodBindPtr("TextMesh", "get_pixel_size", 1_740_695_150)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("TextMesh", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("TextMesh", "get_offset", 3_341_600_327)
 
     internal val setCurveStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_curve_step", 373806689)
+        TypeManager.getMethodBindPtr("TextMesh", "set_curve_step", 373_806_689)
 
     internal val getCurveStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_curve_step", 1740695150)
+        TypeManager.getMethodBindPtr("TextMesh", "get_curve_step", 1_740_695_150)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_text_direction", 1418190634)
+        TypeManager.getMethodBindPtr("TextMesh", "set_text_direction", 1_418_190_634)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_text_direction", 2516697328)
+        TypeManager.getMethodBindPtr("TextMesh", "get_text_direction", 2_516_697_328)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("TextMesh", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("TextMesh", "get_language", 201_670_096)
 
     internal val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override", 55961453)
+        TypeManager.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override", 55_961_453)
 
     internal val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override", 3385126229)
+        TypeManager.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override", 3_385_126_229)
 
     internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override_options", 381264803)
+        TypeManager.getMethodBindPtr("TextMesh", "set_structured_text_bidi_override_options", 381_264_803)
 
     internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override_options", 3995934104)
+        TypeManager.getMethodBindPtr("TextMesh", "get_structured_text_bidi_override_options", 3_995_934_104)
 
     internal val setUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "set_uppercase", 2586408642)
+        TypeManager.getMethodBindPtr("TextMesh", "set_uppercase", 2_586_408_642)
 
     internal val isUppercasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextMesh", "is_uppercase", 36873697)
+        TypeManager.getMethodBindPtr("TextMesh", "is_uppercase", 36_873_697)
   }
 }

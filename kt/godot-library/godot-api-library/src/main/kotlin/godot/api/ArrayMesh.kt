@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,7 +9,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.PackedByteArray
@@ -40,6 +36,8 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
  * The [ArrayMesh] is used to construct a [Mesh] by specifying the attributes as arrays.
@@ -90,8 +88,7 @@ import kotlin.jvm.JvmOverloads
  *
  * See also [ImmediateMesh], [MeshDataTool] and [SurfaceTool] for procedural geometry generation.
  *
- * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
- * order[/url] for front faces of triangle primitive modes.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class ArrayMesh : Mesh() {
@@ -107,18 +104,14 @@ public open class ArrayMesh : Mesh() {
     }
 
   /**
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
-   * to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
-  public final inline var customAabb: AABB
+  public final inline var customAabb: CoreAABB
     @JvmName("customAabbProperty")
     get() = getCustomAabb()
     @JvmName("customAabbProperty")
@@ -127,13 +120,9 @@ public open class ArrayMesh : Mesh() {
     }
 
   /**
-   * An optional mesh which can be used for rendering shadows and the depth prepass. Can be used to
-   * increase performance by supplying a mesh with fused vertices and only vertex position data
-   * (without normals, UVs, colors, etc.).
+   * An optional mesh which can be used for rendering shadows and the depth prepass. Can be used to increase performance by supplying a mesh with fused vertices and only vertex position data (without normals, UVs, colors, etc.).
    *
-   * **Note:** This mesh must have exactly the same vertex positions as the source mesh (including
-   * the source mesh's LODs, if present). If vertex positions differ, then the mesh will not draw
-   * correctly.
+   * **Note:** This mesh must have exactly the same vertex positions as the source mesh (including the source mesh's LODs, if present). If vertex positions differ, then the mesh will not draw correctly.
    */
   public final inline var shadowMesh: ArrayMesh?
     @JvmName("shadowMeshProperty")
@@ -143,7 +132,7 @@ public open class ArrayMesh : Mesh() {
       setShadowMesh(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(40, scriptIndex)
   }
 
@@ -158,20 +147,18 @@ public open class ArrayMesh : Mesh() {
    * arraymesh.customAabb = myCoreType
    * ``````
    *
-   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful
-   * to avoid unexpected culling when using a shader to offset vertices.
+   * Overrides the [AABB] with one defined by user for use with frustum culling. Especially useful to avoid unexpected culling when using a shader to offset vertices.
    */
   @CoreTypeHelper
-  public final fun customAabbMutate(block: AABB.() -> Unit): AABB = customAabb.apply {
+  public final fun customAabbMutate(block: CoreAABB.() -> Unit): CoreAABB = customAabb.apply {
      block(this)
      customAabb = this
   }
 
   /**
-   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
-   * before surface is added.
+   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
    */
-  public final fun addBlendShape(name: StringName): Unit {
+  public final fun addBlendShape(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.addBlendShapePtr, NIL)
   }
@@ -197,7 +184,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets the name of the blend shape at this index.
    */
-  public final fun setBlendShapeName(index: Int, name: StringName): Unit {
+  public final fun setBlendShapeName(index: Int, name: StringName) {
     TransferContext.writeArguments(LONG to index.toLong(), STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeNamePtr, NIL)
   }
@@ -205,12 +192,12 @@ public open class ArrayMesh : Mesh() {
   /**
    * Removes all blend shapes from this [ArrayMesh].
    */
-  public final fun clearBlendShapes(): Unit {
+  public final fun clearBlendShapes() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBlendShapesPtr, NIL)
   }
 
-  public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
+  public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeModePtr, NIL)
   }
@@ -224,34 +211,15 @@ public open class ArrayMesh : Mesh() {
   /**
    * Creates a new surface. [Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
    *
-   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined
-   * in [Mesh.PrimitiveType].
+   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined in [Mesh.PrimitiveType].
    *
-   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAY_MAX] elements contains an
-   * array with some of the mesh data for this surface as described by the corresponding member of
-   * [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array
-   * of vertices. That first vertex sub-array is always required; the others are optional. Adding an
-   * index array puts this surface into "index mode" where the vertex and other arrays become the
-   * sources of data and the index array defines the vertex order. All sub-arrays must have the same
-   * length as the vertex array (or be an exact multiple of the vertex array's length, when multiple
-   * elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAY_INDEX]
-   * if it is used.
+   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAY_MAX] elements contains an array with some of the mesh data for this surface as described by the corresponding member of [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this surface into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAY_INDEX] if it is used.
    *
-   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an
-   * array of the same structure as [arrays], but [Mesh.ARRAY_VERTEX], [Mesh.ARRAY_NORMAL], and
-   * [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are
-   * `null`.
+   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an array of the same structure as [arrays], but [Mesh.ARRAY_VERTEX], [Mesh.ARRAY_NORMAL], and [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are `null`.
    *
-   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry
-   * in the dictionary represents an LOD level of the surface, where the value is the
-   * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
-   * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
-   * distance that the objects has to be from the camera before the LOD is used.
+   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry in the dictionary represents an LOD level of the surface, where the value is the [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the distance that the objects has to be from the camera before the LOD is used.
    *
-   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat]
-   * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
-   * [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or
-   * [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use, [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    *
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
@@ -262,7 +230,7 @@ public open class ArrayMesh : Mesh() {
     blendShapes: VariantArray<VariantArray<Any?>> = godot.core.variantArrayOf(),
     lods: Dictionary<Any?, Any?> = Dictionary(),
     flags: Mesh.ArrayFormat = Mesh.ArrayFormat(0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.addSurfaceFromArraysPtr, NIL)
   }
@@ -270,16 +238,15 @@ public open class ArrayMesh : Mesh() {
   /**
    * Removes all surfaces from this [ArrayMesh].
    */
-  public final fun clearSurfaces(): Unit {
+  public final fun clearSurfaces() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
   }
 
   /**
-   * Removes the surface at the given index from the Mesh, shifting surfaces with higher index down
-   * by one.
+   * Removes the surface at the given index from the Mesh, shifting surfaces with higher index down by one.
    */
-  public final fun surfaceRemove(surfIdx: Int): Unit {
+  public final fun surfaceRemove(surfIdx: Int) {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.surfaceRemovePtr, NIL)
   }
@@ -288,7 +255,7 @@ public open class ArrayMesh : Mesh() {
     surfIdx: Int,
     offset: Int,
     `data`: PackedByteArray,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.surfaceUpdateVertexRegionPtr, NIL)
   }
@@ -297,7 +264,7 @@ public open class ArrayMesh : Mesh() {
     surfIdx: Int,
     offset: Int,
     `data`: PackedByteArray,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.surfaceUpdateAttributeRegionPtr, NIL)
   }
@@ -306,14 +273,13 @@ public open class ArrayMesh : Mesh() {
     surfIdx: Int,
     offset: Int,
     `data`: PackedByteArray,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.surfaceUpdateSkinRegionPtr, NIL)
   }
 
   /**
-   * Returns the length in vertices of the vertex array in the requested surface (see
-   * [addSurfaceFromArrays]).
+   * Returns the length in vertices of the vertex array in the requested surface (see [addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrayLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -322,8 +288,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the length in indices of the index array in the requested surface (see
-   * [addSurfaceFromArrays]).
+   * Returns the length in indices of the index array in the requested surface (see [addSurfaceFromArrays]).
    */
   public final fun surfaceGetArrayIndexLen(surfIdx: Int): Int {
     TransferContext.writeArguments(LONG to surfIdx.toLong())
@@ -350,8 +315,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   /**
-   * Returns the index of the first surface with this name held within this [ArrayMesh]. If none are
-   * found, -1 is returned.
+   * Returns the index of the first surface with this name held within this [ArrayMesh]. If none are found, -1 is returned.
    */
   public final fun surfaceFindByName(name: String): Int {
     TransferContext.writeArguments(STRING to name)
@@ -362,7 +326,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Sets a name for a given surface.
    */
-  public final fun surfaceSetName(surfIdx: Int, name: String): Unit {
+  public final fun surfaceSetName(surfIdx: Int, name: String) {
     TransferContext.writeArguments(LONG to surfIdx.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetNamePtr, NIL)
   }
@@ -379,7 +343,7 @@ public open class ArrayMesh : Mesh() {
   /**
    * Regenerates tangents for each of the [ArrayMesh]'s surfaces.
    */
-  public final fun regenNormalMaps(): Unit {
+  public final fun regenNormalMaps() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.regenNormalMapsPtr, NIL)
   }
@@ -393,18 +357,18 @@ public open class ArrayMesh : Mesh() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCustomAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
+  public final fun setCustomAabb(aabb: CoreAABB) {
+    TransferContext.writeArguments(VariantParserAABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.setCustomAabbPtr, NIL)
   }
 
-  public final fun getCustomAabb(): AABB {
+  public final fun getCustomAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getCustomAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
-  public final fun setShadowMesh(mesh: ArrayMesh?): Unit {
+  public final fun setShadowMesh(mesh: ArrayMesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setShadowMeshPtr, NIL)
   }
@@ -418,192 +382,190 @@ public open class ArrayMesh : Mesh() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getSurfaceCount(): Int {
+  override fun _getSurfaceCount(): Int {
     throw NotImplementedError("ArrayMesh::_getSurfaceCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayLen(index: Int): Int {
+  override fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("ArrayMesh::_surfaceGetArrayLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+  override fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("ArrayMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+  override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("ArrayMesh::_surfaceGetArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+  override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("ArrayMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+  override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("ArrayMesh::_surfaceGetLods can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetFormat(index: Int): Long {
+  override fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("ArrayMesh::_surfaceGetFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+  override fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("ArrayMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+  override fun _surfaceSetMaterial(index: Int, material: Material?) {
     throw NotImplementedError("ArrayMesh::_surfaceSetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetMaterial(index: Int): Material? {
+  override fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("ArrayMesh::_surfaceGetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeCount(): Int {
+  override fun _getBlendShapeCount(): Int {
     throw NotImplementedError("ArrayMesh::_getBlendShapeCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeName(index: Int): StringName {
+  override fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("ArrayMesh::_getBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+  override fun _setBlendShapeName(index: Int, name: StringName) {
     throw NotImplementedError("ArrayMesh::_setBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getAabb(): AABB {
+  override fun _getAabb(): CoreAABB {
     throw NotImplementedError("ArrayMesh::_getAabb can't be called from the JVM.")
   }
 
   /**
-   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called
-   * before surface is added.
+   * Adds name for a blend shape that will be added with [addSurfaceFromArrays]. Must be called before surface is added.
    */
-  public final fun addBlendShape(name: String) = addBlendShape(name.asCachedStringName())
+  public final fun addBlendShape(name: String): Unit = addBlendShape(name.asCachedStringName())
 
   /**
    * Sets the name of the blend shape at this index.
    */
-  public final fun setBlendShapeName(index: Int, name: String) =
-      setBlendShapeName(index, name.asCachedStringName())
+  public final fun setBlendShapeName(index: Int, name: String): Unit = setBlendShapeName(index, name.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3304788590)
+        TypeManager.getMethodBindPtr("ArrayMesh", "add_blend_shape", 3_304_788_590)
 
     internal val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3905245786)
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_count", 3_905_245_786)
 
     internal val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659327637)
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_name", 659_327_637)
 
     internal val setBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3780747571)
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_name", 3_780_747_571)
 
     internal val clearBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3218959716)
+        TypeManager.getMethodBindPtr("ArrayMesh", "clear_blend_shapes", 3_218_959_716)
 
     internal val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227983991)
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_blend_shape_mode", 227_983_991)
 
     internal val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836485024)
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_blend_shape_mode", 836_485_024)
 
     internal val addSurfaceFromArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1796411378)
+        TypeManager.getMethodBindPtr("ArrayMesh", "add_surface_from_arrays", 1_796_411_378)
 
     internal val clearSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3218959716)
+        TypeManager.getMethodBindPtr("ArrayMesh", "clear_surfaces", 3_218_959_716)
 
     internal val surfaceRemovePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_remove", 1286410249)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_remove", 1_286_410_249)
 
     internal val surfaceUpdateVertexRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3837166854)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_vertex_region", 3_837_166_854)
 
     internal val surfaceUpdateAttributeRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3837166854)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_attribute_region", 3_837_166_854)
 
     internal val surfaceUpdateSkinRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3837166854)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_update_skin_region", 3_837_166_854)
 
     internal val surfaceGetArrayLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923996154)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_len", 923_996_154)
 
     internal val surfaceGetArrayIndexLenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923996154)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_array_index_len", 923_996_154)
 
     internal val surfaceGetFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_format", 3718287884)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_format", 3_718_287_884)
 
     internal val surfaceGetPrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4141943888)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_primitive_type", 4_141_943_888)
 
     internal val surfaceFindByNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1321353865)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_find_by_name", 1_321_353_865)
 
     internal val surfaceSetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_set_name", 501894301)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_set_name", 501_894_301)
 
     internal val surfaceGetNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_name", 844755477)
+        TypeManager.getMethodBindPtr("ArrayMesh", "surface_get_name", 844_755_477)
 
     internal val regenNormalMapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3218959716)
+        TypeManager.getMethodBindPtr("ArrayMesh", "regen_normal_maps", 3_218_959_716)
 
     internal val lightmapUnwrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1476641071)
+        TypeManager.getMethodBindPtr("ArrayMesh", "lightmap_unwrap", 1_476_641_071)
 
     internal val setCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259215842)
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_custom_aabb", 259_215_842)
 
     internal val getCustomAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_custom_aabb", 1_068_685_055)
 
     internal val setShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3377897901)
+        TypeManager.getMethodBindPtr("ArrayMesh", "set_shadow_mesh", 3_377_897_901)
 
     internal val getShadowMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3206942465)
+        TypeManager.getMethodBindPtr("ArrayMesh", "get_shadow_mesh", 3_206_942_465)
   }
 }

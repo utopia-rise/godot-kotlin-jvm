@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,18 +13,15 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
- * by updating the reflection/radiance cubemaps.
+ * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits by updating the reflection/radiance cubemaps.
  */
 @GodotBaseType
 public open class Sky : Resource() {
   /**
-   * [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial],
-   * [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader.
+   * [Material] used to draw the background. Can be [PanoramaSkyMaterial], [ProceduralSkyMaterial], [PhysicalSkyMaterial], or even a [ShaderMaterial] if you want to use your own custom shader.
    */
   public final inline var skyMaterial: Material?
     @JvmName("skyMaterialProperty")
@@ -38,9 +32,7 @@ public open class Sky : Resource() {
     }
 
   /**
-   * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap
-   * with increasingly blurry versions of the sky corresponding to different levels of roughness.
-   * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
+   * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap with increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance maps can be expensive to calculate. See [ProcessMode] for options.
    */
   public final inline var processMode: ProcessMode
     @JvmName("processModeProperty")
@@ -51,13 +43,11 @@ public open class Sky : Resource() {
     }
 
   /**
-   * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting
-   * from the [Sky] will be.
+   * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting from the [Sky] will be.
    *
    * See [RadianceSize] constants for values.
    *
-   * **Note:** Some hardware will have trouble with higher radiance sizes, especially
-   * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
+   * **Note:** Some hardware will have trouble with higher radiance sizes, especially [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
   public final inline var radianceSize: RadianceSize
     @JvmName("radianceSizeProperty")
@@ -67,11 +57,11 @@ public open class Sky : Resource() {
       setRadianceSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(610, scriptIndex)
   }
 
-  public final fun setRadianceSize(size: RadianceSize): Unit {
+  public final fun setRadianceSize(size: RadianceSize) {
     TransferContext.writeArguments(LONG to size.id)
     TransferContext.callMethod(ptr, MethodBindings.setRadianceSizePtr, NIL)
   }
@@ -82,7 +72,7 @@ public open class Sky : Resource() {
     return RadianceSize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setProcessMode(mode: ProcessMode): Unit {
+  public final fun setProcessMode(mode: ProcessMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setProcessModePtr, NIL)
   }
@@ -93,7 +83,7 @@ public open class Sky : Resource() {
     return ProcessMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -155,36 +145,21 @@ public open class Sky : Resource() {
     id: Long,
   ) {
     /**
-     * Automatically selects the appropriate process mode based on your sky shader. If your shader
-     * uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the
-     * `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise,
-     * this defaults to [PROCESS_MODE_QUALITY].
+     * Automatically selects the appropriate process mode based on your sky shader. If your shader uses `TIME` or `POSITION`, this will use [PROCESS_MODE_REALTIME]. If your shader uses any of the `LIGHT_*` variables or any custom uniforms, this uses [PROCESS_MODE_INCREMENTAL]. Otherwise, this defaults to [PROCESS_MODE_QUALITY].
      */
     AUTOMATIC(0),
     /**
-     * Uses high quality importance sampling to process the radiance map. In general, this results
-     * in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This
-     * should not be used if you plan on changing the sky at runtime. If you are finding that the
-     * reflection is not blurry enough and is showing sparkles or fireflies, try increasing
-     * [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
+     * Uses high quality importance sampling to process the radiance map. In general, this results in much higher quality than [PROCESS_MODE_REALTIME] but takes much longer to generate. This should not be used if you plan on changing the sky at runtime. If you are finding that the reflection is not blurry enough and is showing sparkles or fireflies, try increasing [ProjectSettings.rendering/reflections/skyReflections/ggxSamples].
      */
     QUALITY(1),
     /**
-     * Uses the same high quality importance sampling to process the radiance map as
-     * [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by
-     * [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need
-     * highest quality radiance maps, but have a sky that updates slowly.
+     * Uses the same high quality importance sampling to process the radiance map as [PROCESS_MODE_QUALITY], but updates over several frames. The number of frames is determined by [ProjectSettings.rendering/reflections/skyReflections/roughnessLayers]. Use this when you need highest quality radiance maps, but have a sky that updates slowly.
      */
     INCREMENTAL(2),
     /**
-     * Uses the fast filtering algorithm to process the radiance map. In general this results in
-     * lower quality, but substantially faster run times. If you need better quality, but still need to
-     * update the sky every frame, consider turning on
-     * [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
+     * Uses the fast filtering algorithm to process the radiance map. In general this results in lower quality, but substantially faster run times. If you need better quality, but still need to update the sky every frame, consider turning on [ProjectSettings.rendering/reflections/skyReflections/fastFilterHighQuality].
      *
-     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must
-     * be set to [RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size
-     * is ignored.
+     * **Note:** The fast filtering algorithm is limited to 256×256 cubemaps, so [radianceSize] must be set to [RADIANCE_SIZE_256]. Otherwise, a warning is printed and the overridden radiance size is ignored.
      */
     REALTIME(3),
     ;
@@ -203,21 +178,21 @@ public open class Sky : Resource() {
 
   public object MethodBindings {
     internal val setRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_radiance_size", 1512957179)
+        TypeManager.getMethodBindPtr("Sky", "set_radiance_size", 1_512_957_179)
 
     internal val getRadianceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_radiance_size", 2708733976)
+        TypeManager.getMethodBindPtr("Sky", "get_radiance_size", 2_708_733_976)
 
     internal val setProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_process_mode", 875986769)
+        TypeManager.getMethodBindPtr("Sky", "set_process_mode", 875_986_769)
 
     internal val getProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_process_mode", 731245043)
+        TypeManager.getMethodBindPtr("Sky", "get_process_mode", 731_245_043)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("Sky", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sky", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("Sky", "get_material", 5_934_680)
   }
 }

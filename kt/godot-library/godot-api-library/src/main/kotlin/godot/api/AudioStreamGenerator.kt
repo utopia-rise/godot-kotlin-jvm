@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
- * instead, it expects a script to generate audio data for it. See also [AudioStreamGeneratorPlayback].
+ * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own; instead, it expects a script to generate audio data for it. See also [AudioStreamGeneratorPlayback].
  *
  * Here's a sample on how to use it to generate a sine wave:
  *
@@ -59,8 +54,7 @@ import kotlin.jvm.JvmName
  *
  * public override void _Ready()
  * {
- *     if (Player.Stream is AudioStreamGenerator generator) // Type as a generator to access
- * MixRate.
+ *     if (Player.Stream is AudioStreamGenerator generator) // Type as a generator to access MixRate.
  *     {
  *         _sampleHz = generator.MixRate;
  *         Player.Play();
@@ -82,20 +76,16 @@ import kotlin.jvm.JvmName
  * }
  * ```
  *
- * In the example above, the "AudioStreamPlayer" node must use an [AudioStreamGenerator] as its
- * stream. The `fill_buffer` function provides audio data for approximating a sine wave.
+ * In the example above, the "AudioStreamPlayer" node must use an [AudioStreamGenerator] as its stream. The `fill_buffer` function provides audio data for approximating a sine wave.
  *
  * See also [AudioEffectSpectrumAnalyzer] for performing real-time audio spectrum analysis.
  *
- * **Note:** Due to performance constraints, this class is best used from C# or from a compiled
- * language via GDExtension. If you still want to use this class from GDScript, consider using a lower
- * [mixRate] such as 11,025 Hz or 22,050 Hz.
+ * **Note:** Due to performance constraints, this class is best used from C# or from a compiled language via GDExtension. If you still want to use this class from GDScript, consider using a lower [mixRate] such as 11,025 Hz or 22,050 Hz.
  */
 @GodotBaseType
 public open class AudioStreamGenerator : AudioStream() {
   /**
-   * Mixing rate mode. If set to [MIX_RATE_CUSTOM], [mixRate] is used, otherwise current
-   * [AudioServer] mixing rate is used.
+   * Mixing rate mode. If set to [MIX_RATE_CUSTOM], [mixRate] is used, otherwise current [AudioServer] mixing rate is used.
    */
   public final inline var mixRateMode: AudioStreamGeneratorMixRate
     @JvmName("mixRateModeProperty")
@@ -106,24 +96,15 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   /**
-   * The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but
-   * result in better quality.
+   * The sample rate to use (in Hz). Higher values are more demanding for the CPU to generate, but result in better quality.
    *
-   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and
-   * `48000`.
+   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.
    *
-   * According to the
-   * [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon
-   * sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz
-   * (since most humans can only hear up to ~20,000 Hz, often less). If you are generating
-   * lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable
-   * with no loss in quality.
+   * According to the [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are generating lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
    *
-   * **Note:** [AudioStreamGenerator] is not automatically resampling input data, to produce
-   * expected result [mixRateMode] should match the sampling rate of input data.
+   * **Note:** [AudioStreamGenerator] is not automatically resampling input data, to produce expected result [mixRateMode] should match the sampling rate of input data.
    *
-   * **Note:** If you are using [AudioEffectCapture] as the source of your data, set [mixRateMode]
-   * to [MIX_RATE_INPUT] or [MIX_RATE_OUTPUT] to automatically match current [AudioServer] mixing rate.
+   * **Note:** If you are using [AudioEffectCapture] as the source of your data, set [mixRateMode] to [MIX_RATE_INPUT] or [MIX_RATE_OUTPUT] to automatically match current [AudioServer] mixing rate.
    */
   public final inline var mixRate: Float
     @JvmName("mixRateProperty")
@@ -134,9 +115,7 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   /**
-   * The length of the buffer to generate (in seconds). Lower values result in less latency, but
-   * require the script to generate audio data faster, resulting in increased CPU usage and more risk
-   * for audio cracking if the CPU can't keep up.
+   * The length of the buffer to generate (in seconds). Lower values result in less latency, but require the script to generate audio data faster, resulting in increased CPU usage and more risk for audio cracking if the CPU can't keep up.
    */
   public final inline var bufferLength: Float
     @JvmName("bufferLengthProperty")
@@ -146,11 +125,11 @@ public open class AudioStreamGenerator : AudioStream() {
       setBufferLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(81, scriptIndex)
   }
 
-  public final fun setMixRate(hz: Float): Unit {
+  public final fun setMixRate(hz: Float) {
     TransferContext.writeArguments(DOUBLE to hz.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMixRatePtr, NIL)
   }
@@ -161,7 +140,7 @@ public open class AudioStreamGenerator : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMixRateMode(mode: AudioStreamGeneratorMixRate): Unit {
+  public final fun setMixRateMode(mode: AudioStreamGeneratorMixRate) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setMixRateModePtr, NIL)
   }
@@ -172,7 +151,7 @@ public open class AudioStreamGenerator : AudioStream() {
     return AudioStreamGeneratorMixRate.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBufferLength(seconds: Float): Unit {
+  public final fun setBufferLength(seconds: Float) {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBufferLengthPtr, NIL)
   }
@@ -210,8 +189,7 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
     public companion object {
-      public fun from(`value`: Long): AudioStreamGeneratorMixRate =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): AudioStreamGeneratorMixRate = entries.single { it.id == `value` }
     }
   }
 
@@ -219,21 +197,21 @@ public open class AudioStreamGenerator : AudioStream() {
 
   public object MethodBindings {
     internal val setMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate", 373_806_689)
 
     internal val getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate", 1_740_695_150)
 
     internal val setMixRateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate_mode", 3354885803)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_mix_rate_mode", 3_354_885_803)
 
     internal val getMixRateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate_mode", 3537132591)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_mix_rate_mode", 3_537_132_591)
 
     internal val setBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "set_buffer_length", 373_806_689)
 
     internal val getBufferLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamGenerator", "get_buffer_length", 1_740_695_150)
   }
 }

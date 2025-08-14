@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,10 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
- * channel as scalar.
+ * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha channel as scalar.
  */
 @GodotBaseType
 public open class VisualShaderNodeCubemap : VisualShaderNode() {
@@ -58,11 +53,11 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
       setTextureType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(739, scriptIndex)
   }
 
-  public final fun setSource(`value`: Source): Unit {
+  public final fun setSource(`value`: Source) {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
@@ -73,7 +68,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     return Source.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCubeMap(`value`: TextureLayered?): Unit {
+  public final fun setCubeMap(`value`: TextureLayered?) {
     TransferContext.writeArguments(OBJECT to value)
     TransferContext.callMethod(ptr, MethodBindings.setCubeMapPtr, NIL)
   }
@@ -84,7 +79,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     return (TransferContext.readReturnValue(OBJECT) as TextureLayered?)
   }
 
-  public final fun setTextureType(`value`: TextureType): Unit {
+  public final fun setTextureType(`value`: TextureType) {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
@@ -99,13 +94,11 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is
-     * ignored.
+     * Use the [Cubemap] set via [cubeMap]. If this is set to [source], the `samplerCube` port is ignored.
      */
     TEXTURE(0),
     /**
-     * Use the [Cubemap] sampler reference passed via the `samplerCube` port. If this is set to
-     * [source], the [cubeMap] texture is ignored.
+     * Use the [Cubemap] sampler reference passed via the `samplerCube` port. If this is set to [source], the [cubeMap] texture is ignored.
      */
     PORT(1),
     /**
@@ -136,8 +129,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
      */
     TYPE_COLOR(1),
     /**
-     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture
-     * for proper usage as normal map.
+     * Adds `hint_normal` as hint to the uniform declaration, which internally converts the texture for proper usage as normal map.
      */
     TYPE_NORMAL_MAP(2),
     /**
@@ -160,21 +152,21 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_source", 1625400621)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_source", 1_625_400_621)
 
     internal val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2222048781)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_source", 2_222_048_781)
 
     internal val setCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 1278366092)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_cube_map", 1_278_366_092)
 
     internal val getCubeMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 3984243839)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_cube_map", 3_984_243_839)
 
     internal val setTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1899718876)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "set_texture_type", 1_899_718_876)
 
     internal val getTextureTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type", 3356498888)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCubemap", "get_texture_type", 3_356_498_888)
   }
 }

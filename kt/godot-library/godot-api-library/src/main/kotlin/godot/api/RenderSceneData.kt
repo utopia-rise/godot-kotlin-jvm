@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,7 +19,6 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
@@ -31,7 +27,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(547, scriptIndex)
   }
 
@@ -67,8 +63,7 @@ public open class RenderSceneData internal constructor() : Object() {
   }
 
   /**
-   * Returns the eye offset per view used to render this frame. This is the offset between our
-   * camera transform and the eye transform.
+   * Returns the eye offset per view used to render this frame. This is the offset between our camera transform and the eye transform.
    */
   public final fun getViewEyeOffset(view: Long): Vector3 {
     TransferContext.writeArguments(LONG to view)
@@ -79,8 +74,7 @@ public open class RenderSceneData internal constructor() : Object() {
   /**
    * Returns the view projection per view used to render this frame.
    *
-   * **Note:** If a single view is rendered, this returns the camera projection. If more than one
-   * view is rendered, this will return a projection for the given view including the eye offset.
+   * **Note:** If a single view is rendered, this returns the camera projection. If more than one view is rendered, this will return a projection for the given view including the eye offset.
    */
   public final fun getViewProjection(view: Long): Projection {
     TransferContext.writeArguments(LONG to view)
@@ -101,21 +95,21 @@ public open class RenderSceneData internal constructor() : Object() {
 
   public object MethodBindings {
     internal val getCamTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3229777777)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_transform", 3_229_777_777)
 
     internal val getCamProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2910717950)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_cam_projection", 2_910_717_950)
 
     internal val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_count", 3905245786)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_count", 3_905_245_786)
 
     internal val getViewEyeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711720468)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_eye_offset", 711_720_468)
 
     internal val getViewProjectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_projection", 3179846605)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_view_projection", 3_179_846_605)
 
     internal val getUniformBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2944877500)
+        TypeManager.getMethodBindPtr("RenderSceneData", "get_uniform_buffer", 2_944_877_500)
   }
 }

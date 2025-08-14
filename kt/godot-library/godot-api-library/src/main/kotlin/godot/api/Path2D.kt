@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -14,15 +11,12 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more
- * information on usage.
+ * Can have [PathFollow2D] child nodes moving along the [Curve2D]. See [PathFollow2D] for more information on usage.
  *
- * **Note:** The path is considered as relative to the moved nodes (children of [PathFollow2D]). As
- * such, the curve should usually start with a zero vector (`(0, 0)`).
+ * **Note:** The path is considered as relative to the moved nodes (children of [PathFollow2D]). As such, the curve should usually start with a zero vector (`(0, 0)`).
  */
 @GodotBaseType
 public open class Path2D : Node2D() {
@@ -37,11 +31,11 @@ public open class Path2D : Node2D() {
       setCurve(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(450, scriptIndex)
   }
 
-  public final fun setCurve(curve: Curve2D?): Unit {
+  public final fun setCurve(curve: Curve2D?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
@@ -56,9 +50,9 @@ public open class Path2D : Node2D() {
 
   public object MethodBindings {
     internal val setCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Path2D", "set_curve", 659985499)
+        TypeManager.getMethodBindPtr("Path2D", "set_curve", 659_985_499)
 
     internal val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Path2D", "get_curve", 660369445)
+        TypeManager.getMethodBindPtr("Path2D", "get_curve", 660_369_445)
   }
 }

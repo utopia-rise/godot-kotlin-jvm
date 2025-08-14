@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,20 +19,16 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Holds collision data from the movement of a [PhysicsBody2D], usually from
- * [PhysicsBody2D.moveAndCollide]. When a [PhysicsBody2D] is moved, it stops if it detects a collision
- * with another body. If a collision is detected, a [KinematicCollision2D] object is returned.
+ * Holds collision data from the movement of a [PhysicsBody2D], usually from [PhysicsBody2D.moveAndCollide]. When a [PhysicsBody2D] is moved, it stops if it detects a collision with another body. If a collision is detected, a [KinematicCollision2D] object is returned.
  *
- * The collision data includes the colliding object, the remaining motion, and the collision
- * position. This data can be used to determine a custom response to the collision.
+ * The collision data includes the colliding object, the remaining motion, and the collision position. This data can be used to determine a custom response to the collision.
  */
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(325, scriptIndex)
   }
 
@@ -76,8 +69,7 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the collision angle according to [upDirection], which is [Vector2.UP] by default. This
-   * value is always positive.
+   * Returns the collision angle according to [upDirection], which is [Vector2.UP] by default. This value is always positive.
    */
   @JvmOverloads
   public final fun getAngle(upDirection: Vector2 = Vector2(0, -1)): Float {
@@ -114,8 +106,7 @@ public open class KinematicCollision2D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [Object]. See
-   * [Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object]. See [Object.getInstanceId].
    */
   public final fun getColliderId(): Long {
     TransferContext.writeArguments()
@@ -163,42 +154,42 @@ public open class KinematicCollision2D : RefCounted() {
 
   public object MethodBindings {
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_position", 3_341_600_327)
 
     internal val getNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_normal", 3341600327)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_normal", 3_341_600_327)
 
     internal val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_travel", 3341600327)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_travel", 3_341_600_327)
 
     internal val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_remainder", 3341600327)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_remainder", 3_341_600_327)
 
     internal val getAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_angle", 2841063350)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_angle", 2_841_063_350)
 
     internal val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_depth", 1740695150)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_depth", 1_740_695_150)
 
     internal val getLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_local_shape", 1981248198)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_local_shape", 1_981_248_198)
 
     internal val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider", 1981248198)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider", 1_981_248_198)
 
     internal val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_id", 3905245786)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_id", 3_905_245_786)
 
     internal val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_rid", 2944877500)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_rid", 2_944_877_500)
 
     internal val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_shape", 1981248198)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_shape", 1_981_248_198)
 
     internal val getColliderShapeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_shape_index", 3905245786)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_shape_index", 3_905_245_786)
 
     internal val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("KinematicCollision2D", "get_collider_velocity", 3_341_600_327)
   }
 }

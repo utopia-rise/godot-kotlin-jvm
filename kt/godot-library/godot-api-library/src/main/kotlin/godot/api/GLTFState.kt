@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,14 +39,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage,
- * which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
+ * Contains all nodes and resources of a glTF file. This is used by [GLTFDocument] as data storage, which allows [GLTFDocument] and all [GLTFDocumentExtension] classes to remain stateless.
  *
- * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then
- * the data can either be used to create a Godot scene or save to a glTF file. The code that converts
- * to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes.
- * This allows for custom data to be stored in the glTF file or for custom data to be converted to/from
- * Godot nodes.
+ * GLTFState can be populated by [GLTFDocument] reading a file or by converting a Godot scene. Then the data can either be used to create a Godot scene or save to a glTF file. The code that converts to/from a Godot scene can be intercepted at arbitrary points by [GLTFDocumentExtension] classes. This allows for custom data to be stored in the glTF file or for custom data to be converted to/from Godot nodes.
  */
 @GodotBaseType
 public open class GLTFState : Resource() {
@@ -81,8 +73,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The copyright string in the asset header of the glTF file. This is set during import if present
-   * and export if non-empty. See the glTF asset header documentation for more information.
+   * The copyright string in the asset header of the glTF file. This is set during import if present and export if non-empty. See the glTF asset header documentation for more information.
    */
   public final inline var copyright: String
     @JvmName("copyrightProperty")
@@ -96,11 +87,8 @@ public open class GLTFState : Resource() {
    * The binary buffer attached to a .glb file.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var glbData: PackedByteArray
@@ -168,8 +156,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The name of the scene. When importing, if not specified, this will be the file name. When
-   * exporting, if specified, the scene name will be saved to the glTF file.
+   * The name of the scene. When importing, if not specified, this will be the file name. When exporting, if specified, the scene name will be saved to the glTF file.
    */
   public final inline var sceneName: String
     @JvmName("sceneNameProperty")
@@ -180,9 +167,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The folder path associated with this glTF data. This is used to find other files the glTF file
-   * references, like images or binary buffers. This will be set during import when appending from a
-   * file, and will be set during export when writing to a file.
+   * The folder path associated with this glTF data. This is used to find other files the glTF file references, like images or binary buffers. This will be set during import when appending from a file, and will be set during export when writing to a file.
    */
   public final inline var basePath: String
     @JvmName("basePathProperty")
@@ -193,9 +178,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The file name associated with this glTF data. If it ends with `.gltf`, this is text-based glTF,
-   * otherwise this is binary GLB. This will be set during import when appending from a file, and will
-   * be set during export when writing to a file. If writing to a buffer, this will be an empty string.
+   * The file name associated with this glTF data. If it ends with `.gltf`, this is text-based glTF, otherwise this is binary GLB. This will be set during import when appending from a file, and will be set during export when writing to a file. If writing to a buffer, this will be an empty string.
    */
   public final inline var filename: String
     @JvmName("filenameProperty")
@@ -206,17 +189,11 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
-   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
-   * which will be generated as siblings of each other and as children of the root node of the
-   * generated Godot scene.
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rootNodes: PackedInt32Array
@@ -308,8 +285,7 @@ public open class GLTFState : Resource() {
     }
 
   /**
-   * If `true`, forces all GLTFNodes in the document to be bones of a single [Skeleton3D] Godot
-   * node.
+   * If `true`, forces all GLTFNodes in the document to be bones of a single [Skeleton3D] Godot node.
    */
   public final inline var importAsSkeletonBones: Boolean
     @JvmName("importAsSkeletonBonesProperty")
@@ -346,7 +322,7 @@ public open class GLTFState : Resource() {
       setBakeFps(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(240, scriptIndex)
   }
 
@@ -364,22 +340,19 @@ public open class GLTFState : Resource() {
    * The binary buffer attached to a .glb file.
    */
   @CoreTypeHelper
-  public final fun glbDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray =
-      glbData.apply {
+  public final fun glbDataMutate(block: PackedByteArray.() -> Unit): PackedByteArray = glbData.apply {
      block(this)
      glbData = this
   }
 
   /**
    * This is a helper function for [glbData] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The binary buffer attached to a .glb file.
    */
   @CoreTypeHelper
-  public final fun glbDataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
-      glbData.apply {
+  public final fun glbDataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray = glbData.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -398,31 +371,22 @@ public open class GLTFState : Resource() {
    * gltfstate.rootNodes = myCoreType
    * ``````
    *
-   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
-   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
-   * which will be generated as siblings of each other and as children of the root node of the
-   * generated Godot scene.
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene.
    */
   @CoreTypeHelper
-  public final fun rootNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      rootNodes.apply {
+  public final fun rootNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = rootNodes.apply {
      block(this)
      rootNodes = this
   }
 
   /**
    * This is a helper function for [rootNodes] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore
-   * one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes,
-   * which will be generated as siblings of each other and as children of the root node of the
-   * generated Godot scene.
+   * The root nodes of the glTF file. Typically, a glTF file will only have one scene, and therefore one root node. However, a glTF file may have multiple scenes and therefore multiple root nodes, which will be generated as siblings of each other and as children of the root node of the generated Godot scene.
    */
   @CoreTypeHelper
-  public final fun rootNodesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
-      = rootNodes.apply {
+  public final fun rootNodesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = rootNodes.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -431,20 +395,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Appends an extension to the list of extensions used by this glTF file during serialization. If
-   * [required] is `true`, the extension will also be added to the list of required extensions. Do not
-   * run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions. The
-   * final list is sorted alphabetically.
+   * Appends an extension to the list of extensions used by this glTF file during serialization. If [required] is `true`, the extension will also be added to the list of required extensions. Do not run this in [GLTFDocumentExtension.ExportPost], as that stage is too late to add extensions. The final list is sorted alphabetically.
    */
-  public final fun addUsedExtension(extensionName: String, required: Boolean): Unit {
+  public final fun addUsedExtension(extensionName: String, required: Boolean) {
     TransferContext.writeArguments(STRING to extensionName, BOOL to required)
     TransferContext.callMethod(ptr, MethodBindings.addUsedExtensionPtr, NIL)
   }
 
   /**
-   * Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The
-   * index of the destination [GLTFBufferView] is returned. If [deduplication] is `true`, the buffers
-   * will first be searched for duplicate data, otherwise new bytes will always be appended.
+   * Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The index of the destination [GLTFBufferView] is returned. If [deduplication] is `true`, the buffers will first be searched for duplicate data, otherwise new bytes will always be appended.
    */
   public final fun appendDataToBuffers(`data`: PackedByteArray, deduplication: Boolean): Int {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
@@ -453,19 +412,11 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Append the given [GLTFNode] to the state, and return its new index. This can be used to export
-   * one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this
-   * must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On
-   * export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
+   * Append the given [GLTFNode] to the state, and return its new index. This can be used to export one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
    *
-   * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This
-   * is highly recommended to be set to a valid node, but may be `null` if there is no corresponding
-   * Godot scene node. One Godot scene node may be used for multiple glTF nodes, so if exporting
-   * multiple glTF nodes for one Godot scene node, use the same Godot scene node for each.
+   * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This is highly recommended to be set to a valid node, but may be `null` if there is no corresponding Godot scene node. One Godot scene node may be used for multiple glTF nodes, so if exporting multiple glTF nodes for one Godot scene node, use the same Godot scene node for each.
    *
-   * The [parentNodeIndex] parameter is the index of the parent [GLTFNode] in the state. If `-1`,
-   * the node will be a root node, otherwise the new node will be added to the parent's list of
-   * children. The index will also be written to the [GLTFNode.parent] property of the new node.
+   * The [parentNodeIndex] parameter is the index of the parent [GLTFNode] in the state. If `-1`, the node will be a root node, otherwise the new node will be added to the parent's list of children. The index will also be written to the [GLTFNode.parent] property of the new node.
    */
   public final fun appendGltfNode(
     gltfNode: GLTFNode?,
@@ -483,7 +434,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setJson(json: Dictionary<Any?, Any?>): Unit {
+  public final fun setJson(json: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to json)
     TransferContext.callMethod(ptr, MethodBindings.setJsonPtr, NIL)
   }
@@ -494,7 +445,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMajorVersion(majorVersion: Int): Unit {
+  public final fun setMajorVersion(majorVersion: Int) {
     TransferContext.writeArguments(LONG to majorVersion.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMajorVersionPtr, NIL)
   }
@@ -505,7 +456,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMinorVersion(minorVersion: Int): Unit {
+  public final fun setMinorVersion(minorVersion: Int) {
     TransferContext.writeArguments(LONG to minorVersion.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMinorVersionPtr, NIL)
   }
@@ -516,7 +467,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setCopyright(copyright: String): Unit {
+  public final fun setCopyright(copyright: String) {
     TransferContext.writeArguments(STRING to copyright)
     TransferContext.callMethod(ptr, MethodBindings.setCopyrightPtr, NIL)
   }
@@ -527,7 +478,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
-  public final fun setGlbData(glbData: PackedByteArray): Unit {
+  public final fun setGlbData(glbData: PackedByteArray) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to glbData)
     TransferContext.callMethod(ptr, MethodBindings.setGlbDataPtr, NIL)
   }
@@ -538,15 +489,13 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseNamedSkinBinds(useNamedSkinBinds: Boolean): Unit {
+  public final fun setUseNamedSkinBinds(useNamedSkinBinds: Boolean) {
     TransferContext.writeArguments(BOOL to useNamedSkinBinds)
     TransferContext.callMethod(ptr, MethodBindings.setUseNamedSkinBindsPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFNode]s in the glTF file. These are the nodes that
-   * [GLTFNode.children] and [rootNodes] refer to. This includes nodes that may not be generated in the
-   * Godot scene, or nodes that may generate multiple Godot scene nodes.
+   * Returns an array of all [GLTFNode]s in the glTF file. These are the nodes that [GLTFNode.children] and [rootNodes] refer to. This includes nodes that may not be generated in the Godot scene, or nodes that may generate multiple Godot scene nodes.
    */
   public final fun getNodes(): VariantArray<GLTFNode> {
     TransferContext.writeArguments()
@@ -555,11 +504,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFNode]s in the state. These are the nodes that [GLTFNode.children] and [rootNodes]
-   * refer to. Some of the nodes set here may not be generated in the Godot scene, or may generate
-   * multiple Godot scene nodes.
+   * Sets the [GLTFNode]s in the state. These are the nodes that [GLTFNode.children] and [rootNodes] refer to. Some of the nodes set here may not be generated in the Godot scene, or may generate multiple Godot scene nodes.
    */
-  public final fun setNodes(nodes: VariantArray<GLTFNode>): Unit {
+  public final fun setNodes(nodes: VariantArray<GLTFNode>) {
     TransferContext.writeArguments(ARRAY to nodes)
     TransferContext.callMethod(ptr, MethodBindings.setNodesPtr, NIL)
   }
@@ -570,7 +517,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedByteArray>)
   }
 
-  public final fun setBuffers(buffers: VariantArray<PackedByteArray>): Unit {
+  public final fun setBuffers(buffers: VariantArray<PackedByteArray>) {
     TransferContext.writeArguments(ARRAY to buffers)
     TransferContext.callMethod(ptr, MethodBindings.setBuffersPtr, NIL)
   }
@@ -581,7 +528,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFBufferView>)
   }
 
-  public final fun setBufferViews(bufferViews: VariantArray<GLTFBufferView>): Unit {
+  public final fun setBufferViews(bufferViews: VariantArray<GLTFBufferView>) {
     TransferContext.writeArguments(ARRAY to bufferViews)
     TransferContext.callMethod(ptr, MethodBindings.setBufferViewsPtr, NIL)
   }
@@ -592,14 +539,13 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFAccessor>)
   }
 
-  public final fun setAccessors(accessors: VariantArray<GLTFAccessor>): Unit {
+  public final fun setAccessors(accessors: VariantArray<GLTFAccessor>) {
     TransferContext.writeArguments(ARRAY to accessors)
     TransferContext.callMethod(ptr, MethodBindings.setAccessorsPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFMesh]es in the glTF file. These are the meshes that the
-   * [GLTFNode.mesh] index refers to.
+   * Returns an array of all [GLTFMesh]es in the glTF file. These are the meshes that the [GLTFNode.mesh] index refers to.
    */
   public final fun getMeshes(): VariantArray<GLTFMesh> {
     TransferContext.writeArguments()
@@ -608,17 +554,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFMesh]es in the state. These are the meshes that the [GLTFNode.mesh] index refers
-   * to.
+   * Sets the [GLTFMesh]es in the state. These are the meshes that the [GLTFNode.mesh] index refers to.
    */
-  public final fun setMeshes(meshes: VariantArray<GLTFMesh>): Unit {
+  public final fun setMeshes(meshes: VariantArray<GLTFMesh>) {
     TransferContext.writeArguments(ARRAY to meshes)
     TransferContext.callMethod(ptr, MethodBindings.setMeshesPtr, NIL)
   }
 
   /**
-   * Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used
-   * during the export process when converting Godot [AnimationPlayer] nodes to glTF animations.
+   * Returns the number of [AnimationPlayer] nodes in this [GLTFState]. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
   public final fun getAnimationPlayersCount(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -627,8 +571,7 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns the [AnimationPlayer] node with the given index. These nodes are only used during the
-   * export process when converting Godot [AnimationPlayer] nodes to glTF animations.
+   * Returns the [AnimationPlayer] node with the given index. These nodes are only used during the export process when converting Godot [AnimationPlayer] nodes to glTF animations.
    */
   public final fun getAnimationPlayer(idx: Int): AnimationPlayer? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -642,7 +585,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
-  public final fun setMaterials(materials: VariantArray<Material>): Unit {
+  public final fun setMaterials(materials: VariantArray<Material>) {
     TransferContext.writeArguments(ARRAY to materials)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialsPtr, NIL)
   }
@@ -653,7 +596,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setSceneName(sceneName: String): Unit {
+  public final fun setSceneName(sceneName: String) {
     TransferContext.writeArguments(STRING to sceneName)
     TransferContext.callMethod(ptr, MethodBindings.setSceneNamePtr, NIL)
   }
@@ -664,7 +607,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setBasePath(basePath: String): Unit {
+  public final fun setBasePath(basePath: String) {
     TransferContext.writeArguments(STRING to basePath)
     TransferContext.callMethod(ptr, MethodBindings.setBasePathPtr, NIL)
   }
@@ -675,7 +618,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setFilename(filename: String): Unit {
+  public final fun setFilename(filename: String) {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(ptr, MethodBindings.setFilenamePtr, NIL)
   }
@@ -686,7 +629,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setRootNodes(rootNodes: PackedInt32Array): Unit {
+  public final fun setRootNodes(rootNodes: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to rootNodes)
     TransferContext.callMethod(ptr, MethodBindings.setRootNodesPtr, NIL)
   }
@@ -697,7 +640,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<GLTFTexture>)
   }
 
-  public final fun setTextures(textures: VariantArray<GLTFTexture>): Unit {
+  public final fun setTextures(textures: VariantArray<GLTFTexture>) {
     TransferContext.writeArguments(ARRAY to textures)
     TransferContext.callMethod(ptr, MethodBindings.setTexturesPtr, NIL)
   }
@@ -714,14 +657,13 @@ public open class GLTFState : Resource() {
   /**
    * Sets the array of texture samplers that are used by the textures contained in the glTF.
    */
-  public final fun setTextureSamplers(textureSamplers: VariantArray<GLTFTextureSampler>): Unit {
+  public final fun setTextureSamplers(textureSamplers: VariantArray<GLTFTextureSampler>) {
     TransferContext.writeArguments(ARRAY to textureSamplers)
     TransferContext.callMethod(ptr, MethodBindings.setTextureSamplersPtr, NIL)
   }
 
   /**
-   * Gets the images of the glTF file as an array of [Texture2D]s. These are the images that the
-   * [GLTFTexture.srcImage] index refers to.
+   * Gets the images of the glTF file as an array of [Texture2D]s. These are the images that the [GLTFTexture.srcImage] index refers to.
    */
   public final fun getImages(): VariantArray<Texture2D> {
     TransferContext.writeArguments()
@@ -730,17 +672,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the images in the state stored as an array of [Texture2D]s. This can be used during
-   * export. These are the images that the [GLTFTexture.srcImage] index refers to.
+   * Sets the images in the state stored as an array of [Texture2D]s. This can be used during export. These are the images that the [GLTFTexture.srcImage] index refers to.
    */
-  public final fun setImages(images: VariantArray<Texture2D>): Unit {
+  public final fun setImages(images: VariantArray<Texture2D>) {
     TransferContext.writeArguments(ARRAY to images)
     TransferContext.callMethod(ptr, MethodBindings.setImagesPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFSkin]s in the glTF file. These are the skins that the
-   * [GLTFNode.skin] index refers to.
+   * Returns an array of all [GLTFSkin]s in the glTF file. These are the skins that the [GLTFNode.skin] index refers to.
    */
   public final fun getSkins(): VariantArray<GLTFSkin> {
     TransferContext.writeArguments()
@@ -749,17 +689,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFSkin]s in the state. These are the skins that the [GLTFNode.skin] index refers
-   * to.
+   * Sets the [GLTFSkin]s in the state. These are the skins that the [GLTFNode.skin] index refers to.
    */
-  public final fun setSkins(skins: VariantArray<GLTFSkin>): Unit {
+  public final fun setSkins(skins: VariantArray<GLTFSkin>) {
     TransferContext.writeArguments(ARRAY to skins)
     TransferContext.callMethod(ptr, MethodBindings.setSkinsPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFCamera]s in the glTF file. These are the cameras that the
-   * [GLTFNode.camera] index refers to.
+   * Returns an array of all [GLTFCamera]s in the glTF file. These are the cameras that the [GLTFNode.camera] index refers to.
    */
   public final fun getCameras(): VariantArray<GLTFCamera> {
     TransferContext.writeArguments()
@@ -768,17 +706,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFCamera]s in the state. These are the cameras that the [GLTFNode.camera] index
-   * refers to.
+   * Sets the [GLTFCamera]s in the state. These are the cameras that the [GLTFNode.camera] index refers to.
    */
-  public final fun setCameras(cameras: VariantArray<GLTFCamera>): Unit {
+  public final fun setCameras(cameras: VariantArray<GLTFCamera>) {
     TransferContext.writeArguments(ARRAY to cameras)
     TransferContext.callMethod(ptr, MethodBindings.setCamerasPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFLight]s in the glTF file. These are the lights that the
-   * [GLTFNode.light] index refers to.
+   * Returns an array of all [GLTFLight]s in the glTF file. These are the lights that the [GLTFNode.light] index refers to.
    */
   public final fun getLights(): VariantArray<GLTFLight> {
     TransferContext.writeArguments()
@@ -787,17 +723,15 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFLight]s in the state. These are the lights that the [GLTFNode.light] index refers
-   * to.
+   * Sets the [GLTFLight]s in the state. These are the lights that the [GLTFNode.light] index refers to.
    */
-  public final fun setLights(lights: VariantArray<GLTFLight>): Unit {
+  public final fun setLights(lights: VariantArray<GLTFLight>) {
     TransferContext.writeArguments(ARRAY to lights)
     TransferContext.callMethod(ptr, MethodBindings.setLightsPtr, NIL)
   }
 
   /**
-   * Returns an array of unique node names. This is used in both the import process and export
-   * process.
+   * Returns an array of unique node names. This is used in both the import process and export process.
    */
   public final fun getUniqueNames(): VariantArray<String> {
     TransferContext.writeArguments()
@@ -806,10 +740,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the unique node names in the state. This is used in both the import process and export
-   * process.
+   * Sets the unique node names in the state. This is used in both the import process and export process.
    */
-  public final fun setUniqueNames(uniqueNames: VariantArray<String>): Unit {
+  public final fun setUniqueNames(uniqueNames: VariantArray<String>) {
     TransferContext.writeArguments(ARRAY to uniqueNames)
     TransferContext.callMethod(ptr, MethodBindings.setUniqueNamesPtr, NIL)
   }
@@ -826,14 +759,13 @@ public open class GLTFState : Resource() {
   /**
    * Sets the unique animation names in the state. This is only used during the import process.
    */
-  public final fun setUniqueAnimationNames(uniqueAnimationNames: VariantArray<String>): Unit {
+  public final fun setUniqueAnimationNames(uniqueAnimationNames: VariantArray<String>) {
     TransferContext.writeArguments(ARRAY to uniqueAnimationNames)
     TransferContext.callMethod(ptr, MethodBindings.setUniqueAnimationNamesPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFSkeleton]s in the glTF file. These are the skeletons that the
-   * [GLTFNode.skeleton] index refers to.
+   * Returns an array of all [GLTFSkeleton]s in the glTF file. These are the skeletons that the [GLTFNode.skeleton] index refers to.
    */
   public final fun getSkeletons(): VariantArray<GLTFSkeleton> {
     TransferContext.writeArguments()
@@ -842,10 +774,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFSkeleton]s in the state. These are the skeletons that the [GLTFNode.skeleton]
-   * index refers to.
+   * Sets the [GLTFSkeleton]s in the state. These are the skeletons that the [GLTFNode.skeleton] index refers to.
    */
-  public final fun setSkeletons(skeletons: VariantArray<GLTFSkeleton>): Unit {
+  public final fun setSkeletons(skeletons: VariantArray<GLTFSkeleton>) {
     TransferContext.writeArguments(ARRAY to skeletons)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonsPtr, NIL)
   }
@@ -856,7 +787,7 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCreateAnimations(createAnimations: Boolean): Unit {
+  public final fun setCreateAnimations(createAnimations: Boolean) {
     TransferContext.writeArguments(BOOL to createAnimations)
     TransferContext.callMethod(ptr, MethodBindings.setCreateAnimationsPtr, NIL)
   }
@@ -867,15 +798,13 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setImportAsSkeletonBones(importAsSkeletonBones: Boolean): Unit {
+  public final fun setImportAsSkeletonBones(importAsSkeletonBones: Boolean) {
     TransferContext.writeArguments(BOOL to importAsSkeletonBones)
     TransferContext.callMethod(ptr, MethodBindings.setImportAsSkeletonBonesPtr, NIL)
   }
 
   /**
-   * Returns an array of all [GLTFAnimation]s in the glTF file. When importing, these will be
-   * generated as animations in an [AnimationPlayer] node. When exporting, these will be generated from
-   * Godot [AnimationPlayer] nodes.
+   * Returns an array of all [GLTFAnimation]s in the glTF file. When importing, these will be generated as animations in an [AnimationPlayer] node. When exporting, these will be generated from Godot [AnimationPlayer] nodes.
    */
   public final fun getAnimations(): VariantArray<GLTFAnimation> {
     TransferContext.writeArguments()
@@ -884,22 +813,17 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets the [GLTFAnimation]s in the state. When importing, these will be generated as animations
-   * in an [AnimationPlayer] node. When exporting, these will be generated from Godot [AnimationPlayer]
-   * nodes.
+   * Sets the [GLTFAnimation]s in the state. When importing, these will be generated as animations in an [AnimationPlayer] node. When exporting, these will be generated from Godot [AnimationPlayer] nodes.
    */
-  public final fun setAnimations(animations: VariantArray<GLTFAnimation>): Unit {
+  public final fun setAnimations(animations: VariantArray<GLTFAnimation>) {
     TransferContext.writeArguments(ARRAY to animations)
     TransferContext.callMethod(ptr, MethodBindings.setAnimationsPtr, NIL)
   }
 
   /**
-   * Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was
-   * generated from. This is the inverse of [getNodeIndex]. Useful during the import process.
+   * Returns the Godot scene node that corresponds to the same index as the [GLTFNode] it was generated from. This is the inverse of [getNodeIndex]. Useful during the import process.
    *
-   * **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene
-   * node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index,
-   * `null` is returned.
+   * **Note:** Not every [GLTFNode] will have a scene node generated, and not every generated scene node will have a corresponding [GLTFNode]. If there is no scene node for this [GLTFNode] index, `null` is returned.
    */
   public final fun getSceneNode(idx: Int): Node? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -908,12 +832,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse
-   * of [getSceneNode]. Useful during the export process.
+   * Returns the index of the [GLTFNode] corresponding to this Godot scene node. This is the inverse of [getSceneNode]. Useful during the export process.
    *
-   * **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every
-   * [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node,
-   * `-1` is returned.
+   * **Note:** Not every Godot scene node will have a corresponding [GLTFNode], and not every [GLTFNode] will have a scene node generated. If there is no [GLTFNode] index for this scene node, `-1` is returned.
    */
   public final fun getNodeIndex(sceneNode: Node?): Int {
     TransferContext.writeArguments(OBJECT to sceneNode)
@@ -922,12 +843,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -936,13 +854,11 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?) {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
@@ -953,12 +869,12 @@ public open class GLTFState : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHandleBinaryImage(method: Int): Unit {
+  public final fun setHandleBinaryImage(method: Int) {
     TransferContext.writeArguments(LONG to method.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHandleBinaryImagePtr, NIL)
   }
 
-  public final fun setBakeFps(`value`: Double): Unit {
+  public final fun setBakeFps(`value`: Double) {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(ptr, MethodBindings.setBakeFpsPtr, NIL)
   }
@@ -970,25 +886,18 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
-  public final fun getAdditionalData(extensionName: String): Any? =
-      getAdditionalData(extensionName.asCachedStringName())
+  public final fun getAdditionalData(extensionName: String): Any? = getAdditionalData(extensionName.asCachedStringName())
 
   /**
-   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFState] instance. This can be used to keep per-file state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
-      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit = setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**
@@ -997,8 +906,7 @@ public open class GLTFState : Resource() {
     public final const val HANDLE_BINARY_DISCARD_TEXTURES: Long = 0
 
     /**
-     * Extracts embedded textures to be reimported and compressed. Editor only. Acts as uncompressed
-     * at runtime.
+     * Extracts embedded textures to be reimported and compressed. Editor only. Acts as uncompressed at runtime.
      */
     public final const val HANDLE_BINARY_EXTRACT_TEXTURES: Long = 1
 
@@ -1015,210 +923,210 @@ public open class GLTFState : Resource() {
 
   public object MethodBindings {
     internal val addUsedExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "add_used_extension", 2678287736)
+        TypeManager.getMethodBindPtr("GLTFState", "add_used_extension", 2_678_287_736)
 
     internal val appendDataToBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1460416665)
+        TypeManager.getMethodBindPtr("GLTFState", "append_data_to_buffers", 1_460_416_665)
 
     internal val appendGltfNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "append_gltf_node", 3562288551)
+        TypeManager.getMethodBindPtr("GLTFState", "append_gltf_node", 3_562_288_551)
 
     internal val getJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_json", 2382534195)
+        TypeManager.getMethodBindPtr("GLTFState", "get_json", 2_382_534_195)
 
     internal val setJsonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_json", 4155329257)
+        TypeManager.getMethodBindPtr("GLTFState", "set_json", 4_155_329_257)
 
     internal val getMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFState", "get_major_version", 2_455_072_627)
 
     internal val setMajorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_major_version", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFState", "set_major_version", 1_286_410_249)
 
     internal val getMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFState", "get_minor_version", 2_455_072_627)
 
     internal val setMinorVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_minor_version", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFState", "set_minor_version", 1_286_410_249)
 
     internal val getCopyrightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_copyright", 201670096)
+        TypeManager.getMethodBindPtr("GLTFState", "get_copyright", 201_670_096)
 
     internal val setCopyrightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_copyright", 83702148)
+        TypeManager.getMethodBindPtr("GLTFState", "set_copyright", 83_702_148)
 
     internal val getGlbDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2115431945)
+        TypeManager.getMethodBindPtr("GLTFState", "get_glb_data", 2_115_431_945)
 
     internal val setGlbDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_glb_data", 2971499966)
+        TypeManager.getMethodBindPtr("GLTFState", "set_glb_data", 2_971_499_966)
 
     internal val getUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_use_named_skin_binds", 2_240_911_060)
 
     internal val setUseNamedSkinBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFState", "set_use_named_skin_binds", 2_586_408_642)
 
     internal val getNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_nodes", 2_915_620_761)
 
     internal val setNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_nodes", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_nodes", 381_264_803)
 
     internal val getBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffers", 2_915_620_761)
 
     internal val setBuffersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_buffers", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_buffers", 381_264_803)
 
     internal val getBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_buffer_views", 2_915_620_761)
 
     internal val setBufferViewsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_buffer_views", 381_264_803)
 
     internal val getAccessorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_accessors", 2_915_620_761)
 
     internal val setAccessorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_accessors", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_accessors", 381_264_803)
 
     internal val getMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_meshes", 2_915_620_761)
 
     internal val setMeshesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_meshes", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_meshes", 381_264_803)
 
     internal val getAnimationPlayersCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 3744713108)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_players_count", 3_744_713_108)
 
     internal val getAnimationPlayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 925043400)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animation_player", 925_043_400)
 
     internal val getMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_materials", 2_915_620_761)
 
     internal val setMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_materials", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_materials", 381_264_803)
 
     internal val getSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_name", 2_841_200_299)
 
     internal val setSceneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_scene_name", 83702148)
+        TypeManager.getMethodBindPtr("GLTFState", "set_scene_name", 83_702_148)
 
     internal val getBasePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFState", "get_base_path", 2_841_200_299)
 
     internal val setBasePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_base_path", 83702148)
+        TypeManager.getMethodBindPtr("GLTFState", "set_base_path", 83_702_148)
 
     internal val getFilenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_filename", 201670096)
+        TypeManager.getMethodBindPtr("GLTFState", "get_filename", 201_670_096)
 
     internal val setFilenamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_filename", 83702148)
+        TypeManager.getMethodBindPtr("GLTFState", "set_filename", 83_702_148)
 
     internal val getRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 969006518)
+        TypeManager.getMethodBindPtr("GLTFState", "get_root_nodes", 969_006_518)
 
     internal val setRootNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes", 3614634198)
+        TypeManager.getMethodBindPtr("GLTFState", "set_root_nodes", 3_614_634_198)
 
     internal val getTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_textures", 2_915_620_761)
 
     internal val setTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_textures", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_textures", 381_264_803)
 
     internal val getTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_texture_samplers", 2_915_620_761)
 
     internal val setTextureSamplersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_texture_samplers", 381_264_803)
 
     internal val getImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_images", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_images", 2_915_620_761)
 
     internal val setImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_images", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_images", 381_264_803)
 
     internal val getSkinsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_skins", 2_915_620_761)
 
     internal val setSkinsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_skins", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_skins", 381_264_803)
 
     internal val getCamerasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_cameras", 2_915_620_761)
 
     internal val setCamerasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_cameras", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_cameras", 381_264_803)
 
     internal val getLightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_lights", 2_915_620_761)
 
     internal val setLightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_lights", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_lights", 381_264_803)
 
     internal val getUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_names", 2_915_620_761)
 
     internal val setUniqueNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_names", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_unique_names", 381_264_803)
 
     internal val getUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_unique_animation_names", 2_915_620_761)
 
     internal val setUniqueAnimationNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_unique_animation_names", 381_264_803)
 
     internal val getSkeletonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_skeletons", 2_915_620_761)
 
     internal val setSkeletonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_skeletons", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_skeletons", 381_264_803)
 
     internal val getCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_create_animations", 2_240_911_060)
 
     internal val setCreateAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_create_animations", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFState", "set_create_animations", 2_586_408_642)
 
     internal val getImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_import_as_skeleton_bones", 2_240_911_060)
 
     internal val setImportAsSkeletonBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFState", "set_import_as_skeleton_bones", 2_586_408_642)
 
     internal val getAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFState", "get_animations", 2_915_620_761)
 
     internal val setAnimationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_animations", 381264803)
+        TypeManager.getMethodBindPtr("GLTFState", "set_animations", 381_264_803)
 
     internal val getSceneNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 4253421667)
+        TypeManager.getMethodBindPtr("GLTFState", "get_scene_node", 4_253_421_667)
 
     internal val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 1205807060)
+        TypeManager.getMethodBindPtr("GLTFState", "get_node_index", 1_205_807_060)
 
     internal val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2138907829)
+        TypeManager.getMethodBindPtr("GLTFState", "get_additional_data", 2_138_907_829)
 
     internal val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_additional_data", 3776071444)
+        TypeManager.getMethodBindPtr("GLTFState", "set_additional_data", 3_776_071_444)
 
     internal val getHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFState", "get_handle_binary_image", 2_455_072_627)
 
     internal val setHandleBinaryImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFState", "set_handle_binary_image", 1_286_410_249)
 
     internal val setBakeFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps", 373806689)
+        TypeManager.getMethodBindPtr("GLTFState", "set_bake_fps", 373_806_689)
 
     internal val getBakeFpsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps", 1740695150)
+        TypeManager.getMethodBindPtr("GLTFState", "get_bake_fps", 1_740_695_150)
   }
 }

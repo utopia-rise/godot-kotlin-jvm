@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
- * sphere.
+ * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a sphere.
  */
 @GodotBaseType
 public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
@@ -50,8 +45,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     }
 
   /**
-   * The upper vertical angle of the sphere. Used (together with [lowerVerticalAngle]) to set the
-   * height.
+   * The upper vertical angle of the sphere. Used (together with [lowerVerticalAngle]) to set the height.
    */
   public final inline var upperVerticalAngle: Float
     @JvmName("upperVerticalAngleProperty")
@@ -62,8 +56,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     }
 
   /**
-   * The lower vertical angle of the sphere. Used (together with [upperVerticalAngle]) to set the
-   * height.
+   * The lower vertical angle of the sphere. Used (together with [upperVerticalAngle]) to set the height.
    */
   public final inline var lowerVerticalAngle: Float
     @JvmName("lowerVerticalAngleProperty")
@@ -84,11 +77,11 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
       setFallbackSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(419, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -99,7 +92,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCentralHorizontalAngle(angle: Float): Unit {
+  public final fun setCentralHorizontalAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCentralHorizontalAnglePtr, NIL)
   }
@@ -110,7 +103,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUpperVerticalAngle(angle: Float): Unit {
+  public final fun setUpperVerticalAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setUpperVerticalAnglePtr, NIL)
   }
@@ -121,7 +114,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLowerVerticalAngle(angle: Float): Unit {
+  public final fun setLowerVerticalAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLowerVerticalAnglePtr, NIL)
   }
@@ -132,7 +125,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFallbackSegments(segments: Long): Unit {
+  public final fun setFallbackSegments(segments: Long) {
     TransferContext.writeArguments(LONG to segments)
     TransferContext.callMethod(ptr, MethodBindings.setFallbackSegmentsPtr, NIL)
   }
@@ -147,33 +140,33 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_radius", 1_740_695_150)
 
     internal val setCentralHorizontalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_central_horizontal_angle", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_central_horizontal_angle", 373_806_689)
 
     internal val getCentralHorizontalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_central_horizontal_angle", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_central_horizontal_angle", 1_740_695_150)
 
     internal val setUpperVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_upper_vertical_angle", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_upper_vertical_angle", 373_806_689)
 
     internal val getUpperVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_upper_vertical_angle", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_upper_vertical_angle", 1_740_695_150)
 
     internal val setLowerVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_lower_vertical_angle", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_lower_vertical_angle", 373_806_689)
 
     internal val getLowerVerticalAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_lower_vertical_angle", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_lower_vertical_angle", 1_740_695_150)
 
     internal val setFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_fallback_segments", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "set_fallback_segments", 1_286_410_249)
 
     internal val getFallbackSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_fallback_segments", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerEquirect", "get_fallback_segments", 3_905_245_786)
   }
 }

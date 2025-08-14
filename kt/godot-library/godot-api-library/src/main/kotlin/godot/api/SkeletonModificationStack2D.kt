@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,25 +18,19 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * This resource is used by the Skeleton and holds a stack of [SkeletonModification2D]s.
  *
- * This controls the order of the modifications and how they are applied. Modification order is
- * especially important for full-body IK setups, as you need to execute the modifications in the
- * correct order to get the desired results. For example, you want to execute a modification on the
- * spine *before* the arms on a humanoid skeleton.
+ * This controls the order of the modifications and how they are applied. Modification order is especially important for full-body IK setups, as you need to execute the modifications in the correct order to get the desired results. For example, you want to execute a modification on the spine *before* the arms on a humanoid skeleton.
  *
- * This resource also controls how strongly all of the modifications are applied to the
- * [Skeleton2D].
+ * This resource also controls how strongly all of the modifications are applied to the [Skeleton2D].
  */
 @GodotBaseType
 public open class SkeletonModificationStack2D : Resource() {
   /**
-   * If `true`, the modification's in the stack will be called. This is handled automatically
-   * through the [Skeleton2D] node.
+   * If `true`, the modification's in the stack will be called. This is handled automatically through the [Skeleton2D] node.
    */
   public final inline var enabled: Boolean
     @JvmName("enabledProperty")
@@ -50,9 +41,7 @@ public open class SkeletonModificationStack2D : Resource() {
     }
 
   /**
-   * The interpolation strength of the modifications in stack. A value of `0` will make it where the
-   * modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1`
-   * will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses.
+   * The interpolation strength of the modifications in stack. A value of `0` will make it where the modifications are not applied, a strength of `0.5` will be half applied, and a strength of `1` will allow the modifications to be fully applied and override the [Skeleton2D] [Bone2D] poses.
    */
   public final inline var strength: Float
     @JvmName("strengthProperty")
@@ -73,28 +62,24 @@ public open class SkeletonModificationStack2D : Resource() {
       setModificationCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(604, scriptIndex)
   }
 
   /**
-   * Sets up the modification stack so it can execute. This function should be called by
-   * [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
+   * Sets up the modification stack so it can execute. This function should be called by [Skeleton2D] and shouldn't be manually called unless you know what you are doing.
    */
-  public final fun setup(): Unit {
+  public final fun setup() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setupPtr, NIL)
   }
 
   /**
-   * Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as
-   * the passed-in [executionMode], starting from index `0` to [modificationCount].
+   * Executes all of the [SkeletonModification2D]s in the stack that use the same execution mode as the passed-in [executionMode], starting from index `0` to [modificationCount].
    *
-   * **Note:** The order of the modifications can matter depending on the modifications. For
-   * example, modifications on a spine should operate before modifications on the arms in order to get
-   * proper results.
+   * **Note:** The order of the modifications can matter depending on the modifications. For example, modifications on a spine should operate before modifications on the arms in order to get proper results.
    */
-  public final fun execute(delta: Float, executionMode: Int): Unit {
+  public final fun execute(delta: Float, executionMode: Int) {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.executePtr, NIL)
   }
@@ -102,7 +87,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Enables all [SkeletonModification2D]s in the stack.
    */
-  public final fun enableAllModifications(enabled: Boolean): Unit {
+  public final fun enableAllModifications(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.enableAllModificationsPtr, NIL)
   }
@@ -119,7 +104,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Adds the passed-in [SkeletonModification2D] to the stack.
    */
-  public final fun addModification(modification: SkeletonModification2D?): Unit {
+  public final fun addModification(modification: SkeletonModification2D?) {
     TransferContext.writeArguments(OBJECT to modification)
     TransferContext.callMethod(ptr, MethodBindings.addModificationPtr, NIL)
   }
@@ -127,7 +112,7 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Deletes the [SkeletonModification2D] at the index position [modIdx], if it exists.
    */
-  public final fun deleteModification(modIdx: Int): Unit {
+  public final fun deleteModification(modIdx: Int) {
     TransferContext.writeArguments(LONG to modIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.deleteModificationPtr, NIL)
   }
@@ -135,12 +120,12 @@ public open class SkeletonModificationStack2D : Resource() {
   /**
    * Sets the modification at [modIdx] to the passed-in modification, [modification].
    */
-  public final fun setModification(modIdx: Int, modification: SkeletonModification2D?): Unit {
+  public final fun setModification(modIdx: Int, modification: SkeletonModification2D?) {
     TransferContext.writeArguments(LONG to modIdx.toLong(), OBJECT to modification)
     TransferContext.callMethod(ptr, MethodBindings.setModificationPtr, NIL)
   }
 
-  public final fun setModificationCount(count: Int): Unit {
+  public final fun setModificationCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setModificationCountPtr, NIL)
   }
@@ -160,7 +145,7 @@ public open class SkeletonModificationStack2D : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -171,7 +156,7 @@ public open class SkeletonModificationStack2D : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setStrength(strength: Float): Unit {
+  public final fun setStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setStrengthPtr, NIL)
   }
@@ -195,48 +180,48 @@ public open class SkeletonModificationStack2D : Resource() {
 
   public object MethodBindings {
     internal val setupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "setup", 3218959716)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "setup", 3_218_959_716)
 
     internal val executePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "execute", 1005356550)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "execute", 1_005_356_550)
 
     internal val enableAllModificationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "enable_all_modifications", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "enable_all_modifications", 2_586_408_642)
 
     internal val getModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification", 2570274329)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification", 2_570_274_329)
 
     internal val addModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "add_modification", 354162120)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "add_modification", 354_162_120)
 
     internal val deleteModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "delete_modification", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "delete_modification", 1_286_410_249)
 
     internal val setModificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification", 1098262544)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification", 1_098_262_544)
 
     internal val setModificationCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification_count", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_modification_count", 1_286_410_249)
 
     internal val getModificationCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification_count", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_modification_count", 3_905_245_786)
 
     internal val getIsSetupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_is_setup", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_is_setup", 36_873_697)
 
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_enabled", 2_586_408_642)
 
     internal val getEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_enabled", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_enabled", 36_873_697)
 
     internal val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_strength", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "set_strength", 373_806_689)
 
     internal val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_strength", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_strength", 1_740_695_150)
 
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_skeleton", 1697361217)
+        TypeManager.getMethodBindPtr("SkeletonModificationStack2D", "get_skeleton", 1_697_361_217)
   }
 }

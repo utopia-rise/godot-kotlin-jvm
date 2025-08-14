@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,23 +15,20 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely
- * rotate. For example, a [RigidBody3D] can be attached to a [StaticBody3D] to create a pendulum or a
- * seesaw.
+ * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely rotate. For example, a [RigidBody3D] can be attached to a [StaticBody3D] to create a pendulum or a seesaw.
  */
 @GodotBaseType
 public open class PinJoint3D : Joint3D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(486, scriptIndex)
   }
 
   /**
    * Sets the value of the specified parameter.
    */
-  public final fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
@@ -52,13 +46,11 @@ public open class PinJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * The force with which the pinned objects stay in positional relation to each other. The
-     * higher, the stronger.
+     * The force with which the pinned objects stay in positional relation to each other. The higher, the stronger.
      */
     BIAS(0),
     /**
-     * The force with which the pinned objects stay in velocity relation to each other. The higher,
-     * the stronger.
+     * The force with which the pinned objects stay in velocity relation to each other. The higher, the stronger.
      */
     DAMPING(1),
     /**
@@ -81,9 +73,9 @@ public open class PinJoint3D : Joint3D() {
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint3D", "set_param", 2059913726)
+        TypeManager.getMethodBindPtr("PinJoint3D", "set_param", 2_059_913_726)
 
     internal val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PinJoint3D", "get_param", 1758438771)
+        TypeManager.getMethodBindPtr("PinJoint3D", "get_param", 1_758_438_771)
   }
 }

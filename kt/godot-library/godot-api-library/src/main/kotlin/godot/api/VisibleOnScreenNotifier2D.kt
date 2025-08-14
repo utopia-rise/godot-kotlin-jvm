@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,15 +21,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
- * region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal,
- * and likewise it will emit a [signal screen_exited] signal when no part of it remains visible.
+ * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this region becomes visible on screen or in a viewport, it will emit a [signal screen_entered] signal, and likewise it will emit a [signal screen_exited] signal when no part of it remains visible.
  *
- * If you want a node to be enabled automatically when this region is visible on screen, use
- * [VisibleOnScreenEnabler2D].
+ * If you want a node to be enabled automatically when this region is visible on screen, use [VisibleOnScreenEnabler2D].
  *
- * **Note:** [VisibleOnScreenNotifier2D] uses the render culling code to determine whether it's
- * visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
+ * **Note:** [VisibleOnScreenNotifier2D] uses the render culling code to determine whether it's visible on screen, so it won't function unless [CanvasItem.visible] is set to `true`.
  */
 @GodotBaseType
 public open class VisibleOnScreenNotifier2D : Node2D() {
@@ -50,11 +43,8 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
    * The VisibleOnScreenNotifier2D's bounding rectangle.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rect: Rect2
@@ -65,7 +55,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
       setRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(723, scriptIndex)
   }
 
@@ -88,7 +78,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
      rect = this
   }
 
-  public final fun setRect(rect: Rect2): Unit {
+  public final fun setRect(rect: Rect2) {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setRectPtr, NIL)
   }
@@ -102,9 +92,7 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   /**
    * If `true`, the bounding rectangle is on the screen.
    *
-   * **Note:** It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined
-   * once added to the scene tree, so this method will always return `false` right after it is
-   * instantiated, before the draw pass.
+   * **Note:** It takes one frame for the [VisibleOnScreenNotifier2D]'s visibility to be determined once added to the scene tree, so this method will always return `false` right after it is instantiated, before the draw pass.
    */
   public final fun isOnScreen(): Boolean {
     TransferContext.writeArguments()
@@ -116,12 +104,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
   public object MethodBindings {
     internal val setRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect", 2046264180)
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_rect", 2_046_264_180)
 
     internal val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1639390495)
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1_639_390_495)
 
     internal val isOnScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36873697)
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36_873_697)
   }
 }

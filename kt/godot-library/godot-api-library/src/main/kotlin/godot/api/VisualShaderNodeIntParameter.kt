@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,8 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
- * accepted values.
+ * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of accepted values.
  */
 @GodotBaseType
 public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
@@ -43,8 +39,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or
-   * [HINT_RANGE_STEP] for this to take effect.
+   * The minimum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
   public final inline var min: Int
     @JvmName("minProperty")
@@ -55,8 +50,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or
-   * [HINT_RANGE_STEP] for this to take effect.
+   * The maximum value this parameter can take. [hint] must be either [HINT_RANGE] or [HINT_RANGE_STEP] for this to take effect.
    */
   public final inline var max: Int
     @JvmName("maxProperty")
@@ -67,8 +61,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The step between parameter's values. Forces the parameter to be a multiple of the given value.
-   * [hint] must be [HINT_RANGE_STEP] for this to take effect.
+   * The step between parameter's values. Forces the parameter to be a multiple of the given value. [hint] must be [HINT_RANGE_STEP] for this to take effect.
    */
   public final inline var step: Int
     @JvmName("stepProperty")
@@ -79,15 +72,11 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
-   * effect.
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take effect.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var enumNames: PackedStringArray
@@ -110,8 +99,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     }
 
   /**
-   * Default value of this parameter, which will be used if not set externally.
-   * [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
+   * Default value of this parameter, which will be used if not set externally. [defaultValueEnabled] must be enabled; defaults to `0` otherwise.
    */
   public final inline var defaultValue: Int
     @JvmName("defaultValueProperty")
@@ -121,7 +109,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(763, scriptIndex)
   }
 
@@ -136,27 +124,22 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
    * visualshadernodeintparameter.enumNames = myCoreType
    * ``````
    *
-   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
-   * effect.
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take effect.
    */
   @CoreTypeHelper
-  public final fun enumNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      enumNames.apply {
+  public final fun enumNamesMutate(block: PackedStringArray.() -> Unit): PackedStringArray = enumNames.apply {
      block(this)
      enumNames = this
   }
 
   /**
    * This is a helper function for [enumNames] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take
-   * effect.
+   * The names used for the enum select in the editor. [hint] must be [HINT_ENUM] for this to take effect.
    */
   @CoreTypeHelper
-  public final fun enumNamesMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = enumNames.apply {
+  public final fun enumNamesMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = enumNames.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -164,7 +147,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
      enumNames = this
   }
 
-  public final fun setHint(hint: Hint): Unit {
+  public final fun setHint(hint: Hint) {
     TransferContext.writeArguments(LONG to hint.id)
     TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
@@ -175,7 +158,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return Hint.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMin(`value`: Int): Unit {
+  public final fun setMin(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMinPtr, NIL)
   }
@@ -186,7 +169,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMax(`value`: Int): Unit {
+  public final fun setMax(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
@@ -197,7 +180,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setStep(`value`: Int): Unit {
+  public final fun setStep(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStepPtr, NIL)
   }
@@ -208,7 +191,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setEnumNames(names: PackedStringArray): Unit {
+  public final fun setEnumNames(names: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to names)
     TransferContext.callMethod(ptr, MethodBindings.setEnumNamesPtr, NIL)
   }
@@ -219,7 +202,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
@@ -230,7 +213,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultValue(`value`: Int): Unit {
+  public final fun setDefaultValue(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
@@ -253,8 +236,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
      */
     RANGE(1),
     /**
-     * The parameter's value must be within the specified range, with the given [step] between
-     * values.
+     * The parameter's value must be within the specified range, with the given [step] between values.
      */
     RANGE_STEP(2),
     /**
@@ -281,45 +263,45 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
 
   public object MethodBindings {
     internal val setHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2540512075)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_hint", 2_540_512_075)
 
     internal val getHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4250814924)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_hint", 4_250_814_924)
 
     internal val setMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_min", 1_286_410_249)
 
     internal val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_min", 3_905_245_786)
 
     internal val setMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_max", 1_286_410_249)
 
     internal val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_max", 3_905_245_786)
 
     internal val setStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_step", 1_286_410_249)
 
     internal val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_step", 3_905_245_786)
 
     internal val setEnumNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_enum_names", 4015028928)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_enum_names", 4_015_028_928)
 
     internal val getEnumNamesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_enum_names", 1139954409)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_enum_names", 1_139_954_409)
 
     internal val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value_enabled", 2_586_408_642)
 
     internal val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "is_default_value_enabled", 36_873_697)
 
     internal val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "set_default_value", 1_286_410_249)
 
     internal val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntParameter", "get_default_value", 3_905_245_786)
   }
 }

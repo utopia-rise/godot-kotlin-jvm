@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,8 +28,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class OccluderPolygon2D : Resource() {
   /**
-   * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any
-   * direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
+   * If `true`, closes the polygon. A closed OccluderPolygon2D occludes the light coming from any direction. An opened OccluderPolygon2D occludes the light only at its outline's direction.
    */
   public final inline var closed: Boolean
     @JvmName("closedProperty")
@@ -57,11 +53,8 @@ public open class OccluderPolygon2D : Resource() {
    * A [Vector2] array with the index for polygon's vertices positions.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
@@ -72,7 +65,7 @@ public open class OccluderPolygon2D : Resource() {
       setPolygon(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(405, scriptIndex)
   }
 
@@ -90,22 +83,19 @@ public open class OccluderPolygon2D : Resource() {
    * A [Vector2] array with the index for polygon's vertices positions.
    */
   @CoreTypeHelper
-  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      polygon.apply {
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = polygon.apply {
      block(this)
      polygon = this
   }
 
   /**
    * This is a helper function for [polygon] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * A [Vector2] array with the index for polygon's vertices positions.
    */
   @CoreTypeHelper
-  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = polygon.apply {
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = polygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -113,7 +103,7 @@ public open class OccluderPolygon2D : Resource() {
      polygon = this
   }
 
-  public final fun setClosed(closed: Boolean): Unit {
+  public final fun setClosed(closed: Boolean) {
     TransferContext.writeArguments(BOOL to closed)
     TransferContext.callMethod(ptr, MethodBindings.setClosedPtr, NIL)
   }
@@ -124,7 +114,7 @@ public open class OccluderPolygon2D : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCullMode(cullMode: CullMode): Unit {
+  public final fun setCullMode(cullMode: CullMode) {
     TransferContext.writeArguments(LONG to cullMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
@@ -135,7 +125,7 @@ public open class OccluderPolygon2D : Resource() {
     return CullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
@@ -177,21 +167,21 @@ public open class OccluderPolygon2D : Resource() {
 
   public object MethodBindings {
     internal val setClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_closed", 2586408642)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_closed", 2_586_408_642)
 
     internal val isClosedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "is_closed", 36873697)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "is_closed", 36_873_697)
 
     internal val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode", 3500863002)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_cull_mode", 3_500_863_002)
 
     internal val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode", 33931036)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_cull_mode", 33_931_036)
 
     internal val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "set_polygon", 1_509_147_220)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("OccluderPolygon2D", "get_polygon", 2_961_356_807)
   }
 }

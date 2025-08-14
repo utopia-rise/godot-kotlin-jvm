@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,28 +26,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts
- * associated with a scene. They cannot be modified from a [SceneState], only accessed. Useful for
- * peeking into what a [PackedScene] contains without instantiating it.
+ * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts associated with a scene. They cannot be modified from a [SceneState], only accessed. Useful for peeking into what a [PackedScene] contains without instantiating it.
  *
- * This class cannot be instantiated directly, it is retrieved for a given scene as the result of
- * [PackedScene.getState].
+ * This class cannot be instantiated directly, it is retrieved for a given scene as the result of [PackedScene.getState].
  */
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(569, scriptIndex)
   }
 
   /**
    * Returns the number of nodes in the scene.
    *
-   * The `idx` argument used to query node data in other `get_node_*` methods in the interval `[0,
-   * get_node_count() - 1]`.
+   * The `idx` argument used to query node data in other `get_node_*` methods in the interval `[0, get_node_count() - 1]`.
    */
   public final fun getNodeCount(): Int {
     TransferContext.writeArguments()
@@ -107,8 +99,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the represented scene file if the node at [idx] is an
-   * [InstancePlaceholder].
+   * Returns the path to the represented scene file if the node at [idx] is an [InstancePlaceholder].
    */
   public final fun getNodeInstancePlaceholder(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -117,8 +108,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a [PackedScene] for the node at [idx] (i.e. the whole branch starting at this node,
-   * with its child nodes and resources), or `null` if the node is not an instance.
+   * Returns a [PackedScene] for the node at [idx] (i.e. the whole branch starting at this node, with its child nodes and resources), or `null` if the node is not an instance.
    */
   public final fun getNodeInstance(idx: Int): PackedScene? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -136,10 +126,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the node's index, which is its position relative to its siblings. This is only relevant
-   * and saved in scenes for cases where new nodes are added to an instantiated or inherited scene
-   * among siblings from the base scene. Despite the name, this index is not related to the [idx]
-   * argument used here and in other methods.
+   * Returns the node's index, which is its position relative to its siblings. This is only relevant and saved in scenes for cases where new nodes are added to an instantiated or inherited scene among siblings from the base scene. Despite the name, this index is not related to the [idx] argument used here and in other methods.
    */
   public final fun getNodeIndex(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -150,8 +137,7 @@ public open class SceneState internal constructor() : RefCounted() {
   /**
    * Returns the number of exported or overridden properties for the node at [idx].
    *
-   * The `prop_idx` argument used to query node property data in other `get_node_property_*` methods
-   * in the interval `[0, get_node_property_count() - 1]`.
+   * The `prop_idx` argument used to query node property data in other `get_node_property_*` methods in the interval `[0, get_node_property_count() - 1]`.
    */
   public final fun getNodePropertyCount(idx: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -180,8 +166,7 @@ public open class SceneState internal constructor() : RefCounted() {
   /**
    * Returns the number of signal connections in the scene.
    *
-   * The `idx` argument used to query connection metadata in other `get_connection_*` methods in the
-   * interval `[0, get_connection_count() - 1]`.
+   * The `idx` argument used to query connection metadata in other `get_connection_*` methods in the interval `[0, get_connection_count() - 1]`.
    */
   public final fun getConnectionCount(): Int {
     TransferContext.writeArguments()
@@ -208,8 +193,7 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the path to the node that owns the method connected to the signal at [idx], relative to
-   * the root node.
+   * Returns the path to the node that owns the method connected to the signal at [idx], relative to the root node.
    */
   public final fun getConnectionTarget(idx: Int): NodePath {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -261,22 +245,19 @@ public open class SceneState internal constructor() : RefCounted() {
      */
     DISABLED(0),
     /**
-     * If passed to [PackedScene.instantiate], provides inherited scene resources to the local
-     * scene.
+     * If passed to [PackedScene.instantiate], provides inherited scene resources to the local scene.
      *
      * **Note:** Only available in editor builds.
      */
     INSTANCE(1),
     /**
-     * If passed to [PackedScene.instantiate], provides local scene resources to the local scene.
-     * Only the main scene should receive the main edit state.
+     * If passed to [PackedScene.instantiate], provides local scene resources to the local scene. Only the main scene should receive the main edit state.
      *
      * **Note:** Only available in editor builds.
      */
     MAIN(2),
     /**
-     * If passed to [PackedScene.instantiate], it's similar to [GEN_EDIT_STATE_MAIN], but for the
-     * case where the scene is being instantiated to be the base of another one.
+     * If passed to [PackedScene.instantiate], it's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
      *
      * **Note:** Only available in editor builds.
      */
@@ -297,66 +278,66 @@ public open class SceneState internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val getNodeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_count", 3905245786)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_count", 3_905_245_786)
 
     internal val getNodeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_type", 659327637)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_type", 659_327_637)
 
     internal val getNodeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_name", 659327637)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_name", 659_327_637)
 
     internal val getNodePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_path", 2272487792)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_path", 2_272_487_792)
 
     internal val getNodeOwnerPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_owner_path", 408788394)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_owner_path", 408_788_394)
 
     internal val isNodeInstancePlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "is_node_instance_placeholder", 1116898809)
+        TypeManager.getMethodBindPtr("SceneState", "is_node_instance_placeholder", 1_116_898_809)
 
     internal val getNodeInstancePlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_instance_placeholder", 844755477)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_instance_placeholder", 844_755_477)
 
     internal val getNodeInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_instance", 511017218)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_instance", 511_017_218)
 
     internal val getNodeGroupsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_groups", 647634434)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_groups", 647_634_434)
 
     internal val getNodeIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_index", 923996154)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_index", 923_996_154)
 
     internal val getNodePropertyCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_count", 923996154)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_count", 923_996_154)
 
     internal val getNodePropertyNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_name", 351665558)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_name", 351_665_558)
 
     internal val getNodePropertyValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_node_property_value", 678354945)
+        TypeManager.getMethodBindPtr("SceneState", "get_node_property_value", 678_354_945)
 
     internal val getConnectionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_count", 3905245786)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_count", 3_905_245_786)
 
     internal val getConnectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_source", 408788394)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_source", 408_788_394)
 
     internal val getConnectionSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_signal", 659327637)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_signal", 659_327_637)
 
     internal val getConnectionTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_target", 408788394)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_target", 408_788_394)
 
     internal val getConnectionMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_method", 659327637)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_method", 659_327_637)
 
     internal val getConnectionFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_flags", 923996154)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_flags", 923_996_154)
 
     internal val getConnectionBindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_binds", 663333327)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_binds", 663_333_327)
 
     internal val getConnectionUnbindsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneState", "get_connection_unbinds", 923996154)
+        TypeManager.getMethodBindPtr("SceneState", "get_connection_unbinds", 923_996_154)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,29 +17,24 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
- * This singleton provides access to static information about [Theme] resources used by the engine
- * and by your projects. You can fetch the default engine theme, as well as your project configured
- * theme.
+ * This singleton provides access to static information about [Theme] resources used by the engine and by your projects. You can fetch the default engine theme, as well as your project configured theme.
  *
  * [ThemeDB] also contains fallback values for theme properties.
  */
 @GodotBaseType
 public object ThemeDB : Object() {
   /**
-   * Emitted when one of the fallback values had been changed. Use it to refresh the look of
-   * controls that may rely on the fallback theme items.
+   * Emitted when one of the fallback values had been changed. Use it to refresh the look of controls that may rely on the fallback theme items.
    */
   @JvmStatic
   public val fallbackChanged: Signal0 by Signal0
 
   /**
-   * The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other
-   * value is available to the control.
+   * The fallback base scale factor of every [Control] node and [Theme] resource. Used when no other value is available to the control.
    *
    * See also [Theme.defaultBaseScale].
    */
@@ -56,8 +48,7 @@ public object ThemeDB : Object() {
     }
 
   /**
-   * The fallback font of every [Control] node and [Theme] resource. Used when no other value is
-   * available to the control.
+   * The fallback font of every [Control] node and [Theme] resource. Used when no other value is available to the control.
    *
    * See also [Theme.defaultFont].
    */
@@ -71,8 +62,7 @@ public object ThemeDB : Object() {
     }
 
   /**
-   * The fallback font size of every [Control] node and [Theme] resource. Used when no other value
-   * is available to the control.
+   * The fallback font size of every [Control] node and [Theme] resource. Used when no other value is available to the control.
    *
    * See also [Theme.defaultFontSize].
    */
@@ -86,8 +76,7 @@ public object ThemeDB : Object() {
     }
 
   /**
-   * The fallback icon of every [Control] node and [Theme] resource. Used when no other value is
-   * available to the control.
+   * The fallback icon of every [Control] node and [Theme] resource. Used when no other value is available to the control.
    */
   @JvmStatic
   public final inline var fallbackIcon: Texture2D?
@@ -99,8 +88,7 @@ public object ThemeDB : Object() {
     }
 
   /**
-   * The fallback stylebox of every [Control] node and [Theme] resource. Used when no other value is
-   * available to the control.
+   * The fallback stylebox of every [Control] node and [Theme] resource. Used when no other value is available to the control.
    */
   @JvmStatic
   public final inline var fallbackStylebox: StyleBox?
@@ -111,13 +99,12 @@ public object ThemeDB : Object() {
       setFallbackStylebox(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(31)
   }
 
   /**
-   * Returns a reference to the default engine [Theme]. This theme resource is responsible for the
-   * out-of-the-box look of [Control] nodes and cannot be overridden.
+   * Returns a reference to the default engine [Theme]. This theme resource is responsible for the out-of-the-box look of [Control] nodes and cannot be overridden.
    */
   @JvmStatic
   public final fun getDefaultTheme(): Theme? {
@@ -127,8 +114,7 @@ public object ThemeDB : Object() {
   }
 
   /**
-   * Returns a reference to the custom project [Theme]. This theme resources allows to override the
-   * default engine theme for every control node in the project.
+   * Returns a reference to the custom project [Theme]. This theme resources allows to override the default engine theme for every control node in the project.
    *
    * To set the project theme, see [ProjectSettings.gui/theme/custom].
    */
@@ -140,7 +126,7 @@ public object ThemeDB : Object() {
   }
 
   @JvmStatic
-  public final fun setFallbackBaseScale(baseScale: Float): Unit {
+  public final fun setFallbackBaseScale(baseScale: Float) {
     TransferContext.writeArguments(DOUBLE to baseScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFallbackBaseScalePtr, NIL)
   }
@@ -153,7 +139,7 @@ public object ThemeDB : Object() {
   }
 
   @JvmStatic
-  public final fun setFallbackFont(font: Font?): Unit {
+  public final fun setFallbackFont(font: Font?) {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setFallbackFontPtr, NIL)
   }
@@ -166,7 +152,7 @@ public object ThemeDB : Object() {
   }
 
   @JvmStatic
-  public final fun setFallbackFontSize(fontSize: Int): Unit {
+  public final fun setFallbackFontSize(fontSize: Int) {
     TransferContext.writeArguments(LONG to fontSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFallbackFontSizePtr, NIL)
   }
@@ -179,7 +165,7 @@ public object ThemeDB : Object() {
   }
 
   @JvmStatic
-  public final fun setFallbackIcon(icon: Texture2D?): Unit {
+  public final fun setFallbackIcon(icon: Texture2D?) {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.setFallbackIconPtr, NIL)
   }
@@ -192,7 +178,7 @@ public object ThemeDB : Object() {
   }
 
   @JvmStatic
-  public final fun setFallbackStylebox(stylebox: StyleBox?): Unit {
+  public final fun setFallbackStylebox(stylebox: StyleBox?) {
     TransferContext.writeArguments(OBJECT to stylebox)
     TransferContext.callMethod(ptr, MethodBindings.setFallbackStyleboxPtr, NIL)
   }
@@ -206,39 +192,39 @@ public object ThemeDB : Object() {
 
   public object MethodBindings {
     internal val getDefaultThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_default_theme", 754276358)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_default_theme", 754_276_358)
 
     internal val getProjectThemePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_project_theme", 754276358)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_project_theme", 754_276_358)
 
     internal val setFallbackBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_base_scale", 373806689)
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_base_scale", 373_806_689)
 
     internal val getFallbackBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_base_scale", 191475506)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_base_scale", 191_475_506)
 
     internal val setFallbackFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font", 1262170328)
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font", 1_262_170_328)
 
     internal val getFallbackFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font", 3656929885)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font", 3_656_929_885)
 
     internal val setFallbackFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font_size", 1286410249)
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_font_size", 1_286_410_249)
 
     internal val getFallbackFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font_size", 2455072627)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_font_size", 2_455_072_627)
 
     internal val setFallbackIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_icon", 4051416890)
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_icon", 4_051_416_890)
 
     internal val getFallbackIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_icon", 255860311)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_icon", 255_860_311)
 
     internal val setFallbackStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_stylebox", 2797200388)
+        TypeManager.getMethodBindPtr("ThemeDB", "set_fallback_stylebox", 2_797_200_388)
 
     internal val getFallbackStyleboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_stylebox", 496040854)
+        TypeManager.getMethodBindPtr("ThemeDB", "get_fallback_stylebox", 496_040_854)
   }
 }

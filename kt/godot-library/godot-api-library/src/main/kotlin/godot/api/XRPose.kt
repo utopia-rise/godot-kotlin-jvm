@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,17 +28,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * XR runtimes often identify multiple locations on devices such as controllers that are spatially
- * tracked.
+ * XR runtimes often identify multiple locations on devices such as controllers that are spatially tracked.
  *
- * Orientation, location, linear velocity and angular velocity are all provided for each pose by the
- * XR runtime. This object contains this state of a pose.
+ * Orientation, location, linear velocity and angular velocity are all provided for each pose by the XR runtime. This object contains this state of a pose.
  */
 @GodotBaseType
 public open class XRPose : RefCounted() {
   /**
-   * If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking
-   * data and our state is whatever that last valid state was.
+   * If `true` our tracking data is up to date. If `false` we're no longer receiving new tracking data and our state is whatever that last valid state was.
    */
   public final inline var hasTrackingData: Boolean
     @JvmName("hasTrackingDataProperty")
@@ -52,18 +46,15 @@ public open class XRPose : RefCounted() {
     }
 
   /**
-   * The name of this pose. Usually, this name is derived from an action map set up by the user.
-   * Godot also suggests some pose names that [XRInterface] objects are expected to implement:
+   * The name of this pose. Usually, this name is derived from an action map set up by the user. Godot also suggests some pose names that [XRInterface] objects are expected to implement:
    *
    * - `root` is the root location, often used for tracked objects that do not have further nodes.
    *
-   * - `aim` is the tip of a controller with its orientation pointing outwards, often used for
-   * raycasts.
+   * - `aim` is the tip of a controller with its orientation pointing outwards, often used for raycasts.
    *
    * - `grip` is the location where the user grips the controller.
    *
-   * - `skeleton` is the root location for a hand mesh, when using hand tracking and an animated
-   * skeleton is supplied by the XR runtime.
+   * - `skeleton` is the root location for a hand mesh, when using hand tracking and an animated skeleton is supplied by the XR runtime.
    */
   public final inline var name: StringName
     @JvmName("nameProperty")
@@ -77,11 +68,8 @@ public open class XRPose : RefCounted() {
    * The transform containing the original and transform as reported by the XR runtime.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -96,11 +84,8 @@ public open class XRPose : RefCounted() {
    * The linear velocity of this pose.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -115,11 +100,8 @@ public open class XRPose : RefCounted() {
    * The angular velocity for this pose.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -131,8 +113,7 @@ public open class XRPose : RefCounted() {
     }
 
   /**
-   * The tracking confidence for this pose, provides insight on how accurate the spatial positioning
-   * of this record is.
+   * The tracking confidence for this pose, provides insight on how accurate the spatial positioning of this record is.
    */
   public final inline var trackingConfidence: TrackingConfidence
     @JvmName("trackingConfidenceProperty")
@@ -142,7 +123,7 @@ public open class XRPose : RefCounted() {
       setTrackingConfidence(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(872, scriptIndex)
   }
 
@@ -198,13 +179,12 @@ public open class XRPose : RefCounted() {
    * The angular velocity for this pose.
    */
   @CoreTypeHelper
-  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply {
+  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply {
      block(this)
      angularVelocity = this
   }
 
-  public final fun setHasTrackingData(hasTrackingData: Boolean): Unit {
+  public final fun setHasTrackingData(hasTrackingData: Boolean) {
     TransferContext.writeArguments(BOOL to hasTrackingData)
     TransferContext.callMethod(ptr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
@@ -215,7 +195,7 @@ public open class XRPose : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setName(name: StringName): Unit {
+  public final fun setName(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
   }
@@ -226,7 +206,7 @@ public open class XRPose : RefCounted() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setTransform(transform: Transform3D): Unit {
+  public final fun setTransform(transform: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -238,8 +218,7 @@ public open class XRPose : RefCounted() {
   }
 
   /**
-   * Returns the [transform] with world scale and our reference frame applied. This is the transform
-   * used to position [XRNode3D] objects.
+   * Returns the [transform] with world scale and our reference frame applied. This is the transform used to position [XRNode3D] objects.
    */
   public final fun getAdjustedTransform(): Transform3D {
     TransferContext.writeArguments()
@@ -247,7 +226,7 @@ public open class XRPose : RefCounted() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setLinearVelocity(velocity: Vector3): Unit {
+  public final fun setLinearVelocity(velocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
@@ -258,7 +237,7 @@ public open class XRPose : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setAngularVelocity(velocity: Vector3): Unit {
+  public final fun setAngularVelocity(velocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
@@ -269,7 +248,7 @@ public open class XRPose : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
+  public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence) {
     TransferContext.writeArguments(LONG to trackingConfidence.id)
     TransferContext.callMethod(ptr, MethodBindings.setTrackingConfidencePtr, NIL)
   }
@@ -280,7 +259,7 @@ public open class XRPose : RefCounted() {
     return TrackingConfidence.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setName(name: String) = setName(name.asCachedStringName())
+  public final fun setName(name: String): Unit = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
     id: Long,
@@ -290,8 +269,7 @@ public open class XRPose : RefCounted() {
      */
     XR_NONE(0),
     /**
-     * Tracking information may be inaccurate or estimated. For example, with inside out tracking
-     * this would indicate a controller may be (partially) obscured.
+     * Tracking information may be inaccurate or estimated. For example, with inside out tracking this would indicate a controller may be (partially) obscured.
      */
     XR_LOW(1),
     /**
@@ -314,42 +292,42 @@ public open class XRPose : RefCounted() {
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_has_tracking_data", 2586408642)
+        TypeManager.getMethodBindPtr("XRPose", "set_has_tracking_data", 2_586_408_642)
 
     internal val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_has_tracking_data", 36873697)
+        TypeManager.getMethodBindPtr("XRPose", "get_has_tracking_data", 36_873_697)
 
     internal val setNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_name", 3304788590)
+        TypeManager.getMethodBindPtr("XRPose", "set_name", 3_304_788_590)
 
     internal val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_name", 2002593661)
+        TypeManager.getMethodBindPtr("XRPose", "get_name", 2_002_593_661)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_transform", 2952846383)
+        TypeManager.getMethodBindPtr("XRPose", "set_transform", 2_952_846_383)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_transform", 3229777777)
+        TypeManager.getMethodBindPtr("XRPose", "get_transform", 3_229_777_777)
 
     internal val getAdjustedTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_adjusted_transform", 3229777777)
+        TypeManager.getMethodBindPtr("XRPose", "get_adjusted_transform", 3_229_777_777)
 
     internal val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_linear_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("XRPose", "set_linear_velocity", 3_460_891_852)
 
     internal val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_linear_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("XRPose", "get_linear_velocity", 3_360_562_783)
 
     internal val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_angular_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("XRPose", "set_angular_velocity", 3_460_891_852)
 
     internal val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_angular_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("XRPose", "get_angular_velocity", 3_360_562_783)
 
     internal val setTrackingConfidencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "set_tracking_confidence", 4171656666)
+        TypeManager.getMethodBindPtr("XRPose", "set_tracking_confidence", 4_171_656_666)
 
     internal val getTrackingConfidencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRPose", "get_tracking_confidence", 2064923680)
+        TypeManager.getMethodBindPtr("XRPose", "get_tracking_confidence", 2_064_923_680)
   }
 }

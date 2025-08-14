@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.core
 
@@ -17,23 +14,19 @@ public enum class JoyButton(
    */
   INVALID(-1),
   /**
-   * Game controller SDL button A. Corresponds to the bottom action button: Sony Cross, Xbox A,
-   * Nintendo B.
+   * Game controller SDL button A. Corresponds to the bottom action button: Sony Cross, Xbox A, Nintendo B.
    */
   A(0),
   /**
-   * Game controller SDL button B. Corresponds to the right action button: Sony Circle, Xbox B,
-   * Nintendo A.
+   * Game controller SDL button B. Corresponds to the right action button: Sony Circle, Xbox B, Nintendo A.
    */
   B(1),
   /**
-   * Game controller SDL button X. Corresponds to the left action button: Sony Square, Xbox X,
-   * Nintendo Y.
+   * Game controller SDL button X. Corresponds to the left action button: Sony Square, Xbox X, Nintendo Y.
    */
   X(2),
   /**
-   * Game controller SDL button Y. Corresponds to the top action button: Sony Triangle, Xbox Y,
-   * Nintendo X.
+   * Game controller SDL button Y. Corresponds to the top action button: Sony Triangle, Xbox Y, Nintendo X.
    */
   Y(3),
   /**
@@ -45,8 +38,7 @@ public enum class JoyButton(
    */
   GUIDE(5),
   /**
-   * Game controller SDL start button. Corresponds to the Sony Options, Xbox Menu, Nintendo +
-   * button.
+   * Game controller SDL start button. Corresponds to the Sony Options, Xbox Menu, Nintendo + button.
    */
   START(6),
   /**
@@ -82,8 +74,7 @@ public enum class JoyButton(
    */
   DPAD_RIGHT(14),
   /**
-   * Game controller SDL miscellaneous button. Corresponds to Xbox share button, PS5 microphone
-   * button, Nintendo Switch capture button.
+   * Game controller SDL miscellaneous button. Corresponds to Xbox share button, PS5 microphone button, Nintendo Switch capture button.
    */
   MISC1(15),
   /**
@@ -111,8 +102,7 @@ public enum class JoyButton(
    */
   SDL_MAX(21),
   /**
-   * The maximum number of game controller buttons supported by the engine. The actual limit may be
-   * lower on specific platforms:
+   * The maximum number of game controller buttons supported by the engine. The actual limit may be lower on specific platforms:
    *
    * - **Android:** Up to 36 buttons.
    *

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,18 +12,15 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
- * the [VisualShader] editor it behaves exactly like [VisualShaderNodeFrame].
+ * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In the [VisualShader] editor it behaves exactly like [VisualShaderNodeFrame].
  */
 @GodotBaseType
 public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
   /**
-   * This property only exists to preserve data authored in earlier versions of Godot. It has
-   * currently no function.
+   * This property only exists to preserve data authored in earlier versions of Godot. It has currently no function.
    */
   public final inline var description: String
     @JvmName("descriptionProperty")
@@ -36,11 +30,11 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
       setDescription(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(736, scriptIndex)
   }
 
-  public final fun setDescription(description: String): Unit {
+  public final fun setDescription(description: String) {
     TransferContext.writeArguments(STRING to description)
     TransferContext.callMethod(ptr, MethodBindings.setDescriptionPtr, NIL)
   }
@@ -55,9 +49,9 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
 
   public object MethodBindings {
     internal val setDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "set_description", 83_702_148)
 
     internal val getDescriptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeComment", "get_description", 201_670_096)
   }
 }

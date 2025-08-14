@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -13,11 +10,10 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(845, scriptIndex)
   }
 
@@ -29,8 +25,7 @@ public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public abstract fun _initialize(pConfig: Dictionary<Any?, Any?>): Error
 
-  public abstract fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>):
-      WebRTCDataChannel?
+  public abstract fun _createDataChannel(pLabel: String, pConfig: Dictionary<Any?, Any?>): WebRTCDataChannel?
 
   public abstract fun _createOffer(): Error
 
@@ -46,7 +41,7 @@ public abstract class WebRTCPeerConnectionExtension : WebRTCPeerConnection() {
 
   public abstract fun _poll(): Error
 
-  public abstract fun _close(): Unit
+  public abstract fun _close()
 
   public companion object
 

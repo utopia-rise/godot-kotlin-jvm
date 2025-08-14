@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -39,13 +36,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * SkeletonIK3D is used to rotate all bones of a [Skeleton3D] bone chain a way that places the end
- * bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on
- * the ground or a character's hands on a currently held object. SkeletonIK uses FabrikInverseKinematic
- * internally to solve the bone chain and applies the results to the [Skeleton3D]
- * `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this
- * overwrites any bone transform from [Animation]s or bone custom poses set by users. The applied
- * amount can be controlled with the [SkeletonModifier3D.influence] property.
+ * SkeletonIK3D is used to rotate all bones of a [Skeleton3D] bone chain a way that places the end bone at a desired 3D position. A typical scenario for IK in games is to place a character's feet on the ground or a character's hands on a currently held object. SkeletonIK uses FabrikInverseKinematic internally to solve the bone chain and applies the results to the [Skeleton3D] `bones_global_pose_override` property for all affected bones in the chain. If fully applied, this overwrites any bone transform from [Animation]s or bone custom poses set by users. The applied amount can be controlled with the [SkeletonModifier3D.influence] property.
  *
  * ```
  * # Apply IK effect automatically on every new frame (not the current)
@@ -63,8 +54,7 @@ import kotlin.jvm.JvmOverloads
  * # Apply half IK effect
  * skeleton_ik_node.set_influence(0.5)
  *
- * # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on
- * Skeleton)
+ * # Apply zero IK effect (a value at or below 0.01 also removes bones_global_pose_override on Skeleton)
  * skeleton_ik_node.set_influence(0.0)
  * ```
  */
@@ -82,8 +72,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * The name of the current tip bone, the last bone in the IK chain placed at the [target]
-   * transform (or [targetNode] if defined).
+   * The name of the current tip bone, the last bone in the IK chain placed at the [target] transform (or [targetNode] if defined).
    */
   public final inline var tipBone: StringName
     @JvmName("tipBoneProperty")
@@ -94,16 +83,11 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`,
-   * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
-   * instead and this property is ignored.
+   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`, how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used instead and this property is ignored.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var target: Transform3D
@@ -115,8 +99,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * If `true` overwrites the rotation of the tip bone with the rotation of the [target] (or
-   * [targetNode] if defined).
+   * If `true` overwrites the rotation of the tip bone with the rotation of the [target] (or [targetNode] if defined).
    */
   public final inline var overrideTipBasis: Boolean
     @JvmName("overrideTipBasisProperty")
@@ -127,9 +110,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * If `true`, instructs the IK solver to consider the secondary magnet target (pole target) when
-   * calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK
-   * chain.
+   * If `true`, instructs the IK solver to consider the secondary magnet target (pole target) when calculating the bone chain. Use the magnet position (pole target) to control the bending of the IK chain.
    */
   public final inline var useMagnet: Boolean
     @JvmName("useMagnetProperty")
@@ -140,17 +121,11 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use
-   * magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain
-   * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
-   * magnet position.
+   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var magnet: Vector3
@@ -162,8 +137,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used
-   * instead of the [target] property.
+   * Target node [NodePath] for the IK chain. If available, the node's current [Transform3D] is used instead of the [target] property.
    */
   public final inline var targetNode: NodePath
     @JvmName("targetNodeProperty")
@@ -174,8 +148,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * The minimum distance between bone and goal target. If the distance is below this value, the IK
-   * solver stops further iterations.
+   * The minimum distance between bone and goal target. If the distance is below this value, the IK solver stops further iterations.
    */
   public final inline var minDistance: Float
     @JvmName("minDistanceProperty")
@@ -186,8 +159,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone
-   * chain results.
+   * Number of iteration loops used by the IK solver to produce more accurate (and elegant) bone chain results.
    */
   public final inline var maxIterations: Int
     @JvmName("maxIterationsProperty")
@@ -198,9 +170,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     }
 
   /**
-   * Interpolation value for how much the IK results are applied to the current skeleton bone chain.
-   * A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0`
-   * will visually disable the SkeletonIK.
+   * Interpolation value for how much the IK results are applied to the current skeleton bone chain. A value of `1.0` will overwrite all skeleton bone transforms completely while a value of `0.0` will visually disable the SkeletonIK.
    */
   public final inline var interpolation: Float
     @JvmName("interpolationProperty")
@@ -210,7 +180,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
       setInterpolation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(595, scriptIndex)
   }
 
@@ -225,9 +195,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * skeletonik3d.target = myCoreType
    * ``````
    *
-   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`,
-   * how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used
-   * instead and this property is ignored.
+   * First target of the IK chain where the tip bone is placed and, if [overrideTipBasis] is `true`, how the tip bone is rotated. If a [targetNode] path is available the nodes transform is used instead and this property is ignored.
    */
   @CoreTypeHelper
   public final fun targetMutate(block: Transform3D.() -> Unit): Transform3D = target.apply {
@@ -246,10 +214,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
    * skeletonik3d.magnet = myCoreType
    * ``````
    *
-   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use
-   * magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain
-   * has more than 2 bones. The middle chain bone position will be linearly interpolated with the
-   * magnet position.
+   * Secondary target position (first is [target] property or [targetNode]) for the IK chain. Use magnet position (pole target) to control the bending of the IK chain. Only works if the bone chain has more than 2 bones. The middle chain bone position will be linearly interpolated with the magnet position.
    */
   @CoreTypeHelper
   public final fun magnetMutate(block: Vector3.() -> Unit): Vector3 = magnet.apply {
@@ -257,7 +222,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
      magnet = this
   }
 
-  public final fun setRootBone(rootBone: StringName): Unit {
+  public final fun setRootBone(rootBone: StringName) {
     TransferContext.writeArguments(STRING_NAME to rootBone)
     TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
   }
@@ -268,7 +233,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setTipBone(tipBone: StringName): Unit {
+  public final fun setTipBone(tipBone: StringName) {
     TransferContext.writeArguments(STRING_NAME to tipBone)
     TransferContext.callMethod(ptr, MethodBindings.setTipBonePtr, NIL)
   }
@@ -279,7 +244,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setTargetTransform(target: Transform3D): Unit {
+  public final fun setTargetTransform(target: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to target)
     TransferContext.callMethod(ptr, MethodBindings.setTargetTransformPtr, NIL)
   }
@@ -290,7 +255,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setTargetNode(node: NodePath): Unit {
+  public final fun setTargetNode(node: NodePath) {
     TransferContext.writeArguments(NODE_PATH to node)
     TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
@@ -301,7 +266,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setOverrideTipBasis(`override`: Boolean): Unit {
+  public final fun setOverrideTipBasis(`override`: Boolean) {
     TransferContext.writeArguments(BOOL to override)
     TransferContext.callMethod(ptr, MethodBindings.setOverrideTipBasisPtr, NIL)
   }
@@ -312,7 +277,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseMagnet(use: Boolean): Unit {
+  public final fun setUseMagnet(use: Boolean) {
     TransferContext.writeArguments(BOOL to use)
     TransferContext.callMethod(ptr, MethodBindings.setUseMagnetPtr, NIL)
   }
@@ -323,7 +288,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMagnetPosition(localPosition: Vector3): Unit {
+  public final fun setMagnetPosition(localPosition: Vector3) {
     TransferContext.writeArguments(VECTOR3 to localPosition)
     TransferContext.callMethod(ptr, MethodBindings.setMagnetPositionPtr, NIL)
   }
@@ -335,9 +300,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns the parent [Skeleton3D] node that was present when SkeletonIK entered the scene tree.
-   * Returns `null` if the parent node was not a [Skeleton3D] node when SkeletonIK3D entered the scene
-   * tree.
+   * Returns the parent [Skeleton3D] node that was present when SkeletonIK entered the scene tree. Returns `null` if the parent node was not a [Skeleton3D] node when SkeletonIK3D entered the scene tree.
    */
   public final fun getParentSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
@@ -346,9 +309,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns `true` if SkeletonIK is applying IK effects on continues frames to the [Skeleton3D]
-   * bones. Returns `false` if SkeletonIK is stopped or [start] was used with the `one_time` parameter
-   * set to `true`.
+   * Returns `true` if SkeletonIK is applying IK effects on continues frames to the [Skeleton3D] bones. Returns `false` if SkeletonIK is stopped or [start] was used with the `one_time` parameter set to `true`.
    */
   public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
@@ -356,7 +317,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMinDistance(minDistance: Float): Unit {
+  public final fun setMinDistance(minDistance: Float) {
     TransferContext.writeArguments(DOUBLE to minDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinDistancePtr, NIL)
   }
@@ -367,7 +328,7 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxIterations(iterations: Int): Unit {
+  public final fun setMaxIterations(iterations: Int) {
     TransferContext.writeArguments(LONG to iterations.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxIterationsPtr, NIL)
   }
@@ -379,26 +340,23 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   }
 
   /**
-   * Starts applying IK effects on each frame to the [Skeleton3D] bones but will only take effect
-   * starting on the next frame. If [oneTime] is `true`, this will take effect immediately but also
-   * reset on the next frame.
+   * Starts applying IK effects on each frame to the [Skeleton3D] bones but will only take effect starting on the next frame. If [oneTime] is `true`, this will take effect immediately but also reset on the next frame.
    */
   @JvmOverloads
-  public final fun start(oneTime: Boolean = false): Unit {
+  public final fun start(oneTime: Boolean = false) {
     TransferContext.writeArguments(BOOL to oneTime)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
   }
 
   /**
-   * Stops applying IK effects on each frame to the [Skeleton3D] bones and also calls
-   * [Skeleton3D.clearBonesGlobalPoseOverride] to remove existing overrides on all bones.
+   * Stops applying IK effects on each frame to the [Skeleton3D] bones and also calls [Skeleton3D.clearBonesGlobalPoseOverride] to remove existing overrides on all bones.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
-  public final fun setInterpolation(interpolation: Float): Unit {
+  public final fun setInterpolation(interpolation: Float) {
     TransferContext.writeArguments(DOUBLE to interpolation.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInterpolationPtr, NIL)
   }
@@ -409,84 +367,85 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRootBone(rootBone: String) = setRootBone(rootBone.asCachedStringName())
+  public final fun setRootBone(rootBone: String): Unit = setRootBone(rootBone.asCachedStringName())
 
-  public final fun setTipBone(tipBone: String) = setTipBone(tipBone.asCachedStringName())
+  public final fun setTipBone(tipBone: String): Unit = setTipBone(tipBone.asCachedStringName())
 
-  public final fun setTargetNode(node: String) = setTargetNode(node.asCachedNodePath())
+  public final fun setTargetNode(node: String): Unit = setTargetNode(node.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_root_bone", 3304788590)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_root_bone", 3_304_788_590)
 
     internal val getRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_root_bone", 2002593661)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_root_bone", 2_002_593_661)
 
     internal val setTipBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_tip_bone", 3304788590)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_tip_bone", 3_304_788_590)
 
     internal val getTipBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_tip_bone", 2002593661)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_tip_bone", 2_002_593_661)
 
     internal val setTargetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_transform", 2952846383)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_transform", 2_952_846_383)
 
     internal val getTargetTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_transform", 3229777777)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_transform", 3_229_777_777)
 
     internal val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_node", 1348162250)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_target_node", 1_348_162_250)
 
     internal val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_node", 277076166)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_target_node", 277_076_166)
 
     internal val setOverrideTipBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_override_tip_basis", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_override_tip_basis", 2_586_408_642)
 
     internal val isOverrideTipBasisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_override_tip_basis", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_override_tip_basis", 36_873_697)
 
     internal val setUseMagnetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_use_magnet", 2586408642)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_use_magnet", 2_586_408_642)
 
     internal val isUsingMagnetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_using_magnet", 36873697)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_using_magnet", 36_873_697)
 
     internal val setMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_magnet_position", 3460891852)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_magnet_position", 3_460_891_852)
 
     internal val getMagnetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_magnet_position", 3360562783)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_magnet_position", 3_360_562_783)
 
     internal val getParentSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_parent_skeleton", 1488626673)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_parent_skeleton", 1_488_626_673)
 
     internal val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_running", 2240911060)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "is_running", 2_240_911_060)
 
     internal val setMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_min_distance", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_min_distance", 373_806_689)
 
     internal val getMinDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_min_distance", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_min_distance", 1_740_695_150)
 
     internal val setMaxIterationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_max_iterations", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_max_iterations", 1_286_410_249)
 
     internal val getMaxIterationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_max_iterations", 3905245786)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_max_iterations", 3_905_245_786)
 
     internal val startPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "start", 107499316)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "start", 107_499_316)
 
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("SkeletonIK3D", "stop", 3218959716)
+    internal val stopPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "stop", 3_218_959_716)
 
     internal val setInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_interpolation", 373806689)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "set_interpolation", 373_806_689)
 
     internal val getInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_interpolation", 1740695150)
+        TypeManager.getMethodBindPtr("SkeletonIK3D", "get_interpolation", 1_740_695_150)
   }
 }

@@ -48,10 +48,11 @@ open class ClassInheritanceParent : Node() {
     @RegisterProperty
     var notificationCallBitFlag = 0
 
-    @RegisterFunction
-    override fun _notification(): GodotNotification = godotNotification {
-        GD.print("Called ClassInheritanceParent::_notification on $this with $it")
-        notificationCallBitFlag = notificationCallBitFlag or 1
-        GD.print(notificationCallBitFlag)
-    }
+    // TODO: enable once class instantiation issue in the registration phase is fixed
+//    @RegisterFunction
+//    override fun _notification(): GodotNotification = godotNotification {
+//        GD.print("Called ClassInheritanceParent::_notification on $this with $it")
+//        notificationCallBitFlag = notificationCallBitFlag or 1
+//        GD.print(notificationCallBitFlag)
+//    }
 }

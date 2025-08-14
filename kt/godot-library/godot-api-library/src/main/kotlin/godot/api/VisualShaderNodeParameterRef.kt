@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
- * different shaders or shader stages easily.
+ * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in different shaders or shader stages easily.
  */
 @GodotBaseType
 public open class VisualShaderNodeParameterRef : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
       setParameterName(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(771, scriptIndex)
   }
 
-  public final fun setParameterName(name: String): Unit {
+  public final fun setParameterName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setParameterNamePtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "set_parameter_name", 83_702_148)
 
     internal val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameterRef", "get_parameter_name", 201_670_096)
   }
 }

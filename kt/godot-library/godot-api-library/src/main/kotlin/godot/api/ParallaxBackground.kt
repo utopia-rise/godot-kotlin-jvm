@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,28 +20,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.
- * Each [ParallaxLayer] can move at a different speed using [ParallaxLayer.motionOffset]. This creates
- * an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the
- * [scrollOffset].
+ * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect. Each [ParallaxLayer] can move at a different speed using [ParallaxLayer.motionOffset]. This creates an illusion of depth in a 2D game. If not used with a [Camera2D], you must manually calculate the [scrollOffset].
  *
- * **Note:** Each [ParallaxBackground] is drawn on one specific [Viewport] and cannot be shared
- * between multiple [Viewport]s, see [CanvasLayer.customViewport]. When using multiple [Viewport]s, for
- * example in a split-screen game, you need create an individual [ParallaxBackground] for each
- * [Viewport] you want it to be drawn on.
+ * **Note:** Each [ParallaxBackground] is drawn on one specific [Viewport] and cannot be shared between multiple [Viewport]s, see [CanvasLayer.customViewport]. When using multiple [Viewport]s, for example in a split-screen game, you need create an individual [ParallaxBackground] for each [Viewport] you want it to be drawn on.
  */
 @GodotBaseType
 public open class ParallaxBackground : CanvasLayer() {
   /**
-   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
-   * can be used to manually manage scrolling when no camera is present.
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but can be used to manually manage scrolling when no camera is present.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollOffset: Vector2
@@ -59,11 +46,8 @@ public open class ParallaxBackground : CanvasLayer() {
    * The base position offset for all [ParallaxLayer] children.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollBaseOffset: Vector2
@@ -78,11 +62,8 @@ public open class ParallaxBackground : CanvasLayer() {
    * The base motion scale for all [ParallaxLayer] children.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollBaseScale: Vector2
@@ -94,15 +75,11 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   /**
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
-   * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollLimitBegin: Vector2
@@ -114,15 +91,11 @@ public open class ParallaxBackground : CanvasLayer() {
     }
 
   /**
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scrollLimitEnd: Vector2
@@ -144,7 +117,7 @@ public open class ParallaxBackground : CanvasLayer() {
       setIgnoreCameraZoom(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(447, scriptIndex)
   }
 
@@ -159,8 +132,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * parallaxbackground.scrollOffset = myCoreType
    * ``````
    *
-   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but
-   * can be used to manually manage scrolling when no camera is present.
+   * The ParallaxBackground's scroll value. Calculated automatically when using a [Camera2D], but can be used to manually manage scrolling when no camera is present.
    */
   @CoreTypeHelper
   public final fun scrollOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollOffset.apply {
@@ -182,8 +154,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * The base position offset for all [ParallaxLayer] children.
    */
   @CoreTypeHelper
-  public final fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollBaseOffset.apply {
+  public final fun scrollBaseOffsetMutate(block: Vector2.() -> Unit): Vector2 = scrollBaseOffset.apply {
      block(this)
      scrollBaseOffset = this
   }
@@ -202,8 +173,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * The base motion scale for all [ParallaxLayer] children.
    */
   @CoreTypeHelper
-  public final fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollBaseScale.apply {
+  public final fun scrollBaseScaleMutate(block: Vector2.() -> Unit): Vector2 = scrollBaseScale.apply {
      block(this)
      scrollBaseScale = this
   }
@@ -219,12 +189,10 @@ public open class ParallaxBackground : CanvasLayer() {
    * parallaxbackground.scrollLimitBegin = myCoreType
    * ``````
    *
-   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background
-   * will stop scrolling. Must be lower than [scrollLimitEnd] to work.
+   * Top-left limits for scrolling to begin. If the camera is outside of this limit, the background will stop scrolling. Must be lower than [scrollLimitEnd] to work.
    */
   @CoreTypeHelper
-  public final fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 =
-      scrollLimitBegin.apply {
+  public final fun scrollLimitBeginMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitBegin.apply {
      block(this)
      scrollLimitBegin = this
   }
@@ -240,8 +208,7 @@ public open class ParallaxBackground : CanvasLayer() {
    * parallaxbackground.scrollLimitEnd = myCoreType
    * ``````
    *
-   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the
-   * background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
+   * Bottom-right limits for scrolling to end. If the camera is outside of this limit, the background will stop scrolling. Must be higher than [scrollLimitBegin] to work.
    */
   @CoreTypeHelper
   public final fun scrollLimitEndMutate(block: Vector2.() -> Unit): Vector2 = scrollLimitEnd.apply {
@@ -249,7 +216,7 @@ public open class ParallaxBackground : CanvasLayer() {
      scrollLimitEnd = this
   }
 
-  public final fun setScrollOffset(offset: Vector2): Unit {
+  public final fun setScrollOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setScrollOffsetPtr, NIL)
   }
@@ -260,7 +227,7 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScrollBaseOffset(offset: Vector2): Unit {
+  public final fun setScrollBaseOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setScrollBaseOffsetPtr, NIL)
   }
@@ -271,7 +238,7 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScrollBaseScale(scale: Vector2): Unit {
+  public final fun setScrollBaseScale(scale: Vector2) {
     TransferContext.writeArguments(VECTOR2 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setScrollBaseScalePtr, NIL)
   }
@@ -282,7 +249,7 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setLimitBegin(offset: Vector2): Unit {
+  public final fun setLimitBegin(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setLimitBeginPtr, NIL)
   }
@@ -293,7 +260,7 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setLimitEnd(offset: Vector2): Unit {
+  public final fun setLimitEnd(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setLimitEndPtr, NIL)
   }
@@ -304,7 +271,7 @@ public open class ParallaxBackground : CanvasLayer() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setIgnoreCameraZoom(ignore: Boolean): Unit {
+  public final fun setIgnoreCameraZoom(ignore: Boolean) {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreCameraZoomPtr, NIL)
   }
@@ -319,39 +286,39 @@ public open class ParallaxBackground : CanvasLayer() {
 
   public object MethodBindings {
     internal val setScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743155724)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_offset", 743_155_724)
 
     internal val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3341600327)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_offset", 3_341_600_327)
 
     internal val setScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743155724)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_offset", 743_155_724)
 
     internal val getScrollBaseOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3341600327)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_offset", 3_341_600_327)
 
     internal val setScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743155724)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_scroll_base_scale", 743_155_724)
 
     internal val getScrollBaseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3341600327)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_scroll_base_scale", 3_341_600_327)
 
     internal val setLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743155724)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_begin", 743_155_724)
 
     internal val getLimitBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3341600327)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_begin", 3_341_600_327)
 
     internal val setLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743155724)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_limit_end", 743_155_724)
 
     internal val getLimitEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3341600327)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "get_limit_end", 3_341_600_327)
 
     internal val setIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2586408642)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "set_ignore_camera_zoom", 2_586_408_642)
 
     internal val isIgnoreCameraZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2240911060)
+        TypeManager.getMethodBindPtr("ParallaxBackground", "is_ignore_camera_zoom", 2_240_911_060)
   }
 }

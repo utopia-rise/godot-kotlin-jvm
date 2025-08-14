@@ -2,7 +2,6 @@ package godot.annotation.processor.ext
 
 import godot.annotation.processor.Settings
 import godot.tools.common.constants.FileExtensions
-import org.jetbrains.kotlin.konan.properties.suffix
 
 internal fun provideRegistrationFilePathForInitialGenerationWithoutExtension(
     settings: Settings,
@@ -28,5 +27,5 @@ internal fun provideRegistrationFilePathForInitialGenerationWithoutExtension(
         "${registrationFileOutDir}/$localResourcePath"
     } else {
         "${registrationFileOutDir}/dependencies/${classProjectName}/$localResourcePath"
-    }.suffix(FileExtensions.GodotKotlinJvm.registrationFile)
+    }.let { "${it}.${FileExtensions.GodotKotlinJvm.registrationFile}" }
 }

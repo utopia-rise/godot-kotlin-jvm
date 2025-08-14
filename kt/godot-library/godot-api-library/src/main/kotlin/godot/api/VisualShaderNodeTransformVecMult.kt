@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different
- * multiplication operators.
+ * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different multiplication operators.
  */
 @GodotBaseType
 public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
       setOperator(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(813, scriptIndex)
   }
 
-  public final fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator) {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
@@ -62,13 +57,11 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
      */
     BxA(1),
     /**
-     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the
-     * transform.
+     * Multiplies transform `a` by the vector `b`, skipping the last row and column of the transform.
      */
     OP_3x3_AxB(2),
     /**
-     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the
-     * transform.
+     * Multiplies vector `b` by the transform `a`, skipping the last row and column of the transform.
      */
     OP_3x3_BxA(3),
     /**
@@ -91,9 +84,9 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformVecMult", "set_operator", 1785665912)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformVecMult", "set_operator", 1_785_665_912)
 
     internal val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformVecMult", "get_operator", 1622088722)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformVecMult", "get_operator", 1_622_088_722)
   }
 }

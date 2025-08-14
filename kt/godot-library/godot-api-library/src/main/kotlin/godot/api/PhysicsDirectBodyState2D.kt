@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,9 +31,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Provides direct access to a physics body in the [PhysicsServer2D], allowing safe changes to
- * physics properties. This object is passed via the direct state callback of [RigidBody2D], and is
- * intended for changing the direct state of that body. See [RigidBody2D.IntegrateForces].
+ * Provides direct access to a physics body in the [PhysicsServer2D], allowing safe changes to physics properties. This object is passed via the direct state callback of [RigidBody2D], and is intended for changing the direct state of that body. See [RigidBody2D.IntegrateForces].
  */
 @GodotBaseType
 public open class PhysicsDirectBodyState2D internal constructor() : Object() {
@@ -83,8 +78,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     get() = getTotalGravity()
 
   /**
-   * The body's center of mass position relative to the body's center in the global coordinate
-   * system.
+   * The body's center of mass position relative to the body's center in the global coordinate system.
    */
   public final inline val centerOfMass: Vector2
     @JvmName("centerOfMassProperty")
@@ -112,11 +106,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * The body's linear velocity in pixels per second.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector2
@@ -142,11 +133,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    * The body's transformation matrix.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -157,7 +145,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
       setTransform(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(461, scriptIndex)
   }
 
@@ -241,7 +229,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearVelocity(velocity: Vector2): Unit {
+  public final fun setLinearVelocity(velocity: Vector2) {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
@@ -252,7 +240,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setAngularVelocity(velocity: Float): Unit {
+  public final fun setAngularVelocity(velocity: Float) {
     TransferContext.writeArguments(DOUBLE to velocity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
@@ -263,7 +251,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTransform(transform: Transform2D): Unit {
+  public final fun setTransform(transform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -275,8 +263,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the body's velocity at the given relative position, including both translation and
-   * rotation.
+   * Returns the body's velocity at the given relative position, including both translation and rotation.
    */
   public final fun getVelocityAtLocalPosition(localPosition: Vector2): Vector2 {
     TransferContext.writeArguments(VECTOR2 to localPosition)
@@ -287,13 +274,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a directional impulse without affecting rotation.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public final fun applyCentralImpulse(impulse: Vector2): Unit {
+  public final fun applyCentralImpulse(impulse: Vector2) {
     TransferContext.writeArguments(VECTOR2 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
@@ -301,14 +286,11 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a rotational impulse to the body without affecting the position.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
-   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
-   * [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
-  public final fun applyTorqueImpulse(impulse: Float): Unit {
+  public final fun applyTorqueImpulse(impulse: Float) {
     TransferContext.writeArguments(DOUBLE to impulse.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.applyTorqueImpulsePtr, NIL)
   }
@@ -316,83 +298,74 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Applies a positioned impulse to the body.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyImpulse(impulse: Vector2, position: Vector2 = Vector2(0, 0)) {
     TransferContext.writeArguments(VECTOR2 to impulse, VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
   }
 
   /**
-   * Applies a directional force without affecting rotation. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
   @JvmOverloads
-  public final fun applyCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyCentralForce(force: Vector2 = Vector2(0, 0)) {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralForcePtr, NIL)
   }
 
   /**
-   * Applies a positioned force to the body. A force is time dependent and meant to be applied every
-   * physics update.
+   * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun applyForce(force: Vector2, position: Vector2 = Vector2(0, 0)) {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.applyForcePtr, NIL)
   }
 
   /**
-   * Applies a rotational force without affecting position. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    *
-   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active
-   * [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
+   * **Note:** [inverseInertia] is required for this to work. To have [inverseInertia], an active [CollisionShape2D] must be a child of the node, or you can manually set [inverseInertia].
    */
-  public final fun applyTorque(torque: Float): Unit {
+  public final fun applyTorque(torque: Float) {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.applyTorquePtr, NIL)
   }
 
   /**
-   * Adds a constant directional force without affecting rotation that keeps being applied over time
-   * until cleared with `constant_force = Vector2(0, 0)`.
+   * Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
   @JvmOverloads
-  public final fun addConstantCentralForce(force: Vector2 = Vector2(0, 0)): Unit {
+  public final fun addConstantCentralForce(force: Vector2 = Vector2(0, 0)) {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(ptr, MethodBindings.addConstantCentralForcePtr, NIL)
   }
 
   /**
-   * Adds a constant positioned force to the body that keeps being applied over time until cleared
-   * with `constant_force = Vector2(0, 0)`.
+   * Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector2(0, 0)`.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)): Unit {
+  public final fun addConstantForce(force: Vector2, position: Vector2 = Vector2(0, 0)) {
     TransferContext.writeArguments(VECTOR2 to force, VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.addConstantForcePtr, NIL)
   }
 
   /**
-   * Adds a constant rotational force without affecting position that keeps being applied over time
-   * until cleared with `constant_torque = 0`.
+   * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = 0`.
    */
-  public final fun addConstantTorque(torque: Float): Unit {
+  public final fun addConstantTorque(torque: Float) {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.addConstantTorquePtr, NIL)
   }
@@ -402,7 +375,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * See [addConstantForce] and [addConstantCentralForce].
    */
-  public final fun setConstantForce(force: Vector2): Unit {
+  public final fun setConstantForce(force: Vector2) {
     TransferContext.writeArguments(VECTOR2 to force)
     TransferContext.callMethod(ptr, MethodBindings.setConstantForcePtr, NIL)
   }
@@ -423,7 +396,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
    *
    * See [addConstantTorque].
    */
-  public final fun setConstantTorque(torque: Float): Unit {
+  public final fun setConstantTorque(torque: Float) {
     TransferContext.writeArguments(DOUBLE to torque.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstantTorquePtr, NIL)
   }
@@ -439,7 +412,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSleepState(enabled: Boolean): Unit {
+  public final fun setSleepState(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSleepStatePtr, NIL)
   }
@@ -453,8 +426,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   /**
    * Returns the number of contacts this body has with other bodies.
    *
-   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See
-   * [RigidBody2D.contactMonitor].
+   * **Note:** By default, this returns 0 unless bodies are configured to monitor contacts. See [RigidBody2D.contactMonitor].
    */
   public final fun getContactCount(): Int {
     TransferContext.writeArguments()
@@ -526,8 +498,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Returns the collider object. This depends on how it was created (will return a scene node if
-   * such was used to create it).
+   * Returns the collider object. This depends on how it was created (will return a scene node if such was used to create it).
    */
   public final fun getContactColliderObject(contactIdx: Int): Object? {
     TransferContext.writeArguments(LONG to contactIdx.toLong())
@@ -569,10 +540,9 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
   }
 
   /**
-   * Updates the body's linear and angular velocity by applying gravity and damping for the
-   * equivalent of one physics tick.
+   * Updates the body's linear and angular velocity by applying gravity and damping for the equivalent of one physics tick.
    */
-  public final fun integrateForces(): Unit {
+  public final fun integrateForces() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.integrateForcesPtr, NIL)
   }
@@ -590,135 +560,135 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
 
   public object MethodBindings {
     internal val getTotalGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_gravity", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_gravity", 3_341_600_327)
 
     internal val getTotalLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_linear_damp", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_linear_damp", 1_740_695_150)
 
     internal val getTotalAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_angular_damp", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_total_angular_damp", 1_740_695_150)
 
     internal val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass", 3_341_600_327)
 
     internal val getCenterOfMassLocalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass_local", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_center_of_mass_local", 3_341_600_327)
 
     internal val getInverseMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_mass", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_mass", 1_740_695_150)
 
     internal val getInverseInertiaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_inertia", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_inverse_inertia", 1_740_695_150)
 
     internal val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_linear_velocity", 743155724)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_linear_velocity", 743_155_724)
 
     internal val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_linear_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_linear_velocity", 3_341_600_327)
 
     internal val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_angular_velocity", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_angular_velocity", 373_806_689)
 
     internal val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_angular_velocity", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_angular_velocity", 1_740_695_150)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_transform", 2761652528)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_transform", 2_761_652_528)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_transform", 3814499831)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_transform", 3_814_499_831)
 
     internal val getVelocityAtLocalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_velocity_at_local_position", 2656412154)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_velocity_at_local_position", 2_656_412_154)
 
     internal val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_impulse", 743155724)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_impulse", 743_155_724)
 
     internal val applyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque_impulse", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque_impulse", 373_806_689)
 
     internal val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_impulse", 4288681949)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_impulse", 4_288_681_949)
 
     internal val applyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_force", 3862383994)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_central_force", 3_862_383_994)
 
     internal val applyForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_force", 4288681949)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_force", 4_288_681_949)
 
     internal val applyTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "apply_torque", 373_806_689)
 
     internal val addConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_central_force", 3862383994)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_central_force", 3_862_383_994)
 
     internal val addConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_force", 4288681949)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_force", 4_288_681_949)
 
     internal val addConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_torque", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "add_constant_torque", 373_806_689)
 
     internal val setConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_force", 743155724)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_force", 743_155_724)
 
     internal val getConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_force", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_force", 3_341_600_327)
 
     internal val setConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_torque", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_constant_torque", 373_806_689)
 
     internal val getConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_torque", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_constant_torque", 1_740_695_150)
 
     internal val setSleepStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_sleep_state", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "set_sleep_state", 2_586_408_642)
 
     internal val isSleepingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "is_sleeping", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "is_sleeping", 36_873_697)
 
     internal val getContactCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_count", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_count", 3_905_245_786)
 
     internal val getContactLocalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_position", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_position", 2_299_179_447)
 
     internal val getContactLocalNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_normal", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_normal", 2_299_179_447)
 
     internal val getContactLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_shape", 923996154)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_shape", 923_996_154)
 
     internal val getContactLocalVelocityAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_velocity_at_position", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_local_velocity_at_position", 2_299_179_447)
 
     internal val getContactColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider", 495598643)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider", 495_598_643)
 
     internal val getContactColliderPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_position", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_position", 2_299_179_447)
 
     internal val getContactColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_id", 923996154)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_id", 923_996_154)
 
     internal val getContactColliderObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_object", 3332903315)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_object", 3_332_903_315)
 
     internal val getContactColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_shape", 923996154)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_shape", 923_996_154)
 
     internal val getContactColliderVelocityAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_velocity_at_position", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_collider_velocity_at_position", 2_299_179_447)
 
     internal val getContactImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_impulse", 2299179447)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_contact_impulse", 2_299_179_447)
 
     internal val getStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_step", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_step", 1_740_695_150)
 
     internal val integrateForcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "integrate_forces", 3218959716)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "integrate_forces", 3_218_959_716)
 
     internal val getSpaceStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_space_state", 2506717822)
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState2D", "get_space_state", 2_506_717_822)
   }
 }

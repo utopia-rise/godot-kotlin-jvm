@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,16 +12,12 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This animation node can be used to cause a seek command to happen to any sub-children of the
- * animation graph. Use to play an [Animation] from the start or a certain playback position inside the
- * [AnimationNodeBlendTree].
+ * This animation node can be used to cause a seek command to happen to any sub-children of the animation graph. Use to play an [Animation] from the start or a certain playback position inside the [AnimationNodeBlendTree].
  *
- * After setting the time and changing the animation playback, the time seek node automatically goes
- * into sleep mode on the next process frame by setting its `seek_request` value to `-1.0`.
+ * After setting the time and changing the animation playback, the time seek node automatically goes into sleep mode on the next process frame by setting its `seek_request` value to `-1.0`.
  *
  * ```gdscript
  * //gdscript
@@ -51,8 +44,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AnimationNodeTimeSeek : AnimationNode() {
   /**
-   * If `true`, some processes are executed to handle keys between seeks, such as calculating root
-   * motion and finding the nearest discrete key.
+   * If `true`, some processes are executed to handle keys between seeks, such as calculating root motion and finding the nearest discrete key.
    */
   public final inline var explicitElapse: Boolean
     @JvmName("explicitElapseProperty")
@@ -62,11 +54,11 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
       setExplicitElapse(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(33, scriptIndex)
   }
 
-  public final fun setExplicitElapse(enable: Boolean): Unit {
+  public final fun setExplicitElapse(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setExplicitElapsePtr, NIL)
   }
@@ -81,9 +73,9 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
 
   public object MethodBindings {
     internal val setExplicitElapsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTimeSeek", "set_explicit_elapse", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeTimeSeek", "set_explicit_elapse", 2_586_408_642)
 
     internal val isExplicitElapsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTimeSeek", "is_explicit_elapse", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeTimeSeek", "is_explicit_elapse", 36_873_697)
   }
 }

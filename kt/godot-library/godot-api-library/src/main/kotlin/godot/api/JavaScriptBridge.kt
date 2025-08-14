@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,42 +25,30 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the
- * browser's JavaScript context. This allows interaction with embedding pages or calling third-party
- * JavaScript APIs.
+ * The JavaScriptBridge singleton is implemented only in the Web export. It's used to access the browser's JavaScript context. This allows interaction with embedding pages or calling third-party JavaScript APIs.
  *
- * **Note:** This singleton can be disabled at build-time to improve security. By default, the
- * JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge
- * singleton enabled. See
- * [url=$DOCS_URL/contributing/development/compiling/compiling_for_web.html]Compiling for the Web[/url]
- * in the documentation for more information.
+ * **Note:** This singleton can be disabled at build-time to improve security. By default, the JavaScriptBridge singleton is enabled. Official export templates also have the JavaScriptBridge singleton enabled. See [url=$DOCS_URL/contributing/development/compiling/compiling_for_web.html]Compiling for the Web[/url] in the documentation for more information.
  */
 @GodotBaseType
 public object JavaScriptBridge : Object() {
   /**
-   * Emitted when an update for this progressive web app has been detected but is waiting to be
-   * activated because a previous version is active. See [pwaUpdate] to force the update to take place
-   * immediately.
+   * Emitted when an update for this progressive web app has been detected but is waiting to be activated because a previous version is active. See [pwaUpdate] to force the update to take place immediately.
    */
   @JvmStatic
   public val pwaUpdateAvailable: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(13)
   }
 
   /**
-   * Execute the string ` as JavaScript code within the browser window. This is a call to the actual
-   * global JavaScript function [code skip-lint]eval()`.
+   * Execute the string ` as JavaScript code within the browser window. This is a call to the actual global JavaScript function [code skip-lint]eval()`.
    *
-   * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution
-   * context. Otherwise, it is evaluated in the execution context of a function within the engine's
-   * runtime environment.
+   * If [useGlobalExecutionContext] is `true`, the code will be evaluated in the global execution context. Otherwise, it is evaluated in the execution context of a function within the engine's runtime environment.
    */
   @JvmOverloads
   @JvmStatic
@@ -74,9 +59,7 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Returns an interface to a JavaScript object that can be used by scripts. The [interface] must
-   * be a valid property of the JavaScript `window`. The callback must accept a single [Array]
-   * argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
+   * Returns an interface to a JavaScript object that can be used by scripts. The [interface] must be a valid property of the JavaScript `window`. The callback must accept a single [Array] argument, which will contain the JavaScript `arguments`. See [JavaScriptObject] for usage.
    */
   @JvmStatic
   public final fun getInterface(`interface`: String): JavaScriptObject? {
@@ -86,14 +69,9 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Creates a reference to a [Callable] that can be used as a callback by JavaScript. The reference
-   * must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for
-   * usage.
+   * Creates a reference to a [Callable] that can be used as a callback by JavaScript. The reference must be kept until the callback happens, or it won't be called at all. See [JavaScriptObject] for usage.
    *
-   * **Note:** The callback function must take exactly one [Array] argument, which is going to be
-   * the JavaScript
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments]arguments
-   * object[/url] converted to an array.
+   * **Note:** The callback function must take exactly one [Array] argument, which is going to be the JavaScript [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments]arguments object[/url] converted to an array.
    */
   @JvmStatic
   public final fun createCallback(callable: Callable): JavaScriptObject? {
@@ -103,12 +81,7 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Returns `true` if the given [javascriptObject] is of type
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]`ArrayBuffer`[/url],
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView]`DataView`[/url],
-   * or one of the many
-   * [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray]typed
-   * array objects[/url].
+   * Returns `true` if the given [javascriptObject] is of type [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer]`ArrayBuffer`[/url], [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView]`DataView`[/url], or one of the many [url=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray]typed array objects[/url].
    */
   @JvmStatic
   public final fun isJsBuffer(javascriptObject: JavaScriptObject?): Boolean {
@@ -128,8 +101,7 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property
-   * of the JavaScript `window`. See [JavaScriptObject] for usage.
+   * Creates a new JavaScript object using the `new` constructor. The [object] must a valid property of the JavaScript `window`. See [JavaScriptObject] for usage.
    */
   @JvmStatic
   public final fun createObject(`object`: String, vararg args: Any?): Any? {
@@ -139,17 +111,13 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Prompts the user to download a file containing the specified [buffer]. The file will have the
-   * given [name] and [mime] type.
+   * Prompts the user to download a file containing the specified [buffer]. The file will have the given [name] and [mime] type.
    *
-   * **Note:** The browser may override the [url=https://en.wikipedia.org/wiki/Media_type]MIME
-   * type[/url] provided based on the file [name]'s extension.
+   * **Note:** The browser may override the [url=https://en.wikipedia.org/wiki/Media_type]MIME type[/url] provided based on the file [name]'s extension.
    *
-   * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user
-   * interaction (e.g. button click).
+   * **Note:** Browsers might block the download if [downloadBuffer] is not being called from a user interaction (e.g. button click).
    *
-   * **Note:** Browsers might ask the user for permission or block the download if multiple download
-   * requests are made in a quick succession.
+   * **Note:** Browsers might ask the user for permission or block the download if multiple download requests are made in a quick succession.
    */
   @JvmOverloads
   @JvmStatic
@@ -157,7 +125,7 @@ public object JavaScriptBridge : Object() {
     buffer: PackedByteArray,
     name: String,
     mime: String = "application/octet-stream",
-  ): Unit {
+  ) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer, STRING to name, STRING to mime)
     TransferContext.callMethod(ptr, MethodBindings.downloadBufferPtr, NIL)
   }
@@ -175,13 +143,11 @@ public object JavaScriptBridge : Object() {
   }
 
   /**
-   * Performs the live update of the progressive web app. Forcing the new version to be installed
-   * and the page to be reloaded.
+   * Performs the live update of the progressive web app. Forcing the new version to be installed and the page to be reloaded.
    *
    * **Note:** Your application will be **reloaded in all browser tabs**.
    *
-   * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns
-   * `true`.
+   * **Note:** Only relevant when exported as a Progressive Web App and [pwaNeedsUpdate] returns `true`.
    */
   @JvmStatic
   public final fun pwaUpdate(): Error {
@@ -193,44 +159,43 @@ public object JavaScriptBridge : Object() {
   /**
    * Force synchronization of the persistent file system (when enabled).
    *
-   * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write
-   * files.
+   * **Note:** This is only useful for modules or extensions that can't use [FileAccess] to write files.
    */
   @JvmStatic
-  public final fun forceFsSync(): Unit {
+  public final fun forceFsSync() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceFsSyncPtr, NIL)
   }
 
   public object MethodBindings {
     internal val evalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "eval", 218087648)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "eval", 218_087_648)
 
     internal val getInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "get_interface", 1355533281)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "get_interface", 1_355_533_281)
 
     internal val createCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback", 422818440)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_callback", 422_818_440)
 
     internal val isJsBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "is_js_buffer", 821968997)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "is_js_buffer", 821_968_997)
 
     internal val jsBufferToPackedByteArrayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "js_buffer_to_packed_byte_array", 64409880)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "js_buffer_to_packed_byte_array", 64_409_880)
 
     internal val createObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object", 3093893586)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "create_object", 3_093_893_586)
 
     internal val downloadBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "download_buffer", 3352272093)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "download_buffer", 3_352_272_093)
 
     internal val pwaNeedsUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update", 36873697)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_needs_update", 36_873_697)
 
     internal val pwaUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_update", 166280745)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "pwa_update", 166_280_745)
 
     internal val forceFsSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaScriptBridge", "force_fs_sync", 3218959716)
+        TypeManager.getMethodBindPtr("JavaScriptBridge", "force_fs_sync", 3_218_959_716)
   }
 }

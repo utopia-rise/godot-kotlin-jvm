@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,13 +13,9 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
- * [PacketPeerUDP] to [PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the
- * hood, this class is used to store the DTLS state and cookies of the server. The reason of why the
- * state and cookies are needed is outside of the scope of this documentation.
+ * This class is used to store the state of a DTLS server. Upon [setup] it converts connected [PacketPeerUDP] to [PacketPeerDTLS] accepting them via [takeConnection] as DTLS clients. Under the hood, this class is used to store the DTLS state and cookies of the server. The reason of why the state and cookies are needed is outside of the scope of this documentation.
  *
  * Below a small example of how to use it:
  *
@@ -54,8 +47,7 @@ import kotlin.Unit
  *         p.poll() # Must poll to update the state.
  *         if p.get_status() == PacketPeerDTLS.STATUS_CONNECTED:
  *             while p.get_available_packet_count() > 0:
- *                 print("Received message from client: &#37;s" &#37;
- * p.get_packet().get_string_from_utf8())
+ *                 print("Received message from client: &#37;s" &#37; p.get_packet().get_string_from_utf8())
  *                 p.put_packet("Hello DTLS client".to_utf8_buffer())
  * ```
  *
@@ -86,8 +78,7 @@ import kotlin.Unit
  *             PacketPeerDtls dtlsPeer = _dtls.TakeConnection(peer);
  *             if (dtlsPeer.GetStatus() != PacketPeerDtls.Status.Handshaking)
  *             {
- *                 continue; // It is normal that 50&#37; of the connections fails due to cookie
- * exchange.
+ *                 continue; // It is normal that 50&#37; of the connections fails due to cookie exchange.
  *             }
  *             GD.Print("Peer connected!");
  *             _peers.Add(dtlsPeer);
@@ -100,8 +91,7 @@ import kotlin.Unit
  *             {
  *                 while (p.GetAvailablePacketCount() > 0)
  *                 {
- *                     GD.Print($"Received Message From Client:
- * {p.GetPacket().GetStringFromUtf8()}");
+ *                     GD.Print($"Received Message From Client: {p.GetPacket().GetStringFromUtf8()}");
  *                     p.PutPacket("Hello DTLS Client".ToUtf8Buffer());
  *                 }
  *             }
@@ -150,8 +140,7 @@ import kotlin.Unit
  *     public override void _Ready()
  *     {
  *         _udp.ConnectToHost("127.0.0.1", 4242);
- *         _dtls.ConnectToPeer(_udp, validateCerts: false); // Use true in production for
- * certificate validation!
+ *         _dtls.ConnectToPeer(_udp, validateCerts: false); // Use true in production for certificate validation!
  *     }
  *
  *     public override void _Process(double delta)
@@ -176,7 +165,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(192, scriptIndex)
   }
 
@@ -190,12 +179,9 @@ public open class DTLSServer : RefCounted() {
   }
 
   /**
-   * Try to initiate the DTLS handshake with the given [udpPeer] which must be already connected
-   * (see [PacketPeerUDP.connectToHost]).
+   * Try to initiate the DTLS handshake with the given [udpPeer] which must be already connected (see [PacketPeerUDP.connectToHost]).
    *
-   * **Note:** You must check that the state of the return PacketPeerUDP is
-   * [PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50&#37; of the new connections will be
-   * invalid due to cookie exchange.
+   * **Note:** You must check that the state of the return PacketPeerUDP is [PacketPeerDTLS.STATUS_HANDSHAKING], as it is normal that 50&#37; of the new connections will be invalid due to cookie exchange.
    */
   public final fun takeConnection(udpPeer: PacketPeerUDP?): PacketPeerDTLS? {
     TransferContext.writeArguments(OBJECT to udpPeer)
@@ -206,9 +192,10 @@ public open class DTLSServer : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val setupPtr: VoidPtr = TypeManager.getMethodBindPtr("DTLSServer", "setup", 1262296096)
+    internal val setupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DTLSServer", "setup", 1_262_296_096)
 
     internal val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DTLSServer", "take_connection", 3946580474)
+        TypeManager.getMethodBindPtr("DTLSServer", "take_connection", 3_946_580_474)
   }
 }

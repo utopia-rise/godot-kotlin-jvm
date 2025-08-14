@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,22 +18,14 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for
- * gameplay use, such as a unit you have to touch to move. Unlike [Button], TouchScreenButton supports
- * multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch
- * input.
+ * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for gameplay use, such as a unit you have to touch to move. Unlike [Button], TouchScreenButton supports multitouch out of the box. Several TouchScreenButtons can be pressed at the same time with touch input.
  *
- * This node inherits from [Node2D]. Unlike with [Control] nodes, you cannot set anchors on it. If
- * you want to create menus or user interfaces, you may want to use [Button] nodes instead. To make
- * button nodes react to touch events, you can enable
- * [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch] in the Project Settings.
+ * This node inherits from [Node2D]. Unlike with [Control] nodes, you cannot set anchors on it. If you want to create menus or user interfaces, you may want to use [Button] nodes instead. To make button nodes react to touch events, you can enable [ProjectSettings.inputDevices/pointing/emulateMouseFromTouch] in the Project Settings.
  *
- * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your
- * game both for desktop and mobile devices.
+ * You can configure TouchScreenButton to be visible only on touch devices, helping you develop your game both for desktop and mobile devices.
  */
 @GodotBaseType
 public open class TouchScreenButton : Node2D() {
@@ -95,8 +84,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this
-   * property has no effect.
+   * If `true`, the button's shape is centered in the provided texture. If no texture is used, this property has no effect.
    */
   public final inline var shapeCentered: Boolean
     @JvmName("shapeCenteredProperty")
@@ -118,9 +106,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed
-   * finger goes in and out of the button, even if the pressure started outside the active area of the
-   * button.
+   * If `true`, the [signal pressed] and [signal released] signals are emitted whenever a pressed finger goes in and out of the button, even if the pressure started outside the active area of the button.
    *
    * **Note:** This is a "pass-by" (not "bypass") press mode.
    */
@@ -154,11 +140,11 @@ public open class TouchScreenButton : Node2D() {
       setVisibilityMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(692, scriptIndex)
   }
 
-  public final fun setTextureNormal(texture: Texture2D?): Unit {
+  public final fun setTextureNormal(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTextureNormalPtr, NIL)
   }
@@ -169,7 +155,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setTexturePressed(texture: Texture2D?): Unit {
+  public final fun setTexturePressed(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePressedPtr, NIL)
   }
@@ -180,7 +166,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setBitmask(bitmask: BitMap?): Unit {
+  public final fun setBitmask(bitmask: BitMap?) {
     TransferContext.writeArguments(OBJECT to bitmask)
     TransferContext.callMethod(ptr, MethodBindings.setBitmaskPtr, NIL)
   }
@@ -191,7 +177,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as BitMap?)
   }
 
-  public final fun setShape(shape: Shape2D?): Unit {
+  public final fun setShape(shape: Shape2D?) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -202,7 +188,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
-  public final fun setShapeCentered(bool: Boolean): Unit {
+  public final fun setShapeCentered(bool: Boolean) {
     TransferContext.writeArguments(BOOL to bool)
     TransferContext.callMethod(ptr, MethodBindings.setShapeCenteredPtr, NIL)
   }
@@ -213,7 +199,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShapeVisible(bool: Boolean): Unit {
+  public final fun setShapeVisible(bool: Boolean) {
     TransferContext.writeArguments(BOOL to bool)
     TransferContext.callMethod(ptr, MethodBindings.setShapeVisiblePtr, NIL)
   }
@@ -224,7 +210,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAction(action: String): Unit {
+  public final fun setAction(action: String) {
     TransferContext.writeArguments(STRING to action)
     TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
   }
@@ -235,7 +221,7 @@ public open class TouchScreenButton : Node2D() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setVisibilityMode(mode: VisibilityMode): Unit {
+  public final fun setVisibilityMode(mode: VisibilityMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityModePtr, NIL)
   }
@@ -246,7 +232,7 @@ public open class TouchScreenButton : Node2D() {
     return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPassbyPress(enabled: Boolean): Unit {
+  public final fun setPassbyPress(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPassbyPressPtr, NIL)
   }
@@ -293,60 +279,60 @@ public open class TouchScreenButton : Node2D() {
 
   public object MethodBindings {
     internal val setTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4051416890)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_normal", 4_051_416_890)
 
     internal val getTextureNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3635182373)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_normal", 3_635_182_373)
 
     internal val setTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4051416890)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_texture_pressed", 4_051_416_890)
 
     internal val getTexturePressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3635182373)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_texture_pressed", 3_635_182_373)
 
     internal val setBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698588216)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_bitmask", 698_588_216)
 
     internal val getBitmaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2459671998)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_bitmask", 2_459_671_998)
 
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape", 771364740)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape", 771_364_740)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_shape", 522005891)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_shape", 522_005_891)
 
     internal val setShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2586408642)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_centered", 2_586_408_642)
 
     internal val isShapeCenteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36873697)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_centered", 36_873_697)
 
     internal val setShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2586408642)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_shape_visible", 2_586_408_642)
 
     internal val isShapeVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36873697)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_shape_visible", 36_873_697)
 
     internal val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_action", 83702148)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_action", 83_702_148)
 
     internal val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_action", 201670096)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_action", 201_670_096)
 
     internal val setVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3031128463)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_visibility_mode", 3_031_128_463)
 
     internal val getVisibilityModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2558996468)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "get_visibility_mode", 2_558_996_468)
 
     internal val setPassbyPressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2586408642)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "set_passby_press", 2_586_408_642)
 
     internal val isPassbyPressEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36873697)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_passby_press_enabled", 36_873_697)
 
     internal val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TouchScreenButton", "is_pressed", 36873697)
+        TypeManager.getMethodBindPtr("TouchScreenButton", "is_pressed", 36_873_697)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,14 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An instance of this object represents a tracked face and its corresponding blend shapes. The
- * blend shapes come from the
- * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified
- * Expressions[/url] standard, and contain extended details and visuals for each blend shape.
- * Additionally the
- * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Tracking
- * Standard Comparison[/url] page documents the relationship between Unified Expressions and other
- * standards.
+ * An instance of this object represents a tracked face and its corresponding blend shapes. The blend shapes come from the [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified Expressions[/url] standard, and contain extended details and visuals for each blend shape. Additionally the [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Tracking Standard Comparison[/url] page documents the relationship between Unified Expressions and other standards.
  *
  * As face trackers are turned on they are registered with the [XRServer].
  */
@@ -43,11 +33,8 @@ public open class XRFaceTracker : XRTracker() {
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var blendShapes: PackedFloat32Array
@@ -58,7 +45,7 @@ public open class XRFaceTracker : XRTracker() {
       setBlendShapes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(865, scriptIndex)
   }
 
@@ -76,22 +63,19 @@ public open class XRFaceTracker : XRTracker() {
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
    */
   @CoreTypeHelper
-  public final fun blendShapesMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      blendShapes.apply {
+  public final fun blendShapesMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = blendShapes.apply {
      block(this)
      blendShapes = this
   }
 
   /**
    * This is a helper function for [blendShapes] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The array of face blend shape weights with indices corresponding to the [BlendShapeEntry] enum.
    */
   @CoreTypeHelper
-  public final fun blendShapesMutateEach(block: (index: Int, `value`: Float) -> Unit):
-      PackedFloat32Array = blendShapes.apply {
+  public final fun blendShapesMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = blendShapes.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -111,7 +95,7 @@ public open class XRFaceTracker : XRTracker() {
   /**
    * Sets a face blend shape weight.
    */
-  public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
+  public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float) {
     TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapePtr, NIL)
   }
@@ -122,7 +106,7 @@ public open class XRFaceTracker : XRTracker() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
-  public final fun setBlendShapes(weights: PackedFloat32Array): Unit {
+  public final fun setBlendShapes(weights: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapesPtr, NIL)
   }
@@ -722,15 +706,15 @@ public open class XRFaceTracker : XRTracker() {
 
   public object MethodBindings {
     internal val getBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330010046)
+        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shape", 330_010_046)
 
     internal val setBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2352588791)
+        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shape", 2_352_588_791)
 
     internal val getBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675695659)
+        TypeManager.getMethodBindPtr("XRFaceTracker", "get_blend_shapes", 675_695_659)
 
     internal val setBlendShapesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2899603908)
+        TypeManager.getMethodBindPtr("XRFaceTracker", "set_blend_shapes", 2_899_603_908)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -38,27 +35,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Area2D] is a region of 2D space defined by one or multiple [CollisionShape2D] or
- * [CollisionPolygon2D] child nodes. It detects when other [CollisionObject2D]s enter or exit it, and
- * it also keeps track of which collision objects haven't exited it yet (i.e. which one are overlapping
- * it).
+ * [Area2D] is a region of 2D space defined by one or multiple [CollisionShape2D] or [CollisionPolygon2D] child nodes. It detects when other [CollisionObject2D]s enter or exit it, and it also keeps track of which collision objects haven't exited it yet (i.e. which one are overlapping it).
  *
- * This node can also locally alter or override physics parameters (gravity, damping) and route
- * audio to custom audio buses.
+ * This node can also locally alter or override physics parameters (gravity, damping) and route audio to custom audio buses.
  *
- * **Note:** Areas and bodies created with [PhysicsServer2D] might not interact as expected with
- * [Area2D]s, and might not emit signals or track objects correctly.
+ * **Note:** Areas and bodies created with [PhysicsServer2D] might not interact as expected with [Area2D]s, and might not emit signals or track objects correctly.
  */
 @GodotBaseType
 public open class Area2D : CollisionObject2D() {
   /**
-   * Emitted when a [Shape2D] of the received [body] enters a shape of this area. [body] can be a
-   * [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes
-   * configured. Requires [monitoring] to be set to `true`.
+   * Emitted when a [Shape2D] of the received [body] enters a shape of this area. [body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
-   * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area
-   * and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can
-   * be used with the [PhysicsServer2D].
+   * [localShapeIndex] and [bodyShapeIndex] contain indices of the interacting shapes from this area and the interacting body, respectively. [bodyRid] contains the [RID] of the body. These values can be used with the [PhysicsServer2D].
    *
    * **Example:** Get the [CollisionShape2D] node from the shape index:
    *
@@ -74,35 +62,26 @@ public open class Area2D : CollisionObject2D() {
   public val bodyShapeEntered: Signal4<RID, Node2D, Long, Long> by Signal4
 
   /**
-   * Emitted when a [Shape2D] of the received [body] exits a shape of this area. [body] can be a
-   * [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes
-   * configured. Requires [monitoring] to be set to `true`.
+   * Emitted when a [Shape2D] of the received [body] exits a shape of this area. [body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [monitoring] to be set to `true`.
    *
    * See also [signal body_shape_entered].
    */
   public val bodyShapeExited: Signal4<RID, Node2D, Long, Long> by Signal4
 
   /**
-   * Emitted when the received [body] enters this area. [body] can be a [PhysicsBody2D] or a
-   * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
-   * [monitoring] to be set to `true`.
+   * Emitted when the received [body] enters this area. [body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [monitoring] to be set to `true`.
    */
   public val bodyEntered: Signal1<Node2D> by Signal1
 
   /**
-   * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody2D] or a
-   * [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires
-   * [monitoring] to be set to `true`.
+   * Emitted when the received [body] exits this area. [body] can be a [PhysicsBody2D] or a [TileMap]. [TileMap]s are detected if their [TileSet] has collision shapes configured. Requires [monitoring] to be set to `true`.
    */
   public val bodyExited: Signal1<Node2D> by Signal1
 
   /**
-   * Emitted when a [Shape2D] of the received [area] enters a shape of this area. Requires
-   * [monitoring] to be set to `true`.
+   * Emitted when a [Shape2D] of the received [area] enters a shape of this area. Requires [monitoring] to be set to `true`.
    *
-   * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area
-   * and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can
-   * be used with the [PhysicsServer2D].
+   * [localShapeIndex] and [areaShapeIndex] contain indices of the interacting shapes from this area and the other area, respectively. [areaRid] contains the [RID] of the other area. These values can be used with the [PhysicsServer2D].
    *
    * **Example:** Get the [CollisionShape2D] node from the shape index:
    *
@@ -118,8 +97,7 @@ public open class Area2D : CollisionObject2D() {
   public val areaShapeEntered: Signal4<RID, Area2D, Long, Long> by Signal4
 
   /**
-   * Emitted when a [Shape2D] of the received [area] exits a shape of this area. Requires
-   * [monitoring] to be set to `true`.
+   * Emitted when a [Shape2D] of the received [area] exits a shape of this area. Requires [monitoring] to be set to `true`.
    *
    * See also [signal area_shape_entered].
    */
@@ -158,8 +136,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The area's priority. Higher priority areas are processed first. The [World2D]'s physics is
-   * always processed last, after all areas.
+   * The area's priority. Higher priority areas are processed first. The [World2D]'s physics is always processed last, after all areas.
    */
   public final inline var priority: Int
     @JvmName("priorityProperty")
@@ -170,8 +147,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for gravity calculations within this area. See [SpaceOverride] for possible
-   * values.
+   * Override mode for gravity calculations within this area. See [SpaceOverride] for possible values.
    */
   public final inline var gravitySpaceOverride: SpaceOverride
     @JvmName("gravitySpaceOverrideProperty")
@@ -182,8 +158,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * If `true`, gravity is calculated from a point (set via [gravityPointCenter]). See also
-   * [gravitySpaceOverride].
+   * If `true`, gravity is calculated from a point (set via [gravityPointCenter]). See also [gravitySpaceOverride].
    */
   public final inline var gravityPoint: Boolean
     @JvmName("gravityPointProperty")
@@ -194,14 +169,9 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The distance at which the gravity strength is equal to [gravity]. For example, on a planet 100
-   * pixels in radius with a surface gravity of 4.0 px/s², set the [gravity] to 4.0 and the unit
-   * distance to 100.0. The gravity will have falloff according to the inverse square law, so in the
-   * example, at 200 pixels from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th
-   * the gravity), at 50 pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
+   * The distance at which the gravity strength is equal to [gravity]. For example, on a planet 100 pixels in radius with a surface gravity of 4.0 px/s², set the [gravity] to 4.0 and the unit distance to 100.0. The gravity will have falloff according to the inverse square law, so in the example, at 200 pixels from the center the gravity will be 1.0 px/s² (twice the distance, 1/4th the gravity), at 50 pixels it will be 16.0 px/s² (half the distance, 4x the gravity), and so on.
    *
-   * The above is true only when the unit distance is a positive number. When this is set to 0.0,
-   * the gravity will be constant regardless of distance.
+   * The above is true only when the unit distance is a positive number. When this is set to 0.0, the gravity will be constant regardless of distance.
    */
   public final inline var gravityPointUnitDistance: Float
     @JvmName("gravityPointUnitDistanceProperty")
@@ -215,11 +185,8 @@ public open class Area2D : CollisionObject2D() {
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravityPointCenter: Vector2
@@ -234,11 +201,8 @@ public open class Area2D : CollisionObject2D() {
    * The area's gravity vector (not normalized).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravityDirection: Vector2
@@ -250,8 +214,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The area's gravity intensity (in pixels per second squared). This value multiplies the gravity
-   * direction. This is useful to alter the force of gravity without altering its direction.
+   * The area's gravity intensity (in pixels per second squared). This value multiplies the gravity direction. This is useful to alter the force of gravity without altering its direction.
    */
   public final inline var gravity: Float
     @JvmName("gravityProperty")
@@ -262,8 +225,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for linear damping calculations within this area. See [SpaceOverride] for
-   * possible values.
+   * Override mode for linear damping calculations within this area. See [SpaceOverride] for possible values.
    */
   public final inline var linearDampSpaceOverride: SpaceOverride
     @JvmName("linearDampSpaceOverrideProperty")
@@ -274,8 +236,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The rate at which objects stop moving in this area. Represents the linear velocity lost per
-   * second.
+   * The rate at which objects stop moving in this area. Represents the linear velocity lost per second.
    *
    * See [ProjectSettings.physics/2d/defaultLinearDamp] for more details about damping.
    */
@@ -288,8 +249,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * Override mode for angular damping calculations within this area. See [SpaceOverride] for
-   * possible values.
+   * Override mode for angular damping calculations within this area. See [SpaceOverride] for possible values.
    */
   public final inline var angularDampSpaceOverride: SpaceOverride
     @JvmName("angularDampSpaceOverrideProperty")
@@ -300,8 +260,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   /**
-   * The rate at which objects stop spinning in this area. Represents the angular velocity lost per
-   * second.
+   * The rate at which objects stop spinning in this area. Represents the angular velocity lost per second.
    *
    * See [ProjectSettings.physics/2d/defaultAngularDamp] for more details about damping.
    */
@@ -335,7 +294,7 @@ public open class Area2D : CollisionObject2D() {
       setAudioBusName(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(38, scriptIndex)
   }
 
@@ -353,8 +312,7 @@ public open class Area2D : CollisionObject2D() {
    * If gravity is a point (see [gravityPoint]), this will be the point of attraction.
    */
   @CoreTypeHelper
-  public final fun gravityPointCenterMutate(block: Vector2.() -> Unit): Vector2 =
-      gravityPointCenter.apply {
+  public final fun gravityPointCenterMutate(block: Vector2.() -> Unit): Vector2 = gravityPointCenter.apply {
      block(this)
      gravityPointCenter = this
   }
@@ -373,13 +331,12 @@ public open class Area2D : CollisionObject2D() {
    * The area's gravity vector (not normalized).
    */
   @CoreTypeHelper
-  public final fun gravityDirectionMutate(block: Vector2.() -> Unit): Vector2 =
-      gravityDirection.apply {
+  public final fun gravityDirectionMutate(block: Vector2.() -> Unit): Vector2 = gravityDirection.apply {
      block(this)
      gravityDirection = this
   }
 
-  public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+  public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride) {
     TransferContext.writeArguments(LONG to spaceOverrideMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
   }
@@ -390,7 +347,7 @@ public open class Area2D : CollisionObject2D() {
     return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setGravityIsPoint(enable: Boolean): Unit {
+  public final fun setGravityIsPoint(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setGravityIsPointPtr, NIL)
   }
@@ -401,7 +358,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGravityPointUnitDistance(distanceScale: Float): Unit {
+  public final fun setGravityPointUnitDistance(distanceScale: Float) {
     TransferContext.writeArguments(DOUBLE to distanceScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGravityPointUnitDistancePtr, NIL)
   }
@@ -412,7 +369,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGravityPointCenter(center: Vector2): Unit {
+  public final fun setGravityPointCenter(center: Vector2) {
     TransferContext.writeArguments(VECTOR2 to center)
     TransferContext.callMethod(ptr, MethodBindings.setGravityPointCenterPtr, NIL)
   }
@@ -423,7 +380,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setGravityDirection(direction: Vector2): Unit {
+  public final fun setGravityDirection(direction: Vector2) {
     TransferContext.writeArguments(VECTOR2 to direction)
     TransferContext.callMethod(ptr, MethodBindings.setGravityDirectionPtr, NIL)
   }
@@ -434,7 +391,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setGravity(gravity: Float): Unit {
+  public final fun setGravity(gravity: Float) {
     TransferContext.writeArguments(DOUBLE to gravity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGravityPtr, NIL)
   }
@@ -445,7 +402,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+  public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride) {
     TransferContext.writeArguments(LONG to spaceOverrideMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
   }
@@ -456,7 +413,7 @@ public open class Area2D : CollisionObject2D() {
     return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
+  public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride) {
     TransferContext.writeArguments(LONG to spaceOverrideMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
   }
@@ -467,7 +424,7 @@ public open class Area2D : CollisionObject2D() {
     return SpaceOverride.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLinearDamp(linearDamp: Float): Unit {
+  public final fun setLinearDamp(linearDamp: Float) {
     TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampPtr, NIL)
   }
@@ -478,7 +435,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAngularDamp(angularDamp: Float): Unit {
+  public final fun setAngularDamp(angularDamp: Float) {
     TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampPtr, NIL)
   }
@@ -489,7 +446,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPriority(priority: Int): Unit {
+  public final fun setPriority(priority: Int) {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPriorityPtr, NIL)
   }
@@ -500,7 +457,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMonitoring(enable: Boolean): Unit {
+  public final fun setMonitoring(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setMonitoringPtr, NIL)
   }
@@ -511,7 +468,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMonitorable(enable: Boolean): Unit {
+  public final fun setMonitorable(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setMonitorablePtr, NIL)
   }
@@ -523,13 +480,9 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's
-   * [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask]
-   * in order to be detected.
+   * Returns a list of intersecting [PhysicsBody2D]s and [TileMap]s. The overlapping body's [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask] in order to be detected.
    *
-   * For performance reasons (collisions are all processed at the same time) this list is modified
-   * once during the physics step, not immediately after objects are moved. Consider using signals
-   * instead.
+   * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
   public final fun getOverlappingBodies(): VariantArray<Node2D> {
     TransferContext.writeArguments()
@@ -538,13 +491,9 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * Returns a list of intersecting [Area2D]s. The overlapping area's
-   * [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask]
-   * in order to be detected.
+   * Returns a list of intersecting [Area2D]s. The overlapping area's [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask] in order to be detected.
    *
-   * For performance reasons (collisions are all processed at the same time) this list is modified
-   * once during the physics step, not immediately after objects are moved. Consider using signals
-   * instead.
+   * For performance reasons (collisions are all processed at the same time) this list is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
   public final fun getOverlappingAreas(): VariantArray<Area2D> {
     TransferContext.writeArguments()
@@ -553,13 +502,9 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * Returns `true` if intersecting any [PhysicsBody2D]s or [TileMap]s, otherwise returns `false`.
-   * The overlapping body's [CollisionObject2D.collisionLayer] must be part of this area's
-   * [CollisionObject2D.collisionMask] in order to be detected.
+   * Returns `true` if intersecting any [PhysicsBody2D]s or [TileMap]s, otherwise returns `false`. The overlapping body's [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask] in order to be detected.
    *
-   * For performance reasons (collisions are all processed at the same time) the list of overlapping
-   * bodies is modified once during the physics step, not immediately after objects are moved. Consider
-   * using signals instead.
+   * For performance reasons (collisions are all processed at the same time) the list of overlapping bodies is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
   public final fun hasOverlappingBodies(): Boolean {
     TransferContext.writeArguments()
@@ -568,13 +513,9 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * Returns `true` if intersecting any [Area2D]s, otherwise returns `false`. The overlapping area's
-   * [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask]
-   * in order to be detected.
+   * Returns `true` if intersecting any [Area2D]s, otherwise returns `false`. The overlapping area's [CollisionObject2D.collisionLayer] must be part of this area's [CollisionObject2D.collisionMask] in order to be detected.
    *
-   * For performance reasons (collisions are all processed at the same time) the list of overlapping
-   * areas is modified once during the physics step, not immediately after objects are moved. Consider
-   * using signals instead.
+   * For performance reasons (collisions are all processed at the same time) the list of overlapping areas is modified once during the physics step, not immediately after objects are moved. Consider using signals instead.
    */
   public final fun hasOverlappingAreas(): Boolean {
     TransferContext.writeArguments()
@@ -583,15 +524,11 @@ public open class Area2D : CollisionObject2D() {
   }
 
   /**
-   * Returns `true` if the given physics body intersects or overlaps this [Area2D], `false`
-   * otherwise.
+   * Returns `true` if the given physics body intersects or overlaps this [Area2D], `false` otherwise.
    *
-   * **Note:** The result of this test is not immediate after moving objects. For performance, list
-   * of overlaps is updated once per frame and before the physics step. Consider using signals instead.
+   * **Note:** The result of this test is not immediate after moving objects. For performance, list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    *
-   * The [body] argument can either be a [PhysicsBody2D] or a [TileMap] instance. While TileMaps are
-   * not physics bodies themselves, they register their tiles with collision shapes as a virtual
-   * physics body.
+   * The [body] argument can either be a [PhysicsBody2D] or a [TileMap] instance. While TileMaps are not physics bodies themselves, they register their tiles with collision shapes as a virtual physics body.
    */
   public final fun overlapsBody(body: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to body)
@@ -602,9 +539,7 @@ public open class Area2D : CollisionObject2D() {
   /**
    * Returns `true` if the given [Area2D] intersects or overlaps this [Area2D], `false` otherwise.
    *
-   * **Note:** The result of this test is not immediate after moving objects. For performance, the
-   * list of overlaps is updated once per frame and before the physics step. Consider using signals
-   * instead.
+   * **Note:** The result of this test is not immediate after moving objects. For performance, the list of overlaps is updated once per frame and before the physics step. Consider using signals instead.
    */
   public final fun overlapsArea(area: Node?): Boolean {
     TransferContext.writeArguments(OBJECT to area)
@@ -612,7 +547,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAudioBusName(name: StringName): Unit {
+  public final fun setAudioBusName(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setAudioBusNamePtr, NIL)
   }
@@ -623,7 +558,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAudioBusOverride(enable: Boolean): Unit {
+  public final fun setAudioBusOverride(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAudioBusOverridePtr, NIL)
   }
@@ -634,7 +569,7 @@ public open class Area2D : CollisionObject2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
+  public final fun setAudioBusName(name: String): Unit = setAudioBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
     id: Long,
@@ -644,13 +579,11 @@ public open class Area2D : CollisionObject2D() {
      */
     DISABLED(0),
     /**
-     * This area adds its gravity/damping values to whatever has been calculated so far (in
-     * [priority] order).
+     * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order).
      */
     COMBINE(1),
     /**
-     * This area adds its gravity/damping values to whatever has been calculated so far (in
-     * [priority] order), ignoring any lower priority areas.
+     * This area adds its gravity/damping values to whatever has been calculated so far (in [priority] order), ignoring any lower priority areas.
      */
     COMBINE_REPLACE(2),
     /**
@@ -658,8 +591,7 @@ public open class Area2D : CollisionObject2D() {
      */
     REPLACE(3),
     /**
-     * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps
-     * calculating the rest of the areas.
+     * This area replaces any gravity/damping calculated so far (in [priority] order), but keeps calculating the rest of the areas.
      */
     REPLACE_COMBINE(4),
     ;
@@ -678,111 +610,111 @@ public open class Area2D : CollisionObject2D() {
 
   public object MethodBindings {
     internal val setGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity_space_override_mode", 2879900038)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_space_override_mode", 2_879_900_038)
 
     internal val getGravitySpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_gravity_space_override_mode", 3990256304)
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_space_override_mode", 3_990_256_304)
 
     internal val setGravityIsPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity_is_point", 2586408642)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_is_point", 2_586_408_642)
 
     internal val isGravityAPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "is_gravity_a_point", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "is_gravity_a_point", 36_873_697)
 
     internal val setGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_unit_distance", 373806689)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_unit_distance", 373_806_689)
 
     internal val getGravityPointUnitDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_unit_distance", 1740695150)
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_unit_distance", 1_740_695_150)
 
     internal val setGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_center", 743155724)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_point_center", 743_155_724)
 
     internal val getGravityPointCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_center", 3341600327)
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_point_center", 3_341_600_327)
 
     internal val setGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity_direction", 743155724)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity_direction", 743_155_724)
 
     internal val getGravityDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_gravity_direction", 3341600327)
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity_direction", 3_341_600_327)
 
     internal val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_gravity", 373806689)
+        TypeManager.getMethodBindPtr("Area2D", "set_gravity", 373_806_689)
 
     internal val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_gravity", 1740695150)
+        TypeManager.getMethodBindPtr("Area2D", "get_gravity", 1_740_695_150)
 
     internal val setLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_linear_damp_space_override_mode", 2879900038)
+        TypeManager.getMethodBindPtr("Area2D", "set_linear_damp_space_override_mode", 2_879_900_038)
 
     internal val getLinearDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_linear_damp_space_override_mode", 3990256304)
+        TypeManager.getMethodBindPtr("Area2D", "get_linear_damp_space_override_mode", 3_990_256_304)
 
     internal val setAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp_space_override_mode", 2879900038)
+        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp_space_override_mode", 2_879_900_038)
 
     internal val getAngularDampSpaceOverrideModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp_space_override_mode", 3990256304)
+        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp_space_override_mode", 3_990_256_304)
 
     internal val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_linear_damp", 373806689)
+        TypeManager.getMethodBindPtr("Area2D", "set_linear_damp", 373_806_689)
 
     internal val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_linear_damp", 1740695150)
+        TypeManager.getMethodBindPtr("Area2D", "get_linear_damp", 1_740_695_150)
 
     internal val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp", 373806689)
+        TypeManager.getMethodBindPtr("Area2D", "set_angular_damp", 373_806_689)
 
     internal val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp", 1740695150)
+        TypeManager.getMethodBindPtr("Area2D", "get_angular_damp", 1_740_695_150)
 
     internal val setPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_priority", 1286410249)
+        TypeManager.getMethodBindPtr("Area2D", "set_priority", 1_286_410_249)
 
     internal val getPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_priority", 3905245786)
+        TypeManager.getMethodBindPtr("Area2D", "get_priority", 3_905_245_786)
 
     internal val setMonitoringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_monitoring", 2586408642)
+        TypeManager.getMethodBindPtr("Area2D", "set_monitoring", 2_586_408_642)
 
     internal val isMonitoringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "is_monitoring", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "is_monitoring", 36_873_697)
 
     internal val setMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_monitorable", 2586408642)
+        TypeManager.getMethodBindPtr("Area2D", "set_monitorable", 2_586_408_642)
 
     internal val isMonitorablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "is_monitorable", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "is_monitorable", 36_873_697)
 
     internal val getOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_bodies", 3995934104)
+        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_bodies", 3_995_934_104)
 
     internal val getOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_areas", 3995934104)
+        TypeManager.getMethodBindPtr("Area2D", "get_overlapping_areas", 3_995_934_104)
 
     internal val hasOverlappingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_bodies", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_bodies", 36_873_697)
 
     internal val hasOverlappingAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_areas", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "has_overlapping_areas", 36_873_697)
 
     internal val overlapsBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "overlaps_body", 3093956946)
+        TypeManager.getMethodBindPtr("Area2D", "overlaps_body", 3_093_956_946)
 
     internal val overlapsAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "overlaps_area", 3093956946)
+        TypeManager.getMethodBindPtr("Area2D", "overlaps_area", 3_093_956_946)
 
     internal val setAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_name", 3304788590)
+        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_name", 3_304_788_590)
 
     internal val getAudioBusNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "get_audio_bus_name", 2002593661)
+        TypeManager.getMethodBindPtr("Area2D", "get_audio_bus_name", 2_002_593_661)
 
     internal val setAudioBusOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_override", 2586408642)
+        TypeManager.getMethodBindPtr("Area2D", "set_audio_bus_override", 2_586_408_642)
 
     internal val isOverridingAudioBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Area2D", "is_overriding_audio_bus", 36873697)
+        TypeManager.getMethodBindPtr("Area2D", "is_overriding_audio_bus", 36_873_697)
   }
 }

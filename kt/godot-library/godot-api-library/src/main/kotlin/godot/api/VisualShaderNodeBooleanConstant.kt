@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -36,11 +32,11 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
       setConstant(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(729, scriptIndex)
   }
 
-  public final fun setConstant(constant: Boolean): Unit {
+  public final fun setConstant(constant: Boolean) {
     TransferContext.writeArguments(BOOL to constant)
     TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
@@ -55,9 +51,9 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "set_constant", 2_586_408_642)
 
     internal val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBooleanConstant", "get_constant", 36_873_697)
   }
 }

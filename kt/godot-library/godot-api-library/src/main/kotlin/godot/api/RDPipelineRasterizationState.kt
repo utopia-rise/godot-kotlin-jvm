@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -29,8 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class RDPipelineRasterizationState : RefCounted() {
   /**
-   * If `true`, clamps depth values according to the minimum and maximum depth of the associated
-   * viewport.
+   * If `true`, clamps depth values according to the minimum and maximum depth of the associated viewport.
    */
   public final inline var enableDepthClamp: Boolean
     @JvmName("enableDepthClampProperty")
@@ -63,8 +58,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The cull mode to use when drawing polygons, which determines whether front faces or backfaces
-   * are hidden.
+   * The cull mode to use when drawing polygons, which determines whether front faces or backfaces are hidden.
    */
   public final inline var cullMode: RenderingDevice.PolygonCullMode
     @JvmName("cullModeProperty")
@@ -86,8 +80,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * If `true`, each generated depth value will by offset by some amount. The specific amount is
-   * generated per polygon based on the values of [depthBiasSlopeFactor] and [depthBiasConstantFactor].
+   * If `true`, each generated depth value will by offset by some amount. The specific amount is generated per polygon based on the values of [depthBiasSlopeFactor] and [depthBiasConstantFactor].
    */
   public final inline var depthBiasEnabled: Boolean
     @JvmName("depthBiasEnabledProperty")
@@ -109,8 +102,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * A limit for how much each depth value can be offset. If negative, it serves as a minimum value,
-   * but if positive, it serves as a maximum value.
+   * A limit for how much each depth value can be offset. If negative, it serves as a minimum value, but if positive, it serves as a maximum value.
    */
   public final inline var depthBiasClamp: Float
     @JvmName("depthBiasClampProperty")
@@ -121,8 +113,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * A constant scale applied to the slope of each polygons' depth. Applied before
-   * [depthBiasConstantFactor].
+   * A constant scale applied to the slope of each polygons' depth. Applied before [depthBiasConstantFactor].
    */
   public final inline var depthBiasSlopeFactor: Float
     @JvmName("depthBiasSlopeFactorProperty")
@@ -133,8 +124,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all
-   * hardware.
+   * The line width to use when drawing lines (in pixels). Thick lines may not be supported on all hardware.
    */
   public final inline var lineWidth: Float
     @JvmName("lineWidthProperty")
@@ -145,8 +135,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     }
 
   /**
-   * The number of control points to use when drawing a patch with tessellation enabled. Higher
-   * values result in higher quality at the cost of performance.
+   * The number of control points to use when drawing a patch with tessellation enabled. Higher values result in higher quality at the cost of performance.
    */
   public final inline var patchControlPoints: Long
     @JvmName("patchControlPointsProperty")
@@ -156,11 +145,11 @@ public open class RDPipelineRasterizationState : RefCounted() {
       setPatchControlPoints(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(519, scriptIndex)
   }
 
-  public final fun setEnableDepthClamp(pMember: Boolean): Unit {
+  public final fun setEnableDepthClamp(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableDepthClampPtr, NIL)
   }
@@ -171,7 +160,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDiscardPrimitives(pMember: Boolean): Unit {
+  public final fun setDiscardPrimitives(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setDiscardPrimitivesPtr, NIL)
   }
@@ -182,7 +171,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWireframe(pMember: Boolean): Unit {
+  public final fun setWireframe(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setWireframePtr, NIL)
   }
@@ -193,7 +182,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
+  public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
@@ -204,7 +193,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return RenderingDevice.PolygonCullMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace): Unit {
+  public final fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setFrontFacePtr, NIL)
   }
@@ -215,7 +204,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return RenderingDevice.PolygonFrontFace.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDepthBiasEnabled(pMember: Boolean): Unit {
+  public final fun setDepthBiasEnabled(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setDepthBiasEnabledPtr, NIL)
   }
@@ -226,7 +215,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDepthBiasConstantFactor(pMember: Float): Unit {
+  public final fun setDepthBiasConstantFactor(pMember: Float) {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDepthBiasConstantFactorPtr, NIL)
   }
@@ -237,7 +226,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDepthBiasClamp(pMember: Float): Unit {
+  public final fun setDepthBiasClamp(pMember: Float) {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDepthBiasClampPtr, NIL)
   }
@@ -248,7 +237,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDepthBiasSlopeFactor(pMember: Float): Unit {
+  public final fun setDepthBiasSlopeFactor(pMember: Float) {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDepthBiasSlopeFactorPtr, NIL)
   }
@@ -259,7 +248,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLineWidth(pMember: Float): Unit {
+  public final fun setLineWidth(pMember: Float) {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLineWidthPtr, NIL)
   }
@@ -270,7 +259,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPatchControlPoints(pMember: Long): Unit {
+  public final fun setPatchControlPoints(pMember: Long) {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setPatchControlPointsPtr, NIL)
   }
@@ -285,69 +274,69 @@ public open class RDPipelineRasterizationState : RefCounted() {
 
   public object MethodBindings {
     internal val setEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_enable_depth_clamp", 2_586_408_642)
 
     internal val getEnableDepthClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_enable_depth_clamp", 36_873_697)
 
     internal val setDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_discard_primitives", 2_586_408_642)
 
     internal val getDiscardPrimitivesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_discard_primitives", 36_873_697)
 
     internal val setWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_wireframe", 2_586_408_642)
 
     internal val getWireframePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_wireframe", 36_873_697)
 
     internal val setCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode", 2662586502)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_cull_mode", 2_662_586_502)
 
     internal val getCullModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode", 2192484313)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_cull_mode", 2_192_484_313)
 
     internal val setFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face", 2637251213)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_front_face", 2_637_251_213)
 
     internal val getFrontFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face", 708793786)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_front_face", 708_793_786)
 
     internal val setDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_enabled", 2_586_408_642)
 
     internal val getDepthBiasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_enabled", 36_873_697)
 
     internal val setDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor", 373806689)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_constant_factor", 373_806_689)
 
     internal val getDepthBiasConstantFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor", 1740695150)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_constant_factor", 1_740_695_150)
 
     internal val setDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp", 373806689)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_clamp", 373_806_689)
 
     internal val getDepthBiasClampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp", 1740695150)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_clamp", 1_740_695_150)
 
     internal val setDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor", 373806689)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_depth_bias_slope_factor", 373_806_689)
 
     internal val getDepthBiasSlopeFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor", 1740695150)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_depth_bias_slope_factor", 1_740_695_150)
 
     internal val setLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width", 373806689)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_line_width", 373_806_689)
 
     internal val getLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width", 1740695150)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_line_width", 1_740_695_150)
 
     internal val setPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points", 1286410249)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "set_patch_control_points", 1_286_410_249)
 
     internal val getPatchControlPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points", 3905245786)
+        TypeManager.getMethodBindPtr("RDPipelineRasterizationState", "get_patch_control_points", 3_905_245_786)
   }
 }

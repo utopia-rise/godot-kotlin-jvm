@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,28 +27,17 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or
- * [hasSetting] to access them. Variables stored in `project.godot` are also loaded into
- * [ProjectSettings], making this object very useful for reading custom game configuration options.
+ * Stores variables that can be accessed from everywhere. Use [getSetting], [setSetting] or [hasSetting] to access them. Variables stored in `project.godot` are also loaded into [ProjectSettings], making this object very useful for reading custom game configuration options.
  *
- * When naming a Project Settings property, use the full path to the setting including the category.
- * For example, `"application/config/name"` for the project name. Category and property names can be
- * viewed in the Project Settings dialog.
+ * When naming a Project Settings property, use the full path to the setting including the category. For example, `"application/config/name"` for the project name. Category and property names can be viewed in the Project Settings dialog.
  *
- * **Feature tags:** Project settings can be overridden for specific platforms and configurations
- * (debug, release, ...) using [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url].
+ * **Feature tags:** Project settings can be overridden for specific platforms and configurations (debug, release, ...) using [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url].
  *
- * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in
- * the project's root directory. This can also be used in exported projects by placing this file in the
- * same directory as the project binary. Overriding will still take the base project settings'
- * [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url] in account. Therefore, make
- * sure to *also* override the setting with the desired feature tags if you want them to override base
- * project settings on all platforms and configurations.
+ * **Overriding:** Any project setting can be overridden by creating a file named `override.cfg` in the project's root directory. This can also be used in exported projects by placing this file in the same directory as the project binary. Overriding will still take the base project settings' [url=$DOCS_URL/tutorials/export/feature_tags.html]feature tags[/url] in account. Therefore, make sure to *also* override the setting with the desired feature tags if you want them to override base project settings on all platforms and configurations.
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
@@ -61,7 +47,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public val settingsChanged: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(25)
   }
 
@@ -88,36 +74,30 @@ public object ProjectSettings : Object() {
    * ProjectSettings.SetSetting("application/config/name", "Example");
    * ```
    *
-   * This can also be used to erase custom project settings. To do this change the setting value to
-   * `null`.
+   * This can also be used to erase custom project settings. To do this change the setting value to `null`.
    */
   @JvmStatic
-  public final fun setSetting(name: String, `value`: Any?): Unit {
+  public final fun setSetting(name: String, `value`: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setSettingPtr, NIL)
   }
 
   /**
-   * Returns the value of the setting identified by [name]. If the setting doesn't exist and
-   * [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is
-   * returned.
+   * Returns the value of the setting identified by [name]. If the setting doesn't exist and [defaultValue] is specified, the value of [defaultValue] is returned. Otherwise, `null` is returned.
    *
    * ```gdscript
    * //gdscript
    * print(ProjectSettings.get_setting("application/config/name"))
-   * print(ProjectSettings.get_setting("application/config/custom_description", "No description
-   * specified."))
+   * print(ProjectSettings.get_setting("application/config/custom_description", "No description specified."))
    * ```
    *
    * ```csharp
    * //csharp
    * GD.Print(ProjectSettings.GetSetting("application/config/name"));
-   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description
-   * specified."));
+   * GD.Print(ProjectSettings.GetSetting("application/config/custom_description", "No description specified."));
    * ```
    *
-   * **Note:** This method doesn't take potential feature overrides into account automatically. Use
-   * [getSettingWithOverride] to handle seamlessly.
+   * **Note:** This method doesn't take potential feature overrides into account automatically. Use [getSettingWithOverride] to handle seamlessly.
    */
   @JvmOverloads
   @JvmStatic
@@ -130,9 +110,7 @@ public object ProjectSettings : Object() {
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
    *
-   * **Example:** If the setting override `"application/config/name.windows"` exists, and the
-   * following code is executed on a *Windows* operating system, the overridden setting is printed
-   * instead:
+   * **Example:** If the setting override `"application/config/name.windows"` exists, and the following code is executed on a *Windows* operating system, the overridden setting is printed instead:
    *
    * ```gdscript
    * //gdscript
@@ -152,8 +130,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns an [Array] of registered global classes. Each global class is represented as a
-   * [Dictionary] that contains the following entries:
+   * Returns an [Array] of registered global classes. Each global class is represented as a [Dictionary] that contains the following entries:
    *
    * - `base` is a name of the base class;
    *
@@ -165,8 +142,7 @@ public object ProjectSettings : Object() {
    *
    * - `path` is a path to a file containing the global class.
    *
-   * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they
-   * start with `res://`.
+   * **Note:** Both the script and the icon paths are local to the project filesystem, i.e. they start with `res://`.
    */
   @JvmStatic
   public final fun getGlobalClassList(): VariantArray<Dictionary<Any?, Any?>> {
@@ -179,7 +155,7 @@ public object ProjectSettings : Object() {
    * Sets the order of a configuration value (influences when saved to the config file).
    */
   @JvmStatic
-  public final fun setOrder(name: String, position: Int): Unit {
+  public final fun setOrder(name: String, position: Int) {
     TransferContext.writeArguments(STRING to name, LONG to position.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOrderPtr, NIL)
   }
@@ -198,29 +174,25 @@ public object ProjectSettings : Object() {
    * Sets the specified setting's initial value. This is the value the setting reverts to.
    */
   @JvmStatic
-  public final fun setInitialValue(name: String, `value`: Any?): Unit {
+  public final fun setInitialValue(name: String, `value`: Any?) {
     TransferContext.writeArguments(STRING to name, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setInitialValuePtr, NIL)
   }
 
   /**
-   * Defines if the specified setting is considered basic or advanced. Basic settings will always be
-   * shown in the project settings. Advanced settings will only be shown if the user enables the
-   * "Advanced Settings" option.
+   * Defines if the specified setting is considered basic or advanced. Basic settings will always be shown in the project settings. Advanced settings will only be shown if the user enables the "Advanced Settings" option.
    */
   @JvmStatic
-  public final fun setAsBasic(name: String, basic: Boolean): Unit {
+  public final fun setAsBasic(name: String, basic: Boolean) {
     TransferContext.writeArguments(STRING to name, BOOL to basic)
     TransferContext.callMethod(ptr, MethodBindings.setAsBasicPtr, NIL)
   }
 
   /**
-   * Defines if the specified setting is considered internal. An internal setting won't show up in
-   * the Project Settings dialog. This is mostly useful for addons that need to store their own
-   * internal settings without exposing them directly to the user.
+   * Defines if the specified setting is considered internal. An internal setting won't show up in the Project Settings dialog. This is mostly useful for addons that need to store their own internal settings without exposing them directly to the user.
    */
   @JvmStatic
-  public final fun setAsInternal(name: String, `internal`: Boolean): Unit {
+  public final fun setAsInternal(name: String, `internal`: Boolean) {
     TransferContext.writeArguments(STRING to name, BOOL to internal)
     TransferContext.callMethod(ptr, MethodBindings.setAsInternalPtr, NIL)
   }
@@ -264,7 +236,7 @@ public object ProjectSettings : Object() {
    * ```
    */
   @JvmStatic
-  public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
+  public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to hint)
     TransferContext.callMethod(ptr, MethodBindings.addPropertyInfoPtr, NIL)
   }
@@ -272,12 +244,10 @@ public object ProjectSettings : Object() {
   /**
    * Sets whether a setting requires restarting the editor to properly take effect.
    *
-   * **Note:** This is just a hint to display to the user that the editor must be restarted for
-   * changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when
-   * changed.
+   * **Note:** This is just a hint to display to the user that the editor must be restarted for changes to take effect. Enabling [setRestartIfChanged] does *not* delay the setting being set when changed.
    */
   @JvmStatic
-  public final fun setRestartIfChanged(name: String, restart: Boolean): Unit {
+  public final fun setRestartIfChanged(name: String, restart: Boolean) {
     TransferContext.writeArguments(STRING to name, BOOL to restart)
     TransferContext.callMethod(ptr, MethodBindings.setRestartIfChangedPtr, NIL)
   }
@@ -286,14 +256,13 @@ public object ProjectSettings : Object() {
    * Clears the whole configuration (not recommended, may break things).
    */
   @JvmStatic
-  public final fun clear(name: String): Unit {
+  public final fun clear(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
-   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS
-   * [path]. See also [globalizePath].
+   * Returns the localized path (starting with `res://`) corresponding to the absolute, native OS [path]. See also [globalizePath].
    */
   @JvmStatic
   public final fun localizePath(path: String): String {
@@ -303,13 +272,9 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Returns the absolute, native OS path corresponding to the localized [path] (starting with
-   * `res://` or `user://`). The returned path will vary depending on the operating system and user
-   * preferences. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] to
-   * see what those paths convert to. See also [localizePath].
+   * Returns the absolute, native OS path corresponding to the localized [path] (starting with `res://` or `user://`). The returned path will vary depending on the operating system and user preferences. See [url=$DOCS_URL/tutorials/io/data_paths.html]File paths in Godot projects[/url] to see what those paths convert to. See also [localizePath].
    *
-   * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend
-   * the executable's base directory to the path when running from an exported project:
+   * **Note:** [globalizePath] with `res://` will not work in an exported project. Instead, prepend the executable's base directory to the path when running from an exported project:
    *
    * ```
    * var path = ""
@@ -335,9 +300,7 @@ public object ProjectSettings : Object() {
   /**
    * Saves the configuration to the `project.godot` file.
    *
-   * **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings]
-   * can't be loaded back in the running app. If you want to change project settings in exported
-   * projects, use [saveCustom] to save `override.cfg` file.
+   * **Note:** This method is intended to be used by editor plugins, as modified [ProjectSettings] can't be loaded back in the running app. If you want to change project settings in exported projects, use [saveCustom] to save `override.cfg` file.
    */
   @JvmStatic
   public final fun save(): Error {
@@ -347,18 +310,13 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem
-   * (`res://`). Returns `true` on success.
+   * Loads the contents of the .pck or .zip file specified by [pack] into the resource filesystem (`res://`). Returns `true` on success.
    *
-   * **Note:** If a file from [pack] shares the same path as a file already in the resource
-   * filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is
-   * set to `false`.
+   * **Note:** If a file from [pack] shares the same path as a file already in the resource filesystem, any attempts to load that file will use the file from [pack] unless [replaceFiles] is set to `false`.
    *
-   * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the
-   * start of the resource pack. This is only supported for .pck files.
+   * **Note:** The optional [offset] parameter can be used to specify the offset in bytes to the start of the resource pack. This is only supported for .pck files.
    *
-   * **Note:** [DirAccess] will not show changes made to the contents of `res://` after calling this
-   * function.
+   * **Note:** [DirAccess] will not show changes made to the contents of `res://` after calling this function.
    */
   @JvmOverloads
   @JvmStatic
@@ -373,10 +331,7 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Saves the configuration to a custom file. The file extension must be `.godot` (to save in
-   * text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save
-   * `override.cfg` file, which is also text, but can be used in exported projects unlike other
-   * formats.
+   * Saves the configuration to a custom file. The file extension must be `.godot` (to save in text-based [ConfigFile] format) or `.binary` (to save in binary format). You can also save `override.cfg` file, which is also text, but can be used in exported projects unlike other formats.
    */
   @JvmStatic
   public final fun saveCustom(`file`: String): Error {
@@ -388,9 +343,7 @@ public object ProjectSettings : Object() {
   /**
    * Similar to [getSetting], but applies feature tag overrides if any exists and is valid.
    *
-   * **Example:** If the setting override `"application/config/name.windows"` exists, and the
-   * following code is executed on a *Windows* operating system, the overridden setting is printed
-   * instead:
+   * **Example:** If the setting override `"application/config/name.windows"` exists, and the following code is executed on a *Windows* operating system, the overridden setting is printed instead:
    *
    * ```gdscript
    * //gdscript
@@ -403,62 +356,61 @@ public object ProjectSettings : Object() {
    * ```
    */
   @JvmStatic
-  public final fun getSettingWithOverride(name: String): Any? =
-      getSettingWithOverride(name.asCachedStringName())
+  public final fun getSettingWithOverride(name: String): Any? = getSettingWithOverride(name.asCachedStringName())
 
   public object MethodBindings {
     internal val hasSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "has_setting", 3927539163)
+        TypeManager.getMethodBindPtr("ProjectSettings", "has_setting", 3_927_539_163)
 
     internal val setSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_setting", 402577236)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_setting", 402_577_236)
 
     internal val getSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting", 223050753)
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting", 223_050_753)
 
     internal val getSettingWithOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting_with_override", 2760726917)
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting_with_override", 2_760_726_917)
 
     internal val getGlobalClassListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2915620761)
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2_915_620_761)
 
     internal val setOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_order", 2956805083)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_order", 2_956_805_083)
 
     internal val getOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "get_order", 1321353865)
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_order", 1_321_353_865)
 
     internal val setInitialValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_initial_value", 402577236)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_initial_value", 402_577_236)
 
     internal val setAsBasicPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_basic", 2678287736)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_basic", 2_678_287_736)
 
     internal val setAsInternalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_internal", 2678287736)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_as_internal", 2_678_287_736)
 
     internal val addPropertyInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "add_property_info", 4155329257)
+        TypeManager.getMethodBindPtr("ProjectSettings", "add_property_info", 4_155_329_257)
 
     internal val setRestartIfChangedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "set_restart_if_changed", 2678287736)
+        TypeManager.getMethodBindPtr("ProjectSettings", "set_restart_if_changed", 2_678_287_736)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "clear", 83702148)
+        TypeManager.getMethodBindPtr("ProjectSettings", "clear", 83_702_148)
 
     internal val localizePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "localize_path", 3135753539)
+        TypeManager.getMethodBindPtr("ProjectSettings", "localize_path", 3_135_753_539)
 
     internal val globalizePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "globalize_path", 3135753539)
+        TypeManager.getMethodBindPtr("ProjectSettings", "globalize_path", 3_135_753_539)
 
     internal val savePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "save", 166280745)
+        TypeManager.getMethodBindPtr("ProjectSettings", "save", 166_280_745)
 
     internal val loadResourcePackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "load_resource_pack", 708980503)
+        TypeManager.getMethodBindPtr("ProjectSettings", "load_resource_pack", 708_980_503)
 
     internal val saveCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ProjectSettings", "save_custom", 166001499)
+        TypeManager.getMethodBindPtr("ProjectSettings", "save_custom", 166_001_499)
   }
 }

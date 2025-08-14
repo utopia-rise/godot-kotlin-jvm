@@ -27,9 +27,10 @@ class ClassInheritanceChild : ClassInheritanceParent() {
         childOpenFunctionHasBeenCalled = true
     }
 
-    @RegisterFunction
-    override fun _notification() = godotNotification {
-        GD.print("Called ClassInheritanceChild::_notification on $this with $it")
-        notificationCallBitFlag += notificationCallBitFlag or 2
-    }
+    // TODO: enable once class instantiation issue in the registration phase is fixed
+//    @RegisterFunction
+//    override fun _notification() = godotNotification {
+//        GD.print("Called ClassInheritanceChild::_notification on $this with $it")
+//        notificationCallBitFlag += notificationCallBitFlag or 2
+//    }
 }

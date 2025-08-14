@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,12 +20,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension]
- * libraries in the project.
+ * The GDExtensionManager loads, initializes, and keeps track of all available [GDExtension] libraries in the project.
  *
  * **Note:** Do not worry about GDExtension unless you know what you are doing.
  */
@@ -56,13 +51,12 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public val extensionUnloading: Signal1<GDExtension> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(6)
   }
 
   /**
-   * Loads an extension by absolute file path. The [path] needs to point to a valid [GDExtension].
-   * Returns [LOAD_STATUS_OK] if successful.
+   * Loads an extension by absolute file path. The [path] needs to point to a valid [GDExtension]. Returns [LOAD_STATUS_OK] if successful.
    */
   @JvmStatic
   public final fun loadExtension(path: String): LoadStatus {
@@ -72,12 +66,9 @@ public object GDExtensionManager : Object() {
   }
 
   /**
-   * Reloads the extension at the given file path. The [path] needs to point to a valid
-   * [GDExtension], otherwise this method may return either [LOAD_STATUS_NOT_LOADED] or
-   * [LOAD_STATUS_FAILED].
+   * Reloads the extension at the given file path. The [path] needs to point to a valid [GDExtension], otherwise this method may return either [LOAD_STATUS_NOT_LOADED] or [LOAD_STATUS_FAILED].
    *
-   * **Note:** You can only reload extensions in the editor. In release builds, this method always
-   * fails and returns [LOAD_STATUS_FAILED].
+   * **Note:** You can only reload extensions in the editor. In release builds, this method always fails and returns [LOAD_STATUS_FAILED].
    */
   @JvmStatic
   public final fun reloadExtension(path: String): LoadStatus {
@@ -87,8 +78,7 @@ public object GDExtensionManager : Object() {
   }
 
   /**
-   * Unloads an extension by file path. The [path] needs to point to an already loaded
-   * [GDExtension], otherwise this method returns [LOAD_STATUS_NOT_LOADED].
+   * Unloads an extension by file path. The [path] needs to point to an already loaded [GDExtension], otherwise this method returns [LOAD_STATUS_NOT_LOADED].
    */
   @JvmStatic
   public final fun unloadExtension(path: String): LoadStatus {
@@ -98,8 +88,7 @@ public object GDExtensionManager : Object() {
   }
 
   /**
-   * Returns `true` if the extension at the given file [path] has already been loaded successfully.
-   * See also [getLoadedExtensions].
+   * Returns `true` if the extension at the given file [path] has already been loaded successfully. See also [getLoadedExtensions].
    */
   @JvmStatic
   public final fun isExtensionLoaded(path: String): Boolean {
@@ -119,8 +108,7 @@ public object GDExtensionManager : Object() {
   }
 
   /**
-   * Returns the [GDExtension] at the given file [path], or `null` if it has not been loaded or does
-   * not exist.
+   * Returns the [GDExtension] at the given file [path], or `null` if it has not been loaded or does not exist.
    */
   @JvmStatic
   public final fun getExtension(path: String): GDExtension? {
@@ -137,8 +125,7 @@ public object GDExtensionManager : Object() {
      */
     OK(0),
     /**
-     * The extension has failed to load, possibly because it does not exist or has missing
-     * dependencies.
+     * The extension has failed to load, possibly because it does not exist or has missing dependencies.
      */
     FAILED(1),
     /**
@@ -167,21 +154,21 @@ public object GDExtensionManager : Object() {
 
   public object MethodBindings {
     internal val loadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension", 4024158731)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "load_extension", 4_024_158_731)
 
     internal val reloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension", 4024158731)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "reload_extension", 4_024_158_731)
 
     internal val unloadExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "unload_extension", 4024158731)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "unload_extension", 4_024_158_731)
 
     internal val isExtensionLoadedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "is_extension_loaded", 3927539163)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "is_extension_loaded", 3_927_539_163)
 
     internal val getLoadedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions", 1139954409)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "get_loaded_extensions", 1_139_954_409)
 
     internal val getExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GDExtensionManager", "get_extension", 49743343)
+        TypeManager.getMethodBindPtr("GDExtensionManager", "get_extension", 49_743_343)
   }
 }

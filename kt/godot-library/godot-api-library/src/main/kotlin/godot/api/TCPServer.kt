@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,35 +18,27 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
- * incoming connection.
+ * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an incoming connection.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class TCPServer : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(651, scriptIndex)
   }
 
   /**
    * Listen on the [port] binding to [bindAddress].
    *
-   * If [bindAddress] is set as `"*"` (default), the server will listen on all available addresses
-   * (both IPv4 and IPv6).
+   * If [bindAddress] is set as `"*"` (default), the server will listen on all available addresses (both IPv4 and IPv6).
    *
-   * If [bindAddress] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen
-   * on all available addresses matching that IP type.
+   * If [bindAddress] is set as `"0.0.0.0"` (for IPv4) or `"::"` (for IPv6), the server will listen on all available addresses matching that IP type.
    *
-   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the
-   * server will only listen on the interface with that address (or fail if no interface with the given
-   * address exists).
+   * If [bindAddress] is set to any valid address (e.g. `"192.168.1.101"`, `"::1"`, etc.), the server will only listen on the interface with that address (or fail if no interface with the given address exists).
    */
   @JvmOverloads
   public final fun listen(port: Int, bindAddress: String = "*"): Error {
@@ -97,7 +86,7 @@ public open class TCPServer : RefCounted() {
   /**
    * Stops listening.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -106,20 +95,20 @@ public open class TCPServer : RefCounted() {
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "listen", 3167955072)
+        TypeManager.getMethodBindPtr("TCPServer", "listen", 3_167_955_072)
 
     internal val isConnectionAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available", 36873697)
+        TypeManager.getMethodBindPtr("TCPServer", "is_connection_available", 36_873_697)
 
     internal val isListeningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "is_listening", 36873697)
+        TypeManager.getMethodBindPtr("TCPServer", "is_listening", 36_873_697)
 
     internal val getLocalPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "get_local_port", 3905245786)
+        TypeManager.getMethodBindPtr("TCPServer", "get_local_port", 3_905_245_786)
 
     internal val takeConnectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TCPServer", "take_connection", 30545006)
+        TypeManager.getMethodBindPtr("TCPServer", "take_connection", 30_545_006)
 
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("TCPServer", "stop", 3_218_959_716)
   }
 }

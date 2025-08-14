@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,14 +16,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
- * composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number
- * of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the
- * curve determines the size of the ribbon along its length.
+ * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is composed of a number of flat or cross-shaped sections, each with the same [sectionLength] and number of [sectionSegments]. A [curve] is sampled along the total length of the ribbon, meaning that the curve determines the size of the ribbon along its length.
  *
  * This primitive mesh is usually used for particle trails.
  */
@@ -44,8 +37,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The baseline size of the ribbon. The size of a particular section segment is obtained by
-   * multiplying this size by the value of the [curve] at the given distance.
+   * The baseline size of the ribbon. The size of a particular section segment is obtained by multiplying this size by the value of the [curve] at the given distance.
    */
   public final inline var size: Float
     @JvmName("sizeProperty")
@@ -78,8 +70,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The number of segments in a section. The [curve] is sampled on each segment to determine its
-   * size. Higher values result in a more detailed ribbon at the cost of performance.
+   * The number of segments in a section. The [curve] is sampled on each segment to determine its size. Higher values result in a more detailed ribbon at the cost of performance.
    */
   public final inline var sectionSegments: Int
     @JvmName("sectionSegmentsProperty")
@@ -90,9 +81,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * Determines the size of the ribbon along its length. The size of a particular section segment is
-   * obtained by multiplying the baseline [size] by the value of this curve at the given distance. For
-   * values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
+   * Determines the size of the ribbon along its length. The size of a particular section segment is obtained by multiplying the baseline [size] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
    */
   public final inline var curve: Curve?
     @JvmName("curveProperty")
@@ -102,11 +91,11 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
       setCurve(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(561, scriptIndex)
   }
 
-  public final fun setSize(size: Float): Unit {
+  public final fun setSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -117,7 +106,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSections(sections: Int): Unit {
+  public final fun setSections(sections: Int) {
     TransferContext.writeArguments(LONG to sections.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSectionsPtr, NIL)
   }
@@ -128,7 +117,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSectionLength(sectionLength: Float): Unit {
+  public final fun setSectionLength(sectionLength: Float) {
     TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSectionLengthPtr, NIL)
   }
@@ -139,7 +128,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSectionSegments(sectionSegments: Int): Unit {
+  public final fun setSectionSegments(sectionSegments: Int) {
     TransferContext.writeArguments(LONG to sectionSegments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSectionSegmentsPtr, NIL)
   }
@@ -150,7 +139,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCurve(curve: Curve?): Unit {
+  public final fun setCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
@@ -161,7 +150,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setShape(shape: Shape): Unit {
+  public final fun setShape(shape: Shape) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -199,39 +188,39 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_size", 373806689)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_size", 373_806_689)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_size", 1740695150)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_size", 1_740_695_150)
 
     internal val setSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_sections", 1286410249)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_sections", 1_286_410_249)
 
     internal val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_sections", 3905245786)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_sections", 3_905_245_786)
 
     internal val setSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_length", 373806689)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_length", 373_806_689)
 
     internal val getSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_length", 1740695150)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_length", 1_740_695_150)
 
     internal val setSectionSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_segments", 1286410249)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_section_segments", 1_286_410_249)
 
     internal val getSectionSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_segments", 3905245786)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_section_segments", 3_905_245_786)
 
     internal val setCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_curve", 270443179)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_curve", 270_443_179)
 
     internal val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_curve", 2460114913)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_curve", 2_460_114_913)
 
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_shape", 1684440262)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "set_shape", 1_684_440_262)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_shape", 1317484155)
+        TypeManager.getMethodBindPtr("RibbonTrailMesh", "get_shape", 1_317_484_155)
   }
 }

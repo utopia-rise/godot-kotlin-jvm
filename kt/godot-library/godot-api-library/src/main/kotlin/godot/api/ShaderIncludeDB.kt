@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,17 +15,14 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * This object contains shader fragments from Godot's internal shaders. These can be used when
- * access to internal uniform buffers and/or internal functions is required for instance when composing
- * compositor effects or compute shaders. Only fragments for the current rendering device are loaded.
+ * This object contains shader fragments from Godot's internal shaders. These can be used when access to internal uniform buffers and/or internal functions is required for instance when composing compositor effects or compute shaders. Only fragments for the current rendering device are loaded.
  */
 @GodotBaseType
 public open class ShaderIncludeDB : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(586, scriptIndex)
   }
 
@@ -54,8 +48,7 @@ public open class ShaderIncludeDB : Object() {
     }
 
     /**
-     * Returns the code for the built-in shader fragment. You can also access this in your shader
-     * code through `#include "filename"`.
+     * Returns the code for the built-in shader fragment. You can also access this in your shader code through `#include "filename"`.
      */
     @JvmStatic
     public final fun getBuiltInIncludeFile(filename: String): String {
@@ -67,12 +60,12 @@ public open class ShaderIncludeDB : Object() {
 
   public object MethodBindings {
     internal val listBuiltInIncludeFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderIncludeDB", "list_built_in_include_files", 2981934095)
+        TypeManager.getMethodBindPtr("ShaderIncludeDB", "list_built_in_include_files", 2_981_934_095)
 
     internal val hasBuiltInIncludeFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderIncludeDB", "has_built_in_include_file", 2323990056)
+        TypeManager.getMethodBindPtr("ShaderIncludeDB", "has_built_in_include_file", 2_323_990_056)
 
     internal val getBuiltInIncludeFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderIncludeDB", "get_built_in_include_file", 1703090593)
+        TypeManager.getMethodBindPtr("ShaderIncludeDB", "get_built_in_include_file", 1_703_090_593)
   }
 }

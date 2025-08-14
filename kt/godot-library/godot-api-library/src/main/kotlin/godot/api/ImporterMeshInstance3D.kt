@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -108,11 +105,11 @@ public open class ImporterMeshInstance3D : Node3D() {
       setVisibilityRangeFadeMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(290, scriptIndex)
   }
 
-  public final fun setMesh(mesh: ImporterMesh?): Unit {
+  public final fun setMesh(mesh: ImporterMesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -123,7 +120,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
-  public final fun setSkin(skin: Skin?): Unit {
+  public final fun setSkin(skin: Skin?) {
     TransferContext.writeArguments(OBJECT to skin)
     TransferContext.callMethod(ptr, MethodBindings.setSkinPtr, NIL)
   }
@@ -134,7 +131,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as Skin?)
   }
 
-  public final fun setSkeletonPath(skeletonPath: NodePath): Unit {
+  public final fun setSkeletonPath(skeletonPath: NodePath) {
     TransferContext.writeArguments(NODE_PATH to skeletonPath)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonPathPtr, NIL)
   }
@@ -145,7 +142,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setLayerMask(layerMask: Long): Unit {
+  public final fun setLayerMask(layerMask: Long) {
     TransferContext.writeArguments(LONG to layerMask)
     TransferContext.callMethod(ptr, MethodBindings.setLayerMaskPtr, NIL)
   }
@@ -156,9 +153,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final
-      fun setCastShadowsSetting(shadowCastingSetting: GeometryInstance3D.ShadowCastingSetting):
-      Unit {
+  public final fun setCastShadowsSetting(shadowCastingSetting: GeometryInstance3D.ShadowCastingSetting) {
     TransferContext.writeArguments(LONG to shadowCastingSetting.id)
     TransferContext.callMethod(ptr, MethodBindings.setCastShadowsSettingPtr, NIL)
   }
@@ -169,7 +164,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return GeometryInstance3D.ShadowCastingSetting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVisibilityRangeEndMargin(distance: Float): Unit {
+  public final fun setVisibilityRangeEndMargin(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeEndMarginPtr, NIL)
   }
@@ -180,7 +175,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVisibilityRangeEnd(distance: Float): Unit {
+  public final fun setVisibilityRangeEnd(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeEndPtr, NIL)
   }
@@ -191,7 +186,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVisibilityRangeBeginMargin(distance: Float): Unit {
+  public final fun setVisibilityRangeBeginMargin(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeBeginMarginPtr, NIL)
   }
@@ -202,7 +197,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVisibilityRangeBegin(distance: Float): Unit {
+  public final fun setVisibilityRangeBegin(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeBeginPtr, NIL)
   }
@@ -213,8 +208,7 @@ public open class ImporterMeshInstance3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVisibilityRangeFadeMode(mode: GeometryInstance3D.VisibilityRangeFadeMode):
-      Unit {
+  public final fun setVisibilityRangeFadeMode(mode: GeometryInstance3D.VisibilityRangeFadeMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
   }
@@ -225,70 +219,69 @@ public open class ImporterMeshInstance3D : Node3D() {
     return GeometryInstance3D.VisibilityRangeFadeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSkeletonPath(skeletonPath: String) =
-      setSkeletonPath(skeletonPath.asCachedNodePath())
+  public final fun setSkeletonPath(skeletonPath: String): Unit = setSkeletonPath(skeletonPath.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh", 2255166972)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_mesh", 2_255_166_972)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh", 3161779525)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_mesh", 3_161_779_525)
 
     internal val setSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skin", 3971435618)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skin", 3_971_435_618)
 
     internal val getSkinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skin", 2074563878)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skin", 2_074_563_878)
 
     internal val setSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path", 1348162250)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_skeleton_path", 1_348_162_250)
 
     internal val getSkeletonPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path", 4075236667)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_skeleton_path", 4_075_236_667)
 
     internal val setLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_layer_mask", 1286410249)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_layer_mask", 1_286_410_249)
 
     internal val getLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_layer_mask", 3905245786)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_layer_mask", 3_905_245_786)
 
     internal val setCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_cast_shadows_setting", 856677339)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_cast_shadows_setting", 856_677_339)
 
     internal val getCastShadowsSettingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_cast_shadows_setting", 3383019359)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_cast_shadows_setting", 3_383_019_359)
 
     internal val setVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end_margin", 373806689)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end_margin", 373_806_689)
 
     internal val getVisibilityRangeEndMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end_margin", 1740695150)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end_margin", 1_740_695_150)
 
     internal val setVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end", 373806689)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_end", 373_806_689)
 
     internal val getVisibilityRangeEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end", 1740695150)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_end", 1_740_695_150)
 
     internal val setVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin_margin", 373806689)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin_margin", 373_806_689)
 
     internal val getVisibilityRangeBeginMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin_margin", 1740695150)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin_margin", 1_740_695_150)
 
     internal val setVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin", 373806689)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_begin", 373_806_689)
 
     internal val getVisibilityRangeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin", 1740695150)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_begin", 1_740_695_150)
 
     internal val setVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_fade_mode", 1440117808)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "set_visibility_range_fade_mode", 1_440_117_808)
 
     internal val getVisibilityRangeFadeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_fade_mode", 2067221882)
+        TypeManager.getMethodBindPtr("ImporterMeshInstance3D", "get_visibility_range_fade_mode", 2_067_221_882)
   }
 }

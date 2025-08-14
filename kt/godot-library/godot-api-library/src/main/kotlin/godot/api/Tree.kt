@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,17 +27,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items
- * can be selected, expanded and collapsed. The tree can have multiple columns with custom controls
- * like [LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
+ * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items can be selected, expanded and collapsed. The tree can have multiple columns with custom controls like [LineEdit]s, buttons and popups. It can be useful for structured displays and interactions.
  *
- * Trees are built via code, using [TreeItem] objects to create the structure. They have a single
- * root, but multiple roots can be simulated with [hideRoot]:
+ * Trees are built via code, using [TreeItem] objects to create the structure. They have a single root, but multiple roots can be simulated with [hideRoot]:
  *
  * ```gdscript
  * //gdscript
@@ -68,19 +61,9 @@ import kotlin.jvm.JvmOverloads
  * }
  * ```
  *
- * To iterate over all the [TreeItem] objects in a [Tree] object, use [TreeItem.getNext] and
- * [TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [Object.free] on a
- * [TreeItem] to remove it from the [Tree].
+ * To iterate over all the [TreeItem] objects in a [Tree] object, use [TreeItem.getNext] and [TreeItem.getFirstChild] after getting the root through [getRoot]. You can use [Object.free] on a [TreeItem] to remove it from the [Tree].
  *
- * **Incremental search:** Like [ItemList] and [PopupMenu], [Tree] supports searching within the
- * list while the control is focused. Press a key that matches the first letter of an item's name to
- * select the first item starting with the given letter. After that point, there are two ways to
- * perform incremental search: 1) Press the same key again before the timeout duration to select the
- * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
- * the timeout duration to match to select the item in question directly. Both of these actions will be
- * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
- * registered. You can adjust the timeout duration by changing
- * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * **Incremental search:** Like [ItemList] and [PopupMenu], [Tree] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class Tree : Control() {
@@ -120,8 +103,7 @@ public open class Tree : Control() {
   public val customItemClicked: Signal1<Long> by Signal1
 
   /**
-   * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the
-   * item is double-clicked, see [signal item_activated].
+   * Emitted when an item's icon is double-clicked. For a signal that emits when any part of the item is double-clicked, see [signal item_activated].
    */
   public val itemIconDoubleClicked: Signal0 by Signal0
 
@@ -131,10 +113,7 @@ public open class Tree : Control() {
   public val itemCollapsed: Signal1<TreeItem> by Signal1
 
   /**
-   * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items
-   * that are affected when [TreeItem.propagateCheck] is invoked. The order that the items affected
-   * will be processed is as follows: the item that invoked the method, children of that item, and
-   * finally parents of that item.
+   * Emitted when [TreeItem.propagateCheck] is called. Connect to this signal to process the items that are affected when [TreeItem.propagateCheck] is invoked. The order that the items affected will be processed is as follows: the item that invoked the method, children of that item, and finally parents of that item.
    */
   public val checkPropagatedToItem: Signal2<TreeItem, Long> by Signal2
 
@@ -149,14 +128,12 @@ public open class Tree : Control() {
   public val customPopupEdited: Signal1<Boolean> by Signal1
 
   /**
-   * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using
-   * [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
+   * Emitted when an item is double-clicked, or selected with a `ui_accept` input event (e.g. using [kbd]Enter[/kbd] or [kbd]Space[/kbd] on the keyboard).
    */
   public val itemActivated: Signal0 by Signal0
 
   /**
-   * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or
-   * [MOUSE_BUTTON_RIGHT].
+   * Emitted when a column's title is clicked with either [MOUSE_BUTTON_LEFT] or [MOUSE_BUTTON_RIGHT].
    */
   public val columnTitleClicked: Signal2<Long, Long> by Signal2
 
@@ -232,9 +209,7 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, recursive folding is enabled for this [Tree]. Holding down [kbd]Shift[/kbd] while
-   * clicking the fold arrow or using `ui_right`/`ui_left` shortcuts collapses or uncollapses the
-   * [TreeItem] and all its descendants.
+   * If `true`, recursive folding is enabled for this [Tree]. Holding down [kbd]Shift[/kbd] while clicking the fold arrow or using `ui_right`/`ui_left` shortcuts collapses or uncollapses the [TreeItem] and all its descendants.
    */
   public final inline var enableRecursiveFolding: Boolean
     @JvmName("enableRecursiveFoldingProperty")
@@ -256,11 +231,9 @@ public open class Tree : Control() {
     }
 
   /**
-   * The drop mode as an OR combination of flags. See [DropModeFlags] constants. Once dropping is
-   * done, reverts to [DROP_MODE_DISABLED]. Setting this during [Control.CanDropData] is recommended.
+   * The drop mode as an OR combination of flags. See [DropModeFlags] constants. Once dropping is done, reverts to [DROP_MODE_DISABLED]. Setting this during [Control.CanDropData] is recommended.
    *
-   * This controls the drop sections, i.e. the decision and drawing of possible drop locations based
-   * on the mouse position.
+   * This controls the drop sections, i.e. the decision and drawing of possible drop locations based on the mouse position.
    */
   public final inline var dropModeFlags: Int
     @JvmName("dropModeFlagsProperty")
@@ -304,8 +277,7 @@ public open class Tree : Control() {
     }
 
   /**
-   * If `true`, tree items with no tooltip assigned display their text as their tooltip. See also
-   * [TreeItem.getTooltipText] and [TreeItem.getButtonTooltipText].
+   * If `true`, tree items with no tooltip assigned display their text as their tooltip. See also [TreeItem.getTooltipText] and [TreeItem.getButtonTooltipText].
    */
   public final inline var autoTooltip: Boolean
     @JvmName("autoTooltipProperty")
@@ -315,27 +287,24 @@ public open class Tree : Control() {
       setAutoTooltip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(696, scriptIndex)
   }
 
   /**
    * Clears the tree. This removes all items.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
-   * Creates an item in the tree and adds it as a child of [parent], which can be either a valid
-   * [TreeItem] or `null`.
+   * Creates an item in the tree and adds it as a child of [parent], which can be either a valid [TreeItem] or `null`.
    *
-   * If [parent] is `null`, the root item will be the parent, or the new item will be the root
-   * itself if the tree is empty.
+   * If [parent] is `null`, the root item will be the parent, or the new item will be the root itself if the tree is empty.
    *
-   * The new item will be the [index]-th child of parent, or it will be the last child if there are
-   * not enough siblings.
+   * The new item will be the [index]-th child of parent, or it will be the last child if there are not enough siblings.
    */
   @JvmOverloads
   public final fun createItem(parent: TreeItem? = null, index: Int = -1): TreeItem? {
@@ -354,21 +323,17 @@ public open class Tree : Control() {
   }
 
   /**
-   * Overrides the calculated minimum width of a column. It can be set to `0` to restore the default
-   * behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to
-   * [Control.sizeFlagsStretchRatio].
+   * Overrides the calculated minimum width of a column. It can be set to `0` to restore the default behavior. Columns that have the "Expand" flag will use their "min_width" in a similar fashion to [Control.sizeFlagsStretchRatio].
    */
-  public final fun setColumnCustomMinimumWidth(column: Int, minWidth: Int): Unit {
+  public final fun setColumnCustomMinimumWidth(column: Int, minWidth: Int) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to minWidth.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setColumnCustomMinimumWidthPtr, NIL)
   }
 
   /**
-   * If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand"
-   * flag will use their expand ratio in a similar fashion to [Control.sizeFlagsStretchRatio] (see
-   * [setColumnExpandRatio]).
+   * If `true`, the column will have the "Expand" flag of [Control]. Columns that have the "Expand" flag will use their expand ratio in a similar fashion to [Control.sizeFlagsStretchRatio] (see [setColumnExpandRatio]).
    */
-  public final fun setColumnExpand(column: Int, expand: Boolean): Unit {
+  public final fun setColumnExpand(column: Int, expand: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand)
     TransferContext.callMethod(ptr, MethodBindings.setColumnExpandPtr, NIL)
   }
@@ -376,7 +341,7 @@ public open class Tree : Control() {
   /**
    * Sets the relative expand ratio for a column. See [setColumnExpand].
    */
-  public final fun setColumnExpandRatio(column: Int, ratio: Int): Unit {
+  public final fun setColumnExpandRatio(column: Int, ratio: Int) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to ratio.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setColumnExpandRatioPtr, NIL)
   }
@@ -384,7 +349,7 @@ public open class Tree : Control() {
   /**
    * Allows to enable clipping for column's content, making the content size ignored.
    */
-  public final fun setColumnClipContent(column: Int, enable: Boolean): Unit {
+  public final fun setColumnClipContent(column: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setColumnClipContentPtr, NIL)
   }
@@ -425,7 +390,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHideRoot(enable: Boolean): Unit {
+  public final fun setHideRoot(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHideRootPtr, NIL)
   }
@@ -450,9 +415,7 @@ public open class Tree : Control() {
   /**
    * Returns the currently focused item, or `null` if no item is focused.
    *
-   * In [SELECT_ROW] and [SELECT_SINGLE] modes, the focused item is same as the selected item. In
-   * [SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily
-   * selected.
+   * In [SELECT_ROW] and [SELECT_SINGLE] modes, the focused item is same as the selected item. In [SELECT_MULTI] mode, the focused item is the item under the focus cursor, not necessarily selected.
    *
    * To get the currently selected item(s), use [getNextSelected].
    */
@@ -465,7 +428,7 @@ public open class Tree : Control() {
   /**
    * Selects the specified [TreeItem] and column.
    */
-  public final fun setSelected(item: TreeItem?, column: Int): Unit {
+  public final fun setSelected(item: TreeItem?, column: Int) {
     TransferContext.writeArguments(OBJECT to item, LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
@@ -473,9 +436,7 @@ public open class Tree : Control() {
   /**
    * Returns the currently focused column, or -1 if no column is focused.
    *
-   * In [SELECT_SINGLE] mode, the focused column is the selected column. In [SELECT_ROW] mode, the
-   * focused column is always 0 if any item is selected. In [SELECT_MULTI] mode, the focused column is
-   * the column under the focus cursor, and there are not necessarily any column selected.
+   * In [SELECT_SINGLE] mode, the focused column is the selected column. In [SELECT_ROW] mode, the focused column is always 0 if any item is selected. In [SELECT_MULTI] mode, the focused column is the column under the focus cursor, and there are not necessarily any column selected.
    *
    * To tell whether a column of an item is selected, use [TreeItem.isSelected].
    */
@@ -494,7 +455,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSelectMode(mode: SelectMode): Unit {
+  public final fun setSelectMode(mode: SelectMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setSelectModePtr, NIL)
   }
@@ -506,15 +467,14 @@ public open class Tree : Control() {
   }
 
   /**
-   * Deselects all tree items (rows and columns). In [SELECT_MULTI] mode also removes selection
-   * cursor.
+   * Deselects all tree items (rows and columns). In [SELECT_MULTI] mode also removes selection cursor.
    */
-  public final fun deselectAll(): Unit {
+  public final fun deselectAll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectAllPtr, NIL)
   }
 
-  public final fun setColumns(amount: Int): Unit {
+  public final fun setColumns(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setColumnsPtr, NIL)
   }
@@ -526,8 +486,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the currently edited item. Can be used with [signal item_edited] to get the item that
-   * was modified.
+   * Returns the currently edited item. Can be used with [signal item_edited] to get the item that was modified.
    *
    * ```gdscript
    * //gdscript
@@ -581,8 +540,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle for custom popups. Helper to create custom cell controls that display a
-   * popup. See [TreeItem.setCellMode].
+   * Returns the rectangle for custom popups. Helper to create custom cell controls that display a popup. See [TreeItem.setCellMode].
    */
   public final fun getCustomPopupRect(): Rect2 {
     TransferContext.writeArguments()
@@ -591,9 +549,7 @@ public open class Tree : Control() {
   }
 
   /**
-   * Returns the rectangle area for the specified [TreeItem]. If [column] is specified, only get the
-   * position and size of that column, otherwise get the rectangle containing all columns. If a button
-   * index is specified, the rectangle of that button will be returned.
+   * Returns the rectangle area for the specified [TreeItem]. If [column] is specified, only get the position and size of that column, otherwise get the rectangle containing all columns. If a button index is specified, the rectangle of that button will be returned.
    */
   @JvmOverloads
   public final fun getItemAreaRect(
@@ -627,8 +583,7 @@ public open class Tree : Control() {
   /**
    * Returns the drop section at [position], or -100 if no item is there.
    *
-   * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop
-   * sections, respectively. See [DropModeFlags] for a description of each drop section.
+   * Values -1, 0, or 1 will be returned for the "above item", "on item", and "below item" drop sections, respectively. See [DropModeFlags] for a description of each drop section.
    *
    * To get the item which the returned drop section is relative to, use [getItemAtPosition].
    */
@@ -650,18 +605,16 @@ public open class Tree : Control() {
   /**
    * Makes the currently focused cell visible.
    *
-   * This will scroll the tree if necessary. In [SELECT_ROW] mode, this will not do horizontal
-   * scrolling, as all the cells in the selected row is focused logically.
+   * This will scroll the tree if necessary. In [SELECT_ROW] mode, this will not do horizontal scrolling, as all the cells in the selected row is focused logically.
    *
-   * **Note:** Despite the name of this method, the focus cursor itself is only visible in
-   * [SELECT_MULTI] mode.
+   * **Note:** Despite the name of this method, the focus cursor itself is only visible in [SELECT_MULTI] mode.
    */
-  public final fun ensureCursorIsVisible(): Unit {
+  public final fun ensureCursorIsVisible() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ensureCursorIsVisiblePtr, NIL)
   }
 
-  public final fun setColumnTitlesVisible(visible: Boolean): Unit {
+  public final fun setColumnTitlesVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitlesVisiblePtr, NIL)
   }
@@ -675,7 +628,7 @@ public open class Tree : Control() {
   /**
    * Sets the title of a column.
    */
-  public final fun setColumnTitle(column: Int, title: String): Unit {
+  public final fun setColumnTitle(column: Int, title: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitlePtr, NIL)
   }
@@ -690,10 +643,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not
-   * supported for column titles.
+   * Sets the column title alignment. Note that [@GlobalScope.HORIZONTAL_ALIGNMENT_FILL] is not supported for column titles.
    */
-  public final fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
+  public final fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitleAlignmentPtr, NIL)
   }
@@ -710,7 +662,7 @@ public open class Tree : Control() {
   /**
    * Sets column title base writing direction.
    */
-  public final fun setColumnTitleDirection(column: Int, direction: Control.TextDirection): Unit {
+  public final fun setColumnTitleDirection(column: Int, direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitleDirectionPtr, NIL)
   }
@@ -725,10 +677,9 @@ public open class Tree : Control() {
   }
 
   /**
-   * Sets language code of column title used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets language code of column title used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public final fun setColumnTitleLanguage(column: Int, language: String): Unit {
+  public final fun setColumnTitleLanguage(column: Int, language: String) {
     TransferContext.writeArguments(LONG to column.toLong(), STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitleLanguagePtr, NIL)
   }
@@ -755,12 +706,12 @@ public open class Tree : Control() {
    * Causes the [Tree] to jump to the specified [TreeItem].
    */
   @JvmOverloads
-  public final fun scrollToItem(item: TreeItem?, centerOnItem: Boolean = false): Unit {
+  public final fun scrollToItem(item: TreeItem?, centerOnItem: Boolean = false) {
     TransferContext.writeArguments(OBJECT to item, BOOL to centerOnItem)
     TransferContext.callMethod(ptr, MethodBindings.scrollToItemPtr, NIL)
   }
 
-  public final fun setHScrollEnabled(hScroll: Boolean): Unit {
+  public final fun setHScrollEnabled(hScroll: Boolean) {
     TransferContext.writeArguments(BOOL to hScroll)
     TransferContext.callMethod(ptr, MethodBindings.setHScrollEnabledPtr, NIL)
   }
@@ -771,7 +722,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVScrollEnabled(hScroll: Boolean): Unit {
+  public final fun setVScrollEnabled(hScroll: Boolean) {
     TransferContext.writeArguments(BOOL to hScroll)
     TransferContext.callMethod(ptr, MethodBindings.setVScrollEnabledPtr, NIL)
   }
@@ -782,7 +733,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHideFolding(hide: Boolean): Unit {
+  public final fun setHideFolding(hide: Boolean) {
     TransferContext.writeArguments(BOOL to hide)
     TransferContext.callMethod(ptr, MethodBindings.setHideFoldingPtr, NIL)
   }
@@ -793,7 +744,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnableRecursiveFolding(enable: Boolean): Unit {
+  public final fun setEnableRecursiveFolding(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEnableRecursiveFoldingPtr, NIL)
   }
@@ -804,7 +755,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDropModeFlags(flags: Int): Unit {
+  public final fun setDropModeFlags(flags: Int) {
     TransferContext.writeArguments(LONG to flags.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDropModeFlagsPtr, NIL)
   }
@@ -815,7 +766,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAllowRmbSelect(allow: Boolean): Unit {
+  public final fun setAllowRmbSelect(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowRmbSelectPtr, NIL)
   }
@@ -826,7 +777,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowReselect(allow: Boolean): Unit {
+  public final fun setAllowReselect(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowReselectPtr, NIL)
   }
@@ -837,7 +788,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowSearch(allow: Boolean): Unit {
+  public final fun setAllowSearch(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowSearchPtr, NIL)
   }
@@ -848,7 +799,7 @@ public open class Tree : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoTooltip(enable: Boolean): Unit {
+  public final fun setAutoTooltip(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTooltipPtr, NIL)
   }
@@ -863,28 +814,21 @@ public open class Tree : Control() {
     id: Long,
   ) {
     /**
-     * Allows selection of a single cell at a time. From the perspective of items, only a single
-     * item is allowed to be selected. And there is only one column selected in the selected item.
+     * Allows selection of a single cell at a time. From the perspective of items, only a single item is allowed to be selected. And there is only one column selected in the selected item.
      *
-     * The focus cursor is always hidden in this mode, but it is positioned at the current
-     * selection, making the currently selected item the currently focused item.
+     * The focus cursor is always hidden in this mode, but it is positioned at the current selection, making the currently selected item the currently focused item.
      */
     SINGLE(0),
     /**
-     * Allows selection of a single row at a time. From the perspective of items, only a single
-     * items is allowed to be selected. And all the columns are selected in the selected item.
+     * Allows selection of a single row at a time. From the perspective of items, only a single items is allowed to be selected. And all the columns are selected in the selected item.
      *
-     * The focus cursor is always hidden in this mode, but it is positioned at the first column of
-     * the current selection, making the currently selected item the currently focused item.
+     * The focus cursor is always hidden in this mode, but it is positioned at the first column of the current selection, making the currently selected item the currently focused item.
      */
     ROW(1),
     /**
-     * Allows selection of multiple cells at the same time. From the perspective of items, multiple
-     * items are allowed to be selected. And there can be multiple columns selected in each selected
-     * item.
+     * Allows selection of multiple cells at the same time. From the perspective of items, multiple items are allowed to be selected. And there can be multiple columns selected in each selected item.
      *
-     * The focus cursor is visible in this mode, the item or column under the cursor is not
-     * necessarily selected.
+     * The focus cursor is visible in this mode, the item or column under the cursor is not necessarily selected.
      */
     MULTI(2),
     ;
@@ -903,8 +847,7 @@ public open class Tree : Control() {
     id: Long,
   ) {
     /**
-     * Disables all drop sections, but still allows to detect the "on item" drop section by
-     * [getDropSectionAtPosition].
+     * Disables all drop sections, but still allows to detect the "on item" drop section by [getDropSectionAtPosition].
      *
      * **Note:** This is the default flag, it has no effect when combined with other flags.
      */
@@ -912,16 +855,13 @@ public open class Tree : Control() {
     /**
      * Enables the "on item" drop section. This drop section covers the entire item.
      *
-     * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays
-     * centered vertically.
+     * When combined with [DROP_MODE_INBETWEEN], this drop section halves the height and stays centered vertically.
      */
     ON_ITEM(1),
     /**
-     * Enables "above item" and "below item" drop sections. The "above item" drop section covers the
-     * top half of the item, and the "below item" drop section covers the bottom half.
+     * Enables "above item" and "below item" drop sections. The "above item" drop section covers the top half of the item, and the "below item" drop section covers the bottom half.
      *
-     * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on
-     * top / bottom accordingly.
+     * When combined with [DROP_MODE_ON_ITEM], these drop sections halves the height and stays on top / bottom accordingly.
      */
     INBETWEEN(2),
     ;
@@ -939,191 +879,192 @@ public open class Tree : Control() {
   public companion object
 
   public object MethodBindings {
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Tree", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("Tree", "clear", 3_218_959_716)
 
     internal val createItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "create_item", 528467046)
+        TypeManager.getMethodBindPtr("Tree", "create_item", 528_467_046)
 
-    internal val getRootPtr: VoidPtr = TypeManager.getMethodBindPtr("Tree", "get_root", 1514277247)
+    internal val getRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tree", "get_root", 1_514_277_247)
 
     internal val setColumnCustomMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_custom_minimum_width", 3937882851)
+        TypeManager.getMethodBindPtr("Tree", "set_column_custom_minimum_width", 3_937_882_851)
 
     internal val setColumnExpandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_expand", 300928843)
+        TypeManager.getMethodBindPtr("Tree", "set_column_expand", 300_928_843)
 
     internal val setColumnExpandRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_expand_ratio", 3937882851)
+        TypeManager.getMethodBindPtr("Tree", "set_column_expand_ratio", 3_937_882_851)
 
     internal val setColumnClipContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_clip_content", 300928843)
+        TypeManager.getMethodBindPtr("Tree", "set_column_clip_content", 300_928_843)
 
     internal val isColumnExpandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_column_expanding", 1116898809)
+        TypeManager.getMethodBindPtr("Tree", "is_column_expanding", 1_116_898_809)
 
     internal val isColumnClippingContentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_column_clipping_content", 1116898809)
+        TypeManager.getMethodBindPtr("Tree", "is_column_clipping_content", 1_116_898_809)
 
     internal val getColumnExpandRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_expand_ratio", 923996154)
+        TypeManager.getMethodBindPtr("Tree", "get_column_expand_ratio", 923_996_154)
 
     internal val getColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_width", 923996154)
+        TypeManager.getMethodBindPtr("Tree", "get_column_width", 923_996_154)
 
     internal val setHideRootPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_hide_root", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_hide_root", 2_586_408_642)
 
     internal val isRootHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_root_hidden", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_root_hidden", 36_873_697)
 
     internal val getNextSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_next_selected", 873446299)
+        TypeManager.getMethodBindPtr("Tree", "get_next_selected", 873_446_299)
 
     internal val getSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_selected", 1514277247)
+        TypeManager.getMethodBindPtr("Tree", "get_selected", 1_514_277_247)
 
     internal val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_selected", 2662547442)
+        TypeManager.getMethodBindPtr("Tree", "set_selected", 2_662_547_442)
 
     internal val getSelectedColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_selected_column", 3905245786)
+        TypeManager.getMethodBindPtr("Tree", "get_selected_column", 3_905_245_786)
 
     internal val getPressedButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_pressed_button", 3905245786)
+        TypeManager.getMethodBindPtr("Tree", "get_pressed_button", 3_905_245_786)
 
     internal val setSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_select_mode", 3223887270)
+        TypeManager.getMethodBindPtr("Tree", "set_select_mode", 3_223_887_270)
 
     internal val getSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_select_mode", 100748571)
+        TypeManager.getMethodBindPtr("Tree", "get_select_mode", 100_748_571)
 
     internal val deselectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "deselect_all", 3218959716)
+        TypeManager.getMethodBindPtr("Tree", "deselect_all", 3_218_959_716)
 
     internal val setColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_columns", 1286410249)
+        TypeManager.getMethodBindPtr("Tree", "set_columns", 1_286_410_249)
 
     internal val getColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_columns", 3905245786)
+        TypeManager.getMethodBindPtr("Tree", "get_columns", 3_905_245_786)
 
     internal val getEditedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_edited", 1514277247)
+        TypeManager.getMethodBindPtr("Tree", "get_edited", 1_514_277_247)
 
     internal val getEditedColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_edited_column", 3905245786)
+        TypeManager.getMethodBindPtr("Tree", "get_edited_column", 3_905_245_786)
 
     internal val editSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "edit_selected", 2595650253)
+        TypeManager.getMethodBindPtr("Tree", "edit_selected", 2_595_650_253)
 
     internal val getCustomPopupRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_custom_popup_rect", 1639390495)
+        TypeManager.getMethodBindPtr("Tree", "get_custom_popup_rect", 1_639_390_495)
 
     internal val getItemAreaRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_item_area_rect", 47968679)
+        TypeManager.getMethodBindPtr("Tree", "get_item_area_rect", 47_968_679)
 
     internal val getItemAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_item_at_position", 4193340126)
+        TypeManager.getMethodBindPtr("Tree", "get_item_at_position", 4_193_340_126)
 
     internal val getColumnAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_at_position", 3820158470)
+        TypeManager.getMethodBindPtr("Tree", "get_column_at_position", 3_820_158_470)
 
     internal val getDropSectionAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_drop_section_at_position", 3820158470)
+        TypeManager.getMethodBindPtr("Tree", "get_drop_section_at_position", 3_820_158_470)
 
     internal val getButtonIdAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_button_id_at_position", 3820158470)
+        TypeManager.getMethodBindPtr("Tree", "get_button_id_at_position", 3_820_158_470)
 
     internal val ensureCursorIsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "ensure_cursor_is_visible", 3218959716)
+        TypeManager.getMethodBindPtr("Tree", "ensure_cursor_is_visible", 3_218_959_716)
 
     internal val setColumnTitlesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_titles_visible", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_column_titles_visible", 2_586_408_642)
 
     internal val areColumnTitlesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "are_column_titles_visible", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "are_column_titles_visible", 36_873_697)
 
     internal val setColumnTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title", 501894301)
+        TypeManager.getMethodBindPtr("Tree", "set_column_title", 501_894_301)
 
     internal val getColumnTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title", 844755477)
+        TypeManager.getMethodBindPtr("Tree", "get_column_title", 844_755_477)
 
     internal val setColumnTitleAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_alignment", 3276431499)
+        TypeManager.getMethodBindPtr("Tree", "set_column_title_alignment", 3_276_431_499)
 
     internal val getColumnTitleAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_alignment", 4171562184)
+        TypeManager.getMethodBindPtr("Tree", "get_column_title_alignment", 4_171_562_184)
 
     internal val setColumnTitleDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_direction", 1707680378)
+        TypeManager.getMethodBindPtr("Tree", "set_column_title_direction", 1_707_680_378)
 
     internal val getColumnTitleDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_direction", 4235602388)
+        TypeManager.getMethodBindPtr("Tree", "get_column_title_direction", 4_235_602_388)
 
     internal val setColumnTitleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_column_title_language", 501894301)
+        TypeManager.getMethodBindPtr("Tree", "set_column_title_language", 501_894_301)
 
     internal val getColumnTitleLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_column_title_language", 844755477)
+        TypeManager.getMethodBindPtr("Tree", "get_column_title_language", 844_755_477)
 
     internal val getScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_scroll", 3341600327)
+        TypeManager.getMethodBindPtr("Tree", "get_scroll", 3_341_600_327)
 
     internal val scrollToItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "scroll_to_item", 1314737213)
+        TypeManager.getMethodBindPtr("Tree", "scroll_to_item", 1_314_737_213)
 
     internal val setHScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_h_scroll_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_h_scroll_enabled", 2_586_408_642)
 
     internal val isHScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_h_scroll_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_h_scroll_enabled", 36_873_697)
 
     internal val setVScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_v_scroll_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_v_scroll_enabled", 2_586_408_642)
 
     internal val isVScrollEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_v_scroll_enabled", 36_873_697)
 
     internal val setHideFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_hide_folding", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_hide_folding", 2_586_408_642)
 
     internal val isFoldingHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_folding_hidden", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_folding_hidden", 36_873_697)
 
     internal val setEnableRecursiveFoldingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_enable_recursive_folding", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_enable_recursive_folding", 2_586_408_642)
 
     internal val isRecursiveFoldingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_recursive_folding_enabled", 36_873_697)
 
     internal val setDropModeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_drop_mode_flags", 1286410249)
+        TypeManager.getMethodBindPtr("Tree", "set_drop_mode_flags", 1_286_410_249)
 
     internal val getDropModeFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_drop_mode_flags", 3905245786)
+        TypeManager.getMethodBindPtr("Tree", "get_drop_mode_flags", 3_905_245_786)
 
     internal val setAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_rmb_select", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_allow_rmb_select", 2_586_408_642)
 
     internal val getAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_rmb_select", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "get_allow_rmb_select", 36_873_697)
 
     internal val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_reselect", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_allow_reselect", 2_586_408_642)
 
     internal val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_reselect", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "get_allow_reselect", 36_873_697)
 
     internal val setAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_allow_search", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_allow_search", 2_586_408_642)
 
     internal val getAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "get_allow_search", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "get_allow_search", 36_873_697)
 
     internal val setAutoTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "set_auto_tooltip", 2586408642)
+        TypeManager.getMethodBindPtr("Tree", "set_auto_tooltip", 2_586_408_642)
 
     internal val isAutoTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tree", "is_auto_tooltip_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Tree", "is_auto_tooltip_enabled", 36_873_697)
   }
 }

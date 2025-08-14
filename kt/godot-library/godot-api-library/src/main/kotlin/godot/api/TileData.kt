@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -41,8 +38,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset
- * editor, but it can be modified at runtime using [TileMap.TileDataRuntimeUpdate].
+ * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset editor, but it can be modified at runtime using [TileMap.TileDataRuntimeUpdate].
  */
 @GodotBaseType
 public open class TileData : Object() {
@@ -74,8 +70,7 @@ public open class TileData : Object() {
     }
 
   /**
-   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs
-   * swapped.
+   * If `true`, the tile will display transposed, i.e. with horizontal and vertical texture UVs swapped.
    */
   public final inline var transpose: Boolean
     @JvmName("transposeProperty")
@@ -89,11 +84,8 @@ public open class TileData : Object() {
    * Offsets the position of where the tile is drawn.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureOrigin: Vector2i
@@ -108,11 +100,8 @@ public open class TileData : Object() {
    * Color modulation of the tile.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var modulate: Color
@@ -124,8 +113,7 @@ public open class TileData : Object() {
     }
 
   /**
-   * The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the
-   * default shader, or a [ShaderMaterial] to use a custom shader.
+   * The [Material] to use for this [TileData]. This can be a [CanvasItemMaterial] to use the default shader, or a [ShaderMaterial] to use a custom shader.
    */
   public final inline var material: Material?
     @JvmName("materialProperty")
@@ -190,7 +178,7 @@ public open class TileData : Object() {
       setProbability(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(681, scriptIndex)
   }
 
@@ -232,7 +220,7 @@ public open class TileData : Object() {
      modulate = this
   }
 
-  public final fun setFlipH(flipH: Boolean): Unit {
+  public final fun setFlipH(flipH: Boolean) {
     TransferContext.writeArguments(BOOL to flipH)
     TransferContext.callMethod(ptr, MethodBindings.setFlipHPtr, NIL)
   }
@@ -243,7 +231,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFlipV(flipV: Boolean): Unit {
+  public final fun setFlipV(flipV: Boolean) {
     TransferContext.writeArguments(BOOL to flipV)
     TransferContext.callMethod(ptr, MethodBindings.setFlipVPtr, NIL)
   }
@@ -254,7 +242,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTranspose(transpose: Boolean): Unit {
+  public final fun setTranspose(transpose: Boolean) {
     TransferContext.writeArguments(BOOL to transpose)
     TransferContext.callMethod(ptr, MethodBindings.setTransposePtr, NIL)
   }
@@ -265,7 +253,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -276,7 +264,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public final fun setTextureOrigin(textureOrigin: Vector2i): Unit {
+  public final fun setTextureOrigin(textureOrigin: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to textureOrigin)
     TransferContext.callMethod(ptr, MethodBindings.setTextureOriginPtr, NIL)
   }
@@ -287,7 +275,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setModulate(modulate: Color): Unit {
+  public final fun setModulate(modulate: Color) {
     TransferContext.writeArguments(COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.setModulatePtr, NIL)
   }
@@ -298,7 +286,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setZIndex(zIndex: Int): Unit {
+  public final fun setZIndex(zIndex: Int) {
     TransferContext.writeArguments(LONG to zIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setZIndexPtr, NIL)
   }
@@ -309,7 +297,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setYSortOrigin(ySortOrigin: Int): Unit {
+  public final fun setYSortOrigin(ySortOrigin: Int) {
     TransferContext.writeArguments(LONG to ySortOrigin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setYSortOriginPtr, NIL)
   }
@@ -323,14 +311,13 @@ public open class TileData : Object() {
   /**
    * Sets the occluder polygon count in the TileSet occlusion layer with index [layerId].
    */
-  public final fun setOccluderPolygonsCount(layerId: Int, polygonsCount: Int): Unit {
+  public final fun setOccluderPolygonsCount(layerId: Int, polygonsCount: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonsCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOccluderPolygonsCountPtr, NIL)
   }
 
   /**
-   * Returns the number of occluder polygons of the tile in the TileSet occlusion layer with index
-   * [layerId].
+   * Returns the number of occluder polygons of the tile in the TileSet occlusion layer with index [layerId].
    */
   public final fun getOccluderPolygonsCount(layerId: Int): Int {
     TransferContext.writeArguments(LONG to layerId.toLong())
@@ -341,7 +328,7 @@ public open class TileData : Object() {
   /**
    * Adds an occlusion polygon to the tile on the TileSet occlusion layer with index [layerId].
    */
-  public final fun addOccluderPolygon(layerId: Int): Unit {
+  public final fun addOccluderPolygon(layerId: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addOccluderPolygonPtr, NIL)
   }
@@ -349,30 +336,27 @@ public open class TileData : Object() {
   /**
    * Removes the polygon at index [polygonIndex] for TileSet occlusion layer with index [layerId].
    */
-  public final fun removeOccluderPolygon(layerId: Int, polygonIndex: Int): Unit {
+  public final fun removeOccluderPolygon(layerId: Int, polygonIndex: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeOccluderPolygonPtr, NIL)
   }
 
   /**
-   * Sets the occluder for polygon with index [polygonIndex] in the TileSet occlusion layer with
-   * index [layerId].
+   * Sets the occluder for polygon with index [polygonIndex] in the TileSet occlusion layer with index [layerId].
    */
   public final fun setOccluderPolygon(
     layerId: Int,
     polygonIndex: Int,
     polygon: OccluderPolygon2D?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), OBJECT to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setOccluderPolygonPtr, NIL)
   }
 
   /**
-   * Returns the occluder polygon at index [polygonIndex] from the TileSet occlusion layer with
-   * index [layerId].
+   * Returns the occluder polygon at index [polygonIndex] from the TileSet occlusion layer with index [layerId].
    *
-   * The [flipH], [flipV], and [transpose] parameters can be `true` to transform the returned
-   * polygon.
+   * The [flipH], [flipV], and [transpose] parameters can be `true` to transform the returned polygon.
    */
   @JvmOverloads
   public final fun getOccluderPolygon(
@@ -390,7 +374,7 @@ public open class TileData : Object() {
   /**
    * Sets the occluder for the TileSet occlusion layer with index [layerId].
    */
-  public final fun setOccluder(layerId: Int, occluderPolygon: OccluderPolygon2D?): Unit {
+  public final fun setOccluder(layerId: Int, occluderPolygon: OccluderPolygon2D?) {
     TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to occluderPolygon)
     TransferContext.callMethod(ptr, MethodBindings.setOccluderPtr, NIL)
   }
@@ -413,10 +397,9 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the constant linear velocity. This does not move the tile. This linear velocity is applied
-   * to objects colliding with this tile. This is useful to create conveyor belts.
+   * Sets the constant linear velocity. This does not move the tile. This linear velocity is applied to objects colliding with this tile. This is useful to create conveyor belts.
    */
-  public final fun setConstantLinearVelocity(layerId: Int, velocity: Vector2): Unit {
+  public final fun setConstantLinearVelocity(layerId: Int, velocity: Vector2) {
     TransferContext.writeArguments(LONG to layerId.toLong(), VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
@@ -431,10 +414,9 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the constant angular velocity. This does not rotate the tile. This angular velocity is
-   * applied to objects colliding with this tile.
+   * Sets the constant angular velocity. This does not rotate the tile. This angular velocity is applied to objects colliding with this tile.
    */
-  public final fun setConstantAngularVelocity(layerId: Int, velocity: Float): Unit {
+  public final fun setConstantAngularVelocity(layerId: Int, velocity: Float) {
     TransferContext.writeArguments(LONG to layerId.toLong(), DOUBLE to velocity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
@@ -451,7 +433,7 @@ public open class TileData : Object() {
   /**
    * Sets the polygons count for TileSet physics layer with index [layerId].
    */
-  public final fun setCollisionPolygonsCount(layerId: Int, polygonsCount: Int): Unit {
+  public final fun setCollisionPolygonsCount(layerId: Int, polygonsCount: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonsCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionPolygonsCountPtr, NIL)
   }
@@ -468,7 +450,7 @@ public open class TileData : Object() {
   /**
    * Adds a collision polygon to the tile on the given TileSet physics layer.
    */
-  public final fun addCollisionPolygon(layerId: Int): Unit {
+  public final fun addCollisionPolygon(layerId: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addCollisionPolygonPtr, NIL)
   }
@@ -476,51 +458,46 @@ public open class TileData : Object() {
   /**
    * Removes the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
-  public final fun removeCollisionPolygon(layerId: Int, polygonIndex: Int): Unit {
+  public final fun removeCollisionPolygon(layerId: Int, polygonIndex: Int) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeCollisionPolygonPtr, NIL)
   }
 
   /**
-   * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index
-   * [layerId].
+   * Sets the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun setCollisionPolygonPoints(
     layerId: Int,
     polygonIndex: Int,
     polygon: PackedVector2Array,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionPolygonPointsPtr, NIL)
   }
 
   /**
-   * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index
-   * [layerId].
+   * Returns the points of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun getCollisionPolygonPoints(layerId: Int, polygonIndex: Int): PackedVector2Array {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
-    TransferContext.callMethod(ptr, MethodBindings.getCollisionPolygonPointsPtr,
-        PACKED_VECTOR2_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionPolygonPointsPtr, PACKED_VECTOR2_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
   /**
-   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics
-   * layer with index [layerId].
+   * Enables/disables one-way collisions on the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun setCollisionPolygonOneWay(
     layerId: Int,
     polygonIndex: Int,
     oneWay: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), BOOL to oneWay)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionPolygonOneWayPtr, NIL)
   }
 
   /**
-   * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for
-   * TileSet physics layer with index [layerId].
+   * Returns whether one-way collisions are enabled for the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun isCollisionPolygonOneWay(layerId: Int, polygonIndex: Int): Boolean {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -529,21 +506,19 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for
-   * TileSet physics layer with index [layerId].
+   * Sets the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun setCollisionPolygonOneWayMargin(
     layerId: Int,
     polygonIndex: Int,
     oneWayMargin: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong(), DOUBLE to oneWayMargin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionPolygonOneWayMarginPtr, NIL)
   }
 
   /**
-   * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for
-   * TileSet physics layer with index [layerId].
+   * Returns the one-way margin (for one-way platforms) of the polygon at index [polygonIndex] for TileSet physics layer with index [layerId].
    */
   public final fun getCollisionPolygonOneWayMargin(layerId: Int, polygonIndex: Int): Float {
     TransferContext.writeArguments(LONG to layerId.toLong(), LONG to polygonIndex.toLong())
@@ -551,7 +526,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTerrainSet(terrainSet: Int): Unit {
+  public final fun setTerrainSet(terrainSet: Int) {
     TransferContext.writeArguments(LONG to terrainSet.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTerrainSetPtr, NIL)
   }
@@ -562,7 +537,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTerrain(terrain: Int): Unit {
+  public final fun setTerrain(terrain: Int) {
     TransferContext.writeArguments(LONG to terrain.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTerrainPtr, NIL)
   }
@@ -574,17 +549,15 @@ public open class TileData : Object() {
   }
 
   /**
-   * Sets the tile's terrain bit for the given [peeringBit] direction. To check that a direction is
-   * valid, use [isValidTerrainPeeringBit].
+   * Sets the tile's terrain bit for the given [peeringBit] direction. To check that a direction is valid, use [isValidTerrainPeeringBit].
    */
-  public final fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int): Unit {
+  public final fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int) {
     TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTerrainPeeringBitPtr, NIL)
   }
 
   /**
-   * Returns the tile's terrain bit for the given [peeringBit] direction. To check that a direction
-   * is valid, use [isValidTerrainPeeringBit].
+   * Returns the tile's terrain bit for the given [peeringBit] direction. To check that a direction is valid, use [isValidTerrainPeeringBit].
    */
   public final fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Int {
     TransferContext.writeArguments(LONG to peeringBit.id)
@@ -604,14 +577,13 @@ public open class TileData : Object() {
   /**
    * Sets the navigation polygon for the TileSet navigation layer with index [layerId].
    */
-  public final fun setNavigationPolygon(layerId: Int, navigationPolygon: NavigationPolygon?): Unit {
+  public final fun setNavigationPolygon(layerId: Int, navigationPolygon: NavigationPolygon?) {
     TransferContext.writeArguments(LONG to layerId.toLong(), OBJECT to navigationPolygon)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationPolygonPtr, NIL)
   }
 
   /**
-   * Returns the navigation polygon of the tile for the TileSet navigation layer with index
-   * [layerId].
+   * Returns the navigation polygon of the tile for the TileSet navigation layer with index [layerId].
    *
    * [flipH], [flipV], and [transpose] allow transforming the returned polygon.
    */
@@ -627,7 +599,7 @@ public open class TileData : Object() {
     return (TransferContext.readReturnValue(OBJECT) as NavigationPolygon?)
   }
 
-  public final fun setProbability(probability: Float): Unit {
+  public final fun setProbability(probability: Float) {
     TransferContext.writeArguments(DOUBLE to probability.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setProbabilityPtr, NIL)
   }
@@ -641,14 +613,13 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with name [layerName].
    */
-  public final fun setCustomData(layerName: String, `value`: Any?): Unit {
+  public final fun setCustomData(layerName: String, `value`: Any?) {
     TransferContext.writeArguments(STRING to layerName, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataPtr, NIL)
   }
 
   /**
-   * Returns the custom data value for custom data layer named [layerName]. To check if a custom
-   * data layer exists, use [hasCustomData].
+   * Returns the custom data value for custom data layer named [layerName]. To check if a custom data layer exists, use [hasCustomData].
    */
   public final fun getCustomData(layerName: String): Any? {
     TransferContext.writeArguments(STRING to layerName)
@@ -668,7 +639,7 @@ public open class TileData : Object() {
   /**
    * Sets the tile's custom data value for the TileSet custom data layer with index [layerId].
    */
-  public final fun setCustomDataByLayerId(layerId: Int, `value`: Any?): Unit {
+  public final fun setCustomDataByLayerId(layerId: Int, `value`: Any?) {
     TransferContext.writeArguments(LONG to layerId.toLong(), ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataByLayerIdPtr, NIL)
   }
@@ -686,165 +657,165 @@ public open class TileData : Object() {
 
   public object MethodBindings {
     internal val setFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_flip_h", 2586408642)
+        TypeManager.getMethodBindPtr("TileData", "set_flip_h", 2_586_408_642)
 
     internal val getFlipHPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_flip_h", 36873697)
+        TypeManager.getMethodBindPtr("TileData", "get_flip_h", 36_873_697)
 
     internal val setFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_flip_v", 2586408642)
+        TypeManager.getMethodBindPtr("TileData", "set_flip_v", 2_586_408_642)
 
     internal val getFlipVPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_flip_v", 36873697)
+        TypeManager.getMethodBindPtr("TileData", "get_flip_v", 36_873_697)
 
     internal val setTransposePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_transpose", 2586408642)
+        TypeManager.getMethodBindPtr("TileData", "set_transpose", 2_586_408_642)
 
     internal val getTransposePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_transpose", 36873697)
+        TypeManager.getMethodBindPtr("TileData", "get_transpose", 36_873_697)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("TileData", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("TileData", "get_material", 5_934_680)
 
     internal val setTextureOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_texture_origin", 1130785943)
+        TypeManager.getMethodBindPtr("TileData", "set_texture_origin", 1_130_785_943)
 
     internal val getTextureOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_texture_origin", 3690982128)
+        TypeManager.getMethodBindPtr("TileData", "get_texture_origin", 3_690_982_128)
 
     internal val setModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_modulate", 2920490490)
+        TypeManager.getMethodBindPtr("TileData", "set_modulate", 2_920_490_490)
 
     internal val getModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_modulate", 3444240500)
+        TypeManager.getMethodBindPtr("TileData", "get_modulate", 3_444_240_500)
 
     internal val setZIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_z_index", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "set_z_index", 1_286_410_249)
 
     internal val getZIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_z_index", 3905245786)
+        TypeManager.getMethodBindPtr("TileData", "get_z_index", 3_905_245_786)
 
     internal val setYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_y_sort_origin", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "set_y_sort_origin", 1_286_410_249)
 
     internal val getYSortOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_y_sort_origin", 3905245786)
+        TypeManager.getMethodBindPtr("TileData", "get_y_sort_origin", 3_905_245_786)
 
     internal val setOccluderPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygons_count", 3937882851)
+        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygons_count", 3_937_882_851)
 
     internal val getOccluderPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygons_count", 923996154)
+        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygons_count", 923_996_154)
 
     internal val addOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "add_occluder_polygon", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "add_occluder_polygon", 1_286_410_249)
 
     internal val removeOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "remove_occluder_polygon", 3937882851)
+        TypeManager.getMethodBindPtr("TileData", "remove_occluder_polygon", 3_937_882_851)
 
     internal val setOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygon", 164249167)
+        TypeManager.getMethodBindPtr("TileData", "set_occluder_polygon", 164_249_167)
 
     internal val getOccluderPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygon", 971166743)
+        TypeManager.getMethodBindPtr("TileData", "get_occluder_polygon", 971_166_743)
 
     internal val setOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_occluder", 914399637)
+        TypeManager.getMethodBindPtr("TileData", "set_occluder", 914_399_637)
 
     internal val getOccluderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_occluder", 2377324099)
+        TypeManager.getMethodBindPtr("TileData", "get_occluder", 2_377_324_099)
 
     internal val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_constant_linear_velocity", 163021252)
+        TypeManager.getMethodBindPtr("TileData", "set_constant_linear_velocity", 163_021_252)
 
     internal val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_constant_linear_velocity", 2299179447)
+        TypeManager.getMethodBindPtr("TileData", "get_constant_linear_velocity", 2_299_179_447)
 
     internal val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_constant_angular_velocity", 1602489585)
+        TypeManager.getMethodBindPtr("TileData", "set_constant_angular_velocity", 1_602_489_585)
 
     internal val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_constant_angular_velocity", 2339986948)
+        TypeManager.getMethodBindPtr("TileData", "get_constant_angular_velocity", 2_339_986_948)
 
     internal val setCollisionPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygons_count", 3937882851)
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygons_count", 3_937_882_851)
 
     internal val getCollisionPolygonsCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygons_count", 923996154)
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygons_count", 923_996_154)
 
     internal val addCollisionPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "add_collision_polygon", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "add_collision_polygon", 1_286_410_249)
 
     internal val removeCollisionPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "remove_collision_polygon", 3937882851)
+        TypeManager.getMethodBindPtr("TileData", "remove_collision_polygon", 3_937_882_851)
 
     internal val setCollisionPolygonPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_points", 3230546541)
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_points", 3_230_546_541)
 
     internal val getCollisionPolygonPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_points", 103942801)
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_points", 103_942_801)
 
     internal val setCollisionPolygonOneWayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way", 1383440665)
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way", 1_383_440_665)
 
     internal val isCollisionPolygonOneWayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "is_collision_polygon_one_way", 2522259332)
+        TypeManager.getMethodBindPtr("TileData", "is_collision_polygon_one_way", 2_522_259_332)
 
     internal val setCollisionPolygonOneWayMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way_margin", 3506521499)
+        TypeManager.getMethodBindPtr("TileData", "set_collision_polygon_one_way_margin", 3_506_521_499)
 
     internal val getCollisionPolygonOneWayMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_one_way_margin", 3085491603)
+        TypeManager.getMethodBindPtr("TileData", "get_collision_polygon_one_way_margin", 3_085_491_603)
 
     internal val setTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_terrain_set", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "set_terrain_set", 1_286_410_249)
 
     internal val getTerrainSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_terrain_set", 3905245786)
+        TypeManager.getMethodBindPtr("TileData", "get_terrain_set", 3_905_245_786)
 
     internal val setTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_terrain", 1286410249)
+        TypeManager.getMethodBindPtr("TileData", "set_terrain", 1_286_410_249)
 
     internal val getTerrainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_terrain", 3905245786)
+        TypeManager.getMethodBindPtr("TileData", "get_terrain", 3_905_245_786)
 
     internal val setTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_terrain_peering_bit", 1084452308)
+        TypeManager.getMethodBindPtr("TileData", "set_terrain_peering_bit", 1_084_452_308)
 
     internal val getTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_terrain_peering_bit", 3831796792)
+        TypeManager.getMethodBindPtr("TileData", "get_terrain_peering_bit", 3_831_796_792)
 
     internal val isValidTerrainPeeringBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit", 845723972)
+        TypeManager.getMethodBindPtr("TileData", "is_valid_terrain_peering_bit", 845_723_972)
 
     internal val setNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_navigation_polygon", 2224691167)
+        TypeManager.getMethodBindPtr("TileData", "set_navigation_polygon", 2_224_691_167)
 
     internal val getNavigationPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_navigation_polygon", 2907127272)
+        TypeManager.getMethodBindPtr("TileData", "get_navigation_polygon", 2_907_127_272)
 
     internal val setProbabilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_probability", 373806689)
+        TypeManager.getMethodBindPtr("TileData", "set_probability", 373_806_689)
 
     internal val getProbabilityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_probability", 1740695150)
+        TypeManager.getMethodBindPtr("TileData", "get_probability", 1_740_695_150)
 
     internal val setCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_custom_data", 402577236)
+        TypeManager.getMethodBindPtr("TileData", "set_custom_data", 402_577_236)
 
     internal val getCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_custom_data", 1868160156)
+        TypeManager.getMethodBindPtr("TileData", "get_custom_data", 1_868_160_156)
 
     internal val hasCustomDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "has_custom_data", 3927539163)
+        TypeManager.getMethodBindPtr("TileData", "has_custom_data", 3_927_539_163)
 
     internal val setCustomDataByLayerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "set_custom_data_by_layer_id", 2152698145)
+        TypeManager.getMethodBindPtr("TileData", "set_custom_data_by_layer_id", 2_152_698_145)
 
     internal val getCustomDataByLayerIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileData", "get_custom_data_by_layer_id", 4227898402)
+        TypeManager.getMethodBindPtr("TileData", "get_custom_data_by_layer_id", 4_227_898_402)
   }
 }

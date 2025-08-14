@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,8 +29,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFMesh handles 3D mesh data imported from glTF files. It includes properties for blend
- * channels, blend weights, instance materials, and the mesh itself.
+ * GLTFMesh handles 3D mesh data imported from glTF files. It includes properties for blend channels, blend weights, instance materials, and the mesh itself.
  */
 @GodotBaseType
 public open class GLTFMesh : Resource() {
@@ -63,11 +59,8 @@ public open class GLTFMesh : Resource() {
    * An array of floats representing the blend weights of the mesh.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var blendWeights: PackedFloat32Array
@@ -89,7 +82,7 @@ public open class GLTFMesh : Resource() {
       setInstanceMaterials(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(232, scriptIndex)
   }
 
@@ -107,22 +100,19 @@ public open class GLTFMesh : Resource() {
    * An array of floats representing the blend weights of the mesh.
    */
   @CoreTypeHelper
-  public final fun blendWeightsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array =
-      blendWeights.apply {
+  public final fun blendWeightsMutate(block: PackedFloat32Array.() -> Unit): PackedFloat32Array = blendWeights.apply {
      block(this)
      blendWeights = this
   }
 
   /**
    * This is a helper function for [blendWeights] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * An array of floats representing the blend weights of the mesh.
    */
   @CoreTypeHelper
-  public final fun blendWeightsMutateEach(block: (index: Int, `value`: Float) -> Unit):
-      PackedFloat32Array = blendWeights.apply {
+  public final fun blendWeightsMutateEach(block: (index: Int, `value`: Float) -> Unit): PackedFloat32Array = blendWeights.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -136,7 +126,7 @@ public open class GLTFMesh : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setOriginalName(originalName: String): Unit {
+  public final fun setOriginalName(originalName: String) {
     TransferContext.writeArguments(STRING to originalName)
     TransferContext.callMethod(ptr, MethodBindings.setOriginalNamePtr, NIL)
   }
@@ -147,7 +137,7 @@ public open class GLTFMesh : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
-  public final fun setMesh(mesh: ImporterMesh?): Unit {
+  public final fun setMesh(mesh: ImporterMesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -158,7 +148,7 @@ public open class GLTFMesh : Resource() {
     return (TransferContext.readReturnValue(PACKED_FLOAT_32_ARRAY) as PackedFloat32Array)
   }
 
-  public final fun setBlendWeights(blendWeights: PackedFloat32Array): Unit {
+  public final fun setBlendWeights(blendWeights: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to blendWeights)
     TransferContext.callMethod(ptr, MethodBindings.setBlendWeightsPtr, NIL)
   }
@@ -169,18 +159,15 @@ public open class GLTFMesh : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Material>)
   }
 
-  public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>): Unit {
+  public final fun setInstanceMaterials(instanceMaterials: VariantArray<Material>) {
     TransferContext.writeArguments(ARRAY to instanceMaterials)
     TransferContext.callMethod(ptr, MethodBindings.setInstanceMaterialsPtr, NIL)
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
   public final fun getAdditionalData(extensionName: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to extensionName)
@@ -189,69 +176,60 @@ public open class GLTFMesh : Resource() {
   }
 
   /**
-   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?) {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
   /**
-   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Gets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension
-   * name in the glTF file), and the return value can be anything you set. If nothing was set, the
-   * return value is `null`.
+   * The argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the return value can be anything you set. If nothing was set, the return value is `null`.
    */
-  public final fun getAdditionalData(extensionName: String): Any? =
-      getAdditionalData(extensionName.asCachedStringName())
+  public final fun getAdditionalData(extensionName: String): Any? = getAdditionalData(extensionName.asCachedStringName())
 
   /**
-   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node
-   * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
+   * Sets additional arbitrary data in this [GLTFMesh] instance. This can be used to keep per-node state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
    *
-   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the
-   * extension name in the glTF file), and the second argument can be anything you want.
+   * The first argument should be the [GLTFDocumentExtension] name (does not have to match the extension name in the glTF file), and the second argument can be anything you want.
    */
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
-      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit = setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object
 
   public object MethodBindings {
     internal val getOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_original_name", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_original_name", 2_841_200_299)
 
     internal val setOriginalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_original_name", 83702148)
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_original_name", 83_702_148)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_mesh", 3754628756)
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_mesh", 3_754_628_756)
 
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_mesh", 2255166972)
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_mesh", 2_255_166_972)
 
     internal val getBlendWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_blend_weights", 2445143706)
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_blend_weights", 2_445_143_706)
 
     internal val setBlendWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_blend_weights", 2899603908)
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_blend_weights", 2_899_603_908)
 
     internal val getInstanceMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_instance_materials", 2915620761)
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_instance_materials", 2_915_620_761)
 
     internal val setInstanceMaterialsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_instance_materials", 381264803)
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_instance_materials", 381_264_803)
 
     internal val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "get_additional_data", 2138907829)
+        TypeManager.getMethodBindPtr("GLTFMesh", "get_additional_data", 2_138_907_829)
 
     internal val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFMesh", "set_additional_data", 3776071444)
+        TypeManager.getMethodBindPtr("GLTFMesh", "set_additional_data", 3_776_071_444)
   }
 }

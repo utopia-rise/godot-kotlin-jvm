@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,9 +30,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It
- * supports filter masks. [FileDialog] automatically sets its window title according to the [fileMode].
- * If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
+ * [FileDialog] is a preset dialog used to choose files and directories in the filesystem. It supports filter masks. [FileDialog] automatically sets its window title according to the [fileMode]. If you want to use a custom title, disable this by setting [modeOverridesTitle] to `false`.
  */
 @GodotBaseType
 public open class FileDialog : ConfirmationDialog() {
@@ -60,8 +55,7 @@ public open class FileDialog : ConfirmationDialog() {
   public val filenameFilterChanged: Signal1<String> by Signal1
 
   /**
-   * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting
-   * [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
+   * If `true`, changing the [fileMode] property will set the window title accordingly (e.g. setting [fileMode] to [FILE_MODE_OPEN_FILE] will change the window title to "Open a File").
    */
   public final inline var modeOverridesTitle: Boolean
     @JvmName("modeOverridesTitleProperty")
@@ -85,9 +79,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The file system access scope. See [Access] constants.
    *
-   * **Warning:** In Web builds, FileDialog cannot access the host file system. In sandboxed Linux
-   * and macOS environments, [useNativeDialog] is automatically used to allow limited access to host
-   * file system.
+   * **Warning:** In Web builds, FileDialog cannot access the host file system. In sandboxed Linux and macOS environments, [useNativeDialog] is automatically used to allow limited access to host file system.
    */
   public final inline var access: Access
     @JvmName("accessProperty")
@@ -98,8 +90,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If non-empty, the given sub-folder will be "root" of this [FileDialog], i.e. user won't be able
-   * to go to its parent directory.
+   * If non-empty, the given sub-folder will be "root" of this [FileDialog], i.e. user won't be able to go to its parent directory.
    *
    * **Note:** This property is ignored by native file dialogs.
    */
@@ -112,19 +103,13 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The available file type filters. Each filter string in the array should be formatted like this:
-   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
-   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   * The available file type filters. Each filter string in the array should be formatted like this: `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
-   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filters: PackedStringArray
@@ -136,12 +121,9 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The filter for file names (case-insensitive). When set to a non-empty string, only files that
-   * contains the substring will be shown. [filenameFilter] can be edited by the user with the filter
-   * button at the top of the file dialog.
+   * The filter for file names (case-insensitive). When set to a non-empty string, only files that contains the substring will be shown. [filenameFilter] can be edited by the user with the filter button at the top of the file dialog.
    *
-   * See also [filters], which should be used to restrict the file types that can be selected
-   * instead of [filenameFilter] which is meant to be set by the user.
+   * See also [filters], which should be used to restrict the file types that can be selected instead of [filenameFilter] which is meant to be set by the user.
    */
   public final inline var filenameFilter: String
     @JvmName("filenameFilterProperty")
@@ -176,21 +158,15 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used
-   * instead of custom one.
+   * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used instead of custom one.
    *
-   * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode
-   * [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
+   * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
    *
-   * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
-   * system.
+   * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file system.
    *
-   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
-   * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
-   * bookmarks.
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved bookmarks.
    *
-   * **Note:** Native dialogs are isolated from the base process, file dialog properties can't be
-   * modified once the dialog is shown.
+   * **Note:** Native dialogs are isolated from the base process, file dialog properties can't be modified once the dialog is shown.
    */
   public final inline var useNativeDialog: Boolean
     @JvmName("useNativeDialogProperty")
@@ -203,8 +179,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * The current working directory of the file dialog.
    *
-   * **Note:** For native file dialogs, this property is only treated as a hint and may not be
-   * respected by specific OS implementations.
+   * **Note:** For native file dialogs, this property is only treated as a hint and may not be respected by specific OS implementations.
    */
   public final inline var currentDir: String
     @JvmName("currentDirProperty")
@@ -236,7 +211,7 @@ public open class FileDialog : ConfirmationDialog() {
       setCurrentPath(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(213, scriptIndex)
   }
 
@@ -251,35 +226,26 @@ public open class FileDialog : ConfirmationDialog() {
    * filedialog.filters = myCoreType
    * ``````
    *
-   * The available file type filters. Each filter string in the array should be formatted like this:
-   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
-   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   * The available file type filters. Each filter string in the array should be formatted like this: `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
-   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while Android, Linux, and macOS file dialogs also support MIME types.
    */
   @CoreTypeHelper
-  public final fun filtersMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      filters.apply {
+  public final fun filtersMutate(block: PackedStringArray.() -> Unit): PackedStringArray = filters.apply {
      block(this)
      filters = this
   }
 
   /**
    * This is a helper function for [filters] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The available file type filters. Each filter string in the array should be formatted like this:
-   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
-   * optional and can be omitted. Both file extensions and MIME type should be always set.
+   * The available file type filters. Each filter string in the array should be formatted like this: `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is optional and can be omitted. Both file extensions and MIME type should be always set.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
-   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while Android, Linux, and macOS file dialogs also support MIME types.
    */
   @CoreTypeHelper
-  public final fun filtersMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = filters.apply {
+  public final fun filtersMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = filters.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -290,28 +256,25 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Clear all the added filters in the dialog.
    */
-  public final fun clearFilters(): Unit {
+  public final fun clearFilters() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearFiltersPtr, NIL)
   }
 
   /**
-   * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional
-   * [description], which restricts what files can be picked.
+   * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional [description], which restricts what files can be picked.
    *
-   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
-   * `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
+   * A [filter] should be of the form `"filename.extension"`, where filename and extension can be `*` to match any string. Filters starting with `.` (i.e. empty filenames) are not allowed.
    *
-   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter
-   * text "Images (*.png, *.jpg)".
+   * For example, a [filter] of `"*.png, *.jpg"` and a [description] of `"Images"` results in filter text "Images (*.png, *.jpg)".
    */
   @JvmOverloads
-  public final fun addFilter(filter: String, description: String = ""): Unit {
+  public final fun addFilter(filter: String, description: String = "") {
     TransferContext.writeArguments(STRING to filter, STRING to description)
     TransferContext.callMethod(ptr, MethodBindings.addFilterPtr, NIL)
   }
 
-  public final fun setFilters(filters: PackedStringArray): Unit {
+  public final fun setFilters(filters: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to filters)
     TransferContext.callMethod(ptr, MethodBindings.setFiltersPtr, NIL)
   }
@@ -325,12 +288,12 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Clear the filter for file names.
    */
-  public final fun clearFilenameFilter(): Unit {
+  public final fun clearFilenameFilter() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearFilenameFilterPtr, NIL)
   }
 
-  public final fun setFilenameFilter(filter: String): Unit {
+  public final fun setFilenameFilter(filter: String) {
     TransferContext.writeArguments(STRING to filter)
     TransferContext.callMethod(ptr, MethodBindings.setFilenameFilterPtr, NIL)
   }
@@ -371,7 +334,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Sets the name of the [OptionButton] or [CheckBox] with index [option].
    */
-  public final fun setOptionName(option: Int, name: String): Unit {
+  public final fun setOptionName(option: Int, name: String) {
     TransferContext.writeArguments(LONG to option.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setOptionNamePtr, NIL)
   }
@@ -379,7 +342,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Sets the option values of the [OptionButton] with index [option].
    */
-  public final fun setOptionValues(option: Int, values: PackedStringArray): Unit {
+  public final fun setOptionValues(option: Int, values: PackedStringArray) {
     TransferContext.writeArguments(LONG to option.toLong(), PACKED_STRING_ARRAY to values)
     TransferContext.callMethod(ptr, MethodBindings.setOptionValuesPtr, NIL)
   }
@@ -387,12 +350,12 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Sets the default value index of the [OptionButton] or [CheckBox] with index [option].
    */
-  public final fun setOptionDefault(option: Int, defaultValueIndex: Int): Unit {
+  public final fun setOptionDefault(option: Int, defaultValueIndex: Int) {
     TransferContext.writeArguments(LONG to option.toLong(), LONG to defaultValueIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOptionDefaultPtr, NIL)
   }
 
-  public final fun setOptionCount(count: Int): Unit {
+  public final fun setOptionCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOptionCountPtr, NIL)
   }
@@ -404,24 +367,21 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds an additional [OptionButton] to the file dialog. If [values] is empty, a [CheckBox] is
-   * added instead.
+   * Adds an additional [OptionButton] to the file dialog. If [values] is empty, a [CheckBox] is added instead.
    *
-   * [defaultValueIndex] should be an index of the value in the [values]. If [values] is empty it
-   * should be either `1` (checked), or `0` (unchecked).
+   * [defaultValueIndex] should be an index of the value in the [values]. If [values] is empty it should be either `1` (checked), or `0` (unchecked).
    */
   public final fun addOption(
     name: String,
     values: PackedStringArray,
     defaultValueIndex: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to name, PACKED_STRING_ARRAY to values, LONG to defaultValueIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addOptionPtr, NIL)
   }
 
   /**
-   * Returns a [Dictionary] with the selected values of the additional [OptionButton]s and/or
-   * [CheckBox]es. [Dictionary] keys are names and values are selected value indices.
+   * Returns a [Dictionary] with the selected values of the additional [OptionButton]s and/or [CheckBox]es. [Dictionary] keys are names and values are selected value indices.
    */
   public final fun getSelectedOptions(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -447,22 +407,22 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setCurrentDir(dir: String): Unit {
+  public final fun setCurrentDir(dir: String) {
     TransferContext.writeArguments(STRING to dir)
     TransferContext.callMethod(ptr, MethodBindings.setCurrentDirPtr, NIL)
   }
 
-  public final fun setCurrentFile(`file`: String): Unit {
+  public final fun setCurrentFile(`file`: String) {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(ptr, MethodBindings.setCurrentFilePtr, NIL)
   }
 
-  public final fun setCurrentPath(path: String): Unit {
+  public final fun setCurrentPath(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.setCurrentPathPtr, NIL)
   }
 
-  public final fun setModeOverridesTitle(`override`: Boolean): Unit {
+  public final fun setModeOverridesTitle(`override`: Boolean) {
     TransferContext.writeArguments(BOOL to override)
     TransferContext.callMethod(ptr, MethodBindings.setModeOverridesTitlePtr, NIL)
   }
@@ -473,7 +433,7 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFileMode(mode: FileMode): Unit {
+  public final fun setFileMode(mode: FileMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setFileModePtr, NIL)
   }
@@ -487,11 +447,9 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    *
-   * **Note:** Changes to this node are ignored by native file dialogs, use [addOption] to add
-   * custom elements to the dialog instead.
+   * **Note:** Changes to this node are ignored by native file dialogs, use [addOption] to add custom elements to the dialog instead.
    */
   public final fun getVbox(): VBoxContainer? {
     TransferContext.writeArguments()
@@ -502,8 +460,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Returns the LineEdit for the selected file.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLineEdit(): LineEdit? {
     TransferContext.writeArguments()
@@ -511,7 +468,7 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(OBJECT) as LineEdit?)
   }
 
-  public final fun setAccess(access: Access): Unit {
+  public final fun setAccess(access: Access) {
     TransferContext.writeArguments(LONG to access.id)
     TransferContext.callMethod(ptr, MethodBindings.setAccessPtr, NIL)
   }
@@ -522,7 +479,7 @@ public open class FileDialog : ConfirmationDialog() {
     return Access.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setRootSubfolder(dir: String): Unit {
+  public final fun setRootSubfolder(dir: String) {
     TransferContext.writeArguments(STRING to dir)
     TransferContext.callMethod(ptr, MethodBindings.setRootSubfolderPtr, NIL)
   }
@@ -533,7 +490,7 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setShowHiddenFiles(show: Boolean): Unit {
+  public final fun setShowHiddenFiles(show: Boolean) {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(ptr, MethodBindings.setShowHiddenFilesPtr, NIL)
   }
@@ -544,7 +501,7 @@ public open class FileDialog : ConfirmationDialog() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseNativeDialog(native: Boolean): Unit {
+  public final fun setUseNativeDialog(native: Boolean) {
     TransferContext.writeArguments(BOOL to native)
     TransferContext.callMethod(ptr, MethodBindings.setUseNativeDialogPtr, NIL)
   }
@@ -558,7 +515,7 @@ public open class FileDialog : ConfirmationDialog() {
   /**
    * Clear all currently selected items in the dialog.
    */
-  public final fun deselectAll(): Unit {
+  public final fun deselectAll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectAllPtr, NIL)
   }
@@ -568,7 +525,7 @@ public open class FileDialog : ConfirmationDialog() {
    *
    * **Note:** This method does nothing on native file dialogs.
    */
-  public final fun invalidate(): Unit {
+  public final fun invalidate() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.invalidatePtr, NIL)
   }
@@ -639,120 +596,120 @@ public open class FileDialog : ConfirmationDialog() {
 
   public object MethodBindings {
     internal val clearFiltersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "clear_filters", 3218959716)
+        TypeManager.getMethodBindPtr("FileDialog", "clear_filters", 3_218_959_716)
 
     internal val addFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "add_filter", 3388804757)
+        TypeManager.getMethodBindPtr("FileDialog", "add_filter", 3_388_804_757)
 
     internal val setFiltersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_filters", 4015028928)
+        TypeManager.getMethodBindPtr("FileDialog", "set_filters", 4_015_028_928)
 
     internal val getFiltersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_filters", 1139954409)
+        TypeManager.getMethodBindPtr("FileDialog", "get_filters", 1_139_954_409)
 
     internal val clearFilenameFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "clear_filename_filter", 3218959716)
+        TypeManager.getMethodBindPtr("FileDialog", "clear_filename_filter", 3_218_959_716)
 
     internal val setFilenameFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_filename_filter", 83702148)
+        TypeManager.getMethodBindPtr("FileDialog", "set_filename_filter", 83_702_148)
 
     internal val getFilenameFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_filename_filter", 201670096)
+        TypeManager.getMethodBindPtr("FileDialog", "get_filename_filter", 201_670_096)
 
     internal val getOptionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_name", 844755477)
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_name", 844_755_477)
 
     internal val getOptionValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_values", 647634434)
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_values", 647_634_434)
 
     internal val getOptionDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_default", 923996154)
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_default", 923_996_154)
 
     internal val setOptionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_name", 501894301)
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_name", 501_894_301)
 
     internal val setOptionValuesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_values", 3353661094)
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_values", 3_353_661_094)
 
     internal val setOptionDefaultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_default", 3937882851)
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_default", 3_937_882_851)
 
     internal val setOptionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_option_count", 1286410249)
+        TypeManager.getMethodBindPtr("FileDialog", "set_option_count", 1_286_410_249)
 
     internal val getOptionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_option_count", 3905245786)
+        TypeManager.getMethodBindPtr("FileDialog", "get_option_count", 3_905_245_786)
 
     internal val addOptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "add_option", 149592325)
+        TypeManager.getMethodBindPtr("FileDialog", "add_option", 149_592_325)
 
     internal val getSelectedOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_selected_options", 3102165223)
+        TypeManager.getMethodBindPtr("FileDialog", "get_selected_options", 3_102_165_223)
 
     internal val getCurrentDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_dir", 201670096)
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_dir", 201_670_096)
 
     internal val getCurrentFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_file", 201670096)
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_file", 201_670_096)
 
     internal val getCurrentPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_current_path", 201670096)
+        TypeManager.getMethodBindPtr("FileDialog", "get_current_path", 201_670_096)
 
     internal val setCurrentDirPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_dir", 83702148)
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_dir", 83_702_148)
 
     internal val setCurrentFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_file", 83702148)
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_file", 83_702_148)
 
     internal val setCurrentPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_current_path", 83702148)
+        TypeManager.getMethodBindPtr("FileDialog", "set_current_path", 83_702_148)
 
     internal val setModeOverridesTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_mode_overrides_title", 2586408642)
+        TypeManager.getMethodBindPtr("FileDialog", "set_mode_overrides_title", 2_586_408_642)
 
     internal val isModeOverridingTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "is_mode_overriding_title", 36873697)
+        TypeManager.getMethodBindPtr("FileDialog", "is_mode_overriding_title", 36_873_697)
 
     internal val setFileModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_file_mode", 3654936397)
+        TypeManager.getMethodBindPtr("FileDialog", "set_file_mode", 3_654_936_397)
 
     internal val getFileModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_file_mode", 4074825319)
+        TypeManager.getMethodBindPtr("FileDialog", "get_file_mode", 4_074_825_319)
 
     internal val getVboxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_vbox", 915758477)
+        TypeManager.getMethodBindPtr("FileDialog", "get_vbox", 915_758_477)
 
     internal val getLineEditPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_line_edit", 4071694264)
+        TypeManager.getMethodBindPtr("FileDialog", "get_line_edit", 4_071_694_264)
 
     internal val setAccessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_access", 4104413466)
+        TypeManager.getMethodBindPtr("FileDialog", "set_access", 4_104_413_466)
 
     internal val getAccessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_access", 3344081076)
+        TypeManager.getMethodBindPtr("FileDialog", "get_access", 3_344_081_076)
 
     internal val setRootSubfolderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_root_subfolder", 83702148)
+        TypeManager.getMethodBindPtr("FileDialog", "set_root_subfolder", 83_702_148)
 
     internal val getRootSubfolderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_root_subfolder", 201670096)
+        TypeManager.getMethodBindPtr("FileDialog", "get_root_subfolder", 201_670_096)
 
     internal val setShowHiddenFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_show_hidden_files", 2586408642)
+        TypeManager.getMethodBindPtr("FileDialog", "set_show_hidden_files", 2_586_408_642)
 
     internal val isShowingHiddenFilesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files", 36873697)
+        TypeManager.getMethodBindPtr("FileDialog", "is_showing_hidden_files", 36_873_697)
 
     internal val setUseNativeDialogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog", 2586408642)
+        TypeManager.getMethodBindPtr("FileDialog", "set_use_native_dialog", 2_586_408_642)
 
     internal val getUseNativeDialogPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog", 36873697)
+        TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog", 36_873_697)
 
     internal val deselectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "deselect_all", 3218959716)
+        TypeManager.getMethodBindPtr("FileDialog", "deselect_all", 3_218_959_716)
 
     internal val invalidatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileDialog", "invalidate", 3218959716)
+        TypeManager.getMethodBindPtr("FileDialog", "invalidate", 3_218_959_716)
   }
 }

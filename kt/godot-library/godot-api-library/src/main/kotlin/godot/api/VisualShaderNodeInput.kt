@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,10 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Gives access to input variables (built-ins) available for the shader. See the shading reference
- * for the list of available built-ins for each shader type (check `Tutorials` section for link).
+ * Gives access to input variables (built-ins) available for the shader. See the shading reference for the list of available built-ins for each shader type (check `Tutorials` section for link).
  */
 @GodotBaseType
 public open class VisualShaderNodeInput : VisualShaderNode() {
@@ -31,8 +26,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   public val inputTypeChanged: Signal0 by Signal0
 
   /**
-   * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or
-   * "point_size" (`POINT_SIZE`).
+   * One of the several input constants in lower-case style like: "vertex" (`VERTEX`) or "point_size" (`POINT_SIZE`).
    */
   public final inline var inputName: String
     @JvmName("inputNameProperty")
@@ -42,11 +36,11 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
       setInputName(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(759, scriptIndex)
   }
 
-  public final fun setInputName(name: String): Unit {
+  public final fun setInputName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setInputNamePtr, NIL)
   }
@@ -58,8 +52,7 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
   }
 
   /**
-   * Returns a translated name of the current constant in the Godot Shader Language. E.g. `"ALBEDO"`
-   * if the [inputName] equal to `"albedo"`.
+   * Returns a translated name of the current constant in the Godot Shader Language. E.g. `"ALBEDO"` if the [inputName] equal to `"albedo"`.
    */
   public final fun getInputRealName(): String {
     TransferContext.writeArguments()
@@ -71,12 +64,12 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "set_input_name", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "set_input_name", 83_702_148)
 
     internal val getInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_name", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_name", 201_670_096)
 
     internal val getInputRealNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_real_name", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeInput", "get_input_real_name", 201_670_096)
   }
 }

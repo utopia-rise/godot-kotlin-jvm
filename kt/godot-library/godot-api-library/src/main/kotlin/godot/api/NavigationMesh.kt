@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,7 +9,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
@@ -36,10 +32,11 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
- * A navigation mesh is a collection of polygons that define which areas of an environment are
- * traversable to aid agents in pathfinding through complicated spaces.
+ * A navigation mesh is a collection of polygons that define which areas of an environment are traversable to aid agents in pathfinding through complicated spaces.
  */
 @GodotBaseType
 public open class NavigationMesh : Resource() {
@@ -47,11 +44,8 @@ public open class NavigationMesh : Resource() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var vertices: PackedVector3Array
@@ -63,8 +57,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
-   * possible values.
+   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for possible values.
    */
   public final inline var samplePartitionType: SamplePartitionType
     @JvmName("samplePartitionTypeProperty")
@@ -75,8 +68,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
-   * possible values.
+   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for possible values.
    */
   public final inline var geometryParsedGeometryType: ParsedGeometryType
     @JvmName("geometryParsedGeometryTypeProperty")
@@ -89,8 +81,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The physics layers to scan for static colliders.
    *
-   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or
-   * [PARSED_GEOMETRY_BOTH].
+   * Only used when [geometryParsedGeometryType] is [PARSED_GEOMETRY_STATIC_COLLIDERS] or [PARSED_GEOMETRY_BOTH].
    */
   public final inline var geometryCollisionMask: Long
     @JvmName("geometryCollisionMaskProperty")
@@ -114,8 +105,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The name of the group to scan for geometry.
    *
-   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or
-   * [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
+   * Only used when [geometrySourceGeometryMode] is [SOURCE_GEOMETRY_GROUPS_WITH_CHILDREN] or [SOURCE_GEOMETRY_GROUPS_EXPLICIT].
    */
   public final inline var geometrySourceGroupName: StringName
     @JvmName("geometrySourceGroupNameProperty")
@@ -126,8 +116,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with
-   * the cell size on the navigation map.
+   * The cell size used to rasterize the navigation mesh vertices on the XZ plane. Must match with the cell size on the navigation map.
    */
   public final inline var cellSize: Float
     @JvmName("cellSizeProperty")
@@ -138,8 +127,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with
-   * the cell height on the navigation map.
+   * The cell height used to rasterize the navigation mesh vertices on the Y axis. Must match with the cell height on the navigation map.
    */
   public final inline var cellHeight: Float
     @JvmName("cellHeightProperty")
@@ -152,12 +140,9 @@ public open class NavigationMesh : Resource() {
   /**
    * The size of the non-navigable border around the bake bounding area.
    *
-   * In conjunction with the [filterBakingAabb] and a [edgeMaxError] value at `1.0` or below the
-   * border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk
-   * by [agentRadius].
+   * In conjunction with the [filterBakingAabb] and a [edgeMaxError] value at `1.0` or below the border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk by [agentRadius].
    *
-   * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of
-   * [cellSize].
+   * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of [cellSize].
    */
   public final inline var borderSize: Float
     @JvmName("borderSizeProperty")
@@ -168,8 +153,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The minimum floor to ceiling height that will still allow the floor area to be considered
-   * walkable.
+   * The minimum floor to ceiling height that will still allow the floor area to be considered walkable.
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellHeight].
    */
@@ -197,8 +181,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The minimum ledge height that is considered to still be traversable.
    *
-   * **Note:** While baking, this value will be rounded down to the nearest multiple of
-   * [cellHeight].
+   * **Note:** While baking, this value will be rounded down to the nearest multiple of [cellHeight].
    */
   public final inline var agentMaxClimb: Float
     @JvmName("agentMaxClimbProperty")
@@ -222,8 +205,7 @@ public open class NavigationMesh : Resource() {
   /**
    * The minimum size of a region for it to be created.
    *
-   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form
-   * isolated island areas. For example, a value of 8 will set the number of cells to 64.
+   * **Note:** This value will be squared to calculate the minimum number of cells allowed to form isolated island areas. For example, a value of 8 will set the number of cells to 64.
    */
   public final inline var regionMinSize: Float
     @JvmName("regionMinSizeProperty")
@@ -236,8 +218,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Any regions with a size smaller than this will be merged with larger regions if possible.
    *
-   * **Note:** This value will be squared to calculate the number of cells. For example, a value of
-   * 20 will set the number of cells to 400.
+   * **Note:** This value will be squared to calculate the number of cells. For example, a value of 20 will set the number of cells to 400.
    */
   public final inline var regionMergeSize: Float
     @JvmName("regionMergeSizeProperty")
@@ -248,8 +229,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0`
-   * disables this feature.
+   * The maximum allowed length for contour edges along the border of the mesh. A value of `0.0` disables this feature.
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
    */
@@ -262,8 +242,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum distance a simplified contour's border edges should deviate the original raw
-   * contour.
+   * The maximum distance a simplified contour's border edges should deviate the original raw contour.
    */
   public final inline var edgeMaxError: Float
     @JvmName("edgeMaxErrorProperty")
@@ -274,8 +253,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The maximum number of vertices allowed for polygons generated during the contour to polygon
-   * conversion process.
+   * The maximum number of vertices allowed for polygons generated during the contour to polygon conversion process.
    */
   public final inline var verticesPerPolygon: Float
     @JvmName("verticesPerPolygonProperty")
@@ -308,8 +286,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If `true`, marks non-walkable spans as walkable if their maximum is within [agentMaxClimb] of a
-   * walkable neighbor.
+   * If `true`, marks non-walkable spans as walkable if their maximum is within [agentMaxClimb] of a walkable neighbor.
    */
   public final inline var filterLowHangingObstacles: Boolean
     @JvmName("filterLowHangingObstaclesProperty")
@@ -331,8 +308,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than
-   * [agentHeight].
+   * If `true`, marks walkable spans as not walkable if the clearance above the span is less than [agentHeight].
    */
   public final inline var filterWalkableLowHeightSpans: Boolean
     @JvmName("filterWalkableLowHeightSpansProperty")
@@ -343,18 +319,14 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
-  public final inline var filterBakingAabb: AABB
+  public final inline var filterBakingAabb: CoreAABB
     @JvmName("filterBakingAabbProperty")
     get() = getFilterBakingAabb()
     @JvmName("filterBakingAabbProperty")
@@ -366,11 +338,8 @@ public open class NavigationMesh : Resource() {
    * The position offset applied to the [filterBakingAabb] [AABB].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var filterBakingAabbOffset: Vector3
@@ -381,7 +350,7 @@ public open class NavigationMesh : Resource() {
       setFilterBakingAabbOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(378, scriptIndex)
   }
 
@@ -397,20 +366,17 @@ public open class NavigationMesh : Resource() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
-      vertices.apply {
+  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array = vertices.apply {
      block(this)
      vertices = this
   }
 
   /**
    * This is a helper function for [vertices] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
-      PackedVector3Array = vertices.apply {
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array = vertices.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -429,18 +395,16 @@ public open class NavigationMesh : Resource() {
    * navigationmesh.filterBakingAabb = myCoreType
    * ``````
    *
-   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its
-   * enclosing area.
+   * If the baking [AABB] has a volume the navigation mesh baking will be restricted to its enclosing area.
    */
   @CoreTypeHelper
-  public final fun filterBakingAabbMutate(block: AABB.() -> Unit): AABB = filterBakingAabb.apply {
+  public final fun filterBakingAabbMutate(block: CoreAABB.() -> Unit): CoreAABB = filterBakingAabb.apply {
      block(this)
      filterBakingAabb = this
   }
 
   /**
-   * This is a helper function for [filterBakingAabbOffset] to make dealing with local copies
-   * easier.
+   * This is a helper function for [filterBakingAabbOffset] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -453,13 +417,12 @@ public open class NavigationMesh : Resource() {
    * The position offset applied to the [filterBakingAabb] [AABB].
    */
   @CoreTypeHelper
-  public final fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 =
-      filterBakingAabbOffset.apply {
+  public final fun filterBakingAabbOffsetMutate(block: Vector3.() -> Unit): Vector3 = filterBakingAabbOffset.apply {
      block(this)
      filterBakingAabbOffset = this
   }
 
-  public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
+  public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType) {
     TransferContext.writeArguments(LONG to samplePartitionType.id)
     TransferContext.callMethod(ptr, MethodBindings.setSamplePartitionTypePtr, NIL)
   }
@@ -470,7 +433,7 @@ public open class NavigationMesh : Resource() {
     return SamplePartitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
+  public final fun setParsedGeometryType(geometryType: ParsedGeometryType) {
     TransferContext.writeArguments(LONG to geometryType.id)
     TransferContext.callMethod(ptr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
@@ -481,7 +444,7 @@ public open class NavigationMesh : Resource() {
     return ParsedGeometryType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -493,17 +456,15 @@ public open class NavigationMesh : Resource() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given
-   * a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [geometryCollisionMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [geometryCollisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -511,7 +472,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSourceGeometryMode(mask: SourceGeometryMode): Unit {
+  public final fun setSourceGeometryMode(mask: SourceGeometryMode) {
     TransferContext.writeArguments(LONG to mask.id)
     TransferContext.callMethod(ptr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
@@ -522,7 +483,7 @@ public open class NavigationMesh : Resource() {
     return SourceGeometryMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSourceGroupName(mask: StringName): Unit {
+  public final fun setSourceGroupName(mask: StringName) {
     TransferContext.writeArguments(STRING_NAME to mask)
     TransferContext.callMethod(ptr, MethodBindings.setSourceGroupNamePtr, NIL)
   }
@@ -533,7 +494,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setCellSize(cellSize: Float): Unit {
+  public final fun setCellSize(cellSize: Float) {
     TransferContext.writeArguments(DOUBLE to cellSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCellSizePtr, NIL)
   }
@@ -544,7 +505,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCellHeight(cellHeight: Float): Unit {
+  public final fun setCellHeight(cellHeight: Float) {
     TransferContext.writeArguments(DOUBLE to cellHeight.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCellHeightPtr, NIL)
   }
@@ -555,7 +516,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBorderSize(borderSize: Float): Unit {
+  public final fun setBorderSize(borderSize: Float) {
     TransferContext.writeArguments(DOUBLE to borderSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBorderSizePtr, NIL)
   }
@@ -566,7 +527,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAgentHeight(agentHeight: Float): Unit {
+  public final fun setAgentHeight(agentHeight: Float) {
     TransferContext.writeArguments(DOUBLE to agentHeight.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAgentHeightPtr, NIL)
   }
@@ -577,7 +538,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAgentRadius(agentRadius: Float): Unit {
+  public final fun setAgentRadius(agentRadius: Float) {
     TransferContext.writeArguments(DOUBLE to agentRadius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAgentRadiusPtr, NIL)
   }
@@ -588,7 +549,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAgentMaxClimb(agentMaxClimb: Float): Unit {
+  public final fun setAgentMaxClimb(agentMaxClimb: Float) {
     TransferContext.writeArguments(DOUBLE to agentMaxClimb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAgentMaxClimbPtr, NIL)
   }
@@ -599,7 +560,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAgentMaxSlope(agentMaxSlope: Float): Unit {
+  public final fun setAgentMaxSlope(agentMaxSlope: Float) {
     TransferContext.writeArguments(DOUBLE to agentMaxSlope.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAgentMaxSlopePtr, NIL)
   }
@@ -610,7 +571,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRegionMinSize(regionMinSize: Float): Unit {
+  public final fun setRegionMinSize(regionMinSize: Float) {
     TransferContext.writeArguments(DOUBLE to regionMinSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRegionMinSizePtr, NIL)
   }
@@ -621,7 +582,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRegionMergeSize(regionMergeSize: Float): Unit {
+  public final fun setRegionMergeSize(regionMergeSize: Float) {
     TransferContext.writeArguments(DOUBLE to regionMergeSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRegionMergeSizePtr, NIL)
   }
@@ -632,7 +593,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEdgeMaxLength(edgeMaxLength: Float): Unit {
+  public final fun setEdgeMaxLength(edgeMaxLength: Float) {
     TransferContext.writeArguments(DOUBLE to edgeMaxLength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEdgeMaxLengthPtr, NIL)
   }
@@ -643,7 +604,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEdgeMaxError(edgeMaxError: Float): Unit {
+  public final fun setEdgeMaxError(edgeMaxError: Float) {
     TransferContext.writeArguments(DOUBLE to edgeMaxError.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEdgeMaxErrorPtr, NIL)
   }
@@ -654,7 +615,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVerticesPerPolygon(verticesPerPolygon: Float): Unit {
+  public final fun setVerticesPerPolygon(verticesPerPolygon: Float) {
     TransferContext.writeArguments(DOUBLE to verticesPerPolygon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVerticesPerPolygonPtr, NIL)
   }
@@ -665,7 +626,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDetailSampleDistance(detailSampleDist: Float): Unit {
+  public final fun setDetailSampleDistance(detailSampleDist: Float) {
     TransferContext.writeArguments(DOUBLE to detailSampleDist.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDetailSampleDistancePtr, NIL)
   }
@@ -676,7 +637,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDetailSampleMaxError(detailSampleMaxError: Float): Unit {
+  public final fun setDetailSampleMaxError(detailSampleMaxError: Float) {
     TransferContext.writeArguments(DOUBLE to detailSampleMaxError.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDetailSampleMaxErrorPtr, NIL)
   }
@@ -687,7 +648,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFilterLowHangingObstacles(filterLowHangingObstacles: Boolean): Unit {
+  public final fun setFilterLowHangingObstacles(filterLowHangingObstacles: Boolean) {
     TransferContext.writeArguments(BOOL to filterLowHangingObstacles)
     TransferContext.callMethod(ptr, MethodBindings.setFilterLowHangingObstaclesPtr, NIL)
   }
@@ -698,7 +659,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFilterLedgeSpans(filterLedgeSpans: Boolean): Unit {
+  public final fun setFilterLedgeSpans(filterLedgeSpans: Boolean) {
     TransferContext.writeArguments(BOOL to filterLedgeSpans)
     TransferContext.callMethod(ptr, MethodBindings.setFilterLedgeSpansPtr, NIL)
   }
@@ -709,7 +670,7 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans: Boolean): Unit {
+  public final fun setFilterWalkableLowHeightSpans(filterWalkableLowHeightSpans: Boolean) {
     TransferContext.writeArguments(BOOL to filterWalkableLowHeightSpans)
     TransferContext.callMethod(ptr, MethodBindings.setFilterWalkableLowHeightSpansPtr, NIL)
   }
@@ -720,19 +681,18 @@ public open class NavigationMesh : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFilterBakingAabb(bakingAabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to bakingAabb)
+  public final fun setFilterBakingAabb(bakingAabb: CoreAABB) {
+    TransferContext.writeArguments(VariantParserAABB to bakingAabb)
     TransferContext.callMethod(ptr, MethodBindings.setFilterBakingAabbPtr, NIL)
   }
 
-  public final fun getFilterBakingAabb(): AABB {
+  public final fun getFilterBakingAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr,
-        godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getFilterBakingAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
-  public final fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3): Unit {
+  public final fun setFilterBakingAabbOffset(bakingAabbOffset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to bakingAabbOffset)
     TransferContext.callMethod(ptr, MethodBindings.setFilterBakingAabbOffsetPtr, NIL)
   }
@@ -746,7 +706,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Sets the vertices that can be then indexed to create polygons with the [addPolygon] method.
    */
-  public final fun setVertices(vertices: PackedVector3Array): Unit {
+  public final fun setVertices(vertices: PackedVector3Array) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
     TransferContext.callMethod(ptr, MethodBindings.setVerticesPtr, NIL)
   }
@@ -763,7 +723,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Adds a polygon using the indices of the vertices you get when calling [getVertices].
    */
-  public final fun addPolygon(polygon: PackedInt32Array): Unit {
+  public final fun addPolygon(polygon: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.addPolygonPtr, NIL)
   }
@@ -789,7 +749,7 @@ public open class NavigationMesh : Resource() {
   /**
    * Clears the array of polygons, but it doesn't clear the array of vertices.
    */
-  public final fun clearPolygons(): Unit {
+  public final fun clearPolygons() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPolygonsPtr, NIL)
   }
@@ -799,7 +759,7 @@ public open class NavigationMesh : Resource() {
    *
    * **Note:** The given [mesh] must be of type [Mesh.PRIMITIVE_TRIANGLES] and have an index array.
    */
-  public final fun createFromMesh(mesh: Mesh?): Unit {
+  public final fun createFromMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.createFromMeshPtr, NIL)
   }
@@ -807,19 +767,18 @@ public open class NavigationMesh : Resource() {
   /**
    * Clears the internal arrays for vertices and polygon indices.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public final fun setSourceGroupName(mask: String) = setSourceGroupName(mask.asCachedStringName())
+  public final fun setSourceGroupName(mask: String): Unit = setSourceGroupName(mask.asCachedStringName())
 
   public enum class SamplePartitionType(
     id: Long,
   ) {
     /**
-     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
-     * this if you have large open areas.
+     * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use this if you have large open areas.
      */
     WATERSHED(0),
     /**
@@ -827,8 +786,7 @@ public open class NavigationMesh : Resource() {
      */
     MONOTONE(1),
     /**
-     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized
-     * tiles.
+     * Layer partitioning. Good choice to use for tiled navigation mesh with medium and small sized tiles.
      */
     LAYERS(2),
     /**
@@ -851,13 +809,11 @@ public open class NavigationMesh : Resource() {
     id: Long,
   ) {
     /**
-     * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
-     * [GridMap] nodes.
+     * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and [GridMap] nodes.
      */
     MESH_INSTANCES(0),
     /**
-     * Parses [StaticBody3D] colliders as geometry. The collider should be in any of the layers
-     * specified by [geometryCollisionMask].
+     * Parses [StaticBody3D] colliders as geometry. The collider should be in any of the layers specified by [geometryCollisionMask].
      */
     STATIC_COLLIDERS(1),
     /**
@@ -888,8 +844,7 @@ public open class NavigationMesh : Resource() {
      */
     ROOT_NODE_CHILDREN(0),
     /**
-     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified
-     * by [geometrySourceGroupName].
+     * Scans nodes in a group and their child nodes recursively for geometry. The group is specified by [geometrySourceGroupName].
      */
     GROUPS_WITH_CHILDREN(1),
     /**
@@ -916,177 +871,177 @@ public open class NavigationMesh : Resource() {
 
   public object MethodBindings {
     internal val setSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type", 2472437533)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_sample_partition_type", 2_472_437_533)
 
     internal val getSamplePartitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type", 833513918)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_sample_partition_type", 833_513_918)
 
     internal val setParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type", 3064713163)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_parsed_geometry_type", 3_064_713_163)
 
     internal val getParsedGeometryTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type", 3928011953)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_parsed_geometry_type", 3_928_011_953)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask", 3_905_245_786)
 
     internal val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_collision_mask_value", 300_928_843)
 
     internal val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_collision_mask_value", 1_116_898_809)
 
     internal val setSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode", 2700825194)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_geometry_mode", 2_700_825_194)
 
     internal val getSourceGeometryModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode", 2770484141)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_geometry_mode", 2_770_484_141)
 
     internal val setSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name", 3304788590)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_source_group_name", 3_304_788_590)
 
     internal val getSourceGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name", 2002593661)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_source_group_name", 2_002_593_661)
 
     internal val setCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_size", 373_806_689)
 
     internal val getCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_size", 1_740_695_150)
 
     internal val setCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_cell_height", 373_806_689)
 
     internal val getCellHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_cell_height", 1_740_695_150)
 
     internal val setBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_border_size", 373_806_689)
 
     internal val getBorderSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_border_size", 1_740_695_150)
 
     internal val setAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_height", 373_806_689)
 
     internal val getAgentHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_height", 1_740_695_150)
 
     internal val setAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_radius", 373_806_689)
 
     internal val getAgentRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius", 191475506)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_radius", 191_475_506)
 
     internal val setAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_climb", 373_806_689)
 
     internal val getAgentMaxClimbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_climb", 1_740_695_150)
 
     internal val setAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_agent_max_slope", 373_806_689)
 
     internal val getAgentMaxSlopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_agent_max_slope", 1_740_695_150)
 
     internal val setRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_min_size", 373_806_689)
 
     internal val getRegionMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_min_size", 1_740_695_150)
 
     internal val setRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_region_merge_size", 373_806_689)
 
     internal val getRegionMergeSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_region_merge_size", 1_740_695_150)
 
     internal val setEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_length", 373_806_689)
 
     internal val getEdgeMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_length", 1_740_695_150)
 
     internal val setEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_edge_max_error", 373_806_689)
 
     internal val getEdgeMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_edge_max_error", 1_740_695_150)
 
     internal val setVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices_per_polygon", 373_806_689)
 
     internal val getVerticesPerPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices_per_polygon", 1_740_695_150)
 
     internal val setDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_distance", 373_806_689)
 
     internal val getDetailSampleDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_distance", 1_740_695_150)
 
     internal val setDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error", 373806689)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_detail_sample_max_error", 373_806_689)
 
     internal val getDetailSampleMaxErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_detail_sample_max_error", 1_740_695_150)
 
     internal val setFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_low_hanging_obstacles", 2_586_408_642)
 
     internal val getFilterLowHangingObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles", 36873697)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_low_hanging_obstacles", 36_873_697)
 
     internal val setFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_ledge_spans", 2_586_408_642)
 
     internal val getFilterLedgeSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans", 36873697)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_ledge_spans", 36_873_697)
 
     internal val setFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_walkable_low_height_spans", 2_586_408_642)
 
     internal val getFilterWalkableLowHeightSpansPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans", 36873697)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_walkable_low_height_spans", 36_873_697)
 
     internal val setFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb", 259215842)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb", 259_215_842)
 
     internal val getFilterBakingAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb", 1_068_685_055)
 
     internal val setFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_filter_baking_aabb_offset", 3_460_891_852)
 
     internal val getFilterBakingAabbOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_filter_baking_aabb_offset", 3_360_562_783)
 
     internal val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices", 334873810)
+        TypeManager.getMethodBindPtr("NavigationMesh", "set_vertices", 334_873_810)
 
     internal val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices", 497664490)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_vertices", 497_664_490)
 
     internal val addPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon", 3614634198)
+        TypeManager.getMethodBindPtr("NavigationMesh", "add_polygon", 3_614_634_198)
 
     internal val getPolygonCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon_count", 3_905_245_786)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon", 3668444399)
+        TypeManager.getMethodBindPtr("NavigationMesh", "get_polygon", 3_668_444_399)
 
     internal val clearPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons", 3218959716)
+        TypeManager.getMethodBindPtr("NavigationMesh", "clear_polygons", 3_218_959_716)
 
     internal val createFromMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh", 194775623)
+        TypeManager.getMethodBindPtr("NavigationMesh", "create_from_mesh", 194_775_623)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationMesh", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("NavigationMesh", "clear", 3_218_959_716)
   }
 }

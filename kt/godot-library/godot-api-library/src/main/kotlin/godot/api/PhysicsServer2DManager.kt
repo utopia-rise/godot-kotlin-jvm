@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,47 +15,42 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for
- * setting the default implementation.
+ * [PhysicsServer2DManager] is the API for registering [PhysicsServer2D] implementations and for setting the default implementation.
  *
- * **Note:** It is not possible to switch physics servers at runtime. This class is only used on
- * startup at the server initialization level, by Godot itself and possibly by GDExtensions.
+ * **Note:** It is not possible to switch physics servers at runtime. This class is only used on startup at the server initialization level, by Godot itself and possibly by GDExtensions.
  */
 @GodotBaseType
 public object PhysicsServer2DManager : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(22)
   }
 
   /**
-   * Register a [PhysicsServer2D] implementation by passing a [name] and a [Callable] that returns a
-   * [PhysicsServer2D] object.
+   * Register a [PhysicsServer2D] implementation by passing a [name] and a [Callable] that returns a [PhysicsServer2D] object.
    */
   @JvmStatic
-  public final fun registerServer(name: String, createCallback: Callable): Unit {
+  public final fun registerServer(name: String, createCallback: Callable) {
     TransferContext.writeArguments(STRING to name, CALLABLE to createCallback)
     TransferContext.callMethod(ptr, MethodBindings.registerServerPtr, NIL)
   }
 
   /**
-   * Set the default [PhysicsServer2D] implementation to the one identified by [name], if [priority]
-   * is greater than the priority of the current default implementation.
+   * Set the default [PhysicsServer2D] implementation to the one identified by [name], if [priority] is greater than the priority of the current default implementation.
    */
   @JvmStatic
-  public final fun setDefaultServer(name: String, priority: Int): Unit {
+  public final fun setDefaultServer(name: String, priority: Int) {
     TransferContext.writeArguments(STRING to name, LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDefaultServerPtr, NIL)
   }
 
   public object MethodBindings {
     internal val registerServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "register_server", 2137474292)
+        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "register_server", 2_137_474_292)
 
     internal val setDefaultServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "set_default_server", 2956805083)
+        TypeManager.getMethodBindPtr("PhysicsServer2DManager", "set_default_server", 2_956_805_083)
   }
 }

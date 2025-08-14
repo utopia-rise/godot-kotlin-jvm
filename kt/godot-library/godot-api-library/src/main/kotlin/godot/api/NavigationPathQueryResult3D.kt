@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,16 +32,11 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class NavigationPathQueryResult3D : RefCounted() {
   /**
-   * The resulting path array from the navigation query. All path array positions are in global
-   * coordinates. Without customized query parameters this is the same path as returned by
-   * [NavigationServer3D.mapGetPath].
+   * The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [NavigationServer3D.mapGetPath].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var path: PackedVector3Array
@@ -59,11 +51,8 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * The type of navigation primitive (region or link) that each point of the path goes through.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var pathTypes: PackedInt32Array
@@ -86,15 +75,11 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     }
 
   /**
-   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
-   * through.
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var pathOwnerIds: PackedInt64Array
@@ -105,7 +90,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       setPathOwnerIds(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(387, scriptIndex)
   }
 
@@ -120,29 +105,22 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * navigationpathqueryresult3d.path = myCoreType
    * ``````
    *
-   * The resulting path array from the navigation query. All path array positions are in global
-   * coordinates. Without customized query parameters this is the same path as returned by
-   * [NavigationServer3D.mapGetPath].
+   * The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [NavigationServer3D.mapGetPath].
    */
   @CoreTypeHelper
-  public final fun pathMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
-      path.apply {
+  public final fun pathMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array = path.apply {
      block(this)
      path = this
   }
 
   /**
    * This is a helper function for [path] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The resulting path array from the navigation query. All path array positions are in global
-   * coordinates. Without customized query parameters this is the same path as returned by
-   * [NavigationServer3D.mapGetPath].
+   * The resulting path array from the navigation query. All path array positions are in global coordinates. Without customized query parameters this is the same path as returned by [NavigationServer3D.mapGetPath].
    */
   @CoreTypeHelper
-  public final fun pathMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array
-      = path.apply {
+  public final fun pathMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array = path.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -164,22 +142,19 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * The type of navigation primitive (region or link) that each point of the path goes through.
    */
   @CoreTypeHelper
-  public final fun pathTypesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      pathTypes.apply {
+  public final fun pathTypesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = pathTypes.apply {
      block(this)
      pathTypes = this
   }
 
   /**
    * This is a helper function for [pathTypes] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The type of navigation primitive (region or link) that each point of the path goes through.
    */
   @CoreTypeHelper
-  public final fun pathTypesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array
-      = pathTypes.apply {
+  public final fun pathTypesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = pathTypes.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -198,27 +173,22 @@ public open class NavigationPathQueryResult3D : RefCounted() {
    * navigationpathqueryresult3d.pathOwnerIds = myCoreType
    * ``````
    *
-   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
-   * through.
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through.
    */
   @CoreTypeHelper
-  public final fun pathOwnerIdsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array =
-      pathOwnerIds.apply {
+  public final fun pathOwnerIdsMutate(block: PackedInt64Array.() -> Unit): PackedInt64Array = pathOwnerIds.apply {
      block(this)
      pathOwnerIds = this
   }
 
   /**
    * This is a helper function for [pathOwnerIds] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes
-   * through.
+   * The `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through.
    */
   @CoreTypeHelper
-  public final fun pathOwnerIdsMutateEach(block: (index: Int, `value`: Long) -> Unit):
-      PackedInt64Array = pathOwnerIds.apply {
+  public final fun pathOwnerIdsMutateEach(block: (index: Int, `value`: Long) -> Unit): PackedInt64Array = pathOwnerIds.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -226,7 +196,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
      pathOwnerIds = this
   }
 
-  public final fun setPath(path: PackedVector3Array): Unit {
+  public final fun setPath(path: PackedVector3Array) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to path)
     TransferContext.callMethod(ptr, MethodBindings.setPathPtr, NIL)
   }
@@ -237,7 +207,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
-  public final fun setPathTypes(pathTypes: PackedInt32Array): Unit {
+  public final fun setPathTypes(pathTypes: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pathTypes)
     TransferContext.callMethod(ptr, MethodBindings.setPathTypesPtr, NIL)
   }
@@ -248,7 +218,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setPathRids(pathRids: VariantArray<RID>): Unit {
+  public final fun setPathRids(pathRids: VariantArray<RID>) {
     TransferContext.writeArguments(ARRAY to pathRids)
     TransferContext.callMethod(ptr, MethodBindings.setPathRidsPtr, NIL)
   }
@@ -259,7 +229,7 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public final fun setPathOwnerIds(pathOwnerIds: PackedInt64Array): Unit {
+  public final fun setPathOwnerIds(pathOwnerIds: PackedInt64Array) {
     TransferContext.writeArguments(PACKED_INT_64_ARRAY to pathOwnerIds)
     TransferContext.callMethod(ptr, MethodBindings.setPathOwnerIdsPtr, NIL)
   }
@@ -271,10 +241,9 @@ public open class NavigationPathQueryResult3D : RefCounted() {
   }
 
   /**
-   * Reset the result object to its initial state. This is useful to reuse the object across
-   * multiple queries.
+   * Reset the result object to its initial state. This is useful to reuse the object across multiple queries.
    */
-  public final fun reset(): Unit {
+  public final fun reset() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetPtr, NIL)
   }
@@ -306,30 +275,30 @@ public open class NavigationPathQueryResult3D : RefCounted() {
 
   public object MethodBindings {
     internal val setPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path", 334873810)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path", 334_873_810)
 
     internal val getPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path", 497664490)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path", 497_664_490)
 
     internal val setPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_types", 3614634198)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_types", 3_614_634_198)
 
     internal val getPathTypesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_types", 1930428628)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_types", 1_930_428_628)
 
     internal val setPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_rids", 381264803)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_rids", 381_264_803)
 
     internal val getPathRidsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_rids", 3995934104)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_rids", 3_995_934_104)
 
     internal val setPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_owner_ids", 3709968205)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_owner_ids", 3_709_968_205)
 
     internal val getPathOwnerIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_owner_ids", 235988956)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_owner_ids", 235_988_956)
 
     internal val resetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "reset", 3218959716)
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "reset", 3_218_959_716)
   }
 }

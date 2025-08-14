@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
       setOperator(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(816, scriptIndex)
   }
 
-  public final fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator) {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
@@ -81,28 +77,23 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
      */
     MIN(6),
     /**
-     * Returns the result of bitwise `AND` operation on the integer. Translates to `a & b` in the
-     * Godot Shader Language.
+     * Returns the result of bitwise `AND` operation on the integer. Translates to `a & b` in the Godot Shader Language.
      */
     BITWISE_AND(7),
     /**
-     * Returns the result of bitwise `OR` operation for two integers. Translates to `a | b` in the
-     * Godot Shader Language.
+     * Returns the result of bitwise `OR` operation for two integers. Translates to `a | b` in the Godot Shader Language.
      */
     BITWISE_OR(8),
     /**
-     * Returns the result of bitwise `XOR` operation for two integers. Translates to `a ^ b` in the
-     * Godot Shader Language.
+     * Returns the result of bitwise `XOR` operation for two integers. Translates to `a ^ b` in the Godot Shader Language.
      */
     BITWISE_XOR(9),
     /**
-     * Returns the result of bitwise left shift operation on the integer. Translates to `a << b` in
-     * the Godot Shader Language.
+     * Returns the result of bitwise left shift operation on the integer. Translates to `a << b` in the Godot Shader Language.
      */
     BITWISE_LEFT_SHIFT(10),
     /**
-     * Returns the result of bitwise right shift operation on the integer. Translates to `a >> b` in
-     * the Godot Shader Language.
+     * Returns the result of bitwise right shift operation on the integer. Translates to `a >> b` in the Godot Shader Language.
      */
     BITWISE_RIGHT_SHIFT(11),
     /**
@@ -125,9 +116,9 @@ public open class VisualShaderNodeUIntOp : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "set_operator", 3463048345)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "set_operator", 3_463_048_345)
 
     internal val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "get_operator", 256631461)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUIntOp", "get_operator", 256_631_461)
   }
 }

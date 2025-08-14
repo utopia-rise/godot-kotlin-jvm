@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,12 +17,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A button that represents a link. This type of button is primarily used for interactions that
- * cause a context change (like linking to a web page).
+ * A button that represents a link. This type of button is primarily used for interactions that cause a context change (like linking to a web page).
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  */
@@ -54,10 +49,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * The [url=https://en.wikipedia.org/wiki/Uniform_Resource_Identifier]URI[/url] for this
-   * [LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating
-   * system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the
-   * default web browser.
+   * The [url=https://en.wikipedia.org/wiki/Uniform_Resource_Identifier]URI[/url] for this [LinkButton]. If set to a valid URI, pressing the button opens the URI using the operating system's default program for the protocol (via [OS.shellOpen]). HTTP and HTTPS URLs open the default web browser.
    *
    * ```gdscript
    * //gdscript
@@ -93,8 +85,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -126,11 +117,11 @@ public open class LinkButton : BaseButton() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(341, scriptIndex)
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -141,7 +132,7 @@ public open class LinkButton : BaseButton() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -152,7 +143,7 @@ public open class LinkButton : BaseButton() {
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -163,7 +154,7 @@ public open class LinkButton : BaseButton() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setUri(uri: String): Unit {
+  public final fun setUri(uri: String) {
     TransferContext.writeArguments(STRING to uri)
     TransferContext.callMethod(ptr, MethodBindings.setUriPtr, NIL)
   }
@@ -174,7 +165,7 @@ public open class LinkButton : BaseButton() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setUnderlineMode(underlineMode: UnderlineMode): Unit {
+  public final fun setUnderlineMode(underlineMode: UnderlineMode) {
     TransferContext.writeArguments(LONG to underlineMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setUnderlineModePtr, NIL)
   }
@@ -185,7 +176,7 @@ public open class LinkButton : BaseButton() {
     return UnderlineMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser) {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
@@ -196,7 +187,7 @@ public open class LinkButton : BaseButton() {
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
@@ -215,8 +206,7 @@ public open class LinkButton : BaseButton() {
      */
     ALWAYS(0),
     /**
-     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over
-     * it.
+     * The LinkButton will show an underline at the bottom of its text when the mouse cursor is over it.
      */
     ON_HOVER(1),
     /**
@@ -239,45 +229,45 @@ public open class LinkButton : BaseButton() {
 
   public object MethodBindings {
     internal val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_text", 83702148)
+        TypeManager.getMethodBindPtr("LinkButton", "set_text", 83_702_148)
 
     internal val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_text", 201670096)
+        TypeManager.getMethodBindPtr("LinkButton", "get_text", 201_670_096)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_text_direction", 119160795)
+        TypeManager.getMethodBindPtr("LinkButton", "set_text_direction", 119_160_795)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_text_direction", 797257663)
+        TypeManager.getMethodBindPtr("LinkButton", "get_text_direction", 797_257_663)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("LinkButton", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("LinkButton", "get_language", 201_670_096)
 
     internal val setUriPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_uri", 83702148)
+        TypeManager.getMethodBindPtr("LinkButton", "set_uri", 83_702_148)
 
     internal val getUriPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_uri", 201670096)
+        TypeManager.getMethodBindPtr("LinkButton", "get_uri", 201_670_096)
 
     internal val setUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_underline_mode", 4032947085)
+        TypeManager.getMethodBindPtr("LinkButton", "set_underline_mode", 4_032_947_085)
 
     internal val getUnderlineModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_underline_mode", 568343738)
+        TypeManager.getMethodBindPtr("LinkButton", "get_underline_mode", 568_343_738)
 
     internal val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55961453)
+        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override", 55_961_453)
 
     internal val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3385126229)
+        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override", 3_385_126_229)
 
     internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381264803)
+        TypeManager.getMethodBindPtr("LinkButton", "set_structured_text_bidi_override_options", 381_264_803)
 
     internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3995934104)
+        TypeManager.getMethodBindPtr("LinkButton", "get_structured_text_bidi_override_options", 3_995_934_104)
   }
 }

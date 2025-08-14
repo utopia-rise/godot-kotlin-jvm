@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,30 +27,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based
- * geometry, divided in *surfaces*. Each surface contains a completely separate array and a material
- * used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface,
- * because objects created in 3D editing software commonly contain multiple materials.
+ * ImporterMesh is a type of [Resource] analogous to [ArrayMesh]. It contains vertex array-based geometry, divided in *surfaces*. Each surface contains a completely separate array and a material used to draw it. Design wise, a mesh with multiple surfaces is preferred to a single surface, because objects created in 3D editing software commonly contain multiple materials.
  *
- * Unlike its runtime counterpart, [ImporterMesh] contains mesh data before various import steps,
- * such as lod and shadow mesh generation, have taken place. Modify surface data by calling [clear],
- * followed by [addSurface] for each surface.
+ * Unlike its runtime counterpart, [ImporterMesh] contains mesh data before various import steps, such as lod and shadow mesh generation, have taken place. Modify surface data by calling [clear], followed by [addSurface] for each surface.
  */
 @GodotBaseType
 public open class ImporterMesh : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(289, scriptIndex)
   }
 
   /**
-   * Adds name for a blend shape that will be added with [addSurface]. Must be called before surface
-   * is added.
+   * Adds name for a blend shape that will be added with [addSurface]. Must be called before surface is added.
    */
-  public final fun addBlendShape(name: String): Unit {
+  public final fun addBlendShape(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.addBlendShapePtr, NIL)
   }
@@ -79,7 +69,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
    */
-  public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
+  public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeModePtr, NIL)
   }
@@ -96,34 +86,15 @@ public open class ImporterMesh : Resource() {
   /**
    * Creates a new surface. [Mesh.getSurfaceCount] will become the `surf_idx` for this new surface.
    *
-   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined
-   * in [Mesh.PrimitiveType].
+   * Surfaces are created to be rendered using a [primitive], which may be any of the values defined in [Mesh.PrimitiveType].
    *
-   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAY_MAX] elements contains an
-   * array with some of the mesh data for this surface as described by the corresponding member of
-   * [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array
-   * of vertices. That first vertex sub-array is always required; the others are optional. Adding an
-   * index array puts this surface into "index mode" where the vertex and other arrays become the
-   * sources of data and the index array defines the vertex order. All sub-arrays must have the same
-   * length as the vertex array (or be an exact multiple of the vertex array's length, when multiple
-   * elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAY_INDEX]
-   * if it is used.
+   * The [arrays] argument is an array of arrays. Each of the [Mesh.ARRAY_MAX] elements contains an array with some of the mesh data for this surface as described by the corresponding member of [Mesh.ArrayType] or `null` if it is not used by the surface. For example, `arrays[0]` is the array of vertices. That first vertex sub-array is always required; the others are optional. Adding an index array puts this surface into "index mode" where the vertex and other arrays become the sources of data and the index array defines the vertex order. All sub-arrays must have the same length as the vertex array (or be an exact multiple of the vertex array's length, when multiple elements of a sub-array correspond to a single vertex) or be empty, except for [Mesh.ARRAY_INDEX] if it is used.
    *
-   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an
-   * array of the same structure as [arrays], but [Mesh.ARRAY_VERTEX], [Mesh.ARRAY_NORMAL], and
-   * [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are
-   * `null`.
+   * The [blendShapes] argument is an array of vertex data for each blend shape. Each element is an array of the same structure as [arrays], but [Mesh.ARRAY_VERTEX], [Mesh.ARRAY_NORMAL], and [Mesh.ARRAY_TANGENT] are set if and only if they are set in [arrays] and all other entries are `null`.
    *
-   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry
-   * in the dictionary represents an LOD level of the surface, where the value is the
-   * [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the
-   * distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the
-   * distance that the objects has to be from the camera before the LOD is used.
+   * The [lods] argument is a dictionary with [float] keys and [PackedInt32Array] values. Each entry in the dictionary represents an LOD level of the surface, where the value is the [Mesh.ARRAY_INDEX] array to use for the LOD level and the key is roughly proportional to the distance at which the LOD stats being used. I.e., increasing the key of an LOD also increases the distance that the objects has to be from the camera before the LOD is used.
    *
-   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat]
-   * left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use,
-   * [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or
-   * [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
+   * The [flags] argument is the bitwise OR of, as required: One value of [Mesh.ArrayCustomFormat] left shifted by `ARRAY_FORMAT_CUSTOMn_SHIFT` for each custom channel in use, [Mesh.ARRAY_FLAG_USE_DYNAMIC_UPDATE], [Mesh.ARRAY_FLAG_USE_8_BONE_WEIGHTS], or [Mesh.ARRAY_FLAG_USES_EMPTY_VERTEX_ARRAY].
    *
    * **Note:** When using indices, it is recommended to only use points, lines, or triangles.
    */
@@ -136,7 +107,7 @@ public open class ImporterMesh : Resource() {
     material: Material? = null,
     name: String = "",
     flags: Long = 0,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
     TransferContext.callMethod(ptr, MethodBindings.addSurfacePtr, NIL)
   }
@@ -169,8 +140,7 @@ public open class ImporterMesh : Resource() {
   }
 
   /**
-   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See
-   * [addSurface].
+   * Returns the arrays for the vertices, normals, UVs, etc. that make up the requested surface. See [addSurface].
    */
   public final fun getSurfaceArrays(surfaceIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong())
@@ -181,8 +151,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns a single set of blend shape arrays for the requested blend shape index for a surface.
    */
-  public final fun getSurfaceBlendShapeArrays(surfaceIdx: Int, blendShapeIdx: Int):
-      VariantArray<Any?> {
+  public final fun getSurfaceBlendShapeArrays(surfaceIdx: Int, blendShapeIdx: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), LONG to blendShapeIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getSurfaceBlendShapeArraysPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
@@ -236,7 +205,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets a name for a given surface.
    */
-  public final fun setSurfaceName(surfaceIdx: Int, name: String): Unit {
+  public final fun setSurfaceName(surfaceIdx: Int, name: String) {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setSurfaceNamePtr, NIL)
   }
@@ -244,7 +213,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets a [Material] for a given surface. Surface will be rendered using this material.
    */
-  public final fun setSurfaceMaterial(surfaceIdx: Int, material: Material?): Unit {
+  public final fun setSurfaceMaterial(surfaceIdx: Int, material: Material?) {
     TransferContext.writeArguments(LONG to surfaceIdx.toLong(), OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setSurfaceMaterialPtr, NIL)
   }
@@ -254,22 +223,17 @@ public open class ImporterMesh : Resource() {
    *
    * [normalMergeAngle] is in degrees and used in the same way as the importer settings in `lods`.
    *
-   * [normalSplitAngle] is not used and only remains for compatibility with older versions of the
-   * API.
+   * [normalSplitAngle] is not used and only remains for compatibility with older versions of the API.
    *
-   * The number of generated lods can be accessed using [getSurfaceLodCount], and each LOD is
-   * available in [getSurfaceLodSize] and [getSurfaceLodIndices].
+   * The number of generated lods can be accessed using [getSurfaceLodCount], and each LOD is available in [getSurfaceLodSize] and [getSurfaceLodIndices].
    *
-   * [boneTransformArray] is an [Array] which can be either empty or contain [Transform3D]s which,
-   * for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations.
-   * This is usually used to account for discrepancies in scale between the mesh itself and its
-   * skinning data.
+   * [boneTransformArray] is an [Array] which can be either empty or contain [Transform3D]s which, for each of the mesh's bone IDs, will apply mesh skinning when generating the LOD mesh variations. This is usually used to account for discrepancies in scale between the mesh itself and its skinning data.
    */
   public final fun generateLods(
     normalMergeAngle: Float,
     normalSplitAngle: Float,
     boneTransformArray: VariantArray<Any?>,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(DOUBLE to normalMergeAngle.toDouble(), DOUBLE to normalSplitAngle.toDouble(), ARRAY to boneTransformArray)
     TransferContext.callMethod(ptr, MethodBindings.generateLodsPtr, NIL)
   }
@@ -277,8 +241,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Returns the mesh data represented by this [ImporterMesh] as a usable [ArrayMesh].
    *
-   * This method caches the returned mesh, and subsequent calls will return the cached data until
-   * [clear] is called.
+   * This method caches the returned mesh, and subsequent calls will return the cached data until [clear] is called.
    *
    * If not yet cached and [baseMesh] is provided, [baseMesh] will be used and mutated.
    */
@@ -292,7 +255,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Removes all surfaces and blend shapes from this [ImporterMesh].
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -300,7 +263,7 @@ public open class ImporterMesh : Resource() {
   /**
    * Sets the size hint of this mesh for lightmap-unwrapping in UV-space.
    */
-  public final fun setLightmapSizeHint(size: Vector2i): Unit {
+  public final fun setLightmapSizeHint(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setLightmapSizeHintPtr, NIL)
   }
@@ -318,72 +281,72 @@ public open class ImporterMesh : Resource() {
 
   public object MethodBindings {
     internal val addBlendShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83702148)
+        TypeManager.getMethodBindPtr("ImporterMesh", "add_blend_shape", 83_702_148)
 
     internal val getBlendShapeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3905245786)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_count", 3_905_245_786)
 
     internal val getBlendShapeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844755477)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_name", 844_755_477)
 
     internal val setBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227983991)
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_blend_shape_mode", 227_983_991)
 
     internal val getBlendShapeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836485024)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_blend_shape_mode", 836_485_024)
 
     internal val addSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "add_surface", 1740448849)
+        TypeManager.getMethodBindPtr("ImporterMesh", "add_surface", 1_740_448_849)
 
     internal val getSurfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_count", 3905245786)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_count", 3_905_245_786)
 
     internal val getSurfacePrimitiveTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3552571330)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_primitive_type", 3_552_571_330)
 
     internal val getSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_name", 844755477)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_name", 844_755_477)
 
     internal val getSurfaceArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663333327)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_arrays", 663_333_327)
 
     internal val getSurfaceBlendShapeArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2345056839)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_blend_shape_arrays", 2_345_056_839)
 
     internal val getSurfaceLodCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923996154)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_count", 923_996_154)
 
     internal val getSurfaceLodSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3085491603)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_size", 3_085_491_603)
 
     internal val getSurfaceLodIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1265128013)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_lod_indices", 1_265_128_013)
 
     internal val getSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_material", 2897466400)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_material", 2_897_466_400)
 
     internal val getSurfaceFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_format", 923996154)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_surface_format", 923_996_154)
 
     internal val setSurfaceNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_name", 501894301)
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_name", 501_894_301)
 
     internal val setSurfaceMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_material", 3671737478)
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_surface_material", 3_671_737_478)
 
     internal val generateLodsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "generate_lods", 2491878677)
+        TypeManager.getMethodBindPtr("ImporterMesh", "generate_lods", 2_491_878_677)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh", 1457573577)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_mesh", 1_457_573_577)
 
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("ImporterMesh", "clear", 3_218_959_716)
 
     internal val setLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1130785943)
+        TypeManager.getMethodBindPtr("ImporterMesh", "set_lightmap_size_hint", 1_130_785_943)
 
     internal val getLightmapSizeHintPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3690982128)
+        TypeManager.getMethodBindPtr("ImporterMesh", "get_lightmap_size_hint", 3_690_982_128)
   }
 }

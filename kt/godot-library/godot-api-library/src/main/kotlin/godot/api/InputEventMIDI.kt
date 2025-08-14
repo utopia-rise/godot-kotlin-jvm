@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,20 +13,14 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * InputEventMIDI stores information about messages from
- * [url=https://en.wikipedia.org/wiki/MIDI]MIDI[/url] (Musical Instrument Digital Interface) devices.
- * These may include musical keyboards, synthesizers, and drum machines.
+ * InputEventMIDI stores information about messages from [url=https://en.wikipedia.org/wiki/MIDI]MIDI[/url] (Musical Instrument Digital Interface) devices. These may include musical keyboards, synthesizers, and drum machines.
  *
- * MIDI messages can be received over a 5-pin MIDI connector or over USB. If your device supports
- * both be sure to check the settings in the device to see which output it is using.
+ * MIDI messages can be received over a 5-pin MIDI connector or over USB. If your device supports both be sure to check the settings in the device to see which output it is using.
  *
- * By default, Godot does not detect MIDI devices. You need to call [OS.openMidiInputs], first. You
- * can check which devices are detected with [OS.getConnectedMidiInputs], and close the connection with
- * [OS.closeMidiInputs].
+ * By default, Godot does not detect MIDI devices. You need to call [OS.openMidiInputs], first. You can check which devices are detected with [OS.getConnectedMidiInputs], and close the connection with [OS.closeMidiInputs].
  *
  * ```gdscript
  * //gdscript
@@ -83,18 +74,14 @@ import kotlin.jvm.JvmName
  * }
  * ```
  *
- * **Note:** Godot does not support MIDI output, so there is no way to emit MIDI messages from
- * Godot. Only MIDI input is supported.
+ * **Note:** Godot does not support MIDI output, so there is no way to emit MIDI messages from Godot. Only MIDI input is supported.
  *
- * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted
- * first. This permission request is performed when calling [OS.openMidiInputs]. MIDI input will not
- * work until the user accepts the permission request.
+ * **Note:** On the Web platform, using MIDI input requires a browser permission to be granted first. This permission request is performed when calling [OS.openMidiInputs]. MIDI input will not work until the user accepts the permission request.
  */
 @GodotBaseType
 public open class InputEventMIDI : InputEvent() {
   /**
-   * The MIDI channel of this message, ranging from `0` to `15`. MIDI channel `9` is reserved for
-   * percussion instruments.
+   * The MIDI channel of this message, ranging from `0` to `15`. MIDI channel `9` is reserved for percussion instruments.
    */
   public final inline var channel: Int
     @JvmName("channelProperty")
@@ -107,9 +94,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * Represents the type of MIDI message (see the [MIDIMessage] enum).
    *
-   * For more information, see the
-   * [url=https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes]MIDI
-   * message status byte list chart[/url].
+   * For more information, see the [url=https://www.midi.org/specifications-old/item/table-2-expanded-messages-list-status-bytes]MIDI message status byte list chart[/url].
    */
   public final inline var message: MIDIMessage
     @JvmName("messageProperty")
@@ -122,10 +107,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The pitch index number of this MIDI message. This value ranges from `0` to `127`.
    *
-   * On a piano, the **middle C** is `60`, followed by a **C-sharp** (`61`), then a **D** (`62`),
-   * and so on. Each octave is split in offsets of 12. See the "MIDI note number" column of the
-   * [url=https://en.wikipedia.org/wiki/Piano_key_frequencies]piano key frequency chart[/url] a full
-   * list.
+   * On a piano, the **middle C** is `60`, followed by a **C-sharp** (`61`), then a **D** (`62`), and so on. Each octave is split in offsets of 12. See the "MIDI note number" column of the [url=https://en.wikipedia.org/wiki/Piano_key_frequencies]piano key frequency chart[/url] a full list.
    */
   public final inline var pitch: Int
     @JvmName("pitchProperty")
@@ -136,12 +118,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The velocity of the MIDI message. This value ranges from `0` to `127`. For a musical keyboard,
-   * this corresponds to how quickly the key was pressed, and is rarely above `110` in practice.
+   * The velocity of the MIDI message. This value ranges from `0` to `127`. For a musical keyboard, this corresponds to how quickly the key was pressed, and is rarely above `110` in practice.
    *
-   * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with `0` velocity and
-   * expect it to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message. If necessary, this can be
-   * handled with a few lines of code:
+   * **Note:** Some MIDI devices may send a [MIDI_MESSAGE_NOTE_ON] message with `0` velocity and expect it to be treated the same as a [MIDI_MESSAGE_NOTE_OFF] message. If necessary, this can be handled with a few lines of code:
    *
    * ```
    * func _input(event):
@@ -159,13 +138,9 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The instrument (also called *program* or *preset*) used on this MIDI message. This value ranges
-   * from `0` to `127`.
+   * The instrument (also called *program* or *preset*) used on this MIDI message. This value ranges from `0` to `127`.
    *
-   * To see what each value means, refer to the
-   * [url=https://en.wikipedia.org/wiki/General_MIDI#Program_change_events]General MIDI's instrument
-   * list[/url]. Keep in mind that the list is off by 1 because it does not begin from 0. A value of
-   * `0` corresponds to the acoustic grand piano.
+   * To see what each value means, refer to the [url=https://en.wikipedia.org/wiki/General_MIDI#Program_change_events]General MIDI's instrument list[/url]. Keep in mind that the list is off by 1 because it does not begin from 0. A value of `0` corresponds to the acoustic grand piano.
    */
   public final inline var instrument: Int
     @JvmName("instrumentProperty")
@@ -178,8 +153,7 @@ public open class InputEventMIDI : InputEvent() {
   /**
    * The strength of the key being pressed. This value ranges from `0` to `127`.
    *
-   * **Note:** For many devices, this value is always `0`. Other devices such as musical keyboards
-   * may simulate pressure by changing the [velocity], instead.
+   * **Note:** For many devices, this value is always `0`. Other devices such as musical keyboards may simulate pressure by changing the [velocity], instead.
    */
   public final inline var pressure: Int
     @JvmName("pressureProperty")
@@ -190,11 +164,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The unique number of the controller, if [message] is [MIDI_MESSAGE_CONTROL_CHANGE], otherwise
-   * this is `0`. This value can be used to identify sliders for volume, balance, and panning, as well
-   * as switches and pedals on the MIDI device. See the
-   * [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url]
-   * for a small list.
+   * The unique number of the controller, if [message] is [MIDI_MESSAGE_CONTROL_CHANGE], otherwise this is `0`. This value can be used to identify sliders for volume, balance, and panning, as well as switches and pedals on the MIDI device. See the [url=https://en.wikipedia.org/wiki/General_MIDI#Controller_events]General MIDI specification[/url] for a small list.
    */
   public final inline var controllerNumber: Int
     @JvmName("controllerNumberProperty")
@@ -205,8 +175,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   /**
-   * The value applied to the controller. If [message] is [MIDI_MESSAGE_CONTROL_CHANGE], this value
-   * ranges from `0` to `127`, otherwise it is `0`. See also [controllerValue].
+   * The value applied to the controller. If [message] is [MIDI_MESSAGE_CONTROL_CHANGE], this value ranges from `0` to `127`, otherwise it is `0`. See also [controllerValue].
    */
   public final inline var controllerValue: Int
     @JvmName("controllerValueProperty")
@@ -216,11 +185,11 @@ public open class InputEventMIDI : InputEvent() {
       setControllerValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(299, scriptIndex)
   }
 
-  public final fun setChannel(channel: Int): Unit {
+  public final fun setChannel(channel: Int) {
     TransferContext.writeArguments(LONG to channel.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setChannelPtr, NIL)
   }
@@ -231,7 +200,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMessage(message: MIDIMessage): Unit {
+  public final fun setMessage(message: MIDIMessage) {
     TransferContext.writeArguments(LONG to message.id)
     TransferContext.callMethod(ptr, MethodBindings.setMessagePtr, NIL)
   }
@@ -242,7 +211,7 @@ public open class InputEventMIDI : InputEvent() {
     return MIDIMessage.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPitch(pitch: Int): Unit {
+  public final fun setPitch(pitch: Int) {
     TransferContext.writeArguments(LONG to pitch.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPitchPtr, NIL)
   }
@@ -253,7 +222,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setVelocity(velocity: Int): Unit {
+  public final fun setVelocity(velocity: Int) {
     TransferContext.writeArguments(LONG to velocity.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
   }
@@ -264,7 +233,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInstrument(instrument: Int): Unit {
+  public final fun setInstrument(instrument: Int) {
     TransferContext.writeArguments(LONG to instrument.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInstrumentPtr, NIL)
   }
@@ -275,7 +244,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPressure(pressure: Int): Unit {
+  public final fun setPressure(pressure: Int) {
     TransferContext.writeArguments(LONG to pressure.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPressurePtr, NIL)
   }
@@ -286,7 +255,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setControllerNumber(controllerNumber: Int): Unit {
+  public final fun setControllerNumber(controllerNumber: Int) {
     TransferContext.writeArguments(LONG to controllerNumber.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setControllerNumberPtr, NIL)
   }
@@ -297,7 +266,7 @@ public open class InputEventMIDI : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setControllerValue(controllerValue: Int): Unit {
+  public final fun setControllerValue(controllerValue: Int) {
     TransferContext.writeArguments(LONG to controllerValue.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setControllerValuePtr, NIL)
   }
@@ -312,51 +281,51 @@ public open class InputEventMIDI : InputEvent() {
 
   public object MethodBindings {
     internal val setChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_channel", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_channel", 1_286_410_249)
 
     internal val getChannelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_channel", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_channel", 3_905_245_786)
 
     internal val setMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_message", 1064271510)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_message", 1_064_271_510)
 
     internal val getMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_message", 1936512097)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_message", 1_936_512_097)
 
     internal val setPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pitch", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pitch", 1_286_410_249)
 
     internal val getPitchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pitch", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pitch", 3_905_245_786)
 
     internal val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_velocity", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_velocity", 1_286_410_249)
 
     internal val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_velocity", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_velocity", 3_905_245_786)
 
     internal val setInstrumentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_instrument", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_instrument", 1_286_410_249)
 
     internal val getInstrumentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_instrument", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_instrument", 3_905_245_786)
 
     internal val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pressure", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_pressure", 1_286_410_249)
 
     internal val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pressure", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_pressure", 3_905_245_786)
 
     internal val setControllerNumberPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_number", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_number", 1_286_410_249)
 
     internal val getControllerNumberPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_number", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_number", 3_905_245_786)
 
     internal val setControllerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_value", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "set_controller_value", 1_286_410_249)
 
     internal val getControllerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_value", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventMIDI", "get_controller_value", 3_905_245_786)
   }
 }

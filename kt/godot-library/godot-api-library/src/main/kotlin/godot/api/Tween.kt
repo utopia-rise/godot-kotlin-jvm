@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,29 +28,17 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a
- * range of values. The name *tween* comes from *in-betweening*, an animation technique where you
- * specify *keyframes* and the computer interpolates the frames that appear between them. Animating
- * something with a [Tween] is called tweening.
+ * Tweens are mostly useful for animations requiring a numerical property to be interpolated over a range of values. The name *tween* comes from *in-betweening*, an animation technique where you specify *keyframes* and the computer interpolates the frames that appear between them. Animating something with a [Tween] is called tweening.
  *
- * [Tween] is more suited than [AnimationPlayer] for animations where you don't know the final
- * values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done
- * with a [Tween]; it would be difficult to do the same thing with an [AnimationPlayer] node. Tweens
- * are also more light-weight than [AnimationPlayer], so they are very much suited for simple
- * animations or general tasks that don't require visual tweaking provided by the editor. They can be
- * used in a "fire-and-forget" manner for some logic that normally would be done by code. You can e.g.
- * make something shoot periodically by using a looped [CallbackTweener] with a delay.
+ * [Tween] is more suited than [AnimationPlayer] for animations where you don't know the final values in advance. For example, interpolating a dynamically-chosen camera zoom value is best done with a [Tween]; it would be difficult to do the same thing with an [AnimationPlayer] node. Tweens are also more light-weight than [AnimationPlayer], so they are very much suited for simple animations or general tasks that don't require visual tweaking provided by the editor. They can be used in a "fire-and-forget" manner for some logic that normally would be done by code. You can e.g. make something shoot periodically by using a looped [CallbackTweener] with a delay.
  *
- * A [Tween] can be created by using either [SceneTree.createTween] or [Node.createTween]. [Tween]s
- * created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
+ * A [Tween] can be created by using either [SceneTree.createTween] or [Node.createTween]. [Tween]s created manually (i.e. by using `Tween.new()`) are invalid and can't be used for tweening values.
  *
- * A tween animation is created by adding [Tweener]s to the [Tween] object, using [tweenProperty],
- * [tweenInterval], [tweenCallback] or [tweenMethod]:
+ * A tween animation is created by adding [Tweener]s to the [Tween] object, using [tweenProperty], [tweenInterval], [tweenCallback] or [tweenMethod]:
  *
  * ```gdscript
  * //gdscript
@@ -71,13 +56,9 @@ import kotlin.jvm.JvmStatic
  * tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
  * ```
  *
- * This sequence will make the `$Sprite` node turn red, then shrink, before finally calling
- * [Node.queueFree] to free the sprite. [Tweener]s are executed one after another by default. This
- * behavior can be changed using [parallel] and [setParallel].
+ * This sequence will make the `$Sprite` node turn red, then shrink, before finally calling [Node.queueFree] to free the sprite. [Tweener]s are executed one after another by default. This behavior can be changed using [parallel] and [setParallel].
  *
- * When a [Tweener] is created with one of the `tween_*` methods, a chained method call can be used
- * to tweak the properties of this [Tweener]. For example, if you want to set a different transition
- * type in the above example, you can use [setTrans]:
+ * When a [Tweener] is created with one of the `tween_*` methods, a chained method call can be used to tweak the properties of this [Tweener]. For example, if you want to set a different transition type in the above example, you can use [setTrans]:
  *
  * ```gdscript
  * //gdscript
@@ -90,15 +71,12 @@ import kotlin.jvm.JvmStatic
  * ```csharp
  * //csharp
  * Tween tween = GetTree().CreateTween();
- * tween.TweenProperty(GetNode("Sprite"), "modulate", Colors.Red,
- * 1.0f).SetTrans(Tween.TransitionType.Sine);
- * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero,
- * 1.0f).SetTrans(Tween.TransitionType.Bounce);
+ * tween.TweenProperty(GetNode("Sprite"), "modulate", Colors.Red, 1.0f).SetTrans(Tween.TransitionType.Sine);
+ * tween.TweenProperty(GetNode("Sprite"), "scale", Vector2.Zero, 1.0f).SetTrans(Tween.TransitionType.Bounce);
  * tween.TweenCallback(Callable.From(GetNode("Sprite").QueueFree));
  * ```
  *
- * Most of the [Tween] methods can be chained this way too. In the following example the [Tween] is
- * bound to the running script's node and a default transition is set for its [Tweener]s:
+ * Most of the [Tween] methods can be chained this way too. In the following example the [Tween] is bound to the running script's node and a default transition is set for its [Tweener]s:
  *
  * ```gdscript
  * //gdscript
@@ -134,9 +112,7 @@ import kotlin.jvm.JvmStatic
  *
  * In the example above, all children of a node are moved one after another to position (0, 0).
  *
- * You should avoid using more than one [Tween] per object's property. If two or more tweens animate
- * one property at the same time, the last one created will take priority and assign the final value.
- * If you want to interrupt and restart an animation, consider assigning the [Tween] to a variable:
+ * You should avoid using more than one [Tween] per object's property. If two or more tweens animate one property at the same time, the last one created will take priority and assign the final value. If you want to interrupt and restart an animation, consider assigning the [Tween] to a variable:
  *
  * ```gdscript
  * //gdscript
@@ -159,52 +135,37 @@ import kotlin.jvm.JvmStatic
  * }
  * ```
  *
- * Some [Tweener]s use transitions and eases. The first accepts a [TransitionType] constant, and
- * refers to the way the timing of the animation is handled (see
- * [url=https://easings.net/]easings.net[/url] for some examples). The second accepts an [EaseType]
- * constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the
- * end, or both). If you don't know which transition and easing to pick, you can try different
- * [TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
+ * Some [Tweener]s use transitions and eases. The first accepts a [TransitionType] constant, and refers to the way the timing of the animation is handled (see [url=https://easings.net/]easings.net[/url] for some examples). The second accepts an [EaseType] constant, and controls where the `trans_type` is applied to the interpolation (in the beginning, the end, or both). If you don't know which transition and easing to pick, you can try different [TransitionType] constants with [EASE_IN_OUT], and use the one that looks best.
  *
- * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp]Tween
- * easing and transition types cheatsheet[/url]
+ * [url=https://raw.githubusercontent.com/godotengine/godot-docs/master/img/tween_cheatsheet.webp]Tween easing and transition types cheatsheet[/url]
  *
- * **Note:** Tweens are not designed to be reused and trying to do so results in an undefined
- * behavior. Create a new Tween for each animation and every time you replay an animation from start.
- * Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
+ * **Note:** Tweens are not designed to be reused and trying to do so results in an undefined behavior. Create a new Tween for each animation and every time you replay an animation from start. Keep in mind that Tweens start immediately, so only create a Tween when you want to start animating.
  *
- * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's
- * [Node.Process] method would be called before the tween (or [Node.PhysicsProcess] depending on the
- * value passed to [setProcessMode]).
+ * **Note:** The tween is processed after all of the nodes in the current frame, i.e. node's [Node.Process] method would be called before the tween (or [Node.PhysicsProcess] depending on the value passed to [setProcessMode]).
  */
 @GodotBaseType
 public open class Tween : RefCounted() {
   /**
-   * Emitted when one step of the [Tween] is complete, providing the step index. One step is either
-   * a single [Tweener] or a group of [Tweener]s running in parallel.
+   * Emitted when one step of the [Tween] is complete, providing the step index. One step is either a single [Tweener] or a group of [Tweener]s running in parallel.
    */
   public val stepFinished: Signal1<Long> by Signal1
 
   /**
-   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is
-   * not emitted after the final loop, use [signal finished] instead for this case.
+   * Emitted when a full loop is complete (see [setLoops]), providing the loop index. This signal is not emitted after the final loop, use [signal finished] instead for this case.
    */
   public val loopFinished: Signal1<Long> by Signal1
 
   /**
-   * Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to
-   * infinite looping (see [setLoops]).
+   * Emitted when the [Tween] has finished all tweening. Never emitted when the [Tween] is set to infinite looping (see [setLoops]).
    */
   public val finished: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(700, scriptIndex)
   }
 
   /**
-   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between
-   * an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial
-   * value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
+   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
    *
    * ```gdscript
    * //gdscript
@@ -220,33 +181,24 @@ public open class Tween : RefCounted() {
    * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(200.0f, 300.0f), 1.0f);
    * ```
    *
-   * will move the sprite to position (100, 200) and then to (200, 300). If you use
-   * [PropertyTweener.from] or [PropertyTweener.fromCurrent], the starting position will be overwritten
-   * by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be
-   * tweaked further.
+   * will move the sprite to position (100, 200) and then to (200, 300). If you use [PropertyTweener.from] or [PropertyTweener.fromCurrent], the starting position will be overwritten by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be tweaked further.
    *
-   * **Note:** You can find the correct property name by hovering over the property in the
-   * Inspector. You can also provide the components of a property directly by using
-   * `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
+   * **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
    *
    * **Example:** Moving an object twice from the same position, with different transition types:
    *
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().set_trans(Tween.TRANS_SINE)
-   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * ```
    *
    * ```csharp
    * //csharp
    * Tween tween = CreateTween();
-   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
-   * 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
-   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
-   * 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
    * ```
    */
   public final fun tweenProperty(
@@ -261,9 +213,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween
-   * animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation
-   * (in which case the [Tween] acts as a timer). [time] is the length of the interval, in seconds.
+   * Creates and appends an [IntervalTweener]. This method can be used to create delays in the tween animation, as an alternative to using the delay in other [Tweener]s, or when there's no animation (in which case the [Tween] acts as a timer). [time] is the length of the interval, in seconds.
    *
    * **Example:** Creating an interval in code execution:
    *
@@ -312,8 +262,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in
-   * any object. Use [Callable.bind] to bind additional arguments for the call.
+   * Creates and appends a [CallbackTweener]. This method can be used to call an arbitrary method in any object. Use [Callable.bind] to bind additional arguments for the call.
    *
    * **Example:** Object that keeps shooting every 1 second:
    *
@@ -353,28 +302,20 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [MethodTweener]. This method is similar to a combination of
-   * [tweenCallback] and [tweenProperty]. It calls a method over time with a tweened value provided as
-   * an argument. The value is tweened between [from] and [to] over the time specified by [duration],
-   * in seconds. Use [Callable.bind] to bind additional arguments for the call. You can use
-   * [MethodTweener.setEase] and [MethodTweener.setTrans] to tweak the easing and transition of the
-   * value or [MethodTweener.setDelay] to delay the tweening.
+   * Creates and appends a [MethodTweener]. This method is similar to a combination of [tweenCallback] and [tweenProperty]. It calls a method over time with a tweened value provided as an argument. The value is tweened between [from] and [to] over the time specified by [duration], in seconds. Use [Callable.bind] to bind additional arguments for the call. You can use [MethodTweener.setEase] and [MethodTweener.setTrans] to tweak the easing and transition of the value or [MethodTweener.setDelay] to delay the tweening.
    *
    * **Example:** Making a 3D object look from one point to another point:
    *
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The
-   * look_at() method takes up vector as second argument.
+   * tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The look_at() method takes up vector as second argument.
    * ```
    *
    * ```csharp
    * //csharp
    * Tween tween = CreateTween();
-   * tween.TweenMethod(Callable.From((Vector3 target) => LookAt(target, Vector3.Up)), new
-   * Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // Use lambdas to bind
-   * additional arguments for the call.
+   * tween.TweenMethod(Callable.From((Vector3 target) => LookAt(target, Vector3.Up)), new Vector3(-1.0f, 0.0f, -1.0f), new Vector3(1.0f, 0.0f, -1.0f), 1.0f); // Use lambdas to bind additional arguments for the call.
    * ```
    *
    * **Example:** Setting the text of a [Label], using an intermediate method and after a delay:
@@ -417,8 +358,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [SubtweenTweener]. This method can be used to nest [subtween] within this
-   * [Tween], allowing for the creation of more complex and composable sequences.
+   * Creates and appends a [SubtweenTweener]. This method can be used to nest [subtween] within this [Tween], allowing for the creation of more complex and composable sequences.
    *
    * ```
    * # Subtween will rotate the object.
@@ -433,11 +373,9 @@ public open class Tween : RefCounted() {
    * tween.tween_property(self, "position:x", 300, 2.0)
    * ```
    *
-   * **Note:** The methods [pause], [stop], and [setLoops] can cause the parent [Tween] to get stuck
-   * on the subtween step; see the documentation for those methods for more information.
+   * **Note:** The methods [pause], [stop], and [setLoops] can cause the parent [Tween] to get stuck on the subtween step; see the documentation for those methods for more information.
    *
-   * **Note:** The pause and process modes set by [setPauseMode] and [setProcessMode] on [subtween]
-   * will be overridden by the parent [Tween]'s settings.
+   * **Note:** The pause and process modes set by [setPauseMode] and [setProcessMode] on [subtween] will be overridden by the parent [Tween]'s settings.
    */
   public final fun tweenSubtween(subtween: Tween?): SubtweenTweener? {
     TransferContext.writeArguments(OBJECT to subtween)
@@ -446,9 +384,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Processes the [Tween] by the given [delta] value, in seconds. This is mostly useful for manual
-   * control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately,
-   * by setting [delta] longer than the whole duration of the [Tween] animation.
+   * Processes the [Tween] by the given [delta] value, in seconds. This is mostly useful for manual control when the [Tween] is paused. It can also be used to end the [Tween] animation immediately, by setting [delta] longer than the whole duration of the [Tween] animation.
    *
    * Returns `true` if the [Tween] still has [Tweener]s that haven't finished.
    */
@@ -459,11 +395,9 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Stops the tweening and resets the [Tween] to its initial state. This will not remove any
-   * appended [Tweener]s.
+   * Stops the tweening and resets the [Tween] to its initial state. This will not remove any appended [Tweener]s.
    *
-   * **Note:** This does *not* reset targets of [PropertyTweener]s to their values when the [Tween]
-   * first started.
+   * **Note:** This does *not* reset targets of [PropertyTweener]s to their values when the [Tween] first started.
    *
    * ```
    * var tween = create_tween()
@@ -481,11 +415,9 @@ public open class Tween : RefCounted() {
    * tween.play()
    * ```
    *
-   * **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until
-   * manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using
-   * [SceneTree.getProcessedTweens].
+   * **Note:** If a Tween is stopped and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [SceneTree.getProcessedTweens].
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -493,11 +425,9 @@ public open class Tween : RefCounted() {
   /**
    * Pauses the tweening. The animation can be resumed by using [play].
    *
-   * **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until
-   * manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using
-   * [SceneTree.getProcessedTweens].
+   * **Note:** If a Tween is paused and not bound to any node, it will exist indefinitely until manually started or invalidated. If you lose a reference to such Tween, you can retrieve it using [SceneTree.getProcessedTweens].
    */
-  public final fun pause(): Unit {
+  public final fun pause() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
   }
@@ -505,7 +435,7 @@ public open class Tween : RefCounted() {
   /**
    * Resumes a paused or stopped [Tween].
    */
-  public final fun play(): Unit {
+  public final fun play() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
@@ -513,18 +443,15 @@ public open class Tween : RefCounted() {
   /**
    * Aborts all tweening operations and invalidates the [Tween].
    */
-  public final fun kill(): Unit {
+  public final fun kill() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.killPtr, NIL)
   }
 
   /**
-   * Returns the total time in seconds the [Tween] has been animating (i.e. the time since it
-   * started, not counting pauses etc.). The time is affected by [setSpeedScale], and [stop] will reset
-   * it to `0`.
+   * Returns the total time in seconds the [Tween] has been animating (i.e. the time since it started, not counting pauses etc.). The time is affected by [setSpeedScale], and [stop] will reset it to `0`.
    *
-   * **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has
-   * finished animating will be slightly greater than the actual [Tween] duration.
+   * **Note:** As it results from accumulating frame deltas, the time returned after the [Tween] has finished animating will be slightly greater than the actual [Tween] duration.
    */
   public final fun getTotalElapsedTime(): Double {
     TransferContext.writeArguments()
@@ -542,10 +469,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Returns whether the [Tween] is valid. A valid [Tween] is a [Tween] contained by the scene tree
-   * (i.e. the array from [SceneTree.getProcessedTweens] will contain this [Tween]). A [Tween] might
-   * become invalid when it has finished tweening, is killed, or when created with `Tween.new()`.
-   * Invalid [Tween]s can't have [Tweener]s appended.
+   * Returns whether the [Tween] is valid. A valid [Tween] is a [Tween] contained by the scene tree (i.e. the array from [SceneTree.getProcessedTweens] will contain this [Tween]). A [Tween] might become invalid when it has finished tweening, is killed, or when created with `Tween.new()`. Invalid [Tween]s can't have [Tweener]s appended.
    */
   public final fun isValid(): Boolean {
     TransferContext.writeArguments()
@@ -554,11 +478,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Binds this [Tween] with the given [node]. [Tween]s are processed directly by the [SceneTree],
-   * so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the
-   * [Tween] will halt the animation when the object is not inside tree and the [Tween] will be
-   * automatically killed when the bound object is freed. Also [TWEEN_PAUSE_BOUND] will make the
-   * pausing behavior dependent on the bound node.
+   * Binds this [Tween] with the given [node]. [Tween]s are processed directly by the [SceneTree], so they run independently of the animated nodes. When you bind a [Node] with the [Tween], the [Tween] will halt the animation when the object is not inside tree and the [Tween] will be automatically killed when the bound object is freed. Also [TWEEN_PAUSE_BOUND] will make the pausing behavior dependent on the bound node.
    *
    * For a shorter way to create and bind a [Tween], you can use [Node.createTween].
    */
@@ -569,8 +489,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Determines whether the [Tween] should run after process frames (see [Node.Process]) or physics
-   * frames (see [Node.PhysicsProcess]).
+   * Determines whether the [Tween] should run after process frames (see [Node.Process]) or physics frames (see [Node.PhysicsProcess]).
    *
    * Default value is [TWEEN_PROCESS_IDLE].
    */
@@ -581,8 +500,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [TweenPauseMode]
-   * for options.
+   * Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [TweenPauseMode] for options.
    *
    * Default value is [TWEEN_PAUSE_BOUND].
    */
@@ -593,8 +511,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * If [ignore] is `true`, the tween will ignore [Engine.timeScale] and update with the real,
-   * elapsed time. This affects all [Tweener]s and their delays. Default value is `false`.
+   * If [ignore] is `true`, the tween will ignore [Engine.timeScale] and update with the real, elapsed time. This affects all [Tweener]s and their delays. Default value is `false`.
    */
   @JvmOverloads
   public final fun setIgnoreTimeScale(ignore: Boolean = true): Tween? {
@@ -604,17 +521,14 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * If [parallel] is `true`, the [Tweener]s appended after this method will by default run
-   * simultaneously, as opposed to sequentially.
+   * If [parallel] is `true`, the [Tweener]s appended after this method will by default run simultaneously, as opposed to sequentially.
    *
-   * **Note:** Just like with [parallel], the tweener added right before this method will also be
-   * part of the parallel step.
+   * **Note:** Just like with [parallel], the tweener added right before this method will also be part of the parallel step.
    *
    * ```
    * tween.tween_property(self, "position", Vector2(300, 0), 0.5)
    * tween.set_parallel()
-   * tween.tween_property(self, "modulate", Color.GREEN, 0.5) # Runs together with the position
-   * tweener.
+   * tween.tween_property(self, "modulate", Color.GREEN, 0.5) # Runs together with the position tweener.
    * ```
    */
   @JvmOverloads
@@ -625,17 +539,11 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run
-   * the animation twice.
+   * Sets the number of times the tweening sequence will be repeated, i.e. `set_loops(2)` will run the animation twice.
    *
-   * Calling this method without arguments will make the [Tween] run infinitely, until either it is
-   * killed with [kill], the [Tween]'s bound node is freed, or all the animated objects have been freed
-   * (which makes further animation impossible).
+   * Calling this method without arguments will make the [Tween] run infinitely, until either it is killed with [kill], the [Tween]'s bound node is freed, or all the animated objects have been freed (which makes further animation impossible).
    *
-   * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent
-   * the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay)
-   * are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s
-   * lifetime depends on some node, always use [bindNode].
+   * **Warning:** Make sure to always add some duration/delay when using infinite loops. To prevent the game freezing, 0-duration looped animations (e.g. a single [CallbackTweener] with no delay) are stopped after a small number of loops, which may produce unexpected results. If a [Tween]'s lifetime depends on some node, always use [bindNode].
    */
   @JvmOverloads
   public final fun setLoops(loops: Int = 0): Tween? {
@@ -645,9 +553,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Returns the number of remaining loops for this [Tween] (see [setLoops]). A return value of `-1`
-   * indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has
-   * already finished.
+   * Returns the number of remaining loops for this [Tween] (see [setLoops]). A return value of `-1` indicates an infinitely looping [Tween], and a return value of `0` indicates that the [Tween] has already finished.
    */
   public final fun getLoopsLeft(): Int {
     TransferContext.writeArguments()
@@ -665,8 +571,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Sets the default transition type for [PropertyTweener]s and [MethodTweener]s appended after
-   * this method.
+   * Sets the default transition type for [PropertyTweener]s and [MethodTweener]s appended after this method.
    *
    * Before this method is called, the default transition type is [TRANS_LINEAR].
    *
@@ -684,8 +589,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Sets the default ease type for [PropertyTweener]s and [MethodTweener]s appended after this
-   * method.
+   * Sets the default ease type for [PropertyTweener]s and [MethodTweener]s appended after this method.
    *
    * Before this method is called, the default ease type is [EASE_IN_OUT].
    *
@@ -757,9 +661,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between
-   * an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial
-   * value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
+   * Creates and appends a [PropertyTweener]. This method tweens a [property] of an [object] between an initial value and [finalVal] in a span of time equal to [duration], in seconds. The initial value by default is the property's value at the time the tweening of the [PropertyTweener] starts.
    *
    * ```gdscript
    * //gdscript
@@ -775,33 +677,24 @@ public open class Tween : RefCounted() {
    * tween.TweenProperty(GetNode("Sprite"), "position", new Vector2(200.0f, 300.0f), 1.0f);
    * ```
    *
-   * will move the sprite to position (100, 200) and then to (200, 300). If you use
-   * [PropertyTweener.from] or [PropertyTweener.fromCurrent], the starting position will be overwritten
-   * by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be
-   * tweaked further.
+   * will move the sprite to position (100, 200) and then to (200, 300). If you use [PropertyTweener.from] or [PropertyTweener.fromCurrent], the starting position will be overwritten by the given value instead. See other methods in [PropertyTweener] to see how the tweening can be tweaked further.
    *
-   * **Note:** You can find the correct property name by hovering over the property in the
-   * Inspector. You can also provide the components of a property directly by using
-   * `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
+   * **Note:** You can find the correct property name by hovering over the property in the Inspector. You can also provide the components of a property directly by using `"property:component"` (eg. `position:x`), where it would only apply to that particular component.
    *
    * **Example:** Moving an object twice from the same position, with different transition types:
    *
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().set_trans(Tween.TRANS_SINE)
-   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300, 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * ```
    *
    * ```csharp
    * //csharp
    * Tween tween = CreateTween();
-   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
-   * 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
-   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f,
-   * 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().SetTrans(Tween.TransitionType.Sine);
+   * tween.TweenProperty(GetNode("Sprite"), "position", Vector2.Right * 300.0f, 1.0f).AsRelative().FromCurrent().SetTrans(Tween.TransitionType.Expo);
    * ```
    */
   public final fun tweenProperty(
@@ -838,8 +731,7 @@ public open class Tween : RefCounted() {
     id: Long,
   ) {
     /**
-     * If the [Tween] has a bound node, it will process when that node can process (see
-     * [Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
+     * If the [Tween] has a bound node, it will process when that node can process (see [Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
      */
     BOUND(0),
     /**
@@ -958,24 +850,17 @@ public open class Tween : RefCounted() {
 
   public companion object {
     /**
-     * This method can be used for manual interpolation of a value, when you don't want [Tween] to
-     * do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom
-     * transition and easing.
+     * This method can be used for manual interpolation of a value, when you don't want [Tween] to do animating for you. It's similar to [@GlobalScope.lerp], but with support for custom transition and easing.
      *
      * [initialValue] is the starting value of the interpolation.
      *
-     * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to
-     * `final_value - initial_value`.
+     * [deltaValue] is the change of the value in the interpolation, i.e. it's equal to `final_value - initial_value`.
      *
-     * [elapsedTime] is the time in seconds that passed after the interpolation started and it's
-     * used to control the position of the interpolation. E.g. when it's equal to half of the
-     * [duration], the interpolated value will be halfway between initial and final values. This value
-     * can also be greater than [duration] or lower than 0, which will extrapolate the value.
+     * [elapsedTime] is the time in seconds that passed after the interpolation started and it's used to control the position of the interpolation. E.g. when it's equal to half of the [duration], the interpolated value will be halfway between initial and final values. This value can also be greater than [duration] or lower than 0, which will extrapolate the value.
      *
      * [duration] is the total time of the interpolation.
      *
-     * **Note:** If [duration] is equal to `0`, the method will always return the final value,
-     * regardless of [elapsedTime] provided.
+     * **Note:** If [duration] is equal to `0`, the method will always return the final value, regardless of [elapsedTime] provided.
      */
     @JvmStatic
     public final fun interpolateValue(
@@ -994,74 +879,76 @@ public open class Tween : RefCounted() {
 
   public object MethodBindings {
     internal val tweenPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_property", 4049770449)
+        TypeManager.getMethodBindPtr("Tween", "tween_property", 4_049_770_449)
 
     internal val tweenIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_interval", 413360199)
+        TypeManager.getMethodBindPtr("Tween", "tween_interval", 413_360_199)
 
     internal val tweenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_callback", 1540176488)
+        TypeManager.getMethodBindPtr("Tween", "tween_callback", 1_540_176_488)
 
     internal val tweenMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_method", 2337877153)
+        TypeManager.getMethodBindPtr("Tween", "tween_method", 2_337_877_153)
 
     internal val tweenSubtweenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "tween_subtween", 1567358477)
+        TypeManager.getMethodBindPtr("Tween", "tween_subtween", 1_567_358_477)
 
     internal val customStepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "custom_step", 330693286)
+        TypeManager.getMethodBindPtr("Tween", "custom_step", 330_693_286)
 
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "stop", 3_218_959_716)
 
-    internal val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause", 3218959716)
+    internal val pausePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "pause", 3_218_959_716)
 
-    internal val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play", 3218959716)
+    internal val playPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "play", 3_218_959_716)
 
-    internal val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill", 3218959716)
+    internal val killPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "kill", 3_218_959_716)
 
     internal val getTotalElapsedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time", 1740695150)
+        TypeManager.getMethodBindPtr("Tween", "get_total_elapsed_time", 1_740_695_150)
 
     internal val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "is_running", 2240911060)
+        TypeManager.getMethodBindPtr("Tween", "is_running", 2_240_911_060)
 
-    internal val isValidPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "is_valid", 2240911060)
+    internal val isValidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "is_valid", 2_240_911_060)
 
     internal val bindNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "bind_node", 2946786331)
+        TypeManager.getMethodBindPtr("Tween", "bind_node", 2_946_786_331)
 
     internal val setProcessModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_process_mode", 855258840)
+        TypeManager.getMethodBindPtr("Tween", "set_process_mode", 855_258_840)
 
     internal val setPauseModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_pause_mode", 3363368837)
+        TypeManager.getMethodBindPtr("Tween", "set_pause_mode", 3_363_368_837)
 
     internal val setIgnoreTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_ignore_time_scale", 1942052223)
+        TypeManager.getMethodBindPtr("Tween", "set_ignore_time_scale", 1_942_052_223)
 
     internal val setParallelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_parallel", 1942052223)
+        TypeManager.getMethodBindPtr("Tween", "set_parallel", 1_942_052_223)
 
     internal val setLoopsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_loops", 2670836414)
+        TypeManager.getMethodBindPtr("Tween", "set_loops", 2_670_836_414)
 
     internal val getLoopsLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "get_loops_left", 3905245786)
+        TypeManager.getMethodBindPtr("Tween", "get_loops_left", 3_905_245_786)
 
     internal val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_speed_scale", 3961971106)
+        TypeManager.getMethodBindPtr("Tween", "set_speed_scale", 3_961_971_106)
 
     internal val setTransPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "set_trans", 3965963875)
+        TypeManager.getMethodBindPtr("Tween", "set_trans", 3_965_963_875)
 
-    internal val setEasePtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "set_ease", 1208117252)
+    internal val setEasePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Tween", "set_ease", 1_208_117_252)
 
     internal val parallelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "parallel", 3426978995)
+        TypeManager.getMethodBindPtr("Tween", "parallel", 3_426_978_995)
 
-    internal val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain", 3426978995)
+    internal val chainPtr: VoidPtr = TypeManager.getMethodBindPtr("Tween", "chain", 3_426_978_995)
 
     internal val interpolateValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Tween", "interpolate_value", 3452526450)
+        TypeManager.getMethodBindPtr("Tween", "interpolate_value", 3_452_526_450)
   }
 }

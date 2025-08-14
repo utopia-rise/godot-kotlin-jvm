@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,9 +26,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from
- * a larger atlas texture, or a frame from a sprite sheet animation. See also [SpriteBase3D] where
- * properties such as the billboard mode are defined.
+ * A node that displays a 2D texture in a 3D environment. The texture displayed can be a region from a larger atlas texture, or a frame from a sprite sheet animation. See also [SpriteBase3D] where properties such as the billboard mode are defined.
  */
 @GodotBaseType
 public open class Sprite3D : SpriteBase3D() {
@@ -46,8 +41,7 @@ public open class Sprite3D : SpriteBase3D() {
   public val textureChanged: Signal0 by Signal0
 
   /**
-   * [Texture2D] object to draw. If [GeometryInstance3D.materialOverride] is used, this will be
-   * overridden. The size information is still used.
+   * [Texture2D] object to draw. If [GeometryInstance3D.materialOverride] is used, this will be overridden. The size information is still used.
    */
   public final inline var texture: Texture2D?
     @JvmName("textureProperty")
@@ -58,9 +52,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted
-   * so that the same visual frame is maintained (same row and column). If that's impossible, [frame]
-   * is reset to `0`.
+   * The number of columns in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
    */
   public final inline var hframes: Int
     @JvmName("hframesProperty")
@@ -71,9 +63,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so
-   * that the same visual frame is maintained (same row and column). If that's impossible, [frame] is
-   * reset to `0`.
+   * The number of rows in the sprite sheet. When this property is changed, [frame] is adjusted so that the same visual frame is maintained (same row and column). If that's impossible, [frame] is reset to `0`.
    */
   public final inline var vframes: Int
     @JvmName("vframesProperty")
@@ -84,9 +74,7 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This
-   * property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the
-   * same visual frame (same column and row). If that's impossible, this value is reset to `0`.
+   * Current frame to display from sprite sheet. [hframes] or [vframes] must be greater than 1. This property is automatically adjusted when [hframes] or [vframes] are changed to keep pointing to the same visual frame (same column and row). If that's impossible, this value is reset to `0`.
    */
   public final inline var frame: Int
     @JvmName("frameProperty")
@@ -97,15 +85,11 @@ public open class Sprite3D : SpriteBase3D() {
     }
 
   /**
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var frameCoords: Vector2i
@@ -131,11 +115,8 @@ public open class Sprite3D : SpriteBase3D() {
    * The region of the atlas texture to display. [regionEnabled] must be `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -146,7 +127,7 @@ public open class Sprite3D : SpriteBase3D() {
       setRegionRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(627, scriptIndex)
   }
 
@@ -161,8 +142,7 @@ public open class Sprite3D : SpriteBase3D() {
    * sprite3d.frameCoords = myCoreType
    * ``````
    *
-   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame]
-   * property. [hframes] or [vframes] must be greater than 1.
+   * Coordinates of the frame to display from sprite sheet. This is as an alias for the [frame] property. [hframes] or [vframes] must be greater than 1.
    */
   @CoreTypeHelper
   public final fun frameCoordsMutate(block: Vector2i.() -> Unit): Vector2i = frameCoords.apply {
@@ -189,7 +169,7 @@ public open class Sprite3D : SpriteBase3D() {
      regionRect = this
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -200,7 +180,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setRegionEnabled(enabled: Boolean): Unit {
+  public final fun setRegionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRegionEnabledPtr, NIL)
   }
@@ -211,7 +191,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRegionRect(rect: Rect2): Unit {
+  public final fun setRegionRect(rect: Rect2) {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setRegionRectPtr, NIL)
   }
@@ -222,7 +202,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int) {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFramePtr, NIL)
   }
@@ -233,7 +213,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFrameCoords(coords: Vector2i): Unit {
+  public final fun setFrameCoords(coords: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to coords)
     TransferContext.callMethod(ptr, MethodBindings.setFrameCoordsPtr, NIL)
   }
@@ -244,7 +224,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setVframes(vframes: Int): Unit {
+  public final fun setVframes(vframes: Int) {
     TransferContext.writeArguments(LONG to vframes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVframesPtr, NIL)
   }
@@ -255,7 +235,7 @@ public open class Sprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHframes(hframes: Int): Unit {
+  public final fun setHframes(hframes: Int) {
     TransferContext.writeArguments(LONG to hframes.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHframesPtr, NIL)
   }
@@ -270,45 +250,45 @@ public open class Sprite3D : SpriteBase3D() {
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_texture", 3_635_182_373)
 
     internal val setRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_region_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_region_enabled", 2_586_408_642)
 
     internal val isRegionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "is_region_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Sprite3D", "is_region_enabled", 36_873_697)
 
     internal val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_region_rect", 2046264180)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_region_rect", 2_046_264_180)
 
     internal val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_region_rect", 1639390495)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_region_rect", 1_639_390_495)
 
     internal val setFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_frame", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_frame", 1_286_410_249)
 
     internal val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_frame", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_frame", 3_905_245_786)
 
     internal val setFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_frame_coords", 1130785943)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_frame_coords", 1_130_785_943)
 
     internal val getFrameCoordsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_frame_coords", 3690982128)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_frame_coords", 3_690_982_128)
 
     internal val setVframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_vframes", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_vframes", 1_286_410_249)
 
     internal val getVframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_vframes", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_vframes", 3_905_245_786)
 
     internal val setHframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "set_hframes", 1286410249)
+        TypeManager.getMethodBindPtr("Sprite3D", "set_hframes", 1_286_410_249)
 
     internal val getHframesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Sprite3D", "get_hframes", 3905245786)
+        TypeManager.getMethodBindPtr("Sprite3D", "get_hframes", 3_905_245_786)
   }
 }

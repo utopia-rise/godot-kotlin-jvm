@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * UV functions are similar to [Vector2] functions, but the input port of this node uses the
- * shader's UV value by default.
+ * UV functions are similar to [Vector2] functions, but the input port of this node uses the shader's UV value by default.
  */
 @GodotBaseType
 public open class VisualShaderNodeUVFunc : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(818, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -54,13 +49,11 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv +
-     * offset * scale`. `uv` port is connected to `UV` built-in by default.
+     * Translates `uv` by using `scale` and `offset` values using the following formula: `uv = uv + offset * scale`. `uv` port is connected to `UV` built-in by default.
      */
     PANNING(0),
     /**
-     * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv -
-     * pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
+     * Scales `uv` by using `scale` and `pivot` values using the following formula: `uv = (uv - pivot) * scale + pivot`. `uv` port is connected to `UV` built-in by default.
      */
     SCALING(1),
     /**
@@ -83,9 +76,9 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUVFunc", "set_function", 765791915)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUVFunc", "set_function", 765_791_915)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeUVFunc", "get_function", 3772902164)
+        TypeManager.getMethodBindPtr("VisualShaderNodeUVFunc", "get_function", 3_772_902_164)
   }
 }

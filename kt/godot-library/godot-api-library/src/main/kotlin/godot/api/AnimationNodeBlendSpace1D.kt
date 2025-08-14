@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,16 +20,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
  * A resource used by [AnimationNodeBlendTree].
  *
- * [AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [AnimationRootNode]s
- * can be added using [addBlendPoint]. Outputs the linear blend of the two [AnimationRootNode]s
- * adjacent to the current value.
+ * [AnimationNodeBlendSpace1D] represents a virtual axis on which any type of [AnimationRootNode]s can be added using [addBlendPoint]. Outputs the linear blend of the two [AnimationRootNode]s adjacent to the current value.
  *
  * You can set the extents of the axis with [minSpace] and [maxSpace].
  */
@@ -106,21 +100,19 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
       setUseSync(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(21, scriptIndex)
   }
 
   /**
-   * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos].
-   * You can insert it at a specific index using the [atIndex] argument. If you use the default value
-   * for [atIndex], the point is inserted at the end of the blend points array.
+   * Adds a new point that represents a [node] on the virtual axis at a given position set by [pos]. You can insert it at a specific index using the [atIndex] argument. If you use the default value for [atIndex], the point is inserted at the end of the blend points array.
    */
   @JvmOverloads
   public final fun addBlendPoint(
     node: AnimationRootNode?,
     pos: Float,
     atIndex: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to node, DOUBLE to pos.toDouble(), LONG to atIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addBlendPointPtr, NIL)
   }
@@ -128,7 +120,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   /**
    * Updates the position of the point at index [point] on the blend axis.
    */
-  public final fun setBlendPointPosition(point: Int, pos: Float): Unit {
+  public final fun setBlendPointPosition(point: Int, pos: Float) {
     TransferContext.writeArguments(LONG to point.toLong(), DOUBLE to pos.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBlendPointPositionPtr, NIL)
   }
@@ -145,7 +137,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   /**
    * Changes the [AnimationNode] referenced by the point at index [point].
    */
-  public final fun setBlendPointNode(point: Int, node: AnimationRootNode?): Unit {
+  public final fun setBlendPointNode(point: Int, node: AnimationRootNode?) {
     TransferContext.writeArguments(LONG to point.toLong(), OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.setBlendPointNodePtr, NIL)
   }
@@ -162,7 +154,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   /**
    * Removes the point at index [point] from the blend axis.
    */
-  public final fun removeBlendPoint(point: Int): Unit {
+  public final fun removeBlendPoint(point: Int) {
     TransferContext.writeArguments(LONG to point.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeBlendPointPtr, NIL)
   }
@@ -176,7 +168,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMinSpace(minSpace: Float): Unit {
+  public final fun setMinSpace(minSpace: Float) {
     TransferContext.writeArguments(DOUBLE to minSpace.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinSpacePtr, NIL)
   }
@@ -187,7 +179,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxSpace(maxSpace: Float): Unit {
+  public final fun setMaxSpace(maxSpace: Float) {
     TransferContext.writeArguments(DOUBLE to maxSpace.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxSpacePtr, NIL)
   }
@@ -198,7 +190,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSnap(snap: Float): Unit {
+  public final fun setSnap(snap: Float) {
     TransferContext.writeArguments(DOUBLE to snap.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSnapPtr, NIL)
   }
@@ -209,7 +201,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setValueLabel(text: String): Unit {
+  public final fun setValueLabel(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setValueLabelPtr, NIL)
   }
@@ -220,7 +212,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setBlendMode(mode: BlendMode): Unit {
+  public final fun setBlendMode(mode: BlendMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
@@ -231,7 +223,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     return BlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseSync(enable: Boolean): Unit {
+  public final fun setUseSync(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseSyncPtr, NIL)
   }
@@ -250,13 +242,11 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
      */
     INTERPOLATED(0),
     /**
-     * The blend space plays the animation of the animation node which blending position is closest
-     * to. Useful for frame-by-frame 2D animations.
+     * The blend space plays the animation of the animation node which blending position is closest to. Useful for frame-by-frame 2D animations.
      */
     DISCRETE(1),
     /**
-     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's
-     * playback position.
+     * Similar to [BLEND_MODE_DISCRETE], but starts the new animation at the last animation's playback position.
      */
     DISCRETE_CARRY(2),
     ;
@@ -275,60 +265,60 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
 
   public object MethodBindings {
     internal val addBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "add_blend_point", 285050433)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "add_blend_point", 285_050_433)
 
     internal val setBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_position", 1602489585)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_position", 1_602_489_585)
 
     internal val getBlendPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_position", 2339986948)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_position", 2_339_986_948)
 
     internal val setBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_node", 4240341528)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_point_node", 4_240_341_528)
 
     internal val getBlendPointNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_node", 665599029)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_node", 665_599_029)
 
     internal val removeBlendPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "remove_blend_point", 1286410249)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "remove_blend_point", 1_286_410_249)
 
     internal val getBlendPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_point_count", 3_905_245_786)
 
     internal val setMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_min_space", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_min_space", 373_806_689)
 
     internal val getMinSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_min_space", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_min_space", 1_740_695_150)
 
     internal val setMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_max_space", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_max_space", 373_806_689)
 
     internal val getMaxSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_max_space", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_max_space", 1_740_695_150)
 
     internal val setSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_snap", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_snap", 373_806_689)
 
     internal val getSnapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_snap", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_snap", 1_740_695_150)
 
     internal val setValueLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_value_label", 83702148)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_value_label", 83_702_148)
 
     internal val getValueLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_value_label", 201670096)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_value_label", 201_670_096)
 
     internal val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_mode", 2600869457)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_blend_mode", 2_600_869_457)
 
     internal val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_mode", 1547667849)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "get_blend_mode", 1_547_667_849)
 
     internal val setUseSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_use_sync", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "set_use_sync", 2_586_408_642)
 
     internal val isUsingSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "is_using_sync", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendSpace1D", "is_using_sync", 36_873_697)
   }
 }

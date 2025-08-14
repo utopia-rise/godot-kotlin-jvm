@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,7 +20,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -37,26 +33,22 @@ public infix fun Long.and(other: ResourceSaver.SaverFlags): Long = this.and(othe
 /**
  * A singleton for saving resource types to the filesystem.
  *
- * It uses the many [ResourceFormatSaver] classes registered in the engine (either built-in or from
- * a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res`
- * or `.scn`).
+ * It uses the many [ResourceFormatSaver] classes registered in the engine (either built-in or from a plugin) to save resource data to text-based (e.g. `.tres` or `.tscn`) or binary files (e.g. `.res` or `.scn`).
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(28)
   }
 
   /**
-   * Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the
-   * resource object. If [path] is empty, [ResourceSaver] will try to use [Resource.resourcePath].
+   * Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the resource object. If [path] is empty, [ResourceSaver] will try to use [Resource.resourcePath].
    *
    * The [flags] bitmask can be specified to customize the save behavior using [SaverFlags] flags.
    *
    * Returns [OK] on success.
    *
-   * **Note:** When the project is running, any generated UID associated with the resource will not
-   * be saved as the required code is only executed in editor mode.
+   * **Note:** When the project is running, any generated UID associated with the resource will not be saved as the required code is only executed in editor mode.
    */
   @JvmOverloads
   @JvmStatic
@@ -81,16 +73,13 @@ public object ResourceSaver : Object() {
   }
 
   /**
-   * Registers a new [ResourceFormatSaver]. The ResourceSaver will use the ResourceFormatSaver as
-   * described in [save].
+   * Registers a new [ResourceFormatSaver]. The ResourceSaver will use the ResourceFormatSaver as described in [save].
    *
-   * This method is performed implicitly for ResourceFormatSavers written in GDScript (see
-   * [ResourceFormatSaver] for more information).
+   * This method is performed implicitly for ResourceFormatSavers written in GDScript (see [ResourceFormatSaver] for more information).
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean =
-      false): Unit {
+  public final fun addResourceFormatSaver(formatSaver: ResourceFormatSaver?, atFront: Boolean = false) {
     TransferContext.writeArguments(OBJECT to formatSaver, BOOL to atFront)
     TransferContext.callMethod(ptr, MethodBindings.addResourceFormatSaverPtr, NIL)
   }
@@ -99,15 +88,13 @@ public object ResourceSaver : Object() {
    * Unregisters the given [ResourceFormatSaver].
    */
   @JvmStatic
-  public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?): Unit {
+  public final fun removeResourceFormatSaver(formatSaver: ResourceFormatSaver?) {
     TransferContext.writeArguments(OBJECT to formatSaver)
     TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatSaverPtr, NIL)
   }
 
   /**
-   * Returns the resource ID for the given path. If [generate] is `true`, a new resource ID will be
-   * generated if one for the path is not found. If [generate] is `false` and the path is not found,
-   * [ResourceUID.INVALID_ID] is returned.
+   * Returns the resource ID for the given path. If [generate] is `true`, a new resource ID will be generated if one for the path is not found. If [generate] is `false` and the path is not found, [ResourceUID.INVALID_ID] is returned.
    */
   @JvmOverloads
   @JvmStatic
@@ -182,8 +169,7 @@ public object ResourceSaver : Object() {
       public val FLAG_SAVE_BIG_ENDIAN: SaverFlags = SaverFlags(16)
 
       /**
-       * Compress the resource on save using [FileAccess.COMPRESSION_ZSTD]. Only available for
-       * binary resource types.
+       * Compress the resource on save using [FileAccess.COMPRESSION_ZSTD]. Only available for binary resource types.
        */
       @JvmField
       public val FLAG_COMPRESS: SaverFlags = SaverFlags(32)
@@ -198,18 +184,18 @@ public object ResourceSaver : Object() {
 
   public object MethodBindings {
     internal val savePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "save", 2983274697)
+        TypeManager.getMethodBindPtr("ResourceSaver", "save", 2_983_274_697)
 
     internal val getRecognizedExtensionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)
+        TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4_223_597_960)
 
     internal val addResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362894272)
+        TypeManager.getMethodBindPtr("ResourceSaver", "add_resource_format_saver", 362_894_272)
 
     internal val removeResourceFormatSaverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3373026878)
+        TypeManager.getMethodBindPtr("ResourceSaver", "remove_resource_format_saver", 3_373_026_878)
 
     internal val getResourceIdForPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceSaver", "get_resource_id_for_path", 150756522)
+        TypeManager.getMethodBindPtr("ResourceSaver", "get_resource_id_for_path", 150_756_522)
   }
 }

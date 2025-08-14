@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [CenterContainer] is a container that keeps all of its child controls in its center at their
- * minimum size.
+ * [CenterContainer] is a container that keeps all of its child controls in its center at their minimum size.
  */
 @GodotBaseType
 public open class CenterContainer : Container() {
@@ -35,11 +30,11 @@ public open class CenterContainer : Container() {
       setUseTopLeft(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(144, scriptIndex)
   }
 
-  public final fun setUseTopLeft(enable: Boolean): Unit {
+  public final fun setUseTopLeft(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseTopLeftPtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class CenterContainer : Container() {
 
   public object MethodBindings {
     internal val setUseTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "set_use_top_left", 2586408642)
+        TypeManager.getMethodBindPtr("CenterContainer", "set_use_top_left", 2_586_408_642)
 
     internal val isUsingTopLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CenterContainer", "is_using_top_left", 36873697)
+        TypeManager.getMethodBindPtr("CenterContainer", "is_using_top_left", 36_873_697)
   }
 }

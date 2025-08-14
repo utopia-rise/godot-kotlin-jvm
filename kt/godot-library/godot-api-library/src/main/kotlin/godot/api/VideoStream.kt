@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,20 +13,17 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used
- * as resource types to play back videos in [VideoStreamPlayer].
+ * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used as resource types to play back videos in [VideoStreamPlayer].
  */
 @GodotBaseType
 public open class VideoStream : Resource() {
   /**
    * The video file path or URI that this [VideoStream] resource handles.
    *
-   * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv`
-   * extension.
+   * For [VideoStreamTheora], this filename should be an Ogg Theora video file with the `.ogv` extension.
    */
   public final inline var `file`: String
     @JvmName("fileProperty")
@@ -39,19 +33,18 @@ public open class VideoStream : Resource() {
       setFile(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(715, scriptIndex)
   }
 
   /**
-   * Called when the video starts playing, to initialize and return a subclass of
-   * [VideoStreamPlayback].
+   * Called when the video starts playing, to initialize and return a subclass of [VideoStreamPlayback].
    */
   public open fun _instantiatePlayback(): VideoStreamPlayback? {
     throw NotImplementedError("VideoStream::_instantiatePlayback is not implemented.")
   }
 
-  public final fun setFile(`file`: String): Unit {
+  public final fun setFile(`file`: String) {
     TransferContext.writeArguments(STRING to file)
     TransferContext.callMethod(ptr, MethodBindings.setFilePtr, NIL)
   }
@@ -66,9 +59,9 @@ public open class VideoStream : Resource() {
 
   public object MethodBindings {
     internal val setFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStream", "set_file", 83702148)
+        TypeManager.getMethodBindPtr("VideoStream", "set_file", 83_702_148)
 
     internal val getFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStream", "get_file", 2841200299)
+        TypeManager.getMethodBindPtr("VideoStream", "get_file", 2_841_200_299)
   }
 }

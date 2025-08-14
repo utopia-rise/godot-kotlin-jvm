@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -10,7 +7,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -24,35 +20,25 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
- * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D
- * nodes inherit from the [VisualInstance3D]. In general, you should not access the [VisualInstance3D]
- * properties directly as they are accessed and managed by the nodes that inherit from
- * [VisualInstance3D]. [VisualInstance3D] is the node representation of the [RenderingServer] instance.
+ * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D nodes inherit from the [VisualInstance3D]. In general, you should not access the [VisualInstance3D] properties directly as they are accessed and managed by the nodes that inherit from [VisualInstance3D]. [VisualInstance3D] is the node representation of the [RenderingServer] instance.
  */
 @GodotBaseType
 public open class VisualInstance3D : Node3D() {
   /**
    * The render layer(s) this [VisualInstance3D] is drawn on.
    *
-   * This object will only be visible for [Camera3D]s whose cull mask includes any of the render
-   * layers this [VisualInstance3D] is set to.
+   * This object will only be visible for [Camera3D]s whose cull mask includes any of the render layers this [VisualInstance3D] is set to.
    *
-   * For [Light3D]s, this can be used to control which [VisualInstance3D]s are affected by a
-   * specific light. For [GPUParticles3D], this can be used to control which particles are effected by
-   * a specific attractor. For [Decal]s, this can be used to control which [VisualInstance3D]s are
-   * affected by a specific decal.
+   * For [Light3D]s, this can be used to control which [VisualInstance3D]s are affected by a specific light. For [GPUParticles3D], this can be used to control which particles are effected by a specific attractor. For [Decal]s, this can be used to control which [VisualInstance3D]s are affected by a specific decal.
    *
    * To adjust [layers] more easily using a script, use [getLayerMaskValue] and [setLayerMaskValue].
    *
-   * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to
-   * determine what contributes to global illumination. If this is an issue, set
-   * [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and
-   * [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global
-   * illumination.
+   * **Note:** [VoxelGI], SDFGI and [LightmapGI] will always take all layers into account to determine what contributes to global illumination. If this is an issue, set [GeometryInstance3D.giMode] to [GeometryInstance3D.GI_MODE_DISABLED] for meshes and [Light3D.lightBakeMode] to [Light3D.BAKE_DISABLED] for lights to exclude them from global illumination.
    */
   public final inline var layers: Long
     @JvmName("layersProperty")
@@ -63,12 +49,7 @@ public open class VisualInstance3D : Node3D() {
     }
 
   /**
-   * The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by
-   * depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher
-   * value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are
-   * otherwise positioned at the same spot. To ensure it always draws on top of other objects around it
-   * (not positioned at the same spot), set the value to be greater than the distance between this
-   * [VisualInstance3D] and the other nearby [VisualInstance3D]s.
+   * The amount by which the depth of this [VisualInstance3D] will be adjusted when sorting by depth. Uses the same units as the engine (which are typically meters). Adjusting it to a higher value will make the [VisualInstance3D] reliably draw on top of other [VisualInstance3D]s that are otherwise positioned at the same spot. To ensure it always draws on top of other objects around it (not positioned at the same spot), set the value to be greater than the distance between this [VisualInstance3D] and the other nearby [VisualInstance3D]s.
    */
   public final inline var sortingOffset: Float
     @JvmName("sortingOffsetProperty")
@@ -79,12 +60,9 @@ public open class VisualInstance3D : Node3D() {
     }
 
   /**
-   * If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on
-   * the global position otherwise.
+   * If `true`, the object is sorted based on the [AABB] center. The object will be sorted based on the global position otherwise.
    *
-   * The [AABB] center based sorting is generally more accurate for 3D models. The position based
-   * sorting instead allows to better control the drawing order when working with [GPUParticles3D] and
-   * [CPUParticles3D].
+   * The [AABB] center based sorting is generally more accurate for 3D models. The position based sorting instead allows to better control the drawing order when working with [GPUParticles3D] and [CPUParticles3D].
    */
   public final inline var sortingUseAabbCenter: Boolean
     @JvmName("sortingUseAabbCenterProperty")
@@ -94,26 +72,24 @@ public open class VisualInstance3D : Node3D() {
       setSortingUseAabbCenter(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(725, scriptIndex)
   }
 
-  public open fun _getAabb(): AABB {
+  public open fun _getAabb(): CoreAABB {
     throw NotImplementedError("VisualInstance3D::_getAabb is not implemented.")
   }
 
   /**
-   * Sets the resource that is instantiated by this [VisualInstance3D], which changes how the engine
-   * handles the [VisualInstance3D] under the hood. Equivalent to [RenderingServer.instanceSetBase].
+   * Sets the resource that is instantiated by this [VisualInstance3D], which changes how the engine handles the [VisualInstance3D] under the hood. Equivalent to [RenderingServer.instanceSetBase].
    */
-  public final fun setBase(base: RID): Unit {
+  public final fun setBase(base: RID) {
     TransferContext.writeArguments(_RID to base)
     TransferContext.callMethod(ptr, MethodBindings.setBasePtr, NIL)
   }
 
   /**
-   * Returns the RID of the resource associated with this [VisualInstance3D]. For example, if the
-   * Node is a [MeshInstance3D], this will return the RID of the associated [Mesh].
+   * Returns the RID of the resource associated with this [VisualInstance3D]. For example, if the Node is a [MeshInstance3D], this will return the RID of the associated [Mesh].
    */
   public final fun getBase(): RID {
     TransferContext.writeArguments()
@@ -122,9 +98,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Returns the RID of this instance. This RID is the same as the RID returned by
-   * [RenderingServer.instanceCreate]. This RID is needed if you want to call [RenderingServer]
-   * functions directly on this [VisualInstance3D].
+   * Returns the RID of this instance. This RID is the same as the RID returned by [RenderingServer.instanceCreate]. This RID is needed if you want to call [RenderingServer] functions directly on this [VisualInstance3D].
    */
   public final fun getInstance(): RID {
     TransferContext.writeArguments()
@@ -132,7 +106,7 @@ public open class VisualInstance3D : Node3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setLayerMask(mask: Long): Unit {
+  public final fun setLayerMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setLayerMaskPtr, NIL)
   }
@@ -144,17 +118,15 @@ public open class VisualInstance3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [layers], given a
-   * [layerNumber] between 1 and 20.
+   * Based on [value], enables or disables the specified layer in the [layers], given a [layerNumber] between 1 and 20.
    */
-  public final fun setLayerMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setLayerMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setLayerMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [layers] is enabled, given a [layerNumber]
-   * between 1 and 20.
+   * Returns whether or not the specified layer of the [layers] is enabled, given a [layerNumber] between 1 and 20.
    */
   public final fun getLayerMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -162,7 +134,7 @@ public open class VisualInstance3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSortingOffset(offset: Float): Unit {
+  public final fun setSortingOffset(offset: Float) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSortingOffsetPtr, NIL)
   }
@@ -173,7 +145,7 @@ public open class VisualInstance3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSortingUseAabbCenter(enabled: Boolean): Unit {
+  public final fun setSortingUseAabbCenter(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSortingUseAabbCenterPtr, NIL)
   }
@@ -187,49 +159,49 @@ public open class VisualInstance3D : Node3D() {
   /**
    * Returns the [AABB] (also known as the bounding box) for this [VisualInstance3D].
    */
-  public final fun getAabb(): AABB {
+  public final fun getAabb(): CoreAABB {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, godot.core.VariantParser.AABB)
-    return (TransferContext.readReturnValue(godot.core.VariantParser.AABB) as AABB)
+    TransferContext.callMethod(ptr, MethodBindings.getAabbPtr, VariantParserAABB)
+    return (TransferContext.readReturnValue(VariantParserAABB) as CoreAABB)
   }
 
   public companion object
 
   public object MethodBindings {
     internal val setBasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_base", 2722037293)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_base", 2_722_037_293)
 
     internal val getBasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_base", 2944877500)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_base", 2_944_877_500)
 
     internal val getInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_instance", 2944877500)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_instance", 2_944_877_500)
 
     internal val setLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask", 1286410249)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask", 1_286_410_249)
 
     internal val getLayerMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask", 3905245786)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask", 3_905_245_786)
 
     internal val setLayerMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_layer_mask_value", 300_928_843)
 
     internal val getLayerMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_layer_mask_value", 1_116_898_809)
 
     internal val setSortingOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_offset", 373806689)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_offset", 373_806_689)
 
     internal val getSortingOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_sorting_offset", 1740695150)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_sorting_offset", 1_740_695_150)
 
     internal val setSortingUseAabbCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center", 2586408642)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "set_sorting_use_aabb_center", 2_586_408_642)
 
     internal val isSortingUseAabbCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center", 36873697)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "is_sorting_use_aabb_center", 36_873_697)
 
     internal val getAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualInstance3D", "get_aabb", 1068685055)
+        TypeManager.getMethodBindPtr("VisualInstance3D", "get_aabb", 1_068_685_055)
   }
 }

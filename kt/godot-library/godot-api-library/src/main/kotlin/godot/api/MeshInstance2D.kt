@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,13 +12,10 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
- * existing [Sprite2D] via a tool in the editor toolbar. Select the [Sprite2D] node, then choose
- * **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
+ * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an existing [Sprite2D] via a tool in the editor toolbar. Select the [Sprite2D] node, then choose **Sprite2D > Convert to MeshInstance2D** at the top of the 2D editor viewport.
  */
 @GodotBaseType
 public open class MeshInstance2D : Node2D() {
@@ -42,8 +36,7 @@ public open class MeshInstance2D : Node2D() {
     }
 
   /**
-   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
-   * `TEXTURE` in CanvasItem shader.
+   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
    */
   public final inline var texture: Texture2D?
     @JvmName("textureProperty")
@@ -53,11 +46,11 @@ public open class MeshInstance2D : Node2D() {
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(354, scriptIndex)
   }
 
-  public final fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -68,7 +61,7 @@ public open class MeshInstance2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -83,15 +76,15 @@ public open class MeshInstance2D : Node2D() {
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh", 194775623)
+        TypeManager.getMethodBindPtr("MeshInstance2D", "set_mesh", 194_775_623)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh", 1808005922)
+        TypeManager.getMethodBindPtr("MeshInstance2D", "get_mesh", 1_808_005_922)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("MeshInstance2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("MeshInstance2D", "get_texture", 3_635_182_373)
   }
 }

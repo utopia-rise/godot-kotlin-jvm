@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,7 +19,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -31,11 +27,9 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class BaseButton : Control() {
   /**
-   * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode]
-   * is [ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
+   * Emitted when the button is toggled or pressed. This is on [signal button_down] if [actionMode] is [ACTION_MODE_BUTTON_PRESS] and on [signal button_up] otherwise.
    *
-   * If you need to know the button's pressed state (and [toggleMode] is active), use [signal
-   * toggled] instead.
+   * If you need to know the button's pressed state (and [toggleMode] is active), use [signal toggled] instead.
    */
   public val pressed: Signal0 by Signal0
 
@@ -50,8 +44,7 @@ public open class BaseButton : Control() {
   public val buttonDown: Signal0 by Signal0
 
   /**
-   * Emitted when the button was just toggled between pressed and normal states (only if
-   * [toggleMode] is active). The new state is contained in the [toggledOn] argument.
+   * Emitted when the button was just toggled between pressed and normal states (only if [toggleMode] is active). The new state is contained in the [toggledOn] argument.
    */
   public val toggled: Signal1<Boolean> by Signal1
 
@@ -67,8 +60,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and
-   * unpressed each time its area is clicked.
+   * If `true`, the button is in toggle mode. Makes the button flip state between pressed and unpressed each time its area is clicked.
    */
   public final inline var toggleMode: Boolean
     @JvmName("toggleModeProperty")
@@ -79,11 +71,9 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if
-   * [toggleMode] is active). Only works if [toggleMode] is `true`.
+   * If `true`, the button's state is pressed. Means the button is pressed down or toggled (if [toggleMode] is active). Only works if [toggleMode] is `true`.
    *
-   * **Note:** Changing the value of [buttonPressed] will result in [signal toggled] to be emitted.
-   * If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
+   * **Note:** Changing the value of [buttonPressed] will result in [signal toggled] to be emitted. If you want to change the pressed state without emitting that signal, use [setPressedNoSignal].
    */
   public final inline var buttonPressed: Boolean
     @JvmName("buttonPressedProperty")
@@ -107,8 +97,7 @@ public open class BaseButton : Control() {
   /**
    * Binary mask to choose which mouse buttons this button will respond to.
    *
-   * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT |
-   * MOUSE_BUTTON_MASK_RIGHT`.
+   * To allow both left-click and right-click, use `MOUSE_BUTTON_MASK_LEFT | MOUSE_BUTTON_MASK_RIGHT`.
    */
   public final inline var buttonMask: MouseButtonMask
     @JvmName("buttonMaskProperty")
@@ -119,11 +108,9 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button stays pressed when moving the cursor outside the button while pressing
-   * it.
+   * If `true`, the button stays pressed when moving the cursor outside the button while pressing it.
    *
-   * **Note:** This property only affects the button's visual appearance. Signals will be emitted at
-   * the same moment regardless of this property's value.
+   * **Note:** This property only affects the button's visual appearance. Signals will be emitted at the same moment regardless of this property's value.
    */
   public final inline var keepPressedOutside: Boolean
     @JvmName("keepPressedOutsideProperty")
@@ -158,8 +145,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * If `true`, the button will highlight for a short amount of time when its shortcut is activated.
-   * If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
+   * If `true`, the button will highlight for a short amount of time when its shortcut is activated. If `false` and [toggleMode] is `false`, the shortcut will activate without any visual feedback.
    */
   public final inline var shortcutFeedback: Boolean
     @JvmName("shortcutFeedbackProperty")
@@ -172,8 +158,7 @@ public open class BaseButton : Control() {
   /**
    * If `true`, the button will add information about its shortcut in the tooltip.
    *
-   * **Note:** This property does nothing when the tooltip control is customized using
-   * [Control.MakeCustomTooltip].
+   * **Note:** This property does nothing when the tooltip control is customized using [Control.MakeCustomTooltip].
    */
   public final inline var shortcutInTooltip: Boolean
     @JvmName("shortcutInTooltipProperty")
@@ -183,26 +168,25 @@ public open class BaseButton : Control() {
       setShortcutInTooltip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(103, scriptIndex)
   }
 
   /**
-   * Called when the button is pressed. If you need to know the button's pressed state (and
-   * [toggleMode] is active), use [_toggled] instead.
+   * Called when the button is pressed. If you need to know the button's pressed state (and [toggleMode] is active), use [_toggled] instead.
    */
-  public open fun _pressed(): Unit {
+  public open fun _pressed() {
     throw NotImplementedError("BaseButton::_pressed is not implemented.")
   }
 
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
-  public open fun _toggled(toggledOn: Boolean): Unit {
+  public open fun _toggled(toggledOn: Boolean) {
     throw NotImplementedError("BaseButton::_toggled is not implemented.")
   }
 
-  public final fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
@@ -214,13 +198,11 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Changes the [buttonPressed] state of the button, without emitting [signal toggled]. Use when
-   * you just want to change the state of the button without sending the pressed event (e.g. when
-   * initializing scene). Only works if [toggleMode] is `true`.
+   * Changes the [buttonPressed] state of the button, without emitting [signal toggled]. Use when you just want to change the state of the button without sending the pressed event (e.g. when initializing scene). Only works if [toggleMode] is `true`.
    *
    * **Note:** This method doesn't unpress other buttons in [buttonGroup].
    */
-  public final fun setPressedNoSignal(pressed: Boolean): Unit {
+  public final fun setPressedNoSignal(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedNoSignalPtr, NIL)
   }
@@ -234,7 +216,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setToggleMode(enabled: Boolean): Unit {
+  public final fun setToggleMode(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setToggleModePtr, NIL)
   }
@@ -245,7 +227,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShortcutInTooltip(enabled: Boolean): Unit {
+  public final fun setShortcutInTooltip(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShortcutInTooltipPtr, NIL)
   }
@@ -256,7 +238,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
@@ -267,7 +249,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setActionMode(mode: ActionMode): Unit {
+  public final fun setActionMode(mode: ActionMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setActionModePtr, NIL)
   }
@@ -278,7 +260,7 @@ public open class BaseButton : Control() {
     return ActionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setButtonMask(mask: MouseButtonMask): Unit {
+  public final fun setButtonMask(mask: MouseButtonMask) {
     TransferContext.writeArguments(LONG to mask.flag)
     TransferContext.callMethod(ptr, MethodBindings.setButtonMaskPtr, NIL)
   }
@@ -290,9 +272,7 @@ public open class BaseButton : Control() {
   }
 
   /**
-   * Returns the visual state used to draw the button. This is useful mainly when implementing your
-   * own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the
-   * button is defined by the [DrawMode] enum.
+   * Returns the visual state used to draw the button. This is useful mainly when implementing your own draw code by either overriding _draw() or connecting to "draw" signal. The visual state of the button is defined by the [DrawMode] enum.
    */
   public final fun getDrawMode(): DrawMode {
     TransferContext.writeArguments()
@@ -300,7 +280,7 @@ public open class BaseButton : Control() {
     return DrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setKeepPressedOutside(enabled: Boolean): Unit {
+  public final fun setKeepPressedOutside(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setKeepPressedOutsidePtr, NIL)
   }
@@ -311,7 +291,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShortcutFeedback(enabled: Boolean): Unit {
+  public final fun setShortcutFeedback(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShortcutFeedbackPtr, NIL)
   }
@@ -322,7 +302,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShortcut(shortcut: Shortcut?): Unit {
+  public final fun setShortcut(shortcut: Shortcut?) {
     TransferContext.writeArguments(OBJECT to shortcut)
     TransferContext.callMethod(ptr, MethodBindings.setShortcutPtr, NIL)
   }
@@ -333,7 +313,7 @@ public open class BaseButton : Control() {
     return (TransferContext.readReturnValue(OBJECT) as Shortcut?)
   }
 
-  public final fun setButtonGroup(buttonGroup: ButtonGroup?): Unit {
+  public final fun setButtonGroup(buttonGroup: ButtonGroup?) {
     TransferContext.writeArguments(OBJECT to buttonGroup)
     TransferContext.callMethod(ptr, MethodBindings.setButtonGroupPtr, NIL)
   }
@@ -406,72 +386,72 @@ public open class BaseButton : Control() {
 
   public object MethodBindings {
     internal val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_pressed", 2_586_408_642)
 
     internal val isPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_pressed", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_pressed", 36_873_697)
 
     internal val setPressedNoSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_pressed_no_signal", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_pressed_no_signal", 2_586_408_642)
 
     internal val isHoveredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_hovered", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_hovered", 36_873_697)
 
     internal val setToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_toggle_mode", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_toggle_mode", 2_586_408_642)
 
     internal val isToggleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_toggle_mode", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_toggle_mode", 36_873_697)
 
     internal val setShortcutInTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_in_tooltip", 2_586_408_642)
 
     internal val isShortcutInTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_in_tooltip_enabled", 36_873_697)
 
     internal val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_disabled", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_disabled", 2_586_408_642)
 
     internal val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_disabled", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_disabled", 36_873_697)
 
     internal val setActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_action_mode", 1985162088)
+        TypeManager.getMethodBindPtr("BaseButton", "set_action_mode", 1_985_162_088)
 
     internal val getActionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_action_mode", 2589712189)
+        TypeManager.getMethodBindPtr("BaseButton", "get_action_mode", 2_589_712_189)
 
     internal val setButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_mask", 3950145251)
+        TypeManager.getMethodBindPtr("BaseButton", "set_button_mask", 3_950_145_251)
 
     internal val getButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_mask", 2512161324)
+        TypeManager.getMethodBindPtr("BaseButton", "get_button_mask", 2_512_161_324)
 
     internal val getDrawModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_draw_mode", 2492721305)
+        TypeManager.getMethodBindPtr("BaseButton", "get_draw_mode", 2_492_721_305)
 
     internal val setKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_keep_pressed_outside", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_keep_pressed_outside", 2_586_408_642)
 
     internal val isKeepPressedOutsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_keep_pressed_outside", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_keep_pressed_outside", 36_873_697)
 
     internal val setShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_feedback", 2586408642)
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut_feedback", 2_586_408_642)
 
     internal val isShortcutFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_feedback", 36873697)
+        TypeManager.getMethodBindPtr("BaseButton", "is_shortcut_feedback", 36_873_697)
 
     internal val setShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut", 857163497)
+        TypeManager.getMethodBindPtr("BaseButton", "set_shortcut", 857_163_497)
 
     internal val getShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_shortcut", 3415666916)
+        TypeManager.getMethodBindPtr("BaseButton", "get_shortcut", 3_415_666_916)
 
     internal val setButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "set_button_group", 1794463739)
+        TypeManager.getMethodBindPtr("BaseButton", "set_button_group", 1_794_463_739)
 
     internal val getButtonGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BaseButton", "get_button_group", 281644053)
+        TypeManager.getMethodBindPtr("BaseButton", "get_button_group", 281_644_053)
   }
 }

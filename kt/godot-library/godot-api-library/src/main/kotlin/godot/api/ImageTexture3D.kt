@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,25 +18,20 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
- * [ImageTextureLayered].
+ * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also [ImageTextureLayered].
  *
- * 3D textures are typically used to store density maps for [FogMaterial], color correction LUTs for
- * [Environment], vector fields for [GPUParticlesAttractorVectorField3D] and collision maps for
- * [GPUParticlesCollisionSDF3D]. 3D textures can also be used in custom shaders.
+ * 3D textures are typically used to store density maps for [FogMaterial], color correction LUTs for [Environment], vector fields for [GPUParticlesAttractorVectorField3D] and collision maps for [GPUParticlesCollisionSDF3D]. 3D textures can also be used in custom shaders.
  */
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(286, scriptIndex)
   }
 
   /**
-   * Creates the [ImageTexture3D] with specified [width], [height], and [depth]. See [Image.Format]
-   * for [format] options. If [useMipmaps] is `true`, then generate mipmaps for the [ImageTexture3D].
+   * Creates the [ImageTexture3D] with specified [width], [height], and [depth]. See [Image.Format] for [format] options. If [useMipmaps] is `true`, then generate mipmaps for the [ImageTexture3D].
    */
   public final fun create(
     format: Image.Format,
@@ -55,11 +47,9 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   /**
-   * Replaces the texture's existing data with the layers specified in [data]. The size of [data]
-   * must match the parameters that were used for [create]. In other words, the texture cannot be
-   * resized or have its format changed by calling [update].
+   * Replaces the texture's existing data with the layers specified in [data]. The size of [data] must match the parameters that were used for [create]. In other words, the texture cannot be resized or have its format changed by calling [update].
    */
-  public final fun update(`data`: VariantArray<Image>): Unit {
+  public final fun update(`data`: VariantArray<Image>) {
     TransferContext.writeArguments(ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.updatePtr, NIL)
   }
@@ -67,42 +57,42 @@ public open class ImageTexture3D : Texture3D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("ImageTexture3D::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("ImageTexture3D::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("ImageTexture3D::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getDepth(): Int {
+  override fun _getDepth(): Int {
     throw NotImplementedError("ImageTexture3D::_getDepth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("ImageTexture3D::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getData(): VariantArray<Image> {
+  override fun _getData(): VariantArray<Image> {
     throw NotImplementedError("ImageTexture3D::_getData can't be called from the JVM.")
   }
 
@@ -110,9 +100,9 @@ public open class ImageTexture3D : Texture3D() {
 
   public object MethodBindings {
     internal val createPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture3D", "create", 1130379827)
+        TypeManager.getMethodBindPtr("ImageTexture3D", "create", 1_130_379_827)
 
     internal val updatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTexture3D", "update", 381264803)
+        TypeManager.getMethodBindPtr("ImageTexture3D", "update", 381_264_803)
   }
 }

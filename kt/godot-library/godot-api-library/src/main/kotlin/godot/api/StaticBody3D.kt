@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,24 +19,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved
- * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
- * set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
+ * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess] set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform3D].
  *
- * When [StaticBody3D] is moved, it is teleported to its new position without affecting other
- * physics bodies in its path. If this is not desired, use [AnimatableBody3D] instead.
+ * When [StaticBody3D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [AnimatableBody3D] instead.
  *
- * [StaticBody3D] is useful for completely static objects like floors and walls, as well as moving
- * surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and
- * [constantAngularVelocity]).
+ * [StaticBody3D] is useful for completely static objects like floors and walls, as well as moving surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and [constantAngularVelocity]).
  */
 @GodotBaseType
 public open class StaticBody3D : PhysicsBody3D() {
   /**
    * The physics material override for the body.
    *
-   * If a material is assigned to this property, it will be used instead of any other physics
-   * material, such as an inherited one.
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
   public final inline var physicsMaterialOverride: PhysicsMaterial?
     @JvmName("physicsMaterialOverrideProperty")
@@ -50,15 +41,11 @@ public open class StaticBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
-   * as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantLinearVelocity: Vector3
@@ -70,15 +57,11 @@ public open class StaticBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's constant angular velocity. This does not rotate the body, but affects touching
-   * bodies, as if it were rotating.
+   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantAngularVelocity: Vector3
@@ -89,13 +72,12 @@ public open class StaticBody3D : PhysicsBody3D() {
       setConstantAngularVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(632, scriptIndex)
   }
 
   /**
-   * This is a helper function for [constantLinearVelocity] to make dealing with local copies
-   * easier.
+   * This is a helper function for [constantLinearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -105,19 +87,16 @@ public open class StaticBody3D : PhysicsBody3D() {
    * staticbody3d.constantLinearVelocity = myCoreType
    * ``````
    *
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
-   * as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
   @CoreTypeHelper
-  public final fun constantLinearVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      constantLinearVelocity.apply {
+  public final fun constantLinearVelocityMutate(block: Vector3.() -> Unit): Vector3 = constantLinearVelocity.apply {
      block(this)
      constantLinearVelocity = this
   }
 
   /**
-   * This is a helper function for [constantAngularVelocity] to make dealing with local copies
-   * easier.
+   * This is a helper function for [constantAngularVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -127,22 +106,20 @@ public open class StaticBody3D : PhysicsBody3D() {
    * staticbody3d.constantAngularVelocity = myCoreType
    * ``````
    *
-   * The body's constant angular velocity. This does not rotate the body, but affects touching
-   * bodies, as if it were rotating.
+   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
    */
   @CoreTypeHelper
-  public final fun constantAngularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      constantAngularVelocity.apply {
+  public final fun constantAngularVelocityMutate(block: Vector3.() -> Unit): Vector3 = constantAngularVelocity.apply {
      block(this)
      constantAngularVelocity = this
   }
 
-  public final fun setConstantLinearVelocity(vel: Vector3): Unit {
+  public final fun setConstantLinearVelocity(vel: Vector3) {
     TransferContext.writeArguments(VECTOR3 to vel)
     TransferContext.callMethod(ptr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
 
-  public final fun setConstantAngularVelocity(vel: Vector3): Unit {
+  public final fun setConstantAngularVelocity(vel: Vector3) {
     TransferContext.writeArguments(VECTOR3 to vel)
     TransferContext.callMethod(ptr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
@@ -159,7 +136,7 @@ public open class StaticBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?) {
     TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
@@ -174,21 +151,21 @@ public open class StaticBody3D : PhysicsBody3D() {
 
   public object MethodBindings {
     internal val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "set_constant_linear_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("StaticBody3D", "set_constant_linear_velocity", 3_460_891_852)
 
     internal val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "set_constant_angular_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("StaticBody3D", "set_constant_angular_velocity", 3_460_891_852)
 
     internal val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "get_constant_linear_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("StaticBody3D", "get_constant_linear_velocity", 3_360_562_783)
 
     internal val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "get_constant_angular_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("StaticBody3D", "get_constant_angular_velocity", 3_360_562_783)
 
     internal val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "set_physics_material_override", 1784508650)
+        TypeManager.getMethodBindPtr("StaticBody3D", "set_physics_material_override", 1_784_508_650)
 
     internal val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody3D", "get_physics_material_override", 2521850424)
+        TypeManager.getMethodBindPtr("StaticBody3D", "get_physics_material_override", 2_521_850_424)
   }
 }

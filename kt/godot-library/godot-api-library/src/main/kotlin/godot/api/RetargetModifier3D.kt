@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,7 +15,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
@@ -29,17 +25,11 @@ public infix fun Long.xor(other: RetargetModifier3D.TransformFlag): Long = this.
 public infix fun Long.and(other: RetargetModifier3D.TransformFlag): Long = this.and(other.flag)
 
 /**
- * Retrieves the pose (or global pose) relative to the parent Skeleton's rest in model space and
- * transfers it to the child Skeleton.
+ * Retrieves the pose (or global pose) relative to the parent Skeleton's rest in model space and transfers it to the child Skeleton.
  *
- * This modifier rewrites the pose of the child skeleton directly in the parent skeleton's update
- * process. This means that it overwrites the mapped bone pose set in the normal process on the target
- * skeleton. If you want to set the target skeleton bone pose after retargeting, you will need to add a
- * [SkeletonModifier3D] child to the target skeleton and thereby modify the pose.
+ * This modifier rewrites the pose of the child skeleton directly in the parent skeleton's update process. This means that it overwrites the mapped bone pose set in the normal process on the target skeleton. If you want to set the target skeleton bone pose after retargeting, you will need to add a [SkeletonModifier3D] child to the target skeleton and thereby modify the pose.
  *
- * **Note:** When the [useGlobalPose] is enabled, even if it is an unmapped bone, it can cause
- * visual problems because the global pose is applied ignoring the parent bone's pose **if it has
- * mapped bone children**. See also [useGlobalPose].
+ * **Note:** When the [useGlobalPose] is enabled, even if it is an unmapped bone, it can cause visual problems because the global pose is applied ignoring the parent bone's pose **if it has mapped bone children**. See also [useGlobalPose].
  */
 @GodotBaseType
 public open class RetargetModifier3D : SkeletonModifier3D() {
@@ -55,20 +45,15 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If `false`, in case the target skeleton has fewer bones than the source skeleton, the source
-   * bone parent's transform will be ignored.
+   * If `false`, in case the target skeleton has fewer bones than the source skeleton, the source bone parent's transform will be ignored.
    *
-   * Instead, it is possible to retarget between models with different body shapes, and position,
-   * rotation, and scale can be retargeted separately.
+   * Instead, it is possible to retarget between models with different body shapes, and position, rotation, and scale can be retargeted separately.
    *
    * If `true`, retargeting is performed taking into account global pose.
    *
-   * In case the target skeleton has fewer bones than the source skeleton, the source bone parent's
-   * transform is taken into account. However, bone length between skeletons must match exactly, if
-   * not, the bones will be forced to expand or shrink.
+   * In case the target skeleton has fewer bones than the source skeleton, the source bone parent's transform is taken into account. However, bone length between skeletons must match exactly, if not, the bones will be forced to expand or shrink.
    *
-   * This is useful for using dummy bone with length `0` to match postures when retargeting between
-   * models with different number of bones.
+   * This is useful for using dummy bone with length `0` to match postures when retargeting between models with different number of bones.
    */
   public final inline var useGlobalPose: Boolean
     @JvmName("useGlobalPoseProperty")
@@ -79,8 +64,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * Flags to control the process of the transform elements individually when [useGlobalPose] is
-   * disabled.
+   * Flags to control the process of the transform elements individually when [useGlobalPose] is disabled.
    */
   public final inline var enable: TransformFlag
     @JvmName("enableProperty")
@@ -90,11 +74,11 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
       setEnableFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(560, scriptIndex)
   }
 
-  public final fun setProfile(profile: SkeletonProfile?): Unit {
+  public final fun setProfile(profile: SkeletonProfile?) {
     TransferContext.writeArguments(OBJECT to profile)
     TransferContext.callMethod(ptr, MethodBindings.setProfilePtr, NIL)
   }
@@ -105,7 +89,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(OBJECT) as SkeletonProfile?)
   }
 
-  public final fun setUseGlobalPose(useGlobalPose: Boolean): Unit {
+  public final fun setUseGlobalPose(useGlobalPose: Boolean) {
     TransferContext.writeArguments(BOOL to useGlobalPose)
     TransferContext.callMethod(ptr, MethodBindings.setUseGlobalPosePtr, NIL)
   }
@@ -116,7 +100,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnableFlags(enableFlags: TransformFlag): Unit {
+  public final fun setEnableFlags(enableFlags: TransformFlag) {
     TransferContext.writeArguments(LONG to enableFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setEnableFlagsPtr, NIL)
   }
@@ -130,7 +114,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   /**
    * Sets [TRANSFORM_FLAG_POSITION] into [enable].
    */
-  public final fun setPositionEnabled(enabled: Boolean): Unit {
+  public final fun setPositionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPositionEnabledPtr, NIL)
   }
@@ -147,7 +131,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   /**
    * Sets [TRANSFORM_FLAG_ROTATION] into [enable].
    */
-  public final fun setRotationEnabled(enabled: Boolean): Unit {
+  public final fun setRotationEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRotationEnabledPtr, NIL)
   }
@@ -164,7 +148,7 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   /**
    * Sets [TRANSFORM_FLAG_SCALE] into [enable].
    */
-  public final fun setScaleEnabled(enabled: Boolean): Unit {
+  public final fun setScaleEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setScaleEnabledPtr, NIL)
   }
@@ -236,39 +220,39 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
 
   public object MethodBindings {
     internal val setProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_profile", 3870374136)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_profile", 3_870_374_136)
 
     internal val getProfilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "get_profile", 4291782652)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "get_profile", 4_291_782_652)
 
     internal val setUseGlobalPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_use_global_pose", 2586408642)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_use_global_pose", 2_586_408_642)
 
     internal val isUsingGlobalPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_using_global_pose", 36873697)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_using_global_pose", 36_873_697)
 
     internal val setEnableFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_enable_flags", 2687954213)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_enable_flags", 2_687_954_213)
 
     internal val getEnableFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "get_enable_flags", 358995420)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "get_enable_flags", 358_995_420)
 
     internal val setPositionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_position_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_position_enabled", 2_586_408_642)
 
     internal val isPositionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_position_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_position_enabled", 36_873_697)
 
     internal val setRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_rotation_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_rotation_enabled", 2_586_408_642)
 
     internal val isRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_rotation_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_rotation_enabled", 36_873_697)
 
     internal val setScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_scale_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "set_scale_enabled", 2_586_408_642)
 
     internal val isScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_scale_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RetargetModifier3D", "is_scale_enabled", 36_873_697)
   }
 }

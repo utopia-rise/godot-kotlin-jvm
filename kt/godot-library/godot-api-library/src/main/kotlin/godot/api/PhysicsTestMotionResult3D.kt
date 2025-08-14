@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,7 +19,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -30,7 +26,7 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(484, scriptIndex)
   }
 
@@ -53,8 +49,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and
-   * `1`.
+   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
    */
   public final fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -63,8 +58,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between
-   * `0` and `1`.
+   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
    */
   public final fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
@@ -82,8 +76,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the point of collision in global coordinates given a collision index (the deepest
-   * collision by default), if a collision occurred.
+   * Returns the point of collision in global coordinates given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getCollisionPoint(collisionIndex: Int = 0): Vector3 {
@@ -93,8 +86,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape's normal at the point of collision given a collision index
-   * (the deepest collision by default), if a collision occurred.
+   * Returns the colliding body's shape's normal at the point of collision given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getCollisionNormal(collisionIndex: Int = 0): Vector3 {
@@ -104,8 +96,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's velocity given a collision index (the deepest collision by
-   * default), if a collision occurred.
+   * Returns the colliding body's velocity given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getColliderVelocity(collisionIndex: Int = 0): Vector3 {
@@ -115,8 +106,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [Object] given a collision
-   * index (the deepest collision by default), if a collision occurred. See [Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred. See [Object.getInstanceId].
    */
   @JvmOverloads
   public final fun getColliderId(collisionIndex: Int = 0): Long {
@@ -126,8 +116,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the
-   * deepest collision by default), if a collision occurred.
+   * Returns the colliding body's [RID] used by the [PhysicsServer3D] given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getColliderRid(collisionIndex: Int = 0): RID {
@@ -137,8 +126,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's attached [Object] given a collision index (the deepest collision
-   * by default), if a collision occurred.
+   * Returns the colliding body's attached [Object] given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getCollider(collisionIndex: Int = 0): Object? {
@@ -148,8 +136,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the colliding body's shape index given a collision index (the deepest collision by
-   * default), if a collision occurred. See [CollisionObject3D].
+   * Returns the colliding body's shape index given a collision index (the deepest collision by default), if a collision occurred. See [CollisionObject3D].
    */
   @JvmOverloads
   public final fun getColliderShape(collisionIndex: Int = 0): Int {
@@ -159,8 +146,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the moving object's colliding shape given a collision index (the deepest collision by
-   * default), if a collision occurred.
+   * Returns the moving object's colliding shape given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getCollisionLocalShape(collisionIndex: Int = 0): Int {
@@ -170,8 +156,7 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
   }
 
   /**
-   * Returns the length of overlap along the collision normal given a collision index (the deepest
-   * collision by default), if a collision occurred.
+   * Returns the length of overlap along the collision normal given a collision index (the deepest collision by default), if a collision occurred.
    */
   @JvmOverloads
   public final fun getCollisionDepth(collisionIndex: Int = 0): Float {
@@ -184,45 +169,45 @@ public open class PhysicsTestMotionResult3D : RefCounted() {
 
   public object MethodBindings {
     internal val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_travel", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_travel", 3_360_562_783)
 
     internal val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_remainder", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_remainder", 3_360_562_783)
 
     internal val getCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_safe_fraction", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_safe_fraction", 1_740_695_150)
 
     internal val getCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_unsafe_fraction", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_unsafe_fraction", 1_740_695_150)
 
     internal val getCollisionCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_count", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_count", 3_905_245_786)
 
     internal val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_point", 1914908202)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_point", 1_914_908_202)
 
     internal val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_normal", 1914908202)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_normal", 1_914_908_202)
 
     internal val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_velocity", 1914908202)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_velocity", 1_914_908_202)
 
     internal val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_id", 1591665591)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_id", 1_591_665_591)
 
     internal val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_rid", 1231817359)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_rid", 1_231_817_359)
 
     internal val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider", 2639523548)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider", 2_639_523_548)
 
     internal val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_shape", 1591665591)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collider_shape", 1_591_665_591)
 
     internal val getCollisionLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_local_shape", 1591665591)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_local_shape", 1_591_665_591)
 
     internal val getCollisionDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_depth", 218038398)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult3D", "get_collision_depth", 218_038_398)
   }
 }

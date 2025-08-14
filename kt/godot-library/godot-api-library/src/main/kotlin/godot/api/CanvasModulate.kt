@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,8 +18,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a
- * canvas, but [CanvasLayer]s can be used to render things independently.
+ * [CanvasModulate] applies a color tint to all nodes on a canvas. Only one can be used to tint a canvas, but [CanvasLayer]s can be used to render things independently.
  */
 @GodotBaseType
 public open class CanvasModulate : Node2D() {
@@ -30,11 +26,8 @@ public open class CanvasModulate : Node2D() {
    * The tint color to apply.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -45,7 +38,7 @@ public open class CanvasModulate : Node2D() {
       setColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(139, scriptIndex)
   }
 
@@ -68,7 +61,7 @@ public open class CanvasModulate : Node2D() {
      color = this
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -83,9 +76,9 @@ public open class CanvasModulate : Node2D() {
 
   public object MethodBindings {
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasModulate", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("CanvasModulate", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasModulate", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("CanvasModulate", "get_color", 3_444_240_500)
   }
 }

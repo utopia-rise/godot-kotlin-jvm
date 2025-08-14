@@ -38,6 +38,8 @@ interface BaseMethodeRule {
         val shouldReturn = method.getTypeName() != UNIT
         if (shouldReturn) {
             returns(methodTypeName)
+        } else {
+            returns(UNIT)
         }
 
         generateParameters(method, context)

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,23 +15,17 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Stores information about mouse, keyboard, and touch gesture input events. This includes
- * information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See
- * [Node.Input].
+ * Stores information about mouse, keyboard, and touch gesture input events. This includes information about which modifier keys are pressed, such as [kbd]Shift[/kbd] or [kbd]Alt[/kbd]. See [Node.Input].
  *
- * **Note:** Modifier keys are considered modifiers only when used in combination with another key.
- * As a result, their corresponding member variables, such as [ctrlPressed], will return `false` if the
- * key is pressed on its own.
+ * **Note:** Modifier keys are considered modifiers only when used in combination with another key. As a result, their corresponding member variables, such as [ctrlPressed], will return `false` if the key is pressed on its own.
  */
 @GodotBaseType
 public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
   /**
-   * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other
-   * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
+   * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
    */
   public final inline var commandOrControlAutoremap: Boolean
     @JvmName("commandOrControlAutoremapProperty")
@@ -78,8 +69,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   /**
-   * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key
-   * (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
+   * State of the [kbd]Meta[/kbd] modifier. On Windows and Linux, this represents the Windows key (sometimes called "meta" or "super" on Linux). On macOS, this represents the Command key.
    */
   public final inline var metaPressed: Boolean
     @JvmName("metaPressedProperty")
@@ -89,11 +79,11 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
       setMetaPressed(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(308, scriptIndex)
   }
 
-  public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {
+  public final fun setCommandOrControlAutoremap(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCommandOrControlAutoremapPtr, NIL)
   }
@@ -115,7 +105,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAltPressed(pressed: Boolean): Unit {
+  public final fun setAltPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setAltPressedPtr, NIL)
   }
@@ -126,7 +116,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShiftPressed(pressed: Boolean): Unit {
+  public final fun setShiftPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setShiftPressedPtr, NIL)
   }
@@ -137,7 +127,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCtrlPressed(pressed: Boolean): Unit {
+  public final fun setCtrlPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setCtrlPressedPtr, NIL)
   }
@@ -148,7 +138,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMetaPressed(pressed: Boolean): Unit {
+  public final fun setMetaPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setMetaPressedPtr, NIL)
   }
@@ -172,39 +162,39 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
 
   public object MethodBindings {
     internal val setCommandOrControlAutoremapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_command_or_control_autoremap", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_command_or_control_autoremap", 2_586_408_642)
 
     internal val isCommandOrControlAutoremapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_autoremap", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_autoremap", 36_873_697)
 
     internal val isCommandOrControlPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_pressed", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_command_or_control_pressed", 36_873_697)
 
     internal val setAltPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_alt_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_alt_pressed", 2_586_408_642)
 
     internal val isAltPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_alt_pressed", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_alt_pressed", 36_873_697)
 
     internal val setShiftPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_shift_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_shift_pressed", 2_586_408_642)
 
     internal val isShiftPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_shift_pressed", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_shift_pressed", 36_873_697)
 
     internal val setCtrlPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_ctrl_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_ctrl_pressed", 2_586_408_642)
 
     internal val isCtrlPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_ctrl_pressed", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_ctrl_pressed", 36_873_697)
 
     internal val setMetaPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_meta_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "set_meta_pressed", 2_586_408_642)
 
     internal val isMetaPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_meta_pressed", 36873697)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "is_meta_pressed", 36_873_697)
 
     internal val getModifiersMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventWithModifiers", "get_modifiers_mask", 1258259499)
+        TypeManager.getMethodBindPtr("InputEventWithModifiers", "get_modifiers_mask", 1_258_259_499)
   }
 }

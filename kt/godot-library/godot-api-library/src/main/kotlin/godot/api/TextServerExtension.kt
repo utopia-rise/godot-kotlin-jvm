@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,14 +27,13 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * External [TextServer] implementations should inherit from this class.
  */
 @GodotBaseType
 public abstract class TextServerExtension : TextServer() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(662, scriptIndex)
   }
 
@@ -67,7 +63,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Frees an object created by this [TextServer].
    */
-  public abstract fun _freeRid(rid: RID): Unit
+  public abstract fun _freeRid(rid: RID)
 
   /**
    * **Required.**
@@ -169,7 +165,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets font source data, e.g contents of the dynamic font source file.
    */
-  public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
+  public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray) {
     throw NotImplementedError("TextServerExtension::_fontSetData is not implemented.")
   }
 
@@ -178,7 +174,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets an active face index in the TrueType / OpenType collection.
    */
-  public open fun _fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
+  public open fun _fontSetFaceIndex(fontRid: RID, faceIndex: Long) {
     throw NotImplementedError("TextServerExtension::_fontSetFaceIndex is not implemented.")
   }
 
@@ -205,7 +201,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets the font style flags, see [TextServer.FontStyle].
    */
-  public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle): Unit {
+  public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle) {
     throw NotImplementedError("TextServerExtension::_fontSetStyle is not implemented.")
   }
 
@@ -223,7 +219,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets the font family name.
    */
-  public open fun _fontSetName(fontRid: RID, name: String): Unit {
+  public open fun _fontSetName(fontRid: RID, name: String) {
     throw NotImplementedError("TextServerExtension::_fontSetName is not implemented.")
   }
 
@@ -239,8 +235,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Returns [Dictionary] with OpenType font name strings (localized font names, version,
-   * description, license information, sample text, etc.).
+   * Returns [Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
    */
   public open fun _fontGetOtNameStrings(fontRid: RID): Dictionary<Any?, Any?> {
     throw NotImplementedError("TextServerExtension::_fontGetOtNameStrings is not implemented.")
@@ -251,7 +246,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets the font style name.
    */
-  public open fun _fontSetStyleName(fontRid: RID, nameStyle: String): Unit {
+  public open fun _fontSetStyleName(fontRid: RID, nameStyle: String) {
     throw NotImplementedError("TextServerExtension::_fontSetStyleName is not implemented.")
   }
 
@@ -267,18 +262,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is
-   * `400`, bold font weight is `700`.
+   * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
-  public open fun _fontSetWeight(fontRid: RID, weight: Long): Unit {
+  public open fun _fontSetWeight(fontRid: RID, weight: Long) {
     throw NotImplementedError("TextServerExtension::_fontSetWeight is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
-   * `400`, bold font weight is `700`.
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
   public open fun _fontGetWeight(fontRid: RID): Long {
     throw NotImplementedError("TextServerExtension::_fontGetWeight is not implemented.")
@@ -287,18 +280,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
-   * `200&#37;`.
+   * Sets font stretch amount, compared to a normal width. A percentage value between `50&#37;` and `200&#37;`.
    */
-  public open fun _fontSetStretch(fontRid: RID, stretch: Long): Unit {
+  public open fun _fontSetStretch(fontRid: RID, stretch: Long) {
     throw NotImplementedError("TextServerExtension::_fontSetStretch is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
-   * and `200&#37;`.
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;` and `200&#37;`.
    */
   public open fun _fontGetStretch(fontRid: RID): Long {
     throw NotImplementedError("TextServerExtension::_fontGetStretch is not implemented.")
@@ -309,8 +300,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets font anti-aliasing mode.
    */
-  public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing):
-      Unit {
+  public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing) {
     throw NotImplementedError("TextServerExtension::_fontSetAntialiasing is not implemented.")
   }
 
@@ -328,8 +318,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * If set to `true`, embedded font bitmap loading is disabled.
    */
-  public open fun _fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean):
-      Unit {
+  public open fun _fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetDisableEmbeddedBitmaps is not implemented.")
   }
 
@@ -347,7 +336,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * If set to `true` font texture mipmap generation is enabled.
    */
-  public open fun _fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
+  public open fun _fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetGenerateMipmaps is not implemented.")
   }
 
@@ -363,22 +352,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
-   * field generated from the dynamic font vector data. MSDF rendering allows displaying the font at
-   * any scaling factor without blurriness, and without incurring a CPU cost when the font size changes
-   * (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not
-   * available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at
-   * small sizes.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data. MSDF rendering allows displaying the font at any scaling factor without blurriness, and without incurring a CPU cost when the font size changes (since the font no longer needs to be rasterized on the CPU). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
    */
-  public open fun _fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean): Unit {
+  public open fun _fontSetMultichannelSignedDistanceField(fontRid: RID, msdf: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetMultichannelSignedDistanceField is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance
-   * field generated from the dynamic font vector data.
+   * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance field generated from the dynamic font vector data.
    */
   public open fun _fontIsMultichannelSignedDistanceField(fontRid: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsMultichannelSignedDistanceField is not implemented.")
@@ -387,18 +370,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets the width of the range around the shape between the minimum and maximum representable
-   * signed distance.
+   * Sets the width of the range around the shape between the minimum and maximum representable signed distance.
    */
-  public open fun _fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long): Unit {
+  public open fun _fontSetMsdfPixelRange(fontRid: RID, msdfPixelRange: Long) {
     throw NotImplementedError("TextServerExtension::_fontSetMsdfPixelRange is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns the width of the range around the shape between the minimum and maximum representable
-   * signed distance.
+   * Returns the width of the range around the shape between the minimum and maximum representable signed distance.
    */
   public open fun _fontGetMsdfPixelRange(fontRid: RID): Long {
     throw NotImplementedError("TextServerExtension::_fontGetMsdfPixelRange is not implemented.")
@@ -409,7 +390,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets source font size used to generate MSDF textures.
    */
-  public open fun _fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
+  public open fun _fontSetMsdfSize(fontRid: RID, msdfSize: Long) {
     throw NotImplementedError("TextServerExtension::_fontSetMsdfSize is not implemented.")
   }
 
@@ -425,10 +406,9 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Required.**
    *
-   * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used
-   * for all font sizes.
+   * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used for all font sizes.
    */
-  public abstract fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit
+  public abstract fun _fontSetFixedSize(fontRid: RID, fixedSize: Long)
 
   /**
    * **Required.**
@@ -442,8 +422,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero.
    */
-  public abstract fun _fontSetFixedSizeScaleMode(fontRid: RID,
-      fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit
+  public abstract fun _fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: TextServer.FixedSizeScaleMode)
 
   /**
    * **Required.**
@@ -457,7 +436,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
-  public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
+  public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetAllowSystemFallback is not implemented.")
   }
 
@@ -475,7 +454,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
-  public open fun _fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
+  public open fun _fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetForceAutohinter is not implemented.")
   }
 
@@ -493,7 +472,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets font hinting mode. Used by dynamic fonts only.
    */
-  public open fun _fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
+  public open fun _fontSetHinting(fontRid: RID, hinting: TextServer.Hinting) {
     throw NotImplementedError("TextServerExtension::_fontSetHinting is not implemented.")
   }
 
@@ -511,8 +490,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets font subpixel glyph positioning mode.
    */
-  public open fun _fontSetSubpixelPositioning(fontRid: RID,
-      subpixelPositioning: TextServer.SubpixelPositioning): Unit {
+  public open fun _fontSetSubpixelPositioning(fontRid: RID, subpixelPositioning: TextServer.SubpixelPositioning) {
     throw NotImplementedError("TextServerExtension::_fontSetSubpixelPositioning is not implemented.")
   }
 
@@ -528,31 +506,25 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
-   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
-   * setting has no effect if subpixel positioning is enabled.
+   * Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled.
    */
-  public open fun _fontSetKeepRoundingRemainders(fontRid: RID, keepRoundingRemainders: Boolean):
-      Unit {
+  public open fun _fontSetKeepRoundingRemainders(fontRid: RID, keepRoundingRemainders: Boolean) {
     throw NotImplementedError("TextServerExtension::_fontSetKeepRoundingRemainders is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
-   * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
-   * setting has no effect if subpixel positioning is enabled.
+   * Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled.
    */
   public open fun _fontGetKeepRoundingRemainders(fontRid: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_fontGetKeepRoundingRemainders is not implemented.")
   }
 
   /**
-   * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines.
-   * Negative values reduce the outline thickness.
+   * Sets font embolden strength. If [strength] is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
-  public open fun _fontSetEmbolden(fontRid: RID, strength: Double): Unit {
+  public open fun _fontSetEmbolden(fontRid: RID, strength: Double) {
     throw NotImplementedError("TextServerExtension::_fontSetEmbolden is not implemented.")
   }
 
@@ -568,22 +540,20 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
    */
   public open fun _fontSetSpacing(
     fontRid: RID,
     spacing: TextServer.SpacingType,
     `value`: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontSetSpacing is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
-   * font size).
+   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the font size).
    */
   public open fun _fontGetSpacing(fontRid: RID, spacing: TextServer.SpacingType): Long {
     throw NotImplementedError("TextServerExtension::_fontGetSpacing is not implemented.")
@@ -594,7 +564,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets extra baseline offset (as a fraction of font height).
    */
-  public open fun _fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
+  public open fun _fontSetBaselineOffset(fontRid: RID, baselineOffset: Double) {
     throw NotImplementedError("TextServerExtension::_fontSetBaselineOffset is not implemented.")
   }
 
@@ -610,10 +580,9 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
-   * rotating glyphs.
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and rotating glyphs.
    */
-  public open fun _fontSetTransform(fontRid: RID, transform: Transform2D): Unit {
+  public open fun _fontSetTransform(fontRid: RID, transform: Transform2D) {
     throw NotImplementedError("TextServerExtension::_fontSetTransform is not implemented.")
   }
 
@@ -631,8 +600,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets variation coordinates for the specified font cache entry.
    */
-  public open fun _fontSetVariationCoordinates(fontRid: RID,
-      variationCoordinates: Dictionary<Any?, Any?>): Unit {
+  public open fun _fontSetVariationCoordinates(fontRid: RID, variationCoordinates: Dictionary<Any?, Any?>) {
     throw NotImplementedError("TextServerExtension::_fontSetVariationCoordinates is not implemented.")
   }
 
@@ -648,18 +616,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
-   * by dynamic fonts only.
+   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
    */
-  public open fun _fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
+  public open fun _fontSetOversampling(fontRid: RID, oversampling: Double) {
     throw NotImplementedError("TextServerExtension::_fontSetOversampling is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
-   * Used by dynamic fonts only.
+   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used by dynamic fonts only.
    */
   public open fun _fontGetOversampling(fontRid: RID): Double {
     throw NotImplementedError("TextServerExtension::_fontGetOversampling is not implemented.")
@@ -668,8 +634,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Required.**
    *
-   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
-   * size.
+   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size.
    */
   public abstract fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i>
 
@@ -678,14 +643,14 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Removes all font sizes from the cache entry.
    */
-  public abstract fun _fontClearSizeCache(fontRid: RID): Unit
+  public abstract fun _fontClearSizeCache(fontRid: RID)
 
   /**
    * **Required.**
    *
    * Removes specified font size from the cache entry.
    */
-  public abstract fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit
+  public abstract fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i)
 
   /**
    * **Required.**
@@ -696,7 +661,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     ascent: Double,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -714,7 +679,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     descent: Double,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -732,7 +697,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     underlinePosition: Double,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -750,7 +715,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     underlineThickness: Double,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -768,7 +733,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     scale: Double,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -789,7 +754,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Removes all textures from font cache entry.
    */
-  public abstract fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit
+  public abstract fun _fontClearTextures(fontRid: RID, size: Vector2i)
 
   /**
    * **Required.**
@@ -800,7 +765,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     textureIndex: Long,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -812,7 +777,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     textureIndex: Long,
     image: Image?,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -835,7 +800,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     textureIndex: Long,
     offset: PackedInt32Array,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontSetTextureOffsets is not implemented.")
   }
 
@@ -864,7 +829,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Removes all rendered glyph information from the cache entry.
    */
-  public abstract fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit
+  public abstract fun _fontClearGlyphs(fontRid: RID, size: Vector2i)
 
   /**
    * **Required.**
@@ -875,7 +840,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     glyph: Long,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -898,7 +863,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Long,
     glyph: Long,
     advance: Vector2,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -921,7 +886,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long,
     offset: Vector2,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -944,7 +909,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long,
     glSize: Vector2,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -967,7 +932,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long,
     uvRect: Rect2,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -990,7 +955,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     glyph: Long,
     textureIdx: Long,
-  ): Unit
+  )
 
   /**
    * **Required.**
@@ -1041,7 +1006,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Removes all kerning overrides.
    */
-  public open fun _fontClearKerningMap(fontRid: RID, size: Long): Unit {
+  public open fun _fontClearKerningMap(fontRid: RID, size: Long) {
     throw NotImplementedError("TextServerExtension::_fontClearKerningMap is not implemented.")
   }
 
@@ -1054,7 +1019,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Long,
     glyphPair: Vector2i,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontRemoveKerning is not implemented.")
   }
 
@@ -1068,7 +1033,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Long,
     glyphPair: Vector2i,
     kerning: Vector2,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontSetKerning is not implemented.")
   }
 
@@ -1139,7 +1104,7 @@ public abstract class TextServerExtension : TextServer() {
     size: Vector2i,
     start: Long,
     end: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontRenderRange is not implemented.")
   }
 
@@ -1152,7 +1117,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     size: Vector2i,
     index: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontRenderGlyph is not implemented.")
   }
 
@@ -1168,13 +1133,12 @@ public abstract class TextServerExtension : TextServer() {
     pos: Vector2,
     index: Long,
     color: Color,
-  ): Unit
+  )
 
   /**
    * **Required.**
    *
-   * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
-   * [fontRid] at the size [size].
+   * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using [fontRid] at the size [size].
    */
   public abstract fun _fontDrawGlyphOutline(
     fontRid: RID,
@@ -1184,13 +1148,12 @@ public abstract class TextServerExtension : TextServer() {
     pos: Vector2,
     index: Long,
     color: Color,
-  ): Unit
+  )
 
   /**
    * **Optional.**
    *
-   * Returns `true`, if font supports given language
-   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
+   * Returns `true`, if font supports given language ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public open fun _fontIsLanguageSupported(fontRid: RID, language: String): Boolean {
     throw NotImplementedError("TextServerExtension::_fontIsLanguageSupported is not implemented.")
@@ -1205,7 +1168,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     language: String,
     supported: Boolean,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontSetLanguageSupportOverride is not implemented.")
   }
 
@@ -1223,7 +1186,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Remove language support override.
    */
-  public open fun _fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
+  public open fun _fontRemoveLanguageSupportOverride(fontRid: RID, language: String) {
     throw NotImplementedError("TextServerExtension::_fontRemoveLanguageSupportOverride is not implemented.")
   }
 
@@ -1254,7 +1217,7 @@ public abstract class TextServerExtension : TextServer() {
     fontRid: RID,
     script: String,
     supported: Boolean,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_fontSetScriptSupportOverride is not implemented.")
   }
 
@@ -1272,7 +1235,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Removes script support override.
    */
-  public open fun _fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
+  public open fun _fontRemoveScriptSupportOverride(fontRid: RID, script: String) {
     throw NotImplementedError("TextServerExtension::_fontRemoveScriptSupportOverride is not implemented.")
   }
 
@@ -1290,8 +1253,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets font OpenType feature set override.
    */
-  public open fun _fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
-      Unit {
+  public open fun _fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>) {
     throw NotImplementedError("TextServerExtension::_fontSetOpentypeFeatureOverrides is not implemented.")
   }
 
@@ -1336,15 +1298,14 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets oversampling factor, shared by all font in the TextServer.
    */
-  public open fun _fontSetGlobalOversampling(oversampling: Double): Unit {
+  public open fun _fontSetGlobalOversampling(oversampling: Double) {
     throw NotImplementedError("TextServerExtension::_fontSetGlobalOversampling is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns size of the replacement character (box with character hexadecimal code that is drawn in
-   * place of invalid characters).
+   * Returns size of the replacement character (box with character hexadecimal code that is drawn in place of invalid characters).
    */
   public open fun _getHexCodeBoxSize(size: Long, index: Long): Vector2 {
     throw NotImplementedError("TextServerExtension::_getHexCodeBoxSize is not implemented.")
@@ -1361,7 +1322,7 @@ public abstract class TextServerExtension : TextServer() {
     pos: Vector2,
     index: Long,
     color: Color,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_drawHexCodeBox is not implemented.")
   }
 
@@ -1370,23 +1331,21 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Creates a new buffer for complex text layout, with the given [direction] and [orientation].
    */
-  public abstract fun _createShapedText(direction: TextServer.Direction,
-      orientation: TextServer.Orientation): RID
+  public abstract fun _createShapedText(direction: TextServer.Direction, orientation: TextServer.Orientation): RID
 
   /**
    * **Required.**
    *
    * Clears text buffer (removes text and inline objects).
    */
-  public abstract fun _shapedTextClear(shaped: RID): Unit
+  public abstract fun _shapedTextClear(shaped: RID)
 
   /**
    * **Optional.**
    *
-   * Sets desired text direction. If set to [TextServer.DIRECTION_AUTO], direction will be detected
-   * based on the buffer contents and current locale.
+   * Sets desired text direction. If set to [TextServer.DIRECTION_AUTO], direction will be detected based on the buffer contents and current locale.
    */
-  public open fun _shapedTextSetDirection(shaped: RID, direction: TextServer.Direction): Unit {
+  public open fun _shapedTextSetDirection(shaped: RID, direction: TextServer.Direction) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetDirection is not implemented.")
   }
 
@@ -1413,25 +1372,23 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Overrides BiDi for the structured text.
    */
-  public open fun _shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
+  public open fun _shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetBidiOverride is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Sets custom punctuation character list, used for word breaking. If set to empty string, server
-   * defaults are used.
+   * Sets custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
    */
-  public open fun _shapedTextSetCustomPunctuation(shaped: RID, punct: String): Unit {
+  public open fun _shapedTextSetCustomPunctuation(shaped: RID, punct: String) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetCustomPunctuation is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns custom punctuation character list, used for word breaking. If set to empty string,
-   * server defaults are used.
+   * Returns custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
    */
   public open fun _shapedTextGetCustomPunctuation(shaped: RID): String {
     throw NotImplementedError("TextServerExtension::_shapedTextGetCustomPunctuation is not implemented.")
@@ -1442,7 +1399,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets ellipsis character used for text clipping.
    */
-  public open fun _shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
+  public open fun _shapedTextSetCustomEllipsis(shaped: RID, char: Long) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetCustomEllipsis is not implemented.")
   }
 
@@ -1460,8 +1417,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * Sets desired text orientation.
    */
-  public open fun _shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation):
-      Unit {
+  public open fun _shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetOrientation is not implemented.")
   }
 
@@ -1477,18 +1433,16 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise
-   * nothing is displayed.
+   * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise nothing is displayed.
    */
-  public open fun _shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean): Unit {
+  public open fun _shapedTextSetPreserveInvalid(shaped: RID, enabled: Boolean) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetPreserveInvalid is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid
-   * characters.
+   * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid characters.
    */
   public open fun _shapedTextGetPreserveInvalid(shaped: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_shapedTextGetPreserveInvalid is not implemented.")
@@ -1499,7 +1453,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * If set to `true` text buffer will display control characters.
    */
-  public open fun _shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
+  public open fun _shapedTextSetPreserveControl(shaped: RID, enabled: Boolean) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetPreserveControl is not implemented.")
   }
 
@@ -1521,7 +1475,7 @@ public abstract class TextServerExtension : TextServer() {
     shaped: RID,
     spacing: TextServer.SpacingType,
     `value`: Long,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_shapedTextSetSpacing is not implemented.")
   }
 
@@ -1552,8 +1506,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Required.**
    *
-   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
-   * as [length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
   public abstract fun _shapedTextAddObject(
     shaped: RID,
@@ -1609,13 +1562,12 @@ public abstract class TextServerExtension : TextServer() {
     fonts: VariantArray<RID>,
     size: Long,
     opentypeFeatures: Dictionary<Any?, Any?>,
-  ): Unit
+  )
 
   /**
    * **Required.**
    *
-   * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
-   * objects).
+   * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline objects).
    */
   public abstract fun _shapedTextSubstr(
     shaped: RID,
@@ -1662,8 +1614,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Updates break points in the shaped text. This method is called by default implementation of
-   * text breaking functions.
+   * Updates break points in the shaped text. This method is called by default implementation of text breaking functions.
    */
   public open fun _shapedTextUpdateBreaks(shaped: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_shapedTextUpdateBreaks is not implemented.")
@@ -1672,8 +1623,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Updates justification points in the shaped text. This method is called by default
-   * implementation of text justification functions.
+   * Updates justification points in the shaped text. This method is called by default implementation of text justification functions.
    */
   public open fun _shapedTextUpdateJustificationOps(shaped: RID): Boolean {
     throw NotImplementedError("TextServerExtension::_shapedTextUpdateJustificationOps is not implemented.")
@@ -1732,8 +1682,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
-   * characters are used for breaking (see [TextServer.GraphemeFlag]).
+   * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what characters are used for breaking (see [TextServer.GraphemeFlag]).
    */
   public open fun _shapedTextGetWordBreaks(
     shaped: RID,
@@ -1773,7 +1722,7 @@ public abstract class TextServerExtension : TextServer() {
     shaped: RID,
     width: Double,
     trimFlags: TextServer.TextOverrunFlag,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_shapedTextOverrunTrimToWidth is not implemented.")
   }
 
@@ -1815,16 +1764,14 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Required.**
    *
-   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
-   * left of baseline for vertical).
+   * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
    */
   public abstract fun _shapedTextGetAscent(shaped: RID): Double
 
   /**
    * **Required.**
    *
-   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
-   * right of baseline for vertical).
+   * Returns the text descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
    */
   public abstract fun _shapedTextGetDescent(shaped: RID): Double
 
@@ -1887,8 +1834,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Returns caret character offset at the specified pixel offset at the baseline. This function
-   * always returns a valid position.
+   * Returns caret character offset at the specified pixel offset at the baseline. This function always returns a valid position.
    */
   public open fun _shapedTextHitTestPosition(shaped: RID, coord: Double): Long {
     throw NotImplementedError("TextServerExtension::_shapedTextHitTestPosition is not implemented.")
@@ -1897,9 +1843,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the
-   * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
-   * vertical layout).
+   * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
    */
   public open fun _shapedTextDraw(
     shaped: RID,
@@ -1908,16 +1852,14 @@ public abstract class TextServerExtension : TextServer() {
     clipL: Double,
     clipR: Double,
     color: Color,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_shapedTextDraw is not implemented.")
   }
 
   /**
    * **Optional.**
    *
-   * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos]
-   * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
-   * baseline (for vertical layout).
+   * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos] specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for vertical layout).
    */
   public open fun _shapedTextDrawOutline(
     shaped: RID,
@@ -1927,7 +1869,7 @@ public abstract class TextServerExtension : TextServer() {
     clipR: Double,
     outlineSize: Long,
     color: Color,
-  ): Unit {
+  ) {
     throw NotImplementedError("TextServerExtension::_shapedTextDrawOutline is not implemented.")
   }
 
@@ -2046,8 +1988,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Returns an array of the word break boundaries. Elements in the returned array are the offsets
-   * of the start and end of words. Therefore the length of the array is always even.
+   * Returns an array of the word break boundaries. Elements in the returned array are the offsets of the start and end of words. Therefore the length of the array is always even.
    */
   public open fun _stringGetWordBreaks(
     string: String,
@@ -2069,8 +2010,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Returns index of the first string in [dict] which is visually confusable with the [string], or
-   * `-1` if none is found.
+   * Returns index of the first string in [dict] which is visually confusable with the [string], or `-1` if none is found.
    */
   public open fun _isConfusable(string: String, dict: PackedStringArray): Long {
     throw NotImplementedError("TextServerExtension::_isConfusable is not implemented.")
@@ -2115,8 +2055,7 @@ public abstract class TextServerExtension : TextServer() {
   /**
    * **Optional.**
    *
-   * Default implementation of the BiDi algorithm override function. See
-   * [TextServer.StructuredTextParser] for more info.
+   * Default implementation of the BiDi algorithm override function. See [TextServer.StructuredTextParser] for more info.
    */
   public open fun _parseStructuredText(
     parserType: TextServer.StructuredTextParser,
@@ -2131,7 +2070,7 @@ public abstract class TextServerExtension : TextServer() {
    *
    * This method is called before text server is unregistered.
    */
-  public open fun _cleanup(): Unit {
+  public open fun _cleanup() {
     throw NotImplementedError("TextServerExtension::_cleanup is not implemented.")
   }
 

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,18 +15,15 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This haptic feedback resource makes it possible to define a vibration based haptic feedback pulse
- * that can be triggered through actions in the OpenXR action map.
+ * This haptic feedback resource makes it possible to define a vibration based haptic feedback pulse that can be triggered through actions in the OpenXR action map.
  */
 @GodotBaseType
 public open class OpenXRHapticVibration : OpenXRHapticBase() {
   /**
-   * The duration of the pulse in nanoseconds. Use `-1` for a minimum duration pulse for the current
-   * XR runtime.
+   * The duration of the pulse in nanoseconds. Use `-1` for a minimum duration pulse for the current XR runtime.
    */
   public final inline var duration: Long
     @JvmName("durationProperty")
@@ -40,8 +34,7 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
     }
 
   /**
-   * The frequency of the pulse in Hz. `0.0` will let the XR runtime chose an optimal frequency for
-   * the device used.
+   * The frequency of the pulse in Hz. `0.0` will let the XR runtime chose an optimal frequency for the device used.
    */
   public final inline var frequency: Float
     @JvmName("frequencyProperty")
@@ -62,11 +55,11 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
       setAmplitude(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(425, scriptIndex)
   }
 
-  public final fun setDuration(duration: Long): Unit {
+  public final fun setDuration(duration: Long) {
     TransferContext.writeArguments(LONG to duration)
     TransferContext.callMethod(ptr, MethodBindings.setDurationPtr, NIL)
   }
@@ -77,7 +70,7 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFrequency(frequency: Float): Unit {
+  public final fun setFrequency(frequency: Float) {
     TransferContext.writeArguments(DOUBLE to frequency.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
   }
@@ -88,7 +81,7 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAmplitude(amplitude: Float): Unit {
+  public final fun setAmplitude(amplitude: Float) {
     TransferContext.writeArguments(DOUBLE to amplitude.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAmplitudePtr, NIL)
   }
@@ -103,21 +96,21 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
 
   public object MethodBindings {
     internal val setDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_duration", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_duration", 1_286_410_249)
 
     internal val getDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_duration", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_duration", 3_905_245_786)
 
     internal val setFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_frequency", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_frequency", 373_806_689)
 
     internal val getFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_frequency", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_frequency", 1_740_695_150)
 
     internal val setAmplitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_amplitude", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "set_amplitude", 373_806_689)
 
     internal val getAmplitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_amplitude", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRHapticVibration", "get_amplitude", 1_740_695_150)
   }
 }

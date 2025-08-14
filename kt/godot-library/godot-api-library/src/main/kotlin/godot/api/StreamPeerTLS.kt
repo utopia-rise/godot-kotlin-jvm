@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,28 +16,23 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
- * accept a single TLS client connection.
+ * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or accept a single TLS client connection.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(639, scriptIndex)
   }
 
   /**
-   * Poll the connection to check for incoming bytes. Call this right before
-   * [StreamPeer.getAvailableBytes] for it to work properly.
+   * Poll the connection to check for incoming bytes. Call this right before [StreamPeer.getAvailableBytes] for it to work properly.
    */
-  public final fun poll(): Unit {
+  public final fun poll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
@@ -55,10 +47,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Connects to a peer using an underlying [StreamPeer] [stream] and verifying the remote
-   * certificate is correctly signed for the given [commonName]. You can pass the optional
-   * [clientOptions] parameter to customize the trusted certification authorities, or disable the
-   * common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * Connects to a peer using an underlying [StreamPeer] [stream] and verifying the remote certificate is correctly signed for the given [commonName]. You can pass the optional [clientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public final fun connectToStream(
@@ -92,7 +81,7 @@ public open class StreamPeerTLS : StreamPeer() {
   /**
    * Disconnects from host.
    */
-  public final fun disconnectFromStream(): Unit {
+  public final fun disconnectFromStream() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromStreamPtr, NIL)
   }
@@ -117,8 +106,7 @@ public open class StreamPeerTLS : StreamPeer() {
      */
     ERROR(3),
     /**
-     * An error status that shows a mismatch in the TLS certificate domain presented by the host and
-     * the domain requested for validation.
+     * An error status that shows a mismatch in the TLS certificate domain presented by the host and the domain requested for validation.
      */
     ERROR_HOSTNAME_MISMATCH(4),
     ;
@@ -137,21 +125,21 @@ public open class StreamPeerTLS : StreamPeer() {
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "poll", 3218959716)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "poll", 3_218_959_716)
 
     internal val acceptStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "accept_stream", 4292689651)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "accept_stream", 4_292_689_651)
 
     internal val connectToStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "connect_to_stream", 57169517)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "connect_to_stream", 57_169_517)
 
     internal val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_status", 1128380576)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_status", 1_128_380_576)
 
     internal val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_stream", 2741655269)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "get_stream", 2_741_655_269)
 
     internal val disconnectFromStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream", 3218959716)
+        TypeManager.getMethodBindPtr("StreamPeerTLS", "disconnect_from_stream", 3_218_959_716)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -44,11 +41,8 @@ public open class PointLight2D : Light2D() {
    * The offset of the light's [texture].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -71,8 +65,7 @@ public open class PointLight2D : Light2D() {
     }
 
   /**
-   * The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the
-   * height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane.
+   * The height of the light. Used with 2D normal mapping. The units are in pixels, e.g. if the height is 100, then it will illuminate an object 100 pixels away at a 45° angle to the plane.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -82,7 +75,7 @@ public open class PointLight2D : Light2D() {
       setHeight(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(496, scriptIndex)
   }
 
@@ -105,7 +98,7 @@ public open class PointLight2D : Light2D() {
      offset = this
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -116,7 +109,7 @@ public open class PointLight2D : Light2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setTextureOffset(textureOffset: Vector2): Unit {
+  public final fun setTextureOffset(textureOffset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to textureOffset)
     TransferContext.callMethod(ptr, MethodBindings.setTextureOffsetPtr, NIL)
   }
@@ -127,7 +120,7 @@ public open class PointLight2D : Light2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setTextureScale(textureScale: Float): Unit {
+  public final fun setTextureScale(textureScale: Float) {
     TransferContext.writeArguments(DOUBLE to textureScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureScalePtr, NIL)
   }
@@ -142,21 +135,21 @@ public open class PointLight2D : Light2D() {
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture", 3_635_182_373)
 
     internal val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset", 743155724)
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_offset", 743_155_724)
 
     internal val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset", 3341600327)
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_offset", 3_341_600_327)
 
     internal val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale", 373806689)
+        TypeManager.getMethodBindPtr("PointLight2D", "set_texture_scale", 373_806_689)
 
     internal val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale", 1740695150)
+        TypeManager.getMethodBindPtr("PointLight2D", "get_texture_scale", 1_740_695_150)
   }
 }

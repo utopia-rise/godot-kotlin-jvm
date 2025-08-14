@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,14 +18,11 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same
- * result. However, the [signal confirmed] and [signal canceled] signals allow to make the two actions
- * different, and the [addButton] method allows to add custom buttons and actions.
+ * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same result. However, the [signal confirmed] and [signal canceled] signals allow to make the two actions different, and the [addButton] method allows to add custom buttons and actions.
  */
 @GodotBaseType
 public open class AcceptDialog : Window() {
@@ -70,15 +64,9 @@ public open class AcceptDialog : Window() {
     }
 
   /**
-   * If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you
-   * want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding
-   * the dialog in your own logic.
+   * If `true`, the dialog is hidden when the OK button is pressed. You can set it to `false` if you want to do e.g. input validation when receiving the [signal confirmed] signal, and handle hiding the dialog in your own logic.
    *
-   * **Note:** Some nodes derived from this class can have a different default value, and
-   * potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to
-   * `false`, and has its own input validation code that is called when you press OK, which eventually
-   * hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to
-   * disable hiding the dialog when pressing OK.
+   * **Note:** Some nodes derived from this class can have a different default value, and potentially their own built-in logic overriding this setting. For example [FileDialog] defaults to `false`, and has its own input validation code that is called when you press OK, which eventually hides the dialog if the input is valid. As such, this property can't be used in [FileDialog] to disable hiding the dialog when pressing OK.
    */
   public final inline var dialogHideOnOk: Boolean
     @JvmName("dialogHideOnOkProperty")
@@ -110,15 +98,14 @@ public open class AcceptDialog : Window() {
       setAutowrap(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(6, scriptIndex)
   }
 
   /**
    * Returns the OK [Button] instance.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getOkButton(): Button? {
     TransferContext.writeArguments()
@@ -129,8 +116,7 @@ public open class AcceptDialog : Window() {
   /**
    * Returns the label used for built-in text.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getLabel(): Label? {
     TransferContext.writeArguments()
@@ -138,7 +124,7 @@ public open class AcceptDialog : Window() {
     return (TransferContext.readReturnValue(OBJECT) as Label?)
   }
 
-  public final fun setHideOnOk(enabled: Boolean): Unit {
+  public final fun setHideOnOk(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setHideOnOkPtr, NIL)
   }
@@ -149,7 +135,7 @@ public open class AcceptDialog : Window() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCloseOnEscape(enabled: Boolean): Unit {
+  public final fun setCloseOnEscape(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCloseOnEscapePtr, NIL)
   }
@@ -161,8 +147,7 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label [text] and a custom [action] to the dialog and returns the created
-   * button. [action] will be passed to the [signal custom_action] signal when pressed.
+   * Adds a button with label [text] and a custom [action] to the dialog and returns the created button. [action] will be passed to the [signal custom_action] signal when pressed.
    *
    * If `true`, [right] will place the button to the right of any sibling buttons.
    *
@@ -180,8 +165,7 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Adds a button with label [name] and a cancel action to the dialog and returns the created
-   * button.
+   * Adds a button with label [name] and a cancel action to the dialog and returns the created button.
    *
    * You can use [removeButton] method to remove a button created with this method from the dialog.
    */
@@ -192,25 +176,22 @@ public open class AcceptDialog : Window() {
   }
 
   /**
-   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a
-   * [Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button]
-   * will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
+   * Removes the [button] from the dialog. Does NOT free the [button]. The [button] must be a [Button] added with [addButton] or [addCancelButton] method. After removal, pressing the [button] will no longer emit this dialog's [signal custom_action] or [signal canceled] signals.
    */
-  public final fun removeButton(button: Button?): Unit {
+  public final fun removeButton(button: Button?) {
     TransferContext.writeArguments(OBJECT to button)
     TransferContext.callMethod(ptr, MethodBindings.removeButtonPtr, NIL)
   }
 
   /**
-   * Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be
-   * accepted.
+   * Registers a [LineEdit] in the dialog. When the enter key is pressed, the dialog will be accepted.
    */
-  public final fun registerTextEnter(lineEdit: LineEdit?): Unit {
+  public final fun registerTextEnter(lineEdit: LineEdit?) {
     TransferContext.writeArguments(OBJECT to lineEdit)
     TransferContext.callMethod(ptr, MethodBindings.registerTextEnterPtr, NIL)
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -221,7 +202,7 @@ public open class AcceptDialog : Window() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setAutowrap(autowrap: Boolean): Unit {
+  public final fun setAutowrap(autowrap: Boolean) {
     TransferContext.writeArguments(BOOL to autowrap)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapPtr, NIL)
   }
@@ -232,7 +213,7 @@ public open class AcceptDialog : Window() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOkButtonText(text: String): Unit {
+  public final fun setOkButtonText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setOkButtonTextPtr, NIL)
   }
@@ -247,51 +228,51 @@ public open class AcceptDialog : Window() {
 
   public object MethodBindings {
     internal val getOkButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button", 1856205918)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button", 1_856_205_918)
 
     internal val getLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_label", 566733104)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_label", 566_733_104)
 
     internal val setHideOnOkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "set_hide_on_ok", 2586408642)
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_hide_on_ok", 2_586_408_642)
 
     internal val getHideOnOkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_hide_on_ok", 36873697)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_hide_on_ok", 36_873_697)
 
     internal val setCloseOnEscapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "set_close_on_escape", 2586408642)
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_close_on_escape", 2_586_408_642)
 
     internal val getCloseOnEscapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_close_on_escape", 36873697)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_close_on_escape", 36_873_697)
 
     internal val addButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "add_button", 3328440682)
+        TypeManager.getMethodBindPtr("AcceptDialog", "add_button", 3_328_440_682)
 
     internal val addCancelButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "add_cancel_button", 242045556)
+        TypeManager.getMethodBindPtr("AcceptDialog", "add_cancel_button", 242_045_556)
 
     internal val removeButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "remove_button", 2068354942)
+        TypeManager.getMethodBindPtr("AcceptDialog", "remove_button", 2_068_354_942)
 
     internal val registerTextEnterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "register_text_enter", 3714008017)
+        TypeManager.getMethodBindPtr("AcceptDialog", "register_text_enter", 3_714_008_017)
 
     internal val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "set_text", 83702148)
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_text", 83_702_148)
 
     internal val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_text", 201670096)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_text", 201_670_096)
 
     internal val setAutowrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "set_autowrap", 2586408642)
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_autowrap", 2_586_408_642)
 
     internal val hasAutowrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "has_autowrap", 2240911060)
+        TypeManager.getMethodBindPtr("AcceptDialog", "has_autowrap", 2_240_911_060)
 
     internal val setOkButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "set_ok_button_text", 83702148)
+        TypeManager.getMethodBindPtr("AcceptDialog", "set_ok_button_text", 83_702_148)
 
     internal val getOkButtonTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button_text", 201670096)
+        TypeManager.getMethodBindPtr("AcceptDialog", "get_ok_button_text", 201_670_096)
   }
 }

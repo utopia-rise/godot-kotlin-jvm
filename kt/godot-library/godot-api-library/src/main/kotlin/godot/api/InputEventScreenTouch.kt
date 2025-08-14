@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,8 +22,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Stores information about multi-touch press/release input events. Supports touch press, touch
- * release and [index] for multi-touch count and order.
+ * Stores information about multi-touch press/release input events. Supports touch press, touch release and [index] for multi-touch count and order.
  */
 @GodotBaseType
 public open class InputEventScreenTouch : InputEventFromWindow() {
@@ -42,15 +38,11 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   /**
-   * The touch position in the viewport the node is in, using the coordinate system of this
-   * viewport.
+   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -94,7 +86,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
       setDoubleTap(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(306, scriptIndex)
   }
 
@@ -109,8 +101,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
    * inputeventscreentouch.position = myCoreType
    * ``````
    *
-   * The touch position in the viewport the node is in, using the coordinate system of this
-   * viewport.
+   * The touch position in the viewport the node is in, using the coordinate system of this viewport.
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
@@ -118,7 +109,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
      position = this
   }
 
-  public final fun setIndex(index: Int): Unit {
+  public final fun setIndex(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setIndexPtr, NIL)
   }
@@ -129,7 +120,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -140,17 +131,17 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public final fun setCanceled(canceled: Boolean): Unit {
+  public final fun setCanceled(canceled: Boolean) {
     TransferContext.writeArguments(BOOL to canceled)
     TransferContext.callMethod(ptr, MethodBindings.setCanceledPtr, NIL)
   }
 
-  public final fun setDoubleTap(doubleTap: Boolean): Unit {
+  public final fun setDoubleTap(doubleTap: Boolean) {
     TransferContext.writeArguments(BOOL to doubleTap)
     TransferContext.callMethod(ptr, MethodBindings.setDoubleTapPtr, NIL)
   }
@@ -165,27 +156,27 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
 
   public object MethodBindings {
     internal val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_index", 1_286_410_249)
 
     internal val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_index", 3_905_245_786)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_position", 743_155_724)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "get_position", 3_341_600_327)
 
     internal val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_pressed", 2_586_408_642)
 
     internal val setCanceledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_canceled", 2_586_408_642)
 
     internal val setDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "set_double_tap", 2_586_408_642)
 
     internal val isDoubleTapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36873697)
+        TypeManager.getMethodBindPtr("InputEventScreenTouch", "is_double_tap", 36_873_697)
   }
 }

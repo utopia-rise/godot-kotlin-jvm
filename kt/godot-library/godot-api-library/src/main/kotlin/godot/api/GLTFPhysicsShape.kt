@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,15 +33,12 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` glTF
- * extensions. This class is an intermediary between the glTF data and Godot's nodes, and it's
- * abstracted in a way that allows adding support for different glTF physics extensions in the future.
+ * Represents a physics shape as defined by the `OMI_physics_shape` or `OMI_collider` glTF extensions. This class is an intermediary between the glTF data and Godot's nodes, and it's abstracted in a way that allows adding support for different glTF physics extensions in the future.
  */
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
   /**
-   * The type of shape this shape represents. Valid values are "box", "capsule", "cylinder",
-   * "sphere", "hull", and "trimesh".
+   * The type of shape this shape represents. Valid values are "box", "capsule", "cylinder", "sphere", "hull", and "trimesh".
    */
   public final inline var shapeType: String
     @JvmName("shapeTypeProperty")
@@ -55,15 +49,11 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The size of the shape, in meters. This is only used when the shape type is "box", and it
-   * represents the "diameter" of the box. This value should not be negative.
+   * The size of the shape, in meters. This is only used when the shape type is "box", and it represents the "diameter" of the box. This value should not be negative.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -75,8 +65,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The radius of the shape, in meters. This is only used when the shape type is "capsule",
-   * "cylinder", or "sphere". This value should not be negative.
+   * The radius of the shape, in meters. This is only used when the shape type is "capsule", "cylinder", or "sphere". This value should not be negative.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -87,9 +76,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The height of the shape, in meters. This is only used when the shape type is "capsule" or
-   * "cylinder". This value should not be negative, and for "capsule" it should be at least twice the
-   * radius.
+   * The height of the shape, in meters. This is only used when the shape type is "capsule" or "cylinder". This value should not be negative, and for "capsule" it should be at least twice the radius.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -100,11 +87,9 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should
-   * be a child of an Area3D node.
+   * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should be a child of an Area3D node.
    *
-   * This is the only variable not used in the [toNode] method, it's intended to be used alongside
-   * when deciding where to add the generated node as a child.
+   * This is the only variable not used in the [toNode] method, it's intended to be used alongside when deciding where to add the generated node as a child.
    */
   public final inline var isTrigger: Boolean
     @JvmName("isTriggerProperty")
@@ -115,8 +100,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The index of the shape's mesh in the glTF file. This is only used when the shape type is "hull"
-   * (convex hull) or "trimesh" (concave trimesh).
+   * The index of the shape's mesh in the glTF file. This is only used when the shape type is "hull" (convex hull) or "trimesh" (concave trimesh).
    */
   public final inline var meshIndex: Int
     @JvmName("meshIndexProperty")
@@ -127,8 +111,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull"
-   * (convex hull) or "trimesh" (concave trimesh).
+   * The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull" (convex hull) or "trimesh" (concave trimesh).
    */
   public final inline var importerMesh: ImporterMesh?
     @JvmName("importerMeshProperty")
@@ -138,7 +121,7 @@ public open class GLTFPhysicsShape : Resource() {
       setImporterMesh(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(236, scriptIndex)
   }
 
@@ -153,8 +136,7 @@ public open class GLTFPhysicsShape : Resource() {
    * gltfphysicsshape.size = myCoreType
    * ``````
    *
-   * The size of the shape, in meters. This is only used when the shape type is "box", and it
-   * represents the "diameter" of the box. This value should not be negative.
+   * The size of the shape, in meters. This is only used when the shape type is "box", and it represents the "diameter" of the box. This value should not be negative.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
@@ -183,8 +165,7 @@ public open class GLTFPhysicsShape : Resource() {
   }
 
   /**
-   * Serializes this GLTFPhysicsShape instance into a [Dictionary] in the format defined by
-   * `OMI_physics_shape`.
+   * Serializes this GLTFPhysicsShape instance into a [Dictionary] in the format defined by `OMI_physics_shape`.
    */
   public final fun toDictionary(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -198,7 +179,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setShapeType(shapeType: String): Unit {
+  public final fun setShapeType(shapeType: String) {
     TransferContext.writeArguments(STRING to shapeType)
     TransferContext.callMethod(ptr, MethodBindings.setShapeTypePtr, NIL)
   }
@@ -209,7 +190,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -220,7 +201,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -231,7 +212,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -242,7 +223,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIsTrigger(isTrigger: Boolean): Unit {
+  public final fun setIsTrigger(isTrigger: Boolean) {
     TransferContext.writeArguments(BOOL to isTrigger)
     TransferContext.callMethod(ptr, MethodBindings.setIsTriggerPtr, NIL)
   }
@@ -253,7 +234,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMeshIndex(meshIndex: Int): Unit {
+  public final fun setMeshIndex(meshIndex: Int) {
     TransferContext.writeArguments(LONG to meshIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMeshIndexPtr, NIL)
   }
@@ -264,7 +245,7 @@ public open class GLTFPhysicsShape : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as ImporterMesh?)
   }
 
-  public final fun setImporterMesh(importerMesh: ImporterMesh?): Unit {
+  public final fun setImporterMesh(importerMesh: ImporterMesh?) {
     TransferContext.writeArguments(OBJECT to importerMesh)
     TransferContext.callMethod(ptr, MethodBindings.setImporterMeshPtr, NIL)
   }
@@ -303,63 +284,63 @@ public open class GLTFPhysicsShape : Resource() {
 
   public object MethodBindings {
     internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3613751275)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_node", 3_613_751_275)
 
     internal val toNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563689933)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_node", 563_689_933)
 
     internal val fromResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3845569786)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_resource", 3_845_569_786)
 
     internal val toResourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1913542110)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_resource", 1_913_542_110)
 
     internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2390691823)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "from_dictionary", 2_390_691_823)
 
     internal val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3102165223)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "to_dictionary", 3_102_165_223)
 
     internal val getShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201670096)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_shape_type", 201_670_096)
 
     internal val setShapeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83702148)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_shape_type", 83_702_148)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_size", 3_360_562_783)
 
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_size", 3_460_891_852)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_radius", 1_740_695_150)
 
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_radius", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_height", 1_740_695_150)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_height", 373_806_689)
 
     internal val getIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36873697)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_is_trigger", 36_873_697)
 
     internal val setIsTriggerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_is_trigger", 2_586_408_642)
 
     internal val getMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_mesh_index", 3_905_245_786)
 
     internal val setMeshIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_mesh_index", 1_286_410_249)
 
     internal val getImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3161779525)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "get_importer_mesh", 3_161_779_525)
 
     internal val setImporterMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2255166972)
+        TypeManager.getMethodBindPtr("GLTFPhysicsShape", "set_importer_mesh", 2_255_166_972)
   }
 }

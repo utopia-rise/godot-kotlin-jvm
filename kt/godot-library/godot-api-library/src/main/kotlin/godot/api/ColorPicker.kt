@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,11 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A widget that provides an interface for selecting or modifying a color. It can optionally provide
- * functionalities like a color sampler (eyedropper), color modes, and presets.
+ * A widget that provides an interface for selecting or modifying a color. It can optionally provide functionalities like a color sampler (eyedropper), color modes, and presets.
  *
- * **Note:** This control is the color picker widget itself. You can use a [ColorPickerButton]
- * instead if you need a button that brings up a [ColorPicker] in a popup.
+ * **Note:** This control is the color picker widget itself. You can use a [ColorPickerButton] instead if you need a button that brings up a [ColorPicker] in a popup.
  */
 @GodotBaseType
 public open class ColorPicker : VBoxContainer() {
@@ -55,11 +50,8 @@ public open class ColorPicker : VBoxContainer() {
    * The currently selected color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -93,8 +85,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * If `true`, the color will apply only after the user releases the mouse button, otherwise it
-   * will apply immediately even in mouse motion event (which can cause performance issues).
+   * If `true`, the color will apply only after the user releases the mouse button, otherwise it will apply immediately even in mouse motion event (which can cause performance issues).
    */
   public final inline var deferredMode: Boolean
     @JvmName("deferredModeProperty")
@@ -116,8 +107,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * If `true`, it's possible to add presets under Swatches. If `false`, the button to add presets
-   * is disabled.
+   * If `true`, it's possible to add presets under Swatches. If `false`, the button to add presets is disabled.
    */
   public final inline var canAddSwatches: Boolean
     @JvmName("canAddSwatchesProperty")
@@ -182,7 +172,7 @@ public open class ColorPicker : VBoxContainer() {
       setPresetsVisible(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(161, scriptIndex)
   }
 
@@ -205,7 +195,7 @@ public open class ColorPicker : VBoxContainer() {
      color = this
   }
 
-  public final fun setPickColor(color: Color): Unit {
+  public final fun setPickColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setPickColorPtr, NIL)
   }
@@ -216,7 +206,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setDeferredMode(mode: Boolean): Unit {
+  public final fun setDeferredMode(mode: Boolean) {
     TransferContext.writeArguments(BOOL to mode)
     TransferContext.callMethod(ptr, MethodBindings.setDeferredModePtr, NIL)
   }
@@ -227,7 +217,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setColorMode(colorMode: ColorModeType): Unit {
+  public final fun setColorMode(colorMode: ColorModeType) {
     TransferContext.writeArguments(LONG to colorMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setColorModePtr, NIL)
   }
@@ -238,7 +228,7 @@ public open class ColorPicker : VBoxContainer() {
     return ColorModeType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEditAlpha(show: Boolean): Unit {
+  public final fun setEditAlpha(show: Boolean) {
     TransferContext.writeArguments(BOOL to show)
     TransferContext.callMethod(ptr, MethodBindings.setEditAlphaPtr, NIL)
   }
@@ -249,7 +239,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCanAddSwatches(enabled: Boolean): Unit {
+  public final fun setCanAddSwatches(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCanAddSwatchesPtr, NIL)
   }
@@ -260,7 +250,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPresetsVisible(visible: Boolean): Unit {
+  public final fun setPresetsVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setPresetsVisiblePtr, NIL)
   }
@@ -271,7 +261,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setModesVisible(visible: Boolean): Unit {
+  public final fun setModesVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setModesVisiblePtr, NIL)
   }
@@ -282,7 +272,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSamplerVisible(visible: Boolean): Unit {
+  public final fun setSamplerVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setSamplerVisiblePtr, NIL)
   }
@@ -293,7 +283,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSlidersVisible(visible: Boolean): Unit {
+  public final fun setSlidersVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setSlidersVisiblePtr, NIL)
   }
@@ -304,7 +294,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHexVisible(visible: Boolean): Unit {
+  public final fun setHexVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setHexVisiblePtr, NIL)
   }
@@ -316,12 +306,11 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   /**
-   * Adds the given color to a list of color presets. The presets are displayed in the color picker
-   * and the user will be able to select them.
+   * Adds the given color to a list of color presets. The presets are displayed in the color picker and the user will be able to select them.
    *
    * **Note:** The presets list is only for *this* color picker.
    */
-  public final fun addPreset(color: Color): Unit {
+  public final fun addPreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addPresetPtr, NIL)
   }
@@ -329,7 +318,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Removes the given color from the list of color presets of this color picker.
    */
-  public final fun erasePreset(color: Color): Unit {
+  public final fun erasePreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.erasePresetPtr, NIL)
   }
@@ -344,13 +333,11 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   /**
-   * Adds the given color to a list of color recent presets so that it can be picked later. Recent
-   * presets are the colors that were picked recently, a new preset is automatically created and added
-   * to recent presets when you pick a new color.
+   * Adds the given color to a list of color recent presets so that it can be picked later. Recent presets are the colors that were picked recently, a new preset is automatically created and added to recent presets when you pick a new color.
    *
    * **Note:** The recent presets list is only for *this* color picker.
    */
-  public final fun addRecentPreset(color: Color): Unit {
+  public final fun addRecentPreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.addRecentPresetPtr, NIL)
   }
@@ -358,7 +345,7 @@ public open class ColorPicker : VBoxContainer() {
   /**
    * Removes the given color from the list of color recent presets of this color picker.
    */
-  public final fun eraseRecentPreset(color: Color): Unit {
+  public final fun eraseRecentPreset(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.eraseRecentPresetPtr, NIL)
   }
@@ -372,7 +359,7 @@ public open class ColorPicker : VBoxContainer() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
-  public final fun setPickerShape(shape: PickerShapeType): Unit {
+  public final fun setPickerShape(shape: PickerShapeType) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setPickerShapePtr, NIL)
   }
@@ -395,16 +382,13 @@ public open class ColorPicker : VBoxContainer() {
      */
     MODE_HSV(1),
     /**
-     * Allows the color R, G, B component values to go beyond 1.0, which can be used for certain
-     * special operations that require it (like tinting without darkening or rendering sprites in HDR).
+     * Allows the color R, G, B component values to go beyond 1.0, which can be used for certain special operations that require it (like tinting without darkening or rendering sprites in HDR).
      */
     MODE_RAW(2),
     /**
      * Allows editing the color with Hue/Saturation/Lightness sliders.
      *
-     * OKHSL is a new color space similar to HSL but that better match perception by leveraging the
-     * Oklab color space which is designed to be simple to use, while doing a good job at predicting
-     * perceived lightness, chroma and hue.
+     * OKHSL is a new color space similar to HSL but that better match perception by leveraging the Oklab color space which is designed to be simple to use, while doing a good job at predicting perceived lightness, chroma and hue.
      *
      * [url=https://bottosson.github.io/posts/colorpicker/]Okhsv and Okhsl color spaces[/url]
      */
@@ -441,8 +425,7 @@ public open class ColorPicker : VBoxContainer() {
      */
     SHAPE_OKHSL_CIRCLE(3),
     /**
-     * The color space shape and the shape select button are hidden. Can't be selected from the
-     * shapes popup.
+     * The color space shape and the shape select button are hidden. Can't be selected from the shapes popup.
      */
     SHAPE_NONE(4),
     ;
@@ -461,87 +444,87 @@ public open class ColorPicker : VBoxContainer() {
 
   public object MethodBindings {
     internal val setPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_pick_color", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_pick_color", 2_920_490_490)
 
     internal val getPickColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_pick_color", 3444240500)
+        TypeManager.getMethodBindPtr("ColorPicker", "get_pick_color", 3_444_240_500)
 
     internal val setDeferredModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_deferred_mode", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_deferred_mode", 2_586_408_642)
 
     internal val isDeferredModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_deferred_mode", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "is_deferred_mode", 36_873_697)
 
     internal val setColorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_color_mode", 1579114136)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_color_mode", 1_579_114_136)
 
     internal val getColorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_color_mode", 392907674)
+        TypeManager.getMethodBindPtr("ColorPicker", "get_color_mode", 392_907_674)
 
     internal val setEditAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_alpha", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_alpha", 2_586_408_642)
 
     internal val isEditingAlphaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha", 36_873_697)
 
     internal val setCanAddSwatchesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches", 2_586_408_642)
 
     internal val areSwatchesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_swatches_enabled", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "are_swatches_enabled", 36_873_697)
 
     internal val setPresetsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_presets_visible", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_presets_visible", 2_586_408_642)
 
     internal val arePresetsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_presets_visible", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "are_presets_visible", 36_873_697)
 
     internal val setModesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_modes_visible", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_modes_visible", 2_586_408_642)
 
     internal val areModesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_modes_visible", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "are_modes_visible", 36_873_697)
 
     internal val setSamplerVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_sampler_visible", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sampler_visible", 2_586_408_642)
 
     internal val isSamplerVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_sampler_visible", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "is_sampler_visible", 36_873_697)
 
     internal val setSlidersVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_sliders_visible", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_sliders_visible", 2_586_408_642)
 
     internal val areSlidersVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "are_sliders_visible", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "are_sliders_visible", 36_873_697)
 
     internal val setHexVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_hex_visible", 2586408642)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_hex_visible", 2_586_408_642)
 
     internal val isHexVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "is_hex_visible", 36873697)
+        TypeManager.getMethodBindPtr("ColorPicker", "is_hex_visible", 36_873_697)
 
     internal val addPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "add_preset", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPicker", "add_preset", 2_920_490_490)
 
     internal val erasePresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "erase_preset", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPicker", "erase_preset", 2_920_490_490)
 
     internal val getPresetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_presets", 1392750486)
+        TypeManager.getMethodBindPtr("ColorPicker", "get_presets", 1_392_750_486)
 
     internal val addRecentPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "add_recent_preset", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPicker", "add_recent_preset", 2_920_490_490)
 
     internal val eraseRecentPresetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "erase_recent_preset", 2920490490)
+        TypeManager.getMethodBindPtr("ColorPicker", "erase_recent_preset", 2_920_490_490)
 
     internal val getRecentPresetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_recent_presets", 1392750486)
+        TypeManager.getMethodBindPtr("ColorPicker", "get_recent_presets", 1_392_750_486)
 
     internal val setPickerShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "set_picker_shape", 3981373861)
+        TypeManager.getMethodBindPtr("ColorPicker", "set_picker_shape", 3_981_373_861)
 
     internal val getPickerShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ColorPicker", "get_picker_shape", 1143229889)
+        TypeManager.getMethodBindPtr("ColorPicker", "get_picker_shape", 1_143_229_889)
   }
 }

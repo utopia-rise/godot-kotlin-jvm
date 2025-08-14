@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,22 +18,17 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed
- * of a number of cylindrical sections, each with the same [sectionLength] and number of
- * [sectionRings]. A [curve] is sampled along the total length of the tube, meaning that the curve
- * determines the radius of the tube along its length.
+ * [TubeTrailMesh] represents a straight tube-shaped mesh with variable width. The tube is composed of a number of cylindrical sections, each with the same [sectionLength] and number of [sectionRings]. A [curve] is sampled along the total length of the tube, meaning that the curve determines the radius of the tube along its length.
  *
  * This primitive mesh is usually used for particle trails.
  */
 @GodotBaseType
 public open class TubeTrailMesh : PrimitiveMesh() {
   /**
-   * The baseline radius of the tube. The radius of a particular section ring is obtained by
-   * multiplying this radius by the value of the [curve] at the given distance.
+   * The baseline radius of the tube. The radius of a particular section ring is obtained by multiplying this radius by the value of the [curve] at the given distance.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -47,8 +39,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal.
-   * Higher values result in a more detailed tube at the cost of performance.
+   * The number of sides on the tube. For example, a value of `5` means the tube will be pentagonal. Higher values result in a more detailed tube at the cost of performance.
    */
   public final inline var radialSteps: Int
     @JvmName("radialStepsProperty")
@@ -81,8 +72,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * The number of rings in a section. The [curve] is sampled on each ring to determine its radius.
-   * Higher values result in a more detailed tube at the cost of performance.
+   * The number of rings in a section. The [curve] is sampled on each ring to determine its radius. Higher values result in a more detailed tube at the cost of performance.
    */
   public final inline var sectionRings: Int
     @JvmName("sectionRingsProperty")
@@ -93,8 +83,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up
-   * generation and rendering when the cap is never seen by the camera.
+   * If `true`, generates a cap at the top of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera.
    */
   public final inline var capTop: Boolean
     @JvmName("capTopProperty")
@@ -105,8 +94,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up
-   * generation and rendering when the cap is never seen by the camera.
+   * If `true`, generates a cap at the bottom of the tube. This can be set to `false` to speed up generation and rendering when the cap is never seen by the camera.
    */
   public final inline var capBottom: Boolean
     @JvmName("capBottomProperty")
@@ -117,9 +105,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     }
 
   /**
-   * Determines the radius of the tube along its length. The radius of a particular section ring is
-   * obtained by multiplying the baseline [radius] by the value of this curve at the given distance.
-   * For values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
+   * Determines the radius of the tube along its length. The radius of a particular section ring is obtained by multiplying the baseline [radius] by the value of this curve at the given distance. For values smaller than `0`, the faces will be inverted. Should be a unit [Curve].
    */
   public final inline var curve: Curve?
     @JvmName("curveProperty")
@@ -129,11 +115,11 @@ public open class TubeTrailMesh : PrimitiveMesh() {
       setCurve(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(699, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -144,7 +130,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadialSteps(radialSteps: Int): Unit {
+  public final fun setRadialSteps(radialSteps: Int) {
     TransferContext.writeArguments(LONG to radialSteps.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRadialStepsPtr, NIL)
   }
@@ -155,7 +141,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSections(sections: Int): Unit {
+  public final fun setSections(sections: Int) {
     TransferContext.writeArguments(LONG to sections.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSectionsPtr, NIL)
   }
@@ -166,7 +152,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSectionLength(sectionLength: Float): Unit {
+  public final fun setSectionLength(sectionLength: Float) {
     TransferContext.writeArguments(DOUBLE to sectionLength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSectionLengthPtr, NIL)
   }
@@ -177,7 +163,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSectionRings(sectionRings: Int): Unit {
+  public final fun setSectionRings(sectionRings: Int) {
     TransferContext.writeArguments(LONG to sectionRings.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSectionRingsPtr, NIL)
   }
@@ -188,7 +174,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCapTop(capTop: Boolean): Unit {
+  public final fun setCapTop(capTop: Boolean) {
     TransferContext.writeArguments(BOOL to capTop)
     TransferContext.callMethod(ptr, MethodBindings.setCapTopPtr, NIL)
   }
@@ -199,7 +185,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCapBottom(capBottom: Boolean): Unit {
+  public final fun setCapBottom(capBottom: Boolean) {
     TransferContext.writeArguments(BOOL to capBottom)
     TransferContext.callMethod(ptr, MethodBindings.setCapBottomPtr, NIL)
   }
@@ -210,7 +196,7 @@ public open class TubeTrailMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCurve(curve: Curve?): Unit {
+  public final fun setCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurvePtr, NIL)
   }
@@ -225,51 +211,51 @@ public open class TubeTrailMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radius", 1_740_695_150)
 
     internal val setRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radial_steps", 1286410249)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_radial_steps", 1_286_410_249)
 
     internal val getRadialStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radial_steps", 3905245786)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_radial_steps", 3_905_245_786)
 
     internal val setSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_sections", 1286410249)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_sections", 1_286_410_249)
 
     internal val getSectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_sections", 3905245786)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_sections", 3_905_245_786)
 
     internal val setSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_length", 373806689)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_length", 373_806_689)
 
     internal val getSectionLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_length", 1740695150)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_length", 1_740_695_150)
 
     internal val setSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_rings", 1286410249)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_section_rings", 1_286_410_249)
 
     internal val getSectionRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_rings", 3905245786)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_section_rings", 3_905_245_786)
 
     internal val setCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_top", 2586408642)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_top", 2_586_408_642)
 
     internal val isCapTopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_top", 36873697)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_top", 36_873_697)
 
     internal val setCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom", 2586408642)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_cap_bottom", 2_586_408_642)
 
     internal val isCapBottomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom", 36873697)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "is_cap_bottom", 36_873_697)
 
     internal val setCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_curve", 270443179)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "set_curve", 270_443_179)
 
     internal val getCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_curve", 2460114913)
+        TypeManager.getMethodBindPtr("TubeTrailMesh", "get_curve", 2_460_114_913)
   }
 }

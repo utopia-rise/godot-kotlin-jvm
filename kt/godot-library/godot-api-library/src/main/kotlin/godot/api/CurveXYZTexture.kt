@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,23 +13,17 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 1D texture where the red, green, and blue color channels correspond to points on 3 unit [Curve]
- * resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving
- * curves as image files.
+ * A 1D texture where the red, green, and blue color channels correspond to points on 3 unit [Curve] resources. Compared to using separate [CurveTexture]s, this further simplifies the task of saving curves as image files.
  *
- * If you only need to store one curve within a single texture, use [CurveTexture] instead. See also
- * [GradientTexture1D] and [GradientTexture2D].
+ * If you only need to store one curve within a single texture, use [CurveTexture] instead. See also [GradientTexture1D] and [GradientTexture2D].
  */
 @GodotBaseType
 public open class CurveXYZTexture : Texture2D() {
   /**
-   * The width of the texture (in pixels). Higher values make it possible to represent
-   * high-frequency data better (such as sudden direction changes), at the cost of increased generation
-   * time and memory usage.
+   * The width of the texture (in pixels). Higher values make it possible to represent high-frequency data better (such as sudden direction changes), at the cost of increased generation time and memory usage.
    */
   public final inline var width: Int
     @JvmName("widthProperty")
@@ -75,16 +66,16 @@ public open class CurveXYZTexture : Texture2D() {
       setCurveZ(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(189, scriptIndex)
   }
 
-  public final fun setWidth(width: Int): Unit {
+  public final fun setWidth(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
 
-  public final fun setCurveX(curve: Curve?): Unit {
+  public final fun setCurveX(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurveXPtr, NIL)
   }
@@ -95,7 +86,7 @@ public open class CurveXYZTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setCurveY(curve: Curve?): Unit {
+  public final fun setCurveY(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurveYPtr, NIL)
   }
@@ -106,7 +97,7 @@ public open class CurveXYZTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setCurveZ(curve: Curve?): Unit {
+  public final fun setCurveZ(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setCurveZPtr, NIL)
   }
@@ -120,14 +111,14 @@ public open class CurveXYZTexture : Texture2D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("CurveXYZTexture::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("CurveXYZTexture::_getHeight can't be called from the JVM.")
   }
 
@@ -135,24 +126,24 @@ public open class CurveXYZTexture : Texture2D() {
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_width", 1286410249)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_width", 1_286_410_249)
 
     internal val setCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_x", 270443179)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_x", 270_443_179)
 
     internal val getCurveXPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_x", 2460114913)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_x", 2_460_114_913)
 
     internal val setCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_y", 270443179)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_y", 270_443_179)
 
     internal val getCurveYPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_y", 2460114913)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_y", 2_460_114_913)
 
     internal val setCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_z", 270443179)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "set_curve_z", 270_443_179)
 
     internal val getCurveZPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_z", 2460114913)
+        TypeManager.getMethodBindPtr("CurveXYZTexture", "get_curve_z", 2_460_114_913)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,7 +13,6 @@ import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
@@ -25,7 +21,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(403, scriptIndex)
   }
 
@@ -51,9 +47,9 @@ public open class Occluder3D internal constructor() : Resource() {
 
   public object MethodBindings {
     internal val getVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Occluder3D", "get_vertices", 497664490)
+        TypeManager.getMethodBindPtr("Occluder3D", "get_vertices", 497_664_490)
 
     internal val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Occluder3D", "get_indices", 1930428628)
+        TypeManager.getMethodBindPtr("Occluder3D", "get_indices", 1_930_428_628)
   }
 }

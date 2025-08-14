@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,11 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class generates noise using the FastNoiseLite library, which is a collection of several
- * noise algorithms including Cellular, Perlin, Value, and more.
+ * This class generates noise using the FastNoiseLite library, which is a collection of several noise algorithms including Cellular, Perlin, Value, and more.
  *
- * Most generated noise values are in the range of `[-1, 1]`, but not always. Some of the cellular
- * noise algorithms return results above `1`.
+ * Most generated noise values are in the range of `[-1, 1]`, but not always. Some of the cellular noise algorithms return results above `1`.
  */
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
@@ -59,8 +54,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The frequency for all noise types. Low frequency results in smooth noise while high frequency
-   * results in rougher, more granular noise.
+   * The frequency for all noise types. Low frequency results in smooth noise while high frequency results in rougher, more granular noise.
    */
   public final inline var frequency: Float
     @JvmName("frequencyProperty")
@@ -74,11 +68,8 @@ public open class FastNoiseLite : Noise() {
    * Translate the noise input coordinates by the given [Vector3].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector3
@@ -112,8 +103,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Frequency multiplier between subsequent octaves. Increasing this value results in higher
-   * octaves producing noise with finer details and a rougher appearance.
+   * Frequency multiplier between subsequent octaves. Increasing this value results in higher octaves producing noise with finer details and a rougher appearance.
    */
   public final inline var fractalLacunarity: Float
     @JvmName("fractalLacunarityProperty")
@@ -126,8 +116,7 @@ public open class FastNoiseLite : Noise() {
   /**
    * Determines the strength of each subsequent layer of noise in fractal noise.
    *
-   * A low value places more emphasis on the lower frequency base layers, while a high value puts
-   * more emphasis on the higher frequency layers.
+   * A low value places more emphasis on the lower frequency base layers, while a high value puts more emphasis on the higher frequency layers.
    */
   public final inline var fractalGain: Float
     @JvmName("fractalGainProperty")
@@ -160,8 +149,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Determines how the distance to the nearest/second-nearest point is computed. See
-   * [CellularDistanceFunction] for options.
+   * Determines how the distance to the nearest/second-nearest point is computed. See [CellularDistanceFunction] for options.
    */
   public final inline var cellularDistanceFunction: CellularDistanceFunction
     @JvmName("cellularDistanceFunctionProperty")
@@ -194,8 +182,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * If enabled, another FastNoiseLite instance is used to warp the space, resulting in a distortion
-   * of the noise.
+   * If enabled, another FastNoiseLite instance is used to warp the space, resulting in a distortion of the noise.
    */
   public final inline var domainWarpEnabled: Boolean
     @JvmName("domainWarpEnabledProperty")
@@ -228,8 +215,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Frequency of the noise which warps the space. Low frequency results in smooth noise while high
-   * frequency results in rougher, more granular noise.
+   * Frequency of the noise which warps the space. Low frequency results in smooth noise while high frequency results in rougher, more granular noise.
    */
   public final inline var domainWarpFrequency: Float
     @JvmName("domainWarpFrequencyProperty")
@@ -240,8 +226,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The method for combining octaves into a fractal which is used to warp the space. See
-   * [DomainWarpFractalType].
+   * The method for combining octaves into a fractal which is used to warp the space. See [DomainWarpFractalType].
    */
   public final inline var domainWarpFractalType: DomainWarpFractalType
     @JvmName("domainWarpFractalTypeProperty")
@@ -252,8 +237,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The number of noise layers that are sampled to get the final value for the fractal noise which
-   * warps the space.
+   * The number of noise layers that are sampled to get the final value for the fractal noise which warps the space.
    */
   public final inline var domainWarpFractalOctaves: Int
     @JvmName("domainWarpFractalOctavesProperty")
@@ -264,8 +248,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Octave lacunarity of the fractal noise which warps the space. Increasing this value results in
-   * higher octaves producing noise with finer details and a rougher appearance.
+   * Octave lacunarity of the fractal noise which warps the space. Increasing this value results in higher octaves producing noise with finer details and a rougher appearance.
    */
   public final inline var domainWarpFractalLacunarity: Float
     @JvmName("domainWarpFractalLacunarityProperty")
@@ -278,8 +261,7 @@ public open class FastNoiseLite : Noise() {
   /**
    * Determines the strength of each subsequent layer of the noise which is used to warp the space.
    *
-   * A low value places more emphasis on the lower frequency base layers, while a high value puts
-   * more emphasis on the higher frequency layers.
+   * A low value places more emphasis on the lower frequency base layers, while a high value puts more emphasis on the higher frequency layers.
    */
   public final inline var domainWarpFractalGain: Float
     @JvmName("domainWarpFractalGainProperty")
@@ -289,7 +271,7 @@ public open class FastNoiseLite : Noise() {
       setDomainWarpFractalGain(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(211, scriptIndex)
   }
 
@@ -312,7 +294,7 @@ public open class FastNoiseLite : Noise() {
      offset = this
   }
 
-  public final fun setNoiseType(type: NoiseType): Unit {
+  public final fun setNoiseType(type: NoiseType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setNoiseTypePtr, NIL)
   }
@@ -323,7 +305,7 @@ public open class FastNoiseLite : Noise() {
     return NoiseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSeed(seed: Int): Unit {
+  public final fun setSeed(seed: Int) {
     TransferContext.writeArguments(LONG to seed.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
   }
@@ -334,7 +316,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFrequency(freq: Float): Unit {
+  public final fun setFrequency(freq: Float) {
     TransferContext.writeArguments(DOUBLE to freq.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
   }
@@ -345,7 +327,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOffset(offset: Vector3): Unit {
+  public final fun setOffset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -356,7 +338,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setFractalType(type: FractalType): Unit {
+  public final fun setFractalType(type: FractalType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setFractalTypePtr, NIL)
   }
@@ -367,7 +349,7 @@ public open class FastNoiseLite : Noise() {
     return FractalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFractalOctaves(octaveCount: Int): Unit {
+  public final fun setFractalOctaves(octaveCount: Int) {
     TransferContext.writeArguments(LONG to octaveCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFractalOctavesPtr, NIL)
   }
@@ -378,7 +360,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFractalLacunarity(lacunarity: Float): Unit {
+  public final fun setFractalLacunarity(lacunarity: Float) {
     TransferContext.writeArguments(DOUBLE to lacunarity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFractalLacunarityPtr, NIL)
   }
@@ -389,7 +371,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFractalGain(gain: Float): Unit {
+  public final fun setFractalGain(gain: Float) {
     TransferContext.writeArguments(DOUBLE to gain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFractalGainPtr, NIL)
   }
@@ -400,7 +382,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFractalWeightedStrength(weightedStrength: Float): Unit {
+  public final fun setFractalWeightedStrength(weightedStrength: Float) {
     TransferContext.writeArguments(DOUBLE to weightedStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFractalWeightedStrengthPtr, NIL)
   }
@@ -411,7 +393,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFractalPingPongStrength(pingPongStrength: Float): Unit {
+  public final fun setFractalPingPongStrength(pingPongStrength: Float) {
     TransferContext.writeArguments(DOUBLE to pingPongStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFractalPingPongStrengthPtr, NIL)
   }
@@ -422,7 +404,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCellularDistanceFunction(func: CellularDistanceFunction): Unit {
+  public final fun setCellularDistanceFunction(func: CellularDistanceFunction) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setCellularDistanceFunctionPtr, NIL)
   }
@@ -433,7 +415,7 @@ public open class FastNoiseLite : Noise() {
     return CellularDistanceFunction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCellularJitter(jitter: Float): Unit {
+  public final fun setCellularJitter(jitter: Float) {
     TransferContext.writeArguments(DOUBLE to jitter.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCellularJitterPtr, NIL)
   }
@@ -444,7 +426,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCellularReturnType(ret: CellularReturnType): Unit {
+  public final fun setCellularReturnType(ret: CellularReturnType) {
     TransferContext.writeArguments(LONG to ret.id)
     TransferContext.callMethod(ptr, MethodBindings.setCellularReturnTypePtr, NIL)
   }
@@ -455,7 +437,7 @@ public open class FastNoiseLite : Noise() {
     return CellularReturnType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDomainWarpEnabled(domainWarpEnabled: Boolean): Unit {
+  public final fun setDomainWarpEnabled(domainWarpEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to domainWarpEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpEnabledPtr, NIL)
   }
@@ -466,7 +448,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDomainWarpType(domainWarpType: DomainWarpType): Unit {
+  public final fun setDomainWarpType(domainWarpType: DomainWarpType) {
     TransferContext.writeArguments(LONG to domainWarpType.id)
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpTypePtr, NIL)
   }
@@ -477,7 +459,7 @@ public open class FastNoiseLite : Noise() {
     return DomainWarpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDomainWarpAmplitude(domainWarpAmplitude: Float): Unit {
+  public final fun setDomainWarpAmplitude(domainWarpAmplitude: Float) {
     TransferContext.writeArguments(DOUBLE to domainWarpAmplitude.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpAmplitudePtr, NIL)
   }
@@ -488,7 +470,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDomainWarpFrequency(domainWarpFrequency: Float): Unit {
+  public final fun setDomainWarpFrequency(domainWarpFrequency: Float) {
     TransferContext.writeArguments(DOUBLE to domainWarpFrequency.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpFrequencyPtr, NIL)
   }
@@ -499,7 +481,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDomainWarpFractalType(domainWarpFractalType: DomainWarpFractalType): Unit {
+  public final fun setDomainWarpFractalType(domainWarpFractalType: DomainWarpFractalType) {
     TransferContext.writeArguments(LONG to domainWarpFractalType.id)
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpFractalTypePtr, NIL)
   }
@@ -510,7 +492,7 @@ public open class FastNoiseLite : Noise() {
     return DomainWarpFractalType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDomainWarpFractalOctaves(domainWarpOctaveCount: Int): Unit {
+  public final fun setDomainWarpFractalOctaves(domainWarpOctaveCount: Int) {
     TransferContext.writeArguments(LONG to domainWarpOctaveCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpFractalOctavesPtr, NIL)
   }
@@ -521,7 +503,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setDomainWarpFractalLacunarity(domainWarpLacunarity: Float): Unit {
+  public final fun setDomainWarpFractalLacunarity(domainWarpLacunarity: Float) {
     TransferContext.writeArguments(DOUBLE to domainWarpLacunarity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpFractalLacunarityPtr, NIL)
   }
@@ -532,7 +514,7 @@ public open class FastNoiseLite : Noise() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDomainWarpFractalGain(domainWarpGain: Float): Unit {
+  public final fun setDomainWarpFractalGain(domainWarpGain: Float) {
     TransferContext.writeArguments(DOUBLE to domainWarpGain.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDomainWarpFractalGainPtr, NIL)
   }
@@ -553,29 +535,23 @@ public open class FastNoiseLite : Noise() {
     /**
      * Similar to Value noise, but slower. Has more variance in peaks and valleys.
      *
-     * Cubic noise can be used to avoid certain artifacts when using value noise to create a
-     * bumpmap. In general, you should always use this mode if the value noise is being used for a
-     * heightmap or bumpmap.
+     * Cubic noise can be used to avoid certain artifacts when using value noise to create a bumpmap. In general, you should always use this mode if the value noise is being used for a heightmap or bumpmap.
      */
     TYPE_VALUE_CUBIC(4),
     /**
-     * A lattice of random gradients. Their dot products are interpolated to obtain values in
-     * between the lattices.
+     * A lattice of random gradients. Their dot products are interpolated to obtain values in between the lattices.
      */
     TYPE_PERLIN(3),
     /**
-     * Cellular includes both Worley noise and Voronoi diagrams which creates various regions of the
-     * same value.
+     * Cellular includes both Worley noise and Voronoi diagrams which creates various regions of the same value.
      */
     TYPE_CELLULAR(2),
     /**
-     * As opposed to [TYPE_PERLIN], gradients exist in a simplex lattice rather than a grid lattice,
-     * avoiding directional artifacts. Internally uses FastNoiseLite's OpenSimplex2 noise type.
+     * As opposed to [TYPE_PERLIN], gradients exist in a simplex lattice rather than a grid lattice, avoiding directional artifacts. Internally uses FastNoiseLite's OpenSimplex2 noise type.
      */
     TYPE_SIMPLEX(0),
     /**
-     * Modified, higher quality version of [TYPE_SIMPLEX], but slower. Internally uses
-     * FastNoiseLite's OpenSimplex2S noise type.
+     * Modified, higher quality version of [TYPE_SIMPLEX], but slower. Internally uses FastNoiseLite's OpenSimplex2S noise type.
      */
     TYPE_SIMPLEX_SMOOTH(1),
     ;
@@ -660,8 +636,7 @@ public open class FastNoiseLite : Noise() {
      */
     RETURN_CELL_VALUE(0),
     /**
-     * The cellular distance function will return a value determined by the distance to the nearest
-     * point.
+     * The cellular distance function will return a value determined by the distance to the nearest point.
      */
     RETURN_DISTANCE(1),
     /**
@@ -673,13 +648,11 @@ public open class FastNoiseLite : Noise() {
      */
     RETURN_DISTANCE2_ADD(3),
     /**
-     * The distance to the nearest point is subtracted from the distance to the second-nearest
-     * point.
+     * The distance to the nearest point is subtracted from the distance to the second-nearest point.
      */
     RETURN_DISTANCE2_SUB(4),
     /**
-     * The distance to the nearest point is multiplied with the distance to the second-nearest
-     * point.
+     * The distance to the nearest point is multiplied with the distance to the second-nearest point.
      */
     RETURN_DISTANCE2_MUL(5),
     /**
@@ -710,8 +683,7 @@ public open class FastNoiseLite : Noise() {
      */
     SIMPLEX_REDUCED(1),
     /**
-     * The domain is warped using a simple noise grid (not as smooth as the other methods, but more
-     * performant).
+     * The domain is warped using a simple noise grid (not as smooth as the other methods, but more performant).
      */
     BASIC_GRID(2),
     ;
@@ -734,8 +706,7 @@ public open class FastNoiseLite : Noise() {
      */
     NONE(0),
     /**
-     * Warping the space progressively, octave for octave, resulting in a more "liquified"
-     * distortion.
+     * Warping the space progressively, octave for octave, resulting in a more "liquified" distortion.
      */
     PROGRESSIVE(1),
     /**
@@ -758,129 +729,129 @@ public open class FastNoiseLite : Noise() {
 
   public object MethodBindings {
     internal val setNoiseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_noise_type", 2624461392)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_noise_type", 2_624_461_392)
 
     internal val getNoiseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_noise_type", 1458108610)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_noise_type", 1_458_108_610)
 
     internal val setSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_seed", 1286410249)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_seed", 1_286_410_249)
 
     internal val getSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_seed", 3905245786)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_seed", 3_905_245_786)
 
     internal val setFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_frequency", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_frequency", 373_806_689)
 
     internal val getFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_frequency", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_frequency", 1_740_695_150)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_offset", 3460891852)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_offset", 3_460_891_852)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_offset", 3360562783)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_offset", 3_360_562_783)
 
     internal val setFractalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_type", 4132731174)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_type", 4_132_731_174)
 
     internal val getFractalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_type", 1036889279)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_type", 1_036_889_279)
 
     internal val setFractalOctavesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_octaves", 1286410249)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_octaves", 1_286_410_249)
 
     internal val getFractalOctavesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_octaves", 3905245786)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_octaves", 3_905_245_786)
 
     internal val setFractalLacunarityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_lacunarity", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_lacunarity", 373_806_689)
 
     internal val getFractalLacunarityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_lacunarity", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_lacunarity", 1_740_695_150)
 
     internal val setFractalGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_gain", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_gain", 373_806_689)
 
     internal val getFractalGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_gain", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_gain", 1_740_695_150)
 
     internal val setFractalWeightedStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_weighted_strength", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_weighted_strength", 373_806_689)
 
     internal val getFractalWeightedStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_weighted_strength", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_weighted_strength", 1_740_695_150)
 
     internal val setFractalPingPongStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_ping_pong_strength", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_fractal_ping_pong_strength", 373_806_689)
 
     internal val getFractalPingPongStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_ping_pong_strength", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_fractal_ping_pong_strength", 1_740_695_150)
 
     internal val setCellularDistanceFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_distance_function", 1006013267)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_distance_function", 1_006_013_267)
 
     internal val getCellularDistanceFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_distance_function", 2021274088)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_distance_function", 2_021_274_088)
 
     internal val setCellularJitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_jitter", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_jitter", 373_806_689)
 
     internal val getCellularJitterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_jitter", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_jitter", 1_740_695_150)
 
     internal val setCellularReturnTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_return_type", 2654169698)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_cellular_return_type", 2_654_169_698)
 
     internal val getCellularReturnTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_return_type", 3699796343)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_cellular_return_type", 3_699_796_343)
 
     internal val setDomainWarpEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_enabled", 2_586_408_642)
 
     internal val isDomainWarpEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "is_domain_warp_enabled", 36873697)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "is_domain_warp_enabled", 36_873_697)
 
     internal val setDomainWarpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_type", 3629692980)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_type", 3_629_692_980)
 
     internal val getDomainWarpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_type", 2980162020)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_type", 2_980_162_020)
 
     internal val setDomainWarpAmplitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_amplitude", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_amplitude", 373_806_689)
 
     internal val getDomainWarpAmplitudePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_amplitude", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_amplitude", 1_740_695_150)
 
     internal val setDomainWarpFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_frequency", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_frequency", 373_806_689)
 
     internal val getDomainWarpFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_frequency", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_frequency", 1_740_695_150)
 
     internal val setDomainWarpFractalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_type", 3999408287)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_type", 3_999_408_287)
 
     internal val getDomainWarpFractalTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_type", 407716934)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_type", 407_716_934)
 
     internal val setDomainWarpFractalOctavesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_octaves", 1286410249)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_octaves", 1_286_410_249)
 
     internal val getDomainWarpFractalOctavesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_octaves", 3905245786)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_octaves", 3_905_245_786)
 
     internal val setDomainWarpFractalLacunarityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_lacunarity", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_lacunarity", 373_806_689)
 
     internal val getDomainWarpFractalLacunarityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_lacunarity", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_lacunarity", 1_740_695_150)
 
     internal val setDomainWarpFractalGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_gain", 373806689)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "set_domain_warp_fractal_gain", 373_806_689)
 
     internal val getDomainWarpFractalGainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_gain", 1740695150)
+        TypeManager.getMethodBindPtr("FastNoiseLite", "get_domain_warp_fractal_gain", 1_740_695_150)
   }
 }

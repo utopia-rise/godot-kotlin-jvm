@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -46,8 +42,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * Sets the level of precision to use for the derivative function. See [Precision] for options.
-   * When using the Compatibility renderer, this setting has no effect.
+   * Sets the level of precision to use for the derivative function. See [Precision] for options. When using the Compatibility renderer, this setting has no effect.
    */
   public final inline var precision: Precision
     @JvmName("precisionProperty")
@@ -57,11 +52,11 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
       setPrecision(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(744, scriptIndex)
   }
 
-  public final fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
@@ -72,7 +67,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     return OpType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -83,7 +78,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPrecision(precision: Precision): Unit {
+  public final fun setPrecision(precision: Precision) {
     TransferContext.writeArguments(LONG to precision.id)
     TransferContext.callMethod(ptr, MethodBindings.setPrecisionPtr, NIL)
   }
@@ -164,22 +159,15 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * No precision is specified, the GPU driver is allowed to use whatever level of precision it
-     * chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text
-     * shaders.
+     * No precision is specified, the GPU driver is allowed to use whatever level of precision it chooses. This is the default option and is equivalent to using `dFdx()` or `dFdy()` in text shaders.
      */
     NONE(0),
     /**
-     * The derivative will be calculated using the current fragment's neighbors (which may not
-     * include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not
-     * be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or
-     * `dFdyCoarse()` in text shaders.
+     * The derivative will be calculated using the current fragment's neighbors (which may not include the current fragment). This tends to be faster than using [PRECISION_FINE], but may not be suitable when more precision is needed. This is equivalent to using `dFdxCoarse()` or `dFdyCoarse()` in text shaders.
      */
     COARSE(1),
     /**
-     * The derivative will be calculated using the current fragment and its immediate neighbors.
-     * This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision
-     * is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
+     * The derivative will be calculated using the current fragment and its immediate neighbors. This tends to be slower than using [PRECISION_COARSE], but may be necessary when more precision is needed. This is equivalent to using `dFdxFine()` or `dFdyFine()` in text shaders.
      */
     FINE(2),
     /**
@@ -202,21 +190,21 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_op_type", 377800221)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_op_type", 377_800_221)
 
     internal val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_op_type", 3997800514)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_op_type", 3_997_800_514)
 
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_function", 1944704156)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_function", 1_944_704_156)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_function", 2389093396)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_function", 2_389_093_396)
 
     internal val setPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_precision", 797270566)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "set_precision", 797_270_566)
 
     internal val getPrecisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_precision", 3822547323)
+        TypeManager.getMethodBindPtr("VisualShaderNodeDerivativeFunc", "get_precision", 3_822_547_323)
   }
 }

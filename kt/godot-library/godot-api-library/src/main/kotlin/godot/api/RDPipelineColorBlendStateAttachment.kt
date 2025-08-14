@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Controls how blending between source and destination fragments is performed when using
- * [RenderingDevice].
+ * Controls how blending between source and destination fragments is performed when using [RenderingDevice].
  *
  * For reference, this is how common user-facing blend modes are implemented in Godot's 2D renderer:
  *
@@ -94,10 +89,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   /**
-   * If `true`, performs blending between the source and destination according to the factors
-   * defined in [srcColorBlendFactor], [dstColorBlendFactor], [srcAlphaBlendFactor] and
-   * [dstAlphaBlendFactor]. The blend modes [colorBlendOp] and [alphaBlendOp] are also taken into
-   * account, with [writeR], [writeG], [writeB] and [writeA] controlling the output.
+   * If `true`, performs blending between the source and destination according to the factors defined in [srcColorBlendFactor], [dstColorBlendFactor], [srcAlphaBlendFactor] and [dstAlphaBlendFactor]. The blend modes [colorBlendOp] and [alphaBlendOp] are also taken into account, with [writeR], [writeG], [writeB] and [writeA] controlling the output.
    */
   public final inline var enableBlend: Boolean
     @JvmName("enableBlendProperty")
@@ -108,8 +100,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   /**
-   * Controls how the blend factor for the color channels is determined based on the source's
-   * fragments.
+   * Controls how the blend factor for the color channels is determined based on the source's fragments.
    */
   public final inline var srcColorBlendFactor: RenderingDevice.BlendFactor
     @JvmName("srcColorBlendFactorProperty")
@@ -120,8 +111,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   /**
-   * Controls how the blend factor for the color channels is determined based on the destination's
-   * fragments.
+   * Controls how the blend factor for the color channels is determined based on the destination's fragments.
    */
   public final inline var dstColorBlendFactor: RenderingDevice.BlendFactor
     @JvmName("dstColorBlendFactorProperty")
@@ -143,8 +133,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   /**
-   * Controls how the blend factor for the alpha channel is determined based on the source's
-   * fragments.
+   * Controls how the blend factor for the alpha channel is determined based on the source's fragments.
    */
   public final inline var srcAlphaBlendFactor: RenderingDevice.BlendFactor
     @JvmName("srcAlphaBlendFactorProperty")
@@ -155,8 +144,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   /**
-   * Controls how the blend factor for the alpha channel is determined based on the destination's
-   * fragments.
+   * Controls how the blend factor for the alpha channel is determined based on the destination's fragments.
    */
   public final inline var dstAlphaBlendFactor: RenderingDevice.BlendFactor
     @JvmName("dstAlphaBlendFactorProperty")
@@ -221,24 +209,19 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       setWriteA(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(516, scriptIndex)
   }
 
   /**
-   * Convenience method to perform standard mix blending with straight (non-premultiplied) alpha.
-   * This sets [enableBlend] to `true`, [srcColorBlendFactor] to
-   * [RenderingDevice.BLEND_FACTOR_SRC_ALPHA], [dstColorBlendFactor] to
-   * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA], [srcAlphaBlendFactor] to
-   * [RenderingDevice.BLEND_FACTOR_SRC_ALPHA] and [dstAlphaBlendFactor] to
-   * [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
+   * Convenience method to perform standard mix blending with straight (non-premultiplied) alpha. This sets [enableBlend] to `true`, [srcColorBlendFactor] to [RenderingDevice.BLEND_FACTOR_SRC_ALPHA], [dstColorBlendFactor] to [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA], [srcAlphaBlendFactor] to [RenderingDevice.BLEND_FACTOR_SRC_ALPHA] and [dstAlphaBlendFactor] to [RenderingDevice.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA].
    */
-  public final fun setAsMix(): Unit {
+  public final fun setAsMix() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setAsMixPtr, NIL)
   }
 
-  public final fun setEnableBlend(pMember: Boolean): Unit {
+  public final fun setEnableBlend(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableBlendPtr, NIL)
   }
@@ -249,7 +232,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSrcColorBlendFactorPtr, NIL)
   }
@@ -260,7 +243,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setDstColorBlendFactorPtr, NIL)
   }
@@ -271,7 +254,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setColorBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
+  public final fun setColorBlendOp(pMember: RenderingDevice.BlendOperation) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setColorBlendOpPtr, NIL)
   }
@@ -282,7 +265,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSrcAlphaBlendFactorPtr, NIL)
   }
@@ -293,7 +276,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
+  public final fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setDstAlphaBlendFactorPtr, NIL)
   }
@@ -304,7 +287,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendFactor.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
+  public final fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaBlendOpPtr, NIL)
   }
@@ -315,7 +298,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return RenderingDevice.BlendOperation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setWriteR(pMember: Boolean): Unit {
+  public final fun setWriteR(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setWriteRPtr, NIL)
   }
@@ -326,7 +309,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWriteG(pMember: Boolean): Unit {
+  public final fun setWriteG(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setWriteGPtr, NIL)
   }
@@ -337,7 +320,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWriteB(pMember: Boolean): Unit {
+  public final fun setWriteB(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setWriteBPtr, NIL)
   }
@@ -348,7 +331,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setWriteA(pMember: Boolean): Unit {
+  public final fun setWriteA(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setWriteAPtr, NIL)
   }
@@ -363,72 +346,72 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
 
   public object MethodBindings {
     internal val setAsMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix", 3218959716)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_as_mix", 3_218_959_716)
 
     internal val setEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_enable_blend", 2_586_408_642)
 
     internal val getEnableBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_enable_blend", 36_873_697)
 
     internal val setSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor", 2251019273)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_color_blend_factor", 2_251_019_273)
 
     internal val getSrcColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor", 3691288359)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_color_blend_factor", 3_691_288_359)
 
     internal val setDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor", 2251019273)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_color_blend_factor", 2_251_019_273)
 
     internal val getDstColorBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor", 3691288359)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_color_blend_factor", 3_691_288_359)
 
     internal val setColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op", 3073022720)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_color_blend_op", 3_073_022_720)
 
     internal val getColorBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op", 1385093561)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_color_blend_op", 1_385_093_561)
 
     internal val setSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor", 2251019273)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_src_alpha_blend_factor", 2_251_019_273)
 
     internal val getSrcAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor", 3691288359)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_src_alpha_blend_factor", 3_691_288_359)
 
     internal val setDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor", 2251019273)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_dst_alpha_blend_factor", 2_251_019_273)
 
     internal val getDstAlphaBlendFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor", 3691288359)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_dst_alpha_blend_factor", 3_691_288_359)
 
     internal val setAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op", 3073022720)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_alpha_blend_op", 3_073_022_720)
 
     internal val getAlphaBlendOpPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op", 1385093561)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_alpha_blend_op", 1_385_093_561)
 
     internal val setWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_r", 2_586_408_642)
 
     internal val getWriteRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_r", 36_873_697)
 
     internal val setWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_g", 2_586_408_642)
 
     internal val getWriteGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_g", 36_873_697)
 
     internal val setWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_b", 2_586_408_642)
 
     internal val getWriteBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_b", 36_873_697)
 
     internal val setWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "set_write_a", 2_586_408_642)
 
     internal val getWriteAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineColorBlendStateAttachment", "get_write_a", 36_873_697)
   }
 }

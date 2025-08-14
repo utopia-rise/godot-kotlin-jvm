@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,21 +19,16 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful
- * for serializing data, e.g. to save to a file or send over the network.
+ * The [JSON] class enables all data types to be converted to and from a JSON string. This is useful for serializing data, e.g. to save to a file or send over the network.
  *
  * [stringify] is used to convert any data type into a JSON string.
  *
- * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot.
- * If successfully parsed, use [data] to retrieve the [Variant], and use [@GlobalScope.typeof] to check
- * if the Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON
- * data can be used to store [Array]s, numbers, [String]s and even just a boolean.
+ * [parse] is used to convert any existing JSON data into a [Variant] that can be used within Godot. If successfully parsed, use [data] to retrieve the [Variant], and use [@GlobalScope.typeof] to check if the Variant's type is what you expect. JSON Objects are converted into a [Dictionary], but JSON data can be used to store [Array]s, numbers, [String]s and even just a boolean.
  *
  * ```
  * var data_to_send = ["a", "b", "c"]
@@ -53,12 +45,10 @@ import kotlin.jvm.JvmStatic
  *     else:
  *         print("Unexpected data")
  * else:
- *     print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
- * json.get_error_line())
+ *     print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ", json.get_error_line())
  * ```
  *
- * Alternatively, you can parse strings using the static [parseString] method, but it doesn't handle
- * errors.
+ * Alternatively, you can parse strings using the static [parseString] method, but it doesn't handle errors.
  *
  * ```
  * var data = JSON.parse_string(json_string) # Returns null if parsing failed.
@@ -68,14 +58,11 @@ import kotlin.jvm.JvmStatic
  *
  * - Trailing commas in arrays or objects are ignored, instead of causing a parser error.
  *
- * - New line and tab characters are accepted in string literals, and are treated like their
- * corresponding escape sequences `\n` and `\t`.
+ * - New line and tab characters are accepted in string literals, and are treated like their corresponding escape sequences `\n` and `\t`.
  *
- * - Numbers are parsed using [String.toFloat] which is generally more lax than the JSON
- * specification.
+ * - Numbers are parsed using [String.toFloat] which is generally more lax than the JSON specification.
  *
- * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the
- * string is cleaned up and an error is logged to the console.
+ * - Certain errors, such as invalid Unicode sequences, do not cause a parser error. Instead, the string is cleaned up and an error is logged to the console.
  */
 @GodotBaseType
 public open class JSON : Resource() {
@@ -90,22 +77,18 @@ public open class JSON : Resource() {
       setData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(314, scriptIndex)
   }
 
   /**
    * Attempts to parse the [jsonText] provided.
    *
-   * Returns an [Error]. If the parse was successful, it returns [OK] and the result can be
-   * retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] to identify the
-   * source of the failure.
+   * Returns an [Error]. If the parse was successful, it returns [OK] and the result can be retrieved using [data]. If unsuccessful, use [getErrorLine] and [getErrorMessage] to identify the source of the failure.
    *
    * Non-static variant of [parseString], if you want custom error handling.
    *
-   * The optional [keepText] argument instructs the parser to keep a copy of the original text. This
-   * text can be obtained later by using the [getParsedText] function and is used when saving the
-   * resource (instead of generating new text from [data]).
+   * The optional [keepText] argument instructs the parser to keep a copy of the original text. This text can be obtained later by using the [getParsedText] function and is used when saving the resource (instead of generating new text from [data]).
    */
   @JvmOverloads
   public final fun parse(jsonText: String, keepText: Boolean = false): Error {
@@ -120,7 +103,7 @@ public open class JSON : Resource() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public final fun setData(`data`: Any?): Unit {
+  public final fun setData(`data`: Any?) {
     TransferContext.writeArguments(ANY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
@@ -135,8 +118,7 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Returns `0` if the last call to [parse] was successful, or the line number where the parse
-   * failed.
+   * Returns `0` if the last call to [parse] was successful, or the line number where the parse failed.
    */
   public final fun getErrorLine(): Int {
     TransferContext.writeArguments()
@@ -145,8 +127,7 @@ public open class JSON : Resource() {
   }
 
   /**
-   * Returns an empty string if the last call to [parse] was successful, or the error message if it
-   * failed.
+   * Returns an empty string if the last call to [parse] was successful, or the error message if it failed.
    */
   public final fun getErrorMessage(): String {
     TransferContext.writeArguments()
@@ -156,19 +137,13 @@ public open class JSON : Resource() {
 
   public companion object {
     /**
-     * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to
-     * store or send over the network.
+     * Converts a [Variant] var to JSON text and returns the result. Useful for serializing data to store or send over the network.
      *
-     * **Note:** The JSON specification does not define integer or float types, but only a *number*
-     * type. Therefore, converting a Variant to JSON text will convert all numerical values to [float]
-     * types.
+     * **Note:** The JSON specification does not define integer or float types, but only a *number* type. Therefore, converting a Variant to JSON text will convert all numerical values to [float] types.
      *
-     * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are
-     * stringified in addition to the reliable digits to guarantee exact decoding.
+     * **Note:** If [fullPrecision] is `true`, when stringifying floats, the unreliable digits are stringified in addition to the reliable digits to guarantee exact decoding.
      *
-     * The [indent] parameter controls if and how something is indented; its contents will be used
-     * where there should be an indent in the output. Even spaces like `"   "` will work. `\t` and `\n`
-     * can also be used for a tab indent, or to make a newline for each indent respectively.
+     * The [indent] parameter controls if and how something is indented; its contents will be used where there should be an indent in the output. Even spaces like `"   "` will work. `\t` and `\n` can also be used for a tab indent, or to make a newline for each indent respectively.
      *
      * **Example output:**
      *
@@ -223,8 +198,7 @@ public open class JSON : Resource() {
     }
 
     /**
-     * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if
-     * parse failed.
+     * Attempts to parse the [jsonString] provided and returns the parsed data. Returns `null` if parse failed.
      */
     @JvmStatic
     public final fun parseString(jsonString: String): Any? {
@@ -254,8 +228,7 @@ public open class JSON : Resource() {
     }
 
     /**
-     * Converts a JSON-compliant value that was created with [fromNative] back to native engine
-     * types.
+     * Converts a JSON-compliant value that was created with [fromNative] back to native engine types.
      *
      * By default, objects are ignored for security reasons, unless [allowObjects] is `true`.
      *
@@ -277,30 +250,32 @@ public open class JSON : Resource() {
 
   public object MethodBindings {
     internal val stringifyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "stringify", 462733549)
+        TypeManager.getMethodBindPtr("JSON", "stringify", 462_733_549)
 
     internal val parseStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "parse_string", 309047738)
+        TypeManager.getMethodBindPtr("JSON", "parse_string", 309_047_738)
 
-    internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885841341)
+    internal val parsePtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "parse", 885_841_341)
 
-    internal val getDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "get_data", 1214101251)
+    internal val getDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "get_data", 1_214_101_251)
 
-    internal val setDataPtr: VoidPtr = TypeManager.getMethodBindPtr("JSON", "set_data", 1114965689)
+    internal val setDataPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSON", "set_data", 1_114_965_689)
 
     internal val getParsedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_parsed_text", 201670096)
+        TypeManager.getMethodBindPtr("JSON", "get_parsed_text", 201_670_096)
 
     internal val getErrorLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_error_line", 3905245786)
+        TypeManager.getMethodBindPtr("JSON", "get_error_line", 3_905_245_786)
 
     internal val getErrorMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "get_error_message", 201670096)
+        TypeManager.getMethodBindPtr("JSON", "get_error_message", 201_670_096)
 
     internal val fromNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "from_native", 2963479484)
+        TypeManager.getMethodBindPtr("JSON", "from_native", 2_963_479_484)
 
     internal val toNativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSON", "to_native", 2963479484)
+        TypeManager.getMethodBindPtr("JSON", "to_native", 2_963_479_484)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Remap will transform the input range into output range, e.g. you can change a `0..1` value to
- * `-2..2` etc. See [@GlobalScope.remap] for more details.
+ * Remap will transform the input range into output range, e.g. you can change a `0..1` value to `-2..2` etc. See [@GlobalScope.remap] for more details.
  */
 @GodotBaseType
 public open class VisualShaderNodeRemap : VisualShaderNode() {
@@ -32,11 +27,11 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
       setOpType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(785, scriptIndex)
   }
 
-  public final fun setOpType(opType: OpType): Unit {
+  public final fun setOpType(opType: OpType) {
     TransferContext.writeArguments(LONG to opType.id)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
@@ -59,8 +54,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
      */
     VECTOR_2D(1),
     /**
-     * The `value` port uses a 2D vector type, while the `input min`, `input max`, `output min`, and
-     * `output max` ports use a floating-point scalar type.
+     * The `value` port uses a 2D vector type, while the `input min`, `input max`, `output min`, and `output max` ports use a floating-point scalar type.
      */
     VECTOR_2D_SCALAR(2),
     /**
@@ -68,8 +62,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
      */
     VECTOR_3D(3),
     /**
-     * The `value` port uses a 3D vector type, while the `input min`, `input max`, `output min`, and
-     * `output max` ports use a floating-point scalar type.
+     * The `value` port uses a 3D vector type, while the `input min`, `input max`, `output min`, and `output max` ports use a floating-point scalar type.
      */
     VECTOR_3D_SCALAR(4),
     /**
@@ -77,8 +70,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
      */
     VECTOR_4D(5),
     /**
-     * The `value` port uses a 4D vector type, while the `input min`, `input max`, `output min`, and
-     * `output max` ports use a floating-point scalar type.
+     * The `value` port uses a 4D vector type, while the `input min`, `input max`, `output min`, and `output max` ports use a floating-point scalar type.
      */
     VECTOR_4D_SCALAR(6),
     /**
@@ -101,9 +93,9 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeRemap", "set_op_type", 1703697889)
+        TypeManager.getMethodBindPtr("VisualShaderNodeRemap", "set_op_type", 1_703_697_889)
 
     internal val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeRemap", "get_op_type", 1678380563)
+        TypeManager.getMethodBindPtr("VisualShaderNodeRemap", "get_op_type", 1_678_380_563)
   }
 }

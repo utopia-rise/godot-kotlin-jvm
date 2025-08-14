@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class Singleton @JsonCreator constructor(
-    @JsonProperty("name") val name: String,
-    @JsonProperty("type") val type: String
+    @param:JsonProperty("name") val name: String,
+    @param:JsonProperty("type") val type: String
 )

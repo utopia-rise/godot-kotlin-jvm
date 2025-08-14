@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,8 +18,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape2D].
+ * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape2D].
  */
 @GodotBaseType
 public open class SegmentShape2D : Shape2D() {
@@ -30,11 +26,8 @@ public open class SegmentShape2D : Shape2D() {
    * The segment's first point position.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var a: Vector2
@@ -49,11 +42,8 @@ public open class SegmentShape2D : Shape2D() {
    * The segment's second point position.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var b: Vector2
@@ -64,7 +54,7 @@ public open class SegmentShape2D : Shape2D() {
       setB(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(578, scriptIndex)
   }
 
@@ -106,7 +96,7 @@ public open class SegmentShape2D : Shape2D() {
      b = this
   }
 
-  public final fun setA(a: Vector2): Unit {
+  public final fun setA(a: Vector2) {
     TransferContext.writeArguments(VECTOR2 to a)
     TransferContext.callMethod(ptr, MethodBindings.setAPtr, NIL)
   }
@@ -117,7 +107,7 @@ public open class SegmentShape2D : Shape2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setB(b: Vector2): Unit {
+  public final fun setB(b: Vector2) {
     TransferContext.writeArguments(VECTOR2 to b)
     TransferContext.callMethod(ptr, MethodBindings.setBPtr, NIL)
   }
@@ -132,15 +122,15 @@ public open class SegmentShape2D : Shape2D() {
 
   public object MethodBindings {
     internal val setAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "set_a", 743155724)
+        TypeManager.getMethodBindPtr("SegmentShape2D", "set_a", 743_155_724)
 
     internal val getAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "get_a", 3341600327)
+        TypeManager.getMethodBindPtr("SegmentShape2D", "get_a", 3_341_600_327)
 
     internal val setBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "set_b", 743155724)
+        TypeManager.getMethodBindPtr("SegmentShape2D", "set_b", 743_155_724)
 
     internal val getBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SegmentShape2D", "get_b", 3341600327)
+        TypeManager.getMethodBindPtr("SegmentShape2D", "get_b", 3_341_600_327)
   }
 }

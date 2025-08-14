@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,23 +17,20 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
- * another physics body. For example, Body A can be a [StaticBody3D] representing a door hinge that a
- * [RigidBody3D] rotates around.
+ * A physics joint that restricts the rotation of a 3D physics body around an axis relative to another physics body. For example, Body A can be a [StaticBody3D] representing a door hinge that a [RigidBody3D] rotates around.
  */
 @GodotBaseType
 public open class HingeJoint3D : Joint3D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(280, scriptIndex)
   }
 
   /**
    * Sets the value of the specified parameter.
    */
-  public final fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
@@ -53,7 +47,7 @@ public open class HingeJoint3D : Joint3D() {
   /**
    * If `true`, enables the specified flag.
    */
-  public final fun setFlag(flag: Flag, enabled: Boolean): Unit {
+  public final fun setFlag(flag: Flag, enabled: Boolean) {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
@@ -71,8 +65,7 @@ public open class HingeJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * The speed with which the two bodies get pulled together when they move in different
-     * directions.
+     * The speed with which the two bodies get pulled together when they move in different directions.
      */
     BIAS(0),
     /**
@@ -120,8 +113,7 @@ public open class HingeJoint3D : Joint3D() {
     id: Long,
   ) {
     /**
-     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
-     * [angularLimit/upper] has effects.
+     * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and [angularLimit/upper] has effects.
      */
     USE_LIMIT(0),
     /**
@@ -148,15 +140,15 @@ public open class HingeJoint3D : Joint3D() {
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HingeJoint3D", "set_param", 3082977519)
+        TypeManager.getMethodBindPtr("HingeJoint3D", "set_param", 3_082_977_519)
 
     internal val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HingeJoint3D", "get_param", 4066002676)
+        TypeManager.getMethodBindPtr("HingeJoint3D", "get_param", 4_066_002_676)
 
     internal val setFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HingeJoint3D", "set_flag", 1083494620)
+        TypeManager.getMethodBindPtr("HingeJoint3D", "set_flag", 1_083_494_620)
 
     internal val getFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("HingeJoint3D", "get_flag", 2841369610)
+        TypeManager.getMethodBindPtr("HingeJoint3D", "get_flag", 2_841_369_610)
   }
 }

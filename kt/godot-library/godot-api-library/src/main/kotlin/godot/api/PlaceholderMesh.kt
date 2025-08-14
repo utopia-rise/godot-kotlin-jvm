@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,7 +9,6 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
-import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.StringName
 import godot.core.VariantArray
@@ -24,16 +20,15 @@ import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import godot.core.AABB as CoreAABB
+import godot.core.VariantParser.AABB as VariantParserAABB
 
 /**
  * This class is used when loading a project that uses a [Mesh] subclass in 2 conditions:
  *
- * - When running the project exported in dedicated server mode, only the texture's dimensions are
- * kept (as they may be relied upon for gameplay purposes or positioning of other elements). This
- * allows reducing the exported PCK's size significantly.
+ * - When running the project exported in dedicated server mode, only the texture's dimensions are kept (as they may be relied upon for gameplay purposes or positioning of other elements). This allows reducing the exported PCK's size significantly.
  *
- * - When this subclass is missing due to using a different engine version or build (e.g. modules
- * disabled).
+ * - When this subclass is missing due to using a different engine version or build (e.g. modules disabled).
  */
 @GodotBaseType
 public open class PlaceholderMesh : Mesh() {
@@ -41,14 +36,11 @@ public open class PlaceholderMesh : Mesh() {
    * The smallest [AABB] enclosing this mesh in local space.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
-  public final inline var aabb: AABB
+  public final inline var aabb: CoreAABB
     @JvmName("aabbProperty")
     get() = getAabb()
     @JvmName("aabbProperty")
@@ -56,7 +48,7 @@ public open class PlaceholderMesh : Mesh() {
       setAabb(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(490, scriptIndex)
   }
 
@@ -74,111 +66,111 @@ public open class PlaceholderMesh : Mesh() {
    * The smallest [AABB] enclosing this mesh in local space.
    */
   @CoreTypeHelper
-  public final fun aabbMutate(block: AABB.() -> Unit): AABB = aabb.apply {
+  public final fun aabbMutate(block: CoreAABB.() -> Unit): CoreAABB = aabb.apply {
      block(this)
      aabb = this
   }
 
-  public final fun setAabb(aabb: AABB): Unit {
-    TransferContext.writeArguments(godot.core.VariantParser.AABB to aabb)
+  public final fun setAabb(aabb: CoreAABB) {
+    TransferContext.writeArguments(VariantParserAABB to aabb)
     TransferContext.callMethod(ptr, MethodBindings.setAabbPtr, NIL)
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getSurfaceCount(): Int {
+  override fun _getSurfaceCount(): Int {
     throw NotImplementedError("PlaceholderMesh::_getSurfaceCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayLen(index: Int): Int {
+  override fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetArrayLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+  override fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+  override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+  override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+  override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetLods can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetFormat(index: Int): Long {
+  override fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+  override fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+  override fun _surfaceSetMaterial(index: Int, material: Material?) {
     throw NotImplementedError("PlaceholderMesh::_surfaceSetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetMaterial(index: Int): Material? {
+  override fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("PlaceholderMesh::_surfaceGetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeCount(): Int {
+  override fun _getBlendShapeCount(): Int {
     throw NotImplementedError("PlaceholderMesh::_getBlendShapeCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeName(index: Int): StringName {
+  override fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("PlaceholderMesh::_getBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+  override fun _setBlendShapeName(index: Int, name: StringName) {
     throw NotImplementedError("PlaceholderMesh::_setBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getAabb(): AABB {
+  override fun _getAabb(): CoreAABB {
     throw NotImplementedError("PlaceholderMesh::_getAabb can't be called from the JVM.")
   }
 
@@ -186,6 +178,6 @@ public open class PlaceholderMesh : Mesh() {
 
   public object MethodBindings {
     internal val setAabbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PlaceholderMesh", "set_aabb", 259215842)
+        TypeManager.getMethodBindPtr("PlaceholderMesh", "set_aabb", 259_215_842)
   }
 }

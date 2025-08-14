@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,22 +18,18 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but
- * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
+ * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
  */
 @GodotBaseType
 public open class ImageTextureLayered internal constructor() : TextureLayered() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(287, scriptIndex)
   }
 
   /**
-   * Creates an [ImageTextureLayered] from an array of [Image]s. See [Image.create] for the expected
-   * data format. The first image decides the width, height, image format and mipmapping setting. The
-   * other images *must* have the same width, height, image format and mipmapping setting.
+   * Creates an [ImageTextureLayered] from an array of [Image]s. See [Image.create] for the expected data format. The first image decides the width, height, image format and mipmapping setting. The other images *must* have the same width, height, image format and mipmapping setting.
    *
    * Each [Image] represents one `layer`.
    *
@@ -83,15 +76,13 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   /**
    * Replaces the existing [Image] data at the given [layer] with this new image.
    *
-   * The given [Image] must have the same width, height, image format, and mipmapping flag as the
-   * rest of the referenced images.
+   * The given [Image] must have the same width, height, image format, and mipmapping flag as the rest of the referenced images.
    *
-   * If the image format is unsupported, it will be decompressed and converted to a similar and
-   * supported [Image.Format].
+   * If the image format is unsupported, it will be decompressed and converted to a similar and supported [Image.Format].
    *
    * The update is immediate: it's synchronized with drawing.
    */
-  public final fun updateLayer(image: Image?, layer: Int): Unit {
+  public final fun updateLayer(image: Image?, layer: Int) {
     TransferContext.writeArguments(OBJECT to image, LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.updateLayerPtr, NIL)
   }
@@ -99,49 +90,49 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("ImageTextureLayered::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayeredType(): Long {
+  override fun _getLayeredType(): Long {
     throw NotImplementedError("ImageTextureLayered::_getLayeredType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("ImageTextureLayered::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("ImageTextureLayered::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayers(): Int {
+  override fun _getLayers(): Int {
     throw NotImplementedError("ImageTextureLayered::_getLayers can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("ImageTextureLayered::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getLayerData(layerIndex: Int): Image? {
+  override fun _getLayerData(layerIndex: Int): Image? {
     throw NotImplementedError("ImageTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
@@ -149,9 +140,9 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
 
   public object MethodBindings {
     internal val createFromImagesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTextureLayered", "create_from_images", 2785773503)
+        TypeManager.getMethodBindPtr("ImageTextureLayered", "create_from_images", 2_785_773_503)
 
     internal val updateLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImageTextureLayered", "update_layer", 3331733361)
+        TypeManager.getMethodBindPtr("ImageTextureLayered", "update_layer", 3_331_733_361)
   }
 }

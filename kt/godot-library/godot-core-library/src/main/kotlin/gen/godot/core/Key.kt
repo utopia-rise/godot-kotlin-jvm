@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.core
 
@@ -13,494 +10,493 @@ public enum class Key(
   id: Long,
 ) {
   /**
-   * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties
-   * with a generic state.
+   * Enum value which doesn't correspond to any key. This is used to initialize [Key] properties with a generic state.
    */
   NONE(0),
   /**
    * Keycodes with this bit applied are non-printable.
    */
-  SPECIAL(4194304),
+  SPECIAL(4_194_304),
   /**
    * Escape key.
    */
-  ESCAPE(4194305),
+  ESCAPE(4_194_305),
   /**
    * Tab key.
    */
-  TAB(4194306),
+  TAB(4_194_306),
   /**
    * Shift + Tab key.
    */
-  BACKTAB(4194307),
+  BACKTAB(4_194_307),
   /**
    * Backspace key.
    */
-  BACKSPACE(4194308),
+  BACKSPACE(4_194_308),
   /**
    * Return key (on the main keyboard).
    */
-  ENTER(4194309),
+  ENTER(4_194_309),
   /**
    * Enter key on the numeric keypad.
    */
-  KP_ENTER(4194310),
+  KP_ENTER(4_194_310),
   /**
    * Insert key.
    */
-  INSERT(4194311),
+  INSERT(4_194_311),
   /**
    * Delete key.
    */
-  DELETE(4194312),
+  DELETE(4_194_312),
   /**
    * Pause key.
    */
-  PAUSE(4194313),
+  PAUSE(4_194_313),
   /**
    * Print Screen key.
    */
-  PRINT(4194314),
+  PRINT(4_194_314),
   /**
    * System Request key.
    */
-  SYSREQ(4194315),
+  SYSREQ(4_194_315),
   /**
    * Clear key.
    */
-  CLEAR(4194316),
+  CLEAR(4_194_316),
   /**
    * Home key.
    */
-  HOME(4194317),
+  HOME(4_194_317),
   /**
    * End key.
    */
-  END(4194318),
+  END(4_194_318),
   /**
    * Left arrow key.
    */
-  LEFT(4194319),
+  LEFT(4_194_319),
   /**
    * Up arrow key.
    */
-  UP(4194320),
+  UP(4_194_320),
   /**
    * Right arrow key.
    */
-  RIGHT(4194321),
+  RIGHT(4_194_321),
   /**
    * Down arrow key.
    */
-  DOWN(4194322),
+  DOWN(4_194_322),
   /**
    * Page Up key.
    */
-  PAGEUP(4194323),
+  PAGEUP(4_194_323),
   /**
    * Page Down key.
    */
-  PAGEDOWN(4194324),
+  PAGEDOWN(4_194_324),
   /**
    * Shift key.
    */
-  SHIFT(4194325),
+  SHIFT(4_194_325),
   /**
    * Control key.
    */
-  CTRL(4194326),
+  CTRL(4_194_326),
   /**
    * Meta key.
    */
-  META(4194327),
+  META(4_194_327),
   /**
    * Alt key.
    */
-  ALT(4194328),
+  ALT(4_194_328),
   /**
    * Caps Lock key.
    */
-  CAPSLOCK(4194329),
+  CAPSLOCK(4_194_329),
   /**
    * Num Lock key.
    */
-  NUMLOCK(4194330),
+  NUMLOCK(4_194_330),
   /**
    * Scroll Lock key.
    */
-  SCROLLLOCK(4194331),
+  SCROLLLOCK(4_194_331),
   /**
    * F1 key.
    */
-  F1(4194332),
+  F1(4_194_332),
   /**
    * F2 key.
    */
-  F2(4194333),
+  F2(4_194_333),
   /**
    * F3 key.
    */
-  F3(4194334),
+  F3(4_194_334),
   /**
    * F4 key.
    */
-  F4(4194335),
+  F4(4_194_335),
   /**
    * F5 key.
    */
-  F5(4194336),
+  F5(4_194_336),
   /**
    * F6 key.
    */
-  F6(4194337),
+  F6(4_194_337),
   /**
    * F7 key.
    */
-  F7(4194338),
+  F7(4_194_338),
   /**
    * F8 key.
    */
-  F8(4194339),
+  F8(4_194_339),
   /**
    * F9 key.
    */
-  F9(4194340),
+  F9(4_194_340),
   /**
    * F10 key.
    */
-  F10(4194341),
+  F10(4_194_341),
   /**
    * F11 key.
    */
-  F11(4194342),
+  F11(4_194_342),
   /**
    * F12 key.
    */
-  F12(4194343),
+  F12(4_194_343),
   /**
    * F13 key.
    */
-  F13(4194344),
+  F13(4_194_344),
   /**
    * F14 key.
    */
-  F14(4194345),
+  F14(4_194_345),
   /**
    * F15 key.
    */
-  F15(4194346),
+  F15(4_194_346),
   /**
    * F16 key.
    */
-  F16(4194347),
+  F16(4_194_347),
   /**
    * F17 key.
    */
-  F17(4194348),
+  F17(4_194_348),
   /**
    * F18 key.
    */
-  F18(4194349),
+  F18(4_194_349),
   /**
    * F19 key.
    */
-  F19(4194350),
+  F19(4_194_350),
   /**
    * F20 key.
    */
-  F20(4194351),
+  F20(4_194_351),
   /**
    * F21 key.
    */
-  F21(4194352),
+  F21(4_194_352),
   /**
    * F22 key.
    */
-  F22(4194353),
+  F22(4_194_353),
   /**
    * F23 key.
    */
-  F23(4194354),
+  F23(4_194_354),
   /**
    * F24 key.
    */
-  F24(4194355),
+  F24(4_194_355),
   /**
    * F25 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F25(4194356),
+  F25(4_194_356),
   /**
    * F26 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F26(4194357),
+  F26(4_194_357),
   /**
    * F27 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F27(4194358),
+  F27(4_194_358),
   /**
    * F28 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F28(4194359),
+  F28(4_194_359),
   /**
    * F29 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F29(4194360),
+  F29(4_194_360),
   /**
    * F30 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F30(4194361),
+  F30(4_194_361),
   /**
    * F31 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F31(4194362),
+  F31(4_194_362),
   /**
    * F32 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F32(4194363),
+  F32(4_194_363),
   /**
    * F33 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F33(4194364),
+  F33(4_194_364),
   /**
    * F34 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F34(4194365),
+  F34(4_194_365),
   /**
    * F35 key. Only supported on macOS and Linux due to a Windows limitation.
    */
-  F35(4194366),
+  F35(4_194_366),
   /**
    * Multiply (*) key on the numeric keypad.
    */
-  KP_MULTIPLY(4194433),
+  KP_MULTIPLY(4_194_433),
   /**
    * Divide (/) key on the numeric keypad.
    */
-  KP_DIVIDE(4194434),
+  KP_DIVIDE(4_194_434),
   /**
    * Subtract (-) key on the numeric keypad.
    */
-  KP_SUBTRACT(4194435),
+  KP_SUBTRACT(4_194_435),
   /**
    * Period (.) key on the numeric keypad.
    */
-  KP_PERIOD(4194436),
+  KP_PERIOD(4_194_436),
   /**
    * Add (+) key on the numeric keypad.
    */
-  KP_ADD(4194437),
+  KP_ADD(4_194_437),
   /**
    * Number 0 on the numeric keypad.
    */
-  KP_0(4194438),
+  KP_0(4_194_438),
   /**
    * Number 1 on the numeric keypad.
    */
-  KP_1(4194439),
+  KP_1(4_194_439),
   /**
    * Number 2 on the numeric keypad.
    */
-  KP_2(4194440),
+  KP_2(4_194_440),
   /**
    * Number 3 on the numeric keypad.
    */
-  KP_3(4194441),
+  KP_3(4_194_441),
   /**
    * Number 4 on the numeric keypad.
    */
-  KP_4(4194442),
+  KP_4(4_194_442),
   /**
    * Number 5 on the numeric keypad.
    */
-  KP_5(4194443),
+  KP_5(4_194_443),
   /**
    * Number 6 on the numeric keypad.
    */
-  KP_6(4194444),
+  KP_6(4_194_444),
   /**
    * Number 7 on the numeric keypad.
    */
-  KP_7(4194445),
+  KP_7(4_194_445),
   /**
    * Number 8 on the numeric keypad.
    */
-  KP_8(4194446),
+  KP_8(4_194_446),
   /**
    * Number 9 on the numeric keypad.
    */
-  KP_9(4194447),
+  KP_9(4_194_447),
   /**
    * Context menu key.
    */
-  MENU(4194370),
+  MENU(4_194_370),
   /**
    * Hyper key. (On Linux/X11 only).
    */
-  HYPER(4194371),
+  HYPER(4_194_371),
   /**
    * Help key.
    */
-  HELP(4194373),
+  HELP(4_194_373),
   /**
    * Back key.
    */
-  BACK(4194376),
+  BACK(4_194_376),
   /**
    * Forward key.
    */
-  FORWARD(4194377),
+  FORWARD(4_194_377),
   /**
    * Media stop key.
    */
-  STOP(4194378),
+  STOP(4_194_378),
   /**
    * Refresh key.
    */
-  REFRESH(4194379),
+  REFRESH(4_194_379),
   /**
    * Volume down key.
    */
-  VOLUMEDOWN(4194380),
+  VOLUMEDOWN(4_194_380),
   /**
    * Mute volume key.
    */
-  VOLUMEMUTE(4194381),
+  VOLUMEMUTE(4_194_381),
   /**
    * Volume up key.
    */
-  VOLUMEUP(4194382),
+  VOLUMEUP(4_194_382),
   /**
    * Media play key.
    */
-  MEDIAPLAY(4194388),
+  MEDIAPLAY(4_194_388),
   /**
    * Media stop key.
    */
-  MEDIASTOP(4194389),
+  MEDIASTOP(4_194_389),
   /**
    * Previous song key.
    */
-  MEDIAPREVIOUS(4194390),
+  MEDIAPREVIOUS(4_194_390),
   /**
    * Next song key.
    */
-  MEDIANEXT(4194391),
+  MEDIANEXT(4_194_391),
   /**
    * Media record key.
    */
-  MEDIARECORD(4194392),
+  MEDIARECORD(4_194_392),
   /**
    * Home page key.
    */
-  HOMEPAGE(4194393),
+  HOMEPAGE(4_194_393),
   /**
    * Favorites key.
    */
-  FAVORITES(4194394),
+  FAVORITES(4_194_394),
   /**
    * Search key.
    */
-  SEARCH(4194395),
+  SEARCH(4_194_395),
   /**
    * Standby key.
    */
-  STANDBY(4194396),
+  STANDBY(4_194_396),
   /**
    * Open URL / Launch Browser key.
    */
-  OPENURL(4194397),
+  OPENURL(4_194_397),
   /**
    * Launch Mail key.
    */
-  LAUNCHMAIL(4194398),
+  LAUNCHMAIL(4_194_398),
   /**
    * Launch Media key.
    */
-  LAUNCHMEDIA(4194399),
+  LAUNCHMEDIA(4_194_399),
   /**
    * Launch Shortcut 0 key.
    */
-  LAUNCH0(4194400),
+  LAUNCH0(4_194_400),
   /**
    * Launch Shortcut 1 key.
    */
-  LAUNCH1(4194401),
+  LAUNCH1(4_194_401),
   /**
    * Launch Shortcut 2 key.
    */
-  LAUNCH2(4194402),
+  LAUNCH2(4_194_402),
   /**
    * Launch Shortcut 3 key.
    */
-  LAUNCH3(4194403),
+  LAUNCH3(4_194_403),
   /**
    * Launch Shortcut 4 key.
    */
-  LAUNCH4(4194404),
+  LAUNCH4(4_194_404),
   /**
    * Launch Shortcut 5 key.
    */
-  LAUNCH5(4194405),
+  LAUNCH5(4_194_405),
   /**
    * Launch Shortcut 6 key.
    */
-  LAUNCH6(4194406),
+  LAUNCH6(4_194_406),
   /**
    * Launch Shortcut 7 key.
    */
-  LAUNCH7(4194407),
+  LAUNCH7(4_194_407),
   /**
    * Launch Shortcut 8 key.
    */
-  LAUNCH8(4194408),
+  LAUNCH8(4_194_408),
   /**
    * Launch Shortcut 9 key.
    */
-  LAUNCH9(4194409),
+  LAUNCH9(4_194_409),
   /**
    * Launch Shortcut A key.
    */
-  LAUNCHA(4194410),
+  LAUNCHA(4_194_410),
   /**
    * Launch Shortcut B key.
    */
-  LAUNCHB(4194411),
+  LAUNCHB(4_194_411),
   /**
    * Launch Shortcut C key.
    */
-  LAUNCHC(4194412),
+  LAUNCHC(4_194_412),
   /**
    * Launch Shortcut D key.
    */
-  LAUNCHD(4194413),
+  LAUNCHD(4_194_413),
   /**
    * Launch Shortcut E key.
    */
-  LAUNCHE(4194414),
+  LAUNCHE(4_194_414),
   /**
    * Launch Shortcut F key.
    */
-  LAUNCHF(4194415),
+  LAUNCHF(4_194_415),
   /**
    * "Globe" key on Mac / iPad keyboard.
    */
-  GLOBE(4194416),
+  GLOBE(4_194_416),
   /**
    * "On-screen keyboard" key on iPad keyboard.
    */
-  KEYBOARD(4194417),
+  KEYBOARD(4_194_417),
   /**
    * 英数 key on Mac keyboard.
    */
-  JIS_EISU(4194418),
+  JIS_EISU(4_194_418),
   /**
    * かな key on Mac keyboard.
    */
-  JIS_KANA(4194419),
+  JIS_KANA(4_194_419),
   /**
    * Unknown key.
    */
-  UNKNOWN(8388607),
+  UNKNOWN(8_388_607),
   /**
    * Space key.
    */

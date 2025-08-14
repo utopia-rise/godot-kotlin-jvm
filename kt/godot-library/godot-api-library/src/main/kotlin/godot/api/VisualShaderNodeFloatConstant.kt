@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,7 +13,6 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -35,11 +31,11 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
       setConstant(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(750, scriptIndex)
   }
 
-  public final fun setConstant(constant: Float): Unit {
+  public final fun setConstant(constant: Float) {
     TransferContext.writeArguments(DOUBLE to constant.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
@@ -54,9 +50,9 @@ public open class VisualShaderNodeFloatConstant : VisualShaderNodeConstant() {
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "set_constant", 373806689)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "set_constant", 373_806_689)
 
     internal val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "get_constant", 1740695150)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFloatConstant", "get_constant", 1_740_695_150)
   }
 }

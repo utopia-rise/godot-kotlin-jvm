@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,13 +12,10 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * The JavaClassWrapper singleton provides a way for the Godot application to send and receive data
- * through the [url=https://developer.android.com/training/articles/perf-jni]Java Native
- * Interface[/url] (JNI).
+ * The JavaClassWrapper singleton provides a way for the Godot application to send and receive data through the [url=https://developer.android.com/training/articles/perf-jni]Java Native Interface[/url] (JNI).
  *
  * **Note:** This singleton is only available in Android builds.
  *
@@ -35,25 +29,20 @@ import kotlin.jvm.JvmStatic
  * print(datetime.format(formatter))
  * ```
  *
- * **Warning:** When calling Java methods, be sure to check [JavaClassWrapper.getException] to check
- * if the method threw an exception.
+ * **Warning:** When calling Java methods, be sure to check [JavaClassWrapper.getException] to check if the method threw an exception.
  */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(12)
   }
 
   /**
-   * Wraps a class defined in Java, and returns it as a [JavaClass] [Object] type that Godot can
-   * interact with.
+   * Wraps a class defined in Java, and returns it as a [JavaClass] [Object] type that Godot can interact with.
    *
-   * When wrapping inner (nested) classes, use `$` instead of `.` to separate them. For example,
-   * `JavaClassWrapper.wrap("android.view.WindowManager$LayoutParams")` wraps the
-   * **WindowManager.LayoutParams** class.
+   * When wrapping inner (nested) classes, use `$` instead of `.` to separate them. For example, `JavaClassWrapper.wrap("android.view.WindowManager$LayoutParams")` wraps the **WindowManager.LayoutParams** class.
    *
-   * **Note:** This method only works on Android. On every other platform, this method does nothing
-   * and returns an empty [JavaClass].
+   * **Note:** This method only works on Android. On every other platform, this method does nothing and returns an empty [JavaClass].
    */
   @JvmStatic
   public final fun wrap(name: String): JavaClass? {
@@ -63,11 +52,9 @@ public object JavaClassWrapper : Object() {
   }
 
   /**
-   * Returns the Java exception from the last call into a Java class. If there was no exception, it
-   * will return `null`.
+   * Returns the Java exception from the last call into a Java class. If there was no exception, it will return `null`.
    *
-   * **Note:** This method only works on Android. On every other platform, this method will always
-   * return `null`.
+   * **Note:** This method only works on Android. On every other platform, this method will always return `null`.
    */
   @JvmStatic
   public final fun getException(): JavaObject? {
@@ -78,9 +65,9 @@ public object JavaClassWrapper : Object() {
 
   public object MethodBindings {
     internal val wrapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap", 1124367868)
+        TypeManager.getMethodBindPtr("JavaClassWrapper", "wrap", 1_124_367_868)
 
     internal val getExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JavaClassWrapper", "get_exception", 3277089691)
+        TypeManager.getMethodBindPtr("JavaClassWrapper", "get_exception", 3_277_089_691)
   }
 }

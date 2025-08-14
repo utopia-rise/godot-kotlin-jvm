@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -50,33 +47,25 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as
- * well as a cache of rasterized glyphs, and a set of fallback [Font]s to use.
+ * [FontFile] contains a set of glyphs to represent Unicode characters imported from a font file, as well as a cache of rasterized glyphs, and a set of fallback [Font]s to use.
  *
- * Use [FontVariation] to access specific OpenType variation of the font, create simulated bold /
- * slanted version, and draw lines of text.
+ * Use [FontVariation] to access specific OpenType variation of the font, create simulated bold / slanted version, and draw lines of text.
  *
- * For more complex text processing, use [FontVariation] in conjunction with [TextLine] or
- * [TextParagraph].
+ * For more complex text processing, use [FontVariation] in conjunction with [TextLine] or [TextParagraph].
  *
  * Supported font formats:
  *
- * - Dynamic font importer: TrueType (.ttf), TrueType collection (.ttc), OpenType (.otf), OpenType
- * collection (.otc), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
+ * - Dynamic font importer: TrueType (.ttf), TrueType collection (.ttc), OpenType (.otf), OpenType collection (.otc), WOFF (.woff), WOFF2 (.woff2), Type 1 (.pfb, .pfm).
  *
- * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format
- * variants.
+ * - Bitmap font importer: AngelCode BMFont (.fnt, .font), text and binary (version 3) format variants.
  *
  * - Monospace image font importer: All supported image formats.
  *
- * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract
- * way.
+ * **Note:** A character is a symbol that represents an item (letter, digit etc.) in an abstract way.
  *
- * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a
- * context-dependent manner. Glyph indices are bound to the specific font data source.
+ * **Note:** A glyph is a bitmap or a shape used to draw one or more characters in a context-dependent manner. Glyph indices are bound to the specific font data source.
  *
- * **Note:** If none of the font data sources contain glyphs for a character used in a string, the
- * character in question will be replaced with a box displaying its hexadecimal code.
+ * **Note:** If none of the font data sources contain glyphs for a character used in a string, the character in question will be replaced with a box displaying its hexadecimal code.
  *
  * ```gdscript
  * //gdscript
@@ -98,11 +87,8 @@ public open class FontFile : Font() {
    * Contents of the dynamic font source file.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
@@ -125,8 +111,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore
-   * this property).
+   * If set to `true`, embedded font bitmap loading is disabled (bitmap-only and color fonts ignore this property).
    */
   public final inline var disableEmbeddedBitmaps: Boolean
     @JvmName("disableEmbeddedBitmapsProperty")
@@ -181,8 +166,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`,
-   * bold font weight is `700`.
+   * Weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
   public final inline var fontWeight: Int
     @JvmName("fontWeightProperty")
@@ -193,8 +177,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
-   * `200&#37;`.
+   * Font stretch amount, compared to a normal width. A percentage value between `50&#37;` and `200&#37;`.
    */
   public final inline var fontStretch: Int
     @JvmName("fontStretchProperty")
@@ -205,10 +188,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better
-   * kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization
-   * speed. Use [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font
-   * size.
+   * Font glyph subpixel positioning mode. Subpixel positioning provides shaper text and better kerning for smaller font sizes, at the cost of higher memory usage and lower font rasterization speed. Use [TextServer.SUBPIXEL_POSITIONING_AUTO] to automatically enable it based on the font size.
    */
   public final inline var subpixelPositioning: TextServer.SubpixelPositioning
     @JvmName("subpixelPositioningProperty")
@@ -219,9 +199,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are
-   * accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel
-   * positioning is enabled.
+   * If set to `true`, when aligning glyphs to the pixel boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This setting has no effect if subpixel positioning is enabled.
    */
   public final inline var keepRoundingRemainders: Boolean
     @JvmName("keepRoundingRemaindersProperty")
@@ -232,22 +210,11 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
-   * field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on
-   * rasterizing the font every time its size changes, this allows for resizing the font in real-time
-   * without any performance penalty. Text will also not look grainy for [Control]s that are scaled
-   * down (or for [Label3D]s viewed from a long distance). As a downside, font hinting is not available
-   * with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small
-   * sizes.
+   * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance field (MSDF) generated from the dynamic font vector data. Since this approach does not rely on rasterizing the font every time its size changes, this allows for resizing the font in real-time without any performance penalty. Text will also not look grainy for [Control]s that are scaled down (or for [Label3D]s viewed from a long distance). As a downside, font hinting is not available with MSDF. The lack of font hinting may result in less crisp and less readable fonts at small sizes.
    *
-   * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of
-   * the largest font outline.
+   * **Note:** If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline.
    *
-   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly.
-   * Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many
-   * font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs,
-   * consider downloading the font file directly from the type foundry instead of relying on Google
-   * Fonts.
+   * **Note:** MSDF font rendering does not render glyphs with overlapping shapes correctly. Overlapping shapes are not valid per the OpenType standard, but are still commonly found in many font files, especially those converted by Google Fonts. To avoid issues with overlapping glyphs, consider downloading the font file directly from the type foundry instead of relying on Google Fonts.
    */
   public final inline var multichannelSignedDistanceField: Boolean
     @JvmName("multichannelSignedDistanceFieldProperty")
@@ -258,10 +225,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * The width of the range around the shape between the minimum and maximum representable signed
-   * distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the
-   * largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to
-   * look correct.
+   * The width of the range around the shape between the minimum and maximum representable signed distance. If using font outlines, [msdfPixelRange] must be set to at least *twice* the size of the largest font outline. The default [msdfPixelRange] value of `16` allows outline sizes up to `8` to look correct.
    */
   public final inline var msdfPixelRange: Int
     @JvmName("msdfPixelRangeProperty")
@@ -272,9 +236,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Source font size used to generate MSDF textures. Higher values allow for more precision, but
-   * are slower to render and require more memory. Only increase this value if you notice a visible
-   * lack of precision in glyph rendering.
+   * Source font size used to generate MSDF textures. Higher values allow for more precision, but are slower to render and require more memory. Only increase this value if you notice a visible lack of precision in glyph rendering.
    */
   public final inline var msdfSize: Int
     @JvmName("msdfSizeProperty")
@@ -296,8 +258,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by
-   * dynamic fonts only (MSDF fonts don't support hinting).
+   * If set to `true`, auto-hinting is supported and preferred over font built-in hinting. Used by dynamic fonts only (MSDF fonts don't support hinting).
    */
   public final inline var forceAutohinter: Boolean
     @JvmName("forceAutohinterProperty")
@@ -319,8 +280,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used
-   * by dynamic fonts only (MSDF fonts ignore oversampling).
+   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used by dynamic fonts only (MSDF fonts ignore oversampling).
    */
   public final inline var oversampling: Float
     @JvmName("oversamplingProperty")
@@ -363,7 +323,7 @@ public open class FontFile : Font() {
       setOpentypeFeatureOverrides(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(218, scriptIndex)
   }
 
@@ -388,14 +348,12 @@ public open class FontFile : Font() {
 
   /**
    * This is a helper function for [data] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Contents of the dynamic font source file.
    */
   @CoreTypeHelper
-  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
-      data.apply {
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray = data.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -406,8 +364,7 @@ public open class FontFile : Font() {
   /**
    * Loads an AngelCode BMFont (.fnt, .font) bitmap font from file [path].
    *
-   * **Warning:** This method should only be used in the editor or in cases when you need to load
-   * external fonts at run-time, such as fonts located at the `user://` directory.
+   * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
    */
   public final fun loadBitmapFont(path: String): Error {
     TransferContext.writeArguments(STRING to path)
@@ -416,11 +373,9 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm)
-   * dynamic font from file [path].
+   * Loads a TrueType (.ttf), OpenType (.otf), WOFF (.woff), WOFF2 (.woff2) or Type 1 (.pfb, .pfm) dynamic font from file [path].
    *
-   * **Warning:** This method should only be used in the editor or in cases when you need to load
-   * external fonts at run-time, such as fonts located at the `user://` directory.
+   * **Warning:** This method should only be used in the editor or in cases when you need to load external fonts at run-time, such as fonts located at the `user://` directory.
    */
   public final fun loadDynamicFont(path: String): Error {
     TransferContext.writeArguments(STRING to path)
@@ -428,7 +383,7 @@ public open class FontFile : Font() {
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setData(`data`: PackedByteArray): Unit {
+  public final fun setData(`data`: PackedByteArray) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
@@ -439,32 +394,32 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
-  public final fun setFontName(name: String): Unit {
+  public final fun setFontName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setFontNamePtr, NIL)
   }
 
-  public final fun setFontStyleName(name: String): Unit {
+  public final fun setFontStyleName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setFontStyleNamePtr, NIL)
   }
 
-  public final fun setFontStyle(style: TextServer.FontStyle): Unit {
+  public final fun setFontStyle(style: TextServer.FontStyle) {
     TransferContext.writeArguments(LONG to style.flag)
     TransferContext.callMethod(ptr, MethodBindings.setFontStylePtr, NIL)
   }
 
-  public final fun setFontWeight(weight: Int): Unit {
+  public final fun setFontWeight(weight: Int) {
     TransferContext.writeArguments(LONG to weight.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontWeightPtr, NIL)
   }
 
-  public final fun setFontStretch(stretch: Int): Unit {
+  public final fun setFontStretch(stretch: Int) {
     TransferContext.writeArguments(LONG to stretch.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontStretchPtr, NIL)
   }
 
-  public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
+  public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing) {
     TransferContext.writeArguments(LONG to antialiasing.id)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasingPtr, NIL)
   }
@@ -475,7 +430,7 @@ public open class FontFile : Font() {
     return TextServer.FontAntialiasing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean): Unit {
+  public final fun setDisableEmbeddedBitmaps(disableEmbeddedBitmaps: Boolean) {
     TransferContext.writeArguments(BOOL to disableEmbeddedBitmaps)
     TransferContext.callMethod(ptr, MethodBindings.setDisableEmbeddedBitmapsPtr, NIL)
   }
@@ -486,7 +441,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGenerateMipmaps(generateMipmaps: Boolean): Unit {
+  public final fun setGenerateMipmaps(generateMipmaps: Boolean) {
     TransferContext.writeArguments(BOOL to generateMipmaps)
     TransferContext.callMethod(ptr, MethodBindings.setGenerateMipmapsPtr, NIL)
   }
@@ -497,7 +452,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMultichannelSignedDistanceField(msdf: Boolean): Unit {
+  public final fun setMultichannelSignedDistanceField(msdf: Boolean) {
     TransferContext.writeArguments(BOOL to msdf)
     TransferContext.callMethod(ptr, MethodBindings.setMultichannelSignedDistanceFieldPtr, NIL)
   }
@@ -508,7 +463,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMsdfPixelRange(msdfPixelRange: Int): Unit {
+  public final fun setMsdfPixelRange(msdfPixelRange: Int) {
     TransferContext.writeArguments(LONG to msdfPixelRange.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfPixelRangePtr, NIL)
   }
@@ -519,7 +474,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMsdfSize(msdfSize: Int): Unit {
+  public final fun setMsdfSize(msdfSize: Int) {
     TransferContext.writeArguments(LONG to msdfSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMsdfSizePtr, NIL)
   }
@@ -530,7 +485,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFixedSize(fixedSize: Int): Unit {
+  public final fun setFixedSize(fixedSize: Int) {
     TransferContext.writeArguments(LONG to fixedSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFixedSizePtr, NIL)
   }
@@ -541,7 +496,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFixedSizeScaleMode(fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
+  public final fun setFixedSizeScaleMode(fixedSizeScaleMode: TextServer.FixedSizeScaleMode) {
     TransferContext.writeArguments(LONG to fixedSizeScaleMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setFixedSizeScaleModePtr, NIL)
   }
@@ -552,7 +507,7 @@ public open class FontFile : Font() {
     return TextServer.FixedSizeScaleMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAllowSystemFallback(allowSystemFallback: Boolean): Unit {
+  public final fun setAllowSystemFallback(allowSystemFallback: Boolean) {
     TransferContext.writeArguments(BOOL to allowSystemFallback)
     TransferContext.callMethod(ptr, MethodBindings.setAllowSystemFallbackPtr, NIL)
   }
@@ -563,7 +518,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setForceAutohinter(forceAutohinter: Boolean): Unit {
+  public final fun setForceAutohinter(forceAutohinter: Boolean) {
     TransferContext.writeArguments(BOOL to forceAutohinter)
     TransferContext.callMethod(ptr, MethodBindings.setForceAutohinterPtr, NIL)
   }
@@ -574,7 +529,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHinting(hinting: TextServer.Hinting): Unit {
+  public final fun setHinting(hinting: TextServer.Hinting) {
     TransferContext.writeArguments(LONG to hinting.id)
     TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
   }
@@ -585,8 +540,7 @@ public open class FontFile : Font() {
     return TextServer.Hinting.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
-      Unit {
+  public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning) {
     TransferContext.writeArguments(LONG to subpixelPositioning.id)
     TransferContext.callMethod(ptr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
@@ -597,7 +551,7 @@ public open class FontFile : Font() {
     return TextServer.SubpixelPositioning.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean): Unit {
+  public final fun setKeepRoundingRemainders(keepRoundingRemainders: Boolean) {
     TransferContext.writeArguments(BOOL to keepRoundingRemainders)
     TransferContext.callMethod(ptr, MethodBindings.setKeepRoundingRemaindersPtr, NIL)
   }
@@ -608,7 +562,7 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOversampling(oversampling: Float): Unit {
+  public final fun setOversampling(oversampling: Float) {
     TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOversamplingPtr, NIL)
   }
@@ -631,7 +585,7 @@ public open class FontFile : Font() {
   /**
    * Removes all font cache entries.
    */
-  public final fun clearCache(): Unit {
+  public final fun clearCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearCachePtr, NIL)
   }
@@ -639,14 +593,13 @@ public open class FontFile : Font() {
   /**
    * Removes specified font cache entry.
    */
-  public final fun removeCache(cacheIndex: Int): Unit {
+  public final fun removeCache(cacheIndex: Int) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeCachePtr, NIL)
   }
 
   /**
-   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
-   * size.
+   * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline size.
    */
   public final fun getSizeCacheList(cacheIndex: Int): VariantArray<Vector2i> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -657,7 +610,7 @@ public open class FontFile : Font() {
   /**
    * Removes all font sizes from the cache entry.
    */
-  public final fun clearSizeCache(cacheIndex: Int): Unit {
+  public final fun clearSizeCache(cacheIndex: Int) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clearSizeCachePtr, NIL)
   }
@@ -665,24 +618,21 @@ public open class FontFile : Font() {
   /**
    * Removes specified font size from the cache entry.
    */
-  public final fun removeSizeCache(cacheIndex: Int, size: Vector2i): Unit {
+  public final fun removeSizeCache(cacheIndex: Int, size: Vector2i) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.removeSizeCachePtr, NIL)
   }
 
   /**
-   * Sets variation coordinates for the specified font cache entry. See
-   * [Font.getSupportedVariationList] for more info.
+   * Sets variation coordinates for the specified font cache entry. See [Font.getSupportedVariationList] for more info.
    */
-  public final fun setVariationCoordinates(cacheIndex: Int,
-      variationCoordinates: Dictionary<Any?, Any?>): Unit {
+  public final fun setVariationCoordinates(cacheIndex: Int, variationCoordinates: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), DICTIONARY to variationCoordinates)
     TransferContext.callMethod(ptr, MethodBindings.setVariationCoordinatesPtr, NIL)
   }
 
   /**
-   * Returns variation coordinates for the specified font cache entry. See
-   * [Font.getSupportedVariationList] for more info.
+   * Returns variation coordinates for the specified font cache entry. See [Font.getSupportedVariationList] for more info.
    */
   public final fun getVariationCoordinates(cacheIndex: Int): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -691,17 +641,15 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values
-   * reduce the outline thickness.
+   * Sets embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
-  public final fun setEmbolden(cacheIndex: Int, strength: Float): Unit {
+  public final fun setEmbolden(cacheIndex: Int, strength: Float) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmboldenPtr, NIL)
   }
 
   /**
-   * Returns embolden strength, if is not equal to zero, emboldens the font outlines. Negative
-   * values reduce the outline thickness.
+   * Returns embolden strength, if is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    */
   public final fun getEmbolden(cacheIndex: Int): Float {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -710,17 +658,15 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
-   * rotating glyphs.
+   * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and rotating glyphs.
    */
-  public final fun setTransform(cacheIndex: Int, transform: Transform2D): Unit {
+  public final fun setTransform(cacheIndex: Int, transform: Transform2D) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
 
   /**
-   * Returns 2D transform, applied to the font outlines, can be used for slanting, flipping and
-   * rotating glyphs.
+   * Returns 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    */
   public final fun getTransform(cacheIndex: Int): Transform2D {
     TransferContext.writeArguments(LONG to cacheIndex.toLong())
@@ -729,21 +675,19 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
    */
   public final fun setExtraSpacing(
     cacheIndex: Int,
     spacing: TextServer.SpacingType,
     `value`: Long,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id, LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.setExtraSpacingPtr, NIL)
   }
 
   /**
-   * Returns spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
-   * font size).
+   * Returns spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the font size).
    */
   public final fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
@@ -754,7 +698,7 @@ public open class FontFile : Font() {
   /**
    * Sets extra baseline offset (as a fraction of font height).
    */
-  public final fun setExtraBaselineOffset(cacheIndex: Int, baselineOffset: Float): Unit {
+  public final fun setExtraBaselineOffset(cacheIndex: Int, baselineOffset: Float) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), DOUBLE to baselineOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExtraBaselineOffsetPtr, NIL)
   }
@@ -771,7 +715,7 @@ public open class FontFile : Font() {
   /**
    * Sets an active face index in the TrueType / OpenType collection.
    */
-  public final fun setFaceIndex(cacheIndex: Int, faceIndex: Long): Unit {
+  public final fun setFaceIndex(cacheIndex: Int, faceIndex: Long) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to faceIndex)
     TransferContext.callMethod(ptr, MethodBindings.setFaceIndexPtr, NIL)
   }
@@ -792,7 +736,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     ascent: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to ascent.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCacheAscentPtr, NIL)
   }
@@ -813,7 +757,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     descent: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to descent.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCacheDescentPtr, NIL)
   }
@@ -834,7 +778,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     underlinePosition: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to underlinePosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCacheUnderlinePositionPtr, NIL)
   }
@@ -855,7 +799,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     underlineThickness: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to underlineThickness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCacheUnderlineThicknessPtr, NIL)
   }
@@ -876,7 +820,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     scale: Float,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCacheScalePtr, NIL)
   }
@@ -902,10 +846,9 @@ public open class FontFile : Font() {
   /**
    * Removes all textures from font cache entry.
    *
-   * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph]
-   * to remove them manually.
+   * **Note:** This function will not remove glyphs associated with the texture, use [removeGlyph] to remove them manually.
    */
-  public final fun clearTextures(cacheIndex: Int, size: Vector2i): Unit {
+  public final fun clearTextures(cacheIndex: Int, size: Vector2i) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.clearTexturesPtr, NIL)
   }
@@ -913,14 +856,13 @@ public open class FontFile : Font() {
   /**
    * Removes specified texture from the cache entry.
    *
-   * **Note:** This function will not remove glyphs associated with the texture. Remove them
-   * manually using [removeGlyph].
+   * **Note:** This function will not remove glyphs associated with the texture. Remove them manually using [removeGlyph].
    */
   public final fun removeTexture(
     cacheIndex: Int,
     size: Vector2i,
     textureIndex: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeTexturePtr, NIL)
   }
@@ -933,7 +875,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     textureIndex: Int,
     image: Image?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong(), OBJECT to image)
     TransferContext.callMethod(ptr, MethodBindings.setTextureImagePtr, NIL)
   }
@@ -959,7 +901,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     textureIndex: Int,
     offset: PackedInt32Array,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to textureIndex.toLong(), PACKED_INT_32_ARRAY to offset)
     TransferContext.callMethod(ptr, MethodBindings.setTextureOffsetsPtr, NIL)
   }
@@ -989,10 +931,9 @@ public open class FontFile : Font() {
   /**
    * Removes all rendered glyph information from the cache entry.
    *
-   * **Note:** This function will not remove textures associated with the glyphs, use
-   * [removeTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
-  public final fun clearGlyphs(cacheIndex: Int, size: Vector2i): Unit {
+  public final fun clearGlyphs(cacheIndex: Int, size: Vector2i) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.clearGlyphsPtr, NIL)
   }
@@ -1000,14 +941,13 @@ public open class FontFile : Font() {
   /**
    * Removes specified rendered glyph information from the cache entry.
    *
-   * **Note:** This function will not remove textures associated with the glyphs, use
-   * [removeTexture] to remove them manually.
+   * **Note:** This function will not remove textures associated with the glyphs, use [removeTexture] to remove them manually.
    */
   public final fun removeGlyph(
     cacheIndex: Int,
     size: Vector2i,
     glyph: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeGlyphPtr, NIL)
   }
@@ -1022,7 +962,7 @@ public open class FontFile : Font() {
     size: Int,
     glyph: Int,
     advance: Vector2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), LONG to glyph.toLong(), VECTOR2 to advance)
     TransferContext.callMethod(ptr, MethodBindings.setGlyphAdvancePtr, NIL)
   }
@@ -1050,7 +990,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     glyph: Int,
     offset: Vector2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setGlyphOffsetPtr, NIL)
   }
@@ -1076,7 +1016,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     glyph: Int,
     glSize: Vector2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), VECTOR2 to glSize)
     TransferContext.callMethod(ptr, MethodBindings.setGlyphSizePtr, NIL)
   }
@@ -1102,7 +1042,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     glyph: Int,
     uvRect: Rect2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), RECT2 to uvRect)
     TransferContext.callMethod(ptr, MethodBindings.setGlyphUvRectPtr, NIL)
   }
@@ -1128,7 +1068,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     glyph: Int,
     textureIdx: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to glyph.toLong(), LONG to textureIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setGlyphTextureIdxPtr, NIL)
   }
@@ -1158,7 +1098,7 @@ public open class FontFile : Font() {
   /**
    * Removes all kerning overrides.
    */
-  public final fun clearKerningMap(cacheIndex: Int, size: Int): Unit {
+  public final fun clearKerningMap(cacheIndex: Int, size: Int) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.clearKerningMapPtr, NIL)
   }
@@ -1170,7 +1110,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Int,
     glyphPair: Vector2i,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), VECTOR2I to glyphPair)
     TransferContext.callMethod(ptr, MethodBindings.removeKerningPtr, NIL)
   }
@@ -1183,7 +1123,7 @@ public open class FontFile : Font() {
     size: Int,
     glyphPair: Vector2i,
     kerning: Vector2,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to size.toLong(), VECTOR2I to glyphPair, VECTOR2 to kerning)
     TransferContext.callMethod(ptr, MethodBindings.setKerningPtr, NIL)
   }
@@ -1209,7 +1149,7 @@ public open class FontFile : Font() {
     size: Vector2i,
     start: Long,
     end: Long,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to start, LONG to end)
     TransferContext.callMethod(ptr, MethodBindings.renderRangePtr, NIL)
   }
@@ -1221,7 +1161,7 @@ public open class FontFile : Font() {
     cacheIndex: Int,
     size: Vector2i,
     index: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), VECTOR2I to size, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.renderGlyphPtr, NIL)
   }
@@ -1229,7 +1169,7 @@ public open class FontFile : Font() {
   /**
    * Adds override for [Font.isLanguageSupported].
    */
-  public final fun setLanguageSupportOverride(language: String, supported: Boolean): Unit {
+  public final fun setLanguageSupportOverride(language: String, supported: Boolean) {
     TransferContext.writeArguments(STRING to language, BOOL to supported)
     TransferContext.callMethod(ptr, MethodBindings.setLanguageSupportOverridePtr, NIL)
   }
@@ -1246,7 +1186,7 @@ public open class FontFile : Font() {
   /**
    * Remove language support override.
    */
-  public final fun removeLanguageSupportOverride(language: String): Unit {
+  public final fun removeLanguageSupportOverride(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.removeLanguageSupportOverridePtr, NIL)
   }
@@ -1256,15 +1196,14 @@ public open class FontFile : Font() {
    */
   public final fun getLanguageSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getLanguageSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getLanguageSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
    * Adds override for [Font.isScriptSupported].
    */
-  public final fun setScriptSupportOverride(script: String, supported: Boolean): Unit {
+  public final fun setScriptSupportOverride(script: String, supported: Boolean) {
     TransferContext.writeArguments(STRING to script, BOOL to supported)
     TransferContext.callMethod(ptr, MethodBindings.setScriptSupportOverridePtr, NIL)
   }
@@ -1281,7 +1220,7 @@ public open class FontFile : Font() {
   /**
    * Removes script support override.
    */
-  public final fun removeScriptSupportOverride(script: String): Unit {
+  public final fun removeScriptSupportOverride(script: String) {
     TransferContext.writeArguments(STRING to script)
     TransferContext.callMethod(ptr, MethodBindings.removeScriptSupportOverridePtr, NIL)
   }
@@ -1291,12 +1230,11 @@ public open class FontFile : Font() {
    */
   public final fun getScriptSupportOverrides(): PackedStringArray {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getScriptSupportOverridesPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getScriptSupportOverridesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setOpentypeFeatureOverrides(overrides: Dictionary<Any?, Any?>): Unit {
+  public final fun setOpentypeFeatureOverrides(overrides: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to overrides)
     TransferContext.callMethod(ptr, MethodBindings.setOpentypeFeatureOverridesPtr, NIL)
   }
@@ -1321,8 +1259,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See
-   * [getGlyphIndex].
+   * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid. See [getGlyphIndex].
    */
   public final fun getCharFromGlyphIndex(size: Int, glyphIndex: Int): Long {
     TransferContext.writeArguments(LONG to size.toLong(), LONG to glyphIndex.toLong())
@@ -1334,315 +1271,315 @@ public open class FontFile : Font() {
 
   public object MethodBindings {
     internal val loadBitmapFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "load_bitmap_font", 166001499)
+        TypeManager.getMethodBindPtr("FontFile", "load_bitmap_font", 166_001_499)
 
     internal val loadDynamicFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "load_dynamic_font", 166001499)
+        TypeManager.getMethodBindPtr("FontFile", "load_dynamic_font", 166_001_499)
 
     internal val setDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_data", 2971499966)
+        TypeManager.getMethodBindPtr("FontFile", "set_data", 2_971_499_966)
 
     internal val getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_data", 2362200018)
+        TypeManager.getMethodBindPtr("FontFile", "get_data", 2_362_200_018)
 
     internal val setFontNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_name", 83702148)
+        TypeManager.getMethodBindPtr("FontFile", "set_font_name", 83_702_148)
 
     internal val setFontStyleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_style_name", 83702148)
+        TypeManager.getMethodBindPtr("FontFile", "set_font_style_name", 83_702_148)
 
     internal val setFontStylePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_style", 918070724)
+        TypeManager.getMethodBindPtr("FontFile", "set_font_style", 918_070_724)
 
     internal val setFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_weight", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "set_font_weight", 1_286_410_249)
 
     internal val setFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_font_stretch", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "set_font_stretch", 1_286_410_249)
 
     internal val setAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_antialiasing", 1669900)
+        TypeManager.getMethodBindPtr("FontFile", "set_antialiasing", 1_669_900)
 
     internal val getAntialiasingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_antialiasing", 4262718649)
+        TypeManager.getMethodBindPtr("FontFile", "get_antialiasing", 4_262_718_649)
 
     internal val setDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_disable_embedded_bitmaps", 2_586_408_642)
 
     internal val getDisableEmbeddedBitmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "get_disable_embedded_bitmaps", 36_873_697)
 
     internal val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_generate_mipmaps", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_generate_mipmaps", 2_586_408_642)
 
     internal val getGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_generate_mipmaps", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "get_generate_mipmaps", 36_873_697)
 
     internal val setMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_multichannel_signed_distance_field", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_multichannel_signed_distance_field", 2_586_408_642)
 
     internal val isMultichannelSignedDistanceFieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_multichannel_signed_distance_field", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "is_multichannel_signed_distance_field", 36_873_697)
 
     internal val setMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_msdf_pixel_range", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "set_msdf_pixel_range", 1_286_410_249)
 
     internal val getMsdfPixelRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_msdf_pixel_range", 3905245786)
+        TypeManager.getMethodBindPtr("FontFile", "get_msdf_pixel_range", 3_905_245_786)
 
     internal val setMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_msdf_size", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "set_msdf_size", 1_286_410_249)
 
     internal val getMsdfSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_msdf_size", 3905245786)
+        TypeManager.getMethodBindPtr("FontFile", "get_msdf_size", 3_905_245_786)
 
     internal val setFixedSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size", 1_286_410_249)
 
     internal val getFixedSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size", 3905245786)
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size", 3_905_245_786)
 
     internal val setFixedSizeScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode", 1660989956)
+        TypeManager.getMethodBindPtr("FontFile", "set_fixed_size_scale_mode", 1_660_989_956)
 
     internal val getFixedSizeScaleModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode", 753873478)
+        TypeManager.getMethodBindPtr("FontFile", "get_fixed_size_scale_mode", 753_873_478)
 
     internal val setAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_allow_system_fallback", 2_586_408_642)
 
     internal val isAllowSystemFallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_allow_system_fallback", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "is_allow_system_fallback", 36_873_697)
 
     internal val setForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_force_autohinter", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_force_autohinter", 2_586_408_642)
 
     internal val isForceAutohinterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "is_force_autohinter", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "is_force_autohinter", 36_873_697)
 
     internal val setHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_hinting", 1827459492)
+        TypeManager.getMethodBindPtr("FontFile", "set_hinting", 1_827_459_492)
 
     internal val getHintingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_hinting", 3683214614)
+        TypeManager.getMethodBindPtr("FontFile", "get_hinting", 3_683_214_614)
 
     internal val setSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_subpixel_positioning", 4225742182)
+        TypeManager.getMethodBindPtr("FontFile", "set_subpixel_positioning", 4_225_742_182)
 
     internal val getSubpixelPositioningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_subpixel_positioning", 1069238588)
+        TypeManager.getMethodBindPtr("FontFile", "get_subpixel_positioning", 1_069_238_588)
 
     internal val setKeepRoundingRemaindersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_keep_rounding_remainders", 2586408642)
+        TypeManager.getMethodBindPtr("FontFile", "set_keep_rounding_remainders", 2_586_408_642)
 
     internal val getKeepRoundingRemaindersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_keep_rounding_remainders", 36873697)
+        TypeManager.getMethodBindPtr("FontFile", "get_keep_rounding_remainders", 36_873_697)
 
     internal val setOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_oversampling", 373806689)
+        TypeManager.getMethodBindPtr("FontFile", "set_oversampling", 373_806_689)
 
     internal val getOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_oversampling", 1740695150)
+        TypeManager.getMethodBindPtr("FontFile", "get_oversampling", 1_740_695_150)
 
     internal val getCacheCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_count", 3905245786)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_count", 3_905_245_786)
 
     internal val clearCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_cache", 3218959716)
+        TypeManager.getMethodBindPtr("FontFile", "clear_cache", 3_218_959_716)
 
     internal val removeCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_cache", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "remove_cache", 1_286_410_249)
 
     internal val getSizeCacheListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_size_cache_list", 663333327)
+        TypeManager.getMethodBindPtr("FontFile", "get_size_cache_list", 663_333_327)
 
     internal val clearSizeCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_size_cache", 1286410249)
+        TypeManager.getMethodBindPtr("FontFile", "clear_size_cache", 1_286_410_249)
 
     internal val removeSizeCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_size_cache", 2311374912)
+        TypeManager.getMethodBindPtr("FontFile", "remove_size_cache", 2_311_374_912)
 
     internal val setVariationCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_variation_coordinates", 64545446)
+        TypeManager.getMethodBindPtr("FontFile", "set_variation_coordinates", 64_545_446)
 
     internal val getVariationCoordinatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_variation_coordinates", 3485342025)
+        TypeManager.getMethodBindPtr("FontFile", "get_variation_coordinates", 3_485_342_025)
 
     internal val setEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_embolden", 1602489585)
+        TypeManager.getMethodBindPtr("FontFile", "set_embolden", 1_602_489_585)
 
     internal val getEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_embolden", 2339986948)
+        TypeManager.getMethodBindPtr("FontFile", "get_embolden", 2_339_986_948)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_transform", 30160968)
+        TypeManager.getMethodBindPtr("FontFile", "set_transform", 30_160_968)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_transform", 3836996910)
+        TypeManager.getMethodBindPtr("FontFile", "get_transform", 3_836_996_910)
 
     internal val setExtraSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing", 62942285)
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_spacing", 62_942_285)
 
     internal val getExtraSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing", 1924257185)
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_spacing", 1_924_257_185)
 
     internal val setExtraBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_extra_baseline_offset", 1602489585)
+        TypeManager.getMethodBindPtr("FontFile", "set_extra_baseline_offset", 1_602_489_585)
 
     internal val getExtraBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_extra_baseline_offset", 2339986948)
+        TypeManager.getMethodBindPtr("FontFile", "get_extra_baseline_offset", 2_339_986_948)
 
     internal val setFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_face_index", 3937882851)
+        TypeManager.getMethodBindPtr("FontFile", "set_face_index", 3_937_882_851)
 
     internal val getFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_face_index", 923996154)
+        TypeManager.getMethodBindPtr("FontFile", "get_face_index", 923_996_154)
 
     internal val setCacheAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_ascent", 3506521499)
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_ascent", 3_506_521_499)
 
     internal val getCacheAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_ascent", 3085491603)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_ascent", 3_085_491_603)
 
     internal val setCacheDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_descent", 3506521499)
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_descent", 3_506_521_499)
 
     internal val getCacheDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_descent", 3085491603)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_descent", 3_085_491_603)
 
     internal val setCacheUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_position", 3506521499)
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_position", 3_506_521_499)
 
     internal val getCacheUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_position", 3085491603)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_position", 3_085_491_603)
 
     internal val setCacheUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_thickness", 3506521499)
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_underline_thickness", 3_506_521_499)
 
     internal val getCacheUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_thickness", 3085491603)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_underline_thickness", 3_085_491_603)
 
     internal val setCacheScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_cache_scale", 3506521499)
+        TypeManager.getMethodBindPtr("FontFile", "set_cache_scale", 3_506_521_499)
 
     internal val getCacheScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_cache_scale", 3085491603)
+        TypeManager.getMethodBindPtr("FontFile", "get_cache_scale", 3_085_491_603)
 
     internal val getTextureCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_count", 1987661582)
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_count", 1_987_661_582)
 
     internal val clearTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_textures", 2311374912)
+        TypeManager.getMethodBindPtr("FontFile", "clear_textures", 2_311_374_912)
 
     internal val removeTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_texture", 2328951467)
+        TypeManager.getMethodBindPtr("FontFile", "remove_texture", 2_328_951_467)
 
     internal val setTextureImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_texture_image", 4157974066)
+        TypeManager.getMethodBindPtr("FontFile", "set_texture_image", 4_157_974_066)
 
     internal val getTextureImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_image", 3878418953)
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_image", 3_878_418_953)
 
     internal val setTextureOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_texture_offsets", 2849993437)
+        TypeManager.getMethodBindPtr("FontFile", "set_texture_offsets", 2_849_993_437)
 
     internal val getTextureOffsetsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_texture_offsets", 3703444828)
+        TypeManager.getMethodBindPtr("FontFile", "get_texture_offsets", 3_703_444_828)
 
     internal val getGlyphListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_list", 681709689)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_list", 681_709_689)
 
     internal val clearGlyphsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_glyphs", 2311374912)
+        TypeManager.getMethodBindPtr("FontFile", "clear_glyphs", 2_311_374_912)
 
     internal val removeGlyphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_glyph", 2328951467)
+        TypeManager.getMethodBindPtr("FontFile", "remove_glyph", 2_328_951_467)
 
     internal val setGlyphAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_advance", 947991729)
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_advance", 947_991_729)
 
     internal val getGlyphAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_advance", 1601573536)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_advance", 1_601_573_536)
 
     internal val setGlyphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_offset", 921719850)
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_offset", 921_719_850)
 
     internal val getGlyphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_offset", 3205412300)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_offset", 3_205_412_300)
 
     internal val setGlyphSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_size", 921719850)
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_size", 921_719_850)
 
     internal val getGlyphSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_size", 3205412300)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_size", 3_205_412_300)
 
     internal val setGlyphUvRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_uv_rect", 3821620992)
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_uv_rect", 3_821_620_992)
 
     internal val getGlyphUvRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_uv_rect", 3927917900)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_uv_rect", 3_927_917_900)
 
     internal val setGlyphTextureIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_glyph_texture_idx", 355564111)
+        TypeManager.getMethodBindPtr("FontFile", "set_glyph_texture_idx", 355_564_111)
 
     internal val getGlyphTextureIdxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_texture_idx", 1629411054)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_texture_idx", 1_629_411_054)
 
     internal val getKerningListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_kerning_list", 2345056839)
+        TypeManager.getMethodBindPtr("FontFile", "get_kerning_list", 2_345_056_839)
 
     internal val clearKerningMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "clear_kerning_map", 3937882851)
+        TypeManager.getMethodBindPtr("FontFile", "clear_kerning_map", 3_937_882_851)
 
     internal val removeKerningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_kerning", 3930204747)
+        TypeManager.getMethodBindPtr("FontFile", "remove_kerning", 3_930_204_747)
 
     internal val setKerningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_kerning", 3182200918)
+        TypeManager.getMethodBindPtr("FontFile", "set_kerning", 3_182_200_918)
 
     internal val getKerningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_kerning", 1611912865)
+        TypeManager.getMethodBindPtr("FontFile", "get_kerning", 1_611_912_865)
 
     internal val renderRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "render_range", 355564111)
+        TypeManager.getMethodBindPtr("FontFile", "render_range", 355_564_111)
 
     internal val renderGlyphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "render_glyph", 2328951467)
+        TypeManager.getMethodBindPtr("FontFile", "render_glyph", 2_328_951_467)
 
     internal val setLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_language_support_override", 2678287736)
+        TypeManager.getMethodBindPtr("FontFile", "set_language_support_override", 2_678_287_736)
 
     internal val getLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_language_support_override", 3927539163)
+        TypeManager.getMethodBindPtr("FontFile", "get_language_support_override", 3_927_539_163)
 
     internal val removeLanguageSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_language_support_override", 83702148)
+        TypeManager.getMethodBindPtr("FontFile", "remove_language_support_override", 83_702_148)
 
     internal val getLanguageSupportOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_language_support_overrides", 1139954409)
+        TypeManager.getMethodBindPtr("FontFile", "get_language_support_overrides", 1_139_954_409)
 
     internal val setScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_script_support_override", 2678287736)
+        TypeManager.getMethodBindPtr("FontFile", "set_script_support_override", 2_678_287_736)
 
     internal val getScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_script_support_override", 3927539163)
+        TypeManager.getMethodBindPtr("FontFile", "get_script_support_override", 3_927_539_163)
 
     internal val removeScriptSupportOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "remove_script_support_override", 83702148)
+        TypeManager.getMethodBindPtr("FontFile", "remove_script_support_override", 83_702_148)
 
     internal val getScriptSupportOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_script_support_overrides", 1139954409)
+        TypeManager.getMethodBindPtr("FontFile", "get_script_support_overrides", 1_139_954_409)
 
     internal val setOpentypeFeatureOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "set_opentype_feature_overrides", 4155329257)
+        TypeManager.getMethodBindPtr("FontFile", "set_opentype_feature_overrides", 4_155_329_257)
 
     internal val getOpentypeFeatureOverridesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_opentype_feature_overrides", 3102165223)
+        TypeManager.getMethodBindPtr("FontFile", "get_opentype_feature_overrides", 3_102_165_223)
 
     internal val getGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_glyph_index", 864943070)
+        TypeManager.getMethodBindPtr("FontFile", "get_glyph_index", 864_943_070)
 
     internal val getCharFromGlyphIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontFile", "get_char_from_glyph_index", 3175239445)
+        TypeManager.getMethodBindPtr("FontFile", "get_char_from_glyph_index", 3_175_239_445)
   }
 }

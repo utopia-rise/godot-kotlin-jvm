@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,28 +21,15 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape3D].
+ * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape3D].
  *
- * Being just a collection of interconnected triangles, [ConcavePolygonShape3D] is the most freely
- * configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that
- * don't enclose a volume. However, [ConcavePolygonShape3D] is *hollow* even if the interconnected
- * triangles do enclose a volume, which often makes it unsuitable for physics or detection.
+ * Being just a collection of interconnected triangles, [ConcavePolygonShape3D] is the most freely configurable single 3D shape. It can be used to form polyhedra of any nature, or even shapes that don't enclose a volume. However, [ConcavePolygonShape3D] is *hollow* even if the interconnected triangles do enclose a volume, which often makes it unsuitable for physics or detection.
  *
- * **Note:** When used for collision, [ConcavePolygonShape3D] is intended to work with static
- * [CollisionShape3D] nodes like [StaticBody3D] and will likely not behave well for [CharacterBody3D]s
- * or [RigidBody3D]s in a mode other than Static.
+ * **Note:** When used for collision, [ConcavePolygonShape3D] is intended to work with static [CollisionShape3D] nodes like [StaticBody3D] and will likely not behave well for [CharacterBody3D]s or [RigidBody3D]s in a mode other than Static.
  *
- * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving
- * fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and
- * on the next frame it may be "inside" it. [ConcavePolygonShape3D] is hollow, so it won't detect a
- * collision.
+ * **Warning:** Physics bodies that are small have a chance to clip through this shape when moving fast. This happens because on one frame, the physics body may be on the "outside" of the shape, and on the next frame it may be "inside" it. [ConcavePolygonShape3D] is hollow, so it won't detect a collision.
  *
- * **Performance:** Due to its complexity, [ConcavePolygonShape3D] is the slowest 3D collision shape
- * to check collisions against. Its use should generally be limited to level geometry. For convex
- * geometry, [ConvexPolygonShape3D] should be used. For dynamic physics bodies that need concave
- * collision, several [ConvexPolygonShape3D]s can be used to represent its collision by using convex
- * decomposition; see [ConvexPolygonShape3D]'s documentation for instructions.
+ * **Performance:** Due to its complexity, [ConcavePolygonShape3D] is the slowest 3D collision shape to check collisions against. Its use should generally be limited to level geometry. For convex geometry, [ConvexPolygonShape3D] should be used. For dynamic physics bodies that need concave collision, several [ConvexPolygonShape3D]s can be used to represent its collision by using convex decomposition; see [ConvexPolygonShape3D]'s documentation for instructions.
  */
 @GodotBaseType
 public open class ConcavePolygonShape3D : Shape3D() {
@@ -53,11 +37,8 @@ public open class ConcavePolygonShape3D : Shape3D() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var `data`: PackedVector3Array
@@ -69,8 +50,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
     }
 
   /**
-   * If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they
-   * occur only along the face normals.
+   * If set to `true`, collisions occur on both sides of the concave shape faces. Otherwise they occur only along the face normals.
    */
   public final inline var backfaceCollision: Boolean
     @JvmName("backfaceCollisionProperty")
@@ -80,7 +60,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
       setBackfaceCollisionEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(173, scriptIndex)
   }
 
@@ -96,20 +76,17 @@ public open class ConcavePolygonShape3D : Shape3D() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun dataMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
-      data.apply {
+  public final fun dataMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array = data.apply {
      block(this)
      data = this
   }
 
   /**
    * This is a helper function for [data] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    */
   @CoreTypeHelper
-  public final fun dataMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array
-      = data.apply {
+  public final fun dataMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array = data.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -118,17 +95,15 @@ public open class ConcavePolygonShape3D : Shape3D() {
   }
 
   /**
-   * Sets the faces of the trimesh shape from an array of vertices. The [faces] array should be
-   * composed of triples such that each triple of vertices defines a triangle.
+   * Sets the faces of the trimesh shape from an array of vertices. The [faces] array should be composed of triples such that each triple of vertices defines a triangle.
    */
-  public final fun setFaces(faces: PackedVector3Array): Unit {
+  public final fun setFaces(faces: PackedVector3Array) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to faces)
     TransferContext.callMethod(ptr, MethodBindings.setFacesPtr, NIL)
   }
 
   /**
-   * Returns the faces of the trimesh shape as an array of vertices. The array (of length divisible
-   * by three) is naturally divided into triples; each triple of vertices defines a triangle.
+   * Returns the faces of the trimesh shape as an array of vertices. The array (of length divisible by three) is naturally divided into triples; each triple of vertices defines a triangle.
    */
   public final fun getFaces(): PackedVector3Array {
     TransferContext.writeArguments()
@@ -136,7 +111,7 @@ public open class ConcavePolygonShape3D : Shape3D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
-  public final fun setBackfaceCollisionEnabled(enabled: Boolean): Unit {
+  public final fun setBackfaceCollisionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setBackfaceCollisionEnabledPtr, NIL)
   }
@@ -151,15 +126,15 @@ public open class ConcavePolygonShape3D : Shape3D() {
 
   public object MethodBindings {
     internal val setFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_faces", 334873810)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_faces", 334_873_810)
 
     internal val getFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "get_faces", 497664490)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "get_faces", 497_664_490)
 
     internal val setBackfaceCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "set_backface_collision_enabled", 2_586_408_642)
 
     internal val isBackfaceCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled", 36873697)
+        TypeManager.getMethodBindPtr("ConcavePolygonShape3D", "is_backface_collision_enabled", 36_873_697)
   }
 }

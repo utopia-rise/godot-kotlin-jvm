@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,21 +16,17 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
- * all the functions necessary for accessing the derived resource types. [Texture3D] is the base class
- * for all 3-dimensional texture types. See also [TextureLayered].
+ * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains all the functions necessary for accessing the derived resource types. [Texture3D] is the base class for all 3-dimensional texture types. See also [TextureLayered].
  *
  * All images need to have the same width, height and number of mipmap levels.
  *
- * To create such a texture file yourself, reimport your image files using the Godot Editor import
- * presets.
+ * To create such a texture file yourself, reimport your image files using the Godot Editor import presets.
  */
 @GodotBaseType
 public abstract class Texture3D : Texture() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(669, scriptIndex)
   }
 
@@ -95,8 +88,7 @@ public abstract class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a
-   * dimension not present in [Texture2D]).
+   * Returns the [Texture3D]'s depth in pixels. Depth is typically represented by the Z axis (a dimension not present in [Texture2D]).
    */
   public final fun getDepth(): Int {
     TransferContext.writeArguments()
@@ -114,8 +106,7 @@ public abstract class Texture3D : Texture() {
   }
 
   /**
-   * Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a *slice* of
-   * the [Texture3D], with different slices mapping to different depth (Z axis) levels.
+   * Returns the [Texture3D]'s data as an array of [Image]s. Each [Image] represents a *slice* of the [Texture3D], with different slices mapping to different depth (Z axis) levels.
    */
   public final fun getData(): VariantArray<Image> {
     TransferContext.writeArguments()
@@ -136,24 +127,24 @@ public abstract class Texture3D : Texture() {
 
   public object MethodBindings {
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "get_format", 3847873762)
+        TypeManager.getMethodBindPtr("Texture3D", "get_format", 3_847_873_762)
 
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "get_width", 3905245786)
+        TypeManager.getMethodBindPtr("Texture3D", "get_width", 3_905_245_786)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "get_height", 3905245786)
+        TypeManager.getMethodBindPtr("Texture3D", "get_height", 3_905_245_786)
 
     internal val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "get_depth", 3905245786)
+        TypeManager.getMethodBindPtr("Texture3D", "get_depth", 3_905_245_786)
 
     internal val hasMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "has_mipmaps", 36873697)
+        TypeManager.getMethodBindPtr("Texture3D", "has_mipmaps", 36_873_697)
 
     internal val getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "get_data", 3995934104)
+        TypeManager.getMethodBindPtr("Texture3D", "get_data", 3_995_934_104)
 
     internal val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3D", "create_placeholder", 121922552)
+        TypeManager.getMethodBindPtr("Texture3D", "create_placeholder", 121_922_552)
   }
 }

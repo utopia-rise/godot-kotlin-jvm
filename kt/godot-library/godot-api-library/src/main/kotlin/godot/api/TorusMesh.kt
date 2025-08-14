@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,7 +15,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -70,11 +66,11 @@ public open class TorusMesh : PrimitiveMesh() {
       setRingSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(691, scriptIndex)
   }
 
-  public final fun setInnerRadius(radius: Float): Unit {
+  public final fun setInnerRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInnerRadiusPtr, NIL)
   }
@@ -85,7 +81,7 @@ public open class TorusMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOuterRadius(radius: Float): Unit {
+  public final fun setOuterRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOuterRadiusPtr, NIL)
   }
@@ -96,7 +92,7 @@ public open class TorusMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int) {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
   }
@@ -107,7 +103,7 @@ public open class TorusMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setRingSegments(rings: Int): Unit {
+  public final fun setRingSegments(rings: Int) {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRingSegmentsPtr, NIL)
   }
@@ -122,27 +118,27 @@ public open class TorusMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "set_inner_radius", 373806689)
+        TypeManager.getMethodBindPtr("TorusMesh", "set_inner_radius", 373_806_689)
 
     internal val getInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "get_inner_radius", 1740695150)
+        TypeManager.getMethodBindPtr("TorusMesh", "get_inner_radius", 1_740_695_150)
 
     internal val setOuterRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "set_outer_radius", 373806689)
+        TypeManager.getMethodBindPtr("TorusMesh", "set_outer_radius", 373_806_689)
 
     internal val getOuterRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "get_outer_radius", 1740695150)
+        TypeManager.getMethodBindPtr("TorusMesh", "get_outer_radius", 1_740_695_150)
 
     internal val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "set_rings", 1286410249)
+        TypeManager.getMethodBindPtr("TorusMesh", "set_rings", 1_286_410_249)
 
     internal val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "get_rings", 3905245786)
+        TypeManager.getMethodBindPtr("TorusMesh", "get_rings", 3_905_245_786)
 
     internal val setRingSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "set_ring_segments", 1286410249)
+        TypeManager.getMethodBindPtr("TorusMesh", "set_ring_segments", 1_286_410_249)
 
     internal val getRingSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TorusMesh", "get_ring_segments", 3905245786)
+        TypeManager.getMethodBindPtr("TorusMesh", "get_ring_segments", 3_905_245_786)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -42,8 +38,7 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   /**
-   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as
-   * `TEXTURE` in CanvasItem shader.
+   * The [Texture2D] that will be used if using the default [CanvasItemMaterial]. Can be accessed as `TEXTURE` in CanvasItem shader.
    */
   public final inline var texture: Texture2D?
     @JvmName("textureProperty")
@@ -53,11 +48,11 @@ public open class MultiMeshInstance2D : Node2D() {
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(364, scriptIndex)
   }
 
-  public final fun setMultimesh(multimesh: MultiMesh?): Unit {
+  public final fun setMultimesh(multimesh: MultiMesh?) {
     TransferContext.writeArguments(OBJECT to multimesh)
     TransferContext.callMethod(ptr, MethodBindings.setMultimeshPtr, NIL)
   }
@@ -68,7 +63,7 @@ public open class MultiMeshInstance2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as MultiMesh?)
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -83,15 +78,15 @@ public open class MultiMeshInstance2D : Node2D() {
 
   public object MethodBindings {
     internal val setMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh", 2246127404)
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_multimesh", 2_246_127_404)
 
     internal val getMultimeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh", 1385450523)
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_multimesh", 1_385_450_523)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("MultiMeshInstance2D", "get_texture", 3_635_182_373)
   }
 }

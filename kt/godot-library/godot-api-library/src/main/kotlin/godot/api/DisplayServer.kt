@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -54,18 +51,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * [DisplayServer] handles everything related to window management. It is separated from [OS] as a
- * single operating system may support multiple display servers.
+ * [DisplayServer] handles everything related to window management. It is separated from [OS] as a single operating system may support multiple display servers.
  *
- * **Headless mode:** Starting the engine with the `--headless`
- * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url] disables all
- * rendering and window management functions. Most functions from [DisplayServer] will return dummy
- * values in this case.
+ * **Headless mode:** Starting the engine with the `--headless` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url] disables all rendering and window management functions. Most functions from [DisplayServer] will return dummy values in this case.
  */
 @GodotBaseType
 public object DisplayServer : Object() {
@@ -91,22 +83,19 @@ public object DisplayServer : Object() {
   public final const val SCREEN_PRIMARY: Long = -2
 
   /**
-   * Represents the screen where the main window is located. This is usually the default value in
-   * functions that allow specifying one of several screens.
+   * Represents the screen where the main window is located. This is usually the default value in functions that allow specifying one of several screens.
    *
    * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
    */
   public final const val SCREEN_OF_MAIN_WINDOW: Long = -1
 
   /**
-   * The ID of the main window spawned by the engine, which can be passed to methods expecting a
-   * `window_id`.
+   * The ID of the main window spawned by the engine, which can be passed to methods expecting a `window_id`.
    */
   public final const val MAIN_WINDOW_ID: Long = 0
 
   /**
-   * The ID that refers to a nonexistent window. This is returned by some [DisplayServer] methods if
-   * no window matches the requested result.
+   * The ID that refers to a nonexistent window. This is returned by some [DisplayServer] methods if no window matches the requested result.
    */
   public final const val INVALID_WINDOW_ID: Long = -1
 
@@ -115,13 +104,12 @@ public object DisplayServer : Object() {
    */
   public final const val INVALID_INDICATOR_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(3)
   }
 
   /**
-   * Returns `true` if the specified [feature] is supported by the current [DisplayServer], `false`
-   * otherwise.
+   * Returns `true` if the specified [feature] is supported by the current [DisplayServer], `false` otherwise.
    */
   @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
@@ -131,13 +119,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the name of the [DisplayServer] currently in use. Most operating systems only have a
-   * single [DisplayServer], but Linux has access to more than one [DisplayServer] (currently X11 and
-   * Wayland).
+   * Returns the name of the [DisplayServer] currently in use. Most operating systems only have a single [DisplayServer], but Linux has access to more than one [DisplayServer] (currently X11 and Wayland).
    *
-   * The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Wayland` (Linux),
-   * `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless`
-   * [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]).
+   * The names of built-in display servers are `Windows`, `macOS`, `X11` (Linux), `Wayland` (Linux), `Android`, `iOS`, `web` (HTML5), and `headless` (when started with the `--headless` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command line argument[/url]).
    */
   @JvmStatic
   public final fun getName(): String {
@@ -149,39 +133,33 @@ public object DisplayServer : Object() {
   /**
    * Sets native help system search callbacks.
    *
-   * [searchCallback] has the following arguments: `String search_string, int result_limit` and
-   * return a [Dictionary] with "key, display name" pairs for the search results. Called when the user
-   * enters search terms in the `Help` menu.
+   * [searchCallback] has the following arguments: `String search_string, int result_limit` and return a [Dictionary] with "key, display name" pairs for the search results. Called when the user enters search terms in the `Help` menu.
    *
-   * [actionCallback] has the following arguments: `String key`. Called when the user selects a
-   * search result in the `Help` menu.
+   * [actionCallback] has the following arguments: `String key`. Called when the user selects a search result in the `Help` menu.
    *
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
-  public final fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable):
-      Unit {
+  public final fun helpSetSearchCallbacks(searchCallback: Callable, actionCallback: Callable) {
     TransferContext.writeArguments(CALLABLE to searchCallback, CALLABLE to actionCallback)
     TransferContext.callMethod(ptr, MethodBindings.helpSetSearchCallbacksPtr, NIL)
   }
 
   /**
-   * Registers callables to emit when the menu is respectively about to show or closed. Callback
-   * methods should have zero arguments.
+   * Registers callables to emit when the menu is respectively about to show or closed. Callback methods should have zero arguments.
    */
   @JvmStatic
   public final fun globalMenuSetPopupCallbacks(
     menuRoot: String,
     openCallback: Callable,
     closeCallback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, CALLABLE to openCallback, CALLABLE to closeCallback)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetPopupCallbacksPtr, NIL)
   }
 
   /**
-   * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument
-   * is the ID of the global menu root that will be shown when the item is clicked.
+   * Adds an item that will act as a submenu of the global menu [menuRoot]. The [submenu] argument is the ID of the global menu root that will be shown when the item is clicked.
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
@@ -221,13 +199,9 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -268,13 +242,9 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -315,13 +285,9 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -359,18 +325,13 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new checkable item with text [label] and icon [icon] to the global menu with ID
-   * [menuRoot].
+   * Adds a new checkable item with text [label] and icon [icon] to the global menu with ID [menuRoot].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -412,17 +373,11 @@ public object DisplayServer : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on
-   * how to control it.
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -459,22 +414,15 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a new radio-checkable item with text [label] and icon [icon] to the global menu with ID
-   * [menuRoot].
+   * Adds a new radio-checkable item with text [label] and icon [icon] to the global menu with ID [menuRoot].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on
-   * how to control it.
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [globalMenuSetItemChecked] for more info on how to control it.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -514,22 +462,15 @@ public object DisplayServer : Object() {
   /**
    * Adds a new item with text [label] to the global menu with ID [menuRoot].
    *
-   * Contrarily to normal binary items, multistate items can have more than two states, as defined
-   * by [maxStates]. Each press or activate of the item will increase the state by one. The default
-   * value is defined by [defaultState].
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** By default, there's no indication of the current item state, it should be changed
-   * manually.
+   * **Note:** By default, there's no indication of the current item state, it should be changed manually.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented only on macOS.
    *
@@ -568,8 +509,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Adds a separator between items to the global menu with ID [menuRoot]. Separators also occupy an
-   * index.
+   * Adds a separator between items to the global menu with ID [menuRoot]. Separators also occupy an index.
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
@@ -600,8 +540,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [text]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * Returns the index of the item with the specified [text]. Indices are automatically assigned to each item by the engine, and cannot be set manually.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -613,8 +552,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [tag]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * Returns the index of the item with the specified [tag]. Indices are automatically assigned to each item by the engine, and cannot be set manually.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -638,8 +576,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox
-   * or radio button.
+   * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox or radio button.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -653,8 +590,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the item at index [idx] has radio button-style checkability.
    *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
-   * radio groups.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -690,8 +626,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the metadata of the specified item, which might be of any type. You can set it with
-   * [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
+   * Returns the metadata of the specified item, which might be of any type. You can set it with [globalMenuSetItemTag], which provides a simple way of assigning context data to items.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -715,8 +650,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the submenu ID of the item at index [idx]. See [globalMenuAddSubmenuItem] for more info
-   * on how to add a submenu.
+   * Returns the submenu ID of the item at index [idx]. See [globalMenuAddSubmenuItem] for more info on how to add a submenu.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -728,8 +662,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of
-   * keys that activate the item, no matter which control is focused.
+   * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -741,8 +674,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be
-   * selected, or its action invoked.
+   * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be selected, or its action invoked.
    *
    * See [globalMenuSetItemDisabled] for more info on how to disable an item.
    *
@@ -839,14 +771,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     checked: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checked)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemCheckedPtr, NIL)
   }
 
   /**
-   * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to
-   * plain text.
+   * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to plain text.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -855,17 +786,15 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     checkable: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemCheckablePtr, NIL)
   }
 
   /**
-   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the
-   * type of the item to plain text.
+   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the type of the item to plain text.
    *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
-   * radio groups.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -874,7 +803,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     checkable: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to checkable)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemRadioCheckablePtr, NIL)
   }
@@ -882,9 +811,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
    *
-   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
-   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
-   * created.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -893,7 +820,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     callback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemCallbackPtr, NIL)
   }
@@ -901,9 +828,7 @@ public object DisplayServer : Object() {
   /**
    * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
    *
-   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
-   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
-   * created.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -912,18 +837,15 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     callback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemHoverCallbacksPtr, NIL)
   }
 
   /**
-   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is
-   * activated.
+   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
    *
-   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the
-   * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
-   * item was created.
+   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -932,14 +854,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     keyCallback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), CALLABLE to keyCallback)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemKeyCallbackPtr, NIL)
   }
 
   /**
-   * Sets the metadata of an item, which may be of any type. You can later get it with
-   * [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
+   * Sets the metadata of an item, which may be of any type. You can later get it with [globalMenuGetItemTag], which provides a simple way of assigning context data to items.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -948,7 +869,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     tag: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), ANY to tag)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemTagPtr, NIL)
   }
@@ -963,14 +884,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     text: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemTextPtr, NIL)
   }
 
   /**
-   * Sets the submenu of the item at index [idx]. The submenu is the ID of a global menu root that
-   * would be shown when the item is clicked.
+   * Sets the submenu of the item at index [idx]. The submenu is the ID of a global menu root that would be shown when the item is clicked.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -979,15 +899,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     submenu: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to submenu)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemSubmenuPtr, NIL)
   }
 
   /**
-   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -996,14 +914,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     keycode: Key,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to keycode.id)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemAcceleratorPtr, NIL)
   }
 
   /**
-   * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its
-   * action can't be invoked.
+   * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its action can't be invoked.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -1012,14 +929,13 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     disabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemDisabledPtr, NIL)
   }
 
   /**
-   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and
-   * its action cannot be invoked.
+   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -1028,7 +944,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     hidden: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemHiddenPtr, NIL)
   }
@@ -1043,7 +959,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     tooltip: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemTooltipPtr, NIL)
   }
@@ -1058,7 +974,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     state: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to state.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemStatePtr, NIL)
   }
@@ -1073,7 +989,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     maxStates: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to maxStates.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemMaxStatesPtr, NIL)
   }
@@ -1090,7 +1006,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     icon: Texture2D?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemIconPtr, NIL)
   }
@@ -1105,7 +1021,7 @@ public object DisplayServer : Object() {
     menuRoot: String,
     idx: Int,
     level: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to level.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemIndentationLevelPtr, NIL)
   }
@@ -1130,7 +1046,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
-  public final fun globalMenuRemoveItem(menuRoot: String, idx: Int): Unit {
+  public final fun globalMenuRemoveItem(menuRoot: String, idx: Int) {
     TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuRemoveItemPtr, NIL)
   }
@@ -1157,7 +1073,7 @@ public object DisplayServer : Object() {
    * ```
    */
   @JvmStatic
-  public final fun globalMenuClear(menuRoot: String): Unit {
+  public final fun globalMenuClear(menuRoot: String) {
     TransferContext.writeArguments(STRING to menuRoot)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuClearPtr, NIL)
   }
@@ -1177,8 +1093,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the synthesizer is generating speech, or have utterance waiting in the queue.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -1192,8 +1107,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if the synthesizer is in a paused state.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -1213,17 +1127,11 @@ public object DisplayServer : Object() {
    *
    * - `id` is voice identifier.
    *
-   * - `language` is language code in `lang_Variant` format. The `lang` part is a 2 or 3-letter code
-   * based on the ISO-639 standard, in lowercase. The [code skip-lint]Variant[/code] part is an
-   * engine-dependent string describing country, region or/and dialect.
+   * - `language` is language code in `lang_Variant` format. The `lang` part is a 2 or 3-letter code based on the ISO-639 standard, in lowercase. The [code skip-lint]Variant[/code] part is an engine-dependent string describing country, region or/and dialect.
    *
-   * Note that Godot depends on system libraries for text-to-speech functionality. These libraries
-   * are installed by default on Windows and macOS, but not on all Linux distributions. If they are not
-   * present, this method will return an empty list. This applies to both Godot users on Linux, as well
-   * as end-users on Linux running Godot games that use text-to-speech.
+   * Note that Godot depends on system libraries for text-to-speech functionality. These libraries are installed by default on Windows and macOS, but not on all Linux distributions. If they are not present, this method will return an empty list. This applies to both Godot users on Linux, as well as end-users on Linux running Godot games that use text-to-speech.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -1237,8 +1145,7 @@ public object DisplayServer : Object() {
   /**
    * Returns an [PackedStringArray] of voice identifiers for the [language].
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -1252,28 +1159,21 @@ public object DisplayServer : Object() {
   /**
    * Adds an utterance to the queue. If [interrupt] is `true`, the queue is cleared first.
    *
-   * - [voice] identifier is one of the `"id"` values returned by [ttsGetVoices] or one of the
-   * values returned by [ttsGetVoicesForLanguage].
+   * - [voice] identifier is one of the `"id"` values returned by [ttsGetVoices] or one of the values returned by [ttsGetVoicesForLanguage].
    *
    * - [volume] ranges from `0` (lowest) to `100` (highest).
    *
-   * - [pitch] ranges from `0.0` (lowest) to `2.0` (highest), `1.0` is default pitch for the current
-   * voice.
+   * - [pitch] ranges from `0.0` (lowest) to `2.0` (highest), `1.0` is default pitch for the current voice.
    *
-   * - [rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other
-   * values act as a percentage relative.
+   * - [rate] ranges from `0.1` (lowest) to `10.0` (highest), `1.0` is a normal speaking rate. Other values act as a percentage relative.
    *
    * - [utteranceId] is passed as a parameter to the callback functions.
    *
-   * **Note:** On Windows and Linux (X11/Wayland), utterance [text] can use SSML markup. SSML
-   * support is engine and voice dependent. If the engine does not support SSML, you should strip out
-   * all XML markup before calling [ttsSpeak].
+   * **Note:** On Windows and Linux (X11/Wayland), utterance [text] can use SSML markup. SSML support is engine and voice dependent. If the engine does not support SSML, you should strip out all XML markup before calling [ttsSpeak].
    *
-   * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may
-   * be truncated.
+   * **Note:** The granularity of pitch, rate, and volume is engine and voice dependent. Values may be truncated.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
@@ -1287,7 +1187,7 @@ public object DisplayServer : Object() {
     rate: Float = 1.0f,
     utteranceId: Int = 0,
     interrupt: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to text, STRING to voice, LONG to volume.toLong(), DOUBLE to pitch.toDouble(), DOUBLE to rate.toDouble(), LONG to utteranceId.toLong(), BOOL to interrupt)
     TransferContext.callMethod(ptr, MethodBindings.ttsSpeakPtr, NIL)
   }
@@ -1295,13 +1195,12 @@ public object DisplayServer : Object() {
   /**
    * Puts the synthesizer into a paused state.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
-  public final fun ttsPause(): Unit {
+  public final fun ttsPause() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsPausePtr, NIL)
   }
@@ -1309,13 +1208,12 @@ public object DisplayServer : Object() {
   /**
    * Resumes the synthesizer if it was paused.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
-  public final fun ttsResume(): Unit {
+  public final fun ttsResume() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsResumePtr, NIL)
   }
@@ -1323,36 +1221,31 @@ public object DisplayServer : Object() {
   /**
    * Stops synthesis in progress and removes all utterances from the queue.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Linux), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Linux), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
-  public final fun ttsStop(): Unit {
+  public final fun ttsStop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ttsStopPtr, NIL)
   }
 
   /**
-   * Adds a callback, which is called when the utterance has started, finished, canceled or reached
-   * a text boundary.
+   * Adds a callback, which is called when the utterance has started, finished, canceled or reached a text boundary.
    *
-   * - [TTS_UTTERANCE_STARTED], [TTS_UTTERANCE_ENDED], and [TTS_UTTERANCE_CANCELED] callable's
-   * method should take one [int] parameter, the utterance ID.
+   * - [TTS_UTTERANCE_STARTED], [TTS_UTTERANCE_ENDED], and [TTS_UTTERANCE_CANCELED] callable's method should take one [int] parameter, the utterance ID.
    *
-   * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the
-   * character and the utterance ID.
+   * - [TTS_UTTERANCE_BOUNDARY] callable's method should take two [int] parameters, the index of the character and the utterance ID.
    *
    * **Note:** The granularity of the boundary callbacks is engine dependent.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
-   * Windows.
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and Windows.
    *
    * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
-  public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
+  public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable) {
     TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
   }
@@ -1394,8 +1287,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the OS theme base color (default control background). Returns `Color(0, 0, 0, 0)` if
-   * the base color is unknown.
+   * Returns the OS theme base color (default control background). Returns `Color(0, 0, 0, 0)` if the base color is unknown.
    *
    * **Note:** This method is implemented on macOS, Windows, and Android.
    */
@@ -1407,13 +1299,12 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the [callable] that should be called when system theme settings are changed. Callback
-   * method should have zero arguments.
+   * Sets the [callable] that should be called when system theme settings are changed. Callback method should have zero arguments.
    *
    * **Note:** This method is implemented on Android, iOS, macOS, Windows, and Linux (X11/Wayland).
    */
   @JvmStatic
-  public final fun setSystemThemeChangeCallback(callable: Callable): Unit {
+  public final fun setSystemThemeChangeCallback(callable: Callable) {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.setSystemThemeChangeCallbackPtr, NIL)
   }
@@ -1422,7 +1313,7 @@ public object DisplayServer : Object() {
    * Sets the current mouse mode. See also [mouseGetMode].
    */
   @JvmStatic
-  public final fun mouseSetMode(mouseMode: MouseMode): Unit {
+  public final fun mouseSetMode(mouseMode: MouseMode) {
     TransferContext.writeArguments(LONG to mouseMode.id)
     TransferContext.callMethod(ptr, MethodBindings.mouseSetModePtr, NIL)
   }
@@ -1438,14 +1329,12 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the mouse cursor position to the given [position] relative to an origin at the upper left
-   * corner of the currently focused game Window Manager window.
+   * Sets the mouse cursor position to the given [position] relative to an origin at the upper left corner of the currently focused game Window Manager window.
    *
-   * **Note:** [warpMouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no
-   * effect on Android, iOS, and Web.
+   * **Note:** [warpMouse] is only supported on Windows, macOS, and Linux (X11/Wayland). It has no effect on Android, iOS, and Web.
    */
   @JvmStatic
-  public final fun warpMouse(position: Vector2i): Unit {
+  public final fun warpMouse(position: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to position)
     TransferContext.callMethod(ptr, MethodBindings.warpMousePtr, NIL)
   }
@@ -1461,9 +1350,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current state of mouse buttons (whether each button is pressed) as a bitmask. If
-   * multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to
-   * [Input.getMouseButtonMask].
+   * Returns the current state of mouse buttons (whether each button is pressed) as a bitmask. If multiple mouse buttons are pressed at the same time, the bits are added together. Equivalent to [Input.getMouseButtonMask].
    */
   @JvmStatic
   public final fun mouseGetButtonState(): MouseButtonMask {
@@ -1476,7 +1363,7 @@ public object DisplayServer : Object() {
    * Sets the user's clipboard content to the given string.
    */
   @JvmStatic
-  public final fun clipboardSet(clipboard: String): Unit {
+  public final fun clipboardSet(clipboard: String) {
     TransferContext.writeArguments(STRING to clipboard)
     TransferContext.callMethod(ptr, MethodBindings.clipboardSetPtr, NIL)
   }
@@ -1494,8 +1381,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the user's clipboard as an image if possible.
    *
-   * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web
-   * browser, not an image file copied from file explorer.
+   * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web browser, not an image file copied from file explorer.
    */
   @JvmStatic
   public final fun clipboardGetImage(): Image? {
@@ -1525,28 +1411,18 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the user's
-   * [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url]
-   * clipboard content to the given string. This is the clipboard that is set when the user selects
-   * text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can
-   * then be pasted by clicking the middle mouse button in any application that supports the primary
-   * clipboard mechanism.
+   * Sets the user's [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url] clipboard content to the given string. This is the clipboard that is set when the user selects text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be pasted by clicking the middle mouse button in any application that supports the primary clipboard mechanism.
    *
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
   @JvmStatic
-  public final fun clipboardSetPrimary(clipboardPrimary: String): Unit {
+  public final fun clipboardSetPrimary(clipboardPrimary: String) {
     TransferContext.writeArguments(STRING to clipboardPrimary)
     TransferContext.callMethod(ptr, MethodBindings.clipboardSetPrimaryPtr, NIL)
   }
 
   /**
-   * Returns the user's
-   * [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url]
-   * clipboard as a string if possible. This is the clipboard that is set when the user selects text in
-   * any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be
-   * pasted by clicking the middle mouse button in any application that supports the primary clipboard
-   * mechanism.
+   * Returns the user's [url=https://unix.stackexchange.com/questions/139191/whats-the-difference-between-primary-selection-and-clipboard-buffer]primary[/url] clipboard as a string if possible. This is the clipboard that is set when the user selects text in any application, rather than when pressing [kbd]Ctrl + C[/kbd]. The clipboard data can then be pasted by clicking the middle mouse button in any application that supports the primary clipboard mechanism.
    *
    * **Note:** This method is only implemented on Linux (X11/Wayland).
    */
@@ -1558,12 +1434,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns an [Array] of [Rect2], each of which is the bounding rectangle for a display cutout or
-   * notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns
-   * an empty array if the device does not have cutouts. See also [getDisplaySafeArea].
+   * Returns an [Array] of [Rect2], each of which is the bounding rectangle for a display cutout or notch. These are non-functional areas on edge-to-edge screens used by cameras and sensors. Returns an empty array if the device does not have cutouts. See also [getDisplaySafeArea].
    *
-   * **Note:** Currently only implemented on Android. Other platforms will return an empty array
-   * even if they do have display cutouts or notches.
+   * **Note:** Currently only implemented on Android. Other platforms will return an empty array even if they do have display cutouts or notches.
    */
   @JvmStatic
   public final fun getDisplayCutouts(): VariantArray<Rect2> {
@@ -1573,12 +1446,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the unobscured area of the display where interactive controls should be rendered. See
-   * also [getDisplayCutouts].
+   * Returns the unobscured area of the display where interactive controls should be rendered. See also [getDisplayCutouts].
    *
-   * **Note:** Currently only implemented on Android and iOS. On other platforms,
-   * `screen_get_usable_rect(SCREEN_OF_MAIN_WINDOW)` will be returned as a fallback. See also
-   * [screenGetUsableRect].
+   * **Note:** Currently only implemented on Android and iOS. On other platforms, `screen_get_usable_rect(SCREEN_OF_MAIN_WINDOW)` will be returned as a fallback. See also [screenGetUsableRect].
    */
   @JvmStatic
   public final fun getDisplaySafeArea(): Rect2i {
@@ -1608,8 +1478,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the screen containing the window with the keyboard focus, or the primary
-   * screen if there's no focused window.
+   * Returns the index of the screen containing the window with the keyboard focus, or the primary screen if there's no focused window.
    */
   @JvmStatic
   public final fun getKeyboardFocusScreen(): Int {
@@ -1619,8 +1488,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the screen that overlaps the most with the given rectangle. Returns `-1`
-   * if the rectangle doesn't overlap with any screen or has no area.
+   * Returns the index of the screen that overlaps the most with the given rectangle. Returns `-1` if the rectangle doesn't overlap with any screen or has no area.
    */
   @JvmStatic
   public final fun getScreenFromRect(rect: Rect2): Int {
@@ -1630,9 +1498,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen
-   * position is relative to the virtual desktop area. On multi-monitor setups with different screen
-   * resolutions or orientations, the origin may be located outside any display like this:
+   * Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:
    *
    * [codeblock lang=text]
    *
@@ -1674,8 +1540,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the portion of the screen that is not obstructed by a status bar in pixels. See also
-   * [screenGetSize].
+   * Returns the portion of the screen that is not obstructed by a status bar in pixels. See also [screenGetSize].
    */
   @JvmOverloads
   @JvmStatic
@@ -1686,13 +1551,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the dots per inch density of the specified screen. If [screen] is
-   * [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
+   * Returns the dots per inch density of the specified screen. If [screen] is [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
    *
    * **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.
    *
-   * **Note:** On Android devices, the actual screen densities are grouped into six generalized
-   * densities:
+   * **Note:** On Android devices, the actual screen densities are grouped into six generalized densities:
    *
    * [codeblock lang=text]
    *
@@ -1710,8 +1573,7 @@ public object DisplayServer : Object() {
    *
    * ```
    *
-   * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS and Windows.
-   * Returns `72` on unsupported platforms.
+   * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS and Windows. Returns `72` on unsupported platforms.
    */
   @JvmOverloads
   @JvmStatic
@@ -1724,12 +1586,9 @@ public object DisplayServer : Object() {
   /**
    * Returns the scale factor of the specified screen by index.
    *
-   * **Note:** On macOS, the returned value is `2.0` for hiDPI (Retina) screens, and `1.0` for all
-   * other cases.
+   * **Note:** On macOS, the returned value is `2.0` for hiDPI (Retina) screens, and `1.0` for all other cases.
    *
-   * **Note:** On Linux (Wayland), the returned value is accurate only when [screen] is
-   * [SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up
-   * integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).
+   * **Note:** On Linux (Wayland), the returned value is accurate only when [screen] is [SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).
    *
    * **Note:** This method is implemented on Android, iOS, Web, macOS, and Linux (Wayland).
    */
@@ -1742,8 +1601,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if touch events are available (Android or iOS), the capability is detected on
-   * the Web platform or if [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
+   * Returns `true` if touch events are available (Android or iOS), the capability is detected on the Web platform or if [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse] is `true`.
    */
   @JvmStatic
   public final fun isTouchscreenAvailable(): Boolean {
@@ -1755,8 +1613,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the greatest scale factor of all screens.
    *
-   * **Note:** On macOS returned value is `2.0` if there is at least one hiDPI (Retina) screen in
-   * the system, and `1.0` in all other cases.
+   * **Note:** On macOS returned value is `2.0` if there is at least one hiDPI (Retina) screen in the system, and `1.0` in all other cases.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -1768,12 +1625,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current refresh rate of the specified screen. If [screen] is
-   * [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
+   * Returns the current refresh rate of the specified screen. If [screen] is [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
    *
-   * **Note:** Returns `-1.0` if the DisplayServer fails to find the refresh rate for the specified
-   * screen. On Web, [screenGetRefreshRate] will always return `-1.0` as there is no way to retrieve
-   * the refresh rate on that platform.
+   * **Note:** Returns `-1.0` if the DisplayServer fails to find the refresh rate for the specified screen. On Web, [screenGetRefreshRate] will always return `-1.0` as there is no way to retrieve the refresh rate on that platform.
    *
    * To fallback to a default refresh rate if the method fails, try:
    *
@@ -1796,8 +1650,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.
    */
   @JvmStatic
   public final fun screenGetPixel(position: Vector2i): Color {
@@ -1811,8 +1664,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.
    */
   @JvmOverloads
   @JvmStatic
@@ -1827,8 +1679,7 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not granted it will return desktop wallpaper color.
    */
   @JvmStatic
   public final fun screenGetImageRect(rect: Rect2i): Image? {
@@ -1840,12 +1691,11 @@ public object DisplayServer : Object() {
   /**
    * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
    *
-   * **Note:** On iOS, this method has no effect if
-   * [ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
+   * **Note:** On iOS, this method has no effect if [ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
+  public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1) {
     TransferContext.writeArguments(LONG to orientation.id, LONG to screen.toLong())
     TransferContext.callMethod(ptr, MethodBindings.screenSetOrientationPtr, NIL)
   }
@@ -1864,18 +1714,16 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets whether the screen should never be turned off by the operating system's power-saving
-   * measures. See also [screenIsKeptOn].
+   * Sets whether the screen should never be turned off by the operating system's power-saving measures. See also [screenIsKeptOn].
    */
   @JvmStatic
-  public final fun screenSetKeepOn(enable: Boolean): Unit {
+  public final fun screenSetKeepOn(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.screenSetKeepOnPtr, NIL)
   }
 
   /**
-   * Returns `true` if the screen should never be turned off by the operating system's power-saving
-   * measures. See also [screenSetKeepOn].
+   * Returns `true` if the screen should never be turned off by the operating system's power-saving measures. See also [screenSetKeepOn].
    */
   @JvmStatic
   public final fun screenIsKeptOn(): Boolean {
@@ -1897,10 +1745,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the ID of the window at the specified screen [position] (in pixels). On multi-monitor
-   * setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with
-   * different screen resolutions or orientations, the origin may be located outside any display like
-   * this:
+   * Returns the ID of the window at the specified screen [position] (in pixels). On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:
    *
    * [codeblock lang=text]
    *
@@ -1949,18 +1794,16 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the bounding box of control, or menu item that was used to open the popup window, in the
-   * screen coordinate system. Clicking this area will not auto-close this popup.
+   * Sets the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system. Clicking this area will not auto-close this popup.
    */
   @JvmStatic
-  public final fun windowSetPopupSafeRect(window: Int, rect: Rect2i): Unit {
+  public final fun windowSetPopupSafeRect(window: Int, rect: Rect2i) {
     TransferContext.writeArguments(LONG to window.toLong(), RECT2I to rect)
     TransferContext.callMethod(ptr, MethodBindings.windowSetPopupSafeRectPtr, NIL)
   }
 
   /**
-   * Returns the bounding box of control, or menu item that was used to open the popup window, in
-   * the screen coordinate system.
+   * Returns the bounding box of control, or menu item that was used to open the popup window, in the screen coordinate system.
    */
   @JvmStatic
   public final fun windowGetPopupSafeRect(window: Int): Rect2i {
@@ -1974,19 +1817,17 @@ public object DisplayServer : Object() {
    *
    * **Note:** It's recommended to change this value using [Window.title] instead.
    *
-   * **Note:** Avoid changing the window title every frame, as this can cause performance issues on
-   * certain window managers. Try to change the window title only a few times per second at most.
+   * **Note:** Avoid changing the window title every frame, as this can cause performance issues on certain window managers. Try to change the window title only a few times per second at most.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetTitle(title: String, windowId: Int = 0): Unit {
+  public final fun windowSetTitle(title: String, windowId: Int = 0) {
     TransferContext.writeArguments(STRING to title, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetTitlePtr, NIL)
   }
 
   /**
-   * Returns the estimated window title bar size (including text and window buttons) for the window
-   * specified by [windowId] (in pixels). This method does not change the window title.
+   * Returns the estimated window title bar size (including text and window buttons) for the window specified by [windowId] (in pixels). This method does not change the window title.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -1999,11 +1840,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the
-   * region will be passed through.
+   * Sets a polygonal region of the window which accepts mouse events. Mouse events outside the region will be passed through.
    *
-   * Passing an empty array will disable passthrough support (all mouse events will be intercepted
-   * by the window, which is the default behavior).
+   * Passing an empty array will disable passthrough support (all mouse events will be intercepted by the window, which is the default behavior).
    *
    * ```gdscript
    * //gdscript
@@ -2029,22 +1868,19 @@ public object DisplayServer : Object() {
    * DisplayServer.WindowSetMousePassthrough([]);
    * ```
    *
-   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while
-   * on Linux (X11) and macOS it is.
+   * **Note:** On Windows, the portion of a window that lies outside the region is not drawn, while on Linux (X11) and macOS it is.
    *
    * **Note:** This method is implemented on Linux (X11), macOS and Windows.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0): Unit {
+  public final fun windowSetMousePassthrough(region: PackedVector2Array, windowId: Int = 0) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to region, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetMousePassthroughPtr, NIL)
   }
 
   /**
-   * Returns the screen the window specified by [windowId] is currently positioned on. If the screen
-   * overlaps multiple displays, the screen where the window's center is located is returned. See also
-   * [windowSetCurrentScreen].
+   * Returns the screen the window specified by [windowId] is currently positioned on. If the screen overlaps multiple displays, the screen where the window's center is located is returned. See also [windowSetCurrentScreen].
    */
   @JvmOverloads
   @JvmStatic
@@ -2055,12 +1891,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Moves the window specified by [windowId] to the specified [screen]. See also
-   * [windowGetCurrentScreen].
+   * Moves the window specified by [windowId] to the specified [screen]. See also [windowGetCurrentScreen].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetCurrentScreen(screen: Int, windowId: Int = 0): Unit {
+  public final fun windowSetCurrentScreen(screen: Int, windowId: Int = 0) {
     TransferContext.writeArguments(LONG to screen.toLong(), LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetCurrentScreenPtr, NIL)
   }
@@ -2077,8 +1912,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the position of the given window on the screen including the borders drawn by the
-   * operating system. See also [windowGetPosition].
+   * Returns the position of the given window on the screen including the borders drawn by the operating system. See also [windowGetPosition].
    */
   @JvmOverloads
   @JvmStatic
@@ -2089,9 +1923,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the position of the given window to [position]. On multi-monitor setups, the screen
-   * position is relative to the virtual desktop area. On multi-monitor setups with different screen
-   * resolutions or orientations, the origin may be located outside any display like this:
+   * Sets the position of the given window to [position]. On multi-monitor setups, the screen position is relative to the virtual desktop area. On multi-monitor setups with different screen resolutions or orientations, the origin may be located outside any display like this:
    *
    * [codeblock lang=text]
    *
@@ -2117,15 +1949,13 @@ public object DisplayServer : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetPosition(position: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetPosition(position: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetPositionPtr, NIL)
   }
 
   /**
-   * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn
-   * by the operating system. This is also called the "client area". See also
-   * [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
+   * Returns the size of the window specified by [windowId] (in pixels), excluding the borders drawn by the operating system. This is also called the "client area". See also [windowGetSizeWithDecorations], [windowSetSize] and [windowGetPosition].
    */
   @JvmOverloads
   @JvmStatic
@@ -2136,87 +1966,75 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the size of the given window to [size] (in pixels). See also [windowGetSize] and
-   * [windowGetPosition].
+   * Sets the size of the given window to [size] (in pixels). See also [windowGetSize] and [windowGetPosition].
    *
    * **Note:** It's recommended to change this value using [Window.size] instead.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetSize(size: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetSize(size: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to size, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetSizePtr, NIL)
   }
 
   /**
-   * Sets the [callback] that will be called when the window specified by [windowId] is moved or
-   * resized.
+   * Sets the [callback] that will be called when the window specified by [windowId] is moved or resized.
    *
-   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
-   * default implementation, which can introduce bugs.
+   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetRectChangedCallback(callback: Callable, windowId: Int = 0) {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetRectChangedCallbackPtr, NIL)
   }
 
   /**
-   * Sets the [callback] that will be called when an event occurs in the window specified by
-   * [windowId].
+   * Sets the [callback] that will be called when an event occurs in the window specified by [windowId].
    *
-   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
-   * default implementation, which can introduce bugs.
+   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetWindowEventCallback(callback: Callable, windowId: Int = 0) {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetWindowEventCallbackPtr, NIL)
   }
 
   /**
-   * Sets the [callback] that should be called when any [InputEvent] is sent to the window specified
-   * by [windowId].
+   * Sets the [callback] that should be called when any [InputEvent] is sent to the window specified by [windowId].
    *
-   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
-   * default implementation, which can introduce bugs.
+   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetInputEventCallback(callback: Callable, windowId: Int = 0) {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetInputEventCallbackPtr, NIL)
   }
 
   /**
-   * Sets the [callback] that should be called when text is entered using the virtual keyboard to
-   * the window specified by [windowId].
+   * Sets the [callback] that should be called when text is entered using the virtual keyboard to the window specified by [windowId].
    *
-   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
-   * default implementation, which can introduce bugs.
+   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetInputTextCallback(callback: Callable, windowId: Int = 0) {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetInputTextCallbackPtr, NIL)
   }
 
   /**
-   * Sets the [callback] that should be called when files are dropped from the operating system's
-   * file manager to the window specified by [windowId]. [callback] should take one [PackedStringArray]
-   * argument, which is the list of dropped files.
+   * Sets the [callback] that should be called when files are dropped from the operating system's file manager to the window specified by [windowId]. [callback] should take one [PackedStringArray] argument, which is the list of dropped files.
    *
-   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its
-   * default implementation, which can introduce bugs.
+   * **Warning:** Advanced users only! Adding such a callback to a [Window] node will override its default implementation, which can introduce bugs.
    *
    * **Note:** This method is implemented on Windows, macOS, Linux (X11/Wayland), and Web.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0): Unit {
+  public final fun windowSetDropFilesCallback(callback: Callable, windowId: Int = 0) {
     TransferContext.writeArguments(CALLABLE to callback, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetDropFilesCallbackPtr, NIL)
   }
@@ -2244,18 +2062,15 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the maximum size of the window specified by [windowId] in pixels. Normally, the user will
-   * not be able to drag the window to make it larger than the specified size. See also
-   * [windowGetMaxSize].
+   * Sets the maximum size of the window specified by [windowId] in pixels. Normally, the user will not be able to drag the window to make it larger than the specified size. See also [windowGetMaxSize].
    *
    * **Note:** It's recommended to change this value using [Window.maxSize] instead.
    *
-   * **Note:** Using third-party tools, it is possible for users to disable window geometry
-   * restrictions and therefore bypass this limit.
+   * **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetMaxSize(maxSize: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to maxSize, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetMaxSizePtr, NIL)
   }
@@ -2272,28 +2087,23 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the minimum size for the given window to [minSize] in pixels. Normally, the user will not
-   * be able to drag the window to make it smaller than the specified size. See also
-   * [windowGetMinSize].
+   * Sets the minimum size for the given window to [minSize] in pixels. Normally, the user will not be able to drag the window to make it smaller than the specified size. See also [windowGetMinSize].
    *
    * **Note:** It's recommended to change this value using [Window.minSize] instead.
    *
-   * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents
-   * issues that can arise when the window is resized to a near-zero size.
+   * **Note:** By default, the main window has a minimum size of `Vector2i(64, 64)`. This prevents issues that can arise when the window is resized to a near-zero size.
    *
-   * **Note:** Using third-party tools, it is possible for users to disable window geometry
-   * restrictions and therefore bypass this limit.
+   * **Note:** Using third-party tools, it is possible for users to disable window geometry restrictions and therefore bypass this limit.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetMinSize(minSize: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to minSize, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetMinSizePtr, NIL)
   }
 
   /**
-   * Returns the size of the window specified by [windowId] (in pixels), including the borders drawn
-   * by the operating system. See also [windowGetSize].
+   * Returns the size of the window specified by [windowId] (in pixels), including the borders drawn by the operating system. See also [windowGetSize].
    */
   @JvmOverloads
   @JvmStatic
@@ -2315,25 +2125,21 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets window mode for the given window to [mode]. See [WindowMode] for possible values and how
-   * each mode behaves.
+   * Sets window mode for the given window to [mode]. See [WindowMode] for possible values and how each mode behaves.
    *
-   * **Note:** On Android, setting it to [WINDOW_MODE_FULLSCREEN] or
-   * [WINDOW_MODE_EXCLUSIVE_FULLSCREEN] will enable immersive mode.
+   * **Note:** On Android, setting it to [WINDOW_MODE_FULLSCREEN] or [WINDOW_MODE_EXCLUSIVE_FULLSCREEN] will enable immersive mode.
    *
-   * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so
-   * make sure to set it back to `false` when not wanted.
+   * **Note:** Setting the window to full screen forcibly sets the borderless flag to `true`, so make sure to set it back to `false` when not wanted.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
+  public final fun windowSetMode(mode: WindowMode, windowId: Int = 0) {
     TransferContext.writeArguments(LONG to mode.id, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetModePtr, NIL)
   }
 
   /**
-   * Enables or disables the given window's given [flag]. See [WindowFlags] for possible values and
-   * their behavior.
+   * Enables or disables the given window's given [flag]. See [WindowFlags] for possible values and their behavior.
    */
   @JvmOverloads
   @JvmStatic
@@ -2341,7 +2147,7 @@ public object DisplayServer : Object() {
     flag: WindowFlags,
     enabled: Boolean,
     windowId: Int = 0,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to flag.id, BOOL to enabled, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetFlagPtr, NIL)
   }
@@ -2358,21 +2164,19 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * When [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar
-   * button.
+   * When [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set, set offset to the center of the first titlebar button.
    *
    * **Note:** This flag is implemented only on macOS.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetWindowButtonsOffset(offset: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to offset, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetWindowButtonsOffsetPtr, NIL)
   }
 
   /**
-   * Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to
-   * use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
+   * Returns left margins (`x`), right margins (`y`) and height (`z`) of the title that are safe to use (contains no buttons or other elements) when [WINDOW_FLAG_EXTEND_TO_TITLE] flag is set.
    */
   @JvmOverloads
   @JvmStatic
@@ -2383,24 +2187,21 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Makes the window specified by [windowId] request attention, which is materialized by the window
-   * title and taskbar entry blinking until the window is focused. This usually has no visible effect
-   * if the window is currently focused. The exact behavior varies depending on the operating system.
+   * Makes the window specified by [windowId] request attention, which is materialized by the window title and taskbar entry blinking until the window is focused. This usually has no visible effect if the window is currently focused. The exact behavior varies depending on the operating system.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowRequestAttention(windowId: Int = 0): Unit {
+  public final fun windowRequestAttention(windowId: Int = 0) {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowRequestAttentionPtr, NIL)
   }
 
   /**
-   * Moves the window specified by [windowId] to the foreground, so that it is visible over other
-   * windows.
+   * Moves the window specified by [windowId] to the foreground, so that it is visible over other windows.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowMoveToForeground(windowId: Int = 0): Unit {
+  public final fun windowMoveToForeground(windowId: Int = 0) {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowMoveToForegroundPtr, NIL)
   }
@@ -2417,9 +2218,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if anything can be drawn in the window specified by [windowId], `false`
-   * otherwise. Using the `--disable-render-loop` command line argument or a headless build will return
-   * `false`.
+   * Returns `true` if anything can be drawn in the window specified by [windowId], `false` otherwise. Using the `--disable-render-loop` command line argument or a headless build will return `false`.
    */
   @JvmOverloads
   @JvmStatic
@@ -2430,74 +2229,63 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets window transient parent. Transient window will be destroyed with its transient parent and
-   * will return focus to their parent when closed. The transient window is displayed on top of a
-   * non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
+   * Sets window transient parent. Transient window will be destroyed with its transient parent and will return focus to their parent when closed. The transient window is displayed on top of a non-exclusive full-screen parent window. Transient windows can't enter full-screen mode.
    *
    * **Note:** It's recommended to change this value using [Window.transient] instead.
    *
    * **Note:** The behavior might be different depending on the platform.
    */
   @JvmStatic
-  public final fun windowSetTransient(windowId: Int, parentWindowId: Int): Unit {
+  public final fun windowSetTransient(windowId: Int, parentWindowId: Int) {
     TransferContext.writeArguments(LONG to windowId.toLong(), LONG to parentWindowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetTransientPtr, NIL)
   }
 
   /**
-   * If set to `true`, this window will always stay on top of its parent window, parent window will
-   * ignore input while this window is opened.
+   * If set to `true`, this window will always stay on top of its parent window, parent window will ignore input while this window is opened.
    *
-   * **Note:** On macOS, exclusive windows are confined to the same space (virtual desktop or
-   * screen) as the parent window.
+   * **Note:** On macOS, exclusive windows are confined to the same space (virtual desktop or screen) as the parent window.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun windowSetExclusive(windowId: Int, exclusive: Boolean): Unit {
+  public final fun windowSetExclusive(windowId: Int, exclusive: Boolean) {
     TransferContext.writeArguments(LONG to windowId.toLong(), BOOL to exclusive)
     TransferContext.callMethod(ptr, MethodBindings.windowSetExclusivePtr, NIL)
   }
 
   /**
-   * Sets whether [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] should
-   * be enabled for the window specified by [windowId]. See also [windowSetImePosition].
+   * Sets whether [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] should be enabled for the window specified by [windowId]. See also [windowSetImePosition].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetImeActive(active: Boolean, windowId: Int = 0): Unit {
+  public final fun windowSetImeActive(active: Boolean, windowId: Int = 0) {
     TransferContext.writeArguments(BOOL to active, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetImeActivePtr, NIL)
   }
 
   /**
-   * Sets the position of the [url=https://en.wikipedia.org/wiki/Input_method]Input Method
-   * Editor[/url] popup for the specified [windowId]. Only effective if [windowSetImeActive] was set to
-   * `true` for the specified [windowId].
+   * Sets the position of the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] popup for the specified [windowId]. Only effective if [windowSetImeActive] was set to `true` for the specified [windowId].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetImePosition(position: Vector2i, windowId: Int = 0): Unit {
+  public final fun windowSetImePosition(position: Vector2i, windowId: Int = 0) {
     TransferContext.writeArguments(VECTOR2I to position, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetImePositionPtr, NIL)
   }
 
   /**
-   * Sets the V-Sync mode of the given window. See also
-   * [ProjectSettings.display/window/vsync/vsyncMode].
+   * Sets the V-Sync mode of the given window. See also [ProjectSettings.display/window/vsync/vsyncMode].
    *
-   * See [DisplayServer.VSyncMode] for possible values and how they affect the behavior of your
-   * application.
+   * See [DisplayServer.VSyncMode] for possible values and how they affect the behavior of your application.
    *
-   * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED] if
-   * the desired mode is not supported.
+   * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED] if the desired mode is not supported.
    *
-   * **Note:** V-Sync modes other than [VSYNC_ENABLED] are only supported in the Forward+ and Mobile
-   * rendering methods, not Compatibility.
+   * **Note:** V-Sync modes other than [VSYNC_ENABLED] are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
+  public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0) {
     TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetVsyncModePtr, NIL)
   }
@@ -2549,38 +2337,31 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Starts an interactive drag operation on the window with the given [windowId], using the current
-   * mouse position. Call this method when handling a mouse button being pressed to simulate a pressed
-   * event on the window's title bar. Using this method allows the window to participate in space
-   * switching, tiling, and other system features.
+   * Starts an interactive drag operation on the window with the given [windowId], using the current mouse position. Call this method when handling a mouse button being pressed to simulate a pressed event on the window's title bar. Using this method allows the window to participate in space switching, tiling, and other system features.
    *
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowStartDrag(windowId: Int = 0): Unit {
+  public final fun windowStartDrag(windowId: Int = 0) {
     TransferContext.writeArguments(LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowStartDragPtr, NIL)
   }
 
   /**
-   * Starts an interactive resize operation on the window with the given [windowId], using the
-   * current mouse position. Call this method when handling a mouse button being pressed to simulate a
-   * pressed event on the window's edge.
+   * Starts an interactive resize operation on the window with the given [windowId], using the current mouse position. Call this method when handling a mouse button being pressed to simulate a pressed event on the window's edge.
    *
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS, and Windows.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun windowStartResize(edge: WindowResizeEdge, windowId: Int = 0): Unit {
+  public final fun windowStartResize(edge: WindowResizeEdge, windowId: Int = 0) {
     TransferContext.writeArguments(LONG to edge.id, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowStartResizePtr, NIL)
   }
 
   /**
-   * Returns the text selection in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method
-   * Editor[/url] composition string, with the [Vector2i]'s `x` component being the caret position and
-   * `y` being the length of the selection.
+   * Returns the text selection in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] composition string, with the [Vector2i]'s `x` component being the caret position and `y` being the length of the selection.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -2592,8 +2373,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the composition string contained within the
-   * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] window.
+   * Returns the composition string contained within the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] window.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -2607,9 +2387,7 @@ public object DisplayServer : Object() {
   /**
    * Shows the virtual keyboard if the platform has one.
    *
-   * [existingText] parameter is useful for implementing your own [LineEdit] or [TextEdit], as it
-   * tells the virtual keyboard what text has already been typed (the virtual keyboard uses it for
-   * auto-correct and predictions).
+   * [existingText] parameter is useful for implementing your own [LineEdit] or [TextEdit], as it tells the virtual keyboard what text has already been typed (the virtual keyboard uses it for auto-correct and predictions).
    *
    * [position] parameter is the screen space [Rect2] of the edited text.
    *
@@ -2632,7 +2410,7 @@ public object DisplayServer : Object() {
     maxLength: Int = -1,
     cursorStart: Int = -1,
     cursorEnd: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength.toLong(), LONG to cursorStart.toLong(), LONG to cursorEnd.toLong())
     TransferContext.callMethod(ptr, MethodBindings.virtualKeyboardShowPtr, NIL)
   }
@@ -2641,14 +2419,13 @@ public object DisplayServer : Object() {
    * Hides the virtual keyboard if it is shown, does nothing otherwise.
    */
   @JvmStatic
-  public final fun virtualKeyboardHide(): Unit {
+  public final fun virtualKeyboardHide() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.virtualKeyboardHidePtr, NIL)
   }
 
   /**
-   * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it
-   * is currently hidden.
+   * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it is currently hidden.
    */
   @JvmStatic
   public final fun virtualKeyboardGetHeight(): Int {
@@ -2660,8 +2437,7 @@ public object DisplayServer : Object() {
   /**
    * Returns `true` if hardware keyboard is connected.
    *
-   * **Note:** This method is implemented on Android and iOS, on other platforms this method always
-   * returns `true`.
+   * **Note:** This method is implemented on Android and iOS, on other platforms this method always returns `true`.
    */
   @JvmStatic
   public final fun hasHardwareKeyboard(): Boolean {
@@ -2671,11 +2447,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's
-   * operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
+   * Sets the default mouse cursor shape. The cursor's appearance will vary depending on the user's operating system and mouse cursor theme. See also [cursorGetShape] and [cursorSetCustomImage].
    */
   @JvmStatic
-  public final fun cursorSetShape(shape: CursorShape): Unit {
+  public final fun cursorSetShape(shape: CursorShape) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.cursorSetShapePtr, NIL)
   }
@@ -2691,13 +2466,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets a custom mouse cursor image for the given [shape]. This means the user's operating system
-   * and mouse cursor theme will no longer influence the mouse cursor's appearance.
+   * Sets a custom mouse cursor image for the given [shape]. This means the user's operating system and mouse cursor theme will no longer influence the mouse cursor's appearance.
    *
-   * [cursor] can be either a [Texture2D] or an [Image], and it should not be larger than 256×256 to
-   * display correctly. Optionally, [hotspot] can be set to offset the image's position relative to the
-   * click point. By default, [hotspot] is set to the top-left corner of the image. See also
-   * [cursorSetShape].
+   * [cursor] can be either a [Texture2D] or an [Image], and it should not be larger than 256×256 to display correctly. Optionally, [hotspot] can be set to offset the image's position relative to the click point. By default, [hotspot] is set to the top-left corner of the image. See also [cursorSetShape].
    */
   @JvmOverloads
   @JvmStatic
@@ -2705,18 +2476,15 @@ public object DisplayServer : Object() {
     cursor: Resource?,
     shape: CursorShape = DisplayServer.CursorShape.ARROW,
     hotspot: Vector2 = Vector2(0, 0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
     TransferContext.callMethod(ptr, MethodBindings.cursorSetCustomImagePtr, NIL)
   }
 
   /**
-   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is
-   * enabled by default on Windows to follow interface conventions, and be toggled by changing
-   * [ProjectSettings.gui/common/swapCancelOk].
+   * Returns `true` if positions of **OK** and **Cancel** buttons are swapped in dialogs. This is enabled by default on Windows to follow interface conventions, and be toggled by changing [ProjectSettings.gui/common/swapCancelOk].
    *
-   * **Note:** This doesn't affect native dialogs such as the ones spawned by
-   * [DisplayServer.dialogShow].
+   * **Note:** This doesn't affect native dialogs such as the ones spawned by [DisplayServer.dialogShow].
    */
   @JvmStatic
   public final fun getSwapCancelOk(): Boolean {
@@ -2726,23 +2494,20 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Allows the [processId] PID to steal focus from this window. In other words, this disables the
-   * operating system's focus stealing protection for the specified PID.
+   * Allows the [processId] PID to steal focus from this window. In other words, this disables the operating system's focus stealing protection for the specified PID.
    *
    * **Note:** This method is implemented only on Windows.
    */
   @JvmStatic
-  public final fun enableForStealingFocus(processId: Long): Unit {
+  public final fun enableForStealingFocus(processId: Long) {
     TransferContext.writeArguments(LONG to processId)
     TransferContext.callMethod(ptr, MethodBindings.enableForStealingFocusPtr, NIL)
   }
 
   /**
-   * Shows a text dialog which uses the operating system's native look-and-feel. [callback] should
-   * accept a single [int] parameter which corresponds to the index of the pressed button.
+   * Shows a text dialog which uses the operating system's native look-and-feel. [callback] should accept a single [int] parameter which corresponds to the index of the pressed button.
    *
-   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG]
-   * feature. Supported platforms include macOS, Windows, and Android.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG] feature. Supported platforms include macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun dialogShow(
@@ -2757,11 +2522,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Shows a text input dialog which uses the operating system's native look-and-feel. [callback]
-   * should accept a single [String] parameter which contains the text field's contents.
+   * Shows a text input dialog which uses the operating system's native look-and-feel. [callback] should accept a single [String] parameter which contains the text field's contents.
    *
-   * **Note:** This method is implemented if the display server has the
-   * [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS, Windows, and Android.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_INPUT] feature. Supported platforms include macOS, Windows, and Android.
    */
   @JvmStatic
   public final fun dialogInputText(
@@ -2778,30 +2541,21 @@ public object DisplayServer : Object() {
   /**
    * Displays OS native dialog for selecting files or directories in the file system.
    *
-   * Each filter string in the [filters] array should be formatted like this:
-   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
-   * optional and can be omitted. It is recommended to set both file extension and MIME type. See also
-   * [FileDialog.filters].
+   * Each filter string in the [filters] array should be formatted like this: `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is optional and can be omitted. It is recommended to set both file extension and MIME type. See also [FileDialog.filters].
    *
-   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
-   * selected_filter_index: int`. **On Android,** callback argument `selected_filter_index` is always
-   * zero.
+   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray, selected_filter_index: int`. **On Android,** callback argument `selected_filter_index` is always zero.
    *
-   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
-   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE] feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android.
    *
    * **Note:** [currentDirectory] might be ignored.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
-   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Note:** On Android and Linux, [showHidden] is ignored.
    *
    * **Note:** On Android and macOS, native file dialogs have no title.
    *
-   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
-   * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
-   * bookmarks.
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved bookmarks.
    */
   @JvmStatic
   public final fun fileDialogShow(
@@ -2819,13 +2573,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Displays OS native dialog for selecting files or directories in the file system with additional
-   * user selectable options.
+   * Displays OS native dialog for selecting files or directories in the file system with additional user selectable options.
    *
-   * Each filter string in the [filters] array should be formatted like this:
-   * `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is
-   * optional and can be omitted. It is recommended to set both file extension and MIME type. See also
-   * [FileDialog.filters].
+   * Each filter string in the [filters] array should be formatted like this: `*.png,*.jpg,*.jpeg;Image Files;image/png,image/jpeg`. The description text of the filter is optional and can be omitted. It is recommended to set both file extension and MIME type. See also [FileDialog.filters].
    *
    * [options] is array of [Dictionary]s with the following keys:
    *
@@ -2835,25 +2585,19 @@ public object DisplayServer : Object() {
    *
    * - `"default"` - default selected option index ([int]) or default boolean value ([bool]).
    *
-   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
-   * selected_filter_index: int, selected_option: Dictionary`.
+   * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray, selected_filter_index: int, selected_option: Dictionary`.
    *
-   * **Note:** This method is implemented if the display server has the
-   * [FEATURE_NATIVE_DIALOG_FILE_EXTRA] feature. Supported platforms include Linux (X11/Wayland),
-   * Windows, and macOS.
+   * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE_EXTRA] feature. Supported platforms include Linux (X11/Wayland), Windows, and macOS.
    *
    * **Note:** [currentDirectory] might be ignored.
    *
-   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while
-   * Android, Linux, and macOS file dialogs also support MIME types.
+   * **Note:** Embedded file dialog and Windows file dialog support only file extensions, while Android, Linux, and macOS file dialogs also support MIME types.
    *
    * **Note:** On Linux (X11), [showHidden] is ignored.
    *
    * **Note:** On macOS, native file dialogs have no title.
    *
-   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the
-   * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
-   * bookmarks.
+   * **Note:** On macOS, sandboxed apps will save security-scoped bookmarks to retain access to the opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved bookmarks.
    */
   @JvmStatic
   public final fun fileDialogWithOptionsShow(
@@ -2873,14 +2617,12 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Plays the beep sound from the operative system, if possible. Because it comes from the OS, the
-   * beep sound will be audible even if the application is muted. It may also be disabled for the
-   * entire OS by the user.
+   * Plays the beep sound from the operative system, if possible. Because it comes from the OS, the beep sound will be audible even if the application is muted. It may also be disabled for the entire OS by the user.
    *
    * **Note:** This method is implemented on macOS, Linux (X11/Wayland), and Windows.
    */
   @JvmStatic
-  public final fun beep(): Unit {
+  public final fun beep() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.beepPtr, NIL)
   }
@@ -2915,7 +2657,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
   @JvmStatic
-  public final fun keyboardSetCurrentLayout(index: Int): Unit {
+  public final fun keyboardSetCurrentLayout(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.keyboardSetCurrentLayoutPtr, NIL)
   }
@@ -2957,8 +2699,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active
-   * keyboard layout.
+   * Converts a physical (US QWERTY) [keycode] to localized label printed on the key in the active keyboard layout.
    *
    * **Note:** This method is implemented on Linux (X11/Wayland), macOS and Windows.
    */
@@ -2975,17 +2716,16 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun showEmojiAndSymbolPicker(): Unit {
+  public final fun showEmojiAndSymbolPicker() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showEmojiAndSymbolPickerPtr, NIL)
   }
 
   /**
-   * Perform window manager processing, including input flushing. See also
-   * [forceProcessAndDropEvents], [Input.flushBufferedEvents] and [Input.useAccumulatedInput].
+   * Perform window manager processing, including input flushing. See also [forceProcessAndDropEvents], [Input.flushBufferedEvents] and [Input.useAccumulatedInput].
    */
   @JvmStatic
-  public final fun processEvents(): Unit {
+  public final fun processEvents() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.processEventsPtr, NIL)
   }
@@ -2996,45 +2736,37 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on Windows and macOS.
    */
   @JvmStatic
-  public final fun forceProcessAndDropEvents(): Unit {
+  public final fun forceProcessAndDropEvents() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceProcessAndDropEventsPtr, NIL)
   }
 
   /**
-   * Sets the window icon (usually displayed in the top-left corner) in the operating system's
-   * *native* format. The file at [filename] must be in `.ico` format on Windows or `.icns` on macOS.
-   * By using specially crafted `.ico` or `.icns` icons, [setNativeIcon] allows specifying different
-   * icons depending on the size the icon is displayed at. This size is determined by the operating
-   * system and user preferences (including the display scale factor). To use icons in other formats,
-   * use [setIcon] instead.
+   * Sets the window icon (usually displayed in the top-left corner) in the operating system's *native* format. The file at [filename] must be in `.ico` format on Windows or `.icns` on macOS. By using specially crafted `.ico` or `.icns` icons, [setNativeIcon] allows specifying different icons depending on the size the icon is displayed at. This size is determined by the operating system and user preferences (including the display scale factor). To use icons in other formats, use [setIcon] instead.
    *
    * **Note:** Requires support for [FEATURE_NATIVE_ICON].
    */
   @JvmStatic
-  public final fun setNativeIcon(filename: String): Unit {
+  public final fun setNativeIcon(filename: String) {
     TransferContext.writeArguments(STRING to filename)
     TransferContext.callMethod(ptr, MethodBindings.setNativeIconPtr, NIL)
   }
 
   /**
-   * Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons
-   * in the operating system's native format, use [setNativeIcon] instead.
+   * Sets the window icon (usually displayed in the top-left corner) with an [Image]. To use icons in the operating system's native format, use [setNativeIcon] instead.
    *
    * **Note:** Requires support for [FEATURE_ICON].
    */
   @JvmStatic
-  public final fun setIcon(image: Image?): Unit {
+  public final fun setIcon(image: Image?) {
     TransferContext.writeArguments(OBJECT to image)
     TransferContext.callMethod(ptr, MethodBindings.setIconPtr, NIL)
   }
 
   /**
-   * Creates a new application status indicator with the specified icon, tooltip, and activation
-   * callback.
+   * Creates a new application status indicator with the specified icon, tooltip, and activation callback.
    *
-   * [callback] should take two arguments: the pressed mouse button (one of the [MouseButton]
-   * constants) and the click position in screen coordinates (a [Vector2i]).
+   * [callback] should take two arguments: the pressed mouse button (one of the [MouseButton] constants) and the click position in screen coordinates (a [Vector2i]).
    */
   @JvmStatic
   public final fun createStatusIndicator(
@@ -3053,7 +2785,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun statusIndicatorSetIcon(id: Int, icon: Texture2D?): Unit {
+  public final fun statusIndicatorSetIcon(id: Int, icon: Texture2D?) {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.statusIndicatorSetIconPtr, NIL)
   }
@@ -3064,7 +2796,7 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun statusIndicatorSetTooltip(id: Int, tooltip: String): Unit {
+  public final fun statusIndicatorSetTooltip(id: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to id.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.statusIndicatorSetTooltipPtr, NIL)
   }
@@ -3072,38 +2804,31 @@ public object DisplayServer : Object() {
   /**
    * Sets the application status indicator native popup menu.
    *
-   * **Note:** On macOS, the menu is activated by any mouse button. Its activation callback is *not*
-   * triggered.
+   * **Note:** On macOS, the menu is activated by any mouse button. Its activation callback is *not* triggered.
    *
-   * **Note:** On Windows, the menu is activated by the right mouse button, selecting the status
-   * icon and pressing [kbd]Shift + F10[/kbd], or the applications key. The menu's activation callback
-   * for the other mouse buttons is still triggered.
+   * **Note:** On Windows, the menu is activated by the right mouse button, selecting the status icon and pressing [kbd]Shift + F10[/kbd], or the applications key. The menu's activation callback for the other mouse buttons is still triggered.
    *
-   * **Note:** Native popup is only supported if [NativeMenu] supports the
-   * [NativeMenu.FEATURE_POPUP_MENU] feature.
+   * **Note:** Native popup is only supported if [NativeMenu] supports the [NativeMenu.FEATURE_POPUP_MENU] feature.
    */
   @JvmStatic
-  public final fun statusIndicatorSetMenu(id: Int, menuRid: RID): Unit {
+  public final fun statusIndicatorSetMenu(id: Int, menuRid: RID) {
     TransferContext.writeArguments(LONG to id.toLong(), _RID to menuRid)
     TransferContext.callMethod(ptr, MethodBindings.statusIndicatorSetMenuPtr, NIL)
   }
 
   /**
-   * Sets the application status indicator activation callback. [callback] should take two
-   * arguments: [int] mouse button index (one of [MouseButton] values) and [Vector2i] click position in
-   * screen coordinates.
+   * Sets the application status indicator activation callback. [callback] should take two arguments: [int] mouse button index (one of [MouseButton] values) and [Vector2i] click position in screen coordinates.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun statusIndicatorSetCallback(id: Int, callback: Callable): Unit {
+  public final fun statusIndicatorSetCallback(id: Int, callback: Callable) {
     TransferContext.writeArguments(LONG to id.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.statusIndicatorSetCallbackPtr, NIL)
   }
 
   /**
-   * Returns the rectangle for the given status indicator [id] in screen coordinates. If the status
-   * indicator is not visible, returns an empty [Rect2].
+   * Returns the rectangle for the given status indicator [id] in screen coordinates. If the status indicator is not visible, returns an empty [Rect2].
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -3118,7 +2843,7 @@ public object DisplayServer : Object() {
    * Removes the application status indicator.
    */
   @JvmStatic
-  public final fun deleteStatusIndicator(id: Int): Unit {
+  public final fun deleteStatusIndicator(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.deleteStatusIndicatorPtr, NIL)
   }
@@ -3173,15 +2898,13 @@ public object DisplayServer : Object() {
    * **Note:** This method is implemented only on Windows.
    */
   @JvmStatic
-  public final fun tabletSetCurrentDriver(name: String): Unit {
+  public final fun tabletSetCurrentDriver(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.tabletSetCurrentDriverPtr, NIL)
   }
 
   /**
-   * Returns `true` if the window background can be made transparent. This method returns `false` if
-   * [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`, or if
-   * transparency is not supported by the renderer or OS compositor.
+   * Returns `true` if the window background can be made transparent. This method returns `false` if [ProjectSettings.display/window/perPixelTransparency/allowed] is set to `false`, or if transparency is not supported by the renderer or OS compositor.
    */
   @JvmStatic
   public final fun isWindowTransparencyAvailable(): Boolean {
@@ -3191,24 +2914,21 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Registers an [Object] which represents an additional output that will be rendered too, beyond
-   * normal windows. The [Object] is only used as an identifier, which can be later passed to
-   * [unregisterAdditionalOutput].
+   * Registers an [Object] which represents an additional output that will be rendered too, beyond normal windows. The [Object] is only used as an identifier, which can be later passed to [unregisterAdditionalOutput].
    *
    * This can be used to prevent Godot from skipping rendering when no normal windows are visible.
    */
   @JvmStatic
-  public final fun registerAdditionalOutput(`object`: Object?): Unit {
+  public final fun registerAdditionalOutput(`object`: Object?) {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(ptr, MethodBindings.registerAdditionalOutputPtr, NIL)
   }
 
   /**
-   * Unregisters an [Object] representing an additional output, that was registered via
-   * [registerAdditionalOutput].
+   * Unregisters an [Object] representing an additional output, that was registered via [registerAdditionalOutput].
    */
   @JvmStatic
-  public final fun unregisterAdditionalOutput(`object`: Object?): Unit {
+  public final fun unregisterAdditionalOutput(`object`: Object?) {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(ptr, MethodBindings.unregisterAdditionalOutputPtr, NIL)
   }
@@ -3227,13 +2947,11 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * Display server supports global menu. This allows the application to display its menu items in
-     * the operating system's top bar. **macOS**
+     * Display server supports global menu. This allows the application to display its menu items in the operating system's top bar. **macOS**
      */
     GLOBAL_MENU(0),
     /**
-     * Display server supports multiple windows that can be moved outside of the main window.
-     * **Windows, macOS, Linux (X11)**
+     * Display server supports multiple windows that can be moved outside of the main window. **Windows, macOS, Linux (X11)**
      */
     SUBWINDOWS(1),
     /**
@@ -3245,61 +2963,47 @@ public object DisplayServer : Object() {
      */
     MOUSE(3),
     /**
-     * Display server supports warping mouse coordinates to keep the mouse cursor constrained within
-     * an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11/Wayland)**
+     * Display server supports warping mouse coordinates to keep the mouse cursor constrained within an area, but looping when one of the edges is reached. **Windows, macOS, Linux (X11/Wayland)**
      */
     MOUSE_WARP(4),
     /**
-     * Display server supports setting and getting clipboard data. See also
-     * [FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web**
+     * Display server supports setting and getting clipboard data. See also [FEATURE_CLIPBOARD_PRIMARY]. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web**
      */
     CLIPBOARD(5),
     /**
-     * Display server supports popping up a virtual keyboard when requested to input text without a
-     * physical keyboard. **Android, iOS, Web**
+     * Display server supports popping up a virtual keyboard when requested to input text without a physical keyboard. **Android, iOS, Web**
      */
     VIRTUAL_KEYBOARD(6),
     /**
-     * Display server supports setting the mouse cursor shape to be different from the default.
-     * **Windows, macOS, Linux (X11/Wayland), Android, Web**
+     * Display server supports setting the mouse cursor shape to be different from the default. **Windows, macOS, Linux (X11/Wayland), Android, Web**
      */
     CURSOR_SHAPE(7),
     /**
-     * Display server supports setting the mouse cursor shape to a custom image. **Windows, macOS,
-     * Linux (X11/Wayland), Web**
+     * Display server supports setting the mouse cursor shape to a custom image. **Windows, macOS, Linux (X11/Wayland), Web**
      */
     CUSTOM_CURSOR_SHAPE(8),
     /**
-     * Display server supports spawning text dialogs using the operating system's native
-     * look-and-feel. See [dialogShow]. **Windows, macOS**
+     * Display server supports spawning text dialogs using the operating system's native look-and-feel. See [dialogShow]. **Windows, macOS**
      */
     NATIVE_DIALOG(9),
     /**
-     * Display server supports [url=https://en.wikipedia.org/wiki/Input_method]Input Method
-     * Editor[/url], which is commonly used for inputting Chinese/Japanese/Korean text. This is handled
-     * by the operating system, rather than by Godot. **Windows, macOS, Linux (X11)**
+     * Display server supports [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url], which is commonly used for inputting Chinese/Japanese/Korean text. This is handled by the operating system, rather than by Godot. **Windows, macOS, Linux (X11)**
      */
     IME(10),
     /**
-     * Display server supports windows can use per-pixel transparency to make windows behind them
-     * partially or fully visible. **Windows, macOS, Linux (X11/Wayland)**
+     * Display server supports windows can use per-pixel transparency to make windows behind them partially or fully visible. **Windows, macOS, Linux (X11/Wayland)**
      */
     WINDOW_TRANSPARENCY(11),
     /**
-     * Display server supports querying the operating system's display scale factor. This allows for
-     * *reliable* automatic hiDPI display detection, as opposed to guessing based on the screen
-     * resolution and reported display DPI (which can be unreliable due to broken monitor EDID).
-     * **Windows, Linux (Wayland), macOS**
+     * Display server supports querying the operating system's display scale factor. This allows for *reliable* automatic hiDPI display detection, as opposed to guessing based on the screen resolution and reported display DPI (which can be unreliable due to broken monitor EDID). **Windows, Linux (Wayland), macOS**
      */
     HIDPI(12),
     /**
-     * Display server supports changing the window icon (usually displayed in the top-left corner).
-     * **Windows, macOS, Linux (X11)**
+     * Display server supports changing the window icon (usually displayed in the top-left corner). **Windows, macOS, Linux (X11)**
      */
     ICON(13),
     /**
-     * Display server supports changing the window icon (usually displayed in the top-left corner).
-     * **Windows, macOS**
+     * Display server supports changing the window icon (usually displayed in the top-left corner). **Windows, macOS**
      */
     NATIVE_ICON(14),
     /**
@@ -3307,23 +3011,19 @@ public object DisplayServer : Object() {
      */
     ORIENTATION(15),
     /**
-     * Display server supports V-Sync status can be changed from the default (which is forced to be
-     * enabled platforms not supporting this feature). **Windows, macOS, Linux (X11/Wayland)**
+     * Display server supports V-Sync status can be changed from the default (which is forced to be enabled platforms not supporting this feature). **Windows, macOS, Linux (X11/Wayland)**
      */
     SWAP_BUFFERS(16),
     /**
-     * Display server supports Primary clipboard can be used. This is a different clipboard from
-     * [FEATURE_CLIPBOARD]. **Linux (X11/Wayland)**
+     * Display server supports Primary clipboard can be used. This is a different clipboard from [FEATURE_CLIPBOARD]. **Linux (X11/Wayland)**
      */
     CLIPBOARD_PRIMARY(18),
     /**
-     * Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux
-     * (X11/Wayland), Android, iOS, Web**
+     * Display server supports text-to-speech. See `tts_*` methods. **Windows, macOS, Linux (X11/Wayland), Android, iOS, Web**
      */
     TEXT_TO_SPEECH(19),
     /**
-     * Display server supports expanding window content to the title. See
-     * [WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS**
+     * Display server supports expanding window content to the title. See [WINDOW_FLAG_EXTEND_TO_TITLE]. **macOS**
      */
     EXTEND_TO_TITLE(20),
     /**
@@ -3339,25 +3039,19 @@ public object DisplayServer : Object() {
      */
     NATIVE_HELP(23),
     /**
-     * Display server supports spawning text input dialogs using the operating system's native
-     * look-and-feel. See [dialogInputText]. **Windows, macOS**
+     * Display server supports spawning text input dialogs using the operating system's native look-and-feel. See [dialogInputText]. **Windows, macOS**
      */
     NATIVE_DIALOG_INPUT(24),
     /**
-     * Display server supports spawning dialogs for selecting files or directories using the
-     * operating system's native look-and-feel. See [fileDialogShow]. **Windows, macOS, Linux
-     * (X11/Wayland), Android**
+     * Display server supports spawning dialogs for selecting files or directories using the operating system's native look-and-feel. See [fileDialogShow]. **Windows, macOS, Linux (X11/Wayland), Android**
      */
     NATIVE_DIALOG_FILE(25),
     /**
-     * The display server supports all features of [FEATURE_NATIVE_DIALOG_FILE], with the added
-     * functionality of Options and native dialog file access to `res://` and `user://` paths. See
-     * [fileDialogShow] and [fileDialogWithOptionsShow]. **Windows, macOS, Linux (X11/Wayland)**
+     * The display server supports all features of [FEATURE_NATIVE_DIALOG_FILE], with the added functionality of Options and native dialog file access to `res://` and `user://` paths. See [fileDialogShow] and [fileDialogWithOptionsShow]. **Windows, macOS, Linux (X11/Wayland)**
      */
     NATIVE_DIALOG_FILE_EXTRA(26),
     /**
-     * The display server supports initiating window drag and resize operations on demand. See
-     * [windowStartDrag] and [windowStartResize].
+     * The display server supports initiating window drag and resize operations on demand. See [windowStartDrag] and [windowStartResize].
      */
     WINDOW_DRAG(27),
     /**
@@ -3400,11 +3094,9 @@ public object DisplayServer : Object() {
      */
     HIDDEN(1),
     /**
-     * Captures the mouse. The mouse will be hidden and its position locked at the center of the
-     * window manager's window.
+     * Captures the mouse. The mouse will be hidden and its position locked at the center of the window manager's window.
      *
-     * **Note:** If you want to process the mouse's movement in this mode, you need to use
-     * [InputEventMouseMotion.relative].
+     * **Note:** If you want to process the mouse's movement in this mode, you need to use [InputEventMouseMotion.relative].
      */
     CAPTURED(2),
     /**
@@ -3502,11 +3194,9 @@ public object DisplayServer : Object() {
      */
     KEYBOARD_TYPE_EMAIL_ADDRESS(5),
     /**
-     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
-     * and autocapitalization.
+     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
      *
-     * **Note:** This is not supported on Web. Instead, this behaves identically to
-     * [KEYBOARD_TYPE_DEFAULT].
+     * **Note:** This is not supported on Web. Instead, this behaves identically to [KEYBOARD_TYPE_DEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**
@@ -3529,94 +3219,71 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse
-     * cursor, such as a [LineEdit] or [TextEdit].
+     * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse cursor, such as a [LineEdit] or [TextEdit].
      */
     ARROW(0),
     /**
-     * I-beam cursor shape. This is used by default when hovering a control that accepts text input,
-     * such as [LineEdit] or [TextEdit].
+     * I-beam cursor shape. This is used by default when hovering a control that accepts text input, such as [LineEdit] or [TextEdit].
      */
     IBEAM(1),
     /**
-     * Pointing hand cursor shape. This is used by default when hovering a [LinkButton] or a URL tag
-     * in a [RichTextLabel].
+     * Pointing hand cursor shape. This is used by default when hovering a [LinkButton] or a URL tag in a [RichTextLabel].
      */
     POINTING_HAND(2),
     /**
-     * Crosshair cursor. This is intended to be displayed when the user needs precise aim over an
-     * element, such as a rectangle selection tool or a color picker.
+     * Crosshair cursor. This is intended to be displayed when the user needs precise aim over an element, such as a rectangle selection tool or a color picker.
      */
     CROSS(3),
     /**
-     * Wait cursor. On most cursor themes, this displays a spinning icon *besides* the arrow.
-     * Intended to be used for non-blocking operations (when the user can do something else at the
-     * moment). See also [CURSOR_BUSY].
+     * Wait cursor. On most cursor themes, this displays a spinning icon *besides* the arrow. Intended to be used for non-blocking operations (when the user can do something else at the moment). See also [CURSOR_BUSY].
      */
     WAIT(4),
     /**
-     * Wait cursor. On most cursor themes, this *replaces* the arrow with a spinning icon. Intended
-     * to be used for blocking operations (when the user can't do anything else at the moment). See
-     * also [CURSOR_WAIT].
+     * Wait cursor. On most cursor themes, this *replaces* the arrow with a spinning icon. Intended to be used for blocking operations (when the user can't do anything else at the moment). See also [CURSOR_WAIT].
      */
     BUSY(5),
     /**
-     * Dragging hand cursor. This is displayed during drag-and-drop operations. See also
-     * [CURSOR_CAN_DROP].
+     * Dragging hand cursor. This is displayed during drag-and-drop operations. See also [CURSOR_CAN_DROP].
      */
     DRAG(6),
     /**
-     * "Can drop" cursor. This is displayed during drag-and-drop operations if hovering over a
-     * [Control] that can accept the drag-and-drop event. On most cursor themes, this displays a
-     * dragging hand with an arrow symbol besides it. See also [CURSOR_DRAG].
+     * "Can drop" cursor. This is displayed during drag-and-drop operations if hovering over a [Control] that can accept the drag-and-drop event. On most cursor themes, this displays a dragging hand with an arrow symbol besides it. See also [CURSOR_DRAG].
      */
     CAN_DROP(7),
     /**
-     * Forbidden cursor. This is displayed during drag-and-drop operations if the hovered [Control]
-     * can't accept the drag-and-drop event.
+     * Forbidden cursor. This is displayed during drag-and-drop operations if the hovered [Control] can't accept the drag-and-drop event.
      */
     FORBIDDEN(8),
     /**
-     * Vertical resize cursor. Intended to be displayed when the hovered [Control] can be vertically
-     * resized using the mouse. See also [CURSOR_VSPLIT].
+     * Vertical resize cursor. Intended to be displayed when the hovered [Control] can be vertically resized using the mouse. See also [CURSOR_VSPLIT].
      */
     VSIZE(9),
     /**
-     * Horizontal resize cursor. Intended to be displayed when the hovered [Control] can be
-     * horizontally resized using the mouse. See also [CURSOR_HSPLIT].
+     * Horizontal resize cursor. Intended to be displayed when the hovered [Control] can be horizontally resized using the mouse. See also [CURSOR_HSPLIT].
      */
     HSIZE(10),
     /**
-     * Secondary diagonal resize cursor (top-right/bottom-left). Intended to be displayed when the
-     * hovered [Control] can be resized on both axes at once using the mouse.
+     * Secondary diagonal resize cursor (top-right/bottom-left). Intended to be displayed when the hovered [Control] can be resized on both axes at once using the mouse.
      */
     BDIAGSIZE(11),
     /**
-     * Main diagonal resize cursor (top-left/bottom-right). Intended to be displayed when the
-     * hovered [Control] can be resized on both axes at once using the mouse.
+     * Main diagonal resize cursor (top-left/bottom-right). Intended to be displayed when the hovered [Control] can be resized on both axes at once using the mouse.
      */
     FDIAGSIZE(12),
     /**
-     * Move cursor. Intended to be displayed when the hovered [Control] can be moved using the
-     * mouse.
+     * Move cursor. Intended to be displayed when the hovered [Control] can be moved using the mouse.
      */
     MOVE(13),
     /**
-     * Vertical split cursor. This is displayed when hovering a [Control] with splits that can be
-     * vertically resized using the mouse, such as [VSplitContainer]. On some cursor themes, this
-     * cursor may have the same appearance as [CURSOR_VSIZE].
+     * Vertical split cursor. This is displayed when hovering a [Control] with splits that can be vertically resized using the mouse, such as [VSplitContainer]. On some cursor themes, this cursor may have the same appearance as [CURSOR_VSIZE].
      */
     VSPLIT(14),
     /**
-     * Horizontal split cursor. This is displayed when hovering a [Control] with splits that can be
-     * horizontally resized using the mouse, such as [HSplitContainer]. On some cursor themes, this
-     * cursor may have the same appearance as [CURSOR_HSIZE].
+     * Horizontal split cursor. This is displayed when hovering a [Control] with splits that can be horizontally resized using the mouse, such as [HSplitContainer]. On some cursor themes, this cursor may have the same appearance as [CURSOR_HSIZE].
      */
     HSPLIT(15),
     /**
-     * Help cursor. On most cursor themes, this displays a question mark icon instead of the mouse
-     * cursor. Intended to be used when the user has requested help on the next element that will be
-     * clicked.
+     * Help cursor. On most cursor themes, this displays a question mark icon instead of the mouse cursor. Intended to be used when the user has requested help on the next element that will be clicked.
      */
     HELP(16),
     /**
@@ -3647,8 +3314,7 @@ public object DisplayServer : Object() {
      */
     OPEN_FILES(1),
     /**
-     * The native file dialog only allows selecting a directory, disallowing the selection of any
-     * file.
+     * The native file dialog only allows selecting a directory, disallowing the selection of any file.
      */
     OPEN_DIR(2),
     /**
@@ -3675,64 +3341,47 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
-     * screen).
+     * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the screen).
      */
     WINDOWED(0),
     /**
-     * Minimized window mode, i.e. [Window] is not visible and available on window manager's window
-     * list. Normally happens when the minimize button is pressed.
+     * Minimized window mode, i.e. [Window] is not visible and available on window manager's window list. Normally happens when the minimize button is pressed.
      */
     MINIMIZED(1),
     /**
-     * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still
-     * display its borders. Normally happens when the maximize button is pressed.
+     * Maximized window mode, i.e. [Window] will occupy whole screen area except task bar and still display its borders. Normally happens when the maximize button is pressed.
      */
     MAXIMIZED(2),
     /**
      * Full screen mode with full multi-window support.
      *
-     * Full screen window covers the entire display area of a screen and has no decorations. The
-     * display's video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no decorations. The display's video mode is not changed.
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Multi-window full-screen mode has a 1px border of the
-     * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
+     * **On Windows:** Multi-window full-screen mode has a 1px border of the [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
      *
      * **On macOS:** A new desktop is used to display the running project.
      *
-     * **Note:** Regardless of the platform, enabling full screen will change the window size to
-     * match the monitor's size. Therefore, make sure your project supports
-     * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
-     * enabling full screen mode.
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.
      */
     FULLSCREEN(3),
     /**
-     * A single window full screen mode. This mode has less overhead, but only one window can be
-     * open on a given screen at a time (opening a child window or application switching will trigger a
-     * full screen transition).
+     * A single window full screen mode. This mode has less overhead, but only one window can be open on a given screen at a time (opening a child window or application switching will trigger a full screen transition).
      *
-     * Full screen window covers the entire display area of a screen and has no border or
-     * decorations. The display's video mode is not changed.
+     * Full screen window covers the entire display area of a screen and has no border or decorations. The display's video mode is not changed.
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Depending on video driver, full screen transition might cause screens to go
-     * black for a moment.
+     * **On Windows:** Depending on video driver, full screen transition might cause screens to go black for a moment.
      *
-     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen
-     * mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the
-     * screen.
+     * **On macOS:** A new desktop is used to display the running project. Exclusive full screen mode prevents Dock and Menu from showing up when the mouse pointer is hovering the edge of the screen.
      *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
      *
      * **On Linux (Wayland):** Equivalent to [WINDOW_MODE_FULLSCREEN].
      *
-     * **Note:** Regardless of the platform, enabling full screen will change the window size to
-     * match the monitor's size. Therefore, make sure your project supports
-     * [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when
-     * enabling full screen mode.
+     * **Note:** Regardless of the platform, enabling full screen will change the window size to match the monitor's size. Therefore, make sure your project supports [url=$DOCS_URL/tutorials/rendering/multiple_resolutions.html]multiple resolutions[/url] when enabling full screen mode.
      */
     EXCLUSIVE_FULLSCREEN(4),
     ;
@@ -3751,18 +3400,15 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * The window can't be resized by dragging its resize grip. It's still possible to resize the
-     * window using [windowSetSize]. This flag is ignored for full screen windows.
+     * The window can't be resized by dragging its resize grip. It's still possible to resize the window using [windowSetSize]. This flag is ignored for full screen windows.
      */
     RESIZE_DISABLED(0),
     /**
-     * The window do not have native title bar and other decorations. This flag is ignored for
-     * full-screen windows.
+     * The window do not have native title bar and other decorations. This flag is ignored for full-screen windows.
      */
     BORDERLESS(1),
     /**
-     * The window is floating on top of all other windows. This flag is ignored for full-screen
-     * windows.
+     * The window is floating on top of all other windows. This flag is ignored for full-screen windows.
      */
     ALWAYS_ON_TOP(2),
     /**
@@ -3770,8 +3416,7 @@ public object DisplayServer : Object() {
      *
      * **Note:** This flag has no effect if [isWindowTransparencyAvailable] returns `false`.
      *
-     * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but
-     * availability might vary depending on GPU driver, display manager, and compositor capabilities.
+     * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but availability might vary depending on GPU driver, display manager, and compositor capabilities.
      */
     TRANSPARENT(3),
     /**
@@ -3779,21 +3424,15 @@ public object DisplayServer : Object() {
      */
     NO_FOCUS(4),
     /**
-     * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window
-     * is visible. An active popup window will exclusively receive all input, without stealing focus
-     * from its parent. Popup windows are automatically closed when uses click outside it, or when an
-     * application is switched. Popup window must have transient parent set (see [windowSetTransient]).
+     * Window is part of menu or [OptionButton] dropdown. This flag can't be changed when the window is visible. An active popup window will exclusively receive all input, without stealing focus from its parent. Popup windows are automatically closed when uses click outside it, or when an application is switched. Popup window must have transient parent set (see [windowSetTransient]).
      */
     POPUP(5),
     /**
-     * Window content is expanded to the full size of the window. Unlike borderless window, the
-     * frame is left intact and can be used to resize the window, title bar is transparent, but have
-     * minimize/maximize/close buttons.
+     * Window content is expanded to the full size of the window. Unlike borderless window, the frame is left intact and can be used to resize the window, title bar is transparent, but have minimize/maximize/close buttons.
      *
      * Use [windowSetWindowButtonsOffset] to adjust minimize/maximize/close buttons offset.
      *
-     * Use [windowGetSafeTitleMargins] to determine area under the title bar that is not covered by
-     * decorations.
+     * Use [windowGetSafeTitleMargins] to determine area under the title bar that is not covered by decorations.
      *
      * **Note:** This flag is implemented only on macOS.
      */
@@ -3809,13 +3448,11 @@ public object DisplayServer : Object() {
      */
     SHARP_CORNERS(8),
     /**
-     * Windows is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and
-     * [screenGetPixel].
+     * Windows is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and [screenGetPixel].
      *
      * **Note:** This flag is implemented on macOS and Windows.
      *
-     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
-     * should not be used as a security measure.
+     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it should not be used as a security measure.
      */
     EXCLUDE_FROM_CAPTURE(9),
     /**
@@ -3870,8 +3507,7 @@ public object DisplayServer : Object() {
      */
     DPI_CHANGE(6),
     /**
-     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is
-     * set or window entered/exited full screen mode).
+     * Sent when the window title bar decoration is changed (e.g. [WINDOW_FLAG_EXTEND_TO_TITLE] is set or window entered/exited full screen mode).
      *
      * **Note:** This flag is implemented only on macOS.
      */
@@ -3943,32 +3579,21 @@ public object DisplayServer : Object() {
     id: Long,
   ) {
     /**
-     * No vertical synchronization, which means the engine will display frames as fast as possible
-     * (tearing may be visible). Framerate is unlimited (regardless of [Engine.maxFps]).
+     * No vertical synchronization, which means the engine will display frames as fast as possible (tearing may be visible). Framerate is unlimited (regardless of [Engine.maxFps]).
      */
     VSYNC_DISABLED(0),
     /**
-     * Default vertical synchronization mode, the image is displayed only on vertical blanking
-     * intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (regardless
-     * of [Engine.maxFps]).
+     * Default vertical synchronization mode, the image is displayed only on vertical blanking intervals (no tearing is visible). Framerate is limited by the monitor refresh rate (regardless of [Engine.maxFps]).
      */
     VSYNC_ENABLED(1),
     /**
-     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to
-     * reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to
-     * avoid tearing. Framerate is limited by the monitor refresh rate (regardless of [Engine.maxFps]).
-     * Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
+     * Behaves like [VSYNC_DISABLED] when the framerate drops below the screen's refresh rate to reduce stuttering (tearing may be visible). Otherwise, vertical synchronization is enabled to avoid tearing. Framerate is limited by the monitor refresh rate (regardless of [Engine.maxFps]). Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_ADAPTIVE(2),
     /**
-     * Displays the most recent image in the queue on vertical blanking intervals, while rendering
-     * to the other images (no tearing is visible). Framerate is unlimited (regardless of
-     * [Engine.maxFps]).
+     * Displays the most recent image in the queue on vertical blanking intervals, while rendering to the other images (no tearing is visible). Framerate is unlimited (regardless of [Engine.maxFps]).
      *
-     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce
-     * input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as
-     * many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using
-     * the Compatibility rendering method.
+     * Although not guaranteed, the images can be rendered as fast as possible, which may reduce input lag (also called "Fast" V-Sync mode). [VSYNC_MAILBOX] works best when at least twice as many frames as the display refresh rate are rendered. Behaves like [VSYNC_ENABLED] when using the Compatibility rendering method.
      */
     VSYNC_MAILBOX(3),
     ;
@@ -4031,8 +3656,7 @@ public object DisplayServer : Object() {
      *
      * - Linux (Wayland): `EGLContext` for the window.
      *
-     * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window
-     * (ANGLE).
+     * - macOS: `NSOpenGLContext*` for the window (native GL), or `EGLContext` for the window (ANGLE).
      *
      * - Android: `EGLContext` for the window.
      */
@@ -4098,573 +3722,573 @@ public object DisplayServer : Object() {
 
   public object MethodBindings {
     internal val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_feature", 334065950)
+        TypeManager.getMethodBindPtr("DisplayServer", "has_feature", 334_065_950)
 
     internal val getNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_name", 201670096)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_name", 201_670_096)
 
     internal val helpSetSearchCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks", 1687350599)
+        TypeManager.getMethodBindPtr("DisplayServer", "help_set_search_callbacks", 1_687_350_599)
 
     internal val globalMenuSetPopupCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks", 3893727526)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_popup_callbacks", 3_893_727_526)
 
     internal val globalMenuAddSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2828985934)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_submenu_item", 2_828_985_934)
 
     internal val globalMenuAddItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3616842746)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_item", 3_616_842_746)
 
     internal val globalMenuAddCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3616842746)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_check_item", 3_616_842_746)
 
     internal val globalMenuAddIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 3867083847)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_item", 3_867_083_847)
 
     internal val globalMenuAddIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 3867083847)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_check_item", 3_867_083_847)
 
     internal val globalMenuAddRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3616842746)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_radio_check_item", 3_616_842_746)
 
     internal val globalMenuAddIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 3867083847)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_icon_radio_check_item", 3_867_083_847)
 
     internal val globalMenuAddMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3297554655)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_multistate_item", 3_297_554_655)
 
     internal val globalMenuAddSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3214812433)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_add_separator", 3_214_812_433)
 
     internal val globalMenuGetItemIndexFromTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text", 2878152881)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_text", 2_878_152_881)
 
     internal val globalMenuGetItemIndexFromTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag", 2941063483)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_index_from_tag", 2_941_063_483)
 
     internal val globalMenuIsItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked", 3511468594)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checked", 3_511_468_594)
 
     internal val globalMenuIsItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable", 3511468594)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_checkable", 3_511_468_594)
 
     internal val globalMenuIsItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable", 3511468594)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_radio_checkable", 3_511_468_594)
 
     internal val globalMenuGetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback", 748666903)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_callback", 748_666_903)
 
     internal val globalMenuGetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback", 748666903)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_key_callback", 748_666_903)
 
     internal val globalMenuGetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag", 330672633)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tag", 330_672_633)
 
     internal val globalMenuGetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_text", 591067909)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_text", 591_067_909)
 
     internal val globalMenuGetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu", 591067909)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_submenu", 591_067_909)
 
     internal val globalMenuGetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator", 936065394)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_accelerator", 936_065_394)
 
     internal val globalMenuIsItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled", 3511468594)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_disabled", 3_511_468_594)
 
     internal val globalMenuIsItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden", 3511468594)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_is_item_hidden", 3_511_468_594)
 
     internal val globalMenuGetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip", 591067909)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_tooltip", 591_067_909)
 
     internal val globalMenuGetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_state", 3422818498)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_state", 3_422_818_498)
 
     internal val globalMenuGetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states", 3422818498)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_max_states", 3_422_818_498)
 
     internal val globalMenuGetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon", 3591713183)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_icon", 3_591_713_183)
 
     internal val globalMenuGetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level", 3422818498)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_indentation_level", 3_422_818_498)
 
     internal val globalMenuSetItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked", 4108344793)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checked", 4_108_344_793)
 
     internal val globalMenuSetItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable", 4108344793)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_checkable", 4_108_344_793)
 
     internal val globalMenuSetItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable", 4108344793)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_radio_checkable", 4_108_344_793)
 
     internal val globalMenuSetItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback", 3809915389)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_callback", 3_809_915_389)
 
     internal val globalMenuSetItemHoverCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks", 3809915389)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hover_callbacks", 3_809_915_389)
 
     internal val globalMenuSetItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback", 3809915389)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_key_callback", 3_809_915_389)
 
     internal val globalMenuSetItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag", 453659863)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tag", 453_659_863)
 
     internal val globalMenuSetItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_text", 965966136)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_text", 965_966_136)
 
     internal val globalMenuSetItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu", 965966136)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_submenu", 965_966_136)
 
     internal val globalMenuSetItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator", 566943293)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_accelerator", 566_943_293)
 
     internal val globalMenuSetItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled", 4108344793)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_disabled", 4_108_344_793)
 
     internal val globalMenuSetItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden", 4108344793)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_hidden", 4_108_344_793)
 
     internal val globalMenuSetItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip", 965966136)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_tooltip", 965_966_136)
 
     internal val globalMenuSetItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_state", 3474840532)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_state", 3_474_840_532)
 
     internal val globalMenuSetItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states", 3474840532)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_max_states", 3_474_840_532)
 
     internal val globalMenuSetItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon", 3201338066)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_icon", 3_201_338_066)
 
     internal val globalMenuSetItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level", 3474840532)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_set_item_indentation_level", 3_474_840_532)
 
     internal val globalMenuGetItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_count", 1321353865)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_item_count", 1_321_353_865)
 
     internal val globalMenuRemoveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_remove_item", 2956805083)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_remove_item", 2_956_805_083)
 
     internal val globalMenuClearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear", 83702148)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_clear", 83_702_148)
 
     internal val globalMenuGetSystemMenuRootsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots", 3102165223)
+        TypeManager.getMethodBindPtr("DisplayServer", "global_menu_get_system_menu_roots", 3_102_165_223)
 
     internal val ttsIsSpeakingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_speaking", 36_873_697)
 
     internal val ttsIsPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_paused", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_is_paused", 36_873_697)
 
     internal val ttsGetVoicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices", 3995934104)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices", 3_995_934_104)
 
     internal val ttsGetVoicesForLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language", 4291131558)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_get_voices_for_language", 4_291_131_558)
 
     internal val ttsSpeakPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_speak", 903992738)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_speak", 903_992_738)
 
     internal val ttsPausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_pause", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_pause", 3_218_959_716)
 
     internal val ttsResumePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_resume", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_resume", 3_218_959_716)
 
     internal val ttsStopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_stop", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_stop", 3_218_959_716)
 
     internal val ttsSetUtteranceCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback", 109679083)
+        TypeManager.getMethodBindPtr("DisplayServer", "tts_set_utterance_callback", 109_679_083)
 
     internal val isDarkModeSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode_supported", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode_supported", 36_873_697)
 
     internal val isDarkModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "is_dark_mode", 36_873_697)
 
     internal val getAccentColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color", 3444240500)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_accent_color", 3_444_240_500)
 
     internal val getBaseColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color", 3444240500)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_base_color", 3_444_240_500)
 
     internal val setSystemThemeChangeCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback", 1611583062)
+        TypeManager.getMethodBindPtr("DisplayServer", "set_system_theme_change_callback", 1_611_583_062)
 
     internal val mouseSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode", 348288463)
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_set_mode", 348_288_463)
 
     internal val mouseGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_mode", 1353961651)
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_mode", 1_353_961_651)
 
     internal val warpMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "warp_mouse", 1130785943)
+        TypeManager.getMethodBindPtr("DisplayServer", "warp_mouse", 1_130_785_943)
 
     internal val mouseGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_position", 3690982128)
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_position", 3_690_982_128)
 
     internal val mouseGetButtonStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_button_state", 2512161324)
+        TypeManager.getMethodBindPtr("DisplayServer", "mouse_get_button_state", 2_512_161_324)
 
     internal val clipboardSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set", 83702148)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set", 83_702_148)
 
     internal val clipboardGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get", 201670096)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get", 201_670_096)
 
     internal val clipboardGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image", 4190603485)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_image", 4_190_603_485)
 
     internal val clipboardHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has", 36_873_697)
 
     internal val clipboardHasImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_has_image", 36_873_697)
 
     internal val clipboardSetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary", 83702148)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_set_primary", 83_702_148)
 
     internal val clipboardGetPrimaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_primary", 201670096)
+        TypeManager.getMethodBindPtr("DisplayServer", "clipboard_get_primary", 201_670_096)
 
     internal val getDisplayCutoutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_cutouts", 3995934104)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_display_cutouts", 3_995_934_104)
 
     internal val getDisplaySafeAreaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_display_safe_area", 410525958)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_display_safe_area", 410_525_958)
 
     internal val getScreenCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_count", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_count", 3_905_245_786)
 
     internal val getPrimaryScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_primary_screen", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_primary_screen", 3_905_245_786)
 
     internal val getKeyboardFocusScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_keyboard_focus_screen", 3_905_245_786)
 
     internal val getScreenFromRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_from_rect", 741354659)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_screen_from_rect", 741_354_659)
 
     internal val screenGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_position", 1725937825)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_position", 1_725_937_825)
 
     internal val screenGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_size", 1725937825)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_size", 1_725_937_825)
 
     internal val screenGetUsableRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_usable_rect", 2439012528)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_usable_rect", 2_439_012_528)
 
     internal val screenGetDpiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_dpi", 181039630)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_dpi", 181_039_630)
 
     internal val screenGetScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale", 909105437)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_scale", 909_105_437)
 
     internal val isTouchscreenAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "is_touchscreen_available", 36_873_697)
 
     internal val screenGetMaxScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1740695150)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_max_scale", 1_740_695_150)
 
     internal val screenGetRefreshRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate", 909105437)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_refresh_rate", 909_105_437)
 
     internal val screenGetPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_pixel", 1532707496)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_pixel", 1_532_707_496)
 
     internal val screenGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image", 3813388802)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image", 3_813_388_802)
 
     internal val screenGetImageRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image_rect", 2601441065)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_image_rect", 2_601_441_065)
 
     internal val screenSetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2211511631)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_orientation", 2_211_511_631)
 
     internal val screenGetOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_orientation", 133818562)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_get_orientation", 133_818_562)
 
     internal val screenSetKeepOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_keep_on", 2586408642)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_set_keep_on", 2_586_408_642)
 
     internal val screenIsKeptOnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "screen_is_kept_on", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "screen_is_kept_on", 36_873_697)
 
     internal val getWindowListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_list", 1930428628)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_window_list", 1_930_428_628)
 
     internal val getWindowAtScreenPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_window_at_screen_position", 2485466453)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_window_at_screen_position", 2_485_466_453)
 
     internal val windowGetNativeHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_native_handle", 1096425680)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_native_handle", 1_096_425_680)
 
     internal val windowGetActivePopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_active_popup", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_active_popup", 3_905_245_786)
 
     internal val windowSetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect", 3317281434)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_popup_safe_rect", 3_317_281_434)
 
     internal val windowGetPopupSafeRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect", 2161169500)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_popup_safe_rect", 2_161_169_500)
 
     internal val windowSetTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_title", 441246282)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_title", 441_246_282)
 
     internal val windowGetTitleSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size", 2925301799)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_title_size", 2_925_301_799)
 
     internal val windowSetMousePassthroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough", 1993637420)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mouse_passthrough", 1_993_637_420)
 
     internal val windowGetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_current_screen", 1591665591)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_current_screen", 1_591_665_591)
 
     internal val windowSetCurrentScreenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_current_screen", 2230941749)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_current_screen", 2_230_941_749)
 
     internal val windowGetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position", 763_922_886)
 
     internal val windowGetPositionWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_position_with_decorations", 763_922_886)
 
     internal val windowSetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_position", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_position", 2_019_273_902)
 
     internal val windowGetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size", 763_922_886)
 
     internal val windowSetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_size", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_size", 2_019_273_902)
 
     internal val windowSetRectChangedCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback", 1091192925)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_rect_changed_callback", 1_091_192_925)
 
     internal val windowSetWindowEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_event_callback", 1091192925)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_event_callback", 1_091_192_925)
 
     internal val windowSetInputEventCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_event_callback", 1091192925)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_event_callback", 1_091_192_925)
 
     internal val windowSetInputTextCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_text_callback", 1091192925)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_input_text_callback", 1_091_192_925)
 
     internal val windowSetDropFilesCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback", 1091192925)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_drop_files_callback", 1_091_192_925)
 
     internal val windowGetAttachedInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id", 1591665591)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_attached_instance_id", 1_591_665_591)
 
     internal val windowGetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_max_size", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_max_size", 763_922_886)
 
     internal val windowSetMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_max_size", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_max_size", 2_019_273_902)
 
     internal val windowGetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_min_size", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_min_size", 763_922_886)
 
     internal val windowSetMinSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_min_size", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_min_size", 2_019_273_902)
 
     internal val windowGetSizeWithDecorationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations", 763922886)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_size_with_decorations", 763_922_886)
 
     internal val windowGetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_mode", 2185728461)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_mode", 2_185_728_461)
 
     internal val windowSetModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mode", 1319965401)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_mode", 1_319_965_401)
 
     internal val windowSetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_flag", 254894155)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_flag", 254_894_155)
 
     internal val windowGetFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag", 802816991)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_flag", 802_816_991)
 
     internal val windowSetWindowButtonsOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_window_buttons_offset", 2_019_273_902)
 
     internal val windowGetSafeTitleMarginsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins", 2295066620)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_safe_title_margins", 2_295_066_620)
 
     internal val windowRequestAttentionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention", 1995695955)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_request_attention", 1_995_695_955)
 
     internal val windowMoveToForegroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1995695955)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_move_to_foreground", 1_995_695_955)
 
     internal val windowIsFocusedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_focused", 1051549951)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_focused", 1_051_549_951)
 
     internal val windowCanDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_can_draw", 1051549951)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_can_draw", 1_051_549_951)
 
     internal val windowSetTransientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_transient", 3937882851)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_transient", 3_937_882_851)
 
     internal val windowSetExclusivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_exclusive", 300928843)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_exclusive", 300_928_843)
 
     internal val windowSetImeActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_active", 1661950165)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_active", 1_661_950_165)
 
     internal val windowSetImePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_position", 2019273902)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_ime_position", 2_019_273_902)
 
     internal val windowSetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_set_vsync_mode", 2179333492)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_set_vsync_mode", 2_179_333_492)
 
     internal val windowGetVsyncModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578873795)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_get_vsync_mode", 578_873_795)
 
     internal val windowIsMaximizeAllowedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1051549951)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_is_maximize_allowed", 1_051_549_951)
 
     internal val windowMaximizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_maximize_on_title_dbl_click", 36_873_697)
 
     internal val windowMinimizeOnTitleDblClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_minimize_on_title_dbl_click", 36_873_697)
 
     internal val windowStartDragPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_start_drag", 1995695955)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_start_drag", 1_995_695_955)
 
     internal val windowStartResizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "window_start_resize", 4009722312)
+        TypeManager.getMethodBindPtr("DisplayServer", "window_start_resize", 4_009_722_312)
 
     internal val imeGetSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
+        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3_690_982_128)
 
     internal val imeGetTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_text", 201670096)
+        TypeManager.getMethodBindPtr("DisplayServer", "ime_get_text", 201_670_096)
 
     internal val virtualKeyboardShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_show", 3042891259)
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_show", 3_042_891_259)
 
     internal val virtualKeyboardHidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_hide", 3_218_959_716)
 
     internal val virtualKeyboardGetHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "virtual_keyboard_get_height", 3_905_245_786)
 
     internal val hasHardwareKeyboardPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_hardware_keyboard", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "has_hardware_keyboard", 36_873_697)
 
     internal val cursorSetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2_026_291_549)
 
     internal val cursorGetShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_get_shape", 1087724927)
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_get_shape", 1_087_724_927)
 
     internal val cursorSetCustomImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_custom_image", 1816663697)
+        TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_custom_image", 1_816_663_697)
 
     internal val getSwapCancelOkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok", 2240911060)
+        TypeManager.getMethodBindPtr("DisplayServer", "get_swap_cancel_ok", 2_240_911_060)
 
     internal val enableForStealingFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus", 1286410249)
+        TypeManager.getMethodBindPtr("DisplayServer", "enable_for_stealing_focus", 1_286_410_249)
 
     internal val dialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "dialog_show", 4115553226)
+        TypeManager.getMethodBindPtr("DisplayServer", "dialog_show", 4_115_553_226)
 
     internal val dialogInputTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text", 3088703427)
+        TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text", 3_088_703_427)
 
     internal val fileDialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1531299078)
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1_531_299_078)
 
     internal val fileDialogWithOptionsShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1_305_318_754)
 
     internal val beepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "beep", 4051624405)
+        TypeManager.getMethodBindPtr("DisplayServer", "beep", 4_051_624_405)
 
     internal val keyboardGetLayoutCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_count", 3_905_245_786)
 
     internal val keyboardGetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_current_layout", 3_905_245_786)
 
     internal val keyboardSetCurrentLayoutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout", 1286410249)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_set_current_layout", 1_286_410_249)
 
     internal val keyboardGetLayoutLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language", 844755477)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_language", 844_755_477)
 
     internal val keyboardGetLayoutNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name", 844755477)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_layout_name", 844_755_477)
 
     internal val keyboardGetKeycodeFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical", 3447613187)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_keycode_from_physical", 3_447_613_187)
 
     internal val keyboardGetLabelFromPhysicalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3447613187)
+        TypeManager.getMethodBindPtr("DisplayServer", "keyboard_get_label_from_physical", 3_447_613_187)
 
     internal val showEmojiAndSymbolPickerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "show_emoji_and_symbol_picker", 4051624405)
+        TypeManager.getMethodBindPtr("DisplayServer", "show_emoji_and_symbol_picker", 4_051_624_405)
 
     internal val processEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3_218_959_716)
 
     internal val forceProcessAndDropEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "force_process_and_drop_events", 3218959716)
+        TypeManager.getMethodBindPtr("DisplayServer", "force_process_and_drop_events", 3_218_959_716)
 
     internal val setNativeIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_native_icon", 83702148)
+        TypeManager.getMethodBindPtr("DisplayServer", "set_native_icon", 83_702_148)
 
     internal val setIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "set_icon", 532598488)
+        TypeManager.getMethodBindPtr("DisplayServer", "set_icon", 532_598_488)
 
     internal val createStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator", 1904285171)
+        TypeManager.getMethodBindPtr("DisplayServer", "create_status_indicator", 1_904_285_171)
 
     internal val statusIndicatorSetIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon", 666127730)
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_icon", 666_127_730)
 
     internal val statusIndicatorSetTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip", 501894301)
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_tooltip", 501_894_301)
 
     internal val statusIndicatorSetMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu", 4040184819)
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_menu", 4_040_184_819)
 
     internal val statusIndicatorSetCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback", 957362965)
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_set_callback", 957_362_965)
 
     internal val statusIndicatorGetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect", 3327874267)
+        TypeManager.getMethodBindPtr("DisplayServer", "status_indicator_get_rect", 3_327_874_267)
 
     internal val deleteStatusIndicatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator", 1286410249)
+        TypeManager.getMethodBindPtr("DisplayServer", "delete_status_indicator", 1_286_410_249)
 
     internal val tabletGetDriverCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count", 3905245786)
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_count", 3_905_245_786)
 
     internal val tabletGetDriverNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_name", 844755477)
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_driver_name", 844_755_477)
 
     internal val tabletGetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_current_driver", 201670096)
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_get_current_driver", 201_670_096)
 
     internal val tabletSetCurrentDriverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver", 83702148)
+        TypeManager.getMethodBindPtr("DisplayServer", "tablet_set_current_driver", 83_702_148)
 
     internal val isWindowTransparencyAvailablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "is_window_transparency_available", 36_873_697)
 
     internal val registerAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output", 3975164845)
+        TypeManager.getMethodBindPtr("DisplayServer", "register_additional_output", 3_975_164_845)
 
     internal val unregisterAdditionalOutputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output", 3975164845)
+        TypeManager.getMethodBindPtr("DisplayServer", "unregister_additional_output", 3_975_164_845)
 
     internal val hasAdditionalOutputsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36873697)
+        TypeManager.getMethodBindPtr("DisplayServer", "has_additional_outputs", 36_873_697)
   }
 }

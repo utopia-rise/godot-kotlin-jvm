@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Returns an associated value of the [opType] type if the provided boolean value is `true` or
- * `false`.
+ * Returns an associated value of the [opType] type if the provided boolean value is `true` or `false`.
  */
 @GodotBaseType
 public open class VisualShaderNodeSwitch : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
       setOpType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(796, scriptIndex)
   }
 
-  public final fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
@@ -105,9 +100,9 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "set_op_type", 510471861)
+        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "set_op_type", 510_471_861)
 
     internal val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "get_op_type", 2517845071)
+        TypeManager.getMethodBindPtr("VisualShaderNodeSwitch", "get_op_type", 2_517_845_071)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node helps to multiply a position input vector by rotation using specific axis. Intended to
- * work with emitters.
+ * This node helps to multiply a position input vector by rotation using specific axis. Intended to work with emitters.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode() {
@@ -35,11 +30,11 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
       setDegreesMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(778, scriptIndex)
   }
 
-  public final fun setDegreesMode(enabled: Boolean): Unit {
+  public final fun setDegreesMode(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDegreesModePtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
 
   public object MethodBindings {
     internal val setDegreesModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "set_degrees_mode", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "set_degrees_mode", 2_586_408_642)
 
     internal val isDegreesModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "is_degrees_mode", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMultiplyByAxisAngle", "is_degrees_mode", 36_873_697)
   }
 }

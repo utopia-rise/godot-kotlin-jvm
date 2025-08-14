@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class NativeStructure @JsonCreator constructor(
-    @JsonProperty("name") val name: String,
-    @JsonProperty("format") val format: String
+    @param:JsonProperty("name") val name: String,
+    @param:JsonProperty("format") val format: String
 )

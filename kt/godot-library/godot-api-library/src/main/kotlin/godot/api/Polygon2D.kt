@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -44,22 +41,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final
- * point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with
- * color (solid or gradient) or filled with a given texture.
+ * A Polygon2D is defined by a set of points. Each point is connected to the next, with the final point being connected to the first, resulting in a closed polygon. Polygon2Ds can be filled with color (solid or gradient) or filled with a given texture.
  */
 @GodotBaseType
 public open class Polygon2D : Node2D() {
   /**
-   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
-   * also be the default color for vertices not set in [vertexColors].
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -74,11 +65,8 @@ public open class Polygon2D : Node2D() {
    * The offset applied to each vertex.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -112,15 +100,11 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
-   * top-left corner) will be placed at the polygon's position.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureOffset: Vector2
@@ -132,15 +116,11 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
-   * smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var textureScale: Vector2
@@ -163,8 +143,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or
-   * invalid, skeletal deformations will not be used.
+   * Path to a [Skeleton2D] node used for skeleton-based deformations of this polygon. If empty or invalid, skeletal deformations will not be used.
    */
   public final inline var skeleton: NodePath
     @JvmName("skeletonProperty")
@@ -175,8 +154,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * If `true`, the polygon will be inverted, containing the area outside the defined points and
-   * extending to the [invertBorder].
+   * If `true`, the polygon will be inverted, containing the area outside the defined points and extending to the [invertBorder].
    */
   public final inline var invertEnabled: Boolean
     @JvmName("invertEnabledProperty")
@@ -187,8 +165,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Added padding applied to the bounding box when [invertEnabled] is set to `true`. Setting this
-   * value too small may result in a "Bad Polygon" error.
+   * Added padding applied to the bounding box when [invertEnabled] is set to `true`. Setting this value too small may result in a "Bad Polygon" error.
    */
   public final inline var invertBorder: Float
     @JvmName("invertBorderProperty")
@@ -202,11 +179,8 @@ public open class Polygon2D : Node2D() {
    * The polygon's list of vertices. The final point will be connected to the first.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
@@ -218,15 +192,11 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
-   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var uv: PackedVector2Array
@@ -238,8 +208,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients.
-   * There should be one per polygon vertex. If there are fewer, undefined vertices will use [color].
+   * Color for each vertex. Colors are interpolated between vertices, resulting in smooth gradients. There should be one per polygon vertex. If there are fewer, undefined vertices will use [color].
    */
   public final inline var vertexColors: PackedColorArray
     @JvmName("vertexColorsProperty")
@@ -250,10 +219,7 @@ public open class Polygon2D : Node2D() {
     }
 
   /**
-   * The list of polygons, in case more than one is being represented. Every individual polygon is
-   * stored as a [PackedInt32Array] where each [int] is an index to a point in [polygon]. If empty,
-   * this property will be ignored, and the resulting single polygon will be composed of all points in
-   * [polygon], using the order they are stored in.
+   * The list of polygons, in case more than one is being represented. Every individual polygon is stored as a [PackedInt32Array] where each [int] is an index to a point in [polygon]. If empty, this property will be ignored, and the resulting single polygon will be composed of all points in [polygon], using the order they are stored in.
    */
   public final inline var polygons: VariantArray<Any?>
     @JvmName("polygonsProperty")
@@ -274,7 +240,7 @@ public open class Polygon2D : Node2D() {
       setInternalVertexCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(498, scriptIndex)
   }
 
@@ -289,8 +255,7 @@ public open class Polygon2D : Node2D() {
    * polygon2d.color = myCoreType
    * ``````
    *
-   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will
-   * also be the default color for vertices not set in [vertexColors].
+   * The polygon's fill color. If [texture] is set, it will be multiplied by this color. It will also be the default color for vertices not set in [vertexColors].
    */
   @CoreTypeHelper
   public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
@@ -328,8 +293,7 @@ public open class Polygon2D : Node2D() {
    * polygon2d.textureOffset = myCoreType
    * ``````
    *
-   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its
-   * top-left corner) will be placed at the polygon's position.
+   * Amount to offset the polygon's [texture]. If set to `Vector2(0, 0)`, the texture's origin (its top-left corner) will be placed at the polygon's position.
    */
   @CoreTypeHelper
   public final fun textureOffsetMutate(block: Vector2.() -> Unit): Vector2 = textureOffset.apply {
@@ -348,8 +312,7 @@ public open class Polygon2D : Node2D() {
    * polygon2d.textureScale = myCoreType
    * ``````
    *
-   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture
-   * smaller, and vice versa.
+   * Amount to multiply the [uv] coordinates when using [texture]. Larger values make the texture smaller, and vice versa.
    */
   @CoreTypeHelper
   public final fun textureScaleMutate(block: Vector2.() -> Unit): Vector2 = textureScale.apply {
@@ -371,22 +334,19 @@ public open class Polygon2D : Node2D() {
    * The polygon's list of vertices. The final point will be connected to the first.
    */
   @CoreTypeHelper
-  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      polygon.apply {
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = polygon.apply {
      block(this)
      polygon = this
   }
 
   /**
    * This is a helper function for [polygon] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The polygon's list of vertices. The final point will be connected to the first.
    */
   @CoreTypeHelper
-  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = polygon.apply {
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = polygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -405,8 +365,7 @@ public open class Polygon2D : Node2D() {
    * polygon2d.uv = myCoreType
    * ``````
    *
-   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
-   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
    */
   @CoreTypeHelper
   public final fun uvMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = uv.apply {
@@ -416,15 +375,12 @@ public open class Polygon2D : Node2D() {
 
   /**
    * This is a helper function for [uv] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon
-   * vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
+   * Texture coordinates for each vertex of the polygon. There should be one UV value per polygon vertex. If there are fewer, undefined vertices will use `Vector2(0, 0)`.
    */
   @CoreTypeHelper
-  public final fun uvMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array =
-      uv.apply {
+  public final fun uvMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = uv.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -432,7 +388,7 @@ public open class Polygon2D : Node2D() {
      uv = this
   }
 
-  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
@@ -443,7 +399,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setUv(uv: PackedVector2Array): Unit {
+  public final fun setUv(uv: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to uv)
     TransferContext.callMethod(ptr, MethodBindings.setUvPtr, NIL)
   }
@@ -454,7 +410,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -465,7 +421,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setPolygons(polygons: VariantArray<Any?>): Unit {
+  public final fun setPolygons(polygons: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to polygons)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonsPtr, NIL)
   }
@@ -476,7 +432,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public final fun setVertexColors(vertexColors: PackedColorArray): Unit {
+  public final fun setVertexColors(vertexColors: PackedColorArray) {
     TransferContext.writeArguments(PACKED_COLOR_ARRAY to vertexColors)
     TransferContext.callMethod(ptr, MethodBindings.setVertexColorsPtr, NIL)
   }
@@ -487,7 +443,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_COLOR_ARRAY) as PackedColorArray)
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -498,7 +454,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setTextureOffset(textureOffset: Vector2): Unit {
+  public final fun setTextureOffset(textureOffset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to textureOffset)
     TransferContext.callMethod(ptr, MethodBindings.setTextureOffsetPtr, NIL)
   }
@@ -509,7 +465,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setTextureRotation(textureRotation: Float): Unit {
+  public final fun setTextureRotation(textureRotation: Float) {
     TransferContext.writeArguments(DOUBLE to textureRotation.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureRotationPtr, NIL)
   }
@@ -520,7 +476,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTextureScale(textureScale: Vector2): Unit {
+  public final fun setTextureScale(textureScale: Vector2) {
     TransferContext.writeArguments(VECTOR2 to textureScale)
     TransferContext.callMethod(ptr, MethodBindings.setTextureScalePtr, NIL)
   }
@@ -531,7 +487,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setInvertEnabled(invert: Boolean): Unit {
+  public final fun setInvertEnabled(invert: Boolean) {
     TransferContext.writeArguments(BOOL to invert)
     TransferContext.callMethod(ptr, MethodBindings.setInvertEnabledPtr, NIL)
   }
@@ -542,7 +498,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAntialiased(antialiased: Boolean): Unit {
+  public final fun setAntialiased(antialiased: Boolean) {
     TransferContext.writeArguments(BOOL to antialiased)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasedPtr, NIL)
   }
@@ -553,7 +509,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setInvertBorder(invertBorder: Float): Unit {
+  public final fun setInvertBorder(invertBorder: Float) {
     TransferContext.writeArguments(DOUBLE to invertBorder.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInvertBorderPtr, NIL)
   }
@@ -564,7 +520,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -578,7 +534,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Adds a bone with the specified [path] and [weights].
    */
-  public final fun addBone(path: NodePath, weights: PackedFloat32Array): Unit {
+  public final fun addBone(path: NodePath, weights: PackedFloat32Array) {
     TransferContext.writeArguments(NODE_PATH to path, PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(ptr, MethodBindings.addBonePtr, NIL)
   }
@@ -613,7 +569,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Removes the specified bone from this [Polygon2D].
    */
-  public final fun eraseBone(index: Int): Unit {
+  public final fun eraseBone(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.eraseBonePtr, NIL)
   }
@@ -621,7 +577,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Removes all bones from this [Polygon2D].
    */
-  public final fun clearBones(): Unit {
+  public final fun clearBones() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBonesPtr, NIL)
   }
@@ -629,7 +585,7 @@ public open class Polygon2D : Node2D() {
   /**
    * Sets the path to the node associated with the specified bone.
    */
-  public final fun setBonePath(index: Int, path: NodePath): Unit {
+  public final fun setBonePath(index: Int, path: NodePath) {
     TransferContext.writeArguments(LONG to index.toLong(), NODE_PATH to path)
     TransferContext.callMethod(ptr, MethodBindings.setBonePathPtr, NIL)
   }
@@ -637,12 +593,12 @@ public open class Polygon2D : Node2D() {
   /**
    * Sets the weight values for the specified bone.
    */
-  public final fun setBoneWeights(index: Int, weights: PackedFloat32Array): Unit {
+  public final fun setBoneWeights(index: Int, weights: PackedFloat32Array) {
     TransferContext.writeArguments(LONG to index.toLong(), PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(ptr, MethodBindings.setBoneWeightsPtr, NIL)
   }
 
-  public final fun setSkeleton(skeleton: NodePath): Unit {
+  public final fun setSkeleton(skeleton: NodePath) {
     TransferContext.writeArguments(NODE_PATH to skeleton)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonPtr, NIL)
   }
@@ -653,7 +609,7 @@ public open class Polygon2D : Node2D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setInternalVertexCount(internalVertexCount: Int): Unit {
+  public final fun setInternalVertexCount(internalVertexCount: Int) {
     TransferContext.writeArguments(LONG to internalVertexCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInternalVertexCountPtr, NIL)
   }
@@ -667,130 +623,130 @@ public open class Polygon2D : Node2D() {
   /**
    * Adds a bone with the specified [path] and [weights].
    */
-  public final fun addBone(path: String, weights: PackedFloat32Array) =
-      addBone(path.asCachedNodePath(), weights)
+  public final fun addBone(path: String, weights: PackedFloat32Array): Unit = addBone(path.asCachedNodePath(), weights)
 
   /**
    * Sets the path to the node associated with the specified bone.
    */
-  public final fun setBonePath(index: Int, path: String) =
-      setBonePath(index, path.asCachedNodePath())
+  public final fun setBonePath(index: Int, path: String): Unit = setBonePath(index, path.asCachedNodePath())
 
-  public final fun setSkeleton(skeleton: String) = setSkeleton(skeleton.asCachedNodePath())
+  public final fun setSkeleton(skeleton: String): Unit = setSkeleton(skeleton.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_polygon", 1_509_147_220)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_polygon", 2_961_356_807)
 
-    internal val setUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "set_uv", 1509147220)
+    internal val setUvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "set_uv", 1_509_147_220)
 
-    internal val getUvPtr: VoidPtr = TypeManager.getMethodBindPtr("Polygon2D", "get_uv", 2961356807)
+    internal val getUvPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Polygon2D", "get_uv", 2_961_356_807)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_color", 3_444_240_500)
 
     internal val setPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_polygons", 381264803)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_polygons", 381_264_803)
 
     internal val getPolygonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_polygons", 3995934104)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_polygons", 3_995_934_104)
 
     internal val setVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors", 3546319833)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_vertex_colors", 3_546_319_833)
 
     internal val getVertexColorsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors", 1392750486)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_vertex_colors", 1_392_750_486)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture", 3_635_182_373)
 
     internal val setTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset", 743155724)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_offset", 743_155_724)
 
     internal val getTextureOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_offset", 3_341_600_327)
 
     internal val setTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation", 373806689)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_rotation", 373_806_689)
 
     internal val getTextureRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation", 1740695150)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_rotation", 1_740_695_150)
 
     internal val setTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale", 743155724)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_texture_scale", 743_155_724)
 
     internal val getTextureScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale", 3341600327)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_texture_scale", 3_341_600_327)
 
     internal val setInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_enabled", 2_586_408_642)
 
     internal val getInvertEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_enabled", 36_873_697)
 
     internal val setAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased", 2586408642)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_antialiased", 2_586_408_642)
 
     internal val getAntialiasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased", 36873697)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_antialiased", 36_873_697)
 
     internal val setInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border", 373806689)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_invert_border", 373_806_689)
 
     internal val getInvertBorderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border", 1740695150)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_invert_border", 1_740_695_150)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_offset", 3_341_600_327)
 
     internal val addBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "add_bone", 703042815)
+        TypeManager.getMethodBindPtr("Polygon2D", "add_bone", 703_042_815)
 
     internal val getBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count", 3905245786)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_count", 3_905_245_786)
 
     internal val getBonePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path", 408788394)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_path", 408_788_394)
 
     internal val getBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights", 1542882410)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_bone_weights", 1_542_882_410)
 
     internal val eraseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "erase_bone", 1286410249)
+        TypeManager.getMethodBindPtr("Polygon2D", "erase_bone", 1_286_410_249)
 
     internal val clearBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "clear_bones", 3218959716)
+        TypeManager.getMethodBindPtr("Polygon2D", "clear_bones", 3_218_959_716)
 
     internal val setBonePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path", 2761262315)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_path", 2_761_262_315)
 
     internal val setBoneWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights", 1345852415)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_bone_weights", 1_345_852_415)
 
     internal val setSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton", 1348162250)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_skeleton", 1_348_162_250)
 
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton", 4075236667)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_skeleton", 4_075_236_667)
 
     internal val setInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count", 1286410249)
+        TypeManager.getMethodBindPtr("Polygon2D", "set_internal_vertex_count", 1_286_410_249)
 
     internal val getInternalVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count", 3905245786)
+        TypeManager.getMethodBindPtr("Polygon2D", "get_internal_vertex_count", 3_905_245_786)
   }
 }

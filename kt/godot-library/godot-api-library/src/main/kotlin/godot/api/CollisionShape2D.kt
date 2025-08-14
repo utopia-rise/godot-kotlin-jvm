@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,8 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can
- * give a detection shape to an [Area2D] or turn a [PhysicsBody2D] into a solid object.
+ * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can give a detection shape to an [Area2D] or turn a [PhysicsBody2D] into a solid object.
  */
 @GodotBaseType
 public open class CollisionShape2D : Node2D() {
@@ -44,8 +40,7 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * A disabled collision shape has no effect in the world. This property should be changed with
-   * [Object.setDeferred].
+   * A disabled collision shape has no effect in the world. This property should be changed with [Object.setDeferred].
    */
   public final inline var disabled: Boolean
     @JvmName("disabledProperty")
@@ -58,8 +53,7 @@ public open class CollisionShape2D : Node2D() {
   /**
    * Sets whether this collision shape should only detect collision on one side (top or bottom).
    *
-   * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D]
-   * node.
+   * **Note:** This property has no effect if this [CollisionShape2D] is a child of an [Area2D] node.
    */
   public final inline var oneWayCollision: Boolean
     @JvmName("oneWayCollisionProperty")
@@ -70,8 +64,7 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker,
-   * and work better for colliders that enter the shape at a high velocity.
+   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the shape at a high velocity.
    */
   public final inline var oneWayCollisionMargin: Float
     @JvmName("oneWayCollisionMarginProperty")
@@ -82,19 +75,13 @@ public open class CollisionShape2D : Node2D() {
     }
 
   /**
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug > Visible Collision Shapes** is checked at the top of the editor.
    *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugColor: Color
@@ -105,7 +92,7 @@ public open class CollisionShape2D : Node2D() {
       setDebugColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(158, scriptIndex)
   }
 
@@ -120,12 +107,9 @@ public open class CollisionShape2D : Node2D() {
    * collisionshape2d.debugColor = myCoreType
    * ``````
    *
-   * The collision shape color that is displayed in the editor, or in the running project if **Debug
-   * > Visible Collision Shapes** is checked at the top of the editor.
+   * The collision shape color that is displayed in the editor, or in the running project if **Debug > Visible Collision Shapes** is checked at the top of the editor.
    *
-   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The
-   * `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug
-   * color.
+   * **Note:** The default value is [ProjectSettings.debug/shapes/collision/shapeColor]. The `Color(0, 0, 0, 0)` value documented here is a placeholder, and not the actual default debug color.
    */
   @CoreTypeHelper
   public final fun debugColorMutate(block: Color.() -> Unit): Color = debugColor.apply {
@@ -133,7 +117,7 @@ public open class CollisionShape2D : Node2D() {
      debugColor = this
   }
 
-  public final fun setShape(shape: Shape2D?): Unit {
+  public final fun setShape(shape: Shape2D?) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -144,7 +128,7 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Shape2D?)
   }
 
-  public final fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
@@ -155,7 +139,7 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOneWayCollision(enabled: Boolean): Unit {
+  public final fun setOneWayCollision(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionPtr, NIL)
   }
@@ -166,7 +150,7 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOneWayCollisionMargin(margin: Float): Unit {
+  public final fun setOneWayCollisionMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
   }
@@ -177,7 +161,7 @@ public open class CollisionShape2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDebugColor(color: Color): Unit {
+  public final fun setDebugColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setDebugColorPtr, NIL)
   }
@@ -192,33 +176,33 @@ public open class CollisionShape2D : Node2D() {
 
   public object MethodBindings {
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_shape", 771364740)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_shape", 771_364_740)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_shape", 522005891)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_shape", 522_005_891)
 
     internal val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_disabled", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_disabled", 2_586_408_642)
 
     internal val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_disabled", 36873697)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "is_disabled", 36_873_697)
 
     internal val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision", 2_586_408_642)
 
     internal val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "is_one_way_collision_enabled", 36_873_697)
 
     internal val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373806689)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_one_way_collision_margin", 373_806_689)
 
     internal val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1740695150)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_one_way_collision_margin", 1_740_695_150)
 
     internal val setDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2920490490)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "set_debug_color", 2_920_490_490)
 
     internal val getDebugColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3444240500)
+        TypeManager.getMethodBindPtr("CollisionShape2D", "get_debug_color", 3_444_240_500)
   }
 }

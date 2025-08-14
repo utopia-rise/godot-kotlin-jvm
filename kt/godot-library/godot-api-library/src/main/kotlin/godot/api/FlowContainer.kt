@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,19 +14,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A container that arranges its child controls horizontally or vertically and wraps them around at
- * the borders. This is similar to how text in a book wraps around when no more words can fit on a
- * line.
+ * A container that arranges its child controls horizontally or vertically and wraps them around at the borders. This is similar to how text in a book wraps around when no more words can fit on a line.
  */
 @GodotBaseType
 public open class FlowContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN],
-   * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public final inline var alignment: AlignmentMode
     @JvmName("alignmentProperty")
@@ -40,9 +33,7 @@ public open class FlowContainer : Container() {
     }
 
   /**
-   * The wrap behavior of the last, partially filled row or column (must be one of
-   * [LAST_WRAP_ALIGNMENT_INHERIT], [LAST_WRAP_ALIGNMENT_BEGIN], [LAST_WRAP_ALIGNMENT_CENTER], or
-   * [LAST_WRAP_ALIGNMENT_END]).
+   * The wrap behavior of the last, partially filled row or column (must be one of [LAST_WRAP_ALIGNMENT_INHERIT], [LAST_WRAP_ALIGNMENT_BEGIN], [LAST_WRAP_ALIGNMENT_CENTER], or [LAST_WRAP_ALIGNMENT_END]).
    */
   public final inline var lastWrapAlignment: LastWrapAlignmentMode
     @JvmName("lastWrapAlignmentProperty")
@@ -66,11 +57,9 @@ public open class FlowContainer : Container() {
     }
 
   /**
-   * If `true`, reverses fill direction. Horizontal [FlowContainer]s will fill rows bottom to top,
-   * vertical [FlowContainer]s will fill columns right to left.
+   * If `true`, reverses fill direction. Horizontal [FlowContainer]s will fill rows bottom to top, vertical [FlowContainer]s will fill columns right to left.
    *
-   * When using a vertical [FlowContainer] with a right to left [Control.layoutDirection], columns
-   * will fill left to right instead.
+   * When using a vertical [FlowContainer] with a right to left [Control.layoutDirection], columns will fill left to right instead.
    */
   public final inline var reverseFill: Boolean
     @JvmName("reverseFillProperty")
@@ -80,7 +69,7 @@ public open class FlowContainer : Container() {
       setReverseFill(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(214, scriptIndex)
   }
 
@@ -93,7 +82,7 @@ public open class FlowContainer : Container() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAlignment(alignment: AlignmentMode): Unit {
+  public final fun setAlignment(alignment: AlignmentMode) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
@@ -104,7 +93,7 @@ public open class FlowContainer : Container() {
     return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode): Unit {
+  public final fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode) {
     TransferContext.writeArguments(LONG to lastWrapAlignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setLastWrapAlignmentPtr, NIL)
   }
@@ -115,7 +104,7 @@ public open class FlowContainer : Container() {
     return LastWrapAlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean) {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
@@ -126,7 +115,7 @@ public open class FlowContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setReverseFill(reverseFill: Boolean): Unit {
+  public final fun setReverseFill(reverseFill: Boolean) {
     TransferContext.writeArguments(BOOL to reverseFill)
     TransferContext.callMethod(ptr, MethodBindings.setReverseFillPtr, NIL)
   }
@@ -141,8 +130,7 @@ public open class FlowContainer : Container() {
     id: Long,
   ) {
     /**
-     * The child controls will be arranged at the beginning of the container, i.e. top if
-     * orientation is vertical, left if orientation is horizontal (right for RTL layout).
+     * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
     BEGIN(0),
     /**
@@ -150,8 +138,7 @@ public open class FlowContainer : Container() {
      */
     CENTER(1),
     /**
-     * The child controls will be arranged at the end of the container, i.e. bottom if orientation
-     * is vertical, right if orientation is horizontal (left for RTL layout).
+     * The child controls will be arranged at the end of the container, i.e. bottom if orientation is vertical, right if orientation is horizontal (left for RTL layout).
      */
     END(2),
     ;
@@ -170,23 +157,19 @@ public open class FlowContainer : Container() {
     id: Long,
   ) {
     /**
-     * The last partially filled row or column will wrap aligned to the previous row or column in
-     * accordance with [alignment].
+     * The last partially filled row or column will wrap aligned to the previous row or column in accordance with [alignment].
      */
     INHERIT(0),
     /**
-     * The last partially filled row or column will wrap aligned to the beginning of the previous
-     * row or column.
+     * The last partially filled row or column will wrap aligned to the beginning of the previous row or column.
      */
     BEGIN(1),
     /**
-     * The last partially filled row or column will wrap aligned to the center of the previous row
-     * or column.
+     * The last partially filled row or column will wrap aligned to the center of the previous row or column.
      */
     CENTER(2),
     /**
-     * The last partially filled row or column will wrap aligned to the end of the previous row or
-     * column.
+     * The last partially filled row or column will wrap aligned to the end of the previous row or column.
      */
     END(3),
     ;
@@ -205,30 +188,30 @@ public open class FlowContainer : Container() {
 
   public object MethodBindings {
     internal val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_line_count", 3905245786)
+        TypeManager.getMethodBindPtr("FlowContainer", "get_line_count", 3_905_245_786)
 
     internal val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_alignment", 575250951)
+        TypeManager.getMethodBindPtr("FlowContainer", "set_alignment", 575_250_951)
 
     internal val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_alignment", 3749743559)
+        TypeManager.getMethodBindPtr("FlowContainer", "get_alignment", 3_749_743_559)
 
     internal val setLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2899697495)
+        TypeManager.getMethodBindPtr("FlowContainer", "set_last_wrap_alignment", 2_899_697_495)
 
     internal val getLastWrapAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3743456014)
+        TypeManager.getMethodBindPtr("FlowContainer", "get_last_wrap_alignment", 3_743_456_014)
 
     internal val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_vertical", 2586408642)
+        TypeManager.getMethodBindPtr("FlowContainer", "set_vertical", 2_586_408_642)
 
     internal val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "is_vertical", 36873697)
+        TypeManager.getMethodBindPtr("FlowContainer", "is_vertical", 36_873_697)
 
     internal val setReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2586408642)
+        TypeManager.getMethodBindPtr("FlowContainer", "set_reverse_fill", 2_586_408_642)
 
     internal val isReverseFillPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36873697)
+        TypeManager.getMethodBindPtr("FlowContainer", "is_reverse_fill", 36_873_697)
   }
 }

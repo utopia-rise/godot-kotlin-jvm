@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,18 +15,15 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A container that arranges its child controls horizontally or vertically, rearranging them
- * automatically when their minimum size changes.
+ * A container that arranges its child controls horizontally or vertically, rearranging them automatically when their minimum size changes.
  */
 @GodotBaseType
 public open class BoxContainer : Container() {
   /**
-   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN],
-   * [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
+   * The alignment of the container's children (must be one of [ALIGNMENT_BEGIN], [ALIGNMENT_CENTER], or [ALIGNMENT_END]).
    */
   public final inline var alignment: AlignmentMode
     @JvmName("alignmentProperty")
@@ -52,13 +46,12 @@ public open class BoxContainer : Container() {
       setVertical(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(109, scriptIndex)
   }
 
   /**
-   * Adds a [Control] node to the box as a spacer. If [begin] is `true`, it will insert the
-   * [Control] node in front of all other children.
+   * Adds a [Control] node to the box as a spacer. If [begin] is `true`, it will insert the [Control] node in front of all other children.
    */
   public final fun addSpacer(begin: Boolean): Control? {
     TransferContext.writeArguments(BOOL to begin)
@@ -66,7 +59,7 @@ public open class BoxContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
-  public final fun setAlignment(alignment: AlignmentMode): Unit {
+  public final fun setAlignment(alignment: AlignmentMode) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
@@ -77,7 +70,7 @@ public open class BoxContainer : Container() {
     return AlignmentMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean) {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
@@ -92,8 +85,7 @@ public open class BoxContainer : Container() {
     id: Long,
   ) {
     /**
-     * The child controls will be arranged at the beginning of the container, i.e. top if
-     * orientation is vertical, left if orientation is horizontal (right for RTL layout).
+     * The child controls will be arranged at the beginning of the container, i.e. top if orientation is vertical, left if orientation is horizontal (right for RTL layout).
      */
     BEGIN(0),
     /**
@@ -101,8 +93,7 @@ public open class BoxContainer : Container() {
      */
     CENTER(1),
     /**
-     * The child controls will be arranged at the end of the container, i.e. bottom if orientation
-     * is vertical, right if orientation is horizontal (left for RTL layout).
+     * The child controls will be arranged at the end of the container, i.e. bottom if orientation is vertical, right if orientation is horizontal (left for RTL layout).
      */
     END(2),
     ;
@@ -121,18 +112,18 @@ public open class BoxContainer : Container() {
 
   public object MethodBindings {
     internal val addSpacerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "add_spacer", 1326660695)
+        TypeManager.getMethodBindPtr("BoxContainer", "add_spacer", 1_326_660_695)
 
     internal val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "set_alignment", 2456745134)
+        TypeManager.getMethodBindPtr("BoxContainer", "set_alignment", 2_456_745_134)
 
     internal val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "get_alignment", 1915476527)
+        TypeManager.getMethodBindPtr("BoxContainer", "get_alignment", 1_915_476_527)
 
     internal val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "set_vertical", 2586408642)
+        TypeManager.getMethodBindPtr("BoxContainer", "set_vertical", 2_586_408_642)
 
     internal val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxContainer", "is_vertical", 36873697)
+        TypeManager.getMethodBindPtr("BoxContainer", "is_vertical", 36_873_697)
   }
 }

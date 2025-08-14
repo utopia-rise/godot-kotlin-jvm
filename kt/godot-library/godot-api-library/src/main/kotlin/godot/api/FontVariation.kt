@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,8 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType
- * features and extra spacing.
+ * Provides OpenType variations, simulated bold / slant, and additional font settings like OpenType features and extra spacing.
  *
  * To use simulated bold font variant:
  *
@@ -76,15 +72,9 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * Font OpenType variation coordinates. More info:
-   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]OpenType variation
-   * tags[/url].
+   * Font OpenType variation coordinates. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]OpenType variation tags[/url].
    *
-   * **Note:** This [Dictionary] uses OpenType tags as keys. Variation axes can be identified both
-   * by tags ([int], e.g. `0x77678674`) and names ([String], e.g. `wght`). Some axes might be
-   * accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the
-   * other hand are unique. To convert between names and tags, use [TextServer.nameToTag] and
-   * [TextServer.tagToName].
+   * **Note:** This [Dictionary] uses OpenType tags as keys. Variation axes can be identified both by tags ([int], e.g. `0x77678674`) and names ([String], e.g. `wght`). Some axes might be accessible by multiple names. For example, `wght` refers to the same axis as `weight`. Tags on the other hand are unique. To convert between names and tags, use [TextServer.nameToTag] and [TextServer.tagToName].
    *
    * **Note:** To get available variation axes of a font, use [Font.getSupportedVariationList].
    */
@@ -108,11 +98,9 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline
-   * thickness.
+   * If is not equal to zero, emboldens the font outlines. Negative values reduce the outline thickness.
    *
-   * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts
-   * and [TextMesh] from working correctly.
+   * **Note:** Emboldened fonts might have self-intersecting outlines, which will prevent MSDF fonts and [TextMesh] from working correctly.
    */
   public final inline var variationEmbolden: Float
     @JvmName("variationEmboldenProperty")
@@ -123,18 +111,13 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
-   * glyphs.
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    *
-   * For example, to simulate italic typeface by slanting, apply the following transform
-   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var variationTransform: Transform2D
@@ -146,9 +129,7 @@ public open class FontVariation : Font() {
     }
 
   /**
-   * A set of OpenType feature tags. More info:
-   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
-   * tags[/url].
+   * A set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url].
    */
   public final inline var opentypeFeatures: Dictionary<Any?, Any?>
     @JvmName("opentypeFeaturesProperty")
@@ -213,7 +194,7 @@ public open class FontVariation : Font() {
       setBaselineOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(219, scriptIndex)
   }
 
@@ -228,20 +209,17 @@ public open class FontVariation : Font() {
    * fontvariation.variationTransform = myCoreType
    * ``````
    *
-   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating
-   * glyphs.
+   * 2D transform, applied to the font outlines, can be used for slanting, flipping and rotating glyphs.
    *
-   * For example, to simulate italic typeface by slanting, apply the following transform
-   * `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
+   * For example, to simulate italic typeface by slanting, apply the following transform `Transform2D(1.0, slant, 0.0, 1.0, 0.0, 0.0)`.
    */
   @CoreTypeHelper
-  public final fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      variationTransform.apply {
+  public final fun variationTransformMutate(block: Transform2D.() -> Unit): Transform2D = variationTransform.apply {
      block(this)
      variationTransform = this
   }
 
-  public final fun setBaseFont(font: Font?): Unit {
+  public final fun setBaseFont(font: Font?) {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setBaseFontPtr, NIL)
   }
@@ -252,7 +230,7 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
-  public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>): Unit {
+  public final fun setVariationOpentype(coords: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to coords)
     TransferContext.callMethod(ptr, MethodBindings.setVariationOpentypePtr, NIL)
   }
@@ -263,7 +241,7 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
   }
 
-  public final fun setVariationEmbolden(strength: Float): Unit {
+  public final fun setVariationEmbolden(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVariationEmboldenPtr, NIL)
   }
@@ -274,7 +252,7 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVariationFaceIndex(faceIndex: Int): Unit {
+  public final fun setVariationFaceIndex(faceIndex: Int) {
     TransferContext.writeArguments(LONG to faceIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setVariationFaceIndexPtr, NIL)
   }
@@ -285,7 +263,7 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setVariationTransform(transform: Transform2D): Unit {
+  public final fun setVariationTransform(transform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setVariationTransformPtr, NIL)
   }
@@ -296,21 +274,20 @@ public open class FontVariation : Font() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>): Unit {
+  public final fun setOpentypeFeatures(features: Dictionary<Any?, Any?>) {
     TransferContext.writeArguments(DICTIONARY to features)
     TransferContext.callMethod(ptr, MethodBindings.setOpentypeFeaturesPtr, NIL)
   }
 
   /**
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not relative to the font size).
    */
-  public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
+  public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int) {
     TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSpacingPtr, NIL)
   }
 
-  public final fun setBaselineOffset(baselineOffset: Float): Unit {
+  public final fun setBaselineOffset(baselineOffset: Float) {
     TransferContext.writeArguments(DOUBLE to baselineOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBaselineOffsetPtr, NIL)
   }
@@ -325,45 +302,45 @@ public open class FontVariation : Font() {
 
   public object MethodBindings {
     internal val setBaseFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_base_font", 1262170328)
+        TypeManager.getMethodBindPtr("FontVariation", "set_base_font", 1_262_170_328)
 
     internal val getBaseFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_base_font", 3229501585)
+        TypeManager.getMethodBindPtr("FontVariation", "get_base_font", 3_229_501_585)
 
     internal val setVariationOpentypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_opentype", 4155329257)
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_opentype", 4_155_329_257)
 
     internal val getVariationOpentypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_opentype", 3102165223)
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_opentype", 3_102_165_223)
 
     internal val setVariationEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_embolden", 373806689)
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_embolden", 373_806_689)
 
     internal val getVariationEmboldenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_embolden", 1740695150)
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_embolden", 1_740_695_150)
 
     internal val setVariationFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_face_index", 1286410249)
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_face_index", 1_286_410_249)
 
     internal val getVariationFaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_face_index", 3905245786)
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_face_index", 3_905_245_786)
 
     internal val setVariationTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_variation_transform", 2761652528)
+        TypeManager.getMethodBindPtr("FontVariation", "set_variation_transform", 2_761_652_528)
 
     internal val getVariationTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_variation_transform", 3814499831)
+        TypeManager.getMethodBindPtr("FontVariation", "get_variation_transform", 3_814_499_831)
 
     internal val setOpentypeFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_opentype_features", 4155329257)
+        TypeManager.getMethodBindPtr("FontVariation", "set_opentype_features", 4_155_329_257)
 
     internal val setSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_spacing", 3122339690)
+        TypeManager.getMethodBindPtr("FontVariation", "set_spacing", 3_122_339_690)
 
     internal val setBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "set_baseline_offset", 373806689)
+        TypeManager.getMethodBindPtr("FontVariation", "set_baseline_offset", 373_806_689)
 
     internal val getBaselineOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FontVariation", "get_baseline_offset", 1740695150)
+        TypeManager.getMethodBindPtr("FontVariation", "get_baseline_offset", 1_740_695_150)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,22 +12,17 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified
- * by the [columns] property, whereas the number of rows depends on how many are needed for the child
- * controls. The number of rows and columns is preserved for every size of the container.
+ * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified by the [columns] property, whereas the number of rows depends on how many are needed for the child controls. The number of rows and columns is preserved for every size of the container.
  *
- * **Note:** [GridContainer] only works with child nodes inheriting from [Control]. It won't
- * rearrange child nodes inheriting from [Node2D].
+ * **Note:** [GridContainer] only works with child nodes inheriting from [Control]. It won't rearrange child nodes inheriting from [Node2D].
  */
 @GodotBaseType
 public open class GridContainer : Container() {
   /**
-   * The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its
-   * Control-derived children to accommodate the new layout.
+   * The number of columns in the [GridContainer]. If modified, [GridContainer] reorders its Control-derived children to accommodate the new layout.
    */
   public final inline var columns: Int
     @JvmName("columnsProperty")
@@ -40,11 +32,11 @@ public open class GridContainer : Container() {
       setColumns(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(266, scriptIndex)
   }
 
-  public final fun setColumns(columns: Int): Unit {
+  public final fun setColumns(columns: Int) {
     TransferContext.writeArguments(LONG to columns.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setColumnsPtr, NIL)
   }
@@ -59,9 +51,9 @@ public open class GridContainer : Container() {
 
   public object MethodBindings {
     internal val setColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridContainer", "set_columns", 1286410249)
+        TypeManager.getMethodBindPtr("GridContainer", "set_columns", 1_286_410_249)
 
     internal val getColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GridContainer", "get_columns", 3905245786)
+        TypeManager.getMethodBindPtr("GridContainer", "get_columns", 3_905_245_786)
   }
 }

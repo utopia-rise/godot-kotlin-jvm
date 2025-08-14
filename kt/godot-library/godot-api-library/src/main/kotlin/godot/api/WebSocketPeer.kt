@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,16 +31,11 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class represents WebSocket connection, and can be used as a WebSocket client (RFC
- * 6455-compliant) or as a remote peer of a WebSocket server.
+ * This class represents WebSocket connection, and can be used as a WebSocket client (RFC 6455-compliant) or as a remote peer of a WebSocket server.
  *
- * You can send WebSocket binary frames using [PacketPeer.putPacket], and WebSocket text frames
- * using [send] (prefer text frames when interacting with text-based API). You can check the frame type
- * of the last packet via [wasStringPacket].
+ * You can send WebSocket binary frames using [PacketPeer.putPacket], and WebSocket text frames using [send] (prefer text frames when interacting with text-based API). You can check the frame type of the last packet via [wasStringPacket].
  *
- * To start a WebSocket client, first call [connectToUrl], then regularly call [poll] (e.g. during
- * [Node] process). You can query the socket state via [getReadyState], get the number of pending
- * packets using [PacketPeer.getAvailablePacketCount], and retrieve them via [PacketPeer.getPacket].
+ * To start a WebSocket client, first call [connectToUrl], then regularly call [poll] (e.g. during [Node] process). You can query the socket state via [getReadyState], get the number of pending packets using [PacketPeer.getAvailablePacketCount], and retrieve them via [PacketPeer.getPacket].
  *
  * ```gdscript
  * //gdscript
@@ -66,8 +58,7 @@ import kotlin.jvm.JvmOverloads
  *     elif state == WebSocketPeer.STATE_CLOSED:
  *         var code = socket.get_close_code()
  *         var reason = socket.get_close_reason()
- *         print("WebSocket closed with code: &#37;d, reason &#37;s. Clean: &#37;s" &#37; [code,
- * reason, code != -1])
+ *         print("WebSocket closed with code: &#37;d, reason &#37;s. Clean: &#37;s" &#37; [code, reason, code != -1])
  *         set_process(false) # Stop processing.
  * ```
  *
@@ -79,11 +70,8 @@ public open class WebSocketPeer : PacketPeer() {
    * The WebSocket sub-protocols allowed during the WebSocket handshake.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var supportedProtocols: PackedStringArray
@@ -100,11 +88,8 @@ public open class WebSocketPeer : PacketPeer() {
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var handshakeHeaders: PackedStringArray
@@ -116,8 +101,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   /**
-   * The size of the input buffer in bytes (roughly the maximum amount of memory that will be
-   * allocated for the inbound packets).
+   * The size of the input buffer in bytes (roughly the maximum amount of memory that will be allocated for the inbound packets).
    */
   public final inline var inboundBufferSize: Int
     @JvmName("inboundBufferSizeProperty")
@@ -128,8 +112,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   /**
-   * The size of the input buffer in bytes (roughly the maximum amount of memory that will be
-   * allocated for the outbound packets).
+   * The size of the input buffer in bytes (roughly the maximum amount of memory that will be allocated for the outbound packets).
    */
   public final inline var outboundBufferSize: Int
     @JvmName("outboundBufferSizeProperty")
@@ -151,8 +134,7 @@ public open class WebSocketPeer : PacketPeer() {
     }
 
   /**
-   * The interval (in seconds) at which the peer will automatically send WebSocket "ping" control
-   * frames. When set to `0`, no "ping" control frames will be sent.
+   * The interval (in seconds) at which the peer will automatically send WebSocket "ping" control frames. When set to `0`, no "ping" control frames will be sent.
    *
    * **Note:** Has no effect in Web exports due to browser restrictions.
    */
@@ -164,7 +146,7 @@ public open class WebSocketPeer : PacketPeer() {
       setHeartbeatInterval(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(847, scriptIndex)
   }
 
@@ -182,22 +164,19 @@ public open class WebSocketPeer : PacketPeer() {
    * The WebSocket sub-protocols allowed during the WebSocket handshake.
    */
   @CoreTypeHelper
-  public final fun supportedProtocolsMutate(block: PackedStringArray.() -> Unit): PackedStringArray
-      = supportedProtocols.apply {
+  public final fun supportedProtocolsMutate(block: PackedStringArray.() -> Unit): PackedStringArray = supportedProtocols.apply {
      block(this)
      supportedProtocols = this
   }
 
   /**
    * This is a helper function for [supportedProtocols] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The WebSocket sub-protocols allowed during the WebSocket handshake.
    */
   @CoreTypeHelper
-  public final fun supportedProtocolsMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = supportedProtocols.apply {
+  public final fun supportedProtocolsMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = supportedProtocols.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -221,24 +200,21 @@ public open class WebSocketPeer : PacketPeer() {
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   @CoreTypeHelper
-  public final fun handshakeHeadersMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      handshakeHeaders.apply {
+  public final fun handshakeHeadersMutate(block: PackedStringArray.() -> Unit): PackedStringArray = handshakeHeaders.apply {
      block(this)
      handshakeHeaders = this
   }
 
   /**
    * This is a helper function for [handshakeHeaders] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The extra HTTP headers to be sent during the WebSocket handshake.
    *
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
   @CoreTypeHelper
-  public final fun handshakeHeadersMutateEach(block: (index: Int, `value`: String) -> Unit):
-      PackedStringArray = handshakeHeaders.apply {
+  public final fun handshakeHeadersMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = handshakeHeaders.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -247,20 +223,11 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Connects to the given URL. TLS certificates will be verified against the hostname when
-   * connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to
-   * customize the trusted certification authorities, or disable the common name verification. See
-   * [TLSOptions.client] and [TLSOptions.clientUnsafe].
+   * Connects to the given URL. TLS certificates will be verified against the hostname when connecting using the `wss://` protocol. You can pass the optional [tlsClientOptions] parameter to customize the trusted certification authorities, or disable the common name verification. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    *
-   * **Note:** This method is non-blocking, and will return [OK] before the connection is
-   * established as long as the provided parameters are valid and the peer is not in an invalid state
-   * (e.g. already connected). Regularly call [poll] (e.g. during [Node] process) and check the result
-   * of [getReadyState] to know whether the connection succeeds or fails.
+   * **Note:** This method is non-blocking, and will return [OK] before the connection is established as long as the provided parameters are valid and the peer is not in an invalid state (e.g. already connected). Regularly call [poll] (e.g. during [Node] process) and check the result of [getReadyState] to know whether the connection succeeds or fails.
    *
-   * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [url] that
-   * starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully
-   * qualified domain name that matches the one defined in the server's TLS certificate. Do not connect
-   * directly via the IP address for `wss://` connections, as it won't match with the TLS certificate.
+   * **Note:** To avoid mixed content warnings or errors in Web, you may have to use a [url] that starts with `wss://` (secure) instead of `ws://`. When doing so, make sure to use the fully qualified domain name that matches the one defined in the server's TLS certificate. Do not connect directly via the IP address for `wss://` connections, as it won't match with the TLS certificate.
    */
   @JvmOverloads
   public final fun connectToUrl(url: String, tlsClientOptions: TLSOptions? = null): Error {
@@ -270,9 +237,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [stream]
-   * must be a valid TCP stream retrieved via [TCPServer.takeConnection], or a TLS stream accepted via
-   * [StreamPeerTLS.acceptStream].
+   * Accepts a peer connection performing the HTTP handshake as a WebSocket server. The [stream] must be a valid TCP stream retrieved via [TCPServer.takeConnection], or a TLS stream accepted via [StreamPeerTLS.acceptStream].
    *
    * **Note:** Not supported in Web exports due to browsers' restrictions.
    */
@@ -283,21 +248,17 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Sends the given [message] using the desired [writeMode]. When sending a [String], prefer using
-   * [sendText].
+   * Sends the given [message] using the desired [writeMode]. When sending a [String], prefer using [sendText].
    */
   @JvmOverloads
-  public final fun send(message: PackedByteArray, writeMode: WriteMode =
-      WebSocketPeer.WriteMode.BINARY): Error {
+  public final fun send(message: PackedByteArray, writeMode: WriteMode = WebSocketPeer.WriteMode.BINARY): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.sendPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
-   * Sends the given [message] using WebSocket text mode. Prefer this method over
-   * [PacketPeer.putPacket] when interacting with third-party text-based API (e.g. when using [JSON]
-   * formatted messages).
+   * Sends the given [message] using WebSocket text mode. Prefer this method over [PacketPeer.putPacket] when interacting with third-party text-based API (e.g. when using [JSON] formatted messages).
    */
   public final fun sendText(message: String): Error {
     TransferContext.writeArguments(STRING to message)
@@ -315,28 +276,22 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Updates the connection state and receive incoming packets. Call this function regularly to keep
-   * it in a clean state.
+   * Updates the connection state and receive incoming packets. Call this function regularly to keep it in a clean state.
    */
-  public final fun poll(): Unit {
+  public final fun poll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
   /**
-   * Closes this WebSocket connection. [code] is the status code for the closure (see RFC 6455
-   * section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing
-   * the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the
-   * connection will be closed immediately without notifying the remote peer.
+   * Closes this WebSocket connection. [code] is the status code for the closure (see RFC 6455 section 7.4 for a list of valid status codes). [reason] is the human readable reason for closing the connection (can be any UTF-8 string that's smaller than 123 bytes). If [code] is negative, the connection will be closed immediately without notifying the remote peer.
    *
-   * **Note:** To achieve a clean close, you will need to keep polling until [STATE_CLOSED] is
-   * reached.
+   * **Note:** To achieve a clean close, you will need to keep polling until [STATE_CLOSED] is reached.
    *
-   * **Note:** The Web export might not support all status codes. Please refer to browser-specific
-   * documentation for more details.
+   * **Note:** The Web export might not support all status codes. Please refer to browser-specific documentation for more details.
    */
   @JvmOverloads
-  public final fun close(code: Int = 1000, reason: String = ""): Unit {
+  public final fun close(code: Int = 1000, reason: String = "") {
     TransferContext.writeArguments(LONG to code.toLong(), STRING to reason)
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
@@ -364,8 +319,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns the selected WebSocket sub-protocol for this connection or an empty string if the
-   * sub-protocol has not been selected yet.
+   * Returns the selected WebSocket sub-protocol for this connection or an empty string if the sub-protocol has not been selected yet.
    */
   public final fun getSelectedProtocol(): String {
     TransferContext.writeArguments()
@@ -374,8 +328,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns the URL requested by this peer. The URL is derived from the `url` passed to
-   * [connectToUrl] or from the HTTP headers when acting as server (i.e. when using [acceptStream]).
+   * Returns the URL requested by this peer. The URL is derived from the `url` passed to [connectToUrl] or from the HTTP headers when acting as server (i.e. when using [acceptStream]).
    */
   public final fun getRequestedUrl(): String {
     TransferContext.writeArguments()
@@ -384,19 +337,17 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Disable Nagle's algorithm on the underlying TCP socket (default). See
-   * [StreamPeerTCP.setNoDelay] for more information.
+   * Disable Nagle's algorithm on the underlying TCP socket (default). See [StreamPeerTCP.setNoDelay] for more information.
    *
    * **Note:** Not available in the Web export.
    */
-  public final fun setNoDelay(enabled: Boolean): Unit {
+  public final fun setNoDelay(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setNoDelayPtr, NIL)
   }
 
   /**
-   * Returns the current amount of data in the outbound websocket buffer. **Note:** Web exports use
-   * WebSocket.bufferedAmount, while other platforms use an internal buffer.
+   * Returns the current amount of data in the outbound websocket buffer. **Note:** Web exports use WebSocket.bufferedAmount, while other platforms use an internal buffer.
    */
   public final fun getCurrentOutboundBufferedAmount(): Int {
     TransferContext.writeArguments()
@@ -414,8 +365,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns the received WebSocket close frame status code, or `-1` when the connection was not
-   * cleanly closed. Only call this method when [getReadyState] returns [STATE_CLOSED].
+   * Returns the received WebSocket close frame status code, or `-1` when the connection was not cleanly closed. Only call this method when [getReadyState] returns [STATE_CLOSED].
    */
   public final fun getCloseCode(): Int {
     TransferContext.writeArguments()
@@ -424,8 +374,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   /**
-   * Returns the received WebSocket close frame status reason string. Only call this method when
-   * [getReadyState] returns [STATE_CLOSED].
+   * Returns the received WebSocket close frame status reason string. Only call this method when [getReadyState] returns [STATE_CLOSED].
    */
   public final fun getCloseReason(): String {
     TransferContext.writeArguments()
@@ -439,7 +388,7 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setSupportedProtocols(protocols: PackedStringArray): Unit {
+  public final fun setSupportedProtocols(protocols: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
     TransferContext.callMethod(ptr, MethodBindings.setSupportedProtocolsPtr, NIL)
   }
@@ -450,7 +399,7 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
-  public final fun setHandshakeHeaders(protocols: PackedStringArray): Unit {
+  public final fun setHandshakeHeaders(protocols: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to protocols)
     TransferContext.callMethod(ptr, MethodBindings.setHandshakeHeadersPtr, NIL)
   }
@@ -461,7 +410,7 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setInboundBufferSize(bufferSize: Int): Unit {
+  public final fun setInboundBufferSize(bufferSize: Int) {
     TransferContext.writeArguments(LONG to bufferSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInboundBufferSizePtr, NIL)
   }
@@ -472,12 +421,12 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOutboundBufferSize(bufferSize: Int): Unit {
+  public final fun setOutboundBufferSize(bufferSize: Int) {
     TransferContext.writeArguments(LONG to bufferSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutboundBufferSizePtr, NIL)
   }
 
-  public final fun setMaxQueuedPackets(bufferSize: Int): Unit {
+  public final fun setMaxQueuedPackets(bufferSize: Int) {
     TransferContext.writeArguments(LONG to bufferSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxQueuedPacketsPtr, NIL)
   }
@@ -488,7 +437,7 @@ public open class WebSocketPeer : PacketPeer() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setHeartbeatInterval(interval: Double): Unit {
+  public final fun setHeartbeatInterval(interval: Double) {
     TransferContext.writeArguments(DOUBLE to interval)
     TransferContext.callMethod(ptr, MethodBindings.setHeartbeatIntervalPtr, NIL)
   }
@@ -503,13 +452,11 @@ public open class WebSocketPeer : PacketPeer() {
     id: Long,
   ) {
     /**
-     * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
-     * allowed).
+     * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is allowed).
      */
     TEXT(0),
     /**
-     * Specifies that WebSockets messages should be transferred as binary payload (any byte
-     * combination is allowed).
+     * Specifies that WebSockets messages should be transferred as binary payload (any byte combination is allowed).
      */
     BINARY(1),
     ;
@@ -536,8 +483,7 @@ public open class WebSocketPeer : PacketPeer() {
      */
     OPEN(1),
     /**
-     * The connection is in the process of closing. This means a close request has been sent to the
-     * remote peer but confirmation has not been received.
+     * The connection is in the process of closing. This means a close request has been sent to the remote peer but confirmation has not been received.
      */
     CLOSING(2),
     /**
@@ -560,87 +506,87 @@ public open class WebSocketPeer : PacketPeer() {
 
   public object MethodBindings {
     internal val connectToUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "connect_to_url", 1966198364)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "connect_to_url", 1_966_198_364)
 
     internal val acceptStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "accept_stream", 255125695)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "accept_stream", 255_125_695)
 
     internal val sendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "send", 2780360567)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "send", 2_780_360_567)
 
     internal val sendTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "send_text", 166001499)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "send_text", 166_001_499)
 
     internal val wasStringPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "was_string_packet", 36873697)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "was_string_packet", 36_873_697)
 
     internal val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "poll", 3218959716)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "poll", 3_218_959_716)
 
     internal val closePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "close", 1047156615)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "close", 1_047_156_615)
 
     internal val getConnectedHostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_host", 201670096)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_host", 201_670_096)
 
     internal val getConnectedPortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_port", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_connected_port", 3_905_245_786)
 
     internal val getSelectedProtocolPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_selected_protocol", 201670096)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_selected_protocol", 201_670_096)
 
     internal val getRequestedUrlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_requested_url", 201670096)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_requested_url", 201_670_096)
 
     internal val setNoDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_no_delay", 2586408642)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_no_delay", 2_586_408_642)
 
     internal val getCurrentOutboundBufferedAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_current_outbound_buffered_amount", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_current_outbound_buffered_amount", 3_905_245_786)
 
     internal val getReadyStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_ready_state", 346482985)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_ready_state", 346_482_985)
 
     internal val getCloseCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_code", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_code", 3_905_245_786)
 
     internal val getCloseReasonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_reason", 201670096)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_close_reason", 201_670_096)
 
     internal val getSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_supported_protocols", 1139954409)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_supported_protocols", 1_139_954_409)
 
     internal val setSupportedProtocolsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_supported_protocols", 4015028928)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_supported_protocols", 4_015_028_928)
 
     internal val getHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_handshake_headers", 1139954409)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_handshake_headers", 1_139_954_409)
 
     internal val setHandshakeHeadersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_handshake_headers", 4015028928)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_handshake_headers", 4_015_028_928)
 
     internal val getInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_inbound_buffer_size", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_inbound_buffer_size", 3_905_245_786)
 
     internal val setInboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_inbound_buffer_size", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_inbound_buffer_size", 1_286_410_249)
 
     internal val getOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_outbound_buffer_size", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_outbound_buffer_size", 3_905_245_786)
 
     internal val setOutboundBufferSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_outbound_buffer_size", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_outbound_buffer_size", 1_286_410_249)
 
     internal val setMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_max_queued_packets", 1286410249)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_max_queued_packets", 1_286_410_249)
 
     internal val getMaxQueuedPacketsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_max_queued_packets", 3905245786)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_max_queued_packets", 3_905_245_786)
 
     internal val setHeartbeatIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "set_heartbeat_interval", 373806689)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "set_heartbeat_interval", 373_806_689)
 
     internal val getHeartbeatIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WebSocketPeer", "get_heartbeat_interval", 1740695150)
+        TypeManager.getMethodBindPtr("WebSocketPeer", "get_heartbeat_interval", 1_740_695_150)
   }
 }

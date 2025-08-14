@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -14,12 +11,9 @@ import godot.core.VariantParser.LONG
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * When packing nested containers using [PackedDataContainer], they are recursively packed into
- * [PackedDataContainerRef] (only applies to [Array] and [Dictionary]). Their data can be retrieved the
- * same way as from [PackedDataContainer].
+ * When packing nested containers using [PackedDataContainer], they are recursively packed into [PackedDataContainerRef] (only applies to [Array] and [Dictionary]). Their data can be retrieved the same way as from [PackedDataContainer].
  *
  * ```
  * var packed = PackedDataContainer.new()
@@ -57,7 +51,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PackedDataContainerRef internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(436, scriptIndex)
   }
 
@@ -74,6 +68,6 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val sizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainerRef", "size", 3905245786)
+        TypeManager.getMethodBindPtr("PackedDataContainerRef", "size", 3_905_245_786)
   }
 }

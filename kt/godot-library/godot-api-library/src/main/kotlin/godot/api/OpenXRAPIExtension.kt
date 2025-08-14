@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,26 +30,21 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to
- * GDExtension through the [getInstanceProcAddr] method, and the OpenXR instance through [getInstance].
+ * [OpenXRAPIExtension] makes OpenXR available for GDExtension. It provides the OpenXR API to GDExtension through the [getInstanceProcAddr] method, and the OpenXR instance through [getInstance].
  *
- * It also provides methods for querying the status of OpenXR initialization, and helper methods for
- * ease of use of the API with GDExtension.
+ * It also provides methods for querying the status of OpenXR initialization, and helper methods for ease of use of the API with GDExtension.
  */
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(410, scriptIndex)
   }
 
   /**
-   * Returns the
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrInstance.html]XrInstance[/url]
-   * created during the initialization of the OpenXR API.
+   * Returns the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrInstance.html]XrInstance[/url] created during the initialization of the OpenXR API.
    */
   public final fun getInstance(): Long {
     TransferContext.writeArguments()
@@ -61,9 +53,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the id of the system, which is a
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast
-   * to an integer.
+   * Returns the id of the system, which is a [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast to an integer.
    */
   public final fun getSystemId(): Long {
     TransferContext.writeArguments()
@@ -72,9 +62,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the OpenXR session, which is an
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSession.html]XrSession[/url] cast to
-   * an integer.
+   * Returns the OpenXR session, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSession.html]XrSession[/url] cast to an integer.
    */
   public final fun getSession(): Long {
     TransferContext.writeArguments()
@@ -83,11 +71,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns `true` if the provided
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] (cast to
-   * an integer) is successful. Otherwise returns `false` and prints the
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] converted
-   * to a string, with the specified additional information.
+   * Returns `true` if the provided [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] (cast to an integer) is successful. Otherwise returns `false` and prints the [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url] converted to a string, with the specified additional information.
    */
   public final fun xrResult(
     result: Long,
@@ -100,11 +84,9 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the function pointer of the OpenXR function with the specified name, cast to an
-   * integer. If the function with the given name does not exist, the method returns `0`.
+   * Returns the function pointer of the OpenXR function with the specified name, cast to an integer. If the function with the given name does not exist, the method returns `0`.
    *
-   * **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g.
-   * `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.
+   * **Note:** `openxr/util.h` contains utility macros for acquiring OpenXR functions, e.g. `GDEXTENSION_INIT_XR_FUNC_V(xrCreateAction)`.
    */
   public final fun getInstanceProcAddr(name: String): Long {
     TransferContext.writeArguments(STRING to name)
@@ -113,8 +95,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns an error string for the given
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url].
+   * Returns an error string for the given [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrResult.html]XrResult[/url].
    */
   public final fun getErrorString(result: Long): String {
     TransferContext.writeArguments(LONG to result)
@@ -132,42 +113,37 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Set the object name of an OpenXR object, used for debug output. [objectType] must be a valid
-   * OpenXR `XrObjectType` enum and [objectHandle] must be a valid OpenXR object handle.
+   * Set the object name of an OpenXR object, used for debug output. [objectType] must be a valid OpenXR `XrObjectType` enum and [objectHandle] must be a valid OpenXR object handle.
    */
   public final fun setObjectName(
     objectType: Long,
     objectHandle: Long,
     objectName: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to objectType, LONG to objectHandle, STRING to objectName)
     TransferContext.callMethod(ptr, MethodBindings.setObjectNamePtr, NIL)
   }
 
   /**
-   * Begins a new debug label region, this label will be reported in debug messages for any calls
-   * following this until [endDebugLabelRegion] is called. Debug labels can be stacked.
+   * Begins a new debug label region, this label will be reported in debug messages for any calls following this until [endDebugLabelRegion] is called. Debug labels can be stacked.
    */
-  public final fun beginDebugLabelRegion(labelName: String): Unit {
+  public final fun beginDebugLabelRegion(labelName: String) {
     TransferContext.writeArguments(STRING to labelName)
     TransferContext.callMethod(ptr, MethodBindings.beginDebugLabelRegionPtr, NIL)
   }
 
   /**
-   * Marks the end of a debug label region. Removes the latest debug label region added by calling
-   * [beginDebugLabelRegion].
+   * Marks the end of a debug label region. Removes the latest debug label region added by calling [beginDebugLabelRegion].
    */
-  public final fun endDebugLabelRegion(): Unit {
+  public final fun endDebugLabelRegion() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endDebugLabelRegionPtr, NIL)
   }
 
   /**
-   * Inserts a debug label, this label is reported in any debug message resulting from the OpenXR
-   * calls that follows, until any of [beginDebugLabelRegion], [endDebugLabelRegion], or
-   * [insertDebugLabel] is called.
+   * Inserts a debug label, this label is reported in any debug message resulting from the OpenXR calls that follows, until any of [beginDebugLabelRegion], [endDebugLabelRegion], or [insertDebugLabel] is called.
    */
-  public final fun insertDebugLabel(labelName: String): Unit {
+  public final fun insertDebugLabel(labelName: String) {
     TransferContext.writeArguments(STRING to labelName)
     TransferContext.callMethod(ptr, MethodBindings.insertDebugLabelPtr, NIL)
   }
@@ -182,9 +158,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns `true` if OpenXR is running
-   * ([url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/xrBeginSession.html]xrBeginSession[/url]
-   * was successfully called and the swapchains were created).
+   * Returns `true` if OpenXR is running ([url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/xrBeginSession.html]xrBeginSession[/url] was successfully called and the swapchains were created).
    */
   public final fun isRunning(): Boolean {
     TransferContext.writeArguments()
@@ -193,9 +167,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the play space, which is an
-   * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSpace.html]XrSpace[/url] cast to an
-   * integer.
+   * Returns the play space, which is an [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSpace.html]XrSpace[/url] cast to an integer.
    */
   public final fun getPlaySpace(): Long {
     TransferContext.writeArguments()
@@ -231,8 +203,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the [RID] corresponding to an `Action` of a matching name, optionally limited to a
-   * specified action set.
+   * Returns the [RID] corresponding to an `Action` of a matching name, optionally limited to a specified action set.
    */
   public final fun findAction(name: String, actionSet: RID): RID {
     TransferContext.writeArguments(STRING to name, _RID to actionSet)
@@ -261,8 +232,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a composition layer provider.
    */
-  public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?) {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
   }
@@ -270,8 +240,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Unregisters the given extension as a composition layer provider.
    */
-  public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?) {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
   }
@@ -279,18 +248,15 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a provider of additional data structures to projections views.
    */
-  public final fun registerProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun registerProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?) {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.registerProjectionViewsExtensionPtr, NIL)
   }
 
   /**
-   * Unregisters the given extension as a provider of additional data structures to projections
-   * views.
+   * Unregisters the given extension as a provider of additional data structures to projections views.
    */
-  public final fun unregisterProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun unregisterProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?) {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.unregisterProjectionViewsExtensionPtr, NIL)
   }
@@ -320,7 +286,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Sets the render target of the velocity texture.
    */
-  public final fun setVelocityTexture(renderTarget: RID): Unit {
+  public final fun setVelocityTexture(renderTarget: RID) {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityTexturePtr, NIL)
   }
@@ -328,7 +294,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Sets the render target of the velocity depth texture.
    */
-  public final fun setVelocityDepthTexture(renderTarget: RID): Unit {
+  public final fun setVelocityDepthTexture(renderTarget: RID) {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityDepthTexturePtr, NIL)
   }
@@ -336,7 +302,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Sets the target size of the velocity and velocity depth textures.
    */
-  public final fun setVelocityTargetSize(targetSize: Vector2i): Unit {
+  public final fun setVelocityTargetSize(targetSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to targetSize)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityTargetSizePtr, NIL)
   }
@@ -346,8 +312,7 @@ public open class OpenXRAPIExtension : RefCounted() {
    */
   public final fun getSupportedSwapchainFormats(): PackedInt64Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSupportedSwapchainFormatsPtr,
-        PACKED_INT_64_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getSupportedSwapchainFormatsPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
@@ -371,7 +336,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Destroys the provided swapchain and frees it from memory.
    */
-  public final fun openxrSwapchainFree(swapchain: Long): Unit {
+  public final fun openxrSwapchainFree(swapchain: Long) {
     TransferContext.writeArguments(LONG to swapchain)
     TransferContext.callMethod(ptr, MethodBindings.openxrSwapchainFreePtr, NIL)
   }
@@ -388,7 +353,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Acquires the image of the provided swapchain.
    */
-  public final fun openxrSwapchainAcquire(swapchain: Long): Unit {
+  public final fun openxrSwapchainAcquire(swapchain: Long) {
     TransferContext.writeArguments(LONG to swapchain)
     TransferContext.callMethod(ptr, MethodBindings.openxrSwapchainAcquirePtr, NIL)
   }
@@ -405,7 +370,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Releases the image of the provided swapchain.
    */
-  public final fun openxrSwapchainRelease(swapchain: Long): Unit {
+  public final fun openxrSwapchainRelease(swapchain: Long) {
     TransferContext.writeArguments(LONG to swapchain)
     TransferContext.callMethod(ptr, MethodBindings.openxrSwapchainReleasePtr, NIL)
   }
@@ -424,23 +389,21 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Sets the render region to [renderRegion], overriding the normal render target's rect.
    */
-  public final fun setRenderRegion(renderRegion: Rect2i): Unit {
+  public final fun setRenderRegion(renderRegion: Rect2i) {
     TransferContext.writeArguments(RECT2I to renderRegion)
     TransferContext.callMethod(ptr, MethodBindings.setRenderRegionPtr, NIL)
   }
 
   /**
-   * If set to `true`, an OpenXR extension is loaded which is capable of emulating the
-   * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] blend mode.
+   * If set to `true`, an OpenXR extension is loaded which is capable of emulating the [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] blend mode.
    */
-  public final fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean): Unit {
+  public final fun setEmulateEnvironmentBlendModeAlphaBlend(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEmulateEnvironmentBlendModeAlphaBlendPtr, NIL)
   }
 
   /**
-   * Returns [OpenXRAPIExtension.OpenXRAlphaBlendModeSupport] denoting if
-   * [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
+   * Returns [OpenXRAPIExtension.OpenXRAlphaBlendModeSupport] denoting if [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] is really supported, emulated or not supported at all.
    */
   public final fun isEnvironmentBlendModeAlphaSupported(): OpenXRAlphaBlendModeSupport {
     TransferContext.writeArguments()
@@ -471,8 +434,7 @@ public open class OpenXRAPIExtension : RefCounted() {
     }
 
     public companion object {
-      public fun from(`value`: Long): OpenXRAlphaBlendModeSupport =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): OpenXRAlphaBlendModeSupport = entries.single { it.id == `value` }
     }
   }
 
@@ -490,129 +452,129 @@ public open class OpenXRAPIExtension : RefCounted() {
 
   public object MethodBindings {
     internal val getInstancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance", 2_455_072_627)
 
     internal val getSystemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_system_id", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_system_id", 2_455_072_627)
 
     internal val getSessionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_session", 2_455_072_627)
 
     internal val transformFromPosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 2963875352)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "transform_from_pose", 2_963_875_352)
 
     internal val xrResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3886436197)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "xr_result", 3_886_436_197)
 
     internal val openxrIsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2703660260)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_is_enabled", 2_703_660_260)
 
     internal val getInstanceProcAddrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1597066294)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_instance_proc_addr", 1_597_066_294)
 
     internal val getErrorStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_error_string", 990163283)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_error_string", 990_163_283)
 
     internal val getSwapchainFormatNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name", 990163283)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_swapchain_format_name", 990_163_283)
 
     internal val setObjectNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_object_name", 2285447957)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_object_name", 2_285_447_957)
 
     internal val beginDebugLabelRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "begin_debug_label_region", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "begin_debug_label_region", 83_702_148)
 
     internal val endDebugLabelRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "end_debug_label_region", 3218959716)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "end_debug_label_region", 3_218_959_716)
 
     internal val insertDebugLabelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "insert_debug_label", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "insert_debug_label", 83_702_148)
 
     internal val isInitializedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2240911060)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_initialized", 2_240_911_060)
 
     internal val isRunningPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2240911060)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2_240_911_060)
 
     internal val getPlaySpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2_455_072_627)
 
     internal val getPredictedDisplayTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_predicted_display_time", 2_455_072_627)
 
     internal val getNextFrameTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_next_frame_time", 2_455_072_627)
 
     internal val canRenderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render", 2240911060)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "can_render", 2_240_911_060)
 
     internal val findActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "find_action", 4106179378)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "find_action", 4_106_179_378)
 
     internal val actionGetHandlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "action_get_handle", 3917799429)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "action_get_handle", 3_917_799_429)
 
     internal val getHandTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3744713108)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3_744_713_108)
 
     internal val registerCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1_997_997_368)
 
     internal val unregisterCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1_997_997_368)
 
     internal val registerProjectionViewsExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_projection_views_extension", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_projection_views_extension", 1_997_997_368)
 
     internal val unregisterProjectionViewsExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_projection_views_extension", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_projection_views_extension", 1_997_997_368)
 
     internal val getRenderStateZNearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_near", 191475506)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_near", 191_475_506)
 
     internal val getRenderStateZFarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_far", 191475506)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_far", 191_475_506)
 
     internal val setVelocityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_texture", 2722037293)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_texture", 2_722_037_293)
 
     internal val setVelocityDepthTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_depth_texture", 2722037293)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_depth_texture", 2_722_037_293)
 
     internal val setVelocityTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_target_size", 1130785943)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_velocity_target_size", 1_130_785_943)
 
     internal val getSupportedSwapchainFormatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_supported_swapchain_formats", 3851388692)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_supported_swapchain_formats", 3_851_388_692)
 
     internal val openxrSwapchainCreatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_create", 2162228999)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_create", 2_162_228_999)
 
     internal val openxrSwapchainFreePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_free", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_free", 1_286_410_249)
 
     internal val openxrSwapchainGetSwapchainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_get_swapchain", 3744713108)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_get_swapchain", 3_744_713_108)
 
     internal val openxrSwapchainAcquirePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_acquire", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_acquire", 1_286_410_249)
 
     internal val openxrSwapchainGetImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_get_image", 937000113)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_get_image", 937_000_113)
 
     internal val openxrSwapchainReleasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_release", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "openxr_swapchain_release", 1_286_410_249)
 
     internal val getProjectionLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_projection_layer", 2455072627)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_projection_layer", 2_455_072_627)
 
     internal val setRenderRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_render_region", 1763793166)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_render_region", 1_763_793_166)
 
     internal val setEmulateEnvironmentBlendModeAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend", 2586408642)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_emulate_environment_blend_mode_alpha_blend", 2_586_408_642)
 
     internal val isEnvironmentBlendModeAlphaSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1579290861)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_environment_blend_mode_alpha_supported", 1_579_290_861)
   }
 }

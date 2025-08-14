@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(761, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -53,8 +49,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
     id: Long,
   ) {
     /**
-     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader
-     * Language.
+     * Returns the absolute value of the parameter. Translates to `abs(x)` in the Godot Shader Language.
      */
     ABS(0),
     /**
@@ -66,8 +61,7 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
      */
     SIGN(2),
     /**
-     * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot
-     * Shader Language.
+     * Returns the result of bitwise `NOT` operation on the integer. Translates to `~a` in the Godot Shader Language.
      */
     BITWISE_NOT(3),
     /**
@@ -90,9 +84,9 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntFunc", "set_function", 424195284)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntFunc", "set_function", 424_195_284)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIntFunc", "get_function", 2753496911)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIntFunc", "get_function", 2_753_496_911)
   }
 }

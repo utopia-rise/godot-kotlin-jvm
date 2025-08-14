@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,18 +12,15 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Represents a texture sampler as defined by the base glTF spec. Texture samplers in glTF specify
- * how to sample data from the texture's base image, when rendering the texture on an object.
+ * Represents a texture sampler as defined by the base glTF spec. Texture samplers in glTF specify how to sample data from the texture's base image, when rendering the texture on an object.
  */
 @GodotBaseType
 public open class GLTFTextureSampler : Resource() {
   /**
-   * Texture's magnification filter, used when texture appears larger on screen than the source
-   * image.
+   * Texture's magnification filter, used when texture appears larger on screen than the source image.
    */
   public final inline var magFilter: Int
     @JvmName("magFilterProperty")
@@ -37,8 +31,7 @@ public open class GLTFTextureSampler : Resource() {
     }
 
   /**
-   * Texture's minification filter, used when the texture appears smaller on screen than the source
-   * image.
+   * Texture's minification filter, used when the texture appears smaller on screen than the source image.
    */
   public final inline var minFilter: Int
     @JvmName("minFilterProperty")
@@ -70,7 +63,7 @@ public open class GLTFTextureSampler : Resource() {
       setWrapT(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(242, scriptIndex)
   }
 
@@ -80,7 +73,7 @@ public open class GLTFTextureSampler : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMagFilter(filterMode: Int): Unit {
+  public final fun setMagFilter(filterMode: Int) {
     TransferContext.writeArguments(LONG to filterMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMagFilterPtr, NIL)
   }
@@ -91,7 +84,7 @@ public open class GLTFTextureSampler : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMinFilter(filterMode: Int): Unit {
+  public final fun setMinFilter(filterMode: Int) {
     TransferContext.writeArguments(LONG to filterMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMinFilterPtr, NIL)
   }
@@ -102,7 +95,7 @@ public open class GLTFTextureSampler : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setWrapS(wrapMode: Int): Unit {
+  public final fun setWrapS(wrapMode: Int) {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setWrapSPtr, NIL)
   }
@@ -113,7 +106,7 @@ public open class GLTFTextureSampler : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setWrapT(wrapMode: Int): Unit {
+  public final fun setWrapT(wrapMode: Int) {
     TransferContext.writeArguments(LONG to wrapMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setWrapTPtr, NIL)
   }
@@ -122,27 +115,27 @@ public open class GLTFTextureSampler : Resource() {
 
   public object MethodBindings {
     internal val getMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_mag_filter", 3_905_245_786)
 
     internal val setMagFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_mag_filter", 1_286_410_249)
 
     internal val getMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_min_filter", 3_905_245_786)
 
     internal val setMinFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_min_filter", 1_286_410_249)
 
     internal val getWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_s", 3_905_245_786)
 
     internal val setWrapSPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_s", 1_286_410_249)
 
     internal val getWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "get_wrap_t", 3_905_245_786)
 
     internal val setWrapTPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTextureSampler", "set_wrap_t", 1_286_410_249)
   }
 }

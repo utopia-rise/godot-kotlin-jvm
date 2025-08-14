@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,13 +17,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A horizontal menu bar that creates a menu for each [PopupMenu] child. New items are created by
- * adding [PopupMenu]s to this node. Item title is determined by [Window.title], or node name if
- * [Window.title] is empty. Item title can be overridden using [setMenuTitle].
+ * A horizontal menu bar that creates a menu for each [PopupMenu] child. New items are created by adding [PopupMenu]s to this node. Item title is determined by [Window.title], or node name if [Window.title] is empty. Item title can be overridden using [setMenuTitle].
  */
 @GodotBaseType
 public open class MenuBar : Control() {
@@ -42,9 +36,7 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Position order in the global menu to insert [MenuBar] items at. All menu items in the [MenuBar]
-   * are always inserted as a continuous range. Menus with lower [startIndex] are inserted first. Menus
-   * with [startIndex] equal to `-1` are inserted last.
+   * Position order in the global menu to insert [MenuBar] items at. All menu items in the [MenuBar] are always inserted as a continuous range. Menus with lower [startIndex] are inserted first. Menus with [startIndex] equal to `-1` are inserted last.
    */
   public final inline var startIndex: Int
     @JvmName("startIndexProperty")
@@ -55,8 +47,7 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * If `true`, when the cursor hovers above menu item, it will close the current [PopupMenu] and
-   * open the other one.
+   * If `true`, when the cursor hovers above menu item, it will close the current [PopupMenu] and open the other one.
    */
   public final inline var switchOnHover: Boolean
     @JvmName("switchOnHoverProperty")
@@ -69,11 +60,9 @@ public open class MenuBar : Control() {
   /**
    * If `true`, [MenuBar] will use system global menu when supported.
    *
-   * **Note:** If `true` and global menu is supported, this node is not displayed, has zero size,
-   * and all its child nodes except [PopupMenu]s are inaccessible.
+   * **Note:** If `true` and global menu is supported, this node is not displayed, has zero size, and all its child nodes except [PopupMenu]s are inaccessible.
    *
-   * **Note:** This property overrides the value of the [PopupMenu.preferNativeMenu] property of the
-   * child nodes.
+   * **Note:** This property overrides the value of the [PopupMenu.preferNativeMenu] property of the child nodes.
    */
   public final inline var preferGlobalMenu: Boolean
     @JvmName("preferGlobalMenuProperty")
@@ -95,8 +84,7 @@ public open class MenuBar : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms, if left empty current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -106,11 +94,11 @@ public open class MenuBar : Control() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(349, scriptIndex)
   }
 
-  public final fun setSwitchOnHover(enable: Boolean): Unit {
+  public final fun setSwitchOnHover(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSwitchOnHoverPtr, NIL)
   }
@@ -124,12 +112,12 @@ public open class MenuBar : Control() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  public final fun setDisableShortcuts(disabled: Boolean): Unit {
+  public final fun setDisableShortcuts(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
-  public final fun setPreferGlobalMenu(enabled: Boolean): Unit {
+  public final fun setPreferGlobalMenu(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPreferGlobalMenuPtr, NIL)
   }
@@ -158,7 +146,7 @@ public open class MenuBar : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -169,7 +157,7 @@ public open class MenuBar : Control() {
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -180,7 +168,7 @@ public open class MenuBar : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setFlat(enabled: Boolean): Unit {
+  public final fun setFlat(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlatPtr, NIL)
   }
@@ -191,7 +179,7 @@ public open class MenuBar : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setStartIndex(enabled: Int): Unit {
+  public final fun setStartIndex(enabled: Int) {
     TransferContext.writeArguments(LONG to enabled.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStartIndexPtr, NIL)
   }
@@ -205,7 +193,7 @@ public open class MenuBar : Control() {
   /**
    * Sets menu item title.
    */
-  public final fun setMenuTitle(menu: Int, title: String): Unit {
+  public final fun setMenuTitle(menu: Int, title: String) {
     TransferContext.writeArguments(LONG to menu.toLong(), STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setMenuTitlePtr, NIL)
   }
@@ -222,7 +210,7 @@ public open class MenuBar : Control() {
   /**
    * Sets menu item tooltip.
    */
-  public final fun setMenuTooltip(menu: Int, tooltip: String): Unit {
+  public final fun setMenuTooltip(menu: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to menu.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setMenuTooltipPtr, NIL)
   }
@@ -239,7 +227,7 @@ public open class MenuBar : Control() {
   /**
    * If `true`, menu item is disabled.
    */
-  public final fun setMenuDisabled(menu: Int, disabled: Boolean): Unit {
+  public final fun setMenuDisabled(menu: Int, disabled: Boolean) {
     TransferContext.writeArguments(LONG to menu.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setMenuDisabledPtr, NIL)
   }
@@ -256,7 +244,7 @@ public open class MenuBar : Control() {
   /**
    * If `true`, menu item is hidden.
    */
-  public final fun setMenuHidden(menu: Int, hidden: Boolean): Unit {
+  public final fun setMenuHidden(menu: Int, hidden: Boolean) {
     TransferContext.writeArguments(LONG to menu.toLong(), BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setMenuHiddenPtr, NIL)
   }
@@ -283,74 +271,74 @@ public open class MenuBar : Control() {
 
   public object MethodBindings {
     internal val setSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_switch_on_hover", 2586408642)
+        TypeManager.getMethodBindPtr("MenuBar", "set_switch_on_hover", 2_586_408_642)
 
     internal val isSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "is_switch_on_hover", 2240911060)
+        TypeManager.getMethodBindPtr("MenuBar", "is_switch_on_hover", 2_240_911_060)
 
     internal val setDisableShortcutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_disable_shortcuts", 2586408642)
+        TypeManager.getMethodBindPtr("MenuBar", "set_disable_shortcuts", 2_586_408_642)
 
     internal val setPreferGlobalMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_prefer_global_menu", 2586408642)
+        TypeManager.getMethodBindPtr("MenuBar", "set_prefer_global_menu", 2_586_408_642)
 
     internal val isPreferGlobalMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "is_prefer_global_menu", 36873697)
+        TypeManager.getMethodBindPtr("MenuBar", "is_prefer_global_menu", 36_873_697)
 
     internal val isNativeMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "is_native_menu", 36873697)
+        TypeManager.getMethodBindPtr("MenuBar", "is_native_menu", 36_873_697)
 
     internal val getMenuCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_menu_count", 3905245786)
+        TypeManager.getMethodBindPtr("MenuBar", "get_menu_count", 3_905_245_786)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_text_direction", 119160795)
+        TypeManager.getMethodBindPtr("MenuBar", "set_text_direction", 119_160_795)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_text_direction", 797257663)
+        TypeManager.getMethodBindPtr("MenuBar", "get_text_direction", 797_257_663)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("MenuBar", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("MenuBar", "get_language", 201_670_096)
 
     internal val setFlatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_flat", 2586408642)
+        TypeManager.getMethodBindPtr("MenuBar", "set_flat", 2_586_408_642)
 
-    internal val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "is_flat", 36873697)
+    internal val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("MenuBar", "is_flat", 36_873_697)
 
     internal val setStartIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_start_index", 1286410249)
+        TypeManager.getMethodBindPtr("MenuBar", "set_start_index", 1_286_410_249)
 
     internal val getStartIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_start_index", 3905245786)
+        TypeManager.getMethodBindPtr("MenuBar", "get_start_index", 3_905_245_786)
 
     internal val setMenuTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_menu_title", 501894301)
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_title", 501_894_301)
 
     internal val getMenuTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_menu_title", 844755477)
+        TypeManager.getMethodBindPtr("MenuBar", "get_menu_title", 844_755_477)
 
     internal val setMenuTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_menu_tooltip", 501894301)
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_tooltip", 501_894_301)
 
     internal val getMenuTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_menu_tooltip", 844755477)
+        TypeManager.getMethodBindPtr("MenuBar", "get_menu_tooltip", 844_755_477)
 
     internal val setMenuDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_menu_disabled", 300928843)
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_disabled", 300_928_843)
 
     internal val isMenuDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "is_menu_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("MenuBar", "is_menu_disabled", 1_116_898_809)
 
     internal val setMenuHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "set_menu_hidden", 300928843)
+        TypeManager.getMethodBindPtr("MenuBar", "set_menu_hidden", 300_928_843)
 
     internal val isMenuHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "is_menu_hidden", 1116898809)
+        TypeManager.getMethodBindPtr("MenuBar", "is_menu_hidden", 1_116_898_809)
 
     internal val getMenuPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuBar", "get_menu_popup", 2100501353)
+        TypeManager.getMethodBindPtr("MenuBar", "get_menu_popup", 2_100_501_353)
   }
 }

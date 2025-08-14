@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,19 +13,15 @@ import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
- * be overridden. When these methods are overridden, they will be called instead of the internal
- * methods of the physics server.
+ * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can be overridden. When these methods are overridden, they will be called instead of the internal methods of the physics server.
  *
- * Intended for use with GDExtension to create custom implementations of
- * [PhysicsDirectSpaceState2D].
+ * Intended for use with GDExtension to create custom implementations of [PhysicsDirectSpaceState2D].
  */
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(466, scriptIndex)
   }
 
@@ -42,6 +35,6 @@ public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceSta
 
   public object MethodBindings {
     internal val isBodyExcludedFromQueryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2DExtension", "is_body_excluded_from_query", 4155700596)
+        TypeManager.getMethodBindPtr("PhysicsDirectSpaceState2DExtension", "is_body_excluded_from_query", 4_155_700_596)
   }
 }

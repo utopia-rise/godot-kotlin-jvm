@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,8 +18,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling
- * system. See also [PolygonOccluder3D] if you need to customize the quad's shape.
+ * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling system. See also [PolygonOccluder3D] if you need to customize the quad's shape.
  *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
@@ -32,11 +28,8 @@ public open class QuadOccluder3D : Occluder3D() {
    * The quad's size in 3D units.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -47,7 +40,7 @@ public open class QuadOccluder3D : Occluder3D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(512, scriptIndex)
   }
 
@@ -70,7 +63,7 @@ public open class QuadOccluder3D : Occluder3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -85,9 +78,9 @@ public open class QuadOccluder3D : Occluder3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("QuadOccluder3D", "set_size", 743155724)
+        TypeManager.getMethodBindPtr("QuadOccluder3D", "set_size", 743_155_724)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("QuadOccluder3D", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("QuadOccluder3D", "get_size", 3_341_600_327)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,24 +22,18 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved
- * manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess]
- * set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform2D].
+ * A static 2D physics body. It can't be moved by external forces or contacts, but can be moved manually by other means such as code, [AnimationMixer]s (with [AnimationMixer.callbackModeProcess] set to [AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_PHYSICS]), and [RemoteTransform2D].
  *
- * When [StaticBody2D] is moved, it is teleported to its new position without affecting other
- * physics bodies in its path. If this is not desired, use [AnimatableBody2D] instead.
+ * When [StaticBody2D] is moved, it is teleported to its new position without affecting other physics bodies in its path. If this is not desired, use [AnimatableBody2D] instead.
  *
- * [StaticBody2D] is useful for completely static objects like floors and walls, as well as moving
- * surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and
- * [constantAngularVelocity]).
+ * [StaticBody2D] is useful for completely static objects like floors and walls, as well as moving surfaces like conveyor belts and circular revolving platforms (by using [constantLinearVelocity] and [constantAngularVelocity]).
  */
 @GodotBaseType
 public open class StaticBody2D : PhysicsBody2D() {
   /**
    * The physics material override for the body.
    *
-   * If a material is assigned to this property, it will be used instead of any other physics
-   * material, such as an inherited one.
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
   public final inline var physicsMaterialOverride: PhysicsMaterial?
     @JvmName("physicsMaterialOverrideProperty")
@@ -53,15 +44,11 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
-   * as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantLinearVelocity: Vector2
@@ -73,8 +60,7 @@ public open class StaticBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's constant angular velocity. This does not rotate the body, but affects touching
-   * bodies, as if it were rotating.
+   * The body's constant angular velocity. This does not rotate the body, but affects touching bodies, as if it were rotating.
    */
   public final inline var constantAngularVelocity: Float
     @JvmName("constantAngularVelocityProperty")
@@ -84,13 +70,12 @@ public open class StaticBody2D : PhysicsBody2D() {
       setConstantAngularVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(631, scriptIndex)
   }
 
   /**
-   * This is a helper function for [constantLinearVelocity] to make dealing with local copies
-   * easier.
+   * This is a helper function for [constantLinearVelocity] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -100,22 +85,20 @@ public open class StaticBody2D : PhysicsBody2D() {
    * staticbody2d.constantLinearVelocity = myCoreType
    * ``````
    *
-   * The body's constant linear velocity. This does not move the body, but affects touching bodies,
-   * as if it were moving.
+   * The body's constant linear velocity. This does not move the body, but affects touching bodies, as if it were moving.
    */
   @CoreTypeHelper
-  public final fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      constantLinearVelocity.apply {
+  public final fun constantLinearVelocityMutate(block: Vector2.() -> Unit): Vector2 = constantLinearVelocity.apply {
      block(this)
      constantLinearVelocity = this
   }
 
-  public final fun setConstantLinearVelocity(vel: Vector2): Unit {
+  public final fun setConstantLinearVelocity(vel: Vector2) {
     TransferContext.writeArguments(VECTOR2 to vel)
     TransferContext.callMethod(ptr, MethodBindings.setConstantLinearVelocityPtr, NIL)
   }
 
-  public final fun setConstantAngularVelocity(vel: Float): Unit {
+  public final fun setConstantAngularVelocity(vel: Float) {
     TransferContext.writeArguments(DOUBLE to vel.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setConstantAngularVelocityPtr, NIL)
   }
@@ -132,7 +115,7 @@ public open class StaticBody2D : PhysicsBody2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?) {
     TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
@@ -147,21 +130,21 @@ public open class StaticBody2D : PhysicsBody2D() {
 
   public object MethodBindings {
     internal val setConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743155724)
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_linear_velocity", 743_155_724)
 
     internal val setConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373806689)
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_constant_angular_velocity", 373_806_689)
 
     internal val getConstantLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_linear_velocity", 3_341_600_327)
 
     internal val getConstantAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1740695150)
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_constant_angular_velocity", 1_740_695_150)
 
     internal val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1784508650)
+        TypeManager.getMethodBindPtr("StaticBody2D", "set_physics_material_override", 1_784_508_650)
 
     internal val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2521850424)
+        TypeManager.getMethodBindPtr("StaticBody2D", "get_physics_material_override", 2_521_850_424)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,13 +13,10 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Generic 2D position hint for editing. It's just like a plain [Node2D], but it displays as a cross
- * in the 2D editor at all times. You can set the cross' visual size by using the gizmo in the 2D
- * editor while the node is selected.
+ * Generic 2D position hint for editing. It's just like a plain [Node2D], but it displays as a cross in the 2D editor at all times. You can set the cross' visual size by using the gizmo in the 2D editor while the node is selected.
  */
 @GodotBaseType
 public open class Marker2D : Node2D() {
@@ -37,11 +31,11 @@ public open class Marker2D : Node2D() {
       setGizmoExtents(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(345, scriptIndex)
   }
 
-  public final fun setGizmoExtents(extents: Float): Unit {
+  public final fun setGizmoExtents(extents: Float) {
     TransferContext.writeArguments(DOUBLE to extents.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGizmoExtentsPtr, NIL)
   }
@@ -56,9 +50,9 @@ public open class Marker2D : Node2D() {
 
   public object MethodBindings {
     internal val setGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker2D", "set_gizmo_extents", 373806689)
+        TypeManager.getMethodBindPtr("Marker2D", "set_gizmo_extents", 373_806_689)
 
     internal val getGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker2D", "get_gizmo_extents", 1740695150)
+        TypeManager.getMethodBindPtr("Marker2D", "get_gizmo_extents", 1_740_695_150)
   }
 }

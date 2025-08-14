@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,10 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross
- * in the 3D editor at all times.
+ * Generic 3D position hint for editing. It's just like a plain [Node3D], but it displays as a cross in the 3D editor at all times.
  */
 @GodotBaseType
 public open class Marker3D : Node3D() {
@@ -36,11 +31,11 @@ public open class Marker3D : Node3D() {
       setGizmoExtents(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(346, scriptIndex)
   }
 
-  public final fun setGizmoExtents(extents: Float): Unit {
+  public final fun setGizmoExtents(extents: Float) {
     TransferContext.writeArguments(DOUBLE to extents.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGizmoExtentsPtr, NIL)
   }
@@ -55,9 +50,9 @@ public open class Marker3D : Node3D() {
 
   public object MethodBindings {
     internal val setGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373806689)
+        TypeManager.getMethodBindPtr("Marker3D", "set_gizmo_extents", 373_806_689)
 
     internal val getGizmoExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1740695150)
+        TypeManager.getMethodBindPtr("Marker3D", "get_gizmo_extents", 1_740_695_150)
   }
 }

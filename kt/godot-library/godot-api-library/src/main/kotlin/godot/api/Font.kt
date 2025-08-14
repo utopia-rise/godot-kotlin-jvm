@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,22 +33,18 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Abstract base class for different font types. It has methods for drawing text and font character
- * introspection.
+ * Abstract base class for different font types. It has methods for drawing text and font character introspection.
  */
 @GodotBaseType
 public open class Font internal constructor() : Resource() {
   /**
-   * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current
-   * [Font].
+   * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current [Font].
    *
-   * If this array is empty in a [FontVariation], the [FontVariation.baseFont]'s fallbacks are used
-   * instead.
+   * If this array is empty in a [FontVariation], the [FontVariation.baseFont]'s fallbacks are used instead.
    */
   public final inline var fallbacks: VariantArray<Font>
     @JvmName("fallbacksProperty")
@@ -61,11 +54,11 @@ public open class Font internal constructor() : Resource() {
       setFallbacks(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(217, scriptIndex)
   }
 
-  public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
+  public final fun setFallbacks(fallbacks: VariantArray<Font>) {
     TransferContext.writeArguments(ARRAY to fallbacks)
     TransferContext.callMethod(ptr, MethodBindings.setFallbacksPtr, NIL)
   }
@@ -108,9 +101,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the total average font height (ascent plus descent) in pixels.
    *
-   * **Note:** Real height of the string is context-dependent and can be significantly different
-   * from the value returned by this function. Use it only as rough estimate (e.g. as the height of
-   * empty line).
+   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the height of empty line).
    */
   @JvmOverloads
   public final fun getHeight(fontSize: Int = 16): Float {
@@ -122,9 +113,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the average font ascent (number of pixels above the baseline).
    *
-   * **Note:** Real ascent of the string is context-dependent and can be significantly different
-   * from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of
-   * empty line).
+   * **Note:** Real ascent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the ascent of empty line).
    */
   @JvmOverloads
   public final fun getAscent(fontSize: Int = 16): Float {
@@ -136,9 +125,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the average font descent (number of pixels below the baseline).
    *
-   * **Note:** Real descent of the string is context-dependent and can be significantly different
-   * from the value returned by this function. Use it only as rough estimate (e.g. as the descent of
-   * empty line).
+   * **Note:** Real descent of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate (e.g. as the descent of empty line).
    */
   @JvmOverloads
   public final fun getDescent(fontSize: Int = 16): Float {
@@ -150,8 +137,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns average pixel offset of the underline below the baseline.
    *
-   * **Note:** Real underline position of the string is context-dependent and can be significantly
-   * different from the value returned by this function. Use it only as rough estimate.
+   * **Note:** Real underline position of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
   public final fun getUnderlinePosition(fontSize: Int = 16): Float {
@@ -163,8 +149,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns average thickness of the underline.
    *
-   * **Note:** Real underline thickness of the string is context-dependent and can be significantly
-   * different from the value returned by this function. Use it only as rough estimate.
+   * **Note:** Real underline thickness of the string is context-dependent and can be significantly different from the value returned by this function. Use it only as rough estimate.
    */
   @JvmOverloads
   public final fun getUnderlineThickness(fontSize: Int = 16): Float {
@@ -192,8 +177,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns [Dictionary] with OpenType font name strings (localized font names, version,
-   * description, license information, sample text, etc.).
+   * Returns [Dictionary] with OpenType font name strings (localized font names, version, description, license information, sample text, etc.).
    */
   public final fun getOtNameStrings(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -211,8 +195,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
-   * `400`, bold font weight is `700`.
+   * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is `400`, bold font weight is `700`.
    */
   public final fun getFontWeight(): Int {
     TransferContext.writeArguments()
@@ -221,8 +204,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
-   * and `200&#37;`.
+   * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;` and `200&#37;`.
    */
   public final fun getFontStretch(): Int {
     TransferContext.writeArguments()
@@ -240,9 +222,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns a set of OpenType feature tags. More info:
-   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature
-   * tags[/url].
+   * Returns a set of OpenType feature tags. More info: [url=https://docs.microsoft.com/en-us/typography/opentype/spec/featuretags]OpenType feature tags[/url].
    */
   public final fun getOpentypeFeatures(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -253,37 +233,30 @@ public open class Font internal constructor() : Resource() {
   /**
    * Sets LRU cache capacity for `draw_*` methods.
    */
-  public final fun setCacheCapacity(singleLine: Int, multiLine: Int): Unit {
+  public final fun setCacheCapacity(singleLine: Int, multiLine: Int) {
     TransferContext.writeArguments(LONG to singleLine.toLong(), LONG to multiLine.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCacheCapacityPtr, NIL)
   }
 
   /**
-   * Returns the size of a bounding box of a single-line string, taking kerning, advance and
-   * subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
+   * Returns the size of a bounding box of a single-line string, taking kerning, advance and subpixel positioning into account. See also [getMultilineStringSize] and [drawString].
    *
    * For example, to get the string size as displayed by a single-line Label, use:
    *
    * ```gdscript
    * //gdscript
-   * var string_size = $Label.get_theme_font("font").get_string_size($Label.text,
-   * HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
+   * var string_size = $Label.get_theme_font("font").get_string_size($Label.text, HORIZONTAL_ALIGNMENT_LEFT, -1, $Label.get_theme_font_size("font_size"))
    * ```
    *
    * ```csharp
    * //csharp
    * Label label = GetNode<Label>("Label");
-   * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text,
-   * HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
+   * Vector2 stringSize = label.GetThemeFont("font").GetStringSize(label.Text, HorizontalAlignment.Left, -1, label.GetThemeFontSize("font_size"));
    * ```
    *
-   * **Note:** Since kerning, advance and subpixel positioning are taken into account by
-   * [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the
-   * results together will return a different result compared to using a single [getStringSize] call on
-   * the full string.
+   * **Note:** Since kerning, advance and subpixel positioning are taken into account by [getStringSize], using separate [getStringSize] calls on substrings of a string then adding the results together will return a different result compared to using a single [getStringSize] call on the full string.
    *
-   * **Note:** Real height of the string is context-dependent and can be significantly different
-   * from the value returned by [getHeight].
+   * **Note:** Real height of the string is context-dependent and can be significantly different from the value returned by [getHeight].
    */
   @JvmOverloads
   public final fun getStringSize(
@@ -301,8 +274,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the size of a bounding box of a string broken into the lines, taking kerning and
-   * advance into account.
+   * Returns the size of a bounding box of a string broken into the lines, taking kerning and advance into account.
    *
    * See also [drawMultilineString].
    */
@@ -324,9 +296,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color,
-   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the
-   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw [text] into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [CanvasItem.drawString].
    */
@@ -342,16 +312,13 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawStringPtr, NIL)
   }
 
   /**
-   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item
-   * using the font, at a given position, with [modulate] color, optionally clipping the width and
-   * aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from
-   * the top, *ascent* must be added to the Y axis.
+   * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item using the font, at a given position, with [modulate] color, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [CanvasItem.drawMultilineString].
    */
@@ -369,15 +336,13 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringPtr, NIL)
   }
 
   /**
-   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate]
-   * color and [size] outline size, optionally clipping the width and aligning horizontally. [pos]
-   * specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw [text] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [CanvasItem.drawStringOutline].
    */
@@ -394,16 +359,13 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawStringOutlinePtr, NIL)
   }
 
   /**
-   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a
-   * canvas item using the font, at a given position, with [modulate] color and [size] outline size,
-   * optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first
-   * line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size, optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
    * See also [CanvasItem.drawMultilineStringOutline].
    */
@@ -422,7 +384,7 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringOutlinePtr, NIL)
   }
@@ -430,9 +392,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns the size of a character. Does not take kerning into account.
    *
-   * **Note:** Do not use this function to calculate width of the string character by character, use
-   * [getStringSize] or [TextLine] instead. The height returned is the font height (see also
-   * [getHeight]) and has no relation to the glyph height.
+   * **Note:** Do not use this function to calculate width of the string character by character, use [getStringSize] or [TextLine] instead. The height returned is the font height (see also [getHeight]) and has no relation to the glyph height.
    */
   public final fun getCharSize(char: Long, fontSize: Int): Vector2 {
     TransferContext.writeArguments(LONG to char, LONG to fontSize.toLong())
@@ -441,12 +401,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [char] into a canvas item using the font, at a given position,
-   * with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent*
-   * must be added to the Y axis.
+   * Draw a single Unicode character [char] into a canvas item using the font, at a given position, with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
-   * **Note:** Do not use this function to draw strings character by character, use [drawString] or
-   * [TextLine] instead.
+   * **Note:** Do not use this function to draw strings character by character, use [drawString] or [TextLine] instead.
    */
   @JvmOverloads
   public final fun drawChar(
@@ -462,12 +419,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given
-   * position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the
-   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * Draw a single Unicode character [char] outline into a canvas item using the font, at a given position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
    *
-   * **Note:** Do not use this function to draw strings character by character, use [drawString] or
-   * [TextLine] instead.
+   * **Note:** Do not use this function to draw strings character by character, use [drawString] or [TextLine] instead.
    */
   @JvmOverloads
   public final fun drawCharOutline(
@@ -495,8 +449,7 @@ public open class Font internal constructor() : Resource() {
   /**
    * Returns a string containing all the characters available in the font.
    *
-   * If a given character is included in more than one font data source, it appears only once in the
-   * returned string.
+   * If a given character is included in more than one font data source, it appears only once in the returned string.
    */
   public final fun getSupportedChars(): String {
     TransferContext.writeArguments()
@@ -505,8 +458,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given language
-   * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
+   * Returns `true`, if font supports given language ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
   public final fun isLanguageSupported(language: String): Boolean {
     TransferContext.writeArguments(STRING to language)
@@ -515,8 +467,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true`, if font supports given script ([url=https://en.wikipedia.org/wiki/ISO_15924]ISO
-   * 15924[/url] code).
+   * Returns `true`, if font supports given script ([url=https://en.wikipedia.org/wiki/ISO_15924]ISO 15924[/url] code).
    */
   public final fun isScriptSupported(script: String): Boolean {
     TransferContext.writeArguments(STRING to script)
@@ -534,13 +485,9 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns list of supported
-   * [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]variation
-   * coordinates[/url], each coordinate is returned as `tag:
-   * Vector3i(min_value,max_value,default_value)`.
+   * Returns list of supported [url=https://docs.microsoft.com/en-us/typography/opentype/spec/dvaraxisreg]variation coordinates[/url], each coordinate is returned as `tag: Vector3i(min_value,max_value,default_value)`.
    *
-   * Font variations allow for continuous change of glyph characteristics along some given design
-   * axis, such as weight, width or slant.
+   * Font variations allow for continuous change of glyph characteristics along some given design axis, such as weight, width or slant.
    *
    * To print available variation axes of a variable font:
    *
@@ -551,12 +498,10 @@ public open class Font internal constructor() : Resource() {
    * for tag in variation_list:
    *     var name = TextServerManager.get_primary_interface().tag_to_name(tag)
    *     var values = variation_list[tag]
-   *     print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
-   * values])
+   *     print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag, values])
    * ```
    *
-   * **Note:** To set and get variation coordinates of a [FontVariation], use
-   * [FontVariation.variationOpentype].
+   * **Note:** To set and get variation coordinates of a [FontVariation], use [FontVariation.variationOpentype].
    */
   public final fun getSupportedVariationList(): Dictionary<Any?, Any?> {
     TransferContext.writeArguments()
@@ -577,103 +522,105 @@ public open class Font internal constructor() : Resource() {
 
   public object MethodBindings {
     internal val setFallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "set_fallbacks", 381264803)
+        TypeManager.getMethodBindPtr("Font", "set_fallbacks", 381_264_803)
 
     internal val getFallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_fallbacks", 3995934104)
+        TypeManager.getMethodBindPtr("Font", "get_fallbacks", 3_995_934_104)
 
     internal val findVariationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "find_variation", 2553855095)
+        TypeManager.getMethodBindPtr("Font", "find_variation", 2_553_855_095)
 
-    internal val getRidsPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "get_rids", 3995934104)
+    internal val getRidsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "get_rids", 3_995_934_104)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_height", 378113874)
+        TypeManager.getMethodBindPtr("Font", "get_height", 378_113_874)
 
     internal val getAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_ascent", 378113874)
+        TypeManager.getMethodBindPtr("Font", "get_ascent", 378_113_874)
 
     internal val getDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_descent", 378113874)
+        TypeManager.getMethodBindPtr("Font", "get_descent", 378_113_874)
 
     internal val getUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_underline_position", 378113874)
+        TypeManager.getMethodBindPtr("Font", "get_underline_position", 378_113_874)
 
     internal val getUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_underline_thickness", 378113874)
+        TypeManager.getMethodBindPtr("Font", "get_underline_thickness", 378_113_874)
 
     internal val getFontNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_name", 201670096)
+        TypeManager.getMethodBindPtr("Font", "get_font_name", 201_670_096)
 
     internal val getFontStyleNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_style_name", 201670096)
+        TypeManager.getMethodBindPtr("Font", "get_font_style_name", 201_670_096)
 
     internal val getOtNameStringsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_ot_name_strings", 3102165223)
+        TypeManager.getMethodBindPtr("Font", "get_ot_name_strings", 3_102_165_223)
 
     internal val getFontStylePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_style", 2520224254)
+        TypeManager.getMethodBindPtr("Font", "get_font_style", 2_520_224_254)
 
     internal val getFontWeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_weight", 3905245786)
+        TypeManager.getMethodBindPtr("Font", "get_font_weight", 3_905_245_786)
 
     internal val getFontStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_font_stretch", 3905245786)
+        TypeManager.getMethodBindPtr("Font", "get_font_stretch", 3_905_245_786)
 
     internal val getSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_spacing", 1310880908)
+        TypeManager.getMethodBindPtr("Font", "get_spacing", 1_310_880_908)
 
     internal val getOpentypeFeaturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_opentype_features", 3102165223)
+        TypeManager.getMethodBindPtr("Font", "get_opentype_features", 3_102_165_223)
 
     internal val setCacheCapacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "set_cache_capacity", 3937882851)
+        TypeManager.getMethodBindPtr("Font", "set_cache_capacity", 3_937_882_851)
 
     internal val getStringSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_string_size", 1868866121)
+        TypeManager.getMethodBindPtr("Font", "get_string_size", 1_868_866_121)
 
     internal val getMultilineStringSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_multiline_string_size", 519636710)
+        TypeManager.getMethodBindPtr("Font", "get_multiline_string_size", 519_636_710)
 
     internal val drawStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_string", 1983721962)
+        TypeManager.getMethodBindPtr("Font", "draw_string", 1_983_721_962)
 
     internal val drawMultilineStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string", 1171506176)
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string", 1_171_506_176)
 
     internal val drawStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_string_outline", 623754045)
+        TypeManager.getMethodBindPtr("Font", "draw_string_outline", 623_754_045)
 
     internal val drawMultilineStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline", 3206388178)
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline", 3_206_388_178)
 
     internal val getCharSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_char_size", 3016396712)
+        TypeManager.getMethodBindPtr("Font", "get_char_size", 3_016_396_712)
 
     internal val drawCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_char", 3815617597)
+        TypeManager.getMethodBindPtr("Font", "draw_char", 3_815_617_597)
 
     internal val drawCharOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_char_outline", 209525354)
+        TypeManager.getMethodBindPtr("Font", "draw_char_outline", 209_525_354)
 
-    internal val hasCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "has_char", 1116898809)
+    internal val hasCharPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Font", "has_char", 1_116_898_809)
 
     internal val getSupportedCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_chars", 201670096)
+        TypeManager.getMethodBindPtr("Font", "get_supported_chars", 201_670_096)
 
     internal val isLanguageSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "is_language_supported", 3927539163)
+        TypeManager.getMethodBindPtr("Font", "is_language_supported", 3_927_539_163)
 
     internal val isScriptSupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "is_script_supported", 3927539163)
+        TypeManager.getMethodBindPtr("Font", "is_script_supported", 3_927_539_163)
 
     internal val getSupportedFeatureListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_feature_list", 3102165223)
+        TypeManager.getMethodBindPtr("Font", "get_supported_feature_list", 3_102_165_223)
 
     internal val getSupportedVariationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_supported_variation_list", 3102165223)
+        TypeManager.getMethodBindPtr("Font", "get_supported_variation_list", 3_102_165_223)
 
     internal val getFaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "get_face_count", 3905245786)
+        TypeManager.getMethodBindPtr("Font", "get_face_count", 3_905_245_786)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,27 +13,22 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls
- * a method providing an interpolated value as a parameter. See [Tween.tweenMethod] for more usage
- * information.
+ * [MethodTweener] is similar to a combination of [CallbackTweener] and [PropertyTweener]. It calls a method providing an interpolated value as a parameter. See [Tween.tweenMethod] for more usage information.
  *
  * The tweener will finish automatically if the callback's target object is freed.
  *
- * **Note:** [Tween.tweenMethod] is the only correct way to create [MethodTweener]. Any
- * [MethodTweener] created manually will not function correctly.
+ * **Note:** [Tween.tweenMethod] is the only correct way to create [MethodTweener]. Any [MethodTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class MethodTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(358, scriptIndex)
   }
 
   /**
-   * Sets the time in seconds after which the [MethodTweener] will start interpolating. By default
-   * there's no delay.
+   * Sets the time in seconds after which the [MethodTweener] will start interpolating. By default there's no delay.
    */
   public final fun setDelay(delay: Double): MethodTweener? {
     TransferContext.writeArguments(DOUBLE to delay)
@@ -45,8 +37,7 @@ public open class MethodTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used transition from [Tween.TransitionType]. If not set, the default
-   * transition is used from the [Tween] that contains this Tweener.
+   * Sets the type of used transition from [Tween.TransitionType]. If not set, the default transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener? {
     TransferContext.writeArguments(LONG to trans.id)
@@ -55,8 +46,7 @@ public open class MethodTweener : Tweener() {
   }
 
   /**
-   * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from
-   * the [Tween] that contains this Tweener.
+   * Sets the type of used easing from [Tween.EaseType]. If not set, the default easing is used from the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): MethodTweener? {
     TransferContext.writeArguments(LONG to ease.id)
@@ -68,12 +58,12 @@ public open class MethodTweener : Tweener() {
 
   public object MethodBindings {
     internal val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_delay", 266477812)
+        TypeManager.getMethodBindPtr("MethodTweener", "set_delay", 266_477_812)
 
     internal val setTransPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_trans", 3740975367)
+        TypeManager.getMethodBindPtr("MethodTweener", "set_trans", 3_740_975_367)
 
     internal val setEasePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MethodTweener", "set_ease", 315540545)
+        TypeManager.getMethodBindPtr("MethodTweener", "set_ease", 315_540_545)
   }
 }

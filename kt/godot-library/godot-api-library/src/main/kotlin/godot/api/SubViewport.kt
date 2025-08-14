@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,31 +22,22 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
- * used, for example, to display UI in 3D space.
+ * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be used, for example, to display UI in 3D space.
  *
- * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by
- * itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a
- * [SubViewportContainer] or assigned to a [ViewportTexture].
+ * **Note:** [SubViewport] is a [Viewport] that isn't a [Window], i.e. it doesn't draw anything by itself. To display anything, [SubViewport] must have a non-zero size and be either put inside a [SubViewportContainer] or assigned to a [ViewportTexture].
  *
- * **Note:** [InputEvent]s are not passed to a standalone [SubViewport] by default. To ensure
- * [InputEvent] propagation, a [SubViewport] can be placed inside of a [SubViewportContainer].
+ * **Note:** [InputEvent]s are not passed to a standalone [SubViewport] by default. To ensure [InputEvent] propagation, a [SubViewport] can be placed inside of a [SubViewportContainer].
  */
 @GodotBaseType
 public open class SubViewport : Viewport() {
   /**
-   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
-   * pixels on both dimensions. Otherwise, nothing will be displayed.
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
    *
-   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
-   * is `true`, the viewport size cannot be changed manually.
+   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2i
@@ -61,15 +49,11 @@ public open class SubViewport : Viewport() {
     }
 
   /**
-   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is
-   * disabled.
+   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size2dOverride: Vector2i
@@ -115,7 +99,7 @@ public open class SubViewport : Viewport() {
       setUpdateMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(645, scriptIndex)
   }
 
@@ -130,11 +114,9 @@ public open class SubViewport : Viewport() {
    * subviewport.size = myCoreType
    * ``````
    *
-   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2
-   * pixels on both dimensions. Otherwise, nothing will be displayed.
+   * The width and height of the sub-viewport. Must be set to a value greater than or equal to 2 pixels on both dimensions. Otherwise, nothing will be displayed.
    *
-   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch]
-   * is `true`, the viewport size cannot be changed manually.
+   * **Note:** If the parent node is a [SubViewportContainer] and its [SubViewportContainer.stretch] is `true`, the viewport size cannot be changed manually.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector2i.() -> Unit): Vector2i = size.apply {
@@ -153,17 +135,15 @@ public open class SubViewport : Viewport() {
    * subviewport.size2dOverride = myCoreType
    * ``````
    *
-   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is
-   * disabled.
+   * The 2D size override of the sub-viewport. If either the width or height is `0`, the override is disabled.
    */
   @CoreTypeHelper
-  public final fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i =
-      size2dOverride.apply {
+  public final fun size2dOverrideMutate(block: Vector2i.() -> Unit): Vector2i = size2dOverride.apply {
      block(this)
      size2dOverride = this
   }
 
-  public final fun setSize(size: Vector2i): Unit {
+  public final fun setSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -174,7 +154,7 @@ public open class SubViewport : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setSize2dOverride(size: Vector2i): Unit {
+  public final fun setSize2dOverride(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSize2dOverridePtr, NIL)
   }
@@ -185,7 +165,7 @@ public open class SubViewport : Viewport() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setSize2dOverrideStretch(enable: Boolean): Unit {
+  public final fun setSize2dOverrideStretch(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSize2dOverrideStretchPtr, NIL)
   }
@@ -196,7 +176,7 @@ public open class SubViewport : Viewport() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUpdateMode(mode: UpdateMode): Unit {
+  public final fun setUpdateMode(mode: UpdateMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
@@ -207,7 +187,7 @@ public open class SubViewport : Viewport() {
     return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setClearMode(mode: ClearMode): Unit {
+  public final fun setClearMode(mode: ClearMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setClearModePtr, NIL)
   }
@@ -284,33 +264,33 @@ public open class SubViewport : Viewport() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size", 1130785943)
+        TypeManager.getMethodBindPtr("SubViewport", "set_size", 1_130_785_943)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_size", 3690982128)
+        TypeManager.getMethodBindPtr("SubViewport", "get_size", 3_690_982_128)
 
     internal val setSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override", 1130785943)
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override", 1_130_785_943)
 
     internal val getSize2dOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override", 3690982128)
+        TypeManager.getMethodBindPtr("SubViewport", "get_size_2d_override", 3_690_982_128)
 
     internal val setSize2dOverrideStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2586408642)
+        TypeManager.getMethodBindPtr("SubViewport", "set_size_2d_override_stretch", 2_586_408_642)
 
     internal val isSize2dOverrideStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36873697)
+        TypeManager.getMethodBindPtr("SubViewport", "is_size_2d_override_stretch_enabled", 36_873_697)
 
     internal val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode", 1295690030)
+        TypeManager.getMethodBindPtr("SubViewport", "set_update_mode", 1_295_690_030)
 
     internal val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode", 2980171553)
+        TypeManager.getMethodBindPtr("SubViewport", "get_update_mode", 2_980_171_553)
 
     internal val setClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode", 2834454712)
+        TypeManager.getMethodBindPtr("SubViewport", "set_clear_mode", 2_834_454_712)
 
     internal val getClearModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode", 331324495)
+        TypeManager.getMethodBindPtr("SubViewport", "get_clear_mode", 331_324_495)
   }
 }

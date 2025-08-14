@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -39,16 +36,11 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
- * calculation can be used by the parent node to dynamically move it along the path. Requires
- * navigation data to work correctly.
+ * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The calculation can be used by the parent node to dynamically move it along the path. Requires navigation data to work correctly.
  *
- * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before
- * physics, so the pathfinding information can be used safely in the physics step.
+ * Dynamic obstacles are avoided using RVO collision avoidance. Avoidance is computed before physics, so the pathfinding information can be used safely in the physics step.
  *
- * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be
- * used once every physics frame to update the internal path logic of the navigation agent. The vector
- * position it returns should be used as the next movement position for the agent's parent node.
+ * **Note:** After setting the [targetPosition] property, the [getNextPathPosition] method must be used once every physics frame to update the internal path logic of the navigation agent. The vector position it returns should be used as the next movement position for the agent's parent node.
  */
 @GodotBaseType
 public open class NavigationAgent3D : Node() {
@@ -64,23 +56,18 @@ public open class NavigationAgent3D : Node() {
   public val pathChanged: Signal0 by Signal0
 
   /**
-   * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance]
-   * of the [targetPosition]. This signal is emitted only once per loaded path.
+   * Signals that the agent reached the target, i.e. the agent moved within [targetDesiredDistance] of the [targetPosition]. This signal is emitted only once per loaded path.
    *
-   * This signal will be emitted just before [signal navigation_finished] when the target is
-   * reachable.
+   * This signal will be emitted just before [signal navigation_finished] when the target is reachable.
    *
-   * It may not always be possible to reach the target but it should always be possible to reach the
-   * final position. See [getFinalPosition].
+   * It may not always be possible to reach the target but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public val targetReached: Signal0 by Signal0
 
   /**
-   * Signals that the agent reached a waypoint. Emitted when the agent moves within
-   * [pathDesiredDistance] of the next position of the path.
+   * Signals that the agent reached a waypoint. Emitted when the agent moves within [pathDesiredDistance] of the next position of the path.
    *
-   * The details dictionary may contain the following keys depending on the value of
-   * [pathMetadataFlags]:
+   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
    *
    * - `position`: The position of the waypoint that was reached.
    *
@@ -93,11 +80,9 @@ public open class NavigationAgent3D : Node() {
   public val waypointReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
-   * Signals that the agent reached a navigation link. Emitted when the agent moves within
-   * [pathDesiredDistance] of the next position of the path when that position is a navigation link.
+   * Signals that the agent reached a navigation link. Emitted when the agent moves within [pathDesiredDistance] of the next position of the path when that position is a navigation link.
    *
-   * The details dictionary may contain the following keys depending on the value of
-   * [pathMetadataFlags]:
+   * The details dictionary may contain the following keys depending on the value of [pathMetadataFlags]:
    *
    * - `position`: The start position of the link that was reached.
    *
@@ -107,39 +92,30 @@ public open class NavigationAgent3D : Node() {
    *
    * - `owner`: The object which manages the link (usually [NavigationLink3D]).
    *
-   * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
-   * contain the global position of the link's point the agent is entering.
+   * - `link_entry_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point the agent is entering.
    *
-   * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will
-   * contain the global position of the link's point which the agent is exiting.
+   * - `link_exit_position`: If `owner` is available and the owner is a [NavigationLink3D], it will contain the global position of the link's point which the agent is exiting.
    */
   public val linkReached: Signal1<Dictionary<Any?, Any?>> by Signal1
 
   /**
-   * Signals that the agent's navigation has finished. If the target is reachable, navigation ends
-   * when the target is reached. If the target is unreachable, navigation ends when the last waypoint
-   * of the path is reached. This signal is emitted only once per loaded path.
+   * Signals that the agent's navigation has finished. If the target is reachable, navigation ends when the target is reached. If the target is unreachable, navigation ends when the last waypoint of the path is reached. This signal is emitted only once per loaded path.
    *
    * This signal will be emitted just after [signal target_reached] when the target is reachable.
    */
   public val navigationFinished: Signal0 by Signal0
 
   /**
-   * Notifies when the collision avoidance velocity is calculated. Emitted every update as long as
-   * [avoidanceEnabled] is `true` and the agent has a navigation map.
+   * Notifies when the collision avoidance velocity is calculated. Emitted every update as long as [avoidanceEnabled] is `true` and the agent has a navigation map.
    */
   public val velocityComputed: Signal1<Vector3> by Signal1
 
   /**
-   * If set, a new navigation path from the current agent position to the [targetPosition] is
-   * requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -151,12 +127,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before a path point is considered to be reached. This allows agents to
-   * not have to hit a path point on the path exactly, but only to reach its general area. If this
-   * value is set too high, the NavigationAgent will skip points on the path, which can lead to it
-   * leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a
-   * repath loop because it will constantly overshoot the distance to the next point on each physics
-   * frame update.
+   * The distance threshold before a path point is considered to be reached. This allows agents to not have to hit a path point on the path exactly, but only to reach its general area. If this value is set too high, the NavigationAgent will skip points on the path, which can lead to it leaving the navigation mesh. If this value is set too low, the NavigationAgent will be stuck in a repath loop because it will constantly overshoot the distance to the next point on each physics frame update.
    */
   public final inline var pathDesiredDistance: Float
     @JvmName("pathDesiredDistanceProperty")
@@ -167,18 +138,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The distance threshold before the target is considered to be reached. On reaching the target,
-   * [signal target_reached] is emitted and navigation ends (see [isNavigationFinished] and [signal
-   * navigation_finished]).
+   * The distance threshold before the target is considered to be reached. On reaching the target, [signal target_reached] is emitted and navigation ends (see [isNavigationFinished] and [signal navigation_finished]).
    *
-   * You can make navigation end early by setting this property to a value greater than
-   * [pathDesiredDistance] (navigation will end before reaching the last waypoint).
+   * You can make navigation end early by setting this property to a value greater than [pathDesiredDistance] (navigation will end before reaching the last waypoint).
    *
-   * You can also make navigation end closer to the target than each individual path position by
-   * setting this property to a value lower than [pathDesiredDistance] (navigation won't immediately
-   * end when reaching the last waypoint). However, if the value set is too low, the agent will be
-   * stuck in a repath loop because it will constantly overshoot the distance to the target on each
-   * physics frame update.
+   * You can also make navigation end closer to the target than each individual path position by setting this property to a value lower than [pathDesiredDistance] (navigation won't immediately end when reaching the last waypoint). However, if the value set is too low, the agent will be stuck in a repath loop because it will constantly overshoot the distance to the target on each physics frame update.
    */
   public final inline var targetDesiredDistance: Float
     @JvmName("targetDesiredDistanceProperty")
@@ -189,11 +153,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The height offset is subtracted from the y-axis value of any vector path position for this
-   * NavigationAgent. The NavigationAgent height offset does not change or influence the navigation
-   * mesh or pathfinding query result. Additional navigation maps that use regions with navigation
-   * meshes that the developer baked with appropriate agent radius or height values are required to
-   * support different-sized agents.
+   * The height offset is subtracted from the y-axis value of any vector path position for this NavigationAgent. The NavigationAgent height offset does not change or influence the navigation mesh or pathfinding query result. Additional navigation maps that use regions with navigation meshes that the developer baked with appropriate agent radius or height values are required to support different-sized agents.
    */
   public final inline var pathHeightOffset: Float
     @JvmName("pathHeightOffsetProperty")
@@ -204,9 +164,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The maximum distance the agent is allowed away from the ideal path to the final position. This
-   * can happen due to trying to avoid collisions. When the maximum distance is exceeded, it
-   * recalculates the ideal path.
+   * The maximum distance the agent is allowed away from the ideal path to the final position. This can happen due to trying to avoid collisions. When the maximum distance is exceeded, it recalculates the ideal path.
    */
   public final inline var pathMaxDistance: Float
     @JvmName("pathMaxDistanceProperty")
@@ -217,9 +175,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining which navigation layers of navigation regions this agent will use to
-   * calculate a path. Changing it during runtime will clear the current navigation path and generate a
-   * new one, according to the new navigation layers.
+   * A bitfield determining which navigation layers of navigation regions this agent will use to calculate a path. Changing it during runtime will clear the current navigation path and generate a new one, according to the new navigation layers.
    */
   public final inline var navigationLayers: Long
     @JvmName("navigationLayersProperty")
@@ -263,13 +219,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true` a simplified version of the path will be returned with less critical path points
-   * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
-   * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   * If `true` a simplified version of the path will be returned with less critical path points removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
    *
-   * Path simplification can be helpful to mitigate various path following issues that can arise
-   * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
-   * fields".
+   * Path simplification can be helpful to mitigate various path following issues that can arise with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open fields".
    */
   public final inline var simplifyPath: Boolean
     @JvmName("simplifyPathProperty")
@@ -291,11 +243,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true` the agent is registered for an RVO avoidance callback on the [NavigationServer3D].
-   * When [velocity] is set and the processing is completed a `safe_velocity` Vector3 is received with
-   * a signal connection to [signal velocity_computed]. Avoidance processing with many registered
-   * agents has a significant performance cost and should only be enabled on agents that currently
-   * require it.
+   * If `true` the agent is registered for an RVO avoidance callback on the [NavigationServer3D]. When [velocity] is set and the processing is completed a `safe_velocity` Vector3 is received with a signal connection to [signal velocity_computed]. Avoidance processing with many registered agents has a significant performance cost and should only be enabled on agents that currently require it.
    */
   public final inline var avoidanceEnabled: Boolean
     @JvmName("avoidanceEnabledProperty")
@@ -306,17 +254,11 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
-   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
-   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
-   * simulation velocity.
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector3
@@ -328,9 +270,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The height of the avoidance agent. Agents will ignore other agents or obstacles that are above
-   * or below their current position + height in 2D avoidance. Does nothing in 3D avoidance which uses
-   * radius spheres alone.
+   * The height of the avoidance agent. Agents will ignore other agents or obstacles that are above or below their current position + height in 2D avoidance. Does nothing in 3D avoidance which uses radius spheres alone.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -341,12 +281,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the
-   * avoidance maneuver starting radius (which is controlled by [neighborDistance]).
+   * The radius of the avoidance agent. This is the "body" of the avoidance agent and not the avoidance maneuver starting radius (which is controlled by [neighborDistance]).
    *
-   * Does not affect normal pathfinding. To change an actor's pathfinding radius bake
-   * [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use
-   * different navigation maps for each actor size.
+   * Does not affect normal pathfinding. To change an actor's pathfinding radius bake [NavigationMesh] resources with a different [NavigationMesh.agentRadius] property and use different navigation maps for each actor size.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -379,10 +316,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the
-   * collision avoidance algorithm, are safe with respect to other agents. The larger the number, the
-   * sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too
-   * high value will slow down agents movement considerably. Must be positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to other agents. The larger the number, the sooner the agent will respond to other agents, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
    */
   public final inline var timeHorizonAgents: Float
     @JvmName("timeHorizonAgentsProperty")
@@ -393,11 +327,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The minimal amount of time for which this agent's velocities, that are computed with the
-   * collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the
-   * number, the sooner the agent will respond to static avoidance obstacles, but less freedom in
-   * choosing its velocities. A too high value will slow down agents movement considerably. Must be
-   * positive.
+   * The minimal amount of time for which this agent's velocities, that are computed with the collision avoidance algorithm, are safe with respect to static avoidance obstacles. The larger the number, the sooner the agent will respond to static avoidance obstacles, but less freedom in choosing its velocities. A too high value will slow down agents movement considerably. Must be positive.
    */
   public final inline var timeHorizonObstacles: Float
     @JvmName("timeHorizonObstaclesProperty")
@@ -419,15 +349,9 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true`, the agent calculates avoidance velocities in 3D omnidirectionally, e.g. for games
-   * that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents
-   * using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based
-   * obstacles.
+   * If `true`, the agent calculates avoidance velocities in 3D omnidirectionally, e.g. for games that take place in air, underwater or space. Agents using 3D avoidance only avoid other agents using 3D avoidance, and react to radius-based avoidance obstacles. They ignore any vertex-based obstacles.
    *
-   * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring
-   * the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to
-   * radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D
-   * avoidance that are below or above their current position including [height] are ignored.
+   * If `false`, the agent calculates avoidance velocities in 2D along the x and z-axes, ignoring the y-axis. Agents using 2D avoidance only avoid other agents using 2D avoidance, and react to radius-based avoidance obstacles or vertex-based avoidance obstacles. Other agents using 2D avoidance that are below or above their current position including [height] are ignored.
    */
   public final inline var use3dAvoidance: Boolean
     @JvmName("use3dAvoidanceProperty")
@@ -438,9 +362,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and
-   * reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat
-   * plane this setting can help to soften the most obvious clipping on uneven 3D geometry.
+   * If `true`, and the agent uses 2D avoidance, it will remember the set y-axis velocity and reapply it after the avoidance step. While 2D avoidance has no y-axis and simulates on a flat plane this setting can help to soften the most obvious clipping on uneven 3D geometry.
    */
   public final inline var keepYVelocity: Boolean
     @JvmName("keepYVelocityProperty")
@@ -451,8 +373,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a
-   * matching bit on the [avoidanceMask] will avoid this agent.
+   * A bitfield determining the avoidance layers for this NavigationAgent. Other agents with a matching bit on the [avoidanceMask] will avoid this agent.
    */
   public final inline var avoidanceLayers: Long
     @JvmName("avoidanceLayersProperty")
@@ -463,8 +384,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will
-   * avoid when a bit matches at least one of their [avoidanceLayers].
+   * A bitfield determining what other avoidance agents and obstacles this NavigationAgent will avoid when a bit matches at least one of their [avoidanceLayers].
    */
   public final inline var avoidanceMask: Long
     @JvmName("avoidanceMaskProperty")
@@ -475,9 +395,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask]
-   * but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority
-   * adjust their velocities even more to avoid collision with this agent.
+   * The agent does not adjust the velocity for other agents that would match the [avoidanceMask] but have a lower [avoidancePriority]. This in turn makes the other agents with lower priority adjust their velocities even more to avoid collision with this agent.
    */
   public final inline var avoidancePriority: Float
     @JvmName("avoidancePriorityProperty")
@@ -513,11 +431,8 @@ public open class NavigationAgent3D : Node() {
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var debugPathCustomColor: Color
@@ -529,8 +444,7 @@ public open class NavigationAgent3D : Node() {
     }
 
   /**
-   * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for
-   * this agent instead of global point size.
+   * If [debugUseCustom] is `true` uses this rasterized point size for rendering path points for this agent instead of global point size.
    */
   public final inline var debugPathCustomPointSize: Float
     @JvmName("debugPathCustomPointSizeProperty")
@@ -540,7 +454,7 @@ public open class NavigationAgent3D : Node() {
       setDebugPathCustomPointSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(375, scriptIndex)
   }
 
@@ -555,8 +469,7 @@ public open class NavigationAgent3D : Node() {
    * navigationagent3d.targetPosition = myCoreType
    * ``````
    *
-   * If set, a new navigation path from the current agent position to the [targetPosition] is
-   * requested from the NavigationServer.
+   * If set, a new navigation path from the current agent position to the [targetPosition] is requested from the NavigationServer.
    */
   @CoreTypeHelper
   public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply {
@@ -575,10 +488,7 @@ public open class NavigationAgent3D : Node() {
    * navigationagent3d.velocity = myCoreType
    * ``````
    *
-   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this
-   * velocity if possible but will modify it to avoid collision with other agents and obstacles. When
-   * an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal
-   * simulation velocity.
+   * Sets the new wanted velocity for the agent. The avoidance simulation will try to fulfill this velocity if possible but will modify it to avoid collision with other agents and obstacles. When an agent is teleported to a new position, use [setVelocityForced] as well to reset the internal simulation velocity.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
@@ -600,8 +510,7 @@ public open class NavigationAgent3D : Node() {
    * If [debugUseCustom] is `true` uses this color for this agent instead of global color.
    */
   @CoreTypeHelper
-  public final fun debugPathCustomColorMutate(block: Color.() -> Unit): Color =
-      debugPathCustomColor.apply {
+  public final fun debugPathCustomColorMutate(block: Color.() -> Unit): Color = debugPathCustomColor.apply {
      block(this)
      debugPathCustomColor = this
   }
@@ -615,7 +524,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setAvoidanceEnabled(enabled: Boolean): Unit {
+  public final fun setAvoidanceEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceEnabledPtr, NIL)
   }
@@ -626,7 +535,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPathDesiredDistance(desiredDistance: Float): Unit {
+  public final fun setPathDesiredDistance(desiredDistance: Float) {
     TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathDesiredDistancePtr, NIL)
   }
@@ -637,7 +546,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTargetDesiredDistance(desiredDistance: Float): Unit {
+  public final fun setTargetDesiredDistance(desiredDistance: Float) {
     TransferContext.writeArguments(DOUBLE to desiredDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTargetDesiredDistancePtr, NIL)
   }
@@ -648,7 +557,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -659,7 +568,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -670,7 +579,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPathHeightOffset(pathHeightOffset: Float): Unit {
+  public final fun setPathHeightOffset(pathHeightOffset: Float) {
     TransferContext.writeArguments(DOUBLE to pathHeightOffset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathHeightOffsetPtr, NIL)
   }
@@ -681,7 +590,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUse3dAvoidance(enabled: Boolean): Unit {
+  public final fun setUse3dAvoidance(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUse3dAvoidancePtr, NIL)
   }
@@ -692,7 +601,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setKeepYVelocity(enabled: Boolean): Unit {
+  public final fun setKeepYVelocity(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setKeepYVelocityPtr, NIL)
   }
@@ -703,7 +612,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNeighborDistance(neighborDistance: Float): Unit {
+  public final fun setNeighborDistance(neighborDistance: Float) {
     TransferContext.writeArguments(DOUBLE to neighborDistance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setNeighborDistancePtr, NIL)
   }
@@ -714,7 +623,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxNeighbors(maxNeighbors: Int): Unit {
+  public final fun setMaxNeighbors(maxNeighbors: Int) {
     TransferContext.writeArguments(LONG to maxNeighbors.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxNeighborsPtr, NIL)
   }
@@ -725,7 +634,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTimeHorizonAgents(timeHorizon: Float): Unit {
+  public final fun setTimeHorizonAgents(timeHorizon: Float) {
     TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTimeHorizonAgentsPtr, NIL)
   }
@@ -736,7 +645,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTimeHorizonObstacles(timeHorizon: Float): Unit {
+  public final fun setTimeHorizonObstacles(timeHorizon: Float) {
     TransferContext.writeArguments(DOUBLE to timeHorizon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTimeHorizonObstaclesPtr, NIL)
   }
@@ -747,7 +656,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxSpeed(maxSpeed: Float): Unit {
+  public final fun setMaxSpeed(maxSpeed: Float) {
     TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxSpeedPtr, NIL)
   }
@@ -758,7 +667,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPathMaxDistance(maxSpeed: Float): Unit {
+  public final fun setPathMaxDistance(maxSpeed: Float) {
     TransferContext.writeArguments(DOUBLE to maxSpeed.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPathMaxDistancePtr, NIL)
   }
@@ -769,7 +678,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setNavigationLayers(navigationLayers: Long): Unit {
+  public final fun setNavigationLayers(navigationLayers: Long) {
     TransferContext.writeArguments(LONG to navigationLayers)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
   }
@@ -781,17 +690,15 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
-   * given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
-  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -799,9 +706,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final
-      fun setPathfindingAlgorithm(pathfindingAlgorithm: NavigationPathQueryParameters3D.PathfindingAlgorithm):
-      Unit {
+  public final fun setPathfindingAlgorithm(pathfindingAlgorithm: NavigationPathQueryParameters3D.PathfindingAlgorithm) {
     TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
@@ -812,9 +717,7 @@ public open class NavigationAgent3D : Node() {
     return NavigationPathQueryParameters3D.PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final
-      fun setPathPostprocessing(pathPostprocessing: NavigationPathQueryParameters3D.PathPostProcessing):
-      Unit {
+  public final fun setPathPostprocessing(pathPostprocessing: NavigationPathQueryParameters3D.PathPostProcessing) {
     TransferContext.writeArguments(LONG to pathPostprocessing.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
@@ -825,8 +728,7 @@ public open class NavigationAgent3D : Node() {
     return NavigationPathQueryParameters3D.PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters3D.PathMetadataFlags):
-      Unit {
+  public final fun setPathMetadataFlags(flags: NavigationPathQueryParameters3D.PathMetadataFlags) {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setPathMetadataFlagsPtr, NIL)
   }
@@ -838,20 +740,15 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the
-   * `agent` on the NavigationServer.
+   * Sets the [RID] of the navigation map this NavigationAgent node should use and also updates the `agent` on the NavigationServer.
    */
-  public final fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID) {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
   }
 
   /**
-   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns
-   * always the map set on the NavigationAgent node and not the map of the abstract agent on the
-   * NavigationServer. If the agent map is changed directly with the NavigationServer API the
-   * NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the
-   * navigation map for the NavigationAgent and also update the agent on the NavigationServer.
+   * Returns the [RID] of the navigation map for this NavigationAgent node. This function returns always the map set on the NavigationAgent node and not the map of the abstract agent on the NavigationServer. If the agent map is changed directly with the NavigationServer API the NavigationAgent node will not be aware of the map change. Use [setNavigationMap] to change the navigation map for the NavigationAgent and also update the agent on the NavigationServer.
    */
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
@@ -859,7 +756,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setTargetPosition(position: Vector3): Unit {
+  public final fun setTargetPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
@@ -870,7 +767,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setSimplifyPath(enabled: Boolean): Unit {
+  public final fun setSimplifyPath(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSimplifyPathPtr, NIL)
   }
@@ -881,7 +778,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSimplifyEpsilon(epsilon: Float): Unit {
+  public final fun setSimplifyEpsilon(epsilon: Float) {
     TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
@@ -893,10 +790,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the next position in global coordinates that can be moved to, making sure that there
-   * are no static objects in the way. If the agent does not have a navigation path, it will return the
-   * position of the agent's parent. The use of this function once every physics frame is required to
-   * update the internal path logic of the NavigationAgent.
+   * Returns the next position in global coordinates that can be moved to, making sure that there are no static objects in the way. If the agent does not have a navigation path, it will return the position of the agent's parent. The use of this function once every physics frame is required to update the internal path logic of the NavigationAgent.
    */
   public final fun getNextPathPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -905,16 +799,14 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an
-   * agent is teleported to a new position this function should be used in the same frame. If called
-   * frequently this function can get agents stuck.
+   * Replaces the internal velocity in the collision avoidance simulation with [velocity]. When an agent is teleported to a new position this function should be used in the same frame. If called frequently this function can get agents stuck.
    */
-  public final fun setVelocityForced(velocity: Vector3): Unit {
+  public final fun setVelocityForced(velocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityForcedPtr, NIL)
   }
 
-  public final fun setVelocity(velocity: Vector3): Unit {
+  public final fun setVelocity(velocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
   }
@@ -926,8 +818,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the distance to the target position, using the agent's global position. The user must
-   * set [targetPosition] in order for this to be accurate.
+   * Returns the distance to the target position, using the agent's global position. The user must set [targetPosition] in order for this to be accurate.
    */
   public final fun distanceToTarget(): Float {
     TransferContext.writeArguments()
@@ -945,17 +836,11 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns this agent's current path from start to finish in global coordinates. The path only
-   * updates when the target position is changed or the agent requires a repath. The path array is not
-   * intended to be used in direct path movement as the agent has its own internal path logic that
-   * would get corrupted by changing the path array manually. Use the intended [getNextPathPosition]
-   * once every physics frame to receive the next path point for the agents movement as this function
-   * also updates the internal path logic.
+   * Returns this agent's current path from start to finish in global coordinates. The path only updates when the target position is changed or the agent requires a repath. The path array is not intended to be used in direct path movement as the agent has its own internal path logic that would get corrupted by changing the path array manually. Use the intended [getNextPathPosition] once every physics frame to receive the next path point for the agents movement as this function also updates the internal path logic.
    */
   public final fun getCurrentNavigationPath(): PackedVector3Array {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr,
-        PACKED_VECTOR3_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getCurrentNavigationPathPtr, PACKED_VECTOR3_ARRAY)
     return (TransferContext.readReturnValue(PACKED_VECTOR3_ARRAY) as PackedVector3Array)
   }
 
@@ -969,9 +854,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns `true` if the agent reached the target, i.e. the agent moved within
-   * [targetDesiredDistance] of the [targetPosition]. It may not always be possible to reach the target
-   * but it should always be possible to reach the final position. See [getFinalPosition].
+   * Returns `true` if the agent reached the target, i.e. the agent moved within [targetDesiredDistance] of the [targetPosition]. It may not always be possible to reach the target but it should always be possible to reach the final position. See [getFinalPosition].
    */
   public final fun isTargetReached(): Boolean {
     TransferContext.writeArguments()
@@ -989,12 +872,9 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns `true` if the agent's navigation has finished. If the target is reachable, navigation
-   * ends when the target is reached. If the target is unreachable, navigation ends when the last
-   * waypoint of the path is reached.
+   * Returns `true` if the agent's navigation has finished. If the target is reachable, navigation ends when the target is reached. If the target is unreachable, navigation ends when the last waypoint of the path is reached.
    *
-   * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This
-   * avoids jittering the standing agent due to calling repeated path updates.
+   * **Note:** While `true` prefer to stop calling update functions like [getNextPathPosition]. This avoids jittering the standing agent due to calling repeated path updates.
    */
   public final fun isNavigationFinished(): Boolean {
     TransferContext.writeArguments()
@@ -1003,9 +883,7 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Returns the reachable final position of the current navigation path in global coordinates. This
-   * position can change if the agent needs to update the navigation path which makes the agent emit
-   * the [signal path_changed] signal.
+   * Returns the reachable final position of the current navigation path in global coordinates. This position can change if the agent needs to update the navigation path which makes the agent emit the [signal path_changed] signal.
    */
   public final fun getFinalPosition(): Vector3 {
     TransferContext.writeArguments()
@@ -1013,7 +891,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setAvoidanceLayers(layers: Long): Unit {
+  public final fun setAvoidanceLayers(layers: Long) {
     TransferContext.writeArguments(LONG to layers)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceLayersPtr, NIL)
   }
@@ -1024,7 +902,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAvoidanceMask(mask: Long): Unit {
+  public final fun setAvoidanceMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceMaskPtr, NIL)
   }
@@ -1036,17 +914,15 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask,
-   * given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [avoidanceLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
-  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [avoidanceLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getAvoidanceLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -1055,17 +931,15 @@ public open class NavigationAgent3D : Node() {
   }
 
   /**
-   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given
-   * a [maskNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified mask in the [avoidanceMask] bitmask, given a [maskNumber] between 1 and 32.
    */
-  public final fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean): Unit {
+  public final fun setAvoidanceMaskValue(maskNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to maskNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setAvoidanceMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a
-   * [maskNumber] between 1 and 32.
+   * Returns whether or not the specified mask of the [avoidanceMask] bitmask is enabled, given a [maskNumber] between 1 and 32.
    */
   public final fun getAvoidanceMaskValue(maskNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to maskNumber.toLong())
@@ -1073,7 +947,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAvoidancePriority(priority: Float): Unit {
+  public final fun setAvoidancePriority(priority: Float) {
     TransferContext.writeArguments(DOUBLE to priority.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAvoidancePriorityPtr, NIL)
   }
@@ -1084,7 +958,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDebugEnabled(enabled: Boolean): Unit {
+  public final fun setDebugEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDebugEnabledPtr, NIL)
   }
@@ -1095,7 +969,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDebugUseCustom(enabled: Boolean): Unit {
+  public final fun setDebugUseCustom(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDebugUseCustomPtr, NIL)
   }
@@ -1106,7 +980,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDebugPathCustomColor(color: Color): Unit {
+  public final fun setDebugPathCustomColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setDebugPathCustomColorPtr, NIL)
   }
@@ -1117,7 +991,7 @@ public open class NavigationAgent3D : Node() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setDebugPathCustomPointSize(pointSize: Float): Unit {
+  public final fun setDebugPathCustomPointSize(pointSize: Float) {
     TransferContext.writeArguments(DOUBLE to pointSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDebugPathCustomPointSizePtr, NIL)
   }
@@ -1132,234 +1006,234 @@ public open class NavigationAgent3D : Node() {
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_rid", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_rid", 2_944_877_500)
 
     internal val setAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_enabled", 2_586_408_642)
 
     internal val getAvoidanceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_enabled", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_enabled", 36_873_697)
 
     internal val setPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_desired_distance", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_desired_distance", 373_806_689)
 
     internal val getPathDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_desired_distance", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_desired_distance", 1_740_695_150)
 
     internal val setTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_target_desired_distance", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_target_desired_distance", 373_806_689)
 
     internal val getTargetDesiredDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_target_desired_distance", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_target_desired_distance", 1_740_695_150)
 
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_radius", 1_740_695_150)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_height", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_height", 1_740_695_150)
 
     internal val setPathHeightOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_height_offset", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_height_offset", 373_806_689)
 
     internal val getPathHeightOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_height_offset", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_height_offset", 1_740_695_150)
 
     internal val setUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_use_3d_avoidance", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_use_3d_avoidance", 2_586_408_642)
 
     internal val getUse3dAvoidancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_use_3d_avoidance", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_use_3d_avoidance", 36_873_697)
 
     internal val setKeepYVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_keep_y_velocity", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_keep_y_velocity", 2_586_408_642)
 
     internal val getKeepYVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_keep_y_velocity", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_keep_y_velocity", 36_873_697)
 
     internal val setNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_neighbor_distance", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_neighbor_distance", 373_806_689)
 
     internal val getNeighborDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_neighbor_distance", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_neighbor_distance", 1_740_695_150)
 
     internal val setMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_max_neighbors", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_max_neighbors", 1_286_410_249)
 
     internal val getMaxNeighborsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_max_neighbors", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_max_neighbors", 3_905_245_786)
 
     internal val setTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_time_horizon_agents", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_time_horizon_agents", 373_806_689)
 
     internal val getTimeHorizonAgentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_time_horizon_agents", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_time_horizon_agents", 1_740_695_150)
 
     internal val setTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_time_horizon_obstacles", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_time_horizon_obstacles", 373_806_689)
 
     internal val getTimeHorizonObstaclesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_time_horizon_obstacles", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_time_horizon_obstacles", 1_740_695_150)
 
     internal val setMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_max_speed", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_max_speed", 373_806_689)
 
     internal val getMaxSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_max_speed", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_max_speed", 1_740_695_150)
 
     internal val setPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_max_distance", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_max_distance", 373_806_689)
 
     internal val getPathMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_max_distance", 191475506)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_max_distance", 191_475_506)
 
     internal val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_layers", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_layers", 1_286_410_249)
 
     internal val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_layers", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_layers", 3_905_245_786)
 
     internal val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_layer_value", 300_928_843)
 
     internal val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_layer_value", 1_116_898_809)
 
     internal val setPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_pathfinding_algorithm", 394560454)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_pathfinding_algorithm", 394_560_454)
 
     internal val getPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_pathfinding_algorithm", 3398491350)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_pathfinding_algorithm", 3_398_491_350)
 
     internal val setPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_postprocessing", 2267362344)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_postprocessing", 2_267_362_344)
 
     internal val getPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_postprocessing", 3883858360)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_postprocessing", 3_883_858_360)
 
     internal val setPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_metadata_flags", 2713846708)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_path_metadata_flags", 2_713_846_708)
 
     internal val getPathMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_metadata_flags", 1582332802)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_path_metadata_flags", 1_582_332_802)
 
     internal val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_map", 2722037293)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_navigation_map", 2_722_037_293)
 
     internal val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_map", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_navigation_map", 2_944_877_500)
 
     internal val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_target_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_target_position", 3_460_891_852)
 
     internal val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_target_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_target_position", 3_360_562_783)
 
     internal val setSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_path", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_path", 2_586_408_642)
 
     internal val getSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_path", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_path", 36_873_697)
 
     internal val setSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_epsilon", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_simplify_epsilon", 373_806_689)
 
     internal val getSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_epsilon", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_simplify_epsilon", 1_740_695_150)
 
     internal val getNextPathPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_next_path_position", 3783033775)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_next_path_position", 3_783_033_775)
 
     internal val setVelocityForcedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_velocity_forced", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_velocity_forced", 3_460_891_852)
 
     internal val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_velocity", 3_460_891_852)
 
     internal val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_velocity", 3783033775)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_velocity", 3_783_033_775)
 
     internal val distanceToTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "distance_to_target", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "distance_to_target", 1_740_695_150)
 
     internal val getCurrentNavigationResultPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_result", 728825684)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_result", 728_825_684)
 
     internal val getCurrentNavigationPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_path", 497664490)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_path", 497_664_490)
 
     internal val getCurrentNavigationPathIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_path_index", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_current_navigation_path_index", 3_905_245_786)
 
     internal val isTargetReachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_target_reached", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_target_reached", 36_873_697)
 
     internal val isTargetReachablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_target_reachable", 2240911060)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_target_reachable", 2_240_911_060)
 
     internal val isNavigationFinishedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_navigation_finished", 2240911060)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "is_navigation_finished", 2_240_911_060)
 
     internal val getFinalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_final_position", 3783033775)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_final_position", 3_783_033_775)
 
     internal val setAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_layers", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_layers", 1_286_410_249)
 
     internal val getAvoidanceLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_layers", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_layers", 3_905_245_786)
 
     internal val setAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_mask", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_mask", 1_286_410_249)
 
     internal val getAvoidanceMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_mask", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_mask", 3_905_245_786)
 
     internal val setAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_layer_value", 300_928_843)
 
     internal val getAvoidanceLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_layer_value", 1_116_898_809)
 
     internal val setAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_mask_value", 300_928_843)
 
     internal val getAvoidanceMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_mask_value", 1_116_898_809)
 
     internal val setAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_priority", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_avoidance_priority", 373_806_689)
 
     internal val getAvoidancePriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_priority", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_avoidance_priority", 1_740_695_150)
 
     internal val setDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_enabled", 2_586_408_642)
 
     internal val getDebugEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_enabled", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_enabled", 36_873_697)
 
     internal val setDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_use_custom", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_use_custom", 2_586_408_642)
 
     internal val getDebugUseCustomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_use_custom", 36873697)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_use_custom", 36_873_697)
 
     internal val setDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_path_custom_color", 2920490490)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_path_custom_color", 2_920_490_490)
 
     internal val getDebugPathCustomColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_path_custom_color", 3444240500)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_path_custom_color", 3_444_240_500)
 
     internal val setDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_path_custom_point_size", 373806689)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "set_debug_path_custom_point_size", 373_806_689)
 
     internal val getDebugPathCustomPointSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_path_custom_point_size", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationAgent3D", "get_debug_path_custom_point_size", 1_740_695_150)
   }
 }

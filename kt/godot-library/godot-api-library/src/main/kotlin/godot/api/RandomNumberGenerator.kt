@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,13 +17,11 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses
- * [url=https://www.pcg-random.org/]PCG32[/url].
+ * RandomNumberGenerator is a class for generating pseudo-random numbers. It currently uses [url=https://www.pcg-random.org/]PCG32[/url].
  *
  * **Note:** The underlying algorithm is an implementation detail and should not be depended upon.
  *
@@ -41,18 +36,13 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class RandomNumberGenerator : RefCounted() {
   /**
-   * Initializes the random number generator state based on the given seed value. A given seed will
-   * give a reproducible sequence of pseudo-random numbers.
+   * Initializes the random number generator state based on the given seed value. A given seed will give a reproducible sequence of pseudo-random numbers.
    *
-   * **Note:** The RNG does not have an avalanche effect, and can output similar random streams
-   * given similar seeds. Consider using a hash function to improve your seed quality if they're
-   * sourced externally.
+   * **Note:** The RNG does not have an avalanche effect, and can output similar random streams given similar seeds. Consider using a hash function to improve your seed quality if they're sourced externally.
    *
-   * **Note:** Setting this property produces a side effect of changing the internal [state], so
-   * make sure to initialize the seed *before* modifying the [state]:
+   * **Note:** Setting this property produces a side effect of changing the internal [state], so make sure to initialize the seed *before* modifying the [state]:
    *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling
-   * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    *
    * ```
    * var rng = RandomNumberGenerator.new()
@@ -69,8 +59,7 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   /**
-   * The current state of the random number generator. Save and restore this property to restore the
-   * generator to a previous state:
+   * The current state of the random number generator. Save and restore this property to restore the generator to a previous state:
    *
    * ```
    * var rng = RandomNumberGenerator.new()
@@ -81,13 +70,9 @@ public open class RandomNumberGenerator : RefCounted() {
    * print(rng.randf()) # Prints the same value as previously.
    * ```
    *
-   * **Note:** Do not set state to arbitrary values, since the random number generator requires the
-   * state to have certain qualities to behave properly. It should only be set to values that came from
-   * the state property itself. To initialize the random number generator with arbitrary input, use
-   * [seed] instead.
+   * **Note:** Do not set state to arbitrary values, since the random number generator requires the state to have certain qualities to behave properly. It should only be set to values that came from the state property itself. To initialize the random number generator with arbitrary input, use [seed] instead.
    *
-   * **Note:** The default value of this property is pseudo-random, and changes when calling
-   * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   * **Note:** The default value of this property is pseudo-random, and changes when calling [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
    */
   public final inline var state: Long
     @JvmName("stateProperty")
@@ -97,11 +82,11 @@ public open class RandomNumberGenerator : RefCounted() {
       setState(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(529, scriptIndex)
   }
 
-  public final fun setSeed(seed: Long): Unit {
+  public final fun setSeed(seed: Long) {
     TransferContext.writeArguments(LONG to seed)
     TransferContext.callMethod(ptr, MethodBindings.setSeedPtr, NIL)
   }
@@ -112,7 +97,7 @@ public open class RandomNumberGenerator : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setState(state: Long): Unit {
+  public final fun setState(state: Long) {
     TransferContext.writeArguments(LONG to state)
     TransferContext.callMethod(ptr, MethodBindings.setStatePtr, NIL)
   }
@@ -142,13 +127,9 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url],
-   * pseudo-random floating-point number from the specified [mean] and a standard [deviation]. This is
-   * also known as a Gaussian distribution.
+   * Returns a [url=https://en.wikipedia.org/wiki/Normal_distribution]normally-distributed[/url], pseudo-random floating-point number from the specified [mean] and a standard [deviation]. This is also known as a Gaussian distribution.
    *
-   * **Note:** This method uses the
-   * [url=https://en.wikipedia.org/wiki/Box&#37;E2&#37;80&#37;93Muller_transform]Box-Muller
-   * transform[/url] algorithm.
+   * **Note:** This method uses the [url=https://en.wikipedia.org/wiki/Box&#37;E2&#37;80&#37;93Muller_transform]Box-Muller transform[/url] algorithm.
    */
   @JvmOverloads
   public final fun randfn(mean: Float = 0.0f, deviation: Float = 1.0f): Float {
@@ -176,8 +157,7 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Returns a random index with non-uniform weights. Prints an error and returns `-1` if the array
-   * is empty.
+   * Returns a random index with non-uniform weights. Prints an error and returns `-1` if the array is empty.
    *
    * ```gdscript
    * //gdscript
@@ -198,11 +178,9 @@ public open class RandomNumberGenerator : RefCounted() {
   }
 
   /**
-   * Sets up a time-based seed for this [RandomNumberGenerator] instance. Unlike the [@GlobalScope]
-   * random number generation functions, different [RandomNumberGenerator] instances can use different
-   * seeds.
+   * Sets up a time-based seed for this [RandomNumberGenerator] instance. Unlike the [@GlobalScope] random number generation functions, different [RandomNumberGenerator] instances can use different seeds.
    */
-  public final fun randomize(): Unit {
+  public final fun randomize() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.randomizePtr, NIL)
   }
@@ -211,36 +189,36 @@ public open class RandomNumberGenerator : RefCounted() {
 
   public object MethodBindings {
     internal val setSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1286410249)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_seed", 1_286_410_249)
 
     internal val getSeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2455072627)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_seed", 2_455_072_627)
 
     internal val setStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state", 1286410249)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "set_state", 1_286_410_249)
 
     internal val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state", 3905245786)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "get_state", 3_905_245_786)
 
     internal val randiPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi", 2455072627)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi", 2_455_072_627)
 
     internal val randfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf", 191475506)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf", 191_475_506)
 
     internal val randfnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn", 837325100)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randfn", 837_325_100)
 
     internal val randfRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4269894367)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randf_range", 4_269_894_367)
 
     internal val randiRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50157827)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randi_range", 50_157_827)
 
     internal val randWeightedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4189642986)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "rand_weighted", 4_189_642_986)
 
     internal val randomizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize", 3218959716)
+        TypeManager.getMethodBindPtr("RandomNumberGenerator", "randomize", 3_218_959_716)
   }
 }

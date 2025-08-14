@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,7 +27,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -58,12 +54,11 @@ import kotlin.jvm.JvmOverloads
  * mesh.SurfaceEnd();
  * ```
  *
- * **Note:** Generating complex geometries with [ImmediateMesh] is highly inefficient. Instead, it
- * is designed to generate simple geometry that changes often.
+ * **Note:** Generating complex geometries with [ImmediateMesh] is highly inefficient. Instead, it is designed to generate simple geometry that changes often.
  */
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(288, scriptIndex)
   }
 
@@ -71,7 +66,7 @@ public open class ImmediateMesh : Mesh() {
    * Begin a new surface.
    */
   @JvmOverloads
-  public final fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
+  public final fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null) {
     TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.surfaceBeginPtr, NIL)
   }
@@ -79,7 +74,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the color attribute that will be pushed with the next vertex.
    */
-  public final fun surfaceSetColor(color: Color): Unit {
+  public final fun surfaceSetColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetColorPtr, NIL)
   }
@@ -87,7 +82,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the normal attribute that will be pushed with the next vertex.
    */
-  public final fun surfaceSetNormal(normal: Vector3): Unit {
+  public final fun surfaceSetNormal(normal: Vector3) {
     TransferContext.writeArguments(VECTOR3 to normal)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetNormalPtr, NIL)
   }
@@ -95,7 +90,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the tangent attribute that will be pushed with the next vertex.
    */
-  public final fun surfaceSetTangent(tangent: Plane): Unit {
+  public final fun surfaceSetTangent(tangent: Plane) {
     TransferContext.writeArguments(PLANE to tangent)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetTangentPtr, NIL)
   }
@@ -103,7 +98,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV attribute that will be pushed with the next vertex.
    */
-  public final fun surfaceSetUv(uv: Vector2): Unit {
+  public final fun surfaceSetUv(uv: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetUvPtr, NIL)
   }
@@ -111,7 +106,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Set the UV2 attribute that will be pushed with the next vertex.
    */
-  public final fun surfaceSetUv2(uv2: Vector2): Unit {
+  public final fun surfaceSetUv2(uv2: Vector2) {
     TransferContext.writeArguments(VECTOR2 to uv2)
     TransferContext.callMethod(ptr, MethodBindings.surfaceSetUv2Ptr, NIL)
   }
@@ -119,7 +114,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 3D vertex using the current attributes previously set.
    */
-  public final fun surfaceAddVertex(vertex: Vector3): Unit {
+  public final fun surfaceAddVertex(vertex: Vector3) {
     TransferContext.writeArguments(VECTOR3 to vertex)
     TransferContext.callMethod(ptr, MethodBindings.surfaceAddVertexPtr, NIL)
   }
@@ -127,16 +122,15 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Add a 2D vertex using the current attributes previously set.
    */
-  public final fun surfaceAddVertex2d(vertex: Vector2): Unit {
+  public final fun surfaceAddVertex2d(vertex: Vector2) {
     TransferContext.writeArguments(VECTOR2 to vertex)
     TransferContext.callMethod(ptr, MethodBindings.surfaceAddVertex2dPtr, NIL)
   }
 
   /**
-   * End and commit current surface. Note that surface being created will not be visible until this
-   * function is called.
+   * End and commit current surface. Note that surface being created will not be visible until this function is called.
    */
-  public final fun surfaceEnd(): Unit {
+  public final fun surfaceEnd() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.surfaceEndPtr, NIL)
   }
@@ -144,7 +138,7 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Clear all surfaces.
    */
-  public final fun clearSurfaces(): Unit {
+  public final fun clearSurfaces() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearSurfacesPtr, NIL)
   }
@@ -152,98 +146,98 @@ public open class ImmediateMesh : Mesh() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getSurfaceCount(): Int {
+  override fun _getSurfaceCount(): Int {
     throw NotImplementedError("ImmediateMesh::_getSurfaceCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayLen(index: Int): Int {
+  override fun _surfaceGetArrayLen(index: Int): Int {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrayLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrayIndexLen(index: Int): Int {
+  override fun _surfaceGetArrayIndexLen(index: Int): Int {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrayIndexLen can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
+  override fun _surfaceGetArrays(index: Int): VariantArray<Any?> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
+  override fun _surfaceGetBlendShapeArrays(index: Int): VariantArray<VariantArray<Any?>> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetBlendShapeArrays can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
+  override fun _surfaceGetLods(index: Int): Dictionary<Any?, Any?> {
     throw NotImplementedError("ImmediateMesh::_surfaceGetLods can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetFormat(index: Int): Long {
+  override fun _surfaceGetFormat(index: Int): Long {
     throw NotImplementedError("ImmediateMesh::_surfaceGetFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetPrimitiveType(index: Int): Long {
+  override fun _surfaceGetPrimitiveType(index: Int): Long {
     throw NotImplementedError("ImmediateMesh::_surfaceGetPrimitiveType can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceSetMaterial(index: Int, material: Material?): Unit {
+  override fun _surfaceSetMaterial(index: Int, material: Material?) {
     throw NotImplementedError("ImmediateMesh::_surfaceSetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _surfaceGetMaterial(index: Int): Material? {
+  override fun _surfaceGetMaterial(index: Int): Material? {
     throw NotImplementedError("ImmediateMesh::_surfaceGetMaterial can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeCount(): Int {
+  override fun _getBlendShapeCount(): Int {
     throw NotImplementedError("ImmediateMesh::_getBlendShapeCount can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getBlendShapeName(index: Int): StringName {
+  override fun _getBlendShapeName(index: Int): StringName {
     throw NotImplementedError("ImmediateMesh::_getBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _setBlendShapeName(index: Int, name: StringName): Unit {
+  override fun _setBlendShapeName(index: Int, name: StringName) {
     throw NotImplementedError("ImmediateMesh::_setBlendShapeName can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getAabb(): AABB {
+  override fun _getAabb(): AABB {
     throw NotImplementedError("ImmediateMesh::_getAabb can't be called from the JVM.")
   }
 
@@ -251,33 +245,33 @@ public open class ImmediateMesh : Mesh() {
 
   public object MethodBindings {
     internal val surfaceBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_begin", 2794442543)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_begin", 2_794_442_543)
 
     internal val surfaceSetColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_color", 2920490490)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_color", 2_920_490_490)
 
     internal val surfaceSetNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_normal", 3460891852)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_normal", 3_460_891_852)
 
     internal val surfaceSetTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_tangent", 3505987427)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_tangent", 3_505_987_427)
 
     internal val surfaceSetUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv", 743155724)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv", 743_155_724)
 
     internal val surfaceSetUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv2", 743155724)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_set_uv2", 743_155_724)
 
     internal val surfaceAddVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex", 3460891852)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex", 3_460_891_852)
 
     internal val surfaceAddVertex2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d", 743155724)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_add_vertex_2d", 743_155_724)
 
     internal val surfaceEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_end", 3218959716)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "surface_end", 3_218_959_716)
 
     internal val clearSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ImmediateMesh", "clear_surfaces", 3218959716)
+        TypeManager.getMethodBindPtr("ImmediateMesh", "clear_surfaces", 3_218_959_716)
   }
 }

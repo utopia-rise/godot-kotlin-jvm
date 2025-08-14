@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,27 +15,21 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Exposes a set of tiles for a [TileSet] resource.
  *
- * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative
- * ID (of type int), named according to their use in the [TileSetAtlasSource] class.
+ * Tiles in a source are indexed with two IDs, coordinates ID (of type Vector2i) and an alternative ID (of type int), named according to their use in the [TileSetAtlasSource] class.
  *
- * Depending on the TileSet source type, those IDs might have restrictions on their values, this is
- * why the base [TileSetSource] class only exposes getters for them.
+ * Depending on the TileSet source type, those IDs might have restrictions on their values, this is why the base [TileSetSource] class only exposes getters for them.
  *
- * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs
- * using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount]
- * and [getAlternativeTileId].
+ * You can iterate over all tiles exposed by a TileSetSource by first iterating over coordinates IDs using [getTilesCount] and [getTileId], then over alternative IDs using [getAlternativeTilesCount] and [getAlternativeTileId].
  *
- * **Warning:** [TileSetSource] can only be added to one TileSet at the same time. Calling
- * [TileSet.addSource] on a second [TileSet] will remove the source from the first one.
+ * **Warning:** [TileSetSource] can only be added to one TileSet at the same time. Calling [TileSet.addSource] on a second [TileSet] will remove the source from the first one.
  */
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(688, scriptIndex)
   }
 
@@ -72,8 +63,7 @@ public open class TileSetSource internal constructor() : Resource() {
   /**
    * Returns the number of alternatives tiles for the coordinates ID [atlasCoords].
    *
-   * For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always
-   * part of the alternatives list.
+   * For [TileSetAtlasSource], this always return at least 1, as the base tile with ID 0 is always part of the alternatives list.
    *
    * Returns -1 if there is not tile at the given coords.
    */
@@ -93,8 +83,7 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   /**
-   * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID
-   * [alternativeTile].
+   * Returns if the base tile at coordinates [atlasCoords] has an alternative with ID [alternativeTile].
    */
   public final fun hasAlternativeTile(atlasCoords: Vector2i, alternativeTile: Int): Boolean {
     TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to alternativeTile.toLong())
@@ -106,21 +95,21 @@ public open class TileSetSource internal constructor() : Resource() {
 
   public object MethodBindings {
     internal val getTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_tiles_count", 3905245786)
+        TypeManager.getMethodBindPtr("TileSetSource", "get_tiles_count", 3_905_245_786)
 
     internal val getTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_tile_id", 880721226)
+        TypeManager.getMethodBindPtr("TileSetSource", "get_tile_id", 880_721_226)
 
     internal val hasTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "has_tile", 3900751641)
+        TypeManager.getMethodBindPtr("TileSetSource", "has_tile", 3_900_751_641)
 
     internal val getAlternativeTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tiles_count", 2485466453)
+        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tiles_count", 2_485_466_453)
 
     internal val getAlternativeTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tile_id", 89881719)
+        TypeManager.getMethodBindPtr("TileSetSource", "get_alternative_tile_id", 89_881_719)
 
     internal val hasAlternativeTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetSource", "has_alternative_tile", 1073731340)
+        TypeManager.getMethodBindPtr("TileSetSource", "has_alternative_tile", 1_073_731_340)
   }
 }

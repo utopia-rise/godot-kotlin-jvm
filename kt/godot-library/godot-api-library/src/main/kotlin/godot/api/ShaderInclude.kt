@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,20 +12,15 @@ import godot.core.VariantParser.STRING
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a
- * custom shader snippet that can be included in a [Shader] by using the preprocessor directive
- * `#include`, followed by the file path (e.g. `#include "res://shader_lib.gdshaderinc"`). The snippet
- * doesn't have to be a valid shader on its own.
+ * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a custom shader snippet that can be included in a [Shader] by using the preprocessor directive `#include`, followed by the file path (e.g. `#include "res://shader_lib.gdshaderinc"`). The snippet doesn't have to be a valid shader on its own.
  */
 @GodotBaseType
 public open class ShaderInclude : Resource() {
   /**
-   * Returns the code of the shader include file. The returned text is what the user has written,
-   * not the full generated code used internally.
+   * Returns the code of the shader include file. The returned text is what the user has written, not the full generated code used internally.
    */
   public final inline var code: String
     @JvmName("codeProperty")
@@ -38,11 +30,11 @@ public open class ShaderInclude : Resource() {
       setCode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(585, scriptIndex)
   }
 
-  public final fun setCode(code: String): Unit {
+  public final fun setCode(code: String) {
     TransferContext.writeArguments(STRING to code)
     TransferContext.callMethod(ptr, MethodBindings.setCodePtr, NIL)
   }
@@ -57,9 +49,9 @@ public open class ShaderInclude : Resource() {
 
   public object MethodBindings {
     internal val setCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderInclude", "set_code", 83702148)
+        TypeManager.getMethodBindPtr("ShaderInclude", "set_code", 83_702_148)
 
     internal val getCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ShaderInclude", "get_code", 201670096)
+        TypeManager.getMethodBindPtr("ShaderInclude", "get_code", 201_670_096)
   }
 }

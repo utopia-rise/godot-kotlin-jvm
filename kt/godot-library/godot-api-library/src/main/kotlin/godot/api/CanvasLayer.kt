@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,23 +31,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [CanvasItem]-derived nodes that are direct or indirect children of a [CanvasLayer] will be drawn
- * in that layer. The layer is a numeric index that defines the draw order. The default 2D scene
- * renders with index `0`, so a [CanvasLayer] with index `-1` will be drawn below, and a [CanvasLayer]
- * with index `1` will be drawn above. This order will hold regardless of the [CanvasItem.zIndex] of
- * the nodes within each layer.
+ * [CanvasItem]-derived nodes that are direct or indirect children of a [CanvasLayer] will be drawn in that layer. The layer is a numeric index that defines the draw order. The default 2D scene renders with index `0`, so a [CanvasLayer] with index `-1` will be drawn below, and a [CanvasLayer] with index `1` will be drawn above. This order will hold regardless of the [CanvasItem.zIndex] of the nodes within each layer.
  *
- * [CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them
- * useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1`
- * and lower).
+ * [CanvasLayer]s can be hidden and they can also optionally follow the viewport. This makes them useful for HUDs like health bar overlays (on layers `1` and higher) or backgrounds (on layers `-1` and lower).
  *
- * **Note:** Embedded [Window]s are placed on layer `1024`. [CanvasItem]s on layers `1025` and
- * higher appear in front of embedded windows.
+ * **Note:** Embedded [Window]s are placed on layer `1024`. [CanvasItem]s on layers `1025` and higher appear in front of embedded windows.
  *
- * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between
- * multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a
- * split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be
- * drawn on.
+ * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be drawn on.
  */
 @GodotBaseType
 public open class CanvasLayer : Node() {
@@ -62,9 +49,7 @@ public open class CanvasLayer : Node() {
   /**
    * Layer index for draw order. Lower values are drawn behind higher values.
    *
-   * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one
-   * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
-   * is drawn in front is non-deterministic.
+   * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer is drawn in front is non-deterministic.
    */
   public final inline var layer: Int
     @JvmName("layerProperty")
@@ -77,8 +62,7 @@ public open class CanvasLayer : Node() {
   /**
    * If `false`, any [CanvasItem] under this [CanvasLayer] will be hidden.
    *
-   * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying
-   * layers.
+   * Unlike [CanvasItem.visible], visibility of a [CanvasLayer] isn't propagated to underlying layers.
    */
   public final inline var visible: Boolean
     @JvmName("visibleProperty")
@@ -92,11 +76,8 @@ public open class CanvasLayer : Node() {
    * The layer's base offset.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -122,11 +103,8 @@ public open class CanvasLayer : Node() {
    * The layer's scale.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -141,11 +119,8 @@ public open class CanvasLayer : Node() {
    * The layer's transform.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform2D
@@ -157,8 +132,7 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * The custom [Viewport] node assigned to the [CanvasLayer]. If `null`, uses the default viewport
-   * instead.
+   * The custom [Viewport] node assigned to the [CanvasLayer]. If `null`, uses the default viewport instead.
    */
   public final inline var customViewport: Node?
     @JvmName("customViewportProperty")
@@ -169,8 +143,7 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the
-   * [CanvasLayer] maintains its position in world space.
+   * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the [CanvasLayer] maintains its position in world space.
    *
    * Together with [followViewportScale], this can be used for a pseudo-3D effect.
    */
@@ -183,8 +156,7 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should
-   * have increasing scales, while layers moving into the background should have decreasing scales.
+   * Scales the layer when using [followViewportEnabled]. Layers moving into the foreground should have increasing scales, while layers moving into the background should have decreasing scales.
    */
   public final inline var followViewportScale: Float
     @JvmName("followViewportScaleProperty")
@@ -194,7 +166,7 @@ public open class CanvasLayer : Node() {
       setFollowViewportScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(138, scriptIndex)
   }
 
@@ -255,7 +227,7 @@ public open class CanvasLayer : Node() {
      transform = this
   }
 
-  public final fun setLayer(layer: Int): Unit {
+  public final fun setLayer(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLayerPtr, NIL)
   }
@@ -266,7 +238,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setVisible(visible: Boolean): Unit {
+  public final fun setVisible(visible: Boolean) {
     TransferContext.writeArguments(BOOL to visible)
     TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
   }
@@ -278,24 +250,22 @@ public open class CanvasLayer : Node() {
   }
 
   /**
-   * Shows any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
-   * `true`.
+   * Shows any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to `true`.
    */
-  public final fun show(): Unit {
+  public final fun show() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPtr, NIL)
   }
 
   /**
-   * Hides any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to
-   * `false`.
+   * Hides any [CanvasItem] under this [CanvasLayer]. This is equivalent to setting [visible] to `false`.
    */
-  public final fun hide(): Unit {
+  public final fun hide() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hidePtr, NIL)
   }
 
-  public final fun setTransform(transform: Transform2D): Unit {
+  public final fun setTransform(transform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -307,8 +277,7 @@ public open class CanvasLayer : Node() {
   }
 
   /**
-   * Returns the transform from the [CanvasLayer]s coordinate system to the [Viewport]s coordinate
-   * system.
+   * Returns the transform from the [CanvasLayer]s coordinate system to the [Viewport]s coordinate system.
    */
   public final fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -316,7 +285,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -327,7 +296,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRotation(radians: Float): Unit {
+  public final fun setRotation(radians: Float) {
     TransferContext.writeArguments(DOUBLE to radians.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRotationPtr, NIL)
   }
@@ -338,7 +307,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setScale(scale: Vector2): Unit {
+  public final fun setScale(scale: Vector2) {
     TransferContext.writeArguments(VECTOR2 to scale)
     TransferContext.callMethod(ptr, MethodBindings.setScalePtr, NIL)
   }
@@ -349,7 +318,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setFollowViewport(enable: Boolean): Unit {
+  public final fun setFollowViewport(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFollowViewportPtr, NIL)
   }
@@ -360,7 +329,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFollowViewportScale(scale: Float): Unit {
+  public final fun setFollowViewportScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFollowViewportScalePtr, NIL)
   }
@@ -371,7 +340,7 @@ public open class CanvasLayer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCustomViewport(viewport: Node?): Unit {
+  public final fun setCustomViewport(viewport: Node?) {
     TransferContext.writeArguments(OBJECT to viewport)
     TransferContext.callMethod(ptr, MethodBindings.setCustomViewportPtr, NIL)
   }
@@ -395,67 +364,69 @@ public open class CanvasLayer : Node() {
 
   public object MethodBindings {
     internal val setLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_layer", 1286410249)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_layer", 1_286_410_249)
 
     internal val getLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_layer", 3905245786)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_layer", 3_905_245_786)
 
     internal val setVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_visible", 2586408642)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_visible", 2_586_408_642)
 
     internal val isVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "is_visible", 36873697)
+        TypeManager.getMethodBindPtr("CanvasLayer", "is_visible", 36_873_697)
 
-    internal val showPtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "show", 3218959716)
+    internal val showPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "show", 3_218_959_716)
 
-    internal val hidePtr: VoidPtr = TypeManager.getMethodBindPtr("CanvasLayer", "hide", 3218959716)
+    internal val hidePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CanvasLayer", "hide", 3_218_959_716)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_transform", 2761652528)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_transform", 2_761_652_528)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_transform", 3814499831)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_transform", 3_814_499_831)
 
     internal val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_final_transform", 3814499831)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_final_transform", 3_814_499_831)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_offset", 3_341_600_327)
 
     internal val setRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_rotation", 373806689)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_rotation", 373_806_689)
 
     internal val getRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_rotation", 1740695150)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_rotation", 1_740_695_150)
 
     internal val setScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_scale", 743155724)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_scale", 743_155_724)
 
     internal val getScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_scale", 3341600327)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_scale", 3_341_600_327)
 
     internal val setFollowViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport", 2586408642)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport", 2_586_408_642)
 
     internal val isFollowingViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "is_following_viewport", 36873697)
+        TypeManager.getMethodBindPtr("CanvasLayer", "is_following_viewport", 36_873_697)
 
     internal val setFollowViewportScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport_scale", 373806689)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_follow_viewport_scale", 373_806_689)
 
     internal val getFollowViewportScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_follow_viewport_scale", 1740695150)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_follow_viewport_scale", 1_740_695_150)
 
     internal val setCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "set_custom_viewport", 1078189570)
+        TypeManager.getMethodBindPtr("CanvasLayer", "set_custom_viewport", 1_078_189_570)
 
     internal val getCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_custom_viewport", 3160264692)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_custom_viewport", 3_160_264_692)
 
     internal val getCanvasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasLayer", "get_canvas", 2944877500)
+        TypeManager.getMethodBindPtr("CanvasLayer", "get_canvas", 2_944_877_500)
   }
 }

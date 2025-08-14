@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,23 +18,17 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * Stores information about mouse click events. See [Node.Input].
  *
- * **Note:** On Wear OS devices, rotary input is mapped to [MOUSE_BUTTON_WHEEL_UP] and
- * [MOUSE_BUTTON_WHEEL_DOWN]. This can be changed to [MOUSE_BUTTON_WHEEL_LEFT] and
- * [MOUSE_BUTTON_WHEEL_RIGHT] with the
- * [ProjectSettings.inputDevices/pointing/android/rotaryInputScrollAxis] setting.
+ * **Note:** On Wear OS devices, rotary input is mapped to [MOUSE_BUTTON_WHEEL_UP] and [MOUSE_BUTTON_WHEEL_DOWN]. This can be changed to [MOUSE_BUTTON_WHEEL_LEFT] and [MOUSE_BUTTON_WHEEL_RIGHT] with the [ProjectSettings.inputDevices/pointing/android/rotaryInputScrollAxis] setting.
  */
 @GodotBaseType
 public open class InputEventMouseButton : InputEventMouse() {
   /**
-   * The amount (or delta) of the event. When used for high-precision scroll events, this indicates
-   * the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported
-   * sensitivity varies depending on the platform. May be `0` if not supported.
+   * The amount (or delta) of the event. When used for high-precision scroll events, this indicates the scroll amount (vertical or horizontal). This is only supported on some platforms; the reported sensitivity varies depending on the platform. May be `0` if not supported.
    */
   public final inline var factor: Float
     @JvmName("factorProperty")
@@ -70,8 +61,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   /**
-   * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is
-   * released.
+   * If `true`, the mouse button's state is pressed. If `false`, the mouse button's state is released.
    */
   public final inline var pressed: Boolean
     @JvmName("pressedProperty")
@@ -92,11 +82,11 @@ public open class InputEventMouseButton : InputEventMouse() {
       setDoubleClick(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(302, scriptIndex)
   }
 
-  public final fun setFactor(factor: Float): Unit {
+  public final fun setFactor(factor: Float) {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFactorPtr, NIL)
   }
@@ -107,7 +97,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
+  public final fun setButtonIndex(buttonIndex: MouseButton) {
     TransferContext.writeArguments(LONG to buttonIndex.id)
     TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
@@ -118,17 +108,17 @@ public open class InputEventMouseButton : InputEventMouse() {
     return MouseButton.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public final fun setCanceled(canceled: Boolean): Unit {
+  public final fun setCanceled(canceled: Boolean) {
     TransferContext.writeArguments(BOOL to canceled)
     TransferContext.callMethod(ptr, MethodBindings.setCanceledPtr, NIL)
   }
 
-  public final fun setDoubleClick(doubleClick: Boolean): Unit {
+  public final fun setDoubleClick(doubleClick: Boolean) {
     TransferContext.writeArguments(BOOL to doubleClick)
     TransferContext.callMethod(ptr, MethodBindings.setDoubleClickPtr, NIL)
   }
@@ -143,27 +133,27 @@ public open class InputEventMouseButton : InputEventMouse() {
 
   public object MethodBindings {
     internal val setFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_factor", 373806689)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_factor", 373_806_689)
 
     internal val getFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_factor", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_factor", 1_740_695_150)
 
     internal val setButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_button_index", 3624991109)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_button_index", 3_624_991_109)
 
     internal val getButtonIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_button_index", 1132662608)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "get_button_index", 1_132_662_608)
 
     internal val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_pressed", 2_586_408_642)
 
     internal val setCanceledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_canceled", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_canceled", 2_586_408_642)
 
     internal val setDoubleClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_double_click", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "set_double_click", 2_586_408_642)
 
     internal val isDoubleClickPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouseButton", "is_double_click", 36873697)
+        TypeManager.getMethodBindPtr("InputEventMouseButton", "is_double_click", 36_873_697)
   }
 }

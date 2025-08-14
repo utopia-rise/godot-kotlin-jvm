@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,41 +16,31 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is
- * returned by [DTLSServer.takeConnection].
+ * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is returned by [DTLSServer.takeConnection].
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  *
- * **Warning:** TLS certificate revocation and certificate pinning are currently not supported.
- * Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may
- * want to use automatically managed certificates with a short validity period.
+ * **Warning:** TLS certificate revocation and certificate pinning are currently not supported. Revoked certificates are accepted as long as they are otherwise valid. If this is a concern, you may want to use automatically managed certificates with a short validity period.
  */
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(439, scriptIndex)
   }
 
   /**
-   * Poll the connection to check for incoming packets. Call this frequently to update the status
-   * and keep the connection working.
+   * Poll the connection to check for incoming packets. Call this frequently to update the status and keep the connection working.
    */
-  public final fun poll(): Unit {
+  public final fun poll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pollPtr, NIL)
   }
 
   /**
-   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which
-   * must be connected (see [PacketPeerUDP.connectToHost]). You can optionally specify the
-   * [clientOptions] to be used while verifying the TLS connections. See [TLSOptions.client] and
-   * [TLSOptions.clientUnsafe].
+   * Connects a [packetPeer] beginning the DTLS handshake using the underlying [PacketPeerUDP] which must be connected (see [PacketPeerUDP.connectToHost]). You can optionally specify the [clientOptions] to be used while verifying the TLS connections. See [TLSOptions.client] and [TLSOptions.clientUnsafe].
    */
   @JvmOverloads
   public final fun connectToPeer(
@@ -78,7 +65,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   /**
    * Disconnects this peer, terminating the DTLS session.
    */
-  public final fun disconnectFromPeer(): Unit {
+  public final fun disconnectFromPeer() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.disconnectFromPeerPtr, NIL)
   }
@@ -91,8 +78,7 @@ public open class PacketPeerDTLS : PacketPeer() {
      */
     DISCONNECTED(0),
     /**
-     * A status representing a [PacketPeerDTLS] that is currently performing the handshake with a
-     * remote peer.
+     * A status representing a [PacketPeerDTLS] that is currently performing the handshake with a remote peer.
      */
     HANDSHAKING(1),
     /**
@@ -104,8 +90,7 @@ public open class PacketPeerDTLS : PacketPeer() {
      */
     ERROR(3),
     /**
-     * An error status that shows a mismatch in the DTLS certificate domain presented by the host
-     * and the domain requested for validation.
+     * An error status that shows a mismatch in the DTLS certificate domain presented by the host and the domain requested for validation.
      */
     ERROR_HOSTNAME_MISMATCH(4),
     ;
@@ -124,15 +109,15 @@ public open class PacketPeerDTLS : PacketPeer() {
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "poll", 3218959716)
+        TypeManager.getMethodBindPtr("PacketPeerDTLS", "poll", 3_218_959_716)
 
     internal val connectToPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "connect_to_peer", 2880188099)
+        TypeManager.getMethodBindPtr("PacketPeerDTLS", "connect_to_peer", 2_880_188_099)
 
     internal val getStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "get_status", 3248654679)
+        TypeManager.getMethodBindPtr("PacketPeerDTLS", "get_status", 3_248_654_679)
 
     internal val disconnectFromPeerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeerDTLS", "disconnect_from_peer", 3218959716)
+        TypeManager.getMethodBindPtr("PacketPeerDTLS", "disconnect_from_peer", 3_218_959_716)
   }
 }

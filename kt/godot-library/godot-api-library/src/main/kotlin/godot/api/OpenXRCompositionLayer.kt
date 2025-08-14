@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,12 +27,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
- * through special projections that retain their quality. This allows for rendering clear text while
- * keeping the layer at a native resolution.
+ * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor through special projections that retain their quality. This allows for rendering clear text while keeping the layer at a native resolution.
  *
- * **Note:** If the OpenXR runtime doesn't support the given composition layer type, a fallback mesh
- * can be generated with a [ViewportTexture], in order to emulate the composition layer.
+ * **Note:** If the OpenXR runtime doesn't support the given composition layer type, a fallback mesh can be generated with a [ViewportTexture], in order to emulate the composition layer.
  */
 @GodotBaseType
 public open class OpenXRCompositionLayer internal constructor() : Node3D() {
@@ -51,11 +45,9 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   /**
-   * If enabled, an Android surface will be created (with the dimensions from [androidSurfaceSize])
-   * which will provide the 2D content for the composition layer, rather than using [layerViewport].
+   * If enabled, an Android surface will be created (with the dimensions from [androidSurfaceSize]) which will provide the 2D content for the composition layer, rather than using [layerViewport].
    *
-   * See [getAndroidSurface] for information about how to get the surface so that your application
-   * can draw to it.
+   * See [getAndroidSurface] for information about how to get the surface so that your application can draw to it.
    *
    * **Note:** This will only work in Android builds.
    */
@@ -71,11 +63,8 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * The size of the Android surface to create if [useAndroidSurface] is enabled.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var androidSurfaceSize: Vector2i
@@ -87,8 +76,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   /**
-   * The sort order for this composition layer. Higher numbers will be shown in front of lower
-   * numbers.
+   * The sort order for this composition layer. Higher numbers will be shown in front of lower numbers.
    *
    * **Note:** This will have no effect if a fallback mesh is being used.
    */
@@ -114,13 +102,9 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   /**
-   * Enables a technique called "hole punching", which allows putting the composition layer behind
-   * the main projection layer (i.e. setting [sortOrder] to a negative value) while "punching a hole"
-   * through everything rendered by Godot so that the layer is still visible.
+   * Enables a technique called "hole punching", which allows putting the composition layer behind the main projection layer (i.e. setting [sortOrder] to a negative value) while "punching a hole" through everything rendered by Godot so that the layer is still visible.
    *
-   * This can be used to create the illusion that the composition layer exists in the same 3D space
-   * as everything rendered by Godot, allowing objects to appear to pass both behind or in front of the
-   * composition layer.
+   * This can be used to create the illusion that the composition layer exists in the same 3D space as everything rendered by Godot, allowing objects to appear to pass both behind or in front of the composition layer.
    */
   public final inline var enableHolePunch: Boolean
     @JvmName("enableHolePunchProperty")
@@ -130,7 +114,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
       setEnableHolePunch(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(417, scriptIndex)
   }
 
@@ -148,13 +132,12 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
    * The size of the Android surface to create if [useAndroidSurface] is enabled.
    */
   @CoreTypeHelper
-  public final fun androidSurfaceSizeMutate(block: Vector2i.() -> Unit): Vector2i =
-      androidSurfaceSize.apply {
+  public final fun androidSurfaceSizeMutate(block: Vector2i.() -> Unit): Vector2i = androidSurfaceSize.apply {
      block(this)
      androidSurfaceSize = this
   }
 
-  public final fun setLayerViewport(viewport: SubViewport?): Unit {
+  public final fun setLayerViewport(viewport: SubViewport?) {
     TransferContext.writeArguments(OBJECT to viewport)
     TransferContext.callMethod(ptr, MethodBindings.setLayerViewportPtr, NIL)
   }
@@ -165,7 +148,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as SubViewport?)
   }
 
-  public final fun setUseAndroidSurface(enable: Boolean): Unit {
+  public final fun setUseAndroidSurface(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseAndroidSurfacePtr, NIL)
   }
@@ -176,7 +159,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAndroidSurfaceSize(size: Vector2i): Unit {
+  public final fun setAndroidSurfaceSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setAndroidSurfaceSizePtr, NIL)
   }
@@ -187,7 +170,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setEnableHolePunch(enable: Boolean): Unit {
+  public final fun setEnableHolePunch(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEnableHolePunchPtr, NIL)
   }
@@ -198,7 +181,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSortOrder(order: Int): Unit {
+  public final fun setSortOrder(order: Int) {
     TransferContext.writeArguments(LONG to order.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSortOrderPtr, NIL)
   }
@@ -209,7 +192,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAlphaBlend(enabled: Boolean): Unit {
+  public final fun setAlphaBlend(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaBlendPtr, NIL)
   }
@@ -221,12 +204,9 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   /**
-   * Returns a [JavaObject] representing an `android.view.Surface` if [useAndroidSurface] is enabled
-   * and OpenXR has created the surface. Otherwise, this will return `null`.
+   * Returns a [JavaObject] representing an `android.view.Surface` if [useAndroidSurface] is enabled and OpenXR has created the surface. Otherwise, this will return `null`.
    *
-   * **Note:** The surface can only be created during an active OpenXR session. So, if
-   * [useAndroidSurface] is enabled outside of an OpenXR session, it won't be created until a new
-   * session fully starts.
+   * **Note:** The surface can only be created during an active OpenXR session. So, if [useAndroidSurface] is enabled outside of an OpenXR session, it won't be created until a new session fully starts.
    */
   public final fun getAndroidSurface(): JavaObject? {
     TransferContext.writeArguments()
@@ -246,8 +226,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   /**
-   * Returns UV coordinates where the given ray intersects with the composition layer. [origin] and
-   * [direction] must be in global space.
+   * Returns UV coordinates where the given ray intersects with the composition layer. [origin] and [direction] must be in global space.
    *
    * Returns `Vector2(-1.0, -1.0)` if the ray doesn't intersect.
    */
@@ -261,48 +240,48 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
   public object MethodBindings {
     internal val setLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3888077664)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_layer_viewport", 3_888_077_664)
 
     internal val getLayerViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3750751911)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_layer_viewport", 3_750_751_911)
 
     internal val setUseAndroidSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_use_android_surface", 2586408642)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_use_android_surface", 2_586_408_642)
 
     internal val getUseAndroidSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_use_android_surface", 36873697)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_use_android_surface", 36_873_697)
 
     internal val setAndroidSurfaceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_android_surface_size", 1130785943)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_android_surface_size", 1_130_785_943)
 
     internal val getAndroidSurfaceSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_android_surface_size", 3690982128)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_android_surface_size", 3_690_982_128)
 
     internal val setEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2586408642)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_enable_hole_punch", 2_586_408_642)
 
     internal val getEnableHolePunchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36873697)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_enable_hole_punch", 36_873_697)
 
     internal val setSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1286410249)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_sort_order", 1_286_410_249)
 
     internal val getSortOrderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_sort_order", 3_905_245_786)
 
     internal val setAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2586408642)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_blend", 2_586_408_642)
 
     internal val getAlphaBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36873697)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_blend", 36_873_697)
 
     internal val getAndroidSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_android_surface", 3277089691)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_android_surface", 3_277_089_691)
 
     internal val isNativelySupportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36_873_697)
 
     internal val intersectsRayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1_091_262_597)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,11 +26,8 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
    * The size of the node in the visual shader graph.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -44,7 +38,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(787, scriptIndex)
   }
 
@@ -67,7 +61,7 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
      size = this
   }
 
-  public final fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -82,9 +76,9 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "set_size", 743155724)
+        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "set_size", 743_155_724)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("VisualShaderNodeResizableBase", "get_size", 3_341_600_327)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,37 +21,28 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * [url=https://www.jsonrpc.org/]JSON-RPC[/url] is a standard which wraps a method call in a [JSON]
- * object. The object has a particular structure and identifies which method is called, the parameters
- * to that function, and carries an ID to keep track of responses. This class implements that standard
- * on top of [Dictionary]; you will have to convert between a [Dictionary] and [JSON] with other
- * functions.
+ * [url=https://www.jsonrpc.org/]JSON-RPC[/url] is a standard which wraps a method call in a [JSON] object. The object has a particular structure and identifies which method is called, the parameters to that function, and carries an ID to keep track of responses. This class implements that standard on top of [Dictionary]; you will have to convert between a [Dictionary] and [JSON] with other functions.
  */
 @GodotBaseType
 public open class JSONRPC : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(315, scriptIndex)
   }
 
-  public final fun setScope(scope: String, target: Object?): Unit {
+  public final fun setScope(scope: String, target: Object?) {
     TransferContext.writeArguments(STRING to scope, OBJECT to target)
     TransferContext.callMethod(ptr, MethodBindings.setScopePtr, NIL)
   }
 
   /**
-   * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it.
-   * Methods are resolved by looking at the field called "method" and looking for an equivalently named
-   * function in the JSONRPC object. If one is found that method is called.
+   * Given a Dictionary which takes the form of a JSON-RPC request: unpack the request and run it. Methods are resolved by looking at the field called "method" and looking for an equivalently named function in the JSONRPC object. If one is found that method is called.
    *
-   * To add new supported methods extend the JSONRPC class and call [processAction] on your
-   * subclass.
+   * To add new supported methods extend the JSONRPC class and call [processAction] on your subclass.
    *
-   * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or
-   * notification.
+   * [action]: The action to be run, as a Dictionary in the form of a JSON-RPC request or notification.
    */
   @JvmOverloads
   public final fun processAction(action: Any?, recurse: Boolean = false): Any? {
@@ -70,16 +58,13 @@ public open class JSONRPC : Object() {
   }
 
   /**
-   * Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the
-   * expectation of a response. The ID field is used for the server to specify which exact request it
-   * is responding to.
+   * Returns a dictionary in the form of a JSON-RPC request. Requests are sent to a server with the expectation of a response. The ID field is used for the server to specify which exact request it is responding to.
    *
    * - [method]: Name of the method being called.
    *
    * - [params]: An array or dictionary of parameters being passed to the method.
    *
-   * - [id]: Uniquely identifies this request. The server is expected to send a response with the
-   * same ID.
+   * - [id]: Uniquely identifies this request. The server is expected to send a response with the same ID.
    */
   public final fun makeRequest(
     method: String,
@@ -92,8 +77,7 @@ public open class JSONRPC : Object() {
   }
 
   /**
-   * When a server has received and processed a request, it is expected to send a response. If you
-   * did not want a response then you need to have sent a Notification instead.
+   * When a server has received and processed a request, it is expected to send a response. If you did not want a response then you need to have sent a Notification instead.
    *
    * - [result]: The return value of the function which was called.
    *
@@ -106,8 +90,7 @@ public open class JSONRPC : Object() {
   }
 
   /**
-   * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot
-   * messages which do not expect a response.
+   * Returns a dictionary in the form of a JSON-RPC notification. Notifications are one-shot messages which do not expect a response.
    *
    * - [method]: Name of the method being called.
    *
@@ -122,8 +105,7 @@ public open class JSONRPC : Object() {
   /**
    * Creates a response which indicates a previous reply has failed in some way.
    *
-   * - [code]: The error code corresponding to what kind of error this is. See the [ErrorCode]
-   * constants.
+   * - [code]: The error code corresponding to what kind of error this is. See the [ErrorCode] constants.
    *
    * - [message]: A custom message about this error.
    *
@@ -146,24 +128,23 @@ public open class JSONRPC : Object() {
     /**
      * The request could not be parsed as it was not valid by JSON standard ([JSON.parse] failed).
      */
-    PARSE_ERROR(-32700),
+    PARSE_ERROR(-32_700),
     /**
      * A method call was requested but the request's format is not valid.
      */
-    INVALID_REQUEST(-32600),
+    INVALID_REQUEST(-32_600),
     /**
      * A method call was requested but no function of that name existed in the JSONRPC subclass.
      */
-    METHOD_NOT_FOUND(-32601),
+    METHOD_NOT_FOUND(-32_601),
     /**
-     * A method call was requested but the given method parameters are not valid. Not used by the
-     * built-in JSONRPC.
+     * A method call was requested but the given method parameters are not valid. Not used by the built-in JSONRPC.
      */
-    INVALID_PARAMS(-32602),
+    INVALID_PARAMS(-32_602),
     /**
      * An internal error occurred while processing the request. Not used by the built-in JSONRPC.
      */
-    INTERNAL_ERROR(-32603),
+    INTERNAL_ERROR(-32_603),
     ;
 
     public val id: Long
@@ -180,24 +161,24 @@ public open class JSONRPC : Object() {
 
   public object MethodBindings {
     internal val setScopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "set_scope", 2572618360)
+        TypeManager.getMethodBindPtr("JSONRPC", "set_scope", 2_572_618_360)
 
     internal val processActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "process_action", 2963479484)
+        TypeManager.getMethodBindPtr("JSONRPC", "process_action", 2_963_479_484)
 
     internal val processStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "process_string", 1703090593)
+        TypeManager.getMethodBindPtr("JSONRPC", "process_string", 1_703_090_593)
 
     internal val makeRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_request", 3423508980)
+        TypeManager.getMethodBindPtr("JSONRPC", "make_request", 3_423_508_980)
 
     internal val makeResponsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_response", 5053918)
+        TypeManager.getMethodBindPtr("JSONRPC", "make_response", 5_053_918)
 
     internal val makeNotificationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_notification", 2949127017)
+        TypeManager.getMethodBindPtr("JSONRPC", "make_notification", 2_949_127_017)
 
     internal val makeResponseErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "make_response_error", 928596297)
+        TypeManager.getMethodBindPtr("JSONRPC", "make_response_error", 928_596_297)
   }
 }

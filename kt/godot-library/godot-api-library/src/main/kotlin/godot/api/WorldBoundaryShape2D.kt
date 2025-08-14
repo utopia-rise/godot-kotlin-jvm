@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,23 +21,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an
- * infinite straight line that forces all physics bodies to stay above it. The line's normal determines
- * which direction is considered as "above" and in the editor, the smaller line over it represents this
- * direction. It can for example be used for endless flat floors.
+ * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an infinite straight line that forces all physics bodies to stay above it. The line's normal determines which direction is considered as "above" and in the editor, the smaller line over it represents this direction. It can for example be used for endless flat floors.
  */
 @GodotBaseType
 public open class WorldBoundaryShape2D : Shape2D() {
   /**
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding
-   * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var normal: Vector2
@@ -52,12 +42,9 @@ public open class WorldBoundaryShape2D : Shape2D() {
     }
 
   /**
-   * The distance from the origin to the line, expressed in terms of [normal] (according to its
-   * direction and magnitude). Actual absolute distance from the origin to the line can be calculated
-   * as `abs(distance) / normal.length()`.
+   * The distance from the origin to the line, expressed in terms of [normal] (according to its direction and magnitude). Actual absolute distance from the origin to the line can be calculated as `abs(distance) / normal.length()`.
    *
-   * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates
-   * are represented by the [normal] property.
+   * In the scalar equation of the line `ax + by = d`, this is `d`, while the `(a, b)` coordinates are represented by the [normal] property.
    */
   public final inline var distance: Float
     @JvmName("distanceProperty")
@@ -67,7 +54,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
       setDistance(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(853, scriptIndex)
   }
 
@@ -82,8 +69,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
    * worldboundaryshape2d.normal = myCoreType
    * ``````
    *
-   * The line's normal, typically a unit vector. Its direction indicates the non-colliding
-   * half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
+   * The line's normal, typically a unit vector. Its direction indicates the non-colliding half-plane. Can be of any length but zero. Defaults to [Vector2.UP].
    */
   @CoreTypeHelper
   public final fun normalMutate(block: Vector2.() -> Unit): Vector2 = normal.apply {
@@ -91,7 +77,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
      normal = this
   }
 
-  public final fun setNormal(normal: Vector2): Unit {
+  public final fun setNormal(normal: Vector2) {
     TransferContext.writeArguments(VECTOR2 to normal)
     TransferContext.callMethod(ptr, MethodBindings.setNormalPtr, NIL)
   }
@@ -102,7 +88,7 @@ public open class WorldBoundaryShape2D : Shape2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setDistance(distance: Float): Unit {
+  public final fun setDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistancePtr, NIL)
   }
@@ -117,15 +103,15 @@ public open class WorldBoundaryShape2D : Shape2D() {
 
   public object MethodBindings {
     internal val setNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_normal", 743155724)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_normal", 743_155_724)
 
     internal val getNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_normal", 3341600327)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_normal", 3_341_600_327)
 
     internal val setDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_distance", 373806689)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "set_distance", 373_806_689)
 
     internal val getDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_distance", 1740695150)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape2D", "get_distance", 1_740_695_150)
   }
 }

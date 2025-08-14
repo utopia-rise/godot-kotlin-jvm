@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,30 +25,25 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
  * [LineEdit] provides an input field for editing a single line of text.
  *
- * - When the [LineEdit] control is focused using the keyboard arrow keys, it will only gain focus
- * and not enter edit mode.
+ * - When the [LineEdit] control is focused using the keyboard arrow keys, it will only gain focus and not enter edit mode.
  *
  * - To enter edit mode, click on the control with the mouse, see also [keepEditingOnTextSubmit].
  *
- * - To exit edit mode, press `ui_text_submit` or `ui_cancel` (by default [kbd]Escape[/kbd])
- * actions.
+ * - To exit edit mode, press `ui_text_submit` or `ui_cancel` (by default [kbd]Escape[/kbd]) actions.
  *
  * - Check [edit], [unedit], [isEditing], and [signal editing_toggled] for more information.
  *
  * **Important:**
  *
- * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by
- * default [kbd]Shift + Tab[/kbd]) or [Control.grabFocus] still enters edit mode (for compatibility).
+ * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by default [kbd]Shift + Tab[/kbd]) or [Control.grabFocus] still enters edit mode (for compatibility).
  *
- * [LineEdit] features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps
- * to [kbd]Cmd[/kbd] on macOS):
+ * [LineEdit] features many built-in shortcuts that are always available ([kbd]Ctrl[/kbd] here maps to [kbd]Cmd[/kbd] on macOS):
  *
  * - [kbd]Ctrl + C[/kbd]: Copy
  *
@@ -85,15 +77,13 @@ import kotlin.jvm.JvmOverloads
  *
  * - [kbd]Cmd + D[/kbd]: Same as [kbd]Delete[/kbd], delete the character on the right side of caret
  *
- * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the
- * caret
+ * - [kbd]Cmd + H[/kbd]: Same as [kbd]Backspace[/kbd], delete the character on the left side of the caret
  *
  * - [kbd]Cmd + A[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
  *
  * - [kbd]Cmd + E[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
  *
- * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the
- * line
+ * - [kbd]Cmd + Left Arrow[/kbd]: Same as [kbd]Home[/kbd], move the caret to the beginning of the line
  *
  * - [kbd]Cmd + Right Arrow[/kbd]: Same as [kbd]End[/kbd], move the caret to the end of the line
  *
@@ -107,14 +97,12 @@ public open class LineEdit : Control() {
   public val textChanged: Signal1<String> by Signal1
 
   /**
-   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to
-   * fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
+   * Emitted when appending text that overflows the [maxLength]. The appended text is truncated to fit [maxLength], and the part that couldn't fit is passed as the [rejectedSubstring] argument.
    */
   public val textChangeRejected: Signal1<String> by Signal1
 
   /**
-   * Emitted when the user presses the `ui_text_submit` action (by default: [kbd]Enter[/kbd] or
-   * [kbd]Kp Enter[/kbd]) while the [LineEdit] has focus.
+   * Emitted when the user presses the `ui_text_submit` action (by default: [kbd]Enter[/kbd] or [kbd]Kp Enter[/kbd]) while the [LineEdit] has focus.
    */
   public val textSubmitted: Signal1<String> by Signal1
 
@@ -137,8 +125,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Text shown when the [LineEdit] is empty. It is **not** the [LineEdit]'s default value (see
-   * [text]).
+   * Text shown when the [LineEdit] is empty. It is **not** the [LineEdit]'s default value (see [text]).
    */
   public final inline var placeholderText: String
     @JvmName("placeholderTextProperty")
@@ -160,15 +147,11 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Maximum number of characters that can be entered inside the [LineEdit]. If `0`, there is no
-   * limit.
+   * Maximum number of characters that can be entered inside the [LineEdit]. If `0`, there is no limit.
    *
-   * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens
-   * both for existing [text] contents when setting the max length, or for new text inserted in the
-   * [LineEdit], including pasting.
+   * When a limit is defined, characters that would exceed [maxLength] are truncated. This happens both for existing [text] contents when setting the max length, or for new text inserted in the [LineEdit], including pasting.
    *
-   * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the
-   * truncated substring as parameter:
+   * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the truncated substring as parameter:
    *
    * ```gdscript
    * //gdscript
@@ -212,8 +195,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [LineEdit] will not exit edit mode when text is submitted by pressing
-   * `ui_text_submit` action (by default: [kbd]Enter[/kbd] or [kbd]Kp Enter[/kbd]).
+   * If `true`, the [LineEdit] will not exit edit mode when text is submitted by pressing `ui_text_submit` action (by default: [kbd]Enter[/kbd] or [kbd]Kp Enter[/kbd]).
    */
   public final inline var keepEditingOnTextSubmit: Boolean
     @JvmName("keepEditingOnTextSubmitProperty")
@@ -224,8 +206,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [LineEdit] width will increase to stay longer than the [text]. It will **not**
-   * compress if the [text] is shortened.
+   * If `true`, the [LineEdit] width will increase to stay longer than the [text]. It will **not** compress if the [text] is shortened.
    */
   public final inline var expandToTextLength: Boolean
     @JvmName("expandToTextLengthProperty")
@@ -280,8 +261,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the [LineEdit] will show a clear button if [text] is not empty, which can be used to
-   * clear the text quickly.
+   * If `true`, the [LineEdit] will show a clear button if [text] is not empty, which can be used to clear the text quickly.
    */
   public final inline var clearButtonEnabled: Boolean
     @JvmName("clearButtonEnabledProperty")
@@ -292,8 +272,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
-   * disabled.
+   * If `true`, shortcut keys for context menu items are enabled, even if the context menu is disabled.
    */
   public final inline var shortcutKeysEnabled: Boolean
     @JvmName("shortcutKeysEnabledProperty")
@@ -350,8 +329,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or
-   * always, if [clearButtonEnabled] is set to `false`.
+   * Sets the icon that will appear in the right end of the [LineEdit] if there's no [text], or always, if [clearButtonEnabled] is set to `false`.
    */
   public final inline var rightIcon: Texture2D?
     @JvmName("rightIconProperty")
@@ -417,8 +395,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * The caret's column position inside the [LineEdit]. When set, the text may scroll to accommodate
-   * it.
+   * The caret's column position inside the [LineEdit]. When set, the text may scroll to accommodate it.
    */
   public final inline var caretColumn: Int
     @JvmName("caretColumnProperty")
@@ -464,9 +441,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * The character to use to mask secret input. Only a single character can be used as the secret
-   * character. If it is longer than one character, only the first one will be used. If it is empty, a
-   * space will be used instead.
+   * The character to use to mask secret input. Only a single character can be used as the secret character. If it is longer than one character, only the first one will be used. If it is empty, a space will be used instead.
    */
   public final inline var secretCharacter: String
     @JvmName("secretCharacterProperty")
@@ -488,8 +463,7 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale
-   * is used instead.
+   * Language code used for line-breaking and text shaping algorithms. If left empty, current locale is used instead.
    */
   public final inline var language: String
     @JvmName("languageProperty")
@@ -521,13 +495,12 @@ public open class LineEdit : Control() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(340, scriptIndex)
   }
 
   /**
-   * Returns `true` if the user has text in the
-   * [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME).
+   * Returns `true` if the user has text in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME).
    */
   public final fun hasImeText(): Boolean {
     TransferContext.writeArguments()
@@ -536,24 +509,22 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Closes the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) if
-   * it is open. Any text in the IME will be lost.
+   * Closes the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) if it is open. Any text in the IME will be lost.
    */
-  public final fun cancelIme(): Unit {
+  public final fun cancelIme() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cancelImePtr, NIL)
   }
 
   /**
-   * Applies text from the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url]
-   * (IME) and closes the IME if it is open.
+   * Applies text from the [url=https://en.wikipedia.org/wiki/Input_method]Input Method Editor[/url] (IME) and closes the IME if it is open.
    */
-  public final fun applyIme(): Unit {
+  public final fun applyIme() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.applyImePtr, NIL)
   }
 
-  public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setHorizontalAlignment(alignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
@@ -569,7 +540,7 @@ public open class LineEdit : Control() {
    *
    * See also [keepEditingOnTextSubmit].
    */
-  public final fun edit(): Unit {
+  public final fun edit() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.editPtr, NIL)
   }
@@ -577,7 +548,7 @@ public open class LineEdit : Control() {
   /**
    * Allows exiting edit mode while preserving focus.
    */
-  public final fun unedit(): Unit {
+  public final fun unedit() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.uneditPtr, NIL)
   }
@@ -591,7 +562,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setKeepEditingOnTextSubmit(enable: Boolean): Unit {
+  public final fun setKeepEditingOnTextSubmit(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setKeepEditingOnTextSubmitPtr, NIL)
   }
@@ -605,14 +576,13 @@ public open class LineEdit : Control() {
   /**
    * Erases the [LineEdit]'s [text].
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
-   * Selects characters inside [LineEdit] between [from] and [to]. By default, [from] is at the
-   * beginning and [to] at the end.
+   * Selects characters inside [LineEdit] between [from] and [to]. By default, [from] is at the beginning and [to] at the end.
    *
    * ```gdscript
    * //gdscript
@@ -631,7 +601,7 @@ public open class LineEdit : Control() {
    * ```
    */
   @JvmOverloads
-  public final fun select(from: Int = 0, to: Int = -1): Unit {
+  public final fun select(from: Int = 0, to: Int = -1) {
     TransferContext.writeArguments(LONG to from.toLong(), LONG to to.toLong())
     TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
@@ -639,7 +609,7 @@ public open class LineEdit : Control() {
   /**
    * Selects the whole [String].
    */
-  public final fun selectAll(): Unit {
+  public final fun selectAll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.selectAllPtr, NIL)
   }
@@ -647,7 +617,7 @@ public open class LineEdit : Control() {
   /**
    * Clears the current selection.
    */
-  public final fun deselect(): Unit {
+  public final fun deselect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
   }
@@ -706,7 +676,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setText(text: String): Unit {
+  public final fun setText(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setTextPtr, NIL)
   }
@@ -723,12 +693,12 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDrawControlChars(enable: Boolean): Unit {
+  public final fun setDrawControlChars(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setDrawControlCharsPtr, NIL)
   }
 
-  public final fun setTextDirection(direction: Control.TextDirection): Unit {
+  public final fun setTextDirection(direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
@@ -739,7 +709,7 @@ public open class LineEdit : Control() {
     return Control.TextDirection.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLanguage(language: String): Unit {
+  public final fun setLanguage(language: String) {
     TransferContext.writeArguments(STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -750,7 +720,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
+  public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser) {
     TransferContext.writeArguments(LONG to parser.id)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
@@ -761,7 +731,7 @@ public open class LineEdit : Control() {
     return TextServer.StructuredTextParser.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>): Unit {
+  public final fun setStructuredTextBidiOverrideOptions(args: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to args)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverrideOptionsPtr, NIL)
   }
@@ -772,7 +742,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public final fun setPlaceholder(text: String): Unit {
+  public final fun setPlaceholder(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setPlaceholderPtr, NIL)
   }
@@ -783,7 +753,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setCaretColumn(position: Int): Unit {
+  public final fun setCaretColumn(position: Int) {
     TransferContext.writeArguments(LONG to position.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCaretColumnPtr, NIL)
   }
@@ -803,7 +773,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setExpandToTextLengthEnabled(enabled: Boolean): Unit {
+  public final fun setExpandToTextLengthEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setExpandToTextLengthEnabledPtr, NIL)
   }
@@ -814,7 +784,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCaretBlinkEnabled(enabled: Boolean): Unit {
+  public final fun setCaretBlinkEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCaretBlinkEnabledPtr, NIL)
   }
@@ -825,7 +795,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCaretMidGraphemeEnabled(enabled: Boolean): Unit {
+  public final fun setCaretMidGraphemeEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCaretMidGraphemeEnabledPtr, NIL)
   }
@@ -836,7 +806,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCaretForceDisplayed(enabled: Boolean): Unit {
+  public final fun setCaretForceDisplayed(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCaretForceDisplayedPtr, NIL)
   }
@@ -847,7 +817,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCaretBlinkInterval(interval: Float): Unit {
+  public final fun setCaretBlinkInterval(interval: Float) {
     TransferContext.writeArguments(DOUBLE to interval.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCaretBlinkIntervalPtr, NIL)
   }
@@ -858,7 +828,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxLength(chars: Int): Unit {
+  public final fun setMaxLength(chars: Int) {
     TransferContext.writeArguments(LONG to chars.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxLengthPtr, NIL)
   }
@@ -870,33 +840,30 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing
-   * happens.
+   * Inserts [text] at the caret. If the resulting value is longer than [maxLength], nothing happens.
    */
-  public final fun insertTextAtCaret(text: String): Unit {
+  public final fun insertTextAtCaret(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.insertTextAtCaretPtr, NIL)
   }
 
   /**
-   * Deletes one character at the caret's current position (equivalent to pressing
-   * [kbd]Delete[/kbd]).
+   * Deletes one character at the caret's current position (equivalent to pressing [kbd]Delete[/kbd]).
    */
-  public final fun deleteCharAtCaret(): Unit {
+  public final fun deleteCharAtCaret() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deleteCharAtCaretPtr, NIL)
   }
 
   /**
-   * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters
-   * should be within the text's length.
+   * Deletes a section of the [text] going from position [fromColumn] to [toColumn]. Both parameters should be within the text's length.
    */
-  public final fun deleteText(fromColumn: Int, toColumn: Int): Unit {
+  public final fun deleteText(fromColumn: Int, toColumn: Int) {
     TransferContext.writeArguments(LONG to fromColumn.toLong(), LONG to toColumn.toLong())
     TransferContext.callMethod(ptr, MethodBindings.deleteTextPtr, NIL)
   }
 
-  public final fun setEditable(enabled: Boolean): Unit {
+  public final fun setEditable(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
   }
@@ -907,7 +874,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSecret(enabled: Boolean): Unit {
+  public final fun setSecret(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSecretPtr, NIL)
   }
@@ -918,7 +885,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSecretCharacter(character: String): Unit {
+  public final fun setSecretCharacter(character: String) {
     TransferContext.writeArguments(STRING to character)
     TransferContext.callMethod(ptr, MethodBindings.setSecretCharacterPtr, NIL)
   }
@@ -932,17 +899,15 @@ public open class LineEdit : Control() {
   /**
    * Executes a given action as defined in the [MenuItems] enum.
    */
-  public final fun menuOption(option: Int): Unit {
+  public final fun menuOption(option: Int) {
     TransferContext.writeArguments(LONG to option.toLong())
     TransferContext.callMethod(ptr, MethodBindings.menuOptionPtr, NIL)
   }
 
   /**
-   * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when
-   * right-clicking on the [LineEdit].
+   * Returns the [PopupMenu] of this [LineEdit]. By default, this menu is displayed when right-clicking on the [LineEdit].
    *
-   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with
-   * the standard ones (see [MenuItems]). For example:
+   * You can add custom menu items or remove standard ones. Make sure your IDs don't conflict with the standard ones (see [MenuItems]). For example:
    *
    * ```gdscript
    * //gdscript
@@ -984,8 +949,7 @@ public open class LineEdit : Control() {
    * }
    * ```
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getMenu(): PopupMenu? {
     TransferContext.writeArguments()
@@ -994,8 +958,7 @@ public open class LineEdit : Control() {
   }
 
   /**
-   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve
-   * performance (so the creation of the menu is avoided).
+   * Returns whether the menu is visible. Use this instead of `get_menu().visible` to improve performance (so the creation of the menu is avoided).
    */
   public final fun isMenuVisible(): Boolean {
     TransferContext.writeArguments()
@@ -1003,7 +966,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setContextMenuEnabled(enable: Boolean): Unit {
+  public final fun setContextMenuEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setContextMenuEnabledPtr, NIL)
   }
@@ -1014,7 +977,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEmojiMenuEnabled(enable: Boolean): Unit {
+  public final fun setEmojiMenuEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEmojiMenuEnabledPtr, NIL)
   }
@@ -1025,7 +988,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVirtualKeyboardEnabled(enable: Boolean): Unit {
+  public final fun setVirtualKeyboardEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
   }
@@ -1036,7 +999,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVirtualKeyboardType(type: VirtualKeyboardType): Unit {
+  public final fun setVirtualKeyboardType(type: VirtualKeyboardType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
   }
@@ -1047,7 +1010,7 @@ public open class LineEdit : Control() {
     return VirtualKeyboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setClearButtonEnabled(enable: Boolean): Unit {
+  public final fun setClearButtonEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setClearButtonEnabledPtr, NIL)
   }
@@ -1058,7 +1021,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShortcutKeysEnabled(enable: Boolean): Unit {
+  public final fun setShortcutKeysEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
   }
@@ -1069,7 +1032,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMiddleMousePasteEnabled(enable: Boolean): Unit {
+  public final fun setMiddleMousePasteEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setMiddleMousePasteEnabledPtr, NIL)
   }
@@ -1080,7 +1043,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSelectingEnabled(enable: Boolean): Unit {
+  public final fun setSelectingEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSelectingEnabledPtr, NIL)
   }
@@ -1091,7 +1054,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDeselectOnFocusLossEnabled(enable: Boolean): Unit {
+  public final fun setDeselectOnFocusLossEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setDeselectOnFocusLossEnabledPtr, NIL)
   }
@@ -1102,7 +1065,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDragAndDropSelectionEnabled(enable: Boolean): Unit {
+  public final fun setDragAndDropSelectionEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setDragAndDropSelectionEnabledPtr, NIL)
   }
@@ -1113,7 +1076,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRightIcon(icon: Texture2D?): Unit {
+  public final fun setRightIcon(icon: Texture2D?) {
     TransferContext.writeArguments(OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.setRightIconPtr, NIL)
   }
@@ -1124,7 +1087,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setFlat(enabled: Boolean): Unit {
+  public final fun setFlat(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlatPtr, NIL)
   }
@@ -1135,7 +1098,7 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSelectAllOnFocus(enabled: Boolean): Unit {
+  public final fun setSelectAllOnFocus(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSelectAllOnFocusPtr, NIL)
   }
@@ -1160,8 +1123,7 @@ public open class LineEdit : Control() {
     /**
      * Pastes the clipboard text over the selected text (or at the caret's position).
      *
-     * Non-printable escape characters are automatically stripped from the OS clipboard via
-     * [String.stripEscapes].
+     * Non-printable escape characters are automatically stripped from the OS clipboard via [String.stripEscapes].
      */
     PASTE(2),
     /**
@@ -1320,11 +1282,9 @@ public open class LineEdit : Control() {
      */
     KEYBOARD_TYPE_EMAIL_ADDRESS(5),
     /**
-     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete
-     * and autocapitalization.
+     * Virtual keyboard for entering a password. On most platforms, this should disable autocomplete and autocapitalization.
      *
-     * **Note:** This is not supported on Web. Instead, this behaves identically to
-     * [KEYBOARD_TYPE_DEFAULT].
+     * **Note:** This is not supported on Web. Instead, this behaves identically to [KEYBOARD_TYPE_DEFAULT].
      */
     KEYBOARD_TYPE_PASSWORD(6),
     /**
@@ -1347,259 +1307,263 @@ public open class LineEdit : Control() {
 
   public object MethodBindings {
     internal val hasImeTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "has_ime_text", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "has_ime_text", 36_873_697)
 
     internal val cancelImePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "cancel_ime", 3218959716)
+        TypeManager.getMethodBindPtr("LineEdit", "cancel_ime", 3_218_959_716)
 
     internal val applyImePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "apply_ime", 3218959716)
+        TypeManager.getMethodBindPtr("LineEdit", "apply_ime", 3_218_959_716)
 
     internal val setHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_horizontal_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("LineEdit", "set_horizontal_alignment", 2_312_603_777)
 
     internal val getHorizontalAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341400642)
+        TypeManager.getMethodBindPtr("LineEdit", "get_horizontal_alignment", 341_400_642)
 
-    internal val editPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "edit", 3218959716)
+    internal val editPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "edit", 3_218_959_716)
 
-    internal val uneditPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "unedit", 3218959716)
+    internal val uneditPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "unedit", 3_218_959_716)
 
     internal val isEditingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_editing", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_editing", 36_873_697)
 
     internal val setKeepEditingOnTextSubmitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_keep_editing_on_text_submit", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_keep_editing_on_text_submit", 2_586_408_642)
 
     internal val isEditingKeptOnTextSubmitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_editing_kept_on_text_submit", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_editing_kept_on_text_submit", 36_873_697)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "clear", 3_218_959_716)
 
-    internal val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "select", 1328111411)
+    internal val selectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "select", 1_328_111_411)
 
     internal val selectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "select_all", 3218959716)
+        TypeManager.getMethodBindPtr("LineEdit", "select_all", 3_218_959_716)
 
     internal val deselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "deselect", 3218959716)
+        TypeManager.getMethodBindPtr("LineEdit", "deselect", 3_218_959_716)
 
     internal val hasUndoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "has_undo", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "has_undo", 36_873_697)
 
     internal val hasRedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "has_redo", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "has_redo", 36_873_697)
 
     internal val hasSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "has_selection", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "has_selection", 36_873_697)
 
     internal val getSelectedTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selected_text", 2841200299)
+        TypeManager.getMethodBindPtr("LineEdit", "get_selected_text", 2_841_200_299)
 
     internal val getSelectionFromColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selection_from_column", 3905245786)
+        TypeManager.getMethodBindPtr("LineEdit", "get_selection_from_column", 3_905_245_786)
 
     internal val getSelectionToColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_selection_to_column", 3905245786)
+        TypeManager.getMethodBindPtr("LineEdit", "get_selection_to_column", 3_905_245_786)
 
     internal val setTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_text", 83702148)
+        TypeManager.getMethodBindPtr("LineEdit", "set_text", 83_702_148)
 
     internal val getTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_text", 201670096)
+        TypeManager.getMethodBindPtr("LineEdit", "get_text", 201_670_096)
 
     internal val getDrawControlCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_draw_control_chars", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "get_draw_control_chars", 36_873_697)
 
     internal val setDrawControlCharsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_draw_control_chars", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_draw_control_chars", 2_586_408_642)
 
     internal val setTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_text_direction", 119160795)
+        TypeManager.getMethodBindPtr("LineEdit", "set_text_direction", 119_160_795)
 
     internal val getTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_text_direction", 797257663)
+        TypeManager.getMethodBindPtr("LineEdit", "get_text_direction", 797_257_663)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_language", 83702148)
+        TypeManager.getMethodBindPtr("LineEdit", "set_language", 83_702_148)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_language", 201670096)
+        TypeManager.getMethodBindPtr("LineEdit", "get_language", 201_670_096)
 
     internal val setStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override", 55961453)
+        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override", 55_961_453)
 
     internal val getStructuredTextBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override", 3385126229)
+        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override", 3_385_126_229)
 
     internal val setStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override_options", 381264803)
+        TypeManager.getMethodBindPtr("LineEdit", "set_structured_text_bidi_override_options", 381_264_803)
 
     internal val getStructuredTextBidiOverrideOptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override_options", 3995934104)
+        TypeManager.getMethodBindPtr("LineEdit", "get_structured_text_bidi_override_options", 3_995_934_104)
 
     internal val setPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_placeholder", 83702148)
+        TypeManager.getMethodBindPtr("LineEdit", "set_placeholder", 83_702_148)
 
     internal val getPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_placeholder", 201670096)
+        TypeManager.getMethodBindPtr("LineEdit", "get_placeholder", 201_670_096)
 
     internal val setCaretColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_column", 1286410249)
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_column", 1_286_410_249)
 
     internal val getCaretColumnPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_caret_column", 3905245786)
+        TypeManager.getMethodBindPtr("LineEdit", "get_caret_column", 3_905_245_786)
 
     internal val getScrollOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_scroll_offset", 1740695150)
+        TypeManager.getMethodBindPtr("LineEdit", "get_scroll_offset", 1_740_695_150)
 
     internal val setExpandToTextLengthEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_expand_to_text_length_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_expand_to_text_length_enabled", 2_586_408_642)
 
     internal val isExpandToTextLengthEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_expand_to_text_length_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_expand_to_text_length_enabled", 36_873_697)
 
     internal val setCaretBlinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_enabled", 2_586_408_642)
 
     internal val isCaretBlinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_blink_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_blink_enabled", 36_873_697)
 
     internal val setCaretMidGraphemeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_mid_grapheme_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_mid_grapheme_enabled", 2_586_408_642)
 
     internal val isCaretMidGraphemeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_mid_grapheme_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_mid_grapheme_enabled", 36_873_697)
 
     internal val setCaretForceDisplayedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_force_displayed", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_force_displayed", 2_586_408_642)
 
     internal val isCaretForceDisplayedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_caret_force_displayed", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_caret_force_displayed", 36_873_697)
 
     internal val setCaretBlinkIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_interval", 373806689)
+        TypeManager.getMethodBindPtr("LineEdit", "set_caret_blink_interval", 373_806_689)
 
     internal val getCaretBlinkIntervalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_caret_blink_interval", 1740695150)
+        TypeManager.getMethodBindPtr("LineEdit", "get_caret_blink_interval", 1_740_695_150)
 
     internal val setMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_max_length", 1286410249)
+        TypeManager.getMethodBindPtr("LineEdit", "set_max_length", 1_286_410_249)
 
     internal val getMaxLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_max_length", 3905245786)
+        TypeManager.getMethodBindPtr("LineEdit", "get_max_length", 3_905_245_786)
 
     internal val insertTextAtCaretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "insert_text_at_caret", 83702148)
+        TypeManager.getMethodBindPtr("LineEdit", "insert_text_at_caret", 83_702_148)
 
     internal val deleteCharAtCaretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "delete_char_at_caret", 3218959716)
+        TypeManager.getMethodBindPtr("LineEdit", "delete_char_at_caret", 3_218_959_716)
 
     internal val deleteTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "delete_text", 3937882851)
+        TypeManager.getMethodBindPtr("LineEdit", "delete_text", 3_937_882_851)
 
     internal val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_editable", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_editable", 2_586_408_642)
 
     internal val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_editable", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_editable", 36_873_697)
 
     internal val setSecretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_secret", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_secret", 2_586_408_642)
 
     internal val isSecretPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_secret", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_secret", 36_873_697)
 
     internal val setSecretCharacterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_secret_character", 83702148)
+        TypeManager.getMethodBindPtr("LineEdit", "set_secret_character", 83_702_148)
 
     internal val getSecretCharacterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_secret_character", 201670096)
+        TypeManager.getMethodBindPtr("LineEdit", "get_secret_character", 201_670_096)
 
     internal val menuOptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "menu_option", 1286410249)
+        TypeManager.getMethodBindPtr("LineEdit", "menu_option", 1_286_410_249)
 
     internal val getMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_menu", 229722558)
+        TypeManager.getMethodBindPtr("LineEdit", "get_menu", 229_722_558)
 
     internal val isMenuVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_menu_visible", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_menu_visible", 36_873_697)
 
     internal val setContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_context_menu_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_context_menu_enabled", 2_586_408_642)
 
     internal val isContextMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_context_menu_enabled", 2240911060)
+        TypeManager.getMethodBindPtr("LineEdit", "is_context_menu_enabled", 2_240_911_060)
 
     internal val setEmojiMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_emoji_menu_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_emoji_menu_enabled", 2_586_408_642)
 
     internal val isEmojiMenuEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_emoji_menu_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_emoji_menu_enabled", 36_873_697)
 
     internal val setVirtualKeyboardEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2_586_408_642)
 
     internal val isVirtualKeyboardEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled", 36_873_697)
 
     internal val setVirtualKeyboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type", 2696893573)
+        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type", 2_696_893_573)
 
     internal val getVirtualKeyboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_virtual_keyboard_type", 1928699316)
+        TypeManager.getMethodBindPtr("LineEdit", "get_virtual_keyboard_type", 1_928_699_316)
 
     internal val setClearButtonEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_clear_button_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_clear_button_enabled", 2_586_408_642)
 
     internal val isClearButtonEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_clear_button_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_clear_button_enabled", 36_873_697)
 
     internal val setShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_shortcut_keys_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_shortcut_keys_enabled", 2_586_408_642)
 
     internal val isShortcutKeysEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_shortcut_keys_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_shortcut_keys_enabled", 36_873_697)
 
     internal val setMiddleMousePasteEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_middle_mouse_paste_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_middle_mouse_paste_enabled", 2_586_408_642)
 
     internal val isMiddleMousePasteEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_middle_mouse_paste_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_middle_mouse_paste_enabled", 36_873_697)
 
     internal val setSelectingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_selecting_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_selecting_enabled", 2_586_408_642)
 
     internal val isSelectingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_selecting_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_selecting_enabled", 36_873_697)
 
     internal val setDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_deselect_on_focus_loss_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_deselect_on_focus_loss_enabled", 2_586_408_642)
 
     internal val isDeselectOnFocusLossEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_deselect_on_focus_loss_enabled", 36_873_697)
 
     internal val setDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_drag_and_drop_selection_enabled", 2_586_408_642)
 
     internal val isDragAndDropSelectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_drag_and_drop_selection_enabled", 36_873_697)
 
     internal val setRightIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_right_icon", 4051416890)
+        TypeManager.getMethodBindPtr("LineEdit", "set_right_icon", 4_051_416_890)
 
     internal val getRightIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "get_right_icon", 255860311)
+        TypeManager.getMethodBindPtr("LineEdit", "get_right_icon", 255_860_311)
 
     internal val setFlatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_flat", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_flat", 2_586_408_642)
 
-    internal val isFlatPtr: VoidPtr = TypeManager.getMethodBindPtr("LineEdit", "is_flat", 36873697)
+    internal val isFlatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_flat", 36_873_697)
 
     internal val setSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "set_select_all_on_focus", 2586408642)
+        TypeManager.getMethodBindPtr("LineEdit", "set_select_all_on_focus", 2_586_408_642)
 
     internal val isSelectAllOnFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LineEdit", "is_select_all_on_focus", 36873697)
+        TypeManager.getMethodBindPtr("LineEdit", "is_select_all_on_focus", 36_873_697)
   }
 }

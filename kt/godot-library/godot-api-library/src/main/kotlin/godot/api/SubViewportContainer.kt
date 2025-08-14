@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,19 +15,14 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
- * combined size of the [SubViewport]s as minimum size, unless [stretch] is enabled.
+ * A container that displays the contents of underlying [SubViewport] child nodes. It uses the combined size of the [SubViewport]s as minimum size, unless [stretch] is enabled.
  *
- * **Note:** Changing a [SubViewportContainer]'s [Control.scale] will cause its contents to appear
- * distorted. To change its visual size without causing distortion, adjust the node's margins instead
- * (if it's not already in a container).
+ * **Note:** Changing a [SubViewportContainer]'s [Control.scale] will cause its contents to appear distorted. To change its visual size without causing distortion, adjust the node's margins instead (if it's not already in a container).
  *
- * **Note:** The [SubViewportContainer] forwards mouse-enter and mouse-exit notifications to its
- * sub-viewports.
+ * **Note:** The [SubViewportContainer] forwards mouse-enter and mouse-exit notifications to its sub-viewports.
  */
 @GodotBaseType
 public open class SubViewportContainer : Container() {
@@ -48,11 +40,9 @@ public open class SubViewportContainer : Container() {
     }
 
   /**
-   * Divides the sub-viewport's effective resolution by this value while preserving its scale. This
-   * can be used to speed up rendering.
+   * Divides the sub-viewport's effective resolution by this value while preserving its scale. This can be used to speed up rendering.
    *
-   * For example, a 1280×720 sub-viewport with [stretchShrink] set to `2` will be rendered at
-   * 640×360 while occupying the same size in the container.
+   * For example, a 1280×720 sub-viewport with [stretchShrink] set to `2` will be rendered at 640×360 while occupying the same size in the container.
    *
    * **Note:** [stretch] must be `true` for this property to work.
    */
@@ -65,9 +55,7 @@ public open class SubViewportContainer : Container() {
     }
 
   /**
-   * Configure, if either the [SubViewportContainer] or alternatively the [Control] nodes of its
-   * [SubViewport] children should be available as targets of mouse-related functionalities, like
-   * identifying the drop target in drag-and-drop operations or cursor shape of hovered [Control] node.
+   * Configure, if either the [SubViewportContainer] or alternatively the [Control] nodes of its [SubViewport] children should be available as targets of mouse-related functionalities, like identifying the drop target in drag-and-drop operations or cursor shape of hovered [Control] node.
    *
    * If `false`, the [Control] nodes inside its [SubViewport] children are considered as targets.
    *
@@ -81,20 +69,18 @@ public open class SubViewportContainer : Container() {
       setMouseTarget(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(646, scriptIndex)
   }
 
   /**
-   * Virtual method to be implemented by the user. If it returns `true`, the [event] is propagated
-   * to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is
-   * not implemented, all events are propagated to SubViewports.
+   * Virtual method to be implemented by the user. If it returns `true`, the [event] is propagated to [SubViewport] children. Propagation doesn't happen if it returns `false`. If the function is not implemented, all events are propagated to SubViewports.
    */
   public open fun _propagateInputEvent(event: InputEvent?): Boolean {
     throw NotImplementedError("SubViewportContainer::_propagateInputEvent is not implemented.")
   }
 
-  public final fun setStretch(enable: Boolean): Unit {
+  public final fun setStretch(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setStretchPtr, NIL)
   }
@@ -105,7 +91,7 @@ public open class SubViewportContainer : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setStretchShrink(amount: Int): Unit {
+  public final fun setStretchShrink(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStretchShrinkPtr, NIL)
   }
@@ -116,7 +102,7 @@ public open class SubViewportContainer : Container() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMouseTarget(amount: Boolean): Unit {
+  public final fun setMouseTarget(amount: Boolean) {
     TransferContext.writeArguments(BOOL to amount)
     TransferContext.callMethod(ptr, MethodBindings.setMouseTargetPtr, NIL)
   }
@@ -131,21 +117,21 @@ public open class SubViewportContainer : Container() {
 
   public object MethodBindings {
     internal val setStretchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch", 2586408642)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch", 2_586_408_642)
 
     internal val isStretchEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled", 36873697)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "is_stretch_enabled", 36_873_697)
 
     internal val setStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink", 1286410249)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_stretch_shrink", 1_286_410_249)
 
     internal val getStretchShrinkPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3905245786)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "get_stretch_shrink", 3_905_245_786)
 
     internal val setMouseTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "set_mouse_target", 2586408642)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "set_mouse_target", 2_586_408_642)
 
     internal val isMouseTargetEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SubViewportContainer", "is_mouse_target_enabled", 2240911060)
+        TypeManager.getMethodBindPtr("SubViewportContainer", "is_mouse_target_enabled", 2_240_911_060)
   }
 }

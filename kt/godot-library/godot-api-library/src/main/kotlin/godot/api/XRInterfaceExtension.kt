@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,14 +33,13 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * External XR interface plugins should inherit from this class.
  */
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(869, scriptIndex)
   }
 
@@ -78,7 +74,7 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Uninitialize the interface.
    */
-  public open fun _uninitialize(): Unit {
+  public open fun _uninitialize() {
     throw NotImplementedError("XRInterfaceExtension::_uninitialize is not implemented.")
   }
 
@@ -118,8 +114,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns the size of our render target for this interface, this overrides the size of the
-   * [Viewport] marked as the xr viewport.
+   * Returns the size of our render target for this interface, this overrides the size of the [Viewport] marked as the xr viewport.
    */
   public open fun _getRenderTargetSize(): Vector2 {
     throw NotImplementedError("XRInterfaceExtension::_getRenderTargetSize is not implemented.")
@@ -163,25 +158,21 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Called if this [XRInterfaceExtension] is active before our physics and game process is called.
-   * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
+   * Called if this [XRInterfaceExtension] is active before our physics and game process is called. Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
-  public open fun _process(): Unit {
+  public open fun _process() {
     throw NotImplementedError("XRInterfaceExtension::_process is not implemented.")
   }
 
   /**
-   * Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces
-   * will sync tracking at this point in time.
+   * Called if this [XRInterfaceExtension] is active before rendering starts. Most XR interfaces will sync tracking at this point in time.
    */
-  public open fun _preRender(): Unit {
+  public open fun _preRender() {
     throw NotImplementedError("XRInterfaceExtension::_preRender is not implemented.")
   }
 
   /**
-   * Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport]
-   * for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR
-   * interface may return `false` if the user has taken off their headset and we can pause rendering.
+   * Called if this is our primary [XRInterfaceExtension] before we start processing a [Viewport] for every active XR [Viewport], returns `true` if that viewport should be rendered. An XR interface may return `false` if the user has taken off their headset and we can pause rendering.
    */
   public open fun _preDrawViewport(renderTarget: RID): Boolean {
     throw NotImplementedError("XRInterfaceExtension::_preDrawViewport is not implemented.")
@@ -190,28 +181,26 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Called after the XR [Viewport] draw logic has completed.
    */
-  public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2): Unit {
+  public open fun _postDrawViewport(renderTarget: RID, screenRect: Rect2) {
     throw NotImplementedError("XRInterfaceExtension::_postDrawViewport is not implemented.")
   }
 
   /**
    * Called if interface is active and queues have been submitted.
    */
-  public open fun _endFrame(): Unit {
+  public open fun _endFrame() {
     throw NotImplementedError("XRInterfaceExtension::_endFrame is not implemented.")
   }
 
   /**
-   * Returns a [PackedStringArray] with tracker names configured by this interface. Note that user
-   * configuration can override this list.
+   * Returns a [PackedStringArray] with tracker names configured by this interface. Note that user configuration can override this list.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
     throw NotImplementedError("XRInterfaceExtension::_getSuggestedTrackerNames is not implemented.")
   }
 
   /**
-   * Returns a [PackedStringArray] with pose names configured by this interface. Note that user
-   * configuration can override this list.
+   * Returns a [PackedStringArray] with pose names configured by this interface. Note that user configuration can override this list.
    */
   public open fun _getSuggestedPoseNames(trackerName: StringName): PackedStringArray {
     throw NotImplementedError("XRInterfaceExtension::_getSuggestedPoseNames is not implemented.")
@@ -234,7 +223,7 @@ public open class XRInterfaceExtension : XRInterface() {
     amplitude: Double,
     durationSec: Double,
     delaySec: Double,
-  ): Unit {
+  ) {
     throw NotImplementedError("XRInterfaceExtension::_triggerHapticPulse is not implemented.")
   }
 
@@ -248,13 +237,12 @@ public open class XRInterfaceExtension : XRInterface() {
   /**
    * Enables anchor detection on this interface if supported.
    */
-  public open fun _setAnchorDetectionIsEnabled(enabled: Boolean): Unit {
+  public open fun _setAnchorDetectionIsEnabled(enabled: Boolean) {
     throw NotImplementedError("XRInterfaceExtension::_setAnchorDetectionIsEnabled is not implemented.")
   }
 
   /**
-   * Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should
-   * be presented as the background on an AR capable device (if applicable).
+   * Returns the camera feed ID for the [CameraFeed] registered with the [CameraServer] that should be presented as the background on an AR capable device (if applicable).
    */
   public open fun _getCameraFeedId(): Int {
     throw NotImplementedError("XRInterfaceExtension::_getCameraFeedId is not implemented.")
@@ -300,8 +288,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Blits our render results to screen optionally applying lens distortion. This can only be called
-   * while processing `_commit_views`.
+   * Blits our render results to screen optionally applying lens distortion. This can only be called while processing `_commit_views`.
    */
   public final fun addBlit(
     renderTarget: RID,
@@ -315,14 +302,13 @@ public open class XRInterfaceExtension : XRInterface() {
     k2: Double,
     upscale: Double,
     aspectRatio: Double,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to renderTarget, RECT2 to srcRect, RECT2I to dstRect, BOOL to useLayer, LONG to layer, BOOL to applyLensDistortion, VECTOR2 to eyeCenter, DOUBLE to k1, DOUBLE to k2, DOUBLE to upscale, DOUBLE to aspectRatio)
     TransferContext.callMethod(ptr, MethodBindings.addBlitPtr, NIL)
   }
 
   /**
-   * Returns a valid [RID] for a texture to which we should render the current frame if supported by
-   * the interface.
+   * Returns a valid [RID] for a texture to which we should render the current frame if supported by the interface.
    */
   public final fun getRenderTargetTexture(renderTarget: RID): RID {
     TransferContext.writeArguments(_RID to renderTarget)
@@ -334,18 +320,18 @@ public open class XRInterfaceExtension : XRInterface() {
 
   public object MethodBindings {
     internal val getColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_color_texture", 529393457)
+        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_color_texture", 529_393_457)
 
     internal val getDepthTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_depth_texture", 529393457)
+        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_depth_texture", 529_393_457)
 
     internal val getVelocityTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_velocity_texture", 529393457)
+        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_velocity_texture", 529_393_457)
 
     internal val addBlitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "add_blit", 258596971)
+        TypeManager.getMethodBindPtr("XRInterfaceExtension", "add_blit", 258_596_971)
 
     internal val getRenderTargetTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_render_target_texture", 41030802)
+        TypeManager.getMethodBindPtr("XRInterfaceExtension", "get_render_target_texture", 41_030_802)
   }
 }

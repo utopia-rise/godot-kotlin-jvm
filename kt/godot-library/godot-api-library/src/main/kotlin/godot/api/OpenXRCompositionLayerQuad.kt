@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,11 +26,8 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
    * The dimensions of the quad.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var quadSize: Vector2
@@ -44,7 +38,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
       setQuadSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(420, scriptIndex)
   }
 
@@ -67,7 +61,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
      quadSize = this
   }
 
-  public final fun setQuadSize(size: Vector2): Unit {
+  public final fun setQuadSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setQuadSizePtr, NIL)
   }
@@ -82,9 +76,9 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
 
   public object MethodBindings {
     internal val setQuadSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "set_quad_size", 743155724)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "set_quad_size", 743_155_724)
 
     internal val getQuadSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "get_quad_size", 3341600327)
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayerQuad", "get_quad_size", 3_341_600_327)
   }
 }

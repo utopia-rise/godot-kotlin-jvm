@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,11 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A rectangular frame that can be used to group visual shader nodes together to improve
- * organization.
+ * A rectangular frame that can be used to group visual shader nodes together to improve organization.
  *
- * Nodes attached to the frame will move with it when it is dragged and it can automatically resize
- * to enclose all attached nodes.
+ * Nodes attached to the frame will move with it when it is dragged and it can automatically resize to enclose all attached nodes.
  *
  * Its title, description and color can be customized.
  */
@@ -64,11 +59,8 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * The color of the frame when [tintColorEnabled] is `true`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tintColor: Color
@@ -94,11 +86,8 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * The list of nodes attached to the frame.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var attachedNodes: PackedInt32Array
@@ -109,7 +98,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
       setAttachedNodes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(754, scriptIndex)
   }
 
@@ -146,22 +135,19 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
    * The list of nodes attached to the frame.
    */
   @CoreTypeHelper
-  public final fun attachedNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      attachedNodes.apply {
+  public final fun attachedNodesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = attachedNodes.apply {
      block(this)
      attachedNodes = this
   }
 
   /**
    * This is a helper function for [attachedNodes] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The list of nodes attached to the frame.
    */
   @CoreTypeHelper
-  public final fun attachedNodesMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = attachedNodes.apply {
+  public final fun attachedNodesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = attachedNodes.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -169,7 +155,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
      attachedNodes = this
   }
 
-  public final fun setTitle(title: String): Unit {
+  public final fun setTitle(title: String) {
     TransferContext.writeArguments(STRING to title)
     TransferContext.callMethod(ptr, MethodBindings.setTitlePtr, NIL)
   }
@@ -180,7 +166,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setTintColorEnabled(enable: Boolean): Unit {
+  public final fun setTintColorEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setTintColorEnabledPtr, NIL)
   }
@@ -191,7 +177,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTintColor(color: Color): Unit {
+  public final fun setTintColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setTintColorPtr, NIL)
   }
@@ -202,7 +188,7 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setAutoshrinkEnabled(enable: Boolean): Unit {
+  public final fun setAutoshrinkEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoshrinkEnabledPtr, NIL)
   }
@@ -214,24 +200,22 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   /**
-   * Adds a node to the list of nodes attached to the frame. Should not be called directly, use the
-   * [VisualShader.attachNodeToFrame] method instead.
+   * Adds a node to the list of nodes attached to the frame. Should not be called directly, use the [VisualShader.attachNodeToFrame] method instead.
    */
-  public final fun addAttachedNode(node: Int): Unit {
+  public final fun addAttachedNode(node: Int) {
     TransferContext.writeArguments(LONG to node.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addAttachedNodePtr, NIL)
   }
 
   /**
-   * Removes a node from the list of nodes attached to the frame. Should not be called directly, use
-   * the [VisualShader.detachNodeFromFrame] method instead.
+   * Removes a node from the list of nodes attached to the frame. Should not be called directly, use the [VisualShader.detachNodeFromFrame] method instead.
    */
-  public final fun removeAttachedNode(node: Int): Unit {
+  public final fun removeAttachedNode(node: Int) {
     TransferContext.writeArguments(LONG to node.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeAttachedNodePtr, NIL)
   }
 
-  public final fun setAttachedNodes(attachedNodes: PackedInt32Array): Unit {
+  public final fun setAttachedNodes(attachedNodes: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to attachedNodes)
     TransferContext.callMethod(ptr, MethodBindings.setAttachedNodesPtr, NIL)
   }
@@ -246,39 +230,39 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
 
   public object MethodBindings {
     internal val setTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_title", 83_702_148)
 
     internal val getTitlePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_title", 201_670_096)
 
     internal val setTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color_enabled", 2_586_408_642)
 
     internal val isTintColorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_tint_color_enabled", 36_873_697)
 
     internal val setTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2920490490)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_tint_color", 2_920_490_490)
 
     internal val getTintColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3444240500)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_tint_color", 3_444_240_500)
 
     internal val setAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_autoshrink_enabled", 2_586_408_642)
 
     internal val isAutoshrinkEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "is_autoshrink_enabled", 36_873_697)
 
     internal val addAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "add_attached_node", 1_286_410_249)
 
     internal val removeAttachedNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "remove_attached_node", 1_286_410_249)
 
     internal val setAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3614634198)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "set_attached_nodes", 3_614_634_198)
 
     internal val getAttachedNodesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1930428628)
+        TypeManager.getMethodBindPtr("VisualShaderNodeFrame", "get_attached_nodes", 1_930_428_628)
   }
 }

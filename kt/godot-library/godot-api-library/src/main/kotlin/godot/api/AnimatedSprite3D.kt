@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,11 +29,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [AnimatedSprite3D] is similar to the [Sprite3D] node, except it carries multiple textures as
- * animation [spriteFrames]. Animations are created using a [SpriteFrames] resource, which allows you
- * to import image files (or a folder containing said files) to provide the animation frames for the
- * sprite. The [SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom
- * panel.
+ * [AnimatedSprite3D] is similar to the [Sprite3D] node, except it carries multiple textures as animation [spriteFrames]. Animations are created using a [SpriteFrames] resource, which allows you to import image files (or a folder containing said files) to provide the animation frames for the sprite. The [SpriteFrames] resource can be configured in the editor via the SpriteFrames bottom panel.
  */
 @GodotBaseType
 public open class AnimatedSprite3D : SpriteBase3D() {
@@ -61,16 +54,14 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   public val animationLooped: Signal0 by Signal0
 
   /**
-   * Emitted when the animation reaches the end, or the start if it is played in reverse. When the
-   * animation finishes, it pauses the playback.
+   * Emitted when the animation reaches the end, or the start if it is played in reverse. When the animation finishes, it pauses the playback.
    *
    * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationFinished: Signal0 by Signal0
 
   /**
-   * The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit,
-   * clear, make unique and save the states of the [SpriteFrames] resource.
+   * The [SpriteFrames] resource containing the animation(s). Allows you the option to load, edit, clear, make unique and save the states of the [SpriteFrames] resource.
    */
   public final inline var spriteFrames: SpriteFrames?
     @JvmName("spriteFramesProperty")
@@ -81,8 +72,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   /**
-   * The current animation from the [spriteFrames] resource. If this value is changed, the [frame]
-   * counter and the [frameProgress] are reset.
+   * The current animation from the [spriteFrames] resource. If this value is changed, the [frame] counter and the [frameProgress] are reset.
    */
   public final inline var animation: StringName
     @JvmName("animationProperty")
@@ -104,8 +94,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   /**
-   * The displayed animation frame's index. Setting this property also resets [frameProgress]. If
-   * this is not desired, use [setFrameAndProgress].
+   * The displayed animation frame's index. Setting this property also resets [frameProgress]. If this is not desired, use [setFrameAndProgress].
    */
   public final inline var frame: Int
     @JvmName("frameProperty")
@@ -116,8 +105,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   /**
-   * The progress value between `0.0` and `1.0` until the current frame transitions to the next
-   * frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`.
+   * The progress value between `0.0` and `1.0` until the current frame transitions to the next frame. If the animation is playing backwards, the value transitions from `1.0` to `0.0`.
    */
   public final inline var frameProgress: Float
     @JvmName("frameProgressProperty")
@@ -128,11 +116,9 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   /**
-   * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal
-   * speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
+   * The speed scaling ratio. For example, if this value is `1`, then the animation plays at normal speed. If it's `0.5`, then it plays at half speed. If it's `2`, then it plays at double speed.
    *
-   * If set to a negative value, the animation is played in reverse. If set to `0`, the animation
-   * will not advance.
+   * If set to a negative value, the animation is played in reverse. If set to `0`, the animation will not advance.
    */
   public final inline var speedScale: Float
     @JvmName("speedScaleProperty")
@@ -142,11 +128,11 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       setSpeedScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(10, scriptIndex)
   }
 
-  public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
+  public final fun setSpriteFrames(spriteFrames: SpriteFrames?) {
     TransferContext.writeArguments(OBJECT to spriteFrames)
     TransferContext.callMethod(ptr, MethodBindings.setSpriteFramesPtr, NIL)
   }
@@ -157,7 +143,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(OBJECT) as SpriteFrames?)
   }
 
-  public final fun setAnimation(name: StringName): Unit {
+  public final fun setAnimation(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setAnimationPtr, NIL)
   }
@@ -168,7 +154,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAutoplay(name: String): Unit {
+  public final fun setAutoplay(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
@@ -180,8 +166,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed`
-   * are `0`).
+   * Returns `true` if an animation is currently playing (even if [speedScale] and/or `custom_speed` are `0`).
    */
   public final fun isPlaying(): Boolean {
     TransferContext.writeArguments()
@@ -190,18 +175,16 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
-   * animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
-   * If this method is called with that same animation [name], or with no [name] parameter, the
-   * assigned animation will resume playing if it was paused.
+   * If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    */
   @JvmOverloads
   public final fun play(
     name: StringName = StringName(""),
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to name, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd)
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
@@ -209,36 +192,32 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   /**
    * Plays the animation with key [name] in reverse.
    *
-   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
-   * its description for more information.
+   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
-  public final fun playBackwards(name: StringName = StringName("")): Unit {
+  public final fun playBackwards(name: StringName = StringName("")) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.playBackwardsPtr, NIL)
   }
 
   /**
-   * Pauses the currently playing animation. The [frame] and [frameProgress] will be kept and
-   * calling [play] or [playBackwards] without arguments will resume the animation from the current
-   * playback position.
+   * Pauses the currently playing animation. The [frame] and [frameProgress] will be kept and calling [play] or [playBackwards] without arguments will resume the animation from the current playback position.
    *
    * See also [stop].
    */
-  public final fun pause(): Unit {
+  public final fun pause() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.pausePtr, NIL)
   }
 
   /**
-   * Stops the currently playing animation. The animation position is reset to `0` and the
-   * `custom_speed` is reset to `1.0`. See also [pause].
+   * Stops the currently playing animation. The animation position is reset to `0` and the `custom_speed` is reset to `1.0`. See also [pause].
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
-  public final fun setFrame(frame: Int): Unit {
+  public final fun setFrame(frame: Int) {
     TransferContext.writeArguments(LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFramePtr, NIL)
   }
@@ -249,7 +228,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFrameProgress(progress: Float): Unit {
+  public final fun setFrameProgress(progress: Float) {
     TransferContext.writeArguments(DOUBLE to progress.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFrameProgressPtr, NIL)
   }
@@ -261,8 +240,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does
-   * not reset the [frameProgress] to `0.0` implicitly.
+   * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does not reset the [frameProgress] to `0.0` implicitly.
    *
    * **Example:** Change the animation while keeping the same [frame] and [frameProgress]:
    *
@@ -274,12 +252,12 @@ public open class AnimatedSprite3D : SpriteBase3D() {
    * animated_sprite.set_frame_and_progress(current_frame, current_progress)
    * ```
    */
-  public final fun setFrameAndProgress(frame: Int, progress: Float): Unit {
+  public final fun setFrameAndProgress(frame: Int, progress: Float) {
     TransferContext.writeArguments(LONG to frame.toLong(), DOUBLE to progress.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFrameAndProgressPtr, NIL)
   }
 
-  public final fun setSpeedScale(speedScale: Float): Unit {
+  public final fun setSpeedScale(speedScale: Float) {
     TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
   }
@@ -291,9 +269,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Returns the actual playing speed of current animation or `0` if not playing. This speed is the
-   * [speedScale] property multiplied by `custom_speed` argument specified when calling the [play]
-   * method.
+   * Returns the actual playing speed of current animation or `0` if not playing. This speed is the [speedScale] property multiplied by `custom_speed` argument specified when calling the [play] method.
    *
    * Returns a negative value if the current animation is playing backwards.
    */
@@ -303,88 +279,85 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
+  public final fun setAnimation(name: String): Unit = setAnimation(name.asCachedStringName())
 
   /**
-   * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the
-   * animation will play backwards (which is equivalent to calling [playBackwards]).
+   * Plays the animation with key [name]. If [customSpeed] is negative and [fromEnd] is `true`, the animation will play backwards (which is equivalent to calling [playBackwards]).
    *
-   * If this method is called with that same animation [name], or with no [name] parameter, the
-   * assigned animation will resume playing if it was paused.
+   * If this method is called with that same animation [name], or with no [name] parameter, the assigned animation will resume playing if it was paused.
    */
   @JvmOverloads
   public final fun play(
     name: String,
     customSpeed: Float = 1.0f,
     fromEnd: Boolean = false,
-  ) = play(name.asCachedStringName(), customSpeed, fromEnd)
+  ): Unit = play(name.asCachedStringName(), customSpeed, fromEnd)
 
   /**
    * Plays the animation with key [name] in reverse.
    *
-   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see
-   * its description for more information.
+   * This method is a shorthand for [play] with `custom_speed = -1.0` and `from_end = true`, so see its description for more information.
    */
-  public final fun playBackwards(name: String) = playBackwards(name.asCachedStringName())
+  public final fun playBackwards(name: String): Unit = playBackwards(name.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val setSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905781144)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_sprite_frames", 905_781_144)
 
     internal val getSpriteFramesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3804851214)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_sprite_frames", 3_804_851_214)
 
     internal val setAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3304788590)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_animation", 3_304_788_590)
 
     internal val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2002593661)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_animation", 2_002_593_661)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83702148)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_autoplay", 83_702_148)
 
     internal val getAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201670096)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_autoplay", 201_670_096)
 
     internal val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36873697)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "is_playing", 36_873_697)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 3269405555)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play", 3_269_405_555)
 
     internal val playBackwardsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 3323268493)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "play_backwards", 3_323_268_493)
 
     internal val pausePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause", 3218959716)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "pause", 3_218_959_716)
 
     internal val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "stop", 3218959716)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "stop", 3_218_959_716)
 
     internal val setFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1286410249)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame", 1_286_410_249)
 
     internal val getFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3905245786)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame", 3_905_245_786)
 
     internal val setFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373806689)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_progress", 373_806_689)
 
     internal val getFrameProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1740695150)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_frame_progress", 1_740_695_150)
 
     internal val setFrameAndProgressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1602489585)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_frame_and_progress", 1_602_489_585)
 
     internal val setSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373806689)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "set_speed_scale", 373_806_689)
 
     internal val getSpeedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_speed_scale", 1_740_695_150)
 
     internal val getPlayingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1740695150)
+        TypeManager.getMethodBindPtr("AnimatedSprite3D", "get_playing_speed", 1_740_695_150)
   }
 }

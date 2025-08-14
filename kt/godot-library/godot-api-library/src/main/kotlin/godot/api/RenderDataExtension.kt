@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -11,14 +8,13 @@ import godot.core.RID
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * This class allows for a RenderData implementation to be made in GDExtension.
  */
 @GodotBaseType
 public open class RenderDataExtension : RenderData() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(541, scriptIndex)
   }
 
@@ -44,8 +40,7 @@ public open class RenderDataExtension : RenderData() {
   }
 
   /**
-   * Implement this in GDExtension to return the [RID] for the implementation's camera attributes
-   * object.
+   * Implement this in GDExtension to return the [RID] for the implementation's camera attributes object.
    */
   public open fun _getCameraAttributes(): RID {
     throw NotImplementedError("RenderDataExtension::_getCameraAttributes is not implemented.")

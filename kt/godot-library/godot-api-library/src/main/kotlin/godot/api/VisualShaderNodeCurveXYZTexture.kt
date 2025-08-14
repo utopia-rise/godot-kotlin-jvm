@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -14,7 +11,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -33,11 +29,11 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(742, scriptIndex)
   }
 
-  public final fun setTexture(texture: CurveXYZTexture?): Unit {
+  public final fun setTexture(texture: CurveXYZTexture?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -52,9 +48,9 @@ public open class VisualShaderNodeCurveXYZTexture : VisualShaderNodeResizableBas
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "set_texture", 8031783)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "set_texture", 8_031_783)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "get_texture", 1950275015)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCurveXYZTexture", "get_texture", 1_950_275_015)
   }
 }

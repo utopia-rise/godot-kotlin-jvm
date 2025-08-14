@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,16 +18,12 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * This node allows you to create a cylinder (or cone) for use with the CSG system.
  *
- * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
- * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
- * node within another CSG node also has a significant CPU cost, so it should be avoided during
- * gameplay.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG node within another CSG node also has a significant CPU cost, so it should be avoided during gameplay.
  */
 @GodotBaseType
 public open class CSGCylinder3D : CSGPrimitive3D() {
@@ -57,8 +50,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     }
 
   /**
-   * The number of sides of the cylinder, the higher this number the more detail there will be in
-   * the cylinder.
+   * The number of sides of the cylinder, the higher this number the more detail there will be in the cylinder.
    */
   public final inline var sides: Int
     @JvmName("sidesProperty")
@@ -80,8 +72,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     }
 
   /**
-   * If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem
-   * rounded. If `false` the cylinder will have a flat shaded look.
+   * If `true` the normals of the cylinder are set to give a smooth effect making the cylinder seem rounded. If `false` the cylinder will have a flat shaded look.
    */
   public final inline var smoothFaces: Boolean
     @JvmName("smoothFacesProperty")
@@ -102,11 +93,11 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(119, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -117,7 +108,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -128,7 +119,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSides(sides: Int): Unit {
+  public final fun setSides(sides: Int) {
     TransferContext.writeArguments(LONG to sides.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSidesPtr, NIL)
   }
@@ -139,7 +130,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCone(cone: Boolean): Unit {
+  public final fun setCone(cone: Boolean) {
     TransferContext.writeArguments(BOOL to cone)
     TransferContext.callMethod(ptr, MethodBindings.setConePtr, NIL)
   }
@@ -150,7 +141,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -161,7 +152,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public final fun setSmoothFaces(smoothFaces: Boolean): Unit {
+  public final fun setSmoothFaces(smoothFaces: Boolean) {
     TransferContext.writeArguments(BOOL to smoothFaces)
     TransferContext.callMethod(ptr, MethodBindings.setSmoothFacesPtr, NIL)
   }
@@ -176,39 +167,39 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_radius", 1_740_695_150)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_height", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_height", 1_740_695_150)
 
     internal val setSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_sides", 1286410249)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_sides", 1_286_410_249)
 
     internal val getSidesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_sides", 3905245786)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_sides", 3_905_245_786)
 
     internal val setConePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_cone", 2586408642)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_cone", 2_586_408_642)
 
     internal val isConePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "is_cone", 36873697)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "is_cone", 36_873_697)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_material", 5_934_680)
 
     internal val setSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2586408642)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "set_smooth_faces", 2_586_408_642)
 
     internal val getSmoothFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36873697)
+        TypeManager.getMethodBindPtr("CSGCylinder3D", "get_smooth_faces", 36_873_697)
   }
 }

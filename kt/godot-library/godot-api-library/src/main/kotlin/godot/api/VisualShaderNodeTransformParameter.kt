@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,11 +39,8 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
    * A default value to be assigned within the shader.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var defaultValue: Transform3D
@@ -57,7 +51,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(812, scriptIndex)
   }
 
@@ -75,13 +69,12 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
    * A default value to be assigned within the shader.
    */
   @CoreTypeHelper
-  public final fun defaultValueMutate(block: Transform3D.() -> Unit): Transform3D =
-      defaultValue.apply {
+  public final fun defaultValueMutate(block: Transform3D.() -> Unit): Transform3D = defaultValue.apply {
      block(this)
      defaultValue = this
   }
 
-  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
@@ -92,7 +85,7 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultValue(`value`: Transform3D): Unit {
+  public final fun setDefaultValue(`value`: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
@@ -107,15 +100,15 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value_enabled", 2_586_408_642)
 
     internal val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "is_default_value_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "is_default_value_enabled", 36_873_697)
 
     internal val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value", 2952846383)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "set_default_value", 2_952_846_383)
 
     internal val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "get_default_value", 3229777777)
+        TypeManager.getMethodBindPtr("VisualShaderNodeTransformParameter", "get_default_value", 3_229_777_777)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,14 +24,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation]
- * property. Used as an input for [AnimationNode]s that blend animations together.
+ * A resource to add to an [AnimationNodeBlendTree]. Only has one output port using the [animation] property. Used as an input for [AnimationNode]s that blend animations together.
  */
 @GodotBaseType
 public open class AnimationNodeAnimation : AnimationRootNode() {
   /**
-   * Animation to use as an output. It is one of the animations provided by
-   * [AnimationTree.animPlayer].
+   * Animation to use as an output. It is one of the animations provided by [AnimationTree.animPlayer].
    */
   public final inline var animation: StringName
     @JvmName("animationProperty")
@@ -56,8 +51,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   /**
-   * If `true`, on receiving a request to play an animation from the start, the first frame is not
-   * drawn, but only processed, and playback starts from the next frame.
+   * If `true`, on receiving a request to play an animation from the start, the first frame is not drawn, but only processed, and playback starts from the next frame.
    *
    * See also the notes of [AnimationPlayer.play].
    */
@@ -70,8 +64,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   /**
-   * If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some
-   * parameters adjusted.
+   * If `true`, [AnimationNode] provides an animation based on the [Animation] resource with some parameters adjusted.
    */
   public final inline var useCustomTimeline: Boolean
     @JvmName("useCustomTimelineProperty")
@@ -97,8 +90,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
    *
    * This is useful for matching the periods of walking and running animations.
    *
-   * If `false`, the original animation length is respected. If you set the loop to [loopMode], the
-   * animation will loop in [timelineLength].
+   * If `false`, the original animation length is respected. If you set the loop to [loopMode], the animation will loop in [timelineLength].
    */
   public final inline var stretchTimeScale: Boolean
     @JvmName("stretchTimeScaleProperty")
@@ -122,12 +114,9 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     }
 
   /**
-   * If [useCustomTimeline] is `true`, override the loop settings of the original [Animation]
-   * resource with the value.
+   * If [useCustomTimeline] is `true`, override the loop settings of the original [Animation] resource with the value.
    *
-   * **Note:** If the [Animation.loopMode] isn't set to looping, the
-   * [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the
-   * expected behavior, consider duplicating the [Animation] resource and changing the loop settings.
+   * **Note:** If the [Animation.loopMode] isn't set to looping, the [Animation.trackSetInterpolationLoopWrap] option will not be respected. If you cannot get the expected behavior, consider duplicating the [Animation] resource and changing the loop settings.
    */
   public final inline var loopMode: Animation.LoopMode
     @JvmName("loopModeProperty")
@@ -137,11 +126,11 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
       setLoopMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(18, scriptIndex)
   }
 
-  public final fun setAnimation(name: StringName): Unit {
+  public final fun setAnimation(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setAnimationPtr, NIL)
   }
@@ -152,7 +141,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setPlayMode(mode: PlayMode): Unit {
+  public final fun setPlayMode(mode: PlayMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setPlayModePtr, NIL)
   }
@@ -163,7 +152,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return PlayMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAdvanceOnStart(advanceOnStart: Boolean): Unit {
+  public final fun setAdvanceOnStart(advanceOnStart: Boolean) {
     TransferContext.writeArguments(BOOL to advanceOnStart)
     TransferContext.callMethod(ptr, MethodBindings.setAdvanceOnStartPtr, NIL)
   }
@@ -174,7 +163,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseCustomTimeline(useCustomTimeline: Boolean): Unit {
+  public final fun setUseCustomTimeline(useCustomTimeline: Boolean) {
     TransferContext.writeArguments(BOOL to useCustomTimeline)
     TransferContext.callMethod(ptr, MethodBindings.setUseCustomTimelinePtr, NIL)
   }
@@ -185,7 +174,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTimelineLength(timelineLength: Double): Unit {
+  public final fun setTimelineLength(timelineLength: Double) {
     TransferContext.writeArguments(DOUBLE to timelineLength)
     TransferContext.callMethod(ptr, MethodBindings.setTimelineLengthPtr, NIL)
   }
@@ -196,7 +185,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setStretchTimeScale(stretchTimeScale: Boolean): Unit {
+  public final fun setStretchTimeScale(stretchTimeScale: Boolean) {
     TransferContext.writeArguments(BOOL to stretchTimeScale)
     TransferContext.callMethod(ptr, MethodBindings.setStretchTimeScalePtr, NIL)
   }
@@ -207,7 +196,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setStartOffset(startOffset: Double): Unit {
+  public final fun setStartOffset(startOffset: Double) {
     TransferContext.writeArguments(DOUBLE to startOffset)
     TransferContext.callMethod(ptr, MethodBindings.setStartOffsetPtr, NIL)
   }
@@ -218,7 +207,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setLoopMode(loopMode: Animation.LoopMode): Unit {
+  public final fun setLoopMode(loopMode: Animation.LoopMode) {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
@@ -229,7 +218,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     return Animation.LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
+  public final fun setAnimation(name: String): Unit = setAnimation(name.asCachedStringName())
 
   public enum class PlayMode(
     id: Long,
@@ -258,51 +247,51 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
 
   public object MethodBindings {
     internal val setAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_animation", 3304788590)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_animation", 3_304_788_590)
 
     internal val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_animation", 2002593661)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_animation", 2_002_593_661)
 
     internal val setPlayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode", 3347718873)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_play_mode", 3_347_718_873)
 
     internal val getPlayModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode", 2061244637)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_play_mode", 2_061_244_637)
 
     internal val setAdvanceOnStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_advance_on_start", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_advance_on_start", 2_586_408_642)
 
     internal val isAdvanceOnStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_advance_on_start", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_advance_on_start", 36_873_697)
 
     internal val setUseCustomTimelinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_use_custom_timeline", 2_586_408_642)
 
     internal val isUsingCustomTimelinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_using_custom_timeline", 36_873_697)
 
     internal val setTimelineLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_timeline_length", 373_806_689)
 
     internal val getTimelineLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_timeline_length", 1_740_695_150)
 
     internal val setStretchTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_stretch_time_scale", 2_586_408_642)
 
     internal val isStretchingTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "is_stretching_time_scale", 36_873_697)
 
     internal val setStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_start_offset", 373_806_689)
 
     internal val getStartOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_start_offset", 1_740_695_150)
 
     internal val setLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode", 3155355575)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "set_loop_mode", 3_155_355_575)
 
     internal val getLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode", 1988889481)
+        TypeManager.getMethodBindPtr("AnimationNodeAnimation", "get_loop_mode", 1_988_889_481)
   }
 }

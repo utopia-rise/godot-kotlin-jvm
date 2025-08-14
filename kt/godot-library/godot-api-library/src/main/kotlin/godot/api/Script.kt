@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,25 +27,20 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A class stored as a resource. A script extends the functionality of all objects that instantiate
- * it.
+ * A class stored as a resource. A script extends the functionality of all objects that instantiate it.
  *
- * This is the base class for all scripts and should not be used directly. Trying to create a new
- * script with this class will result in an error.
+ * This is the base class for all scripts and should not be used directly. Trying to create a new script with this class will result in an error.
  *
- * The `new` method of a script subclass creates a new instance. [Object.setScript] extends an
- * existing object, if that object's class matches one of the script's base classes.
+ * The `new` method of a script subclass creates a new instance. [Object.setScript] extends an existing object, if that object's class matches one of the script's base classes.
  */
 @GodotBaseType
 public open class Script internal constructor() : Resource() {
   /**
-   * The script source code or an empty string if source code is not available. When set, does not
-   * reload the class implementation automatically.
+   * The script source code or an empty string if source code is not available. When set, does not reload the class implementation automatically.
    */
   public final inline var sourceCode: String
     @JvmName("sourceCodeProperty")
@@ -58,7 +50,7 @@ public open class Script internal constructor() : Resource() {
       setSourceCode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(572, scriptIndex)
   }
 
@@ -83,10 +75,7 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script contains non-empty source code.
    *
-   * **Note:** If a script does not have source code, this does not mean that it is invalid or
-   * unusable. For example, a [GDScript] that was exported with binary tokenization has no source code,
-   * but still behaves as expected and could be instantiated. This can be checked with
-   * [canInstantiate].
+   * **Note:** If a script does not have source code, this does not mean that it is invalid or unusable. For example, a [GDScript] that was exported with binary tokenization has no source code, but still behaves as expected and could be instantiated. This can be checked with [canInstantiate].
    */
   public final fun hasSourceCode(): Boolean {
     TransferContext.writeArguments()
@@ -100,7 +89,7 @@ public open class Script internal constructor() : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setSourceCode(source: String): Unit {
+  public final fun setSourceCode(source: String) {
     TransferContext.writeArguments(STRING to source)
     TransferContext.callMethod(ptr, MethodBindings.setSourceCodePtr, NIL)
   }
@@ -134,11 +123,9 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns the class name associated with the script, if there is one. Returns an empty string
-   * otherwise.
+   * Returns the class name associated with the script, if there is one. Returns an empty string otherwise.
    *
-   * To give the script a global name, you can use the `class_name` keyword in GDScript and the
-   * `[GlobalClass]` attribute in C#.
+   * To give the script a global name, you can use the `class_name` keyword in GDScript and the `[GlobalClass]` attribute in C#.
    *
    * ```gdscript
    * //gdscript
@@ -226,8 +213,7 @@ public open class Script internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the script is an abstract script. An abstract script does not have a
-   * constructor and cannot be instantiated.
+   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
    */
   public final fun isAbstract(): Boolean {
     TransferContext.writeArguments()
@@ -247,68 +233,67 @@ public open class Script internal constructor() : Resource() {
   /**
    * Returns `true` if the script, or a base class, defines a signal with the given name.
    */
-  public final fun hasScriptSignal(signalName: String): Boolean =
-      hasScriptSignal(signalName.asCachedStringName())
+  public final fun hasScriptSignal(signalName: String): Boolean = hasScriptSignal(signalName.asCachedStringName())
 
   /**
    * Returns the default value of the specified property.
    */
-  public final fun getPropertyDefaultValue(`property`: String): Any? =
-      getPropertyDefaultValue(property.asCachedStringName())
+  public final fun getPropertyDefaultValue(`property`: String): Any? = getPropertyDefaultValue(property.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "can_instantiate", 36873697)
+        TypeManager.getMethodBindPtr("Script", "can_instantiate", 36_873_697)
 
     internal val instanceHasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "instance_has", 397768994)
+        TypeManager.getMethodBindPtr("Script", "instance_has", 397_768_994)
 
     internal val hasSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "has_source_code", 36873697)
+        TypeManager.getMethodBindPtr("Script", "has_source_code", 36_873_697)
 
     internal val getSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_source_code", 201670096)
+        TypeManager.getMethodBindPtr("Script", "get_source_code", 201_670_096)
 
     internal val setSourceCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "set_source_code", 83702148)
+        TypeManager.getMethodBindPtr("Script", "set_source_code", 83_702_148)
 
-    internal val reloadPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "reload", 1633102583)
+    internal val reloadPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Script", "reload", 1_633_102_583)
 
     internal val getBaseScriptPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_base_script", 278624046)
+        TypeManager.getMethodBindPtr("Script", "get_base_script", 278_624_046)
 
     internal val getInstanceBaseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_instance_base_type", 2002593661)
+        TypeManager.getMethodBindPtr("Script", "get_instance_base_type", 2_002_593_661)
 
     internal val getGlobalNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_global_name", 2002593661)
+        TypeManager.getMethodBindPtr("Script", "get_global_name", 2_002_593_661)
 
     internal val hasScriptSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "has_script_signal", 2619796661)
+        TypeManager.getMethodBindPtr("Script", "has_script_signal", 2_619_796_661)
 
     internal val getScriptPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_property_list", 2915620761)
+        TypeManager.getMethodBindPtr("Script", "get_script_property_list", 2_915_620_761)
 
     internal val getScriptMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_method_list", 2915620761)
+        TypeManager.getMethodBindPtr("Script", "get_script_method_list", 2_915_620_761)
 
     internal val getScriptSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_signal_list", 2915620761)
+        TypeManager.getMethodBindPtr("Script", "get_script_signal_list", 2_915_620_761)
 
     internal val getScriptConstantMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_script_constant_map", 2382534195)
+        TypeManager.getMethodBindPtr("Script", "get_script_constant_map", 2_382_534_195)
 
     internal val getPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_property_default_value", 2138907829)
+        TypeManager.getMethodBindPtr("Script", "get_property_default_value", 2_138_907_829)
 
-    internal val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool", 36873697)
+    internal val isToolPtr: VoidPtr = TypeManager.getMethodBindPtr("Script", "is_tool", 36_873_697)
 
     internal val isAbstractPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "is_abstract", 36873697)
+        TypeManager.getMethodBindPtr("Script", "is_abstract", 36_873_697)
 
     internal val getRpcConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Script", "get_rpc_config", 1214101251)
+        TypeManager.getMethodBindPtr("Script", "get_rpc_config", 1_214_101_251)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,37 +28,24 @@ import kotlin.jvm.JvmName
 /**
  * A baked signed distance field 3D particle collision shape affecting [GPUParticles3D] nodes.
  *
- * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for
- * convex and concave objects of any shape. This is more flexible than
- * [GPUParticlesCollisionHeightField3D], but it requires a baking step.
+ * Signed distance fields (SDF) allow for efficiently representing approximate collision shapes for convex and concave objects of any shape. This is more flexible than [GPUParticlesCollisionHeightField3D], but it requires a baking step.
  *
- * **Baking:** The signed distance field texture can be baked by selecting the
- * [GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D
- * viewport. Any *visible* [MeshInstance3D]s within the [size] will be taken into account for baking,
- * regardless of their [GeometryInstance3D.giMode].
+ * **Baking:** The signed distance field texture can be baked by selecting the [GPUParticlesCollisionSDF3D] node in the editor, then clicking **Bake SDF** at the top of the 3D viewport. Any *visible* [MeshInstance3D]s within the [size] will be taken into account for baking, regardless of their [GeometryInstance3D.giMode].
  *
- * **Note:** Baking a [GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor,
- * as there is no bake method exposed for use in exported projects. However, it's still possible to
- * load pre-baked [Texture3D]s into its [texture] property in an exported project.
+ * **Note:** Baking a [GPUParticlesCollisionSDF3D]'s [texture] is only possible within the editor, as there is no bake method exposed for use in exported projects. However, it's still possible to load pre-baked [Texture3D]s into its [texture] property in an exported project.
  *
- * **Note:** [ParticleProcessMaterial.collisionMode] must be
- * [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on
- * the [GPUParticles3D]'s process material for collision to work.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be [ParticleProcessMaterial.COLLISION_RIGID] or [ParticleProcessMaterial.COLLISION_HIDE_ON_CONTACT] on the [GPUParticles3D]'s process material for collision to work.
  *
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   /**
-   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small
-   * as possible while covering the parts of the scene you need.
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -73,12 +57,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The bake resolution to use for the signed distance field [texture]. The texture must be baked
-   * again for changes to the [resolution] property to be effective. Higher resolutions have a greater
-   * performance cost and take more time to bake. Higher resolutions also result in larger baked
-   * textures, leading to increased VRAM and storage space requirements. To improve performance and
-   * reduce bake times, use the lowest resolution possible for the object you're representing the
-   * collision of.
+   * The bake resolution to use for the signed distance field [texture]. The texture must be baked again for changes to the [resolution] property to be effective. Higher resolutions have a greater performance cost and take more time to bake. Higher resolutions also result in larger baked textures, leading to increased VRAM and storage space requirements. To improve performance and reduce bake times, use the lowest resolution possible for the object you're representing the collision of.
    */
   public final inline var resolution: Resolution
     @JvmName("resolutionProperty")
@@ -89,9 +68,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D]
-   * is actually hollow on the inside. [thickness] can be increased to prevent particles from tunneling
-   * through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved.
+   * The collision shape's thickness. Unlike other particle colliders, [GPUParticlesCollisionSDF3D] is actually hollow on the inside. [thickness] can be increased to prevent particles from tunneling through the collision shape at high speeds, or when the [GPUParticlesCollisionSDF3D] is moved.
    */
   public final inline var thickness: Float
     @JvmName("thicknessProperty")
@@ -102,10 +79,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   /**
-   * The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s
-   * whose [VisualInstance3D.layers] match with this [bakeMask] will be included in the generated
-   * particle collision SDF. By default, all objects are taken into account for the particle collision
-   * SDF baking.
+   * The visual layers to account for when baking the particle collision SDF. Only [MeshInstance3D]s whose [VisualInstance3D.layers] match with this [bakeMask] will be included in the generated particle collision SDF. By default, all objects are taken into account for the particle collision SDF baking.
    */
   public final inline var bakeMask: Long
     @JvmName("bakeMaskProperty")
@@ -126,7 +100,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(252, scriptIndex)
   }
 
@@ -141,8 +115,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
    * gpuparticlescollisionsdf3d.size = myCoreType
    * ``````
    *
-   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small
-   * as possible while covering the parts of the scene you need.
+   * The collision SDF's size in 3D units. To improve SDF quality, the [size] should be set as small as possible while covering the parts of the scene you need.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
@@ -150,7 +123,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -161,7 +134,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setResolution(resolution: Resolution): Unit {
+  public final fun setResolution(resolution: Resolution) {
     TransferContext.writeArguments(LONG to resolution.id)
     TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
   }
@@ -172,7 +145,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTexture(texture: Texture3D?): Unit {
+  public final fun setTexture(texture: Texture3D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -183,7 +156,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture3D?)
   }
 
-  public final fun setThickness(thickness: Float): Unit {
+  public final fun setThickness(thickness: Float) {
     TransferContext.writeArguments(DOUBLE to thickness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setThicknessPtr, NIL)
   }
@@ -194,7 +167,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBakeMask(mask: Long): Unit {
+  public final fun setBakeMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setBakeMaskPtr, NIL)
   }
@@ -206,17 +179,15 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [bakeMask], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [bakeMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setBakeMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setBakeMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber]
-   * between 1 and 32.
+   * Returns whether or not the specified layer of the [bakeMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getBakeMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -228,8 +199,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     id: Long,
   ) {
     /**
-     * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least
-     * precise.
+     * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least precise.
      */
     RESOLUTION_16(0),
     /**
@@ -249,8 +219,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
      */
     RESOLUTION_256(4),
     /**
-     * Bake a 512×512×512 signed distance field. This is the slowest option, but also the most
-     * precise.
+     * Bake a 512×512×512 signed distance field. This is the slowest option, but also the most precise.
      */
     RESOLUTION_512(5),
     /**
@@ -273,39 +242,39 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_size", 3_360_562_783)
 
     internal val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1155629297)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_resolution", 1_155_629_297)
 
     internal val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2919555867)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_resolution", 2_919_555_867)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1188404210)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_texture", 1_188_404_210)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373985333)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_texture", 373_985_333)
 
     internal val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373806689)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_thickness", 373_806_689)
 
     internal val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1740695150)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_thickness", 1_740_695_150)
 
     internal val setBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask", 1_286_410_249)
 
     internal val getBakeMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask", 3_905_245_786)
 
     internal val setBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "set_bake_mask_value", 300_928_843)
 
     internal val getBakeMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionSDF3D", "get_bake_mask_value", 1_116_898_809)
   }
 }

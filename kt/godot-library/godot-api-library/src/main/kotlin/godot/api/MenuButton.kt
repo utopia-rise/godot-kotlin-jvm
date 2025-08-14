@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,13 +16,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu],
- * use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's
- * inspector.
+ * A button that brings up a [PopupMenu] when clicked. To create new items inside this [PopupMenu], use `get_popup().add_item("My Item Name")`. You can also create them directly from Godot editor's inspector.
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  */
@@ -37,8 +31,7 @@ public open class MenuButton : Button() {
   public val aboutToPopup: Signal0 by Signal0
 
   /**
-   * If `true`, when the cursor hovers above another [MenuButton] within the same parent which also
-   * has [switchOnHover] enabled, it will close the current [MenuButton] and open the other one.
+   * If `true`, when the cursor hovers above another [MenuButton] within the same parent which also has [switchOnHover] enabled, it will close the current [MenuButton] and open the other one.
    */
   public final inline var switchOnHover: Boolean
     @JvmName("switchOnHoverProperty")
@@ -59,15 +52,14 @@ public open class MenuButton : Button() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(350, scriptIndex)
   }
 
   /**
    * Returns the [PopupMenu] contained in this button.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [Window.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [Window.visible] property.
    */
   public final fun getPopup(): PopupMenu? {
     TransferContext.writeArguments()
@@ -76,15 +68,14 @@ public open class MenuButton : Button() {
   }
 
   /**
-   * Adjusts popup position and sizing for the [MenuButton], then shows the [PopupMenu]. Prefer this
-   * over using `get_popup().popup()`.
+   * Adjusts popup position and sizing for the [MenuButton], then shows the [PopupMenu]. Prefer this over using `get_popup().popup()`.
    */
-  public final fun showPopup(): Unit {
+  public final fun showPopup() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showPopupPtr, NIL)
   }
 
-  public final fun setSwitchOnHover(enable: Boolean): Unit {
+  public final fun setSwitchOnHover(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSwitchOnHoverPtr, NIL)
   }
@@ -98,12 +89,12 @@ public open class MenuButton : Button() {
   /**
    * If `true`, shortcuts are disabled and cannot be used to trigger the button.
    */
-  public final fun setDisableShortcuts(disabled: Boolean): Unit {
+  public final fun setDisableShortcuts(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisableShortcutsPtr, NIL)
   }
 
-  public final fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemCountPtr, NIL)
   }
@@ -118,24 +109,24 @@ public open class MenuButton : Button() {
 
   public object MethodBindings {
     internal val getPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "get_popup", 229722558)
+        TypeManager.getMethodBindPtr("MenuButton", "get_popup", 229_722_558)
 
     internal val showPopupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "show_popup", 3218959716)
+        TypeManager.getMethodBindPtr("MenuButton", "show_popup", 3_218_959_716)
 
     internal val setSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_switch_on_hover", 2586408642)
+        TypeManager.getMethodBindPtr("MenuButton", "set_switch_on_hover", 2_586_408_642)
 
     internal val isSwitchOnHoverPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "is_switch_on_hover", 2240911060)
+        TypeManager.getMethodBindPtr("MenuButton", "is_switch_on_hover", 2_240_911_060)
 
     internal val setDisableShortcutsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_disable_shortcuts", 2586408642)
+        TypeManager.getMethodBindPtr("MenuButton", "set_disable_shortcuts", 2_586_408_642)
 
     internal val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "set_item_count", 1286410249)
+        TypeManager.getMethodBindPtr("MenuButton", "set_item_count", 1_286_410_249)
 
     internal val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MenuButton", "get_item_count", 3905245786)
+        TypeManager.getMethodBindPtr("MenuButton", "get_item_count", 3_905_245_786)
   }
 }

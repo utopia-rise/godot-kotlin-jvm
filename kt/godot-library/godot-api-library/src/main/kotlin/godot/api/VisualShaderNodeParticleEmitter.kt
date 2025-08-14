@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,18 +12,15 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Particle emitter nodes can be used in "start" step of particle shaders and they define the
- * starting position of the particles. Connect them to the Position output port.
+ * Particle emitter nodes can be used in "start" step of particle shaders and they define the starting position of the particles. Connect them to the Position output port.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleEmitter internal constructor() : VisualShaderNode() {
   /**
-   * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and
-   * meant for use in 3D space.
+   * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and meant for use in 3D space.
    */
   public final inline var mode2d: Boolean
     @JvmName("mode2dProperty")
@@ -36,11 +30,11 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
       setMode2d(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(776, scriptIndex)
   }
 
-  public final fun setMode2d(enabled: Boolean): Unit {
+  public final fun setMode2d(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setMode2dPtr, NIL)
   }
@@ -55,9 +49,9 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
 
   public object MethodBindings {
     internal val setMode2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "set_mode_2d", 2_586_408_642)
 
     internal val isMode2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmitter", "is_mode_2d", 36_873_697)
   }
 }

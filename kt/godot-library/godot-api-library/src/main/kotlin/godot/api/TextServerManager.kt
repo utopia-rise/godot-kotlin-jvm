@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,14 +21,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
  * [TextServerManager] is the API backend for loading, enumerating, and switching [TextServer]s.
  *
- * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text
- * buffers. Make sure to unload all controls, fonts, and themes before doing so.
+ * **Note:** Switching text server at runtime is possible, but will invalidate all fonts and text buffers. Make sure to unload all controls, fonts, and themes before doing so.
  */
 @GodotBaseType
 public object TextServerManager : Object() {
@@ -47,7 +42,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(30)
   }
 
@@ -55,7 +50,7 @@ public object TextServerManager : Object() {
    * Registers a [TextServer] interface.
    */
   @JvmStatic
-  public final fun addInterface(`interface`: TextServer?): Unit {
+  public final fun addInterface(`interface`: TextServer?) {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(ptr, MethodBindings.addInterfacePtr, NIL)
   }
@@ -71,11 +66,10 @@ public object TextServerManager : Object() {
   }
 
   /**
-   * Removes an interface. All fonts and shaped text caches should be freed before removing an
-   * interface.
+   * Removes an interface. All fonts and shaped text caches should be freed before removing an interface.
    */
   @JvmStatic
-  public final fun removeInterface(`interface`: TextServer?): Unit {
+  public final fun removeInterface(`interface`: TextServer?) {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(ptr, MethodBindings.removeInterfacePtr, NIL)
   }
@@ -114,7 +108,7 @@ public object TextServerManager : Object() {
    * Sets the primary [TextServer] interface.
    */
   @JvmStatic
-  public final fun setPrimaryInterface(index: TextServer?): Unit {
+  public final fun setPrimaryInterface(index: TextServer?) {
     TransferContext.writeArguments(OBJECT to index)
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
@@ -131,27 +125,27 @@ public object TextServerManager : Object() {
 
   public object MethodBindings {
     internal val addInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "add_interface", 1799689403)
+        TypeManager.getMethodBindPtr("TextServerManager", "add_interface", 1_799_689_403)
 
     internal val getInterfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interface_count", 3905245786)
+        TypeManager.getMethodBindPtr("TextServerManager", "get_interface_count", 3_905_245_786)
 
     internal val removeInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "remove_interface", 1799689403)
+        TypeManager.getMethodBindPtr("TextServerManager", "remove_interface", 1_799_689_403)
 
     internal val getInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interface", 1672475555)
+        TypeManager.getMethodBindPtr("TextServerManager", "get_interface", 1_672_475_555)
 
     internal val getInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_interfaces", 3995934104)
+        TypeManager.getMethodBindPtr("TextServerManager", "get_interfaces", 3_995_934_104)
 
     internal val findInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "find_interface", 2240905781)
+        TypeManager.getMethodBindPtr("TextServerManager", "find_interface", 2_240_905_781)
 
     internal val setPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "set_primary_interface", 1799689403)
+        TypeManager.getMethodBindPtr("TextServerManager", "set_primary_interface", 1_799_689_403)
 
     internal val getPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServerManager", "get_primary_interface", 905850878)
+        TypeManager.getMethodBindPtr("TextServerManager", "get_primary_interface", 905_850_878)
   }
 }

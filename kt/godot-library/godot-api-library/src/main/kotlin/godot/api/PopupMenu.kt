@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,48 +27,31 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context
- * menus.
+ * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context menus.
  *
- * The size of a [PopupMenu] can be limited by using [Window.maxSize]. If the height of the list of
- * items is larger than the maximum height of the [PopupMenu], a [ScrollContainer] within the popup
- * will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the
- * [PopupMenu] height will be limited by its parent rect.
+ * The size of a [PopupMenu] can be limited by using [Window.maxSize]. If the height of the list of items is larger than the maximum height of the [PopupMenu], a [ScrollContainer] within the popup will allow the user to scroll the contents. If no maximum size is set, or if it is set to `0`, the [PopupMenu] height will be limited by its parent rect.
  *
- * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
- * select the second-to-last item, and so on.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
  *
- * **Incremental search:** Like [ItemList] and [Tree], [PopupMenu] supports searching within the
- * list while the control is focused. Press a key that matches the first letter of an item's name to
- * select the first item starting with the given letter. After that point, there are two ways to
- * perform incremental search: 1) Press the same key again before the timeout duration to select the
- * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
- * the timeout duration to match to select the item in question directly. Both of these actions will be
- * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
- * registered. You can adjust the timeout duration by changing
- * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * **Incremental search:** Like [ItemList] and [Tree], [PopupMenu] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
- * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
  */
 @GodotBaseType
 public open class PopupMenu : Popup() {
   /**
    * Emitted when an item of some [id] is pressed or its accelerator is activated.
    *
-   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the
-   * corresponding index instead.
+   * **Note:** If [id] is negative (either explicitly or due to overflow), this will return the corresponding index instead.
    */
   public val idPressed: Signal1<Long> by Signal1
 
   /**
-   * Emitted when the user navigated to an item of some [id] using the [ProjectSettings.input/uiUp]
-   * or [ProjectSettings.input/uiDown] input action.
+   * Emitted when the user navigated to an item of some [id] using the [ProjectSettings.input/uiUp] or [ProjectSettings.input/uiDown] input action.
    */
   public val idFocused: Signal1<Long> by Signal1
 
@@ -119,9 +99,7 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup
-   * menu is added as a child of another (acting as a submenu), it will inherit the delay time of the
-   * parent menu item.
+   * Sets the delay time in seconds for the submenu item to popup on mouse hovering. If the popup menu is added as a child of another (acting as a submenu), it will inherit the delay time of the parent menu item.
    */
   public final inline var submenuPopupDelay: Float
     @JvmName("submenuPopupDelayProperty")
@@ -143,8 +121,7 @@ public open class PopupMenu : Popup() {
     }
 
   /**
-   * If set to one of the values of [NativeMenu.SystemMenus], this [PopupMenu] is bound to the
-   * special system menu. Only one [PopupMenu] can be bound to each special menu at a time.
+   * If set to one of the values of [NativeMenu.SystemMenus], this [PopupMenu] is bound to the special system menu. Only one [PopupMenu] can be bound to each special menu at a time.
    */
   public final inline var systemMenuId: NativeMenu.SystemMenus
     @JvmName("systemMenuIdProperty")
@@ -157,8 +134,7 @@ public open class PopupMenu : Popup() {
   /**
    * If `true`, [MenuBar] will use native menu when supported.
    *
-   * **Note:** If [PopupMenu] is linked to [StatusIndicator], [MenuBar], or another [PopupMenu] item
-   * it can use native menu regardless of this property, use [isNativeMenu] to check it.
+   * **Note:** If [PopupMenu] is linked to [StatusIndicator], [MenuBar], or another [PopupMenu] item it can use native menu regardless of this property, use [isNativeMenu] to check it.
    */
   public final inline var preferNativeMenu: Boolean
     @JvmName("preferNativeMenuProperty")
@@ -179,28 +155,25 @@ public open class PopupMenu : Popup() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(502, scriptIndex)
   }
 
   /**
-   * Checks the provided [event] against the [PopupMenu]'s shortcuts and accelerators, and activates
-   * the first item with matching events. If [forGlobalOnly] is `true`, only shortcuts and accelerators
-   * with `global` set to `true` will be called.
+   * Checks the provided [event] against the [PopupMenu]'s shortcuts and accelerators, and activates the first item with matching events. If [forGlobalOnly] is `true`, only shortcuts and accelerators with `global` set to `true` will be called.
    *
    * Returns `true` if an item was successfully activated.
    *
    * **Note:** Certain [Control]s, such as [MenuButton], will call this method automatically.
    */
   @JvmOverloads
-  public final fun activateItemByEvent(event: InputEvent?, forGlobalOnly: Boolean = false):
-      Boolean {
+  public final fun activateItemByEvent(event: InputEvent?, forGlobalOnly: Boolean = false): Boolean {
     TransferContext.writeArguments(OBJECT to event, BOOL to forGlobalOnly)
     TransferContext.callMethod(ptr, MethodBindings.activateItemByEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPreferNativeMenu(enabled: Boolean): Unit {
+  public final fun setPreferNativeMenu(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPreferNativeMenuPtr, NIL)
   }
@@ -223,20 +196,16 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new item with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
-   * **Note:** The provided [id] is used only in [signal id_pressed] and [signal id_focused]
-   * signals. It's not related to the `index` arguments in e.g. [setItemChecked].
+   * **Note:** The provided [id] is used only in [signal id_pressed] and [signal id_focused] signals. It's not related to the `index` arguments in e.g. [setItemChecked].
    */
   @JvmOverloads
   public final fun addItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addItemPtr, NIL)
   }
@@ -244,10 +213,7 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new item with text [label] and icon [texture].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    */
   @JvmOverloads
   public final fun addIconItem(
@@ -255,7 +221,7 @@ public open class PopupMenu : Popup() {
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, NIL)
   }
@@ -263,21 +229,16 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addCheckItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addCheckItemPtr, NIL)
   }
@@ -285,14 +246,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new checkable item with text [label] and icon [texture].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addIconCheckItem(
@@ -300,7 +256,7 @@ public open class PopupMenu : Popup() {
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconCheckItemPtr, NIL)
   }
@@ -308,21 +264,16 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new radio check button with text [label].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addRadioCheckItem(
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addRadioCheckItemPtr, NIL)
   }
@@ -336,7 +287,7 @@ public open class PopupMenu : Popup() {
     label: String,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addIconRadioCheckItemPtr, NIL)
   }
@@ -344,13 +295,9 @@ public open class PopupMenu : Popup() {
   /**
    * Adds a new multistate item with text [label].
    *
-   * Contrarily to normal binary items, multistate items can have more than two states, as defined
-   * by [maxStates]. The default value is defined by [defaultState].
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. The default value is defined by [defaultState].
    *
-   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is
-   * provided, one will be created from the index. If no [accel] is provided, then the default value of
-   * 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't
-   * have any accelerator). See [getItemAccelerator] for more info on accelerators.
+   * An [id] can optionally be provided, as well as an accelerator ([accel]). If no [id] is provided, one will be created from the index. If no [accel] is provided, then the default value of 0 (corresponding to [@GlobalScope.KEY_NONE]) will be assigned to the item (which means it won't have any accelerator). See [getItemAccelerator] for more info on accelerators.
    *
    * ```
    * func _ready():
@@ -368,9 +315,7 @@ public open class PopupMenu : Popup() {
    *         )
    * ```
    *
-   * **Note:** Multistate items don't update their state automatically and must be done manually.
-   * See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to
-   * control it.
+   * **Note:** Multistate items don't update their state automatically and must be done manually. See [toggleItemMultistate], [setItemMultistate] and [getItemMultistate] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addMultistateItem(
@@ -379,7 +324,7 @@ public open class PopupMenu : Popup() {
     defaultState: Int = 0,
     id: Int = -1,
     accel: Key = Key.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), LONG to id.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.addMultistateItemPtr, NIL)
   }
@@ -397,14 +342,13 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id.toLong(), BOOL to global, BOOL to allowEcho)
     TransferContext.callMethod(ptr, MethodBindings.addShortcutPtr, NIL)
   }
 
   /**
-   * Adds a new item and assigns the specified [Shortcut] and icon [texture] to it. Sets the label
-   * of the checkbox to the [Shortcut]'s name.
+   * Adds a new item and assigns the specified [Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
@@ -417,40 +361,34 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     global: Boolean = false,
     allowEcho: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id.toLong(), BOOL to global, BOOL to allowEcho)
     TransferContext.callMethod(ptr, MethodBindings.addIconShortcutPtr, NIL)
   }
 
   /**
-   * Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the
-   * checkbox to the [Shortcut]'s name.
+   * Adds a new checkable item and assigns the specified [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addCheckShortcut(
     shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
     TransferContext.callMethod(ptr, MethodBindings.addCheckShortcutPtr, NIL)
   }
 
   /**
-   * Adds a new checkable item and assigns the specified [Shortcut] and icon [texture] to it. Sets
-   * the label of the checkbox to the [Shortcut]'s name.
+   * Adds a new checkable item and assigns the specified [Shortcut] and icon [texture] to it. Sets the label of the checkbox to the [Shortcut]'s name.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addIconCheckShortcut(
@@ -458,27 +396,24 @@ public open class PopupMenu : Popup() {
     shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
     TransferContext.callMethod(ptr, MethodBindings.addIconCheckShortcutPtr, NIL)
   }
 
   /**
-   * Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to
-   * the [Shortcut]'s name.
+   * Adds a new radio check button and assigns a [Shortcut] to it. Sets the label of the checkbox to the [Shortcut]'s name.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    */
   @JvmOverloads
   public final fun addRadioCheckShortcut(
     shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
     TransferContext.callMethod(ptr, MethodBindings.addRadioCheckShortcutPtr, NIL)
   }
@@ -492,16 +427,13 @@ public open class PopupMenu : Popup() {
     shortcut: Shortcut?,
     id: Int = -1,
     global: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to texture, OBJECT to shortcut, LONG to id.toLong(), BOOL to global)
     TransferContext.callMethod(ptr, MethodBindings.addIconRadioCheckShortcutPtr, NIL)
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The
-   * [submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to
-   * this node. This submenu will be shown when the item is clicked, hovered for long enough, or
-   * activated using the `ui_select` or `ui_right` input actions.
+   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. The [submenu] argument must be the name of an existing [PopupMenu] that has been added as a child to this node. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
@@ -510,19 +442,15 @@ public open class PopupMenu : Popup() {
     label: String,
     submenu: String,
     id: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, STRING to submenu, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addSubmenuItemPtr, NIL)
   }
 
   /**
-   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. This
-   * submenu will be shown when the item is clicked, hovered for long enough, or activated using the
-   * `ui_select` or `ui_right` input actions.
+   * Adds an item that will act as a submenu of the parent [PopupMenu] node when clicked. This submenu will be shown when the item is clicked, hovered for long enough, or activated using the `ui_select` or `ui_right` input actions.
    *
-   * [submenu] must be either child of this [PopupMenu] or has no parent node (in which case it will
-   * be automatically added as a child). If the [submenu] popup has another parent, this method will
-   * fail.
+   * [submenu] must be either child of this [PopupMenu] or has no parent node (in which case it will be automatically added as a child). If the [submenu] popup has another parent, this method will fail.
    *
    * An [id] can optionally be provided. If no [id] is provided, one will be created from the index.
    */
@@ -531,7 +459,7 @@ public open class PopupMenu : Popup() {
     label: String,
     submenu: PopupMenu?,
     id: Int = -1,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to label, OBJECT to submenu, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addSubmenuNodeItemPtr, NIL)
   }
@@ -539,7 +467,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the text of the item at the given [index].
    */
-  public final fun setItemText(index: Int, text: String): Unit {
+  public final fun setItemText(index: Int, text: String) {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextPtr, NIL)
   }
@@ -547,16 +475,15 @@ public open class PopupMenu : Popup() {
   /**
    * Sets item's text base writing direction.
    */
-  public final fun setItemTextDirection(index: Int, direction: Control.TextDirection): Unit {
+  public final fun setItemTextDirection(index: Int, direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public final fun setItemLanguage(index: Int, language: String): Unit {
+  public final fun setItemLanguage(index: Int, language: String) {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setItemLanguagePtr, NIL)
   }
@@ -564,17 +491,15 @@ public open class PopupMenu : Popup() {
   /**
    * Replaces the [Texture2D] icon of the item at the given [index].
    */
-  public final fun setItemIcon(index: Int, icon: Texture2D?): Unit {
+  public final fun setItemIcon(index: Int, icon: Texture2D?) {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconPtr, NIL)
   }
 
   /**
-   * Sets the maximum allowed width of the icon for the item at the given [index]. This limit is
-   * applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The
-   * height is adjusted according to the icon's ratio.
+   * Sets the maximum allowed width of the icon for the item at the given [index]. This limit is applied on top of the default size of the icon and on top of [theme_item icon_max_width]. The height is adjusted according to the icon's ratio.
    */
-  public final fun setItemIconMaxWidth(index: Int, width: Int): Unit {
+  public final fun setItemIconMaxWidth(index: Int, width: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemIconMaxWidthPtr, NIL)
   }
@@ -582,7 +507,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets a modulating [Color] of the item's icon at the given [index].
    */
-  public final fun setItemIconModulate(index: Int, modulate: Color): Unit {
+  public final fun setItemIconModulate(index: Int, modulate: Color) {
     TransferContext.writeArguments(LONG to index.toLong(), COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconModulatePtr, NIL)
   }
@@ -590,7 +515,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the checkstate status of the item at the given [index].
    */
-  public final fun setItemChecked(index: Int, checked: Boolean): Unit {
+  public final fun setItemChecked(index: Int, checked: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to checked)
     TransferContext.callMethod(ptr, MethodBindings.setItemCheckedPtr, NIL)
   }
@@ -600,86 +525,73 @@ public open class PopupMenu : Popup() {
    *
    * The [id] is used in [signal id_pressed] and [signal id_focused] signals.
    */
-  public final fun setItemId(index: Int, id: Int): Unit {
+  public final fun setItemId(index: Int, id: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemIdPtr, NIL)
   }
 
   /**
-   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut
-   * that can be pressed to trigger the menu button even if it's not currently open. [accel] is
-   * generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL |
-   * KEY_A` ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. [accel] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
-  public final fun setItemAccelerator(index: Int, accel: Key): Unit {
+  public final fun setItemAccelerator(index: Int, accel: Key) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.id)
     TransferContext.callMethod(ptr, MethodBindings.setItemAcceleratorPtr, NIL)
   }
 
   /**
-   * Sets the metadata of an item, which may be of any type. You can later get it with
-   * [getItemMetadata], which provides a simple way of assigning context data to items.
+   * Sets the metadata of an item, which may be of any type. You can later get it with [getItemMetadata], which provides a simple way of assigning context data to items.
    */
-  public final fun setItemMetadata(index: Int, metadata: Any?): Unit {
+  public final fun setItemMetadata(index: Int, metadata: Any?) {
     TransferContext.writeArguments(LONG to index.toLong(), ANY to metadata)
     TransferContext.callMethod(ptr, MethodBindings.setItemMetadataPtr, NIL)
   }
 
   /**
-   * Enables/disables the item at the given [index]. When it is disabled, it can't be selected and
-   * its action can't be invoked.
+   * Enables/disables the item at the given [index]. When it is disabled, it can't be selected and its action can't be invoked.
    */
-  public final fun setItemDisabled(index: Int, disabled: Boolean): Unit {
+  public final fun setItemDisabled(index: Int, disabled: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setItemDisabledPtr, NIL)
   }
 
   /**
-   * Sets the submenu of the item at the given [index]. The submenu is the name of a child
-   * [PopupMenu] node that would be shown when the item is clicked.
+   * Sets the submenu of the item at the given [index]. The submenu is the name of a child [PopupMenu] node that would be shown when the item is clicked.
    */
-  public final fun setItemSubmenu(index: Int, submenu: String): Unit {
+  public final fun setItemSubmenu(index: Int, submenu: String) {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to submenu)
     TransferContext.callMethod(ptr, MethodBindings.setItemSubmenuPtr, NIL)
   }
 
   /**
-   * Sets the submenu of the item at the given [index]. The submenu is a [PopupMenu] node that would
-   * be shown when the item is clicked. It must either be a child of this [PopupMenu] or has no parent
-   * (in which case it will be automatically added as a child). If the [submenu] popup has another
-   * parent, this method will fail.
+   * Sets the submenu of the item at the given [index]. The submenu is a [PopupMenu] node that would be shown when the item is clicked. It must either be a child of this [PopupMenu] or has no parent (in which case it will be automatically added as a child). If the [submenu] popup has another parent, this method will fail.
    */
-  public final fun setItemSubmenuNode(index: Int, submenu: PopupMenu?): Unit {
+  public final fun setItemSubmenuNode(index: Int, submenu: PopupMenu?) {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to submenu)
     TransferContext.callMethod(ptr, MethodBindings.setItemSubmenuNodePtr, NIL)
   }
 
   /**
-   * Mark the item at the given [index] as a separator, which means that it would be displayed as a
-   * line. If `false`, sets the type of the item to plain text.
+   * Mark the item at the given [index] as a separator, which means that it would be displayed as a line. If `false`, sets the type of the item to plain text.
    */
-  public final fun setItemAsSeparator(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsSeparator(index: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setItemAsSeparatorPtr, NIL)
   }
 
   /**
-   * Sets whether the item at the given [index] has a checkbox. If `false`, sets the type of the
-   * item to plain text.
+   * Sets whether the item at the given [index] has a checkbox. If `false`, sets the type of the item to plain text.
    *
-   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually.
+   * **Note:** Checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
-  public final fun setItemAsCheckable(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsCheckable(index: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setItemAsCheckablePtr, NIL)
   }
 
   /**
-   * Sets the type of the item at the given [index] to radio button. If `false`, sets the type of
-   * the item to plain text.
+   * Sets the type of the item at the given [index] to radio button. If `false`, sets the type of the item to plain text.
    */
-  public final fun setItemAsRadioCheckable(index: Int, enable: Boolean): Unit {
+  public final fun setItemAsRadioCheckable(index: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setItemAsRadioCheckablePtr, NIL)
   }
@@ -687,7 +599,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the [String] tooltip of the item at the given [index].
    */
-  public final fun setItemTooltip(index: Int, tooltip: String): Unit {
+  public final fun setItemTooltip(index: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -700,7 +612,7 @@ public open class PopupMenu : Popup() {
     index: Int,
     shortcut: Shortcut?,
     global: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to index.toLong(), OBJECT to shortcut, BOOL to global)
     TransferContext.callMethod(ptr, MethodBindings.setItemShortcutPtr, NIL)
   }
@@ -708,7 +620,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the horizontal offset of the item at the given [index].
    */
-  public final fun setItemIndent(index: Int, indent: Int): Unit {
+  public final fun setItemIndent(index: Int, indent: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to indent.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemIndentPtr, NIL)
   }
@@ -716,7 +628,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the state of a multistate item. See [addMultistateItem] for details.
    */
-  public final fun setItemMultistate(index: Int, state: Int): Unit {
+  public final fun setItemMultistate(index: Int, state: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to state.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemMultistatePtr, NIL)
   }
@@ -724,7 +636,7 @@ public open class PopupMenu : Popup() {
   /**
    * Sets the max states of a multistate item. See [addMultistateItem] for details.
    */
-  public final fun setItemMultistateMax(index: Int, maxStates: Int): Unit {
+  public final fun setItemMultistateMax(index: Int, maxStates: Int) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to maxStates.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemMultistateMaxPtr, NIL)
   }
@@ -732,7 +644,7 @@ public open class PopupMenu : Popup() {
   /**
    * Disables the [Shortcut] of the item at the given [index].
    */
-  public final fun setItemShortcutDisabled(index: Int, disabled: Boolean): Unit {
+  public final fun setItemShortcutDisabled(index: Int, disabled: Boolean) {
     TransferContext.writeArguments(LONG to index.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setItemShortcutDisabledPtr, NIL)
   }
@@ -740,7 +652,7 @@ public open class PopupMenu : Popup() {
   /**
    * Toggles the check state of the item at the given [index].
    */
-  public final fun toggleItemChecked(index: Int): Unit {
+  public final fun toggleItemChecked(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.toggleItemCheckedPtr, NIL)
   }
@@ -748,7 +660,7 @@ public open class PopupMenu : Popup() {
   /**
    * Cycle to the next state of a multistate item. See [addMultistateItem] for details.
    */
-  public final fun toggleItemMultistate(index: Int): Unit {
+  public final fun toggleItemMultistate(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.toggleItemMultistatePtr, NIL)
   }
@@ -817,8 +729,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can
-   * not.
+   * Returns the ID of the item at the given [index]. `id` can be manually assigned, while index can not.
    */
   public final fun getItemId(index: Int): Int {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -827,8 +738,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the index of the item containing the specified [id]. Index is automatically assigned to
-   * each item by the engine and can not be set manually.
+   * Returns the index of the item containing the specified [id]. Index is automatically assigned to each item by the engine and can not be set manually.
    */
   public final fun getItemIndex(id: Int): Int {
     TransferContext.writeArguments(LONG to id.toLong())
@@ -837,11 +747,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut
-   * that can be pressed to trigger the menu button even if it's not currently open. The return value
-   * is an integer which is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR
-   * such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the
-   * specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
+   * Returns the accelerator of the item at the given [index]. An accelerator is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The return value is an integer which is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]). If no accelerator is defined for the specified [index], [getItemAccelerator] returns `0` (corresponding to [@GlobalScope.KEY_NONE]).
    */
   public final fun getItemAccelerator(index: Int): Key {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -850,8 +756,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the metadata of the specified item, which might be of any type. You can set it with
-   * [setItemMetadata], which provides a simple way of assigning context data to items.
+   * Returns the metadata of the specified item, which might be of any type. You can set it with [setItemMetadata], which provides a simple way of assigning context data to items.
    */
   public final fun getItemMetadata(index: Int): Any? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -860,8 +765,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] is disabled. When it is disabled it can't be
-   * selected, or its action invoked.
+   * Returns `true` if the item at the given [index] is disabled. When it is disabled it can't be selected, or its action invoked.
    *
    * See [setItemDisabled] for more info on how to disable an item.
    */
@@ -872,8 +776,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the submenu name of the item at the given [index]. See [addSubmenuItem] for more info
-   * on how to add a submenu.
+   * Returns the submenu name of the item at the given [index]. See [addSubmenuItem] for more info on how to add a submenu.
    */
   public final fun getItemSubmenu(index: Int): String {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -882,8 +785,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns the submenu of the item at the given [index], or `null` if no submenu was added. See
-   * [addSubmenuNodeItem] for more info on how to add a submenu.
+   * Returns the submenu of the item at the given [index], or `null` if no submenu was added. See [addSubmenuNodeItem] for more info on how to add a submenu.
    */
   public final fun getItemSubmenuNode(index: Int): PopupMenu? {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -892,8 +794,7 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See
-   * [addSeparator] for more info on how to add a separator.
+   * Returns `true` if the item is a separator. If it is, it will be displayed as a line. See [addSeparator] for more info on how to add a separator.
    */
   public final fun isItemSeparator(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -902,11 +803,9 @@ public open class PopupMenu : Popup() {
   }
 
   /**
-   * Returns `true` if the item at the given [index] is checkable in some way, i.e. if it has a
-   * checkbox or radio button.
+   * Returns `true` if the item at the given [index] is checkable in some way, i.e. if it has a checkbox or radio button.
    *
-   * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in
-   * checking behavior and must be checked/unchecked manually.
+   * **Note:** Checkable items just display a checkmark or radio button, but don't have any built-in checking behavior and must be checked/unchecked manually.
    */
   public final fun isItemCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -917,8 +816,7 @@ public open class PopupMenu : Popup() {
   /**
    * Returns `true` if the item at the given [index] has radio button-style checkability.
    *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
-   * radio groups.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    */
   public final fun isItemRadioCheckable(index: Int): Boolean {
     TransferContext.writeArguments(LONG to index.toLong())
@@ -985,7 +883,7 @@ public open class PopupMenu : Popup() {
    *
    * Passing `-1` as the index makes so that no item is focused.
    */
-  public final fun setFocusedItem(index: Int): Unit {
+  public final fun setFocusedItem(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFocusedItemPtr, NIL)
   }
@@ -999,7 +897,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemCountPtr, NIL)
   }
@@ -1013,7 +911,7 @@ public open class PopupMenu : Popup() {
   /**
    * Moves the scroll view to make the item at the given [index] visible.
    */
-  public final fun scrollToItem(index: Int): Unit {
+  public final fun scrollToItem(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.scrollToItemPtr, NIL)
   }
@@ -1023,34 +921,32 @@ public open class PopupMenu : Popup() {
    *
    * **Note:** The indices of items after the removed item will be shifted by one.
    */
-  public final fun removeItem(index: Int): Unit {
+  public final fun removeItem(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
   }
 
   /**
-   * Adds a separator between items. Separators also occupy an index, which you can set by using the
-   * [id] parameter.
+   * Adds a separator between items. Separators also occupy an index, which you can set by using the [id] parameter.
    *
    * A [label] can optionally be provided, which will appear at the center of the separator.
    */
   @JvmOverloads
-  public final fun addSeparator(label: String = "", id: Int = -1): Unit {
+  public final fun addSeparator(label: String = "", id: Int = -1) {
     TransferContext.writeArguments(STRING to label, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addSeparatorPtr, NIL)
   }
 
   /**
-   * Removes all items from the [PopupMenu]. If [freeSubmenus] is `true`, the submenu nodes are
-   * automatically freed.
+   * Removes all items from the [PopupMenu]. If [freeSubmenus] is `true`, the submenu nodes are automatically freed.
    */
   @JvmOverloads
-  public final fun clear(freeSubmenus: Boolean = false): Unit {
+  public final fun clear(freeSubmenus: Boolean = false) {
     TransferContext.writeArguments(BOOL to freeSubmenus)
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public final fun setHideOnItemSelection(enable: Boolean): Unit {
+  public final fun setHideOnItemSelection(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHideOnItemSelectionPtr, NIL)
   }
@@ -1061,7 +957,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHideOnCheckableItemSelection(enable: Boolean): Unit {
+  public final fun setHideOnCheckableItemSelection(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHideOnCheckableItemSelectionPtr, NIL)
   }
@@ -1072,7 +968,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHideOnStateItemSelection(enable: Boolean): Unit {
+  public final fun setHideOnStateItemSelection(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHideOnStateItemSelectionPtr, NIL)
   }
@@ -1083,7 +979,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSubmenuPopupDelay(seconds: Float): Unit {
+  public final fun setSubmenuPopupDelay(seconds: Float) {
     TransferContext.writeArguments(DOUBLE to seconds.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSubmenuPopupDelayPtr, NIL)
   }
@@ -1094,7 +990,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAllowSearch(allow: Boolean): Unit {
+  public final fun setAllowSearch(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowSearchPtr, NIL)
   }
@@ -1114,7 +1010,7 @@ public open class PopupMenu : Popup() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSystemMenu(systemMenuId: NativeMenu.SystemMenus): Unit {
+  public final fun setSystemMenu(systemMenuId: NativeMenu.SystemMenus) {
     TransferContext.writeArguments(LONG to systemMenuId.id)
     TransferContext.callMethod(ptr, MethodBindings.setSystemMenuPtr, NIL)
   }
@@ -1129,263 +1025,263 @@ public open class PopupMenu : Popup() {
 
   public object MethodBindings {
     internal val activateItemByEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "activate_item_by_event", 3716412023)
+        TypeManager.getMethodBindPtr("PopupMenu", "activate_item_by_event", 3_716_412_023)
 
     internal val setPreferNativeMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_prefer_native_menu", 2586408642)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_prefer_native_menu", 2_586_408_642)
 
     internal val isPreferNativeMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_prefer_native_menu", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_prefer_native_menu", 36_873_697)
 
     internal val isNativeMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_native_menu", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_native_menu", 36_873_697)
 
     internal val addItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_item", 3674230041)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_item", 3_674_230_041)
 
     internal val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_item", 1086190128)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_item", 1_086_190_128)
 
     internal val addCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_check_item", 3674230041)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_check_item", 3_674_230_041)
 
     internal val addIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_check_item", 1086190128)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_check_item", 1_086_190_128)
 
     internal val addRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_radio_check_item", 3674230041)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_radio_check_item", 3_674_230_041)
 
     internal val addIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_radio_check_item", 1086190128)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_radio_check_item", 1_086_190_128)
 
     internal val addMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_multistate_item", 150780458)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_multistate_item", 150_780_458)
 
     internal val addShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_shortcut", 3451850107)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_shortcut", 3_451_850_107)
 
     internal val addIconShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_shortcut", 2997871092)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_shortcut", 2_997_871_092)
 
     internal val addCheckShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_check_shortcut", 1642193386)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_check_shortcut", 1_642_193_386)
 
     internal val addIconCheckShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_check_shortcut", 3856247530)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_check_shortcut", 3_856_247_530)
 
     internal val addRadioCheckShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_radio_check_shortcut", 1642193386)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_radio_check_shortcut", 1_642_193_386)
 
     internal val addIconRadioCheckShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_radio_check_shortcut", 3856247530)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_icon_radio_check_shortcut", 3_856_247_530)
 
     internal val addSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_item", 2979222410)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_item", 2_979_222_410)
 
     internal val addSubmenuNodeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_node_item", 1325455216)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_submenu_node_item", 1_325_455_216)
 
     internal val setItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_text", 501894301)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_text", 501_894_301)
 
     internal val setItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_text_direction", 1707680378)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_text_direction", 1_707_680_378)
 
     internal val setItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_language", 501894301)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_language", 501_894_301)
 
     internal val setItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon", 666127730)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon", 666_127_730)
 
     internal val setItemIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon_max_width", 3937882851)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon_max_width", 3_937_882_851)
 
     internal val setItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon_modulate", 2878471219)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon_modulate", 2_878_471_219)
 
     internal val setItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_checked", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_checked", 300_928_843)
 
     internal val setItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_id", 3937882851)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_id", 3_937_882_851)
 
     internal val setItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_accelerator", 2992817551)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_accelerator", 2_992_817_551)
 
     internal val setItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_metadata", 2152698145)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_metadata", 2_152_698_145)
 
     internal val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_disabled", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_disabled", 300_928_843)
 
     internal val setItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu", 501894301)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu", 501_894_301)
 
     internal val setItemSubmenuNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu_node", 1068370740)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_submenu_node", 1_068_370_740)
 
     internal val setItemAsSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_separator", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_separator", 300_928_843)
 
     internal val setItemAsCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_checkable", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_checkable", 300_928_843)
 
     internal val setItemAsRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_radio_checkable", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_as_radio_checkable", 300_928_843)
 
     internal val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_tooltip", 501894301)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_tooltip", 501_894_301)
 
     internal val setItemShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut", 825127832)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut", 825_127_832)
 
     internal val setItemIndentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_indent", 3937882851)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_indent", 3_937_882_851)
 
     internal val setItemMultistatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate", 3937882851)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate", 3_937_882_851)
 
     internal val setItemMultistateMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate_max", 3937882851)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_multistate_max", 3_937_882_851)
 
     internal val setItemShortcutDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut_disabled", 300928843)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_shortcut_disabled", 300_928_843)
 
     internal val toggleItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "toggle_item_checked", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "toggle_item_checked", 1_286_410_249)
 
     internal val toggleItemMultistatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "toggle_item_multistate", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "toggle_item_multistate", 1_286_410_249)
 
     internal val getItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_text", 844755477)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_text", 844_755_477)
 
     internal val getItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_text_direction", 4235602388)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_text_direction", 4_235_602_388)
 
     internal val getItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_language", 844755477)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_language", 844_755_477)
 
     internal val getItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon", 3536238170)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon", 3_536_238_170)
 
     internal val getItemIconMaxWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon_max_width", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon_max_width", 923_996_154)
 
     internal val getItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon_modulate", 3457211756)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon_modulate", 3_457_211_756)
 
     internal val isItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_checked", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_checked", 1_116_898_809)
 
     internal val getItemIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_id", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_id", 923_996_154)
 
     internal val getItemIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_index", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_index", 923_996_154)
 
     internal val getItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_accelerator", 253789942)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_accelerator", 253_789_942)
 
     internal val getItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_metadata", 4227898402)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_metadata", 4_227_898_402)
 
     internal val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_disabled", 1_116_898_809)
 
     internal val getItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu", 844755477)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu", 844_755_477)
 
     internal val getItemSubmenuNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu_node", 2100501353)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_submenu_node", 2_100_501_353)
 
     internal val isItemSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_separator", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_separator", 1_116_898_809)
 
     internal val isItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_checkable", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_checkable", 1_116_898_809)
 
     internal val isItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_radio_checkable", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_radio_checkable", 1_116_898_809)
 
     internal val isItemShortcutDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_item_shortcut_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_item_shortcut_disabled", 1_116_898_809)
 
     internal val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_tooltip", 844755477)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_tooltip", 844_755_477)
 
     internal val getItemShortcutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_shortcut", 1449483325)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_shortcut", 1_449_483_325)
 
     internal val getItemIndentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_indent", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_indent", 923_996_154)
 
     internal val getItemMultistateMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate_max", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate_max", 923_996_154)
 
     internal val getItemMultistatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate", 923996154)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_multistate", 923_996_154)
 
     internal val setFocusedItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_focused_item", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_focused_item", 1_286_410_249)
 
     internal val getFocusedItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_focused_item", 3905245786)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_focused_item", 3_905_245_786)
 
     internal val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_item_count", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_count", 1_286_410_249)
 
     internal val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_item_count", 3905245786)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_count", 3_905_245_786)
 
     internal val scrollToItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "scroll_to_item", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "scroll_to_item", 1_286_410_249)
 
     internal val removeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "remove_item", 1286410249)
+        TypeManager.getMethodBindPtr("PopupMenu", "remove_item", 1_286_410_249)
 
     internal val addSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "add_separator", 2266703459)
+        TypeManager.getMethodBindPtr("PopupMenu", "add_separator", 2_266_703_459)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "clear", 107499316)
+    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("PopupMenu", "clear", 107_499_316)
 
     internal val setHideOnItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_item_selection", 2586408642)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_item_selection", 2_586_408_642)
 
     internal val isHideOnItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_item_selection", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_item_selection", 36_873_697)
 
     internal val setHideOnCheckableItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_checkable_item_selection", 2586408642)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_checkable_item_selection", 2_586_408_642)
 
     internal val isHideOnCheckableItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_checkable_item_selection", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_checkable_item_selection", 36_873_697)
 
     internal val setHideOnStateItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_state_item_selection", 2586408642)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_hide_on_state_item_selection", 2_586_408_642)
 
     internal val isHideOnStateItemSelectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_state_item_selection", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_hide_on_state_item_selection", 36_873_697)
 
     internal val setSubmenuPopupDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_submenu_popup_delay", 373806689)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_submenu_popup_delay", 373_806_689)
 
     internal val getSubmenuPopupDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_submenu_popup_delay", 1740695150)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_submenu_popup_delay", 1_740_695_150)
 
     internal val setAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_allow_search", 2586408642)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_allow_search", 2_586_408_642)
 
     internal val getAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_allow_search", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_allow_search", 36_873_697)
 
     internal val isSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "is_system_menu", 36873697)
+        TypeManager.getMethodBindPtr("PopupMenu", "is_system_menu", 36_873_697)
 
     internal val setSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "set_system_menu", 600639674)
+        TypeManager.getMethodBindPtr("PopupMenu", "set_system_menu", 600_639_674)
 
     internal val getSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PopupMenu", "get_system_menu", 1222557358)
+        TypeManager.getMethodBindPtr("PopupMenu", "get_system_menu", 1_222_557_358)
   }
 }

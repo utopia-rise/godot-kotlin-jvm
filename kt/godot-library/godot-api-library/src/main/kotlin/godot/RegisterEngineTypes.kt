@@ -882,9 +882,8 @@ import godot.api.ZIPPacker
 import godot.api.ZIPReader
 import godot.core.VariantParser.OBJECT
 import godot.core.variantMapper
-import kotlin.Unit
 
-public fun registerVariantMapping(): Unit {
+public fun registerVariantMapping() {
   variantMapper[Object::class] = OBJECT
   variantMapper[RefCounted::class] = OBJECT
   variantMapper[AESContext::class] = OBJECT
@@ -1766,7 +1765,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ZIPReader::class] = OBJECT
 }
 
-public fun registerEngineTypeMethods(): Unit {
+public fun registerEngineTypeMethods() {
   Object.MethodBindings
   RefCounted.MethodBindings
   AESContext.MethodBindings
@@ -2648,7 +2647,7 @@ public fun registerEngineTypeMethods(): Unit {
   ZIPReader.MethodBindings
 }
 
-public fun registerEngineTypes(): Unit {
+public fun registerEngineTypes() {
   TypeManager.registerEngineType("Object", Object::class, ::Object)
   TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
   TypeManager.registerEngineType("AESContext", AESContext::class, ::AESContext)

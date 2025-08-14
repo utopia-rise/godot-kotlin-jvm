@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -35,8 +31,7 @@ public open class RDVertexAttribute : RefCounted() {
     }
 
   /**
-   * The number of bytes between the start of the vertex buffer and the first instance of this
-   * attribute.
+   * The number of bytes between the start of the vertex buffer and the first instance of this attribute.
    */
   public final inline var offset: Long
     @JvmName("offsetProperty")
@@ -79,11 +74,11 @@ public open class RDVertexAttribute : RefCounted() {
       setFrequency(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(528, scriptIndex)
   }
 
-  public final fun setLocation(pMember: Long): Unit {
+  public final fun setLocation(pMember: Long) {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setLocationPtr, NIL)
   }
@@ -94,7 +89,7 @@ public open class RDVertexAttribute : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setOffset(pMember: Long): Unit {
+  public final fun setOffset(pMember: Long) {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -105,7 +100,7 @@ public open class RDVertexAttribute : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
+  public final fun setFormat(pMember: RenderingDevice.DataFormat) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
@@ -116,7 +111,7 @@ public open class RDVertexAttribute : RefCounted() {
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStride(pMember: Long): Unit {
+  public final fun setStride(pMember: Long) {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setStridePtr, NIL)
   }
@@ -127,7 +122,7 @@ public open class RDVertexAttribute : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {
+  public final fun setFrequency(pMember: RenderingDevice.VertexFrequency) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
   }
@@ -142,33 +137,33 @@ public open class RDVertexAttribute : RefCounted() {
 
   public object MethodBindings {
     internal val setLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location", 1286410249)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_location", 1_286_410_249)
 
     internal val getLocationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_location", 3905245786)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_location", 3_905_245_786)
 
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_offset", 1286410249)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_offset", 1_286_410_249)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_offset", 3905245786)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_offset", 3_905_245_786)
 
     internal val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_format", 565531219)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_format", 565_531_219)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_format", 2235804183)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_format", 2_235_804_183)
 
     internal val setStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_stride", 1286410249)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_stride", 1_286_410_249)
 
     internal val getStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_stride", 3905245786)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_stride", 3_905_245_786)
 
     internal val setFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_frequency", 522141836)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "set_frequency", 522_141_836)
 
     internal val getFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_frequency", 4154106413)
+        TypeManager.getMethodBindPtr("RDVertexAttribute", "get_frequency", 4_154_106_413)
   }
 }

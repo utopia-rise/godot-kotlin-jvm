@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,14 +12,12 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
   /**
-   * The index of the image associated with this texture, see [GLTFState.getImages]. If -1, then
-   * this texture does not have an image assigned.
+   * The index of the image associated with this texture, see [GLTFState.getImages]. If -1, then this texture does not have an image assigned.
    */
   public final inline var srcImage: Int
     @JvmName("srcImageProperty")
@@ -33,8 +28,7 @@ public open class GLTFTexture : Resource() {
     }
 
   /**
-   * ID of the texture sampler to use when sampling the image. If -1, then the default texture
-   * sampler is used (linear filtering, and repeat wrapping in both axes).
+   * ID of the texture sampler to use when sampling the image. If -1, then the default texture sampler is used (linear filtering, and repeat wrapping in both axes).
    */
   public final inline var sampler: Int
     @JvmName("samplerProperty")
@@ -44,7 +38,7 @@ public open class GLTFTexture : Resource() {
       setSampler(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(241, scriptIndex)
   }
 
@@ -54,7 +48,7 @@ public open class GLTFTexture : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSrcImage(srcImage: Int): Unit {
+  public final fun setSrcImage(srcImage: Int) {
     TransferContext.writeArguments(LONG to srcImage.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSrcImagePtr, NIL)
   }
@@ -65,7 +59,7 @@ public open class GLTFTexture : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSampler(sampler: Int): Unit {
+  public final fun setSampler(sampler: Int) {
     TransferContext.writeArguments(LONG to sampler.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSamplerPtr, NIL)
   }
@@ -74,15 +68,15 @@ public open class GLTFTexture : Resource() {
 
   public object MethodBindings {
     internal val getSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTexture", "get_src_image", 3_905_245_786)
 
     internal val setSrcImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTexture", "set_src_image", 1_286_410_249)
 
     internal val getSamplerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFTexture", "get_sampler", 3_905_245_786)
 
     internal val setSamplerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFTexture", "set_sampler", 1_286_410_249)
   }
 }

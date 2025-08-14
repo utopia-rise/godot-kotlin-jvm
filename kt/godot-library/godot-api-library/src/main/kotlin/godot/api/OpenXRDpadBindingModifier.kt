@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,23 +18,14 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The DPad binding modifier converts an axis input to a dpad output, emulating a DPad. New input
- * paths for each dpad direction will be added to the interaction profile. When bound to actions the
- * DPad emulation will be activated. You should **not** combine dpad inputs with normal inputs in the
- * same action set for the same control, this will result in an error being returned when suggested
- * bindings are submitted to OpenXR.
+ * The DPad binding modifier converts an axis input to a dpad output, emulating a DPad. New input paths for each dpad direction will be added to the interaction profile. When bound to actions the DPad emulation will be activated. You should **not** combine dpad inputs with normal inputs in the same action set for the same control, this will result in an error being returned when suggested bindings are submitted to OpenXR.
  *
- * See
- * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_dpad_binding]XR_EXT_dpad_binding[/url]
- * for in-depth details.
+ * See [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_EXT_dpad_binding]XR_EXT_dpad_binding[/url] for in-depth details.
  *
- * **Note:** If the DPad binding modifier extension is enabled, all dpad binding paths will be
- * available in the action map. Adding the modifier to an interaction profile allows you to further
- * customize the behavior.
+ * **Note:** If the DPad binding modifier extension is enabled, all dpad binding paths will be available in the action map. Adding the modifier to an interaction profile allows you to further customize the behavior.
  */
 @GodotBaseType
 public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
@@ -64,8 +52,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     }
 
   /**
-   * When our input value is equal or larger than this value, our dpad in that direction becomes
-   * true. It stays true until it falls under the [thresholdReleased] value.
+   * When our input value is equal or larger than this value, our dpad in that direction becomes true. It stays true until it falls under the [thresholdReleased] value.
    */
   public final inline var threshold: Float
     @JvmName("thresholdProperty")
@@ -111,8 +98,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
   /**
    * If `false`, when the joystick enters a new dpad zone this becomes true.
    *
-   * If `true`, when the joystick remains in active dpad zone, this remains true even if we overlap
-   * with another zone.
+   * If `true`, when the joystick remains in active dpad zone, this remains true even if we overlap with another zone.
    */
   public final inline var isSticky: Boolean
     @JvmName("isStickyProperty")
@@ -144,11 +130,11 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
       setOffHaptic(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(421, scriptIndex)
   }
 
-  public final fun setActionSet(actionSet: OpenXRActionSet?): Unit {
+  public final fun setActionSet(actionSet: OpenXRActionSet?) {
     TransferContext.writeArguments(OBJECT to actionSet)
     TransferContext.callMethod(ptr, MethodBindings.setActionSetPtr, NIL)
   }
@@ -159,7 +145,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRActionSet?)
   }
 
-  public final fun setInputPath(inputPath: String): Unit {
+  public final fun setInputPath(inputPath: String) {
     TransferContext.writeArguments(STRING to inputPath)
     TransferContext.callMethod(ptr, MethodBindings.setInputPathPtr, NIL)
   }
@@ -170,7 +156,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setThreshold(threshold: Float): Unit {
+  public final fun setThreshold(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setThresholdPtr, NIL)
   }
@@ -181,7 +167,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setThresholdReleased(thresholdReleased: Float): Unit {
+  public final fun setThresholdReleased(thresholdReleased: Float) {
     TransferContext.writeArguments(DOUBLE to thresholdReleased.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setThresholdReleasedPtr, NIL)
   }
@@ -192,7 +178,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCenterRegion(centerRegion: Float): Unit {
+  public final fun setCenterRegion(centerRegion: Float) {
     TransferContext.writeArguments(DOUBLE to centerRegion.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCenterRegionPtr, NIL)
   }
@@ -203,7 +189,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setWedgeAngle(wedgeAngle: Float): Unit {
+  public final fun setWedgeAngle(wedgeAngle: Float) {
     TransferContext.writeArguments(DOUBLE to wedgeAngle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWedgeAnglePtr, NIL)
   }
@@ -214,7 +200,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setIsSticky(isSticky: Boolean): Unit {
+  public final fun setIsSticky(isSticky: Boolean) {
     TransferContext.writeArguments(BOOL to isSticky)
     TransferContext.callMethod(ptr, MethodBindings.setIsStickyPtr, NIL)
   }
@@ -225,7 +211,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOnHaptic(haptic: OpenXRHapticBase?): Unit {
+  public final fun setOnHaptic(haptic: OpenXRHapticBase?) {
     TransferContext.writeArguments(OBJECT to haptic)
     TransferContext.callMethod(ptr, MethodBindings.setOnHapticPtr, NIL)
   }
@@ -236,7 +222,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
 
-  public final fun setOffHaptic(haptic: OpenXRHapticBase?): Unit {
+  public final fun setOffHaptic(haptic: OpenXRHapticBase?) {
     TransferContext.writeArguments(OBJECT to haptic)
     TransferContext.callMethod(ptr, MethodBindings.setOffHapticPtr, NIL)
   }
@@ -251,57 +237,57 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
 
   public object MethodBindings {
     internal val setActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_action_set", 2093310581)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_action_set", 2_093_310_581)
 
     internal val getActionSetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_action_set", 619941079)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_action_set", 619_941_079)
 
     internal val setInputPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_input_path", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_input_path", 83_702_148)
 
     internal val getInputPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_input_path", 201670096)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_input_path", 201_670_096)
 
     internal val setThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_threshold", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_threshold", 373_806_689)
 
     internal val getThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_threshold", 1_740_695_150)
 
     internal val setThresholdReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_threshold_released", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_threshold_released", 373_806_689)
 
     internal val getThresholdReleasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_threshold_released", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_threshold_released", 1_740_695_150)
 
     internal val setCenterRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_center_region", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_center_region", 373_806_689)
 
     internal val getCenterRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_center_region", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_center_region", 1_740_695_150)
 
     internal val setWedgeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_wedge_angle", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_wedge_angle", 373_806_689)
 
     internal val getWedgeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_wedge_angle", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_wedge_angle", 1_740_695_150)
 
     internal val setIsStickyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_is_sticky", 2586408642)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_is_sticky", 2_586_408_642)
 
     internal val getIsStickyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_is_sticky", 36873697)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_is_sticky", 36_873_697)
 
     internal val setOnHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_on_haptic", 2998020150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_on_haptic", 2_998_020_150)
 
     internal val getOnHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_on_haptic", 922310751)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_on_haptic", 922_310_751)
 
     internal val setOffHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_off_haptic", 2998020150)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "set_off_haptic", 2_998_020_150)
 
     internal val getOffHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_off_haptic", 922310751)
+        TypeManager.getMethodBindPtr("OpenXRDpadBindingModifier", "get_off_haptic", 922_310_751)
   }
 }

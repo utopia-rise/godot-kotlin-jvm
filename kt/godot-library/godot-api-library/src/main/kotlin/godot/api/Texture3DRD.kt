@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
- * texture for materials, meshes, etc.
+ * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
 public open class Texture3DRD : Texture3D() {
@@ -38,11 +33,11 @@ public open class Texture3DRD : Texture3D() {
       setTextureRdRid(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(670, scriptIndex)
   }
 
-  public final fun setTextureRdRid(textureRdRid: RID): Unit {
+  public final fun setTextureRdRid(textureRdRid: RID) {
     TransferContext.writeArguments(_RID to textureRdRid)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRdRidPtr, NIL)
   }
@@ -56,42 +51,42 @@ public open class Texture3DRD : Texture3D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getFormat(): Image.Format {
+  override fun _getFormat(): Image.Format {
     throw NotImplementedError("Texture3DRD::_getFormat can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("Texture3DRD::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("Texture3DRD::_getHeight can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getDepth(): Int {
+  override fun _getDepth(): Int {
     throw NotImplementedError("Texture3DRD::_getDepth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _hasMipmaps(): Boolean {
+  override fun _hasMipmaps(): Boolean {
     throw NotImplementedError("Texture3DRD::_hasMipmaps can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getData(): VariantArray<Image> {
+  override fun _getData(): VariantArray<Image> {
     throw NotImplementedError("Texture3DRD::_getData can't be called from the JVM.")
   }
 
@@ -99,9 +94,9 @@ public open class Texture3DRD : Texture3D() {
 
   public object MethodBindings {
     internal val setTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3DRD", "set_texture_rd_rid", 2722037293)
+        TypeManager.getMethodBindPtr("Texture3DRD", "set_texture_rd_rid", 2_722_037_293)
 
     internal val getTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture3DRD", "get_texture_rd_rid", 2944877500)
+        TypeManager.getMethodBindPtr("Texture3DRD", "get_texture_rd_rid", 2_944_877_500)
   }
 }

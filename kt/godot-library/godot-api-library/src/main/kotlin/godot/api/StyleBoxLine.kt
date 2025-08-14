@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,8 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A [StyleBox] that displays a single line of a given color and thickness. The line can be either
- * horizontal or vertical. Useful for separators.
+ * A [StyleBox] that displays a single line of a given color and thickness. The line can be either horizontal or vertical. Useful for separators.
  */
 @GodotBaseType
 public open class StyleBoxLine : StyleBox() {
@@ -40,11 +36,8 @@ public open class StyleBoxLine : StyleBox() {
    * The line's color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -56,8 +49,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   /**
-   * The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a
-   * negative value, the line will begin inside the [StyleBoxLine]'s bounds.
+   * The number of pixels the line will extend before the [StyleBoxLine]'s bounds. If set to a negative value, the line will begin inside the [StyleBoxLine]'s bounds.
    */
   public final inline var growBegin: Float
     @JvmName("growBeginProperty")
@@ -68,8 +60,7 @@ public open class StyleBoxLine : StyleBox() {
     }
 
   /**
-   * The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a
-   * negative value, the line will end inside the [StyleBoxLine]'s bounds.
+   * The number of pixels the line will extend past the [StyleBoxLine]'s bounds. If set to a negative value, the line will end inside the [StyleBoxLine]'s bounds.
    */
   public final inline var growEnd: Float
     @JvmName("growEndProperty")
@@ -101,7 +92,7 @@ public open class StyleBoxLine : StyleBox() {
       setVertical(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(643, scriptIndex)
   }
 
@@ -124,7 +115,7 @@ public open class StyleBoxLine : StyleBox() {
      color = this
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -135,7 +126,7 @@ public open class StyleBoxLine : StyleBox() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setThickness(thickness: Int): Unit {
+  public final fun setThickness(thickness: Int) {
     TransferContext.writeArguments(LONG to thickness.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setThicknessPtr, NIL)
   }
@@ -146,7 +137,7 @@ public open class StyleBoxLine : StyleBox() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setGrowBegin(offset: Float): Unit {
+  public final fun setGrowBegin(offset: Float) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGrowBeginPtr, NIL)
   }
@@ -157,7 +148,7 @@ public open class StyleBoxLine : StyleBox() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGrowEnd(offset: Float): Unit {
+  public final fun setGrowEnd(offset: Float) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGrowEndPtr, NIL)
   }
@@ -168,7 +159,7 @@ public open class StyleBoxLine : StyleBox() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVertical(vertical: Boolean): Unit {
+  public final fun setVertical(vertical: Boolean) {
     TransferContext.writeArguments(BOOL to vertical)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalPtr, NIL)
   }
@@ -182,7 +173,7 @@ public open class StyleBoxLine : StyleBox() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+  override fun _draw(toCanvasItem: RID, rect: Rect2) {
     throw NotImplementedError("StyleBoxLine::_draw can't be called from the JVM.")
   }
 
@@ -190,33 +181,33 @@ public open class StyleBoxLine : StyleBox() {
 
   public object MethodBindings {
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_color", 3_444_240_500)
 
     internal val setThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness", 1286410249)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_thickness", 1_286_410_249)
 
     internal val getThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness", 3905245786)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_thickness", 3_905_245_786)
 
     internal val setGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_begin", 373_806_689)
 
     internal val getGrowBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1740695150)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_begin", 1_740_695_150)
 
     internal val setGrowEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_grow_end", 373_806_689)
 
     internal val getGrowEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1740695150)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "get_grow_end", 1_740_695_150)
 
     internal val setVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical", 2586408642)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "set_vertical", 2_586_408_642)
 
     internal val isVerticalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical", 36873697)
+        TypeManager.getMethodBindPtr("StyleBoxLine", "is_vertical", 36_873_697)
   }
 }

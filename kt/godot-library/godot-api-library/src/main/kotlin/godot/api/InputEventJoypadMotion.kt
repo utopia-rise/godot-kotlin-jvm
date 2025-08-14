@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,12 +16,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a
- * time. For gamepad buttons, see [InputEventJoypadButton].
+ * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a time. For gamepad buttons, see [InputEventJoypadButton].
  */
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {
@@ -40,8 +35,7 @@ public open class InputEventJoypadMotion : InputEvent() {
     }
 
   /**
-   * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A
-   * value of `0` means the axis is in its resting position.
+   * Current position of the joystick on the given axis. The value ranges from `-1.0` to `1.0`. A value of `0` means the axis is in its resting position.
    */
   public final inline var axisValue: Float
     @JvmName("axisValueProperty")
@@ -51,11 +45,11 @@ public open class InputEventJoypadMotion : InputEvent() {
       setAxisValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(297, scriptIndex)
   }
 
-  public final fun setAxis(axis: JoyAxis): Unit {
+  public final fun setAxis(axis: JoyAxis) {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(ptr, MethodBindings.setAxisPtr, NIL)
   }
@@ -66,7 +60,7 @@ public open class InputEventJoypadMotion : InputEvent() {
     return JoyAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAxisValue(axisValue: Float): Unit {
+  public final fun setAxisValue(axisValue: Float) {
     TransferContext.writeArguments(DOUBLE to axisValue.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAxisValuePtr, NIL)
   }
@@ -81,15 +75,15 @@ public open class InputEventJoypadMotion : InputEvent() {
 
   public object MethodBindings {
     internal val setAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis", 1332685170)
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis", 1_332_685_170)
 
     internal val getAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis", 4019121683)
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis", 4_019_121_683)
 
     internal val setAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value", 373806689)
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "set_axis_value", 373_806_689)
 
     internal val getAxisValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventJoypadMotion", "get_axis_value", 1_740_695_150)
   }
 }

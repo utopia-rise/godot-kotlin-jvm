@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,14 +23,9 @@ import kotlin.jvm.JvmName
 /**
  * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
  *
- * The
- * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified
- * Expressions[/url] blend shapes are supported, as well as ARKit and SRanipal blend shapes.
+ * The [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified Expressions[/url] blend shapes are supported, as well as ARKit and SRanipal blend shapes.
  *
- * The node attempts to identify blend shapes based on name matching. Blend shapes should match the
- * names listed in the
- * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Unified
- * Expressions Compatibility[/url] chart.
+ * The node attempts to identify blend shapes based on name matching. Blend shapes should match the names listed in the [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/compatibility/overview]Unified Expressions Compatibility[/url] chart.
  */
 @GodotBaseType
 public open class XRFaceModifier3D : Node3D() {
@@ -59,11 +51,11 @@ public open class XRFaceModifier3D : Node3D() {
       setTarget(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(864, scriptIndex)
   }
 
-  public final fun setFaceTracker(trackerName: StringName): Unit {
+  public final fun setFaceTracker(trackerName: StringName) {
     TransferContext.writeArguments(STRING_NAME to trackerName)
     TransferContext.callMethod(ptr, MethodBindings.setFaceTrackerPtr, NIL)
   }
@@ -74,7 +66,7 @@ public open class XRFaceModifier3D : Node3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setTarget(target: NodePath): Unit {
+  public final fun setTarget(target: NodePath) {
     TransferContext.writeArguments(NODE_PATH to target)
     TransferContext.callMethod(ptr, MethodBindings.setTargetPtr, NIL)
   }
@@ -85,24 +77,23 @@ public open class XRFaceModifier3D : Node3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setFaceTracker(trackerName: String) =
-      setFaceTracker(trackerName.asCachedStringName())
+  public final fun setFaceTracker(trackerName: String): Unit = setFaceTracker(trackerName.asCachedStringName())
 
-  public final fun setTarget(target: String) = setTarget(target.asCachedNodePath())
+  public final fun setTarget(target: String): Unit = setTarget(target.asCachedNodePath())
 
   public companion object
 
   public object MethodBindings {
     internal val setFaceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_face_tracker", 3304788590)
+        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_face_tracker", 3_304_788_590)
 
     internal val getFaceTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_face_tracker", 2002593661)
+        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_face_tracker", 2_002_593_661)
 
     internal val setTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_target", 1348162250)
+        TypeManager.getMethodBindPtr("XRFaceModifier3D", "set_target", 1_348_162_250)
 
     internal val getTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_target", 4075236667)
+        TypeManager.getMethodBindPtr("XRFaceModifier3D", "get_target", 4_075_236_667)
   }
 }

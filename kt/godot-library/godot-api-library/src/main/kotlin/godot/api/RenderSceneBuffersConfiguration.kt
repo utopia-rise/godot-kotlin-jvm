@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,8 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This configuration object is created and populated by the render engine on a viewport change and
- * used to (re)configure a [RenderSceneBuffers] object.
+ * This configuration object is created and populated by the render engine on a viewport change and used to (re)configure a [RenderSceneBuffers] object.
  */
 @GodotBaseType
 public open class RenderSceneBuffersConfiguration : RefCounted() {
@@ -48,11 +44,8 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
    * The size of the 3D render buffer used for rendering.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var internalSize: Vector2i
@@ -67,11 +60,8 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
    * The target (upscale) size if scaling is used.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetSize: Vector2i
@@ -94,8 +84,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     }
 
   /**
-   * The requested scaling mode with which we upscale/downscale if [internalSize] and [targetSize]
-   * are not equal.
+   * The requested scaling mode with which we upscale/downscale if [internalSize] and [targetSize] are not equal.
    */
   public final inline var scaling3dMode: RenderingServer.ViewportScaling3DMode
     @JvmName("scaling3dModeProperty")
@@ -160,7 +149,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
       setAnisotropicFilteringLevel(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(544, scriptIndex)
   }
 
@@ -208,7 +197,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setRenderTarget(renderTarget: RID): Unit {
+  public final fun setRenderTarget(renderTarget: RID) {
     TransferContext.writeArguments(_RID to renderTarget)
     TransferContext.callMethod(ptr, MethodBindings.setRenderTargetPtr, NIL)
   }
@@ -219,7 +208,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setInternalSize(internalSize: Vector2i): Unit {
+  public final fun setInternalSize(internalSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to internalSize)
     TransferContext.callMethod(ptr, MethodBindings.setInternalSizePtr, NIL)
   }
@@ -230,7 +219,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setTargetSize(targetSize: Vector2i): Unit {
+  public final fun setTargetSize(targetSize: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to targetSize)
     TransferContext.callMethod(ptr, MethodBindings.setTargetSizePtr, NIL)
   }
@@ -241,7 +230,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setViewCount(viewCount: Long): Unit {
+  public final fun setViewCount(viewCount: Long) {
     TransferContext.writeArguments(LONG to viewCount)
     TransferContext.callMethod(ptr, MethodBindings.setViewCountPtr, NIL)
   }
@@ -252,7 +241,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return RenderingServer.ViewportScaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setScaling3dMode(scaling3dMode: RenderingServer.ViewportScaling3DMode): Unit {
+  public final fun setScaling3dMode(scaling3dMode: RenderingServer.ViewportScaling3DMode) {
     TransferContext.writeArguments(LONG to scaling3dMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setScaling3dModePtr, NIL)
   }
@@ -263,7 +252,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return RenderingServer.ViewportMSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMsaa3d(msaa3d: RenderingServer.ViewportMSAA): Unit {
+  public final fun setMsaa3d(msaa3d: RenderingServer.ViewportMSAA) {
     TransferContext.writeArguments(LONG to msaa3d.id)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa3dPtr, NIL)
   }
@@ -274,7 +263,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return RenderingServer.ViewportScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setScreenSpaceAa(screenSpaceAa: RenderingServer.ViewportScreenSpaceAA): Unit {
+  public final fun setScreenSpaceAa(screenSpaceAa: RenderingServer.ViewportScreenSpaceAA) {
     TransferContext.writeArguments(LONG to screenSpaceAa.id)
     TransferContext.callMethod(ptr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
@@ -285,7 +274,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFsrSharpness(fsrSharpness: Float): Unit {
+  public final fun setFsrSharpness(fsrSharpness: Float) {
     TransferContext.writeArguments(DOUBLE to fsrSharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFsrSharpnessPtr, NIL)
   }
@@ -296,7 +285,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {
+  public final fun setTextureMipmapBias(textureMipmapBias: Float) {
     TransferContext.writeArguments(DOUBLE to textureMipmapBias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
@@ -307,9 +296,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
     return RenderingServer.ViewportAnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final
-      fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: RenderingServer.ViewportAnisotropicFiltering):
-      Unit {
+  public final fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: RenderingServer.ViewportAnisotropicFiltering) {
     TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
   }
@@ -318,63 +305,63 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
 
   public object MethodBindings {
     internal val getRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2944877500)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_render_target", 2_944_877_500)
 
     internal val setRenderTargetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2722037293)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_render_target", 2_722_037_293)
 
     internal val getInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3690982128)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_internal_size", 3_690_982_128)
 
     internal val setInternalSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1130785943)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_internal_size", 1_130_785_943)
 
     internal val getTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3690982128)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_target_size", 3_690_982_128)
 
     internal val setTargetSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1130785943)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_target_size", 1_130_785_943)
 
     internal val getViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3905245786)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_view_count", 3_905_245_786)
 
     internal val setViewCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1286410249)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_view_count", 1_286_410_249)
 
     internal val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976778074)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_scaling_3d_mode", 976_778_074)
 
     internal val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447477857)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_scaling_3d_mode", 447_477_857)
 
     internal val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3109158617)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_msaa_3d", 3_109_158_617)
 
     internal val setMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3952630748)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_msaa_3d", 3_952_630_748)
 
     internal val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641513172)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_screen_space_aa", 641_513_172)
 
     internal val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139543108)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_screen_space_aa", 139_543_108)
 
     internal val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_fsr_sharpness", 1_740_695_150)
 
     internal val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_fsr_sharpness", 373_806_689)
 
     internal val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1740695150)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_texture_mipmap_bias", 1_740_695_150)
 
     internal val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373806689)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_texture_mipmap_bias", 373_806_689)
 
     internal val getAnisotropicFilteringLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_anisotropic_filtering_level", 1617414954)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "get_anisotropic_filtering_level", 1_617_414_954)
 
     internal val setAnisotropicFilteringLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_anisotropic_filtering_level", 2559658741)
+        TypeManager.getMethodBindPtr("RenderSceneBuffersConfiguration", "set_anisotropic_filtering_level", 2_559_658_741)
   }
 }

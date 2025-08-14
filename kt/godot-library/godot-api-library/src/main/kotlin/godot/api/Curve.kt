@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,18 +18,13 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This resource describes a mathematical curve by defining a set of points and tangents at each
- * point. By default, it ranges between `0` and `1` on the X and Y axes, but these ranges can be
- * changed.
+ * This resource describes a mathematical curve by defining a set of points and tangents at each point. By default, it ranges between `0` and `1` on the X and Y axes, but these ranges can be changed.
  *
- * Please note that many resources and nodes assume they are given *unit curves*. A unit curve is a
- * curve whose domain (the X axis) is between `0` and `1`. Some examples of unit curve usage are
- * [CPUParticles2D.angleCurve] and [Line2D.widthCurve].
+ * Please note that many resources and nodes assume they are given *unit curves*. A unit curve is a curve whose domain (the X axis) is between `0` and `1`. Some examples of unit curve usage are [CPUParticles2D.angleCurve] and [Line2D.widthCurve].
  */
 @GodotBaseType
 public open class Curve : Resource() {
@@ -69,8 +61,7 @@ public open class Curve : Resource() {
     }
 
   /**
-   * The minimum value (y-coordinate) that points can have. Tangents can cause lower values between
-   * points.
+   * The minimum value (y-coordinate) that points can have. Tangents can cause lower values between points.
    */
   public final inline var minValue: Float
     @JvmName("minValueProperty")
@@ -81,8 +72,7 @@ public open class Curve : Resource() {
     }
 
   /**
-   * The maximum value (y-coordinate) that points can have. Tangents can cause higher values between
-   * points.
+   * The maximum value (y-coordinate) that points can have. Tangents can cause higher values between points.
    */
   public final inline var maxValue: Float
     @JvmName("maxValueProperty")
@@ -114,7 +104,7 @@ public open class Curve : Resource() {
       setPointCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(185, scriptIndex)
   }
 
@@ -124,15 +114,13 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPointCount(count: Int): Unit {
+  public final fun setPointCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPointCountPtr, NIL)
   }
 
   /**
-   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent`
-   * angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom
-   * assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
+   * Adds a point to the curve. For each side, if the `*_mode` is [TANGENT_LINEAR], the `*_tangent` angle (in degrees) uses the slope of the curve halfway to the adjacent point. Allows custom assignments to the `*_tangent` angle if `*_mode` is set to [TANGENT_FREE].
    */
   @JvmOverloads
   public final fun addPoint(
@@ -150,7 +138,7 @@ public open class Curve : Resource() {
   /**
    * Removes the point at [index] from the curve.
    */
-  public final fun removePoint(index: Int): Unit {
+  public final fun removePoint(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
   }
@@ -158,7 +146,7 @@ public open class Curve : Resource() {
   /**
    * Removes all points from the curve.
    */
-  public final fun clearPoints(): Unit {
+  public final fun clearPoints() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPointsPtr, NIL)
   }
@@ -175,7 +163,7 @@ public open class Curve : Resource() {
   /**
    * Assigns the vertical position [y] to the point at [index].
    */
-  public final fun setPointValue(index: Int, y: Float): Unit {
+  public final fun setPointValue(index: Int, y: Float) {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to y.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointValuePtr, NIL)
   }
@@ -199,8 +187,7 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Returns the Y value for the point that would exist at the X position [offset] along the curve
-   * using the baked cache. Bakes the curve's points if not already baked.
+   * Returns the Y value for the point that would exist at the X position [offset] along the curve using the baked cache. Bakes the curve's points if not already baked.
    */
   public final fun sampleBaked(offset: Float): Float {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
@@ -247,7 +234,7 @@ public open class Curve : Resource() {
   /**
    * Sets the left tangent angle for the point at [index] to [tangent].
    */
-  public final fun setPointLeftTangent(index: Int, tangent: Float): Unit {
+  public final fun setPointLeftTangent(index: Int, tangent: Float) {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to tangent.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointLeftTangentPtr, NIL)
   }
@@ -255,7 +242,7 @@ public open class Curve : Resource() {
   /**
    * Sets the right tangent angle for the point at [index] to [tangent].
    */
-  public final fun setPointRightTangent(index: Int, tangent: Float): Unit {
+  public final fun setPointRightTangent(index: Int, tangent: Float) {
     TransferContext.writeArguments(LONG to index.toLong(), DOUBLE to tangent.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointRightTangentPtr, NIL)
   }
@@ -263,7 +250,7 @@ public open class Curve : Resource() {
   /**
    * Sets the left [TangentMode] for the point at [index] to [mode].
    */
-  public final fun setPointLeftMode(index: Int, mode: TangentMode): Unit {
+  public final fun setPointLeftMode(index: Int, mode: TangentMode) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setPointLeftModePtr, NIL)
   }
@@ -271,7 +258,7 @@ public open class Curve : Resource() {
   /**
    * Sets the right [TangentMode] for the point at [index] to [mode].
    */
-  public final fun setPointRightMode(index: Int, mode: TangentMode): Unit {
+  public final fun setPointRightMode(index: Int, mode: TangentMode) {
     TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setPointRightModePtr, NIL)
   }
@@ -282,7 +269,7 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMinValue(min: Float): Unit {
+  public final fun setMinValue(min: Float) {
     TransferContext.writeArguments(DOUBLE to min.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinValuePtr, NIL)
   }
@@ -293,7 +280,7 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxValue(max: Float): Unit {
+  public final fun setMaxValue(max: Float) {
     TransferContext.writeArguments(DOUBLE to max.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxValuePtr, NIL)
   }
@@ -313,7 +300,7 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMinDomain(min: Float): Unit {
+  public final fun setMinDomain(min: Float) {
     TransferContext.writeArguments(DOUBLE to min.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinDomainPtr, NIL)
   }
@@ -324,7 +311,7 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxDomain(max: Float): Unit {
+  public final fun setMaxDomain(max: Float) {
     TransferContext.writeArguments(DOUBLE to max.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxDomainPtr, NIL)
   }
@@ -339,10 +326,9 @@ public open class Curve : Resource() {
   }
 
   /**
-   * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value)
-   * away from their neighbor on the curve.
+   * Removes duplicate points, i.e. points that are less than 0.00001 units (engine epsilon value) away from their neighbor on the curve.
    */
-  public final fun cleanDupes(): Unit {
+  public final fun cleanDupes() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.cleanDupesPtr, NIL)
   }
@@ -350,7 +336,7 @@ public open class Curve : Resource() {
   /**
    * Recomputes the baked cache of points for the curve.
    */
-  public final fun bake(): Unit {
+  public final fun bake() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bakePtr, NIL)
   }
@@ -361,7 +347,7 @@ public open class Curve : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBakeResolution(resolution: Int): Unit {
+  public final fun setBakeResolution(resolution: Int) {
     TransferContext.writeArguments(LONG to resolution.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBakeResolutionPtr, NIL)
   }
@@ -374,8 +360,7 @@ public open class Curve : Resource() {
      */
     FREE(0),
     /**
-     * The curve calculates the tangent on this side of the point as the slope halfway towards the
-     * adjacent point.
+     * The curve calculates the tangent on this side of the point as the slope halfway towards the adjacent point.
      */
     LINEAR(1),
     /**
@@ -398,97 +383,97 @@ public open class Curve : Resource() {
 
   public object MethodBindings {
     internal val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("Curve", "get_point_count", 3_905_245_786)
 
     internal val setPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_count", 1286410249)
+        TypeManager.getMethodBindPtr("Curve", "set_point_count", 1_286_410_249)
 
     internal val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "add_point", 434072736)
+        TypeManager.getMethodBindPtr("Curve", "add_point", 434_072_736)
 
     internal val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "remove_point", 1286410249)
+        TypeManager.getMethodBindPtr("Curve", "remove_point", 1_286_410_249)
 
     internal val clearPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "clear_points", 3218959716)
+        TypeManager.getMethodBindPtr("Curve", "clear_points", 3_218_959_716)
 
     internal val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_position", 2299179447)
+        TypeManager.getMethodBindPtr("Curve", "get_point_position", 2_299_179_447)
 
     internal val setPointValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_value", 1602489585)
+        TypeManager.getMethodBindPtr("Curve", "set_point_value", 1_602_489_585)
 
     internal val setPointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_offset", 3780573764)
+        TypeManager.getMethodBindPtr("Curve", "set_point_offset", 3_780_573_764)
 
-    internal val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "sample", 3919130443)
+    internal val samplePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "sample", 3_919_130_443)
 
     internal val sampleBakedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "sample_baked", 3919130443)
+        TypeManager.getMethodBindPtr("Curve", "sample_baked", 3_919_130_443)
 
     internal val getPointLeftTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_left_tangent", 2339986948)
+        TypeManager.getMethodBindPtr("Curve", "get_point_left_tangent", 2_339_986_948)
 
     internal val getPointRightTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_right_tangent", 2339986948)
+        TypeManager.getMethodBindPtr("Curve", "get_point_right_tangent", 2_339_986_948)
 
     internal val getPointLeftModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_left_mode", 426950354)
+        TypeManager.getMethodBindPtr("Curve", "get_point_left_mode", 426_950_354)
 
     internal val getPointRightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_point_right_mode", 426950354)
+        TypeManager.getMethodBindPtr("Curve", "get_point_right_mode", 426_950_354)
 
     internal val setPointLeftTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_left_tangent", 1602489585)
+        TypeManager.getMethodBindPtr("Curve", "set_point_left_tangent", 1_602_489_585)
 
     internal val setPointRightTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_right_tangent", 1602489585)
+        TypeManager.getMethodBindPtr("Curve", "set_point_right_tangent", 1_602_489_585)
 
     internal val setPointLeftModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_left_mode", 1217242874)
+        TypeManager.getMethodBindPtr("Curve", "set_point_left_mode", 1_217_242_874)
 
     internal val setPointRightModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_point_right_mode", 1217242874)
+        TypeManager.getMethodBindPtr("Curve", "set_point_right_mode", 1_217_242_874)
 
     internal val getMinValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_min_value", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_min_value", 1_740_695_150)
 
     internal val setMinValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_min_value", 373806689)
+        TypeManager.getMethodBindPtr("Curve", "set_min_value", 373_806_689)
 
     internal val getMaxValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_max_value", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_max_value", 1_740_695_150)
 
     internal val setMaxValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_max_value", 373806689)
+        TypeManager.getMethodBindPtr("Curve", "set_max_value", 373_806_689)
 
     internal val getValueRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_value_range", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_value_range", 1_740_695_150)
 
     internal val getMinDomainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_min_domain", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_min_domain", 1_740_695_150)
 
     internal val setMinDomainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_min_domain", 373806689)
+        TypeManager.getMethodBindPtr("Curve", "set_min_domain", 373_806_689)
 
     internal val getMaxDomainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_max_domain", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_max_domain", 1_740_695_150)
 
     internal val setMaxDomainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_max_domain", 373806689)
+        TypeManager.getMethodBindPtr("Curve", "set_max_domain", 373_806_689)
 
     internal val getDomainRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_domain_range", 1740695150)
+        TypeManager.getMethodBindPtr("Curve", "get_domain_range", 1_740_695_150)
 
     internal val cleanDupesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "clean_dupes", 3218959716)
+        TypeManager.getMethodBindPtr("Curve", "clean_dupes", 3_218_959_716)
 
-    internal val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "bake", 3218959716)
+    internal val bakePtr: VoidPtr = TypeManager.getMethodBindPtr("Curve", "bake", 3_218_959_716)
 
     internal val getBakeResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "get_bake_resolution", 3905245786)
+        TypeManager.getMethodBindPtr("Curve", "get_bake_resolution", 3_905_245_786)
 
     internal val setBakeResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Curve", "set_bake_resolution", 1286410249)
+        TypeManager.getMethodBindPtr("Curve", "set_bake_resolution", 1_286_410_249)
   }
 }

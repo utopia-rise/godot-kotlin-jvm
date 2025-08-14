@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,7 +27,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
@@ -43,8 +39,7 @@ public infix fun Long.xor(other: FileAccess.UnixPermissionFlags): Long = this.xo
 public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.and(other.flag)
 
 /**
- * This class can be used to permanently store data in the user device's file system and to read
- * from it. This is useful for storing game save data or player configuration files.
+ * This class can be used to permanently store data in the user device's file system and to read from it. This is useful for storing game save data or player configuration files.
  *
  * Here's a sample on how to write and read from a file:
  *
@@ -76,39 +71,22 @@ public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.an
  * }
  * ```
  *
- * In the example above, the file will be saved in the user data folder as specified in the
- * [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url] documentation.
+ * In the example above, the file will be saved in the user data folder as specified in the [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url] documentation.
  *
- * [FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets
- * assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference
- * must be disposed manually, which can be done with the `using` statement or by calling the `Dispose`
- * method directly.
+ * [FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference must be disposed manually, which can be done with the `using` statement or by calling the `Dispose` method directly.
  *
- * **Note:** To access project resources once exported, it is recommended to use [ResourceLoader]
- * instead of [FileAccess], as some files are converted to engine-specific formats and their original
- * source files might not be present in the exported PCK package. If using [FileAccess], make sure the
- * file is included in the export by changing its import mode to **Keep File (exported as is)** in the
- * Import dock, or, for files where this option is not available, change the non-resource export filter
- * in the Export dialog to include the file's extension (e.g. `*.txt`).
+ * **Note:** To access project resources once exported, it is recommended to use [ResourceLoader] instead of [FileAccess], as some files are converted to engine-specific formats and their original source files might not be present in the exported PCK package. If using [FileAccess], make sure the file is included in the export by changing its import mode to **Keep File (exported as is)** in the Import dock, or, for files where this option is not available, change the non-resource export filter in the Export dialog to include the file's extension (e.g. `*.txt`).
  *
- * **Note:** Files are automatically closed only if the process exits "normally" (such as by
- * clicking the window manager's close button or pressing **Alt + F4**). If you stop the project
- * execution by pressing **F8** while the project is running, the file won't be closed as the game
- * process will be killed. You can work around this by calling [flush] at regular intervals.
+ * **Note:** Files are automatically closed only if the process exits "normally" (such as by clicking the window manager's close button or pressing **Alt + F4**). If you stop the project execution by pressing **F8** while the project is running, the file won't be closed as the game process will be killed. You can work around this by calling [flush] at regular intervals.
  */
 @GodotBaseType
 public open class FileAccess internal constructor() : RefCounted() {
   /**
-   * If `true`, the file is read with big-endian
-   * [url=https://en.wikipedia.org/wiki/Endianness]endianness[/url]. If `false`, the file is read with
-   * little-endian endianness. If in doubt, leave this to `false` as most files are written with
-   * little-endian endianness.
+   * If `true`, the file is read with big-endian [url=https://en.wikipedia.org/wiki/Endianness]endianness[/url]. If `false`, the file is read with little-endian endianness. If in doubt, leave this to `false` as most files are written with little-endian endianness.
    *
-   * **Note:** [bigEndian] is only about the file format, not the CPU type. The CPU endianness
-   * doesn't affect the default endianness for files written.
+   * **Note:** [bigEndian] is only about the file format, not the CPU type. The CPU endianness doesn't affect the default endianness for files written.
    *
-   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set
-   * [bigEndian] *after* opening the file, not before.
+   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set [bigEndian] *after* opening the file, not before.
    */
   public final inline var bigEndian: Boolean
     @JvmName("bigEndianProperty")
@@ -118,14 +96,12 @@ public open class FileAccess internal constructor() : RefCounted() {
       setBigEndian(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(212, scriptIndex)
   }
 
   /**
-   * Resizes the file to a specified length. The file must be open in a mode that permits writing.
-   * If the file is extended, NUL characters are appended. If the file is truncated, all data from the
-   * end file to the original length of the file is lost.
+   * Resizes the file to a specified length. The file must be open in a mode that permits writing. If the file is extended, NUL characters are appended. If the file is truncated, all data from the end file to the original length of the file is lost.
    */
   public final fun resize(length: Long): Error {
     TransferContext.writeArguments(LONG to length)
@@ -134,15 +110,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed.
-   * This means you don't need to call [flush] manually before closing a file. Still, calling [flush]
-   * can be used to ensure the data is safe even if the project crashes instead of being closed
-   * gracefully.
+   * Writes the file's buffer to disk. Flushing is automatically performed when the file is closed. This means you don't need to call [flush] manually before closing a file. Still, calling [flush] can be used to ensure the data is safe even if the project crashes instead of being closed gracefully.
    *
-   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance
-   * due to constant disk writes.
+   * **Note:** Only call [flush] when you actually need it. Otherwise, it will decrease performance due to constant disk writes.
    */
-  public final fun flush(): Unit {
+  public final fun flush() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.flushPtr, NIL)
   }
@@ -175,23 +147,20 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the beginning
-   * of the file).
+   * Changes the file reading/writing cursor to the specified position (in bytes from the beginning of the file).
    */
-  public final fun seek(position: Long): Unit {
+  public final fun seek(position: Long) {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
 
   /**
-   * Changes the file reading/writing cursor to the specified position (in bytes from the end of the
-   * file).
+   * Changes the file reading/writing cursor to the specified position (in bytes from the end of the file).
    *
-   * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the
-   * end of the file.
+   * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the end of the file.
    */
   @JvmOverloads
-  public final fun seekEnd(position: Long = 0): Unit {
+  public final fun seekEnd(position: Long = 0) {
     TransferContext.writeArguments(LONG to position)
     TransferContext.callMethod(ptr, MethodBindings.seekEndPtr, NIL)
   }
@@ -206,8 +175,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the size of the file in bytes. For a pipe, returns the number of bytes available for
-   * reading from the pipe.
+   * Returns the size of the file in bytes. For a pipe, returns the number of bytes available for reading from the pipe.
    */
   public final fun getLength(): Long {
     TransferContext.writeArguments()
@@ -218,8 +186,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns `true` if the file cursor has already read past the end of the file.
    *
-   * **Note:** `eof_reached() == false` cannot be used to check whether there is more data
-   * available. To loop while there is more data available, use:
+   * **Note:** `eof_reached() == false` cannot be used to check whether there is more data available. To loop while there is more data available, use:
    *
    * ```gdscript
    * //gdscript
@@ -242,8 +209,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 8 bits from the file as an integer. See [store8] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 8 bits from the file as an integer. See [store8] for details on what values can be stored and retrieved this way.
    */
   public final fun get8(): Int {
     TransferContext.writeArguments()
@@ -252,8 +218,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 16 bits from the file as an integer. See [store16] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 16 bits from the file as an integer. See [store16] for details on what values can be stored and retrieved this way.
    */
   public final fun get16(): Int {
     TransferContext.writeArguments()
@@ -262,8 +227,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 32 bits from the file as an integer. See [store32] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 32 bits from the file as an integer. See [store32] for details on what values can be stored and retrieved this way.
    */
   public final fun get32(): Long {
     TransferContext.writeArguments()
@@ -272,8 +236,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 64 bits from the file as an integer. See [store64] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 64 bits from the file as an integer. See [store64] for details on what values can be stored and retrieved this way.
    */
   public final fun get64(): Long {
     TransferContext.writeArguments()
@@ -327,9 +290,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next line of the file as a [String]. The returned string doesn't include newline
-   * (`\n`) or carriage return (`\r`) characters, but does include any other leading or trailing
-   * whitespace.
+   * Returns the next line of the file as a [String]. The returned string doesn't include newline (`\n`) or carriage return (`\r`) characters, but does include any other leading or trailing whitespace.
    *
    * Text is interpreted as being UTF-8 encoded.
    */
@@ -340,13 +301,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a
-   * different delimiter [delim] to use other than the default `","` (comma). This delimiter must be
-   * one-character long, and cannot be a double quotation mark.
+   * Returns the next value of the file in CSV (Comma-Separated Values) format. You can pass a different delimiter [delim] to use other than the default `","` (comma). This delimiter must be one-character long, and cannot be a double quotation mark.
    *
-   * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if
-   * they include the delimiter character. Double quotes within a text value can be escaped by doubling
-   * their occurrence.
+   * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if they include the delimiter character. Double quotes within a text value can be escaped by doubling their occurrence.
    *
    * For example, the following CSV lines are valid and will be properly parsed as two strings each:
    *
@@ -360,10 +317,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * ```
    *
-   * Note how the second line can omit the enclosing quotes as it does not include the delimiter.
-   * However it *could* very well use quotes, it was only written without for demonstration purposes.
-   * The third line must use `""` for each quotation mark that needs to be interpreted as such instead
-   * of the end of a text value.
+   * Note how the second line can omit the enclosing quotes as it does not include the delimiter. However it *could* very well use quotes, it was only written without for demonstration purposes. The third line must use `""` for each quotation mark that needs to be interpreted as such instead of the end of a text value.
    */
   @JvmOverloads
   public final fun getCsvLine(delim: String = ","): PackedStringArray {
@@ -375,8 +329,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded.
    *
-   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the
-   * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
+   * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
    */
   @JvmOverloads
   public final fun getAsText(skipCr: Boolean = false): String {
@@ -391,14 +344,13 @@ public open class FileAccess internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBigEndian(bigEndian: Boolean): Unit {
+  public final fun setBigEndian(bigEndian: Boolean) {
     TransferContext.writeArguments(BOOL to bigEndian)
     TransferContext.callMethod(ptr, MethodBindings.setBigEndianPtr, NIL)
   }
 
   /**
-   * Returns the last error that happened when trying to perform operations. Compare with the
-   * `ERR_FILE_*` constants from [Error].
+   * Returns the last error that happened when trying to perform operations. Compare with the `ERR_FILE_*` constants from [Error].
    */
   public final fun getError(): Error {
     TransferContext.writeArguments()
@@ -407,14 +359,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects
-   * is allowed.
+   * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects is allowed.
    *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
-   * if the serialized object comes from untrusted sources to avoid potential security threats such as
-   * remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   @JvmOverloads
   public final fun getVar(allowObjects: Boolean = false): Any? {
@@ -426,14 +375,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores an integer as 8 bits in the file.
    *
-   * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and
-   * wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and wrap around.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    *
-   * To store a signed integer, use [store64], or convert it manually (see [store16] for an
-   * example).
+   * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
   public final fun store8(`value`: Int): Boolean {
     TransferContext.writeArguments(LONG to value.toLong())
@@ -444,15 +390,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores an integer as 16 bits in the file.
    *
-   * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow
-   * and wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow and wrap around.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    *
-   * To store a signed integer, use [store64] or store a signed integer from the interval `[-2^15,
-   * 2^15 - 1]` (i.e. keeping one bit for the signedness) and compute its sign manually when reading.
-   * For example:
+   * To store a signed integer, use [store64] or store a signed integer from the interval `[-2^15, 2^15 - 1]` (i.e. keeping one bit for the signedness) and compute its sign manually when reading. For example:
    *
    * ```gdscript
    * //gdscript
@@ -497,14 +439,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores an integer as 32 bits in the file.
    *
-   * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow
-   * and wrap around.
+   * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow and wrap around.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    *
-   * To store a signed integer, use [store64], or convert it manually (see [store16] for an
-   * example).
+   * To store a signed integer, use [store64], or convert it manually (see [store16] for an example).
    */
   public final fun store32(`value`: Long): Boolean {
     TransferContext.writeArguments(LONG to value)
@@ -515,11 +454,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores an integer as 64 bits in the file.
    *
-   * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
-   * value).
+   * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int] value).
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun store64(`value`: Long): Boolean {
     TransferContext.writeArguments(LONG to value)
@@ -539,8 +476,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number as 32 bits in the file.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeFloat(`value`: Float): Boolean {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
@@ -551,8 +487,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number as 64 bits in the file.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeDouble(`value`: Double): Boolean {
     TransferContext.writeArguments(DOUBLE to value)
@@ -563,8 +498,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores a floating-point number in the file.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeReal(`value`: Float): Boolean {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
@@ -575,8 +509,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores the given array of bytes in the file.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeBuffer(buffer: PackedByteArray): Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
@@ -587,8 +520,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores [line] in the file followed by a newline character (`\n`), encoding the text as UTF-8.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeLine(line: String): Boolean {
     TransferContext.writeArguments(STRING to line)
@@ -597,14 +529,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated
-   * Values) format. You can pass a different delimiter [delim] to use other than the default `","`
-   * (comma). This delimiter must be one-character long.
+   * Store the given [PackedStringArray] in the file as a line formatted in the CSV (Comma-Separated Values) format. You can pass a different delimiter [delim] to use other than the default `","` (comma). This delimiter must be one-character long.
    *
    * Text will be encoded as UTF-8.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   @JvmOverloads
   public final fun storeCsvLine(values: PackedStringArray, delim: String = ","): Boolean {
@@ -616,14 +545,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Stores [string] in the file without a newline character (`\n`), encoding the text as UTF-8.
    *
-   * **Note:** This method is intended to be used to write text files. The string is stored as a
-   * UTF-8 encoded buffer without string length or terminating zero, which means that it can't be
-   * loaded back easily. If you want to store a retrievable string in a binary file, consider using
-   * [storePascalString] instead. For retrieving strings from a text file, you can use
-   * `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
+   * **Note:** This method is intended to be used to write text files. The string is stored as a UTF-8 encoded buffer without string length or terminating zero, which means that it can't be loaded back easily. If you want to store a retrievable string in a binary file, consider using [storePascalString] instead. For retrieving strings from a text file, you can use `get_buffer(length).get_string_from_utf8()` (if you know the length) or [getAsText].
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storeString(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
@@ -632,19 +556,13 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed
-   * (and can potentially include code).
+   * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    *
-   * **Note:** Not all properties are included. Only properties that are configured with the
-   * [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property
-   * by overriding the [Object.GetPropertyList] method in your class. You can also check how property
-   * usage is configured by calling [Object.GetPropertyList]. See [PropertyUsageFlags] for the possible
-   * usage flags.
+   * **Note:** Not all properties are included. Only properties that are configured with the [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property by overriding the [Object.GetPropertyList] method in your class. You can also check how property usage is configured by calling [Object.GetPropertyList]. See [PropertyUsageFlags] for the possible usage flags.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   @JvmOverloads
   public final fun storeVar(`value`: Any?, fullObjects: Boolean = false): Boolean {
@@ -654,13 +572,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores the given [String] as a line in the file in Pascal format (i.e. also store the length of
-   * the string).
+   * Stores the given [String] as a line in the file in Pascal format (i.e. also store the length of the string).
    *
    * Text will be encoded as UTF-8.
    *
-   * **Note:** If an error occurs, the resulting value of the file position indicator is
-   * indeterminate.
+   * **Note:** If an error occurs, the resulting value of the file position indicator is indeterminate.
    */
   public final fun storePascalString(string: String): Boolean {
     TransferContext.writeArguments(STRING to string)
@@ -680,15 +596,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to
-   * persist the data to disk without closing the file.
+   * Closes the currently opened file and prevents subsequent read/write operations. Use [flush] to persist the data to disk without closing the file.
    *
-   * **Note:** [FileAccess] will automatically close when it's freed, which happens when it goes out
-   * of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are
-   * done using it, this can be done with the `using` statement or calling the `Dispose` method
-   * directly.
+   * **Note:** [FileAccess] will automatically close when it's freed, which happens when it goes out of scope or when it gets assigned with `null`. In C# the reference must be disposed after we are done using it, this can be done with the `using` statement or calling the `Dispose` method directly.
    */
-  public final fun close(): Unit {
+  public final fun close() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.closePtr, NIL)
   }
@@ -701,24 +613,19 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     READ(1),
     /**
-     * Opens the file for write operations. The file is created if it does not exist, and truncated
-     * if it does.
+     * Opens the file for write operations. The file is created if it does not exist, and truncated if it does.
      *
-     * **Note:** When creating a file it must be in an already existing directory. To recursively
-     * create directories for a file path, see [DirAccess.makeDirRecursive].
+     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [DirAccess.makeDirRecursive].
      */
     WRITE(2),
     /**
-     * Opens the file for read and write operations. Does not truncate the file. The cursor is
-     * positioned at the beginning of the file.
+     * Opens the file for read and write operations. Does not truncate the file. The cursor is positioned at the beginning of the file.
      */
     READ_WRITE(3),
     /**
-     * Opens the file for read and write operations. The file is created if it does not exist, and
-     * truncated if it does. The cursor is positioned at the beginning of the file.
+     * Opens the file for read and write operations. The file is created if it does not exist, and truncated if it does. The cursor is positioned at the beginning of the file.
      *
-     * **Note:** When creating a file it must be in an already existing directory. To recursively
-     * create directories for a file path, see [DirAccess.makeDirRecursive].
+     * **Note:** When creating a file it must be in an already existing directory. To recursively create directories for a file path, see [DirAccess.makeDirRecursive].
      */
     WRITE_READ(7),
     ;
@@ -753,8 +660,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     GZIP(3),
     /**
-     * Uses the [url=https://github.com/google/brotli]brotli[/url] compression method (only
-     * decompression is supported).
+     * Uses the [url=https://github.com/google/brotli]brotli[/url] compression method (only decompression is supported).
      */
     BROTLI(4),
     ;
@@ -772,18 +678,15 @@ public open class FileAccess internal constructor() : RefCounted() {
   public class UnixPermissionFlags(
     public val flag: Long,
   ) {
-    public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.or(other.flag))
+    public infix fun or(other: UnixPermissionFlags): UnixPermissionFlags = UnixPermissionFlags(flag.or(other.flag))
 
     public infix fun or(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.or(other))
 
-    public infix fun xor(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.xor(other.flag))
+    public infix fun xor(other: UnixPermissionFlags): UnixPermissionFlags = UnixPermissionFlags(flag.xor(other.flag))
 
     public infix fun xor(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.xor(other))
 
-    public infix fun and(other: UnixPermissionFlags): UnixPermissionFlags =
-        UnixPermissionFlags(flag.and(other.flag))
+    public infix fun and(other: UnixPermissionFlags): UnixPermissionFlags = UnixPermissionFlags(flag.and(other.flag))
 
     public infix fun and(other: Long): UnixPermissionFlags = UnixPermissionFlags(flag.and(other))
 
@@ -858,13 +761,13 @@ public open class FileAccess internal constructor() : RefCounted() {
        * Set user id on execution bit.
        */
       @JvmField
-      public val SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2048)
+      public val SET_USER_ID: UnixPermissionFlags = UnixPermissionFlags(2_048)
 
       /**
        * Set group id on execution bit.
        */
       @JvmField
-      public val SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1024)
+      public val SET_GROUP_ID: UnixPermissionFlags = UnixPermissionFlags(1_024)
 
       /**
        * Restricted deletion (sticky) bit.
@@ -876,11 +779,9 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Creates a new [FileAccess] object and opens the file for writing or reading, depending on the
-     * flags.
+     * Creates a new [FileAccess] object and opens the file for writing or reading, depending on the flags.
      *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
-     * occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmStatic
     public final fun `open`(path: String, flags: ModeFlags): FileAccess? {
@@ -890,13 +791,11 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need
-     * to pass a binary key to encrypt/decrypt it.
+     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need to pass a binary key to encrypt/decrypt it.
      *
      * **Note:** The provided key must be 32 bytes long.
      *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
-     * occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmOverloads
     @JvmStatic
@@ -912,11 +811,9 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need
-     * to pass a password to encrypt/decrypt it.
+     * Creates a new [FileAccess] object and opens an encrypted file in write or read mode. You need to pass a password to encrypt/decrypt it.
      *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
-     * occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmStatic
     public final fun openEncryptedWithPass(
@@ -932,12 +829,9 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Creates a new [FileAccess] object and opens a compressed file for reading or writing.
      *
-     * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party
-     * compression formats. See [url=https://github.com/godotengine/godot/issues/28999]GitHub issue
-     * #28999[/url] for a workaround.
+     * **Note:** [openCompressed] can only read files that were saved by Godot, not third-party compression formats. See [url=https://github.com/godotengine/godot/issues/28999]GitHub issue #28999[/url] for a workaround.
      *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
-     * occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmOverloads
     @JvmStatic
@@ -970,8 +864,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      *
      * If [keep] is `true`, the file is not deleted when the returned [FileAccess] is freed.
      *
-     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that
-     * occurred.
+     * Returns `null` if opening the file failed. You can use [getOpenError] to check the error that occurred.
      */
     @JvmOverloads
     @JvmStatic
@@ -989,8 +882,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Returns the whole [path] file contents as a [PackedByteArray] without any decoding.
      *
-     * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use
-     * [getOpenError] to check the error that occurred.
+     * Returns an empty [PackedByteArray] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
      */
     @JvmStatic
     public final fun getFileAsBytes(path: String): PackedByteArray {
@@ -1000,11 +892,9 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the whole [path] file contents as a [String]. Text is interpreted as being UTF-8
-     * encoded.
+     * Returns the whole [path] file contents as a [String]. Text is interpreted as being UTF-8 encoded.
      *
-     * Returns an empty [String] if an error occurred while opening the file. You can use
-     * [getOpenError] to check the error that occurred.
+     * Returns an empty [String] if an error occurred while opening the file. You can use [getOpenError] to check the error that occurred.
      */
     @JvmStatic
     public final fun getFileAsString(path: String): String {
@@ -1014,8 +904,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns an MD5 String representing the file at the given path or an empty [String] on
-     * failure.
+     * Returns an MD5 String representing the file at the given path or an empty [String] on failure.
      */
     @JvmStatic
     public final fun getMd5(path: String): String {
@@ -1025,8 +914,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns an SHA-256 [String] representing the file at the given path or an empty [String] on
-     * failure.
+     * Returns an SHA-256 [String] representing the file at the given path or an empty [String] on failure.
      */
     @JvmStatic
     public final fun getSha256(path: String): String {
@@ -1038,9 +926,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     /**
      * Returns `true` if the file exists in the given path.
      *
-     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source
-     * asset will not be included in the exported game, as only the imported version is used. See
-     * [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
+     * **Note:** Many resources types are imported (e.g. textures or sound files), and their source asset will not be included in the exported game, as only the imported version is used. See [ResourceLoader.exists] for an alternative approach that takes resource remapping into account.
      *
      * For a non-static, relative equivalent, use [DirAccess.fileExists].
      */
@@ -1052,8 +938,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
-     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This
-     * Unix timestamp can be converted to another format using the [Time] singleton.
+     * Returns the last time the [file] was modified in Unix timestamp format, or `0` on error. This Unix timestamp can be converted to another format using the [Time] singleton.
      */
     @JvmStatic
     public final fun getModifiedTime(`file`: String): Long {
@@ -1136,179 +1021,184 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public object MethodBindings {
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "open", 1247358404)
+    internal val openPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "open", 1_247_358_404)
 
     internal val openEncryptedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788003459)
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted", 788_003_459)
 
     internal val openEncryptedWithPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790283377)
+        TypeManager.getMethodBindPtr("FileAccess", "open_encrypted_with_pass", 790_283_377)
 
     internal val openCompressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3686439335)
+        TypeManager.getMethodBindPtr("FileAccess", "open_compressed", 3_686_439_335)
 
     internal val getOpenErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166280745)
+        TypeManager.getMethodBindPtr("FileAccess", "get_open_error", 166_280_745)
 
     internal val createTempPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3075606245)
+        TypeManager.getMethodBindPtr("FileAccess", "create_temp", 3_075_606_245)
 
     internal val getFileAsBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659035735)
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_bytes", 659_035_735)
 
     internal val getFileAsStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1703090593)
+        TypeManager.getMethodBindPtr("FileAccess", "get_file_as_string", 1_703_090_593)
 
     internal val resizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "resize", 844576869)
+        TypeManager.getMethodBindPtr("FileAccess", "resize", 844_576_869)
 
-    internal val flushPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "flush", 3218959716)
+    internal val flushPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "flush", 3_218_959_716)
 
     internal val getPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_path", 201670096)
+        TypeManager.getMethodBindPtr("FileAccess", "get_path", 201_670_096)
 
     internal val getPathAbsolutePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_path_absolute", 201670096)
+        TypeManager.getMethodBindPtr("FileAccess", "get_path_absolute", 201_670_096)
 
     internal val isOpenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "is_open", 36873697)
+        TypeManager.getMethodBindPtr("FileAccess", "is_open", 36_873_697)
 
-    internal val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "seek", 1286410249)
+    internal val seekPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "seek", 1_286_410_249)
 
     internal val seekEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "seek_end", 1995695955)
+        TypeManager.getMethodBindPtr("FileAccess", "seek_end", 1_995_695_955)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_position", 3905245786)
+        TypeManager.getMethodBindPtr("FileAccess", "get_position", 3_905_245_786)
 
     internal val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_length", 3905245786)
+        TypeManager.getMethodBindPtr("FileAccess", "get_length", 3_905_245_786)
 
     internal val eofReachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "eof_reached", 36873697)
+        TypeManager.getMethodBindPtr("FileAccess", "eof_reached", 36_873_697)
 
-    internal val get8Ptr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "get_8", 3905245786)
+    internal val get8Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_8", 3_905_245_786)
 
     internal val get16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_16", 3905245786)
+        TypeManager.getMethodBindPtr("FileAccess", "get_16", 3_905_245_786)
 
     internal val get32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_32", 3905245786)
+        TypeManager.getMethodBindPtr("FileAccess", "get_32", 3_905_245_786)
 
     internal val get64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_64", 3905245786)
+        TypeManager.getMethodBindPtr("FileAccess", "get_64", 3_905_245_786)
 
     internal val getHalfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_half", 1740695150)
+        TypeManager.getMethodBindPtr("FileAccess", "get_half", 1_740_695_150)
 
     internal val getFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_float", 1740695150)
+        TypeManager.getMethodBindPtr("FileAccess", "get_float", 1_740_695_150)
 
     internal val getDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_double", 1740695150)
+        TypeManager.getMethodBindPtr("FileAccess", "get_double", 1_740_695_150)
 
     internal val getRealPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_real", 1740695150)
+        TypeManager.getMethodBindPtr("FileAccess", "get_real", 1_740_695_150)
 
     internal val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_buffer", 4131300905)
+        TypeManager.getMethodBindPtr("FileAccess", "get_buffer", 4_131_300_905)
 
     internal val getLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_line", 201670096)
+        TypeManager.getMethodBindPtr("FileAccess", "get_line", 201_670_096)
 
     internal val getCsvLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_csv_line", 2358116058)
+        TypeManager.getMethodBindPtr("FileAccess", "get_csv_line", 2_358_116_058)
 
     internal val getAsTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1162154673)
+        TypeManager.getMethodBindPtr("FileAccess", "get_as_text", 1_162_154_673)
 
     internal val getMd5Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1703090593)
+        TypeManager.getMethodBindPtr("FileAccess", "get_md5", 1_703_090_593)
 
     internal val getSha256Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1703090593)
+        TypeManager.getMethodBindPtr("FileAccess", "get_sha256", 1_703_090_593)
 
     internal val isBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "is_big_endian", 36873697)
+        TypeManager.getMethodBindPtr("FileAccess", "is_big_endian", 36_873_697)
 
     internal val setBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_big_endian", 2586408642)
+        TypeManager.getMethodBindPtr("FileAccess", "set_big_endian", 2_586_408_642)
 
     internal val getErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_error", 3185525595)
+        TypeManager.getMethodBindPtr("FileAccess", "get_error", 3_185_525_595)
 
     internal val getVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_var", 189129690)
+        TypeManager.getMethodBindPtr("FileAccess", "get_var", 189_129_690)
 
     internal val store8Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_8", 3067735520)
+        TypeManager.getMethodBindPtr("FileAccess", "store_8", 3_067_735_520)
 
     internal val store16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_16", 3067735520)
+        TypeManager.getMethodBindPtr("FileAccess", "store_16", 3_067_735_520)
 
     internal val store32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_32", 3067735520)
+        TypeManager.getMethodBindPtr("FileAccess", "store_32", 3_067_735_520)
 
     internal val store64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_64", 3067735520)
+        TypeManager.getMethodBindPtr("FileAccess", "store_64", 3_067_735_520)
 
     internal val storeHalfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_half", 330693286)
+        TypeManager.getMethodBindPtr("FileAccess", "store_half", 330_693_286)
 
     internal val storeFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_float", 330693286)
+        TypeManager.getMethodBindPtr("FileAccess", "store_float", 330_693_286)
 
     internal val storeDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_double", 330693286)
+        TypeManager.getMethodBindPtr("FileAccess", "store_double", 330_693_286)
 
     internal val storeRealPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_real", 330693286)
+        TypeManager.getMethodBindPtr("FileAccess", "store_real", 330_693_286)
 
     internal val storeBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_buffer", 114037665)
+        TypeManager.getMethodBindPtr("FileAccess", "store_buffer", 114_037_665)
 
     internal val storeLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_line", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "store_line", 2_323_990_056)
 
     internal val storeCsvLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_csv_line", 1611473434)
+        TypeManager.getMethodBindPtr("FileAccess", "store_csv_line", 1_611_473_434)
 
     internal val storeStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_string", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "store_string", 2_323_990_056)
 
     internal val storeVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_var", 117357437)
+        TypeManager.getMethodBindPtr("FileAccess", "store_var", 117_357_437)
 
     internal val storePascalStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "store_pascal_string", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "store_pascal_string", 2_323_990_056)
 
     internal val getPascalStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_pascal_string", 2841200299)
+        TypeManager.getMethodBindPtr("FileAccess", "get_pascal_string", 2_841_200_299)
 
-    internal val closePtr: VoidPtr = TypeManager.getMethodBindPtr("FileAccess", "close", 3218959716)
+    internal val closePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "close", 3_218_959_716)
 
     internal val fileExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "file_exists", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "file_exists", 2_323_990_056)
 
     internal val getModifiedTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_modified_time", 1597066294)
+        TypeManager.getMethodBindPtr("FileAccess", "get_modified_time", 1_597_066_294)
 
     internal val getUnixPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions", 524341837)
+        TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions", 524_341_837)
 
     internal val setUnixPermissionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_unix_permissions", 846038644)
+        TypeManager.getMethodBindPtr("FileAccess", "set_unix_permissions", 846_038_644)
 
     internal val getHiddenAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_hidden_attribute", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "get_hidden_attribute", 2_323_990_056)
 
     internal val setHiddenAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_hidden_attribute", 2892558115)
+        TypeManager.getMethodBindPtr("FileAccess", "set_hidden_attribute", 2_892_558_115)
 
     internal val setReadOnlyAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "set_read_only_attribute", 2892558115)
+        TypeManager.getMethodBindPtr("FileAccess", "set_read_only_attribute", 2_892_558_115)
 
     internal val getReadOnlyAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2323990056)
+        TypeManager.getMethodBindPtr("FileAccess", "get_read_only_attribute", 2_323_990_056)
   }
 }

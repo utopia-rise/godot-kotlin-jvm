@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,15 +14,12 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * Shader source code in text form.
  *
- * See also [RDShaderFile]. [RDShaderSource] is only meant to be used with the [RenderingDevice]
- * API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various
- * nodes use for high-level shader programming.
+ * See also [RDShaderFile]. [RDShaderSource] is only meant to be used with the [RenderingDevice] API. It should not be confused with Godot's own [Shader] resource, which is what Godot's various nodes use for high-level shader programming.
  */
 @GodotBaseType
 public open class RDShaderSource : RefCounted() {
@@ -95,27 +89,22 @@ public open class RDShaderSource : RefCounted() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(524, scriptIndex)
   }
 
   /**
-   * Sets [source] code for the specified shader [stage]. Equivalent to setting one of
-   * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
-   * [sourceVertex].
+   * Sets [source] code for the specified shader [stage]. Equivalent to setting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
    *
-   * **Note:** If you set the compute shader source code using this method directly, remember to
-   * remove the Godot-specific hint `#[compute]`.
+   * **Note:** If you set the compute shader source code using this method directly, remember to remove the Godot-specific hint `#[compute]`.
    */
-  public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
+  public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String) {
     TransferContext.writeArguments(LONG to stage.id, STRING to source)
     TransferContext.callMethod(ptr, MethodBindings.setStageSourcePtr, NIL)
   }
 
   /**
-   * Returns source code for the specified shader [stage]. Equivalent to getting one of
-   * [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or
-   * [sourceVertex].
+   * Returns source code for the specified shader [stage]. Equivalent to getting one of [sourceCompute], [sourceFragment], [sourceTesselationControl], [sourceTesselationEvaluation] or [sourceVertex].
    */
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
     TransferContext.writeArguments(LONG to stage.id)
@@ -123,7 +112,7 @@ public open class RDShaderSource : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
+  public final fun setLanguage(language: RenderingDevice.ShaderLanguage) {
     TransferContext.writeArguments(LONG to language.id)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
@@ -138,15 +127,15 @@ public open class RDShaderSource : RefCounted() {
 
   public object MethodBindings {
     internal val setStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_stage_source", 620821314)
+        TypeManager.getMethodBindPtr("RDShaderSource", "set_stage_source", 620_821_314)
 
     internal val getStageSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_stage_source", 3354920045)
+        TypeManager.getMethodBindPtr("RDShaderSource", "get_stage_source", 3_354_920_045)
 
     internal val setLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "set_language", 3422186742)
+        TypeManager.getMethodBindPtr("RDShaderSource", "set_language", 3_422_186_742)
 
     internal val getLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDShaderSource", "get_language", 1063538261)
+        TypeManager.getMethodBindPtr("RDShaderSource", "get_language", 1_063_538_261)
   }
 }

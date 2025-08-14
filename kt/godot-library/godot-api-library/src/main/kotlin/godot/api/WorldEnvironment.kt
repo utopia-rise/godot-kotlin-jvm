@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -14,20 +11,14 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
  * The [WorldEnvironment] node is used to configure the default [Environment] for the scene.
  *
- * The parameters defined in the [WorldEnvironment] can be overridden by an [Environment] node set
- * on the current [Camera3D]. Additionally, only one [WorldEnvironment] may be instantiated in a given
- * scene at a time.
+ * The parameters defined in the [WorldEnvironment] can be overridden by an [Environment] node set on the current [Camera3D]. Additionally, only one [WorldEnvironment] may be instantiated in a given scene at a time.
  *
- * The [WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient
- * lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the
- * background (e.g. solid color, skybox). Usually, these are added in order to improve the
- * realism/color balance of the scene.
+ * The [WorldEnvironment] allows the user to specify default lighting parameters (e.g. ambient lighting), various post-processing effects (e.g. SSAO, DOF, Tonemapping), and how to draw the background (e.g. solid color, skybox). Usually, these are added in order to improve the realism/color balance of the scene.
  */
 @GodotBaseType
 public open class WorldEnvironment : Node() {
@@ -64,11 +55,11 @@ public open class WorldEnvironment : Node() {
       setCompositor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(855, scriptIndex)
   }
 
-  public final fun setEnvironment(env: Environment?): Unit {
+  public final fun setEnvironment(env: Environment?) {
     TransferContext.writeArguments(OBJECT to env)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentPtr, NIL)
   }
@@ -79,7 +70,7 @@ public open class WorldEnvironment : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Environment?)
   }
 
-  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?): Unit {
+  public final fun setCameraAttributes(cameraAttributes: CameraAttributes?) {
     TransferContext.writeArguments(OBJECT to cameraAttributes)
     TransferContext.callMethod(ptr, MethodBindings.setCameraAttributesPtr, NIL)
   }
@@ -90,7 +81,7 @@ public open class WorldEnvironment : Node() {
     return (TransferContext.readReturnValue(OBJECT) as CameraAttributes?)
   }
 
-  public final fun setCompositor(compositor: Compositor?): Unit {
+  public final fun setCompositor(compositor: Compositor?) {
     TransferContext.writeArguments(OBJECT to compositor)
     TransferContext.callMethod(ptr, MethodBindings.setCompositorPtr, NIL)
   }
@@ -105,21 +96,21 @@ public open class WorldEnvironment : Node() {
 
   public object MethodBindings {
     internal val setEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_environment", 4143518816)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_environment", 4_143_518_816)
 
     internal val getEnvironmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_environment", 3082064660)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_environment", 3_082_064_660)
 
     internal val setCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_camera_attributes", 2817810567)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_camera_attributes", 2_817_810_567)
 
     internal val getCameraAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_camera_attributes", 3921283215)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_camera_attributes", 3_921_283_215)
 
     internal val setCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "set_compositor", 1586754307)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "set_compositor", 1_586_754_307)
 
     internal val getCompositorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldEnvironment", "get_compositor", 3647707413)
+        TypeManager.getMethodBindPtr("WorldEnvironment", "get_compositor", 3_647_707_413)
   }
 }

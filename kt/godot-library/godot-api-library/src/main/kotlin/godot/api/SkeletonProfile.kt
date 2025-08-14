@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,27 +28,21 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in
- * [Skeleton3D], [Skin], [Animation], and some other nodes are rewritten based on the parameters of
- * [SkeletonProfile].
+ * This resource is used in [EditorScenePostImport]. Some parameters are referring to bones in [Skeleton3D], [Skin], [Animation], and some other nodes are rewritten based on the parameters of [SkeletonProfile].
  *
- * **Note:** These parameters need to be set only when creating a custom profile. In
- * [SkeletonProfileHumanoid], they are defined internally as read-only values.
+ * **Note:** These parameters need to be set only when creating a custom profile. In [SkeletonProfileHumanoid], they are defined internally as read-only values.
  */
 @GodotBaseType
 public open class SkeletonProfile : Resource() {
   /**
-   * This signal is emitted when change the value in profile. This is used to update key name in the
-   * [BoneMap] and to redraw the [BoneMap] editor.
+   * This signal is emitted when change the value in profile. This is used to update key name in the [BoneMap] and to redraw the [BoneMap] editor.
    *
-   * **Note:** This signal is not connected directly to editor to simplify the reference, instead it
-   * is passed on to editor through the [BoneMap].
+   * **Note:** This signal is not connected directly to editor to simplify the reference, instead it is passed on to editor through the [BoneMap].
    */
   public val profileUpdated: Signal0 by Signal0
 
   /**
-   * A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of
-   * the parent of hips that exists at the world origin.
+   * A bone name that will be used as the root bone in [AnimationTree]. This should be the bone of the parent of hips that exists at the world origin.
    */
   public final inline var rootBone: StringName
     @JvmName("rootBoneProperty")
@@ -62,8 +53,7 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * A bone name which will use model's height as the coefficient for normalization. For example,
-   * [SkeletonProfileHumanoid] defines it as `Hips`.
+   * A bone name which will use model's height as the coefficient for normalization. For example, [SkeletonProfileHumanoid] defines it as `Hips`.
    */
   public final inline var scaleBaseBone: StringName
     @JvmName("scaleBaseBoneProperty")
@@ -74,8 +64,7 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * The amount of groups of bones in retargeting section's [BoneMap] editor. For example,
-   * [SkeletonProfileHumanoid] has 4 groups.
+   * The amount of groups of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 4 groups.
    *
    * This property exists to separate the bone list into several sections in the editor.
    */
@@ -88,11 +77,9 @@ public open class SkeletonProfile : Resource() {
     }
 
   /**
-   * The amount of bones in retargeting section's [BoneMap] editor. For example,
-   * [SkeletonProfileHumanoid] has 56 bones.
+   * The amount of bones in retargeting section's [BoneMap] editor. For example, [SkeletonProfileHumanoid] has 56 bones.
    *
-   * The size of elements in [BoneMap] updates when changing this property in it's assigned
-   * [SkeletonProfile].
+   * The size of elements in [BoneMap] updates when changing this property in it's assigned [SkeletonProfile].
    */
   public final inline var boneSize: Int
     @JvmName("boneSizeProperty")
@@ -102,11 +89,11 @@ public open class SkeletonProfile : Resource() {
       setBoneSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(606, scriptIndex)
   }
 
-  public final fun setRootBone(boneName: StringName): Unit {
+  public final fun setRootBone(boneName: StringName) {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setRootBonePtr, NIL)
   }
@@ -117,7 +104,7 @@ public open class SkeletonProfile : Resource() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setScaleBaseBone(boneName: StringName): Unit {
+  public final fun setScaleBaseBone(boneName: StringName) {
     TransferContext.writeArguments(STRING_NAME to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setScaleBaseBonePtr, NIL)
   }
@@ -128,7 +115,7 @@ public open class SkeletonProfile : Resource() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setGroupSize(size: Int): Unit {
+  public final fun setGroupSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setGroupSizePtr, NIL)
   }
@@ -140,8 +127,7 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Returns the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
-   * editor.
+   * Returns the name of the group at [groupIdx] that will be the drawing group in the [BoneMap] editor.
    */
   public final fun getGroupName(groupIdx: Int): StringName {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
@@ -150,17 +136,15 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
-   * editor.
+   * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap] editor.
    */
-  public final fun setGroupName(groupIdx: Int, groupName: StringName): Unit {
+  public final fun setGroupName(groupIdx: Int, groupName: StringName) {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), STRING_NAME to groupName)
     TransferContext.callMethod(ptr, MethodBindings.setGroupNamePtr, NIL)
   }
 
   /**
-   * Returns the texture of the group at [groupIdx] that will be the drawing group background image
-   * in the [BoneMap] editor.
+   * Returns the texture of the group at [groupIdx] that will be the drawing group background image in the [BoneMap] editor.
    */
   public final fun getTexture(groupIdx: Int): Texture2D? {
     TransferContext.writeArguments(LONG to groupIdx.toLong())
@@ -169,15 +153,14 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the texture of the group at [groupIdx] that will be the drawing group background image in
-   * the [BoneMap] editor.
+   * Sets the texture of the group at [groupIdx] that will be the drawing group background image in the [BoneMap] editor.
    */
-  public final fun setTexture(groupIdx: Int, texture: Texture2D?): Unit {
+  public final fun setTexture(groupIdx: Int, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to groupIdx.toLong(), OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
-  public final fun setBoneSize(size: Int): Unit {
+  public final fun setBoneSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBoneSizePtr, NIL)
   }
@@ -213,14 +196,13 @@ public open class SkeletonProfile : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
-  public final fun setBoneName(boneIdx: Int, boneName: StringName): Unit {
+  public final fun setBoneName(boneIdx: Int, boneName: StringName) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
   }
 
   /**
-   * Returns the name of the bone which is the parent to the bone at [boneIdx]. The result is empty
-   * if the bone has no parent.
+   * Returns the name of the bone which is the parent to the bone at [boneIdx]. The result is empty if the bone has no parent.
    */
   public final fun getBoneParent(boneIdx: Int): StringName {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -229,10 +211,9 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string
-   * is passed, then the bone has no parent.
+   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string is passed, then the bone has no parent.
    */
-  public final fun setBoneParent(boneIdx: Int, boneParent: StringName): Unit {
+  public final fun setBoneParent(boneIdx: Int, boneParent: StringName) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneParent)
     TransferContext.callMethod(ptr, MethodBindings.setBoneParentPtr, NIL)
   }
@@ -249,10 +230,9 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the tail direction of the bone at [boneIdx].
    *
-   * **Note:** This only specifies the method of calculation. The actual coordinates required should
-   * be stored in an external skeleton, so the calculation itself needs to be done externally.
+   * **Note:** This only specifies the method of calculation. The actual coordinates required should be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
-  public final fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
+  public final fun setTailDirection(boneIdx: Int, tailDirection: TailDirection) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
     TransferContext.callMethod(ptr, MethodBindings.setTailDirectionPtr, NIL)
   }
@@ -269,7 +249,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
    */
-  public final fun setBoneTail(boneIdx: Int, boneTail: StringName): Unit {
+  public final fun setBoneTail(boneIdx: Int, boneTail: StringName) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to boneTail)
     TransferContext.callMethod(ptr, MethodBindings.setBoneTailPtr, NIL)
   }
@@ -286,14 +266,13 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the reference pose transform for bone [boneIdx].
    */
-  public final fun setReferencePose(boneIdx: Int, boneName: Transform3D): Unit {
+  public final fun setReferencePose(boneIdx: Int, boneName: Transform3D) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM3D to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setReferencePosePtr, NIL)
   }
 
   /**
-   * Returns the offset of the bone at [boneIdx] that will be the button position in the [BoneMap]
-   * editor.
+   * Returns the offset of the bone at [boneIdx] that will be the button position in the [BoneMap] editor.
    *
    * This is the offset with origin at the top left corner of the square.
    */
@@ -304,12 +283,11 @@ public open class SkeletonProfile : Resource() {
   }
 
   /**
-   * Sets the offset of the bone at [boneIdx] that will be the button position in the [BoneMap]
-   * editor.
+   * Sets the offset of the bone at [boneIdx] that will be the button position in the [BoneMap] editor.
    *
    * This is the offset with origin at the top left corner of the square.
    */
-  public final fun setHandleOffset(boneIdx: Int, handleOffset: Vector2): Unit {
+  public final fun setHandleOffset(boneIdx: Int, handleOffset: Vector2) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), VECTOR2 to handleOffset)
     TransferContext.callMethod(ptr, MethodBindings.setHandleOffsetPtr, NIL)
   }
@@ -326,7 +304,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the group of the bone at [boneIdx].
    */
-  public final fun setGroup(boneIdx: Int, group: StringName): Unit {
+  public final fun setGroup(boneIdx: Int, group: StringName) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to group)
     TransferContext.callMethod(ptr, MethodBindings.setGroupPtr, NIL)
   }
@@ -334,8 +312,7 @@ public open class SkeletonProfile : Resource() {
   /**
    * Returns whether the bone at [boneIdx] is required for retargeting.
    *
-   * This value is used by the bone map editor. If this method returns `true`, and no bone is
-   * assigned, the handle color will be red on the bone map editor.
+   * This value is used by the bone map editor. If this method returns `true`, and no bone is assigned, the handle color will be red on the bone map editor.
    */
   public final fun isRequired(boneIdx: Int): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -346,22 +323,19 @@ public open class SkeletonProfile : Resource() {
   /**
    * Sets the required status for bone [boneIdx] to [required].
    */
-  public final fun setRequired(boneIdx: Int, required: Boolean): Unit {
+  public final fun setRequired(boneIdx: Int, required: Boolean) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), BOOL to required)
     TransferContext.callMethod(ptr, MethodBindings.setRequiredPtr, NIL)
   }
 
-  public final fun setRootBone(boneName: String) = setRootBone(boneName.asCachedStringName())
+  public final fun setRootBone(boneName: String): Unit = setRootBone(boneName.asCachedStringName())
 
-  public final fun setScaleBaseBone(boneName: String) =
-      setScaleBaseBone(boneName.asCachedStringName())
+  public final fun setScaleBaseBone(boneName: String): Unit = setScaleBaseBone(boneName.asCachedStringName())
 
   /**
-   * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap]
-   * editor.
+   * Sets the name of the group at [groupIdx] that will be the drawing group in the [BoneMap] editor.
    */
-  public final fun setGroupName(groupIdx: Int, groupName: String) =
-      setGroupName(groupIdx, groupName.asCachedStringName())
+  public final fun setGroupName(groupIdx: Int, groupName: String): Unit = setGroupName(groupIdx, groupName.asCachedStringName())
 
   /**
    * Returns the bone index that matches [boneName] as its name.
@@ -373,27 +347,22 @@ public open class SkeletonProfile : Resource() {
    *
    * In the retargeting process, the setting bone name is the bone name of the target skeleton.
    */
-  public final fun setBoneName(boneIdx: Int, boneName: String) =
-      setBoneName(boneIdx, boneName.asCachedStringName())
+  public final fun setBoneName(boneIdx: Int, boneName: String): Unit = setBoneName(boneIdx, boneName.asCachedStringName())
 
   /**
-   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string
-   * is passed, then the bone has no parent.
+   * Sets the bone with name [boneParent] as the parent of the bone at [boneIdx]. If an empty string is passed, then the bone has no parent.
    */
-  public final fun setBoneParent(boneIdx: Int, boneParent: String) =
-      setBoneParent(boneIdx, boneParent.asCachedStringName())
+  public final fun setBoneParent(boneIdx: Int, boneParent: String): Unit = setBoneParent(boneIdx, boneParent.asCachedStringName())
 
   /**
    * Sets the bone with name [boneTail] as the tail of the bone at [boneIdx].
    */
-  public final fun setBoneTail(boneIdx: Int, boneTail: String) =
-      setBoneTail(boneIdx, boneTail.asCachedStringName())
+  public final fun setBoneTail(boneIdx: Int, boneTail: String): Unit = setBoneTail(boneIdx, boneTail.asCachedStringName())
 
   /**
    * Sets the group of the bone at [boneIdx].
    */
-  public final fun setGroup(boneIdx: Int, group: String) =
-      setGroup(boneIdx, group.asCachedStringName())
+  public final fun setGroup(boneIdx: Int, group: String): Unit = setGroup(boneIdx, group.asCachedStringName())
 
   public enum class TailDirection(
     id: Long,
@@ -426,90 +395,90 @@ public open class SkeletonProfile : Resource() {
 
   public object MethodBindings {
     internal val setRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_root_bone", 3304788590)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_root_bone", 3_304_788_590)
 
     internal val getRootBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_root_bone", 2737447660)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_root_bone", 2_737_447_660)
 
     internal val setScaleBaseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_scale_base_bone", 3304788590)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_scale_base_bone", 3_304_788_590)
 
     internal val getScaleBaseBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_scale_base_bone", 2737447660)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_scale_base_bone", 2_737_447_660)
 
     internal val setGroupSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_size", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_size", 1_286_410_249)
 
     internal val getGroupSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_size", 2455072627)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_size", 2_455_072_627)
 
     internal val getGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_name", 659327637)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group_name", 659_327_637)
 
     internal val setGroupNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_name", 3780747571)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group_name", 3_780_747_571)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_texture", 3536238170)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_texture", 3_536_238_170)
 
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_texture", 666127730)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_texture", 666_127_730)
 
     internal val setBoneSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_size", 1286410249)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_size", 1_286_410_249)
 
     internal val getBoneSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_size", 2455072627)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_size", 2_455_072_627)
 
     internal val findBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "find_bone", 2458036349)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "find_bone", 2_458_036_349)
 
     internal val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_name", 659327637)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_name", 659_327_637)
 
     internal val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_name", 3780747571)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_name", 3_780_747_571)
 
     internal val getBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_parent", 659327637)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_parent", 659_327_637)
 
     internal val setBoneParentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_parent", 3780747571)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_parent", 3_780_747_571)
 
     internal val getTailDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_tail_direction", 2675997574)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_tail_direction", 2_675_997_574)
 
     internal val setTailDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_tail_direction", 1231951015)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_tail_direction", 1_231_951_015)
 
     internal val getBoneTailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_tail", 659327637)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_bone_tail", 659_327_637)
 
     internal val setBoneTailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_tail", 3780747571)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_bone_tail", 3_780_747_571)
 
     internal val getReferencePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_reference_pose", 1965739696)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_reference_pose", 1_965_739_696)
 
     internal val setReferencePosePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_reference_pose", 3616898986)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_reference_pose", 3_616_898_986)
 
     internal val getHandleOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_handle_offset", 2299179447)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_handle_offset", 2_299_179_447)
 
     internal val setHandleOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_handle_offset", 163021252)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_handle_offset", 163_021_252)
 
     internal val getGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group", 659327637)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "get_group", 659_327_637)
 
     internal val setGroupPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group", 3780747571)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_group", 3_780_747_571)
 
     internal val isRequiredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "is_required", 1116898809)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "is_required", 1_116_898_809)
 
     internal val setRequiredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SkeletonProfile", "set_required", 300928843)
+        TypeManager.getMethodBindPtr("SkeletonProfile", "set_required", 300_928_843)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,30 +16,21 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Material] is a base resource used for coloring and shading geometry. All materials inherit from
- * it and almost all [VisualInstance3D] derived nodes carry a [Material]. A few flags and parameters
- * are shared between all material types and are configured here.
+ * [Material] is a base resource used for coloring and shading geometry. All materials inherit from it and almost all [VisualInstance3D] derived nodes carry a [Material]. A few flags and parameters are shared between all material types and are configured here.
  *
- * Importantly, you can inherit from [Material] to create your own custom material type in script or
- * in GDExtension.
+ * Importantly, you can inherit from [Material] to create your own custom material type in script or in GDExtension.
  */
 @GodotBaseType
 public abstract class Material : Resource() {
   /**
-   * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in
-   * front of lower priority objects. In other words, all objects with [renderPriority] `1` will render
-   * before all objects with [renderPriority] `0`.
+   * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in front of lower priority objects. In other words, all objects with [renderPriority] `1` will render before all objects with [renderPriority] `0`.
    *
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    *
-   * **Note:** This will not impact how transparent objects are sorted relative to opaque objects or
-   * how dynamic meshes will be sorted relative to other opaque meshes. This is because all transparent
-   * objects are drawn after all opaque objects and all dynamic opaque meshes are drawn before other
-   * opaque meshes.
+   * **Note:** This will not impact how transparent objects are sorted relative to opaque objects or how dynamic meshes will be sorted relative to other opaque meshes. This is because all transparent objects are drawn after all opaque objects and all dynamic opaque meshes are drawn before other opaque meshes.
    */
   public final inline var renderPriority: Int
     @JvmName("renderPriorityProperty")
@@ -53,12 +41,9 @@ public abstract class Material : Resource() {
     }
 
   /**
-   * Sets the [Material] to be used for the next pass. This renders the object again using a
-   * different material.
+   * Sets the [Material] to be used for the next pass. This renders the object again using a different material.
    *
-   * **Note:** [nextPass] materials are not necessarily drawn immediately after the source
-   * [Material]. Draw order is determined by material properties, [renderPriority], and distance to
-   * camera.
+   * **Note:** [nextPass] materials are not necessarily drawn immediately after the source [Material]. Draw order is determined by material properties, [renderPriority], and distance to camera.
    *
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    */
@@ -70,39 +55,35 @@ public abstract class Material : Resource() {
       setNextPass(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(348, scriptIndex)
   }
 
   /**
-   * Only exposed for the purpose of overriding. You cannot call this function directly. Used
-   * internally by various editor tools. Used to access the RID of the [Material]'s [Shader].
+   * Only exposed for the purpose of overriding. You cannot call this function directly. Used internally by various editor tools. Used to access the RID of the [Material]'s [Shader].
    */
   public abstract fun _getShaderRid(): RID
 
   /**
-   * Only exposed for the purpose of overriding. You cannot call this function directly. Used
-   * internally by various editor tools.
+   * Only exposed for the purpose of overriding. You cannot call this function directly. Used internally by various editor tools.
    */
   public abstract fun _getShaderMode(): Shader.Mode
 
   /**
-   * Only exposed for the purpose of overriding. You cannot call this function directly. Used
-   * internally to determine if [nextPass] should be shown in the editor or not.
+   * Only exposed for the purpose of overriding. You cannot call this function directly. Used internally to determine if [nextPass] should be shown in the editor or not.
    */
   public open fun _canDoNextPass(): Boolean {
     throw NotImplementedError("Material::_canDoNextPass is not implemented.")
   }
 
   /**
-   * Only exposed for the purpose of overriding. You cannot call this function directly. Used
-   * internally to determine if [renderPriority] should be shown in the editor or not.
+   * Only exposed for the purpose of overriding. You cannot call this function directly. Used internally to determine if [renderPriority] should be shown in the editor or not.
    */
   public open fun _canUseRenderPriority(): Boolean {
     throw NotImplementedError("Material::_canUseRenderPriority is not implemented.")
   }
 
-  public final fun setNextPass(nextPass: Material?): Unit {
+  public final fun setNextPass(nextPass: Material?) {
     TransferContext.writeArguments(OBJECT to nextPass)
     TransferContext.callMethod(ptr, MethodBindings.setNextPassPtr, NIL)
   }
@@ -113,7 +94,7 @@ public abstract class Material : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Material?)
   }
 
-  public final fun setRenderPriority(priority: Int): Unit {
+  public final fun setRenderPriority(priority: Int) {
     TransferContext.writeArguments(LONG to priority.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRenderPriorityPtr, NIL)
   }
@@ -125,10 +106,9 @@ public abstract class Material : Resource() {
   }
 
   /**
-   * Only available when running in the editor. Opens a popup that visualizes the generated shader
-   * code, including all variants and internal shader code. See also [Shader.inspectNativeShaderCode].
+   * Only available when running in the editor. Opens a popup that visualizes the generated shader code, including all variants and internal shader code. See also [Shader.inspectNativeShaderCode].
    */
-  public final fun inspectNativeShaderCode(): Unit {
+  public final fun inspectNativeShaderCode() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.inspectNativeShaderCodePtr, NIL)
   }
@@ -156,21 +136,21 @@ public abstract class Material : Resource() {
 
   public object MethodBindings {
     internal val setNextPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "set_next_pass", 2757459619)
+        TypeManager.getMethodBindPtr("Material", "set_next_pass", 2_757_459_619)
 
     internal val getNextPassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "get_next_pass", 5934680)
+        TypeManager.getMethodBindPtr("Material", "get_next_pass", 5_934_680)
 
     internal val setRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "set_render_priority", 1286410249)
+        TypeManager.getMethodBindPtr("Material", "set_render_priority", 1_286_410_249)
 
     internal val getRenderPriorityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "get_render_priority", 3905245786)
+        TypeManager.getMethodBindPtr("Material", "get_render_priority", 3_905_245_786)
 
     internal val inspectNativeShaderCodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "inspect_native_shader_code", 3218959716)
+        TypeManager.getMethodBindPtr("Material", "inspect_native_shader_code", 3_218_959_716)
 
     internal val createPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Material", "create_placeholder", 121922552)
+        TypeManager.getMethodBindPtr("Material", "create_placeholder", 121_922_552)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,7 +16,6 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
@@ -36,9 +32,7 @@ public infix fun Long.xor(other: XRBodyTracker.JointFlags): Long = this.xor(othe
 public infix fun Long.and(other: XRBodyTracker.JointFlags): Long = this.and(other.flag)
 
 /**
- * A body tracking system will create an instance of this object and add it to the [XRServer]. This
- * tracking system will then obtain skeleton data, convert it to the Godot Humanoid skeleton and store
- * this data on the [XRBodyTracker] object.
+ * A body tracking system will create an instance of this object and add it to the [XRServer]. This tracking system will then obtain skeleton data, convert it to the Godot Humanoid skeleton and store this data on the [XRBodyTracker] object.
  *
  * Use [XRBodyModifier3D] to animate a body mesh using body tracking data.
  */
@@ -66,11 +60,11 @@ public open class XRBodyTracker : XRPositionalTracker() {
       setBodyFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(860, scriptIndex)
   }
 
-  public final fun setHasTrackingData(hasData: Boolean): Unit {
+  public final fun setHasTrackingData(hasData: Boolean) {
     TransferContext.writeArguments(BOOL to hasData)
     TransferContext.callMethod(ptr, MethodBindings.setHasTrackingDataPtr, NIL)
   }
@@ -81,7 +75,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setBodyFlags(flags: BodyFlags): Unit {
+  public final fun setBodyFlags(flags: BodyFlags) {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setBodyFlagsPtr, NIL)
   }
@@ -95,14 +89,13 @@ public open class XRBodyTracker : XRPositionalTracker() {
   /**
    * Sets flags about the validity of the tracking data for the given body joint.
    */
-  public final fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
+  public final fun setJointFlags(joint: Joint, flags: JointFlags) {
     TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJointFlagsPtr, NIL)
   }
 
   /**
-   * Returns flags about the validity of the tracking data for the given body joint (see
-   * [XRBodyTracker.JointFlags]).
+   * Returns flags about the validity of the tracking data for the given body joint (see [XRBodyTracker.JointFlags]).
    */
   public final fun getJointFlags(joint: Joint): JointFlags {
     TransferContext.writeArguments(LONG to joint.id)
@@ -113,7 +106,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   /**
    * Sets the transform for the given body joint.
    */
-  public final fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
+  public final fun setJointTransform(joint: Joint, transform: Transform3D) {
     TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setJointTransformPtr, NIL)
   }
@@ -533,8 +526,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
       public val ORIENTATION_VALID: JointFlags = JointFlags(1)
 
       /**
-       * The joint's orientation is actively tracked. May not be set if tracking has been
-       * temporarily lost.
+       * The joint's orientation is actively tracked. May not be set if tracking has been temporarily lost.
        */
       @JvmField
       public val ORIENTATION_TRACKED: JointFlags = JointFlags(2)
@@ -546,8 +538,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
       public val POSITION_VALID: JointFlags = JointFlags(4)
 
       /**
-       * The joint's position is actively tracked. May not be set if tracking has been temporarily
-       * lost.
+       * The joint's position is actively tracked. May not be set if tracking has been temporarily lost.
        */
       @JvmField
       public val POSITION_TRACKED: JointFlags = JointFlags(8)
@@ -558,27 +549,27 @@ public open class XRBodyTracker : XRPositionalTracker() {
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2586408642)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_has_tracking_data", 2_586_408_642)
 
     internal val getHasTrackingDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36873697)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_has_tracking_data", 36_873_697)
 
     internal val setBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2103235750)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_body_flags", 2_103_235_750)
 
     internal val getBodyFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3543166366)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_body_flags", 3_543_166_366)
 
     internal val setJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592144999)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_flags", 592_144_999)
 
     internal val getJointFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1030162609)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_flags", 1_030_162_609)
 
     internal val setJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2635424328)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "set_joint_transform", 2_635_424_328)
 
     internal val getJointTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3474811534)
+        TypeManager.getMethodBindPtr("XRBodyTracker", "get_joint_transform", 3_474_811_534)
   }
 }

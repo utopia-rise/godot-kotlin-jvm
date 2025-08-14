@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -56,11 +52,11 @@ public open class RDAttachmentFormat : RefCounted() {
       setUsageFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(513, scriptIndex)
   }
 
-  public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
+  public final fun setFormat(pMember: RenderingDevice.DataFormat) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
@@ -71,7 +67,7 @@ public open class RDAttachmentFormat : RefCounted() {
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
+  public final fun setSamples(pMember: RenderingDevice.TextureSamples) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSamplesPtr, NIL)
   }
@@ -82,7 +78,7 @@ public open class RDAttachmentFormat : RefCounted() {
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUsageFlags(pMember: Long): Unit {
+  public final fun setUsageFlags(pMember: Long) {
     TransferContext.writeArguments(LONG to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setUsageFlagsPtr, NIL)
   }
@@ -97,21 +93,21 @@ public open class RDAttachmentFormat : RefCounted() {
 
   public object MethodBindings {
     internal val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format", 565531219)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_format", 565_531_219)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format", 2235804183)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_format", 2_235_804_183)
 
     internal val setSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples", 3774171498)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_samples", 3_774_171_498)
 
     internal val getSamplesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples", 407791724)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_samples", 407_791_724)
 
     internal val setUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags", 1286410249)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "set_usage_flags", 1_286_410_249)
 
     internal val getUsageFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags", 3905245786)
+        TypeManager.getMethodBindPtr("RDAttachmentFormat", "get_usage_flags", 3_905_245_786)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,16 +26,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
- * It will take priority over the properties defined in [Control.theme]. The resource can be shared
- * between multiple labels and changed on the fly, so it's convenient and flexible way to setup text
- * style.
+ * [LabelSettings] is a resource that provides common settings to customize the text in a [Label]. It will take priority over the properties defined in [Control.theme]. The resource can be shared between multiple labels and changed on the fly, so it's convenient and flexible way to setup text style.
  */
 @GodotBaseType
 public open class LabelSettings : Resource() {
   /**
-   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
-   * value can be negative.
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -85,11 +78,8 @@ public open class LabelSettings : Resource() {
    * Color of the text.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fontColor: Color
@@ -115,11 +105,8 @@ public open class LabelSettings : Resource() {
    * The color of the outline.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var outlineColor: Color
@@ -145,11 +132,8 @@ public open class LabelSettings : Resource() {
    * Color of the shadow effect. If alpha is `0`, no shadow will be drawn.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -164,11 +148,8 @@ public open class LabelSettings : Resource() {
    * Offset of the shadow effect, in pixels.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowOffset: Vector2
@@ -179,7 +160,7 @@ public open class LabelSettings : Resource() {
       setShadowOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(330, scriptIndex)
   }
 
@@ -259,7 +240,7 @@ public open class LabelSettings : Resource() {
      shadowOffset = this
   }
 
-  public final fun setLineSpacing(spacing: Float): Unit {
+  public final fun setLineSpacing(spacing: Float) {
     TransferContext.writeArguments(DOUBLE to spacing.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
   }
@@ -270,7 +251,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setParagraphSpacing(spacing: Float): Unit {
+  public final fun setParagraphSpacing(spacing: Float) {
     TransferContext.writeArguments(DOUBLE to spacing.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParagraphSpacingPtr, NIL)
   }
@@ -281,7 +262,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFont(font: Font?): Unit {
+  public final fun setFont(font: Font?) {
     TransferContext.writeArguments(OBJECT to font)
     TransferContext.callMethod(ptr, MethodBindings.setFontPtr, NIL)
   }
@@ -292,7 +273,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Font?)
   }
 
-  public final fun setFontSize(size: Int): Unit {
+  public final fun setFontSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFontSizePtr, NIL)
   }
@@ -303,7 +284,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setFontColor(color: Color): Unit {
+  public final fun setFontColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setFontColorPtr, NIL)
   }
@@ -314,7 +295,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setOutlineSize(size: Int): Unit {
+  public final fun setOutlineSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOutlineSizePtr, NIL)
   }
@@ -325,7 +306,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOutlineColor(color: Color): Unit {
+  public final fun setOutlineColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setOutlineColorPtr, NIL)
   }
@@ -336,7 +317,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setShadowSize(size: Int): Unit {
+  public final fun setShadowSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setShadowSizePtr, NIL)
   }
@@ -347,7 +328,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setShadowColor(color: Color): Unit {
+  public final fun setShadowColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setShadowColorPtr, NIL)
   }
@@ -358,7 +339,7 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setShadowOffset(offset: Vector2): Unit {
+  public final fun setShadowOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setShadowOffsetPtr, NIL)
   }
@@ -373,63 +354,63 @@ public open class LabelSettings : Resource() {
 
   public object MethodBindings {
     internal val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_line_spacing", 373806689)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_line_spacing", 373_806_689)
 
     internal val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing", 1740695150)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_line_spacing", 1_740_695_150)
 
     internal val setParagraphSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_paragraph_spacing", 373806689)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_paragraph_spacing", 373_806_689)
 
     internal val getParagraphSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_paragraph_spacing", 1740695150)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_paragraph_spacing", 1_740_695_150)
 
     internal val setFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font", 1262170328)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font", 1_262_170_328)
 
     internal val getFontPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font", 3229501585)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font", 3_229_501_585)
 
     internal val setFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_size", 1286410249)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font_size", 1_286_410_249)
 
     internal val getFontSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_size", 3905245786)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font_size", 3_905_245_786)
 
     internal val setFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_font_color", 2920490490)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_font_color", 2_920_490_490)
 
     internal val getFontColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_font_color", 3444240500)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_font_color", 3_444_240_500)
 
     internal val setOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_size", 1286410249)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_size", 1_286_410_249)
 
     internal val getOutlineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_size", 3905245786)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_size", 3_905_245_786)
 
     internal val setOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_color", 2920490490)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_outline_color", 2_920_490_490)
 
     internal val getOutlineColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_color", 3444240500)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_outline_color", 3_444_240_500)
 
     internal val setShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_size", 1286410249)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_size", 1_286_410_249)
 
     internal val getShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_size", 3905245786)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_size", 3_905_245_786)
 
     internal val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_color", 2920490490)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_color", 2_920_490_490)
 
     internal val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_color", 3444240500)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_color", 3_444_240_500)
 
     internal val setShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743155724)
+        TypeManager.getMethodBindPtr("LabelSettings", "set_shadow_offset", 743_155_724)
 
     internal val getShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
+        TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3_341_600_327)
   }
 }

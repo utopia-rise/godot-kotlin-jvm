@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,7 +18,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
@@ -38,8 +34,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   /**
-   * If `true`, the playlist will loop, otherwise the playlist will end when the last stream is
-   * finished.
+   * If `true`, the playlist will loop, otherwise the playlist will end when the last stream is finished.
    */
   public final inline var loop: Boolean
     @JvmName("loopProperty")
@@ -50,8 +45,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   /**
-   * Fade time used when a stream ends, when going to the next one. Streams are expected to have an
-   * extra bit of audio after the end to help with fading.
+   * Fade time used when a stream ends, when going to the next one. Streams are expected to have an extra bit of audio after the end to help with fading.
    */
   public final inline var fadeTime: Float
     @JvmName("fadeTimeProperty")
@@ -584,11 +578,11 @@ public open class AudioStreamPlaylist : AudioStream() {
       setListStream(63, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(97, scriptIndex)
   }
 
-  public final fun setStreamCount(streamCount: Int): Unit {
+  public final fun setStreamCount(streamCount: Int) {
     TransferContext.writeArguments(LONG to streamCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStreamCountPtr, NIL)
   }
@@ -611,7 +605,7 @@ public open class AudioStreamPlaylist : AudioStream() {
   /**
    * Sets the stream at playback position index.
    */
-  public final fun setListStream(streamIndex: Int, audioStream: AudioStream?): Unit {
+  public final fun setListStream(streamIndex: Int, audioStream: AudioStream?) {
     TransferContext.writeArguments(LONG to streamIndex.toLong(), OBJECT to audioStream)
     TransferContext.callMethod(ptr, MethodBindings.setListStreamPtr, NIL)
   }
@@ -625,7 +619,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
-  public final fun setShuffle(shuffle: Boolean): Unit {
+  public final fun setShuffle(shuffle: Boolean) {
     TransferContext.writeArguments(BOOL to shuffle)
     TransferContext.callMethod(ptr, MethodBindings.setShufflePtr, NIL)
   }
@@ -636,7 +630,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFadeTime(dec: Float): Unit {
+  public final fun setFadeTime(dec: Float) {
     TransferContext.writeArguments(DOUBLE to dec.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFadeTimePtr, NIL)
   }
@@ -647,7 +641,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLoop(loop: Boolean): Unit {
+  public final fun setLoop(loop: Boolean) {
     TransferContext.writeArguments(BOOL to loop)
     TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
@@ -667,36 +661,36 @@ public open class AudioStreamPlaylist : AudioStream() {
 
   public object MethodBindings {
     internal val setStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_stream_count", 1_286_410_249)
 
     internal val getStreamCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_stream_count", 3_905_245_786)
 
     internal val getBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_bpm", 1_740_695_150)
 
     internal val setListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111075094)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_list_stream", 111_075_094)
 
     internal val getListStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2739380747)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_list_stream", 2_739_380_747)
 
     internal val setShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_shuffle", 2_586_408_642)
 
     internal val getShufflePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_shuffle", 36_873_697)
 
     internal val setFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_fade_time", 373_806_689)
 
     internal val getFadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "get_fade_time", 1_740_695_150)
 
     internal val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "set_loop", 2_586_408_642)
 
     internal val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlaylist", "has_loop", 36_873_697)
   }
 }

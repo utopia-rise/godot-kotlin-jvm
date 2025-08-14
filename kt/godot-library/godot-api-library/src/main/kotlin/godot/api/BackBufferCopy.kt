@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,15 +20,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Node for back-buffering the currently-displayed screen. The region defined in the
- * [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen
- * according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a
- * uniform sampler with `hint_screen_texture`).
+ * Node for back-buffering the currently-displayed screen. The region defined in the [BackBufferCopy] node is buffered with the content of the screen it covers, or the entire screen according to the [copyMode]. It can be accessed in shader scripts using the screen texture (i.e. a uniform sampler with `hint_screen_texture`).
  *
- * **Note:** Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't
- * apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid
- * this, add [Control]-derived nodes as *siblings* to the [BackBufferCopy] node instead of adding them
- * as children.
+ * **Note:** Since this node inherits from [Node2D] (and not [Control]), anchors and margins won't apply to child [Control]-derived nodes. This can be problematic when resizing the window. To avoid this, add [Control]-derived nodes as *siblings* to the [BackBufferCopy] node instead of adding them as children.
  */
 @GodotBaseType
 public open class BackBufferCopy : Node2D() {
@@ -50,11 +41,8 @@ public open class BackBufferCopy : Node2D() {
    * The area covered by the [BackBufferCopy]. Only used if [copyMode] is [COPY_MODE_RECT].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rect: Rect2
@@ -65,7 +53,7 @@ public open class BackBufferCopy : Node2D() {
       setRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(102, scriptIndex)
   }
 
@@ -88,7 +76,7 @@ public open class BackBufferCopy : Node2D() {
      rect = this
   }
 
-  public final fun setRect(rect: Rect2): Unit {
+  public final fun setRect(rect: Rect2) {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setRectPtr, NIL)
   }
@@ -99,7 +87,7 @@ public open class BackBufferCopy : Node2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setCopyMode(copyMode: CopyMode): Unit {
+  public final fun setCopyMode(copyMode: CopyMode) {
     TransferContext.writeArguments(LONG to copyMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCopyModePtr, NIL)
   }
@@ -114,8 +102,7 @@ public open class BackBufferCopy : Node2D() {
     id: Long,
   ) {
     /**
-     * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
-     * portion of screen it covers.
+     * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the portion of screen it covers.
      */
     DISABLED(0),
     /**
@@ -142,15 +129,15 @@ public open class BackBufferCopy : Node2D() {
 
   public object MethodBindings {
     internal val setRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "set_rect", 2046264180)
+        TypeManager.getMethodBindPtr("BackBufferCopy", "set_rect", 2_046_264_180)
 
     internal val getRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "get_rect", 1639390495)
+        TypeManager.getMethodBindPtr("BackBufferCopy", "get_rect", 1_639_390_495)
 
     internal val setCopyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "set_copy_mode", 1713538590)
+        TypeManager.getMethodBindPtr("BackBufferCopy", "set_copy_mode", 1_713_538_590)
 
     internal val getCopyModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BackBufferCopy", "get_copy_mode", 3271169440)
+        TypeManager.getMethodBindPtr("BackBufferCopy", "get_copy_mode", 3_271_169_440)
   }
 }

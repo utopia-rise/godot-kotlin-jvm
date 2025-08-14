@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,26 +20,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
- * an index to a previously supplied list of texture attachments.
+ * This class contains the list of attachment descriptions for a framebuffer pass. Each points with an index to a previously supplied list of texture attachments.
  *
- * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide
- * little to no advantage.
+ * Multipass framebuffers can optimize some configurations in mobile. On desktop, they provide little to no advantage.
  *
  * This object is used by [RenderingDevice].
  */
 @GodotBaseType
 public open class RDFramebufferPass : RefCounted() {
   /**
-   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
-   * ATTACHMENT_UNUSED to skip.
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var colorAttachments: PackedInt32Array
@@ -54,15 +45,11 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
-   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var inputAttachments: PackedInt32Array
@@ -74,15 +61,11 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * If the color attachments are multisampled, non-multisampled resolve attachments can be
-   * provided.
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be provided.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var resolveAttachments: PackedInt32Array
@@ -97,11 +80,8 @@ public open class RDFramebufferPass : RefCounted() {
    * Attachments to preserve in this pass (otherwise they are erased).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var preserveAttachments: PackedInt32Array
@@ -113,8 +93,7 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   /**
-   * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this
-   * pass.
+   * Depth attachment. ATTACHMENT_UNUSED should be used if no depth buffer is required for this pass.
    */
   public final inline var depthAttachment: Int
     @JvmName("depthAttachmentProperty")
@@ -124,7 +103,7 @@ public open class RDFramebufferPass : RefCounted() {
       setDepthAttachment(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(514, scriptIndex)
   }
 
@@ -139,27 +118,22 @@ public open class RDFramebufferPass : RefCounted() {
    * rdframebufferpass.colorAttachments = myCoreType
    * ``````
    *
-   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
-   * ATTACHMENT_UNUSED to skip.
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip.
    */
   @CoreTypeHelper
-  public final fun colorAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      colorAttachments.apply {
+  public final fun colorAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = colorAttachments.apply {
      block(this)
      colorAttachments = this
   }
 
   /**
    * This is a helper function for [colorAttachments] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass
-   * ATTACHMENT_UNUSED to skip.
+   * Color attachments in order starting from 0. If this attachment is not used by the shader, pass ATTACHMENT_UNUSED to skip.
    */
   @CoreTypeHelper
-  public final fun colorAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = colorAttachments.apply {
+  public final fun colorAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = colorAttachments.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -178,27 +152,22 @@ public open class RDFramebufferPass : RefCounted() {
    * rdframebufferpass.inputAttachments = myCoreType
    * ``````
    *
-   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
-   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
    */
   @CoreTypeHelper
-  public final fun inputAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      inputAttachments.apply {
+  public final fun inputAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = inputAttachments.apply {
      block(this)
      inputAttachments = this
   }
 
   /**
    * This is a helper function for [inputAttachments] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an
-   * input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
+   * Used for multipass framebuffers (more than one render pass). Converts an attachment to an input. Make sure to also supply it properly in the [RDUniform] for the uniform set.
    */
   @CoreTypeHelper
-  public final fun inputAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = inputAttachments.apply {
+  public final fun inputAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = inputAttachments.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -217,27 +186,22 @@ public open class RDFramebufferPass : RefCounted() {
    * rdframebufferpass.resolveAttachments = myCoreType
    * ``````
    *
-   * If the color attachments are multisampled, non-multisampled resolve attachments can be
-   * provided.
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be provided.
    */
   @CoreTypeHelper
-  public final fun resolveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      resolveAttachments.apply {
+  public final fun resolveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = resolveAttachments.apply {
      block(this)
      resolveAttachments = this
   }
 
   /**
    * This is a helper function for [resolveAttachments] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * If the color attachments are multisampled, non-multisampled resolve attachments can be
-   * provided.
+   * If the color attachments are multisampled, non-multisampled resolve attachments can be provided.
    */
   @CoreTypeHelper
-  public final fun resolveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = resolveAttachments.apply {
+  public final fun resolveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = resolveAttachments.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -259,22 +223,19 @@ public open class RDFramebufferPass : RefCounted() {
    * Attachments to preserve in this pass (otherwise they are erased).
    */
   @CoreTypeHelper
-  public final fun preserveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      preserveAttachments.apply {
+  public final fun preserveAttachmentsMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = preserveAttachments.apply {
      block(this)
      preserveAttachments = this
   }
 
   /**
    * This is a helper function for [preserveAttachments] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Attachments to preserve in this pass (otherwise they are erased).
    */
   @CoreTypeHelper
-  public final fun preserveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit):
-      PackedInt32Array = preserveAttachments.apply {
+  public final fun preserveAttachmentsMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = preserveAttachments.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -282,7 +243,7 @@ public open class RDFramebufferPass : RefCounted() {
      preserveAttachments = this
   }
 
-  public final fun setColorAttachments(pMember: PackedInt32Array): Unit {
+  public final fun setColorAttachments(pMember: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setColorAttachmentsPtr, NIL)
   }
@@ -293,7 +254,7 @@ public open class RDFramebufferPass : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setInputAttachments(pMember: PackedInt32Array): Unit {
+  public final fun setInputAttachments(pMember: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setInputAttachmentsPtr, NIL)
   }
@@ -304,7 +265,7 @@ public open class RDFramebufferPass : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setResolveAttachments(pMember: PackedInt32Array): Unit {
+  public final fun setResolveAttachments(pMember: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setResolveAttachmentsPtr, NIL)
   }
@@ -315,7 +276,7 @@ public open class RDFramebufferPass : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setPreserveAttachments(pMember: PackedInt32Array): Unit {
+  public final fun setPreserveAttachments(pMember: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setPreserveAttachmentsPtr, NIL)
   }
@@ -326,7 +287,7 @@ public open class RDFramebufferPass : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
 
-  public final fun setDepthAttachment(pMember: Int): Unit {
+  public final fun setDepthAttachment(pMember: Int) {
     TransferContext.writeArguments(LONG to pMember.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDepthAttachmentPtr, NIL)
   }
@@ -346,33 +307,33 @@ public open class RDFramebufferPass : RefCounted() {
 
   public object MethodBindings {
     internal val setColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments", 3614634198)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_color_attachments", 3_614_634_198)
 
     internal val getColorAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments", 1930428628)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_color_attachments", 1_930_428_628)
 
     internal val setInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments", 3614634198)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_input_attachments", 3_614_634_198)
 
     internal val getInputAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments", 1930428628)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_input_attachments", 1_930_428_628)
 
     internal val setResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments", 3614634198)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_resolve_attachments", 3_614_634_198)
 
     internal val getResolveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments", 1930428628)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_resolve_attachments", 1_930_428_628)
 
     internal val setPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments", 3614634198)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_preserve_attachments", 3_614_634_198)
 
     internal val getPreserveAttachmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments", 1930428628)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_preserve_attachments", 1_930_428_628)
 
     internal val setDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment", 1286410249)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "set_depth_attachment", 1_286_410_249)
 
     internal val getDepthAttachmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment", 3905245786)
+        TypeManager.getMethodBindPtr("RDFramebufferPass", "get_depth_attachment", 3_905_245_786)
   }
 }

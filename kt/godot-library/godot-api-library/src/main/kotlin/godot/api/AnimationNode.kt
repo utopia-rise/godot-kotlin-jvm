@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,17 +39,13 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create
- * custom ones with custom blending formulas.
+ * Base resource for [AnimationTree] nodes. In general, it's not used directly, but you can create custom ones with custom blending formulas.
  *
- * Inherit this when creating animation nodes mainly for use in [AnimationNodeBlendTree], otherwise
- * [AnimationRootNode] should be used instead.
+ * Inherit this when creating animation nodes mainly for use in [AnimationNodeBlendTree], otherwise [AnimationRootNode] should be used instead.
  *
- * You can access the time information as read-only parameter which is processed and stored in the
- * previous frame for all nodes except [AnimationNodeOutput].
+ * You can access the time information as read-only parameter which is processed and stored in the previous frame for all nodes except [AnimationNodeOutput].
  *
- * **Note:** If multiple inputs exist in the [AnimationNode], which time information takes
- * precedence depends on the type of [AnimationNode].
+ * **Note:** If multiple inputs exist in the [AnimationNode], which time information takes precedence depends on the type of [AnimationNode].
  *
  * ```
  * var current_length = $AnimationTree[parameters/AnimationNodeName/current_length]
@@ -63,26 +56,17 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AnimationNode : Resource() {
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their
-   * animation nodes changes. The animation nodes that emit this signal are
-   * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine],
-   * [AnimationNodeBlendTree] and [AnimationNodeTransition].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], [AnimationNodeBlendTree] and [AnimationNodeTransition].
    */
   public val treeChanged: Signal0 by Signal0
 
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their
-   * animation node names changes. The animation nodes that emit this signal are
-   * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
-   * [AnimationNodeBlendTree].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation node names changes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree].
    */
   public val animationNodeRenamed: Signal3<Long, String, String> by Signal3
 
   /**
-   * Emitted by nodes that inherit from this class and that have an internal tree when one of their
-   * animation nodes removes. The animation nodes that emit this signal are
-   * [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and
-   * [AnimationNodeBlendTree].
+   * Emitted by nodes that inherit from this class and that have an internal tree when one of their animation nodes removes. The animation nodes that emit this signal are [AnimationNodeBlendSpace1D], [AnimationNodeBlendSpace2D], [AnimationNodeStateMachine], and [AnimationNodeBlendTree].
    */
   public val animationNodeRemoved: Signal2<Long, String> by Signal2
 
@@ -97,61 +81,49 @@ public open class AnimationNode : Resource() {
       setFilterEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(15, scriptIndex)
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return all child
-   * animation nodes in order as a `name: node` dictionary.
+   * When inheriting from [AnimationRootNode], implement this virtual method to return all child animation nodes in order as a `name: node` dictionary.
    */
   public open fun _getChildNodes(): Dictionary<Any?, Any?> {
     throw NotImplementedError("AnimationNode::_getChildNodes is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return a list of the
-   * properties on this animation node. Parameters are custom local memory used for your animation
-   * nodes, given a resource can be reused in multiple trees. Format is similar to
-   * [Object.getPropertyList].
+   * When inheriting from [AnimationRootNode], implement this virtual method to return a list of the properties on this animation node. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees. Format is similar to [Object.getPropertyList].
    */
   public open fun _getParameterList(): VariantArray<Any?> {
     throw NotImplementedError("AnimationNode::_getParameterList is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return a child
-   * animation node by its [name].
+   * When inheriting from [AnimationRootNode], implement this virtual method to return a child animation node by its [name].
    */
   public open fun _getChildByName(name: StringName): AnimationNode? {
     throw NotImplementedError("AnimationNode::_getChildByName is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return the default
-   * value of a [parameter]. Parameters are custom local memory used for your animation nodes, given a
-   * resource can be reused in multiple trees.
+   * When inheriting from [AnimationRootNode], implement this virtual method to return the default value of a [parameter]. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public open fun _getParameterDefaultValue(parameter: StringName): Any? {
     throw NotImplementedError("AnimationNode::_getParameterDefaultValue is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return whether the
-   * [parameter] is read-only. Parameters are custom local memory used for your animation nodes, given
-   * a resource can be reused in multiple trees.
+   * When inheriting from [AnimationRootNode], implement this virtual method to return whether the [parameter] is read-only. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public open fun _isParameterReadOnly(parameter: StringName): Boolean {
     throw NotImplementedError("AnimationNode::_isParameterReadOnly is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to run some code when
-   * this animation node is processed. The [time] parameter is a relative delta, unless [seek] is
-   * `true`, in which case it is absolute.
+   * When inheriting from [AnimationRootNode], implement this virtual method to run some code when this animation node is processed. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute.
    *
-   * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use
-   * [getParameter] and [setParameter] to modify local memory.
+   * Here, call the [blendInput], [blendNode] or [blendAnimation] functions. You can also use [getParameter] and [setParameter] to modify local memory.
    *
    * This function should return the delta.
    */
@@ -165,24 +137,21 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to override the text
-   * caption for this animation node.
+   * When inheriting from [AnimationRootNode], implement this virtual method to override the text caption for this animation node.
    */
   public open fun _getCaption(): String {
     throw NotImplementedError("AnimationNode::_getCaption is not implemented.")
   }
 
   /**
-   * When inheriting from [AnimationRootNode], implement this virtual method to return whether the
-   * blend tree editor should display filter editing on this animation node.
+   * When inheriting from [AnimationRootNode], implement this virtual method to return whether the blend tree editor should display filter editing on this animation node.
    */
   public open fun _hasFilter(): Boolean {
     throw NotImplementedError("AnimationNode::_hasFilter is not implemented.")
   }
 
   /**
-   * Adds an input to the animation node. This is only useful for animation nodes created for use in
-   * an [AnimationNodeBlendTree]. If the addition fails, returns `false`.
+   * Adds an input to the animation node. This is only useful for animation nodes created for use in an [AnimationNodeBlendTree]. If the addition fails, returns `false`.
    */
   public final fun addInput(name: String): Boolean {
     TransferContext.writeArguments(STRING to name)
@@ -193,7 +162,7 @@ public open class AnimationNode : Resource() {
   /**
    * Removes an input, call this only when inactive.
    */
-  public final fun removeInput(index: Int): Unit {
+  public final fun removeInput(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeInputPtr, NIL)
   }
@@ -217,8 +186,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Amount of inputs in this animation node, only useful for animation nodes that go into
-   * [AnimationNodeBlendTree].
+   * Amount of inputs in this animation node, only useful for animation nodes that go into [AnimationNodeBlendTree].
    */
   public final fun getInputCount(): Int {
     TransferContext.writeArguments()
@@ -238,7 +206,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds or removes a path for the filter.
    */
-  public final fun setFilterPath(path: NodePath, enable: Boolean): Unit {
+  public final fun setFilterPath(path: NodePath, enable: Boolean) {
     TransferContext.writeArguments(NODE_PATH to path, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFilterPathPtr, NIL)
   }
@@ -252,7 +220,7 @@ public open class AnimationNode : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFilterEnabled(enable: Boolean): Unit {
+  public final fun setFilterEnabled(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFilterEnabledPtr, NIL)
   }
@@ -266,8 +234,7 @@ public open class AnimationNode : Resource() {
   /**
    * Returns the object id of the [AnimationTree] that owns this node.
    *
-   * **Note:** This method should only be called from within the
-   * [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
+   * **Note:** This method should only be called from within the [AnimationNodeExtension.ProcessAnimationNode] method, and will return an invalid id otherwise.
    */
   public final fun getProcessingAnimationTreeInstanceId(): Long {
     TransferContext.writeArguments()
@@ -285,11 +252,9 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
-   * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A [time] and [delta] may be passed, as well as whether [seeked] happened.
    *
-   * A [loopedFlag] is used by internal processing immediately after the loop. See also
-   * [Animation.LoopedFlag].
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also [Animation.LoopedFlag].
    */
   @JvmOverloads
   public final fun blendAnimation(
@@ -300,15 +265,13 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     blend: Float,
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
     TransferContext.callMethod(ptr, MethodBindings.blendAnimationPtr, NIL)
   }
 
   /**
-   * Blend another animation node (in case this animation node contains child animation nodes). This
-   * function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will
-   * not display your animation node for addition.
+   * Blend another animation node (in case this animation node contains child animation nodes). This function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will not display your animation node for addition.
    */
   @JvmOverloads
   public final fun blendNode(
@@ -328,10 +291,7 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an input. This is only useful for animation nodes created for an
-   * [AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in
-   * which case it is absolute. A filter mode may be optionally passed (see [FilterAction] for
-   * options).
+   * Blend an input. This is only useful for animation nodes created for an [AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in which case it is absolute. A filter mode may be optionally passed (see [FilterAction] for options).
    */
   @JvmOverloads
   public final fun blendInput(
@@ -350,17 +310,15 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Sets a custom parameter. These are used as local memory, because resources can be reused across
-   * the tree or scenes.
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
-  public final fun setParameter(name: StringName, `value`: Any?): Unit {
+  public final fun setParameter(name: StringName, `value`: Any?) {
     TransferContext.writeArguments(STRING_NAME to name, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setParameterPtr, NIL)
   }
 
   /**
-   * Gets the value of a parameter. Parameters are custom local memory used for your animation
-   * nodes, given a resource can be reused in multiple trees.
+   * Gets the value of a parameter. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public final fun getParameter(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -371,8 +329,7 @@ public open class AnimationNode : Resource() {
   /**
    * Adds or removes a path for the filter.
    */
-  public final fun setFilterPath(path: String, enable: Boolean) =
-      setFilterPath(path.asCachedNodePath(), enable)
+  public final fun setFilterPath(path: String, enable: Boolean): Unit = setFilterPath(path.asCachedNodePath(), enable)
 
   /**
    * Returns `true` if the given path is filtered.
@@ -380,11 +337,9 @@ public open class AnimationNode : Resource() {
   public final fun isPathFiltered(path: String): Boolean = isPathFiltered(path.asCachedNodePath())
 
   /**
-   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
-   * [time] and [delta] may be passed, as well as whether [seeked] happened.
+   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A [time] and [delta] may be passed, as well as whether [seeked] happened.
    *
-   * A [loopedFlag] is used by internal processing immediately after the loop. See also
-   * [Animation.LoopedFlag].
+   * A [loopedFlag] is used by internal processing immediately after the loop. See also [Animation.LoopedFlag].
    */
   @JvmOverloads
   public final fun blendAnimation(
@@ -395,13 +350,10 @@ public open class AnimationNode : Resource() {
     isExternalSeeking: Boolean,
     blend: Float,
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
-  ) =
-      blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
+  ): Unit = blendAnimation(animation.asCachedStringName(), time, delta, seeked, isExternalSeeking, blend, loopedFlag)
 
   /**
-   * Blend another animation node (in case this animation node contains child animation nodes). This
-   * function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will
-   * not display your animation node for addition.
+   * Blend another animation node (in case this animation node contains child animation nodes). This function is only useful if you inherit from [AnimationRootNode] instead, otherwise editors will not display your animation node for addition.
    */
   @JvmOverloads
   public final fun blendNode(
@@ -414,19 +366,15 @@ public open class AnimationNode : Resource() {
     filter: FilterAction = AnimationNode.FilterAction.IGNORE,
     sync: Boolean = true,
     testOnly: Boolean = false,
-  ): Double =
-      blendNode(name.asCachedStringName(), node, time, seek, isExternalSeeking, blend, filter, sync, testOnly)
+  ): Double = blendNode(name.asCachedStringName(), node, time, seek, isExternalSeeking, blend, filter, sync, testOnly)
 
   /**
-   * Sets a custom parameter. These are used as local memory, because resources can be reused across
-   * the tree or scenes.
+   * Sets a custom parameter. These are used as local memory, because resources can be reused across the tree or scenes.
    */
-  public final fun setParameter(name: String, `value`: Any?) =
-      setParameter(name.asCachedStringName(), value)
+  public final fun setParameter(name: String, `value`: Any?): Unit = setParameter(name.asCachedStringName(), value)
 
   /**
-   * Gets the value of a parameter. Parameters are custom local memory used for your animation
-   * nodes, given a resource can be reused in multiple trees.
+   * Gets the value of a parameter. Parameters are custom local memory used for your animation nodes, given a resource can be reused in multiple trees.
    */
   public final fun getParameter(name: String): Any? = getParameter(name.asCachedStringName())
 
@@ -465,54 +413,54 @@ public open class AnimationNode : Resource() {
 
   public object MethodBindings {
     internal val addInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "add_input", 2323990056)
+        TypeManager.getMethodBindPtr("AnimationNode", "add_input", 2_323_990_056)
 
     internal val removeInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "remove_input", 1286410249)
+        TypeManager.getMethodBindPtr("AnimationNode", "remove_input", 1_286_410_249)
 
     internal val setInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_input_name", 215573526)
+        TypeManager.getMethodBindPtr("AnimationNode", "set_input_name", 215_573_526)
 
     internal val getInputNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_input_name", 844755477)
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_name", 844_755_477)
 
     internal val getInputCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_input_count", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationNode", "get_input_count", 3_905_245_786)
 
     internal val findInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "find_input", 1321353865)
+        TypeManager.getMethodBindPtr("AnimationNode", "find_input", 1_321_353_865)
 
     internal val setFilterPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_path", 3868023870)
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_path", 3_868_023_870)
 
     internal val isPathFilteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "is_path_filtered", 861721659)
+        TypeManager.getMethodBindPtr("AnimationNode", "is_path_filtered", 861_721_659)
 
     internal val setFilterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNode", "set_filter_enabled", 2_586_408_642)
 
     internal val isFilterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNode", "is_filter_enabled", 36_873_697)
 
     internal val getProcessingAnimationTreeInstanceIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_processing_animation_tree_instance_id", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationNode", "get_processing_animation_tree_instance_id", 3_905_245_786)
 
     internal val isProcessTestingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "is_process_testing", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNode", "is_process_testing", 36_873_697)
 
     internal val blendAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "blend_animation", 1630801826)
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_animation", 1_630_801_826)
 
     internal val blendNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "blend_node", 1746075988)
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_node", 1_746_075_988)
 
     internal val blendInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "blend_input", 1361527350)
+        TypeManager.getMethodBindPtr("AnimationNode", "blend_input", 1_361_527_350)
 
     internal val setParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "set_parameter", 3776071444)
+        TypeManager.getMethodBindPtr("AnimationNode", "set_parameter", 3_776_071_444)
 
     internal val getParameterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNode", "get_parameter", 2760726917)
+        TypeManager.getMethodBindPtr("AnimationNode", "get_parameter", 2_760_726_917)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -45,31 +42,15 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This control provides a vertical list of selectable items that may be in a single or in multiple
- * columns, with each item having options for text and an icon. Tooltips are supported and may be
- * different for every item in the list.
+ * This control provides a vertical list of selectable items that may be in a single or in multiple columns, with each item having options for text and an icon. Tooltips are supported and may be different for every item in the list.
  *
- * Selectable items in the list may be selected or deselected and multiple selection may be enabled.
- * Selection with right mouse button may also be enabled to allow use of popup context menus. Items may
- * also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
+ * Selectable items in the list may be selected or deselected and multiple selection may be enabled. Selection with right mouse button may also be enabled to allow use of popup context menus. Items may also be "activated" by double-clicking them or by pressing [kbd]Enter[/kbd].
  *
- * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't
- * produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is
- * adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero
- * to wrap the text.
+ * Item text only supports single-line strings. Newline characters (e.g. `\n`) in the string won't produce a newline. Text wrapping is enabled in [ICON_MODE_TOP] mode, but the column's width is adjusted to fully fit its content by default. You need to set [fixedColumnWidth] greater than zero to wrap the text.
  *
- * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to
- * select the second-to-last item, and so on.
+ * All `set_*` methods allow negative item indices, i.e. `-1` to access the last item, `-2` to select the second-to-last item, and so on.
  *
- * **Incremental search:** Like [PopupMenu] and [Tree], [ItemList] supports searching within the
- * list while the control is focused. Press a key that matches the first letter of an item's name to
- * select the first item starting with the given letter. After that point, there are two ways to
- * perform incremental search: 1) Press the same key again before the timeout duration to select the
- * next item starting with the same letter. 2) Press letter keys that match the rest of the word before
- * the timeout duration to match to select the item in question directly. Both of these actions will be
- * reset to the beginning of the list if the timeout duration has passed since the last keystroke was
- * registered. You can adjust the timeout duration by changing
- * [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
+ * **Incremental search:** Like [PopupMenu] and [Tree], [ItemList] supports searching within the list while the control is focused. Press a key that matches the first letter of an item's name to select the first item starting with the given letter. After that point, there are two ways to perform incremental search: 1) Press the same key again before the timeout duration to select the next item starting with the same letter. 2) Press letter keys that match the rest of the word before the timeout duration to match to select the item in question directly. Both of these actions will be reset to the beginning of the list if the timeout duration has passed since the last keystroke was registered. You can adjust the timeout duration by changing [ProjectSettings.gui/timers/incrementalSearchMaxIntervalMsec].
  */
 @GodotBaseType
 public open class ItemList : Control() {
@@ -100,8 +81,7 @@ public open class ItemList : Control() {
   public val multiSelected: Signal2<Long, Boolean> by Signal2
 
   /**
-   * Emitted when specified list item is activated via double-clicking or by pressing
-   * [kbd]Enter[/kbd].
+   * Emitted when specified list item is activated via double-clicking or by pressing [kbd]Enter[/kbd].
    */
   public val itemActivated: Signal1<Long> by Signal1
 
@@ -150,11 +130,9 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Maximum lines of text allowed in each item. Space will be reserved even when there is not
-   * enough lines of text to display.
+   * Maximum lines of text allowed in each item. Space will be reserved even when there is not enough lines of text to display.
    *
-   * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text
-   * wrap, [fixedColumnWidth] should be greater than zero.
+   * **Note:** This property takes effect only when [iconMode] is [ICON_MODE_TOP]. To make the text wrap, [fixedColumnWidth] should be greater than zero.
    */
   public final inline var maxTextLines: Int
     @JvmName("maxTextLinesProperty")
@@ -187,8 +165,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See [TextServer.OverrunBehavior] for a description of all modes.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -199,8 +176,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * If `true`, the control will automatically move items into a new row to fit its content. See
-   * also [HFlowContainer] for this behavior.
+   * If `true`, the control will automatically move items into a new row to fit its content. See also [HFlowContainer] for this behavior.
    *
    * If `false`, the control will add a horizontal scrollbar to make all items visible.
    */
@@ -254,8 +230,7 @@ public open class ItemList : Control() {
   /**
    * The width all columns will be adjusted to.
    *
-   * A value of zero disables the adjustment, each item will have a width equal to the width of its
-   * content and the columns will have an uneven width.
+   * A value of zero disables the adjustment, each item will have a width equal to the width of its content and the columns will have an uneven width.
    */
   public final inline var fixedColumnWidth: Int
     @JvmName("fixedColumnWidthProperty")
@@ -293,11 +268,8 @@ public open class ItemList : Control() {
    * If either X or Y component is not greater than zero, icon size won't be affected.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fixedIconSize: Vector2i
@@ -308,7 +280,7 @@ public open class ItemList : Control() {
       setFixedIconSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(312, scriptIndex)
   }
 
@@ -364,7 +336,7 @@ public open class ItemList : Control() {
   /**
    * Sets text of the item associated with the specified index.
    */
-  public final fun setItemText(idx: Int, text: String): Unit {
+  public final fun setItemText(idx: Int, text: String) {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextPtr, NIL)
   }
@@ -381,7 +353,7 @@ public open class ItemList : Control() {
   /**
    * Sets (or replaces) the icon's [Texture2D] associated with the specified index.
    */
-  public final fun setItemIcon(idx: Int, icon: Texture2D?): Unit {
+  public final fun setItemIcon(idx: Int, icon: Texture2D?) {
     TransferContext.writeArguments(LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -398,7 +370,7 @@ public open class ItemList : Control() {
   /**
    * Sets item's text base writing direction.
    */
-  public final fun setItemTextDirection(idx: Int, direction: Control.TextDirection): Unit {
+  public final fun setItemTextDirection(idx: Int, direction: Control.TextDirection) {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
@@ -413,10 +385,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left
-   * empty current locale is used instead.
+   * Sets language code of item's text used for line-breaking and text shaping algorithms, if left empty current locale is used instead.
    */
-  public final fun setItemLanguage(idx: Int, language: String): Unit {
+  public final fun setItemLanguage(idx: Int, language: String) {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setItemLanguagePtr, NIL)
   }
@@ -433,10 +404,9 @@ public open class ItemList : Control() {
   /**
    * Sets the auto translate mode of the item associated with the specified index.
    *
-   * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate
-   * mode as the [ItemList] itself.
+   * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate mode as the [ItemList] itself.
    */
-  public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode): Unit {
+  public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode) {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
   }
@@ -453,7 +423,7 @@ public open class ItemList : Control() {
   /**
    * Sets whether the item icon will be drawn transposed.
    */
-  public final fun setItemIconTransposed(idx: Int, transposed: Boolean): Unit {
+  public final fun setItemIconTransposed(idx: Int, transposed: Boolean) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to transposed)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconTransposedPtr, NIL)
   }
@@ -470,7 +440,7 @@ public open class ItemList : Control() {
   /**
    * Sets the region of item's icon used. The whole icon will be used if the region has no area.
    */
-  public final fun setItemIconRegion(idx: Int, rect: Rect2): Unit {
+  public final fun setItemIconRegion(idx: Int, rect: Rect2) {
     TransferContext.writeArguments(LONG to idx.toLong(), RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconRegionPtr, NIL)
   }
@@ -487,7 +457,7 @@ public open class ItemList : Control() {
   /**
    * Sets a modulating [Color] of the item associated with the specified index.
    */
-  public final fun setItemIconModulate(idx: Int, modulate: Color): Unit {
+  public final fun setItemIconModulate(idx: Int, modulate: Color) {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconModulatePtr, NIL)
   }
@@ -504,7 +474,7 @@ public open class ItemList : Control() {
   /**
    * Allows or disallows selection of the item associated with the specified index.
    */
-  public final fun setItemSelectable(idx: Int, selectable: Boolean): Unit {
+  public final fun setItemSelectable(idx: Int, selectable: Boolean) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to selectable)
     TransferContext.callMethod(ptr, MethodBindings.setItemSelectablePtr, NIL)
   }
@@ -521,10 +491,9 @@ public open class ItemList : Control() {
   /**
    * Disables (or enables) the item at the specified index.
    *
-   * Disabled items cannot be selected and do not trigger activation signals (when double-clicking
-   * or pressing [kbd]Enter[/kbd]).
+   * Disabled items cannot be selected and do not trigger activation signals (when double-clicking or pressing [kbd]Enter[/kbd]).
    */
-  public final fun setItemDisabled(idx: Int, disabled: Boolean): Unit {
+  public final fun setItemDisabled(idx: Int, disabled: Boolean) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setItemDisabledPtr, NIL)
   }
@@ -541,7 +510,7 @@ public open class ItemList : Control() {
   /**
    * Sets a value (of any type) to be stored with the item associated with the specified index.
    */
-  public final fun setItemMetadata(idx: Int, metadata: Any?): Unit {
+  public final fun setItemMetadata(idx: Int, metadata: Any?) {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to metadata)
     TransferContext.callMethod(ptr, MethodBindings.setItemMetadataPtr, NIL)
   }
@@ -558,7 +527,7 @@ public open class ItemList : Control() {
   /**
    * Sets the background color of the item specified by [idx] index to the specified [Color].
    */
-  public final fun setItemCustomBgColor(idx: Int, customBgColor: Color): Unit {
+  public final fun setItemCustomBgColor(idx: Int, customBgColor: Color) {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customBgColor)
     TransferContext.callMethod(ptr, MethodBindings.setItemCustomBgColorPtr, NIL)
   }
@@ -575,7 +544,7 @@ public open class ItemList : Control() {
   /**
    * Sets the foreground color of the item specified by [idx] index to the specified [Color].
    */
-  public final fun setItemCustomFgColor(idx: Int, customFgColor: Color): Unit {
+  public final fun setItemCustomFgColor(idx: Int, customFgColor: Color) {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to customFgColor)
     TransferContext.callMethod(ptr, MethodBindings.setItemCustomFgColorPtr, NIL)
   }
@@ -590,11 +559,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Returns the position and size of the item with the specified index, in the coordinate system of
-   * the [ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
+   * Returns the position and size of the item with the specified index, in the coordinate system of the [ItemList] node. If [expand] is `true` the last column expands to fill the rest of the row.
    *
-   * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
-   * before it redraws in the next frame.
+   * **Note:** The returned value is unreliable if called right after modifying the [ItemList], before it redraws in the next frame.
    */
   @JvmOverloads
   public final fun getItemRect(idx: Int, expand: Boolean = true): Rect2 {
@@ -606,7 +573,7 @@ public open class ItemList : Control() {
   /**
    * Sets whether the tooltip hint is enabled for specified item index.
    */
-  public final fun setItemTooltipEnabled(idx: Int, enable: Boolean): Unit {
+  public final fun setItemTooltipEnabled(idx: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setItemTooltipEnabledPtr, NIL)
   }
@@ -623,7 +590,7 @@ public open class ItemList : Control() {
   /**
    * Sets the tooltip hint for the item associated with the specified index.
    */
-  public final fun setItemTooltip(idx: Int, tooltip: String): Unit {
+  public final fun setItemTooltip(idx: Int, tooltip: String) {
     TransferContext.writeArguments(LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -643,7 +610,7 @@ public open class ItemList : Control() {
    * **Note:** This method does not trigger the item selection signal.
    */
   @JvmOverloads
-  public final fun select(idx: Int, single: Boolean = true): Unit {
+  public final fun select(idx: Int, single: Boolean = true) {
     TransferContext.writeArguments(LONG to idx.toLong(), BOOL to single)
     TransferContext.callMethod(ptr, MethodBindings.selectPtr, NIL)
   }
@@ -651,7 +618,7 @@ public open class ItemList : Control() {
   /**
    * Ensures the item associated with the specified index is not selected.
    */
-  public final fun deselect(idx: Int): Unit {
+  public final fun deselect(idx: Int) {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.deselectPtr, NIL)
   }
@@ -659,7 +626,7 @@ public open class ItemList : Control() {
   /**
    * Ensures there are no items selected.
    */
-  public final fun deselectAll(): Unit {
+  public final fun deselectAll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.deselectAllPtr, NIL)
   }
@@ -685,12 +652,12 @@ public open class ItemList : Control() {
   /**
    * Moves item from index [fromIdx] to [toIdx].
    */
-  public final fun moveItem(fromIdx: Int, toIdx: Int): Unit {
+  public final fun moveItem(fromIdx: Int, toIdx: Int) {
     TransferContext.writeArguments(LONG to fromIdx.toLong(), LONG to toIdx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.moveItemPtr, NIL)
   }
 
-  public final fun setItemCount(count: Int): Unit {
+  public final fun setItemCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemCountPtr, NIL)
   }
@@ -704,7 +671,7 @@ public open class ItemList : Control() {
   /**
    * Removes the item specified by [idx] index from the list.
    */
-  public final fun removeItem(idx: Int): Unit {
+  public final fun removeItem(idx: Int) {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
   }
@@ -712,7 +679,7 @@ public open class ItemList : Control() {
   /**
    * Removes all items from the list.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -720,12 +687,12 @@ public open class ItemList : Control() {
   /**
    * Sorts items in the list by their text.
    */
-  public final fun sortItemsByText(): Unit {
+  public final fun sortItemsByText() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.sortItemsByTextPtr, NIL)
   }
 
-  public final fun setFixedColumnWidth(width: Int): Unit {
+  public final fun setFixedColumnWidth(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setFixedColumnWidthPtr, NIL)
   }
@@ -736,7 +703,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSameColumnWidth(enable: Boolean): Unit {
+  public final fun setSameColumnWidth(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSameColumnWidthPtr, NIL)
   }
@@ -747,7 +714,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaxTextLines(lines: Int): Unit {
+  public final fun setMaxTextLines(lines: Int) {
     TransferContext.writeArguments(LONG to lines.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxTextLinesPtr, NIL)
   }
@@ -758,7 +725,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMaxColumns(amount: Int): Unit {
+  public final fun setMaxColumns(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxColumnsPtr, NIL)
   }
@@ -769,7 +736,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSelectMode(mode: SelectMode): Unit {
+  public final fun setSelectMode(mode: SelectMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setSelectModePtr, NIL)
   }
@@ -780,7 +747,7 @@ public open class ItemList : Control() {
     return SelectMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setIconMode(mode: IconMode): Unit {
+  public final fun setIconMode(mode: IconMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setIconModePtr, NIL)
   }
@@ -791,7 +758,7 @@ public open class ItemList : Control() {
     return IconMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFixedIconSize(size: Vector2i): Unit {
+  public final fun setFixedIconSize(size: Vector2i) {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setFixedIconSizePtr, NIL)
   }
@@ -802,7 +769,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
-  public final fun setIconScale(scale: Float): Unit {
+  public final fun setIconScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setIconScalePtr, NIL)
   }
@@ -813,7 +780,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAllowRmbSelect(allow: Boolean): Unit {
+  public final fun setAllowRmbSelect(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowRmbSelectPtr, NIL)
   }
@@ -824,7 +791,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowReselect(allow: Boolean): Unit {
+  public final fun setAllowReselect(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowReselectPtr, NIL)
   }
@@ -835,7 +802,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAllowSearch(allow: Boolean): Unit {
+  public final fun setAllowSearch(allow: Boolean) {
     TransferContext.writeArguments(BOOL to allow)
     TransferContext.callMethod(ptr, MethodBindings.setAllowSearchPtr, NIL)
   }
@@ -846,7 +813,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoWidth(enable: Boolean): Unit {
+  public final fun setAutoWidth(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoWidthPtr, NIL)
   }
@@ -857,7 +824,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutoHeight(enable: Boolean): Unit {
+  public final fun setAutoHeight(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoHeightPtr, NIL)
   }
@@ -880,11 +847,9 @@ public open class ItemList : Control() {
   /**
    * Returns the item index at the given [position].
    *
-   * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest
-   * item index will be returned otherwise.
+   * When there is no item at that point, -1 will be returned if [exact] is `true`, and the closest item index will be returned otherwise.
    *
-   * **Note:** The returned value is unreliable if called right after modifying the [ItemList],
-   * before it redraws in the next frame.
+   * **Note:** The returned value is unreliable if called right after modifying the [ItemList], before it redraws in the next frame.
    */
   @JvmOverloads
   public final fun getItemAtPosition(position: Vector2, exact: Boolean = false): Int {
@@ -896,7 +861,7 @@ public open class ItemList : Control() {
   /**
    * Ensure current selection is visible, adjusting the scroll position as necessary.
    */
-  public final fun ensureCurrentIsVisible(): Unit {
+  public final fun ensureCurrentIsVisible() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.ensureCurrentIsVisiblePtr, NIL)
   }
@@ -904,8 +869,7 @@ public open class ItemList : Control() {
   /**
    * Returns the vertical scrollbar.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getVScrollBar(): VScrollBar? {
     TransferContext.writeArguments()
@@ -916,8 +880,7 @@ public open class ItemList : Control() {
   /**
    * Returns the horizontal scrollbar.
    *
-   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If
-   * you wish to hide it or any of its children, use their [CanvasItem.visible] property.
+   * **Warning:** This is a required internal node, removing and freeing it may cause a crash. If you wish to hide it or any of its children, use their [CanvasItem.visible] property.
    */
   public final fun getHScrollBar(): HScrollBar? {
     TransferContext.writeArguments()
@@ -925,7 +888,7 @@ public open class ItemList : Control() {
     return (TransferContext.readReturnValue(OBJECT) as HScrollBar?)
   }
 
-  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior) {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
@@ -936,7 +899,7 @@ public open class ItemList : Control() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setWraparoundItems(enable: Boolean): Unit {
+  public final fun setWraparoundItems(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setWraparoundItemsPtr, NIL)
   }
@@ -948,11 +911,9 @@ public open class ItemList : Control() {
   }
 
   /**
-   * Forces an update to the list size based on its items. This happens automatically whenever size
-   * of the items, or other relevant settings like [autoHeight], change. The method can be used to
-   * trigger the update ahead of next drawing pass.
+   * Forces an update to the list size based on its items. This happens automatically whenever size of the items, or other relevant settings like [autoHeight], change. The method can be used to trigger the update ahead of next drawing pass.
    */
-  public final fun forceUpdateListSize(): Unit {
+  public final fun forceUpdateListSize() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateListSizePtr, NIL)
   }
@@ -1011,241 +972,243 @@ public open class ItemList : Control() {
 
   public object MethodBindings {
     internal val addItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "add_item", 359861678)
+        TypeManager.getMethodBindPtr("ItemList", "add_item", 359_861_678)
 
     internal val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "add_icon_item", 4256579627)
+        TypeManager.getMethodBindPtr("ItemList", "add_icon_item", 4_256_579_627)
 
     internal val setItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_text", 501894301)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_text", 501_894_301)
 
     internal val getItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_text", 844755477)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_text", 844_755_477)
 
     internal val setItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon", 666127730)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon", 666_127_730)
 
     internal val getItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_icon", 3536238170)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon", 3_536_238_170)
 
     internal val setItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_text_direction", 1707680378)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_text_direction", 1_707_680_378)
 
     internal val getItemTextDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_text_direction", 4235602388)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_text_direction", 4_235_602_388)
 
     internal val setItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_language", 501894301)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_language", 501_894_301)
 
     internal val getItemLanguagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_language", 844755477)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_language", 844_755_477)
 
     internal val setItemAutoTranslateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_auto_translate_mode", 287402019)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_auto_translate_mode", 287_402_019)
 
     internal val getItemAutoTranslateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_auto_translate_mode", 906302372)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_auto_translate_mode", 906_302_372)
 
     internal val setItemIconTransposedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed", 300928843)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_transposed", 300_928_843)
 
     internal val isItemIconTransposedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_icon_transposed", 1116898809)
+        TypeManager.getMethodBindPtr("ItemList", "is_item_icon_transposed", 1_116_898_809)
 
     internal val setItemIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_region", 1356297692)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_region", 1_356_297_692)
 
     internal val getItemIconRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_region", 3327874267)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_region", 3_327_874_267)
 
     internal val setItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_modulate", 2878471219)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_icon_modulate", 2_878_471_219)
 
     internal val getItemIconModulatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_modulate", 3457211756)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_icon_modulate", 3_457_211_756)
 
     internal val setItemSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_selectable", 300928843)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_selectable", 300_928_843)
 
     internal val isItemSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_selectable", 1116898809)
+        TypeManager.getMethodBindPtr("ItemList", "is_item_selectable", 1_116_898_809)
 
     internal val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_disabled", 300928843)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_disabled", 300_928_843)
 
     internal val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("ItemList", "is_item_disabled", 1_116_898_809)
 
     internal val setItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_metadata", 2152698145)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_metadata", 2_152_698_145)
 
     internal val getItemMetadataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_metadata", 4227898402)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_metadata", 4_227_898_402)
 
     internal val setItemCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_bg_color", 2878471219)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_bg_color", 2_878_471_219)
 
     internal val getItemCustomBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_bg_color", 3457211756)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_bg_color", 3_457_211_756)
 
     internal val setItemCustomFgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_fg_color", 2878471219)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_custom_fg_color", 2_878_471_219)
 
     internal val getItemCustomFgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_fg_color", 3457211756)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_custom_fg_color", 3_457_211_756)
 
     internal val getItemRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_rect", 159227807)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_rect", 159_227_807)
 
     internal val setItemTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip_enabled", 300928843)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip_enabled", 300_928_843)
 
     internal val isItemTooltipEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_item_tooltip_enabled", 1116898809)
+        TypeManager.getMethodBindPtr("ItemList", "is_item_tooltip_enabled", 1_116_898_809)
 
     internal val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip", 501894301)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_tooltip", 501_894_301)
 
     internal val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_tooltip", 844755477)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_tooltip", 844_755_477)
 
-    internal val selectPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "select", 972357352)
+    internal val selectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "select", 972_357_352)
 
     internal val deselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "deselect", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "deselect", 1_286_410_249)
 
     internal val deselectAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "deselect_all", 3218959716)
+        TypeManager.getMethodBindPtr("ItemList", "deselect_all", 3_218_959_716)
 
     internal val isSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_selected", 1116898809)
+        TypeManager.getMethodBindPtr("ItemList", "is_selected", 1_116_898_809)
 
     internal val getSelectedItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_selected_items", 969006518)
+        TypeManager.getMethodBindPtr("ItemList", "get_selected_items", 969_006_518)
 
     internal val moveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "move_item", 3937882851)
+        TypeManager.getMethodBindPtr("ItemList", "move_item", 3_937_882_851)
 
     internal val setItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_item_count", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "set_item_count", 1_286_410_249)
 
     internal val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_count", 3905245786)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_count", 3_905_245_786)
 
     internal val removeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "remove_item", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "remove_item", 1_286_410_249)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("ItemList", "clear", 3218959716)
+    internal val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ItemList", "clear", 3_218_959_716)
 
     internal val sortItemsByTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "sort_items_by_text", 3218959716)
+        TypeManager.getMethodBindPtr("ItemList", "sort_items_by_text", 3_218_959_716)
 
     internal val setFixedColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_fixed_column_width", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_column_width", 1_286_410_249)
 
     internal val getFixedColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_fixed_column_width", 3905245786)
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_column_width", 3_905_245_786)
 
     internal val setSameColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_same_column_width", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_same_column_width", 2_586_408_642)
 
     internal val isSameColumnWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_same_column_width", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "is_same_column_width", 36_873_697)
 
     internal val setMaxTextLinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_max_text_lines", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "set_max_text_lines", 1_286_410_249)
 
     internal val getMaxTextLinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_max_text_lines", 3905245786)
+        TypeManager.getMethodBindPtr("ItemList", "get_max_text_lines", 3_905_245_786)
 
     internal val setMaxColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_max_columns", 1286410249)
+        TypeManager.getMethodBindPtr("ItemList", "set_max_columns", 1_286_410_249)
 
     internal val getMaxColumnsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_max_columns", 3905245786)
+        TypeManager.getMethodBindPtr("ItemList", "get_max_columns", 3_905_245_786)
 
     internal val setSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_select_mode", 928267388)
+        TypeManager.getMethodBindPtr("ItemList", "set_select_mode", 928_267_388)
 
     internal val getSelectModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_select_mode", 1191945842)
+        TypeManager.getMethodBindPtr("ItemList", "get_select_mode", 1_191_945_842)
 
     internal val setIconModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_icon_mode", 2025053633)
+        TypeManager.getMethodBindPtr("ItemList", "set_icon_mode", 2_025_053_633)
 
     internal val getIconModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_icon_mode", 3353929232)
+        TypeManager.getMethodBindPtr("ItemList", "get_icon_mode", 3_353_929_232)
 
     internal val setFixedIconSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_fixed_icon_size", 1130785943)
+        TypeManager.getMethodBindPtr("ItemList", "set_fixed_icon_size", 1_130_785_943)
 
     internal val getFixedIconSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_fixed_icon_size", 3690982128)
+        TypeManager.getMethodBindPtr("ItemList", "get_fixed_icon_size", 3_690_982_128)
 
     internal val setIconScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_icon_scale", 373806689)
+        TypeManager.getMethodBindPtr("ItemList", "set_icon_scale", 373_806_689)
 
     internal val getIconScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_icon_scale", 1740695150)
+        TypeManager.getMethodBindPtr("ItemList", "get_icon_scale", 1_740_695_150)
 
     internal val setAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_rmb_select", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_rmb_select", 2_586_408_642)
 
     internal val getAllowRmbSelectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_rmb_select", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_rmb_select", 36_873_697)
 
     internal val setAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_reselect", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_reselect", 2_586_408_642)
 
     internal val getAllowReselectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_reselect", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_reselect", 36_873_697)
 
     internal val setAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_allow_search", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_allow_search", 2_586_408_642)
 
     internal val getAllowSearchPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_allow_search", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "get_allow_search", 36_873_697)
 
     internal val setAutoWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_auto_width", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_auto_width", 2_586_408_642)
 
     internal val hasAutoWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "has_auto_width", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "has_auto_width", 36_873_697)
 
     internal val setAutoHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_auto_height", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_auto_height", 2_586_408_642)
 
     internal val hasAutoHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "has_auto_height", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "has_auto_height", 36_873_697)
 
     internal val isAnythingSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "is_anything_selected", 2240911060)
+        TypeManager.getMethodBindPtr("ItemList", "is_anything_selected", 2_240_911_060)
 
     internal val getItemAtPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_item_at_position", 2300324924)
+        TypeManager.getMethodBindPtr("ItemList", "get_item_at_position", 2_300_324_924)
 
     internal val ensureCurrentIsVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible", 3218959716)
+        TypeManager.getMethodBindPtr("ItemList", "ensure_current_is_visible", 3_218_959_716)
 
     internal val getVScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2630340773)
+        TypeManager.getMethodBindPtr("ItemList", "get_v_scroll_bar", 2_630_340_773)
 
     internal val getHScrollBarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_h_scroll_bar", 4004517983)
+        TypeManager.getMethodBindPtr("ItemList", "get_h_scroll_bar", 4_004_517_983)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1008890932)
+        TypeManager.getMethodBindPtr("ItemList", "set_text_overrun_behavior", 1_008_890_932)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior", 3779142101)
+        TypeManager.getMethodBindPtr("ItemList", "get_text_overrun_behavior", 3_779_142_101)
 
     internal val setWraparoundItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "set_wraparound_items", 2586408642)
+        TypeManager.getMethodBindPtr("ItemList", "set_wraparound_items", 2_586_408_642)
 
     internal val hasWraparoundItemsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "has_wraparound_items", 36873697)
+        TypeManager.getMethodBindPtr("ItemList", "has_wraparound_items", 36_873_697)
 
     internal val forceUpdateListSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ItemList", "force_update_list_size", 3218959716)
+        TypeManager.getMethodBindPtr("ItemList", "force_update_list_size", 3_218_959_716)
   }
 }
