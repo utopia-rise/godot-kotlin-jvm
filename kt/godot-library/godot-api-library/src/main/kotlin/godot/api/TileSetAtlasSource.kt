@@ -428,7 +428,7 @@ public open class TileSetAtlasSource : TileSetSource() {
    * [getTileAnimationMode].
    */
   public final fun setTileAnimationMode(atlasCoords: Vector2i, mode: TileAnimationMode): Unit {
-    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to mode.id)
+    TransferContext.writeArguments(VECTOR2I to atlasCoords, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTileAnimationModePtr, NIL)
   }
 
@@ -595,7 +595,7 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public enum class TileAnimationMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Tile animations start at same time, looking identical.
@@ -611,13 +611,13 @@ public open class TileSetAtlasSource : TileSetSource() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TileAnimationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileAnimationMode = entries.single { it.`value` == `value` }
     }
   }
 

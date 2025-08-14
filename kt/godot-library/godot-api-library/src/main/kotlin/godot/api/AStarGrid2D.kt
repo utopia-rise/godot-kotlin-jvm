@@ -367,7 +367,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setCellShape(cellShape: CellShape): Unit {
-    TransferContext.writeArguments(LONG to cellShape.id)
+    TransferContext.writeArguments(LONG to cellShape.value)
     TransferContext.callMethod(ptr, MethodBindings.setCellShapePtr, NIL)
   }
 
@@ -430,7 +430,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setDiagonalMode(mode: DiagonalMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDiagonalModePtr, NIL)
   }
 
@@ -441,7 +441,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setDefaultComputeHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.id)
+    TransferContext.writeArguments(LONG to heuristic.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultComputeHeuristicPtr, NIL)
   }
 
@@ -452,7 +452,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public final fun setDefaultEstimateHeuristic(heuristic: Heuristic): Unit {
-    TransferContext.writeArguments(LONG to heuristic.id)
+    TransferContext.writeArguments(LONG to heuristic.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultEstimateHeuristicPtr, NIL)
   }
 
@@ -598,7 +598,7 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public enum class Heuristic(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The [url=https://en.wikipedia.org/wiki/Euclidean_distance]Euclidean heuristic[/url] to be
@@ -656,18 +656,18 @@ public open class AStarGrid2D : RefCounted() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Heuristic = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Heuristic = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DiagonalMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The pathfinding algorithm will ignore solid neighbors around the target cell and allow
@@ -694,18 +694,18 @@ public open class AStarGrid2D : RefCounted() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DiagonalMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DiagonalMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CellShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Rectangular cell shape.
@@ -727,13 +727,13 @@ public open class AStarGrid2D : RefCounted() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CellShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CellShape = entries.single { it.`value` == `value` }
     }
   }
 

@@ -163,7 +163,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public final fun setShape(shape: Shape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 
@@ -174,7 +174,7 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public enum class Shape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Gives the mesh a single flat face.
@@ -186,13 +186,13 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
     CROSS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Shape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Shape = entries.single { it.`value` == `value` }
     }
   }
 

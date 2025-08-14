@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class ClockDirection(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Clockwise rotation. Used by some methods (e.g. [Image.rotate90]).
@@ -22,12 +22,12 @@ public enum class ClockDirection(
   COUNTERCLOCKWISE(1),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): ClockDirection = entries.single { it.id == `value` }
+    public fun from(`value`: Long): ClockDirection = entries.single { it.`value` == `value` }
   }
 }

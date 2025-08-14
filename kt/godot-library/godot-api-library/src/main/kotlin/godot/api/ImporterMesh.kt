@@ -80,7 +80,7 @@ public open class ImporterMesh : Resource() {
    * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
    */
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeModePtr, NIL)
   }
 
@@ -137,7 +137,7 @@ public open class ImporterMesh : Resource() {
     name: String = "",
     flags: Long = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
+    TransferContext.writeArguments(LONG to primitive.value, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, OBJECT to material, STRING to name, LONG to flags)
     TransferContext.callMethod(ptr, MethodBindings.addSurfacePtr, NIL)
   }
 

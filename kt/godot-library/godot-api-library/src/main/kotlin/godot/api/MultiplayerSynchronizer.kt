@@ -193,7 +193,7 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public final fun setVisibilityUpdateMode(mode: VisibilityUpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityUpdateModePtr, NIL)
   }
 
@@ -263,7 +263,7 @@ public open class MultiplayerSynchronizer : Node() {
   public final fun setRootPath(path: String) = setRootPath(path.asCachedNodePath())
 
   public enum class VisibilityUpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Visibility filters are updated during process frames (see
@@ -282,13 +282,14 @@ public open class MultiplayerSynchronizer : Node() {
     PROCESS_NONE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VisibilityUpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityUpdateMode =
+          entries.single { it.`value` == `value` }
     }
   }
 

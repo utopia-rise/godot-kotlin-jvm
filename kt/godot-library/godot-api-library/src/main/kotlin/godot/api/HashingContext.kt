@@ -90,7 +90,7 @@ public open class HashingContext : RefCounted() {
    * an SHA-256).
    */
   public final fun start(type: HashType): Error {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -114,7 +114,7 @@ public open class HashingContext : RefCounted() {
   }
 
   public enum class HashType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Hashing algorithm: MD5.
@@ -130,13 +130,13 @@ public open class HashingContext : RefCounted() {
     SHA256(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HashType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HashType = entries.single { it.`value` == `value` }
     }
   }
 

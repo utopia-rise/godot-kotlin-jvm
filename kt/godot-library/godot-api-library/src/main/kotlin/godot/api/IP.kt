@@ -57,7 +57,7 @@ public object IP : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun resolveHostname(host: String, ipType: Type = IP.Type.ANY): String {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.writeArguments(STRING to host, LONG to ipType.value)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -70,7 +70,7 @@ public object IP : Object() {
   @JvmStatic
   public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.ANY):
       PackedStringArray {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.writeArguments(STRING to host, LONG to ipType.value)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnameAddressesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -82,7 +82,7 @@ public object IP : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun resolveHostnameQueueItem(host: String, ipType: Type = IP.Type.ANY): Int {
-    TransferContext.writeArguments(STRING to host, LONG to ipType.id)
+    TransferContext.writeArguments(STRING to host, LONG to ipType.value)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnameQueueItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -172,7 +172,7 @@ public object IP : Object() {
   }
 
   public enum class ResolverStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * DNS hostname resolver status: No status.
@@ -192,18 +192,18 @@ public object IP : Object() {
     ERROR(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ResolverStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ResolverStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Type(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Address type: None.
@@ -223,13 +223,13 @@ public object IP : Object() {
     ANY(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Type = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Type = entries.single { it.`value` == `value` }
     }
   }
 

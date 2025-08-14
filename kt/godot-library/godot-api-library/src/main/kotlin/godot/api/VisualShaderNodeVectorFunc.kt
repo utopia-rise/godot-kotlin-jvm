@@ -40,7 +40,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.writeArguments(LONG to func.value)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public enum class Function(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Normalizes the vector so that it has a length of `1` but points in the same direction.
@@ -193,13 +193,13 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
     MAX(33),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Function = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 

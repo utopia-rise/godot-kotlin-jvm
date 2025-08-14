@@ -1347,7 +1347,7 @@ public object OS : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun getSystemDir(dir: SystemDir, sharedStorage: Boolean = true): String {
-    TransferContext.writeArguments(LONG to dir.id, BOOL to sharedStorage)
+    TransferContext.writeArguments(LONG to dir.value, BOOL to sharedStorage)
     TransferContext.callMethod(ptr, MethodBindings.getSystemDirPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1455,7 +1455,7 @@ public object OS : Object() {
    */
   @JvmStatic
   public final fun getKeycodeString(code: Key): String {
-    TransferContext.writeArguments(LONG to code.id)
+    TransferContext.writeArguments(LONG to code.value)
     TransferContext.callMethod(ptr, MethodBindings.getKeycodeStringPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -1658,7 +1658,7 @@ public object OS : Object() {
   }
 
   public enum class RenderingDriver(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The Vulkan rendering driver. It requires Vulkan 1.0 support and automatically uses features
@@ -1680,18 +1680,18 @@ public object OS : Object() {
     METAL(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RenderingDriver = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderingDriver = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SystemDir(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Refers to the Desktop directory path.
@@ -1727,18 +1727,18 @@ public object OS : Object() {
     RINGTONES(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SystemDir = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SystemDir = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StdHandleType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Standard I/O device is invalid. No data can be received from or sent to these standard I/O
@@ -1767,13 +1767,13 @@ public object OS : Object() {
     UNKNOWN(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StdHandleType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StdHandleType = entries.single { it.`value` == `value` }
     }
   }
 

@@ -337,7 +337,7 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.GET,
     requestData: String = "",
   ): Error {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, STRING to requestData)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.value, STRING to requestData)
     TransferContext.callMethod(ptr, MethodBindings.requestPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -359,7 +359,7 @@ public open class HTTPRequest : Node() {
     method: HTTPClient.Method = HTTPClient.Method.GET,
     requestDataRaw: PackedByteArray = PackedByteArray(),
   ): Error {
-    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.id, PACKED_BYTE_ARRAY to requestDataRaw)
+    TransferContext.writeArguments(STRING to url, PACKED_STRING_ARRAY to customHeaders, LONG to method.value, PACKED_BYTE_ARRAY to requestDataRaw)
     TransferContext.callMethod(ptr, MethodBindings.requestRawPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -508,7 +508,7 @@ public open class HTTPRequest : Node() {
   }
 
   public enum class Result(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Request successful.
@@ -572,13 +572,13 @@ public open class HTTPRequest : Node() {
     TIMEOUT(13),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Result = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Result = entries.single { it.`value` == `value` }
     }
   }
 

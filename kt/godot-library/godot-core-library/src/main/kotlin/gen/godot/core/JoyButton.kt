@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class JoyButton(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * An invalid game controller button.
@@ -123,12 +123,12 @@ public enum class JoyButton(
   MAX(128),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): JoyButton = entries.single { it.id == `value` }
+    public fun from(`value`: Long): JoyButton = entries.single { it.`value` == `value` }
   }
 }

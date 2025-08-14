@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class EulerOrder(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Specifies that Euler angles should be in XYZ order. When composing, the order is X, Y, Z. When
@@ -44,12 +44,12 @@ public enum class EulerOrder(
   ZYX(5),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): EulerOrder = entries.single { it.id == `value` }
+    public fun from(`value`: Long): EulerOrder = entries.single { it.`value` == `value` }
   }
 }

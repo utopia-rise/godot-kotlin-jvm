@@ -523,7 +523,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setProjection(mode: ProjectionType): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProjectionPtr, NIL)
   }
 
@@ -594,7 +594,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setKeepAspectMode(mode: KeepAspect): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setKeepAspectModePtr, NIL)
   }
 
@@ -605,7 +605,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDopplerTrackingPtr, NIL)
   }
 
@@ -676,7 +676,7 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class ProjectionType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
@@ -694,18 +694,18 @@ public open class Camera3D : Node3D() {
     FRUSTUM(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProjectionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProjectionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class KeepAspect(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best
@@ -721,18 +721,18 @@ public open class Camera3D : Node3D() {
     HEIGHT(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): KeepAspect = entries.single { it.id == `value` }
+      public fun from(`value`: Long): KeepAspect = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DopplerTracking(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
@@ -755,13 +755,13 @@ public open class Camera3D : Node3D() {
     PHYSICS_STEP(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DopplerTracking = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }
     }
   }
 

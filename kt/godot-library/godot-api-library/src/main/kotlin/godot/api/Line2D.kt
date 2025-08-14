@@ -430,7 +430,7 @@ public open class Line2D : Node2D() {
   }
 
   public final fun setTextureMode(mode: LineTextureMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureModePtr, NIL)
   }
 
@@ -441,7 +441,7 @@ public open class Line2D : Node2D() {
   }
 
   public final fun setJointMode(mode: LineJointMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setJointModePtr, NIL)
   }
 
@@ -452,7 +452,7 @@ public open class Line2D : Node2D() {
   }
 
   public final fun setBeginCapMode(mode: LineCapMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBeginCapModePtr, NIL)
   }
 
@@ -463,7 +463,7 @@ public open class Line2D : Node2D() {
   }
 
   public final fun setEndCapMode(mode: LineCapMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setEndCapModePtr, NIL)
   }
 
@@ -507,7 +507,7 @@ public open class Line2D : Node2D() {
   }
 
   public enum class LineJointMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the polyline's joints pointy, connecting the sides of the two segments by extending
@@ -527,18 +527,18 @@ public open class Line2D : Node2D() {
     ROUND(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LineJointMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LineJointMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LineCapMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Draws no line cap.
@@ -554,18 +554,18 @@ public open class Line2D : Node2D() {
     ROUND(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LineCapMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LineCapMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LineTextureMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Takes the left pixels of the texture and renders them over the whole polyline.
@@ -584,13 +584,13 @@ public open class Line2D : Node2D() {
     STRETCH(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LineTextureMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LineTextureMode = entries.single { it.`value` == `value` }
     }
   }
 

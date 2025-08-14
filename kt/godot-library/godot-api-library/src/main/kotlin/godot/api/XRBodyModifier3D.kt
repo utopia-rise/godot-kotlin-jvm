@@ -102,7 +102,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.writeArguments(LONG to boneUpdate.value)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
@@ -164,7 +164,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public enum class BoneUpdate(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
@@ -182,13 +182,13 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneUpdate = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }
     }
   }
 

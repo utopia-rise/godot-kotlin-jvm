@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class InlineAlignment(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Aligns the top of the inline object (e.g. image, table) to the position of the text specified
@@ -76,12 +76,12 @@ public enum class InlineAlignment(
   TEXT_MASK(12),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): InlineAlignment = entries.single { it.id == `value` }
+    public fun from(`value`: Long): InlineAlignment = entries.single { it.`value` == `value` }
   }
 }

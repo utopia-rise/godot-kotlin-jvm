@@ -235,7 +235,7 @@ public open class Timer : Node() {
   }
 
   public final fun setTimerProcessCallback(callback: TimerProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to callback.id)
+    TransferContext.writeArguments(LONG to callback.value)
     TransferContext.callMethod(ptr, MethodBindings.setTimerProcessCallbackPtr, NIL)
   }
 
@@ -246,7 +246,7 @@ public open class Timer : Node() {
   }
 
   public enum class TimerProcessCallback(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Update the timer every physics process frame (see
@@ -259,13 +259,14 @@ public open class Timer : Node() {
     IDLE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TimerProcessCallback = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TimerProcessCallback =
+          entries.single { it.`value` == `value` }
     }
   }
 

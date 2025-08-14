@@ -434,7 +434,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun setBakeQuality(bakeQuality: BakeQuality): Unit {
-    TransferContext.writeArguments(LONG to bakeQuality.id)
+    TransferContext.writeArguments(LONG to bakeQuality.value)
     TransferContext.callMethod(ptr, MethodBindings.setBakeQualityPtr, NIL)
   }
 
@@ -467,7 +467,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun setGenerateProbes(subdivision: GenerateProbes): Unit {
-    TransferContext.writeArguments(LONG to subdivision.id)
+    TransferContext.writeArguments(LONG to subdivision.value)
     TransferContext.callMethod(ptr, MethodBindings.setGenerateProbesPtr, NIL)
   }
 
@@ -489,7 +489,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun setEnvironmentMode(mode: EnvironmentMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentModePtr, NIL)
   }
 
@@ -632,7 +632,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public final fun setShadowmaskMode(mode: LightmapGIData.ShadowmaskMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setShadowmaskModePtr, NIL)
   }
 
@@ -665,7 +665,7 @@ public open class LightmapGI : VisualInstance3D() {
   }
 
   public enum class BakeQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Low bake quality (fastest bake times). The quality of this preset can be adjusted by changing
@@ -693,18 +693,18 @@ public open class LightmapGI : VisualInstance3D() {
     ULTRA(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BakeQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BakeQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GenerateProbes(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Don't generate lightmap probes for lighting dynamic objects.
@@ -728,18 +728,18 @@ public open class LightmapGI : VisualInstance3D() {
     SUBDIV_32(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GenerateProbes = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GenerateProbes = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BakeError(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lightmap baking was successful.
@@ -798,18 +798,18 @@ public open class LightmapGI : VisualInstance3D() {
     ATLAS_TOO_SMALL(11),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BakeError = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BakeError = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Ignore environment lighting when baking lightmaps.
@@ -834,13 +834,13 @@ public open class LightmapGI : VisualInstance3D() {
     CUSTOM_COLOR(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentMode = entries.single { it.`value` == `value` }
     }
   }
 

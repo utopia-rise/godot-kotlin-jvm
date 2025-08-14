@@ -120,7 +120,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     normalMap: Boolean = false,
     lossyQuality: Float = 0.8f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.id, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
+    TransferContext.writeArguments(OBJECT to image, LONG to compressionMode.value, BOOL to normalMap, DOUBLE to lossyQuality.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.createFromImagePtr, NIL)
   }
 
@@ -179,7 +179,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public enum class CompressionMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     LOSSLESS(0),
     LOSSY(1),
@@ -189,13 +189,13 @@ public open class PortableCompressedTexture2D : Texture2D() {
     BPTC(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompressionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressionMode = entries.single { it.`value` == `value` }
     }
   }
 

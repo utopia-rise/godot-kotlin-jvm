@@ -48,13 +48,13 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     toHz: Float,
     mode: MagnitudeMode = AudioEffectSpectrumAnalyzerInstance.MagnitudeMode.MAX,
   ): Vector2 {
-    TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.id)
+    TransferContext.writeArguments(DOUBLE to fromHz.toDouble(), DOUBLE to toHz.toDouble(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.getMagnitudeForFrequencyRangePtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   public enum class MagnitudeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the average value across the frequency range as magnitude.
@@ -66,13 +66,13 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     MAX(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MagnitudeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MagnitudeMode = entries.single { it.`value` == `value` }
     }
   }
 

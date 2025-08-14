@@ -188,7 +188,7 @@ public open class LightmapGIData : Resource() {
   ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
 
   public enum class ShadowmaskMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps.
@@ -217,13 +217,13 @@ public open class LightmapGIData : Resource() {
     OVERLAY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowmaskMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowmaskMode = entries.single { it.`value` == `value` }
     }
   }
 

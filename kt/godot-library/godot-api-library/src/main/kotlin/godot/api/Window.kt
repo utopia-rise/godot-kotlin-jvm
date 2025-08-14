@@ -930,7 +930,7 @@ public open class Window : Viewport() {
   }
 
   public final fun setInitialPosition(initialPosition: WindowInitialPosition): Unit {
-    TransferContext.writeArguments(LONG to initialPosition.id)
+    TransferContext.writeArguments(LONG to initialPosition.value)
     TransferContext.callMethod(ptr, MethodBindings.setInitialPositionPtr, NIL)
   }
 
@@ -1037,7 +1037,7 @@ public open class Window : Viewport() {
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -1051,7 +1051,7 @@ public open class Window : Viewport() {
    * Sets a specified window flag.
    */
   public final fun setFlag(flag: Flags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
 
@@ -1059,7 +1059,7 @@ public open class Window : Viewport() {
    * Returns `true` if the [flag] is set.
    */
   public final fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1206,7 +1206,7 @@ public open class Window : Viewport() {
    * edge.
    */
   public final fun startResize(edge: DisplayServer.WindowResizeEdge): Unit {
-    TransferContext.writeArguments(LONG to edge.id)
+    TransferContext.writeArguments(LONG to edge.value)
     TransferContext.callMethod(ptr, MethodBindings.startResizePtr, NIL)
   }
 
@@ -1270,7 +1270,7 @@ public open class Window : Viewport() {
   }
 
   public final fun setContentScaleMode(mode: ContentScaleMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleModePtr, NIL)
   }
 
@@ -1281,7 +1281,7 @@ public open class Window : Viewport() {
   }
 
   public final fun setContentScaleAspect(aspect: ContentScaleAspect): Unit {
-    TransferContext.writeArguments(LONG to aspect.id)
+    TransferContext.writeArguments(LONG to aspect.value)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleAspectPtr, NIL)
   }
 
@@ -1292,7 +1292,7 @@ public open class Window : Viewport() {
   }
 
   public final fun setContentScaleStretch(stretch: ContentScaleStretch): Unit {
-    TransferContext.writeArguments(LONG to stretch.id)
+    TransferContext.writeArguments(LONG to stretch.value)
     TransferContext.callMethod(ptr, MethodBindings.setContentScaleStretchPtr, NIL)
   }
 
@@ -1800,7 +1800,7 @@ public open class Window : Viewport() {
    * certain languages (e.g. Arabic and Hebrew).
    */
   public final fun setLayoutDirection(direction: LayoutDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setLayoutDirectionPtr, NIL)
   }
 
@@ -2240,7 +2240,7 @@ public open class Window : Viewport() {
       hasThemeConstant(name.asCachedStringName(), themeType.asCachedStringName())
 
   public enum class Mode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
@@ -2303,18 +2303,18 @@ public open class Window : Viewport() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
@@ -2393,18 +2393,18 @@ public open class Window : Viewport() {
     MAX(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Flags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Flags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The content will not be scaled to match the [Window]'s size.
@@ -2422,18 +2422,18 @@ public open class Window : Viewport() {
     VIEWPORT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ContentScaleMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleAspect(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The aspect will be ignored. Scaling will simply stretch the content to fit the target size.
@@ -2462,18 +2462,18 @@ public open class Window : Viewport() {
     EXPAND(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ContentScaleAspect = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleAspect = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContentScaleStretch(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The content will be stretched according to a fractional factor. This fills all the space
@@ -2487,18 +2487,18 @@ public open class Window : Viewport() {
     INTEGER(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ContentScaleStretch = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContentScaleStretch = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent window layout direction.
@@ -2527,18 +2527,18 @@ public open class Window : Viewport() {
     LOCALE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LayoutDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowInitialPosition(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Initial window position is determined by [position].
@@ -2567,13 +2567,14 @@ public open class Window : Viewport() {
     CENTER_SCREEN_WITH_KEYBOARD_FOCUS(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WindowInitialPosition = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowInitialPosition =
+          entries.single { it.`value` == `value` }
     }
   }
 

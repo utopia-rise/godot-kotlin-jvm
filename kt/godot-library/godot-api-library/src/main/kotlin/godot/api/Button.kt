@@ -228,7 +228,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.writeArguments(LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
@@ -239,7 +239,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -250,7 +250,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -305,7 +305,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setTextAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextAlignmentPtr, NIL)
   }
 
@@ -316,7 +316,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setIconAlignment(iconAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to iconAlignment.id)
+    TransferContext.writeArguments(LONG to iconAlignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setIconAlignmentPtr, NIL)
   }
 
@@ -327,7 +327,7 @@ public open class Button : BaseButton() {
   }
 
   public final fun setVerticalIconAlignment(verticalIconAlignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to verticalIconAlignment.id)
+    TransferContext.writeArguments(LONG to verticalIconAlignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalIconAlignmentPtr, NIL)
   }
 

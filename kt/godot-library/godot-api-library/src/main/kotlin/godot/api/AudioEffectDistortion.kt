@@ -95,7 +95,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -157,7 +157,7 @@ public open class AudioEffectDistortion : AudioEffect() {
   }
 
   public enum class Mode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Digital distortion effect which cuts off peaks at the top and bottom of the waveform.
@@ -181,13 +181,13 @@ public open class AudioEffectDistortion : AudioEffect() {
     WAVESHAPE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

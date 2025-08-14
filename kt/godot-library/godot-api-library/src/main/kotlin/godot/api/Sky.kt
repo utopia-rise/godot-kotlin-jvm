@@ -73,7 +73,7 @@ public open class Sky : Resource() {
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {
-    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.writeArguments(LONG to size.value)
     TransferContext.callMethod(ptr, MethodBindings.setRadianceSizePtr, NIL)
   }
 
@@ -84,7 +84,7 @@ public open class Sky : Resource() {
   }
 
   public final fun setProcessMode(mode: ProcessMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessModePtr, NIL)
   }
 
@@ -106,7 +106,7 @@ public open class Sky : Resource() {
   }
 
   public enum class RadianceSize(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Radiance texture size is 32×32 pixels.
@@ -142,18 +142,18 @@ public open class Sky : Resource() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RadianceSize = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RadianceSize = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
@@ -190,13 +190,13 @@ public open class Sky : Resource() {
     REALTIME(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProcessMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessMode = entries.single { it.`value` == `value` }
     }
   }
 

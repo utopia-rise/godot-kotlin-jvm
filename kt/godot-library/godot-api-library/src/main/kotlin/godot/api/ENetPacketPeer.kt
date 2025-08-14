@@ -202,7 +202,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
    * Returns the requested [statistic] for this peer. See [PeerStatistic].
    */
   public final fun getStatistic(statistic: PeerStatistic): Double {
-    TransferContext.writeArguments(LONG to statistic.id)
+    TransferContext.writeArguments(LONG to statistic.value)
     TransferContext.callMethod(ptr, MethodBindings.getStatisticPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -236,7 +236,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public enum class PeerState(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The peer is disconnected.
@@ -282,18 +282,18 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     STATE_ZOMBIE(9),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PeerState = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PeerState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PeerStatistic(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Mean packet loss of reliable packets as a ratio with respect to the [PACKET_LOSS_SCALE].
@@ -361,13 +361,13 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
     PACKET_THROTTLE_INTERVAL(13),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PeerStatistic = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PeerStatistic = entries.single { it.`value` == `value` }
     }
   }
 

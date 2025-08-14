@@ -126,7 +126,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
-    TransferContext.writeArguments(LONG to cullMode.id)
+    TransferContext.writeArguments(LONG to cullMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
 
@@ -148,7 +148,7 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public enum class CullMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Culling is disabled. See [cullMode].
@@ -164,13 +164,13 @@ public open class OccluderPolygon2D : Resource() {
     COUNTER_CLOCKWISE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CullMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CullMode = entries.single { it.`value` == `value` }
     }
   }
 

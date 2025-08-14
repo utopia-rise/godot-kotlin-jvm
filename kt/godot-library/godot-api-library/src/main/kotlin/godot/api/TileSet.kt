@@ -229,7 +229,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun setTileShape(shape: TileShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setTileShapePtr, NIL)
   }
 
@@ -240,7 +240,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun setTileLayout(layout: TileLayout): Unit {
-    TransferContext.writeArguments(LONG to layout.id)
+    TransferContext.writeArguments(LONG to layout.value)
     TransferContext.callMethod(ptr, MethodBindings.setTileLayoutPtr, NIL)
   }
 
@@ -251,7 +251,7 @@ public open class TileSet : Resource() {
   }
 
   public final fun setTileOffsetAxis(alignment: TileOffsetAxis): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setTileOffsetAxisPtr, NIL)
   }
 
@@ -506,7 +506,7 @@ public open class TileSet : Resource() {
    * neighboring tiles' terrains.
    */
   public final fun setTerrainSetMode(terrainSet: Int, mode: TerrainMode): Unit {
-    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to terrainSet.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTerrainSetModePtr, NIL)
   }
 
@@ -763,7 +763,7 @@ public open class TileSet : Resource() {
    * Sets the type of the custom data layer identified by the given index.
    */
   public final fun setCustomDataLayerType(layerIndex: Int, layerType: VariantType): Unit {
-    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.id)
+    TransferContext.writeArguments(LONG to layerIndex.toLong(), LONG to layerType.value)
     TransferContext.callMethod(ptr, MethodBindings.setCustomDataLayerTypePtr, NIL)
   }
 
@@ -1006,7 +1006,7 @@ public open class TileSet : Resource() {
   }
 
   public enum class TileShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Rectangular tile shape.
@@ -1028,18 +1028,18 @@ public open class TileSet : Resource() {
     HEXAGON(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TileShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TileLayout(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Tile coordinates layout where both axis stay consistent with their respective local
@@ -1072,18 +1072,18 @@ public open class TileSet : Resource() {
     DIAMOND_DOWN(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TileLayout = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileLayout = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TileOffsetAxis(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Horizontal half-offset.
@@ -1095,18 +1095,18 @@ public open class TileSet : Resource() {
     VERTICAL(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TileOffsetAxis = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TileOffsetAxis = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CellNeighbor(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Neighbor on the right side.
@@ -1174,18 +1174,18 @@ public open class TileSet : Resource() {
     TOP_RIGHT_CORNER(15),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CellNeighbor = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CellNeighbor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TerrainMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Requires both corners and side to match with neighboring tiles' terrains.
@@ -1201,13 +1201,13 @@ public open class TileSet : Resource() {
     MATCH_SIDES(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TerrainMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TerrainMode = entries.single { it.`value` == `value` }
     }
   }
 

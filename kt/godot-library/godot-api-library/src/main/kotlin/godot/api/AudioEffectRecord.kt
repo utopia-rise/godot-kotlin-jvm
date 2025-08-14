@@ -72,7 +72,7 @@ public open class AudioEffectRecord : AudioEffect() {
   }
 
   public final fun setFormat(format: AudioStreamWAV.Format): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 

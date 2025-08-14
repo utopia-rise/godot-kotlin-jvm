@@ -116,7 +116,7 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public enum class BoneAxis(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
@@ -144,13 +144,13 @@ public open class SkeletonModifier3D : Node3D() {
     MINUS_Z(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneAxis = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneAxis = entries.single { it.`value` == `value` }
     }
   }
 

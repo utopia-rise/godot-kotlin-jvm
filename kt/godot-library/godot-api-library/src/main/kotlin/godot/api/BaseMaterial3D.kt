@@ -1834,7 +1834,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setTransparency(transparency: Transparency): Unit {
-    TransferContext.writeArguments(LONG to transparency.id)
+    TransferContext.writeArguments(LONG to transparency.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransparencyPtr, NIL)
   }
 
@@ -1845,7 +1845,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setAlphaAntialiasing(alphaAa: AlphaAntiAliasing): Unit {
-    TransferContext.writeArguments(LONG to alphaAa.id)
+    TransferContext.writeArguments(LONG to alphaAa.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
@@ -1867,7 +1867,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setShadingMode(shadingMode: ShadingMode): Unit {
-    TransferContext.writeArguments(LONG to shadingMode.id)
+    TransferContext.writeArguments(LONG to shadingMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setShadingModePtr, NIL)
   }
 
@@ -2098,7 +2098,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setDetailUv(detailUv: DetailUV): Unit {
-    TransferContext.writeArguments(LONG to detailUv.id)
+    TransferContext.writeArguments(LONG to detailUv.value)
     TransferContext.callMethod(ptr, MethodBindings.setDetailUvPtr, NIL)
   }
 
@@ -2109,7 +2109,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to blendMode.id)
+    TransferContext.writeArguments(LONG to blendMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
 
@@ -2120,7 +2120,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setDepthDrawMode(depthDrawMode: DepthDrawMode): Unit {
-    TransferContext.writeArguments(LONG to depthDrawMode.id)
+    TransferContext.writeArguments(LONG to depthDrawMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDepthDrawModePtr, NIL)
   }
 
@@ -2131,7 +2131,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setCullMode(cullMode: CullMode): Unit {
-    TransferContext.writeArguments(LONG to cullMode.id)
+    TransferContext.writeArguments(LONG to cullMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
 
@@ -2142,7 +2142,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setDiffuseMode(diffuseMode: DiffuseMode): Unit {
-    TransferContext.writeArguments(LONG to diffuseMode.id)
+    TransferContext.writeArguments(LONG to diffuseMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDiffuseModePtr, NIL)
   }
 
@@ -2153,7 +2153,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setSpecularMode(specularMode: SpecularMode): Unit {
-    TransferContext.writeArguments(LONG to specularMode.id)
+    TransferContext.writeArguments(LONG to specularMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSpecularModePtr, NIL)
   }
 
@@ -2170,7 +2170,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * setting the corresponding member to `true`. See [Flags] enumerator for options.
    */
   public final fun setFlag(flag: Flags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enable)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
 
@@ -2178,13 +2178,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Returns `true`, if the specified flag is enabled. See [Flags] enumerator for options.
    */
   public final fun getFlag(flag: Flags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setTextureFilter(mode: TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
@@ -2201,7 +2201,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * `true`.
    */
   public final fun setFeature(feature: Feature, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to feature.id, BOOL to enable)
+    TransferContext.writeArguments(LONG to feature.value, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFeaturePtr, NIL)
   }
 
@@ -2209,7 +2209,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Returns `true`, if the specified [Feature] is enabled.
    */
   public final fun getFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.getFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2218,7 +2218,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
    */
   public final fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
+    TransferContext.writeArguments(LONG to param.value, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
@@ -2226,13 +2226,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * Returns the [Texture2D] associated with the specified [TextureParam].
    */
   public final fun getTexture(`param`: TextureParam): Texture2D? {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
   public final fun setDetailBlendMode(detailBlendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to detailBlendMode.id)
+    TransferContext.writeArguments(LONG to detailBlendMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDetailBlendModePtr, NIL)
   }
 
@@ -2309,7 +2309,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setBillboardMode(mode: BillboardMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardModePtr, NIL)
   }
 
@@ -2419,7 +2419,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setEmissionOperator(`operator`: EmissionOperator): Unit {
-    TransferContext.writeArguments(LONG to `operator`.id)
+    TransferContext.writeArguments(LONG to `operator`.value)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionOperatorPtr, NIL)
   }
 
@@ -2474,7 +2474,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setMetallicTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.writeArguments(LONG to channel.value)
     TransferContext.callMethod(ptr, MethodBindings.setMetallicTextureChannelPtr, NIL)
   }
 
@@ -2485,7 +2485,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setRoughnessTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.writeArguments(LONG to channel.value)
     TransferContext.callMethod(ptr, MethodBindings.setRoughnessTextureChannelPtr, NIL)
   }
 
@@ -2496,7 +2496,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setAoTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.writeArguments(LONG to channel.value)
     TransferContext.callMethod(ptr, MethodBindings.setAoTextureChannelPtr, NIL)
   }
 
@@ -2507,7 +2507,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setRefractionTextureChannel(channel: TextureChannel): Unit {
-    TransferContext.writeArguments(LONG to channel.id)
+    TransferContext.writeArguments(LONG to channel.value)
     TransferContext.callMethod(ptr, MethodBindings.setRefractionTextureChannelPtr, NIL)
   }
 
@@ -2562,7 +2562,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public final fun setDistanceFade(mode: DistanceFadeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadePtr, NIL)
   }
 
@@ -2609,7 +2609,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public enum class TextureParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Texture specifying per-pixel color.
@@ -2689,18 +2689,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(18),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
@@ -2752,18 +2752,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DetailUV(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use `UV` with the detail texture.
@@ -2775,18 +2775,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DETAIL_UV_2(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DetailUV = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DetailUV = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Transparency(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The material will not use transparency. This is the fastest to render.
@@ -2821,18 +2821,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Transparency = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Transparency = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShadingMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The object will not receive shadows. This is the fastest to render, but it disables all
@@ -2854,18 +2854,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadingMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Feature(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for setting [emissionEnabled].
@@ -2921,18 +2921,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(12),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Default blend mode. The color of the object is blended over the background based on the
@@ -2961,18 +2961,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PREMULT_ALPHA(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaAntiAliasing(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables Alpha AntiAliasing for the material.
@@ -2990,18 +2990,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     ANTIALIASING_ALPHA_TO_COVERAGE_AND_TO_ONE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlphaAntiAliasing = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlphaAntiAliasing = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DepthDrawMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Default depth draw mode. Depth is drawn only for opaque objects during the opaque prepass (if
@@ -3023,18 +3023,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DepthDrawMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DepthDrawMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CullMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Default cull mode. The back of the object is culled when not visible. Back face triangles
@@ -3054,18 +3054,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CullMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CullMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables the depth test, so this object is drawn on top of all others drawn before it. This
@@ -3175,18 +3175,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MAX(22),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Flags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Flags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DiffuseMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Default diffuse scattering algorithm.
@@ -3206,18 +3206,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     TOON(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DiffuseMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DiffuseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpecularMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Default specular blob.
@@ -3233,18 +3233,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     DISABLED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpecularMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpecularMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BillboardMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Billboard mode is disabled.
@@ -3268,18 +3268,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     PARTICLES(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BillboardMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BillboardMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureChannel(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Used to read from the red channel of a texture.
@@ -3304,18 +3304,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     GRAYSCALE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureChannel = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureChannel = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionOperator(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Adds the emission color to the color from the emission texture.
@@ -3327,18 +3327,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     MULTIPLY(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EmissionOperator = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmissionOperator = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DistanceFadeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use distance fade.
@@ -3364,13 +3364,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
     OBJECT_DITHER(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DistanceFadeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DistanceFadeMode = entries.single { it.`value` == `value` }
     }
   }
 

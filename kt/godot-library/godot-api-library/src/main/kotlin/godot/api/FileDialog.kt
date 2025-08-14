@@ -475,7 +475,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public final fun setFileMode(mode: FileMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFileModePtr, NIL)
   }
 
@@ -513,7 +513,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public final fun setAccess(access: Access): Unit {
-    TransferContext.writeArguments(LONG to access.id)
+    TransferContext.writeArguments(LONG to access.value)
     TransferContext.callMethod(ptr, MethodBindings.setAccessPtr, NIL)
   }
 
@@ -575,7 +575,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   public enum class FileMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The dialog allows selecting one, and only one file.
@@ -599,18 +599,18 @@ public open class FileDialog : ConfirmationDialog() {
     SAVE_FILE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FileMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FileMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Access(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The dialog only allows accessing files under the [Resource] path (`res://`).
@@ -626,13 +626,13 @@ public open class FileDialog : ConfirmationDialog() {
     FILESYSTEM(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Access = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Access = entries.single { it.`value` == `value` }
     }
   }
 

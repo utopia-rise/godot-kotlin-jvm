@@ -95,7 +95,7 @@ public open class FlowContainer : Container() {
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
 
@@ -106,7 +106,7 @@ public open class FlowContainer : Container() {
   }
 
   public final fun setLastWrapAlignment(lastWrapAlignment: LastWrapAlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to lastWrapAlignment.id)
+    TransferContext.writeArguments(LONG to lastWrapAlignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setLastWrapAlignmentPtr, NIL)
   }
 
@@ -139,7 +139,7 @@ public open class FlowContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if
@@ -157,18 +157,18 @@ public open class FlowContainer : Container() {
     END(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LastWrapAlignmentMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The last partially filled row or column will wrap aligned to the previous row or column in
@@ -192,13 +192,14 @@ public open class FlowContainer : Container() {
     END(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LastWrapAlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LastWrapAlignmentMode =
+          entries.single { it.`value` == `value` }
     }
   }
 

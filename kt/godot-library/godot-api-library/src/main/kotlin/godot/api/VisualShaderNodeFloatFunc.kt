@@ -40,7 +40,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.writeArguments(LONG to func.value)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Returns the sine of the parameter. Translates to `sin(x)` in the Godot Shader Language.
@@ -210,13 +210,13 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
     MAX(32),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Function = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 

@@ -248,7 +248,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   ): Error = rpc(peer, `object`, method.asCachedStringName(), arguments)
 
   public enum class RPCMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Used with [Node.rpcConfig] to disable a method or property for all RPC calls, making it
@@ -269,13 +269,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     AUTHORITY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RPCMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RPCMode = entries.single { it.`value` == `value` }
     }
   }
 

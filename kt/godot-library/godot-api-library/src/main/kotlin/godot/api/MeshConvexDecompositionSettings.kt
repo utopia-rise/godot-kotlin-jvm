@@ -278,7 +278,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -322,7 +322,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public enum class Mode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for voxel-based approximate convex decomposition.
@@ -334,13 +334,13 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     CONVEX_DECOMPOSITION_TETRAHEDRON(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

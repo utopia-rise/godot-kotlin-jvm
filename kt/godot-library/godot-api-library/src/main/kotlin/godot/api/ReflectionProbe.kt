@@ -377,7 +377,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun setAmbientMode(ambient: AmbientMode): Unit {
-    TransferContext.writeArguments(LONG to ambient.id)
+    TransferContext.writeArguments(LONG to ambient.value)
     TransferContext.callMethod(ptr, MethodBindings.setAmbientModePtr, NIL)
   }
 
@@ -509,7 +509,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
@@ -520,7 +520,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public enum class UpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding
@@ -540,18 +540,18 @@ public open class ReflectionProbe : VisualInstance3D() {
     ALWAYS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AmbientMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
@@ -569,13 +569,13 @@ public open class ReflectionProbe : VisualInstance3D() {
     COLOR(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AmbientMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AmbientMode = entries.single { it.`value` == `value` }
     }
   }
 

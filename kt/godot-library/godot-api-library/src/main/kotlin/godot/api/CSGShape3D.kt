@@ -157,7 +157,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public final fun setOperation(operation: Operation): Unit {
-    TransferContext.writeArguments(LONG to operation.id)
+    TransferContext.writeArguments(LONG to operation.value)
     TransferContext.callMethod(ptr, MethodBindings.setOperationPtr, NIL)
   }
 
@@ -307,7 +307,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public enum class Operation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Geometry of both primitives is merged, intersecting geometry is removed.
@@ -323,13 +323,13 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     SUBTRACTION(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Operation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Operation = entries.single { it.`value` == `value` }
     }
   }
 

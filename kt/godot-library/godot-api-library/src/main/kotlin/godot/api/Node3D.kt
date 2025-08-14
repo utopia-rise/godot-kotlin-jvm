@@ -690,7 +690,7 @@ public open class Node3D : Node() {
   }
 
   public final fun setRotationOrder(order: EulerOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
+    TransferContext.writeArguments(LONG to order.value)
     TransferContext.callMethod(ptr, MethodBindings.setRotationOrderPtr, NIL)
   }
 
@@ -701,7 +701,7 @@ public open class Node3D : Node() {
   }
 
   public final fun setRotationEditMode(editMode: RotationEditMode): Unit {
-    TransferContext.writeArguments(LONG to editMode.id)
+    TransferContext.writeArguments(LONG to editMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setRotationEditModePtr, NIL)
   }
 
@@ -1219,7 +1219,7 @@ public open class Node3D : Node() {
   public final fun setVisibilityParent(path: String) = setVisibilityParent(path.asCachedNodePath())
 
   public enum class RotationEditMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The rotation is edited using [Vector3] Euler angles.
@@ -1235,13 +1235,13 @@ public open class Node3D : Node() {
     BASIS(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RotationEditMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RotationEditMode = entries.single { it.`value` == `value` }
     }
   }
 

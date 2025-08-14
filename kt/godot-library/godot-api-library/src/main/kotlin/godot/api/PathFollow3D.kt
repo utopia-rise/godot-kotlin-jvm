@@ -205,7 +205,7 @@ public open class PathFollow3D : Node3D() {
   }
 
   public final fun setRotationMode(rotationMode: RotationMode): Unit {
-    TransferContext.writeArguments(LONG to rotationMode.id)
+    TransferContext.writeArguments(LONG to rotationMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setRotationModePtr, NIL)
   }
 
@@ -260,7 +260,7 @@ public open class PathFollow3D : Node3D() {
   }
 
   public enum class RotationMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Forbids the PathFollow3D to rotate.
@@ -285,13 +285,13 @@ public open class PathFollow3D : Node3D() {
     ORIENTED(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RotationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RotationMode = entries.single { it.`value` == `value` }
     }
   }
 
@@ -303,7 +303,7 @@ public open class PathFollow3D : Node3D() {
     @JvmStatic
     public final fun correctPosture(transform: Transform3D, rotationMode: RotationMode):
         Transform3D {
-      TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.id)
+      TransferContext.writeArguments(TRANSFORM3D to transform, LONG to rotationMode.value)
       TransferContext.callMethod(0, MethodBindings.correctPosturePtr, TRANSFORM3D)
       return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
     }

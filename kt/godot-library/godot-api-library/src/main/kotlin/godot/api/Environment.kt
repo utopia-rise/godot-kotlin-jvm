@@ -1480,7 +1480,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setBackground(mode: BGMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBackgroundPtr, NIL)
   }
 
@@ -1590,7 +1590,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setAmbientSource(source: AmbientSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.writeArguments(LONG to source.value)
     TransferContext.callMethod(ptr, MethodBindings.setAmbientSourcePtr, NIL)
   }
 
@@ -1623,7 +1623,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setReflectionSource(source: ReflectionSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.writeArguments(LONG to source.value)
     TransferContext.callMethod(ptr, MethodBindings.setReflectionSourcePtr, NIL)
   }
 
@@ -1634,7 +1634,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setTonemapper(mode: ToneMapper): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTonemapperPtr, NIL)
   }
 
@@ -1931,7 +1931,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setSdfgiYScale(scale: SDFGIYScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
+    TransferContext.writeArguments(LONG to scale.value)
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiYScalePtr, NIL)
   }
 
@@ -2093,7 +2093,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setGlowBlendMode(mode: GlowBlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setGlowBlendModePtr, NIL)
   }
 
@@ -2170,7 +2170,7 @@ public open class Environment : Resource() {
   }
 
   public final fun setFogMode(mode: FogMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFogModePtr, NIL)
   }
 
@@ -2505,7 +2505,7 @@ public open class Environment : Resource() {
   }
 
   public enum class BGMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Clears the background using the clear color defined in
@@ -2541,18 +2541,18 @@ public open class Environment : Resource() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BGMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BGMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AmbientSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
@@ -2573,18 +2573,18 @@ public open class Environment : Resource() {
     SKY(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AmbientSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AmbientSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ReflectionSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the background for reflections.
@@ -2600,18 +2600,18 @@ public open class Environment : Resource() {
     SKY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ReflectionSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ReflectionSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ToneMapper(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
@@ -2649,18 +2649,18 @@ public open class Environment : Resource() {
     AGX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ToneMapper = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ToneMapper = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GlowBlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
@@ -2689,18 +2689,18 @@ public open class Environment : Resource() {
     MIX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GlowBlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GlowBlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FogMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
@@ -2713,18 +2713,18 @@ public open class Environment : Resource() {
     DEPTH(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FogMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SDFGIYScale(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
@@ -2746,13 +2746,13 @@ public open class Environment : Resource() {
     Y_SCALE_100_PERCENT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SDFGIYScale = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFGIYScale = entries.single { it.`value` == `value` }
     }
   }
 

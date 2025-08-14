@@ -108,7 +108,7 @@ public open class RDShaderSource : RefCounted() {
    * remove the Godot-specific hint `#[compute]`.
    */
   public final fun setStageSource(stage: RenderingDevice.ShaderStage, source: String): Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to source)
+    TransferContext.writeArguments(LONG to stage.value, STRING to source)
     TransferContext.callMethod(ptr, MethodBindings.setStageSourcePtr, NIL)
   }
 
@@ -118,13 +118,13 @@ public open class RDShaderSource : RefCounted() {
    * [sourceVertex].
    */
   public final fun getStageSource(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.writeArguments(LONG to stage.value)
     TransferContext.callMethod(ptr, MethodBindings.getStageSourcePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
   public final fun setLanguage(language: RenderingDevice.ShaderLanguage): Unit {
-    TransferContext.writeArguments(LONG to language.id)
+    TransferContext.writeArguments(LONG to language.value)
     TransferContext.callMethod(ptr, MethodBindings.setLanguagePtr, NIL)
   }
 

@@ -159,7 +159,7 @@ public open class MenuBar : Control() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 

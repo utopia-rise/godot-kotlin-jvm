@@ -169,7 +169,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * Sets the end bone tail direction of the bone chain when [isEndBoneExtended] is `true`.
    */
   public final fun setEndBoneDirection(index: Int, boneDirection: BoneDirection): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to boneDirection.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to boneDirection.value)
     TransferContext.callMethod(ptr, MethodBindings.setEndBoneDirectionPtr, NIL)
   }
 
@@ -211,7 +211,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * In this case, only a change in the bone pose is considered to be a bone movement.
    */
   public final fun setCenterFrom(index: Int, centerFrom: CenterFrom): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to centerFrom.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to centerFrom.value)
     TransferContext.callMethod(ptr, MethodBindings.setCenterFromPtr, NIL)
   }
 
@@ -305,7 +305,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
    * rotation since [SpringBoneSimulator3D] does not factor in twisting forces.
    */
   public final fun setRotationAxis(index: Int, axis: RotationAxis): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setRotationAxisPtr, NIL)
   }
 
@@ -536,7 +536,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     joint: Int,
     axis: RotationAxis,
   ): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), LONG to axis.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to joint.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setJointRotationAxisPtr, NIL)
   }
 
@@ -831,7 +831,7 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
   ) = setCollisionPath(index, collision, nodePath.asCachedNodePath())
 
   public enum class BoneDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
@@ -863,18 +863,18 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     FROM_PARENT(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CenterFrom(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The world origin is defined as center.
@@ -895,18 +895,18 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     BONE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CenterFrom = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CenterFrom = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RotationAxis(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Enumerated value for the rotation of the X axis.
@@ -926,13 +926,13 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
     ALL(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RotationAxis = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RotationAxis = entries.single { it.`value` == `value` }
     }
   }
 

@@ -35,11 +35,11 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
 
         primaryConstructor(
             FunSpec.constructorBuilder()
-                .addParameter("id", Long::class)
-                .addStatement("this.%N = %N", "id", "id")
+                .addParameter("value", Long::class)
+                .addStatement("this.%N = %N", "value", "value")
                 .build()
         )
-        addProperty("id", Long::class, KModifier.OVERRIDE)
+        addProperty("value", Long::class, KModifier.OVERRIDE)
 
         for (value in enum.values) {
             val valueName = value.name
@@ -59,7 +59,7 @@ class EnumRule : GodotApiRule<EnrichedEnumTask>() {
                 FunSpec.builder("from")
                     .returns(enum.className)
                     .addParameter("value", Long::class)
-                    .addStatement("return·entries.single·{·it.%N·==·%N·}", "id", "value")
+                    .addStatement("return·entries.single·{·it.%N·==·%N·}", "value", "value")
                     .build()
             )
             .build()

@@ -326,7 +326,7 @@ public open class SceneMultiplayer : MultiplayerAPI() {
     mode: MultiplayerPeer.TransferMode = MultiplayerPeer.TransferMode.RELIABLE,
     channel: Int = 0,
   ): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.id, LONG to channel.toLong())
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to bytes, LONG to id.toLong(), LONG to mode.value, LONG to channel.toLong())
     TransferContext.callMethod(ptr, MethodBindings.sendBytesPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

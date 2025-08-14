@@ -278,7 +278,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun setTransformFormat(format: TransformFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransformFormatPtr, NIL)
   }
 
@@ -311,7 +311,7 @@ public open class MultiMesh : Resource() {
   }
 
   public final fun setPhysicsInterpolationQuality(quality: PhysicsInterpolationQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsInterpolationQualityPtr, NIL)
   }
 
@@ -468,7 +468,7 @@ public open class MultiMesh : Resource() {
   }
 
   public enum class TransformFormat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use this when using 2D transforms.
@@ -480,18 +480,18 @@ public open class MultiMesh : Resource() {
     TRANSFORM_3D(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TransformFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransformFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PhysicsInterpolationQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Always interpolate using Basis lerping, which can produce warping artifacts in some
@@ -505,14 +505,14 @@ public open class MultiMesh : Resource() {
     INTERP_QUALITY_HIGH(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): PhysicsInterpolationQuality =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 

@@ -398,7 +398,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun setShadowFilter(filter: ShadowFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.setShadowFilterPtr, NIL)
   }
 
@@ -420,7 +420,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
 
@@ -450,7 +450,7 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   public enum class ShadowFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
@@ -469,18 +469,18 @@ public open class Light2D internal constructor() : Node2D() {
     PCF13(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
@@ -499,13 +499,13 @@ public open class Light2D internal constructor() : Node2D() {
     MIX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 

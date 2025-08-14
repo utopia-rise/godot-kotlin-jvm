@@ -112,7 +112,7 @@ public open class TreeItem internal constructor() : Object() {
    * edited. See [TreeCellMode] constants for details.
    */
   public final fun setCellMode(column: Int, mode: TreeCellMode): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCellModePtr, NIL)
   }
 
@@ -132,7 +132,7 @@ public open class TreeItem internal constructor() : Object() {
    * translate mode as the [Tree] itself.
    */
   public final fun setAutoTranslateMode(column: Int, mode: Node.AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTranslateModePtr, NIL)
   }
 
@@ -236,7 +236,7 @@ public open class TreeItem internal constructor() : Object() {
    * Sets item's text base writing direction.
    */
   public final fun setTextDirection(column: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -254,7 +254,7 @@ public open class TreeItem internal constructor() : Object() {
    * [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the cell's bounding rectangle.
    */
   public final fun setAutowrapMode(column: Int, autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -274,7 +274,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setTextOverrunBehavior(column: Int, overrunBehavior: TextServer.OverrunBehavior):
       Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
@@ -293,7 +293,7 @@ public open class TreeItem internal constructor() : Object() {
    */
   public final fun setStructuredTextBidiOverride(column: Int,
       parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -954,7 +954,7 @@ public open class TreeItem internal constructor() : Object() {
    * Sets the given column's text alignment. See [HorizontalAlignment] for possible values.
    */
   public final fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextAlignmentPtr, NIL)
   }
 
@@ -1220,7 +1220,7 @@ public open class TreeItem internal constructor() : Object() {
       callRecursive(method.asCachedStringName(), )
 
   public enum class TreeCellMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Cell shows a string label, optionally with an icon. When editable, the text can be edited
@@ -1257,13 +1257,13 @@ public open class TreeItem internal constructor() : Object() {
     CELL_MODE_CUSTOM(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TreeCellMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TreeCellMode = entries.single { it.`value` == `value` }
     }
   }
 

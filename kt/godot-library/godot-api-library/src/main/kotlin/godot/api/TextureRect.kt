@@ -101,7 +101,7 @@ public open class TextureRect : Control() {
   }
 
   public final fun setExpandMode(expandMode: ExpandMode): Unit {
-    TransferContext.writeArguments(LONG to expandMode.id)
+    TransferContext.writeArguments(LONG to expandMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setExpandModePtr, NIL)
   }
 
@@ -134,7 +134,7 @@ public open class TextureRect : Control() {
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to stretchMode.id)
+    TransferContext.writeArguments(LONG to stretchMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
   }
 
@@ -145,7 +145,7 @@ public open class TextureRect : Control() {
   }
 
   public enum class ExpandMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum size will be equal to texture size, i.e. [TextureRect] can't be smaller than the
@@ -177,18 +177,18 @@ public open class TextureRect : Control() {
     FIT_HEIGHT_PROPORTIONAL(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ExpandMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ExpandMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StretchMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Scale to fit the node's bounding rectangle.
@@ -223,13 +223,13 @@ public open class TextureRect : Control() {
     KEEP_ASPECT_COVERED(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StretchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }
     }
   }
 

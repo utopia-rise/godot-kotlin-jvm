@@ -271,7 +271,7 @@ public open class XRPose : RefCounted() {
   }
 
   public final fun setTrackingConfidence(trackingConfidence: TrackingConfidence): Unit {
-    TransferContext.writeArguments(LONG to trackingConfidence.id)
+    TransferContext.writeArguments(LONG to trackingConfidence.value)
     TransferContext.callMethod(ptr, MethodBindings.setTrackingConfidencePtr, NIL)
   }
 
@@ -284,7 +284,7 @@ public open class XRPose : RefCounted() {
   public final fun setName(name: String) = setName(name.asCachedStringName())
 
   public enum class TrackingConfidence(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No tracking information is available for this pose.
@@ -301,13 +301,13 @@ public open class XRPose : RefCounted() {
     XR_HIGH(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TrackingConfidence = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackingConfidence = entries.single { it.`value` == `value` }
     }
   }
 

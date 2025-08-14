@@ -252,7 +252,7 @@ public object XRServer : Object() {
    */
   @JvmStatic
   public final fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
-    TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
+    TransferContext.writeArguments(LONG to rotationMode.value, BOOL to keepHeight)
     TransferContext.callMethod(ptr, MethodBindings.centerOnHmdPtr, NIL)
   }
 
@@ -400,7 +400,7 @@ public object XRServer : Object() {
       getTracker(trackerName.asCachedStringName())
 
   public enum class TrackerType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The tracker tracks the location of the players head. This is usually a location centered
@@ -446,18 +446,18 @@ public object XRServer : Object() {
     ANY(255),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TrackerType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackerType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RotationMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to
@@ -475,13 +475,13 @@ public object XRServer : Object() {
     DONT_RESET_ROTATION(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RotationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RotationMode = entries.single { it.`value` == `value` }
     }
   }
 

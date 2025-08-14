@@ -65,7 +65,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.writeArguments(LONG to value.value)
     TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
 
@@ -87,7 +87,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public final fun setTextureType(`value`: TextureType): Unit {
-    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.writeArguments(LONG to value.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
@@ -98,7 +98,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public enum class Source(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the texture given as an argument for this function.
@@ -141,18 +141,18 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     MAX(8),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Source = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Source = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
@@ -173,13 +173,13 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     TYPE_MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 

@@ -1195,7 +1195,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
+    TransferContext.writeArguments(LONG to order.value)
     TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
   }
 
@@ -1254,7 +1254,7 @@ public open class CPUParticles2D : Node2D() {
    * Sets the minimum value for the given parameter.
    */
   public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMinPtr, NIL)
   }
 
@@ -1262,7 +1262,7 @@ public open class CPUParticles2D : Node2D() {
    * Returns the minimum value range for the given parameter.
    */
   public final fun getParamMin(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1271,7 +1271,7 @@ public open class CPUParticles2D : Node2D() {
    * Sets the maximum value for the given parameter.
    */
   public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMaxPtr, NIL)
   }
 
@@ -1279,7 +1279,7 @@ public open class CPUParticles2D : Node2D() {
    * Returns the maximum value range for the given parameter.
    */
   public final fun getParamMax(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1288,7 +1288,7 @@ public open class CPUParticles2D : Node2D() {
    * Sets the [Curve] of the parameter specified by [Parameter]. Should be a unit [Curve].
    */
   public final fun setParamCurve(`param`: Parameter, curve: Curve?): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to curve)
+    TransferContext.writeArguments(LONG to param.value, OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setParamCurvePtr, NIL)
   }
 
@@ -1296,7 +1296,7 @@ public open class CPUParticles2D : Node2D() {
    * Returns the [Curve] of the parameter specified by [Parameter].
    */
   public final fun getParamCurve(`param`: Parameter): Curve? {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamCurvePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
@@ -1338,7 +1338,7 @@ public open class CPUParticles2D : Node2D() {
    * Enables or disables the given flag (see [ParticleFlags] for options).
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
+    TransferContext.writeArguments(LONG to particleFlag.value, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setParticleFlagPtr, NIL)
   }
 
@@ -1346,13 +1346,13 @@ public open class CPUParticles2D : Node2D() {
    * Returns the enabled state of the given particle flag (see [ParticleFlags] for options).
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
-    TransferContext.writeArguments(LONG to particleFlag.id)
+    TransferContext.writeArguments(LONG to particleFlag.value)
     TransferContext.callMethod(ptr, MethodBindings.getParticleFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapePtr, NIL)
   }
 
@@ -1471,7 +1471,7 @@ public open class CPUParticles2D : Node2D() {
   }
 
   public enum class DrawOrder(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
@@ -1484,18 +1484,18 @@ public open class CPUParticles2D : Node2D() {
     LIFETIME(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DrawOrder = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Parameter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamCurve] to set initial velocity
@@ -1558,18 +1558,18 @@ public open class CPUParticles2D : Node2D() {
     MAX(12),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Parameter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Parameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticleFlags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
@@ -1589,18 +1589,18 @@ public open class CPUParticles2D : Node2D() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticleFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticleFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
@@ -1635,13 +1635,13 @@ public open class CPUParticles2D : Node2D() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EmissionShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmissionShape = entries.single { it.`value` == `value` }
     }
   }
 

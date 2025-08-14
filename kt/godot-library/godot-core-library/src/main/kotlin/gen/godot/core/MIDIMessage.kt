@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class MIDIMessage(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Does not correspond to any MIDI message. This is the default value of [InputEventMIDI.message].
@@ -115,12 +115,12 @@ public enum class MIDIMessage(
   SYSTEM_RESET(255),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): MIDIMessage = entries.single { it.id == `value` }
+    public fun from(`value`: Long): MIDIMessage = entries.single { it.`value` == `value` }
   }
 }

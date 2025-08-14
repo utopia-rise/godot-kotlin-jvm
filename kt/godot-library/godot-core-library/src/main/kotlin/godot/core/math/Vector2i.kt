@@ -25,7 +25,7 @@ class Vector2i(
         }
 
     //CONSTANTS
-    enum class Axis(val id: Long) {
+    enum class Axis(override val value: Long): GodotEnum {
         X(0L),
         Y(1L);
 

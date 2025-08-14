@@ -707,7 +707,7 @@ public open class TextEdit : Control() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -729,7 +729,7 @@ public open class TextEdit : Control() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -1132,7 +1132,7 @@ public open class TextEdit : Control() {
    * [startAction] and [endAction] calls.
    */
   public final fun startAction(action: EditAction): Unit {
-    TransferContext.writeArguments(LONG to action.id)
+    TransferContext.writeArguments(LONG to action.value)
     TransferContext.callMethod(ptr, MethodBindings.startActionPtr, NIL)
   }
 
@@ -1390,7 +1390,7 @@ public open class TextEdit : Control() {
   }
 
   public final fun setCaretType(type: CaretType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setCaretTypePtr, NIL)
   }
 
@@ -1801,7 +1801,7 @@ public open class TextEdit : Control() {
    * Sets the current selection mode.
    */
   public final fun setSelectionMode(mode: SelectionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSelectionModePtr, NIL)
   }
 
@@ -2052,7 +2052,7 @@ public open class TextEdit : Control() {
   }
 
   public final fun setLineWrappingMode(mode: LineWrappingMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLineWrappingModePtr, NIL)
   }
 
@@ -2063,7 +2063,7 @@ public open class TextEdit : Control() {
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -2401,7 +2401,7 @@ public open class TextEdit : Control() {
    * See [TextEdit.GutterType] for options.
    */
   public final fun setGutterType(gutter: Int, type: GutterType): Unit {
-    TransferContext.writeArguments(LONG to gutter.toLong(), LONG to type.id)
+    TransferContext.writeArguments(LONG to gutter.toLong(), LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setGutterTypePtr, NIL)
   }
 
@@ -2832,7 +2832,7 @@ public open class TextEdit : Control() {
   }
 
   public enum class MenuItems(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
@@ -2964,18 +2964,18 @@ public open class TextEdit : Control() {
     MAX(31),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EditAction(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No current action.
@@ -2995,18 +2995,18 @@ public open class TextEdit : Control() {
     ACTION_DELETE(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EditAction = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EditAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SearchFlags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Match case when searching.
@@ -3022,18 +3022,18 @@ public open class TextEdit : Control() {
     BACKWARDS(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SearchFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SearchFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CaretType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Vertical line caret.
@@ -3045,18 +3045,18 @@ public open class TextEdit : Control() {
     BLOCK(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CaretType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CaretType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SelectionMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Not selecting.
@@ -3080,18 +3080,18 @@ public open class TextEdit : Control() {
     LINE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SelectionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LineWrappingMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Line wrapping is disabled.
@@ -3103,18 +3103,18 @@ public open class TextEdit : Control() {
     BOUNDARY(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LineWrappingMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LineWrappingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GutterType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * When a gutter is set to string using [setGutterType], it is used to contain text set via the
@@ -3133,13 +3133,13 @@ public open class TextEdit : Control() {
     CUSTOM(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GutterType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GutterType = entries.single { it.`value` == `value` }
     }
   }
 

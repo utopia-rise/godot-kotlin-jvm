@@ -254,7 +254,7 @@ public open class SkeletonProfile : Resource() {
    * be stored in an external skeleton, so the calculation itself needs to be done externally.
    */
   public final fun setTailDirection(boneIdx: Int, tailDirection: TailDirection): Unit {
-    TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.id)
+    TransferContext.writeArguments(LONG to boneIdx.toLong(), LONG to tailDirection.value)
     TransferContext.callMethod(ptr, MethodBindings.setTailDirectionPtr, NIL)
   }
 
@@ -397,7 +397,7 @@ public open class SkeletonProfile : Resource() {
       setGroup(boneIdx, group.asCachedStringName())
 
   public enum class TailDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Direction to the average coordinates of bone children.
@@ -413,13 +413,13 @@ public open class SkeletonProfile : Resource() {
     END(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TailDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TailDirection = entries.single { it.`value` == `value` }
     }
   }
 

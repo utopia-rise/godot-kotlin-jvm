@@ -76,7 +76,7 @@ public object Performance : Object() {
    */
   @JvmStatic
   public final fun getMonitor(monitor: Monitor): Double {
-    TransferContext.writeArguments(LONG to monitor.id)
+    TransferContext.writeArguments(LONG to monitor.value)
     TransferContext.callMethod(ptr, MethodBindings.getMonitorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -301,7 +301,7 @@ public object Performance : Object() {
   public final fun getCustomMonitor(id: String): Any? = getCustomMonitor(id.asCachedStringName())
 
   public enum class Monitor(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The number of frames rendered in the last second. This metric is only updated once per
@@ -490,13 +490,13 @@ public object Performance : Object() {
     MAX(39),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Monitor = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Monitor = entries.single { it.`value` == `value` }
     }
   }
 

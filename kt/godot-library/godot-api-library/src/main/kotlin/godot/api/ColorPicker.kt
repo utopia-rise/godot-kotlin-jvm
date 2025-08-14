@@ -229,7 +229,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun setColorMode(colorMode: ColorModeType): Unit {
-    TransferContext.writeArguments(LONG to colorMode.id)
+    TransferContext.writeArguments(LONG to colorMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setColorModePtr, NIL)
   }
 
@@ -374,7 +374,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public final fun setPickerShape(shape: PickerShapeType): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setPickerShapePtr, NIL)
   }
 
@@ -385,7 +385,7 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public enum class ColorModeType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Allows editing the color with Red/Green/Blue sliders.
@@ -412,18 +412,18 @@ public open class ColorPicker : VBoxContainer() {
     MODE_OKHSL(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ColorModeType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ColorModeType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PickerShapeType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * HSV Color Model rectangle color space.
@@ -448,13 +448,13 @@ public open class ColorPicker : VBoxContainer() {
     SHAPE_NONE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PickerShapeType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PickerShapeType = entries.single { it.`value` == `value` }
     }
   }
 

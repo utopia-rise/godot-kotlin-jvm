@@ -40,7 +40,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.writeArguments(LONG to func.value)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   }
 
   public enum class Function(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Comparison with `INF` (Infinity).
@@ -68,13 +68,13 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Function = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 

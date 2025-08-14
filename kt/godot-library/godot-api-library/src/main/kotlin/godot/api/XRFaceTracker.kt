@@ -104,7 +104,7 @@ public open class XRFaceTracker : XRTracker() {
    * Returns the requested face blend shape weight.
    */
   public final fun getBlendShape(blendShape: BlendShapeEntry): Float {
-    TransferContext.writeArguments(LONG to blendShape.id)
+    TransferContext.writeArguments(LONG to blendShape.value)
     TransferContext.callMethod(ptr, MethodBindings.getBlendShapePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -113,7 +113,7 @@ public open class XRFaceTracker : XRTracker() {
    * Sets a face blend shape weight.
    */
   public final fun setBlendShape(blendShape: BlendShapeEntry, weight: Float): Unit {
-    TransferContext.writeArguments(LONG to blendShape.id, DOUBLE to weight.toDouble())
+    TransferContext.writeArguments(LONG to blendShape.value, DOUBLE to weight.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapePtr, NIL)
   }
 
@@ -129,7 +129,7 @@ public open class XRFaceTracker : XRTracker() {
   }
 
   public enum class BlendShapeEntry(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Right eye looks outwards.
@@ -709,13 +709,13 @@ public open class XRFaceTracker : XRTracker() {
     FT_MAX(143),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendShapeEntry = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeEntry = entries.single { it.`value` == `value` }
     }
   }
 

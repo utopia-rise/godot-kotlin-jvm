@@ -95,7 +95,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public final fun setFftSize(size: FFTSize): Unit {
-    TransferContext.writeArguments(LONG to size.id)
+    TransferContext.writeArguments(LONG to size.value)
     TransferContext.callMethod(ptr, MethodBindings.setFftSizePtr, NIL)
   }
 
@@ -113,7 +113,7 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public enum class FFTSize(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use a buffer of 256 samples for the Fast Fourier transform. Lowest latency, but least stable
@@ -146,13 +146,13 @@ public open class AudioEffectPitchShift : AudioEffect() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FFTSize = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FFTSize = entries.single { it.`value` == `value` }
     }
   }
 

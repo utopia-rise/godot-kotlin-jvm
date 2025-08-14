@@ -292,7 +292,7 @@ public open class AnimationPlayer : AnimationMixer() {
 
   public final fun setAutoCaptureTransitionType(autoCaptureTransitionType: Tween.TransitionType):
       Unit {
-    TransferContext.writeArguments(LONG to autoCaptureTransitionType.id)
+    TransferContext.writeArguments(LONG to autoCaptureTransitionType.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutoCaptureTransitionTypePtr, NIL)
   }
 
@@ -303,7 +303,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   public final fun setAutoCaptureEaseType(autoCaptureEaseType: Tween.EaseType): Unit {
-    TransferContext.writeArguments(LONG to autoCaptureEaseType.id)
+    TransferContext.writeArguments(LONG to autoCaptureEaseType.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutoCaptureEaseTypePtr, NIL)
   }
 
@@ -463,7 +463,7 @@ public open class AnimationPlayer : AnimationMixer() {
     transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
     easeType: Tween.EaseType = Tween.EaseType.IN,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd, LONG to transType.id, LONG to easeType.id)
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, DOUBLE to customBlend, DOUBLE to customSpeed.toDouble(), BOOL to fromEnd, LONG to transType.value, LONG to easeType.value)
     TransferContext.callMethod(ptr, MethodBindings.playWithCapturePtr, NIL)
   }
 
@@ -696,7 +696,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Sets the process notification in which to update animations.
    */
   public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
@@ -713,7 +713,7 @@ public open class AnimationPlayer : AnimationMixer() {
    * Sets the call mode used for "Call Method" tracks.
    */
   public final fun setMethodCallMode(mode: AnimationMethodCallMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setMethodCallModePtr, NIL)
   }
 
@@ -931,37 +931,39 @@ public open class AnimationPlayer : AnimationMixer() {
   public final fun setRoot(path: String) = setRoot(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     PHYSICS(0),
     IDLE(1),
     MANUAL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AnimationProcessCallback = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnimationProcessCallback =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AnimationMethodCallMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     DEFERRED(0),
     IMMEDIATE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AnimationMethodCallMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnimationMethodCallMode =
+          entries.single { it.`value` == `value` }
     }
   }
 

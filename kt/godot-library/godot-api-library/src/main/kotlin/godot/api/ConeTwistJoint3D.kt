@@ -104,7 +104,7 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
@@ -112,13 +112,13 @@ public open class ConeTwistJoint3D : Joint3D() {
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Param(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
@@ -157,13 +157,13 @@ public open class ConeTwistJoint3D : Joint3D() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Param = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 

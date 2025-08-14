@@ -92,7 +92,7 @@ public open class OmniLight3D : Light3D() {
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setShadowModePtr, NIL)
   }
 
@@ -103,7 +103,7 @@ public open class OmniLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Shadows are rendered to a dual-paraboloid texture. Faster than [SHADOW_CUBE], but
@@ -116,13 +116,13 @@ public open class OmniLight3D : Light3D() {
     CUBE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowMode = entries.single { it.`value` == `value` }
     }
   }
 

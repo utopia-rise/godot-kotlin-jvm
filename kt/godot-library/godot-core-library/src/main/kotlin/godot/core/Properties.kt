@@ -21,7 +21,7 @@ data class KtPropertyInfo(
         get() = _type.id
 
     val hint: Int
-        get() = _hint.id.toInt()
+        get() = _hint.value.toInt()
 }
 
 open class KtProperty<T : KtObject, P : Any?>(

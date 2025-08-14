@@ -199,7 +199,7 @@ public open class TextureButton : BaseButton() {
   }
 
   public final fun setStretchMode(mode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
   }
 
@@ -274,7 +274,7 @@ public open class TextureButton : BaseButton() {
   }
 
   public enum class StretchMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Scale to fit the node's bounding rectangle.
@@ -309,13 +309,13 @@ public open class TextureButton : BaseButton() {
     KEEP_ASPECT_COVERED(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StretchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }
     }
   }
 

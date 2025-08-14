@@ -187,7 +187,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * Locks or unlocks the specified linear or rotational [axis] depending on the value of [lock].
    */
   public final fun setAxisLock(axis: PhysicsServer3D.BodyAxis, lock: Boolean): Unit {
-    TransferContext.writeArguments(LONG to axis.id, BOOL to lock)
+    TransferContext.writeArguments(LONG to axis.value, BOOL to lock)
     TransferContext.callMethod(ptr, MethodBindings.setAxisLockPtr, NIL)
   }
 
@@ -195,7 +195,7 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
    * Returns `true` if the specified linear or rotational [axis] is locked.
    */
   public final fun getAxisLock(axis: PhysicsServer3D.BodyAxis): Boolean {
-    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.writeArguments(LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.getAxisLockPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

@@ -205,7 +205,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public final fun setIgdStatus(status: IGDStatus): Unit {
-    TransferContext.writeArguments(LONG to status.id)
+    TransferContext.writeArguments(LONG to status.value)
     TransferContext.callMethod(ptr, MethodBindings.setIgdStatusPtr, NIL)
   }
 
@@ -216,7 +216,7 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public enum class IGDStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * OK.
@@ -260,13 +260,13 @@ public open class UPNPDevice : RefCounted() {
     UNKNOWN_ERROR(9),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): IGDStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): IGDStatus = entries.single { it.`value` == `value` }
     }
   }
 

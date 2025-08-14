@@ -131,7 +131,7 @@ public object GDExtensionManager : Object() {
   }
 
   public enum class LoadStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The extension has loaded successfully.
@@ -156,13 +156,13 @@ public object GDExtensionManager : Object() {
     NEEDS_RESTART(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LoadStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoadStatus = entries.single { it.`value` == `value` }
     }
   }
 

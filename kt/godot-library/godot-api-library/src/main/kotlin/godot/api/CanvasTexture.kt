@@ -218,7 +218,7 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
@@ -229,7 +229,7 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public final fun setTextureRepeat(repeat: CanvasItem.TextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
+    TransferContext.writeArguments(LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 

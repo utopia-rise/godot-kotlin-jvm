@@ -115,7 +115,7 @@ public open class AnimationTree : AnimationMixer() {
    * Sets the process notification in which to update animations.
    */
   public final fun setProcessCallback(mode: AnimationProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
@@ -134,20 +134,21 @@ public open class AnimationTree : AnimationMixer() {
   public final fun setAnimationPlayer(path: String) = setAnimationPlayer(path.asCachedNodePath())
 
   public enum class AnimationProcessCallback(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     PHYSICS(0),
     IDLE(1),
     MANUAL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AnimationProcessCallback = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnimationProcessCallback =
+          entries.single { it.`value` == `value` }
     }
   }
 

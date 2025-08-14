@@ -242,7 +242,7 @@ public open class XMLParser : RefCounted() {
   }
 
   public enum class NodeType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * There's no node (no file or buffer opened).
@@ -274,13 +274,13 @@ public open class XMLParser : RefCounted() {
     UNKNOWN(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): NodeType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): NodeType = entries.single { it.`value` == `value` }
     }
   }
 

@@ -161,7 +161,7 @@ public open class Shader : Resource() {
       getDefaultTextureParameter(name.asCachedStringName(), index)
 
   public enum class Mode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Mode used to draw all 3D objects.
@@ -185,13 +185,13 @@ public open class Shader : Resource() {
     FOG(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

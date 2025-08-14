@@ -290,7 +290,7 @@ public open class WebSocketPeer : PacketPeer() {
   @JvmOverloads
   public final fun send(message: PackedByteArray, writeMode: WriteMode =
       WebSocketPeer.WriteMode.BINARY): Error {
-    TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.id)
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to message, LONG to writeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.sendPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -501,7 +501,7 @@ public open class WebSocketPeer : PacketPeer() {
   }
 
   public enum class WriteMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Specifies that WebSockets messages should be transferred as text payload (only valid UTF-8 is
@@ -515,18 +515,18 @@ public open class WebSocketPeer : PacketPeer() {
     BINARY(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WriteMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WriteMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class State(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Socket has been created. The connection is not yet open.
@@ -547,13 +547,13 @@ public open class WebSocketPeer : PacketPeer() {
     CLOSED(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): State = entries.single { it.id == `value` }
+      public fun from(`value`: Long): State = entries.single { it.`value` == `value` }
     }
   }
 

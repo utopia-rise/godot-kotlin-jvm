@@ -152,7 +152,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setShadowModePtr, NIL)
   }
 
@@ -174,7 +174,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public final fun setSkyMode(mode: SkyMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSkyModePtr, NIL)
   }
 
@@ -185,7 +185,7 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public enum class ShadowMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Renders the entire scene's shadow map from an orthogonal point of view. This is the fastest
@@ -204,18 +204,18 @@ public open class DirectionalLight3D : Light3D() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkyMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Makes the light visible in both scene lighting and sky rendering.
@@ -235,13 +235,13 @@ public open class DirectionalLight3D : Light3D() {
     SKY_ONLY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SkyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkyMode = entries.single { it.`value` == `value` }
     }
   }
 

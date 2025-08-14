@@ -40,7 +40,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   }
 
   public final fun setOpType(type: OpType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   }
 
   public enum class OpType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * A floating-point scalar type.
@@ -75,13 +75,13 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OpType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }
     }
   }
 

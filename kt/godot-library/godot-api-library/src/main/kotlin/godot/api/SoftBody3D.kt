@@ -273,7 +273,7 @@ public open class SoftBody3D : MeshInstance3D() {
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDisableModePtr, NIL)
   }
 
@@ -434,7 +434,7 @@ public open class SoftBody3D : MeshInstance3D() {
   ) = setPointPinned(pointIndex, pinned, attachmentPath.asCachedNodePath(), insertAt)
 
   public enum class DisableMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
@@ -450,13 +450,13 @@ public open class SoftBody3D : MeshInstance3D() {
     KEEP_ACTIVE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DisableMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DisableMode = entries.single { it.`value` == `value` }
     }
   }
 

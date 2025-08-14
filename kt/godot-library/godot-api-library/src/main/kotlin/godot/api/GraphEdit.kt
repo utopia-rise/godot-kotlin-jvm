@@ -909,7 +909,7 @@ public open class GraphEdit : Control() {
   }
 
   public final fun setPanningScheme(scheme: PanningScheme): Unit {
-    TransferContext.writeArguments(LONG to scheme.id)
+    TransferContext.writeArguments(LONG to scheme.value)
     TransferContext.callMethod(ptr, MethodBindings.setPanningSchemePtr, NIL)
   }
 
@@ -975,7 +975,7 @@ public open class GraphEdit : Control() {
   }
 
   public final fun setGridPattern(pattern: GridPattern): Unit {
-    TransferContext.writeArguments(LONG to pattern.id)
+    TransferContext.writeArguments(LONG to pattern.value)
     TransferContext.callMethod(ptr, MethodBindings.setGridPatternPtr, NIL)
   }
 
@@ -1266,7 +1266,7 @@ public open class GraphEdit : Control() {
       getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * [kbd]Mouse Wheel[/kbd] will zoom, [kbd]Ctrl + Mouse Wheel[/kbd] will move the view.
@@ -1278,18 +1278,18 @@ public open class GraphEdit : Control() {
     SCROLL_PANS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PanningScheme = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PanningScheme = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GridPattern(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Draw the grid using solid lines.
@@ -1301,13 +1301,13 @@ public open class GraphEdit : Control() {
     DOTS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GridPattern = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GridPattern = entries.single { it.`value` == `value` }
     }
   }
 

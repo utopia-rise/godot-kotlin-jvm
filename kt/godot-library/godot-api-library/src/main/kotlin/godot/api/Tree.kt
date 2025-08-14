@@ -496,7 +496,7 @@ public open class Tree : Control() {
   }
 
   public final fun setSelectMode(mode: SelectMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSelectModePtr, NIL)
   }
 
@@ -695,7 +695,7 @@ public open class Tree : Control() {
    * supported for column titles.
    */
   public final fun setColumnTitleAlignment(column: Int, titleAlignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to titleAlignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitleAlignmentPtr, NIL)
   }
 
@@ -712,7 +712,7 @@ public open class Tree : Control() {
    * Sets column title base writing direction.
    */
   public final fun setColumnTitleDirection(column: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.id)
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setColumnTitleDirectionPtr, NIL)
   }
 
@@ -861,7 +861,7 @@ public open class Tree : Control() {
   }
 
   public enum class SelectMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Allows selection of a single cell at a time. From the perspective of items, only a single
@@ -890,18 +890,18 @@ public open class Tree : Control() {
     MULTI(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SelectMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DropModeFlags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables all drop sections, but still allows to detect the "on item" drop section by
@@ -927,13 +927,13 @@ public open class Tree : Control() {
     INBETWEEN(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DropModeFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DropModeFlags = entries.single { it.`value` == `value` }
     }
   }
 

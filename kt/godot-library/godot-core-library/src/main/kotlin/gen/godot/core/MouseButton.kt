@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class MouseButton(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Enum value which doesn't correspond to any mouse button. This is used to initialize
@@ -55,12 +55,12 @@ public enum class MouseButton(
   XBUTTON2(9),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): MouseButton = entries.single { it.id == `value` }
+    public fun from(`value`: Long): MouseButton = entries.single { it.`value` == `value` }
   }
 }

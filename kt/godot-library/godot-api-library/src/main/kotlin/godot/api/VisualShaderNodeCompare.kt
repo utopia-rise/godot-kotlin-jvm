@@ -63,7 +63,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public final fun setComparisonType(type: ComparisonType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setComparisonTypePtr, NIL)
   }
 
@@ -74,7 +74,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public final fun setFunction(func: Function): Unit {
-    TransferContext.writeArguments(LONG to func.id)
+    TransferContext.writeArguments(LONG to func.value)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
 
@@ -85,7 +85,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public final fun setCondition(condition: Condition): Unit {
-    TransferContext.writeArguments(LONG to condition.id)
+    TransferContext.writeArguments(LONG to condition.value)
     TransferContext.callMethod(ptr, MethodBindings.setConditionPtr, NIL)
   }
 
@@ -96,7 +96,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public enum class ComparisonType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * A floating-point scalar.
@@ -136,18 +136,18 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     CTYPE_MAX(8),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ComparisonType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ComparisonType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Function(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Comparison for equality (`a == b`).
@@ -183,18 +183,18 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Function = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Function = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Condition(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The result will be `true` if all components in the vector satisfy the comparison condition.
@@ -210,13 +210,13 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Condition = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Condition = entries.single { it.`value` == `value` }
     }
   }
 

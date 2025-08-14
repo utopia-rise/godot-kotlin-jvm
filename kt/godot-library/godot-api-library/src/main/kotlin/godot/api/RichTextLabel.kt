@@ -570,7 +570,7 @@ public open class RichTextLabel : Control() {
     tooltip: String = "",
     sizeInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
     TransferContext.callMethod(ptr, MethodBindings.addImagePtr, NIL)
   }
 
@@ -592,7 +592,7 @@ public open class RichTextLabel : Control() {
     tooltip: String = "",
     sizeInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.id, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
     TransferContext.callMethod(ptr, MethodBindings.updateImagePtr, NIL)
   }
 
@@ -733,7 +733,7 @@ public open class RichTextLabel : Control() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(163),
     tabStops: PackedFloat32Array = PackedFloat32Array(),
   ): Unit {
-    TransferContext.writeArguments(LONG to alignment.id, LONG to baseDirection.id, STRING to language, LONG to stParser.id, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
+    TransferContext.writeArguments(LONG to alignment.value, LONG to baseDirection.value, STRING to language, LONG to stParser.value, LONG to justificationFlags.flag, PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(ptr, MethodBindings.pushParagraphPtr, NIL)
   }
 
@@ -757,7 +757,7 @@ public open class RichTextLabel : Control() {
     capitalize: Boolean,
     bullet: String = "•",
   ): Unit {
-    TransferContext.writeArguments(LONG to level.toLong(), LONG to type.id, BOOL to capitalize, STRING to bullet)
+    TransferContext.writeArguments(LONG to level.toLong(), LONG to type.value, BOOL to capitalize, STRING to bullet)
     TransferContext.callMethod(ptr, MethodBindings.pushListPtr, NIL)
   }
 
@@ -777,7 +777,7 @@ public open class RichTextLabel : Control() {
     underlineMode: MetaUnderline = RichTextLabel.MetaUnderline.ALWAYS,
     tooltip: String = "",
   ): Unit {
-    TransferContext.writeArguments(ANY to data, LONG to underlineMode.id, STRING to tooltip)
+    TransferContext.writeArguments(ANY to data, LONG to underlineMode.value, STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.pushMetaPtr, NIL)
   }
 
@@ -824,7 +824,7 @@ public open class RichTextLabel : Control() {
     inlineAlign: InlineAlignment = InlineAlignment.TOP_TO,
     alignToRow: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.id, LONG to alignToRow.toLong())
+    TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.value, LONG to alignToRow.toLong())
     TransferContext.callMethod(ptr, MethodBindings.pushTablePtr, NIL)
   }
 
@@ -981,7 +981,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -1003,7 +1003,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -1025,7 +1025,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
@@ -1036,7 +1036,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
@@ -1069,7 +1069,7 @@ public open class RichTextLabel : Control() {
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -1380,7 +1380,7 @@ public open class RichTextLabel : Control() {
 
   public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior):
       Unit {
-    TransferContext.writeArguments(LONG to behavior.id)
+    TransferContext.writeArguments(LONG to behavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
   }
 
@@ -1685,7 +1685,7 @@ public open class RichTextLabel : Control() {
   }
 
   public enum class ListType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Each list item has a number marker.
@@ -1705,18 +1705,18 @@ public open class RichTextLabel : Control() {
     DOTS(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ListType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ListType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MenuItems(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Copies the selected text.
@@ -1732,18 +1732,18 @@ public open class RichTextLabel : Control() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MetaUnderline(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Meta tag does not display an underline, even if [metaUnderlined] is `true`.
@@ -1760,13 +1760,13 @@ public open class RichTextLabel : Control() {
     ON_HOVER(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MetaUnderline = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MetaUnderline = entries.single { it.`value` == `value` }
     }
   }
 

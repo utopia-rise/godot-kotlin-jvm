@@ -364,7 +364,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
-    TransferContext.writeArguments(LONG to accessorType.id)
+    TransferContext.writeArguments(LONG to accessorType.value)
     TransferContext.callMethod(ptr, MethodBindings.setAccessorTypePtr, NIL)
   }
 
@@ -468,7 +468,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public enum class GLTFAccessorType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Accessor type "SCALAR". For the glTF object model, this can be used to map to a single float,
@@ -507,18 +507,18 @@ public open class GLTFAccessor : Resource() {
     TYPE_MAT4(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GLTFAccessorType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFAccessorType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GLTFComponentType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Component type "NONE". This is not a valid component type, and is used to indicate that the
@@ -596,13 +596,13 @@ public open class GLTFAccessor : Resource() {
     COMPONENT_TYPE_UNSIGNED_LONG(5135),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GLTFComponentType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFComponentType = entries.single { it.`value` == `value` }
     }
   }
 

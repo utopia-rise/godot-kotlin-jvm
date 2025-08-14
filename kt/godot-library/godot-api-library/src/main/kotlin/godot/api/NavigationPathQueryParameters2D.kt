@@ -210,7 +210,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
-    TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
+    TransferContext.writeArguments(LONG to pathfindingAlgorithm.value)
     TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
@@ -221,7 +221,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
-    TransferContext.writeArguments(LONG to pathPostprocessing.id)
+    TransferContext.writeArguments(LONG to pathPostprocessing.value)
     TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 
@@ -309,7 +309,7 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public enum class PathfindingAlgorithm(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The path query uses the default A* pathfinding algorithm.
@@ -317,18 +317,19 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     ASTAR(0),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PathfindingAlgorithm = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PathfindingAlgorithm =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PathPostProcessing(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This
@@ -351,13 +352,13 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
     POSTPROCESSING_NONE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PathPostProcessing = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PathPostProcessing = entries.single { it.`value` == `value` }
     }
   }
 

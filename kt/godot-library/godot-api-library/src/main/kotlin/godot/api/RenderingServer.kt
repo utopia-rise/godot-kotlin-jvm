@@ -251,7 +251,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun texture2dLayeredCreate(layers: VariantArray<Image>,
       layeredType: TextureLayeredType): RID {
-    TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.id)
+    TransferContext.writeArguments(ARRAY to layers, LONG to layeredType.value)
     TransferContext.callMethod(ptr, MethodBindings.texture2dLayeredCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -268,7 +268,7 @@ public object RenderingServer : Object() {
     mipmaps: Boolean,
     `data`: VariantArray<Image>,
   ): RID {
-    TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to mipmaps, ARRAY to data)
+    TransferContext.writeArguments(LONG to format.value, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to mipmaps, ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.texture3dCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -302,7 +302,7 @@ public object RenderingServer : Object() {
     layers: Int = 1,
     layeredType: TextureLayeredType = RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY,
   ): RID {
-    TransferContext.writeArguments(LONG to type.id, LONG to format.id, LONG to nativeHandle, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), LONG to layers.toLong(), LONG to layeredType.id)
+    TransferContext.writeArguments(LONG to type.value, LONG to format.value, LONG to nativeHandle, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), LONG to layers.toLong(), LONG to layeredType.value)
     TransferContext.callMethod(ptr, MethodBindings.textureCreateFromNativeHandlePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -376,7 +376,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun texture2dLayeredPlaceholderCreate(layeredType: TextureLayeredType): RID {
-    TransferContext.writeArguments(LONG to layeredType.id)
+    TransferContext.writeArguments(LONG to layeredType.value)
     TransferContext.callMethod(ptr, MethodBindings.texture2dLayeredPlaceholderCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -493,7 +493,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun textureRdCreate(rdTexture: RID, layerType: TextureLayeredType =
       RenderingServer.TextureLayeredType.TEXTURE_LAYERED_2D_ARRAY): RID {
-    TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.id)
+    TransferContext.writeArguments(_RID to rdTexture, LONG to layerType.value)
     TransferContext.callMethod(ptr, MethodBindings.textureRdCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -794,7 +794,7 @@ public object RenderingServer : Object() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     compressFormat: ArrayFormat = RenderingServer.ArrayFormat.FLAG_FORMAT_VERSION_1,
   ): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
+    TransferContext.writeArguments(_RID to mesh, LONG to primitive.value, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to compressFormat.flag)
     TransferContext.callMethod(ptr, MethodBindings.meshAddSurfaceFromArraysPtr, NIL)
   }
 
@@ -813,7 +813,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun meshSetBlendShapeMode(mesh: RID, mode: BlendShapeMode): Unit {
-    TransferContext.writeArguments(_RID to mesh, LONG to mode.id)
+    TransferContext.writeArguments(_RID to mesh, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.meshSetBlendShapeModePtr, NIL)
   }
 
@@ -995,7 +995,7 @@ public object RenderingServer : Object() {
     customDataFormat: Boolean = false,
     useIndirect: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to multimesh, LONG to instances.toLong(), LONG to transformFormat.id, BOOL to colorFormat, BOOL to customDataFormat, BOOL to useIndirect)
+    TransferContext.writeArguments(_RID to multimesh, LONG to instances.toLong(), LONG to transformFormat.value, BOOL to colorFormat, BOOL to customDataFormat, BOOL to useIndirect)
     TransferContext.callMethod(ptr, MethodBindings.multimeshAllocateDataPtr, NIL)
   }
 
@@ -1328,7 +1328,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun multimeshSetPhysicsInterpolationQuality(multimesh: RID,
       quality: MultimeshPhysicsInterpolationQuality): Unit {
-    TransferContext.writeArguments(_RID to multimesh, LONG to quality.id)
+    TransferContext.writeArguments(_RID to multimesh, LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.multimeshSetPhysicsInterpolationQualityPtr, NIL)
   }
 
@@ -1506,7 +1506,7 @@ public object RenderingServer : Object() {
     `param`: LightParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to light, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.lightSetParamPtr, NIL)
   }
 
@@ -1593,7 +1593,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun lightSetBakeMode(light: RID, bakeMode: LightBakeMode): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to bakeMode.id)
+    TransferContext.writeArguments(_RID to light, LONG to bakeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.lightSetBakeModePtr, NIL)
   }
 
@@ -1613,7 +1613,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun lightOmniSetShadowMode(light: RID, mode: LightOmniShadowMode): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.lightOmniSetShadowModePtr, NIL)
   }
 
@@ -1624,7 +1624,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode):
       Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetShadowModePtr, NIL)
   }
 
@@ -1645,7 +1645,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun lightDirectionalSetSkyMode(light: RID, mode: LightDirectionalSkyMode): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.lightDirectionalSetSkyModePtr, NIL)
   }
 
@@ -1655,7 +1655,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun lightProjectorsSetFilter(filter: LightProjectorFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.lightProjectorsSetFilterPtr, NIL)
   }
 
@@ -1676,7 +1676,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun positionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.positionalSoftShadowFilterSetQualityPtr, NIL)
   }
 
@@ -1687,7 +1687,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun directionalSoftShadowFilterSetQuality(quality: ShadowQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.directionalSoftShadowFilterSetQualityPtr, NIL)
   }
 
@@ -1727,7 +1727,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
-    TransferContext.writeArguments(_RID to probe, LONG to mode.id)
+    TransferContext.writeArguments(_RID to probe, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetUpdateModePtr, NIL)
   }
 
@@ -1756,7 +1756,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun reflectionProbeSetAmbientMode(probe: RID, mode: ReflectionProbeAmbientMode):
       Unit {
-    TransferContext.writeArguments(_RID to probe, LONG to mode.id)
+    TransferContext.writeArguments(_RID to probe, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.reflectionProbeSetAmbientModePtr, NIL)
   }
 
@@ -1919,7 +1919,7 @@ public object RenderingServer : Object() {
     type: DecalTexture,
     texture: RID,
   ): Unit {
-    TransferContext.writeArguments(_RID to decal, LONG to type.id, _RID to texture)
+    TransferContext.writeArguments(_RID to decal, LONG to type.value, _RID to texture)
     TransferContext.callMethod(ptr, MethodBindings.decalSetTexturePtr, NIL)
   }
 
@@ -2007,7 +2007,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun decalsSetFilter(filter: DecalFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.decalsSetFilterPtr, NIL)
   }
 
@@ -2180,7 +2180,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun voxelGiSetQuality(quality: VoxelGIQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.voxelGiSetQualityPtr, NIL)
   }
 
@@ -2320,7 +2320,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun particlesSetMode(particles: RID, mode: ParticlesMode): Unit {
-    TransferContext.writeArguments(_RID to particles, LONG to mode.id)
+    TransferContext.writeArguments(_RID to particles, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesSetModePtr, NIL)
   }
 
@@ -2516,7 +2516,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesSetTransformAlign(particles: RID, align: ParticlesTransformAlign):
       Unit {
-    TransferContext.writeArguments(_RID to particles, LONG to align.id)
+    TransferContext.writeArguments(_RID to particles, LONG to align.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesSetTransformAlignPtr, NIL)
   }
 
@@ -2599,7 +2599,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
-    TransferContext.writeArguments(_RID to particles, LONG to order.id)
+    TransferContext.writeArguments(_RID to particles, LONG to order.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesSetDrawOrderPtr, NIL)
   }
 
@@ -2668,7 +2668,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionSetCollisionType(particlesCollision: RID,
       type: ParticlesCollisionType): Unit {
-    TransferContext.writeArguments(_RID to particlesCollision, LONG to type.id)
+    TransferContext.writeArguments(_RID to particlesCollision, LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetCollisionTypePtr, NIL)
   }
 
@@ -2773,7 +2773,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun particlesCollisionSetHeightFieldResolution(particlesCollision: RID,
       resolution: ParticlesCollisionHeightfieldResolution): Unit {
-    TransferContext.writeArguments(_RID to particlesCollision, LONG to resolution.id)
+    TransferContext.writeArguments(_RID to particlesCollision, LONG to resolution.value)
     TransferContext.callMethod(ptr, MethodBindings.particlesCollisionSetHeightFieldResolutionPtr,
         NIL)
   }
@@ -2811,7 +2811,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun fogVolumeSetShape(fogVolume: RID, shape: FogVolumeShape): Unit {
-    TransferContext.writeArguments(_RID to fogVolume, LONG to shape.id)
+    TransferContext.writeArguments(_RID to fogVolume, LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.fogVolumeSetShapePtr, NIL)
   }
 
@@ -3146,7 +3146,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetScaling3dMode(viewport: RID, scaling3dMode: ViewportScaling3DMode):
       Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to scaling3dMode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to scaling3dMode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetScaling3dModePtr, NIL)
   }
 
@@ -3221,7 +3221,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetAnisotropicFilteringLevel(viewport: RID,
       anisotropicFilteringLevel: ViewportAnisotropicFiltering): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to anisotropicFilteringLevel.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to anisotropicFilteringLevel.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetAnisotropicFilteringLevelPtr, NIL)
   }
 
@@ -3230,7 +3230,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to updateMode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to updateMode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetUpdateModePtr, NIL)
   }
 
@@ -3252,7 +3252,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to clearMode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to clearMode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetClearModePtr, NIL)
   }
 
@@ -3304,7 +3304,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetEnvironmentMode(viewport: RID, mode: ViewportEnvironmentMode): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetEnvironmentModePtr, NIL)
   }
 
@@ -3376,7 +3376,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
       filter: CanvasItemTextureFilter): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to filter.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureFilterPtr,
         NIL)
   }
@@ -3388,7 +3388,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
       repeat: CanvasItemTextureRepeat): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to repeat.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetDefaultCanvasItemTextureRepeatPtr,
         NIL)
   }
@@ -3453,7 +3453,7 @@ public object RenderingServer : Object() {
     oversize: ViewportSDFOversize,
     scale: ViewportSDFScale,
   ): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to oversize.id, LONG to scale.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to oversize.value, LONG to scale.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetSdfOversizeAndScalePtr, NIL)
   }
 
@@ -3501,7 +3501,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to msaa.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetMsaa3dPtr, NIL)
   }
 
@@ -3512,7 +3512,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to msaa.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to msaa.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetMsaa2dPtr, NIL)
   }
 
@@ -3543,7 +3543,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetScreenSpaceAa(viewport: RID, mode: ViewportScreenSpaceAA): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetScreenSpaceAaPtr, NIL)
   }
 
@@ -3595,7 +3595,7 @@ public object RenderingServer : Object() {
   public final
       fun viewportSetOcclusionCullingBuildQuality(quality: ViewportOcclusionCullingBuildQuality):
       Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetOcclusionCullingBuildQualityPtr, NIL)
   }
 
@@ -3630,7 +3630,7 @@ public object RenderingServer : Object() {
     type: ViewportRenderInfoType,
     info: ViewportRenderInfo,
   ): Int {
-    TransferContext.writeArguments(_RID to viewport, LONG to type.id, LONG to info.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to type.value, LONG to info.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportGetRenderInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -3640,7 +3640,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to draw.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to draw.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetDebugDrawPtr, NIL)
   }
 
@@ -3702,7 +3702,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetVrsMode(viewport: RID, mode: ViewportVRSMode): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetVrsModePtr, NIL)
   }
 
@@ -3717,7 +3717,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun viewportSetVrsUpdateMode(viewport: RID, mode: ViewportVRSUpdateMode): Unit {
-    TransferContext.writeArguments(_RID to viewport, LONG to mode.id)
+    TransferContext.writeArguments(_RID to viewport, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.viewportSetVrsUpdateModePtr, NIL)
   }
 
@@ -3760,7 +3760,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun skySetMode(sky: RID, mode: SkyMode): Unit {
-    TransferContext.writeArguments(_RID to sky, LONG to mode.id)
+    TransferContext.writeArguments(_RID to sky, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.skySetModePtr, NIL)
   }
 
@@ -3834,7 +3834,7 @@ public object RenderingServer : Object() {
     callbackType: CompositorEffectCallbackType,
     callback: Callable,
   ): Unit {
-    TransferContext.writeArguments(_RID to effect, LONG to callbackType.id, CALLABLE to callback)
+    TransferContext.writeArguments(_RID to effect, LONG to callbackType.value, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.compositorEffectSetCallbackPtr, NIL)
   }
 
@@ -3847,7 +3847,7 @@ public object RenderingServer : Object() {
     flag: CompositorEffectFlags,
     `set`: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to effect, LONG to flag.id, BOOL to set)
+    TransferContext.writeArguments(_RID to effect, LONG to flag.value, BOOL to set)
     TransferContext.callMethod(ptr, MethodBindings.compositorEffectSetFlagPtr, NIL)
   }
 
@@ -3897,7 +3897,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun environmentSetBackground(env: RID, bg: EnvironmentBG): Unit {
-    TransferContext.writeArguments(_RID to env, LONG to bg.id)
+    TransferContext.writeArguments(_RID to env, LONG to bg.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetBackgroundPtr, NIL)
   }
 
@@ -3984,7 +3984,7 @@ public object RenderingServer : Object() {
     skyContribution: Float = 0.0f,
     reflectionSource: EnvironmentReflectionSource = RenderingServer.EnvironmentReflectionSource.BG,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.id, DOUBLE to energy.toDouble(), DOUBLE to skyContribution.toDouble(), LONG to reflectionSource.id)
+    TransferContext.writeArguments(_RID to env, COLOR to color, LONG to ambient.value, DOUBLE to energy.toDouble(), DOUBLE to skyContribution.toDouble(), LONG to reflectionSource.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetAmbientLightPtr, NIL)
   }
 
@@ -4008,7 +4008,7 @@ public object RenderingServer : Object() {
     glowMapStrength: Float,
     glowMap: RID,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, PACKED_FLOAT_32_ARRAY to levels, DOUBLE to intensity.toDouble(), DOUBLE to strength.toDouble(), DOUBLE to mix.toDouble(), DOUBLE to bloomThreshold.toDouble(), LONG to blendMode.id, DOUBLE to hdrBleedThreshold.toDouble(), DOUBLE to hdrBleedScale.toDouble(), DOUBLE to hdrLuminanceCap.toDouble(), DOUBLE to glowMapStrength.toDouble(), _RID to glowMap)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, PACKED_FLOAT_32_ARRAY to levels, DOUBLE to intensity.toDouble(), DOUBLE to strength.toDouble(), DOUBLE to mix.toDouble(), DOUBLE to bloomThreshold.toDouble(), LONG to blendMode.value, DOUBLE to hdrBleedThreshold.toDouble(), DOUBLE to hdrBleedScale.toDouble(), DOUBLE to hdrLuminanceCap.toDouble(), DOUBLE to glowMapStrength.toDouble(), _RID to glowMap)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetGlowPtr, NIL)
   }
 
@@ -4023,7 +4023,7 @@ public object RenderingServer : Object() {
     exposure: Float,
     white: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, LONG to toneMapper.id, DOUBLE to exposure.toDouble(), DOUBLE to white.toDouble())
+    TransferContext.writeArguments(_RID to env, LONG to toneMapper.value, DOUBLE to exposure.toDouble(), DOUBLE to white.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.environmentSetTonemapPtr, NIL)
   }
 
@@ -4102,7 +4102,7 @@ public object RenderingServer : Object() {
     skyAffect: Float,
     fogMode: EnvironmentFogMode = RenderingServer.EnvironmentFogMode.EXPONENTIAL,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble(), LONG to fogMode.id)
+    TransferContext.writeArguments(_RID to env, BOOL to enable, COLOR to lightColor, DOUBLE to lightEnergy.toDouble(), DOUBLE to sunScatter.toDouble(), DOUBLE to density.toDouble(), DOUBLE to height.toDouble(), DOUBLE to heightDensity.toDouble(), DOUBLE to aerialPerspective.toDouble(), DOUBLE to skyAffect.toDouble(), LONG to fogMode.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetFogPtr, NIL)
   }
 
@@ -4124,7 +4124,7 @@ public object RenderingServer : Object() {
     normalBias: Float,
     probeBias: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to cascades.toLong(), DOUBLE to minCellSize.toDouble(), LONG to yScale.id, BOOL to useOcclusion, DOUBLE to bounceFeedback.toDouble(), BOOL to readSky, DOUBLE to energy.toDouble(), DOUBLE to normalBias.toDouble(), DOUBLE to probeBias.toDouble())
+    TransferContext.writeArguments(_RID to env, BOOL to enable, LONG to cascades.toLong(), DOUBLE to minCellSize.toDouble(), LONG to yScale.value, BOOL to useOcclusion, DOUBLE to bounceFeedback.toDouble(), BOOL to readSky, DOUBLE to energy.toDouble(), DOUBLE to normalBias.toDouble(), DOUBLE to probeBias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiPtr, NIL)
   }
 
@@ -4166,7 +4166,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSsrRoughnessQuality(quality: EnvironmentSSRRoughnessQuality):
       Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSsrRoughnessQualityPtr, NIL)
   }
 
@@ -4183,7 +4183,7 @@ public object RenderingServer : Object() {
     fadeoutFrom: Float,
     fadeoutTo: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
+    TransferContext.writeArguments(LONG to quality.value, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSsaoQualityPtr, NIL)
   }
 
@@ -4200,7 +4200,7 @@ public object RenderingServer : Object() {
     fadeoutFrom: Float,
     fadeoutTo: Float,
   ): Unit {
-    TransferContext.writeArguments(LONG to quality.id, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
+    TransferContext.writeArguments(LONG to quality.value, BOOL to halfSize, DOUBLE to adaptiveTarget.toDouble(), LONG to blurPasses.toLong(), DOUBLE to fadeoutFrom.toDouble(), DOUBLE to fadeoutTo.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSsilQualityPtr, NIL)
   }
 
@@ -4210,7 +4210,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun environmentSetSdfgiRayCount(rayCount: EnvironmentSDFGIRayCount): Unit {
-    TransferContext.writeArguments(LONG to rayCount.id)
+    TransferContext.writeArguments(LONG to rayCount.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiRayCountPtr, NIL)
   }
 
@@ -4221,7 +4221,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun environmentSetSdfgiFramesToConverge(frames: EnvironmentSDFGIFramesToConverge):
       Unit {
-    TransferContext.writeArguments(LONG to frames.id)
+    TransferContext.writeArguments(LONG to frames.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiFramesToConvergePtr, NIL)
   }
 
@@ -4234,7 +4234,7 @@ public object RenderingServer : Object() {
   public final
       fun environmentSetSdfgiFramesToUpdateLight(frames: EnvironmentSDFGIFramesToUpdateLight):
       Unit {
-    TransferContext.writeArguments(LONG to frames.id)
+    TransferContext.writeArguments(LONG to frames.value)
     TransferContext.callMethod(ptr, MethodBindings.environmentSetSdfgiFramesToUpdateLightPtr, NIL)
   }
 
@@ -4308,7 +4308,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun subSurfaceScatteringSetQuality(quality: SubSurfaceScatteringQuality): Unit {
-    TransferContext.writeArguments(LONG to quality.id)
+    TransferContext.writeArguments(LONG to quality.value)
     TransferContext.callMethod(ptr, MethodBindings.subSurfaceScatteringSetQualityPtr, NIL)
   }
 
@@ -4348,7 +4348,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean):
       Unit {
-    TransferContext.writeArguments(LONG to quality.id, BOOL to useJitter)
+    TransferContext.writeArguments(LONG to quality.value, BOOL to useJitter)
     TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetDofBlurQualityPtr, NIL)
   }
 
@@ -4358,7 +4358,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.cameraAttributesSetDofBlurBokehShapePtr, NIL)
   }
 
@@ -4720,7 +4720,7 @@ public object RenderingServer : Object() {
     flag: InstanceFlags,
     enabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to instance, LONG to flag.id, BOOL to enabled)
+    TransferContext.writeArguments(_RID to instance, LONG to flag.value, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetFlagPtr, NIL)
   }
 
@@ -4731,7 +4731,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun instanceGeometrySetCastShadowsSetting(instance: RID,
       shadowCastingSetting: ShadowCastingSetting): Unit {
-    TransferContext.writeArguments(_RID to instance, LONG to shadowCastingSetting.id)
+    TransferContext.writeArguments(_RID to instance, LONG to shadowCastingSetting.value)
     TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetCastShadowsSettingPtr, NIL)
   }
 
@@ -4768,7 +4768,7 @@ public object RenderingServer : Object() {
     maxMargin: Float,
     fadeMode: VisibilityRangeFadeMode,
   ): Unit {
-    TransferContext.writeArguments(_RID to instance, DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), DOUBLE to minMargin.toDouble(), DOUBLE to maxMargin.toDouble(), LONG to fadeMode.id)
+    TransferContext.writeArguments(_RID to instance, DOUBLE to min.toDouble(), DOUBLE to max.toDouble(), DOUBLE to minMargin.toDouble(), DOUBLE to maxMargin.toDouble(), LONG to fadeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.instanceGeometrySetVisibilityRangePtr, NIL)
   }
 
@@ -5018,7 +5018,7 @@ public object RenderingServer : Object() {
     channel: CanvasTextureChannel,
     texture: RID,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasTexture, LONG to channel.id, _RID to texture)
+    TransferContext.writeArguments(_RID to canvasTexture, LONG to channel.value, _RID to texture)
     TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetChannelPtr, NIL)
   }
 
@@ -5044,7 +5044,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasTextureSetTextureFilter(canvasTexture: RID,
       filter: CanvasItemTextureFilter): Unit {
-    TransferContext.writeArguments(_RID to canvasTexture, LONG to filter.id)
+    TransferContext.writeArguments(_RID to canvasTexture, LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetTextureFilterPtr, NIL)
   }
 
@@ -5055,7 +5055,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasTextureSetTextureRepeat(canvasTexture: RID,
       repeat: CanvasItemTextureRepeat): Unit {
-    TransferContext.writeArguments(_RID to canvasTexture, LONG to repeat.id)
+    TransferContext.writeArguments(_RID to canvasTexture, LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasTextureSetTextureRepeatPtr, NIL)
   }
 
@@ -5092,7 +5092,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetDefaultTextureFilter(item: RID, filter: CanvasItemTextureFilter):
       Unit {
-    TransferContext.writeArguments(_RID to item, LONG to filter.id)
+    TransferContext.writeArguments(_RID to item, LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDefaultTextureFilterPtr, NIL)
   }
 
@@ -5103,7 +5103,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasItemSetDefaultTextureRepeat(item: RID, repeat: CanvasItemTextureRepeat):
       Unit {
-    TransferContext.writeArguments(_RID to item, LONG to repeat.id)
+    TransferContext.writeArguments(_RID to item, LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemSetDefaultTextureRepeatPtr, NIL)
   }
 
@@ -5427,7 +5427,7 @@ public object RenderingServer : Object() {
     drawCenter: Boolean = true,
     modulate: Color = Color(Color(1, 1, 1, 1)),
   ): Unit {
-    TransferContext.writeArguments(_RID to item, RECT2 to rect, RECT2 to source, _RID to texture, VECTOR2 to topleft, VECTOR2 to bottomright, LONG to xAxisMode.id, LONG to yAxisMode.id, BOOL to drawCenter, COLOR to modulate)
+    TransferContext.writeArguments(_RID to item, RECT2 to rect, RECT2 to source, _RID to texture, VECTOR2 to topleft, VECTOR2 to bottomright, LONG to xAxisMode.value, LONG to yAxisMode.value, BOOL to drawCenter, COLOR to modulate)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemAddNinePatchPtr, NIL)
   }
 
@@ -5755,7 +5755,7 @@ public object RenderingServer : Object() {
     fitMargin: Float = 0.0f,
     blurMipmaps: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(_RID to item, LONG to mode.id, DOUBLE to clearMargin.toDouble(), BOOL to fitEmpty, DOUBLE to fitMargin.toDouble(), BOOL to blurMipmaps)
+    TransferContext.writeArguments(_RID to item, LONG to mode.value, DOUBLE to clearMargin.toDouble(), BOOL to fitEmpty, DOUBLE to fitMargin.toDouble(), BOOL to blurMipmaps)
     TransferContext.callMethod(ptr, MethodBindings.canvasItemSetCanvasGroupModePtr, NIL)
   }
 
@@ -5921,7 +5921,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasLightSetModePtr, NIL)
   }
 
@@ -5939,7 +5939,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to filter.id)
+    TransferContext.writeArguments(_RID to light, LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasLightSetShadowFilterPtr, NIL)
   }
 
@@ -5967,7 +5967,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
-    TransferContext.writeArguments(_RID to light, LONG to mode.id)
+    TransferContext.writeArguments(_RID to light, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasLightSetBlendModePtr, NIL)
   }
 
@@ -6145,7 +6145,7 @@ public object RenderingServer : Object() {
   @JvmStatic
   public final fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
       mode: CanvasOccluderPolygonCullMode): Unit {
-    TransferContext.writeArguments(_RID to occluderPolygon, LONG to mode.id)
+    TransferContext.writeArguments(_RID to occluderPolygon, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.canvasOccluderPolygonSetCullModePtr, NIL)
   }
 
@@ -6170,7 +6170,7 @@ public object RenderingServer : Object() {
     type: GlobalShaderParameterType,
     defaultValue: Any?,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, LONG to type.id, ANY to defaultValue)
+    TransferContext.writeArguments(STRING_NAME to name, LONG to type.value, ANY to defaultValue)
     TransferContext.callMethod(ptr, MethodBindings.globalShaderParameterAddPtr, NIL)
   }
 
@@ -6303,7 +6303,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun getRenderingInfo(info: RenderingInfo): Long {
-    TransferContext.writeArguments(LONG to info.id)
+    TransferContext.writeArguments(LONG to info.value)
     TransferContext.callMethod(ptr, MethodBindings.getRenderingInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -6626,7 +6626,7 @@ public object RenderingServer : Object() {
    */
   @JvmStatic
   public final fun hasFeature(feature: Features): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -6802,7 +6802,7 @@ public object RenderingServer : Object() {
       globalShaderParameterGetType(name.asCachedStringName())
 
   public enum class TextureType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 2D texture.
@@ -6818,18 +6818,18 @@ public object RenderingServer : Object() {
     TEXTURE_TYPE_3D(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureLayeredType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Array of 2-dimensional textures (see [Texture2DArray]).
@@ -6845,18 +6845,18 @@ public object RenderingServer : Object() {
     CUBEMAP_ARRAY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureLayeredType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureLayeredType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CubeMapLayer(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Left face of a [Cubemap].
@@ -6884,18 +6884,18 @@ public object RenderingServer : Object() {
     CUBEMAP_LAYER_BACK(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CubeMapLayer = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CubeMapLayer = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Shader is a 3D shader.
@@ -6923,18 +6923,18 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShaderMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShaderMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Array is a vertex position array.
@@ -6994,18 +6994,18 @@ public object RenderingServer : Object() {
     MAX(13),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ArrayType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayCustomFormat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Custom data array contains 8-bit-per-channel red/green/blue/alpha color data. Values are
@@ -7053,13 +7053,13 @@ public object RenderingServer : Object() {
     MAX(8),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
@@ -7308,7 +7308,7 @@ public object RenderingServer : Object() {
   }
 
   public enum class PrimitiveType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Primitive to draw consists of points.
@@ -7337,18 +7337,18 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PrimitiveType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PrimitiveType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendShapeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Blend shapes are normalized.
@@ -7360,18 +7360,18 @@ public object RenderingServer : Object() {
     RELATIVE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendShapeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MultimeshTransformFormat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use [Transform2D] to store MultiMesh transform.
@@ -7383,18 +7383,19 @@ public object RenderingServer : Object() {
     MULTIMESH_TRANSFORM_3D(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MultimeshTransformFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MultimeshTransformFormat =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MultimeshPhysicsInterpolationQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * MultiMesh physics interpolation favors speed over quality.
@@ -7406,19 +7407,19 @@ public object RenderingServer : Object() {
     INTERP_QUALITY_HIGH(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): MultimeshPhysicsInterpolationQuality =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightProjectorFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor filter for light projectors (use for pixel art light projectors). No mipmaps
@@ -7462,18 +7463,19 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightProjectorFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightProjectorFilter =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Directional (sun/moon) light (see [DirectionalLight3D]).
@@ -7489,18 +7491,18 @@ public object RenderingServer : Object() {
     SPOT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The light's energy multiplier.
@@ -7604,18 +7606,18 @@ public object RenderingServer : Object() {
     MAX(21),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightBakeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
@@ -7641,18 +7643,18 @@ public object RenderingServer : Object() {
     DYNAMIC(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightBakeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightBakeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightOmniShadowMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use a dual paraboloid shadow map for omni lights.
@@ -7664,18 +7666,18 @@ public object RenderingServer : Object() {
     CUBE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightOmniShadowMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightOmniShadowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightDirectionalShadowMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use orthogonal shadow projection for directional light.
@@ -7691,19 +7693,19 @@ public object RenderingServer : Object() {
     PARALLEL_4_SPLITS(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): LightDirectionalShadowMode =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightDirectionalSkyMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use DirectionalLight3D in both sky rendering and scene lighting.
@@ -7719,18 +7721,19 @@ public object RenderingServer : Object() {
     SKY_ONLY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightDirectionalSkyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightDirectionalSkyMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShadowQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest shadow filtering quality (fastest). Soft shadows are not available with this quality
@@ -7780,18 +7783,18 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ReflectionProbeUpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Reflection probe will update reflections once and then stop.
@@ -7803,19 +7806,19 @@ public object RenderingServer : Object() {
     ALWAYS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): ReflectionProbeUpdateMode =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ReflectionProbeAmbientMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the reflection probe's box defined by its size.
@@ -7833,19 +7836,19 @@ public object RenderingServer : Object() {
     COLOR(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): ReflectionProbeAmbientMode =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DecalTexture(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Albedo texture slot in a decal ([Decal.textureAlbedo]).
@@ -7869,18 +7872,18 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DecalTexture = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DecalTexture = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DecalFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor filter for decals (use for pixel art decals). No mipmaps are used for
@@ -7924,18 +7927,18 @@ public object RenderingServer : Object() {
     LINEAR_MIPMAPS_ANISOTROPIC(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DecalFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DecalFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VoxelGIQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Low [VoxelGI] rendering quality using 4 cones.
@@ -7947,18 +7950,18 @@ public object RenderingServer : Object() {
     HIGH(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VoxelGIQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VoxelGIQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 2D particles.
@@ -7970,18 +7973,18 @@ public object RenderingServer : Object() {
     PARTICLES_MODE_3D(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticlesMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesTransformAlign(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     DISABLED(0),
     Z_BILLBOARD(1),
@@ -7989,18 +7992,19 @@ public object RenderingServer : Object() {
     Z_BILLBOARD_Y_TO_VELOCITY(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticlesTransformAlign = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesTransformAlign =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesDrawOrder(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Draw particles in the order that they appear in the particles array.
@@ -8022,18 +8026,18 @@ public object RenderingServer : Object() {
     VIEW_DEPTH(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticlesDrawOrder = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesDrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesCollisionType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     SPHERE_ATTRACT(0),
     BOX_ATTRACT(1),
@@ -8044,18 +8048,19 @@ public object RenderingServer : Object() {
     HEIGHTFIELD_COLLIDE(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticlesCollisionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticlesCollisionType =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticlesCollisionHeightfieldResolution(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_256(0),
     PARTICLES_COLLISION_HEIGHTFIELD_RESOLUTION_512(1),
@@ -8069,19 +8074,19 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): ParticlesCollisionHeightfieldResolution =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FogVolumeShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * [FogVolume] will be shaped like an ellipsoid (stretched sphere).
@@ -8114,18 +8119,18 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FogVolumeShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FogVolumeShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportScaling3DMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
@@ -8174,18 +8179,19 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportScaling3DMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportScaling3DMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportUpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not update the viewport's render target.
@@ -8209,18 +8215,18 @@ public object RenderingServer : Object() {
     ALWAYS(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportUpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportUpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportClearMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Always clear the viewport's render target before drawing.
@@ -8236,18 +8242,18 @@ public object RenderingServer : Object() {
     ONLY_NEXT_FRAME(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportClearMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportClearMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportEnvironmentMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disable rendering of 3D environment over 2D canvas.
@@ -8269,18 +8275,19 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportEnvironmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportEnvironmentMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportSDFOversize(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not oversize the 2D signed distance field. Occluders may disappear when touching the
@@ -8309,18 +8316,18 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportSDFOversize = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportSDFOversize = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportSDFScale(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Full resolution 2D signed distance field scale. This has the highest GPU requirements.
@@ -8342,18 +8349,18 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportSDFScale = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportSDFScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportMSAA(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Multisample antialiasing for 3D is disabled. This is the default value, and also the fastest
@@ -8381,18 +8388,18 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportMSAA = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportMSAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportAnisotropicFiltering(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
@@ -8420,19 +8427,19 @@ public object RenderingServer : Object() {
     ANISOTROPY_MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): ViewportAnisotropicFiltering =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportScreenSpaceAA(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
@@ -8450,18 +8457,19 @@ public object RenderingServer : Object() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportScreenSpaceAA = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportScreenSpaceAA =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportOcclusionCullingBuildQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Low occlusion culling BVH build quality (as defined by Embree). Results in the lowest CPU
@@ -8479,19 +8487,19 @@ public object RenderingServer : Object() {
     BUILD_QUALITY_HIGH(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): ViewportOcclusionCullingBuildQuality =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportRenderInfo(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Number of objects drawn in a single frame.
@@ -8511,18 +8519,18 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportRenderInfo = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportRenderInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportRenderInfoType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
@@ -8543,18 +8551,19 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportRenderInfoType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportRenderInfoType =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportDebugDraw(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Debug draw is disabled. Default setting.
@@ -8701,18 +8710,18 @@ public object RenderingServer : Object() {
     INTERNAL_BUFFER(26),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportDebugDraw = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportDebugDraw = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportVRSMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Variable rate shading is disabled.
@@ -8734,18 +8743,18 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportVRSMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportVRSMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ViewportVRSUpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
@@ -8765,18 +8774,19 @@ public object RenderingServer : Object() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ViewportVRSUpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ViewportVRSUpdateMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkyMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Automatically selects the appropriate process mode based on your sky shader. If your shader
@@ -8813,18 +8823,18 @@ public object RenderingServer : Object() {
     REALTIME(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SkyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkyMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompositorEffectFlags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The rendering effect requires the color buffer to be resolved if MSAA is enabled.
@@ -8848,18 +8858,19 @@ public object RenderingServer : Object() {
     NEEDS_SEPARATE_SPECULAR(16),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompositorEffectFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompositorEffectFlags =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompositorEffectCallbackType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
@@ -8888,19 +8899,19 @@ public object RenderingServer : Object() {
     ANY(-1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): CompositorEffectCallbackType =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentBG(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the clear color as background.
@@ -8933,18 +8944,18 @@ public object RenderingServer : Object() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentBG = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentBG = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentAmbientSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Gather ambient light from whichever source is specified as the background.
@@ -8964,18 +8975,19 @@ public object RenderingServer : Object() {
     SKY(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentAmbientSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentAmbientSource =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentReflectionSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the background for reflections.
@@ -8991,19 +9003,19 @@ public object RenderingServer : Object() {
     SKY(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): EnvironmentReflectionSource =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentGlowBlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
@@ -9032,18 +9044,19 @@ public object RenderingServer : Object() {
     MIX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentGlowBlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentGlowBlendMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentFogMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use a physically-based fog model defined primarily by fog density.
@@ -9056,18 +9069,18 @@ public object RenderingServer : Object() {
     DEPTH(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentFogMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentFogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentToneMapper(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
@@ -9105,18 +9118,19 @@ public object RenderingServer : Object() {
     AGX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentToneMapper = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentToneMapper =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSSRRoughnessQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of roughness filter for screen-space reflections. Rough materials will not
@@ -9138,19 +9152,19 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): EnvironmentSSRRoughnessQuality =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSSAOQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of screen-space ambient occlusion.
@@ -9175,18 +9189,19 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentSSAOQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSSAOQuality =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSSILQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality of screen-space indirect lighting.
@@ -9211,18 +9226,19 @@ public object RenderingServer : Object() {
     ULTRA(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentSSILQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSSILQuality =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSDFGIYScale(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
@@ -9244,18 +9260,19 @@ public object RenderingServer : Object() {
     Y_SCALE_100_PERCENT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentSDFGIYScale = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIYScale =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSDFGIRayCount(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Throw 4 rays per frame when converging SDFGI. This has the lowest GPU requirements, but
@@ -9293,18 +9310,19 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentSDFGIRayCount = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentSDFGIRayCount =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSDFGIFramesToConverge(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Converge SDFGI over 5 frames. This is the most responsive, but creates the most noisy result
@@ -9338,19 +9356,19 @@ public object RenderingServer : Object() {
     CONVERGE_MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIFramesToConverge =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentSDFGIFramesToUpdateLight(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Update indirect light from dynamic lights in SDFGI over 1 frame. This is the most responsive,
@@ -9380,19 +9398,19 @@ public object RenderingServer : Object() {
     UPDATE_LIGHT_MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): EnvironmentSDFGIFramesToUpdateLight =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SubSurfaceScatteringQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables subsurface scattering entirely, even on materials that have
@@ -9413,19 +9431,19 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): SubSurfaceScatteringQuality =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DOFBokehShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Calculate the DOF blur using a box filter. The fastest option, but results in obvious lines
@@ -9444,18 +9462,18 @@ public object RenderingServer : Object() {
     CIRCLE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DOFBokehShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DOFBokehShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DOFBlurQuality(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Lowest quality DOF blur. This is the fastest setting, but you may be able to see filtering
@@ -9477,18 +9495,18 @@ public object RenderingServer : Object() {
     HIGH(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DOFBlurQuality = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DOFBlurQuality = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InstanceType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The instance does not have a type.
@@ -9552,18 +9570,18 @@ public object RenderingServer : Object() {
     GEOMETRY_MASK(14),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InstanceType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InstanceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InstanceFlags(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Allows the instance to be used in baked lighting.
@@ -9588,18 +9606,18 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InstanceFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InstanceFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShadowCastingSetting(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disable shadows from this instance.
@@ -9620,18 +9638,19 @@ public object RenderingServer : Object() {
     SHADOWS_ONLY(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowCastingSetting = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowCastingSetting =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VisibilityRangeFadeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disable visibility range fading for the given instance.
@@ -9647,18 +9666,19 @@ public object RenderingServer : Object() {
     DEPENDENCIES(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VisibilityRangeFadeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityRangeFadeMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BakeChannels(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Index of [Image] in array of [Image]s returned by [bakeRenderUv2]. Image uses
@@ -9687,18 +9707,18 @@ public object RenderingServer : Object() {
     EMISSION(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BakeChannels = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BakeChannels = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasTextureChannel(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Diffuse canvas texture ([CanvasTexture.diffuseTexture]).
@@ -9714,18 +9734,19 @@ public object RenderingServer : Object() {
     SPECULAR(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasTextureChannel = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasTextureChannel =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class NinePatchAxisMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The nine patch gets stretched where needed.
@@ -9741,18 +9762,18 @@ public object RenderingServer : Object() {
     TILE_FIT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): NinePatchAxisMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): NinePatchAxisMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasItemTextureFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Uses the default filter mode for this [Viewport].
@@ -9822,18 +9843,19 @@ public object RenderingServer : Object() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasItemTextureFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasItemTextureFilter =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasItemTextureRepeat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Uses the default repeat mode for this [Viewport].
@@ -9861,18 +9883,19 @@ public object RenderingServer : Object() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasItemTextureRepeat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasItemTextureRepeat =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasGroupMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Child draws over parent and is not clipped.
@@ -9891,18 +9914,18 @@ public object RenderingServer : Object() {
     TRANSPARENT(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasGroupMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasGroupMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasLightMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 2D point light (see [PointLight2D]).
@@ -9914,18 +9937,18 @@ public object RenderingServer : Object() {
     DIRECTIONAL(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasLightMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasLightBlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Adds light color additive to the canvas.
@@ -9941,18 +9964,19 @@ public object RenderingServer : Object() {
     MIX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasLightBlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightBlendMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasLightShadowFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not apply a filter to canvas light shadows.
@@ -9972,18 +9996,19 @@ public object RenderingServer : Object() {
     FILTER_MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CanvasLightShadowFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CanvasLightShadowFilter =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CanvasOccluderPolygonCullMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Culling of the canvas occluder is disabled.
@@ -9999,19 +10024,19 @@ public object RenderingServer : Object() {
     COUNTER_CLOCKWISE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): CanvasOccluderPolygonCullMode =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GlobalShaderParameterType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Boolean global shader parameter (`global uniform bool ...`).
@@ -10149,19 +10174,19 @@ public object RenderingServer : Object() {
     VAR_TYPE_MAX(29),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): GlobalShaderParameterType =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderingInfo(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Number of objects rendered in the current 3D scene. This varies depending on camera position
@@ -10224,18 +10249,18 @@ public object RenderingServer : Object() {
     PIPELINE_COMPILATIONS_SPECIALIZATION(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RenderingInfo = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderingInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PipelineSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Pipeline compilation that was triggered by the 2D canvas renderer.
@@ -10264,30 +10289,30 @@ public object RenderingServer : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PipelineSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PipelineSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Features(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     SHADERS(0),
     MULTITHREADED(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Features = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Features = entries.single { it.`value` == `value` }
     }
   }
 

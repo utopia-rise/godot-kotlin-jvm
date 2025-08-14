@@ -465,7 +465,7 @@ public open class FontFile : Font() {
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
-    TransferContext.writeArguments(LONG to antialiasing.id)
+    TransferContext.writeArguments(LONG to antialiasing.value)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasingPtr, NIL)
   }
 
@@ -542,7 +542,7 @@ public open class FontFile : Font() {
   }
 
   public final fun setFixedSizeScaleMode(fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit {
-    TransferContext.writeArguments(LONG to fixedSizeScaleMode.id)
+    TransferContext.writeArguments(LONG to fixedSizeScaleMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFixedSizeScaleModePtr, NIL)
   }
 
@@ -575,7 +575,7 @@ public open class FontFile : Font() {
   }
 
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
-    TransferContext.writeArguments(LONG to hinting.id)
+    TransferContext.writeArguments(LONG to hinting.value)
     TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
   }
 
@@ -587,7 +587,7 @@ public open class FontFile : Font() {
 
   public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
       Unit {
-    TransferContext.writeArguments(LONG to subpixelPositioning.id)
+    TransferContext.writeArguments(LONG to subpixelPositioning.value)
     TransferContext.callMethod(ptr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
 
@@ -737,7 +737,7 @@ public open class FontFile : Font() {
     spacing: TextServer.SpacingType,
     `value`: Long,
   ): Unit {
-    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id, LONG to value)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.value, LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.setExtraSpacingPtr, NIL)
   }
 
@@ -746,7 +746,7 @@ public open class FontFile : Font() {
    * font size).
    */
   public final fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
-    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.id)
+    TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.value)
     TransferContext.callMethod(ptr, MethodBindings.getExtraSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

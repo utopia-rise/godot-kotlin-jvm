@@ -198,7 +198,7 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
@@ -209,7 +209,7 @@ public open class SubViewport : Viewport() {
   }
 
   public final fun setClearMode(mode: ClearMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setClearModePtr, NIL)
   }
 
@@ -220,7 +220,7 @@ public open class SubViewport : Viewport() {
   }
 
   public enum class ClearMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Always clear the render target before drawing.
@@ -236,18 +236,18 @@ public open class SubViewport : Viewport() {
     ONCE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ClearMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ClearMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not update the render target.
@@ -271,13 +271,13 @@ public open class SubViewport : Viewport() {
     ALWAYS(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 

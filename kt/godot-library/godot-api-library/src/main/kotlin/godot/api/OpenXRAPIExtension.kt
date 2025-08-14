@@ -450,7 +450,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   public enum class OpenXRAlphaBlendModeSupport(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Means that [XRInterface.XR_ENV_BLEND_MODE_ALPHA_BLEND] isn't supported at all.
@@ -466,14 +466,14 @@ public open class OpenXRAPIExtension : RefCounted() {
     OPENXR_ALPHA_BLEND_MODE_SUPPORT_EMULATING(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): OpenXRAlphaBlendModeSupport =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 

@@ -55,7 +55,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {
-    TransferContext.writeArguments(LONG to billboardType.id)
+    TransferContext.writeArguments(LONG to billboardType.value)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardTypePtr, NIL)
   }
 
@@ -77,7 +77,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public enum class BillboardType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Billboarding is disabled and the node does nothing.
@@ -101,13 +101,13 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BillboardType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BillboardType = entries.single { it.`value` == `value` }
     }
   }
 

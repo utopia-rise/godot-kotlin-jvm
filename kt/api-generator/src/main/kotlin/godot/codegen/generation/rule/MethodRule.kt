@@ -141,7 +141,7 @@ class MethodRule : GodotApiRule<EnrichedMethodTask>(), BaseMethodeRule {
 
                 append("%T·to·${method.arguments[index].name}${argument.getToBufferCastingMethod()}")
 
-                if (argument.type.isEnum()) append(".id")
+                if (argument.type.isEnum()) append(".value")
                 if (argument.type.isBitField()) append(".flag")
 
             }

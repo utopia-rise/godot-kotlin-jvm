@@ -65,7 +65,7 @@ public open class InputEventJoypadButton : InputEvent() {
   }
 
   public final fun setButtonIndex(buttonIndex: JoyButton): Unit {
-    TransferContext.writeArguments(LONG to buttonIndex.id)
+    TransferContext.writeArguments(LONG to buttonIndex.value)
     TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
 

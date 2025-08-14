@@ -249,7 +249,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * Call this to find out if a given play area mode is supported by this interface.
    */
   public final fun supportsPlayAreaMode(mode: PlayAreaMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.supportsPlayAreaModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -269,7 +269,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * [XRInterface.XR_PLAY_AREA_STAGE]) or make the switch during a scene change.
    */
   public final fun setPlayAreaMode(mode: PlayAreaMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlayAreaModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -407,7 +407,7 @@ public open class XRInterface internal constructor() : RefCounted() {
    * ```
    */
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setEnvironmentBlendModePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -446,7 +446,7 @@ public open class XRInterface internal constructor() : RefCounted() {
       triggerHapticPulse(actionName, trackerName.asCachedStringName(), frequency, amplitude, durationSec, delaySec)
 
   public enum class Capabilities(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No XR capabilities.
@@ -481,18 +481,18 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_EXTERNAL(32),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Capabilities = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Capabilities = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TrackingStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Tracking is behaving as expected.
@@ -518,18 +518,18 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_NOT_TRACKING(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TrackingStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackingStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlayAreaMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Play area mode not set or not available.
@@ -556,18 +556,18 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_PLAY_AREA_STAGE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PlayAreaMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlayAreaMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EnvironmentBlendMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Opaque blend mode. This is typically used for VR devices.
@@ -586,13 +586,14 @@ public open class XRInterface internal constructor() : RefCounted() {
     XR_ENV_BLEND_MODE_ALPHA_BLEND(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnvironmentBlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnvironmentBlendMode =
+          entries.single { it.`value` == `value` }
     }
   }
 

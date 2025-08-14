@@ -111,7 +111,7 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public final fun setDb(amount: FilterDB): Unit {
-    TransferContext.writeArguments(LONG to amount.id)
+    TransferContext.writeArguments(LONG to amount.value)
     TransferContext.callMethod(ptr, MethodBindings.setDbPtr, NIL)
   }
 
@@ -129,7 +129,7 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public enum class FilterDB(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Cutting off at 6dB per octave.
@@ -149,13 +149,13 @@ public open class AudioEffectFilter : AudioEffect() {
     FILTER_24DB(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FilterDB = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FilterDB = entries.single { it.`value` == `value` }
     }
   }
 

@@ -593,7 +593,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setCenterOfMassMode(mode: CenterOfMassMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCenterOfMassModePtr, NIL)
   }
 
@@ -637,7 +637,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.id)
+    TransferContext.writeArguments(LONG to linearDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
   }
 
@@ -648,7 +648,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.id)
+    TransferContext.writeArguments(LONG to angularDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
   }
 
@@ -748,7 +748,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setContinuousCollisionDetectionMode(mode: CCDMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setContinuousCollisionDetectionModePtr, NIL)
   }
 
@@ -946,7 +946,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public final fun setFreezeMode(freezeMode: FreezeMode): Unit {
-    TransferContext.writeArguments(LONG to freezeMode.id)
+    TransferContext.writeArguments(LONG to freezeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFreezeModePtr, NIL)
   }
 
@@ -971,7 +971,7 @@ public open class RigidBody2D : PhysicsBody2D() {
   }
 
   public enum class FreezeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
@@ -985,18 +985,18 @@ public open class RigidBody2D : PhysicsBody2D() {
     KINEMATIC(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FreezeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FreezeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CenterOfMassMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
@@ -1010,18 +1010,18 @@ public open class RigidBody2D : PhysicsBody2D() {
     CUSTOM(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CenterOfMassMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CenterOfMassMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DampMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
@@ -1034,18 +1034,18 @@ public open class RigidBody2D : PhysicsBody2D() {
     REPLACE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DampMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CCDMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Continuous collision detection disabled. This is the fastest way to detect body collisions,
@@ -1064,13 +1064,13 @@ public open class RigidBody2D : PhysicsBody2D() {
     CAST_SHAPE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CCDMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CCDMode = entries.single { it.`value` == `value` }
     }
   }
 

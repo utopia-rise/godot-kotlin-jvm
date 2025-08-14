@@ -121,7 +121,7 @@ public open class ProgressBar : Range() {
   }
 
   public enum class FillMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The progress bar fills from begin to end horizontally, according to the language direction.
@@ -145,13 +145,13 @@ public open class ProgressBar : Range() {
     BOTTOM_TO_TOP(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FillMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FillMode = entries.single { it.`value` == `value` }
     }
   }
 

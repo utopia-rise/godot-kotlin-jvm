@@ -243,7 +243,7 @@ public object PhysicsServer3D : Object() {
     `param`: SpaceParameter,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to space, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to space, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.spaceSetParamPtr, NIL)
   }
 
@@ -252,7 +252,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
-    TransferContext.writeArguments(_RID to space, LONG to param.id)
+    TransferContext.writeArguments(_RID to space, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.spaceGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -453,7 +453,7 @@ public object PhysicsServer3D : Object() {
     `param`: AreaParameter,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to area, LONG to param.id, ANY to value)
+    TransferContext.writeArguments(_RID to area, LONG to param.value, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.areaSetParamPtr, NIL)
   }
 
@@ -472,7 +472,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
-    TransferContext.writeArguments(_RID to area, LONG to param.id)
+    TransferContext.writeArguments(_RID to area, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.areaGetParamPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -612,7 +612,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to mode.id)
+    TransferContext.writeArguments(_RID to body, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.bodySetModePtr, NIL)
   }
 
@@ -836,7 +836,7 @@ public object PhysicsServer3D : Object() {
     `param`: BodyParameter,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to param.id, ANY to value)
+    TransferContext.writeArguments(_RID to body, LONG to param.value, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.bodySetParamPtr, NIL)
   }
 
@@ -846,7 +846,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to param.id)
+    TransferContext.writeArguments(_RID to body, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.bodyGetParamPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -870,7 +870,7 @@ public object PhysicsServer3D : Object() {
     state: BodyState,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to value)
+    TransferContext.writeArguments(_RID to body, LONG to state.value, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.bodySetStatePtr, NIL)
   }
 
@@ -879,7 +879,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun bodyGetState(body: RID, state: BodyState): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to state.id)
+    TransferContext.writeArguments(_RID to body, LONG to state.value)
     TransferContext.callMethod(ptr, MethodBindings.bodyGetStatePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -1072,13 +1072,13 @@ public object PhysicsServer3D : Object() {
     axis: BodyAxis,
     lock: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to axis.id, BOOL to lock)
+    TransferContext.writeArguments(_RID to body, LONG to axis.value, BOOL to lock)
     TransferContext.callMethod(ptr, MethodBindings.bodySetAxisLockPtr, NIL)
   }
 
   @JvmStatic
   public final fun bodyIsAxisLocked(body: RID, axis: BodyAxis): Boolean {
-    TransferContext.writeArguments(_RID to body, LONG to axis.id)
+    TransferContext.writeArguments(_RID to body, LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.bodyIsAxisLockedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1360,7 +1360,7 @@ public object PhysicsServer3D : Object() {
     state: BodyState,
     variant: Any?,
   ): Unit {
-    TransferContext.writeArguments(_RID to body, LONG to state.id, ANY to variant)
+    TransferContext.writeArguments(_RID to body, LONG to state.value, ANY to variant)
     TransferContext.callMethod(ptr, MethodBindings.softBodySetStatePtr, NIL)
   }
 
@@ -1372,7 +1372,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun softBodyGetState(body: RID, state: BodyState): Any? {
-    TransferContext.writeArguments(_RID to body, LONG to state.id)
+    TransferContext.writeArguments(_RID to body, LONG to state.value)
     TransferContext.callMethod(ptr, MethodBindings.softBodyGetStatePtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -1609,7 +1609,7 @@ public object PhysicsServer3D : Object() {
     `param`: PinJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.pinJointSetParamPtr, NIL)
   }
 
@@ -1618,7 +1618,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id)
+    TransferContext.writeArguments(_RID to joint, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.pinJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1682,7 +1682,7 @@ public object PhysicsServer3D : Object() {
     `param`: HingeJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.hingeJointSetParamPtr, NIL)
   }
 
@@ -1691,7 +1691,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id)
+    TransferContext.writeArguments(_RID to joint, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.hingeJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1705,7 +1705,7 @@ public object PhysicsServer3D : Object() {
     flag: HingeJointFlag,
     enabled: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.id, BOOL to enabled)
+    TransferContext.writeArguments(_RID to joint, LONG to flag.value, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.hingeJointSetFlagPtr, NIL)
   }
 
@@ -1714,7 +1714,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
-    TransferContext.writeArguments(_RID to joint, LONG to flag.id)
+    TransferContext.writeArguments(_RID to joint, LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.hingeJointGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1740,7 +1740,7 @@ public object PhysicsServer3D : Object() {
     `param`: SliderJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.sliderJointSetParamPtr, NIL)
   }
 
@@ -1749,7 +1749,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id)
+    TransferContext.writeArguments(_RID to joint, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.sliderJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1775,7 +1775,7 @@ public object PhysicsServer3D : Object() {
     `param`: ConeTwistJointParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to joint, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.coneTwistJointSetParamPtr, NIL)
   }
 
@@ -1784,7 +1784,7 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to param.id)
+    TransferContext.writeArguments(_RID to joint, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.coneTwistJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1864,7 +1864,7 @@ public object PhysicsServer3D : Object() {
     `param`: G6DOFJointAxisParam,
     `value`: Float,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetParamPtr, NIL)
   }
 
@@ -1878,7 +1878,7 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     `param`: G6DOFJointAxisParam,
   ): Float {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to param.id)
+    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointGetParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1894,7 +1894,7 @@ public object PhysicsServer3D : Object() {
     flag: G6DOFJointAxisFlag,
     enable: Boolean,
   ): Unit {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id, BOOL to enable)
+    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to flag.value, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointSetFlagPtr, NIL)
   }
 
@@ -1908,7 +1908,7 @@ public object PhysicsServer3D : Object() {
     axis: Vector3.Axis,
     flag: G6DOFJointAxisFlag,
   ): Boolean {
-    TransferContext.writeArguments(_RID to joint, LONG to axis.id, LONG to flag.id)
+    TransferContext.writeArguments(_RID to joint, LONG to axis.value, LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.generic6dofJointGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1938,13 +1938,13 @@ public object PhysicsServer3D : Object() {
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
-    TransferContext.writeArguments(LONG to processInfo.id)
+    TransferContext.writeArguments(LONG to processInfo.value)
     TransferContext.callMethod(ptr, MethodBindings.getProcessInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class JointType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The [Joint3D] is a [PinJoint3D].
@@ -1972,18 +1972,18 @@ public object PhysicsServer3D : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): JointType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): JointType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PinJointParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The strength with which the pinned objects try to stay in positional relation to each other.
@@ -2004,18 +2004,18 @@ public object PhysicsServer3D : Object() {
     IMPULSE_CLAMP(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PinJointParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PinJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HingeJointParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
@@ -2049,18 +2049,18 @@ public object PhysicsServer3D : Object() {
     MOTOR_MAX_IMPULSE(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HingeJointParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HingeJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HingeJointFlag(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * If `true`, the Hinge has a maximum and a minimum rotation.
@@ -2072,18 +2072,18 @@ public object PhysicsServer3D : Object() {
     ENABLE_MOTOR(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HingeJointFlag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HingeJointFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SliderJointParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The maximum difference between the pivot points on their X axis before damping happens.
@@ -2182,18 +2182,18 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SliderJointParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SliderJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ConeTwistJointParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Swing is rotation from side to side, around the axis perpendicular to the twist axis.
@@ -2228,18 +2228,18 @@ public object PhysicsServer3D : Object() {
     RELAXATION(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ConeTwistJointParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConeTwistJointParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class G6DOFJointAxisParam(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
@@ -2320,18 +2320,18 @@ public object PhysicsServer3D : Object() {
     MAX(22),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): G6DOFJointAxisParam = entries.single { it.id == `value` }
+      public fun from(`value`: Long): G6DOFJointAxisParam = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class G6DOFJointAxisFlag(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * If set, linear motion is possible within the given limits.
@@ -2357,18 +2357,18 @@ public object PhysicsServer3D : Object() {
     FLAG_MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): G6DOFJointAxisFlag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): G6DOFJointAxisFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShapeType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The [Shape3D] is a [WorldBoundaryShape3D].
@@ -2418,18 +2418,18 @@ public object PhysicsServer3D : Object() {
     CUSTOM(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShapeType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShapeType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaParameter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get gravity override mode in an area. See [AreaSpaceOverrideMode] for
@@ -2504,18 +2504,18 @@ public object PhysicsServer3D : Object() {
     WIND_ATTENUATION_FACTOR(13),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AreaParameter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaSpaceOverrideMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * This area does not affect gravity/damp. These are generally areas that exist only to detect
@@ -2544,18 +2544,19 @@ public object PhysicsServer3D : Object() {
     REPLACE_COMBINE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AreaSpaceOverrideMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaSpaceOverrideMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant for static bodies. In this mode, a body can be only moved by user code and doesn't
@@ -2579,18 +2580,18 @@ public object PhysicsServer3D : Object() {
     RIGID_LINEAR(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BodyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyParameter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get a body's bounce factor.
@@ -2638,18 +2639,18 @@ public object PhysicsServer3D : Object() {
     MAX(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BodyParameter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyDampMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The body's damping value is added to any value set in areas or the default value.
@@ -2661,18 +2662,18 @@ public object PhysicsServer3D : Object() {
     REPLACE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BodyDampMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyDampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyState(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the current transform matrix of the body.
@@ -2696,18 +2697,18 @@ public object PhysicsServer3D : Object() {
     CAN_SLEEP(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BodyState = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyState = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AreaBodyStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The value of the first parameter and area callback function receives, when an object enters
@@ -2721,18 +2722,18 @@ public object PhysicsServer3D : Object() {
     REMOVED(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AreaBodyStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AreaBodyStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessInfo(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to get the number of objects that are not sleeping.
@@ -2748,18 +2749,18 @@ public object PhysicsServer3D : Object() {
     INFO_ISLAND_COUNT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProcessInfo = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpaceParameter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant to set/get the maximum distance a pair of bodies has to move before their collision
@@ -2805,18 +2806,18 @@ public object PhysicsServer3D : Object() {
     SOLVER_ITERATIONS(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpaceParameter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpaceParameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BodyAxis(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     LINEAR_X(1),
     LINEAR_Y(2),
@@ -2826,13 +2827,13 @@ public object PhysicsServer3D : Object() {
     ANGULAR_Z(32),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BodyAxis = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BodyAxis = entries.single { it.`value` == `value` }
     }
   }
 

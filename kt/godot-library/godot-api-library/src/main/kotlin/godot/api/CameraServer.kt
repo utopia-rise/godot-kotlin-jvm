@@ -100,7 +100,7 @@ public object CameraServer : Object() {
   }
 
   public enum class FeedImage(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The RGBA camera image.
@@ -120,13 +120,13 @@ public object CameraServer : Object() {
     CBCR(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FeedImage = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedImage = entries.single { it.`value` == `value` }
     }
   }
 

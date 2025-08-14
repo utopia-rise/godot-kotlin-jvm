@@ -80,7 +80,7 @@ public open class MeshLibrary : Resource() {
    */
   public final fun setItemMeshCastShadow(id: Int,
       shadowCastingSetting: RenderingServer.ShadowCastingSetting): Unit {
-    TransferContext.writeArguments(LONG to id.toLong(), LONG to shadowCastingSetting.id)
+    TransferContext.writeArguments(LONG to id.toLong(), LONG to shadowCastingSetting.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemMeshCastShadowPtr, NIL)
   }
 

@@ -190,7 +190,7 @@ public open class SplitContainer : Container() {
   }
 
   public final fun setDraggerVisibility(mode: DraggerVisibility): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDraggerVisibilityPtr, NIL)
   }
 
@@ -289,7 +289,7 @@ public open class SplitContainer : Container() {
   }
 
   public enum class DraggerVisibility(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The split dragger icon is always visible when [theme_item autohide] is `false`, otherwise
@@ -313,13 +313,13 @@ public open class SplitContainer : Container() {
     HIDDEN_COLLAPSED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DraggerVisibility = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DraggerVisibility = entries.single { it.`value` == `value` }
     }
   }
 

@@ -987,7 +987,7 @@ public open class CanvasItem internal constructor() : Node() {
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.drawStringPtr, NIL)
   }
 
@@ -1011,7 +1011,7 @@ public open class CanvasItem internal constructor() : Node() {
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringPtr, NIL)
   }
 
@@ -1034,7 +1034,7 @@ public open class CanvasItem internal constructor() : Node() {
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.drawStringOutlinePtr, NIL)
   }
 
@@ -1059,7 +1059,7 @@ public open class CanvasItem internal constructor() : Node() {
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.id, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringOutlinePtr, NIL)
   }
 
@@ -1446,7 +1446,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun setTextureFilter(mode: TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
@@ -1457,7 +1457,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun setTextureRepeat(mode: TextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
@@ -1468,7 +1468,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   public final fun setClipChildrenMode(mode: ClipChildrenMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setClipChildrenModePtr, NIL)
   }
 
@@ -1500,7 +1500,7 @@ public open class CanvasItem internal constructor() : Node() {
       getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class TextureFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
@@ -1570,18 +1570,18 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureRepeat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The [CanvasItem] will inherit the filter from its parent.
@@ -1605,18 +1605,18 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureRepeat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureRepeat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ClipChildrenMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Child draws over parent and is not clipped.
@@ -1638,13 +1638,13 @@ public open class CanvasItem internal constructor() : Node() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ClipChildrenMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ClipChildrenMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -222,7 +222,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun setObjectModelType(type: GLTFObjectModelType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setObjectModelTypePtr, NIL)
   }
 
@@ -254,7 +254,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public final fun setVariantType(variantType: VariantType): Unit {
-    TransferContext.writeArguments(LONG to variantType.id)
+    TransferContext.writeArguments(LONG to variantType.value)
     TransferContext.callMethod(ptr, MethodBindings.setVariantTypePtr, NIL)
   }
 
@@ -264,7 +264,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
    * be called once. Calling it again with the same values will have no effect.
    */
   public final fun setTypes(variantType: VariantType, objModelType: GLTFObjectModelType): Unit {
-    TransferContext.writeArguments(LONG to variantType.id, LONG to objModelType.id)
+    TransferContext.writeArguments(LONG to variantType.value, LONG to objModelType.value)
     TransferContext.callMethod(ptr, MethodBindings.setTypesPtr, NIL)
   }
 
@@ -285,7 +285,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
       appendPathToProperty(nodePath.asCachedNodePath(), propName.asCachedStringName())
 
   public enum class GLTFObjectModelType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Unknown or not set object model type. If the object model type is set to this value, the real
@@ -346,13 +346,13 @@ public open class GLTFObjectModelProperty : RefCounted() {
     INT(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GLTFObjectModelType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFObjectModelType = entries.single { it.`value` == `value` }
     }
   }
 

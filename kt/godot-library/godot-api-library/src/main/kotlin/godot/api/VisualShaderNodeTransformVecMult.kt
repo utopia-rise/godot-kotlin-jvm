@@ -41,7 +41,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public final fun setOperator(op: Operator): Unit {
-    TransferContext.writeArguments(LONG to op.id)
+    TransferContext.writeArguments(LONG to op.value)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
 
@@ -52,7 +52,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public enum class Operator(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Multiplies transform `a` by the vector `b`.
@@ -78,13 +78,13 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Operator = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }
     }
   }
 

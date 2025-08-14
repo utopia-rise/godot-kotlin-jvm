@@ -390,7 +390,7 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun setStageBytecode(stage: RenderingDevice.ShaderStage, bytecode: PackedByteArray):
       Unit {
-    TransferContext.writeArguments(LONG to stage.id, PACKED_BYTE_ARRAY to bytecode)
+    TransferContext.writeArguments(LONG to stage.value, PACKED_BYTE_ARRAY to bytecode)
     TransferContext.callMethod(ptr, MethodBindings.setStageBytecodePtr, NIL)
   }
 
@@ -399,7 +399,7 @@ public open class RDShaderSPIRV : Resource() {
    * [bytecodeTesselationControl], [bytecodeTesselationEvaluation], [bytecodeVertex].
    */
   public final fun getStageBytecode(stage: RenderingDevice.ShaderStage): PackedByteArray {
-    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.writeArguments(LONG to stage.value)
     TransferContext.callMethod(ptr, MethodBindings.getStageBytecodePtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -411,7 +411,7 @@ public open class RDShaderSPIRV : Resource() {
    */
   public final fun setStageCompileError(stage: RenderingDevice.ShaderStage, compileError: String):
       Unit {
-    TransferContext.writeArguments(LONG to stage.id, STRING to compileError)
+    TransferContext.writeArguments(LONG to stage.value, STRING to compileError)
     TransferContext.callMethod(ptr, MethodBindings.setStageCompileErrorPtr, NIL)
   }
 
@@ -421,7 +421,7 @@ public open class RDShaderSPIRV : Resource() {
    * [compileErrorTesselationEvaluation], [compileErrorVertex].
    */
   public final fun getStageCompileError(stage: RenderingDevice.ShaderStage): String {
-    TransferContext.writeArguments(LONG to stage.id)
+    TransferContext.writeArguments(LONG to stage.value)
     TransferContext.callMethod(ptr, MethodBindings.getStageCompileErrorPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }

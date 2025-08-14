@@ -123,7 +123,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
-    TransferContext.writeArguments(LONG to rootNodeMode.id)
+    TransferContext.writeArguments(LONG to rootNodeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setRootNodeModePtr, NIL)
   }
 
@@ -224,7 +224,7 @@ public open class GLTFDocument : Resource() {
   }
 
   public enum class RootNodeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Treat the Godot scene's root node as the root node of the glTF file, and mark it as the
@@ -247,13 +247,13 @@ public open class GLTFDocument : Resource() {
     MULTI_ROOT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RootNodeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RootNodeMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -309,7 +309,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun setMixTarget(mixTarget: MixTarget): Unit {
-    TransferContext.writeArguments(LONG to mixTarget.id)
+    TransferContext.writeArguments(LONG to mixTarget.value)
     TransferContext.callMethod(ptr, MethodBindings.setMixTargetPtr, NIL)
   }
 
@@ -367,7 +367,7 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
-    TransferContext.writeArguments(LONG to playbackType.id)
+    TransferContext.writeArguments(LONG to playbackType.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
 
@@ -380,7 +380,7 @@ public open class AudioStreamPlayer : Node() {
   public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public enum class MixTarget(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The audio will be played only on the first channel. This is the default.
@@ -396,13 +396,13 @@ public open class AudioStreamPlayer : Node() {
     CENTER(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MixTarget = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MixTarget = entries.single { it.`value` == `value` }
     }
   }
 

@@ -33,7 +33,7 @@ class Vector2(
 ) : Comparable<Vector2>, CoreType {
 
     //CONSTANTS
-    enum class Axis(val id: Long) {
+    enum class Axis(override val value: Long): GodotEnum {
         X(0L),
         Y(1L);
 

@@ -130,7 +130,7 @@ public open class AudioStreamInteractive : AudioStream() {
    * Set whether a clip will auto-advance by changing the auto-advance mode.
    */
   public final fun setClipAutoAdvance(clipIndex: Int, mode: AutoAdvanceMode): Unit {
-    TransferContext.writeArguments(LONG to clipIndex.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to clipIndex.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setClipAutoAdvancePtr, NIL)
   }
 
@@ -195,7 +195,7 @@ public open class AudioStreamInteractive : AudioStream() {
     fillerClip: Int = -1,
     holdPrevious: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong(), LONG to fromTime.id, LONG to toTime.id, LONG to fadeMode.id, DOUBLE to fadeBeats.toDouble(), BOOL to useFillerClip, LONG to fillerClip.toLong(), BOOL to holdPrevious)
+    TransferContext.writeArguments(LONG to fromClip.toLong(), LONG to toClip.toLong(), LONG to fromTime.value, LONG to toTime.value, LONG to fadeMode.value, DOUBLE to fadeBeats.toDouble(), BOOL to useFillerClip, LONG to fillerClip.toLong(), BOOL to holdPrevious)
     TransferContext.callMethod(ptr, MethodBindings.addTransitionPtr, NIL)
   }
 
@@ -296,7 +296,7 @@ public open class AudioStreamInteractive : AudioStream() {
       setClipName(clipIndex, name.asCachedStringName())
 
   public enum class TransitionFromTime(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Start transition as soon as possible, don't wait for any specific time position.
@@ -316,18 +316,18 @@ public open class AudioStreamInteractive : AudioStream() {
     END(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TransitionFromTime = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionFromTime = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransitionToTime(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Transition to the same position in the destination clip. This is useful when both clips have
@@ -340,18 +340,18 @@ public open class AudioStreamInteractive : AudioStream() {
     START(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TransitionToTime = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionToTime = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FadeMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use fade for the transition. This is useful when transitioning from a clip-end to
@@ -377,18 +377,18 @@ public open class AudioStreamInteractive : AudioStream() {
     AUTOMATIC(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FadeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FadeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AutoAdvanceMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disable auto-advance (default).
@@ -405,13 +405,13 @@ public open class AudioStreamInteractive : AudioStream() {
     RETURN_TO_HOLD(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AutoAdvanceMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AutoAdvanceMode = entries.single { it.`value` == `value` }
     }
   }
 

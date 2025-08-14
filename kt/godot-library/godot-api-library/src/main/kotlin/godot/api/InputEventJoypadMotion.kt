@@ -56,7 +56,7 @@ public open class InputEventJoypadMotion : InputEvent() {
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {
-    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.writeArguments(LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setAxisPtr, NIL)
   }
 

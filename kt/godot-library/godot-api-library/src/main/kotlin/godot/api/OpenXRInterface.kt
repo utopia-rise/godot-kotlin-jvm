@@ -280,7 +280,7 @@ public open class OpenXRInterface : XRInterface() {
    * range for [hand] to [motionRange].
    */
   public final fun setMotionRange(hand: Hand, motionRange: HandMotionRange): Unit {
-    TransferContext.writeArguments(LONG to hand.id, LONG to motionRange.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to motionRange.value)
     TransferContext.callMethod(ptr, MethodBindings.setMotionRangePtr, NIL)
   }
 
@@ -289,7 +289,7 @@ public open class OpenXRInterface : XRInterface() {
    * range for [hand].
    */
   public final fun getMotionRange(hand: Hand): HandMotionRange {
-    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.writeArguments(LONG to hand.value)
     TransferContext.callMethod(ptr, MethodBindings.getMotionRangePtr, LONG)
     return HandMotionRange.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -299,7 +299,7 @@ public open class OpenXRInterface : XRInterface() {
    * tracking data for [hand].
    */
   public final fun getHandTrackingSource(hand: Hand): HandTrackedSource {
-    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.writeArguments(LONG to hand.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandTrackingSourcePtr, LONG)
     return HandTrackedSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -308,7 +308,7 @@ public open class OpenXRInterface : XRInterface() {
    * If handtracking is enabled, returns flags that inform us of the validity of the tracking data.
    */
   public final fun getHandJointFlags(hand: Hand, joint: HandJoints): HandJointFlags {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -318,7 +318,7 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR.
    */
   public final fun getHandJointRotation(hand: Hand, joint: HandJoints): Quaternion {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointRotationPtr, QUATERNION)
     return (TransferContext.readReturnValue(QUATERNION) as Quaternion)
   }
@@ -328,7 +328,7 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public final fun getHandJointPosition(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointPositionPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -338,7 +338,7 @@ public open class OpenXRInterface : XRInterface() {
    * provided by OpenXR. This is without worldscale applied!
    */
   public final fun getHandJointRadius(hand: Hand, joint: HandJoints): Float {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -348,7 +348,7 @@ public open class OpenXRInterface : XRInterface() {
    * as provided by OpenXR. This is relative to [XROrigin3D] without worldscale applied!
    */
   public final fun getHandJointLinearVelocity(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -358,7 +358,7 @@ public open class OpenXRInterface : XRInterface() {
    * ([hand]) as provided by OpenXR. This is relative to [XROrigin3D]!
    */
   public final fun getHandJointAngularVelocity(hand: Hand, joint: HandJoints): Vector3 {
-    TransferContext.writeArguments(LONG to hand.id, LONG to joint.id)
+    TransferContext.writeArguments(LONG to hand.value, LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -419,7 +419,7 @@ public open class OpenXRInterface : XRInterface() {
   }
 
   public enum class Hand(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Left hand.
@@ -435,18 +435,18 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Hand = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hand = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandMotionRange(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Full hand range, if user closes their hands, we make a full fist.
@@ -463,18 +463,18 @@ public open class OpenXRInterface : XRInterface() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandMotionRange = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandMotionRange = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandTrackedSource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown (the extension is likely unsupported).
@@ -496,18 +496,18 @@ public open class OpenXRInterface : XRInterface() {
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandTrackedSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandTrackedSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandJoints(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Palm joint.
@@ -619,13 +619,13 @@ public open class OpenXRInterface : XRInterface() {
     MAX(26),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandJoints = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandJoints = entries.single { it.`value` == `value` }
     }
   }
 

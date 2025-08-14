@@ -266,7 +266,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
   }
 
   public final fun setStateMachineType(stateMachineType: StateMachineType): Unit {
-    TransferContext.writeArguments(LONG to stateMachineType.id)
+    TransferContext.writeArguments(LONG to stateMachineType.value)
     TransferContext.callMethod(ptr, MethodBindings.setStateMachineTypePtr, NIL)
   }
 
@@ -369,7 +369,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       removeTransition(from.asCachedStringName(), to.asCachedStringName())
 
   public enum class StateMachineType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Seeking to the beginning is treated as playing from the start state. Transition to the end
@@ -390,13 +390,13 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     GROUPED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StateMachineType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StateMachineType = entries.single { it.`value` == `value` }
     }
   }
 

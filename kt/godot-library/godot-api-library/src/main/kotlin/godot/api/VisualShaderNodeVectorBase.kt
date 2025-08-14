@@ -40,7 +40,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public final fun setOpType(type: OpType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public enum class OpType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * A 2D vector type.
@@ -71,13 +71,13 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OpType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }
     }
   }
 

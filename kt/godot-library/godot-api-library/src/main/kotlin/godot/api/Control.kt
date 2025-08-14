@@ -1155,7 +1155,7 @@ public open class Control : CanvasItem() {
    */
   @JvmOverloads
   public final fun setAnchorsPreset(preset: LayoutPreset, keepOffsets: Boolean = false): Unit {
-    TransferContext.writeArguments(LONG to preset.id, BOOL to keepOffsets)
+    TransferContext.writeArguments(LONG to preset.value, BOOL to keepOffsets)
     TransferContext.callMethod(ptr, MethodBindings.setAnchorsPresetPtr, NIL)
   }
 
@@ -1175,7 +1175,7 @@ public open class Control : CanvasItem() {
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin.toLong())
+    TransferContext.writeArguments(LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOffsetsPresetPtr, NIL)
   }
 
@@ -1188,7 +1188,7 @@ public open class Control : CanvasItem() {
     resizeMode: LayoutPresetMode = Control.LayoutPresetMode.PRESET_MODE_MINSIZE,
     margin: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to preset.id, LONG to resizeMode.id, LONG to margin.toLong())
+    TransferContext.writeArguments(LONG to preset.value, LONG to resizeMode.value, LONG to margin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAnchorsAndOffsetsPresetPtr, NIL)
   }
 
@@ -1210,7 +1210,7 @@ public open class Control : CanvasItem() {
     keepOffset: Boolean = false,
     pushOppositeAnchor: Boolean = true,
   ): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor.toDouble(), BOOL to keepOffset, BOOL to pushOppositeAnchor)
+    TransferContext.writeArguments(LONG to side.value, DOUBLE to anchor.toDouble(), BOOL to keepOffset, BOOL to pushOppositeAnchor)
     TransferContext.callMethod(ptr, MethodBindings.setAnchorPtr, NIL)
   }
 
@@ -1219,7 +1219,7 @@ public open class Control : CanvasItem() {
    * [anchorRight] and [anchorTop].
    */
   public final fun getAnchor(side: Side): Float {
-    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.writeArguments(LONG to side.value)
     TransferContext.callMethod(ptr, MethodBindings.getAnchorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1229,7 +1229,7 @@ public open class Control : CanvasItem() {
    * [offsetLeft], [offsetRight] and [offsetTop].
    */
   public final fun setOffset(side: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to offset.toDouble())
+    TransferContext.writeArguments(LONG to side.value, DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
 
@@ -1238,7 +1238,7 @@ public open class Control : CanvasItem() {
    * [offsetRight] and [offsetTop].
    */
   public final fun getOffset(offset: Side): Float {
-    TransferContext.writeArguments(LONG to offset.id)
+    TransferContext.writeArguments(LONG to offset.value)
     TransferContext.callMethod(ptr, MethodBindings.getOffsetPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -1254,7 +1254,7 @@ public open class Control : CanvasItem() {
     offset: Float,
     pushOppositeAnchor: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(LONG to side.id, DOUBLE to anchor.toDouble(), DOUBLE to offset.toDouble(), BOOL to pushOppositeAnchor)
+    TransferContext.writeArguments(LONG to side.value, DOUBLE to anchor.toDouble(), DOUBLE to offset.toDouble(), BOOL to pushOppositeAnchor)
     TransferContext.callMethod(ptr, MethodBindings.setAnchorAndOffsetPtr, NIL)
   }
 
@@ -1468,7 +1468,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setFocusMode(mode: FocusMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFocusModePtr, NIL)
   }
 
@@ -1531,7 +1531,7 @@ public open class Control : CanvasItem() {
    * focus neighbor.
    */
   public final fun findValidFocusNeighbor(side: Side): Control? {
-    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.writeArguments(LONG to side.value)
     TransferContext.callMethod(ptr, MethodBindings.findValidFocusNeighborPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
@@ -2082,7 +2082,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setHGrowDirection(direction: GrowDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setHGrowDirectionPtr, NIL)
   }
 
@@ -2093,7 +2093,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setVGrowDirection(direction: GrowDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setVGrowDirectionPtr, NIL)
   }
 
@@ -2104,7 +2104,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setTooltipAutoTranslateMode(mode: Node.AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTooltipAutoTranslateModePtr, NIL)
   }
 
@@ -2143,7 +2143,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setDefaultCursorShape(shape: CursorShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCursorShapePtr, NIL)
   }
 
@@ -2169,7 +2169,7 @@ public open class Control : CanvasItem() {
    * [focusNeighborTop].
    */
   public final fun setFocusNeighbor(side: Side, neighbor: NodePath): Unit {
-    TransferContext.writeArguments(LONG to side.id, NODE_PATH to neighbor)
+    TransferContext.writeArguments(LONG to side.value, NODE_PATH to neighbor)
     TransferContext.callMethod(ptr, MethodBindings.setFocusNeighborPtr, NIL)
   }
 
@@ -2181,7 +2181,7 @@ public open class Control : CanvasItem() {
    * assigned, use [findValidFocusNeighbor].
    */
   public final fun getFocusNeighbor(side: Side): NodePath {
-    TransferContext.writeArguments(LONG to side.id)
+    TransferContext.writeArguments(LONG to side.value)
     TransferContext.callMethod(ptr, MethodBindings.getFocusNeighborPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
@@ -2221,7 +2221,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setMouseFilter(filter: MouseFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.setMouseFilterPtr, NIL)
   }
 
@@ -2383,7 +2383,7 @@ public open class Control : CanvasItem() {
   }
 
   public final fun setLayoutDirection(direction: LayoutDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setLayoutDirectionPtr, NIL)
   }
 
@@ -2785,7 +2785,7 @@ public open class Control : CanvasItem() {
       setFocusPrevious(previous.asCachedNodePath())
 
   public enum class FocusMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The node cannot grab focus. Use with [focusMode].
@@ -2802,18 +2802,18 @@ public open class Control : CanvasItem() {
     ALL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FocusMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FocusMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CursorShape(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Show the system's arrow mouse cursor when the user hovers the node. Use with
@@ -2903,18 +2903,18 @@ public open class Control : CanvasItem() {
     HELP(16),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutPreset(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Snap all 4 anchors to the top-left of the parent control's bounds. Use with
@@ -3002,18 +3002,18 @@ public open class Control : CanvasItem() {
     PRESET_FULL_RECT(15),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LayoutPreset = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutPreset = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutPresetMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The control will be resized to its minimum size.
@@ -3033,13 +3033,13 @@ public open class Control : CanvasItem() {
     PRESET_MODE_KEEP_SIZE(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LayoutPresetMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutPresetMode = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3124,7 +3124,7 @@ public open class Control : CanvasItem() {
   }
 
   public enum class MouseFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The control will receive mouse movement input events and mouse button input events if clicked
@@ -3160,18 +3160,18 @@ public open class Control : CanvasItem() {
     IGNORE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MouseFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GrowDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The control will grow to the left or top to make up if its minimum size is changed to be
@@ -3190,18 +3190,18 @@ public open class Control : CanvasItem() {
     BOTH(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GrowDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GrowDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Anchor(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Snaps one of the 4 anchor's sides to the origin of the node's `Rect`, in the top left. Use it
@@ -3217,18 +3217,18 @@ public open class Control : CanvasItem() {
     END(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Anchor = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Anchor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LayoutDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Automatic layout direction, determined from the parent control layout direction.
@@ -3270,18 +3270,18 @@ public open class Control : CanvasItem() {
     LOCALE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LayoutDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayoutDirection = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextDirection(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Text writing direction is the same as layout direction.
@@ -3301,13 +3301,13 @@ public open class Control : CanvasItem() {
     RTL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextDirection = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextDirection = entries.single { it.`value` == `value` }
     }
   }
 

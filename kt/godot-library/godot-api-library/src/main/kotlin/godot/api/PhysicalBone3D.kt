@@ -426,7 +426,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public final fun setJointType(jointType: JointType): Unit {
-    TransferContext.writeArguments(LONG to jointType.id)
+    TransferContext.writeArguments(LONG to jointType.value)
     TransferContext.callMethod(ptr, MethodBindings.setJointTypePtr, NIL)
   }
 
@@ -541,7 +541,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.id)
+    TransferContext.writeArguments(LONG to linearDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
   }
 
@@ -552,7 +552,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.id)
+    TransferContext.writeArguments(LONG to angularDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
   }
 
@@ -629,7 +629,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   }
 
   public enum class DampMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
@@ -642,18 +642,18 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     REPLACE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DampMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DampMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class JointType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * No joint is applied to the PhysicsBone3D.
@@ -681,13 +681,13 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     JOINT_TYPE_6DOF(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): JointType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): JointType = entries.single { it.`value` == `value` }
     }
   }
 

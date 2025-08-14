@@ -177,7 +177,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public final fun setPlaybackMode(mode: PlaybackMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackModePtr, NIL)
   }
 
@@ -188,7 +188,7 @@ public open class AudioStreamRandomizer : AudioStream() {
   }
 
   public enum class PlaybackMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Pick a stream at random according to the probability weights chosen for each stream, but
@@ -208,13 +208,13 @@ public open class AudioStreamRandomizer : AudioStream() {
     SEQUENTIAL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PlaybackMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlaybackMode = entries.single { it.`value` == `value` }
     }
   }
 

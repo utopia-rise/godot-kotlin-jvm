@@ -208,7 +208,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun setFormat(format: Format): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
@@ -219,7 +219,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
-    TransferContext.writeArguments(LONG to loopMode.id)
+    TransferContext.writeArguments(LONG to loopMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
 
@@ -286,7 +286,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   public enum class Format(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 8-bit PCM audio codec.
@@ -306,18 +306,18 @@ public open class AudioStreamWAV : AudioStream() {
     QOA(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Format = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Format = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Audio does not loop.
@@ -337,13 +337,13 @@ public open class AudioStreamWAV : AudioStream() {
     BACKWARD(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LoopMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoopMode = entries.single { it.`value` == `value` }
     }
   }
 

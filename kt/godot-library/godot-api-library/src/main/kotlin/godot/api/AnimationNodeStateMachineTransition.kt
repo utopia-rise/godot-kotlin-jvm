@@ -175,7 +175,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSwitchModePtr, NIL)
   }
 
@@ -186,7 +186,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun setAdvanceMode(mode: AdvanceMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAdvanceModePtr, NIL)
   }
 
@@ -277,7 +277,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning
@@ -296,18 +296,18 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     AT_END(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SwitchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SwitchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AdvanceMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Don't use this transition.
@@ -324,13 +324,13 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     AUTO(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AdvanceMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AdvanceMode = entries.single { it.`value` == `value` }
     }
   }
 

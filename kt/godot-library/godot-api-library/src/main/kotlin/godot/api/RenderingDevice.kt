@@ -168,7 +168,7 @@ public open class RenderingDevice internal constructor() : Object() {
     mipmaps: Long = 1,
     sliceType: TextureSliceType = RenderingDevice.TextureSliceType.TEXTURE_SLICE_2D,
   ): RID {
-    TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.id)
+    TransferContext.writeArguments(OBJECT to view, _RID to withTexture, LONG to layer, LONG to mipmap, LONG to mipmaps, LONG to sliceType.value)
     TransferContext.callMethod(ptr, MethodBindings.textureCreateSharedFromSlicePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -189,7 +189,7 @@ public open class RenderingDevice internal constructor() : Object() {
     depth: Long,
     layers: Long,
   ): RID {
-    TransferContext.writeArguments(LONG to type.id, LONG to format.id, LONG to samples.id, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers)
+    TransferContext.writeArguments(LONG to type.value, LONG to format.value, LONG to samples.value, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers)
     TransferContext.callMethod(ptr, MethodBindings.textureCreateFromExtensionPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -278,7 +278,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public final fun textureIsFormatSupportedForUsage(format: DataFormat,
       usageFlags: TextureUsageBits): Boolean {
-    TransferContext.writeArguments(LONG to format.id, LONG to usageFlags.flag)
+    TransferContext.writeArguments(LONG to format.value, LONG to usageFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.textureIsFormatSupportedForUsagePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -478,7 +478,7 @@ public open class RenderingDevice internal constructor() : Object() {
   @JvmOverloads
   public final fun framebufferFormatCreateEmpty(samples: TextureSamples =
       RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1): Long {
-    TransferContext.writeArguments(LONG to samples.id)
+    TransferContext.writeArguments(LONG to samples.value)
     TransferContext.callMethod(ptr, MethodBindings.framebufferFormatCreateEmptyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -542,7 +542,7 @@ public open class RenderingDevice internal constructor() : Object() {
     samples: TextureSamples = RenderingDevice.TextureSamples.TEXTURE_SAMPLES_1,
     validateWithFormat: Long = -1,
   ): RID {
-    TransferContext.writeArguments(VECTOR2I to size, LONG to samples.id, LONG to validateWithFormat)
+    TransferContext.writeArguments(VECTOR2I to size, LONG to samples.value, LONG to validateWithFormat)
     TransferContext.callMethod(ptr, MethodBindings.framebufferCreateEmptyPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -585,7 +585,7 @@ public open class RenderingDevice internal constructor() : Object() {
    */
   public final fun samplerIsFormatSupportedForFilter(format: DataFormat,
       samplerFilter: SamplerFilter): Boolean {
-    TransferContext.writeArguments(LONG to format.id, LONG to samplerFilter.id)
+    TransferContext.writeArguments(LONG to format.value, LONG to samplerFilter.value)
     TransferContext.callMethod(ptr, MethodBindings.samplerIsFormatSupportedForFilterPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -647,7 +647,7 @@ public open class RenderingDevice internal constructor() : Object() {
     useRestartIndices: Boolean = false,
     creationBits: BufferCreationBits = RenderingDevice.BufferCreationBits(0),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeIndices, LONG to format.id, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices, LONG to creationBits.flag)
+    TransferContext.writeArguments(LONG to sizeIndices, LONG to format.value, PACKED_BYTE_ARRAY to data, BOOL to useRestartIndices, LONG to creationBits.flag)
     TransferContext.callMethod(ptr, MethodBindings.indexBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -803,7 +803,7 @@ public open class RenderingDevice internal constructor() : Object() {
     format: DataFormat,
     `data`: PackedByteArray = PackedByteArray(),
   ): RID {
-    TransferContext.writeArguments(LONG to sizeBytes, LONG to format.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to sizeBytes, LONG to format.value, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.textureBufferCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -988,7 +988,7 @@ public open class RenderingDevice internal constructor() : Object() {
     specializationConstants: VariantArray<RDPipelineSpecializationConstant> =
         godot.core.variantArrayOf(),
   ): RID {
-    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.id, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags.flag, LONG to forRenderPass, ARRAY to specializationConstants)
+    TransferContext.writeArguments(_RID to shader, LONG to framebufferFormat, LONG to vertexFormat, LONG to primitive.value, OBJECT to rasterizationState, OBJECT to multisampleState, OBJECT to stencilState, OBJECT to colorBlendState, LONG to dynamicStateFlags.flag, LONG to forRenderPass, ARRAY to specializationConstants)
     TransferContext.callMethod(ptr, MethodBindings.renderPipelineCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1172,7 +1172,7 @@ public open class RenderingDevice internal constructor() : Object() {
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     storageTextures: VariantArray<RID> = godot.core.variantArrayOf(),
   ): PackedInt64Array {
-    TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.id, LONG to finalColorAction.id, LONG to initialDepthAction.id, LONG to finalDepthAction.id, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
+    TransferContext.writeArguments(_RID to framebuffer, LONG to splits, LONG to initialColorAction.value, LONG to finalColorAction.value, LONG to initialDepthAction.value, LONG to finalDepthAction.value, PACKED_COLOR_ARRAY to clearColorValues, DOUBLE to clearDepth.toDouble(), LONG to clearStencil, RECT2 to region, ARRAY to storageTextures)
     TransferContext.callMethod(ptr, MethodBindings.drawListBeginSplitPtr, PACKED_INT_64_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
@@ -1508,7 +1508,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Returns `true` if the [feature] is supported by the GPU.
    */
   public final fun hasFeature(feature: Features): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1522,7 +1522,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * [url=https://vulkan.gpuinfo.org/]Vulkan Hardware Database[/url].
    */
   public final fun limitGet(limit: Limit): Long {
-    TransferContext.writeArguments(LONG to limit.id)
+    TransferContext.writeArguments(LONG to limit.value)
     TransferContext.callMethod(ptr, MethodBindings.limitGetPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1678,7 +1678,7 @@ public open class RenderingDevice internal constructor() : Object() {
    * Allocator[/url].
    */
   public final fun getMemoryUsage(type: MemoryType): Long {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getMemoryUsagePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1693,7 +1693,7 @@ public open class RenderingDevice internal constructor() : Object() {
     rid: RID,
     index: Long,
   ): Long {
-    TransferContext.writeArguments(LONG to resource.id, _RID to rid, LONG to index)
+    TransferContext.writeArguments(LONG to resource.value, _RID to rid, LONG to index)
     TransferContext.callMethod(ptr, MethodBindings.getDriverResourcePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1892,7 +1892,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class DeviceType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Rendering device type does not match any of the other enum values or is unknown.
@@ -1929,18 +1929,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DeviceType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DeviceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DriverResource(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Specific device object based on a physical device.
@@ -2025,18 +2025,18 @@ public open class RenderingDevice internal constructor() : Object() {
     VULKAN_RENDER_PIPELINE(12),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DriverResource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DriverResource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DataFormat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 4-bit-per-channel red/green channel data format, packed into 8 bits. Values are in the `[0.0,
@@ -3273,13 +3273,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(232),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DataFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DataFormat = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3357,7 +3357,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 1-dimensional texture.
@@ -3393,18 +3393,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSamples(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Perform 1 texture sample (this is the fastest but lowest-quality for antialiasing).
@@ -3441,13 +3441,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureSamples = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureSamples = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3552,7 +3552,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class TextureSwizzle(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Return the sampled value as-is.
@@ -3588,18 +3588,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(7),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureSwizzle = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureSwizzle = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSliceType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * 2-dimensional texture slice.
@@ -3615,18 +3615,18 @@ public open class RenderingDevice internal constructor() : Object() {
     TEXTURE_SLICE_3D(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureSliceType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureSliceType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerFilter(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Nearest-neighbor sampler filtering. Sampling at higher resolutions than the source will
@@ -3640,18 +3640,18 @@ public open class RenderingDevice internal constructor() : Object() {
     LINEAR(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SamplerFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SamplerFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerRepeatMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Sample with repeating enabled.
@@ -3685,18 +3685,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SamplerRepeatMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SamplerRepeatMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SamplerBorderColor(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Return a floating-point transparent black color when sampling outside the `[0.0, 1.0]` range.
@@ -3734,18 +3734,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SamplerBorderColor = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SamplerBorderColor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VertexFrequency(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Vertex attribute addressing is a function of the vertex. This is used to specify the rate at
@@ -3759,18 +3759,18 @@ public open class RenderingDevice internal constructor() : Object() {
     INSTANCE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VertexFrequency = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VertexFrequency = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class IndexBufferFormat(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Index buffer in 16-bit unsigned integer format. This limits the maximum index that can be
@@ -3784,13 +3784,13 @@ public open class RenderingDevice internal constructor() : Object() {
     UINT32(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): IndexBufferFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): IndexBufferFormat = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3890,7 +3890,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class UniformType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Sampler uniform.
@@ -3938,18 +3938,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(10),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UniformType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UniformType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderPrimitive(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Point rendering primitive (with constant size, regardless of distance from camera).
@@ -4018,18 +4018,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(11),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RenderPrimitive = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderPrimitive = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolygonCullMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not use polygon front face or backface culling.
@@ -4045,18 +4045,18 @@ public open class RenderingDevice internal constructor() : Object() {
     BACK(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PolygonCullMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PolygonCullMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolygonFrontFace(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Clockwise winding order to determine which face of a polygon is its front face.
@@ -4068,18 +4068,18 @@ public open class RenderingDevice internal constructor() : Object() {
     COUNTER_CLOCKWISE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PolygonFrontFace = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PolygonFrontFace = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class StencilOperation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Keep the current stencil value.
@@ -4123,18 +4123,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StencilOperation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StencilOperation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompareOperator(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * "Never" comparison (opposite of [COMPARE_OP_ALWAYS]).
@@ -4174,18 +4174,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(8),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompareOperator = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompareOperator = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LogicOperation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Clear logic operation (result is always `0`). See also [LOGIC_OP_SET].
@@ -4261,18 +4261,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(16),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LogicOperation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LogicOperation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendFactor(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Constant `0.0` blend factor.
@@ -4365,18 +4365,18 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(19),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendFactor = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendFactor = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BlendOperation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Additive blending operation (`source + destination`).
@@ -4404,13 +4404,13 @@ public open class RenderingDevice internal constructor() : Object() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendOperation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendOperation = entries.single { it.`value` == `value` }
     }
   }
 
@@ -4487,7 +4487,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   public enum class InitialAction(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Load the previous contents of the framebuffer.
@@ -4513,18 +4513,18 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InitialAction = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InitialAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FinalAction(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Store the result of the draw list in the framebuffer. This is generally what you want to do.
@@ -4543,18 +4543,18 @@ public open class RenderingDevice internal constructor() : Object() {
     CONTINUE(0),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FinalAction = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FinalAction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderStage(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Vertex shader stage. This can be used to manipulate vertices from a shader (but not create
@@ -4607,18 +4607,18 @@ public open class RenderingDevice internal constructor() : Object() {
     COMPUTE_BIT(16),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShaderStage = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShaderStage = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ShaderLanguage(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Khronos' GLSL shading language (used natively by OpenGL and Vulkan). This is the language
@@ -4632,18 +4632,18 @@ public open class RenderingDevice internal constructor() : Object() {
     HLSL(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShaderLanguage = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShaderLanguage = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PipelineSpecializationConstantType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Boolean specialization constant.
@@ -4659,19 +4659,19 @@ public open class RenderingDevice internal constructor() : Object() {
     FLOAT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): PipelineSpecializationConstantType =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Features(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Features support for buffer device address extension.
@@ -4679,18 +4679,18 @@ public open class RenderingDevice internal constructor() : Object() {
     SUPPORTS_BUFFER_DEVICE_ADDRESS(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Features = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Features = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Limit(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Maximum number of uniform sets that can be bound at a given time.
@@ -4862,18 +4862,18 @@ public open class RenderingDevice internal constructor() : Object() {
     METALFX_TEMPORAL_SCALER_MAX_SCALE(47),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Limit = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Limit = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MemoryType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Memory taken by textures.
@@ -4890,18 +4890,18 @@ public open class RenderingDevice internal constructor() : Object() {
     TOTAL(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MemoryType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MemoryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BreadcrumbMarker(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     NONE(0),
     REFLECTION_PROBES(65536),
@@ -4918,13 +4918,13 @@ public open class RenderingDevice internal constructor() : Object() {
     DEBUG_PASS(786432),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BreadcrumbMarker = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BreadcrumbMarker = entries.single { it.`value` == `value` }
     }
   }
 

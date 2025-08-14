@@ -68,7 +68,7 @@ public open class BoxContainer : Container() {
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
 
@@ -90,7 +90,7 @@ public open class BoxContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if
@@ -108,13 +108,13 @@ public open class BoxContainer : Container() {
     END(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 

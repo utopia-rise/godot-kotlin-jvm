@@ -183,7 +183,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public final fun setEffectCallbackType(effectCallbackType: EffectCallbackType): Unit {
-    TransferContext.writeArguments(LONG to effectCallbackType.id)
+    TransferContext.writeArguments(LONG to effectCallbackType.value)
     TransferContext.callMethod(ptr, MethodBindings.setEffectCallbackTypePtr, NIL)
   }
 
@@ -249,7 +249,7 @@ public open class CompositorEffect : Resource() {
   }
 
   public enum class EffectCallbackType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The callback is called before our opaque rendering pass, but after depth prepass (if
@@ -281,13 +281,13 @@ public open class CompositorEffect : Resource() {
     MAX(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EffectCallbackType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EffectCallbackType = entries.single { it.`value` == `value` }
     }
   }
 

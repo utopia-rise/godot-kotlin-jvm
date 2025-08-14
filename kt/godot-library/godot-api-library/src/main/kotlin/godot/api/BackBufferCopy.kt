@@ -101,7 +101,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public final fun setCopyMode(copyMode: CopyMode): Unit {
-    TransferContext.writeArguments(LONG to copyMode.id)
+    TransferContext.writeArguments(LONG to copyMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCopyModePtr, NIL)
   }
 
@@ -112,7 +112,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public enum class CopyMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
@@ -129,13 +129,13 @@ public open class BackBufferCopy : Node2D() {
     VIEWPORT(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CopyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CopyMode = entries.single { it.`value` == `value` }
     }
   }
 

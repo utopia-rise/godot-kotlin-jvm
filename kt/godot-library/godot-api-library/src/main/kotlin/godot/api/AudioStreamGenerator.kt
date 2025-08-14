@@ -163,7 +163,7 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public final fun setMixRateMode(mode: AudioStreamGeneratorMixRate): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setMixRateModePtr, NIL)
   }
 
@@ -185,7 +185,7 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public enum class AudioStreamGeneratorMixRate(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Current [AudioServer] output mixing rate.
@@ -205,14 +205,14 @@ public open class AudioStreamGenerator : AudioStream() {
     MIX_RATE_MAX(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): AudioStreamGeneratorMixRate =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 

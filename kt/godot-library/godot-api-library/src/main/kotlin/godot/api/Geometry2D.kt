@@ -414,7 +414,7 @@ public object Geometry2D : Object() {
     delta: Float,
     joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
   ): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta.toDouble(), LONG to joinType.id)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon, DOUBLE to delta.toDouble(), LONG to joinType.value)
     TransferContext.callMethod(ptr, MethodBindings.offsetPolygonPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
@@ -440,7 +440,7 @@ public object Geometry2D : Object() {
     joinType: PolyJoinType = Geometry2D.PolyJoinType.JOIN_SQUARE,
     endType: PolyEndType = Geometry2D.PolyEndType.END_SQUARE,
   ): VariantArray<PackedVector2Array> {
-    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta.toDouble(), LONG to joinType.id, LONG to endType.id)
+    TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polyline, DOUBLE to delta.toDouble(), LONG to joinType.value, LONG to endType.value)
     TransferContext.callMethod(ptr, MethodBindings.offsetPolylinePtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<PackedVector2Array>)
   }
@@ -479,7 +479,7 @@ public object Geometry2D : Object() {
   }
 
   public enum class PolyBooleanOperation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Create regions where either subject or clip polygons (or both) are filled.
@@ -500,18 +500,19 @@ public object Geometry2D : Object() {
     OPERATION_XOR(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PolyBooleanOperation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PolyBooleanOperation =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolyJoinType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Squaring is applied uniformally at all convex edge joins at `1 * delta`.
@@ -530,18 +531,18 @@ public object Geometry2D : Object() {
     JOIN_MITER(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PolyJoinType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PolyJoinType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PolyEndType(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Endpoints are joined using the [PolyJoinType] value and the path filled as a polygon.
@@ -565,13 +566,13 @@ public object Geometry2D : Object() {
     END_ROUND(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PolyEndType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PolyEndType = entries.single { it.`value` == `value` }
     }
   }
 

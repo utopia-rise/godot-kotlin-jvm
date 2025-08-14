@@ -61,7 +61,7 @@ public open class Thread : RefCounted() {
    */
   @JvmOverloads
   public final fun start(callable: Callable, priority: Priority = Thread.Priority.NORMAL): Error {
-    TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
+    TransferContext.writeArguments(CALLABLE to callable, LONG to priority.value)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -116,7 +116,7 @@ public open class Thread : RefCounted() {
   }
 
   public enum class Priority(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * A thread running with lower priority than normally.
@@ -132,13 +132,13 @@ public open class Thread : RefCounted() {
     HIGH(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Priority = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Priority = entries.single { it.`value` == `value` }
     }
   }
 

@@ -394,7 +394,7 @@ public open class Decal : VisualInstance3D() {
    * ```
    */
   public final fun setTexture(type: DecalTexture, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to type.id, OBJECT to texture)
+    TransferContext.writeArguments(LONG to type.value, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
 
@@ -423,7 +423,7 @@ public open class Decal : VisualInstance3D() {
    * ```
    */
   public final fun getTexture(type: DecalTexture): Texture2D? {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -539,7 +539,7 @@ public open class Decal : VisualInstance3D() {
   }
 
   public enum class DecalTexture(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * [Texture2D] corresponding to [textureAlbedo].
@@ -563,13 +563,13 @@ public open class Decal : VisualInstance3D() {
     TEXTURE_MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DecalTexture = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DecalTexture = entries.single { it.`value` == `value` }
     }
   }
 

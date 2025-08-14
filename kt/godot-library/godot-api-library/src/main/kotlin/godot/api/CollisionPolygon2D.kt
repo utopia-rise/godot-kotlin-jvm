@@ -172,7 +172,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public final fun setBuildMode(buildMode: BuildMode): Unit {
-    TransferContext.writeArguments(LONG to buildMode.id)
+    TransferContext.writeArguments(LONG to buildMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBuildModePtr, NIL)
   }
 
@@ -216,7 +216,7 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public enum class BuildMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Collisions will include the polygon and its contained area. In this mode the node has the
@@ -233,13 +233,13 @@ public open class CollisionPolygon2D : Node2D() {
     SEGMENTS(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BuildMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BuildMode = entries.single { it.`value` == `value` }
     }
   }
 

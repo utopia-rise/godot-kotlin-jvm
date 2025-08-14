@@ -297,7 +297,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public final fun setMixMode(mode: MixMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setMixModePtr, NIL)
   }
 
@@ -308,7 +308,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   }
 
   public enum class OneShotRequest(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The default state of the request. Nothing is done.
@@ -328,18 +328,18 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     FADE_OUT(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OneShotRequest = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OneShotRequest = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MixMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Blends two animations. See also [AnimationNodeBlend2].
@@ -351,13 +351,13 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     ADD(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MixMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MixMode = entries.single { it.`value` == `value` }
     }
   }
 

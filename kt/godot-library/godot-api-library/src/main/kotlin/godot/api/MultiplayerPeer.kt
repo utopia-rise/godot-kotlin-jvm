@@ -106,7 +106,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public final fun setTransferMode(mode: TransferMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransferModePtr, NIL)
   }
 
@@ -236,7 +236,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public enum class ConnectionStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The MultiplayerPeer is disconnected.
@@ -252,18 +252,18 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     CONNECTED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ConnectionStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConnectionStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransferMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Packets are not acknowledged, no resend attempts are made for lost packets. Packets may
@@ -288,13 +288,13 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     RELIABLE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TransferMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransferMode = entries.single { it.`value` == `value` }
     }
   }
 

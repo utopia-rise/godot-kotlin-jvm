@@ -143,7 +143,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -176,7 +176,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun setUnderlineMode(underlineMode: UnderlineMode): Unit {
-    TransferContext.writeArguments(LONG to underlineMode.id)
+    TransferContext.writeArguments(LONG to underlineMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setUnderlineModePtr, NIL)
   }
 
@@ -187,7 +187,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -209,7 +209,7 @@ public open class LinkButton : BaseButton() {
   }
 
   public enum class UnderlineMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The LinkButton will always show an underline at the bottom of its text.
@@ -226,13 +226,13 @@ public open class LinkButton : BaseButton() {
     NEVER(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UnderlineMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UnderlineMode = entries.single { it.`value` == `value` }
     }
   }
 

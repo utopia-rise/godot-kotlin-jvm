@@ -40,7 +40,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public final fun setOperator(op: Operator): Unit {
-    TransferContext.writeArguments(LONG to op.id)
+    TransferContext.writeArguments(LONG to op.value)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
 
@@ -51,7 +51,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public enum class Operator(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Adds two vectors.
@@ -109,13 +109,13 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     ENUM_SIZE(12),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Operator = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }
     }
   }
 

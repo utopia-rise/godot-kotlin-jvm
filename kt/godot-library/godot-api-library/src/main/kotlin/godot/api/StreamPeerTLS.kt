@@ -99,7 +99,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   public enum class Status(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * A status representing a [StreamPeerTLS] that is disconnected.
@@ -124,13 +124,13 @@ public open class StreamPeerTLS : StreamPeer() {
     ERROR_HOSTNAME_MISMATCH(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Status = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
     }
   }
 

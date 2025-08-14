@@ -68,7 +68,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setEnableModePtr, NIL)
   }
 
@@ -92,7 +92,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   public final fun setEnableNodePath(path: String) = setEnableNodePath(path.asCachedNodePath())
 
   public enum class EnableMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Corresponds to [Node.PROCESS_MODE_INHERIT].
@@ -108,13 +108,13 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     WHEN_PAUSED(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EnableMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EnableMode = entries.single { it.`value` == `value` }
     }
   }
 

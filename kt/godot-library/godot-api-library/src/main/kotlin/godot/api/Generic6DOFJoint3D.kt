@@ -37,73 +37,73 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public final fun setParamX(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamXPtr, NIL)
   }
 
   public final fun getParamX(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamXPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParamY(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamYPtr, NIL)
   }
 
   public final fun getParamY(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamYPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setParamZ(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamZPtr, NIL)
   }
 
   public final fun getParamZ(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamZPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public final fun setFlagX(flag: Flag, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to value)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setFlagXPtr, NIL)
   }
 
   public final fun getFlagX(flag: Flag): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagXPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlagY(flag: Flag, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to value)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setFlagYPtr, NIL)
   }
 
   public final fun getFlagY(flag: Flag): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagYPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setFlagZ(flag: Flag, `value`: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to value)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setFlagZPtr, NIL)
   }
 
   public final fun getFlagZ(flag: Flag): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagZPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Param(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The minimum difference between the pivot points' axes.
@@ -182,18 +182,18 @@ public open class Generic6DOFJoint3D : Joint3D() {
     MAX(22),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Param = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flag(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * If enabled, linear motion is possible within the given limits.
@@ -219,13 +219,13 @@ public open class Generic6DOFJoint3D : Joint3D() {
     MAX(6),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Flag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Flag = entries.single { it.`value` == `value` }
     }
   }
 

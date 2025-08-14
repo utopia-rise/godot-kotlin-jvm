@@ -381,7 +381,7 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
   }
 
@@ -447,7 +447,7 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
   }
 
@@ -458,7 +458,7 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
   }
 
@@ -638,7 +638,7 @@ public open class Area2D : CollisionObject2D() {
   public final fun setAudioBusName(name: String) = setAudioBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * This area does not affect gravity/damping.
@@ -665,13 +665,13 @@ public open class Area2D : CollisionObject2D() {
     REPLACE_COMBINE(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpaceOverride = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpaceOverride = entries.single { it.`value` == `value` }
     }
   }
 

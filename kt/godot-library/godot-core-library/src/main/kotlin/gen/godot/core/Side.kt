@@ -10,7 +10,7 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class Side(
-  id: Long,
+  `value`: Long,
 ) : GodotEnum {
   /**
    * Left side, usually used for [Control] or [StyleBox]-derived classes.
@@ -30,12 +30,12 @@ public enum class Side(
   BOTTOM(3),
   ;
 
-  public override val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): Side = entries.single { it.id == `value` }
+    public fun from(`value`: Long): Side = entries.single { it.`value` == `value` }
   }
 }

@@ -90,7 +90,7 @@ public object NativeMenu : Object() {
    */
   @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -102,7 +102,7 @@ public object NativeMenu : Object() {
    */
   @JvmStatic
   public final fun hasSystemMenu(menuId: SystemMenus): Boolean {
-    TransferContext.writeArguments(LONG to menuId.id)
+    TransferContext.writeArguments(LONG to menuId.value)
     TransferContext.callMethod(ptr, MethodBindings.hasSystemMenuPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -114,7 +114,7 @@ public object NativeMenu : Object() {
    */
   @JvmStatic
   public final fun getSystemMenu(menuId: SystemMenus): RID {
-    TransferContext.writeArguments(LONG to menuId.id)
+    TransferContext.writeArguments(LONG to menuId.value)
     TransferContext.callMethod(ptr, MethodBindings.getSystemMenuPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -126,7 +126,7 @@ public object NativeMenu : Object() {
    */
   @JvmStatic
   public final fun getSystemMenuName(menuId: SystemMenus): String {
-    TransferContext.writeArguments(LONG to menuId.id)
+    TransferContext.writeArguments(LONG to menuId.value)
     TransferContext.callMethod(ptr, MethodBindings.getSystemMenuNamePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
@@ -335,7 +335,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -368,7 +368,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -402,7 +402,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -436,7 +436,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addIconCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -473,7 +473,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addRadioCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -511,7 +511,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addIconRadioCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -553,7 +553,7 @@ public object NativeMenu : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(_RID to rid, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(_RID to rid, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addMultistateItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -984,7 +984,7 @@ public object NativeMenu : Object() {
     idx: Int,
     keycode: Key,
   ): Unit {
-    TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to keycode.id)
+    TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemAcceleratorPtr, NIL)
   }
 
@@ -1146,7 +1146,7 @@ public object NativeMenu : Object() {
   }
 
   public enum class Feature(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * [NativeMenu] supports native global main menu.
@@ -1170,18 +1170,18 @@ public object NativeMenu : Object() {
     KEY_CALLBACK(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SystemMenus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Invalid special system menu ID.
@@ -1211,13 +1211,13 @@ public object NativeMenu : Object() {
     DOCK_MENU_ID(5),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SystemMenus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SystemMenus = entries.single { it.`value` == `value` }
     }
   }
 

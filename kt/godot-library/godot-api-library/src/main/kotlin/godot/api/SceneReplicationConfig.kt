@@ -115,7 +115,7 @@ public open class SceneReplicationConfig : Resource() {
    * [ReplicationMode].
    */
   public final fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.id)
+    TransferContext.writeArguments(NODE_PATH to path, LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.propertySetReplicationModePtr, NIL)
   }
 
@@ -239,7 +239,7 @@ public open class SceneReplicationConfig : Resource() {
       propertySetWatch(path.asCachedNodePath(), enabled)
 
   public enum class ReplicationMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Do not keep the given property synchronized.
@@ -257,13 +257,13 @@ public open class SceneReplicationConfig : Resource() {
     ON_CHANGE(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ReplicationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ReplicationMode = entries.single { it.`value` == `value` }
     }
   }
 

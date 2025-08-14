@@ -456,7 +456,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun setCollisionVisibilityMode(collisionVisibilityMode: VisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to collisionVisibilityMode.id)
+    TransferContext.writeArguments(LONG to collisionVisibilityMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionVisibilityModePtr, NIL)
   }
 
@@ -467,7 +467,7 @@ public open class TileMap : Node2D() {
   }
 
   public final fun setNavigationVisibilityMode(navigationVisibilityMode: VisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to navigationVisibilityMode.id)
+    TransferContext.writeArguments(LONG to navigationVisibilityMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationVisibilityModePtr, NIL)
   }
 
@@ -911,13 +911,13 @@ public open class TileMap : Node2D() {
    * direction. This method takes into account the different layouts a TileMap can take.
    */
   public final fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
-    TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
+    TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.value)
     TransferContext.callMethod(ptr, MethodBindings.getNeighborCellPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
 
   public enum class VisibilityMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Use the debug settings to determine visibility.
@@ -933,13 +933,13 @@ public open class TileMap : Node2D() {
     FORCE_SHOW(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VisibilityMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }
     }
   }
 

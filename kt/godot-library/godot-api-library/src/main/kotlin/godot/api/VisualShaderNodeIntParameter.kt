@@ -166,7 +166,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public final fun setHint(hint: Hint): Unit {
-    TransferContext.writeArguments(LONG to hint.id)
+    TransferContext.writeArguments(LONG to hint.value)
     TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
 
@@ -243,7 +243,7 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The parameter will not constrain its value.
@@ -268,13 +268,13 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
     MAX(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Hint = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hint = entries.single { it.`value` == `value` }
     }
   }
 

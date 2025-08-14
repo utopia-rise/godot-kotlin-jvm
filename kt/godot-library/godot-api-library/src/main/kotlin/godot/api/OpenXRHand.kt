@@ -101,7 +101,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public final fun setHand(hand: Hands): Unit {
-    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.writeArguments(LONG to hand.value)
     TransferContext.callMethod(ptr, MethodBindings.setHandPtr, NIL)
   }
 
@@ -123,7 +123,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public final fun setMotionRange(motionRange: MotionRange): Unit {
-    TransferContext.writeArguments(LONG to motionRange.id)
+    TransferContext.writeArguments(LONG to motionRange.value)
     TransferContext.callMethod(ptr, MethodBindings.setMotionRangePtr, NIL)
   }
 
@@ -134,7 +134,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public final fun setSkeletonRig(skeletonRig: SkeletonRig): Unit {
-    TransferContext.writeArguments(LONG to skeletonRig.id)
+    TransferContext.writeArguments(LONG to skeletonRig.value)
     TransferContext.callMethod(ptr, MethodBindings.setSkeletonRigPtr, NIL)
   }
 
@@ -145,7 +145,7 @@ public open class OpenXRHand : Node3D() {
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.writeArguments(LONG to boneUpdate.value)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
@@ -159,7 +159,7 @@ public open class OpenXRHand : Node3D() {
       setHandSkeleton(handSkeleton.asCachedNodePath())
 
   public enum class Hands(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Tracking the player's left hand.
@@ -175,18 +175,18 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Hands = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hands = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MotionRange(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * When player grips, hand skeleton will form a full fist.
@@ -202,18 +202,18 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MotionRange = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MotionRange = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkeletonRig(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * An OpenXR compliant skeleton.
@@ -229,18 +229,18 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SkeletonRig = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkeletonRig = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BoneUpdate(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The skeletons bones are fully updated (both position and rotation) to match the tracked
@@ -257,13 +257,13 @@ public open class OpenXRHand : Node3D() {
     MAX(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneUpdate = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }
     }
   }
 

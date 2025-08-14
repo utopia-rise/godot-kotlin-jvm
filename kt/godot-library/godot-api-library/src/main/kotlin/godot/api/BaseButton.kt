@@ -269,7 +269,7 @@ public open class BaseButton : Control() {
   }
 
   public final fun setActionMode(mode: ActionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setActionModePtr, NIL)
   }
 
@@ -346,7 +346,7 @@ public open class BaseButton : Control() {
   }
 
   public enum class DrawMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The normal state (i.e. not pressed, not hovered, not toggled and enabled) of buttons.
@@ -370,18 +370,18 @@ public open class BaseButton : Control() {
     HOVER_PRESSED(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DrawMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DrawMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ActionMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Require just a press to consider the button clicked.
@@ -393,13 +393,13 @@ public open class BaseButton : Control() {
     BUTTON_RELEASE(1),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ActionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ActionMode = entries.single { it.`value` == `value` }
     }
   }
 

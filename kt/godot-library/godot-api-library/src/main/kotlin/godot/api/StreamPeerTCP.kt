@@ -129,7 +129,7 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   public enum class Status(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The initial status of the [StreamPeerTCP]. This is also the status after disconnecting.
@@ -149,13 +149,13 @@ public open class StreamPeerTCP : StreamPeer() {
     ERROR(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Status = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
     }
   }
 

@@ -194,7 +194,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public final fun setOrientation(orientation: Orientation): Unit {
-    TransferContext.writeArguments(LONG to orientation.id)
+    TransferContext.writeArguments(LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
 
@@ -205,7 +205,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public enum class Orientation(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * [PlaneMesh] will face the positive X-axis.
@@ -223,13 +223,13 @@ public open class PlaneMesh : PrimitiveMesh() {
     FACE_Z(2),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Orientation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }
     }
   }
 

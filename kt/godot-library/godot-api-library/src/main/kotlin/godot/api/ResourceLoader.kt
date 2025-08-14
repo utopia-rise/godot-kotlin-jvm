@@ -67,7 +67,7 @@ public object ResourceLoader : Object() {
     useSubThreads: Boolean = false,
     cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
   ): Error {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.id)
+    TransferContext.writeArguments(STRING to path, STRING to typeHint, BOOL to useSubThreads, LONG to cacheMode.value)
     TransferContext.callMethod(ptr, MethodBindings.loadThreadedRequestPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -141,7 +141,7 @@ public object ResourceLoader : Object() {
     typeHint: String = "",
     cacheMode: CacheMode = ResourceLoader.CacheMode.REUSE,
   ): Resource? {
-    TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.id)
+    TransferContext.writeArguments(STRING to path, STRING to typeHint, LONG to cacheMode.value)
     TransferContext.callMethod(ptr, MethodBindings.loadPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
@@ -275,7 +275,7 @@ public object ResourceLoader : Object() {
   }
 
   public enum class ThreadLoadStatus(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * The resource is invalid, or has not been loaded with [loadThreadedRequest].
@@ -295,18 +295,18 @@ public object ResourceLoader : Object() {
     LOADED(3),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ThreadLoadStatus = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ThreadLoadStatus = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CacheMode(
-    id: Long,
+    `value`: Long,
   ) : GodotEnum {
     /**
      * Neither the main resource (the one requested to be loaded) nor any of its subresources are
@@ -340,13 +340,13 @@ public object ResourceLoader : Object() {
     REPLACE_DEEP(4),
     ;
 
-    public override val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CacheMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CacheMode = entries.single { it.`value` == `value` }
     }
   }
 
