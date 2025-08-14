@@ -526,7 +526,9 @@ sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
     }
 
     class ENUM<ENUM_TYPE: Enum<ENUM_TYPE>>(private val entries: Array<ENUM_TYPE>) : VariantSimpleCaster(VariantParser.LONG) {
-        override fun toKotlinCast(any: Any?) = requireNotNull(entries.firstOrNull { it.godotOrdinal == (any as Long) }) {
+        private val entryMap: Map<Long, ENUM_TYPE> = entries.associateBy { it.godotOrdinal }
+
+        override fun toKotlinCast(any: Any?) = requireNotNull(entryMap[any as Long]) {
             "No enum entry with godotOrdinal $any found in entries: [${entries.joinToString()}]"
         }
         override fun toGodotCast(any: Any?) = (any as ENUM_TYPE).godotOrdinal
