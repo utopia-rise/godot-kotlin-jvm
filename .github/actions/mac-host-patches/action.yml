@@ -1,0 +1,16 @@
+name: Apply common macos patches
+description: Action to apply macos patches if needed (they are quite frequently needed hence a dedicated action to apply all or none to all our macos build host runs)
+
+runs:
+  using: composite
+  steps:
+    - name: Info
+      shell: sh
+      run: echo "Applying macos patches"
+
+    # Add any necessary patches for macos hosts below:
+
+    # Required for new moltenvk builds. keep until 'macos-latest' points to macos15 instead of 14: https://github.com/actions/runner-images?tab=readme-ov-file#available-images
+    - name: Select Xcode 16
+      shell: sh
+      run: sudo xcode-select -s /Applications/Xcode_16.2.app
