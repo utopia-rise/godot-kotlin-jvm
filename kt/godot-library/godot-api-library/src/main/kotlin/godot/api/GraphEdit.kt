@@ -548,7 +548,7 @@ public open class GraphEdit : Control() {
     inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
-    throw NotImplementedError("_isInInputHotzone is not implemented for GraphEdit")
+    throw NotImplementedError("GraphEdit::_isInInputHotzone is not implemented.")
   }
 
   /**
@@ -573,7 +573,7 @@ public open class GraphEdit : Control() {
     inPort: Int,
     mousePosition: Vector2,
   ): Boolean {
-    throw NotImplementedError("_isInOutputHotzone is not implemented for GraphEdit")
+    throw NotImplementedError("GraphEdit::_isInOutputHotzone is not implemented.")
   }
 
   /**
@@ -581,7 +581,7 @@ public open class GraphEdit : Control() {
    */
   public open fun _getConnectionLine(fromPosition: Vector2, toPosition: Vector2):
       PackedVector2Array {
-    throw NotImplementedError("_getConnectionLine is not implemented for GraphEdit")
+    throw NotImplementedError("GraphEdit::_getConnectionLine is not implemented.")
   }
 
   /**
@@ -615,7 +615,7 @@ public open class GraphEdit : Control() {
     toNode: StringName,
     toPort: Int,
   ): Boolean {
-    throw NotImplementedError("_isNodeHoverValid is not implemented for GraphEdit")
+    throw NotImplementedError("GraphEdit::_isNodeHoverValid is not implemented.")
   }
 
   /**

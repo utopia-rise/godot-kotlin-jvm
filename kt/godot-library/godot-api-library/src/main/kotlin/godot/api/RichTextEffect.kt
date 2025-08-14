@@ -48,7 +48,7 @@ public open class RichTextEffect : Resource() {
    * transformation to avoid displaying broken text.
    */
   public open fun _processCustomFx(charFx: CharFXTransform?): Boolean {
-    throw NotImplementedError("_processCustomFx is not implemented for RichTextEffect")
+    throw NotImplementedError("RichTextEffect::_processCustomFx is not implemented.")
   }
 
   public companion object

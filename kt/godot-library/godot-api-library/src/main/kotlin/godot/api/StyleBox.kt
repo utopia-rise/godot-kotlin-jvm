@@ -42,7 +42,7 @@ import kotlin.jvm.JvmName
  * across different nodes.
  */
 @GodotBaseType
-public open class StyleBox : Resource() {
+public abstract class StyleBox : Resource() {
   /**
    * The left margin for the contents of this style box. Increasing this value reduces the space
    * available to the contents from the left.
@@ -110,12 +110,10 @@ public open class StyleBox : Resource() {
     createNativeObject(640, scriptIndex)
   }
 
-  public open fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
-    throw NotImplementedError("_draw is not implemented for StyleBox")
-  }
+  public abstract fun _draw(toCanvasItem: RID, rect: Rect2): Unit
 
   public open fun _getDrawRect(rect: Rect2): Rect2 {
-    throw NotImplementedError("_getDrawRect is not implemented for StyleBox")
+    throw NotImplementedError("StyleBox::_getDrawRect is not implemented.")
   }
 
   /**
@@ -125,11 +123,11 @@ public open class StyleBox : Resource() {
    * behavior and the output of this method will be used, to account for both sizes.
    */
   public open fun _getMinimumSize(): Vector2 {
-    throw NotImplementedError("_getMinimumSize is not implemented for StyleBox")
+    throw NotImplementedError("StyleBox::_getMinimumSize is not implemented.")
   }
 
   public open fun _testMask(point: Vector2, rect: Rect2): Boolean {
-    throw NotImplementedError("_testMask is not implemented for StyleBox")
+    throw NotImplementedError("StyleBox::_testMask is not implemented.")
   }
 
   /**

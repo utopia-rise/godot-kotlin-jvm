@@ -87,7 +87,7 @@ abstract class KtObject : NativeWrapper {
 
 
     private fun removeScript(constructorIndex: Int) {
-        createScriptInstance(ptr, objectID, TypeManager.engineTypesConstructors[constructorIndex])
+        createScriptInstance(ptr, objectID, TypeManager.engineTypesConstructors[constructorIndex]!!)
     }
 
     protected external fun createNativeObject(classIndex: Int, scriptIndex: Int)
@@ -113,7 +113,7 @@ abstract class KtObject : NativeWrapper {
         fun getOrCreate(rawPtr: VoidPtr, id: ObjectID, constructorIndex: Int): KtObject {
             return MemoryManager.getInstanceOrCreate(id) {
                 withConfig(rawPtr, id) {
-                    TypeManager.engineTypesConstructors[constructorIndex]()
+                    TypeManager.engineTypesConstructors[constructorIndex]!!()
                 }
             } as KtObject
         }

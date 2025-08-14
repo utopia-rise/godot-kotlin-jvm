@@ -99,7 +99,7 @@ public open class VisualInstance3D : Node3D() {
   }
 
   public open fun _getAabb(): AABB {
-    throw NotImplementedError("_getAabb is not implemented for VisualInstance3D")
+    throw NotImplementedError("VisualInstance3D::_getAabb is not implemented.")
   }
 
   /**

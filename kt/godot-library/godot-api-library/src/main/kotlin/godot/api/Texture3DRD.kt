@@ -11,9 +11,12 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.RID
+import godot.core.VariantArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
+import kotlin.Boolean
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -48,6 +51,48 @@ public open class Texture3DRD : Texture3D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTextureRdRidPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getFormat(): Image.Format {
+    throw NotImplementedError("Texture3DRD::_getFormat can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("Texture3DRD::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("Texture3DRD::_getHeight can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getDepth(): Int {
+    throw NotImplementedError("Texture3DRD::_getDepth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _hasMipmaps(): Boolean {
+    throw NotImplementedError("Texture3DRD::_hasMipmaps can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getData(): VariantArray<Image> {
+    throw NotImplementedError("Texture3DRD::_getData can't be called from the JVM.")
   }
 
   public companion object

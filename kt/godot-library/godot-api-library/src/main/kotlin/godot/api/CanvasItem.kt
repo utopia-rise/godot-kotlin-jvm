@@ -377,7 +377,7 @@ public open class CanvasItem internal constructor() : Node() {
    * Corresponds to the [NOTIFICATION_DRAW] notification in [Object.Notification].
    */
   public open fun _draw(): Unit {
-    throw NotImplementedError("_draw is not implemented for CanvasItem")
+    throw NotImplementedError("CanvasItem::_draw is not implemented.")
   }
 
   /**

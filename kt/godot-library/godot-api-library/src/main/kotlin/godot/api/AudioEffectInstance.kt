@@ -20,7 +20,7 @@ import kotlin.Unit
  * [AudioServer.getBusEffectInstance].
  */
 @GodotBaseType
-public open class AudioEffectInstance : RefCounted() {
+public abstract class AudioEffectInstance : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(62, scriptIndex)
   }
@@ -32,7 +32,7 @@ public open class AudioEffectInstance : RefCounted() {
    * been muted or cannot otherwise be heard.
    */
   public open fun _processSilence(): Boolean {
-    throw NotImplementedError("_processSilence is not implemented for AudioEffectInstance")
+    throw NotImplementedError("AudioEffectInstance::_processSilence is not implemented.")
   }
 
   public companion object

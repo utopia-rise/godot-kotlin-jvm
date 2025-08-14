@@ -153,14 +153,14 @@ public open class Resource : RefCounted() {
    * ```
    */
   public open fun _setupLocalToScene(): Unit {
-    throw NotImplementedError("_setupLocalToScene is not implemented for Resource")
+    throw NotImplementedError("Resource::_setupLocalToScene is not implemented.")
   }
 
   /**
    * Override this method to return a custom [RID] when [getRid] is called.
    */
   public open fun _getRid(): RID {
-    throw NotImplementedError("_getRid is not implemented for Resource")
+    throw NotImplementedError("Resource::_getRid is not implemented.")
   }
 
   /**
@@ -169,14 +169,14 @@ public open class Resource : RefCounted() {
    * state.
    */
   public open fun _resetState(): Unit {
-    throw NotImplementedError("_resetState is not implemented for Resource")
+    throw NotImplementedError("Resource::_resetState is not implemented.")
   }
 
   /**
    * Sets the resource's path to [path] without involving the resource cache.
    */
   public open fun _setPathCache(path: String): Unit {
-    throw NotImplementedError("_setPathCache is not implemented for Resource")
+    throw NotImplementedError("Resource::_setPathCache is not implemented.")
   }
 
   public final fun setPath(path: String): Unit {

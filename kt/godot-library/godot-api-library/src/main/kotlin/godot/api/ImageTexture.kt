@@ -17,6 +17,7 @@ import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
@@ -109,6 +110,20 @@ public open class ImageTexture : Texture2D() {
   public final fun setSizeOverride(size: Vector2i): Unit {
     TransferContext.writeArguments(VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizeOverridePtr, NIL)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getWidth(): Int {
+    throw NotImplementedError("ImageTexture::_getWidth can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getHeight(): Int {
+    throw NotImplementedError("ImageTexture::_getHeight can't be called from the JVM.")
   }
 
   public companion object {
