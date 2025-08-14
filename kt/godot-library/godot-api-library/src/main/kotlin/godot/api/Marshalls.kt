@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -31,27 +32,27 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Marshalls : Object() {
-  @JvmStatic
+  @JvmField
   public val variantToBase64Name: MethodStringName2<Marshalls, String, Any?, Boolean> =
       MethodStringName2<Marshalls, String, Any?, Boolean>("variant_to_base64")
 
-  @JvmStatic
+  @JvmField
   public val base64ToVariantName: MethodStringName2<Marshalls, Any?, String, Boolean> =
       MethodStringName2<Marshalls, Any?, String, Boolean>("base64_to_variant")
 
-  @JvmStatic
+  @JvmField
   public val rawToBase64Name: MethodStringName1<Marshalls, String, PackedByteArray> =
       MethodStringName1<Marshalls, String, PackedByteArray>("raw_to_base64")
 
-  @JvmStatic
+  @JvmField
   public val base64ToRawName: MethodStringName1<Marshalls, PackedByteArray, String> =
       MethodStringName1<Marshalls, PackedByteArray, String>("base64_to_raw")
 
-  @JvmStatic
+  @JvmField
   public val utf8ToBase64Name: MethodStringName1<Marshalls, String, String> =
       MethodStringName1<Marshalls, String, String>("utf8_to_base64")
 
-  @JvmStatic
+  @JvmField
   public val base64ToUtf8Name: MethodStringName1<Marshalls, String, String> =
       MethodStringName1<Marshalls, String, String>("base64_to_utf8")
 

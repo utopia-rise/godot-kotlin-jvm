@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class contains the list of attachment descriptions for a framebuffer pass. Each points with
@@ -341,45 +341,45 @@ public open class RDFramebufferPass : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setColorAttachmentsName: MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>
         = MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>("set_color_attachments")
 
-    @JvmStatic
+    @JvmField
     public val getColorAttachmentsName: MethodStringName0<RDFramebufferPass, PackedInt32Array> =
         MethodStringName0<RDFramebufferPass, PackedInt32Array>("get_color_attachments")
 
-    @JvmStatic
+    @JvmField
     public val setInputAttachmentsName: MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>
         = MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>("set_input_attachments")
 
-    @JvmStatic
+    @JvmField
     public val getInputAttachmentsName: MethodStringName0<RDFramebufferPass, PackedInt32Array> =
         MethodStringName0<RDFramebufferPass, PackedInt32Array>("get_input_attachments")
 
-    @JvmStatic
+    @JvmField
     public val setResolveAttachmentsName:
         MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array> =
         MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>("set_resolve_attachments")
 
-    @JvmStatic
+    @JvmField
     public val getResolveAttachmentsName: MethodStringName0<RDFramebufferPass, PackedInt32Array> =
         MethodStringName0<RDFramebufferPass, PackedInt32Array>("get_resolve_attachments")
 
-    @JvmStatic
+    @JvmField
     public val setPreserveAttachmentsName:
         MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array> =
         MethodStringName1<RDFramebufferPass, Unit, PackedInt32Array>("set_preserve_attachments")
 
-    @JvmStatic
+    @JvmField
     public val getPreserveAttachmentsName: MethodStringName0<RDFramebufferPass, PackedInt32Array> =
         MethodStringName0<RDFramebufferPass, PackedInt32Array>("get_preserve_attachments")
 
-    @JvmStatic
+    @JvmField
     public val setDepthAttachmentName: MethodStringName1<RDFramebufferPass, Unit, Int> =
         MethodStringName1<RDFramebufferPass, Unit, Int>("set_depth_attachment")
 
-    @JvmStatic
+    @JvmField
     public val getDepthAttachmentName: MethodStringName0<RDFramebufferPass, Int> =
         MethodStringName0<RDFramebufferPass, Int>("get_depth_attachment")
 

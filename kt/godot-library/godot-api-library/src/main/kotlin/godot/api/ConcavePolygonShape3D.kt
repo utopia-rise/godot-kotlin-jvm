@@ -23,8 +23,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D trimesh shape, intended for use in physics. Usually used to provide a shape for a
@@ -151,20 +151,20 @@ public open class ConcavePolygonShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFacesName: MethodStringName1<ConcavePolygonShape3D, Unit, PackedVector3Array> =
         MethodStringName1<ConcavePolygonShape3D, Unit, PackedVector3Array>("set_faces")
 
-    @JvmStatic
+    @JvmField
     public val getFacesName: MethodStringName0<ConcavePolygonShape3D, PackedVector3Array> =
         MethodStringName0<ConcavePolygonShape3D, PackedVector3Array>("get_faces")
 
-    @JvmStatic
+    @JvmField
     public val setBackfaceCollisionEnabledName:
         MethodStringName1<ConcavePolygonShape3D, Unit, Boolean> =
         MethodStringName1<ConcavePolygonShape3D, Unit, Boolean>("set_backface_collision_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isBackfaceCollisionEnabledName: MethodStringName0<ConcavePolygonShape3D, Boolean> =
         MethodStringName0<ConcavePolygonShape3D, Boolean>("is_backface_collision_enabled")
   }

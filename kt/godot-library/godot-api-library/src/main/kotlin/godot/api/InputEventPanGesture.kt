@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about pan gestures. A pan gesture is performed when the user swipes the touch
@@ -86,11 +86,11 @@ public open class InputEventPanGesture : InputEventGesture() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDeltaName: MethodStringName1<InputEventPanGesture, Unit, Vector2> =
         MethodStringName1<InputEventPanGesture, Unit, Vector2>("set_delta")
 
-    @JvmStatic
+    @JvmField
     public val getDeltaName: MethodStringName0<InputEventPanGesture, Vector2> =
         MethodStringName0<InputEventPanGesture, Vector2>("get_delta")
   }

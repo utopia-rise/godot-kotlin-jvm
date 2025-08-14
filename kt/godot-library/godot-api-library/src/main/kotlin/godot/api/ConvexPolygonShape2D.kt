@@ -21,8 +21,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D convex polygon shape, intended for use in physics. Used internally in [CollisionPolygon2D]
@@ -139,15 +139,15 @@ public open class ConvexPolygonShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPointCloudName: MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>
         = MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>("set_point_cloud")
 
-    @JvmStatic
+    @JvmField
     public val setPointsName: MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array> =
         MethodStringName1<ConvexPolygonShape2D, Unit, PackedVector2Array>("set_points")
 
-    @JvmStatic
+    @JvmField
     public val getPointsName: MethodStringName0<ConvexPolygonShape2D, PackedVector2Array> =
         MethodStringName0<ConvexPolygonShape2D, PackedVector2Array>("get_points")
   }

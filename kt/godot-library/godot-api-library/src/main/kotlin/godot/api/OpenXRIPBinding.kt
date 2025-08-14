@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This binding resource binds an [OpenXRAction] to an input or output. As most controllers have
@@ -235,60 +235,60 @@ public open class OpenXRIPBinding : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setActionName: MethodStringName1<OpenXRIPBinding, Unit, OpenXRAction?> =
         MethodStringName1<OpenXRIPBinding, Unit, OpenXRAction?>("set_action")
 
-    @JvmStatic
+    @JvmField
     public val getActionName: MethodStringName0<OpenXRIPBinding, OpenXRAction?> =
         MethodStringName0<OpenXRIPBinding, OpenXRAction?>("get_action")
 
-    @JvmStatic
+    @JvmField
     public val setBindingPathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
         MethodStringName1<OpenXRIPBinding, Unit, String>("set_binding_path")
 
-    @JvmStatic
+    @JvmField
     public val getBindingPathName: MethodStringName0<OpenXRIPBinding, String> =
         MethodStringName0<OpenXRIPBinding, String>("get_binding_path")
 
-    @JvmStatic
+    @JvmField
     public val getBindingModifierCountName: MethodStringName0<OpenXRIPBinding, Int> =
         MethodStringName0<OpenXRIPBinding, Int>("get_binding_modifier_count")
 
-    @JvmStatic
+    @JvmField
     public val getBindingModifierName:
         MethodStringName1<OpenXRIPBinding, OpenXRActionBindingModifier?, Int> =
         MethodStringName1<OpenXRIPBinding, OpenXRActionBindingModifier?, Int>("get_binding_modifier")
 
-    @JvmStatic
+    @JvmField
     public val setBindingModifiersName: MethodStringName1<OpenXRIPBinding, Unit, VariantArray<Any?>>
         = MethodStringName1<OpenXRIPBinding, Unit, VariantArray<Any?>>("set_binding_modifiers")
 
-    @JvmStatic
+    @JvmField
     public val getBindingModifiersName: MethodStringName0<OpenXRIPBinding, VariantArray<Any?>> =
         MethodStringName0<OpenXRIPBinding, VariantArray<Any?>>("get_binding_modifiers")
 
-    @JvmStatic
+    @JvmField
     public val setPathsName: MethodStringName1<OpenXRIPBinding, Unit, PackedStringArray> =
         MethodStringName1<OpenXRIPBinding, Unit, PackedStringArray>("set_paths")
 
-    @JvmStatic
+    @JvmField
     public val getPathsName: MethodStringName0<OpenXRIPBinding, PackedStringArray> =
         MethodStringName0<OpenXRIPBinding, PackedStringArray>("get_paths")
 
-    @JvmStatic
+    @JvmField
     public val getPathCountName: MethodStringName0<OpenXRIPBinding, Int> =
         MethodStringName0<OpenXRIPBinding, Int>("get_path_count")
 
-    @JvmStatic
+    @JvmField
     public val hasPathName: MethodStringName1<OpenXRIPBinding, Boolean, String> =
         MethodStringName1<OpenXRIPBinding, Boolean, String>("has_path")
 
-    @JvmStatic
+    @JvmField
     public val addPathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
         MethodStringName1<OpenXRIPBinding, Unit, String>("add_path")
 
-    @JvmStatic
+    @JvmField
     public val removePathName: MethodStringName1<OpenXRIPBinding, Unit, String> =
         MethodStringName1<OpenXRIPBinding, Unit, String>("remove_path")
   }

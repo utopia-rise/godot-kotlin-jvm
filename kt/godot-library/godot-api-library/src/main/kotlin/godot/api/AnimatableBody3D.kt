@@ -17,8 +17,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An animatable 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -60,11 +60,11 @@ public open class AnimatableBody3D : StaticBody3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSyncToPhysicsName: MethodStringName1<AnimatableBody3D, Unit, Boolean> =
         MethodStringName1<AnimatableBody3D, Unit, Boolean>("set_sync_to_physics")
 
-    @JvmStatic
+    @JvmField
     public val isSyncToPhysicsEnabledName: MethodStringName0<AnimatableBody3D, Boolean> =
         MethodStringName0<AnimatableBody3D, Boolean>("is_sync_to_physics_enabled")
   }

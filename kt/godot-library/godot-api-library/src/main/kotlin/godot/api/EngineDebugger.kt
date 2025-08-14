@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -42,100 +43,100 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
-  @JvmStatic
+  @JvmField
   public val isActiveName: MethodStringName0<EngineDebugger, Boolean> =
       MethodStringName0<EngineDebugger, Boolean>("is_active")
 
-  @JvmStatic
+  @JvmField
   public val registerProfilerName:
       MethodStringName2<EngineDebugger, Unit, StringName, EngineProfiler?> =
       MethodStringName2<EngineDebugger, Unit, StringName, EngineProfiler?>("register_profiler")
 
-  @JvmStatic
+  @JvmField
   public val unregisterProfilerName: MethodStringName1<EngineDebugger, Unit, StringName> =
       MethodStringName1<EngineDebugger, Unit, StringName>("unregister_profiler")
 
-  @JvmStatic
+  @JvmField
   public val isProfilingName: MethodStringName1<EngineDebugger, Boolean, StringName> =
       MethodStringName1<EngineDebugger, Boolean, StringName>("is_profiling")
 
-  @JvmStatic
+  @JvmField
   public val hasProfilerName: MethodStringName1<EngineDebugger, Boolean, StringName> =
       MethodStringName1<EngineDebugger, Boolean, StringName>("has_profiler")
 
-  @JvmStatic
+  @JvmField
   public val profilerAddFrameDataName:
       MethodStringName2<EngineDebugger, Unit, StringName, VariantArray<Any?>> =
       MethodStringName2<EngineDebugger, Unit, StringName, VariantArray<Any?>>("profiler_add_frame_data")
 
-  @JvmStatic
+  @JvmField
   public val profilerEnableName:
       MethodStringName3<EngineDebugger, Unit, StringName, Boolean, VariantArray<Any?>> =
       MethodStringName3<EngineDebugger, Unit, StringName, Boolean, VariantArray<Any?>>("profiler_enable")
 
-  @JvmStatic
+  @JvmField
   public val registerMessageCaptureName:
       MethodStringName2<EngineDebugger, Unit, StringName, Callable> =
       MethodStringName2<EngineDebugger, Unit, StringName, Callable>("register_message_capture")
 
-  @JvmStatic
+  @JvmField
   public val unregisterMessageCaptureName: MethodStringName1<EngineDebugger, Unit, StringName> =
       MethodStringName1<EngineDebugger, Unit, StringName>("unregister_message_capture")
 
-  @JvmStatic
+  @JvmField
   public val hasCaptureName: MethodStringName1<EngineDebugger, Boolean, StringName> =
       MethodStringName1<EngineDebugger, Boolean, StringName>("has_capture")
 
-  @JvmStatic
+  @JvmField
   public val linePollName: MethodStringName0<EngineDebugger, Unit> =
       MethodStringName0<EngineDebugger, Unit>("line_poll")
 
-  @JvmStatic
+  @JvmField
   public val sendMessageName: MethodStringName2<EngineDebugger, Unit, String, VariantArray<Any?>> =
       MethodStringName2<EngineDebugger, Unit, String, VariantArray<Any?>>("send_message")
 
-  @JvmStatic
+  @JvmField
   public val debugName: MethodStringName2<EngineDebugger, Unit, Boolean, Boolean> =
       MethodStringName2<EngineDebugger, Unit, Boolean, Boolean>("debug")
 
-  @JvmStatic
+  @JvmField
   public val scriptDebugName:
       MethodStringName3<EngineDebugger, Unit, ScriptLanguage?, Boolean, Boolean> =
       MethodStringName3<EngineDebugger, Unit, ScriptLanguage?, Boolean, Boolean>("script_debug")
 
-  @JvmStatic
+  @JvmField
   public val setLinesLeftName: MethodStringName1<EngineDebugger, Unit, Int> =
       MethodStringName1<EngineDebugger, Unit, Int>("set_lines_left")
 
-  @JvmStatic
+  @JvmField
   public val getLinesLeftName: MethodStringName0<EngineDebugger, Int> =
       MethodStringName0<EngineDebugger, Int>("get_lines_left")
 
-  @JvmStatic
+  @JvmField
   public val setDepthName: MethodStringName1<EngineDebugger, Unit, Int> =
       MethodStringName1<EngineDebugger, Unit, Int>("set_depth")
 
-  @JvmStatic
+  @JvmField
   public val getDepthName: MethodStringName0<EngineDebugger, Int> =
       MethodStringName0<EngineDebugger, Int>("get_depth")
 
-  @JvmStatic
+  @JvmField
   public val isBreakpointName: MethodStringName2<EngineDebugger, Boolean, Int, StringName> =
       MethodStringName2<EngineDebugger, Boolean, Int, StringName>("is_breakpoint")
 
-  @JvmStatic
+  @JvmField
   public val isSkippingBreakpointsName: MethodStringName0<EngineDebugger, Boolean> =
       MethodStringName0<EngineDebugger, Boolean>("is_skipping_breakpoints")
 
-  @JvmStatic
+  @JvmField
   public val insertBreakpointName: MethodStringName2<EngineDebugger, Unit, Int, StringName> =
       MethodStringName2<EngineDebugger, Unit, Int, StringName>("insert_breakpoint")
 
-  @JvmStatic
+  @JvmField
   public val removeBreakpointName: MethodStringName2<EngineDebugger, Unit, Int, StringName> =
       MethodStringName2<EngineDebugger, Unit, Int, StringName>("remove_breakpoint")
 
-  @JvmStatic
+  @JvmField
   public val clearBreakpointsName: MethodStringName0<EngineDebugger, Unit> =
       MethodStringName0<EngineDebugger, Unit>("clear_breakpoints")
 

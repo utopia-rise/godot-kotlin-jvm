@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A rectangular frame that can be used to group visual shader nodes together to improve
@@ -246,52 +246,52 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTitleName: MethodStringName1<VisualShaderNodeFrame, Unit, String> =
         MethodStringName1<VisualShaderNodeFrame, Unit, String>("set_title")
 
-    @JvmStatic
+    @JvmField
     public val getTitleName: MethodStringName0<VisualShaderNodeFrame, String> =
         MethodStringName0<VisualShaderNodeFrame, String>("get_title")
 
-    @JvmStatic
+    @JvmField
     public val setTintColorEnabledName: MethodStringName1<VisualShaderNodeFrame, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeFrame, Unit, Boolean>("set_tint_color_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isTintColorEnabledName: MethodStringName0<VisualShaderNodeFrame, Boolean> =
         MethodStringName0<VisualShaderNodeFrame, Boolean>("is_tint_color_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setTintColorName: MethodStringName1<VisualShaderNodeFrame, Unit, Color> =
         MethodStringName1<VisualShaderNodeFrame, Unit, Color>("set_tint_color")
 
-    @JvmStatic
+    @JvmField
     public val getTintColorName: MethodStringName0<VisualShaderNodeFrame, Color> =
         MethodStringName0<VisualShaderNodeFrame, Color>("get_tint_color")
 
-    @JvmStatic
+    @JvmField
     public val setAutoshrinkEnabledName: MethodStringName1<VisualShaderNodeFrame, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeFrame, Unit, Boolean>("set_autoshrink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isAutoshrinkEnabledName: MethodStringName0<VisualShaderNodeFrame, Boolean> =
         MethodStringName0<VisualShaderNodeFrame, Boolean>("is_autoshrink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val addAttachedNodeName: MethodStringName1<VisualShaderNodeFrame, Unit, Int> =
         MethodStringName1<VisualShaderNodeFrame, Unit, Int>("add_attached_node")
 
-    @JvmStatic
+    @JvmField
     public val removeAttachedNodeName: MethodStringName1<VisualShaderNodeFrame, Unit, Int> =
         MethodStringName1<VisualShaderNodeFrame, Unit, Int>("remove_attached_node")
 
-    @JvmStatic
+    @JvmField
     public val setAttachedNodesName:
         MethodStringName1<VisualShaderNodeFrame, Unit, PackedInt32Array> =
         MethodStringName1<VisualShaderNodeFrame, Unit, PackedInt32Array>("set_attached_nodes")
 
-    @JvmStatic
+    @JvmField
     public val getAttachedNodesName: MethodStringName0<VisualShaderNodeFrame, PackedInt32Array> =
         MethodStringName0<VisualShaderNodeFrame, PackedInt32Array>("get_attached_nodes")
   }

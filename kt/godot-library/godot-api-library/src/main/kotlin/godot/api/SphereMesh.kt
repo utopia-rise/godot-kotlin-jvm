@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a spherical [PrimitiveMesh].
@@ -148,43 +148,43 @@ public open class SphereMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<SphereMesh, Unit, Float> =
         MethodStringName1<SphereMesh, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<SphereMesh, Float> =
         MethodStringName0<SphereMesh, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<SphereMesh, Unit, Float> =
         MethodStringName1<SphereMesh, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<SphereMesh, Float> =
         MethodStringName0<SphereMesh, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setRadialSegmentsName: MethodStringName1<SphereMesh, Unit, Int> =
         MethodStringName1<SphereMesh, Unit, Int>("set_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val getRadialSegmentsName: MethodStringName0<SphereMesh, Int> =
         MethodStringName0<SphereMesh, Int>("get_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val setRingsName: MethodStringName1<SphereMesh, Unit, Int> =
         MethodStringName1<SphereMesh, Unit, Int>("set_rings")
 
-    @JvmStatic
+    @JvmField
     public val getRingsName: MethodStringName0<SphereMesh, Int> =
         MethodStringName0<SphereMesh, Int>("get_rings")
 
-    @JvmStatic
+    @JvmField
     public val setIsHemisphereName: MethodStringName1<SphereMesh, Unit, Boolean> =
         MethodStringName1<SphereMesh, Unit, Boolean>("set_is_hemisphere")
 
-    @JvmStatic
+    @JvmField
     public val getIsHemisphereName: MethodStringName0<SphereMesh, Boolean> =
         MethodStringName0<SphereMesh, Boolean>("get_is_hemisphere")
   }

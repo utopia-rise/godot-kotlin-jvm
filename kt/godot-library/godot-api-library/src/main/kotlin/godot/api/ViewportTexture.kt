@@ -21,8 +21,8 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A [ViewportTexture] provides the content of a [Viewport] as a dynamic [Texture2D]. This can be
@@ -103,11 +103,11 @@ public open class ViewportTexture : Texture2D() {
       setViewportPathInScene(path.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setViewportPathInSceneName: MethodStringName1<ViewportTexture, Unit, NodePath> =
         MethodStringName1<ViewportTexture, Unit, NodePath>("set_viewport_path_in_scene")
 
-    @JvmStatic
+    @JvmField
     public val getViewportPathInSceneName: MethodStringName0<ViewportTexture, NodePath> =
         MethodStringName0<ViewportTexture, NodePath>("get_viewport_path_in_scene")
   }

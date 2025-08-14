@@ -28,8 +28,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The [VisualInstance3D] is used to connect a resource to a visual representation. All visual 3D
@@ -198,51 +198,51 @@ public open class VisualInstance3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBaseName: MethodStringName1<VisualInstance3D, Unit, RID> =
         MethodStringName1<VisualInstance3D, Unit, RID>("set_base")
 
-    @JvmStatic
+    @JvmField
     public val getBaseName: MethodStringName0<VisualInstance3D, RID> =
         MethodStringName0<VisualInstance3D, RID>("get_base")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceName: MethodStringName0<VisualInstance3D, RID> =
         MethodStringName0<VisualInstance3D, RID>("get_instance")
 
-    @JvmStatic
+    @JvmField
     public val setLayerMaskName: MethodStringName1<VisualInstance3D, Unit, Long> =
         MethodStringName1<VisualInstance3D, Unit, Long>("set_layer_mask")
 
-    @JvmStatic
+    @JvmField
     public val getLayerMaskName: MethodStringName0<VisualInstance3D, Long> =
         MethodStringName0<VisualInstance3D, Long>("get_layer_mask")
 
-    @JvmStatic
+    @JvmField
     public val setLayerMaskValueName: MethodStringName2<VisualInstance3D, Unit, Int, Boolean> =
         MethodStringName2<VisualInstance3D, Unit, Int, Boolean>("set_layer_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getLayerMaskValueName: MethodStringName1<VisualInstance3D, Boolean, Int> =
         MethodStringName1<VisualInstance3D, Boolean, Int>("get_layer_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val setSortingOffsetName: MethodStringName1<VisualInstance3D, Unit, Float> =
         MethodStringName1<VisualInstance3D, Unit, Float>("set_sorting_offset")
 
-    @JvmStatic
+    @JvmField
     public val getSortingOffsetName: MethodStringName0<VisualInstance3D, Float> =
         MethodStringName0<VisualInstance3D, Float>("get_sorting_offset")
 
-    @JvmStatic
+    @JvmField
     public val setSortingUseAabbCenterName: MethodStringName1<VisualInstance3D, Unit, Boolean> =
         MethodStringName1<VisualInstance3D, Unit, Boolean>("set_sorting_use_aabb_center")
 
-    @JvmStatic
+    @JvmField
     public val isSortingUseAabbCenterName: MethodStringName0<VisualInstance3D, Boolean> =
         MethodStringName0<VisualInstance3D, Boolean>("is_sorting_use_aabb_center")
 
-    @JvmStatic
+    @JvmField
     public val getAabbName: MethodStringName0<VisualInstance3D, AABB> =
         MethodStringName0<VisualInstance3D, AABB>("get_aabb")
   }

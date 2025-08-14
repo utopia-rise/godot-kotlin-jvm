@@ -26,8 +26,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This resource provides an interface that can be expanded so code that operates on [Bone2D] nodes
@@ -178,45 +178,45 @@ public open class SkeletonModification2D : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEnabledName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
         MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getEnabledName: MethodStringName0<SkeletonModification2D, Boolean> =
         MethodStringName0<SkeletonModification2D, Boolean>("get_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getModificationStackName:
         MethodStringName0<SkeletonModification2D, SkeletonModificationStack2D?> =
         MethodStringName0<SkeletonModification2D, SkeletonModificationStack2D?>("get_modification_stack")
 
-    @JvmStatic
+    @JvmField
     public val setIsSetupName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
         MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_is_setup")
 
-    @JvmStatic
+    @JvmField
     public val getIsSetupName: MethodStringName0<SkeletonModification2D, Boolean> =
         MethodStringName0<SkeletonModification2D, Boolean>("get_is_setup")
 
-    @JvmStatic
+    @JvmField
     public val setExecutionModeName: MethodStringName1<SkeletonModification2D, Unit, Int> =
         MethodStringName1<SkeletonModification2D, Unit, Int>("set_execution_mode")
 
-    @JvmStatic
+    @JvmField
     public val getExecutionModeName: MethodStringName0<SkeletonModification2D, Int> =
         MethodStringName0<SkeletonModification2D, Int>("get_execution_mode")
 
-    @JvmStatic
+    @JvmField
     public val clampAngleName:
         MethodStringName4<SkeletonModification2D, Float, Float, Float, Float, Boolean> =
         MethodStringName4<SkeletonModification2D, Float, Float, Float, Float, Boolean>("clamp_angle")
 
-    @JvmStatic
+    @JvmField
     public val setEditorDrawGizmoName: MethodStringName1<SkeletonModification2D, Unit, Boolean> =
         MethodStringName1<SkeletonModification2D, Unit, Boolean>("set_editor_draw_gizmo")
 
-    @JvmStatic
+    @JvmField
     public val getEditorDrawGizmoName: MethodStringName0<SkeletonModification2D, Boolean> =
         MethodStringName0<SkeletonModification2D, Boolean>("get_editor_draw_gizmo")
   }

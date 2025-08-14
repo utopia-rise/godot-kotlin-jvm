@@ -19,8 +19,8 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A box-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to
@@ -87,11 +87,11 @@ public open class GPUParticlesAttractorBox3D : GPUParticlesAttractor3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<GPUParticlesAttractorBox3D, Unit, Vector3> =
         MethodStringName1<GPUParticlesAttractorBox3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<GPUParticlesAttractorBox3D, Vector3> =
         MethodStringName0<GPUParticlesAttractorBox3D, Vector3>("get_size")
   }

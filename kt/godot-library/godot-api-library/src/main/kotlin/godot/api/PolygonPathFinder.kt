@@ -31,7 +31,7 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
@@ -141,38 +141,38 @@ public open class PolygonPathFinder : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setupName:
         MethodStringName2<PolygonPathFinder, Unit, PackedVector2Array, PackedInt32Array> =
         MethodStringName2<PolygonPathFinder, Unit, PackedVector2Array, PackedInt32Array>("setup")
 
-    @JvmStatic
+    @JvmField
     public val findPathName:
         MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2> =
         MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2>("find_path")
 
-    @JvmStatic
+    @JvmField
     public val getIntersectionsName:
         MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2> =
         MethodStringName2<PolygonPathFinder, PackedVector2Array, Vector2, Vector2>("get_intersections")
 
-    @JvmStatic
+    @JvmField
     public val getClosestPointName: MethodStringName1<PolygonPathFinder, Vector2, Vector2> =
         MethodStringName1<PolygonPathFinder, Vector2, Vector2>("get_closest_point")
 
-    @JvmStatic
+    @JvmField
     public val isPointInsideName: MethodStringName1<PolygonPathFinder, Boolean, Vector2> =
         MethodStringName1<PolygonPathFinder, Boolean, Vector2>("is_point_inside")
 
-    @JvmStatic
+    @JvmField
     public val setPointPenaltyName: MethodStringName2<PolygonPathFinder, Unit, Int, Float> =
         MethodStringName2<PolygonPathFinder, Unit, Int, Float>("set_point_penalty")
 
-    @JvmStatic
+    @JvmField
     public val getPointPenaltyName: MethodStringName1<PolygonPathFinder, Float, Int> =
         MethodStringName1<PolygonPathFinder, Float, Int>("get_point_penalty")
 
-    @JvmStatic
+    @JvmField
     public val getBoundsName: MethodStringName0<PolygonPathFinder, Rect2> =
         MethodStringName0<PolygonPathFinder, Rect2>("get_bounds")
   }

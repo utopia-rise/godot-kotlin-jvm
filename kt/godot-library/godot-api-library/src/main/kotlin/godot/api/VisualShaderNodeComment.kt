@@ -17,8 +17,8 @@ import godot.core.VariantParser.STRING
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node was replaced by [VisualShaderNodeFrame] and only exists to preserve compatibility. In
@@ -54,11 +54,11 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDescriptionName: MethodStringName1<VisualShaderNodeComment, Unit, String> =
         MethodStringName1<VisualShaderNodeComment, Unit, String>("set_description")
 
-    @JvmStatic
+    @JvmField
     public val getDescriptionName: MethodStringName0<VisualShaderNodeComment, String> =
         MethodStringName0<VisualShaderNodeComment, String>("get_description")
   }

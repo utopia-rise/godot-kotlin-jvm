@@ -18,6 +18,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -42,11 +43,11 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
-  @JvmStatic
+  @JvmField
   public val wrapName: MethodStringName1<JavaClassWrapper, JavaClass?, String> =
       MethodStringName1<JavaClassWrapper, JavaClass?, String>("wrap")
 
-  @JvmStatic
+  @JvmField
   public val getExceptionName: MethodStringName0<JavaClassWrapper, JavaObject?> =
       MethodStringName0<JavaClassWrapper, JavaObject?>("get_exception")
 

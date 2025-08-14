@@ -25,8 +25,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The [PhysicalBone2D] node is a [RigidBody2D]-based node that can be used to make [Bone2D]s in a
@@ -188,51 +188,51 @@ public open class PhysicalBone2D : RigidBody2D() {
       setBone2dNodepath(nodepath.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getJointName: MethodStringName0<PhysicalBone2D, Joint2D?> =
         MethodStringName0<PhysicalBone2D, Joint2D?>("get_joint")
 
-    @JvmStatic
+    @JvmField
     public val getAutoConfigureJointName: MethodStringName0<PhysicalBone2D, Boolean> =
         MethodStringName0<PhysicalBone2D, Boolean>("get_auto_configure_joint")
 
-    @JvmStatic
+    @JvmField
     public val setAutoConfigureJointName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
         MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_auto_configure_joint")
 
-    @JvmStatic
+    @JvmField
     public val setSimulatePhysicsName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
         MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_simulate_physics")
 
-    @JvmStatic
+    @JvmField
     public val getSimulatePhysicsName: MethodStringName0<PhysicalBone2D, Boolean> =
         MethodStringName0<PhysicalBone2D, Boolean>("get_simulate_physics")
 
-    @JvmStatic
+    @JvmField
     public val isSimulatingPhysicsName: MethodStringName0<PhysicalBone2D, Boolean> =
         MethodStringName0<PhysicalBone2D, Boolean>("is_simulating_physics")
 
-    @JvmStatic
+    @JvmField
     public val setBone2dNodepathName: MethodStringName1<PhysicalBone2D, Unit, NodePath> =
         MethodStringName1<PhysicalBone2D, Unit, NodePath>("set_bone2d_nodepath")
 
-    @JvmStatic
+    @JvmField
     public val getBone2dNodepathName: MethodStringName0<PhysicalBone2D, NodePath> =
         MethodStringName0<PhysicalBone2D, NodePath>("get_bone2d_nodepath")
 
-    @JvmStatic
+    @JvmField
     public val setBone2dIndexName: MethodStringName1<PhysicalBone2D, Unit, Int> =
         MethodStringName1<PhysicalBone2D, Unit, Int>("set_bone2d_index")
 
-    @JvmStatic
+    @JvmField
     public val getBone2dIndexName: MethodStringName0<PhysicalBone2D, Int> =
         MethodStringName0<PhysicalBone2D, Int>("get_bone2d_index")
 
-    @JvmStatic
+    @JvmField
     public val setFollowBoneWhenSimulatingName: MethodStringName1<PhysicalBone2D, Unit, Boolean> =
         MethodStringName1<PhysicalBone2D, Unit, Boolean>("set_follow_bone_when_simulating")
 
-    @JvmStatic
+    @JvmField
     public val getFollowBoneWhenSimulatingName: MethodStringName0<PhysicalBone2D, Boolean> =
         MethodStringName0<PhysicalBone2D, Boolean>("get_follow_bone_when_simulating")
   }

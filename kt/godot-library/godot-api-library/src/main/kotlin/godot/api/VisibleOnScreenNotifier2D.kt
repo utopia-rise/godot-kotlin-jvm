@@ -22,8 +22,8 @@ import godot.core.VariantParser.RECT2
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenNotifier2D] represents a rectangular region of 2D space. When any part of this
@@ -139,15 +139,15 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRectName: MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2> =
         MethodStringName1<VisibleOnScreenNotifier2D, Unit, Rect2>("set_rect")
 
-    @JvmStatic
+    @JvmField
     public val getRectName: MethodStringName0<VisibleOnScreenNotifier2D, Rect2> =
         MethodStringName0<VisibleOnScreenNotifier2D, Rect2>("get_rect")
 
-    @JvmStatic
+    @JvmField
     public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
         MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_on_screen")
   }

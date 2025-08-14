@@ -29,8 +29,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class constructs a full mesh of [WebRTCPeerConnection] (one connection for each peer) that
@@ -161,38 +161,38 @@ public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createServerName: MethodStringName1<WebRTCMultiplayerPeer, Error, VariantArray<Any?>>
         = MethodStringName1<WebRTCMultiplayerPeer, Error, VariantArray<Any?>>("create_server")
 
-    @JvmStatic
+    @JvmField
     public val createClientName:
         MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>> =
         MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>>("create_client")
 
-    @JvmStatic
+    @JvmField
     public val createMeshName:
         MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>> =
         MethodStringName2<WebRTCMultiplayerPeer, Error, Int, VariantArray<Any?>>("create_mesh")
 
-    @JvmStatic
+    @JvmField
     public val addPeerName:
         MethodStringName3<WebRTCMultiplayerPeer, Error, WebRTCPeerConnection?, Int, Int> =
         MethodStringName3<WebRTCMultiplayerPeer, Error, WebRTCPeerConnection?, Int, Int>("add_peer")
 
-    @JvmStatic
+    @JvmField
     public val removePeerName: MethodStringName1<WebRTCMultiplayerPeer, Unit, Int> =
         MethodStringName1<WebRTCMultiplayerPeer, Unit, Int>("remove_peer")
 
-    @JvmStatic
+    @JvmField
     public val hasPeerName: MethodStringName1<WebRTCMultiplayerPeer, Boolean, Int> =
         MethodStringName1<WebRTCMultiplayerPeer, Boolean, Int>("has_peer")
 
-    @JvmStatic
+    @JvmField
     public val getPeerName: MethodStringName1<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>, Int> =
         MethodStringName1<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>, Int>("get_peer")
 
-    @JvmStatic
+    @JvmField
     public val getPeersName: MethodStringName0<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>> =
         MethodStringName0<WebRTCMultiplayerPeer, Dictionary<Any?, Any?>>("get_peers")
   }

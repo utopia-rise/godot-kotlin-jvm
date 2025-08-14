@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The Crypto class provides access to advanced cryptographic functionalities.
@@ -251,46 +251,46 @@ public open class Crypto : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val generateRandomBytesName: MethodStringName1<Crypto, PackedByteArray, Int> =
         MethodStringName1<Crypto, PackedByteArray, Int>("generate_random_bytes")
 
-    @JvmStatic
+    @JvmField
     public val generateRsaName: MethodStringName1<Crypto, CryptoKey?, Int> =
         MethodStringName1<Crypto, CryptoKey?, Int>("generate_rsa")
 
-    @JvmStatic
+    @JvmField
     public val generateSelfSignedCertificateName:
         MethodStringName4<Crypto, X509Certificate?, CryptoKey?, String, String, String> =
         MethodStringName4<Crypto, X509Certificate?, CryptoKey?, String, String, String>("generate_self_signed_certificate")
 
-    @JvmStatic
+    @JvmField
     public val signName:
         MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, CryptoKey?>
         =
         MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, CryptoKey?>("sign")
 
-    @JvmStatic
+    @JvmField
     public val verifyName:
         MethodStringName4<Crypto, Boolean, HashingContext.HashType, PackedByteArray, PackedByteArray, CryptoKey?>
         =
         MethodStringName4<Crypto, Boolean, HashingContext.HashType, PackedByteArray, PackedByteArray, CryptoKey?>("verify")
 
-    @JvmStatic
+    @JvmField
     public val encryptName: MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>
         = MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>("encrypt")
 
-    @JvmStatic
+    @JvmField
     public val decryptName: MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>
         = MethodStringName2<Crypto, PackedByteArray, CryptoKey?, PackedByteArray>("decrypt")
 
-    @JvmStatic
+    @JvmField
     public val hmacDigestName:
         MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, PackedByteArray>
         =
         MethodStringName3<Crypto, PackedByteArray, HashingContext.HashType, PackedByteArray, PackedByteArray>("hmac_digest")
 
-    @JvmStatic
+    @JvmField
     public val constantTimeCompareName:
         MethodStringName2<Crypto, Boolean, PackedByteArray, PackedByteArray> =
         MethodStringName2<Crypto, Boolean, PackedByteArray, PackedByteArray>("constant_time_compare")

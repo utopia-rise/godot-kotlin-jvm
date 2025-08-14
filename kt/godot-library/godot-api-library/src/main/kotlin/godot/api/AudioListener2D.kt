@@ -16,7 +16,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
@@ -61,15 +61,15 @@ public open class AudioListener2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val makeCurrentName: MethodStringName0<AudioListener2D, Unit> =
         MethodStringName0<AudioListener2D, Unit>("make_current")
 
-    @JvmStatic
+    @JvmField
     public val clearCurrentName: MethodStringName0<AudioListener2D, Unit> =
         MethodStringName0<AudioListener2D, Unit>("clear_current")
 
-    @JvmStatic
+    @JvmField
     public val isCurrentName: MethodStringName0<AudioListener2D, Boolean> =
         MethodStringName0<AudioListener2D, Boolean>("is_current")
   }

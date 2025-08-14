@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -37,36 +38,36 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object TextServerManager : Object() {
-  @JvmStatic
+  @JvmField
   public val addInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
       MethodStringName1<TextServerManager, Unit, TextServer?>("add_interface")
 
-  @JvmStatic
+  @JvmField
   public val getInterfaceCountName: MethodStringName0<TextServerManager, Int> =
       MethodStringName0<TextServerManager, Int>("get_interface_count")
 
-  @JvmStatic
+  @JvmField
   public val removeInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
       MethodStringName1<TextServerManager, Unit, TextServer?>("remove_interface")
 
-  @JvmStatic
+  @JvmField
   public val getInterfaceName: MethodStringName1<TextServerManager, TextServer?, Int> =
       MethodStringName1<TextServerManager, TextServer?, Int>("get_interface")
 
-  @JvmStatic
+  @JvmField
   public val getInterfacesName:
       MethodStringName0<TextServerManager, VariantArray<Dictionary<Any?, Any?>>> =
       MethodStringName0<TextServerManager, VariantArray<Dictionary<Any?, Any?>>>("get_interfaces")
 
-  @JvmStatic
+  @JvmField
   public val findInterfaceName: MethodStringName1<TextServerManager, TextServer?, String> =
       MethodStringName1<TextServerManager, TextServer?, String>("find_interface")
 
-  @JvmStatic
+  @JvmField
   public val setPrimaryInterfaceName: MethodStringName1<TextServerManager, Unit, TextServer?> =
       MethodStringName1<TextServerManager, Unit, TextServer?>("set_primary_interface")
 
-  @JvmStatic
+  @JvmField
   public val getPrimaryInterfaceName: MethodStringName0<TextServerManager, TextServer?> =
       MethodStringName0<TextServerManager, TextServer?>("get_primary_interface")
 

@@ -26,8 +26,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for all joints in 3D physics. 3D joints bind together two physics bodies
@@ -149,39 +149,39 @@ public open class Joint3D internal constructor() : Node3D() {
   public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setNodeAName: MethodStringName1<Joint3D, Unit, NodePath> =
         MethodStringName1<Joint3D, Unit, NodePath>("set_node_a")
 
-    @JvmStatic
+    @JvmField
     public val getNodeAName: MethodStringName0<Joint3D, NodePath> =
         MethodStringName0<Joint3D, NodePath>("get_node_a")
 
-    @JvmStatic
+    @JvmField
     public val setNodeBName: MethodStringName1<Joint3D, Unit, NodePath> =
         MethodStringName1<Joint3D, Unit, NodePath>("set_node_b")
 
-    @JvmStatic
+    @JvmField
     public val getNodeBName: MethodStringName0<Joint3D, NodePath> =
         MethodStringName0<Joint3D, NodePath>("get_node_b")
 
-    @JvmStatic
+    @JvmField
     public val setSolverPriorityName: MethodStringName1<Joint3D, Unit, Int> =
         MethodStringName1<Joint3D, Unit, Int>("set_solver_priority")
 
-    @JvmStatic
+    @JvmField
     public val getSolverPriorityName: MethodStringName0<Joint3D, Int> =
         MethodStringName0<Joint3D, Int>("get_solver_priority")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeNodesFromCollisionName: MethodStringName1<Joint3D, Unit, Boolean> =
         MethodStringName1<Joint3D, Unit, Boolean>("set_exclude_nodes_from_collision")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeNodesFromCollisionName: MethodStringName0<Joint3D, Boolean> =
         MethodStringName0<Joint3D, Boolean>("get_exclude_nodes_from_collision")
 
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<Joint3D, RID> =
         MethodStringName0<Joint3D, RID>("get_rid")
   }

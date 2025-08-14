@@ -21,8 +21,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A container that displays the contents of underlying [SubViewport] child nodes. It uses the
@@ -131,27 +131,27 @@ public open class SubViewportContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStretchName: MethodStringName1<SubViewportContainer, Unit, Boolean> =
         MethodStringName1<SubViewportContainer, Unit, Boolean>("set_stretch")
 
-    @JvmStatic
+    @JvmField
     public val isStretchEnabledName: MethodStringName0<SubViewportContainer, Boolean> =
         MethodStringName0<SubViewportContainer, Boolean>("is_stretch_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setStretchShrinkName: MethodStringName1<SubViewportContainer, Unit, Int> =
         MethodStringName1<SubViewportContainer, Unit, Int>("set_stretch_shrink")
 
-    @JvmStatic
+    @JvmField
     public val getStretchShrinkName: MethodStringName0<SubViewportContainer, Int> =
         MethodStringName0<SubViewportContainer, Int>("get_stretch_shrink")
 
-    @JvmStatic
+    @JvmField
     public val setMouseTargetName: MethodStringName1<SubViewportContainer, Unit, Boolean> =
         MethodStringName1<SubViewportContainer, Unit, Boolean>("set_mouse_target")
 
-    @JvmStatic
+    @JvmField
     public val isMouseTargetEnabledName: MethodStringName0<SubViewportContainer, Boolean> =
         MethodStringName0<SubViewportContainer, Boolean>("is_mouse_target_enabled")
   }

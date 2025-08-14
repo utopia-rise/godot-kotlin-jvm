@@ -25,9 +25,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A MultiplayerPeer implementation that should be passed to [MultiplayerAPI.multiplayerPeer] after
@@ -157,33 +157,33 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createServerName:
         MethodStringName5<ENetMultiplayerPeer, Error, Int, Int, Int, Int, Int> =
         MethodStringName5<ENetMultiplayerPeer, Error, Int, Int, Int, Int, Int>("create_server")
 
-    @JvmStatic
+    @JvmField
     public val createClientName:
         MethodStringName6<ENetMultiplayerPeer, Error, String, Int, Int, Int, Int, Int> =
         MethodStringName6<ENetMultiplayerPeer, Error, String, Int, Int, Int, Int, Int>("create_client")
 
-    @JvmStatic
+    @JvmField
     public val createMeshName: MethodStringName1<ENetMultiplayerPeer, Error, Int> =
         MethodStringName1<ENetMultiplayerPeer, Error, Int>("create_mesh")
 
-    @JvmStatic
+    @JvmField
     public val addMeshPeerName: MethodStringName2<ENetMultiplayerPeer, Error, Int, ENetConnection?>
         = MethodStringName2<ENetMultiplayerPeer, Error, Int, ENetConnection?>("add_mesh_peer")
 
-    @JvmStatic
+    @JvmField
     public val setBindIpName: MethodStringName1<ENetMultiplayerPeer, Unit, String> =
         MethodStringName1<ENetMultiplayerPeer, Unit, String>("set_bind_ip")
 
-    @JvmStatic
+    @JvmField
     public val getHostName: MethodStringName0<ENetMultiplayerPeer, ENetConnection?> =
         MethodStringName0<ENetMultiplayerPeer, ENetConnection?>("get_host")
 
-    @JvmStatic
+    @JvmField
     public val getPeerName: MethodStringName1<ENetMultiplayerPeer, ENetPacketPeer?, Int> =
         MethodStringName1<ENetMultiplayerPeer, ENetPacketPeer?, Int>("get_peer")
   }

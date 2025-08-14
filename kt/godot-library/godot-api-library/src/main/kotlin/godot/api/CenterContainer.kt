@@ -17,8 +17,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [CenterContainer] is a container that keeps all of its child controls in its center at their
@@ -53,11 +53,11 @@ public open class CenterContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setUseTopLeftName: MethodStringName1<CenterContainer, Unit, Boolean> =
         MethodStringName1<CenterContainer, Unit, Boolean>("set_use_top_left")
 
-    @JvmStatic
+    @JvmField
     public val isUsingTopLeftName: MethodStringName0<CenterContainer, Boolean> =
         MethodStringName0<CenterContainer, Boolean>("is_using_top_left")
   }

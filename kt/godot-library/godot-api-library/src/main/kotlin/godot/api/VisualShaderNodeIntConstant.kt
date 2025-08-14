@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to [code skip-lint]int[/code] in the shader language.
@@ -53,11 +53,11 @@ public open class VisualShaderNodeIntConstant : VisualShaderNodeConstant() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantName: MethodStringName1<VisualShaderNodeIntConstant, Unit, Int> =
         MethodStringName1<VisualShaderNodeIntConstant, Unit, Int>("set_constant")
 
-    @JvmStatic
+    @JvmField
     public val getConstantName: MethodStringName0<VisualShaderNodeIntConstant, Int> =
         MethodStringName0<VisualShaderNodeIntConstant, Int>("get_constant")
   }

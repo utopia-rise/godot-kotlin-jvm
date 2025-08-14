@@ -22,7 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Exposes a set of tiles for a [TileSet] resource.
@@ -107,27 +107,27 @@ public open class TileSetSource internal constructor() : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTilesCountName: MethodStringName0<TileSetSource, Int> =
         MethodStringName0<TileSetSource, Int>("get_tiles_count")
 
-    @JvmStatic
+    @JvmField
     public val getTileIdName: MethodStringName1<TileSetSource, Vector2i, Int> =
         MethodStringName1<TileSetSource, Vector2i, Int>("get_tile_id")
 
-    @JvmStatic
+    @JvmField
     public val hasTileName: MethodStringName1<TileSetSource, Boolean, Vector2i> =
         MethodStringName1<TileSetSource, Boolean, Vector2i>("has_tile")
 
-    @JvmStatic
+    @JvmField
     public val getAlternativeTilesCountName: MethodStringName1<TileSetSource, Int, Vector2i> =
         MethodStringName1<TileSetSource, Int, Vector2i>("get_alternative_tiles_count")
 
-    @JvmStatic
+    @JvmField
     public val getAlternativeTileIdName: MethodStringName2<TileSetSource, Int, Vector2i, Int> =
         MethodStringName2<TileSetSource, Int, Vector2i, Int>("get_alternative_tile_id")
 
-    @JvmStatic
+    @JvmField
     public val hasAlternativeTileName: MethodStringName2<TileSetSource, Boolean, Vector2i, Int> =
         MethodStringName2<TileSetSource, Boolean, Vector2i, Int>("has_alternative_tile")
   }

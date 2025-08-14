@@ -17,8 +17,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * InputEventFromWindow represents events specifically received by windows. This includes mouse
@@ -53,11 +53,11 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWindowIdName: MethodStringName1<InputEventFromWindow, Unit, Long> =
         MethodStringName1<InputEventFromWindow, Unit, Long>("set_window_id")
 
-    @JvmStatic
+    @JvmField
     public val getWindowIdName: MethodStringName0<InputEventFromWindow, Long> =
         MethodStringName0<InputEventFromWindow, Long>("get_window_id")
   }

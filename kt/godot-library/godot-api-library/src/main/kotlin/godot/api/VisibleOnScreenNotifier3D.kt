@@ -21,8 +21,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenNotifier3D] represents a box-shaped region of 3D space. When any part of this
@@ -110,11 +110,11 @@ public open class VisibleOnScreenNotifier3D : VisualInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAabbName: MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB> =
         MethodStringName1<VisibleOnScreenNotifier3D, Unit, AABB>("set_aabb")
 
-    @JvmStatic
+    @JvmField
     public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier3D, Boolean> =
         MethodStringName0<VisibleOnScreenNotifier3D, Boolean>("is_on_screen")
   }

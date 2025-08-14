@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A [Parallax2D] is used to create a parallax effect. It can move at a different speed relative to
@@ -484,83 +484,83 @@ public open class Parallax2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setScrollScaleName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_scroll_scale")
 
-    @JvmStatic
+    @JvmField
     public val getScrollScaleName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_scroll_scale")
 
-    @JvmStatic
+    @JvmField
     public val setRepeatSizeName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_repeat_size")
 
-    @JvmStatic
+    @JvmField
     public val getRepeatSizeName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_repeat_size")
 
-    @JvmStatic
+    @JvmField
     public val setRepeatTimesName: MethodStringName1<Parallax2D, Unit, Int> =
         MethodStringName1<Parallax2D, Unit, Int>("set_repeat_times")
 
-    @JvmStatic
+    @JvmField
     public val getRepeatTimesName: MethodStringName0<Parallax2D, Int> =
         MethodStringName0<Parallax2D, Int>("get_repeat_times")
 
-    @JvmStatic
+    @JvmField
     public val setAutoscrollName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_autoscroll")
 
-    @JvmStatic
+    @JvmField
     public val getAutoscrollName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_autoscroll")
 
-    @JvmStatic
+    @JvmField
     public val setScrollOffsetName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val getScrollOffsetName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val setScreenOffsetName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_screen_offset")
 
-    @JvmStatic
+    @JvmField
     public val getScreenOffsetName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_screen_offset")
 
-    @JvmStatic
+    @JvmField
     public val setLimitBeginName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_limit_begin")
 
-    @JvmStatic
+    @JvmField
     public val getLimitBeginName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_limit_begin")
 
-    @JvmStatic
+    @JvmField
     public val setLimitEndName: MethodStringName1<Parallax2D, Unit, Vector2> =
         MethodStringName1<Parallax2D, Unit, Vector2>("set_limit_end")
 
-    @JvmStatic
+    @JvmField
     public val getLimitEndName: MethodStringName0<Parallax2D, Vector2> =
         MethodStringName0<Parallax2D, Vector2>("get_limit_end")
 
-    @JvmStatic
+    @JvmField
     public val setFollowViewportName: MethodStringName1<Parallax2D, Unit, Boolean> =
         MethodStringName1<Parallax2D, Unit, Boolean>("set_follow_viewport")
 
-    @JvmStatic
+    @JvmField
     public val getFollowViewportName: MethodStringName0<Parallax2D, Boolean> =
         MethodStringName0<Parallax2D, Boolean>("get_follow_viewport")
 
-    @JvmStatic
+    @JvmField
     public val setIgnoreCameraScrollName: MethodStringName1<Parallax2D, Unit, Boolean> =
         MethodStringName1<Parallax2D, Unit, Boolean>("set_ignore_camera_scroll")
 
-    @JvmStatic
+    @JvmField
     public val isIgnoreCameraScrollName: MethodStringName0<Parallax2D, Boolean> =
         MethodStringName0<Parallax2D, Boolean>("is_ignore_camera_scroll")
   }

@@ -15,7 +15,7 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * An optimized translation. Uses real-time compressed translations, which results in very small
@@ -45,7 +45,7 @@ public open class OptimizedTranslation : Translation() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val generateName: MethodStringName1<OptimizedTranslation, Unit, Translation?> =
         MethodStringName1<OptimizedTranslation, Unit, Translation?>("generate")
   }
