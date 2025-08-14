@@ -118,7 +118,7 @@ public open class RDPipelineColorBlendState : RefCounted() {
   }
 
   public final fun setLogicOp(pMember: RenderingDevice.LogicOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setLogicOpPtr, NIL)
   }
 

@@ -37,7 +37,7 @@ public suspend inline fun Signal0.await(): Unit = suspendCancellableCoroutine {
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public suspend inline fun <reified P0> Signal1<P0>.await(): P0 = suspendCancellableCoroutine {
     cont: CancellableContinuation<P0> ->
@@ -48,7 +48,7 @@ public suspend inline fun <reified P0> Signal1<P0>.await(): P0 = suspendCancella
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments2<P0, P1>(
     public val p0: P0,
@@ -65,7 +65,7 @@ public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): Sign
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments3<P0, P1, P2>(
     public val p0: P0,
@@ -83,7 +83,7 @@ public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments4<P0, P1, P2, P3>(
     public val p0: P0,
@@ -103,7 +103,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3>
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments5<P0, P1, P2, P3, P4>(
     public val p0: P0,
@@ -124,7 +124,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments6<P0, P1, P2, P3, P4, P5>(
     public val p0: P0,
@@ -146,7 +146,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments7<P0, P1, P2, P3, P4, P5, P6>(
     public val p0: P0,
@@ -169,7 +169,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>(
     public val p0: P0,
@@ -193,7 +193,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     public val p0: P0,
@@ -218,7 +218,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
     public val p0: P0,
@@ -245,7 +245,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(
     public val p0: P0,
@@ -274,7 +274,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(
     public val p0: P0,
@@ -304,7 +304,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(
     public val p0: P0,
@@ -335,7 +335,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(
     public val p0: P0,
@@ -367,7 +367,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13,
         P14>(
@@ -402,7 +402,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}
 
 public data class SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
         P15>(
@@ -438,4 +438,4 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     .asCallable {
         cont.cancel()
     }
-    , Object.ConnectFlags.ONE_SHOT.id.toInt())}
+    , Object.ConnectFlags.ONE_SHOT.value.toInt())}

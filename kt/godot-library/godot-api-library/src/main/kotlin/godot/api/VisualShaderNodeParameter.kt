@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -65,7 +66,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public final fun setQualifier(qualifier: Qualifier): Unit {
-    TransferContext.writeArguments(LONG to qualifier.id)
+    TransferContext.writeArguments(LONG to qualifier.value)
     TransferContext.callMethod(ptr, MethodBindings.setQualifierPtr, NIL)
   }
 
@@ -76,8 +77,8 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
   }
 
   public enum class Qualifier(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The parameter will be tied to the [ShaderMaterial] using this shader.
      */
@@ -96,13 +97,13 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Qualifier = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Qualifier = entries.single { it.`value` == `value` }
     }
   }
 

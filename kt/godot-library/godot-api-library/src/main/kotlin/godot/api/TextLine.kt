@@ -161,7 +161,7 @@ public open class TextLine : RefCounted() {
   }
 
   public final fun setDirection(direction: TextServer.Direction): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setDirectionPtr, NIL)
   }
 
@@ -172,7 +172,7 @@ public open class TextLine : RefCounted() {
   }
 
   public final fun setOrientation(orientation: TextServer.Orientation): Unit {
-    TransferContext.writeArguments(LONG to orientation.id)
+    TransferContext.writeArguments(LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
 
@@ -243,7 +243,7 @@ public open class TextLine : RefCounted() {
     length: Int = 1,
     baseline: Float = 0.0f,
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length.toLong(), DOUBLE to baseline.toDouble())
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.value, LONG to length.toLong(), DOUBLE to baseline.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.addObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -258,7 +258,7 @@ public open class TextLine : RefCounted() {
     inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     baseline: Float = 0.0f,
   ): Boolean {
-    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline.toDouble())
+    TransferContext.writeArguments(ANY to key, VECTOR2 to size, LONG to inlineAlign.value, DOUBLE to baseline.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.resizeObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -275,7 +275,7 @@ public open class TextLine : RefCounted() {
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
@@ -305,7 +305,7 @@ public open class TextLine : RefCounted() {
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.writeArguments(LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 

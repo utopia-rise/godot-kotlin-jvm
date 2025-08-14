@@ -13,6 +13,7 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.KtObject
 import godot.core.NodePath
 import godot.core.Signal0
@@ -1824,8 +1825,8 @@ public open class Object : KtObject() {
       setTranslationDomain(domain.asCachedStringName())
 
   public enum class ConnectFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Deferred connections trigger their [Callable]s on idle time (at the end of the frame), rather
      * than instantly.
@@ -1849,13 +1850,13 @@ public open class Object : KtObject() {
     REFERENCE_COUNTED(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ConnectFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ConnectFlags = entries.single { it.`value` == `value` }
     }
   }
 

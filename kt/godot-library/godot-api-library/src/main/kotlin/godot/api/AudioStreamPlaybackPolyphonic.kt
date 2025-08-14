@@ -62,7 +62,7 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
     playbackType: AudioServer.PlaybackType = AudioServer.PlaybackType.DEFAULT,
     bus: StringName = StringName("Master"),
   ): Long {
-    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble(), LONG to playbackType.id, STRING_NAME to bus)
+    TransferContext.writeArguments(OBJECT to stream, DOUBLE to fromOffset.toDouble(), DOUBLE to volumeDb.toDouble(), DOUBLE to pitchScale.toDouble(), LONG to playbackType.value, STRING_NAME to bus)
     TransferContext.callMethod(ptr, MethodBindings.playStreamPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }

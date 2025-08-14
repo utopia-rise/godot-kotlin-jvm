@@ -52,7 +52,10 @@ object PropertyTypeHintProvider {
             registeredProperty.type.fqName == Boolean::class.qualifiedName -> JvmPrimitivesTypeHintGenerator(registeredProperty)
                 .getPropertyTypeHint()
 
-            registeredProperty.type.kind == TypeKind.ENUM_CLASS -> throw UnsupportedOperationException("Hint type for enum is always the same, so it is handled by binding at runtime")
+            registeredProperty.type.kind == TypeKind.ENUM_CLASS -> ClassName(
+                "$godotCorePackage.${GodotTypes.propertyHint}",
+                "ENUM"
+            )
 
             registeredProperty.type.isCoreType() && !registeredProperty.type.isCompatibleList() && !registeredProperty.type.isDictionary() -> JvmCoreTypeTypeHintGenerator(
                 registeredProperty

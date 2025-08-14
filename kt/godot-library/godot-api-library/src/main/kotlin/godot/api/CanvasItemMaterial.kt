@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -116,7 +117,7 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to blendMode.id)
+    TransferContext.writeArguments(LONG to blendMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
 
@@ -127,7 +128,7 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public final fun setLightMode(lightMode: LightMode): Unit {
-    TransferContext.writeArguments(LONG to lightMode.id)
+    TransferContext.writeArguments(LONG to lightMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLightModePtr, NIL)
   }
 
@@ -196,8 +197,8 @@ public open class CanvasItemMaterial : Material() {
   }
 
   public enum class BlendMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Mix blending mode. Colors are assumed to be independent of the alpha (opacity) value.
      */
@@ -220,19 +221,19 @@ public open class CanvasItemMaterial : Material() {
     PREMULT_ALPHA(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Render the material using both light and non-light sensitive material properties.
      */
@@ -247,13 +248,13 @@ public open class CanvasItemMaterial : Material() {
     LIGHT_ONLY(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.Signal0
@@ -1739,14 +1740,14 @@ public object NavigationServer3D : Object() {
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
-    TransferContext.writeArguments(LONG to processInfo.id)
+    TransferContext.writeArguments(LONG to processInfo.value)
     TransferContext.callMethod(ptr, MethodBindings.getProcessInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public enum class ProcessInfo(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Constant to get the number of active navigation maps.
      */
@@ -1792,13 +1793,13 @@ public object NavigationServer3D : Object() {
     INFO_OBSTACLE_COUNT(9),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProcessInfo = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }
     }
   }
 

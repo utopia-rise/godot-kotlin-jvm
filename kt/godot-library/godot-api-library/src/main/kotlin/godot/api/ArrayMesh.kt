@@ -211,7 +211,7 @@ public open class ArrayMesh : Mesh() {
   }
 
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendShapeModePtr, NIL)
   }
 
@@ -263,7 +263,7 @@ public open class ArrayMesh : Mesh() {
     lods: Dictionary<Any?, Any?> = Dictionary(),
     flags: Mesh.ArrayFormat = Mesh.ArrayFormat(0),
   ): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
+    TransferContext.writeArguments(LONG to primitive.value, ARRAY to arrays, ARRAY to blendShapes, DICTIONARY to lods, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.addSurfaceFromArraysPtr, NIL)
   }
 

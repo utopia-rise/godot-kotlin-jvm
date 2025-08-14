@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.Signal0
@@ -649,7 +650,7 @@ public open class GPUParticles2D : Node2D() {
   }
 
   public final fun setDrawOrder(order: DrawOrder): Unit {
-    TransferContext.writeArguments(LONG to order.id)
+    TransferContext.writeArguments(LONG to order.value)
     TransferContext.callMethod(ptr, MethodBindings.setDrawOrderPtr, NIL)
   }
 
@@ -817,8 +818,8 @@ public open class GPUParticles2D : Node2D() {
   public final fun setSubEmitter(path: String) = setSubEmitter(path.asCachedNodePath())
 
   public enum class DrawOrder(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Particles are drawn in the order emitted.
      */
@@ -835,19 +836,19 @@ public open class GPUParticles2D : Node2D() {
     REVERSE_LIFETIME(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DrawOrder = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DrawOrder = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmitFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Particle starts at the specified position.
      */
@@ -871,13 +872,13 @@ public open class GPUParticles2D : Node2D() {
     CUSTOM(16),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EmitFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmitFlags = entries.single { it.`value` == `value` }
     }
   }
 

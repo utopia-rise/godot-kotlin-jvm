@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Side
@@ -301,7 +302,7 @@ public open class StyleBoxTexture : StyleBox() {
    * Sets the margin to [size] pixels for the specified [Side].
    */
   public final fun setTextureMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    TransferContext.writeArguments(LONG to margin.value, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureMarginPtr, NIL)
   }
 
@@ -317,7 +318,7 @@ public open class StyleBoxTexture : StyleBox() {
    * Returns the margin size of the specified [Side].
    */
   public final fun getTextureMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getTextureMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -326,7 +327,7 @@ public open class StyleBoxTexture : StyleBox() {
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
   public final fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    TransferContext.writeArguments(LONG to margin.value, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginPtr, NIL)
   }
 
@@ -342,7 +343,7 @@ public open class StyleBoxTexture : StyleBox() {
    * Returns the expand margin size of the specified [Side].
    */
   public final fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getExpandMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -381,7 +382,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
@@ -392,7 +393,7 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
@@ -410,8 +411,8 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public enum class AxisStretchMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Stretch the stylebox's texture. This results in visible distortion unless the texture size
      * matches the stylebox's size perfectly.
@@ -430,13 +431,13 @@ public open class StyleBoxTexture : StyleBox() {
     TILE_FIT(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AxisStretchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AxisStretchMode = entries.single { it.`value` == `value` }
     }
   }
 

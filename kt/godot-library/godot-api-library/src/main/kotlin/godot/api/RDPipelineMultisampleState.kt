@@ -115,7 +115,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setSampleCountPtr, NIL)
   }
 

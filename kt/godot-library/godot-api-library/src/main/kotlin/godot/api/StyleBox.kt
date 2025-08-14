@@ -143,7 +143,7 @@ public abstract class StyleBox : Resource() {
    * Sets the default value of the specified [Side] to [offset] pixels.
    */
   public final fun setContentMargin(margin: Side, offset: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to offset.toDouble())
+    TransferContext.writeArguments(LONG to margin.value, DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setContentMarginPtr, NIL)
   }
 
@@ -159,7 +159,7 @@ public abstract class StyleBox : Resource() {
    * Returns the default margin of the specified [Side].
    */
   public final fun getContentMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getContentMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -170,7 +170,7 @@ public abstract class StyleBox : Resource() {
    * Positive values reduce size inwards, unlike [Control]'s margin values.
    */
   public final fun getMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

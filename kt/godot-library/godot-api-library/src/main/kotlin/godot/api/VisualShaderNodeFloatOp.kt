@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -39,7 +40,7 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   }
 
   public final fun setOperator(op: Operator): Unit {
-    TransferContext.writeArguments(LONG to op.id)
+    TransferContext.writeArguments(LONG to op.value)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
 
@@ -50,8 +51,8 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   }
 
   public enum class Operator(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Sums two numbers using `a + b`.
      */
@@ -101,13 +102,13 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
     ENUM_SIZE(10),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Operator = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Operator = entries.single { it.`value` == `value` }
     }
   }
 

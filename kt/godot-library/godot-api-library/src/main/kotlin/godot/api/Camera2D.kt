@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -478,7 +479,7 @@ public open class Camera2D : Node2D() {
   }
 
   public final fun setAnchorMode(anchorMode: AnchorMode): Unit {
-    TransferContext.writeArguments(LONG to anchorMode.id)
+    TransferContext.writeArguments(LONG to anchorMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAnchorModePtr, NIL)
   }
 
@@ -500,7 +501,7 @@ public open class Camera2D : Node2D() {
   }
 
   public final fun setProcessCallback(mode: Camera2DProcessCallback): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
 
@@ -543,7 +544,7 @@ public open class Camera2D : Node2D() {
    * [limitLeft], and [limitRight].
    */
   public final fun setLimit(margin: Side, limit: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to limit.toLong())
+    TransferContext.writeArguments(LONG to margin.value, LONG to limit.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLimitPtr, NIL)
   }
 
@@ -552,7 +553,7 @@ public open class Camera2D : Node2D() {
    * [limitLeft], and [limitRight].
    */
   public final fun getLimit(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getLimitPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -617,7 +618,7 @@ public open class Camera2D : Node2D() {
    * [dragLeftMargin], and [dragRightMargin].
    */
   public final fun setDragMargin(margin: Side, dragMargin: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin.toDouble())
+    TransferContext.writeArguments(LONG to margin.value, DOUBLE to dragMargin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDragMarginPtr, NIL)
   }
 
@@ -626,7 +627,7 @@ public open class Camera2D : Node2D() {
    * [dragLeftMargin], and [dragRightMargin].
    */
   public final fun getDragMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getDragMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -781,8 +782,8 @@ public open class Camera2D : Node2D() {
   }
 
   public enum class AnchorMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The camera's position is fixed so that the top-left corner is always at the origin.
      */
@@ -793,19 +794,19 @@ public open class Camera2D : Node2D() {
     DRAG_CENTER(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AnchorMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnchorMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Camera2DProcessCallback(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The camera updates during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
@@ -816,13 +817,14 @@ public open class Camera2D : Node2D() {
     IDLE(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Camera2DProcessCallback = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Camera2DProcessCallback =
+          entries.single { it.`value` == `value` }
     }
   }
 

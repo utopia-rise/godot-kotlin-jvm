@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -291,7 +292,7 @@ public open class TabContainer : Container() {
   }
 
   public final fun setTabAlignment(alignment: TabBar.AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabAlignmentPtr, NIL)
   }
 
@@ -302,7 +303,7 @@ public open class TabContainer : Container() {
   }
 
   public final fun setTabsPosition(tabsPosition: TabPosition): Unit {
-    TransferContext.writeArguments(LONG to tabsPosition.id)
+    TransferContext.writeArguments(LONG to tabsPosition.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabsPositionPtr, NIL)
   }
 
@@ -567,7 +568,7 @@ public open class TabContainer : Container() {
   }
 
   public final fun setTabFocusMode(focusMode: Control.FocusMode): Unit {
-    TransferContext.writeArguments(LONG to focusMode.id)
+    TransferContext.writeArguments(LONG to focusMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabFocusModePtr, NIL)
   }
 
@@ -589,8 +590,8 @@ public open class TabContainer : Container() {
   }
 
   public enum class TabPosition(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Places the tab bar at the top.
      */
@@ -605,13 +606,13 @@ public open class TabContainer : Container() {
     POSITION_MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TabPosition = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TabPosition = entries.single { it.`value` == `value` }
     }
   }
 

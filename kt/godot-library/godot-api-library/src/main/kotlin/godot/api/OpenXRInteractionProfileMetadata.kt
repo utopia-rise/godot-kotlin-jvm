@@ -98,7 +98,7 @@ public open class OpenXRInteractionProfileMetadata : Object() {
     openxrExtensionName: String,
     actionType: OpenXRAction.ActionType,
   ): Unit {
-    TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.id)
+    TransferContext.writeArguments(STRING to interactionProfile, STRING to displayName, STRING to toplevelPath, STRING to openxrPath, STRING to openxrExtensionName, LONG to actionType.value)
     TransferContext.callMethod(ptr, MethodBindings.registerIoPathPtr, NIL)
   }
 

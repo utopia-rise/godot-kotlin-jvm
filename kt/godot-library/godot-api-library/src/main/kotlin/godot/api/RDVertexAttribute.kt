@@ -106,7 +106,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
@@ -128,7 +128,7 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public final fun setFrequency(pMember: RenderingDevice.VertexFrequency): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setFrequencyPtr, NIL)
   }
 

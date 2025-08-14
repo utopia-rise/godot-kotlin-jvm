@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedFloat64Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -363,7 +364,7 @@ public open class GLTFAccessor : Resource() {
   }
 
   public final fun setAccessorType(accessorType: GLTFAccessorType): Unit {
-    TransferContext.writeArguments(LONG to accessorType.id)
+    TransferContext.writeArguments(LONG to accessorType.value)
     TransferContext.callMethod(ptr, MethodBindings.setAccessorTypePtr, NIL)
   }
 
@@ -467,8 +468,8 @@ public open class GLTFAccessor : Resource() {
   }
 
   public enum class GLTFAccessorType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Accessor type "SCALAR". For the glTF object model, this can be used to map to a single float,
      * int, or bool value, or a float array.
@@ -506,19 +507,19 @@ public open class GLTFAccessor : Resource() {
     TYPE_MAT4(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GLTFAccessorType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFAccessorType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GLTFComponentType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Component type "NONE". This is not a valid component type, and is used to indicate that the
      * component type is not set.
@@ -595,13 +596,13 @@ public open class GLTFAccessor : Resource() {
     COMPONENT_TYPE_UNSIGNED_LONG(5135),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GLTFComponentType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GLTFComponentType = entries.single { it.`value` == `value` }
     }
   }
 

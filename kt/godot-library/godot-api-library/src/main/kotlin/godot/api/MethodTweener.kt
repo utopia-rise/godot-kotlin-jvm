@@ -49,7 +49,7 @@ public open class MethodTweener : Tweener() {
    * transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): MethodTweener? {
-    TransferContext.writeArguments(LONG to trans.id)
+    TransferContext.writeArguments(LONG to trans.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }
@@ -59,7 +59,7 @@ public open class MethodTweener : Tweener() {
    * the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): MethodTweener? {
-    TransferContext.writeArguments(LONG to ease.id)
+    TransferContext.writeArguments(LONG to ease.value)
     TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as MethodTweener?)
   }

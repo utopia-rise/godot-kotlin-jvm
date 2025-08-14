@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal2
@@ -301,7 +302,7 @@ public open class AnimationNode : Resource() {
     blend: Float,
     loopedFlag: Animation.LoopedFlag = Animation.LoopedFlag.NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.id)
+    TransferContext.writeArguments(STRING_NAME to animation, DOUBLE to time, DOUBLE to delta, BOOL to seeked, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to loopedFlag.value)
     TransferContext.callMethod(ptr, MethodBindings.blendAnimationPtr, NIL)
   }
 
@@ -322,7 +323,7 @@ public open class AnimationNode : Resource() {
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
-    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
+    TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.value, BOOL to sync, BOOL to testOnly)
     TransferContext.callMethod(ptr, MethodBindings.blendNodePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -344,7 +345,7 @@ public open class AnimationNode : Resource() {
     sync: Boolean = true,
     testOnly: Boolean = false,
   ): Double {
-    TransferContext.writeArguments(LONG to inputIndex.toLong(), DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.id, BOOL to sync, BOOL to testOnly)
+    TransferContext.writeArguments(LONG to inputIndex.toLong(), DOUBLE to time, BOOL to seek, BOOL to isExternalSeeking, DOUBLE to blend.toDouble(), LONG to filter.value, BOOL to sync, BOOL to testOnly)
     TransferContext.callMethod(ptr, MethodBindings.blendInputPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
@@ -431,8 +432,8 @@ public open class AnimationNode : Resource() {
   public final fun getParameter(name: String): Any? = getParameter(name.asCachedStringName())
 
   public enum class FilterAction(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Do not use filtering.
      */
@@ -451,13 +452,13 @@ public open class AnimationNode : Resource() {
     BLEND(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FilterAction = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FilterAction = entries.single { it.`value` == `value` }
     }
   }
 

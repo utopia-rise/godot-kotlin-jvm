@@ -1,6 +1,7 @@
 package godot.entrygenerator.ext
 
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import com.squareup.kotlinpoet.TypeName
 import godot.common.extensions.convertToCamelCase
 import godot.core.CoreType
@@ -10,6 +11,7 @@ import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_CASTER_BYTE
+import godot.tools.common.constants.VARIANT_CASTER_ENUM
 import godot.tools.common.constants.VARIANT_CASTER_FLOAT
 import godot.tools.common.constants.VARIANT_CASTER_INT
 import godot.tools.common.constants.VARIANT_PARSER_AABB
@@ -44,8 +46,9 @@ import godot.tools.common.constants.variantParserPackage
 import java.util.*
 
 //TODO: make compatible with other languages
-fun Type?.toKtVariantType(): ClassName = when {
+fun Type?.toKtVariantType(): TypeName = when {
     this == null || fqName == Unit::class.qualifiedName -> VARIANT_PARSER_NIL
+    this.kind == TypeKind.ENUM_CLASS -> VARIANT_CASTER_ENUM.parameterizedBy(ClassName(fqName.substringBeforeLast("."), fqName.substringAfterLast(".")))
     fqName == Byte::class.qualifiedName -> VARIANT_CASTER_BYTE
     fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
     fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
@@ -89,7 +92,7 @@ fun Type?.toKtVariantType(): ClassName = when {
  *
  * Calls [toKtVariantType] under the hood for all other types
  */
-fun Type?.toGodotVariantType(): ClassName = this?.let {
+fun Type?.toGodotVariantType(): TypeName = this?.let {
     when (it.fqName) {
         Byte::class.qualifiedName, Int::class.qualifiedName -> VARIANT_PARSER_LONG
         Float::class.qualifiedName -> VARIANT_PARSER_DOUBLE

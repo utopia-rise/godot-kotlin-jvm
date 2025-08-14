@@ -155,7 +155,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
 
@@ -221,7 +221,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun setTextureType(pMember: RenderingDevice.TextureType): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
@@ -232,7 +232,7 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public final fun setSamples(pMember: RenderingDevice.TextureSamples): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setSamplesPtr, NIL)
   }
 
@@ -281,7 +281,7 @@ public open class RDTextureFormat : RefCounted() {
    * [format] must also be added.
    */
   public final fun addShareableFormat(format: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.addShareableFormatPtr, NIL)
   }
 
@@ -290,7 +290,7 @@ public open class RDTextureFormat : RefCounted() {
    * [RDTextureView.formatOverride] property can be set to.
    */
   public final fun removeShareableFormat(format: RenderingDevice.DataFormat): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.removeShareableFormatPtr, NIL)
   }
 

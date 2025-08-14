@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.Signal1
@@ -480,7 +481,7 @@ public open class Area3D : CollisionObject3D() {
   }
 
   public final fun setGravitySpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setGravitySpaceOverrideModePtr, NIL)
   }
 
@@ -546,7 +547,7 @@ public open class Area3D : CollisionObject3D() {
   }
 
   public final fun setLinearDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampSpaceOverrideModePtr, NIL)
   }
 
@@ -557,7 +558,7 @@ public open class Area3D : CollisionObject3D() {
   }
 
   public final fun setAngularDampSpaceOverrideMode(spaceOverrideMode: SpaceOverride): Unit {
-    TransferContext.writeArguments(LONG to spaceOverrideMode.id)
+    TransferContext.writeArguments(LONG to spaceOverrideMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampSpaceOverrideModePtr, NIL)
   }
 
@@ -818,8 +819,8 @@ public open class Area3D : CollisionObject3D() {
   public final fun setReverbBusName(name: String) = setReverbBusName(name.asCachedStringName())
 
   public enum class SpaceOverride(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * This area does not affect gravity/damping.
      */
@@ -845,13 +846,13 @@ public open class Area3D : CollisionObject3D() {
     REPLACE_COMBINE(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpaceOverride = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpaceOverride = entries.single { it.`value` == `value` }
     }
   }
 

@@ -5,6 +5,7 @@ import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.MemberName.Companion.member
 import godot.entrygenerator.ext.getAnnotation
+import godot.entrygenerator.ext.isEnum
 import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredFunction
@@ -12,13 +13,13 @@ import godot.entrygenerator.model.RpcAnnotation
 import godot.entrygenerator.model.RpcMode
 import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.TransferMode
+import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
 import godot.tools.common.constants.VARIANT_PARSER_NIL
 import godot.tools.common.constants.godotApiPackage
-import godot.tools.common.constants.godotPackage
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotRegistrationPackage
 
@@ -28,7 +29,10 @@ object FunctionRegistrationGenerator {
             *registeredClass.functions.filter { registeredFunction ->
                 registeredFunction.isNotificationFunction() && registeredFunction.isDeclaredInThisClass
             }.map { registeredClass to it }.toTypedArray(),
-            *registeredClass.supertypes.filterIsInstance<RegisteredClass>().flatMap { registeredSuperClass -> registeredSuperClass.functions.filter { registeredSuperClassFunction -> registeredSuperClassFunction.isNotificationFunction() }.map { registeredSuperClass to it } }.toTypedArray()
+            *registeredClass.supertypes.filterIsInstance<RegisteredClass>().flatMap { registeredSuperClass ->
+                registeredSuperClass.functions.filter { registeredSuperClassFunction -> registeredSuperClassFunction.isNotificationFunction() }
+                    .map { registeredSuperClass to it }
+            }.toTypedArray()
         )
         val otherFunctions = registeredClass.functions.filter { it.name != GodotFunctions.notification }
 
@@ -78,7 +82,13 @@ object FunctionRegistrationGenerator {
         this.isOverridee && this.name == GodotFunctions.notification
 
     private fun getFunctionTemplateString(registeredFunction: RegisteredFunction) = buildString {
-        append("function(%L,·%T") //functionReference, returnTypeConverterReference
+        val variantType = if (registeredFunction.returnType?.isEnum() == true) {
+            "%T(%T.entries.toTypedArray())"
+        } else {
+            "%T"
+        }
+
+        append("function(%L,·$variantType") //functionReference, returnTypeConverterReference
 
         if (registeredFunction.parameters.isNotEmpty()) {
             registeredFunction.parameters.forEach { _ ->
@@ -89,15 +99,34 @@ object FunctionRegistrationGenerator {
             }
         }
 
-        append(",·%T(%T,·%S),·%T(%T.id.toInt(),·%L,·%T.id.toInt(),·%L))") //return KtFunctionArgument
+        append(",·%T($variantType,·%S),·%T(%T.id.toInt(),·%L,·%T.id.toInt(),·%L))") //return KtFunctionArgument
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
         val ktFunctionArgumentClassName = ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument)
 
+        val returnType = if (registeredFunction.returnType?.kind == TypeKind.ENUM_CLASS) {
+            "Int"
+        } else {
+            registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName)
+        }
+
+        val typeClassName = registeredFunction.returnType?.let { returnType ->
+            ClassName(
+                returnType.fqName.substringBeforeLast("."),
+                returnType.fqName.substringAfterLast("."),
+            )
+        }
+
         return buildList {
             add(getFunctionReference(registeredFunction, className))
-            add(registeredFunction.returnType?.toKtVariantType() ?: VARIANT_PARSER_NIL)
+
+            if (registeredFunction.returnType?.isEnum() == true) {
+                add(registeredFunction.returnType.toKtVariantType())
+                typeClassName?.let { add(it) }
+            } else {
+                add(registeredFunction.returnType?.toKtVariantType() ?: VARIANT_PARSER_NIL)
+            }
 
             if (registeredFunction.parameters.isNotEmpty()) {
                 registeredFunction.parameters.forEach { parameter ->
@@ -112,8 +141,15 @@ object FunctionRegistrationGenerator {
             }
 
             add(ktFunctionArgumentClassName)
-            add(registeredFunction.returnType.toKtVariantType())
-            add(registeredFunction.returnType?.fqName ?: requireNotNull(Unit::class.qualifiedName))
+
+            if (registeredFunction.returnType?.isEnum() == true) {
+                add(registeredFunction.returnType.toKtVariantType())
+                typeClassName?.let { add(it) }
+            } else {
+                add(registeredFunction.returnType.toKtVariantType())
+            }
+
+            add(returnType)
             add(ClassName(godotCorePackage, GodotKotlinJvmTypes.ktRpcConfig))
             add(getRpcModeEnum(registeredFunction))
             add(getRpcCallLocal(registeredFunction))
@@ -147,7 +183,7 @@ object FunctionRegistrationGenerator {
     }
 
     private fun getRpcCallLocal(registeredFunction: RegisteredFunction): Boolean {
-        return when(registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.sync) {
+        return when (registeredFunction.annotations.getAnnotation<RpcAnnotation>()?.sync) {
             Sync.SYNC -> true
             Sync.NO_SYNC -> false
             null -> false

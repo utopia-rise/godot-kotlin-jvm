@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -101,7 +102,7 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public final fun setHint(hint: Hint): Unit {
-    TransferContext.writeArguments(LONG to hint.id)
+    TransferContext.writeArguments(LONG to hint.value)
     TransferContext.callMethod(ptr, MethodBindings.setHintPtr, NIL)
   }
 
@@ -167,8 +168,8 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public enum class Hint(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No hint used.
      */
@@ -190,13 +191,13 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Hint = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hint = entries.single { it.`value` == `value` }
     }
   }
 

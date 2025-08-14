@@ -21,11 +21,11 @@ data class KtPropertyInfo(
         get() = _type.id
 
     val hint: Int
-        get() = _hint.id.toInt()
+        get() = _hint.value.toInt()
 }
 
 open class KtProperty<T : KtObject, P : Any?>(
-    val ktPropertyInfo: KtPropertyInfo,
+    @Suppress("unused") val ktPropertyInfo: KtPropertyInfo,
     protected val kProperty: KMutableProperty1<T, P>,
     protected val variantConverter: VariantConverter,
 ) {
@@ -55,7 +55,7 @@ open class KtProperty<T : KtObject, P : Any?>(
     }
 }
 
-class KtEnumProperty<T : KtObject, P : Any>(
+class KtEnumFlagProperty<T : KtObject, P : Any>(
     ktPropertyInfo: KtPropertyInfo,
     kProperty: KMutableProperty1<T, P>,
     val getValueConverter: (P?) -> Int,

@@ -144,7 +144,7 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   public final fun setShape(shape: RenderingServer.FogVolumeShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
 

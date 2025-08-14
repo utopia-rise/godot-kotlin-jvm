@@ -64,7 +64,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   }
 
   public final fun setVaryingType(type: VisualShader.VaryingType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setVaryingTypePtr, NIL)
   }
 

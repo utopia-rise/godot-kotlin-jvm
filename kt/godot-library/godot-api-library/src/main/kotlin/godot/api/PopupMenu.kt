@@ -237,7 +237,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addItemPtr, NIL)
   }
 
@@ -256,7 +256,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addIconItemPtr, NIL)
   }
 
@@ -278,7 +278,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addCheckItemPtr, NIL)
   }
 
@@ -301,7 +301,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addIconCheckItemPtr, NIL)
   }
 
@@ -323,7 +323,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addRadioCheckItemPtr, NIL)
   }
 
@@ -337,7 +337,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(OBJECT to texture, STRING to label, LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addIconRadioCheckItemPtr, NIL)
   }
 
@@ -380,7 +380,7 @@ public open class PopupMenu : Popup() {
     id: Int = -1,
     accel: Key = Key.NONE,
   ): Unit {
-    TransferContext.writeArguments(STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), LONG to id.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), LONG to id.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.addMultistateItemPtr, NIL)
   }
 
@@ -548,7 +548,7 @@ public open class PopupMenu : Popup() {
    * Sets item's text base writing direction.
    */
   public final fun setItemTextDirection(index: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to direction.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
 
@@ -612,7 +612,7 @@ public open class PopupMenu : Popup() {
    * KEY_A` ([kbd]Ctrl + A[/kbd]).
    */
   public final fun setItemAccelerator(index: Int, accel: Key): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to accel.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemAcceleratorPtr, NIL)
   }
 
@@ -1115,7 +1115,7 @@ public open class PopupMenu : Popup() {
   }
 
   public final fun setSystemMenu(systemMenuId: NativeMenu.SystemMenus): Unit {
-    TransferContext.writeArguments(LONG to systemMenuId.id)
+    TransferContext.writeArguments(LONG to systemMenuId.value)
     TransferContext.callMethod(ptr, MethodBindings.setSystemMenuPtr, NIL)
   }
 

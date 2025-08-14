@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantCaster.ANY
@@ -694,8 +695,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public enum class ModeFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Opens the file for read operations. The cursor is positioned at the beginning of the file.
      */
@@ -723,19 +724,19 @@ public open class FileAccess internal constructor() : RefCounted() {
     WRITE_READ(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ModeFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ModeFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressionMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Uses the [url=https://fastlz.org/]FastLZ[/url] compression method.
      */
@@ -759,13 +760,13 @@ public open class FileAccess internal constructor() : RefCounted() {
     BROTLI(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompressionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressionMode = entries.single { it.`value` == `value` }
     }
   }
 
@@ -884,7 +885,7 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     @JvmStatic
     public final fun `open`(path: String, flags: ModeFlags): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to flags.id)
+      TransferContext.writeArguments(STRING to path, LONG to flags.value)
       TransferContext.callMethod(0, MethodBindings.openPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
     }
@@ -906,7 +907,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       key: PackedByteArray,
       iv: PackedByteArray = PackedByteArray(),
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.value, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
       TransferContext.callMethod(0, MethodBindings.openEncryptedPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
     }
@@ -924,7 +925,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       modeFlags: ModeFlags,
       pass: String,
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, STRING to pass)
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.value, STRING to pass)
       TransferContext.callMethod(0, MethodBindings.openEncryptedWithPassPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
     }
@@ -946,7 +947,7 @@ public open class FileAccess internal constructor() : RefCounted() {
       modeFlags: ModeFlags,
       compressionMode: CompressionMode = FileAccess.CompressionMode.FASTLZ,
     ): FileAccess? {
-      TransferContext.writeArguments(STRING to path, LONG to modeFlags.id, LONG to compressionMode.id)
+      TransferContext.writeArguments(STRING to path, LONG to modeFlags.value, LONG to compressionMode.value)
       TransferContext.callMethod(0, MethodBindings.openCompressedPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as FileAccess?)
     }

@@ -77,7 +77,7 @@ public object Geometry3D : Object() {
     sides: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.id)
+    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.buildCylinderPlanesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
   }
@@ -98,7 +98,7 @@ public object Geometry3D : Object() {
     lats: Int,
     axis: Vector3.Axis = Vector3.Axis.Z,
   ): VariantArray<Plane> {
-    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.id)
+    TransferContext.writeArguments(DOUBLE to radius.toDouble(), DOUBLE to height.toDouble(), LONG to sides.toLong(), LONG to lats.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.buildCapsulePlanesPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Plane>)
   }

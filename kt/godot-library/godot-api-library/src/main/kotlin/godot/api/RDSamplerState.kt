@@ -218,7 +218,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setMagFilterPtr, NIL)
   }
 
@@ -229,7 +229,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setMinFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setMinFilterPtr, NIL)
   }
 
@@ -240,7 +240,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setMipFilter(pMember: RenderingDevice.SamplerFilter): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setMipFilterPtr, NIL)
   }
 
@@ -251,7 +251,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setRepeatU(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatUPtr, NIL)
   }
 
@@ -262,7 +262,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setRepeatV(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatVPtr, NIL)
   }
 
@@ -273,7 +273,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setRepeatW(pMember: RenderingDevice.SamplerRepeatMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatWPtr, NIL)
   }
 
@@ -328,7 +328,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setCompareOp(pMember: RenderingDevice.CompareOperator): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setCompareOpPtr, NIL)
   }
 
@@ -361,7 +361,7 @@ public open class RDSamplerState : RefCounted() {
   }
 
   public final fun setBorderColor(pMember: RenderingDevice.SamplerBorderColor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setBorderColorPtr, NIL)
   }
 
