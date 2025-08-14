@@ -37,8 +37,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * By setting various properties on this object, you can control how individual characters will be
@@ -482,107 +482,107 @@ public open class CharFXTransform : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTransformName: MethodStringName0<CharFXTransform, Transform2D> =
         MethodStringName0<CharFXTransform, Transform2D>("get_transform")
 
-    @JvmStatic
+    @JvmField
     public val setTransformName: MethodStringName1<CharFXTransform, Unit, Transform2D> =
         MethodStringName1<CharFXTransform, Unit, Transform2D>("set_transform")
 
-    @JvmStatic
+    @JvmField
     public val getRangeName: MethodStringName0<CharFXTransform, Vector2i> =
         MethodStringName0<CharFXTransform, Vector2i>("get_range")
 
-    @JvmStatic
+    @JvmField
     public val setRangeName: MethodStringName1<CharFXTransform, Unit, Vector2i> =
         MethodStringName1<CharFXTransform, Unit, Vector2i>("set_range")
 
-    @JvmStatic
+    @JvmField
     public val getElapsedTimeName: MethodStringName0<CharFXTransform, Double> =
         MethodStringName0<CharFXTransform, Double>("get_elapsed_time")
 
-    @JvmStatic
+    @JvmField
     public val setElapsedTimeName: MethodStringName1<CharFXTransform, Unit, Double> =
         MethodStringName1<CharFXTransform, Unit, Double>("set_elapsed_time")
 
-    @JvmStatic
+    @JvmField
     public val isVisibleName: MethodStringName0<CharFXTransform, Boolean> =
         MethodStringName0<CharFXTransform, Boolean>("is_visible")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityName: MethodStringName1<CharFXTransform, Unit, Boolean> =
         MethodStringName1<CharFXTransform, Unit, Boolean>("set_visibility")
 
-    @JvmStatic
+    @JvmField
     public val isOutlineName: MethodStringName0<CharFXTransform, Boolean> =
         MethodStringName0<CharFXTransform, Boolean>("is_outline")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineName: MethodStringName1<CharFXTransform, Unit, Boolean> =
         MethodStringName1<CharFXTransform, Unit, Boolean>("set_outline")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName0<CharFXTransform, Vector2> =
         MethodStringName0<CharFXTransform, Vector2>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetName: MethodStringName1<CharFXTransform, Unit, Vector2> =
         MethodStringName1<CharFXTransform, Unit, Vector2>("set_offset")
 
-    @JvmStatic
+    @JvmField
     public val getColorName: MethodStringName0<CharFXTransform, Color> =
         MethodStringName0<CharFXTransform, Color>("get_color")
 
-    @JvmStatic
+    @JvmField
     public val setColorName: MethodStringName1<CharFXTransform, Unit, Color> =
         MethodStringName1<CharFXTransform, Unit, Color>("set_color")
 
-    @JvmStatic
+    @JvmField
     public val getEnvironmentName: MethodStringName0<CharFXTransform, Dictionary<Any?, Any?>> =
         MethodStringName0<CharFXTransform, Dictionary<Any?, Any?>>("get_environment")
 
-    @JvmStatic
+    @JvmField
     public val setEnvironmentName: MethodStringName1<CharFXTransform, Unit, Dictionary<Any?, Any?>>
         = MethodStringName1<CharFXTransform, Unit, Dictionary<Any?, Any?>>("set_environment")
 
-    @JvmStatic
+    @JvmField
     public val getGlyphIndexName: MethodStringName0<CharFXTransform, Long> =
         MethodStringName0<CharFXTransform, Long>("get_glyph_index")
 
-    @JvmStatic
+    @JvmField
     public val setGlyphIndexName: MethodStringName1<CharFXTransform, Unit, Long> =
         MethodStringName1<CharFXTransform, Unit, Long>("set_glyph_index")
 
-    @JvmStatic
+    @JvmField
     public val getRelativeIndexName: MethodStringName0<CharFXTransform, Int> =
         MethodStringName0<CharFXTransform, Int>("get_relative_index")
 
-    @JvmStatic
+    @JvmField
     public val setRelativeIndexName: MethodStringName1<CharFXTransform, Unit, Int> =
         MethodStringName1<CharFXTransform, Unit, Int>("set_relative_index")
 
-    @JvmStatic
+    @JvmField
     public val getGlyphCountName: MethodStringName0<CharFXTransform, Int> =
         MethodStringName0<CharFXTransform, Int>("get_glyph_count")
 
-    @JvmStatic
+    @JvmField
     public val setGlyphCountName: MethodStringName1<CharFXTransform, Unit, Int> =
         MethodStringName1<CharFXTransform, Unit, Int>("set_glyph_count")
 
-    @JvmStatic
+    @JvmField
     public val getGlyphFlagsName: MethodStringName0<CharFXTransform, Int> =
         MethodStringName0<CharFXTransform, Int>("get_glyph_flags")
 
-    @JvmStatic
+    @JvmField
     public val setGlyphFlagsName: MethodStringName1<CharFXTransform, Unit, Int> =
         MethodStringName1<CharFXTransform, Unit, Int>("set_glyph_flags")
 
-    @JvmStatic
+    @JvmField
     public val getFontName: MethodStringName0<CharFXTransform, RID> =
         MethodStringName0<CharFXTransform, RID>("get_font")
 
-    @JvmStatic
+    @JvmField
     public val setFontName: MethodStringName1<CharFXTransform, Unit, RID> =
         MethodStringName1<CharFXTransform, Unit, RID>("set_font")
   }

@@ -17,8 +17,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * InputEventShortcut is a special event that can be received in [Node.Input], [Node.ShortcutInput],
@@ -55,11 +55,11 @@ public open class InputEventShortcut : InputEvent() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShortcutName: MethodStringName1<InputEventShortcut, Unit, Shortcut?> =
         MethodStringName1<InputEventShortcut, Unit, Shortcut?>("set_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val getShortcutName: MethodStringName0<InputEventShortcut, Shortcut?> =
         MethodStringName0<InputEventShortcut, Shortcut?>("get_shortcut")
   }

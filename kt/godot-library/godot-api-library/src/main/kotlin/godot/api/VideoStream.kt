@@ -19,8 +19,8 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Base resource type for all video streams. Classes that derive from [VideoStream] can all be used
@@ -66,11 +66,11 @@ public open class VideoStream : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFileName: MethodStringName1<VideoStream, Unit, String> =
         MethodStringName1<VideoStream, Unit, String>("set_file")
 
-    @JvmStatic
+    @JvmField
     public val getFileName: MethodStringName0<VideoStream, String> =
         MethodStringName0<VideoStream, String>("get_file")
   }

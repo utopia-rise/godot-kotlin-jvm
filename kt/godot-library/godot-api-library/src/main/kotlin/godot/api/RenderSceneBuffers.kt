@@ -16,7 +16,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Abstract scene buffers object, created for each viewport for which 3D rendering is done. It
@@ -41,7 +41,7 @@ public open class RenderSceneBuffers internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val configureName:
         MethodStringName1<RenderSceneBuffers, Unit, RenderSceneBuffersConfiguration?> =
         MethodStringName1<RenderSceneBuffers, Unit, RenderSceneBuffersConfiguration?>("configure")

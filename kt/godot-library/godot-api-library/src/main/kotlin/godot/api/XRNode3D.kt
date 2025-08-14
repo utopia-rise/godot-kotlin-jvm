@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
@@ -180,43 +180,43 @@ public open class XRNode3D : Node3D() {
   public final fun setPoseName(pose: String) = setPoseName(pose.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTrackerName: MethodStringName1<XRNode3D, Unit, StringName> =
         MethodStringName1<XRNode3D, Unit, StringName>("set_tracker")
 
-    @JvmStatic
+    @JvmField
     public val getTrackerName: MethodStringName0<XRNode3D, StringName> =
         MethodStringName0<XRNode3D, StringName>("get_tracker")
 
-    @JvmStatic
+    @JvmField
     public val setPoseNameName: MethodStringName1<XRNode3D, Unit, StringName> =
         MethodStringName1<XRNode3D, Unit, StringName>("set_pose_name")
 
-    @JvmStatic
+    @JvmField
     public val getPoseNameName: MethodStringName0<XRNode3D, StringName> =
         MethodStringName0<XRNode3D, StringName>("get_pose_name")
 
-    @JvmStatic
+    @JvmField
     public val setShowWhenTrackedName: MethodStringName1<XRNode3D, Unit, Boolean> =
         MethodStringName1<XRNode3D, Unit, Boolean>("set_show_when_tracked")
 
-    @JvmStatic
+    @JvmField
     public val getShowWhenTrackedName: MethodStringName0<XRNode3D, Boolean> =
         MethodStringName0<XRNode3D, Boolean>("get_show_when_tracked")
 
-    @JvmStatic
+    @JvmField
     public val getIsActiveName: MethodStringName0<XRNode3D, Boolean> =
         MethodStringName0<XRNode3D, Boolean>("get_is_active")
 
-    @JvmStatic
+    @JvmField
     public val getHasTrackingDataName: MethodStringName0<XRNode3D, Boolean> =
         MethodStringName0<XRNode3D, Boolean>("get_has_tracking_data")
 
-    @JvmStatic
+    @JvmField
     public val getPoseName: MethodStringName0<XRNode3D, XRPose?> =
         MethodStringName0<XRNode3D, XRPose?>("get_pose")
 
-    @JvmStatic
+    @JvmField
     public val triggerHapticPulseName:
         MethodStringName5<XRNode3D, Unit, String, Double, Double, Double, Double> =
         MethodStringName5<XRNode3D, Unit, String, Double, Double, Double, Double>("trigger_haptic_pulse")

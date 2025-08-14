@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A container that accepts only two child controls, then arranges them horizontally or vertically
@@ -326,83 +326,83 @@ public open class SplitContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSplitOffsetName: MethodStringName1<SplitContainer, Unit, Int> =
         MethodStringName1<SplitContainer, Unit, Int>("set_split_offset")
 
-    @JvmStatic
+    @JvmField
     public val getSplitOffsetName: MethodStringName0<SplitContainer, Int> =
         MethodStringName0<SplitContainer, Int>("get_split_offset")
 
-    @JvmStatic
+    @JvmField
     public val clampSplitOffsetName: MethodStringName0<SplitContainer, Unit> =
         MethodStringName0<SplitContainer, Unit>("clamp_split_offset")
 
-    @JvmStatic
+    @JvmField
     public val setCollapsedName: MethodStringName1<SplitContainer, Unit, Boolean> =
         MethodStringName1<SplitContainer, Unit, Boolean>("set_collapsed")
 
-    @JvmStatic
+    @JvmField
     public val isCollapsedName: MethodStringName0<SplitContainer, Boolean> =
         MethodStringName0<SplitContainer, Boolean>("is_collapsed")
 
-    @JvmStatic
+    @JvmField
     public val setDraggerVisibilityName: MethodStringName1<SplitContainer, Unit, DraggerVisibility>
         = MethodStringName1<SplitContainer, Unit, DraggerVisibility>("set_dragger_visibility")
 
-    @JvmStatic
+    @JvmField
     public val getDraggerVisibilityName: MethodStringName0<SplitContainer, DraggerVisibility> =
         MethodStringName0<SplitContainer, DraggerVisibility>("get_dragger_visibility")
 
-    @JvmStatic
+    @JvmField
     public val setVerticalName: MethodStringName1<SplitContainer, Unit, Boolean> =
         MethodStringName1<SplitContainer, Unit, Boolean>("set_vertical")
 
-    @JvmStatic
+    @JvmField
     public val isVerticalName: MethodStringName0<SplitContainer, Boolean> =
         MethodStringName0<SplitContainer, Boolean>("is_vertical")
 
-    @JvmStatic
+    @JvmField
     public val setDraggingEnabledName: MethodStringName1<SplitContainer, Unit, Boolean> =
         MethodStringName1<SplitContainer, Unit, Boolean>("set_dragging_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDraggingEnabledName: MethodStringName0<SplitContainer, Boolean> =
         MethodStringName0<SplitContainer, Boolean>("is_dragging_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDragAreaMarginBeginName: MethodStringName1<SplitContainer, Unit, Int> =
         MethodStringName1<SplitContainer, Unit, Int>("set_drag_area_margin_begin")
 
-    @JvmStatic
+    @JvmField
     public val getDragAreaMarginBeginName: MethodStringName0<SplitContainer, Int> =
         MethodStringName0<SplitContainer, Int>("get_drag_area_margin_begin")
 
-    @JvmStatic
+    @JvmField
     public val setDragAreaMarginEndName: MethodStringName1<SplitContainer, Unit, Int> =
         MethodStringName1<SplitContainer, Unit, Int>("set_drag_area_margin_end")
 
-    @JvmStatic
+    @JvmField
     public val getDragAreaMarginEndName: MethodStringName0<SplitContainer, Int> =
         MethodStringName0<SplitContainer, Int>("get_drag_area_margin_end")
 
-    @JvmStatic
+    @JvmField
     public val setDragAreaOffsetName: MethodStringName1<SplitContainer, Unit, Int> =
         MethodStringName1<SplitContainer, Unit, Int>("set_drag_area_offset")
 
-    @JvmStatic
+    @JvmField
     public val getDragAreaOffsetName: MethodStringName0<SplitContainer, Int> =
         MethodStringName0<SplitContainer, Int>("get_drag_area_offset")
 
-    @JvmStatic
+    @JvmField
     public val setDragAreaHighlightInEditorName: MethodStringName1<SplitContainer, Unit, Boolean> =
         MethodStringName1<SplitContainer, Unit, Boolean>("set_drag_area_highlight_in_editor")
 
-    @JvmStatic
+    @JvmField
     public val isDragAreaHighlightInEditorEnabledName: MethodStringName0<SplitContainer, Boolean> =
         MethodStringName0<SplitContainer, Boolean>("is_drag_area_highlight_in_editor_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getDragAreaControlName: MethodStringName0<SplitContainer, Control?> =
         MethodStringName0<SplitContainer, Control?>("get_drag_area_control")
   }

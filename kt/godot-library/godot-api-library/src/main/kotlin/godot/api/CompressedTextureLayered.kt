@@ -20,8 +20,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Base class for [CompressedTexture2DArray] and [CompressedTexture3D]. Cannot be used directly, but
@@ -57,11 +57,11 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<CompressedTextureLayered, Error, String> =
         MethodStringName1<CompressedTextureLayered, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val getLoadPathName: MethodStringName0<CompressedTextureLayered, String> =
         MethodStringName0<CompressedTextureLayered, String>("get_load_path")
   }

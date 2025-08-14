@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Occludes light cast by a Light2D, casting shadows. The LightOccluder2D must be provided with an
@@ -103,27 +103,27 @@ public open class LightOccluder2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOccluderPolygonName: MethodStringName1<LightOccluder2D, Unit, OccluderPolygon2D?>
         = MethodStringName1<LightOccluder2D, Unit, OccluderPolygon2D?>("set_occluder_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getOccluderPolygonName: MethodStringName0<LightOccluder2D, OccluderPolygon2D?> =
         MethodStringName0<LightOccluder2D, OccluderPolygon2D?>("get_occluder_polygon")
 
-    @JvmStatic
+    @JvmField
     public val setOccluderLightMaskName: MethodStringName1<LightOccluder2D, Unit, Int> =
         MethodStringName1<LightOccluder2D, Unit, Int>("set_occluder_light_mask")
 
-    @JvmStatic
+    @JvmField
     public val getOccluderLightMaskName: MethodStringName0<LightOccluder2D, Int> =
         MethodStringName0<LightOccluder2D, Int>("get_occluder_light_mask")
 
-    @JvmStatic
+    @JvmField
     public val setAsSdfCollisionName: MethodStringName1<LightOccluder2D, Unit, Boolean> =
         MethodStringName1<LightOccluder2D, Unit, Boolean>("set_as_sdf_collision")
 
-    @JvmStatic
+    @JvmField
     public val isSetAsSdfCollisionName: MethodStringName0<LightOccluder2D, Boolean> =
         MethodStringName0<LightOccluder2D, Boolean>("is_set_as_sdf_collision")
   }

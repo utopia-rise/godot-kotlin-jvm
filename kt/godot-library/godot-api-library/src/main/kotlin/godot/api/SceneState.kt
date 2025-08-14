@@ -33,8 +33,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Maintains a list of resources, nodes, exported and overridden properties, and built-in scripts
@@ -298,87 +298,87 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getNodeCountName: MethodStringName0<SceneState, Int> =
         MethodStringName0<SceneState, Int>("get_node_count")
 
-    @JvmStatic
+    @JvmField
     public val getNodeTypeName: MethodStringName1<SceneState, StringName, Int> =
         MethodStringName1<SceneState, StringName, Int>("get_node_type")
 
-    @JvmStatic
+    @JvmField
     public val getNodeNameName: MethodStringName1<SceneState, StringName, Int> =
         MethodStringName1<SceneState, StringName, Int>("get_node_name")
 
-    @JvmStatic
+    @JvmField
     public val getNodePathName: MethodStringName2<SceneState, NodePath, Int, Boolean> =
         MethodStringName2<SceneState, NodePath, Int, Boolean>("get_node_path")
 
-    @JvmStatic
+    @JvmField
     public val getNodeOwnerPathName: MethodStringName1<SceneState, NodePath, Int> =
         MethodStringName1<SceneState, NodePath, Int>("get_node_owner_path")
 
-    @JvmStatic
+    @JvmField
     public val isNodeInstancePlaceholderName: MethodStringName1<SceneState, Boolean, Int> =
         MethodStringName1<SceneState, Boolean, Int>("is_node_instance_placeholder")
 
-    @JvmStatic
+    @JvmField
     public val getNodeInstancePlaceholderName: MethodStringName1<SceneState, String, Int> =
         MethodStringName1<SceneState, String, Int>("get_node_instance_placeholder")
 
-    @JvmStatic
+    @JvmField
     public val getNodeInstanceName: MethodStringName1<SceneState, PackedScene?, Int> =
         MethodStringName1<SceneState, PackedScene?, Int>("get_node_instance")
 
-    @JvmStatic
+    @JvmField
     public val getNodeGroupsName: MethodStringName1<SceneState, PackedStringArray, Int> =
         MethodStringName1<SceneState, PackedStringArray, Int>("get_node_groups")
 
-    @JvmStatic
+    @JvmField
     public val getNodeIndexName: MethodStringName1<SceneState, Int, Int> =
         MethodStringName1<SceneState, Int, Int>("get_node_index")
 
-    @JvmStatic
+    @JvmField
     public val getNodePropertyCountName: MethodStringName1<SceneState, Int, Int> =
         MethodStringName1<SceneState, Int, Int>("get_node_property_count")
 
-    @JvmStatic
+    @JvmField
     public val getNodePropertyNameName: MethodStringName2<SceneState, StringName, Int, Int> =
         MethodStringName2<SceneState, StringName, Int, Int>("get_node_property_name")
 
-    @JvmStatic
+    @JvmField
     public val getNodePropertyValueName: MethodStringName2<SceneState, Any?, Int, Int> =
         MethodStringName2<SceneState, Any?, Int, Int>("get_node_property_value")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionCountName: MethodStringName0<SceneState, Int> =
         MethodStringName0<SceneState, Int>("get_connection_count")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionSourceName: MethodStringName1<SceneState, NodePath, Int> =
         MethodStringName1<SceneState, NodePath, Int>("get_connection_source")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionSignalName: MethodStringName1<SceneState, StringName, Int> =
         MethodStringName1<SceneState, StringName, Int>("get_connection_signal")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionTargetName: MethodStringName1<SceneState, NodePath, Int> =
         MethodStringName1<SceneState, NodePath, Int>("get_connection_target")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionMethodName: MethodStringName1<SceneState, StringName, Int> =
         MethodStringName1<SceneState, StringName, Int>("get_connection_method")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionFlagsName: MethodStringName1<SceneState, Int, Int> =
         MethodStringName1<SceneState, Int, Int>("get_connection_flags")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionBindsName: MethodStringName1<SceneState, VariantArray<Any?>, Int> =
         MethodStringName1<SceneState, VariantArray<Any?>, Int>("get_connection_binds")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionUnbindsName: MethodStringName1<SceneState, Int, Int> =
         MethodStringName1<SceneState, Int, Int>("get_connection_unbinds")
   }

@@ -31,7 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: NavigationPathQueryParameters2D.PathMetadataFlags): Long =
     this.or(other.flag)
@@ -429,86 +428,86 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPathfindingAlgorithmName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathfindingAlgorithm> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathfindingAlgorithm>("set_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val getPathfindingAlgorithmName:
         MethodStringName0<NavigationPathQueryParameters2D, PathfindingAlgorithm> =
         MethodStringName0<NavigationPathQueryParameters2D, PathfindingAlgorithm>("get_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val setPathPostprocessingName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathPostProcessing> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathPostProcessing>("set_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val getPathPostprocessingName:
         MethodStringName0<NavigationPathQueryParameters2D, PathPostProcessing> =
         MethodStringName0<NavigationPathQueryParameters2D, PathPostProcessing>("get_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val setMapName: MethodStringName1<NavigationPathQueryParameters2D, Unit, RID> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, RID>("set_map")
 
-    @JvmStatic
+    @JvmField
     public val getMapName: MethodStringName0<NavigationPathQueryParameters2D, RID> =
         MethodStringName0<NavigationPathQueryParameters2D, RID>("get_map")
 
-    @JvmStatic
+    @JvmField
     public val setStartPositionName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Vector2> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Vector2>("set_start_position")
 
-    @JvmStatic
+    @JvmField
     public val getStartPositionName: MethodStringName0<NavigationPathQueryParameters2D, Vector2> =
         MethodStringName0<NavigationPathQueryParameters2D, Vector2>("get_start_position")
 
-    @JvmStatic
+    @JvmField
     public val setTargetPositionName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Vector2> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Vector2>("set_target_position")
 
-    @JvmStatic
+    @JvmField
     public val getTargetPositionName: MethodStringName0<NavigationPathQueryParameters2D, Vector2> =
         MethodStringName0<NavigationPathQueryParameters2D, Vector2>("get_target_position")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayersName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Long> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Long>("set_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayersName: MethodStringName0<NavigationPathQueryParameters2D, Long> =
         MethodStringName0<NavigationPathQueryParameters2D, Long>("get_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val setMetadataFlagsName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathMetadataFlags> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, PathMetadataFlags>("set_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val getMetadataFlagsName:
         MethodStringName0<NavigationPathQueryParameters2D, PathMetadataFlags> =
         MethodStringName0<NavigationPathQueryParameters2D, PathMetadataFlags>("get_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyPathName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Boolean> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Boolean>("set_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyPathName: MethodStringName0<NavigationPathQueryParameters2D, Boolean> =
         MethodStringName0<NavigationPathQueryParameters2D, Boolean>("get_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyEpsilonName:
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Float> =
         MethodStringName1<NavigationPathQueryParameters2D, Unit, Float>("set_simplify_epsilon")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyEpsilonName: MethodStringName0<NavigationPathQueryParameters2D, Float> =
         MethodStringName0<NavigationPathQueryParameters2D, Float>("get_simplify_epsilon")
   }

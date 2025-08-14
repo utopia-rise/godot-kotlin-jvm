@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
@@ -190,47 +190,47 @@ public open class Bone2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRestName: MethodStringName1<Bone2D, Unit, Transform2D> =
         MethodStringName1<Bone2D, Unit, Transform2D>("set_rest")
 
-    @JvmStatic
+    @JvmField
     public val getRestName: MethodStringName0<Bone2D, Transform2D> =
         MethodStringName0<Bone2D, Transform2D>("get_rest")
 
-    @JvmStatic
+    @JvmField
     public val applyRestName: MethodStringName0<Bone2D, Unit> =
         MethodStringName0<Bone2D, Unit>("apply_rest")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonRestName: MethodStringName0<Bone2D, Transform2D> =
         MethodStringName0<Bone2D, Transform2D>("get_skeleton_rest")
 
-    @JvmStatic
+    @JvmField
     public val getIndexInSkeletonName: MethodStringName0<Bone2D, Int> =
         MethodStringName0<Bone2D, Int>("get_index_in_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val setAutocalculateLengthAndAngleName: MethodStringName1<Bone2D, Unit, Boolean> =
         MethodStringName1<Bone2D, Unit, Boolean>("set_autocalculate_length_and_angle")
 
-    @JvmStatic
+    @JvmField
     public val getAutocalculateLengthAndAngleName: MethodStringName0<Bone2D, Boolean> =
         MethodStringName0<Bone2D, Boolean>("get_autocalculate_length_and_angle")
 
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<Bone2D, Unit, Float> =
         MethodStringName1<Bone2D, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<Bone2D, Float> =
         MethodStringName0<Bone2D, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setBoneAngleName: MethodStringName1<Bone2D, Unit, Float> =
         MethodStringName1<Bone2D, Unit, Float>("set_bone_angle")
 
-    @JvmStatic
+    @JvmField
     public val getBoneAngleName: MethodStringName0<Bone2D, Float> =
         MethodStringName0<Bone2D, Float>("get_bone_angle")
   }

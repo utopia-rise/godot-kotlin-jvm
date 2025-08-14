@@ -26,8 +26,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The [PhysicalSkyMaterial] uses the Preetham analytic daylight model to draw a sky based on
@@ -386,91 +386,91 @@ public open class PhysicalSkyMaterial : Material() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRayleighCoefficientName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_rayleigh_coefficient")
 
-    @JvmStatic
+    @JvmField
     public val getRayleighCoefficientName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_rayleigh_coefficient")
 
-    @JvmStatic
+    @JvmField
     public val setRayleighColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_rayleigh_color")
 
-    @JvmStatic
+    @JvmField
     public val getRayleighColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
         MethodStringName0<PhysicalSkyMaterial, Color>("get_rayleigh_color")
 
-    @JvmStatic
+    @JvmField
     public val setMieCoefficientName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_mie_coefficient")
 
-    @JvmStatic
+    @JvmField
     public val getMieCoefficientName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_mie_coefficient")
 
-    @JvmStatic
+    @JvmField
     public val setMieEccentricityName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_mie_eccentricity")
 
-    @JvmStatic
+    @JvmField
     public val getMieEccentricityName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_mie_eccentricity")
 
-    @JvmStatic
+    @JvmField
     public val setMieColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_mie_color")
 
-    @JvmStatic
+    @JvmField
     public val getMieColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
         MethodStringName0<PhysicalSkyMaterial, Color>("get_mie_color")
 
-    @JvmStatic
+    @JvmField
     public val setTurbidityName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_turbidity")
 
-    @JvmStatic
+    @JvmField
     public val getTurbidityName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_turbidity")
 
-    @JvmStatic
+    @JvmField
     public val setSunDiskScaleName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_sun_disk_scale")
 
-    @JvmStatic
+    @JvmField
     public val getSunDiskScaleName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_sun_disk_scale")
 
-    @JvmStatic
+    @JvmField
     public val setGroundColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_ground_color")
 
-    @JvmStatic
+    @JvmField
     public val getGroundColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
         MethodStringName0<PhysicalSkyMaterial, Color>("get_ground_color")
 
-    @JvmStatic
+    @JvmField
     public val setEnergyMultiplierName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_energy_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val getEnergyMultiplierName: MethodStringName0<PhysicalSkyMaterial, Float> =
         MethodStringName0<PhysicalSkyMaterial, Float>("get_energy_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val setUseDebandingName: MethodStringName1<PhysicalSkyMaterial, Unit, Boolean> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Boolean>("set_use_debanding")
 
-    @JvmStatic
+    @JvmField
     public val getUseDebandingName: MethodStringName0<PhysicalSkyMaterial, Boolean> =
         MethodStringName0<PhysicalSkyMaterial, Boolean>("get_use_debanding")
 
-    @JvmStatic
+    @JvmField
     public val setNightSkyName: MethodStringName1<PhysicalSkyMaterial, Unit, Texture2D?> =
         MethodStringName1<PhysicalSkyMaterial, Unit, Texture2D?>("set_night_sky")
 
-    @JvmStatic
+    @JvmField
     public val getNightSkyName: MethodStringName0<PhysicalSkyMaterial, Texture2D?> =
         MethodStringName0<PhysicalSkyMaterial, Texture2D?>("get_night_sky")
   }

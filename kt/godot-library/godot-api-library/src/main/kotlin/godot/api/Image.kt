@@ -42,6 +42,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -1356,294 +1357,294 @@ public open class Image : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<Image, Int> =
         MethodStringName0<Image, Int>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<Image, Int> =
         MethodStringName0<Image, Int>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<Image, Vector2i> =
         MethodStringName0<Image, Vector2i>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val hasMipmapsName: MethodStringName0<Image, Boolean> =
         MethodStringName0<Image, Boolean>("has_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<Image, Format> =
         MethodStringName0<Image, Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val getDataName: MethodStringName0<Image, PackedByteArray> =
         MethodStringName0<Image, PackedByteArray>("get_data")
 
-    @JvmStatic
+    @JvmField
     public val getDataSizeName: MethodStringName0<Image, Long> =
         MethodStringName0<Image, Long>("get_data_size")
 
-    @JvmStatic
+    @JvmField
     public val convertName: MethodStringName1<Image, Unit, Format> =
         MethodStringName1<Image, Unit, Format>("convert")
 
-    @JvmStatic
+    @JvmField
     public val getMipmapCountName: MethodStringName0<Image, Int> =
         MethodStringName0<Image, Int>("get_mipmap_count")
 
-    @JvmStatic
+    @JvmField
     public val getMipmapOffsetName: MethodStringName1<Image, Long, Int> =
         MethodStringName1<Image, Long, Int>("get_mipmap_offset")
 
-    @JvmStatic
+    @JvmField
     public val resizeToPo2Name: MethodStringName2<Image, Unit, Boolean, Interpolation> =
         MethodStringName2<Image, Unit, Boolean, Interpolation>("resize_to_po2")
 
-    @JvmStatic
+    @JvmField
     public val resizeName: MethodStringName3<Image, Unit, Int, Int, Interpolation> =
         MethodStringName3<Image, Unit, Int, Int, Interpolation>("resize")
 
-    @JvmStatic
+    @JvmField
     public val shrinkX2Name: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("shrink_x2")
 
-    @JvmStatic
+    @JvmField
     public val cropName: MethodStringName2<Image, Unit, Int, Int> =
         MethodStringName2<Image, Unit, Int, Int>("crop")
 
-    @JvmStatic
+    @JvmField
     public val flipXName: MethodStringName0<Image, Unit> = MethodStringName0<Image, Unit>("flip_x")
 
-    @JvmStatic
+    @JvmField
     public val flipYName: MethodStringName0<Image, Unit> = MethodStringName0<Image, Unit>("flip_y")
 
-    @JvmStatic
+    @JvmField
     public val generateMipmapsName: MethodStringName1<Image, Error, Boolean> =
         MethodStringName1<Image, Error, Boolean>("generate_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val clearMipmapsName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("clear_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val createName: MethodStringName4<Image, Image?, Int, Int, Boolean, Format> =
         MethodStringName4<Image, Image?, Int, Int, Boolean, Format>("create")
 
-    @JvmStatic
+    @JvmField
     public val createEmptyName: MethodStringName4<Image, Image?, Int, Int, Boolean, Format> =
         MethodStringName4<Image, Image?, Int, Int, Boolean, Format>("create_empty")
 
-    @JvmStatic
+    @JvmField
     public val createFromDataName:
         MethodStringName5<Image, Image?, Int, Int, Boolean, Format, PackedByteArray> =
         MethodStringName5<Image, Image?, Int, Int, Boolean, Format, PackedByteArray>("create_from_data")
 
-    @JvmStatic
+    @JvmField
     public val setDataName:
         MethodStringName5<Image, Unit, Int, Int, Boolean, Format, PackedByteArray> =
         MethodStringName5<Image, Unit, Int, Int, Boolean, Format, PackedByteArray>("set_data")
 
-    @JvmStatic
+    @JvmField
     public val isEmptyName: MethodStringName0<Image, Boolean> =
         MethodStringName0<Image, Boolean>("is_empty")
 
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<Image, Error, String> =
         MethodStringName1<Image, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val loadFromFileName: MethodStringName1<Image, Image?, String> =
         MethodStringName1<Image, Image?, String>("load_from_file")
 
-    @JvmStatic
+    @JvmField
     public val savePngName: MethodStringName1<Image, Error, String> =
         MethodStringName1<Image, Error, String>("save_png")
 
-    @JvmStatic
+    @JvmField
     public val savePngToBufferName: MethodStringName0<Image, PackedByteArray> =
         MethodStringName0<Image, PackedByteArray>("save_png_to_buffer")
 
-    @JvmStatic
+    @JvmField
     public val saveJpgName: MethodStringName2<Image, Error, String, Float> =
         MethodStringName2<Image, Error, String, Float>("save_jpg")
 
-    @JvmStatic
+    @JvmField
     public val saveJpgToBufferName: MethodStringName1<Image, PackedByteArray, Float> =
         MethodStringName1<Image, PackedByteArray, Float>("save_jpg_to_buffer")
 
-    @JvmStatic
+    @JvmField
     public val saveExrName: MethodStringName2<Image, Error, String, Boolean> =
         MethodStringName2<Image, Error, String, Boolean>("save_exr")
 
-    @JvmStatic
+    @JvmField
     public val saveExrToBufferName: MethodStringName1<Image, PackedByteArray, Boolean> =
         MethodStringName1<Image, PackedByteArray, Boolean>("save_exr_to_buffer")
 
-    @JvmStatic
+    @JvmField
     public val saveWebpName: MethodStringName3<Image, Error, String, Boolean, Float> =
         MethodStringName3<Image, Error, String, Boolean, Float>("save_webp")
 
-    @JvmStatic
+    @JvmField
     public val saveWebpToBufferName: MethodStringName2<Image, PackedByteArray, Boolean, Float> =
         MethodStringName2<Image, PackedByteArray, Boolean, Float>("save_webp_to_buffer")
 
-    @JvmStatic
+    @JvmField
     public val detectAlphaName: MethodStringName0<Image, AlphaMode> =
         MethodStringName0<Image, AlphaMode>("detect_alpha")
 
-    @JvmStatic
+    @JvmField
     public val isInvisibleName: MethodStringName0<Image, Boolean> =
         MethodStringName0<Image, Boolean>("is_invisible")
 
-    @JvmStatic
+    @JvmField
     public val detectUsedChannelsName: MethodStringName1<Image, UsedChannels, CompressSource> =
         MethodStringName1<Image, UsedChannels, CompressSource>("detect_used_channels")
 
-    @JvmStatic
+    @JvmField
     public val compressName:
         MethodStringName3<Image, Error, CompressMode, CompressSource, ASTCFormat> =
         MethodStringName3<Image, Error, CompressMode, CompressSource, ASTCFormat>("compress")
 
-    @JvmStatic
+    @JvmField
     public val compressFromChannelsName:
         MethodStringName3<Image, Error, CompressMode, UsedChannels, ASTCFormat> =
         MethodStringName3<Image, Error, CompressMode, UsedChannels, ASTCFormat>("compress_from_channels")
 
-    @JvmStatic
+    @JvmField
     public val decompressName: MethodStringName0<Image, Error> =
         MethodStringName0<Image, Error>("decompress")
 
-    @JvmStatic
+    @JvmField
     public val isCompressedName: MethodStringName0<Image, Boolean> =
         MethodStringName0<Image, Boolean>("is_compressed")
 
-    @JvmStatic
+    @JvmField
     public val rotate90Name: MethodStringName1<Image, Unit, ClockDirection> =
         MethodStringName1<Image, Unit, ClockDirection>("rotate_90")
 
-    @JvmStatic
+    @JvmField
     public val rotate180Name: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("rotate_180")
 
-    @JvmStatic
+    @JvmField
     public val fixAlphaEdgesName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("fix_alpha_edges")
 
-    @JvmStatic
+    @JvmField
     public val premultiplyAlphaName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("premultiply_alpha")
 
-    @JvmStatic
+    @JvmField
     public val srgbToLinearName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("srgb_to_linear")
 
-    @JvmStatic
+    @JvmField
     public val linearToSrgbName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("linear_to_srgb")
 
-    @JvmStatic
+    @JvmField
     public val normalMapToXyName: MethodStringName0<Image, Unit> =
         MethodStringName0<Image, Unit>("normal_map_to_xy")
 
-    @JvmStatic
+    @JvmField
     public val rgbeToSrgbName: MethodStringName0<Image, Image?> =
         MethodStringName0<Image, Image?>("rgbe_to_srgb")
 
-    @JvmStatic
+    @JvmField
     public val bumpMapToNormalMapName: MethodStringName1<Image, Unit, Float> =
         MethodStringName1<Image, Unit, Float>("bump_map_to_normal_map")
 
-    @JvmStatic
+    @JvmField
     public val computeImageMetricsName:
         MethodStringName2<Image, Dictionary<Any?, Any?>, Image?, Boolean> =
         MethodStringName2<Image, Dictionary<Any?, Any?>, Image?, Boolean>("compute_image_metrics")
 
-    @JvmStatic
+    @JvmField
     public val blitRectName: MethodStringName3<Image, Unit, Image?, Rect2i, Vector2i> =
         MethodStringName3<Image, Unit, Image?, Rect2i, Vector2i>("blit_rect")
 
-    @JvmStatic
+    @JvmField
     public val blitRectMaskName: MethodStringName4<Image, Unit, Image?, Image?, Rect2i, Vector2i> =
         MethodStringName4<Image, Unit, Image?, Image?, Rect2i, Vector2i>("blit_rect_mask")
 
-    @JvmStatic
+    @JvmField
     public val blendRectName: MethodStringName3<Image, Unit, Image?, Rect2i, Vector2i> =
         MethodStringName3<Image, Unit, Image?, Rect2i, Vector2i>("blend_rect")
 
-    @JvmStatic
+    @JvmField
     public val blendRectMaskName: MethodStringName4<Image, Unit, Image?, Image?, Rect2i, Vector2i> =
         MethodStringName4<Image, Unit, Image?, Image?, Rect2i, Vector2i>("blend_rect_mask")
 
-    @JvmStatic
+    @JvmField
     public val fillName: MethodStringName1<Image, Unit, Color> =
         MethodStringName1<Image, Unit, Color>("fill")
 
-    @JvmStatic
+    @JvmField
     public val fillRectName: MethodStringName2<Image, Unit, Rect2i, Color> =
         MethodStringName2<Image, Unit, Rect2i, Color>("fill_rect")
 
-    @JvmStatic
+    @JvmField
     public val getUsedRectName: MethodStringName0<Image, Rect2i> =
         MethodStringName0<Image, Rect2i>("get_used_rect")
 
-    @JvmStatic
+    @JvmField
     public val getRegionName: MethodStringName1<Image, Image?, Rect2i> =
         MethodStringName1<Image, Image?, Rect2i>("get_region")
 
-    @JvmStatic
+    @JvmField
     public val copyFromName: MethodStringName1<Image, Unit, Image?> =
         MethodStringName1<Image, Unit, Image?>("copy_from")
 
-    @JvmStatic
+    @JvmField
     public val getPixelvName: MethodStringName1<Image, Color, Vector2i> =
         MethodStringName1<Image, Color, Vector2i>("get_pixelv")
 
-    @JvmStatic
+    @JvmField
     public val getPixelName: MethodStringName2<Image, Color, Int, Int> =
         MethodStringName2<Image, Color, Int, Int>("get_pixel")
 
-    @JvmStatic
+    @JvmField
     public val setPixelvName: MethodStringName2<Image, Unit, Vector2i, Color> =
         MethodStringName2<Image, Unit, Vector2i, Color>("set_pixelv")
 
-    @JvmStatic
+    @JvmField
     public val setPixelName: MethodStringName3<Image, Unit, Int, Int, Color> =
         MethodStringName3<Image, Unit, Int, Int, Color>("set_pixel")
 
-    @JvmStatic
+    @JvmField
     public val adjustBcsName: MethodStringName3<Image, Unit, Float, Float, Float> =
         MethodStringName3<Image, Unit, Float, Float, Float>("adjust_bcs")
 
-    @JvmStatic
+    @JvmField
     public val loadPngFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_png_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadJpgFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_jpg_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadWebpFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_webp_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadTgaFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_tga_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadBmpFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_bmp_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadKtxFromBufferName: MethodStringName1<Image, Error, PackedByteArray> =
         MethodStringName1<Image, Error, PackedByteArray>("load_ktx_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadSvgFromBufferName: MethodStringName2<Image, Error, PackedByteArray, Float> =
         MethodStringName2<Image, Error, PackedByteArray, Float>("load_svg_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadSvgFromStringName: MethodStringName2<Image, Error, String, Float> =
         MethodStringName2<Image, Error, String, Float>("load_svg_from_string")
 

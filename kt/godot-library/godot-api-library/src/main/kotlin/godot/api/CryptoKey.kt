@@ -23,8 +23,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
@@ -96,23 +96,23 @@ public open class CryptoKey : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val saveName: MethodStringName2<CryptoKey, Error, String, Boolean> =
         MethodStringName2<CryptoKey, Error, String, Boolean>("save")
 
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName2<CryptoKey, Error, String, Boolean> =
         MethodStringName2<CryptoKey, Error, String, Boolean>("load")
 
-    @JvmStatic
+    @JvmField
     public val isPublicOnlyName: MethodStringName0<CryptoKey, Boolean> =
         MethodStringName0<CryptoKey, Boolean>("is_public_only")
 
-    @JvmStatic
+    @JvmField
     public val saveToStringName: MethodStringName1<CryptoKey, String, Boolean> =
         MethodStringName1<CryptoKey, String, Boolean>("save_to_string")
 
-    @JvmStatic
+    @JvmField
     public val loadFromStringName: MethodStringName2<CryptoKey, Error, String, Boolean> =
         MethodStringName2<CryptoKey, Error, String, Boolean>("load_from_string")
   }

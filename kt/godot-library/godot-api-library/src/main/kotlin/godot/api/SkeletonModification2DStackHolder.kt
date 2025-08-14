@@ -17,7 +17,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This [SkeletonModification2D] holds a reference to a [SkeletonModificationStack2D], allowing you
@@ -52,12 +52,12 @@ public open class SkeletonModification2DStackHolder : SkeletonModification2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHeldModificationStackName:
         MethodStringName1<SkeletonModification2DStackHolder, Unit, SkeletonModificationStack2D?> =
         MethodStringName1<SkeletonModification2DStackHolder, Unit, SkeletonModificationStack2D?>("set_held_modification_stack")
 
-    @JvmStatic
+    @JvmField
     public val getHeldModificationStackName:
         MethodStringName0<SkeletonModification2DStackHolder, SkeletonModificationStack2D?> =
         MethodStringName0<SkeletonModification2DStackHolder, SkeletonModificationStack2D?>("get_held_modification_stack")

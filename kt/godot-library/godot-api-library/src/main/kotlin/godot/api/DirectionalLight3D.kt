@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
@@ -248,27 +248,27 @@ public open class DirectionalLight3D : Light3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShadowModeName: MethodStringName1<DirectionalLight3D, Unit, ShadowMode> =
         MethodStringName1<DirectionalLight3D, Unit, ShadowMode>("set_shadow_mode")
 
-    @JvmStatic
+    @JvmField
     public val getShadowModeName: MethodStringName0<DirectionalLight3D, ShadowMode> =
         MethodStringName0<DirectionalLight3D, ShadowMode>("get_shadow_mode")
 
-    @JvmStatic
+    @JvmField
     public val setBlendSplitsName: MethodStringName1<DirectionalLight3D, Unit, Boolean> =
         MethodStringName1<DirectionalLight3D, Unit, Boolean>("set_blend_splits")
 
-    @JvmStatic
+    @JvmField
     public val isBlendSplitsEnabledName: MethodStringName0<DirectionalLight3D, Boolean> =
         MethodStringName0<DirectionalLight3D, Boolean>("is_blend_splits_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSkyModeName: MethodStringName1<DirectionalLight3D, Unit, SkyMode> =
         MethodStringName1<DirectionalLight3D, Unit, SkyMode>("set_sky_mode")
 
-    @JvmStatic
+    @JvmField
     public val getSkyModeName: MethodStringName0<DirectionalLight3D, SkyMode> =
         MethodStringName0<DirectionalLight3D, SkyMode>("get_sky_mode")
   }

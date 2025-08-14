@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A physics joint that attaches two 3D physics bodies at a single point, allowing them to freely
@@ -81,11 +81,11 @@ public open class PinJoint3D : Joint3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setParamName: MethodStringName2<PinJoint3D, Unit, Param, Float> =
         MethodStringName2<PinJoint3D, Unit, Param, Float>("set_param")
 
-    @JvmStatic
+    @JvmField
     public val getParamName: MethodStringName1<PinJoint3D, Float, Param> =
         MethodStringName1<PinJoint3D, Float, Param>("get_param")
   }

@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A constant [Vector2], which can be used as an input node.
@@ -82,11 +82,11 @@ public open class VisualShaderNodeVec2Constant : VisualShaderNodeConstant() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantName: MethodStringName1<VisualShaderNodeVec2Constant, Unit, Vector2> =
         MethodStringName1<VisualShaderNodeVec2Constant, Unit, Vector2>("set_constant")
 
-    @JvmStatic
+    @JvmField
     public val getConstantName: MethodStringName0<VisualShaderNodeVec2Constant, Vector2> =
         MethodStringName0<VisualShaderNodeVec2Constant, Vector2>("get_constant")
   }

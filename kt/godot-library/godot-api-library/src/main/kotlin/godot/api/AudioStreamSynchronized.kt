@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is a stream that can be fitted with sub-streams, which will be played in-sync. The streams
@@ -94,28 +94,28 @@ public open class AudioStreamSynchronized : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStreamCountName: MethodStringName1<AudioStreamSynchronized, Unit, Int> =
         MethodStringName1<AudioStreamSynchronized, Unit, Int>("set_stream_count")
 
-    @JvmStatic
+    @JvmField
     public val getStreamCountName: MethodStringName0<AudioStreamSynchronized, Int> =
         MethodStringName0<AudioStreamSynchronized, Int>("get_stream_count")
 
-    @JvmStatic
+    @JvmField
     public val setSyncStreamName:
         MethodStringName2<AudioStreamSynchronized, Unit, Int, AudioStream?> =
         MethodStringName2<AudioStreamSynchronized, Unit, Int, AudioStream?>("set_sync_stream")
 
-    @JvmStatic
+    @JvmField
     public val getSyncStreamName: MethodStringName1<AudioStreamSynchronized, AudioStream?, Int> =
         MethodStringName1<AudioStreamSynchronized, AudioStream?, Int>("get_sync_stream")
 
-    @JvmStatic
+    @JvmField
     public val setSyncStreamVolumeName: MethodStringName2<AudioStreamSynchronized, Unit, Int, Float>
         = MethodStringName2<AudioStreamSynchronized, Unit, Int, Float>("set_sync_stream_volume")
 
-    @JvmStatic
+    @JvmField
     public val getSyncStreamVolumeName: MethodStringName1<AudioStreamSynchronized, Float, Int> =
         MethodStringName1<AudioStreamSynchronized, Float, Int>("get_sync_stream_volume")
 

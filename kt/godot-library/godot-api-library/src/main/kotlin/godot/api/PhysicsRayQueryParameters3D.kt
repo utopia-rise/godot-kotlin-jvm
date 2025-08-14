@@ -29,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -284,78 +285,78 @@ public open class PhysicsRayQueryParameters3D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createName:
         MethodStringName4<PhysicsRayQueryParameters3D, PhysicsRayQueryParameters3D?, Vector3, Vector3, Long, VariantArray<RID>>
         =
         MethodStringName4<PhysicsRayQueryParameters3D, PhysicsRayQueryParameters3D?, Vector3, Vector3, Long, VariantArray<RID>>("create")
 
-    @JvmStatic
+    @JvmField
     public val setFromName: MethodStringName1<PhysicsRayQueryParameters3D, Unit, Vector3> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Vector3>("set_from")
 
-    @JvmStatic
+    @JvmField
     public val getFromName: MethodStringName0<PhysicsRayQueryParameters3D, Vector3> =
         MethodStringName0<PhysicsRayQueryParameters3D, Vector3>("get_from")
 
-    @JvmStatic
+    @JvmField
     public val setToName: MethodStringName1<PhysicsRayQueryParameters3D, Unit, Vector3> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Vector3>("set_to")
 
-    @JvmStatic
+    @JvmField
     public val getToName: MethodStringName0<PhysicsRayQueryParameters3D, Vector3> =
         MethodStringName0<PhysicsRayQueryParameters3D, Vector3>("get_to")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<PhysicsRayQueryParameters3D, Unit, Long> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<PhysicsRayQueryParameters3D, Long> =
         MethodStringName0<PhysicsRayQueryParameters3D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeName:
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, VariantArray<RID>> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, VariantArray<RID>>("set_exclude")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeName: MethodStringName0<PhysicsRayQueryParameters3D, VariantArray<RID>> =
         MethodStringName0<PhysicsRayQueryParameters3D, VariantArray<RID>>("get_exclude")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithBodiesName:
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean>("set_collide_with_bodies")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithBodiesEnabledName:
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean>("is_collide_with_bodies_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithAreasName:
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean>("set_collide_with_areas")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithAreasEnabledName:
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean>("is_collide_with_areas_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHitFromInsideName: MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean>("set_hit_from_inside")
 
-    @JvmStatic
+    @JvmField
     public val isHitFromInsideEnabledName: MethodStringName0<PhysicsRayQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean>("is_hit_from_inside_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHitBackFacesName: MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsRayQueryParameters3D, Unit, Boolean>("set_hit_back_faces")
 
-    @JvmStatic
+    @JvmField
     public val isHitBackFacesEnabledName: MethodStringName0<PhysicsRayQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsRayQueryParameters3D, Boolean>("is_hit_back_faces_enabled")
 

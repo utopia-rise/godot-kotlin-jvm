@@ -32,8 +32,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A texture works by registering an image in the video hardware, which then can be used in 3D
@@ -242,40 +242,40 @@ public open class Texture2D : Texture() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<Texture2D, Int> =
         MethodStringName0<Texture2D, Int>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<Texture2D, Int> =
         MethodStringName0<Texture2D, Int>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<Texture2D, Vector2> =
         MethodStringName0<Texture2D, Vector2>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val hasAlphaName: MethodStringName0<Texture2D, Boolean> =
         MethodStringName0<Texture2D, Boolean>("has_alpha")
 
-    @JvmStatic
+    @JvmField
     public val drawName: MethodStringName4<Texture2D, Unit, RID, Vector2, Color, Boolean> =
         MethodStringName4<Texture2D, Unit, RID, Vector2, Color, Boolean>("draw")
 
-    @JvmStatic
+    @JvmField
     public val drawRectName: MethodStringName5<Texture2D, Unit, RID, Rect2, Boolean, Color, Boolean>
         = MethodStringName5<Texture2D, Unit, RID, Rect2, Boolean, Color, Boolean>("draw_rect")
 
-    @JvmStatic
+    @JvmField
     public val drawRectRegionName:
         MethodStringName6<Texture2D, Unit, RID, Rect2, Rect2, Color, Boolean, Boolean> =
         MethodStringName6<Texture2D, Unit, RID, Rect2, Rect2, Color, Boolean, Boolean>("draw_rect_region")
 
-    @JvmStatic
+    @JvmField
     public val getImageName: MethodStringName0<Texture2D, Image?> =
         MethodStringName0<Texture2D, Image?>("get_image")
 
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<Texture2D, Resource?> =
         MethodStringName0<Texture2D, Resource?>("create_placeholder")
   }

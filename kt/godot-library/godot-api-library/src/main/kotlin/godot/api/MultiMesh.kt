@@ -34,8 +34,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * MultiMesh provides low-level mesh instancing. Drawing thousands of [MeshInstance3D] nodes can be
@@ -520,121 +520,121 @@ public open class MultiMesh : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<MultiMesh, Unit, Mesh?> =
         MethodStringName1<MultiMesh, Unit, Mesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<MultiMesh, Mesh?> =
         MethodStringName0<MultiMesh, Mesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setUseColorsName: MethodStringName1<MultiMesh, Unit, Boolean> =
         MethodStringName1<MultiMesh, Unit, Boolean>("set_use_colors")
 
-    @JvmStatic
+    @JvmField
     public val isUsingColorsName: MethodStringName0<MultiMesh, Boolean> =
         MethodStringName0<MultiMesh, Boolean>("is_using_colors")
 
-    @JvmStatic
+    @JvmField
     public val setUseCustomDataName: MethodStringName1<MultiMesh, Unit, Boolean> =
         MethodStringName1<MultiMesh, Unit, Boolean>("set_use_custom_data")
 
-    @JvmStatic
+    @JvmField
     public val isUsingCustomDataName: MethodStringName0<MultiMesh, Boolean> =
         MethodStringName0<MultiMesh, Boolean>("is_using_custom_data")
 
-    @JvmStatic
+    @JvmField
     public val setTransformFormatName: MethodStringName1<MultiMesh, Unit, TransformFormat> =
         MethodStringName1<MultiMesh, Unit, TransformFormat>("set_transform_format")
 
-    @JvmStatic
+    @JvmField
     public val getTransformFormatName: MethodStringName0<MultiMesh, TransformFormat> =
         MethodStringName0<MultiMesh, TransformFormat>("get_transform_format")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceCountName: MethodStringName1<MultiMesh, Unit, Int> =
         MethodStringName1<MultiMesh, Unit, Int>("set_instance_count")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceCountName: MethodStringName0<MultiMesh, Int> =
         MethodStringName0<MultiMesh, Int>("get_instance_count")
 
-    @JvmStatic
+    @JvmField
     public val setVisibleInstanceCountName: MethodStringName1<MultiMesh, Unit, Int> =
         MethodStringName1<MultiMesh, Unit, Int>("set_visible_instance_count")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleInstanceCountName: MethodStringName0<MultiMesh, Int> =
         MethodStringName0<MultiMesh, Int>("get_visible_instance_count")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsInterpolationQualityName:
         MethodStringName1<MultiMesh, Unit, PhysicsInterpolationQuality> =
         MethodStringName1<MultiMesh, Unit, PhysicsInterpolationQuality>("set_physics_interpolation_quality")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsInterpolationQualityName:
         MethodStringName0<MultiMesh, PhysicsInterpolationQuality> =
         MethodStringName0<MultiMesh, PhysicsInterpolationQuality>("get_physics_interpolation_quality")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceTransformName: MethodStringName2<MultiMesh, Unit, Int, Transform3D> =
         MethodStringName2<MultiMesh, Unit, Int, Transform3D>("set_instance_transform")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceTransform2dName: MethodStringName2<MultiMesh, Unit, Int, Transform2D> =
         MethodStringName2<MultiMesh, Unit, Int, Transform2D>("set_instance_transform_2d")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceTransformName: MethodStringName1<MultiMesh, Transform3D, Int> =
         MethodStringName1<MultiMesh, Transform3D, Int>("get_instance_transform")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceTransform2dName: MethodStringName1<MultiMesh, Transform2D, Int> =
         MethodStringName1<MultiMesh, Transform2D, Int>("get_instance_transform_2d")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceColorName: MethodStringName2<MultiMesh, Unit, Int, Color> =
         MethodStringName2<MultiMesh, Unit, Int, Color>("set_instance_color")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceColorName: MethodStringName1<MultiMesh, Color, Int> =
         MethodStringName1<MultiMesh, Color, Int>("get_instance_color")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceCustomDataName: MethodStringName2<MultiMesh, Unit, Int, Color> =
         MethodStringName2<MultiMesh, Unit, Int, Color>("set_instance_custom_data")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceCustomDataName: MethodStringName1<MultiMesh, Color, Int> =
         MethodStringName1<MultiMesh, Color, Int>("get_instance_custom_data")
 
-    @JvmStatic
+    @JvmField
     public val resetInstancePhysicsInterpolationName: MethodStringName1<MultiMesh, Unit, Int> =
         MethodStringName1<MultiMesh, Unit, Int>("reset_instance_physics_interpolation")
 
-    @JvmStatic
+    @JvmField
     public val setCustomAabbName: MethodStringName1<MultiMesh, Unit, AABB> =
         MethodStringName1<MultiMesh, Unit, AABB>("set_custom_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getCustomAabbName: MethodStringName0<MultiMesh, AABB> =
         MethodStringName0<MultiMesh, AABB>("get_custom_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getAabbName: MethodStringName0<MultiMesh, AABB> =
         MethodStringName0<MultiMesh, AABB>("get_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getBufferName: MethodStringName0<MultiMesh, PackedFloat32Array> =
         MethodStringName0<MultiMesh, PackedFloat32Array>("get_buffer")
 
-    @JvmStatic
+    @JvmField
     public val setBufferName: MethodStringName1<MultiMesh, Unit, PackedFloat32Array> =
         MethodStringName1<MultiMesh, Unit, PackedFloat32Array>("set_buffer")
 
-    @JvmStatic
+    @JvmField
     public val setBufferInterpolatedName:
         MethodStringName2<MultiMesh, Unit, PackedFloat32Array, PackedFloat32Array> =
         MethodStringName2<MultiMesh, Unit, PackedFloat32Array, PackedFloat32Array>("set_buffer_interpolated")

@@ -22,8 +22,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform vec3` in the shader language.
@@ -106,20 +106,20 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeVec3Parameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeVec3Parameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeVec3Parameter, Boolean>
         = MethodStringName0<VisualShaderNodeVec3Parameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName: MethodStringName1<VisualShaderNodeVec3Parameter, Unit, Vector3>
         = MethodStringName1<VisualShaderNodeVec3Parameter, Unit, Vector3>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeVec3Parameter, Vector3> =
         MethodStringName0<VisualShaderNodeVec3Parameter, Vector3>("get_default_value")
   }

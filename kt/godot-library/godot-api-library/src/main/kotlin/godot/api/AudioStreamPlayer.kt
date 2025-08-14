@@ -29,9 +29,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The [AudioStreamPlayer] node plays an audio stream non-positionally. It is ideal for user
@@ -409,116 +409,116 @@ public open class AudioStreamPlayer : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStreamName: MethodStringName1<AudioStreamPlayer, Unit, AudioStream?> =
         MethodStringName1<AudioStreamPlayer, Unit, AudioStream?>("set_stream")
 
-    @JvmStatic
+    @JvmField
     public val getStreamName: MethodStringName0<AudioStreamPlayer, AudioStream?> =
         MethodStringName0<AudioStreamPlayer, AudioStream?>("get_stream")
 
-    @JvmStatic
+    @JvmField
     public val setVolumeDbName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
         MethodStringName1<AudioStreamPlayer, Unit, Float>("set_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeDbName: MethodStringName0<AudioStreamPlayer, Float> =
         MethodStringName0<AudioStreamPlayer, Float>("get_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val setVolumeLinearName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
         MethodStringName1<AudioStreamPlayer, Unit, Float>("set_volume_linear")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeLinearName: MethodStringName0<AudioStreamPlayer, Float> =
         MethodStringName0<AudioStreamPlayer, Float>("get_volume_linear")
 
-    @JvmStatic
+    @JvmField
     public val setPitchScaleName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
         MethodStringName1<AudioStreamPlayer, Unit, Float>("set_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPitchScaleName: MethodStringName0<AudioStreamPlayer, Float> =
         MethodStringName0<AudioStreamPlayer, Float>("get_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val playName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
         MethodStringName1<AudioStreamPlayer, Unit, Float>("play")
 
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<AudioStreamPlayer, Unit, Float> =
         MethodStringName1<AudioStreamPlayer, Unit, Float>("seek")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<AudioStreamPlayer, Unit> =
         MethodStringName0<AudioStreamPlayer, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val isPlayingName: MethodStringName0<AudioStreamPlayer, Boolean> =
         MethodStringName0<AudioStreamPlayer, Boolean>("is_playing")
 
-    @JvmStatic
+    @JvmField
     public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayer, Float> =
         MethodStringName0<AudioStreamPlayer, Float>("get_playback_position")
 
-    @JvmStatic
+    @JvmField
     public val setBusName: MethodStringName1<AudioStreamPlayer, Unit, StringName> =
         MethodStringName1<AudioStreamPlayer, Unit, StringName>("set_bus")
 
-    @JvmStatic
+    @JvmField
     public val getBusName: MethodStringName0<AudioStreamPlayer, StringName> =
         MethodStringName0<AudioStreamPlayer, StringName>("get_bus")
 
-    @JvmStatic
+    @JvmField
     public val setAutoplayName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_autoplay")
 
-    @JvmStatic
+    @JvmField
     public val isAutoplayEnabledName: MethodStringName0<AudioStreamPlayer, Boolean> =
         MethodStringName0<AudioStreamPlayer, Boolean>("is_autoplay_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setMixTargetName: MethodStringName1<AudioStreamPlayer, Unit, MixTarget> =
         MethodStringName1<AudioStreamPlayer, Unit, MixTarget>("set_mix_target")
 
-    @JvmStatic
+    @JvmField
     public val getMixTargetName: MethodStringName0<AudioStreamPlayer, MixTarget> =
         MethodStringName0<AudioStreamPlayer, MixTarget>("get_mix_target")
 
-    @JvmStatic
+    @JvmField
     public val setPlayingName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_playing")
 
-    @JvmStatic
+    @JvmField
     public val setStreamPausedName: MethodStringName1<AudioStreamPlayer, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer, Unit, Boolean>("set_stream_paused")
 
-    @JvmStatic
+    @JvmField
     public val getStreamPausedName: MethodStringName0<AudioStreamPlayer, Boolean> =
         MethodStringName0<AudioStreamPlayer, Boolean>("get_stream_paused")
 
-    @JvmStatic
+    @JvmField
     public val setMaxPolyphonyName: MethodStringName1<AudioStreamPlayer, Unit, Int> =
         MethodStringName1<AudioStreamPlayer, Unit, Int>("set_max_polyphony")
 
-    @JvmStatic
+    @JvmField
     public val getMaxPolyphonyName: MethodStringName0<AudioStreamPlayer, Int> =
         MethodStringName0<AudioStreamPlayer, Int>("get_max_polyphony")
 
-    @JvmStatic
+    @JvmField
     public val hasStreamPlaybackName: MethodStringName0<AudioStreamPlayer, Boolean> =
         MethodStringName0<AudioStreamPlayer, Boolean>("has_stream_playback")
 
-    @JvmStatic
+    @JvmField
     public val getStreamPlaybackName: MethodStringName0<AudioStreamPlayer, AudioStreamPlayback?> =
         MethodStringName0<AudioStreamPlayer, AudioStreamPlayback?>("get_stream_playback")
 
-    @JvmStatic
+    @JvmField
     public val setPlaybackTypeName:
         MethodStringName1<AudioStreamPlayer, Unit, AudioServer.PlaybackType> =
         MethodStringName1<AudioStreamPlayer, Unit, AudioServer.PlaybackType>("set_playback_type")
 
-    @JvmStatic
+    @JvmField
     public val getPlaybackTypeName: MethodStringName0<AudioStreamPlayer, AudioServer.PlaybackType> =
         MethodStringName0<AudioStreamPlayer, AudioServer.PlaybackType>("get_playback_type")
   }

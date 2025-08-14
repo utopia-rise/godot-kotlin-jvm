@@ -28,9 +28,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [OptionButton] is a type of button that brings up a dropdown with selectable items when pressed.
@@ -406,139 +406,139 @@ public open class OptionButton : Button() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addItemName: MethodStringName2<OptionButton, Unit, String, Int> =
         MethodStringName2<OptionButton, Unit, String, Int>("add_item")
 
-    @JvmStatic
+    @JvmField
     public val addIconItemName: MethodStringName3<OptionButton, Unit, Texture2D?, String, Int> =
         MethodStringName3<OptionButton, Unit, Texture2D?, String, Int>("add_icon_item")
 
-    @JvmStatic
+    @JvmField
     public val setItemTextName: MethodStringName2<OptionButton, Unit, Int, String> =
         MethodStringName2<OptionButton, Unit, Int, String>("set_item_text")
 
-    @JvmStatic
+    @JvmField
     public val setItemIconName: MethodStringName2<OptionButton, Unit, Int, Texture2D?> =
         MethodStringName2<OptionButton, Unit, Int, Texture2D?>("set_item_icon")
 
-    @JvmStatic
+    @JvmField
     public val setItemDisabledName: MethodStringName2<OptionButton, Unit, Int, Boolean> =
         MethodStringName2<OptionButton, Unit, Int, Boolean>("set_item_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setItemIdName: MethodStringName2<OptionButton, Unit, Int, Int> =
         MethodStringName2<OptionButton, Unit, Int, Int>("set_item_id")
 
-    @JvmStatic
+    @JvmField
     public val setItemMetadataName: MethodStringName2<OptionButton, Unit, Int, Any?> =
         MethodStringName2<OptionButton, Unit, Int, Any?>("set_item_metadata")
 
-    @JvmStatic
+    @JvmField
     public val setItemTooltipName: MethodStringName2<OptionButton, Unit, Int, String> =
         MethodStringName2<OptionButton, Unit, Int, String>("set_item_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val getItemTextName: MethodStringName1<OptionButton, String, Int> =
         MethodStringName1<OptionButton, String, Int>("get_item_text")
 
-    @JvmStatic
+    @JvmField
     public val getItemIconName: MethodStringName1<OptionButton, Texture2D?, Int> =
         MethodStringName1<OptionButton, Texture2D?, Int>("get_item_icon")
 
-    @JvmStatic
+    @JvmField
     public val getItemIdName: MethodStringName1<OptionButton, Int, Int> =
         MethodStringName1<OptionButton, Int, Int>("get_item_id")
 
-    @JvmStatic
+    @JvmField
     public val getItemIndexName: MethodStringName1<OptionButton, Int, Int> =
         MethodStringName1<OptionButton, Int, Int>("get_item_index")
 
-    @JvmStatic
+    @JvmField
     public val getItemMetadataName: MethodStringName1<OptionButton, Any?, Int> =
         MethodStringName1<OptionButton, Any?, Int>("get_item_metadata")
 
-    @JvmStatic
+    @JvmField
     public val getItemTooltipName: MethodStringName1<OptionButton, String, Int> =
         MethodStringName1<OptionButton, String, Int>("get_item_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val isItemDisabledName: MethodStringName1<OptionButton, Boolean, Int> =
         MethodStringName1<OptionButton, Boolean, Int>("is_item_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isItemSeparatorName: MethodStringName1<OptionButton, Boolean, Int> =
         MethodStringName1<OptionButton, Boolean, Int>("is_item_separator")
 
-    @JvmStatic
+    @JvmField
     public val addSeparatorName: MethodStringName1<OptionButton, Unit, String> =
         MethodStringName1<OptionButton, Unit, String>("add_separator")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<OptionButton, Unit> =
         MethodStringName0<OptionButton, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val selectName: MethodStringName1<OptionButton, Unit, Int> =
         MethodStringName1<OptionButton, Unit, Int>("select")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedName: MethodStringName0<OptionButton, Int> =
         MethodStringName0<OptionButton, Int>("get_selected")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedIdName: MethodStringName0<OptionButton, Int> =
         MethodStringName0<OptionButton, Int>("get_selected_id")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedMetadataName: MethodStringName0<OptionButton, Any?> =
         MethodStringName0<OptionButton, Any?>("get_selected_metadata")
 
-    @JvmStatic
+    @JvmField
     public val removeItemName: MethodStringName1<OptionButton, Unit, Int> =
         MethodStringName1<OptionButton, Unit, Int>("remove_item")
 
-    @JvmStatic
+    @JvmField
     public val getPopupName: MethodStringName0<OptionButton, PopupMenu?> =
         MethodStringName0<OptionButton, PopupMenu?>("get_popup")
 
-    @JvmStatic
+    @JvmField
     public val showPopupName: MethodStringName0<OptionButton, Unit> =
         MethodStringName0<OptionButton, Unit>("show_popup")
 
-    @JvmStatic
+    @JvmField
     public val setItemCountName: MethodStringName1<OptionButton, Unit, Int> =
         MethodStringName1<OptionButton, Unit, Int>("set_item_count")
 
-    @JvmStatic
+    @JvmField
     public val getItemCountName: MethodStringName0<OptionButton, Int> =
         MethodStringName0<OptionButton, Int>("get_item_count")
 
-    @JvmStatic
+    @JvmField
     public val hasSelectableItemsName: MethodStringName0<OptionButton, Boolean> =
         MethodStringName0<OptionButton, Boolean>("has_selectable_items")
 
-    @JvmStatic
+    @JvmField
     public val getSelectableItemName: MethodStringName1<OptionButton, Int, Boolean> =
         MethodStringName1<OptionButton, Int, Boolean>("get_selectable_item")
 
-    @JvmStatic
+    @JvmField
     public val setFitToLongestItemName: MethodStringName1<OptionButton, Unit, Boolean> =
         MethodStringName1<OptionButton, Unit, Boolean>("set_fit_to_longest_item")
 
-    @JvmStatic
+    @JvmField
     public val isFitToLongestItemName: MethodStringName0<OptionButton, Boolean> =
         MethodStringName0<OptionButton, Boolean>("is_fit_to_longest_item")
 
-    @JvmStatic
+    @JvmField
     public val setAllowReselectName: MethodStringName1<OptionButton, Unit, Boolean> =
         MethodStringName1<OptionButton, Unit, Boolean>("set_allow_reselect")
 
-    @JvmStatic
+    @JvmField
     public val getAllowReselectName: MethodStringName0<OptionButton, Boolean> =
         MethodStringName0<OptionButton, Boolean>("get_allow_reselect")
 
-    @JvmStatic
+    @JvmField
     public val setDisableShortcutsName: MethodStringName1<OptionButton, Unit, Boolean> =
         MethodStringName1<OptionButton, Unit, Boolean>("set_disable_shortcuts")
   }

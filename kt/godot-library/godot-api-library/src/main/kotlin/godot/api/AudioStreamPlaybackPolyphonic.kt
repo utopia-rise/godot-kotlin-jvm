@@ -28,8 +28,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Playback instance for [AudioStreamPolyphonic]. After setting the `stream` property of
@@ -133,27 +133,27 @@ public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioSt
       playStream(stream, fromOffset, volumeDb, pitchScale, playbackType, bus.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val playStreamName:
         MethodStringName6<AudioStreamPlaybackPolyphonic, Long, AudioStream?, Float, Float, Float, AudioServer.PlaybackType, StringName>
         =
         MethodStringName6<AudioStreamPlaybackPolyphonic, Long, AudioStream?, Float, Float, Float, AudioServer.PlaybackType, StringName>("play_stream")
 
-    @JvmStatic
+    @JvmField
     public val setStreamVolumeName:
         MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float> =
         MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float>("set_stream_volume")
 
-    @JvmStatic
+    @JvmField
     public val setStreamPitchScaleName:
         MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float> =
         MethodStringName2<AudioStreamPlaybackPolyphonic, Unit, Long, Float>("set_stream_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val isStreamPlayingName: MethodStringName1<AudioStreamPlaybackPolyphonic, Boolean, Long>
         = MethodStringName1<AudioStreamPlaybackPolyphonic, Boolean, Long>("is_stream_playing")
 
-    @JvmStatic
+    @JvmField
     public val stopStreamName: MethodStringName1<AudioStreamPlaybackPolyphonic, Unit, Long> =
         MethodStringName1<AudioStreamPlaybackPolyphonic, Unit, Long>("stop_stream")
 

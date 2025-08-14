@@ -22,7 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * By inheriting this class you can create a custom [VisualShader] script addon which will be
@@ -299,7 +299,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getOptionIndexName: MethodStringName1<VisualShaderNodeCustom, Int, Int> =
         MethodStringName1<VisualShaderNodeCustom, Int, Int>("get_option_index")
   }

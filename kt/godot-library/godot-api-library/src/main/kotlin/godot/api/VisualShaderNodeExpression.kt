@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Custom Godot Shading Language expression, with a custom number of input and output ports.
@@ -59,11 +59,11 @@ public open class VisualShaderNodeExpression : VisualShaderNodeGroupBase() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setExpressionName: MethodStringName1<VisualShaderNodeExpression, Unit, String> =
         MethodStringName1<VisualShaderNodeExpression, Unit, String>("set_expression")
 
-    @JvmStatic
+    @JvmField
     public val getExpressionName: MethodStringName0<VisualShaderNodeExpression, String> =
         MethodStringName0<VisualShaderNodeExpression, String>("get_expression")
   }

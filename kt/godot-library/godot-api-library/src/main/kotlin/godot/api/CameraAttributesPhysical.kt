@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [CameraAttributesPhysical] is used to set rendering settings based on a physically-based camera's
@@ -261,74 +261,74 @@ public open class CameraAttributesPhysical : CameraAttributes() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setApertureName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_aperture")
 
-    @JvmStatic
+    @JvmField
     public val getApertureName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_aperture")
 
-    @JvmStatic
+    @JvmField
     public val setShutterSpeedName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_shutter_speed")
 
-    @JvmStatic
+    @JvmField
     public val getShutterSpeedName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_shutter_speed")
 
-    @JvmStatic
+    @JvmField
     public val setFocalLengthName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_focal_length")
 
-    @JvmStatic
+    @JvmField
     public val getFocalLengthName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_focal_length")
 
-    @JvmStatic
+    @JvmField
     public val setFocusDistanceName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_focus_distance")
 
-    @JvmStatic
+    @JvmField
     public val getFocusDistanceName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_focus_distance")
 
-    @JvmStatic
+    @JvmField
     public val setNearName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_near")
 
-    @JvmStatic
+    @JvmField
     public val getNearName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_near")
 
-    @JvmStatic
+    @JvmField
     public val setFarName: MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_far")
 
-    @JvmStatic
+    @JvmField
     public val getFarName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_far")
 
-    @JvmStatic
+    @JvmField
     public val getFovName: MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_fov")
 
-    @JvmStatic
+    @JvmField
     public val setAutoExposureMaxExposureValueName:
         MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_auto_exposure_max_exposure_value")
 
-    @JvmStatic
+    @JvmField
     public val getAutoExposureMaxExposureValueName:
         MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_auto_exposure_max_exposure_value")
 
-    @JvmStatic
+    @JvmField
     public val setAutoExposureMinExposureValueName:
         MethodStringName1<CameraAttributesPhysical, Unit, Float> =
         MethodStringName1<CameraAttributesPhysical, Unit, Float>("set_auto_exposure_min_exposure_value")
 
-    @JvmStatic
+    @JvmField
     public val getAutoExposureMinExposureValueName:
         MethodStringName0<CameraAttributesPhysical, Float> =
         MethodStringName0<CameraAttributesPhysical, Float>("get_auto_exposure_min_exposure_value")

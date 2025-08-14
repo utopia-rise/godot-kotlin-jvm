@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Determines how much of an audio signal is sent to the left and right buses.
@@ -54,11 +54,11 @@ public open class AudioEffectPanner : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPanName: MethodStringName1<AudioEffectPanner, Unit, Float> =
         MethodStringName1<AudioEffectPanner, Unit, Float>("set_pan")
 
-    @JvmStatic
+    @JvmField
     public val getPanName: MethodStringName0<AudioEffectPanner, Float> =
         MethodStringName0<AudioEffectPanner, Float>("get_pan")
   }

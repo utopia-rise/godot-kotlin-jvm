@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class GLTFTexture : Resource() {
@@ -74,19 +74,19 @@ public open class GLTFTexture : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getSrcImageName: MethodStringName0<GLTFTexture, Int> =
         MethodStringName0<GLTFTexture, Int>("get_src_image")
 
-    @JvmStatic
+    @JvmField
     public val setSrcImageName: MethodStringName1<GLTFTexture, Unit, Int> =
         MethodStringName1<GLTFTexture, Unit, Int>("set_src_image")
 
-    @JvmStatic
+    @JvmField
     public val getSamplerName: MethodStringName0<GLTFTexture, Int> =
         MethodStringName0<GLTFTexture, Int>("get_sampler")
 
-    @JvmStatic
+    @JvmField
     public val setSamplerName: MethodStringName1<GLTFTexture, Unit, Int> =
         MethodStringName1<GLTFTexture, Unit, Int>("set_sampler")
   }

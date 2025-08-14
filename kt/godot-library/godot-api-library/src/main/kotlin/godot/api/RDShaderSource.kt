@@ -21,8 +21,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Shader source code in text form.
@@ -139,22 +139,22 @@ public open class RDShaderSource : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStageSourceName:
         MethodStringName2<RDShaderSource, Unit, RenderingDevice.ShaderStage, String> =
         MethodStringName2<RDShaderSource, Unit, RenderingDevice.ShaderStage, String>("set_stage_source")
 
-    @JvmStatic
+    @JvmField
     public val getStageSourceName:
         MethodStringName1<RDShaderSource, String, RenderingDevice.ShaderStage> =
         MethodStringName1<RDShaderSource, String, RenderingDevice.ShaderStage>("get_stage_source")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName:
         MethodStringName1<RDShaderSource, Unit, RenderingDevice.ShaderLanguage> =
         MethodStringName1<RDShaderSource, Unit, RenderingDevice.ShaderLanguage>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<RDShaderSource, RenderingDevice.ShaderLanguage> =
         MethodStringName0<RDShaderSource, RenderingDevice.ShaderLanguage>("get_language")
   }

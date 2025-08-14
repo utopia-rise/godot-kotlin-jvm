@@ -25,7 +25,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for audio streams. Audio streams are used for sound effects and music playback, and
@@ -178,27 +178,27 @@ public open class AudioStream : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<AudioStream, Double> =
         MethodStringName0<AudioStream, Double>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val isMonophonicName: MethodStringName0<AudioStream, Boolean> =
         MethodStringName0<AudioStream, Boolean>("is_monophonic")
 
-    @JvmStatic
+    @JvmField
     public val instantiatePlaybackName: MethodStringName0<AudioStream, AudioStreamPlayback?> =
         MethodStringName0<AudioStream, AudioStreamPlayback?>("instantiate_playback")
 
-    @JvmStatic
+    @JvmField
     public val canBeSampledName: MethodStringName0<AudioStream, Boolean> =
         MethodStringName0<AudioStream, Boolean>("can_be_sampled")
 
-    @JvmStatic
+    @JvmField
     public val generateSampleName: MethodStringName0<AudioStream, AudioSample?> =
         MethodStringName0<AudioStream, AudioSample?>("generate_sample")
 
-    @JvmStatic
+    @JvmField
     public val isMetaStreamName: MethodStringName0<AudioStream, Boolean> =
         MethodStringName0<AudioStream, Boolean>("is_meta_stream")
   }

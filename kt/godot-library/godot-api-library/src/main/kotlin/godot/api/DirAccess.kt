@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -455,159 +456,159 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val openName: MethodStringName1<DirAccess, DirAccess?, String> =
         MethodStringName1<DirAccess, DirAccess?, String>("open")
 
-    @JvmStatic
+    @JvmField
     public val getOpenErrorName: MethodStringName0<DirAccess, Error> =
         MethodStringName0<DirAccess, Error>("get_open_error")
 
-    @JvmStatic
+    @JvmField
     public val createTempName: MethodStringName2<DirAccess, DirAccess?, String, Boolean> =
         MethodStringName2<DirAccess, DirAccess?, String, Boolean>("create_temp")
 
-    @JvmStatic
+    @JvmField
     public val listDirBeginName: MethodStringName0<DirAccess, Error> =
         MethodStringName0<DirAccess, Error>("list_dir_begin")
 
-    @JvmStatic
+    @JvmField
     public val getNextName: MethodStringName0<DirAccess, String> =
         MethodStringName0<DirAccess, String>("get_next")
 
-    @JvmStatic
+    @JvmField
     public val currentIsDirName: MethodStringName0<DirAccess, Boolean> =
         MethodStringName0<DirAccess, Boolean>("current_is_dir")
 
-    @JvmStatic
+    @JvmField
     public val listDirEndName: MethodStringName0<DirAccess, Unit> =
         MethodStringName0<DirAccess, Unit>("list_dir_end")
 
-    @JvmStatic
+    @JvmField
     public val getFilesName: MethodStringName0<DirAccess, PackedStringArray> =
         MethodStringName0<DirAccess, PackedStringArray>("get_files")
 
-    @JvmStatic
+    @JvmField
     public val getFilesAtName: MethodStringName1<DirAccess, PackedStringArray, String> =
         MethodStringName1<DirAccess, PackedStringArray, String>("get_files_at")
 
-    @JvmStatic
+    @JvmField
     public val getDirectoriesName: MethodStringName0<DirAccess, PackedStringArray> =
         MethodStringName0<DirAccess, PackedStringArray>("get_directories")
 
-    @JvmStatic
+    @JvmField
     public val getDirectoriesAtName: MethodStringName1<DirAccess, PackedStringArray, String> =
         MethodStringName1<DirAccess, PackedStringArray, String>("get_directories_at")
 
-    @JvmStatic
+    @JvmField
     public val getDriveCountName: MethodStringName0<DirAccess, Int> =
         MethodStringName0<DirAccess, Int>("get_drive_count")
 
-    @JvmStatic
+    @JvmField
     public val getDriveNameName: MethodStringName1<DirAccess, String, Int> =
         MethodStringName1<DirAccess, String, Int>("get_drive_name")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentDriveName: MethodStringName0<DirAccess, Int> =
         MethodStringName0<DirAccess, Int>("get_current_drive")
 
-    @JvmStatic
+    @JvmField
     public val changeDirName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("change_dir")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentDirName: MethodStringName1<DirAccess, String, Boolean> =
         MethodStringName1<DirAccess, String, Boolean>("get_current_dir")
 
-    @JvmStatic
+    @JvmField
     public val makeDirName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("make_dir")
 
-    @JvmStatic
+    @JvmField
     public val makeDirAbsoluteName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("make_dir_absolute")
 
-    @JvmStatic
+    @JvmField
     public val makeDirRecursiveName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("make_dir_recursive")
 
-    @JvmStatic
+    @JvmField
     public val makeDirRecursiveAbsoluteName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("make_dir_recursive_absolute")
 
-    @JvmStatic
+    @JvmField
     public val fileExistsName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("file_exists")
 
-    @JvmStatic
+    @JvmField
     public val dirExistsName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("dir_exists")
 
-    @JvmStatic
+    @JvmField
     public val dirExistsAbsoluteName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("dir_exists_absolute")
 
-    @JvmStatic
+    @JvmField
     public val getSpaceLeftName: MethodStringName0<DirAccess, Long> =
         MethodStringName0<DirAccess, Long>("get_space_left")
 
-    @JvmStatic
+    @JvmField
     public val copyName: MethodStringName3<DirAccess, Error, String, String, Int> =
         MethodStringName3<DirAccess, Error, String, String, Int>("copy")
 
-    @JvmStatic
+    @JvmField
     public val copyAbsoluteName: MethodStringName3<DirAccess, Error, String, String, Int> =
         MethodStringName3<DirAccess, Error, String, String, Int>("copy_absolute")
 
-    @JvmStatic
+    @JvmField
     public val renameName: MethodStringName2<DirAccess, Error, String, String> =
         MethodStringName2<DirAccess, Error, String, String>("rename")
 
-    @JvmStatic
+    @JvmField
     public val renameAbsoluteName: MethodStringName2<DirAccess, Error, String, String> =
         MethodStringName2<DirAccess, Error, String, String>("rename_absolute")
 
-    @JvmStatic
+    @JvmField
     public val removeName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("remove")
 
-    @JvmStatic
+    @JvmField
     public val removeAbsoluteName: MethodStringName1<DirAccess, Error, String> =
         MethodStringName1<DirAccess, Error, String>("remove_absolute")
 
-    @JvmStatic
+    @JvmField
     public val isLinkName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("is_link")
 
-    @JvmStatic
+    @JvmField
     public val readLinkName: MethodStringName1<DirAccess, String, String> =
         MethodStringName1<DirAccess, String, String>("read_link")
 
-    @JvmStatic
+    @JvmField
     public val createLinkName: MethodStringName2<DirAccess, Error, String, String> =
         MethodStringName2<DirAccess, Error, String, String>("create_link")
 
-    @JvmStatic
+    @JvmField
     public val isBundleName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("is_bundle")
 
-    @JvmStatic
+    @JvmField
     public val setIncludeNavigationalName: MethodStringName1<DirAccess, Unit, Boolean> =
         MethodStringName1<DirAccess, Unit, Boolean>("set_include_navigational")
 
-    @JvmStatic
+    @JvmField
     public val getIncludeNavigationalName: MethodStringName0<DirAccess, Boolean> =
         MethodStringName0<DirAccess, Boolean>("get_include_navigational")
 
-    @JvmStatic
+    @JvmField
     public val setIncludeHiddenName: MethodStringName1<DirAccess, Unit, Boolean> =
         MethodStringName1<DirAccess, Unit, Boolean>("set_include_hidden")
 
-    @JvmStatic
+    @JvmField
     public val getIncludeHiddenName: MethodStringName0<DirAccess, Boolean> =
         MethodStringName0<DirAccess, Boolean>("get_include_hidden")
 
-    @JvmStatic
+    @JvmField
     public val isCaseSensitiveName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("is_case_sensitive")
 

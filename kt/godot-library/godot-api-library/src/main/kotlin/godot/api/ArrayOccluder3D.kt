@@ -23,8 +23,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion
@@ -197,16 +197,16 @@ public open class ArrayOccluder3D : Occluder3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setArraysName:
         MethodStringName2<ArrayOccluder3D, Unit, PackedVector3Array, PackedInt32Array> =
         MethodStringName2<ArrayOccluder3D, Unit, PackedVector3Array, PackedInt32Array>("set_arrays")
 
-    @JvmStatic
+    @JvmField
     public val setVerticesName: MethodStringName1<ArrayOccluder3D, Unit, PackedVector3Array> =
         MethodStringName1<ArrayOccluder3D, Unit, PackedVector3Array>("set_vertices")
 
-    @JvmStatic
+    @JvmField
     public val setIndicesName: MethodStringName1<ArrayOccluder3D, Unit, PackedInt32Array> =
         MethodStringName1<ArrayOccluder3D, Unit, PackedInt32Array>("set_indices")
   }

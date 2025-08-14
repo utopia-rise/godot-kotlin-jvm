@@ -22,8 +22,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A ParallaxBackground uses one or more [ParallaxLayer] child nodes to create a parallax effect.
@@ -319,51 +319,51 @@ public open class ParallaxBackground : CanvasLayer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setScrollOffsetName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
         MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val getScrollOffsetName: MethodStringName0<ParallaxBackground, Vector2> =
         MethodStringName0<ParallaxBackground, Vector2>("get_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val setScrollBaseOffsetName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
         MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_base_offset")
 
-    @JvmStatic
+    @JvmField
     public val getScrollBaseOffsetName: MethodStringName0<ParallaxBackground, Vector2> =
         MethodStringName0<ParallaxBackground, Vector2>("get_scroll_base_offset")
 
-    @JvmStatic
+    @JvmField
     public val setScrollBaseScaleName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
         MethodStringName1<ParallaxBackground, Unit, Vector2>("set_scroll_base_scale")
 
-    @JvmStatic
+    @JvmField
     public val getScrollBaseScaleName: MethodStringName0<ParallaxBackground, Vector2> =
         MethodStringName0<ParallaxBackground, Vector2>("get_scroll_base_scale")
 
-    @JvmStatic
+    @JvmField
     public val setLimitBeginName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
         MethodStringName1<ParallaxBackground, Unit, Vector2>("set_limit_begin")
 
-    @JvmStatic
+    @JvmField
     public val getLimitBeginName: MethodStringName0<ParallaxBackground, Vector2> =
         MethodStringName0<ParallaxBackground, Vector2>("get_limit_begin")
 
-    @JvmStatic
+    @JvmField
     public val setLimitEndName: MethodStringName1<ParallaxBackground, Unit, Vector2> =
         MethodStringName1<ParallaxBackground, Unit, Vector2>("set_limit_end")
 
-    @JvmStatic
+    @JvmField
     public val getLimitEndName: MethodStringName0<ParallaxBackground, Vector2> =
         MethodStringName0<ParallaxBackground, Vector2>("get_limit_end")
 
-    @JvmStatic
+    @JvmField
     public val setIgnoreCameraZoomName: MethodStringName1<ParallaxBackground, Unit, Boolean> =
         MethodStringName1<ParallaxBackground, Unit, Boolean>("set_ignore_camera_zoom")
 
-    @JvmStatic
+    @JvmField
     public val isIgnoreCameraZoomName: MethodStringName0<ParallaxBackground, Boolean> =
         MethodStringName0<ParallaxBackground, Boolean>("is_ignore_camera_zoom")
   }

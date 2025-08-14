@@ -21,8 +21,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class is intended to be overridden by video decoder extensions with custom implementations
@@ -148,7 +148,7 @@ public open class VideoStreamPlayback : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val mixAudioName:
         MethodStringName3<VideoStreamPlayback, Int, Int, PackedFloat32Array, Int> =
         MethodStringName3<VideoStreamPlayback, Int, Int, PackedFloat32Array, Int>("mix_audio")

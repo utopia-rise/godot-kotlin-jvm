@@ -31,8 +31,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This helper class can be used to store [Variant] values on the filesystem using INI-style
@@ -386,71 +386,71 @@ public open class ConfigFile : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setValueName: MethodStringName3<ConfigFile, Unit, String, String, Any?> =
         MethodStringName3<ConfigFile, Unit, String, String, Any?>("set_value")
 
-    @JvmStatic
+    @JvmField
     public val getValueName: MethodStringName3<ConfigFile, Any?, String, String, Any?> =
         MethodStringName3<ConfigFile, Any?, String, String, Any?>("get_value")
 
-    @JvmStatic
+    @JvmField
     public val hasSectionName: MethodStringName1<ConfigFile, Boolean, String> =
         MethodStringName1<ConfigFile, Boolean, String>("has_section")
 
-    @JvmStatic
+    @JvmField
     public val hasSectionKeyName: MethodStringName2<ConfigFile, Boolean, String, String> =
         MethodStringName2<ConfigFile, Boolean, String, String>("has_section_key")
 
-    @JvmStatic
+    @JvmField
     public val getSectionsName: MethodStringName0<ConfigFile, PackedStringArray> =
         MethodStringName0<ConfigFile, PackedStringArray>("get_sections")
 
-    @JvmStatic
+    @JvmField
     public val getSectionKeysName: MethodStringName1<ConfigFile, PackedStringArray, String> =
         MethodStringName1<ConfigFile, PackedStringArray, String>("get_section_keys")
 
-    @JvmStatic
+    @JvmField
     public val eraseSectionName: MethodStringName1<ConfigFile, Unit, String> =
         MethodStringName1<ConfigFile, Unit, String>("erase_section")
 
-    @JvmStatic
+    @JvmField
     public val eraseSectionKeyName: MethodStringName2<ConfigFile, Unit, String, String> =
         MethodStringName2<ConfigFile, Unit, String, String>("erase_section_key")
 
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<ConfigFile, Error, String> =
         MethodStringName1<ConfigFile, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val parseName: MethodStringName1<ConfigFile, Error, String> =
         MethodStringName1<ConfigFile, Error, String>("parse")
 
-    @JvmStatic
+    @JvmField
     public val saveName: MethodStringName1<ConfigFile, Error, String> =
         MethodStringName1<ConfigFile, Error, String>("save")
 
-    @JvmStatic
+    @JvmField
     public val encodeToTextName: MethodStringName0<ConfigFile, String> =
         MethodStringName0<ConfigFile, String>("encode_to_text")
 
-    @JvmStatic
+    @JvmField
     public val loadEncryptedName: MethodStringName2<ConfigFile, Error, String, PackedByteArray> =
         MethodStringName2<ConfigFile, Error, String, PackedByteArray>("load_encrypted")
 
-    @JvmStatic
+    @JvmField
     public val loadEncryptedPassName: MethodStringName2<ConfigFile, Error, String, String> =
         MethodStringName2<ConfigFile, Error, String, String>("load_encrypted_pass")
 
-    @JvmStatic
+    @JvmField
     public val saveEncryptedName: MethodStringName2<ConfigFile, Error, String, PackedByteArray> =
         MethodStringName2<ConfigFile, Error, String, PackedByteArray>("save_encrypted")
 
-    @JvmStatic
+    @JvmField
     public val saveEncryptedPassName: MethodStringName2<ConfigFile, Error, String, String> =
         MethodStringName2<ConfigFile, Error, String, String>("save_encrypted_pass")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<ConfigFile, Unit> =
         MethodStringName0<ConfigFile, Unit>("clear")
   }

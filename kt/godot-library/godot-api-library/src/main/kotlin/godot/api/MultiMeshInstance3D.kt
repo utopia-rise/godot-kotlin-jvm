@@ -17,8 +17,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [MultiMeshInstance3D] is a specialized node to instance [GeometryInstance3D]s based on a
@@ -57,11 +57,11 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMultimeshName: MethodStringName1<MultiMeshInstance3D, Unit, MultiMesh?> =
         MethodStringName1<MultiMeshInstance3D, Unit, MultiMesh?>("set_multimesh")
 
-    @JvmStatic
+    @JvmField
     public val getMultimeshName: MethodStringName0<MultiMeshInstance3D, MultiMesh?> =
         MethodStringName0<MultiMeshInstance3D, MultiMesh?>("get_multimesh")
   }

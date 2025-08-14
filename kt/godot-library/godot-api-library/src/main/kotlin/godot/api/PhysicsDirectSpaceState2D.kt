@@ -25,8 +25,8 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Provides direct access to a physics space in the [PhysicsServer2D]. It's used mainly to do
@@ -179,37 +179,37 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val intersectPointName:
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters2D?, Int>
         =
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters2D?, Int>("intersect_point")
 
-    @JvmStatic
+    @JvmField
     public val intersectRayName:
         MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters2D?>
         =
         MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters2D?>("intersect_ray")
 
-    @JvmStatic
+    @JvmField
     public val intersectShapeName:
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters2D?, Int>
         =
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters2D?, Int>("intersect_shape")
 
-    @JvmStatic
+    @JvmField
     public val castMotionName:
         MethodStringName1<PhysicsDirectSpaceState2D, PackedFloat32Array, PhysicsShapeQueryParameters2D?>
         =
         MethodStringName1<PhysicsDirectSpaceState2D, PackedFloat32Array, PhysicsShapeQueryParameters2D?>("cast_motion")
 
-    @JvmStatic
+    @JvmField
     public val collideShapeName:
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Vector2>, PhysicsShapeQueryParameters2D?, Int>
         =
         MethodStringName2<PhysicsDirectSpaceState2D, VariantArray<Vector2>, PhysicsShapeQueryParameters2D?, Int>("collide_shape")
 
-    @JvmStatic
+    @JvmField
     public val getRestInfoName:
         MethodStringName1<PhysicsDirectSpaceState2D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters2D?>
         =

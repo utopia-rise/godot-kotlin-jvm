@@ -20,8 +20,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Varying values are shader variables that can be passed between shader functions, e.g. from Vertex
@@ -78,20 +78,20 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setVaryingNameName: MethodStringName1<VisualShaderNodeVarying, Unit, String> =
         MethodStringName1<VisualShaderNodeVarying, Unit, String>("set_varying_name")
 
-    @JvmStatic
+    @JvmField
     public val getVaryingNameName: MethodStringName0<VisualShaderNodeVarying, String> =
         MethodStringName0<VisualShaderNodeVarying, String>("get_varying_name")
 
-    @JvmStatic
+    @JvmField
     public val setVaryingTypeName:
         MethodStringName1<VisualShaderNodeVarying, Unit, VisualShader.VaryingType> =
         MethodStringName1<VisualShaderNodeVarying, Unit, VisualShader.VaryingType>("set_varying_type")
 
-    @JvmStatic
+    @JvmField
     public val getVaryingTypeName:
         MethodStringName0<VisualShaderNodeVarying, VisualShader.VaryingType> =
         MethodStringName0<VisualShaderNodeVarying, VisualShader.VaryingType>("get_varying_type")

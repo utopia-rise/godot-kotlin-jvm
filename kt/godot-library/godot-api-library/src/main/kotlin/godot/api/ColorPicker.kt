@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A widget that provides an interface for selecting or modifying a color. It can optionally provide
@@ -461,115 +461,115 @@ public open class ColorPicker : VBoxContainer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPickColorName: MethodStringName1<ColorPicker, Unit, Color> =
         MethodStringName1<ColorPicker, Unit, Color>("set_pick_color")
 
-    @JvmStatic
+    @JvmField
     public val getPickColorName: MethodStringName0<ColorPicker, Color> =
         MethodStringName0<ColorPicker, Color>("get_pick_color")
 
-    @JvmStatic
+    @JvmField
     public val setDeferredModeName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_deferred_mode")
 
-    @JvmStatic
+    @JvmField
     public val isDeferredModeName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("is_deferred_mode")
 
-    @JvmStatic
+    @JvmField
     public val setColorModeName: MethodStringName1<ColorPicker, Unit, ColorModeType> =
         MethodStringName1<ColorPicker, Unit, ColorModeType>("set_color_mode")
 
-    @JvmStatic
+    @JvmField
     public val getColorModeName: MethodStringName0<ColorPicker, ColorModeType> =
         MethodStringName0<ColorPicker, ColorModeType>("get_color_mode")
 
-    @JvmStatic
+    @JvmField
     public val setEditAlphaName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_edit_alpha")
 
-    @JvmStatic
+    @JvmField
     public val isEditingAlphaName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("is_editing_alpha")
 
-    @JvmStatic
+    @JvmField
     public val setCanAddSwatchesName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_can_add_swatches")
 
-    @JvmStatic
+    @JvmField
     public val areSwatchesEnabledName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("are_swatches_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPresetsVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_presets_visible")
 
-    @JvmStatic
+    @JvmField
     public val arePresetsVisibleName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("are_presets_visible")
 
-    @JvmStatic
+    @JvmField
     public val setModesVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_modes_visible")
 
-    @JvmStatic
+    @JvmField
     public val areModesVisibleName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("are_modes_visible")
 
-    @JvmStatic
+    @JvmField
     public val setSamplerVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_sampler_visible")
 
-    @JvmStatic
+    @JvmField
     public val isSamplerVisibleName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("is_sampler_visible")
 
-    @JvmStatic
+    @JvmField
     public val setSlidersVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_sliders_visible")
 
-    @JvmStatic
+    @JvmField
     public val areSlidersVisibleName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("are_sliders_visible")
 
-    @JvmStatic
+    @JvmField
     public val setHexVisibleName: MethodStringName1<ColorPicker, Unit, Boolean> =
         MethodStringName1<ColorPicker, Unit, Boolean>("set_hex_visible")
 
-    @JvmStatic
+    @JvmField
     public val isHexVisibleName: MethodStringName0<ColorPicker, Boolean> =
         MethodStringName0<ColorPicker, Boolean>("is_hex_visible")
 
-    @JvmStatic
+    @JvmField
     public val addPresetName: MethodStringName1<ColorPicker, Unit, Color> =
         MethodStringName1<ColorPicker, Unit, Color>("add_preset")
 
-    @JvmStatic
+    @JvmField
     public val erasePresetName: MethodStringName1<ColorPicker, Unit, Color> =
         MethodStringName1<ColorPicker, Unit, Color>("erase_preset")
 
-    @JvmStatic
+    @JvmField
     public val getPresetsName: MethodStringName0<ColorPicker, PackedColorArray> =
         MethodStringName0<ColorPicker, PackedColorArray>("get_presets")
 
-    @JvmStatic
+    @JvmField
     public val addRecentPresetName: MethodStringName1<ColorPicker, Unit, Color> =
         MethodStringName1<ColorPicker, Unit, Color>("add_recent_preset")
 
-    @JvmStatic
+    @JvmField
     public val eraseRecentPresetName: MethodStringName1<ColorPicker, Unit, Color> =
         MethodStringName1<ColorPicker, Unit, Color>("erase_recent_preset")
 
-    @JvmStatic
+    @JvmField
     public val getRecentPresetsName: MethodStringName0<ColorPicker, PackedColorArray> =
         MethodStringName0<ColorPicker, PackedColorArray>("get_recent_presets")
 
-    @JvmStatic
+    @JvmField
     public val setPickerShapeName: MethodStringName1<ColorPicker, Unit, PickerShapeType> =
         MethodStringName1<ColorPicker, Unit, PickerShapeType>("set_picker_shape")
 
-    @JvmStatic
+    @JvmField
     public val getPickerShapeName: MethodStringName0<ColorPicker, PickerShapeType> =
         MethodStringName0<ColorPicker, PickerShapeType>("get_picker_shape")
   }

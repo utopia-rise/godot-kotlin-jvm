@@ -39,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -482,175 +483,175 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getInstanceName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_instance")
 
-    @JvmStatic
+    @JvmField
     public val getSystemIdName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_system_id")
 
-    @JvmStatic
+    @JvmField
     public val getSessionName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_session")
 
-    @JvmStatic
+    @JvmField
     public val xrResultName:
         MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>> =
         MethodStringName3<OpenXRAPIExtension, Boolean, Long, String, VariantArray<Any?>>("xr_result")
 
-    @JvmStatic
+    @JvmField
     public val openxrIsEnabledName: MethodStringName1<OpenXRAPIExtension, Boolean, Boolean> =
         MethodStringName1<OpenXRAPIExtension, Boolean, Boolean>("openxr_is_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceProcAddrName: MethodStringName1<OpenXRAPIExtension, Long, String> =
         MethodStringName1<OpenXRAPIExtension, Long, String>("get_instance_proc_addr")
 
-    @JvmStatic
+    @JvmField
     public val getErrorStringName: MethodStringName1<OpenXRAPIExtension, String, Long> =
         MethodStringName1<OpenXRAPIExtension, String, Long>("get_error_string")
 
-    @JvmStatic
+    @JvmField
     public val getSwapchainFormatNameName: MethodStringName1<OpenXRAPIExtension, String, Long> =
         MethodStringName1<OpenXRAPIExtension, String, Long>("get_swapchain_format_name")
 
-    @JvmStatic
+    @JvmField
     public val setObjectNameName: MethodStringName3<OpenXRAPIExtension, Unit, Long, Long, String> =
         MethodStringName3<OpenXRAPIExtension, Unit, Long, Long, String>("set_object_name")
 
-    @JvmStatic
+    @JvmField
     public val beginDebugLabelRegionName: MethodStringName1<OpenXRAPIExtension, Unit, String> =
         MethodStringName1<OpenXRAPIExtension, Unit, String>("begin_debug_label_region")
 
-    @JvmStatic
+    @JvmField
     public val endDebugLabelRegionName: MethodStringName0<OpenXRAPIExtension, Unit> =
         MethodStringName0<OpenXRAPIExtension, Unit>("end_debug_label_region")
 
-    @JvmStatic
+    @JvmField
     public val insertDebugLabelName: MethodStringName1<OpenXRAPIExtension, Unit, String> =
         MethodStringName1<OpenXRAPIExtension, Unit, String>("insert_debug_label")
 
-    @JvmStatic
+    @JvmField
     public val isInitializedName: MethodStringName0<OpenXRAPIExtension, Boolean> =
         MethodStringName0<OpenXRAPIExtension, Boolean>("is_initialized")
 
-    @JvmStatic
+    @JvmField
     public val isRunningName: MethodStringName0<OpenXRAPIExtension, Boolean> =
         MethodStringName0<OpenXRAPIExtension, Boolean>("is_running")
 
-    @JvmStatic
+    @JvmField
     public val getPlaySpaceName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_play_space")
 
-    @JvmStatic
+    @JvmField
     public val getPredictedDisplayTimeName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_predicted_display_time")
 
-    @JvmStatic
+    @JvmField
     public val getNextFrameTimeName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_next_frame_time")
 
-    @JvmStatic
+    @JvmField
     public val canRenderName: MethodStringName0<OpenXRAPIExtension, Boolean> =
         MethodStringName0<OpenXRAPIExtension, Boolean>("can_render")
 
-    @JvmStatic
+    @JvmField
     public val findActionName: MethodStringName2<OpenXRAPIExtension, RID, String, RID> =
         MethodStringName2<OpenXRAPIExtension, RID, String, RID>("find_action")
 
-    @JvmStatic
+    @JvmField
     public val actionGetHandleName: MethodStringName1<OpenXRAPIExtension, Long, RID> =
         MethodStringName1<OpenXRAPIExtension, Long, RID>("action_get_handle")
 
-    @JvmStatic
+    @JvmField
     public val getHandTrackerName: MethodStringName1<OpenXRAPIExtension, Long, Int> =
         MethodStringName1<OpenXRAPIExtension, Long, Int>("get_hand_tracker")
 
-    @JvmStatic
+    @JvmField
     public val registerCompositionLayerProviderName:
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("register_composition_layer_provider")
 
-    @JvmStatic
+    @JvmField
     public val unregisterCompositionLayerProviderName:
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("unregister_composition_layer_provider")
 
-    @JvmStatic
+    @JvmField
     public val registerProjectionViewsExtensionName:
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("register_projection_views_extension")
 
-    @JvmStatic
+    @JvmField
     public val unregisterProjectionViewsExtensionName:
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?> =
         MethodStringName1<OpenXRAPIExtension, Unit, OpenXRExtensionWrapperExtension?>("unregister_projection_views_extension")
 
-    @JvmStatic
+    @JvmField
     public val getRenderStateZNearName: MethodStringName0<OpenXRAPIExtension, Double> =
         MethodStringName0<OpenXRAPIExtension, Double>("get_render_state_z_near")
 
-    @JvmStatic
+    @JvmField
     public val getRenderStateZFarName: MethodStringName0<OpenXRAPIExtension, Double> =
         MethodStringName0<OpenXRAPIExtension, Double>("get_render_state_z_far")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityTextureName: MethodStringName1<OpenXRAPIExtension, Unit, RID> =
         MethodStringName1<OpenXRAPIExtension, Unit, RID>("set_velocity_texture")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityDepthTextureName: MethodStringName1<OpenXRAPIExtension, Unit, RID> =
         MethodStringName1<OpenXRAPIExtension, Unit, RID>("set_velocity_depth_texture")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityTargetSizeName: MethodStringName1<OpenXRAPIExtension, Unit, Vector2i> =
         MethodStringName1<OpenXRAPIExtension, Unit, Vector2i>("set_velocity_target_size")
 
-    @JvmStatic
+    @JvmField
     public val getSupportedSwapchainFormatsName:
         MethodStringName0<OpenXRAPIExtension, PackedInt64Array> =
         MethodStringName0<OpenXRAPIExtension, PackedInt64Array>("get_supported_swapchain_formats")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainCreateName:
         MethodStringName7<OpenXRAPIExtension, Long, Long, Long, Long, Long, Long, Long, Long> =
         MethodStringName7<OpenXRAPIExtension, Long, Long, Long, Long, Long, Long, Long, Long>("openxr_swapchain_create")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainFreeName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
         MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_free")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainGetSwapchainName: MethodStringName1<OpenXRAPIExtension, Long, Long> =
         MethodStringName1<OpenXRAPIExtension, Long, Long>("openxr_swapchain_get_swapchain")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainAcquireName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
         MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_acquire")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainGetImageName: MethodStringName1<OpenXRAPIExtension, RID, Long> =
         MethodStringName1<OpenXRAPIExtension, RID, Long>("openxr_swapchain_get_image")
 
-    @JvmStatic
+    @JvmField
     public val openxrSwapchainReleaseName: MethodStringName1<OpenXRAPIExtension, Unit, Long> =
         MethodStringName1<OpenXRAPIExtension, Unit, Long>("openxr_swapchain_release")
 
-    @JvmStatic
+    @JvmField
     public val getProjectionLayerName: MethodStringName0<OpenXRAPIExtension, Long> =
         MethodStringName0<OpenXRAPIExtension, Long>("get_projection_layer")
 
-    @JvmStatic
+    @JvmField
     public val setRenderRegionName: MethodStringName1<OpenXRAPIExtension, Unit, Rect2i> =
         MethodStringName1<OpenXRAPIExtension, Unit, Rect2i>("set_render_region")
 
-    @JvmStatic
+    @JvmField
     public val setEmulateEnvironmentBlendModeAlphaBlendName:
         MethodStringName1<OpenXRAPIExtension, Unit, Boolean> =
         MethodStringName1<OpenXRAPIExtension, Unit, Boolean>("set_emulate_environment_blend_mode_alpha_blend")
 
-    @JvmStatic
+    @JvmField
     public val isEnvironmentBlendModeAlphaSupportedName:
         MethodStringName0<OpenXRAPIExtension, OpenXRAlphaBlendModeSupport> =
         MethodStringName0<OpenXRAPIExtension, OpenXRAlphaBlendModeSupport>("is_environment_blend_mode_alpha_supported")

@@ -21,8 +21,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A static 3D physics body. It can't be moved by external forces or contacts, but can be moved
@@ -174,28 +174,28 @@ public open class StaticBody3D : PhysicsBody3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantLinearVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
         MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setConstantAngularVelocityName: MethodStringName1<StaticBody3D, Unit, Vector3> =
         MethodStringName1<StaticBody3D, Unit, Vector3>("set_constant_angular_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getConstantLinearVelocityName: MethodStringName0<StaticBody3D, Vector3> =
         MethodStringName0<StaticBody3D, Vector3>("get_constant_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getConstantAngularVelocityName: MethodStringName0<StaticBody3D, Vector3> =
         MethodStringName0<StaticBody3D, Vector3>("get_constant_angular_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsMaterialOverrideName:
         MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?> =
         MethodStringName1<StaticBody3D, Unit, PhysicsMaterial?>("set_physics_material_override")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsMaterialOverrideName: MethodStringName0<StaticBody3D, PhysicsMaterial?> =
         MethodStringName0<StaticBody3D, PhysicsMaterial?>("get_physics_material_override")
   }

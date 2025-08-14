@@ -34,8 +34,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Base node for geometry-based visual instances. Shares some common functionality like visibility
@@ -707,145 +707,145 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMaterialOverrideName: MethodStringName1<GeometryInstance3D, Unit, Material?> =
         MethodStringName1<GeometryInstance3D, Unit, Material?>("set_material_override")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialOverrideName: MethodStringName0<GeometryInstance3D, Material?> =
         MethodStringName0<GeometryInstance3D, Material?>("get_material_override")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialOverlayName: MethodStringName1<GeometryInstance3D, Unit, Material?> =
         MethodStringName1<GeometryInstance3D, Unit, Material?>("set_material_overlay")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialOverlayName: MethodStringName0<GeometryInstance3D, Material?> =
         MethodStringName0<GeometryInstance3D, Material?>("get_material_overlay")
 
-    @JvmStatic
+    @JvmField
     public val setCastShadowsSettingName:
         MethodStringName1<GeometryInstance3D, Unit, ShadowCastingSetting> =
         MethodStringName1<GeometryInstance3D, Unit, ShadowCastingSetting>("set_cast_shadows_setting")
 
-    @JvmStatic
+    @JvmField
     public val getCastShadowsSettingName:
         MethodStringName0<GeometryInstance3D, ShadowCastingSetting> =
         MethodStringName0<GeometryInstance3D, ShadowCastingSetting>("get_cast_shadows_setting")
 
-    @JvmStatic
+    @JvmField
     public val setLodBiasName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_lod_bias")
 
-    @JvmStatic
+    @JvmField
     public val getLodBiasName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_lod_bias")
 
-    @JvmStatic
+    @JvmField
     public val setTransparencyName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_transparency")
 
-    @JvmStatic
+    @JvmField
     public val getTransparencyName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_transparency")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeEndMarginName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_visibility_range_end_margin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeEndMarginName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_visibility_range_end_margin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeEndName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_visibility_range_end")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeEndName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_visibility_range_end")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeBeginMarginName: MethodStringName1<GeometryInstance3D, Unit, Float>
         = MethodStringName1<GeometryInstance3D, Unit, Float>("set_visibility_range_begin_margin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeBeginMarginName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_visibility_range_begin_margin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeBeginName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_visibility_range_begin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeBeginName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_visibility_range_begin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeFadeModeName:
         MethodStringName1<GeometryInstance3D, Unit, VisibilityRangeFadeMode> =
         MethodStringName1<GeometryInstance3D, Unit, VisibilityRangeFadeMode>("set_visibility_range_fade_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeFadeModeName:
         MethodStringName0<GeometryInstance3D, VisibilityRangeFadeMode> =
         MethodStringName0<GeometryInstance3D, VisibilityRangeFadeMode>("get_visibility_range_fade_mode")
 
-    @JvmStatic
+    @JvmField
     public val setInstanceShaderParameterName:
         MethodStringName2<GeometryInstance3D, Unit, StringName, Any?> =
         MethodStringName2<GeometryInstance3D, Unit, StringName, Any?>("set_instance_shader_parameter")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceShaderParameterName:
         MethodStringName1<GeometryInstance3D, Any?, StringName> =
         MethodStringName1<GeometryInstance3D, Any?, StringName>("get_instance_shader_parameter")
 
-    @JvmStatic
+    @JvmField
     public val setExtraCullMarginName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_extra_cull_margin")
 
-    @JvmStatic
+    @JvmField
     public val getExtraCullMarginName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_extra_cull_margin")
 
-    @JvmStatic
+    @JvmField
     public val setLightmapTexelScaleName: MethodStringName1<GeometryInstance3D, Unit, Float> =
         MethodStringName1<GeometryInstance3D, Unit, Float>("set_lightmap_texel_scale")
 
-    @JvmStatic
+    @JvmField
     public val getLightmapTexelScaleName: MethodStringName0<GeometryInstance3D, Float> =
         MethodStringName0<GeometryInstance3D, Float>("get_lightmap_texel_scale")
 
-    @JvmStatic
+    @JvmField
     public val setLightmapScaleName: MethodStringName1<GeometryInstance3D, Unit, LightmapScale> =
         MethodStringName1<GeometryInstance3D, Unit, LightmapScale>("set_lightmap_scale")
 
-    @JvmStatic
+    @JvmField
     public val getLightmapScaleName: MethodStringName0<GeometryInstance3D, LightmapScale> =
         MethodStringName0<GeometryInstance3D, LightmapScale>("get_lightmap_scale")
 
-    @JvmStatic
+    @JvmField
     public val setGiModeName: MethodStringName1<GeometryInstance3D, Unit, GIMode> =
         MethodStringName1<GeometryInstance3D, Unit, GIMode>("set_gi_mode")
 
-    @JvmStatic
+    @JvmField
     public val getGiModeName: MethodStringName0<GeometryInstance3D, GIMode> =
         MethodStringName0<GeometryInstance3D, GIMode>("get_gi_mode")
 
-    @JvmStatic
+    @JvmField
     public val setIgnoreOcclusionCullingName: MethodStringName1<GeometryInstance3D, Unit, Boolean> =
         MethodStringName1<GeometryInstance3D, Unit, Boolean>("set_ignore_occlusion_culling")
 
-    @JvmStatic
+    @JvmField
     public val isIgnoringOcclusionCullingName: MethodStringName0<GeometryInstance3D, Boolean> =
         MethodStringName0<GeometryInstance3D, Boolean>("is_ignoring_occlusion_culling")
 
-    @JvmStatic
+    @JvmField
     public val setCustomAabbName: MethodStringName1<GeometryInstance3D, Unit, AABB> =
         MethodStringName1<GeometryInstance3D, Unit, AABB>("set_custom_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getCustomAabbName: MethodStringName0<GeometryInstance3D, AABB> =
         MethodStringName0<GeometryInstance3D, AABB>("get_custom_aabb")
   }

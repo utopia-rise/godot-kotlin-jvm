@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Parent class for various CSG primitives. It contains code and functionality that is common
@@ -61,11 +61,11 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFlipFacesName: MethodStringName1<CSGPrimitive3D, Unit, Boolean> =
         MethodStringName1<CSGPrimitive3D, Unit, Boolean>("set_flip_faces")
 
-    @JvmStatic
+    @JvmField
     public val getFlipFacesName: MethodStringName0<CSGPrimitive3D, Boolean> =
         MethodStringName0<CSGPrimitive3D, Boolean>("get_flip_faces")
   }

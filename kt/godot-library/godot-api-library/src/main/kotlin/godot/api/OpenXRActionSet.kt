@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Action sets in OpenXR define a collection of actions that can be activated in unison. This allows
@@ -135,39 +135,39 @@ public open class OpenXRActionSet : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLocalizedNameName: MethodStringName1<OpenXRActionSet, Unit, String> =
         MethodStringName1<OpenXRActionSet, Unit, String>("set_localized_name")
 
-    @JvmStatic
+    @JvmField
     public val getLocalizedNameName: MethodStringName0<OpenXRActionSet, String> =
         MethodStringName0<OpenXRActionSet, String>("get_localized_name")
 
-    @JvmStatic
+    @JvmField
     public val setPriorityName: MethodStringName1<OpenXRActionSet, Unit, Int> =
         MethodStringName1<OpenXRActionSet, Unit, Int>("set_priority")
 
-    @JvmStatic
+    @JvmField
     public val getPriorityName: MethodStringName0<OpenXRActionSet, Int> =
         MethodStringName0<OpenXRActionSet, Int>("get_priority")
 
-    @JvmStatic
+    @JvmField
     public val getActionCountName: MethodStringName0<OpenXRActionSet, Int> =
         MethodStringName0<OpenXRActionSet, Int>("get_action_count")
 
-    @JvmStatic
+    @JvmField
     public val setActionsName: MethodStringName1<OpenXRActionSet, Unit, VariantArray<Any?>> =
         MethodStringName1<OpenXRActionSet, Unit, VariantArray<Any?>>("set_actions")
 
-    @JvmStatic
+    @JvmField
     public val getActionsName: MethodStringName0<OpenXRActionSet, VariantArray<Any?>> =
         MethodStringName0<OpenXRActionSet, VariantArray<Any?>>("get_actions")
 
-    @JvmStatic
+    @JvmField
     public val addActionName: MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?> =
         MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?>("add_action")
 
-    @JvmStatic
+    @JvmField
     public val removeActionName: MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?> =
         MethodStringName1<OpenXRActionSet, Unit, OpenXRAction?>("remove_action")
   }

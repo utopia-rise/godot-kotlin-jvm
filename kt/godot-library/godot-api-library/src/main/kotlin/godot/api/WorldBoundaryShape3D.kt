@@ -20,8 +20,8 @@ import godot.core.VariantParser.PLANE
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an
@@ -90,11 +90,11 @@ public open class WorldBoundaryShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPlaneName: MethodStringName1<WorldBoundaryShape3D, Unit, Plane> =
         MethodStringName1<WorldBoundaryShape3D, Unit, Plane>("set_plane")
 
-    @JvmStatic
+    @JvmField
     public val getPlaneName: MethodStringName0<WorldBoundaryShape3D, Plane> =
         MethodStringName0<WorldBoundaryShape3D, Plane>("get_plane")
   }

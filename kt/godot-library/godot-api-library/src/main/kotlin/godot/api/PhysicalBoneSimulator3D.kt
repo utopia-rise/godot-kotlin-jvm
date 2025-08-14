@@ -23,8 +23,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Node that can be the parent of [PhysicalBone3D] and can apply the simulation results to
@@ -89,25 +89,25 @@ public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isSimulatingPhysicsName: MethodStringName0<PhysicalBoneSimulator3D, Boolean> =
         MethodStringName0<PhysicalBoneSimulator3D, Boolean>("is_simulating_physics")
 
-    @JvmStatic
+    @JvmField
     public val physicalBonesStopSimulationName: MethodStringName0<PhysicalBoneSimulator3D, Unit> =
         MethodStringName0<PhysicalBoneSimulator3D, Unit>("physical_bones_stop_simulation")
 
-    @JvmStatic
+    @JvmField
     public val physicalBonesStartSimulationName:
         MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>> =
         MethodStringName1<PhysicalBoneSimulator3D, Unit, VariantArray<StringName>>("physical_bones_start_simulation")
 
-    @JvmStatic
+    @JvmField
     public val physicalBonesAddCollisionExceptionName:
         MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
         MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_add_collision_exception")
 
-    @JvmStatic
+    @JvmField
     public val physicalBonesRemoveCollisionExceptionName:
         MethodStringName1<PhysicalBoneSimulator3D, Unit, RID> =
         MethodStringName1<PhysicalBoneSimulator3D, Unit, RID>("physical_bones_remove_collision_exception")

@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The [Sky] class uses a [Material] to render a 3D environment's background and the light it emits
@@ -203,27 +203,27 @@ public open class Sky : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadianceSizeName: MethodStringName1<Sky, Unit, RadianceSize> =
         MethodStringName1<Sky, Unit, RadianceSize>("set_radiance_size")
 
-    @JvmStatic
+    @JvmField
     public val getRadianceSizeName: MethodStringName0<Sky, RadianceSize> =
         MethodStringName0<Sky, RadianceSize>("get_radiance_size")
 
-    @JvmStatic
+    @JvmField
     public val setProcessModeName: MethodStringName1<Sky, Unit, ProcessMode> =
         MethodStringName1<Sky, Unit, ProcessMode>("set_process_mode")
 
-    @JvmStatic
+    @JvmField
     public val getProcessModeName: MethodStringName0<Sky, ProcessMode> =
         MethodStringName0<Sky, ProcessMode>("get_process_mode")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<Sky, Unit, Material?> =
         MethodStringName1<Sky, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<Sky, Material?> =
         MethodStringName0<Sky, Material?>("get_material")
   }

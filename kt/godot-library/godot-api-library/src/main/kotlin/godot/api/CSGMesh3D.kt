@@ -17,8 +17,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This CSG node allows you to use any mesh resource as a CSG shape, provided it is *manifold*. A
@@ -95,19 +95,19 @@ public open class CSGMesh3D : CSGPrimitive3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<CSGMesh3D, Unit, Mesh?> =
         MethodStringName1<CSGMesh3D, Unit, Mesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<CSGMesh3D, Mesh?> =
         MethodStringName0<CSGMesh3D, Mesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<CSGMesh3D, Unit, Material?> =
         MethodStringName1<CSGMesh3D, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<CSGMesh3D, Material?> =
         MethodStringName0<CSGMesh3D, Material?>("get_material")
   }

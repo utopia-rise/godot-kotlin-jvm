@@ -36,6 +36,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -283,61 +284,61 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val hasMultiplayerPeerName: MethodStringName0<MultiplayerAPI, Boolean> =
         MethodStringName0<MultiplayerAPI, Boolean>("has_multiplayer_peer")
 
-    @JvmStatic
+    @JvmField
     public val getMultiplayerPeerName: MethodStringName0<MultiplayerAPI, MultiplayerPeer?> =
         MethodStringName0<MultiplayerAPI, MultiplayerPeer?>("get_multiplayer_peer")
 
-    @JvmStatic
+    @JvmField
     public val setMultiplayerPeerName: MethodStringName1<MultiplayerAPI, Unit, MultiplayerPeer?> =
         MethodStringName1<MultiplayerAPI, Unit, MultiplayerPeer?>("set_multiplayer_peer")
 
-    @JvmStatic
+    @JvmField
     public val getUniqueIdName: MethodStringName0<MultiplayerAPI, Int> =
         MethodStringName0<MultiplayerAPI, Int>("get_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val isServerName: MethodStringName0<MultiplayerAPI, Boolean> =
         MethodStringName0<MultiplayerAPI, Boolean>("is_server")
 
-    @JvmStatic
+    @JvmField
     public val getRemoteSenderIdName: MethodStringName0<MultiplayerAPI, Int> =
         MethodStringName0<MultiplayerAPI, Int>("get_remote_sender_id")
 
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<MultiplayerAPI, Error> =
         MethodStringName0<MultiplayerAPI, Error>("poll")
 
-    @JvmStatic
+    @JvmField
     public val rpcName:
         MethodStringName4<MultiplayerAPI, Error, Int, Object?, StringName, VariantArray<Any?>> =
         MethodStringName4<MultiplayerAPI, Error, Int, Object?, StringName, VariantArray<Any?>>("rpc")
 
-    @JvmStatic
+    @JvmField
     public val objectConfigurationAddName: MethodStringName2<MultiplayerAPI, Error, Object?, Any?> =
         MethodStringName2<MultiplayerAPI, Error, Object?, Any?>("object_configuration_add")
 
-    @JvmStatic
+    @JvmField
     public val objectConfigurationRemoveName:
         MethodStringName2<MultiplayerAPI, Error, Object?, Any?> =
         MethodStringName2<MultiplayerAPI, Error, Object?, Any?>("object_configuration_remove")
 
-    @JvmStatic
+    @JvmField
     public val getPeersName: MethodStringName0<MultiplayerAPI, PackedInt32Array> =
         MethodStringName0<MultiplayerAPI, PackedInt32Array>("get_peers")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultInterfaceName: MethodStringName1<MultiplayerAPI, Unit, StringName> =
         MethodStringName1<MultiplayerAPI, Unit, StringName>("set_default_interface")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultInterfaceName: MethodStringName0<MultiplayerAPI, StringName> =
         MethodStringName0<MultiplayerAPI, StringName>("get_default_interface")
 
-    @JvmStatic
+    @JvmField
     public val createDefaultInterfaceName: MethodStringName0<MultiplayerAPI, MultiplayerAPI?> =
         MethodStringName0<MultiplayerAPI, MultiplayerAPI?>("create_default_interface")
 

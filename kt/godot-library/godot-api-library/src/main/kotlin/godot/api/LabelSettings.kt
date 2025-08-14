@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
@@ -373,83 +373,83 @@ public open class LabelSettings : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLineSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
         MethodStringName1<LabelSettings, Unit, Float>("set_line_spacing")
 
-    @JvmStatic
+    @JvmField
     public val getLineSpacingName: MethodStringName0<LabelSettings, Float> =
         MethodStringName0<LabelSettings, Float>("get_line_spacing")
 
-    @JvmStatic
+    @JvmField
     public val setParagraphSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
         MethodStringName1<LabelSettings, Unit, Float>("set_paragraph_spacing")
 
-    @JvmStatic
+    @JvmField
     public val getParagraphSpacingName: MethodStringName0<LabelSettings, Float> =
         MethodStringName0<LabelSettings, Float>("get_paragraph_spacing")
 
-    @JvmStatic
+    @JvmField
     public val setFontName: MethodStringName1<LabelSettings, Unit, Font?> =
         MethodStringName1<LabelSettings, Unit, Font?>("set_font")
 
-    @JvmStatic
+    @JvmField
     public val getFontName: MethodStringName0<LabelSettings, Font?> =
         MethodStringName0<LabelSettings, Font?>("get_font")
 
-    @JvmStatic
+    @JvmField
     public val setFontSizeName: MethodStringName1<LabelSettings, Unit, Int> =
         MethodStringName1<LabelSettings, Unit, Int>("set_font_size")
 
-    @JvmStatic
+    @JvmField
     public val getFontSizeName: MethodStringName0<LabelSettings, Int> =
         MethodStringName0<LabelSettings, Int>("get_font_size")
 
-    @JvmStatic
+    @JvmField
     public val setFontColorName: MethodStringName1<LabelSettings, Unit, Color> =
         MethodStringName1<LabelSettings, Unit, Color>("set_font_color")
 
-    @JvmStatic
+    @JvmField
     public val getFontColorName: MethodStringName0<LabelSettings, Color> =
         MethodStringName0<LabelSettings, Color>("get_font_color")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineSizeName: MethodStringName1<LabelSettings, Unit, Int> =
         MethodStringName1<LabelSettings, Unit, Int>("set_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val getOutlineSizeName: MethodStringName0<LabelSettings, Int> =
         MethodStringName0<LabelSettings, Int>("get_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineColorName: MethodStringName1<LabelSettings, Unit, Color> =
         MethodStringName1<LabelSettings, Unit, Color>("set_outline_color")
 
-    @JvmStatic
+    @JvmField
     public val getOutlineColorName: MethodStringName0<LabelSettings, Color> =
         MethodStringName0<LabelSettings, Color>("get_outline_color")
 
-    @JvmStatic
+    @JvmField
     public val setShadowSizeName: MethodStringName1<LabelSettings, Unit, Int> =
         MethodStringName1<LabelSettings, Unit, Int>("set_shadow_size")
 
-    @JvmStatic
+    @JvmField
     public val getShadowSizeName: MethodStringName0<LabelSettings, Int> =
         MethodStringName0<LabelSettings, Int>("get_shadow_size")
 
-    @JvmStatic
+    @JvmField
     public val setShadowColorName: MethodStringName1<LabelSettings, Unit, Color> =
         MethodStringName1<LabelSettings, Unit, Color>("set_shadow_color")
 
-    @JvmStatic
+    @JvmField
     public val getShadowColorName: MethodStringName0<LabelSettings, Color> =
         MethodStringName0<LabelSettings, Color>("get_shadow_color")
 
-    @JvmStatic
+    @JvmField
     public val setShadowOffsetName: MethodStringName1<LabelSettings, Unit, Vector2> =
         MethodStringName1<LabelSettings, Unit, Vector2>("set_shadow_offset")
 
-    @JvmStatic
+    @JvmField
     public val getShadowOffsetName: MethodStringName0<LabelSettings, Vector2> =
         MethodStringName0<LabelSettings, Vector2>("get_shadow_offset")
   }

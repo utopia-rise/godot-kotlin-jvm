@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Uses three operands to compute `(a * b + c)` expression.
@@ -88,11 +88,11 @@ public open class VisualShaderNodeMultiplyAdd : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeMultiplyAdd, Unit, OpType> =
         MethodStringName1<VisualShaderNodeMultiplyAdd, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeMultiplyAdd, OpType> =
         MethodStringName0<VisualShaderNodeMultiplyAdd, OpType>("get_op_type")
   }

@@ -18,8 +18,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [Mesh] subclass in 2 conditions:
@@ -81,7 +81,7 @@ public open class PlaceholderMesh : Mesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAabbName: MethodStringName1<PlaceholderMesh, Unit, AABB> =
         MethodStringName1<PlaceholderMesh, Unit, AABB>("set_aabb")
   }

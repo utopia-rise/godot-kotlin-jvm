@@ -25,8 +25,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A rectangle box that displays only a colored border around its rectangle. It is used to visualize
@@ -134,27 +134,27 @@ public open class ReferenceRect : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getBorderColorName: MethodStringName0<ReferenceRect, Color> =
         MethodStringName0<ReferenceRect, Color>("get_border_color")
 
-    @JvmStatic
+    @JvmField
     public val setBorderColorName: MethodStringName1<ReferenceRect, Unit, Color> =
         MethodStringName1<ReferenceRect, Unit, Color>("set_border_color")
 
-    @JvmStatic
+    @JvmField
     public val getBorderWidthName: MethodStringName0<ReferenceRect, Float> =
         MethodStringName0<ReferenceRect, Float>("get_border_width")
 
-    @JvmStatic
+    @JvmField
     public val setBorderWidthName: MethodStringName1<ReferenceRect, Unit, Float> =
         MethodStringName1<ReferenceRect, Unit, Float>("set_border_width")
 
-    @JvmStatic
+    @JvmField
     public val getEditorOnlyName: MethodStringName0<ReferenceRect, Boolean> =
         MethodStringName0<ReferenceRect, Boolean>("get_editor_only")
 
-    @JvmStatic
+    @JvmField
     public val setEditorOnlyName: MethodStringName1<ReferenceRect, Unit, Boolean> =
         MethodStringName1<ReferenceRect, Unit, Boolean>("set_editor_only")
   }

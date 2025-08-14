@@ -23,8 +23,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is a generic mobile VR implementation where you need to provide details about the phone and
@@ -315,83 +315,83 @@ public open class MobileVRInterface : XRInterface() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEyeHeightName: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_eye_height")
 
-    @JvmStatic
+    @JvmField
     public val getEyeHeightName: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_eye_height")
 
-    @JvmStatic
+    @JvmField
     public val setIodName: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_iod")
 
-    @JvmStatic
+    @JvmField
     public val getIodName: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_iod")
 
-    @JvmStatic
+    @JvmField
     public val setDisplayWidthName: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_display_width")
 
-    @JvmStatic
+    @JvmField
     public val getDisplayWidthName: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_display_width")
 
-    @JvmStatic
+    @JvmField
     public val setDisplayToLensName: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_display_to_lens")
 
-    @JvmStatic
+    @JvmField
     public val getDisplayToLensName: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_display_to_lens")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetRectName: MethodStringName1<MobileVRInterface, Unit, Rect2> =
         MethodStringName1<MobileVRInterface, Unit, Rect2>("set_offset_rect")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetRectName: MethodStringName0<MobileVRInterface, Rect2> =
         MethodStringName0<MobileVRInterface, Rect2>("get_offset_rect")
 
-    @JvmStatic
+    @JvmField
     public val setOversampleName: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_oversample")
 
-    @JvmStatic
+    @JvmField
     public val getOversampleName: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_oversample")
 
-    @JvmStatic
+    @JvmField
     public val setK1Name: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_k1")
 
-    @JvmStatic
+    @JvmField
     public val getK1Name: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_k1")
 
-    @JvmStatic
+    @JvmField
     public val setK2Name: MethodStringName1<MobileVRInterface, Unit, Double> =
         MethodStringName1<MobileVRInterface, Unit, Double>("set_k2")
 
-    @JvmStatic
+    @JvmField
     public val getK2Name: MethodStringName0<MobileVRInterface, Double> =
         MethodStringName0<MobileVRInterface, Double>("get_k2")
 
-    @JvmStatic
+    @JvmField
     public val getVrsMinRadiusName: MethodStringName0<MobileVRInterface, Float> =
         MethodStringName0<MobileVRInterface, Float>("get_vrs_min_radius")
 
-    @JvmStatic
+    @JvmField
     public val setVrsMinRadiusName: MethodStringName1<MobileVRInterface, Unit, Float> =
         MethodStringName1<MobileVRInterface, Unit, Float>("set_vrs_min_radius")
 
-    @JvmStatic
+    @JvmField
     public val getVrsStrengthName: MethodStringName0<MobileVRInterface, Float> =
         MethodStringName0<MobileVRInterface, Float>("get_vrs_strength")
 
-    @JvmStatic
+    @JvmField
     public val setVrsStrengthName: MethodStringName1<MobileVRInterface, Unit, Float> =
         MethodStringName1<MobileVRInterface, Unit, Float>("set_vrs_strength")
   }

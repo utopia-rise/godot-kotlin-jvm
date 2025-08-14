@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Allows frequencies other than the [cutoffHz] to pass.
@@ -154,35 +154,35 @@ public open class AudioEffectFilter : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCutoffName: MethodStringName1<AudioEffectFilter, Unit, Float> =
         MethodStringName1<AudioEffectFilter, Unit, Float>("set_cutoff")
 
-    @JvmStatic
+    @JvmField
     public val getCutoffName: MethodStringName0<AudioEffectFilter, Float> =
         MethodStringName0<AudioEffectFilter, Float>("get_cutoff")
 
-    @JvmStatic
+    @JvmField
     public val setResonanceName: MethodStringName1<AudioEffectFilter, Unit, Float> =
         MethodStringName1<AudioEffectFilter, Unit, Float>("set_resonance")
 
-    @JvmStatic
+    @JvmField
     public val getResonanceName: MethodStringName0<AudioEffectFilter, Float> =
         MethodStringName0<AudioEffectFilter, Float>("get_resonance")
 
-    @JvmStatic
+    @JvmField
     public val setGainName: MethodStringName1<AudioEffectFilter, Unit, Float> =
         MethodStringName1<AudioEffectFilter, Unit, Float>("set_gain")
 
-    @JvmStatic
+    @JvmField
     public val getGainName: MethodStringName0<AudioEffectFilter, Float> =
         MethodStringName0<AudioEffectFilter, Float>("get_gain")
 
-    @JvmStatic
+    @JvmField
     public val setDbName: MethodStringName1<AudioEffectFilter, Unit, FilterDB> =
         MethodStringName1<AudioEffectFilter, Unit, FilterDB>("set_db")
 
-    @JvmStatic
+    @JvmField
     public val getDbName: MethodStringName0<AudioEffectFilter, FilterDB> =
         MethodStringName0<AudioEffectFilter, FilterDB>("get_db")
   }

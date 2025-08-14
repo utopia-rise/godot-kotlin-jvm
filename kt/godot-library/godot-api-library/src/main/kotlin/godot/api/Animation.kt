@@ -49,9 +49,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This resource holds data that can be used to animate anything in the engine. Animations are
@@ -1323,356 +1323,356 @@ public open class Animation : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addTrackName: MethodStringName2<Animation, Int, TrackType, Int> =
         MethodStringName2<Animation, Int, TrackType, Int>("add_track")
 
-    @JvmStatic
+    @JvmField
     public val removeTrackName: MethodStringName1<Animation, Unit, Int> =
         MethodStringName1<Animation, Unit, Int>("remove_track")
 
-    @JvmStatic
+    @JvmField
     public val getTrackCountName: MethodStringName0<Animation, Int> =
         MethodStringName0<Animation, Int>("get_track_count")
 
-    @JvmStatic
+    @JvmField
     public val trackGetTypeName: MethodStringName1<Animation, TrackType, Int> =
         MethodStringName1<Animation, TrackType, Int>("track_get_type")
 
-    @JvmStatic
+    @JvmField
     public val trackGetPathName: MethodStringName1<Animation, NodePath, Int> =
         MethodStringName1<Animation, NodePath, Int>("track_get_path")
 
-    @JvmStatic
+    @JvmField
     public val trackSetPathName: MethodStringName2<Animation, Unit, Int, NodePath> =
         MethodStringName2<Animation, Unit, Int, NodePath>("track_set_path")
 
-    @JvmStatic
+    @JvmField
     public val findTrackName: MethodStringName2<Animation, Int, NodePath, TrackType> =
         MethodStringName2<Animation, Int, NodePath, TrackType>("find_track")
 
-    @JvmStatic
+    @JvmField
     public val trackMoveUpName: MethodStringName1<Animation, Unit, Int> =
         MethodStringName1<Animation, Unit, Int>("track_move_up")
 
-    @JvmStatic
+    @JvmField
     public val trackMoveDownName: MethodStringName1<Animation, Unit, Int> =
         MethodStringName1<Animation, Unit, Int>("track_move_down")
 
-    @JvmStatic
+    @JvmField
     public val trackMoveToName: MethodStringName2<Animation, Unit, Int, Int> =
         MethodStringName2<Animation, Unit, Int, Int>("track_move_to")
 
-    @JvmStatic
+    @JvmField
     public val trackSwapName: MethodStringName2<Animation, Unit, Int, Int> =
         MethodStringName2<Animation, Unit, Int, Int>("track_swap")
 
-    @JvmStatic
+    @JvmField
     public val trackSetImportedName: MethodStringName2<Animation, Unit, Int, Boolean> =
         MethodStringName2<Animation, Unit, Int, Boolean>("track_set_imported")
 
-    @JvmStatic
+    @JvmField
     public val trackIsImportedName: MethodStringName1<Animation, Boolean, Int> =
         MethodStringName1<Animation, Boolean, Int>("track_is_imported")
 
-    @JvmStatic
+    @JvmField
     public val trackSetEnabledName: MethodStringName2<Animation, Unit, Int, Boolean> =
         MethodStringName2<Animation, Unit, Int, Boolean>("track_set_enabled")
 
-    @JvmStatic
+    @JvmField
     public val trackIsEnabledName: MethodStringName1<Animation, Boolean, Int> =
         MethodStringName1<Animation, Boolean, Int>("track_is_enabled")
 
-    @JvmStatic
+    @JvmField
     public val positionTrackInsertKeyName: MethodStringName3<Animation, Int, Int, Double, Vector3> =
         MethodStringName3<Animation, Int, Int, Double, Vector3>("position_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val rotationTrackInsertKeyName:
         MethodStringName3<Animation, Int, Int, Double, Quaternion> =
         MethodStringName3<Animation, Int, Int, Double, Quaternion>("rotation_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val scaleTrackInsertKeyName: MethodStringName3<Animation, Int, Int, Double, Vector3> =
         MethodStringName3<Animation, Int, Int, Double, Vector3>("scale_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val blendShapeTrackInsertKeyName: MethodStringName3<Animation, Int, Int, Double, Float> =
         MethodStringName3<Animation, Int, Int, Double, Float>("blend_shape_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val positionTrackInterpolateName:
         MethodStringName3<Animation, Vector3, Int, Double, Boolean> =
         MethodStringName3<Animation, Vector3, Int, Double, Boolean>("position_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val rotationTrackInterpolateName:
         MethodStringName3<Animation, Quaternion, Int, Double, Boolean> =
         MethodStringName3<Animation, Quaternion, Int, Double, Boolean>("rotation_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val scaleTrackInterpolateName:
         MethodStringName3<Animation, Vector3, Int, Double, Boolean> =
         MethodStringName3<Animation, Vector3, Int, Double, Boolean>("scale_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val blendShapeTrackInterpolateName:
         MethodStringName3<Animation, Float, Int, Double, Boolean> =
         MethodStringName3<Animation, Float, Int, Double, Boolean>("blend_shape_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val trackInsertKeyName: MethodStringName4<Animation, Int, Int, Double, Any?, Float> =
         MethodStringName4<Animation, Int, Int, Double, Any?, Float>("track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val trackRemoveKeyName: MethodStringName2<Animation, Unit, Int, Int> =
         MethodStringName2<Animation, Unit, Int, Int>("track_remove_key")
 
-    @JvmStatic
+    @JvmField
     public val trackRemoveKeyAtTimeName: MethodStringName2<Animation, Unit, Int, Double> =
         MethodStringName2<Animation, Unit, Int, Double>("track_remove_key_at_time")
 
-    @JvmStatic
+    @JvmField
     public val trackSetKeyValueName: MethodStringName3<Animation, Unit, Int, Int, Any?> =
         MethodStringName3<Animation, Unit, Int, Int, Any?>("track_set_key_value")
 
-    @JvmStatic
+    @JvmField
     public val trackSetKeyTransitionName: MethodStringName3<Animation, Unit, Int, Int, Float> =
         MethodStringName3<Animation, Unit, Int, Int, Float>("track_set_key_transition")
 
-    @JvmStatic
+    @JvmField
     public val trackSetKeyTimeName: MethodStringName3<Animation, Unit, Int, Int, Double> =
         MethodStringName3<Animation, Unit, Int, Int, Double>("track_set_key_time")
 
-    @JvmStatic
+    @JvmField
     public val trackGetKeyTransitionName: MethodStringName2<Animation, Float, Int, Int> =
         MethodStringName2<Animation, Float, Int, Int>("track_get_key_transition")
 
-    @JvmStatic
+    @JvmField
     public val trackGetKeyCountName: MethodStringName1<Animation, Int, Int> =
         MethodStringName1<Animation, Int, Int>("track_get_key_count")
 
-    @JvmStatic
+    @JvmField
     public val trackGetKeyValueName: MethodStringName2<Animation, Any?, Int, Int> =
         MethodStringName2<Animation, Any?, Int, Int>("track_get_key_value")
 
-    @JvmStatic
+    @JvmField
     public val trackGetKeyTimeName: MethodStringName2<Animation, Double, Int, Int> =
         MethodStringName2<Animation, Double, Int, Int>("track_get_key_time")
 
-    @JvmStatic
+    @JvmField
     public val trackFindKeyName:
         MethodStringName5<Animation, Int, Int, Double, FindMode, Boolean, Boolean> =
         MethodStringName5<Animation, Int, Int, Double, FindMode, Boolean, Boolean>("track_find_key")
 
-    @JvmStatic
+    @JvmField
     public val trackSetInterpolationTypeName:
         MethodStringName2<Animation, Unit, Int, InterpolationType> =
         MethodStringName2<Animation, Unit, Int, InterpolationType>("track_set_interpolation_type")
 
-    @JvmStatic
+    @JvmField
     public val trackGetInterpolationTypeName: MethodStringName1<Animation, InterpolationType, Int> =
         MethodStringName1<Animation, InterpolationType, Int>("track_get_interpolation_type")
 
-    @JvmStatic
+    @JvmField
     public val trackSetInterpolationLoopWrapName: MethodStringName2<Animation, Unit, Int, Boolean> =
         MethodStringName2<Animation, Unit, Int, Boolean>("track_set_interpolation_loop_wrap")
 
-    @JvmStatic
+    @JvmField
     public val trackGetInterpolationLoopWrapName: MethodStringName1<Animation, Boolean, Int> =
         MethodStringName1<Animation, Boolean, Int>("track_get_interpolation_loop_wrap")
 
-    @JvmStatic
+    @JvmField
     public val trackIsCompressedName: MethodStringName1<Animation, Boolean, Int> =
         MethodStringName1<Animation, Boolean, Int>("track_is_compressed")
 
-    @JvmStatic
+    @JvmField
     public val valueTrackSetUpdateModeName: MethodStringName2<Animation, Unit, Int, UpdateMode> =
         MethodStringName2<Animation, Unit, Int, UpdateMode>("value_track_set_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val valueTrackGetUpdateModeName: MethodStringName1<Animation, UpdateMode, Int> =
         MethodStringName1<Animation, UpdateMode, Int>("value_track_get_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val valueTrackInterpolateName: MethodStringName3<Animation, Any?, Int, Double, Boolean> =
         MethodStringName3<Animation, Any?, Int, Double, Boolean>("value_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val methodTrackGetNameName: MethodStringName2<Animation, StringName, Int, Int> =
         MethodStringName2<Animation, StringName, Int, Int>("method_track_get_name")
 
-    @JvmStatic
+    @JvmField
     public val methodTrackGetParamsName: MethodStringName2<Animation, VariantArray<Any?>, Int, Int>
         = MethodStringName2<Animation, VariantArray<Any?>, Int, Int>("method_track_get_params")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackInsertKeyName:
         MethodStringName5<Animation, Int, Int, Double, Float, Vector2, Vector2> =
         MethodStringName5<Animation, Int, Int, Double, Float, Vector2, Vector2>("bezier_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackSetKeyValueName: MethodStringName3<Animation, Unit, Int, Int, Float> =
         MethodStringName3<Animation, Unit, Int, Int, Float>("bezier_track_set_key_value")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackSetKeyInHandleName:
         MethodStringName4<Animation, Unit, Int, Int, Vector2, Float> =
         MethodStringName4<Animation, Unit, Int, Int, Vector2, Float>("bezier_track_set_key_in_handle")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackSetKeyOutHandleName:
         MethodStringName4<Animation, Unit, Int, Int, Vector2, Float> =
         MethodStringName4<Animation, Unit, Int, Int, Vector2, Float>("bezier_track_set_key_out_handle")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackGetKeyValueName: MethodStringName2<Animation, Float, Int, Int> =
         MethodStringName2<Animation, Float, Int, Int>("bezier_track_get_key_value")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackGetKeyInHandleName: MethodStringName2<Animation, Vector2, Int, Int> =
         MethodStringName2<Animation, Vector2, Int, Int>("bezier_track_get_key_in_handle")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackGetKeyOutHandleName: MethodStringName2<Animation, Vector2, Int, Int> =
         MethodStringName2<Animation, Vector2, Int, Int>("bezier_track_get_key_out_handle")
 
-    @JvmStatic
+    @JvmField
     public val bezierTrackInterpolateName: MethodStringName2<Animation, Float, Int, Double> =
         MethodStringName2<Animation, Float, Int, Double>("bezier_track_interpolate")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackInsertKeyName:
         MethodStringName5<Animation, Int, Int, Double, Resource?, Float, Float> =
         MethodStringName5<Animation, Int, Int, Double, Resource?, Float, Float>("audio_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackSetKeyStreamName: MethodStringName3<Animation, Unit, Int, Int, Resource?> =
         MethodStringName3<Animation, Unit, Int, Int, Resource?>("audio_track_set_key_stream")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackSetKeyStartOffsetName: MethodStringName3<Animation, Unit, Int, Int, Float>
         = MethodStringName3<Animation, Unit, Int, Int, Float>("audio_track_set_key_start_offset")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackSetKeyEndOffsetName: MethodStringName3<Animation, Unit, Int, Int, Float> =
         MethodStringName3<Animation, Unit, Int, Int, Float>("audio_track_set_key_end_offset")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackGetKeyStreamName: MethodStringName2<Animation, Resource?, Int, Int> =
         MethodStringName2<Animation, Resource?, Int, Int>("audio_track_get_key_stream")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackGetKeyStartOffsetName: MethodStringName2<Animation, Float, Int, Int> =
         MethodStringName2<Animation, Float, Int, Int>("audio_track_get_key_start_offset")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackGetKeyEndOffsetName: MethodStringName2<Animation, Float, Int, Int> =
         MethodStringName2<Animation, Float, Int, Int>("audio_track_get_key_end_offset")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackSetUseBlendName: MethodStringName2<Animation, Unit, Int, Boolean> =
         MethodStringName2<Animation, Unit, Int, Boolean>("audio_track_set_use_blend")
 
-    @JvmStatic
+    @JvmField
     public val audioTrackIsUseBlendName: MethodStringName1<Animation, Boolean, Int> =
         MethodStringName1<Animation, Boolean, Int>("audio_track_is_use_blend")
 
-    @JvmStatic
+    @JvmField
     public val animationTrackInsertKeyName:
         MethodStringName3<Animation, Int, Int, Double, StringName> =
         MethodStringName3<Animation, Int, Int, Double, StringName>("animation_track_insert_key")
 
-    @JvmStatic
+    @JvmField
     public val animationTrackSetKeyAnimationName:
         MethodStringName3<Animation, Unit, Int, Int, StringName> =
         MethodStringName3<Animation, Unit, Int, Int, StringName>("animation_track_set_key_animation")
 
-    @JvmStatic
+    @JvmField
     public val animationTrackGetKeyAnimationName: MethodStringName2<Animation, StringName, Int, Int>
         = MethodStringName2<Animation, StringName, Int, Int>("animation_track_get_key_animation")
 
-    @JvmStatic
+    @JvmField
     public val addMarkerName: MethodStringName2<Animation, Unit, StringName, Double> =
         MethodStringName2<Animation, Unit, StringName, Double>("add_marker")
 
-    @JvmStatic
+    @JvmField
     public val removeMarkerName: MethodStringName1<Animation, Unit, StringName> =
         MethodStringName1<Animation, Unit, StringName>("remove_marker")
 
-    @JvmStatic
+    @JvmField
     public val hasMarkerName: MethodStringName1<Animation, Boolean, StringName> =
         MethodStringName1<Animation, Boolean, StringName>("has_marker")
 
-    @JvmStatic
+    @JvmField
     public val getMarkerAtTimeName: MethodStringName1<Animation, StringName, Double> =
         MethodStringName1<Animation, StringName, Double>("get_marker_at_time")
 
-    @JvmStatic
+    @JvmField
     public val getNextMarkerName: MethodStringName1<Animation, StringName, Double> =
         MethodStringName1<Animation, StringName, Double>("get_next_marker")
 
-    @JvmStatic
+    @JvmField
     public val getPrevMarkerName: MethodStringName1<Animation, StringName, Double> =
         MethodStringName1<Animation, StringName, Double>("get_prev_marker")
 
-    @JvmStatic
+    @JvmField
     public val getMarkerTimeName: MethodStringName1<Animation, Double, StringName> =
         MethodStringName1<Animation, Double, StringName>("get_marker_time")
 
-    @JvmStatic
+    @JvmField
     public val getMarkerNamesName: MethodStringName0<Animation, PackedStringArray> =
         MethodStringName0<Animation, PackedStringArray>("get_marker_names")
 
-    @JvmStatic
+    @JvmField
     public val getMarkerColorName: MethodStringName1<Animation, Color, StringName> =
         MethodStringName1<Animation, Color, StringName>("get_marker_color")
 
-    @JvmStatic
+    @JvmField
     public val setMarkerColorName: MethodStringName2<Animation, Unit, StringName, Color> =
         MethodStringName2<Animation, Unit, StringName, Color>("set_marker_color")
 
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<Animation, Unit, Float> =
         MethodStringName1<Animation, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<Animation, Float> =
         MethodStringName0<Animation, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setLoopModeName: MethodStringName1<Animation, Unit, LoopMode> =
         MethodStringName1<Animation, Unit, LoopMode>("set_loop_mode")
 
-    @JvmStatic
+    @JvmField
     public val getLoopModeName: MethodStringName0<Animation, LoopMode> =
         MethodStringName0<Animation, LoopMode>("get_loop_mode")
 
-    @JvmStatic
+    @JvmField
     public val setStepName: MethodStringName1<Animation, Unit, Float> =
         MethodStringName1<Animation, Unit, Float>("set_step")
 
-    @JvmStatic
+    @JvmField
     public val getStepName: MethodStringName0<Animation, Float> =
         MethodStringName0<Animation, Float>("get_step")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<Animation, Unit> =
         MethodStringName0<Animation, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val copyTrackName: MethodStringName2<Animation, Unit, Int, Animation?> =
         MethodStringName2<Animation, Unit, Int, Animation?>("copy_track")
 
-    @JvmStatic
+    @JvmField
     public val optimizeName: MethodStringName3<Animation, Unit, Float, Float, Int> =
         MethodStringName3<Animation, Unit, Float, Float, Int>("optimize")
 
-    @JvmStatic
+    @JvmField
     public val compressName: MethodStringName3<Animation, Unit, Long, Long, Float> =
         MethodStringName3<Animation, Unit, Long, Long, Float>("compress")
 
-    @JvmStatic
+    @JvmField
     public val isCaptureIncludedName: MethodStringName0<Animation, Boolean> =
         MethodStringName0<Animation, Boolean>("is_capture_included")
   }

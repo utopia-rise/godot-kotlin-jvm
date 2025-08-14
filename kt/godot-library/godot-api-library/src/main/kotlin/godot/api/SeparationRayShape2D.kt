@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D ray shape, intended for use in physics. Usually used to provide a shape for a
@@ -84,19 +84,19 @@ public open class SeparationRayShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<SeparationRayShape2D, Unit, Float> =
         MethodStringName1<SeparationRayShape2D, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<SeparationRayShape2D, Float> =
         MethodStringName0<SeparationRayShape2D, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setSlideOnSlopeName: MethodStringName1<SeparationRayShape2D, Unit, Boolean> =
         MethodStringName1<SeparationRayShape2D, Unit, Boolean>("set_slide_on_slope")
 
-    @JvmStatic
+    @JvmField
     public val getSlideOnSlopeName: MethodStringName0<SeparationRayShape2D, Boolean> =
         MethodStringName0<SeparationRayShape2D, Boolean>("get_slide_on_slope")
   }

@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -143,48 +143,48 @@ public open class RDTextureView : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFormatOverrideName:
         MethodStringName1<RDTextureView, Unit, RenderingDevice.DataFormat> =
         MethodStringName1<RDTextureView, Unit, RenderingDevice.DataFormat>("set_format_override")
 
-    @JvmStatic
+    @JvmField
     public val getFormatOverrideName: MethodStringName0<RDTextureView, RenderingDevice.DataFormat> =
         MethodStringName0<RDTextureView, RenderingDevice.DataFormat>("get_format_override")
 
-    @JvmStatic
+    @JvmField
     public val setSwizzleRName:
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_r")
 
-    @JvmStatic
+    @JvmField
     public val getSwizzleRName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
         MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_r")
 
-    @JvmStatic
+    @JvmField
     public val setSwizzleGName:
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_g")
 
-    @JvmStatic
+    @JvmField
     public val getSwizzleGName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
         MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_g")
 
-    @JvmStatic
+    @JvmField
     public val setSwizzleBName:
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_b")
 
-    @JvmStatic
+    @JvmField
     public val getSwizzleBName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
         MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_b")
 
-    @JvmStatic
+    @JvmField
     public val setSwizzleAName:
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle> =
         MethodStringName1<RDTextureView, Unit, RenderingDevice.TextureSwizzle>("set_swizzle_a")
 
-    @JvmStatic
+    @JvmField
     public val getSwizzleAName: MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle> =
         MethodStringName0<RDTextureView, RenderingDevice.TextureSwizzle>("get_swizzle_a")
   }

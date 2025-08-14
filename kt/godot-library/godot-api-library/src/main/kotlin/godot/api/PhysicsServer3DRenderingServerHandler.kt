@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 @GodotBaseType
 public open class PhysicsServer3DRenderingServerHandler : Object() {
@@ -81,17 +81,17 @@ public open class PhysicsServer3DRenderingServerHandler : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setVertexName:
         MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3> =
         MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3>("set_vertex")
 
-    @JvmStatic
+    @JvmField
     public val setNormalName:
         MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3> =
         MethodStringName2<PhysicsServer3DRenderingServerHandler, Unit, Int, Vector3>("set_normal")
 
-    @JvmStatic
+    @JvmField
     public val setAabbName: MethodStringName1<PhysicsServer3DRenderingServerHandler, Unit, AABB> =
         MethodStringName1<PhysicsServer3DRenderingServerHandler, Unit, AABB>("set_aabb")
   }

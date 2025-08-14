@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Utility class which holds a reference to the internal identifier of an [Object] instance, as
@@ -59,11 +59,11 @@ public open class EncodedObjectAsID : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setObjectIdName: MethodStringName1<EncodedObjectAsID, Unit, Long> =
         MethodStringName1<EncodedObjectAsID, Unit, Long>("set_object_id")
 
-    @JvmStatic
+    @JvmField
     public val getObjectIdName: MethodStringName0<EncodedObjectAsID, Long> =
         MethodStringName0<EncodedObjectAsID, Long>("get_object_id")
   }

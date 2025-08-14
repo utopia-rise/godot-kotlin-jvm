@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A material that uses a custom [Shader] program to render visual items (canvas items, meshes,
@@ -115,19 +115,19 @@ public open class ShaderMaterial : Material() {
       getShaderParameter(param.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShaderName: MethodStringName1<ShaderMaterial, Unit, Shader?> =
         MethodStringName1<ShaderMaterial, Unit, Shader?>("set_shader")
 
-    @JvmStatic
+    @JvmField
     public val getShaderName: MethodStringName0<ShaderMaterial, Shader?> =
         MethodStringName0<ShaderMaterial, Shader?>("get_shader")
 
-    @JvmStatic
+    @JvmField
     public val setShaderParameterName: MethodStringName2<ShaderMaterial, Unit, StringName, Any?> =
         MethodStringName2<ShaderMaterial, Unit, StringName, Any?>("set_shader_parameter")
 
-    @JvmStatic
+    @JvmField
     public val getShaderParameterName: MethodStringName1<ShaderMaterial, Any?, StringName> =
         MethodStringName1<ShaderMaterial, Any?, StringName>("get_shader_parameter")
   }

@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Editor facility that helps you draw a 2D polygon used as resource for [LightOccluder2D].
@@ -177,27 +177,27 @@ public open class OccluderPolygon2D : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setClosedName: MethodStringName1<OccluderPolygon2D, Unit, Boolean> =
         MethodStringName1<OccluderPolygon2D, Unit, Boolean>("set_closed")
 
-    @JvmStatic
+    @JvmField
     public val isClosedName: MethodStringName0<OccluderPolygon2D, Boolean> =
         MethodStringName0<OccluderPolygon2D, Boolean>("is_closed")
 
-    @JvmStatic
+    @JvmField
     public val setCullModeName: MethodStringName1<OccluderPolygon2D, Unit, CullMode> =
         MethodStringName1<OccluderPolygon2D, Unit, CullMode>("set_cull_mode")
 
-    @JvmStatic
+    @JvmField
     public val getCullModeName: MethodStringName0<OccluderPolygon2D, CullMode> =
         MethodStringName0<OccluderPolygon2D, CullMode>("get_cull_mode")
 
-    @JvmStatic
+    @JvmField
     public val setPolygonName: MethodStringName1<OccluderPolygon2D, Unit, PackedVector2Array> =
         MethodStringName1<OccluderPolygon2D, Unit, PackedVector2Array>("set_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getPolygonName: MethodStringName0<OccluderPolygon2D, PackedVector2Array> =
         MethodStringName0<OccluderPolygon2D, PackedVector2Array>("get_polygon")
   }

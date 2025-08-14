@@ -20,8 +20,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [CompressedTexture3D] is the VRAM-compressed counterpart of [ImageTexture3D]. The file extension
@@ -64,11 +64,11 @@ public open class CompressedTexture3D : Texture3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<CompressedTexture3D, Error, String> =
         MethodStringName1<CompressedTexture3D, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val getLoadPathName: MethodStringName0<CompressedTexture3D, String> =
         MethodStringName0<CompressedTexture3D, String>("get_load_path")
   }

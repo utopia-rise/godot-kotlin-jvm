@@ -30,6 +30,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -40,56 +41,56 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object InputMap : Object() {
-  @JvmStatic
+  @JvmField
   public val hasActionName: MethodStringName1<InputMap, Boolean, StringName> =
       MethodStringName1<InputMap, Boolean, StringName>("has_action")
 
-  @JvmStatic
+  @JvmField
   public val getActionsName: MethodStringName0<InputMap, VariantArray<StringName>> =
       MethodStringName0<InputMap, VariantArray<StringName>>("get_actions")
 
-  @JvmStatic
+  @JvmField
   public val addActionName: MethodStringName2<InputMap, Unit, StringName, Float> =
       MethodStringName2<InputMap, Unit, StringName, Float>("add_action")
 
-  @JvmStatic
+  @JvmField
   public val eraseActionName: MethodStringName1<InputMap, Unit, StringName> =
       MethodStringName1<InputMap, Unit, StringName>("erase_action")
 
-  @JvmStatic
+  @JvmField
   public val actionSetDeadzoneName: MethodStringName2<InputMap, Unit, StringName, Float> =
       MethodStringName2<InputMap, Unit, StringName, Float>("action_set_deadzone")
 
-  @JvmStatic
+  @JvmField
   public val actionGetDeadzoneName: MethodStringName1<InputMap, Float, StringName> =
       MethodStringName1<InputMap, Float, StringName>("action_get_deadzone")
 
-  @JvmStatic
+  @JvmField
   public val actionAddEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent?> =
       MethodStringName2<InputMap, Unit, StringName, InputEvent?>("action_add_event")
 
-  @JvmStatic
+  @JvmField
   public val actionHasEventName: MethodStringName2<InputMap, Boolean, StringName, InputEvent?> =
       MethodStringName2<InputMap, Boolean, StringName, InputEvent?>("action_has_event")
 
-  @JvmStatic
+  @JvmField
   public val actionEraseEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent?> =
       MethodStringName2<InputMap, Unit, StringName, InputEvent?>("action_erase_event")
 
-  @JvmStatic
+  @JvmField
   public val actionEraseEventsName: MethodStringName1<InputMap, Unit, StringName> =
       MethodStringName1<InputMap, Unit, StringName>("action_erase_events")
 
-  @JvmStatic
+  @JvmField
   public val actionGetEventsName: MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>
       = MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>("action_get_events")
 
-  @JvmStatic
+  @JvmField
   public val eventIsActionName:
       MethodStringName3<InputMap, Boolean, InputEvent?, StringName, Boolean> =
       MethodStringName3<InputMap, Boolean, InputEvent?, StringName, Boolean>("event_is_action")
 
-  @JvmStatic
+  @JvmField
   public val loadFromProjectSettingsName: MethodStringName0<InputMap, Unit> =
       MethodStringName0<InputMap, Unit>("load_from_project_settings")
 

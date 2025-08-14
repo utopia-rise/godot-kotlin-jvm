@@ -32,9 +32,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This animation node may contain a sub-tree of any other type animation nodes, such as
@@ -250,51 +250,51 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
       getNodePosition(name.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addNodeName:
         MethodStringName3<AnimationNodeBlendTree, Unit, StringName, AnimationNode?, Vector2> =
         MethodStringName3<AnimationNodeBlendTree, Unit, StringName, AnimationNode?, Vector2>("add_node")
 
-    @JvmStatic
+    @JvmField
     public val getNodeName: MethodStringName1<AnimationNodeBlendTree, AnimationNode?, StringName> =
         MethodStringName1<AnimationNodeBlendTree, AnimationNode?, StringName>("get_node")
 
-    @JvmStatic
+    @JvmField
     public val removeNodeName: MethodStringName1<AnimationNodeBlendTree, Unit, StringName> =
         MethodStringName1<AnimationNodeBlendTree, Unit, StringName>("remove_node")
 
-    @JvmStatic
+    @JvmField
     public val renameNodeName:
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, StringName> =
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, StringName>("rename_node")
 
-    @JvmStatic
+    @JvmField
     public val hasNodeName: MethodStringName1<AnimationNodeBlendTree, Boolean, StringName> =
         MethodStringName1<AnimationNodeBlendTree, Boolean, StringName>("has_node")
 
-    @JvmStatic
+    @JvmField
     public val connectNodeName:
         MethodStringName3<AnimationNodeBlendTree, Unit, StringName, Int, StringName> =
         MethodStringName3<AnimationNodeBlendTree, Unit, StringName, Int, StringName>("connect_node")
 
-    @JvmStatic
+    @JvmField
     public val disconnectNodeName: MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Int>
         = MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Int>("disconnect_node")
 
-    @JvmStatic
+    @JvmField
     public val setNodePositionName:
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2> =
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2>("set_node_position")
 
-    @JvmStatic
+    @JvmField
     public val getNodePositionName: MethodStringName1<AnimationNodeBlendTree, Vector2, StringName> =
         MethodStringName1<AnimationNodeBlendTree, Vector2, StringName>("get_node_position")
 
-    @JvmStatic
+    @JvmField
     public val setGraphOffsetName: MethodStringName1<AnimationNodeBlendTree, Unit, Vector2> =
         MethodStringName1<AnimationNodeBlendTree, Unit, Vector2>("set_graph_offset")
 
-    @JvmStatic
+    @JvmField
     public val getGraphOffsetName: MethodStringName0<AnimationNodeBlendTree, Vector2> =
         MethodStringName0<AnimationNodeBlendTree, Vector2>("get_graph_offset")
 

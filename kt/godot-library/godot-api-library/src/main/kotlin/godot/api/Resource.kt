@@ -26,6 +26,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -366,83 +367,83 @@ public open class Resource : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPathName: MethodStringName1<Resource, Unit, String> =
         MethodStringName1<Resource, Unit, String>("set_path")
 
-    @JvmStatic
+    @JvmField
     public val takeOverPathName: MethodStringName1<Resource, Unit, String> =
         MethodStringName1<Resource, Unit, String>("take_over_path")
 
-    @JvmStatic
+    @JvmField
     public val getPathName: MethodStringName0<Resource, String> =
         MethodStringName0<Resource, String>("get_path")
 
-    @JvmStatic
+    @JvmField
     public val setPathCacheName: MethodStringName1<Resource, Unit, String> =
         MethodStringName1<Resource, Unit, String>("set_path_cache")
 
-    @JvmStatic
+    @JvmField
     public val setNameName: MethodStringName1<Resource, Unit, String> =
         MethodStringName1<Resource, Unit, String>("set_name")
 
-    @JvmStatic
+    @JvmField
     public val getNameName: MethodStringName0<Resource, String> =
         MethodStringName0<Resource, String>("get_name")
 
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<Resource, RID> =
         MethodStringName0<Resource, RID>("get_rid")
 
-    @JvmStatic
+    @JvmField
     public val setLocalToSceneName: MethodStringName1<Resource, Unit, Boolean> =
         MethodStringName1<Resource, Unit, Boolean>("set_local_to_scene")
 
-    @JvmStatic
+    @JvmField
     public val isLocalToSceneName: MethodStringName0<Resource, Boolean> =
         MethodStringName0<Resource, Boolean>("is_local_to_scene")
 
-    @JvmStatic
+    @JvmField
     public val getLocalSceneName: MethodStringName0<Resource, Node?> =
         MethodStringName0<Resource, Node?>("get_local_scene")
 
-    @JvmStatic
+    @JvmField
     public val setupLocalToSceneName: MethodStringName0<Resource, Unit> =
         MethodStringName0<Resource, Unit>("setup_local_to_scene")
 
-    @JvmStatic
+    @JvmField
     public val resetStateName: MethodStringName0<Resource, Unit> =
         MethodStringName0<Resource, Unit>("reset_state")
 
-    @JvmStatic
+    @JvmField
     public val setIdForPathName: MethodStringName2<Resource, Unit, String, String> =
         MethodStringName2<Resource, Unit, String, String>("set_id_for_path")
 
-    @JvmStatic
+    @JvmField
     public val getIdForPathName: MethodStringName1<Resource, String, String> =
         MethodStringName1<Resource, String, String>("get_id_for_path")
 
-    @JvmStatic
+    @JvmField
     public val isBuiltInName: MethodStringName0<Resource, Boolean> =
         MethodStringName0<Resource, Boolean>("is_built_in")
 
-    @JvmStatic
+    @JvmField
     public val generateSceneUniqueIdName: MethodStringName0<Resource, String> =
         MethodStringName0<Resource, String>("generate_scene_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val setSceneUniqueIdName: MethodStringName1<Resource, Unit, String> =
         MethodStringName1<Resource, Unit, String>("set_scene_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val getSceneUniqueIdName: MethodStringName0<Resource, String> =
         MethodStringName0<Resource, String>("get_scene_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val emitChangedName: MethodStringName0<Resource, Unit> =
         MethodStringName0<Resource, Unit>("emit_changed")
 
-    @JvmStatic
+    @JvmField
     public val duplicateName: MethodStringName1<Resource, Resource?, Boolean> =
         MethodStringName1<Resource, Resource?, Boolean>("duplicate")
 

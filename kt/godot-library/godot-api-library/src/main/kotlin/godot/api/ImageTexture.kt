@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -114,23 +115,23 @@ public open class ImageTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createFromImageName: MethodStringName1<ImageTexture, ImageTexture?, Image?> =
         MethodStringName1<ImageTexture, ImageTexture?, Image?>("create_from_image")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<ImageTexture, Image.Format> =
         MethodStringName0<ImageTexture, Image.Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val setImageName: MethodStringName1<ImageTexture, Unit, Image?> =
         MethodStringName1<ImageTexture, Unit, Image?>("set_image")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName1<ImageTexture, Unit, Image?> =
         MethodStringName1<ImageTexture, Unit, Image?>("update")
 
-    @JvmStatic
+    @JvmField
     public val setSizeOverrideName: MethodStringName1<ImageTexture, Unit, Vector2i> =
         MethodStringName1<ImageTexture, Unit, Vector2i>("set_size_override")
 

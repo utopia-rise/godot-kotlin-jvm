@@ -15,7 +15,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A Texture2DArray is different from a Texture3D: The Texture2DArray does not support trilinear
@@ -48,7 +48,7 @@ public open class Texture2DArray : ImageTextureLayered() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<Texture2DArray, Resource?> =
         MethodStringName0<Texture2DArray, Resource?>("create_placeholder")
   }

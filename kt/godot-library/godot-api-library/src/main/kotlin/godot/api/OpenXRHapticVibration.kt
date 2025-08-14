@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This haptic feedback resource makes it possible to define a vibration based haptic feedback pulse
@@ -103,27 +103,27 @@ public open class OpenXRHapticVibration : OpenXRHapticBase() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDurationName: MethodStringName1<OpenXRHapticVibration, Unit, Long> =
         MethodStringName1<OpenXRHapticVibration, Unit, Long>("set_duration")
 
-    @JvmStatic
+    @JvmField
     public val getDurationName: MethodStringName0<OpenXRHapticVibration, Long> =
         MethodStringName0<OpenXRHapticVibration, Long>("get_duration")
 
-    @JvmStatic
+    @JvmField
     public val setFrequencyName: MethodStringName1<OpenXRHapticVibration, Unit, Float> =
         MethodStringName1<OpenXRHapticVibration, Unit, Float>("set_frequency")
 
-    @JvmStatic
+    @JvmField
     public val getFrequencyName: MethodStringName0<OpenXRHapticVibration, Float> =
         MethodStringName0<OpenXRHapticVibration, Float>("get_frequency")
 
-    @JvmStatic
+    @JvmField
     public val setAmplitudeName: MethodStringName1<OpenXRHapticVibration, Unit, Float> =
         MethodStringName1<OpenXRHapticVibration, Unit, Float>("set_amplitude")
 
-    @JvmStatic
+    @JvmField
     public val getAmplitudeName: MethodStringName0<OpenXRHapticVibration, Float> =
         MethodStringName0<OpenXRHapticVibration, Float>("get_amplitude")
   }

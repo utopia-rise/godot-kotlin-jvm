@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translates to `mix(a, b, weight)` in the shader language.
@@ -100,11 +100,11 @@ public open class VisualShaderNodeMix : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeMix, Unit, OpType> =
         MethodStringName1<VisualShaderNodeMix, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeMix, OpType> =
         MethodStringName0<VisualShaderNodeMix, OpType>("get_op_type")
   }

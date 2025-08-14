@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Compiled shader file in SPIR-V form.
@@ -105,23 +105,23 @@ public open class RDShaderFile : Resource() {
       getSpirv(version.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBytecodeName: MethodStringName2<RDShaderFile, Unit, RDShaderSPIRV?, StringName> =
         MethodStringName2<RDShaderFile, Unit, RDShaderSPIRV?, StringName>("set_bytecode")
 
-    @JvmStatic
+    @JvmField
     public val getSpirvName: MethodStringName1<RDShaderFile, RDShaderSPIRV?, StringName> =
         MethodStringName1<RDShaderFile, RDShaderSPIRV?, StringName>("get_spirv")
 
-    @JvmStatic
+    @JvmField
     public val getVersionListName: MethodStringName0<RDShaderFile, VariantArray<StringName>> =
         MethodStringName0<RDShaderFile, VariantArray<StringName>>("get_version_list")
 
-    @JvmStatic
+    @JvmField
     public val setBaseErrorName: MethodStringName1<RDShaderFile, Unit, String> =
         MethodStringName1<RDShaderFile, Unit, String>("set_base_error")
 
-    @JvmStatic
+    @JvmField
     public val getBaseErrorName: MethodStringName0<RDShaderFile, String> =
         MethodStringName0<RDShaderFile, String>("get_base_error")
   }

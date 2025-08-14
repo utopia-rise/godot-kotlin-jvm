@@ -19,8 +19,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A synchronization semaphore that can be used to synchronize multiple [Thread]s. Initialized to
@@ -71,15 +71,15 @@ public open class Semaphore : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val waitName: MethodStringName0<Semaphore, Unit> =
         MethodStringName0<Semaphore, Unit>("wait")
 
-    @JvmStatic
+    @JvmField
     public val tryWaitName: MethodStringName0<Semaphore, Boolean> =
         MethodStringName0<Semaphore, Boolean>("try_wait")
 
-    @JvmStatic
+    @JvmField
     public val postName: MethodStringName1<Semaphore, Unit, Int> =
         MethodStringName1<Semaphore, Unit, Int>("post")
   }

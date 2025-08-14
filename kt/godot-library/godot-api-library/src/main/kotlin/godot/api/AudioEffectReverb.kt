@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Simulates the sound of acoustic environments such as rooms, concert halls, caverns, or an open
@@ -214,67 +214,67 @@ public open class AudioEffectReverb : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPredelayMsecName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_predelay_msec")
 
-    @JvmStatic
+    @JvmField
     public val getPredelayMsecName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_predelay_msec")
 
-    @JvmStatic
+    @JvmField
     public val setPredelayFeedbackName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_predelay_feedback")
 
-    @JvmStatic
+    @JvmField
     public val getPredelayFeedbackName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_predelay_feedback")
 
-    @JvmStatic
+    @JvmField
     public val setRoomSizeName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_room_size")
 
-    @JvmStatic
+    @JvmField
     public val getRoomSizeName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_room_size")
 
-    @JvmStatic
+    @JvmField
     public val setDampingName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_damping")
 
-    @JvmStatic
+    @JvmField
     public val getDampingName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_damping")
 
-    @JvmStatic
+    @JvmField
     public val setSpreadName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_spread")
 
-    @JvmStatic
+    @JvmField
     public val getSpreadName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_spread")
 
-    @JvmStatic
+    @JvmField
     public val setDryName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_dry")
 
-    @JvmStatic
+    @JvmField
     public val getDryName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_dry")
 
-    @JvmStatic
+    @JvmField
     public val setWetName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_wet")
 
-    @JvmStatic
+    @JvmField
     public val getWetName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_wet")
 
-    @JvmStatic
+    @JvmField
     public val setHpfName: MethodStringName1<AudioEffectReverb, Unit, Float> =
         MethodStringName1<AudioEffectReverb, Unit, Float>("set_hpf")
 
-    @JvmStatic
+    @JvmField
     public val getHpfName: MethodStringName0<AudioEffectReverb, Float> =
         MethodStringName0<AudioEffectReverb, Float>("get_hpf")
   }

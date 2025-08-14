@@ -33,9 +33,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A class stored as a resource. A script extends the functionality of all objects that instantiate
@@ -260,78 +260,78 @@ public open class Script internal constructor() : Resource() {
       getPropertyDefaultValue(property.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val canInstantiateName: MethodStringName0<Script, Boolean> =
         MethodStringName0<Script, Boolean>("can_instantiate")
 
-    @JvmStatic
+    @JvmField
     public val instanceHasName: MethodStringName1<Script, Boolean, Object?> =
         MethodStringName1<Script, Boolean, Object?>("instance_has")
 
-    @JvmStatic
+    @JvmField
     public val hasSourceCodeName: MethodStringName0<Script, Boolean> =
         MethodStringName0<Script, Boolean>("has_source_code")
 
-    @JvmStatic
+    @JvmField
     public val getSourceCodeName: MethodStringName0<Script, String> =
         MethodStringName0<Script, String>("get_source_code")
 
-    @JvmStatic
+    @JvmField
     public val setSourceCodeName: MethodStringName1<Script, Unit, String> =
         MethodStringName1<Script, Unit, String>("set_source_code")
 
-    @JvmStatic
+    @JvmField
     public val reloadName: MethodStringName1<Script, Error, Boolean> =
         MethodStringName1<Script, Error, Boolean>("reload")
 
-    @JvmStatic
+    @JvmField
     public val getBaseScriptName: MethodStringName0<Script, Script?> =
         MethodStringName0<Script, Script?>("get_base_script")
 
-    @JvmStatic
+    @JvmField
     public val getInstanceBaseTypeName: MethodStringName0<Script, StringName> =
         MethodStringName0<Script, StringName>("get_instance_base_type")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalNameName: MethodStringName0<Script, StringName> =
         MethodStringName0<Script, StringName>("get_global_name")
 
-    @JvmStatic
+    @JvmField
     public val hasScriptSignalName: MethodStringName1<Script, Boolean, StringName> =
         MethodStringName1<Script, Boolean, StringName>("has_script_signal")
 
-    @JvmStatic
+    @JvmField
     public val getScriptPropertyListName:
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_property_list")
 
-    @JvmStatic
+    @JvmField
     public val getScriptMethodListName:
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_method_list")
 
-    @JvmStatic
+    @JvmField
     public val getScriptSignalListName:
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName0<Script, VariantArray<Dictionary<Any?, Any?>>>("get_script_signal_list")
 
-    @JvmStatic
+    @JvmField
     public val getScriptConstantMapName: MethodStringName0<Script, Dictionary<Any?, Any?>> =
         MethodStringName0<Script, Dictionary<Any?, Any?>>("get_script_constant_map")
 
-    @JvmStatic
+    @JvmField
     public val getPropertyDefaultValueName: MethodStringName1<Script, Any?, StringName> =
         MethodStringName1<Script, Any?, StringName>("get_property_default_value")
 
-    @JvmStatic
+    @JvmField
     public val isToolName: MethodStringName0<Script, Boolean> =
         MethodStringName0<Script, Boolean>("is_tool")
 
-    @JvmStatic
+    @JvmField
     public val isAbstractName: MethodStringName0<Script, Boolean> =
         MethodStringName0<Script, Boolean>("is_abstract")
 
-    @JvmStatic
+    @JvmField
     public val getRpcConfigName: MethodStringName0<Script, Any?> =
         MethodStringName0<Script, Any?>("get_rpc_config")
   }

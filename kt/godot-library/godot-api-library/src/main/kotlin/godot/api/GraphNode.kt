@@ -32,9 +32,9 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [GraphNode] allows to create nodes for a [GraphEdit] graph with customizable content based on its
@@ -442,149 +442,149 @@ public open class GraphNode : GraphElement() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTitleName: MethodStringName1<GraphNode, Unit, String> =
         MethodStringName1<GraphNode, Unit, String>("set_title")
 
-    @JvmStatic
+    @JvmField
     public val getTitleName: MethodStringName0<GraphNode, String> =
         MethodStringName0<GraphNode, String>("get_title")
 
-    @JvmStatic
+    @JvmField
     public val getTitlebarHboxName: MethodStringName0<GraphNode, HBoxContainer?> =
         MethodStringName0<GraphNode, HBoxContainer?>("get_titlebar_hbox")
 
-    @JvmStatic
+    @JvmField
     public val setSlotName:
         MethodStringName10<GraphNode, Unit, Int, Boolean, Int, Color, Boolean, Int, Color, Texture2D?, Texture2D?, Boolean>
         =
         MethodStringName10<GraphNode, Unit, Int, Boolean, Int, Color, Boolean, Int, Color, Texture2D?, Texture2D?, Boolean>("set_slot")
 
-    @JvmStatic
+    @JvmField
     public val clearSlotName: MethodStringName1<GraphNode, Unit, Int> =
         MethodStringName1<GraphNode, Unit, Int>("clear_slot")
 
-    @JvmStatic
+    @JvmField
     public val clearAllSlotsName: MethodStringName0<GraphNode, Unit> =
         MethodStringName0<GraphNode, Unit>("clear_all_slots")
 
-    @JvmStatic
+    @JvmField
     public val isSlotEnabledLeftName: MethodStringName1<GraphNode, Boolean, Int> =
         MethodStringName1<GraphNode, Boolean, Int>("is_slot_enabled_left")
 
-    @JvmStatic
+    @JvmField
     public val setSlotEnabledLeftName: MethodStringName2<GraphNode, Unit, Int, Boolean> =
         MethodStringName2<GraphNode, Unit, Int, Boolean>("set_slot_enabled_left")
 
-    @JvmStatic
+    @JvmField
     public val setSlotTypeLeftName: MethodStringName2<GraphNode, Unit, Int, Int> =
         MethodStringName2<GraphNode, Unit, Int, Int>("set_slot_type_left")
 
-    @JvmStatic
+    @JvmField
     public val getSlotTypeLeftName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_slot_type_left")
 
-    @JvmStatic
+    @JvmField
     public val setSlotColorLeftName: MethodStringName2<GraphNode, Unit, Int, Color> =
         MethodStringName2<GraphNode, Unit, Int, Color>("set_slot_color_left")
 
-    @JvmStatic
+    @JvmField
     public val getSlotColorLeftName: MethodStringName1<GraphNode, Color, Int> =
         MethodStringName1<GraphNode, Color, Int>("get_slot_color_left")
 
-    @JvmStatic
+    @JvmField
     public val setSlotCustomIconLeftName: MethodStringName2<GraphNode, Unit, Int, Texture2D?> =
         MethodStringName2<GraphNode, Unit, Int, Texture2D?>("set_slot_custom_icon_left")
 
-    @JvmStatic
+    @JvmField
     public val getSlotCustomIconLeftName: MethodStringName1<GraphNode, Texture2D?, Int> =
         MethodStringName1<GraphNode, Texture2D?, Int>("get_slot_custom_icon_left")
 
-    @JvmStatic
+    @JvmField
     public val isSlotEnabledRightName: MethodStringName1<GraphNode, Boolean, Int> =
         MethodStringName1<GraphNode, Boolean, Int>("is_slot_enabled_right")
 
-    @JvmStatic
+    @JvmField
     public val setSlotEnabledRightName: MethodStringName2<GraphNode, Unit, Int, Boolean> =
         MethodStringName2<GraphNode, Unit, Int, Boolean>("set_slot_enabled_right")
 
-    @JvmStatic
+    @JvmField
     public val setSlotTypeRightName: MethodStringName2<GraphNode, Unit, Int, Int> =
         MethodStringName2<GraphNode, Unit, Int, Int>("set_slot_type_right")
 
-    @JvmStatic
+    @JvmField
     public val getSlotTypeRightName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_slot_type_right")
 
-    @JvmStatic
+    @JvmField
     public val setSlotColorRightName: MethodStringName2<GraphNode, Unit, Int, Color> =
         MethodStringName2<GraphNode, Unit, Int, Color>("set_slot_color_right")
 
-    @JvmStatic
+    @JvmField
     public val getSlotColorRightName: MethodStringName1<GraphNode, Color, Int> =
         MethodStringName1<GraphNode, Color, Int>("get_slot_color_right")
 
-    @JvmStatic
+    @JvmField
     public val setSlotCustomIconRightName: MethodStringName2<GraphNode, Unit, Int, Texture2D?> =
         MethodStringName2<GraphNode, Unit, Int, Texture2D?>("set_slot_custom_icon_right")
 
-    @JvmStatic
+    @JvmField
     public val getSlotCustomIconRightName: MethodStringName1<GraphNode, Texture2D?, Int> =
         MethodStringName1<GraphNode, Texture2D?, Int>("get_slot_custom_icon_right")
 
-    @JvmStatic
+    @JvmField
     public val isSlotDrawStyleboxName: MethodStringName1<GraphNode, Boolean, Int> =
         MethodStringName1<GraphNode, Boolean, Int>("is_slot_draw_stylebox")
 
-    @JvmStatic
+    @JvmField
     public val setSlotDrawStyleboxName: MethodStringName2<GraphNode, Unit, Int, Boolean> =
         MethodStringName2<GraphNode, Unit, Int, Boolean>("set_slot_draw_stylebox")
 
-    @JvmStatic
+    @JvmField
     public val setIgnoreInvalidConnectionTypeName: MethodStringName1<GraphNode, Unit, Boolean> =
         MethodStringName1<GraphNode, Unit, Boolean>("set_ignore_invalid_connection_type")
 
-    @JvmStatic
+    @JvmField
     public val isIgnoringValidConnectionTypeName: MethodStringName0<GraphNode, Boolean> =
         MethodStringName0<GraphNode, Boolean>("is_ignoring_valid_connection_type")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortCountName: MethodStringName0<GraphNode, Int> =
         MethodStringName0<GraphNode, Int>("get_input_port_count")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortPositionName: MethodStringName1<GraphNode, Vector2, Int> =
         MethodStringName1<GraphNode, Vector2, Int>("get_input_port_position")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortTypeName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_input_port_type")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortColorName: MethodStringName1<GraphNode, Color, Int> =
         MethodStringName1<GraphNode, Color, Int>("get_input_port_color")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortSlotName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_input_port_slot")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortCountName: MethodStringName0<GraphNode, Int> =
         MethodStringName0<GraphNode, Int>("get_output_port_count")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortPositionName: MethodStringName1<GraphNode, Vector2, Int> =
         MethodStringName1<GraphNode, Vector2, Int>("get_output_port_position")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortTypeName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_output_port_type")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortColorName: MethodStringName1<GraphNode, Color, Int> =
         MethodStringName1<GraphNode, Color, Int>("get_output_port_color")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortSlotName: MethodStringName1<GraphNode, Int, Int> =
         MethodStringName1<GraphNode, Int, Int>("get_output_port_slot")
   }

@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A container used to provide a child control with scrollbars when needed. Scrollbars will
@@ -362,87 +362,87 @@ public open class ScrollContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHScrollName: MethodStringName1<ScrollContainer, Unit, Int> =
         MethodStringName1<ScrollContainer, Unit, Int>("set_h_scroll")
 
-    @JvmStatic
+    @JvmField
     public val getHScrollName: MethodStringName0<ScrollContainer, Int> =
         MethodStringName0<ScrollContainer, Int>("get_h_scroll")
 
-    @JvmStatic
+    @JvmField
     public val setVScrollName: MethodStringName1<ScrollContainer, Unit, Int> =
         MethodStringName1<ScrollContainer, Unit, Int>("set_v_scroll")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollName: MethodStringName0<ScrollContainer, Int> =
         MethodStringName0<ScrollContainer, Int>("get_v_scroll")
 
-    @JvmStatic
+    @JvmField
     public val setHorizontalCustomStepName: MethodStringName1<ScrollContainer, Unit, Float> =
         MethodStringName1<ScrollContainer, Unit, Float>("set_horizontal_custom_step")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalCustomStepName: MethodStringName0<ScrollContainer, Float> =
         MethodStringName0<ScrollContainer, Float>("get_horizontal_custom_step")
 
-    @JvmStatic
+    @JvmField
     public val setVerticalCustomStepName: MethodStringName1<ScrollContainer, Unit, Float> =
         MethodStringName1<ScrollContainer, Unit, Float>("set_vertical_custom_step")
 
-    @JvmStatic
+    @JvmField
     public val getVerticalCustomStepName: MethodStringName0<ScrollContainer, Float> =
         MethodStringName0<ScrollContainer, Float>("get_vertical_custom_step")
 
-    @JvmStatic
+    @JvmField
     public val setHorizontalScrollModeName: MethodStringName1<ScrollContainer, Unit, ScrollMode> =
         MethodStringName1<ScrollContainer, Unit, ScrollMode>("set_horizontal_scroll_mode")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalScrollModeName: MethodStringName0<ScrollContainer, ScrollMode> =
         MethodStringName0<ScrollContainer, ScrollMode>("get_horizontal_scroll_mode")
 
-    @JvmStatic
+    @JvmField
     public val setVerticalScrollModeName: MethodStringName1<ScrollContainer, Unit, ScrollMode> =
         MethodStringName1<ScrollContainer, Unit, ScrollMode>("set_vertical_scroll_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVerticalScrollModeName: MethodStringName0<ScrollContainer, ScrollMode> =
         MethodStringName0<ScrollContainer, ScrollMode>("get_vertical_scroll_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDeadzoneName: MethodStringName1<ScrollContainer, Unit, Int> =
         MethodStringName1<ScrollContainer, Unit, Int>("set_deadzone")
 
-    @JvmStatic
+    @JvmField
     public val getDeadzoneName: MethodStringName0<ScrollContainer, Int> =
         MethodStringName0<ScrollContainer, Int>("get_deadzone")
 
-    @JvmStatic
+    @JvmField
     public val setFollowFocusName: MethodStringName1<ScrollContainer, Unit, Boolean> =
         MethodStringName1<ScrollContainer, Unit, Boolean>("set_follow_focus")
 
-    @JvmStatic
+    @JvmField
     public val isFollowingFocusName: MethodStringName0<ScrollContainer, Boolean> =
         MethodStringName0<ScrollContainer, Boolean>("is_following_focus")
 
-    @JvmStatic
+    @JvmField
     public val getHScrollBarName: MethodStringName0<ScrollContainer, HScrollBar?> =
         MethodStringName0<ScrollContainer, HScrollBar?>("get_h_scroll_bar")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollBarName: MethodStringName0<ScrollContainer, VScrollBar?> =
         MethodStringName0<ScrollContainer, VScrollBar?>("get_v_scroll_bar")
 
-    @JvmStatic
+    @JvmField
     public val ensureControlVisibleName: MethodStringName1<ScrollContainer, Unit, Control?> =
         MethodStringName1<ScrollContainer, Unit, Control?>("ensure_control_visible")
 
-    @JvmStatic
+    @JvmField
     public val setDrawFocusBorderName: MethodStringName1<ScrollContainer, Unit, Boolean> =
         MethodStringName1<ScrollContainer, Unit, Boolean>("set_draw_focus_border")
 
-    @JvmStatic
+    @JvmField
     public val getDrawFocusBorderName: MethodStringName0<ScrollContainer, Boolean> =
         MethodStringName0<ScrollContainer, Boolean>("get_draw_focus_border")
   }

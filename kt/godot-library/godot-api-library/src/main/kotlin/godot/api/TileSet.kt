@@ -40,9 +40,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A TileSet is a library of tiles for a [TileMapLayer]. A TileSet handles a list of
@@ -1218,366 +1218,366 @@ public open class TileSet : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getNextSourceIdName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_next_source_id")
 
-    @JvmStatic
+    @JvmField
     public val addSourceName: MethodStringName2<TileSet, Int, TileSetSource?, Int> =
         MethodStringName2<TileSet, Int, TileSetSource?, Int>("add_source")
 
-    @JvmStatic
+    @JvmField
     public val removeSourceName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_source")
 
-    @JvmStatic
+    @JvmField
     public val setSourceIdName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("set_source_id")
 
-    @JvmStatic
+    @JvmField
     public val getSourceCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_source_count")
 
-    @JvmStatic
+    @JvmField
     public val getSourceIdName: MethodStringName1<TileSet, Int, Int> =
         MethodStringName1<TileSet, Int, Int>("get_source_id")
 
-    @JvmStatic
+    @JvmField
     public val hasSourceName: MethodStringName1<TileSet, Boolean, Int> =
         MethodStringName1<TileSet, Boolean, Int>("has_source")
 
-    @JvmStatic
+    @JvmField
     public val getSourceName: MethodStringName1<TileSet, TileSetSource?, Int> =
         MethodStringName1<TileSet, TileSetSource?, Int>("get_source")
 
-    @JvmStatic
+    @JvmField
     public val setTileShapeName: MethodStringName1<TileSet, Unit, TileShape> =
         MethodStringName1<TileSet, Unit, TileShape>("set_tile_shape")
 
-    @JvmStatic
+    @JvmField
     public val getTileShapeName: MethodStringName0<TileSet, TileShape> =
         MethodStringName0<TileSet, TileShape>("get_tile_shape")
 
-    @JvmStatic
+    @JvmField
     public val setTileLayoutName: MethodStringName1<TileSet, Unit, TileLayout> =
         MethodStringName1<TileSet, Unit, TileLayout>("set_tile_layout")
 
-    @JvmStatic
+    @JvmField
     public val getTileLayoutName: MethodStringName0<TileSet, TileLayout> =
         MethodStringName0<TileSet, TileLayout>("get_tile_layout")
 
-    @JvmStatic
+    @JvmField
     public val setTileOffsetAxisName: MethodStringName1<TileSet, Unit, TileOffsetAxis> =
         MethodStringName1<TileSet, Unit, TileOffsetAxis>("set_tile_offset_axis")
 
-    @JvmStatic
+    @JvmField
     public val getTileOffsetAxisName: MethodStringName0<TileSet, TileOffsetAxis> =
         MethodStringName0<TileSet, TileOffsetAxis>("get_tile_offset_axis")
 
-    @JvmStatic
+    @JvmField
     public val setTileSizeName: MethodStringName1<TileSet, Unit, Vector2i> =
         MethodStringName1<TileSet, Unit, Vector2i>("set_tile_size")
 
-    @JvmStatic
+    @JvmField
     public val getTileSizeName: MethodStringName0<TileSet, Vector2i> =
         MethodStringName0<TileSet, Vector2i>("get_tile_size")
 
-    @JvmStatic
+    @JvmField
     public val setUvClippingName: MethodStringName1<TileSet, Unit, Boolean> =
         MethodStringName1<TileSet, Unit, Boolean>("set_uv_clipping")
 
-    @JvmStatic
+    @JvmField
     public val isUvClippingName: MethodStringName0<TileSet, Boolean> =
         MethodStringName0<TileSet, Boolean>("is_uv_clipping")
 
-    @JvmStatic
+    @JvmField
     public val getOcclusionLayersCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_occlusion_layers_count")
 
-    @JvmStatic
+    @JvmField
     public val addOcclusionLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("add_occlusion_layer")
 
-    @JvmStatic
+    @JvmField
     public val moveOcclusionLayerName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("move_occlusion_layer")
 
-    @JvmStatic
+    @JvmField
     public val removeOcclusionLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_occlusion_layer")
 
-    @JvmStatic
+    @JvmField
     public val setOcclusionLayerLightMaskName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("set_occlusion_layer_light_mask")
 
-    @JvmStatic
+    @JvmField
     public val getOcclusionLayerLightMaskName: MethodStringName1<TileSet, Int, Int> =
         MethodStringName1<TileSet, Int, Int>("get_occlusion_layer_light_mask")
 
-    @JvmStatic
+    @JvmField
     public val setOcclusionLayerSdfCollisionName: MethodStringName2<TileSet, Unit, Int, Boolean> =
         MethodStringName2<TileSet, Unit, Int, Boolean>("set_occlusion_layer_sdf_collision")
 
-    @JvmStatic
+    @JvmField
     public val getOcclusionLayerSdfCollisionName: MethodStringName1<TileSet, Boolean, Int> =
         MethodStringName1<TileSet, Boolean, Int>("get_occlusion_layer_sdf_collision")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsLayersCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_physics_layers_count")
 
-    @JvmStatic
+    @JvmField
     public val addPhysicsLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("add_physics_layer")
 
-    @JvmStatic
+    @JvmField
     public val movePhysicsLayerName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("move_physics_layer")
 
-    @JvmStatic
+    @JvmField
     public val removePhysicsLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_physics_layer")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsLayerCollisionLayerName: MethodStringName2<TileSet, Unit, Int, Long> =
         MethodStringName2<TileSet, Unit, Int, Long>("set_physics_layer_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsLayerCollisionLayerName: MethodStringName1<TileSet, Long, Int> =
         MethodStringName1<TileSet, Long, Int>("get_physics_layer_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsLayerCollisionMaskName: MethodStringName2<TileSet, Unit, Int, Long> =
         MethodStringName2<TileSet, Unit, Int, Long>("set_physics_layer_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsLayerCollisionMaskName: MethodStringName1<TileSet, Long, Int> =
         MethodStringName1<TileSet, Long, Int>("get_physics_layer_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsLayerCollisionPriorityName: MethodStringName2<TileSet, Unit, Int, Float> =
         MethodStringName2<TileSet, Unit, Int, Float>("set_physics_layer_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsLayerCollisionPriorityName: MethodStringName1<TileSet, Float, Int> =
         MethodStringName1<TileSet, Float, Int>("get_physics_layer_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsLayerPhysicsMaterialName:
         MethodStringName2<TileSet, Unit, Int, PhysicsMaterial?> =
         MethodStringName2<TileSet, Unit, Int, PhysicsMaterial?>("set_physics_layer_physics_material")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsLayerPhysicsMaterialName: MethodStringName1<TileSet, PhysicsMaterial?, Int>
         = MethodStringName1<TileSet, PhysicsMaterial?, Int>("get_physics_layer_physics_material")
 
-    @JvmStatic
+    @JvmField
     public val getTerrainSetsCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_terrain_sets_count")
 
-    @JvmStatic
+    @JvmField
     public val addTerrainSetName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("add_terrain_set")
 
-    @JvmStatic
+    @JvmField
     public val moveTerrainSetName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("move_terrain_set")
 
-    @JvmStatic
+    @JvmField
     public val removeTerrainSetName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_terrain_set")
 
-    @JvmStatic
+    @JvmField
     public val setTerrainSetModeName: MethodStringName2<TileSet, Unit, Int, TerrainMode> =
         MethodStringName2<TileSet, Unit, Int, TerrainMode>("set_terrain_set_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTerrainSetModeName: MethodStringName1<TileSet, TerrainMode, Int> =
         MethodStringName1<TileSet, TerrainMode, Int>("get_terrain_set_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTerrainsCountName: MethodStringName1<TileSet, Int, Int> =
         MethodStringName1<TileSet, Int, Int>("get_terrains_count")
 
-    @JvmStatic
+    @JvmField
     public val addTerrainName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("add_terrain")
 
-    @JvmStatic
+    @JvmField
     public val moveTerrainName: MethodStringName3<TileSet, Unit, Int, Int, Int> =
         MethodStringName3<TileSet, Unit, Int, Int, Int>("move_terrain")
 
-    @JvmStatic
+    @JvmField
     public val removeTerrainName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("remove_terrain")
 
-    @JvmStatic
+    @JvmField
     public val setTerrainNameName: MethodStringName3<TileSet, Unit, Int, Int, String> =
         MethodStringName3<TileSet, Unit, Int, Int, String>("set_terrain_name")
 
-    @JvmStatic
+    @JvmField
     public val getTerrainNameName: MethodStringName2<TileSet, String, Int, Int> =
         MethodStringName2<TileSet, String, Int, Int>("get_terrain_name")
 
-    @JvmStatic
+    @JvmField
     public val setTerrainColorName: MethodStringName3<TileSet, Unit, Int, Int, Color> =
         MethodStringName3<TileSet, Unit, Int, Int, Color>("set_terrain_color")
 
-    @JvmStatic
+    @JvmField
     public val getTerrainColorName: MethodStringName2<TileSet, Color, Int, Int> =
         MethodStringName2<TileSet, Color, Int, Int>("get_terrain_color")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayersCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_navigation_layers_count")
 
-    @JvmStatic
+    @JvmField
     public val addNavigationLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("add_navigation_layer")
 
-    @JvmStatic
+    @JvmField
     public val moveNavigationLayerName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("move_navigation_layer")
 
-    @JvmStatic
+    @JvmField
     public val removeNavigationLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_navigation_layer")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayerLayersName: MethodStringName2<TileSet, Unit, Int, Long> =
         MethodStringName2<TileSet, Unit, Int, Long>("set_navigation_layer_layers")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayerLayersName: MethodStringName1<TileSet, Long, Int> =
         MethodStringName1<TileSet, Long, Int>("get_navigation_layer_layers")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayerLayerValueName: MethodStringName3<TileSet, Unit, Int, Int, Boolean>
         = MethodStringName3<TileSet, Unit, Int, Int, Boolean>("set_navigation_layer_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayerLayerValueName: MethodStringName2<TileSet, Boolean, Int, Int> =
         MethodStringName2<TileSet, Boolean, Int, Int>("get_navigation_layer_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getCustomDataLayersCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_custom_data_layers_count")
 
-    @JvmStatic
+    @JvmField
     public val addCustomDataLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("add_custom_data_layer")
 
-    @JvmStatic
+    @JvmField
     public val moveCustomDataLayerName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("move_custom_data_layer")
 
-    @JvmStatic
+    @JvmField
     public val removeCustomDataLayerName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_custom_data_layer")
 
-    @JvmStatic
+    @JvmField
     public val getCustomDataLayerByNameName: MethodStringName1<TileSet, Int, String> =
         MethodStringName1<TileSet, Int, String>("get_custom_data_layer_by_name")
 
-    @JvmStatic
+    @JvmField
     public val setCustomDataLayerNameName: MethodStringName2<TileSet, Unit, Int, String> =
         MethodStringName2<TileSet, Unit, Int, String>("set_custom_data_layer_name")
 
-    @JvmStatic
+    @JvmField
     public val hasCustomDataLayerByNameName: MethodStringName1<TileSet, Boolean, String> =
         MethodStringName1<TileSet, Boolean, String>("has_custom_data_layer_by_name")
 
-    @JvmStatic
+    @JvmField
     public val getCustomDataLayerNameName: MethodStringName1<TileSet, String, Int> =
         MethodStringName1<TileSet, String, Int>("get_custom_data_layer_name")
 
-    @JvmStatic
+    @JvmField
     public val setCustomDataLayerTypeName: MethodStringName2<TileSet, Unit, Int, VariantType> =
         MethodStringName2<TileSet, Unit, Int, VariantType>("set_custom_data_layer_type")
 
-    @JvmStatic
+    @JvmField
     public val getCustomDataLayerTypeName: MethodStringName1<TileSet, VariantType, Int> =
         MethodStringName1<TileSet, VariantType, Int>("get_custom_data_layer_type")
 
-    @JvmStatic
+    @JvmField
     public val setSourceLevelTileProxyName: MethodStringName2<TileSet, Unit, Int, Int> =
         MethodStringName2<TileSet, Unit, Int, Int>("set_source_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val getSourceLevelTileProxyName: MethodStringName1<TileSet, Int, Int> =
         MethodStringName1<TileSet, Int, Int>("get_source_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val hasSourceLevelTileProxyName: MethodStringName1<TileSet, Boolean, Int> =
         MethodStringName1<TileSet, Boolean, Int>("has_source_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val removeSourceLevelTileProxyName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_source_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val setCoordsLevelTileProxyName:
         MethodStringName4<TileSet, Unit, Int, Vector2i, Int, Vector2i> =
         MethodStringName4<TileSet, Unit, Int, Vector2i, Int, Vector2i>("set_coords_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val getCoordsLevelTileProxyName:
         MethodStringName2<TileSet, VariantArray<Any?>, Int, Vector2i> =
         MethodStringName2<TileSet, VariantArray<Any?>, Int, Vector2i>("get_coords_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val hasCoordsLevelTileProxyName: MethodStringName2<TileSet, Boolean, Int, Vector2i> =
         MethodStringName2<TileSet, Boolean, Int, Vector2i>("has_coords_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val removeCoordsLevelTileProxyName: MethodStringName2<TileSet, Unit, Int, Vector2i> =
         MethodStringName2<TileSet, Unit, Int, Vector2i>("remove_coords_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val setAlternativeLevelTileProxyName:
         MethodStringName6<TileSet, Unit, Int, Vector2i, Int, Int, Vector2i, Int> =
         MethodStringName6<TileSet, Unit, Int, Vector2i, Int, Int, Vector2i, Int>("set_alternative_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val getAlternativeLevelTileProxyName:
         MethodStringName3<TileSet, VariantArray<Any?>, Int, Vector2i, Int> =
         MethodStringName3<TileSet, VariantArray<Any?>, Int, Vector2i, Int>("get_alternative_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val hasAlternativeLevelTileProxyName:
         MethodStringName3<TileSet, Boolean, Int, Vector2i, Int> =
         MethodStringName3<TileSet, Boolean, Int, Vector2i, Int>("has_alternative_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val removeAlternativeLevelTileProxyName:
         MethodStringName3<TileSet, Unit, Int, Vector2i, Int> =
         MethodStringName3<TileSet, Unit, Int, Vector2i, Int>("remove_alternative_level_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val mapTileProxyName: MethodStringName3<TileSet, VariantArray<Any?>, Int, Vector2i, Int>
         = MethodStringName3<TileSet, VariantArray<Any?>, Int, Vector2i, Int>("map_tile_proxy")
 
-    @JvmStatic
+    @JvmField
     public val cleanupInvalidTileProxiesName: MethodStringName0<TileSet, Unit> =
         MethodStringName0<TileSet, Unit>("cleanup_invalid_tile_proxies")
 
-    @JvmStatic
+    @JvmField
     public val clearTileProxiesName: MethodStringName0<TileSet, Unit> =
         MethodStringName0<TileSet, Unit>("clear_tile_proxies")
 
-    @JvmStatic
+    @JvmField
     public val addPatternName: MethodStringName2<TileSet, Int, TileMapPattern?, Int> =
         MethodStringName2<TileSet, Int, TileMapPattern?, Int>("add_pattern")
 
-    @JvmStatic
+    @JvmField
     public val getPatternName: MethodStringName1<TileSet, TileMapPattern?, Int> =
         MethodStringName1<TileSet, TileMapPattern?, Int>("get_pattern")
 
-    @JvmStatic
+    @JvmField
     public val removePatternName: MethodStringName1<TileSet, Unit, Int> =
         MethodStringName1<TileSet, Unit, Int>("remove_pattern")
 
-    @JvmStatic
+    @JvmField
     public val getPatternsCountName: MethodStringName0<TileSet, Int> =
         MethodStringName0<TileSet, Int>("get_patterns_count")
   }

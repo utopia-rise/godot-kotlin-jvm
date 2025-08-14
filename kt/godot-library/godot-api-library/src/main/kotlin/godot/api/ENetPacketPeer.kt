@@ -28,8 +28,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A PacketPeer implementation representing a peer of an [ENetConnection].
@@ -375,67 +375,67 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val peerDisconnectName: MethodStringName1<ENetPacketPeer, Unit, Int> =
         MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect")
 
-    @JvmStatic
+    @JvmField
     public val peerDisconnectLaterName: MethodStringName1<ENetPacketPeer, Unit, Int> =
         MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_later")
 
-    @JvmStatic
+    @JvmField
     public val peerDisconnectNowName: MethodStringName1<ENetPacketPeer, Unit, Int> =
         MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_now")
 
-    @JvmStatic
+    @JvmField
     public val pingName: MethodStringName0<ENetPacketPeer, Unit> =
         MethodStringName0<ENetPacketPeer, Unit>("ping")
 
-    @JvmStatic
+    @JvmField
     public val pingIntervalName: MethodStringName1<ENetPacketPeer, Unit, Int> =
         MethodStringName1<ENetPacketPeer, Unit, Int>("ping_interval")
 
-    @JvmStatic
+    @JvmField
     public val resetName: MethodStringName0<ENetPacketPeer, Unit> =
         MethodStringName0<ENetPacketPeer, Unit>("reset")
 
-    @JvmStatic
+    @JvmField
     public val sendName: MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int> =
         MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int>("send")
 
-    @JvmStatic
+    @JvmField
     public val throttleConfigureName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
         MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("throttle_configure")
 
-    @JvmStatic
+    @JvmField
     public val setTimeoutName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
         MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("set_timeout")
 
-    @JvmStatic
+    @JvmField
     public val getPacketFlagsName: MethodStringName0<ENetPacketPeer, Int> =
         MethodStringName0<ENetPacketPeer, Int>("get_packet_flags")
 
-    @JvmStatic
+    @JvmField
     public val getRemoteAddressName: MethodStringName0<ENetPacketPeer, String> =
         MethodStringName0<ENetPacketPeer, String>("get_remote_address")
 
-    @JvmStatic
+    @JvmField
     public val getRemotePortName: MethodStringName0<ENetPacketPeer, Int> =
         MethodStringName0<ENetPacketPeer, Int>("get_remote_port")
 
-    @JvmStatic
+    @JvmField
     public val getStatisticName: MethodStringName1<ENetPacketPeer, Double, PeerStatistic> =
         MethodStringName1<ENetPacketPeer, Double, PeerStatistic>("get_statistic")
 
-    @JvmStatic
+    @JvmField
     public val getStateName: MethodStringName0<ENetPacketPeer, PeerState> =
         MethodStringName0<ENetPacketPeer, PeerState>("get_state")
 
-    @JvmStatic
+    @JvmField
     public val getChannelsName: MethodStringName0<ENetPacketPeer, Int> =
         MethodStringName0<ENetPacketPeer, Int>("get_channels")
 
-    @JvmStatic
+    @JvmField
     public val isActiveName: MethodStringName0<ENetPacketPeer, Boolean> =
         MethodStringName0<ENetPacketPeer, Boolean>("is_active")
 

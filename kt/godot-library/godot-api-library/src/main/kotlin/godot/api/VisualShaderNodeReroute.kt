@@ -16,8 +16,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Automatically adapts its port type to the type of the incoming connection and ensures valid
@@ -43,7 +43,7 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getPortTypeName:
         MethodStringName0<VisualShaderNodeReroute, VisualShaderNode.PortType> =
         MethodStringName0<VisualShaderNodeReroute, VisualShaderNode.PortType>("get_port_type")

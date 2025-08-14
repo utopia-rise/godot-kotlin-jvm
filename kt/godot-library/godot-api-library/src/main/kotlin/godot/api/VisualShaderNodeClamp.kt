@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Constrains a value to lie between `min` and `max` values.
@@ -96,11 +96,11 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeClamp, Unit, OpType> =
         MethodStringName1<VisualShaderNodeClamp, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeClamp, OpType> =
         MethodStringName0<VisualShaderNodeClamp, OpType>("get_op_type")
   }

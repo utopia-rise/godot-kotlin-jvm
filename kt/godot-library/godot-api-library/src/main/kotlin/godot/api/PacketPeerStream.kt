@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * PacketStreamPeer provides a wrapper for working using packets over a stream. This allows for
@@ -98,27 +98,27 @@ public open class PacketPeerStream : PacketPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStreamPeerName: MethodStringName1<PacketPeerStream, Unit, StreamPeer?> =
         MethodStringName1<PacketPeerStream, Unit, StreamPeer?>("set_stream_peer")
 
-    @JvmStatic
+    @JvmField
     public val getStreamPeerName: MethodStringName0<PacketPeerStream, StreamPeer?> =
         MethodStringName0<PacketPeerStream, StreamPeer?>("get_stream_peer")
 
-    @JvmStatic
+    @JvmField
     public val setInputBufferMaxSizeName: MethodStringName1<PacketPeerStream, Unit, Int> =
         MethodStringName1<PacketPeerStream, Unit, Int>("set_input_buffer_max_size")
 
-    @JvmStatic
+    @JvmField
     public val setOutputBufferMaxSizeName: MethodStringName1<PacketPeerStream, Unit, Int> =
         MethodStringName1<PacketPeerStream, Unit, Int>("set_output_buffer_max_size")
 
-    @JvmStatic
+    @JvmField
     public val getInputBufferMaxSizeName: MethodStringName0<PacketPeerStream, Int> =
         MethodStringName0<PacketPeerStream, Int>("get_input_buffer_max_size")
 
-    @JvmStatic
+    @JvmField
     public val getOutputBufferMaxSizeName: MethodStringName0<PacketPeerStream, Int> =
         MethodStringName0<PacketPeerStream, Int>("get_output_buffer_max_size")
   }

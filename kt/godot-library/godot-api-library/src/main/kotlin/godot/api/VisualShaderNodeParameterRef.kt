@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Creating a reference to a [VisualShaderNodeParameter] allows you to reuse this parameter in
@@ -54,11 +54,11 @@ public open class VisualShaderNodeParameterRef : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setParameterNameName: MethodStringName1<VisualShaderNodeParameterRef, Unit, String> =
         MethodStringName1<VisualShaderNodeParameterRef, Unit, String>("set_parameter_name")
 
-    @JvmStatic
+    @JvmField
     public val getParameterNameName: MethodStringName0<VisualShaderNodeParameterRef, String> =
         MethodStringName0<VisualShaderNodeParameterRef, String>("get_parameter_name")
   }

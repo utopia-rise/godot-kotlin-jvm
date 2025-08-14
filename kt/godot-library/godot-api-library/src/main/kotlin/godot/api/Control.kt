@@ -56,7 +56,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: Control.SizeFlags): Long = this.or(other.flag)
 
@@ -3317,526 +3316,526 @@ public open class Control : CanvasItem() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val acceptEventName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("accept_event")
 
-    @JvmStatic
+    @JvmField
     public val getMinimumSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val getCombinedMinimumSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_combined_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val setAnchorsPresetName: MethodStringName2<Control, Unit, LayoutPreset, Boolean> =
         MethodStringName2<Control, Unit, LayoutPreset, Boolean>("set_anchors_preset")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetsPresetName:
         MethodStringName3<Control, Unit, LayoutPreset, LayoutPresetMode, Int> =
         MethodStringName3<Control, Unit, LayoutPreset, LayoutPresetMode, Int>("set_offsets_preset")
 
-    @JvmStatic
+    @JvmField
     public val setAnchorsAndOffsetsPresetName:
         MethodStringName3<Control, Unit, LayoutPreset, LayoutPresetMode, Int> =
         MethodStringName3<Control, Unit, LayoutPreset, LayoutPresetMode, Int>("set_anchors_and_offsets_preset")
 
-    @JvmStatic
+    @JvmField
     public val setAnchorName: MethodStringName4<Control, Unit, Side, Float, Boolean, Boolean> =
         MethodStringName4<Control, Unit, Side, Float, Boolean, Boolean>("set_anchor")
 
-    @JvmStatic
+    @JvmField
     public val getAnchorName: MethodStringName1<Control, Float, Side> =
         MethodStringName1<Control, Float, Side>("get_anchor")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetName: MethodStringName2<Control, Unit, Side, Float> =
         MethodStringName2<Control, Unit, Side, Float>("set_offset")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName1<Control, Float, Side> =
         MethodStringName1<Control, Float, Side>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val setAnchorAndOffsetName: MethodStringName4<Control, Unit, Side, Float, Float, Boolean>
         = MethodStringName4<Control, Unit, Side, Float, Float, Boolean>("set_anchor_and_offset")
 
-    @JvmStatic
+    @JvmField
     public val setBeginName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("set_begin")
 
-    @JvmStatic
+    @JvmField
     public val setEndName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("set_end")
 
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName2<Control, Unit, Vector2, Boolean> =
         MethodStringName2<Control, Unit, Vector2, Boolean>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName2<Control, Unit, Vector2, Boolean> =
         MethodStringName2<Control, Unit, Vector2, Boolean>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val resetSizeName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("reset_size")
 
-    @JvmStatic
+    @JvmField
     public val setCustomMinimumSizeName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("set_custom_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val setGlobalPositionName: MethodStringName2<Control, Unit, Vector2, Boolean> =
         MethodStringName2<Control, Unit, Vector2, Boolean>("set_global_position")
 
-    @JvmStatic
+    @JvmField
     public val setRotationName: MethodStringName1<Control, Unit, Float> =
         MethodStringName1<Control, Unit, Float>("set_rotation")
 
-    @JvmStatic
+    @JvmField
     public val setRotationDegreesName: MethodStringName1<Control, Unit, Float> =
         MethodStringName1<Control, Unit, Float>("set_rotation_degrees")
 
-    @JvmStatic
+    @JvmField
     public val setScaleName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("set_scale")
 
-    @JvmStatic
+    @JvmField
     public val setPivotOffsetName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("set_pivot_offset")
 
-    @JvmStatic
+    @JvmField
     public val getBeginName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_begin")
 
-    @JvmStatic
+    @JvmField
     public val getEndName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_end")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val getRotationName: MethodStringName0<Control, Float> =
         MethodStringName0<Control, Float>("get_rotation")
 
-    @JvmStatic
+    @JvmField
     public val getRotationDegreesName: MethodStringName0<Control, Float> =
         MethodStringName0<Control, Float>("get_rotation_degrees")
 
-    @JvmStatic
+    @JvmField
     public val getScaleName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPivotOffsetName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_pivot_offset")
 
-    @JvmStatic
+    @JvmField
     public val getCustomMinimumSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_custom_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val getParentAreaSizeName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_parent_area_size")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalPositionName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_global_position")
 
-    @JvmStatic
+    @JvmField
     public val getScreenPositionName: MethodStringName0<Control, Vector2> =
         MethodStringName0<Control, Vector2>("get_screen_position")
 
-    @JvmStatic
+    @JvmField
     public val getRectName: MethodStringName0<Control, Rect2> =
         MethodStringName0<Control, Rect2>("get_rect")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalRectName: MethodStringName0<Control, Rect2> =
         MethodStringName0<Control, Rect2>("get_global_rect")
 
-    @JvmStatic
+    @JvmField
     public val setFocusModeName: MethodStringName1<Control, Unit, FocusMode> =
         MethodStringName1<Control, Unit, FocusMode>("set_focus_mode")
 
-    @JvmStatic
+    @JvmField
     public val getFocusModeName: MethodStringName0<Control, FocusMode> =
         MethodStringName0<Control, FocusMode>("get_focus_mode")
 
-    @JvmStatic
+    @JvmField
     public val hasFocusName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("has_focus")
 
-    @JvmStatic
+    @JvmField
     public val grabFocusName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("grab_focus")
 
-    @JvmStatic
+    @JvmField
     public val releaseFocusName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("release_focus")
 
-    @JvmStatic
+    @JvmField
     public val findPrevValidFocusName: MethodStringName0<Control, Control?> =
         MethodStringName0<Control, Control?>("find_prev_valid_focus")
 
-    @JvmStatic
+    @JvmField
     public val findNextValidFocusName: MethodStringName0<Control, Control?> =
         MethodStringName0<Control, Control?>("find_next_valid_focus")
 
-    @JvmStatic
+    @JvmField
     public val findValidFocusNeighborName: MethodStringName1<Control, Control?, Side> =
         MethodStringName1<Control, Control?, Side>("find_valid_focus_neighbor")
 
-    @JvmStatic
+    @JvmField
     public val setHSizeFlagsName: MethodStringName1<Control, Unit, SizeFlags> =
         MethodStringName1<Control, Unit, SizeFlags>("set_h_size_flags")
 
-    @JvmStatic
+    @JvmField
     public val getHSizeFlagsName: MethodStringName0<Control, SizeFlags> =
         MethodStringName0<Control, SizeFlags>("get_h_size_flags")
 
-    @JvmStatic
+    @JvmField
     public val setStretchRatioName: MethodStringName1<Control, Unit, Float> =
         MethodStringName1<Control, Unit, Float>("set_stretch_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getStretchRatioName: MethodStringName0<Control, Float> =
         MethodStringName0<Control, Float>("get_stretch_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setVSizeFlagsName: MethodStringName1<Control, Unit, SizeFlags> =
         MethodStringName1<Control, Unit, SizeFlags>("set_v_size_flags")
 
-    @JvmStatic
+    @JvmField
     public val getVSizeFlagsName: MethodStringName0<Control, SizeFlags> =
         MethodStringName0<Control, SizeFlags>("get_v_size_flags")
 
-    @JvmStatic
+    @JvmField
     public val setThemeName: MethodStringName1<Control, Unit, Theme?> =
         MethodStringName1<Control, Unit, Theme?>("set_theme")
 
-    @JvmStatic
+    @JvmField
     public val getThemeName: MethodStringName0<Control, Theme?> =
         MethodStringName0<Control, Theme?>("get_theme")
 
-    @JvmStatic
+    @JvmField
     public val setThemeTypeVariationName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("set_theme_type_variation")
 
-    @JvmStatic
+    @JvmField
     public val getThemeTypeVariationName: MethodStringName0<Control, StringName> =
         MethodStringName0<Control, StringName>("get_theme_type_variation")
 
-    @JvmStatic
+    @JvmField
     public val beginBulkThemeOverrideName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("begin_bulk_theme_override")
 
-    @JvmStatic
+    @JvmField
     public val endBulkThemeOverrideName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("end_bulk_theme_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeIconOverrideName: MethodStringName2<Control, Unit, StringName, Texture2D?> =
         MethodStringName2<Control, Unit, StringName, Texture2D?>("add_theme_icon_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeStyleboxOverrideName: MethodStringName2<Control, Unit, StringName, StyleBox?>
         = MethodStringName2<Control, Unit, StringName, StyleBox?>("add_theme_stylebox_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeFontOverrideName: MethodStringName2<Control, Unit, StringName, Font?> =
         MethodStringName2<Control, Unit, StringName, Font?>("add_theme_font_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeFontSizeOverrideName: MethodStringName2<Control, Unit, StringName, Int> =
         MethodStringName2<Control, Unit, StringName, Int>("add_theme_font_size_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeColorOverrideName: MethodStringName2<Control, Unit, StringName, Color> =
         MethodStringName2<Control, Unit, StringName, Color>("add_theme_color_override")
 
-    @JvmStatic
+    @JvmField
     public val addThemeConstantOverrideName: MethodStringName2<Control, Unit, StringName, Int> =
         MethodStringName2<Control, Unit, StringName, Int>("add_theme_constant_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeIconOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_icon_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeStyleboxOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_stylebox_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeFontOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_font_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeFontSizeOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_font_size_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeColorOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_color_override")
 
-    @JvmStatic
+    @JvmField
     public val removeThemeConstantOverrideName: MethodStringName1<Control, Unit, StringName> =
         MethodStringName1<Control, Unit, StringName>("remove_theme_constant_override")
 
-    @JvmStatic
+    @JvmField
     public val getThemeIconName: MethodStringName2<Control, Texture2D?, StringName, StringName> =
         MethodStringName2<Control, Texture2D?, StringName, StringName>("get_theme_icon")
 
-    @JvmStatic
+    @JvmField
     public val getThemeStyleboxName: MethodStringName2<Control, StyleBox?, StringName, StringName> =
         MethodStringName2<Control, StyleBox?, StringName, StringName>("get_theme_stylebox")
 
-    @JvmStatic
+    @JvmField
     public val getThemeFontName: MethodStringName2<Control, Font?, StringName, StringName> =
         MethodStringName2<Control, Font?, StringName, StringName>("get_theme_font")
 
-    @JvmStatic
+    @JvmField
     public val getThemeFontSizeName: MethodStringName2<Control, Int, StringName, StringName> =
         MethodStringName2<Control, Int, StringName, StringName>("get_theme_font_size")
 
-    @JvmStatic
+    @JvmField
     public val getThemeColorName: MethodStringName2<Control, Color, StringName, StringName> =
         MethodStringName2<Control, Color, StringName, StringName>("get_theme_color")
 
-    @JvmStatic
+    @JvmField
     public val getThemeConstantName: MethodStringName2<Control, Int, StringName, StringName> =
         MethodStringName2<Control, Int, StringName, StringName>("get_theme_constant")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeIconOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_icon_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeStyleboxOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_stylebox_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeFontOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_font_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeFontSizeOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_font_size_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeColorOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_color_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeConstantOverrideName: MethodStringName1<Control, Boolean, StringName> =
         MethodStringName1<Control, Boolean, StringName>("has_theme_constant_override")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeIconName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_icon")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeStyleboxName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_stylebox")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeFontName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_font")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeFontSizeName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_font_size")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeColorName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_color")
 
-    @JvmStatic
+    @JvmField
     public val hasThemeConstantName: MethodStringName2<Control, Boolean, StringName, StringName> =
         MethodStringName2<Control, Boolean, StringName, StringName>("has_theme_constant")
 
-    @JvmStatic
+    @JvmField
     public val getThemeDefaultBaseScaleName: MethodStringName0<Control, Float> =
         MethodStringName0<Control, Float>("get_theme_default_base_scale")
 
-    @JvmStatic
+    @JvmField
     public val getThemeDefaultFontName: MethodStringName0<Control, Font?> =
         MethodStringName0<Control, Font?>("get_theme_default_font")
 
-    @JvmStatic
+    @JvmField
     public val getThemeDefaultFontSizeName: MethodStringName0<Control, Int> =
         MethodStringName0<Control, Int>("get_theme_default_font_size")
 
-    @JvmStatic
+    @JvmField
     public val getParentControlName: MethodStringName0<Control, Control?> =
         MethodStringName0<Control, Control?>("get_parent_control")
 
-    @JvmStatic
+    @JvmField
     public val setHGrowDirectionName: MethodStringName1<Control, Unit, GrowDirection> =
         MethodStringName1<Control, Unit, GrowDirection>("set_h_grow_direction")
 
-    @JvmStatic
+    @JvmField
     public val getHGrowDirectionName: MethodStringName0<Control, GrowDirection> =
         MethodStringName0<Control, GrowDirection>("get_h_grow_direction")
 
-    @JvmStatic
+    @JvmField
     public val setVGrowDirectionName: MethodStringName1<Control, Unit, GrowDirection> =
         MethodStringName1<Control, Unit, GrowDirection>("set_v_grow_direction")
 
-    @JvmStatic
+    @JvmField
     public val getVGrowDirectionName: MethodStringName0<Control, GrowDirection> =
         MethodStringName0<Control, GrowDirection>("get_v_grow_direction")
 
-    @JvmStatic
+    @JvmField
     public val setTooltipAutoTranslateModeName:
         MethodStringName1<Control, Unit, Node.AutoTranslateMode> =
         MethodStringName1<Control, Unit, Node.AutoTranslateMode>("set_tooltip_auto_translate_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTooltipAutoTranslateModeName: MethodStringName0<Control, Node.AutoTranslateMode> =
         MethodStringName0<Control, Node.AutoTranslateMode>("get_tooltip_auto_translate_mode")
 
-    @JvmStatic
+    @JvmField
     public val setTooltipTextName: MethodStringName1<Control, Unit, String> =
         MethodStringName1<Control, Unit, String>("set_tooltip_text")
 
-    @JvmStatic
+    @JvmField
     public val getTooltipTextName: MethodStringName0<Control, String> =
         MethodStringName0<Control, String>("get_tooltip_text")
 
-    @JvmStatic
+    @JvmField
     public val getTooltipName: MethodStringName1<Control, String, Vector2> =
         MethodStringName1<Control, String, Vector2>("get_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultCursorShapeName: MethodStringName1<Control, Unit, CursorShape> =
         MethodStringName1<Control, Unit, CursorShape>("set_default_cursor_shape")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultCursorShapeName: MethodStringName0<Control, CursorShape> =
         MethodStringName0<Control, CursorShape>("get_default_cursor_shape")
 
-    @JvmStatic
+    @JvmField
     public val getCursorShapeName: MethodStringName1<Control, CursorShape, Vector2> =
         MethodStringName1<Control, CursorShape, Vector2>("get_cursor_shape")
 
-    @JvmStatic
+    @JvmField
     public val setFocusNeighborName: MethodStringName2<Control, Unit, Side, NodePath> =
         MethodStringName2<Control, Unit, Side, NodePath>("set_focus_neighbor")
 
-    @JvmStatic
+    @JvmField
     public val getFocusNeighborName: MethodStringName1<Control, NodePath, Side> =
         MethodStringName1<Control, NodePath, Side>("get_focus_neighbor")
 
-    @JvmStatic
+    @JvmField
     public val setFocusNextName: MethodStringName1<Control, Unit, NodePath> =
         MethodStringName1<Control, Unit, NodePath>("set_focus_next")
 
-    @JvmStatic
+    @JvmField
     public val getFocusNextName: MethodStringName0<Control, NodePath> =
         MethodStringName0<Control, NodePath>("get_focus_next")
 
-    @JvmStatic
+    @JvmField
     public val setFocusPreviousName: MethodStringName1<Control, Unit, NodePath> =
         MethodStringName1<Control, Unit, NodePath>("set_focus_previous")
 
-    @JvmStatic
+    @JvmField
     public val getFocusPreviousName: MethodStringName0<Control, NodePath> =
         MethodStringName0<Control, NodePath>("get_focus_previous")
 
-    @JvmStatic
+    @JvmField
     public val forceDragName: MethodStringName2<Control, Unit, Any?, Control?> =
         MethodStringName2<Control, Unit, Any?, Control?>("force_drag")
 
-    @JvmStatic
+    @JvmField
     public val setMouseFilterName: MethodStringName1<Control, Unit, MouseFilter> =
         MethodStringName1<Control, Unit, MouseFilter>("set_mouse_filter")
 
-    @JvmStatic
+    @JvmField
     public val getMouseFilterName: MethodStringName0<Control, MouseFilter> =
         MethodStringName0<Control, MouseFilter>("get_mouse_filter")
 
-    @JvmStatic
+    @JvmField
     public val setForcePassScrollEventsName: MethodStringName1<Control, Unit, Boolean> =
         MethodStringName1<Control, Unit, Boolean>("set_force_pass_scroll_events")
 
-    @JvmStatic
+    @JvmField
     public val isForcePassScrollEventsName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_force_pass_scroll_events")
 
-    @JvmStatic
+    @JvmField
     public val setClipContentsName: MethodStringName1<Control, Unit, Boolean> =
         MethodStringName1<Control, Unit, Boolean>("set_clip_contents")
 
-    @JvmStatic
+    @JvmField
     public val isClippingContentsName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_clipping_contents")
 
-    @JvmStatic
+    @JvmField
     public val grabClickFocusName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("grab_click_focus")
 
-    @JvmStatic
+    @JvmField
     public val setDragForwardingName: MethodStringName3<Control, Unit, Callable, Callable, Callable>
         = MethodStringName3<Control, Unit, Callable, Callable, Callable>("set_drag_forwarding")
 
-    @JvmStatic
+    @JvmField
     public val setDragPreviewName: MethodStringName1<Control, Unit, Control?> =
         MethodStringName1<Control, Unit, Control?>("set_drag_preview")
 
-    @JvmStatic
+    @JvmField
     public val isDragSuccessfulName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_drag_successful")
 
-    @JvmStatic
+    @JvmField
     public val warpMouseName: MethodStringName1<Control, Unit, Vector2> =
         MethodStringName1<Control, Unit, Vector2>("warp_mouse")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutContextName: MethodStringName1<Control, Unit, Node?> =
         MethodStringName1<Control, Unit, Node?>("set_shortcut_context")
 
-    @JvmStatic
+    @JvmField
     public val getShortcutContextName: MethodStringName0<Control, Node?> =
         MethodStringName0<Control, Node?>("get_shortcut_context")
 
-    @JvmStatic
+    @JvmField
     public val updateMinimumSizeName: MethodStringName0<Control, Unit> =
         MethodStringName0<Control, Unit>("update_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val setLayoutDirectionName: MethodStringName1<Control, Unit, LayoutDirection> =
         MethodStringName1<Control, Unit, LayoutDirection>("set_layout_direction")
 
-    @JvmStatic
+    @JvmField
     public val getLayoutDirectionName: MethodStringName0<Control, LayoutDirection> =
         MethodStringName0<Control, LayoutDirection>("get_layout_direction")
 
-    @JvmStatic
+    @JvmField
     public val isLayoutRtlName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_layout_rtl")
 
-    @JvmStatic
+    @JvmField
     public val setAutoTranslateName: MethodStringName1<Control, Unit, Boolean> =
         MethodStringName1<Control, Unit, Boolean>("set_auto_translate")
 
-    @JvmStatic
+    @JvmField
     public val isAutoTranslatingName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_auto_translating")
 
-    @JvmStatic
+    @JvmField
     public val setLocalizeNumeralSystemName: MethodStringName1<Control, Unit, Boolean> =
         MethodStringName1<Control, Unit, Boolean>("set_localize_numeral_system")
 
-    @JvmStatic
+    @JvmField
     public val isLocalizingNumeralSystemName: MethodStringName0<Control, Boolean> =
         MethodStringName0<Control, Boolean>("is_localizing_numeral_system")
 

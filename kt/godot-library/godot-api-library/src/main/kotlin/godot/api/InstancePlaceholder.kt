@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Turning on the option **Load As Placeholder** for an instantiated scene in the editor causes it
@@ -87,17 +87,17 @@ public open class InstancePlaceholder internal constructor() : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getStoredValuesName:
         MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean> =
         MethodStringName1<InstancePlaceholder, Dictionary<Any?, Any?>, Boolean>("get_stored_values")
 
-    @JvmStatic
+    @JvmField
     public val createInstanceName:
         MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?> =
         MethodStringName2<InstancePlaceholder, Node?, Boolean, PackedScene?>("create_instance")
 
-    @JvmStatic
+    @JvmField
     public val getInstancePathName: MethodStringName0<InstancePlaceholder, String> =
         MethodStringName0<InstancePlaceholder, String>("get_instance_path")
   }

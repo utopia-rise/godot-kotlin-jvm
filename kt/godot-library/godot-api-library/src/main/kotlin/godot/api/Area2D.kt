@@ -37,8 +37,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [Area2D] is a region of 2D space defined by one or multiple [CollisionShape2D] or
@@ -678,147 +678,147 @@ public open class Area2D : CollisionObject2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setGravitySpaceOverrideModeName: MethodStringName1<Area2D, Unit, SpaceOverride> =
         MethodStringName1<Area2D, Unit, SpaceOverride>("set_gravity_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val getGravitySpaceOverrideModeName: MethodStringName0<Area2D, SpaceOverride> =
         MethodStringName0<Area2D, SpaceOverride>("get_gravity_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val setGravityIsPointName: MethodStringName1<Area2D, Unit, Boolean> =
         MethodStringName1<Area2D, Unit, Boolean>("set_gravity_is_point")
 
-    @JvmStatic
+    @JvmField
     public val isGravityAPointName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("is_gravity_a_point")
 
-    @JvmStatic
+    @JvmField
     public val setGravityPointUnitDistanceName: MethodStringName1<Area2D, Unit, Float> =
         MethodStringName1<Area2D, Unit, Float>("set_gravity_point_unit_distance")
 
-    @JvmStatic
+    @JvmField
     public val getGravityPointUnitDistanceName: MethodStringName0<Area2D, Float> =
         MethodStringName0<Area2D, Float>("get_gravity_point_unit_distance")
 
-    @JvmStatic
+    @JvmField
     public val setGravityPointCenterName: MethodStringName1<Area2D, Unit, Vector2> =
         MethodStringName1<Area2D, Unit, Vector2>("set_gravity_point_center")
 
-    @JvmStatic
+    @JvmField
     public val getGravityPointCenterName: MethodStringName0<Area2D, Vector2> =
         MethodStringName0<Area2D, Vector2>("get_gravity_point_center")
 
-    @JvmStatic
+    @JvmField
     public val setGravityDirectionName: MethodStringName1<Area2D, Unit, Vector2> =
         MethodStringName1<Area2D, Unit, Vector2>("set_gravity_direction")
 
-    @JvmStatic
+    @JvmField
     public val getGravityDirectionName: MethodStringName0<Area2D, Vector2> =
         MethodStringName0<Area2D, Vector2>("get_gravity_direction")
 
-    @JvmStatic
+    @JvmField
     public val setGravityName: MethodStringName1<Area2D, Unit, Float> =
         MethodStringName1<Area2D, Unit, Float>("set_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getGravityName: MethodStringName0<Area2D, Float> =
         MethodStringName0<Area2D, Float>("get_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setLinearDampSpaceOverrideModeName: MethodStringName1<Area2D, Unit, SpaceOverride> =
         MethodStringName1<Area2D, Unit, SpaceOverride>("set_linear_damp_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val getLinearDampSpaceOverrideModeName: MethodStringName0<Area2D, SpaceOverride> =
         MethodStringName0<Area2D, SpaceOverride>("get_linear_damp_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAngularDampSpaceOverrideModeName: MethodStringName1<Area2D, Unit, SpaceOverride> =
         MethodStringName1<Area2D, Unit, SpaceOverride>("set_angular_damp_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAngularDampSpaceOverrideModeName: MethodStringName0<Area2D, SpaceOverride> =
         MethodStringName0<Area2D, SpaceOverride>("get_angular_damp_space_override_mode")
 
-    @JvmStatic
+    @JvmField
     public val setLinearDampName: MethodStringName1<Area2D, Unit, Float> =
         MethodStringName1<Area2D, Unit, Float>("set_linear_damp")
 
-    @JvmStatic
+    @JvmField
     public val getLinearDampName: MethodStringName0<Area2D, Float> =
         MethodStringName0<Area2D, Float>("get_linear_damp")
 
-    @JvmStatic
+    @JvmField
     public val setAngularDampName: MethodStringName1<Area2D, Unit, Float> =
         MethodStringName1<Area2D, Unit, Float>("set_angular_damp")
 
-    @JvmStatic
+    @JvmField
     public val getAngularDampName: MethodStringName0<Area2D, Float> =
         MethodStringName0<Area2D, Float>("get_angular_damp")
 
-    @JvmStatic
+    @JvmField
     public val setPriorityName: MethodStringName1<Area2D, Unit, Int> =
         MethodStringName1<Area2D, Unit, Int>("set_priority")
 
-    @JvmStatic
+    @JvmField
     public val getPriorityName: MethodStringName0<Area2D, Int> =
         MethodStringName0<Area2D, Int>("get_priority")
 
-    @JvmStatic
+    @JvmField
     public val setMonitoringName: MethodStringName1<Area2D, Unit, Boolean> =
         MethodStringName1<Area2D, Unit, Boolean>("set_monitoring")
 
-    @JvmStatic
+    @JvmField
     public val isMonitoringName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("is_monitoring")
 
-    @JvmStatic
+    @JvmField
     public val setMonitorableName: MethodStringName1<Area2D, Unit, Boolean> =
         MethodStringName1<Area2D, Unit, Boolean>("set_monitorable")
 
-    @JvmStatic
+    @JvmField
     public val isMonitorableName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("is_monitorable")
 
-    @JvmStatic
+    @JvmField
     public val getOverlappingBodiesName: MethodStringName0<Area2D, VariantArray<Node2D>> =
         MethodStringName0<Area2D, VariantArray<Node2D>>("get_overlapping_bodies")
 
-    @JvmStatic
+    @JvmField
     public val getOverlappingAreasName: MethodStringName0<Area2D, VariantArray<Area2D>> =
         MethodStringName0<Area2D, VariantArray<Area2D>>("get_overlapping_areas")
 
-    @JvmStatic
+    @JvmField
     public val hasOverlappingBodiesName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("has_overlapping_bodies")
 
-    @JvmStatic
+    @JvmField
     public val hasOverlappingAreasName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("has_overlapping_areas")
 
-    @JvmStatic
+    @JvmField
     public val overlapsBodyName: MethodStringName1<Area2D, Boolean, Node?> =
         MethodStringName1<Area2D, Boolean, Node?>("overlaps_body")
 
-    @JvmStatic
+    @JvmField
     public val overlapsAreaName: MethodStringName1<Area2D, Boolean, Node?> =
         MethodStringName1<Area2D, Boolean, Node?>("overlaps_area")
 
-    @JvmStatic
+    @JvmField
     public val setAudioBusNameName: MethodStringName1<Area2D, Unit, StringName> =
         MethodStringName1<Area2D, Unit, StringName>("set_audio_bus_name")
 
-    @JvmStatic
+    @JvmField
     public val getAudioBusNameName: MethodStringName0<Area2D, StringName> =
         MethodStringName0<Area2D, StringName>("get_audio_bus_name")
 
-    @JvmStatic
+    @JvmField
     public val setAudioBusOverrideName: MethodStringName1<Area2D, Unit, Boolean> =
         MethodStringName1<Area2D, Unit, Boolean>("set_audio_bus_override")
 
-    @JvmStatic
+    @JvmField
     public val isOverridingAudioBusName: MethodStringName0<Area2D, Boolean> =
         MethodStringName0<Area2D, Boolean>("is_overriding_audio_bus")
   }

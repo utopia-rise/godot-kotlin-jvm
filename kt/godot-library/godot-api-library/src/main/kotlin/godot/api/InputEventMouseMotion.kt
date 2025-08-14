@@ -25,8 +25,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about a mouse or a pen motion. This includes relative position, absolute
@@ -396,59 +396,59 @@ public open class InputEventMouseMotion : InputEventMouse() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTiltName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
         MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_tilt")
 
-    @JvmStatic
+    @JvmField
     public val getTiltName: MethodStringName0<InputEventMouseMotion, Vector2> =
         MethodStringName0<InputEventMouseMotion, Vector2>("get_tilt")
 
-    @JvmStatic
+    @JvmField
     public val setPressureName: MethodStringName1<InputEventMouseMotion, Unit, Float> =
         MethodStringName1<InputEventMouseMotion, Unit, Float>("set_pressure")
 
-    @JvmStatic
+    @JvmField
     public val getPressureName: MethodStringName0<InputEventMouseMotion, Float> =
         MethodStringName0<InputEventMouseMotion, Float>("get_pressure")
 
-    @JvmStatic
+    @JvmField
     public val setPenInvertedName: MethodStringName1<InputEventMouseMotion, Unit, Boolean> =
         MethodStringName1<InputEventMouseMotion, Unit, Boolean>("set_pen_inverted")
 
-    @JvmStatic
+    @JvmField
     public val getPenInvertedName: MethodStringName0<InputEventMouseMotion, Boolean> =
         MethodStringName0<InputEventMouseMotion, Boolean>("get_pen_inverted")
 
-    @JvmStatic
+    @JvmField
     public val setRelativeName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
         MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_relative")
 
-    @JvmStatic
+    @JvmField
     public val getRelativeName: MethodStringName0<InputEventMouseMotion, Vector2> =
         MethodStringName0<InputEventMouseMotion, Vector2>("get_relative")
 
-    @JvmStatic
+    @JvmField
     public val setScreenRelativeName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
         MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_screen_relative")
 
-    @JvmStatic
+    @JvmField
     public val getScreenRelativeName: MethodStringName0<InputEventMouseMotion, Vector2> =
         MethodStringName0<InputEventMouseMotion, Vector2>("get_screen_relative")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
         MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityName: MethodStringName0<InputEventMouseMotion, Vector2> =
         MethodStringName0<InputEventMouseMotion, Vector2>("get_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setScreenVelocityName: MethodStringName1<InputEventMouseMotion, Unit, Vector2> =
         MethodStringName1<InputEventMouseMotion, Unit, Vector2>("set_screen_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getScreenVelocityName: MethodStringName0<InputEventMouseMotion, Vector2> =
         MethodStringName0<InputEventMouseMotion, Vector2>("get_screen_velocity")
   }

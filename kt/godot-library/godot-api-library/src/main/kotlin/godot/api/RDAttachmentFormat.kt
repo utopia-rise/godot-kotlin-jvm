@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -97,29 +97,29 @@ public open class RDAttachmentFormat : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFormatName:
         MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.DataFormat> =
         MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.DataFormat>("set_format")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<RDAttachmentFormat, RenderingDevice.DataFormat> =
         MethodStringName0<RDAttachmentFormat, RenderingDevice.DataFormat>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val setSamplesName:
         MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.TextureSamples> =
         MethodStringName1<RDAttachmentFormat, Unit, RenderingDevice.TextureSamples>("set_samples")
 
-    @JvmStatic
+    @JvmField
     public val getSamplesName: MethodStringName0<RDAttachmentFormat, RenderingDevice.TextureSamples>
         = MethodStringName0<RDAttachmentFormat, RenderingDevice.TextureSamples>("get_samples")
 
-    @JvmStatic
+    @JvmField
     public val setUsageFlagsName: MethodStringName1<RDAttachmentFormat, Unit, Long> =
         MethodStringName1<RDAttachmentFormat, Unit, Long>("set_usage_flags")
 
-    @JvmStatic
+    @JvmField
     public val getUsageFlagsName: MethodStringName0<RDAttachmentFormat, Long> =
         MethodStringName0<RDAttachmentFormat, Long>("get_usage_flags")
   }

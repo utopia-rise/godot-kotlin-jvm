@@ -20,7 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
@@ -143,15 +143,15 @@ public open class HashingContext : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val startName: MethodStringName1<HashingContext, Error, HashType> =
         MethodStringName1<HashingContext, Error, HashType>("start")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName1<HashingContext, Error, PackedByteArray> =
         MethodStringName1<HashingContext, Error, PackedByteArray>("update")
 
-    @JvmStatic
+    @JvmField
     public val finishName: MethodStringName0<HashingContext, PackedByteArray> =
         MethodStringName0<HashingContext, PackedByteArray>("finish")
   }

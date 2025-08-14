@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a
@@ -86,11 +86,11 @@ public open class RectangleShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<RectangleShape2D, Unit, Vector2> =
         MethodStringName1<RectangleShape2D, Unit, Vector2>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<RectangleShape2D, Vector2> =
         MethodStringName0<RectangleShape2D, Vector2>("get_size")
   }

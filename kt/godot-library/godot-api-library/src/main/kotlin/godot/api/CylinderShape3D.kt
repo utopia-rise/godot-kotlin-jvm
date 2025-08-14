@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D cylinder shape, intended for use in physics. Usually used to provide a shape for a
@@ -83,19 +83,19 @@ public open class CylinderShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<CylinderShape3D, Unit, Float> =
         MethodStringName1<CylinderShape3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<CylinderShape3D, Float> =
         MethodStringName0<CylinderShape3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<CylinderShape3D, Unit, Float> =
         MethodStringName1<CylinderShape3D, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<CylinderShape3D, Float> =
         MethodStringName0<CylinderShape3D, Float>("get_height")
   }

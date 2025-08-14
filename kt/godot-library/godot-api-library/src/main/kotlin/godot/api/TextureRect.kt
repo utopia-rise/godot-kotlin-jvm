@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A control that displays a texture, for example an icon inside a GUI. The texture's placement can
@@ -236,43 +236,43 @@ public open class TextureRect : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<TextureRect, Unit, Texture2D?> =
         MethodStringName1<TextureRect, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<TextureRect, Texture2D?> =
         MethodStringName0<TextureRect, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setExpandModeName: MethodStringName1<TextureRect, Unit, ExpandMode> =
         MethodStringName1<TextureRect, Unit, ExpandMode>("set_expand_mode")
 
-    @JvmStatic
+    @JvmField
     public val getExpandModeName: MethodStringName0<TextureRect, ExpandMode> =
         MethodStringName0<TextureRect, ExpandMode>("get_expand_mode")
 
-    @JvmStatic
+    @JvmField
     public val setFlipHName: MethodStringName1<TextureRect, Unit, Boolean> =
         MethodStringName1<TextureRect, Unit, Boolean>("set_flip_h")
 
-    @JvmStatic
+    @JvmField
     public val isFlippedHName: MethodStringName0<TextureRect, Boolean> =
         MethodStringName0<TextureRect, Boolean>("is_flipped_h")
 
-    @JvmStatic
+    @JvmField
     public val setFlipVName: MethodStringName1<TextureRect, Unit, Boolean> =
         MethodStringName1<TextureRect, Unit, Boolean>("set_flip_v")
 
-    @JvmStatic
+    @JvmField
     public val isFlippedVName: MethodStringName0<TextureRect, Boolean> =
         MethodStringName0<TextureRect, Boolean>("is_flipped_v")
 
-    @JvmStatic
+    @JvmField
     public val setStretchModeName: MethodStringName1<TextureRect, Unit, StretchMode> =
         MethodStringName1<TextureRect, Unit, StretchMode>("set_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val getStretchModeName: MethodStringName0<TextureRect, StretchMode> =
         MethodStringName0<TextureRect, StretchMode>("get_stretch_mode")
   }

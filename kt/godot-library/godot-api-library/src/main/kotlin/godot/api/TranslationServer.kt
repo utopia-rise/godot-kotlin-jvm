@@ -30,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -46,109 +47,109 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object TranslationServer : Object() {
-  @JvmStatic
+  @JvmField
   public val setLocaleName: MethodStringName1<TranslationServer, Unit, String> =
       MethodStringName1<TranslationServer, Unit, String>("set_locale")
 
-  @JvmStatic
+  @JvmField
   public val getLocaleName: MethodStringName0<TranslationServer, String> =
       MethodStringName0<TranslationServer, String>("get_locale")
 
-  @JvmStatic
+  @JvmField
   public val getToolLocaleName: MethodStringName0<TranslationServer, String> =
       MethodStringName0<TranslationServer, String>("get_tool_locale")
 
-  @JvmStatic
+  @JvmField
   public val compareLocalesName: MethodStringName2<TranslationServer, Int, String, String> =
       MethodStringName2<TranslationServer, Int, String, String>("compare_locales")
 
-  @JvmStatic
+  @JvmField
   public val standardizeLocaleName: MethodStringName2<TranslationServer, String, String, Boolean> =
       MethodStringName2<TranslationServer, String, String, Boolean>("standardize_locale")
 
-  @JvmStatic
+  @JvmField
   public val getAllLanguagesName: MethodStringName0<TranslationServer, PackedStringArray> =
       MethodStringName0<TranslationServer, PackedStringArray>("get_all_languages")
 
-  @JvmStatic
+  @JvmField
   public val getLanguageNameName: MethodStringName1<TranslationServer, String, String> =
       MethodStringName1<TranslationServer, String, String>("get_language_name")
 
-  @JvmStatic
+  @JvmField
   public val getAllScriptsName: MethodStringName0<TranslationServer, PackedStringArray> =
       MethodStringName0<TranslationServer, PackedStringArray>("get_all_scripts")
 
-  @JvmStatic
+  @JvmField
   public val getScriptNameName: MethodStringName1<TranslationServer, String, String> =
       MethodStringName1<TranslationServer, String, String>("get_script_name")
 
-  @JvmStatic
+  @JvmField
   public val getAllCountriesName: MethodStringName0<TranslationServer, PackedStringArray> =
       MethodStringName0<TranslationServer, PackedStringArray>("get_all_countries")
 
-  @JvmStatic
+  @JvmField
   public val getCountryNameName: MethodStringName1<TranslationServer, String, String> =
       MethodStringName1<TranslationServer, String, String>("get_country_name")
 
-  @JvmStatic
+  @JvmField
   public val getLocaleNameName: MethodStringName1<TranslationServer, String, String> =
       MethodStringName1<TranslationServer, String, String>("get_locale_name")
 
-  @JvmStatic
+  @JvmField
   public val translateName: MethodStringName2<TranslationServer, StringName, StringName, StringName>
       = MethodStringName2<TranslationServer, StringName, StringName, StringName>("translate")
 
-  @JvmStatic
+  @JvmField
   public val translatePluralName:
       MethodStringName4<TranslationServer, StringName, StringName, StringName, Int, StringName> =
       MethodStringName4<TranslationServer, StringName, StringName, StringName, Int, StringName>("translate_plural")
 
-  @JvmStatic
+  @JvmField
   public val addTranslationName: MethodStringName1<TranslationServer, Unit, Translation?> =
       MethodStringName1<TranslationServer, Unit, Translation?>("add_translation")
 
-  @JvmStatic
+  @JvmField
   public val removeTranslationName: MethodStringName1<TranslationServer, Unit, Translation?> =
       MethodStringName1<TranslationServer, Unit, Translation?>("remove_translation")
 
-  @JvmStatic
+  @JvmField
   public val getTranslationObjectName: MethodStringName1<TranslationServer, Translation?, String> =
       MethodStringName1<TranslationServer, Translation?, String>("get_translation_object")
 
-  @JvmStatic
+  @JvmField
   public val hasDomainName: MethodStringName1<TranslationServer, Boolean, StringName> =
       MethodStringName1<TranslationServer, Boolean, StringName>("has_domain")
 
-  @JvmStatic
+  @JvmField
   public val getOrAddDomainName:
       MethodStringName1<TranslationServer, TranslationDomain?, StringName> =
       MethodStringName1<TranslationServer, TranslationDomain?, StringName>("get_or_add_domain")
 
-  @JvmStatic
+  @JvmField
   public val removeDomainName: MethodStringName1<TranslationServer, Unit, StringName> =
       MethodStringName1<TranslationServer, Unit, StringName>("remove_domain")
 
-  @JvmStatic
+  @JvmField
   public val clearName: MethodStringName0<TranslationServer, Unit> =
       MethodStringName0<TranslationServer, Unit>("clear")
 
-  @JvmStatic
+  @JvmField
   public val getLoadedLocalesName: MethodStringName0<TranslationServer, PackedStringArray> =
       MethodStringName0<TranslationServer, PackedStringArray>("get_loaded_locales")
 
-  @JvmStatic
+  @JvmField
   public val isPseudolocalizationEnabledName: MethodStringName0<TranslationServer, Boolean> =
       MethodStringName0<TranslationServer, Boolean>("is_pseudolocalization_enabled")
 
-  @JvmStatic
+  @JvmField
   public val setPseudolocalizationEnabledName: MethodStringName1<TranslationServer, Unit, Boolean> =
       MethodStringName1<TranslationServer, Unit, Boolean>("set_pseudolocalization_enabled")
 
-  @JvmStatic
+  @JvmField
   public val reloadPseudolocalizationName: MethodStringName0<TranslationServer, Unit> =
       MethodStringName0<TranslationServer, Unit>("reload_pseudolocalization")
 
-  @JvmStatic
+  @JvmField
   public val pseudolocalizeName: MethodStringName1<TranslationServer, StringName, StringName> =
       MethodStringName1<TranslationServer, StringName, StringName>("pseudolocalize")
 

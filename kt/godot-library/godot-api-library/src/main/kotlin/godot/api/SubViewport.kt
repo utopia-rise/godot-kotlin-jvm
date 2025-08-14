@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [SubViewport] Isolates a rectangular region of a scene to be displayed independently. This can be
@@ -284,43 +284,43 @@ public open class SubViewport : Viewport() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<SubViewport, Unit, Vector2i> =
         MethodStringName1<SubViewport, Unit, Vector2i>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<SubViewport, Vector2i> =
         MethodStringName0<SubViewport, Vector2i>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setSize2dOverrideName: MethodStringName1<SubViewport, Unit, Vector2i> =
         MethodStringName1<SubViewport, Unit, Vector2i>("set_size_2d_override")
 
-    @JvmStatic
+    @JvmField
     public val getSize2dOverrideName: MethodStringName0<SubViewport, Vector2i> =
         MethodStringName0<SubViewport, Vector2i>("get_size_2d_override")
 
-    @JvmStatic
+    @JvmField
     public val setSize2dOverrideStretchName: MethodStringName1<SubViewport, Unit, Boolean> =
         MethodStringName1<SubViewport, Unit, Boolean>("set_size_2d_override_stretch")
 
-    @JvmStatic
+    @JvmField
     public val isSize2dOverrideStretchEnabledName: MethodStringName0<SubViewport, Boolean> =
         MethodStringName0<SubViewport, Boolean>("is_size_2d_override_stretch_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setUpdateModeName: MethodStringName1<SubViewport, Unit, UpdateMode> =
         MethodStringName1<SubViewport, Unit, UpdateMode>("set_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val getUpdateModeName: MethodStringName0<SubViewport, UpdateMode> =
         MethodStringName0<SubViewport, UpdateMode>("get_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val setClearModeName: MethodStringName1<SubViewport, Unit, ClearMode> =
         MethodStringName1<SubViewport, Unit, ClearMode>("set_clear_mode")
 
-    @JvmStatic
+    @JvmField
     public val getClearModeName: MethodStringName0<SubViewport, ClearMode> =
         MethodStringName0<SubViewport, ClearMode>("get_clear_mode")
   }

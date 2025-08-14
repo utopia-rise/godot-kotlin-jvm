@@ -23,8 +23,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The [PCKPacker] is used to create packages that can be loaded into a running project using
@@ -112,19 +112,19 @@ public open class PCKPacker : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val pckStartName: MethodStringName4<PCKPacker, Error, String, Int, String, Boolean> =
         MethodStringName4<PCKPacker, Error, String, Int, String, Boolean>("pck_start")
 
-    @JvmStatic
+    @JvmField
     public val addFileName: MethodStringName3<PCKPacker, Error, String, String, Boolean> =
         MethodStringName3<PCKPacker, Error, String, String, Boolean>("add_file")
 
-    @JvmStatic
+    @JvmField
     public val addFileRemovalName: MethodStringName1<PCKPacker, Error, String> =
         MethodStringName1<PCKPacker, Error, String>("add_file_removal")
 
-    @JvmStatic
+    @JvmField
     public val flushName: MethodStringName1<PCKPacker, Error, Boolean> =
         MethodStringName1<PCKPacker, Error, Boolean>("flush")
   }

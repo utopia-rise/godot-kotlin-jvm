@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is an internal editor class intended for keeping data of nodes of unknown type (most likely
@@ -105,27 +105,27 @@ public open class MissingNode : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOriginalClassName: MethodStringName1<MissingNode, Unit, String> =
         MethodStringName1<MissingNode, Unit, String>("set_original_class")
 
-    @JvmStatic
+    @JvmField
     public val getOriginalClassName: MethodStringName0<MissingNode, String> =
         MethodStringName0<MissingNode, String>("get_original_class")
 
-    @JvmStatic
+    @JvmField
     public val setOriginalSceneName: MethodStringName1<MissingNode, Unit, String> =
         MethodStringName1<MissingNode, Unit, String>("set_original_scene")
 
-    @JvmStatic
+    @JvmField
     public val getOriginalSceneName: MethodStringName0<MissingNode, String> =
         MethodStringName0<MissingNode, String>("get_original_scene")
 
-    @JvmStatic
+    @JvmField
     public val setRecordingPropertiesName: MethodStringName1<MissingNode, Unit, Boolean> =
         MethodStringName1<MissingNode, Unit, Boolean>("set_recording_properties")
 
-    @JvmStatic
+    @JvmField
     public val isRecordingPropertiesName: MethodStringName0<MissingNode, Boolean> =
         MethodStringName0<MissingNode, Boolean>("is_recording_properties")
   }

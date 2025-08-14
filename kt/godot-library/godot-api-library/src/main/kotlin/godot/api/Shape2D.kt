@@ -37,8 +37,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for all 2D shapes, intended for use in physics.
@@ -187,39 +187,39 @@ public open class Shape2D internal constructor() : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCustomSolverBiasName: MethodStringName1<Shape2D, Unit, Float> =
         MethodStringName1<Shape2D, Unit, Float>("set_custom_solver_bias")
 
-    @JvmStatic
+    @JvmField
     public val getCustomSolverBiasName: MethodStringName0<Shape2D, Float> =
         MethodStringName0<Shape2D, Float>("get_custom_solver_bias")
 
-    @JvmStatic
+    @JvmField
     public val collideName: MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>
         = MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>("collide")
 
-    @JvmStatic
+    @JvmField
     public val collideWithMotionName:
         MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2> =
         MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion")
 
-    @JvmStatic
+    @JvmField
     public val collideAndGetContactsName:
         MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D> =
         MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D>("collide_and_get_contacts")
 
-    @JvmStatic
+    @JvmField
     public val collideWithMotionAndGetContactsName:
         MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>
         =
         MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion_and_get_contacts")
 
-    @JvmStatic
+    @JvmField
     public val drawName: MethodStringName2<Shape2D, Unit, RID, Color> =
         MethodStringName2<Shape2D, Unit, RID, Color>("draw")
 
-    @JvmStatic
+    @JvmField
     public val getRectName: MethodStringName0<Shape2D, Rect2> =
         MethodStringName0<Shape2D, Rect2>("get_rect")
   }

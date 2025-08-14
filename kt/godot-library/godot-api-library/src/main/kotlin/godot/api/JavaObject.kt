@@ -15,7 +15,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Represents an object from the Java Native Interface. It can be returned from Java methods called
@@ -41,7 +41,7 @@ public open class JavaObject : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getJavaClassName: MethodStringName0<JavaObject, JavaClass?> =
         MethodStringName0<JavaObject, JavaClass?>("get_java_class")
   }

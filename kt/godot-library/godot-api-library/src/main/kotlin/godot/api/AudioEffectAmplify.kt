@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Increases or decreases the volume being routed through the audio bus.
@@ -81,19 +81,19 @@ public open class AudioEffectAmplify : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setVolumeDbName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
         MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeDbName: MethodStringName0<AudioEffectAmplify, Float> =
         MethodStringName0<AudioEffectAmplify, Float>("get_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val setVolumeLinearName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
         MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_linear")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeLinearName: MethodStringName0<AudioEffectAmplify, Float> =
         MethodStringName0<AudioEffectAmplify, Float>("get_volume_linear")
   }

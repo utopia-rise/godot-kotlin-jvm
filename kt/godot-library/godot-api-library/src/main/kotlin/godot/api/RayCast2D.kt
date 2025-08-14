@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
@@ -396,115 +396,115 @@ public open class RayCast2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEnabledName: MethodStringName1<RayCast2D, Unit, Boolean> =
         MethodStringName1<RayCast2D, Unit, Boolean>("set_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isEnabledName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("is_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setTargetPositionName: MethodStringName1<RayCast2D, Unit, Vector2> =
         MethodStringName1<RayCast2D, Unit, Vector2>("set_target_position")
 
-    @JvmStatic
+    @JvmField
     public val getTargetPositionName: MethodStringName0<RayCast2D, Vector2> =
         MethodStringName0<RayCast2D, Vector2>("get_target_position")
 
-    @JvmStatic
+    @JvmField
     public val isCollidingName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("is_colliding")
 
-    @JvmStatic
+    @JvmField
     public val forceRaycastUpdateName: MethodStringName0<RayCast2D, Unit> =
         MethodStringName0<RayCast2D, Unit>("force_raycast_update")
 
-    @JvmStatic
+    @JvmField
     public val getColliderName: MethodStringName0<RayCast2D, Object?> =
         MethodStringName0<RayCast2D, Object?>("get_collider")
 
-    @JvmStatic
+    @JvmField
     public val getColliderRidName: MethodStringName0<RayCast2D, RID> =
         MethodStringName0<RayCast2D, RID>("get_collider_rid")
 
-    @JvmStatic
+    @JvmField
     public val getColliderShapeName: MethodStringName0<RayCast2D, Int> =
         MethodStringName0<RayCast2D, Int>("get_collider_shape")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionPointName: MethodStringName0<RayCast2D, Vector2> =
         MethodStringName0<RayCast2D, Vector2>("get_collision_point")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionNormalName: MethodStringName0<RayCast2D, Vector2> =
         MethodStringName0<RayCast2D, Vector2>("get_collision_normal")
 
-    @JvmStatic
+    @JvmField
     public val addExceptionRidName: MethodStringName1<RayCast2D, Unit, RID> =
         MethodStringName1<RayCast2D, Unit, RID>("add_exception_rid")
 
-    @JvmStatic
+    @JvmField
     public val addExceptionName: MethodStringName1<RayCast2D, Unit, CollisionObject2D?> =
         MethodStringName1<RayCast2D, Unit, CollisionObject2D?>("add_exception")
 
-    @JvmStatic
+    @JvmField
     public val removeExceptionRidName: MethodStringName1<RayCast2D, Unit, RID> =
         MethodStringName1<RayCast2D, Unit, RID>("remove_exception_rid")
 
-    @JvmStatic
+    @JvmField
     public val removeExceptionName: MethodStringName1<RayCast2D, Unit, CollisionObject2D?> =
         MethodStringName1<RayCast2D, Unit, CollisionObject2D?>("remove_exception")
 
-    @JvmStatic
+    @JvmField
     public val clearExceptionsName: MethodStringName0<RayCast2D, Unit> =
         MethodStringName0<RayCast2D, Unit>("clear_exceptions")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<RayCast2D, Unit, Long> =
         MethodStringName1<RayCast2D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<RayCast2D, Long> =
         MethodStringName0<RayCast2D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskValueName: MethodStringName2<RayCast2D, Unit, Int, Boolean> =
         MethodStringName2<RayCast2D, Unit, Int, Boolean>("set_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskValueName: MethodStringName1<RayCast2D, Boolean, Int> =
         MethodStringName1<RayCast2D, Boolean, Int>("get_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeParentBodyName: MethodStringName1<RayCast2D, Unit, Boolean> =
         MethodStringName1<RayCast2D, Unit, Boolean>("set_exclude_parent_body")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeParentBodyName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("get_exclude_parent_body")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithAreasName: MethodStringName1<RayCast2D, Unit, Boolean> =
         MethodStringName1<RayCast2D, Unit, Boolean>("set_collide_with_areas")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithAreasEnabledName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("is_collide_with_areas_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithBodiesName: MethodStringName1<RayCast2D, Unit, Boolean> =
         MethodStringName1<RayCast2D, Unit, Boolean>("set_collide_with_bodies")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithBodiesEnabledName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("is_collide_with_bodies_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHitFromInsideName: MethodStringName1<RayCast2D, Unit, Boolean> =
         MethodStringName1<RayCast2D, Unit, Boolean>("set_hit_from_inside")
 
-    @JvmStatic
+    @JvmField
     public val isHitFromInsideEnabledName: MethodStringName0<RayCast2D, Boolean> =
         MethodStringName0<RayCast2D, Boolean>("is_hit_from_inside_enabled")
   }

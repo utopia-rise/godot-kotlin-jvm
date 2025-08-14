@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This class is used to store the state of a DTLS server. Upon [setup] it converts connected
@@ -206,11 +206,11 @@ public open class DTLSServer : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setupName: MethodStringName1<DTLSServer, Error, TLSOptions?> =
         MethodStringName1<DTLSServer, Error, TLSOptions?>("setup")
 
-    @JvmStatic
+    @JvmField
     public val takeConnectionName: MethodStringName1<DTLSServer, PacketPeerDTLS?, PacketPeerUDP?> =
         MethodStringName1<DTLSServer, PacketPeerDTLS?, PacketPeerUDP?>("take_connection")
   }

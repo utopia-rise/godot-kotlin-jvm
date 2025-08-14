@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is a special node within the AR/VR system that maps the physical location of the center of
@@ -94,19 +94,19 @@ public open class XROrigin3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWorldScaleName: MethodStringName1<XROrigin3D, Unit, Float> =
         MethodStringName1<XROrigin3D, Unit, Float>("set_world_scale")
 
-    @JvmStatic
+    @JvmField
     public val getWorldScaleName: MethodStringName0<XROrigin3D, Float> =
         MethodStringName0<XROrigin3D, Float>("get_world_scale")
 
-    @JvmStatic
+    @JvmField
     public val setCurrentName: MethodStringName1<XROrigin3D, Unit, Boolean> =
         MethodStringName1<XROrigin3D, Unit, Boolean>("set_current")
 
-    @JvmStatic
+    @JvmField
     public val isCurrentName: MethodStringName0<XROrigin3D, Boolean> =
         MethodStringName0<XROrigin3D, Boolean>("is_current")
   }

@@ -61,7 +61,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: RichTextLabel.ImageUpdateMask): Long = this.or(other.flag)
 
@@ -1861,534 +1860,534 @@ public open class RichTextLabel : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getParsedTextName: MethodStringName0<RichTextLabel, String> =
         MethodStringName0<RichTextLabel, String>("get_parsed_text")
 
-    @JvmStatic
+    @JvmField
     public val addTextName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("add_text")
 
-    @JvmStatic
+    @JvmField
     public val setTextName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("set_text")
 
-    @JvmStatic
+    @JvmField
     public val addImageName:
         MethodStringName10<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean>
         =
         MethodStringName10<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean>("add_image")
 
-    @JvmStatic
+    @JvmField
     public val updateImageName:
         MethodStringName11<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean>
         =
         MethodStringName11<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean>("update_image")
 
-    @JvmStatic
+    @JvmField
     public val newlineName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("newline")
 
-    @JvmStatic
+    @JvmField
     public val removeParagraphName: MethodStringName2<RichTextLabel, Boolean, Int, Boolean> =
         MethodStringName2<RichTextLabel, Boolean, Int, Boolean>("remove_paragraph")
 
-    @JvmStatic
+    @JvmField
     public val invalidateParagraphName: MethodStringName1<RichTextLabel, Boolean, Int> =
         MethodStringName1<RichTextLabel, Boolean, Int>("invalidate_paragraph")
 
-    @JvmStatic
+    @JvmField
     public val pushFontName: MethodStringName2<RichTextLabel, Unit, Font?, Int> =
         MethodStringName2<RichTextLabel, Unit, Font?, Int>("push_font")
 
-    @JvmStatic
+    @JvmField
     public val pushFontSizeName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("push_font_size")
 
-    @JvmStatic
+    @JvmField
     public val pushNormalName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_normal")
 
-    @JvmStatic
+    @JvmField
     public val pushBoldName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_bold")
 
-    @JvmStatic
+    @JvmField
     public val pushBoldItalicsName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_bold_italics")
 
-    @JvmStatic
+    @JvmField
     public val pushItalicsName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_italics")
 
-    @JvmStatic
+    @JvmField
     public val pushMonoName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_mono")
 
-    @JvmStatic
+    @JvmField
     public val pushColorName: MethodStringName1<RichTextLabel, Unit, Color> =
         MethodStringName1<RichTextLabel, Unit, Color>("push_color")
 
-    @JvmStatic
+    @JvmField
     public val pushOutlineSizeName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("push_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val pushOutlineColorName: MethodStringName1<RichTextLabel, Unit, Color> =
         MethodStringName1<RichTextLabel, Unit, Color>("push_outline_color")
 
-    @JvmStatic
+    @JvmField
     public val pushParagraphName:
         MethodStringName6<RichTextLabel, Unit, HorizontalAlignment, Control.TextDirection, String, TextServer.StructuredTextParser, TextServer.JustificationFlag, PackedFloat32Array>
         =
         MethodStringName6<RichTextLabel, Unit, HorizontalAlignment, Control.TextDirection, String, TextServer.StructuredTextParser, TextServer.JustificationFlag, PackedFloat32Array>("push_paragraph")
 
-    @JvmStatic
+    @JvmField
     public val pushIndentName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("push_indent")
 
-    @JvmStatic
+    @JvmField
     public val pushListName: MethodStringName4<RichTextLabel, Unit, Int, ListType, Boolean, String>
         = MethodStringName4<RichTextLabel, Unit, Int, ListType, Boolean, String>("push_list")
 
-    @JvmStatic
+    @JvmField
     public val pushMetaName: MethodStringName3<RichTextLabel, Unit, Any?, MetaUnderline, String> =
         MethodStringName3<RichTextLabel, Unit, Any?, MetaUnderline, String>("push_meta")
 
-    @JvmStatic
+    @JvmField
     public val pushHintName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("push_hint")
 
-    @JvmStatic
+    @JvmField
     public val pushLanguageName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("push_language")
 
-    @JvmStatic
+    @JvmField
     public val pushUnderlineName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_underline")
 
-    @JvmStatic
+    @JvmField
     public val pushStrikethroughName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_strikethrough")
 
-    @JvmStatic
+    @JvmField
     public val pushTableName: MethodStringName3<RichTextLabel, Unit, Int, InlineAlignment, Int> =
         MethodStringName3<RichTextLabel, Unit, Int, InlineAlignment, Int>("push_table")
 
-    @JvmStatic
+    @JvmField
     public val pushDropcapName:
         MethodStringName7<RichTextLabel, Unit, String, Font?, Int, Rect2, Color, Int, Color> =
         MethodStringName7<RichTextLabel, Unit, String, Font?, Int, Rect2, Color, Int, Color>("push_dropcap")
 
-    @JvmStatic
+    @JvmField
     public val setTableColumnExpandName:
         MethodStringName4<RichTextLabel, Unit, Int, Boolean, Int, Boolean> =
         MethodStringName4<RichTextLabel, Unit, Int, Boolean, Int, Boolean>("set_table_column_expand")
 
-    @JvmStatic
+    @JvmField
     public val setCellRowBackgroundColorName: MethodStringName2<RichTextLabel, Unit, Color, Color> =
         MethodStringName2<RichTextLabel, Unit, Color, Color>("set_cell_row_background_color")
 
-    @JvmStatic
+    @JvmField
     public val setCellBorderColorName: MethodStringName1<RichTextLabel, Unit, Color> =
         MethodStringName1<RichTextLabel, Unit, Color>("set_cell_border_color")
 
-    @JvmStatic
+    @JvmField
     public val setCellSizeOverrideName: MethodStringName2<RichTextLabel, Unit, Vector2, Vector2> =
         MethodStringName2<RichTextLabel, Unit, Vector2, Vector2>("set_cell_size_override")
 
-    @JvmStatic
+    @JvmField
     public val setCellPaddingName: MethodStringName1<RichTextLabel, Unit, Rect2> =
         MethodStringName1<RichTextLabel, Unit, Rect2>("set_cell_padding")
 
-    @JvmStatic
+    @JvmField
     public val pushCellName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_cell")
 
-    @JvmStatic
+    @JvmField
     public val pushFgcolorName: MethodStringName1<RichTextLabel, Unit, Color> =
         MethodStringName1<RichTextLabel, Unit, Color>("push_fgcolor")
 
-    @JvmStatic
+    @JvmField
     public val pushBgcolorName: MethodStringName1<RichTextLabel, Unit, Color> =
         MethodStringName1<RichTextLabel, Unit, Color>("push_bgcolor")
 
-    @JvmStatic
+    @JvmField
     public val pushCustomfxName:
         MethodStringName2<RichTextLabel, Unit, RichTextEffect?, Dictionary<Any?, Any?>> =
         MethodStringName2<RichTextLabel, Unit, RichTextEffect?, Dictionary<Any?, Any?>>("push_customfx")
 
-    @JvmStatic
+    @JvmField
     public val pushContextName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("push_context")
 
-    @JvmStatic
+    @JvmField
     public val popContextName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("pop_context")
 
-    @JvmStatic
+    @JvmField
     public val popName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("pop")
 
-    @JvmStatic
+    @JvmField
     public val popAllName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("pop_all")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideName:
         MethodStringName1<RichTextLabel, Unit, TextServer.StructuredTextParser> =
         MethodStringName1<RichTextLabel, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideName:
         MethodStringName0<RichTextLabel, TextServer.StructuredTextParser> =
         MethodStringName0<RichTextLabel, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideOptionsName:
         MethodStringName1<RichTextLabel, Unit, VariantArray<Any?>> =
         MethodStringName1<RichTextLabel, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideOptionsName:
         MethodStringName0<RichTextLabel, VariantArray<Any?>> =
         MethodStringName0<RichTextLabel, VariantArray<Any?>>("get_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val setTextDirectionName: MethodStringName1<RichTextLabel, Unit, Control.TextDirection> =
         MethodStringName1<RichTextLabel, Unit, Control.TextDirection>("set_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getTextDirectionName: MethodStringName0<RichTextLabel, Control.TextDirection> =
         MethodStringName0<RichTextLabel, Control.TextDirection>("get_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<RichTextLabel, String> =
         MethodStringName0<RichTextLabel, String>("get_language")
 
-    @JvmStatic
+    @JvmField
     public val setHorizontalAlignmentName:
         MethodStringName1<RichTextLabel, Unit, HorizontalAlignment> =
         MethodStringName1<RichTextLabel, Unit, HorizontalAlignment>("set_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalAlignmentName: MethodStringName0<RichTextLabel, HorizontalAlignment> =
         MethodStringName0<RichTextLabel, HorizontalAlignment>("get_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setVerticalAlignmentName: MethodStringName1<RichTextLabel, Unit, VerticalAlignment> =
         MethodStringName1<RichTextLabel, Unit, VerticalAlignment>("set_vertical_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getVerticalAlignmentName: MethodStringName0<RichTextLabel, VerticalAlignment> =
         MethodStringName0<RichTextLabel, VerticalAlignment>("get_vertical_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setJustificationFlagsName:
         MethodStringName1<RichTextLabel, Unit, TextServer.JustificationFlag> =
         MethodStringName1<RichTextLabel, Unit, TextServer.JustificationFlag>("set_justification_flags")
 
-    @JvmStatic
+    @JvmField
     public val getJustificationFlagsName:
         MethodStringName0<RichTextLabel, TextServer.JustificationFlag> =
         MethodStringName0<RichTextLabel, TextServer.JustificationFlag>("get_justification_flags")
 
-    @JvmStatic
+    @JvmField
     public val setTabStopsName: MethodStringName1<RichTextLabel, Unit, PackedFloat32Array> =
         MethodStringName1<RichTextLabel, Unit, PackedFloat32Array>("set_tab_stops")
 
-    @JvmStatic
+    @JvmField
     public val getTabStopsName: MethodStringName0<RichTextLabel, PackedFloat32Array> =
         MethodStringName0<RichTextLabel, PackedFloat32Array>("get_tab_stops")
 
-    @JvmStatic
+    @JvmField
     public val setAutowrapModeName: MethodStringName1<RichTextLabel, Unit, TextServer.AutowrapMode>
         = MethodStringName1<RichTextLabel, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAutowrapModeName: MethodStringName0<RichTextLabel, TextServer.AutowrapMode> =
         MethodStringName0<RichTextLabel, TextServer.AutowrapMode>("get_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val setMetaUnderlineName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_meta_underline")
 
-    @JvmStatic
+    @JvmField
     public val isMetaUnderlinedName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_meta_underlined")
 
-    @JvmStatic
+    @JvmField
     public val setHintUnderlineName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_hint_underline")
 
-    @JvmStatic
+    @JvmField
     public val isHintUnderlinedName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_hint_underlined")
 
-    @JvmStatic
+    @JvmField
     public val setScrollActiveName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_scroll_active")
 
-    @JvmStatic
+    @JvmField
     public val isScrollActiveName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_scroll_active")
 
-    @JvmStatic
+    @JvmField
     public val setScrollFollowName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_scroll_follow")
 
-    @JvmStatic
+    @JvmField
     public val isScrollFollowingName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_scroll_following")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollBarName: MethodStringName0<RichTextLabel, VScrollBar?> =
         MethodStringName0<RichTextLabel, VScrollBar?>("get_v_scroll_bar")
 
-    @JvmStatic
+    @JvmField
     public val scrollToLineName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("scroll_to_line")
 
-    @JvmStatic
+    @JvmField
     public val scrollToParagraphName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("scroll_to_paragraph")
 
-    @JvmStatic
+    @JvmField
     public val scrollToSelectionName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("scroll_to_selection")
 
-    @JvmStatic
+    @JvmField
     public val setTabSizeName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("set_tab_size")
 
-    @JvmStatic
+    @JvmField
     public val getTabSizeName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_tab_size")
 
-    @JvmStatic
+    @JvmField
     public val setFitContentName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_fit_content")
 
-    @JvmStatic
+    @JvmField
     public val isFitContentEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_fit_content_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSelectionEnabledName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isSelectionEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setContextMenuEnabledName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_context_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isContextMenuEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_context_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutKeysEnabledName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_shortcut_keys_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isShortcutKeysEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_shortcut_keys_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDeselectOnFocusLossEnabledName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_deselect_on_focus_loss_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDeselectOnFocusLossEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_deselect_on_focus_loss_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDragAndDropSelectionEnabledName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_drag_and_drop_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDragAndDropSelectionEnabledName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_drag_and_drop_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionFromName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_selection_from")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionToName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_selection_to")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionLineOffsetName: MethodStringName0<RichTextLabel, Float> =
         MethodStringName0<RichTextLabel, Float>("get_selection_line_offset")
 
-    @JvmStatic
+    @JvmField
     public val selectAllName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("select_all")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedTextName: MethodStringName0<RichTextLabel, String> =
         MethodStringName0<RichTextLabel, String>("get_selected_text")
 
-    @JvmStatic
+    @JvmField
     public val deselectName: MethodStringName0<RichTextLabel, Unit> =
         MethodStringName0<RichTextLabel, Unit>("deselect")
 
-    @JvmStatic
+    @JvmField
     public val parseBbcodeName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("parse_bbcode")
 
-    @JvmStatic
+    @JvmField
     public val appendTextName: MethodStringName1<RichTextLabel, Unit, String> =
         MethodStringName1<RichTextLabel, Unit, String>("append_text")
 
-    @JvmStatic
+    @JvmField
     public val getTextName: MethodStringName0<RichTextLabel, String> =
         MethodStringName0<RichTextLabel, String>("get_text")
 
-    @JvmStatic
+    @JvmField
     public val isReadyName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_ready")
 
-    @JvmStatic
+    @JvmField
     public val isFinishedName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_finished")
 
-    @JvmStatic
+    @JvmField
     public val setThreadedName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_threaded")
 
-    @JvmStatic
+    @JvmField
     public val isThreadedName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_threaded")
 
-    @JvmStatic
+    @JvmField
     public val setProgressBarDelayName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("set_progress_bar_delay")
 
-    @JvmStatic
+    @JvmField
     public val getProgressBarDelayName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_progress_bar_delay")
 
-    @JvmStatic
+    @JvmField
     public val setVisibleCharactersName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("set_visible_characters")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleCharactersName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_visible_characters")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleCharactersBehaviorName:
         MethodStringName0<RichTextLabel, TextServer.VisibleCharactersBehavior> =
         MethodStringName0<RichTextLabel, TextServer.VisibleCharactersBehavior>("get_visible_characters_behavior")
 
-    @JvmStatic
+    @JvmField
     public val setVisibleCharactersBehaviorName:
         MethodStringName1<RichTextLabel, Unit, TextServer.VisibleCharactersBehavior> =
         MethodStringName1<RichTextLabel, Unit, TextServer.VisibleCharactersBehavior>("set_visible_characters_behavior")
 
-    @JvmStatic
+    @JvmField
     public val setVisibleRatioName: MethodStringName1<RichTextLabel, Unit, Float> =
         MethodStringName1<RichTextLabel, Unit, Float>("set_visible_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleRatioName: MethodStringName0<RichTextLabel, Float> =
         MethodStringName0<RichTextLabel, Float>("get_visible_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getCharacterLineName: MethodStringName1<RichTextLabel, Int, Int> =
         MethodStringName1<RichTextLabel, Int, Int>("get_character_line")
 
-    @JvmStatic
+    @JvmField
     public val getCharacterParagraphName: MethodStringName1<RichTextLabel, Int, Int> =
         MethodStringName1<RichTextLabel, Int, Int>("get_character_paragraph")
 
-    @JvmStatic
+    @JvmField
     public val getTotalCharacterCountName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_total_character_count")
 
-    @JvmStatic
+    @JvmField
     public val setUseBbcodeName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_use_bbcode")
 
-    @JvmStatic
+    @JvmField
     public val isUsingBbcodeName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_using_bbcode")
 
-    @JvmStatic
+    @JvmField
     public val getLineCountName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_line_count")
 
-    @JvmStatic
+    @JvmField
     public val getLineRangeName: MethodStringName1<RichTextLabel, Vector2i, Int> =
         MethodStringName1<RichTextLabel, Vector2i, Int>("get_line_range")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleLineCountName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_visible_line_count")
 
-    @JvmStatic
+    @JvmField
     public val getParagraphCountName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_paragraph_count")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleParagraphCountName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_visible_paragraph_count")
 
-    @JvmStatic
+    @JvmField
     public val getContentHeightName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_content_height")
 
-    @JvmStatic
+    @JvmField
     public val getContentWidthName: MethodStringName0<RichTextLabel, Int> =
         MethodStringName0<RichTextLabel, Int>("get_content_width")
 
-    @JvmStatic
+    @JvmField
     public val getLineOffsetName: MethodStringName1<RichTextLabel, Float, Int> =
         MethodStringName1<RichTextLabel, Float, Int>("get_line_offset")
 
-    @JvmStatic
+    @JvmField
     public val getParagraphOffsetName: MethodStringName1<RichTextLabel, Float, Int> =
         MethodStringName1<RichTextLabel, Float, Int>("get_paragraph_offset")
 
-    @JvmStatic
+    @JvmField
     public val parseExpressionsForValuesName:
         MethodStringName1<RichTextLabel, Dictionary<Any?, Any?>, PackedStringArray> =
         MethodStringName1<RichTextLabel, Dictionary<Any?, Any?>, PackedStringArray>("parse_expressions_for_values")
 
-    @JvmStatic
+    @JvmField
     public val setEffectsName: MethodStringName1<RichTextLabel, Unit, VariantArray<Any?>> =
         MethodStringName1<RichTextLabel, Unit, VariantArray<Any?>>("set_effects")
 
-    @JvmStatic
+    @JvmField
     public val getEffectsName: MethodStringName0<RichTextLabel, VariantArray<Any?>> =
         MethodStringName0<RichTextLabel, VariantArray<Any?>>("get_effects")
 
-    @JvmStatic
+    @JvmField
     public val installEffectName: MethodStringName1<RichTextLabel, Unit, Any?> =
         MethodStringName1<RichTextLabel, Unit, Any?>("install_effect")
 
-    @JvmStatic
+    @JvmField
     public val getMenuName: MethodStringName0<RichTextLabel, PopupMenu?> =
         MethodStringName0<RichTextLabel, PopupMenu?>("get_menu")
 
-    @JvmStatic
+    @JvmField
     public val isMenuVisibleName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_menu_visible")
 
-    @JvmStatic
+    @JvmField
     public val menuOptionName: MethodStringName1<RichTextLabel, Unit, Int> =
         MethodStringName1<RichTextLabel, Unit, Int>("menu_option")
   }

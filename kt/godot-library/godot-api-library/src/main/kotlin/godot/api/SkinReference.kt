@@ -17,7 +17,7 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * An internal object containing a mapping from a [Skin] used within the context of a particular
@@ -65,11 +65,11 @@ public open class SkinReference internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getSkeletonName: MethodStringName0<SkinReference, RID> =
         MethodStringName0<SkinReference, RID>("get_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val getSkinName: MethodStringName0<SkinReference, Skin?> =
         MethodStringName0<SkinReference, Skin?>("get_skin")
   }

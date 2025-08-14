@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Particle accelerator can be used in "process" step of particle shader. It will accelerate the
@@ -86,11 +86,11 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setModeName: MethodStringName1<VisualShaderNodeParticleAccelerator, Unit, Mode> =
         MethodStringName1<VisualShaderNodeParticleAccelerator, Unit, Mode>("set_mode")
 
-    @JvmStatic
+    @JvmField
     public val getModeName: MethodStringName0<VisualShaderNodeParticleAccelerator, Mode> =
         MethodStringName0<VisualShaderNodeParticleAccelerator, Mode>("get_mode")
   }

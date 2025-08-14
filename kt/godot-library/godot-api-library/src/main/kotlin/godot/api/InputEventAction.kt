@@ -27,8 +27,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Contains a generic action which can be targeted from several types of inputs. Actions and their
@@ -135,31 +135,31 @@ public open class InputEventAction : InputEvent() {
   public final fun setAction(action: String) = setAction(action.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setActionName: MethodStringName1<InputEventAction, Unit, StringName> =
         MethodStringName1<InputEventAction, Unit, StringName>("set_action")
 
-    @JvmStatic
+    @JvmField
     public val getActionName: MethodStringName0<InputEventAction, StringName> =
         MethodStringName0<InputEventAction, StringName>("get_action")
 
-    @JvmStatic
+    @JvmField
     public val setPressedName: MethodStringName1<InputEventAction, Unit, Boolean> =
         MethodStringName1<InputEventAction, Unit, Boolean>("set_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setStrengthName: MethodStringName1<InputEventAction, Unit, Float> =
         MethodStringName1<InputEventAction, Unit, Float>("set_strength")
 
-    @JvmStatic
+    @JvmField
     public val getStrengthName: MethodStringName0<InputEventAction, Float> =
         MethodStringName0<InputEventAction, Float>("get_strength")
 
-    @JvmStatic
+    @JvmField
     public val setEventIndexName: MethodStringName1<InputEventAction, Unit, Int> =
         MethodStringName1<InputEventAction, Unit, Int>("set_event_index")
 
-    @JvmStatic
+    @JvmField
     public val getEventIndexName: MethodStringName0<InputEventAction, Int> =
         MethodStringName0<InputEventAction, Int>("get_event_index")
   }

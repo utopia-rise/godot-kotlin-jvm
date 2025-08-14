@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Accept a floating-point scalar (`x`) to the input port and transform it according to [function].
@@ -223,11 +223,11 @@ public open class VisualShaderNodeFloatFunc : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeFloatFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeFloatFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeFloatFunc, Function> =
         MethodStringName0<VisualShaderNodeFloatFunc, Function>("get_function")
   }

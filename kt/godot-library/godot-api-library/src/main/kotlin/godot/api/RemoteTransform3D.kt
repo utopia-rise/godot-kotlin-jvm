@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * RemoteTransform3D pushes its own [Transform3D] to another [Node3D] derived Node (called the
@@ -160,47 +160,47 @@ public open class RemoteTransform3D : Node3D() {
   public final fun setRemoteNode(path: String) = setRemoteNode(path.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRemoteNodeName: MethodStringName1<RemoteTransform3D, Unit, NodePath> =
         MethodStringName1<RemoteTransform3D, Unit, NodePath>("set_remote_node")
 
-    @JvmStatic
+    @JvmField
     public val getRemoteNodeName: MethodStringName0<RemoteTransform3D, NodePath> =
         MethodStringName0<RemoteTransform3D, NodePath>("get_remote_node")
 
-    @JvmStatic
+    @JvmField
     public val forceUpdateCacheName: MethodStringName0<RemoteTransform3D, Unit> =
         MethodStringName0<RemoteTransform3D, Unit>("force_update_cache")
 
-    @JvmStatic
+    @JvmField
     public val setUseGlobalCoordinatesName: MethodStringName1<RemoteTransform3D, Unit, Boolean> =
         MethodStringName1<RemoteTransform3D, Unit, Boolean>("set_use_global_coordinates")
 
-    @JvmStatic
+    @JvmField
     public val getUseGlobalCoordinatesName: MethodStringName0<RemoteTransform3D, Boolean> =
         MethodStringName0<RemoteTransform3D, Boolean>("get_use_global_coordinates")
 
-    @JvmStatic
+    @JvmField
     public val setUpdatePositionName: MethodStringName1<RemoteTransform3D, Unit, Boolean> =
         MethodStringName1<RemoteTransform3D, Unit, Boolean>("set_update_position")
 
-    @JvmStatic
+    @JvmField
     public val getUpdatePositionName: MethodStringName0<RemoteTransform3D, Boolean> =
         MethodStringName0<RemoteTransform3D, Boolean>("get_update_position")
 
-    @JvmStatic
+    @JvmField
     public val setUpdateRotationName: MethodStringName1<RemoteTransform3D, Unit, Boolean> =
         MethodStringName1<RemoteTransform3D, Unit, Boolean>("set_update_rotation")
 
-    @JvmStatic
+    @JvmField
     public val getUpdateRotationName: MethodStringName0<RemoteTransform3D, Boolean> =
         MethodStringName0<RemoteTransform3D, Boolean>("get_update_rotation")
 
-    @JvmStatic
+    @JvmField
     public val setUpdateScaleName: MethodStringName1<RemoteTransform3D, Unit, Boolean> =
         MethodStringName1<RemoteTransform3D, Unit, Boolean>("set_update_scale")
 
-    @JvmStatic
+    @JvmField
     public val getUpdateScaleName: MethodStringName0<RemoteTransform3D, Boolean> =
         MethodStringName0<RemoteTransform3D, Boolean>("get_update_scale")
   }

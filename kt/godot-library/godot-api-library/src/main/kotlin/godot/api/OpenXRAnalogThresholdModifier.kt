@@ -20,8 +20,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The analog threshold binding modifier can modify a float input to a boolean input with specified
@@ -127,37 +127,37 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOnThresholdName: MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float> =
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float>("set_on_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getOnThresholdName: MethodStringName0<OpenXRAnalogThresholdModifier, Float> =
         MethodStringName0<OpenXRAnalogThresholdModifier, Float>("get_on_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setOffThresholdName: MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float> =
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, Float>("set_off_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getOffThresholdName: MethodStringName0<OpenXRAnalogThresholdModifier, Float> =
         MethodStringName0<OpenXRAnalogThresholdModifier, Float>("get_off_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setOnHapticName:
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?> =
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?>("set_on_haptic")
 
-    @JvmStatic
+    @JvmField
     public val getOnHapticName: MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>
         = MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>("get_on_haptic")
 
-    @JvmStatic
+    @JvmField
     public val setOffHapticName:
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?> =
         MethodStringName1<OpenXRAnalogThresholdModifier, Unit, OpenXRHapticBase?>("set_off_haptic")
 
-    @JvmStatic
+    @JvmField
     public val getOffHapticName: MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>
         = MethodStringName0<OpenXRAnalogThresholdModifier, OpenXRHapticBase?>("get_off_haptic")
   }

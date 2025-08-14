@@ -21,8 +21,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node allows you to create a box for use with the CSG system.
@@ -110,19 +110,19 @@ public open class CSGBox3D : CSGPrimitive3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<CSGBox3D, Unit, Vector3> =
         MethodStringName1<CSGBox3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<CSGBox3D, Vector3> =
         MethodStringName0<CSGBox3D, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<CSGBox3D, Unit, Material?> =
         MethodStringName1<CSGBox3D, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<CSGBox3D, Material?> =
         MethodStringName0<CSGBox3D, Material?>("get_material")
   }

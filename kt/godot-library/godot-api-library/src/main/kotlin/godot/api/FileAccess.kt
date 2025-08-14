@@ -880,249 +880,249 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val openName: MethodStringName2<FileAccess, FileAccess?, String, ModeFlags> =
         MethodStringName2<FileAccess, FileAccess?, String, ModeFlags>("open")
 
-    @JvmStatic
+    @JvmField
     public val openEncryptedName:
         MethodStringName4<FileAccess, FileAccess?, String, ModeFlags, PackedByteArray, PackedByteArray>
         =
         MethodStringName4<FileAccess, FileAccess?, String, ModeFlags, PackedByteArray, PackedByteArray>("open_encrypted")
 
-    @JvmStatic
+    @JvmField
     public val openEncryptedWithPassName:
         MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, String> =
         MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, String>("open_encrypted_with_pass")
 
-    @JvmStatic
+    @JvmField
     public val openCompressedName:
         MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, CompressionMode> =
         MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, CompressionMode>("open_compressed")
 
-    @JvmStatic
+    @JvmField
     public val getOpenErrorName: MethodStringName0<FileAccess, Error> =
         MethodStringName0<FileAccess, Error>("get_open_error")
 
-    @JvmStatic
+    @JvmField
     public val createTempName:
         MethodStringName4<FileAccess, FileAccess?, Int, String, String, Boolean> =
         MethodStringName4<FileAccess, FileAccess?, Int, String, String, Boolean>("create_temp")
 
-    @JvmStatic
+    @JvmField
     public val getFileAsBytesName: MethodStringName1<FileAccess, PackedByteArray, String> =
         MethodStringName1<FileAccess, PackedByteArray, String>("get_file_as_bytes")
 
-    @JvmStatic
+    @JvmField
     public val getFileAsStringName: MethodStringName1<FileAccess, String, String> =
         MethodStringName1<FileAccess, String, String>("get_file_as_string")
 
-    @JvmStatic
+    @JvmField
     public val resizeName: MethodStringName1<FileAccess, Error, Long> =
         MethodStringName1<FileAccess, Error, Long>("resize")
 
-    @JvmStatic
+    @JvmField
     public val flushName: MethodStringName0<FileAccess, Unit> =
         MethodStringName0<FileAccess, Unit>("flush")
 
-    @JvmStatic
+    @JvmField
     public val getPathName: MethodStringName0<FileAccess, String> =
         MethodStringName0<FileAccess, String>("get_path")
 
-    @JvmStatic
+    @JvmField
     public val getPathAbsoluteName: MethodStringName0<FileAccess, String> =
         MethodStringName0<FileAccess, String>("get_path_absolute")
 
-    @JvmStatic
+    @JvmField
     public val isOpenName: MethodStringName0<FileAccess, Boolean> =
         MethodStringName0<FileAccess, Boolean>("is_open")
 
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<FileAccess, Unit, Long> =
         MethodStringName1<FileAccess, Unit, Long>("seek")
 
-    @JvmStatic
+    @JvmField
     public val seekEndName: MethodStringName1<FileAccess, Unit, Long> =
         MethodStringName1<FileAccess, Unit, Long>("seek_end")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<FileAccess, Long> =
         MethodStringName0<FileAccess, Long>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<FileAccess, Long> =
         MethodStringName0<FileAccess, Long>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val eofReachedName: MethodStringName0<FileAccess, Boolean> =
         MethodStringName0<FileAccess, Boolean>("eof_reached")
 
-    @JvmStatic
+    @JvmField
     public val get8Name: MethodStringName0<FileAccess, Int> =
         MethodStringName0<FileAccess, Int>("get_8")
 
-    @JvmStatic
+    @JvmField
     public val get16Name: MethodStringName0<FileAccess, Int> =
         MethodStringName0<FileAccess, Int>("get_16")
 
-    @JvmStatic
+    @JvmField
     public val get32Name: MethodStringName0<FileAccess, Long> =
         MethodStringName0<FileAccess, Long>("get_32")
 
-    @JvmStatic
+    @JvmField
     public val get64Name: MethodStringName0<FileAccess, Long> =
         MethodStringName0<FileAccess, Long>("get_64")
 
-    @JvmStatic
+    @JvmField
     public val getHalfName: MethodStringName0<FileAccess, Float> =
         MethodStringName0<FileAccess, Float>("get_half")
 
-    @JvmStatic
+    @JvmField
     public val getFloatName: MethodStringName0<FileAccess, Float> =
         MethodStringName0<FileAccess, Float>("get_float")
 
-    @JvmStatic
+    @JvmField
     public val getDoubleName: MethodStringName0<FileAccess, Double> =
         MethodStringName0<FileAccess, Double>("get_double")
 
-    @JvmStatic
+    @JvmField
     public val getRealName: MethodStringName0<FileAccess, Float> =
         MethodStringName0<FileAccess, Float>("get_real")
 
-    @JvmStatic
+    @JvmField
     public val getBufferName: MethodStringName1<FileAccess, PackedByteArray, Long> =
         MethodStringName1<FileAccess, PackedByteArray, Long>("get_buffer")
 
-    @JvmStatic
+    @JvmField
     public val getLineName: MethodStringName0<FileAccess, String> =
         MethodStringName0<FileAccess, String>("get_line")
 
-    @JvmStatic
+    @JvmField
     public val getCsvLineName: MethodStringName1<FileAccess, PackedStringArray, String> =
         MethodStringName1<FileAccess, PackedStringArray, String>("get_csv_line")
 
-    @JvmStatic
+    @JvmField
     public val getAsTextName: MethodStringName1<FileAccess, String, Boolean> =
         MethodStringName1<FileAccess, String, Boolean>("get_as_text")
 
-    @JvmStatic
+    @JvmField
     public val getMd5Name: MethodStringName1<FileAccess, String, String> =
         MethodStringName1<FileAccess, String, String>("get_md5")
 
-    @JvmStatic
+    @JvmField
     public val getSha256Name: MethodStringName1<FileAccess, String, String> =
         MethodStringName1<FileAccess, String, String>("get_sha256")
 
-    @JvmStatic
+    @JvmField
     public val isBigEndianName: MethodStringName0<FileAccess, Boolean> =
         MethodStringName0<FileAccess, Boolean>("is_big_endian")
 
-    @JvmStatic
+    @JvmField
     public val setBigEndianName: MethodStringName1<FileAccess, Unit, Boolean> =
         MethodStringName1<FileAccess, Unit, Boolean>("set_big_endian")
 
-    @JvmStatic
+    @JvmField
     public val getErrorName: MethodStringName0<FileAccess, Error> =
         MethodStringName0<FileAccess, Error>("get_error")
 
-    @JvmStatic
+    @JvmField
     public val getVarName: MethodStringName1<FileAccess, Any?, Boolean> =
         MethodStringName1<FileAccess, Any?, Boolean>("get_var")
 
-    @JvmStatic
+    @JvmField
     public val store8Name: MethodStringName1<FileAccess, Boolean, Int> =
         MethodStringName1<FileAccess, Boolean, Int>("store_8")
 
-    @JvmStatic
+    @JvmField
     public val store16Name: MethodStringName1<FileAccess, Boolean, Int> =
         MethodStringName1<FileAccess, Boolean, Int>("store_16")
 
-    @JvmStatic
+    @JvmField
     public val store32Name: MethodStringName1<FileAccess, Boolean, Long> =
         MethodStringName1<FileAccess, Boolean, Long>("store_32")
 
-    @JvmStatic
+    @JvmField
     public val store64Name: MethodStringName1<FileAccess, Boolean, Long> =
         MethodStringName1<FileAccess, Boolean, Long>("store_64")
 
-    @JvmStatic
+    @JvmField
     public val storeHalfName: MethodStringName1<FileAccess, Boolean, Float> =
         MethodStringName1<FileAccess, Boolean, Float>("store_half")
 
-    @JvmStatic
+    @JvmField
     public val storeFloatName: MethodStringName1<FileAccess, Boolean, Float> =
         MethodStringName1<FileAccess, Boolean, Float>("store_float")
 
-    @JvmStatic
+    @JvmField
     public val storeDoubleName: MethodStringName1<FileAccess, Boolean, Double> =
         MethodStringName1<FileAccess, Boolean, Double>("store_double")
 
-    @JvmStatic
+    @JvmField
     public val storeRealName: MethodStringName1<FileAccess, Boolean, Float> =
         MethodStringName1<FileAccess, Boolean, Float>("store_real")
 
-    @JvmStatic
+    @JvmField
     public val storeBufferName: MethodStringName1<FileAccess, Boolean, PackedByteArray> =
         MethodStringName1<FileAccess, Boolean, PackedByteArray>("store_buffer")
 
-    @JvmStatic
+    @JvmField
     public val storeLineName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("store_line")
 
-    @JvmStatic
+    @JvmField
     public val storeCsvLineName: MethodStringName2<FileAccess, Boolean, PackedStringArray, String> =
         MethodStringName2<FileAccess, Boolean, PackedStringArray, String>("store_csv_line")
 
-    @JvmStatic
+    @JvmField
     public val storeStringName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("store_string")
 
-    @JvmStatic
+    @JvmField
     public val storeVarName: MethodStringName2<FileAccess, Boolean, Any?, Boolean> =
         MethodStringName2<FileAccess, Boolean, Any?, Boolean>("store_var")
 
-    @JvmStatic
+    @JvmField
     public val storePascalStringName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("store_pascal_string")
 
-    @JvmStatic
+    @JvmField
     public val getPascalStringName: MethodStringName0<FileAccess, String> =
         MethodStringName0<FileAccess, String>("get_pascal_string")
 
-    @JvmStatic
+    @JvmField
     public val closeName: MethodStringName0<FileAccess, Unit> =
         MethodStringName0<FileAccess, Unit>("close")
 
-    @JvmStatic
+    @JvmField
     public val fileExistsName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("file_exists")
 
-    @JvmStatic
+    @JvmField
     public val getModifiedTimeName: MethodStringName1<FileAccess, Long, String> =
         MethodStringName1<FileAccess, Long, String>("get_modified_time")
 
-    @JvmStatic
+    @JvmField
     public val getUnixPermissionsName: MethodStringName1<FileAccess, UnixPermissionFlags, String> =
         MethodStringName1<FileAccess, UnixPermissionFlags, String>("get_unix_permissions")
 
-    @JvmStatic
+    @JvmField
     public val setUnixPermissionsName:
         MethodStringName2<FileAccess, Error, String, UnixPermissionFlags> =
         MethodStringName2<FileAccess, Error, String, UnixPermissionFlags>("set_unix_permissions")
 
-    @JvmStatic
+    @JvmField
     public val getHiddenAttributeName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("get_hidden_attribute")
 
-    @JvmStatic
+    @JvmField
     public val setHiddenAttributeName: MethodStringName2<FileAccess, Error, String, Boolean> =
         MethodStringName2<FileAccess, Error, String, Boolean>("set_hidden_attribute")
 
-    @JvmStatic
+    @JvmField
     public val setReadOnlyAttributeName: MethodStringName2<FileAccess, Error, String, Boolean> =
         MethodStringName2<FileAccess, Error, String, Boolean>("set_read_only_attribute")
 
-    @JvmStatic
+    @JvmField
     public val getReadOnlyAttributeName: MethodStringName1<FileAccess, Boolean, String> =
         MethodStringName1<FileAccess, Boolean, String>("get_read_only_attribute")
 

@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -55,32 +56,32 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Performance : Object() {
-  @JvmStatic
+  @JvmField
   public val getMonitorName: MethodStringName1<Performance, Double, Monitor> =
       MethodStringName1<Performance, Double, Monitor>("get_monitor")
 
-  @JvmStatic
+  @JvmField
   public val addCustomMonitorName:
       MethodStringName3<Performance, Unit, StringName, Callable, VariantArray<Any?>> =
       MethodStringName3<Performance, Unit, StringName, Callable, VariantArray<Any?>>("add_custom_monitor")
 
-  @JvmStatic
+  @JvmField
   public val removeCustomMonitorName: MethodStringName1<Performance, Unit, StringName> =
       MethodStringName1<Performance, Unit, StringName>("remove_custom_monitor")
 
-  @JvmStatic
+  @JvmField
   public val hasCustomMonitorName: MethodStringName1<Performance, Boolean, StringName> =
       MethodStringName1<Performance, Boolean, StringName>("has_custom_monitor")
 
-  @JvmStatic
+  @JvmField
   public val getCustomMonitorName: MethodStringName1<Performance, Any?, StringName> =
       MethodStringName1<Performance, Any?, StringName>("get_custom_monitor")
 
-  @JvmStatic
+  @JvmField
   public val getMonitorModificationTimeName: MethodStringName0<Performance, Long> =
       MethodStringName0<Performance, Long>("get_monitor_modification_time")
 
-  @JvmStatic
+  @JvmField
   public val getCustomMonitorNamesName: MethodStringName0<Performance, VariantArray<StringName>> =
       MethodStringName0<Performance, VariantArray<StringName>>("get_custom_monitor_names")
 

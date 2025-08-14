@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -373,57 +374,57 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultExtensionName: MethodStringName1<WebRTCPeerConnection, Unit, StringName> =
         MethodStringName1<WebRTCPeerConnection, Unit, StringName>("set_default_extension")
 
-    @JvmStatic
+    @JvmField
     public val initializeName:
         MethodStringName1<WebRTCPeerConnection, Error, Dictionary<Any?, Any?>> =
         MethodStringName1<WebRTCPeerConnection, Error, Dictionary<Any?, Any?>>("initialize")
 
-    @JvmStatic
+    @JvmField
     public val createDataChannelName:
         MethodStringName2<WebRTCPeerConnection, WebRTCDataChannel?, String, Dictionary<Any?, Any?>>
         =
         MethodStringName2<WebRTCPeerConnection, WebRTCDataChannel?, String, Dictionary<Any?, Any?>>("create_data_channel")
 
-    @JvmStatic
+    @JvmField
     public val createOfferName: MethodStringName0<WebRTCPeerConnection, Error> =
         MethodStringName0<WebRTCPeerConnection, Error>("create_offer")
 
-    @JvmStatic
+    @JvmField
     public val setLocalDescriptionName:
         MethodStringName2<WebRTCPeerConnection, Error, String, String> =
         MethodStringName2<WebRTCPeerConnection, Error, String, String>("set_local_description")
 
-    @JvmStatic
+    @JvmField
     public val setRemoteDescriptionName:
         MethodStringName2<WebRTCPeerConnection, Error, String, String> =
         MethodStringName2<WebRTCPeerConnection, Error, String, String>("set_remote_description")
 
-    @JvmStatic
+    @JvmField
     public val addIceCandidateName:
         MethodStringName3<WebRTCPeerConnection, Error, String, Int, String> =
         MethodStringName3<WebRTCPeerConnection, Error, String, Int, String>("add_ice_candidate")
 
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<WebRTCPeerConnection, Error> =
         MethodStringName0<WebRTCPeerConnection, Error>("poll")
 
-    @JvmStatic
+    @JvmField
     public val closeName: MethodStringName0<WebRTCPeerConnection, Unit> =
         MethodStringName0<WebRTCPeerConnection, Unit>("close")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionStateName: MethodStringName0<WebRTCPeerConnection, ConnectionState> =
         MethodStringName0<WebRTCPeerConnection, ConnectionState>("get_connection_state")
 
-    @JvmStatic
+    @JvmField
     public val getGatheringStateName: MethodStringName0<WebRTCPeerConnection, GatheringState> =
         MethodStringName0<WebRTCPeerConnection, GatheringState>("get_gathering_state")
 
-    @JvmStatic
+    @JvmField
     public val getSignalingStateName: MethodStringName0<WebRTCPeerConnection, SignalingState> =
         MethodStringName0<WebRTCPeerConnection, SignalingState>("get_signaling_state")
 

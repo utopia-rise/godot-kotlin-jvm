@@ -38,8 +38,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node for displaying plain text in 3D space. By adjusting various properties of this node, you
@@ -933,246 +933,246 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHorizontalAlignmentName: MethodStringName1<Label3D, Unit, HorizontalAlignment> =
         MethodStringName1<Label3D, Unit, HorizontalAlignment>("set_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalAlignmentName: MethodStringName0<Label3D, HorizontalAlignment> =
         MethodStringName0<Label3D, HorizontalAlignment>("get_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setVerticalAlignmentName: MethodStringName1<Label3D, Unit, VerticalAlignment> =
         MethodStringName1<Label3D, Unit, VerticalAlignment>("set_vertical_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getVerticalAlignmentName: MethodStringName0<Label3D, VerticalAlignment> =
         MethodStringName0<Label3D, VerticalAlignment>("get_vertical_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setModulateName: MethodStringName1<Label3D, Unit, Color> =
         MethodStringName1<Label3D, Unit, Color>("set_modulate")
 
-    @JvmStatic
+    @JvmField
     public val getModulateName: MethodStringName0<Label3D, Color> =
         MethodStringName0<Label3D, Color>("get_modulate")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineModulateName: MethodStringName1<Label3D, Unit, Color> =
         MethodStringName1<Label3D, Unit, Color>("set_outline_modulate")
 
-    @JvmStatic
+    @JvmField
     public val getOutlineModulateName: MethodStringName0<Label3D, Color> =
         MethodStringName0<Label3D, Color>("get_outline_modulate")
 
-    @JvmStatic
+    @JvmField
     public val setTextName: MethodStringName1<Label3D, Unit, String> =
         MethodStringName1<Label3D, Unit, String>("set_text")
 
-    @JvmStatic
+    @JvmField
     public val getTextName: MethodStringName0<Label3D, String> =
         MethodStringName0<Label3D, String>("get_text")
 
-    @JvmStatic
+    @JvmField
     public val setTextDirectionName: MethodStringName1<Label3D, Unit, TextServer.Direction> =
         MethodStringName1<Label3D, Unit, TextServer.Direction>("set_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getTextDirectionName: MethodStringName0<Label3D, TextServer.Direction> =
         MethodStringName0<Label3D, TextServer.Direction>("get_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName: MethodStringName1<Label3D, Unit, String> =
         MethodStringName1<Label3D, Unit, String>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<Label3D, String> =
         MethodStringName0<Label3D, String>("get_language")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideName:
         MethodStringName1<Label3D, Unit, TextServer.StructuredTextParser> =
         MethodStringName1<Label3D, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideName:
         MethodStringName0<Label3D, TextServer.StructuredTextParser> =
         MethodStringName0<Label3D, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideOptionsName:
         MethodStringName1<Label3D, Unit, VariantArray<Any?>> =
         MethodStringName1<Label3D, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideOptionsName:
         MethodStringName0<Label3D, VariantArray<Any?>> =
         MethodStringName0<Label3D, VariantArray<Any?>>("get_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val setUppercaseName: MethodStringName1<Label3D, Unit, Boolean> =
         MethodStringName1<Label3D, Unit, Boolean>("set_uppercase")
 
-    @JvmStatic
+    @JvmField
     public val isUppercaseName: MethodStringName0<Label3D, Boolean> =
         MethodStringName0<Label3D, Boolean>("is_uppercase")
 
-    @JvmStatic
+    @JvmField
     public val setRenderPriorityName: MethodStringName1<Label3D, Unit, Int> =
         MethodStringName1<Label3D, Unit, Int>("set_render_priority")
 
-    @JvmStatic
+    @JvmField
     public val getRenderPriorityName: MethodStringName0<Label3D, Int> =
         MethodStringName0<Label3D, Int>("get_render_priority")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineRenderPriorityName: MethodStringName1<Label3D, Unit, Int> =
         MethodStringName1<Label3D, Unit, Int>("set_outline_render_priority")
 
-    @JvmStatic
+    @JvmField
     public val getOutlineRenderPriorityName: MethodStringName0<Label3D, Int> =
         MethodStringName0<Label3D, Int>("get_outline_render_priority")
 
-    @JvmStatic
+    @JvmField
     public val setFontName: MethodStringName1<Label3D, Unit, Font?> =
         MethodStringName1<Label3D, Unit, Font?>("set_font")
 
-    @JvmStatic
+    @JvmField
     public val getFontName: MethodStringName0<Label3D, Font?> =
         MethodStringName0<Label3D, Font?>("get_font")
 
-    @JvmStatic
+    @JvmField
     public val setFontSizeName: MethodStringName1<Label3D, Unit, Int> =
         MethodStringName1<Label3D, Unit, Int>("set_font_size")
 
-    @JvmStatic
+    @JvmField
     public val getFontSizeName: MethodStringName0<Label3D, Int> =
         MethodStringName0<Label3D, Int>("get_font_size")
 
-    @JvmStatic
+    @JvmField
     public val setOutlineSizeName: MethodStringName1<Label3D, Unit, Int> =
         MethodStringName1<Label3D, Unit, Int>("set_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val getOutlineSizeName: MethodStringName0<Label3D, Int> =
         MethodStringName0<Label3D, Int>("get_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val setLineSpacingName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_line_spacing")
 
-    @JvmStatic
+    @JvmField
     public val getLineSpacingName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_line_spacing")
 
-    @JvmStatic
+    @JvmField
     public val setAutowrapModeName: MethodStringName1<Label3D, Unit, TextServer.AutowrapMode> =
         MethodStringName1<Label3D, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAutowrapModeName: MethodStringName0<Label3D, TextServer.AutowrapMode> =
         MethodStringName0<Label3D, TextServer.AutowrapMode>("get_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val setJustificationFlagsName:
         MethodStringName1<Label3D, Unit, TextServer.JustificationFlag> =
         MethodStringName1<Label3D, Unit, TextServer.JustificationFlag>("set_justification_flags")
 
-    @JvmStatic
+    @JvmField
     public val getJustificationFlagsName: MethodStringName0<Label3D, TextServer.JustificationFlag> =
         MethodStringName0<Label3D, TextServer.JustificationFlag>("get_justification_flags")
 
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val setPixelSizeName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_pixel_size")
 
-    @JvmStatic
+    @JvmField
     public val getPixelSizeName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_pixel_size")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetName: MethodStringName1<Label3D, Unit, Vector2> =
         MethodStringName1<Label3D, Unit, Vector2>("set_offset")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName0<Label3D, Vector2> =
         MethodStringName0<Label3D, Vector2>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val setDrawFlagName: MethodStringName2<Label3D, Unit, DrawFlags, Boolean> =
         MethodStringName2<Label3D, Unit, DrawFlags, Boolean>("set_draw_flag")
 
-    @JvmStatic
+    @JvmField
     public val getDrawFlagName: MethodStringName1<Label3D, Boolean, DrawFlags> =
         MethodStringName1<Label3D, Boolean, DrawFlags>("get_draw_flag")
 
-    @JvmStatic
+    @JvmField
     public val setBillboardModeName: MethodStringName1<Label3D, Unit, BaseMaterial3D.BillboardMode>
         = MethodStringName1<Label3D, Unit, BaseMaterial3D.BillboardMode>("set_billboard_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBillboardModeName: MethodStringName0<Label3D, BaseMaterial3D.BillboardMode> =
         MethodStringName0<Label3D, BaseMaterial3D.BillboardMode>("get_billboard_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaCutModeName: MethodStringName1<Label3D, Unit, AlphaCutMode> =
         MethodStringName1<Label3D, Unit, AlphaCutMode>("set_alpha_cut_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaCutModeName: MethodStringName0<Label3D, AlphaCutMode> =
         MethodStringName0<Label3D, AlphaCutMode>("get_alpha_cut_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaScissorThresholdName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_alpha_scissor_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaScissorThresholdName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_alpha_scissor_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaHashScaleName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_alpha_hash_scale")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaHashScaleName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_alpha_hash_scale")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaAntialiasingName:
         MethodStringName1<Label3D, Unit, BaseMaterial3D.AlphaAntiAliasing> =
         MethodStringName1<Label3D, Unit, BaseMaterial3D.AlphaAntiAliasing>("set_alpha_antialiasing")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaAntialiasingName:
         MethodStringName0<Label3D, BaseMaterial3D.AlphaAntiAliasing> =
         MethodStringName0<Label3D, BaseMaterial3D.AlphaAntiAliasing>("get_alpha_antialiasing")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaAntialiasingEdgeName: MethodStringName1<Label3D, Unit, Float> =
         MethodStringName1<Label3D, Unit, Float>("set_alpha_antialiasing_edge")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaAntialiasingEdgeName: MethodStringName0<Label3D, Float> =
         MethodStringName0<Label3D, Float>("get_alpha_antialiasing_edge")
 
-    @JvmStatic
+    @JvmField
     public val setTextureFilterName: MethodStringName1<Label3D, Unit, BaseMaterial3D.TextureFilter>
         = MethodStringName1<Label3D, Unit, BaseMaterial3D.TextureFilter>("set_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val getTextureFilterName: MethodStringName0<Label3D, BaseMaterial3D.TextureFilter> =
         MethodStringName0<Label3D, BaseMaterial3D.TextureFilter>("get_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val generateTriangleMeshName: MethodStringName0<Label3D, TriangleMesh?> =
         MethodStringName0<Label3D, TriangleMesh?>("generate_triangle_mesh")
   }

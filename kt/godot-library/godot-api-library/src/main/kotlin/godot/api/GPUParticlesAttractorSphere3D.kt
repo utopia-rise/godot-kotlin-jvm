@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A spheroid-shaped attractor that influences particles from [GPUParticles3D] nodes. Can be used to
@@ -63,11 +63,11 @@ public open class GPUParticlesAttractorSphere3D : GPUParticlesAttractor3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<GPUParticlesAttractorSphere3D, Unit, Float> =
         MethodStringName1<GPUParticlesAttractorSphere3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<GPUParticlesAttractorSphere3D, Float> =
         MethodStringName0<GPUParticlesAttractorSphere3D, Float>("get_radius")
   }

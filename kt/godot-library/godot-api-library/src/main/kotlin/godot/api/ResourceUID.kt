@@ -23,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -34,35 +35,35 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ResourceUID : Object() {
-  @JvmStatic
+  @JvmField
   public val idToTextName: MethodStringName1<ResourceUID, String, Long> =
       MethodStringName1<ResourceUID, String, Long>("id_to_text")
 
-  @JvmStatic
+  @JvmField
   public val textToIdName: MethodStringName1<ResourceUID, Long, String> =
       MethodStringName1<ResourceUID, Long, String>("text_to_id")
 
-  @JvmStatic
+  @JvmField
   public val createIdName: MethodStringName0<ResourceUID, Long> =
       MethodStringName0<ResourceUID, Long>("create_id")
 
-  @JvmStatic
+  @JvmField
   public val hasIdName: MethodStringName1<ResourceUID, Boolean, Long> =
       MethodStringName1<ResourceUID, Boolean, Long>("has_id")
 
-  @JvmStatic
+  @JvmField
   public val addIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
       MethodStringName2<ResourceUID, Unit, Long, String>("add_id")
 
-  @JvmStatic
+  @JvmField
   public val setIdName: MethodStringName2<ResourceUID, Unit, Long, String> =
       MethodStringName2<ResourceUID, Unit, Long, String>("set_id")
 
-  @JvmStatic
+  @JvmField
   public val getIdPathName: MethodStringName1<ResourceUID, String, Long> =
       MethodStringName1<ResourceUID, String, Long>("get_id_path")
 
-  @JvmStatic
+  @JvmField
   public val removeIdName: MethodStringName1<ResourceUID, Unit, Long> =
       MethodStringName1<ResourceUID, Unit, Long>("remove_id")
 

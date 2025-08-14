@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Can play, loop, pause a scroll through audio. See [AudioStream] and [AudioStreamOggVorbis] for
@@ -202,40 +202,40 @@ public open class AudioStreamPlayback : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSamplePlaybackName:
         MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?> =
         MethodStringName1<AudioStreamPlayback, Unit, AudioSamplePlayback?>("set_sample_playback")
 
-    @JvmStatic
+    @JvmField
     public val getSamplePlaybackName: MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?> =
         MethodStringName0<AudioStreamPlayback, AudioSamplePlayback?>("get_sample_playback")
 
-    @JvmStatic
+    @JvmField
     public val mixAudioName: MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>
         = MethodStringName2<AudioStreamPlayback, PackedVector2Array, Float, Int>("mix_audio")
 
-    @JvmStatic
+    @JvmField
     public val startName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
         MethodStringName1<AudioStreamPlayback, Unit, Double>("start")
 
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<AudioStreamPlayback, Unit, Double> =
         MethodStringName1<AudioStreamPlayback, Unit, Double>("seek")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<AudioStreamPlayback, Unit> =
         MethodStringName0<AudioStreamPlayback, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val getLoopCountName: MethodStringName0<AudioStreamPlayback, Int> =
         MethodStringName0<AudioStreamPlayback, Int>("get_loop_count")
 
-    @JvmStatic
+    @JvmField
     public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayback, Double> =
         MethodStringName0<AudioStreamPlayback, Double>("get_playback_position")
 
-    @JvmStatic
+    @JvmField
     public val isPlayingName: MethodStringName0<AudioStreamPlayback, Boolean> =
         MethodStringName0<AudioStreamPlayback, Boolean>("is_playing")
   }

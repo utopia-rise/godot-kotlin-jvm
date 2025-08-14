@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a capsule-shaped [PrimitiveMesh].
@@ -122,35 +122,35 @@ public open class CapsuleMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<CapsuleMesh, Unit, Float> =
         MethodStringName1<CapsuleMesh, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<CapsuleMesh, Float> =
         MethodStringName0<CapsuleMesh, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<CapsuleMesh, Unit, Float> =
         MethodStringName1<CapsuleMesh, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<CapsuleMesh, Float> =
         MethodStringName0<CapsuleMesh, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setRadialSegmentsName: MethodStringName1<CapsuleMesh, Unit, Int> =
         MethodStringName1<CapsuleMesh, Unit, Int>("set_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val getRadialSegmentsName: MethodStringName0<CapsuleMesh, Int> =
         MethodStringName0<CapsuleMesh, Int>("get_radial_segments")
 
-    @JvmStatic
+    @JvmField
     public val setRingsName: MethodStringName1<CapsuleMesh, Unit, Int> =
         MethodStringName1<CapsuleMesh, Unit, Int>("set_rings")
 
-    @JvmStatic
+    @JvmField
     public val getRingsName: MethodStringName0<CapsuleMesh, Int> =
         MethodStringName0<CapsuleMesh, Int>("get_rings")
   }

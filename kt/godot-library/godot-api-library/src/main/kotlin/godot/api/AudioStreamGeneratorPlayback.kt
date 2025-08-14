@@ -24,7 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This class is meant to be used with [AudioStreamGenerator] to play back the generated audio in
@@ -98,28 +98,28 @@ public open class AudioStreamGeneratorPlayback internal constructor() :
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val pushFrameName: MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Vector2> =
         MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Vector2>("push_frame")
 
-    @JvmStatic
+    @JvmField
     public val canPushBufferName: MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Int> =
         MethodStringName1<AudioStreamGeneratorPlayback, Boolean, Int>("can_push_buffer")
 
-    @JvmStatic
+    @JvmField
     public val pushBufferName:
         MethodStringName1<AudioStreamGeneratorPlayback, Boolean, PackedVector2Array> =
         MethodStringName1<AudioStreamGeneratorPlayback, Boolean, PackedVector2Array>("push_buffer")
 
-    @JvmStatic
+    @JvmField
     public val getFramesAvailableName: MethodStringName0<AudioStreamGeneratorPlayback, Int> =
         MethodStringName0<AudioStreamGeneratorPlayback, Int>("get_frames_available")
 
-    @JvmStatic
+    @JvmField
     public val getSkipsName: MethodStringName0<AudioStreamGeneratorPlayback, Int> =
         MethodStringName0<AudioStreamGeneratorPlayback, Int>("get_skips")
 
-    @JvmStatic
+    @JvmField
     public val clearBufferName: MethodStringName0<AudioStreamGeneratorPlayback, Unit> =
         MethodStringName0<AudioStreamGeneratorPlayback, Unit>("clear_buffer")
   }

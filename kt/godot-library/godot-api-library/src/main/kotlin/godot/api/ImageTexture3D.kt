@@ -23,7 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [ImageTexture3D] is a 3-dimensional [ImageTexture] that has a width, height, and depth. See also
@@ -67,13 +67,13 @@ public open class ImageTexture3D : Texture3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createName:
         MethodStringName6<ImageTexture3D, Error, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>
         =
         MethodStringName6<ImageTexture3D, Error, Image.Format, Int, Int, Int, Boolean, VariantArray<Image>>("create")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName1<ImageTexture3D, Unit, VariantArray<Image>> =
         MethodStringName1<ImageTexture3D, Unit, VariantArray<Image>>("update")
   }

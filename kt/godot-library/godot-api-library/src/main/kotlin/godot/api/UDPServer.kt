@@ -25,9 +25,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A simple server that opens a UDP socket and returns connected [PacketPeerUDP] upon receiving new
@@ -262,39 +262,39 @@ public open class UDPServer : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val listenName: MethodStringName2<UDPServer, Error, Int, String> =
         MethodStringName2<UDPServer, Error, Int, String>("listen")
 
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<UDPServer, Error> =
         MethodStringName0<UDPServer, Error>("poll")
 
-    @JvmStatic
+    @JvmField
     public val isConnectionAvailableName: MethodStringName0<UDPServer, Boolean> =
         MethodStringName0<UDPServer, Boolean>("is_connection_available")
 
-    @JvmStatic
+    @JvmField
     public val getLocalPortName: MethodStringName0<UDPServer, Int> =
         MethodStringName0<UDPServer, Int>("get_local_port")
 
-    @JvmStatic
+    @JvmField
     public val isListeningName: MethodStringName0<UDPServer, Boolean> =
         MethodStringName0<UDPServer, Boolean>("is_listening")
 
-    @JvmStatic
+    @JvmField
     public val takeConnectionName: MethodStringName0<UDPServer, PacketPeerUDP?> =
         MethodStringName0<UDPServer, PacketPeerUDP?>("take_connection")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<UDPServer, Unit> =
         MethodStringName0<UDPServer, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val setMaxPendingConnectionsName: MethodStringName1<UDPServer, Unit, Int> =
         MethodStringName1<UDPServer, Unit, Int>("set_max_pending_connections")
 
-    @JvmStatic
+    @JvmField
     public val getMaxPendingConnectionsName: MethodStringName0<UDPServer, Int> =
         MethodStringName0<UDPServer, Int>("get_max_pending_connections")
   }

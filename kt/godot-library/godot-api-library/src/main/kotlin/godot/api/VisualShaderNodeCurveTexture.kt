@@ -17,8 +17,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Comes with a built-in editor for texture's curves.
@@ -52,11 +52,11 @@ public open class VisualShaderNodeCurveTexture : VisualShaderNodeResizableBase()
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<VisualShaderNodeCurveTexture, Unit, CurveTexture?>
         = MethodStringName1<VisualShaderNodeCurveTexture, Unit, CurveTexture?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<VisualShaderNodeCurveTexture, CurveTexture?> =
         MethodStringName0<VisualShaderNodeCurveTexture, CurveTexture?>("get_texture")
   }

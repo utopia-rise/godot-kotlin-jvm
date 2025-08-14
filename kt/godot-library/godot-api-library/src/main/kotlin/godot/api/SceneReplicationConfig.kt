@@ -27,8 +27,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
@@ -271,59 +271,59 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getPropertiesName: MethodStringName0<SceneReplicationConfig, VariantArray<NodePath>>
         = MethodStringName0<SceneReplicationConfig, VariantArray<NodePath>>("get_properties")
 
-    @JvmStatic
+    @JvmField
     public val addPropertyName: MethodStringName2<SceneReplicationConfig, Unit, NodePath, Int> =
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Int>("add_property")
 
-    @JvmStatic
+    @JvmField
     public val hasPropertyName: MethodStringName1<SceneReplicationConfig, Boolean, NodePath> =
         MethodStringName1<SceneReplicationConfig, Boolean, NodePath>("has_property")
 
-    @JvmStatic
+    @JvmField
     public val removePropertyName: MethodStringName1<SceneReplicationConfig, Unit, NodePath> =
         MethodStringName1<SceneReplicationConfig, Unit, NodePath>("remove_property")
 
-    @JvmStatic
+    @JvmField
     public val propertyGetIndexName: MethodStringName1<SceneReplicationConfig, Int, NodePath> =
         MethodStringName1<SceneReplicationConfig, Int, NodePath>("property_get_index")
 
-    @JvmStatic
+    @JvmField
     public val propertyGetSpawnName: MethodStringName1<SceneReplicationConfig, Boolean, NodePath> =
         MethodStringName1<SceneReplicationConfig, Boolean, NodePath>("property_get_spawn")
 
-    @JvmStatic
+    @JvmField
     public val propertySetSpawnName:
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean> =
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean>("property_set_spawn")
 
-    @JvmStatic
+    @JvmField
     public val propertyGetReplicationModeName:
         MethodStringName1<SceneReplicationConfig, ReplicationMode, NodePath> =
         MethodStringName1<SceneReplicationConfig, ReplicationMode, NodePath>("property_get_replication_mode")
 
-    @JvmStatic
+    @JvmField
     public val propertySetReplicationModeName:
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, ReplicationMode> =
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, ReplicationMode>("property_set_replication_mode")
 
-    @JvmStatic
+    @JvmField
     public val propertyGetSyncName: MethodStringName1<SceneReplicationConfig, Boolean, NodePath> =
         MethodStringName1<SceneReplicationConfig, Boolean, NodePath>("property_get_sync")
 
-    @JvmStatic
+    @JvmField
     public val propertySetSyncName:
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean> =
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean>("property_set_sync")
 
-    @JvmStatic
+    @JvmField
     public val propertyGetWatchName: MethodStringName1<SceneReplicationConfig, Boolean, NodePath> =
         MethodStringName1<SceneReplicationConfig, Boolean, NodePath>("property_get_watch")
 
-    @JvmStatic
+    @JvmField
     public val propertySetWatchName:
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean> =
         MethodStringName2<SceneReplicationConfig, Unit, NodePath, Boolean>("property_set_watch")

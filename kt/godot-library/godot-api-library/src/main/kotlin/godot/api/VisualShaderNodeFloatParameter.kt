@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform float` in the shader language.
@@ -204,52 +204,52 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHintName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Hint> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Hint>("set_hint")
 
-    @JvmStatic
+    @JvmField
     public val getHintName: MethodStringName0<VisualShaderNodeFloatParameter, Hint> =
         MethodStringName0<VisualShaderNodeFloatParameter, Hint>("get_hint")
 
-    @JvmStatic
+    @JvmField
     public val setMinName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_min")
 
-    @JvmStatic
+    @JvmField
     public val getMinName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
         MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_min")
 
-    @JvmStatic
+    @JvmField
     public val setMaxName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_max")
 
-    @JvmStatic
+    @JvmField
     public val getMaxName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
         MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_max")
 
-    @JvmStatic
+    @JvmField
     public val setStepName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_step")
 
-    @JvmStatic
+    @JvmField
     public val getStepName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
         MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_step")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeFloatParameter, Boolean>
         = MethodStringName0<VisualShaderNodeFloatParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName: MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float> =
         MethodStringName1<VisualShaderNodeFloatParameter, Unit, Float>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeFloatParameter, Float> =
         MethodStringName0<VisualShaderNodeFloatParameter, Float>("get_default_value")
   }

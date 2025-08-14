@@ -33,6 +33,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -49,41 +50,41 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object JavaScriptBridge : Object() {
-  @JvmStatic
+  @JvmField
   public val evalName: MethodStringName2<JavaScriptBridge, Any?, String, Boolean> =
       MethodStringName2<JavaScriptBridge, Any?, String, Boolean>("eval")
 
-  @JvmStatic
+  @JvmField
   public val getInterfaceName: MethodStringName1<JavaScriptBridge, JavaScriptObject?, String> =
       MethodStringName1<JavaScriptBridge, JavaScriptObject?, String>("get_interface")
 
-  @JvmStatic
+  @JvmField
   public val createCallbackName: MethodStringName1<JavaScriptBridge, JavaScriptObject?, Callable> =
       MethodStringName1<JavaScriptBridge, JavaScriptObject?, Callable>("create_callback")
 
-  @JvmStatic
+  @JvmField
   public val isJsBufferName: MethodStringName1<JavaScriptBridge, Boolean, JavaScriptObject?> =
       MethodStringName1<JavaScriptBridge, Boolean, JavaScriptObject?>("is_js_buffer")
 
-  @JvmStatic
+  @JvmField
   public val jsBufferToPackedByteArrayName:
       MethodStringName1<JavaScriptBridge, PackedByteArray, JavaScriptObject?> =
       MethodStringName1<JavaScriptBridge, PackedByteArray, JavaScriptObject?>("js_buffer_to_packed_byte_array")
 
-  @JvmStatic
+  @JvmField
   public val downloadBufferName:
       MethodStringName3<JavaScriptBridge, Unit, PackedByteArray, String, String> =
       MethodStringName3<JavaScriptBridge, Unit, PackedByteArray, String, String>("download_buffer")
 
-  @JvmStatic
+  @JvmField
   public val pwaNeedsUpdateName: MethodStringName0<JavaScriptBridge, Boolean> =
       MethodStringName0<JavaScriptBridge, Boolean>("pwa_needs_update")
 
-  @JvmStatic
+  @JvmField
   public val pwaUpdateName: MethodStringName0<JavaScriptBridge, Error> =
       MethodStringName0<JavaScriptBridge, Error>("pwa_update")
 
-  @JvmStatic
+  @JvmField
   public val forceFsSyncName: MethodStringName0<JavaScriptBridge, Unit> =
       MethodStringName0<JavaScriptBridge, Unit>("force_fs_sync")
 

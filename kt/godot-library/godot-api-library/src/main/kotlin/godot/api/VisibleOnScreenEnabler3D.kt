@@ -22,8 +22,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenEnabler3D] contains a box-shaped region of 3D space and a target node. The target
@@ -122,19 +122,19 @@ public open class VisibleOnScreenEnabler3D : VisibleOnScreenNotifier3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEnableModeName: MethodStringName1<VisibleOnScreenEnabler3D, Unit, EnableMode> =
         MethodStringName1<VisibleOnScreenEnabler3D, Unit, EnableMode>("set_enable_mode")
 
-    @JvmStatic
+    @JvmField
     public val getEnableModeName: MethodStringName0<VisibleOnScreenEnabler3D, EnableMode> =
         MethodStringName0<VisibleOnScreenEnabler3D, EnableMode>("get_enable_mode")
 
-    @JvmStatic
+    @JvmField
     public val setEnableNodePathName: MethodStringName1<VisibleOnScreenEnabler3D, Unit, NodePath> =
         MethodStringName1<VisibleOnScreenEnabler3D, Unit, NodePath>("set_enable_node_path")
 
-    @JvmStatic
+    @JvmField
     public val getEnableNodePathName: MethodStringName0<VisibleOnScreenEnabler3D, NodePath> =
         MethodStringName0<VisibleOnScreenEnabler3D, NodePath>("get_enable_node_path")
   }

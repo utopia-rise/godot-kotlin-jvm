@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Remap will transform the input range into output range, e.g. you can change a `0..1` value to
@@ -101,11 +101,11 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeRemap, Unit, OpType> =
         MethodStringName1<VisualShaderNodeRemap, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeRemap, OpType> =
         MethodStringName0<VisualShaderNodeRemap, OpType>("get_op_type")
   }

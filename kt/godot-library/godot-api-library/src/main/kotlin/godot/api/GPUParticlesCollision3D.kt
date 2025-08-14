@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Particle collision shapes can be used to make particles stop or bounce against them.
@@ -79,11 +79,11 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCullMaskName: MethodStringName1<GPUParticlesCollision3D, Unit, Long> =
         MethodStringName1<GPUParticlesCollision3D, Unit, Long>("set_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCullMaskName: MethodStringName0<GPUParticlesCollision3D, Long> =
         MethodStringName0<GPUParticlesCollision3D, Long>("get_cull_mask")
   }

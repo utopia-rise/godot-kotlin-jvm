@@ -45,9 +45,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstraction over [TextServer] for handling a single line of text.
@@ -455,150 +455,150 @@ public open class TextLine : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<TextLine, Unit> =
         MethodStringName0<TextLine, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val setDirectionName: MethodStringName1<TextLine, Unit, TextServer.Direction> =
         MethodStringName1<TextLine, Unit, TextServer.Direction>("set_direction")
 
-    @JvmStatic
+    @JvmField
     public val getDirectionName: MethodStringName0<TextLine, TextServer.Direction> =
         MethodStringName0<TextLine, TextServer.Direction>("get_direction")
 
-    @JvmStatic
+    @JvmField
     public val setOrientationName: MethodStringName1<TextLine, Unit, TextServer.Orientation> =
         MethodStringName1<TextLine, Unit, TextServer.Orientation>("set_orientation")
 
-    @JvmStatic
+    @JvmField
     public val getOrientationName: MethodStringName0<TextLine, TextServer.Orientation> =
         MethodStringName0<TextLine, TextServer.Orientation>("get_orientation")
 
-    @JvmStatic
+    @JvmField
     public val setPreserveInvalidName: MethodStringName1<TextLine, Unit, Boolean> =
         MethodStringName1<TextLine, Unit, Boolean>("set_preserve_invalid")
 
-    @JvmStatic
+    @JvmField
     public val getPreserveInvalidName: MethodStringName0<TextLine, Boolean> =
         MethodStringName0<TextLine, Boolean>("get_preserve_invalid")
 
-    @JvmStatic
+    @JvmField
     public val setPreserveControlName: MethodStringName1<TextLine, Unit, Boolean> =
         MethodStringName1<TextLine, Unit, Boolean>("set_preserve_control")
 
-    @JvmStatic
+    @JvmField
     public val getPreserveControlName: MethodStringName0<TextLine, Boolean> =
         MethodStringName0<TextLine, Boolean>("get_preserve_control")
 
-    @JvmStatic
+    @JvmField
     public val setBidiOverrideName: MethodStringName1<TextLine, Unit, VariantArray<Any?>> =
         MethodStringName1<TextLine, Unit, VariantArray<Any?>>("set_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val addStringName: MethodStringName5<TextLine, Boolean, String, Font?, Int, String, Any?>
         = MethodStringName5<TextLine, Boolean, String, Font?, Int, String, Any?>("add_string")
 
-    @JvmStatic
+    @JvmField
     public val addObjectName:
         MethodStringName5<TextLine, Boolean, Any?, Vector2, InlineAlignment, Int, Float> =
         MethodStringName5<TextLine, Boolean, Any?, Vector2, InlineAlignment, Int, Float>("add_object")
 
-    @JvmStatic
+    @JvmField
     public val resizeObjectName:
         MethodStringName4<TextLine, Boolean, Any?, Vector2, InlineAlignment, Float> =
         MethodStringName4<TextLine, Boolean, Any?, Vector2, InlineAlignment, Float>("resize_object")
 
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<TextLine, Unit, Float> =
         MethodStringName1<TextLine, Unit, Float>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val setHorizontalAlignmentName: MethodStringName1<TextLine, Unit, HorizontalAlignment> =
         MethodStringName1<TextLine, Unit, HorizontalAlignment>("set_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalAlignmentName: MethodStringName0<TextLine, HorizontalAlignment> =
         MethodStringName0<TextLine, HorizontalAlignment>("get_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val tabAlignName: MethodStringName1<TextLine, Unit, PackedFloat32Array> =
         MethodStringName1<TextLine, Unit, PackedFloat32Array>("tab_align")
 
-    @JvmStatic
+    @JvmField
     public val setFlagsName: MethodStringName1<TextLine, Unit, TextServer.JustificationFlag> =
         MethodStringName1<TextLine, Unit, TextServer.JustificationFlag>("set_flags")
 
-    @JvmStatic
+    @JvmField
     public val getFlagsName: MethodStringName0<TextLine, TextServer.JustificationFlag> =
         MethodStringName0<TextLine, TextServer.JustificationFlag>("get_flags")
 
-    @JvmStatic
+    @JvmField
     public val setTextOverrunBehaviorName:
         MethodStringName1<TextLine, Unit, TextServer.OverrunBehavior> =
         MethodStringName1<TextLine, Unit, TextServer.OverrunBehavior>("set_text_overrun_behavior")
 
-    @JvmStatic
+    @JvmField
     public val getTextOverrunBehaviorName: MethodStringName0<TextLine, TextServer.OverrunBehavior> =
         MethodStringName0<TextLine, TextServer.OverrunBehavior>("get_text_overrun_behavior")
 
-    @JvmStatic
+    @JvmField
     public val setEllipsisCharName: MethodStringName1<TextLine, Unit, String> =
         MethodStringName1<TextLine, Unit, String>("set_ellipsis_char")
 
-    @JvmStatic
+    @JvmField
     public val getEllipsisCharName: MethodStringName0<TextLine, String> =
         MethodStringName0<TextLine, String>("get_ellipsis_char")
 
-    @JvmStatic
+    @JvmField
     public val getObjectsName: MethodStringName0<TextLine, VariantArray<Any?>> =
         MethodStringName0<TextLine, VariantArray<Any?>>("get_objects")
 
-    @JvmStatic
+    @JvmField
     public val getObjectRectName: MethodStringName1<TextLine, Rect2, Any?> =
         MethodStringName1<TextLine, Rect2, Any?>("get_object_rect")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<TextLine, Vector2> =
         MethodStringName0<TextLine, Vector2>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<TextLine, RID> =
         MethodStringName0<TextLine, RID>("get_rid")
 
-    @JvmStatic
+    @JvmField
     public val getLineAscentName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_line_ascent")
 
-    @JvmStatic
+    @JvmField
     public val getLineDescentName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_line_descent")
 
-    @JvmStatic
+    @JvmField
     public val getLineWidthName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_line_width")
 
-    @JvmStatic
+    @JvmField
     public val getLineUnderlinePositionName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_line_underline_position")
 
-    @JvmStatic
+    @JvmField
     public val getLineUnderlineThicknessName: MethodStringName0<TextLine, Float> =
         MethodStringName0<TextLine, Float>("get_line_underline_thickness")
 
-    @JvmStatic
+    @JvmField
     public val drawName: MethodStringName3<TextLine, Unit, RID, Vector2, Color> =
         MethodStringName3<TextLine, Unit, RID, Vector2, Color>("draw")
 
-    @JvmStatic
+    @JvmField
     public val drawOutlineName: MethodStringName4<TextLine, Unit, RID, Vector2, Int, Color> =
         MethodStringName4<TextLine, Unit, RID, Vector2, Int, Color>("draw_outline")
 
-    @JvmStatic
+    @JvmField
     public val hitTestName: MethodStringName1<TextLine, Int, Float> =
         MethodStringName1<TextLine, Int, Float>("hit_test")
   }

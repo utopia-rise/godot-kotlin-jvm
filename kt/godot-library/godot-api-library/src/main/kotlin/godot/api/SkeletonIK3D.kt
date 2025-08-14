@@ -37,9 +37,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * SkeletonIK3D is used to rotate all bones of a [Skeleton3D] bone chain a way that places the end
@@ -419,99 +419,99 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
   public final fun setTargetNode(node: String) = setTargetNode(node.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRootBoneName: MethodStringName1<SkeletonIK3D, Unit, StringName> =
         MethodStringName1<SkeletonIK3D, Unit, StringName>("set_root_bone")
 
-    @JvmStatic
+    @JvmField
     public val getRootBoneName: MethodStringName0<SkeletonIK3D, StringName> =
         MethodStringName0<SkeletonIK3D, StringName>("get_root_bone")
 
-    @JvmStatic
+    @JvmField
     public val setTipBoneName: MethodStringName1<SkeletonIK3D, Unit, StringName> =
         MethodStringName1<SkeletonIK3D, Unit, StringName>("set_tip_bone")
 
-    @JvmStatic
+    @JvmField
     public val getTipBoneName: MethodStringName0<SkeletonIK3D, StringName> =
         MethodStringName0<SkeletonIK3D, StringName>("get_tip_bone")
 
-    @JvmStatic
+    @JvmField
     public val setTargetTransformName: MethodStringName1<SkeletonIK3D, Unit, Transform3D> =
         MethodStringName1<SkeletonIK3D, Unit, Transform3D>("set_target_transform")
 
-    @JvmStatic
+    @JvmField
     public val getTargetTransformName: MethodStringName0<SkeletonIK3D, Transform3D> =
         MethodStringName0<SkeletonIK3D, Transform3D>("get_target_transform")
 
-    @JvmStatic
+    @JvmField
     public val setTargetNodeName: MethodStringName1<SkeletonIK3D, Unit, NodePath> =
         MethodStringName1<SkeletonIK3D, Unit, NodePath>("set_target_node")
 
-    @JvmStatic
+    @JvmField
     public val getTargetNodeName: MethodStringName0<SkeletonIK3D, NodePath> =
         MethodStringName0<SkeletonIK3D, NodePath>("get_target_node")
 
-    @JvmStatic
+    @JvmField
     public val setOverrideTipBasisName: MethodStringName1<SkeletonIK3D, Unit, Boolean> =
         MethodStringName1<SkeletonIK3D, Unit, Boolean>("set_override_tip_basis")
 
-    @JvmStatic
+    @JvmField
     public val isOverrideTipBasisName: MethodStringName0<SkeletonIK3D, Boolean> =
         MethodStringName0<SkeletonIK3D, Boolean>("is_override_tip_basis")
 
-    @JvmStatic
+    @JvmField
     public val setUseMagnetName: MethodStringName1<SkeletonIK3D, Unit, Boolean> =
         MethodStringName1<SkeletonIK3D, Unit, Boolean>("set_use_magnet")
 
-    @JvmStatic
+    @JvmField
     public val isUsingMagnetName: MethodStringName0<SkeletonIK3D, Boolean> =
         MethodStringName0<SkeletonIK3D, Boolean>("is_using_magnet")
 
-    @JvmStatic
+    @JvmField
     public val setMagnetPositionName: MethodStringName1<SkeletonIK3D, Unit, Vector3> =
         MethodStringName1<SkeletonIK3D, Unit, Vector3>("set_magnet_position")
 
-    @JvmStatic
+    @JvmField
     public val getMagnetPositionName: MethodStringName0<SkeletonIK3D, Vector3> =
         MethodStringName0<SkeletonIK3D, Vector3>("get_magnet_position")
 
-    @JvmStatic
+    @JvmField
     public val getParentSkeletonName: MethodStringName0<SkeletonIK3D, Skeleton3D?> =
         MethodStringName0<SkeletonIK3D, Skeleton3D?>("get_parent_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val isRunningName: MethodStringName0<SkeletonIK3D, Boolean> =
         MethodStringName0<SkeletonIK3D, Boolean>("is_running")
 
-    @JvmStatic
+    @JvmField
     public val setMinDistanceName: MethodStringName1<SkeletonIK3D, Unit, Float> =
         MethodStringName1<SkeletonIK3D, Unit, Float>("set_min_distance")
 
-    @JvmStatic
+    @JvmField
     public val getMinDistanceName: MethodStringName0<SkeletonIK3D, Float> =
         MethodStringName0<SkeletonIK3D, Float>("get_min_distance")
 
-    @JvmStatic
+    @JvmField
     public val setMaxIterationsName: MethodStringName1<SkeletonIK3D, Unit, Int> =
         MethodStringName1<SkeletonIK3D, Unit, Int>("set_max_iterations")
 
-    @JvmStatic
+    @JvmField
     public val getMaxIterationsName: MethodStringName0<SkeletonIK3D, Int> =
         MethodStringName0<SkeletonIK3D, Int>("get_max_iterations")
 
-    @JvmStatic
+    @JvmField
     public val startName: MethodStringName1<SkeletonIK3D, Unit, Boolean> =
         MethodStringName1<SkeletonIK3D, Unit, Boolean>("start")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<SkeletonIK3D, Unit> =
         MethodStringName0<SkeletonIK3D, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val setInterpolationName: MethodStringName1<SkeletonIK3D, Unit, Float> =
         MethodStringName1<SkeletonIK3D, Unit, Float>("set_interpolation")
 
-    @JvmStatic
+    @JvmField
     public val getInterpolationName: MethodStringName0<SkeletonIK3D, Float> =
         MethodStringName0<SkeletonIK3D, Float>("get_interpolation")
   }

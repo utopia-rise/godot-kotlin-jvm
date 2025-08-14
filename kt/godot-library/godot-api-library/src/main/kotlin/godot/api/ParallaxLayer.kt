@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A ParallaxLayer must be the child of a [ParallaxBackground] node. Each ParallaxLayer can be set
@@ -224,27 +224,27 @@ public open class ParallaxLayer : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMotionScaleName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
         MethodStringName1<ParallaxLayer, Unit, Vector2>("set_motion_scale")
 
-    @JvmStatic
+    @JvmField
     public val getMotionScaleName: MethodStringName0<ParallaxLayer, Vector2> =
         MethodStringName0<ParallaxLayer, Vector2>("get_motion_scale")
 
-    @JvmStatic
+    @JvmField
     public val setMotionOffsetName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
         MethodStringName1<ParallaxLayer, Unit, Vector2>("set_motion_offset")
 
-    @JvmStatic
+    @JvmField
     public val getMotionOffsetName: MethodStringName0<ParallaxLayer, Vector2> =
         MethodStringName0<ParallaxLayer, Vector2>("get_motion_offset")
 
-    @JvmStatic
+    @JvmField
     public val setMirroringName: MethodStringName1<ParallaxLayer, Unit, Vector2> =
         MethodStringName1<ParallaxLayer, Unit, Vector2>("set_mirroring")
 
-    @JvmStatic
+    @JvmField
     public val getMirroringName: MethodStringName0<ParallaxLayer, Vector2> =
         MethodStringName0<ParallaxLayer, Vector2>("get_mirroring")
   }

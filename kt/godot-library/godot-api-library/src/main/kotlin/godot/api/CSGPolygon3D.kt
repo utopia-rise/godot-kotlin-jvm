@@ -33,8 +33,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An array of 2D points is extruded to quickly and easily create a variety of 3D meshes. See also
@@ -581,139 +581,139 @@ public open class CSGPolygon3D : CSGPrimitive3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPolygonName: MethodStringName1<CSGPolygon3D, Unit, PackedVector2Array> =
         MethodStringName1<CSGPolygon3D, Unit, PackedVector2Array>("set_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getPolygonName: MethodStringName0<CSGPolygon3D, PackedVector2Array> =
         MethodStringName0<CSGPolygon3D, PackedVector2Array>("get_polygon")
 
-    @JvmStatic
+    @JvmField
     public val setModeName: MethodStringName1<CSGPolygon3D, Unit, Mode> =
         MethodStringName1<CSGPolygon3D, Unit, Mode>("set_mode")
 
-    @JvmStatic
+    @JvmField
     public val getModeName: MethodStringName0<CSGPolygon3D, Mode> =
         MethodStringName0<CSGPolygon3D, Mode>("get_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDepthName: MethodStringName1<CSGPolygon3D, Unit, Float> =
         MethodStringName1<CSGPolygon3D, Unit, Float>("set_depth")
 
-    @JvmStatic
+    @JvmField
     public val getDepthName: MethodStringName0<CSGPolygon3D, Float> =
         MethodStringName0<CSGPolygon3D, Float>("get_depth")
 
-    @JvmStatic
+    @JvmField
     public val setSpinDegreesName: MethodStringName1<CSGPolygon3D, Unit, Float> =
         MethodStringName1<CSGPolygon3D, Unit, Float>("set_spin_degrees")
 
-    @JvmStatic
+    @JvmField
     public val getSpinDegreesName: MethodStringName0<CSGPolygon3D, Float> =
         MethodStringName0<CSGPolygon3D, Float>("get_spin_degrees")
 
-    @JvmStatic
+    @JvmField
     public val setSpinSidesName: MethodStringName1<CSGPolygon3D, Unit, Int> =
         MethodStringName1<CSGPolygon3D, Unit, Int>("set_spin_sides")
 
-    @JvmStatic
+    @JvmField
     public val getSpinSidesName: MethodStringName0<CSGPolygon3D, Int> =
         MethodStringName0<CSGPolygon3D, Int>("get_spin_sides")
 
-    @JvmStatic
+    @JvmField
     public val setPathNodeName: MethodStringName1<CSGPolygon3D, Unit, NodePath> =
         MethodStringName1<CSGPolygon3D, Unit, NodePath>("set_path_node")
 
-    @JvmStatic
+    @JvmField
     public val getPathNodeName: MethodStringName0<CSGPolygon3D, NodePath> =
         MethodStringName0<CSGPolygon3D, NodePath>("get_path_node")
 
-    @JvmStatic
+    @JvmField
     public val setPathIntervalTypeName: MethodStringName1<CSGPolygon3D, Unit, PathIntervalType> =
         MethodStringName1<CSGPolygon3D, Unit, PathIntervalType>("set_path_interval_type")
 
-    @JvmStatic
+    @JvmField
     public val getPathIntervalTypeName: MethodStringName0<CSGPolygon3D, PathIntervalType> =
         MethodStringName0<CSGPolygon3D, PathIntervalType>("get_path_interval_type")
 
-    @JvmStatic
+    @JvmField
     public val setPathIntervalName: MethodStringName1<CSGPolygon3D, Unit, Float> =
         MethodStringName1<CSGPolygon3D, Unit, Float>("set_path_interval")
 
-    @JvmStatic
+    @JvmField
     public val getPathIntervalName: MethodStringName0<CSGPolygon3D, Float> =
         MethodStringName0<CSGPolygon3D, Float>("get_path_interval")
 
-    @JvmStatic
+    @JvmField
     public val setPathSimplifyAngleName: MethodStringName1<CSGPolygon3D, Unit, Float> =
         MethodStringName1<CSGPolygon3D, Unit, Float>("set_path_simplify_angle")
 
-    @JvmStatic
+    @JvmField
     public val getPathSimplifyAngleName: MethodStringName0<CSGPolygon3D, Float> =
         MethodStringName0<CSGPolygon3D, Float>("get_path_simplify_angle")
 
-    @JvmStatic
+    @JvmField
     public val setPathRotationName: MethodStringName1<CSGPolygon3D, Unit, PathRotation> =
         MethodStringName1<CSGPolygon3D, Unit, PathRotation>("set_path_rotation")
 
-    @JvmStatic
+    @JvmField
     public val getPathRotationName: MethodStringName0<CSGPolygon3D, PathRotation> =
         MethodStringName0<CSGPolygon3D, PathRotation>("get_path_rotation")
 
-    @JvmStatic
+    @JvmField
     public val setPathRotationAccurateName: MethodStringName1<CSGPolygon3D, Unit, Boolean> =
         MethodStringName1<CSGPolygon3D, Unit, Boolean>("set_path_rotation_accurate")
 
-    @JvmStatic
+    @JvmField
     public val getPathRotationAccurateName: MethodStringName0<CSGPolygon3D, Boolean> =
         MethodStringName0<CSGPolygon3D, Boolean>("get_path_rotation_accurate")
 
-    @JvmStatic
+    @JvmField
     public val setPathLocalName: MethodStringName1<CSGPolygon3D, Unit, Boolean> =
         MethodStringName1<CSGPolygon3D, Unit, Boolean>("set_path_local")
 
-    @JvmStatic
+    @JvmField
     public val isPathLocalName: MethodStringName0<CSGPolygon3D, Boolean> =
         MethodStringName0<CSGPolygon3D, Boolean>("is_path_local")
 
-    @JvmStatic
+    @JvmField
     public val setPathContinuousUName: MethodStringName1<CSGPolygon3D, Unit, Boolean> =
         MethodStringName1<CSGPolygon3D, Unit, Boolean>("set_path_continuous_u")
 
-    @JvmStatic
+    @JvmField
     public val isPathContinuousUName: MethodStringName0<CSGPolygon3D, Boolean> =
         MethodStringName0<CSGPolygon3D, Boolean>("is_path_continuous_u")
 
-    @JvmStatic
+    @JvmField
     public val setPathUDistanceName: MethodStringName1<CSGPolygon3D, Unit, Float> =
         MethodStringName1<CSGPolygon3D, Unit, Float>("set_path_u_distance")
 
-    @JvmStatic
+    @JvmField
     public val getPathUDistanceName: MethodStringName0<CSGPolygon3D, Float> =
         MethodStringName0<CSGPolygon3D, Float>("get_path_u_distance")
 
-    @JvmStatic
+    @JvmField
     public val setPathJoinedName: MethodStringName1<CSGPolygon3D, Unit, Boolean> =
         MethodStringName1<CSGPolygon3D, Unit, Boolean>("set_path_joined")
 
-    @JvmStatic
+    @JvmField
     public val isPathJoinedName: MethodStringName0<CSGPolygon3D, Boolean> =
         MethodStringName0<CSGPolygon3D, Boolean>("is_path_joined")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<CSGPolygon3D, Unit, Material?> =
         MethodStringName1<CSGPolygon3D, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<CSGPolygon3D, Material?> =
         MethodStringName0<CSGPolygon3D, Material?>("get_material")
 
-    @JvmStatic
+    @JvmField
     public val setSmoothFacesName: MethodStringName1<CSGPolygon3D, Unit, Boolean> =
         MethodStringName1<CSGPolygon3D, Unit, Boolean>("set_smooth_faces")
 
-    @JvmStatic
+    @JvmField
     public val getSmoothFacesName: MethodStringName0<CSGPolygon3D, Boolean> =
         MethodStringName0<CSGPolygon3D, Boolean>("get_smooth_faces")
   }

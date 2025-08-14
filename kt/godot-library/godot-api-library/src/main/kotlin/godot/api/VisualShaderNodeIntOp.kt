@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Applies [operator] to two integer inputs: `a` and `b`.
@@ -125,11 +125,11 @@ public open class VisualShaderNodeIntOp : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOperatorName: MethodStringName1<VisualShaderNodeIntOp, Unit, Operator> =
         MethodStringName1<VisualShaderNodeIntOp, Unit, Operator>("set_operator")
 
-    @JvmStatic
+    @JvmField
     public val getOperatorName: MethodStringName0<VisualShaderNodeIntOp, Operator> =
         MethodStringName0<VisualShaderNodeIntOp, Operator>("get_operator")
   }

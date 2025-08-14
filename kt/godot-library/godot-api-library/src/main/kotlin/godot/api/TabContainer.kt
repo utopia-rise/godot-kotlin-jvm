@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Arranges child controls into a tabbed view, creating a tab for each one. The active tab's
@@ -620,199 +620,199 @@ public open class TabContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTabCountName: MethodStringName0<TabContainer, Int> =
         MethodStringName0<TabContainer, Int>("get_tab_count")
 
-    @JvmStatic
+    @JvmField
     public val setCurrentTabName: MethodStringName1<TabContainer, Unit, Int> =
         MethodStringName1<TabContainer, Unit, Int>("set_current_tab")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentTabName: MethodStringName0<TabContainer, Int> =
         MethodStringName0<TabContainer, Int>("get_current_tab")
 
-    @JvmStatic
+    @JvmField
     public val getPreviousTabName: MethodStringName0<TabContainer, Int> =
         MethodStringName0<TabContainer, Int>("get_previous_tab")
 
-    @JvmStatic
+    @JvmField
     public val selectPreviousAvailableName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("select_previous_available")
 
-    @JvmStatic
+    @JvmField
     public val selectNextAvailableName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("select_next_available")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentTabControlName: MethodStringName0<TabContainer, Control?> =
         MethodStringName0<TabContainer, Control?>("get_current_tab_control")
 
-    @JvmStatic
+    @JvmField
     public val getTabBarName: MethodStringName0<TabContainer, TabBar?> =
         MethodStringName0<TabContainer, TabBar?>("get_tab_bar")
 
-    @JvmStatic
+    @JvmField
     public val getTabControlName: MethodStringName1<TabContainer, Control?, Int> =
         MethodStringName1<TabContainer, Control?, Int>("get_tab_control")
 
-    @JvmStatic
+    @JvmField
     public val setTabAlignmentName: MethodStringName1<TabContainer, Unit, TabBar.AlignmentMode> =
         MethodStringName1<TabContainer, Unit, TabBar.AlignmentMode>("set_tab_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getTabAlignmentName: MethodStringName0<TabContainer, TabBar.AlignmentMode> =
         MethodStringName0<TabContainer, TabBar.AlignmentMode>("get_tab_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setTabsPositionName: MethodStringName1<TabContainer, Unit, TabPosition> =
         MethodStringName1<TabContainer, Unit, TabPosition>("set_tabs_position")
 
-    @JvmStatic
+    @JvmField
     public val getTabsPositionName: MethodStringName0<TabContainer, TabPosition> =
         MethodStringName0<TabContainer, TabPosition>("get_tabs_position")
 
-    @JvmStatic
+    @JvmField
     public val setClipTabsName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_clip_tabs")
 
-    @JvmStatic
+    @JvmField
     public val getClipTabsName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("get_clip_tabs")
 
-    @JvmStatic
+    @JvmField
     public val setTabsVisibleName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_tabs_visible")
 
-    @JvmStatic
+    @JvmField
     public val areTabsVisibleName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("are_tabs_visible")
 
-    @JvmStatic
+    @JvmField
     public val setAllTabsInFrontName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_all_tabs_in_front")
 
-    @JvmStatic
+    @JvmField
     public val isAllTabsInFrontName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("is_all_tabs_in_front")
 
-    @JvmStatic
+    @JvmField
     public val setTabTitleName: MethodStringName2<TabContainer, Unit, Int, String> =
         MethodStringName2<TabContainer, Unit, Int, String>("set_tab_title")
 
-    @JvmStatic
+    @JvmField
     public val getTabTitleName: MethodStringName1<TabContainer, String, Int> =
         MethodStringName1<TabContainer, String, Int>("get_tab_title")
 
-    @JvmStatic
+    @JvmField
     public val setTabTooltipName: MethodStringName2<TabContainer, Unit, Int, String> =
         MethodStringName2<TabContainer, Unit, Int, String>("set_tab_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val getTabTooltipName: MethodStringName1<TabContainer, String, Int> =
         MethodStringName1<TabContainer, String, Int>("get_tab_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val setTabIconName: MethodStringName2<TabContainer, Unit, Int, Texture2D?> =
         MethodStringName2<TabContainer, Unit, Int, Texture2D?>("set_tab_icon")
 
-    @JvmStatic
+    @JvmField
     public val getTabIconName: MethodStringName1<TabContainer, Texture2D?, Int> =
         MethodStringName1<TabContainer, Texture2D?, Int>("get_tab_icon")
 
-    @JvmStatic
+    @JvmField
     public val setTabIconMaxWidthName: MethodStringName2<TabContainer, Unit, Int, Int> =
         MethodStringName2<TabContainer, Unit, Int, Int>("set_tab_icon_max_width")
 
-    @JvmStatic
+    @JvmField
     public val getTabIconMaxWidthName: MethodStringName1<TabContainer, Int, Int> =
         MethodStringName1<TabContainer, Int, Int>("get_tab_icon_max_width")
 
-    @JvmStatic
+    @JvmField
     public val setTabDisabledName: MethodStringName2<TabContainer, Unit, Int, Boolean> =
         MethodStringName2<TabContainer, Unit, Int, Boolean>("set_tab_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isTabDisabledName: MethodStringName1<TabContainer, Boolean, Int> =
         MethodStringName1<TabContainer, Boolean, Int>("is_tab_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setTabHiddenName: MethodStringName2<TabContainer, Unit, Int, Boolean> =
         MethodStringName2<TabContainer, Unit, Int, Boolean>("set_tab_hidden")
 
-    @JvmStatic
+    @JvmField
     public val isTabHiddenName: MethodStringName1<TabContainer, Boolean, Int> =
         MethodStringName1<TabContainer, Boolean, Int>("is_tab_hidden")
 
-    @JvmStatic
+    @JvmField
     public val setTabMetadataName: MethodStringName2<TabContainer, Unit, Int, Any?> =
         MethodStringName2<TabContainer, Unit, Int, Any?>("set_tab_metadata")
 
-    @JvmStatic
+    @JvmField
     public val getTabMetadataName: MethodStringName1<TabContainer, Any?, Int> =
         MethodStringName1<TabContainer, Any?, Int>("get_tab_metadata")
 
-    @JvmStatic
+    @JvmField
     public val setTabButtonIconName: MethodStringName2<TabContainer, Unit, Int, Texture2D?> =
         MethodStringName2<TabContainer, Unit, Int, Texture2D?>("set_tab_button_icon")
 
-    @JvmStatic
+    @JvmField
     public val getTabButtonIconName: MethodStringName1<TabContainer, Texture2D?, Int> =
         MethodStringName1<TabContainer, Texture2D?, Int>("get_tab_button_icon")
 
-    @JvmStatic
+    @JvmField
     public val getTabIdxAtPointName: MethodStringName1<TabContainer, Int, Vector2> =
         MethodStringName1<TabContainer, Int, Vector2>("get_tab_idx_at_point")
 
-    @JvmStatic
+    @JvmField
     public val getTabIdxFromControlName: MethodStringName1<TabContainer, Int, Control?> =
         MethodStringName1<TabContainer, Int, Control?>("get_tab_idx_from_control")
 
-    @JvmStatic
+    @JvmField
     public val setPopupName: MethodStringName1<TabContainer, Unit, Node?> =
         MethodStringName1<TabContainer, Unit, Node?>("set_popup")
 
-    @JvmStatic
+    @JvmField
     public val getPopupName: MethodStringName0<TabContainer, Popup?> =
         MethodStringName0<TabContainer, Popup?>("get_popup")
 
-    @JvmStatic
+    @JvmField
     public val setDragToRearrangeEnabledName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_drag_to_rearrange_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getDragToRearrangeEnabledName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("get_drag_to_rearrange_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setTabsRearrangeGroupName: MethodStringName1<TabContainer, Unit, Int> =
         MethodStringName1<TabContainer, Unit, Int>("set_tabs_rearrange_group")
 
-    @JvmStatic
+    @JvmField
     public val getTabsRearrangeGroupName: MethodStringName0<TabContainer, Int> =
         MethodStringName0<TabContainer, Int>("get_tabs_rearrange_group")
 
-    @JvmStatic
+    @JvmField
     public val setUseHiddenTabsForMinSizeName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_use_hidden_tabs_for_min_size")
 
-    @JvmStatic
+    @JvmField
     public val getUseHiddenTabsForMinSizeName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("get_use_hidden_tabs_for_min_size")
 
-    @JvmStatic
+    @JvmField
     public val setTabFocusModeName: MethodStringName1<TabContainer, Unit, Control.FocusMode> =
         MethodStringName1<TabContainer, Unit, Control.FocusMode>("set_tab_focus_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTabFocusModeName: MethodStringName0<TabContainer, Control.FocusMode> =
         MethodStringName0<TabContainer, Control.FocusMode>("get_tab_focus_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDeselectEnabledName: MethodStringName1<TabContainer, Unit, Boolean> =
         MethodStringName1<TabContainer, Unit, Boolean>("set_deselect_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getDeselectEnabledName: MethodStringName0<TabContainer, Boolean> =
         MethodStringName0<TabContainer, Boolean>("get_deselect_enabled")
   }

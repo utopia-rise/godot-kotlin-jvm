@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A control used for visual representation of a percentage. Shows fill percentage from right to
@@ -158,35 +158,35 @@ public open class ProgressBar : Range() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFillModeName: MethodStringName1<ProgressBar, Unit, Int> =
         MethodStringName1<ProgressBar, Unit, Int>("set_fill_mode")
 
-    @JvmStatic
+    @JvmField
     public val getFillModeName: MethodStringName0<ProgressBar, Int> =
         MethodStringName0<ProgressBar, Int>("get_fill_mode")
 
-    @JvmStatic
+    @JvmField
     public val setShowPercentageName: MethodStringName1<ProgressBar, Unit, Boolean> =
         MethodStringName1<ProgressBar, Unit, Boolean>("set_show_percentage")
 
-    @JvmStatic
+    @JvmField
     public val isPercentageShownName: MethodStringName0<ProgressBar, Boolean> =
         MethodStringName0<ProgressBar, Boolean>("is_percentage_shown")
 
-    @JvmStatic
+    @JvmField
     public val setIndeterminateName: MethodStringName1<ProgressBar, Unit, Boolean> =
         MethodStringName1<ProgressBar, Unit, Boolean>("set_indeterminate")
 
-    @JvmStatic
+    @JvmField
     public val isIndeterminateName: MethodStringName0<ProgressBar, Boolean> =
         MethodStringName0<ProgressBar, Boolean>("is_indeterminate")
 
-    @JvmStatic
+    @JvmField
     public val setEditorPreviewIndeterminateName: MethodStringName1<ProgressBar, Unit, Boolean> =
         MethodStringName1<ProgressBar, Unit, Boolean>("set_editor_preview_indeterminate")
 
-    @JvmStatic
+    @JvmField
     public val isEditorPreviewIndeterminateEnabledName: MethodStringName0<ProgressBar, Boolean> =
         MethodStringName0<ProgressBar, Boolean>("is_editor_preview_indeterminate_enabled")
   }

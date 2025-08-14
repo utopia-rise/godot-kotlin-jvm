@@ -17,7 +17,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 @GodotBaseType
 public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
@@ -35,7 +35,7 @@ public open class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val beginResampleName: MethodStringName0<AudioStreamPlaybackResampled, Unit> =
         MethodStringName0<AudioStreamPlaybackResampled, Unit>("begin_resample")
   }

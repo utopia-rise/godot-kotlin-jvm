@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A shader include file, saved with the `.gdshaderinc` extension. This class allows you to define a
@@ -57,11 +57,11 @@ public open class ShaderInclude : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCodeName: MethodStringName1<ShaderInclude, Unit, String> =
         MethodStringName1<ShaderInclude, Unit, String>("set_code")
 
-    @JvmStatic
+    @JvmField
     public val getCodeName: MethodStringName0<ShaderInclude, String> =
         MethodStringName0<ShaderInclude, String>("get_code")
   }

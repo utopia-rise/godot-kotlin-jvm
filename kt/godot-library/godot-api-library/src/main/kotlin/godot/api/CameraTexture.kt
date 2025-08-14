@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This texture gives access to the camera texture provided by a [CameraFeed].
@@ -102,27 +102,27 @@ public open class CameraTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCameraFeedIdName: MethodStringName1<CameraTexture, Unit, Int> =
         MethodStringName1<CameraTexture, Unit, Int>("set_camera_feed_id")
 
-    @JvmStatic
+    @JvmField
     public val getCameraFeedIdName: MethodStringName0<CameraTexture, Int> =
         MethodStringName0<CameraTexture, Int>("get_camera_feed_id")
 
-    @JvmStatic
+    @JvmField
     public val setWhichFeedName: MethodStringName1<CameraTexture, Unit, CameraServer.FeedImage> =
         MethodStringName1<CameraTexture, Unit, CameraServer.FeedImage>("set_which_feed")
 
-    @JvmStatic
+    @JvmField
     public val getWhichFeedName: MethodStringName0<CameraTexture, CameraServer.FeedImage> =
         MethodStringName0<CameraTexture, CameraServer.FeedImage>("get_which_feed")
 
-    @JvmStatic
+    @JvmField
     public val setCameraActiveName: MethodStringName1<CameraTexture, Unit, Boolean> =
         MethodStringName1<CameraTexture, Unit, Boolean>("set_camera_active")
 
-    @JvmStatic
+    @JvmField
     public val getCameraActiveName: MethodStringName0<CameraTexture, Boolean> =
         MethodStringName0<CameraTexture, Boolean>("get_camera_active")
   }

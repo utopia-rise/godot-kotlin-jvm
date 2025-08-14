@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Represents a class from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
@@ -65,16 +65,16 @@ public open class JavaClass : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getJavaClassNameName: MethodStringName0<JavaClass, String> =
         MethodStringName0<JavaClass, String>("get_java_class_name")
 
-    @JvmStatic
+    @JvmField
     public val getJavaMethodListName:
         MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>>("get_java_method_list")
 
-    @JvmStatic
+    @JvmField
     public val getJavaParentClassName: MethodStringName0<JavaClass, JavaClass?> =
         MethodStringName0<JavaClass, JavaClass?>("get_java_parent_class")
   }

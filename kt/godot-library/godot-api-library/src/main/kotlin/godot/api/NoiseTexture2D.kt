@@ -23,8 +23,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Uses the [FastNoiseLite] library or other noise generators to fill the texture data of your
@@ -325,91 +325,91 @@ public open class NoiseTexture2D : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<NoiseTexture2D, Unit, Int> =
         MethodStringName1<NoiseTexture2D, Unit, Int>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<NoiseTexture2D, Unit, Int> =
         MethodStringName1<NoiseTexture2D, Unit, Int>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val setInvertName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_invert")
 
-    @JvmStatic
+    @JvmField
     public val getInvertName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("get_invert")
 
-    @JvmStatic
+    @JvmField
     public val setIn3dSpaceName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_in_3d_space")
 
-    @JvmStatic
+    @JvmField
     public val isIn3dSpaceName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("is_in_3d_space")
 
-    @JvmStatic
+    @JvmField
     public val setGenerateMipmapsName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_generate_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val isGeneratingMipmapsName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("is_generating_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val setSeamlessName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_seamless")
 
-    @JvmStatic
+    @JvmField
     public val getSeamlessName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("get_seamless")
 
-    @JvmStatic
+    @JvmField
     public val setSeamlessBlendSkirtName: MethodStringName1<NoiseTexture2D, Unit, Float> =
         MethodStringName1<NoiseTexture2D, Unit, Float>("set_seamless_blend_skirt")
 
-    @JvmStatic
+    @JvmField
     public val getSeamlessBlendSkirtName: MethodStringName0<NoiseTexture2D, Float> =
         MethodStringName0<NoiseTexture2D, Float>("get_seamless_blend_skirt")
 
-    @JvmStatic
+    @JvmField
     public val setAsNormalMapName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_as_normal_map")
 
-    @JvmStatic
+    @JvmField
     public val isNormalMapName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("is_normal_map")
 
-    @JvmStatic
+    @JvmField
     public val setBumpStrengthName: MethodStringName1<NoiseTexture2D, Unit, Float> =
         MethodStringName1<NoiseTexture2D, Unit, Float>("set_bump_strength")
 
-    @JvmStatic
+    @JvmField
     public val getBumpStrengthName: MethodStringName0<NoiseTexture2D, Float> =
         MethodStringName0<NoiseTexture2D, Float>("get_bump_strength")
 
-    @JvmStatic
+    @JvmField
     public val setNormalizeName: MethodStringName1<NoiseTexture2D, Unit, Boolean> =
         MethodStringName1<NoiseTexture2D, Unit, Boolean>("set_normalize")
 
-    @JvmStatic
+    @JvmField
     public val isNormalizedName: MethodStringName0<NoiseTexture2D, Boolean> =
         MethodStringName0<NoiseTexture2D, Boolean>("is_normalized")
 
-    @JvmStatic
+    @JvmField
     public val setColorRampName: MethodStringName1<NoiseTexture2D, Unit, Gradient?> =
         MethodStringName1<NoiseTexture2D, Unit, Gradient?>("set_color_ramp")
 
-    @JvmStatic
+    @JvmField
     public val getColorRampName: MethodStringName0<NoiseTexture2D, Gradient?> =
         MethodStringName0<NoiseTexture2D, Gradient?>("get_color_ramp")
 
-    @JvmStatic
+    @JvmField
     public val setNoiseName: MethodStringName1<NoiseTexture2D, Unit, Noise?> =
         MethodStringName1<NoiseTexture2D, Unit, Noise?>("set_noise")
 
-    @JvmStatic
+    @JvmField
     public val getNoiseName: MethodStringName0<NoiseTexture2D, Noise?> =
         MethodStringName0<NoiseTexture2D, Noise?>("get_noise")
   }

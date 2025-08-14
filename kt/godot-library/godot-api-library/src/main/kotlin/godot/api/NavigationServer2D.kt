@@ -45,6 +45,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -79,542 +80,542 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationServer2D : Object() {
-  @JvmStatic
+  @JvmField
   public val getMapsName: MethodStringName0<NavigationServer2D, VariantArray<RID>> =
       MethodStringName0<NavigationServer2D, VariantArray<RID>>("get_maps")
 
-  @JvmStatic
+  @JvmField
   public val mapCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("map_create")
 
-  @JvmStatic
+  @JvmField
   public val mapSetActiveName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("map_set_active")
 
-  @JvmStatic
+  @JvmField
   public val mapIsActiveName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("map_is_active")
 
-  @JvmStatic
+  @JvmField
   public val mapSetCellSizeName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("map_set_cell_size")
 
-  @JvmStatic
+  @JvmField
   public val mapGetCellSizeName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("map_get_cell_size")
 
-  @JvmStatic
+  @JvmField
   public val mapSetUseEdgeConnectionsName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean>
       = MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("map_set_use_edge_connections")
 
-  @JvmStatic
+  @JvmField
   public val mapGetUseEdgeConnectionsName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("map_get_use_edge_connections")
 
-  @JvmStatic
+  @JvmField
   public val mapSetEdgeConnectionMarginName: MethodStringName2<NavigationServer2D, Unit, RID, Float>
       = MethodStringName2<NavigationServer2D, Unit, RID, Float>("map_set_edge_connection_margin")
 
-  @JvmStatic
+  @JvmField
   public val mapGetEdgeConnectionMarginName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("map_get_edge_connection_margin")
 
-  @JvmStatic
+  @JvmField
   public val mapSetLinkConnectionRadiusName: MethodStringName2<NavigationServer2D, Unit, RID, Float>
       = MethodStringName2<NavigationServer2D, Unit, RID, Float>("map_set_link_connection_radius")
 
-  @JvmStatic
+  @JvmField
   public val mapGetLinkConnectionRadiusName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("map_get_link_connection_radius")
 
-  @JvmStatic
+  @JvmField
   public val mapGetPathName:
       MethodStringName5<NavigationServer2D, PackedVector2Array, RID, Vector2, Vector2, Boolean, Long>
       =
       MethodStringName5<NavigationServer2D, PackedVector2Array, RID, Vector2, Vector2, Boolean, Long>("map_get_path")
 
-  @JvmStatic
+  @JvmField
   public val mapGetClosestPointName: MethodStringName2<NavigationServer2D, Vector2, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Vector2, RID, Vector2>("map_get_closest_point")
 
-  @JvmStatic
+  @JvmField
   public val mapGetClosestPointOwnerName: MethodStringName2<NavigationServer2D, RID, RID, Vector2> =
       MethodStringName2<NavigationServer2D, RID, RID, Vector2>("map_get_closest_point_owner")
 
-  @JvmStatic
+  @JvmField
   public val mapGetLinksName: MethodStringName1<NavigationServer2D, VariantArray<RID>, RID> =
       MethodStringName1<NavigationServer2D, VariantArray<RID>, RID>("map_get_links")
 
-  @JvmStatic
+  @JvmField
   public val mapGetRegionsName: MethodStringName1<NavigationServer2D, VariantArray<RID>, RID> =
       MethodStringName1<NavigationServer2D, VariantArray<RID>, RID>("map_get_regions")
 
-  @JvmStatic
+  @JvmField
   public val mapGetAgentsName: MethodStringName1<NavigationServer2D, VariantArray<RID>, RID> =
       MethodStringName1<NavigationServer2D, VariantArray<RID>, RID>("map_get_agents")
 
-  @JvmStatic
+  @JvmField
   public val mapGetObstaclesName: MethodStringName1<NavigationServer2D, VariantArray<RID>, RID> =
       MethodStringName1<NavigationServer2D, VariantArray<RID>, RID>("map_get_obstacles")
 
-  @JvmStatic
+  @JvmField
   public val mapForceUpdateName: MethodStringName1<NavigationServer2D, Unit, RID> =
       MethodStringName1<NavigationServer2D, Unit, RID>("map_force_update")
 
-  @JvmStatic
+  @JvmField
   public val mapGetIterationIdName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("map_get_iteration_id")
 
-  @JvmStatic
+  @JvmField
   public val mapSetUseAsyncIterationsName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean>
       = MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("map_set_use_async_iterations")
 
-  @JvmStatic
+  @JvmField
   public val mapGetUseAsyncIterationsName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("map_get_use_async_iterations")
 
-  @JvmStatic
+  @JvmField
   public val mapGetRandomPointName:
       MethodStringName3<NavigationServer2D, Vector2, RID, Long, Boolean> =
       MethodStringName3<NavigationServer2D, Vector2, RID, Long, Boolean>("map_get_random_point")
 
-  @JvmStatic
+  @JvmField
   public val queryPathName:
       MethodStringName3<NavigationServer2D, Unit, NavigationPathQueryParameters2D?, NavigationPathQueryResult2D?, Callable>
       =
       MethodStringName3<NavigationServer2D, Unit, NavigationPathQueryParameters2D?, NavigationPathQueryResult2D?, Callable>("query_path")
 
-  @JvmStatic
+  @JvmField
   public val regionCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("region_create")
 
-  @JvmStatic
+  @JvmField
   public val regionSetEnabledName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("region_set_enabled")
 
-  @JvmStatic
+  @JvmField
   public val regionGetEnabledName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("region_get_enabled")
 
-  @JvmStatic
+  @JvmField
   public val regionSetUseEdgeConnectionsName:
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("region_set_use_edge_connections")
 
-  @JvmStatic
+  @JvmField
   public val regionGetUseEdgeConnectionsName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("region_get_use_edge_connections")
 
-  @JvmStatic
+  @JvmField
   public val regionSetEnterCostName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("region_set_enter_cost")
 
-  @JvmStatic
+  @JvmField
   public val regionGetEnterCostName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("region_get_enter_cost")
 
-  @JvmStatic
+  @JvmField
   public val regionSetTravelCostName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("region_set_travel_cost")
 
-  @JvmStatic
+  @JvmField
   public val regionGetTravelCostName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("region_get_travel_cost")
 
-  @JvmStatic
+  @JvmField
   public val regionSetOwnerIdName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("region_set_owner_id")
 
-  @JvmStatic
+  @JvmField
   public val regionGetOwnerIdName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("region_get_owner_id")
 
-  @JvmStatic
+  @JvmField
   public val regionOwnsPointName: MethodStringName2<NavigationServer2D, Boolean, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Boolean, RID, Vector2>("region_owns_point")
 
-  @JvmStatic
+  @JvmField
   public val regionSetMapName: MethodStringName2<NavigationServer2D, Unit, RID, RID> =
       MethodStringName2<NavigationServer2D, Unit, RID, RID>("region_set_map")
 
-  @JvmStatic
+  @JvmField
   public val regionGetMapName: MethodStringName1<NavigationServer2D, RID, RID> =
       MethodStringName1<NavigationServer2D, RID, RID>("region_get_map")
 
-  @JvmStatic
+  @JvmField
   public val regionSetNavigationLayersName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("region_set_navigation_layers")
 
-  @JvmStatic
+  @JvmField
   public val regionGetNavigationLayersName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("region_get_navigation_layers")
 
-  @JvmStatic
+  @JvmField
   public val regionSetTransformName: MethodStringName2<NavigationServer2D, Unit, RID, Transform2D> =
       MethodStringName2<NavigationServer2D, Unit, RID, Transform2D>("region_set_transform")
 
-  @JvmStatic
+  @JvmField
   public val regionGetTransformName: MethodStringName1<NavigationServer2D, Transform2D, RID> =
       MethodStringName1<NavigationServer2D, Transform2D, RID>("region_get_transform")
 
-  @JvmStatic
+  @JvmField
   public val regionSetNavigationPolygonName:
       MethodStringName2<NavigationServer2D, Unit, RID, NavigationPolygon?> =
       MethodStringName2<NavigationServer2D, Unit, RID, NavigationPolygon?>("region_set_navigation_polygon")
 
-  @JvmStatic
+  @JvmField
   public val regionGetConnectionsCountName: MethodStringName1<NavigationServer2D, Int, RID> =
       MethodStringName1<NavigationServer2D, Int, RID>("region_get_connections_count")
 
-  @JvmStatic
+  @JvmField
   public val regionGetConnectionPathwayStartName:
       MethodStringName2<NavigationServer2D, Vector2, RID, Int> =
       MethodStringName2<NavigationServer2D, Vector2, RID, Int>("region_get_connection_pathway_start")
 
-  @JvmStatic
+  @JvmField
   public val regionGetConnectionPathwayEndName:
       MethodStringName2<NavigationServer2D, Vector2, RID, Int> =
       MethodStringName2<NavigationServer2D, Vector2, RID, Int>("region_get_connection_pathway_end")
 
-  @JvmStatic
+  @JvmField
   public val regionGetClosestPointName: MethodStringName2<NavigationServer2D, Vector2, RID, Vector2>
       = MethodStringName2<NavigationServer2D, Vector2, RID, Vector2>("region_get_closest_point")
 
-  @JvmStatic
+  @JvmField
   public val regionGetRandomPointName:
       MethodStringName3<NavigationServer2D, Vector2, RID, Long, Boolean> =
       MethodStringName3<NavigationServer2D, Vector2, RID, Long, Boolean>("region_get_random_point")
 
-  @JvmStatic
+  @JvmField
   public val regionGetBoundsName: MethodStringName1<NavigationServer2D, Rect2, RID> =
       MethodStringName1<NavigationServer2D, Rect2, RID>("region_get_bounds")
 
-  @JvmStatic
+  @JvmField
   public val linkCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("link_create")
 
-  @JvmStatic
+  @JvmField
   public val linkSetMapName: MethodStringName2<NavigationServer2D, Unit, RID, RID> =
       MethodStringName2<NavigationServer2D, Unit, RID, RID>("link_set_map")
 
-  @JvmStatic
+  @JvmField
   public val linkGetMapName: MethodStringName1<NavigationServer2D, RID, RID> =
       MethodStringName1<NavigationServer2D, RID, RID>("link_get_map")
 
-  @JvmStatic
+  @JvmField
   public val linkSetEnabledName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("link_set_enabled")
 
-  @JvmStatic
+  @JvmField
   public val linkGetEnabledName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("link_get_enabled")
 
-  @JvmStatic
+  @JvmField
   public val linkSetBidirectionalName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("link_set_bidirectional")
 
-  @JvmStatic
+  @JvmField
   public val linkIsBidirectionalName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("link_is_bidirectional")
 
-  @JvmStatic
+  @JvmField
   public val linkSetNavigationLayersName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("link_set_navigation_layers")
 
-  @JvmStatic
+  @JvmField
   public val linkGetNavigationLayersName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("link_get_navigation_layers")
 
-  @JvmStatic
+  @JvmField
   public val linkSetStartPositionName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("link_set_start_position")
 
-  @JvmStatic
+  @JvmField
   public val linkGetStartPositionName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("link_get_start_position")
 
-  @JvmStatic
+  @JvmField
   public val linkSetEndPositionName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("link_set_end_position")
 
-  @JvmStatic
+  @JvmField
   public val linkGetEndPositionName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("link_get_end_position")
 
-  @JvmStatic
+  @JvmField
   public val linkSetEnterCostName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("link_set_enter_cost")
 
-  @JvmStatic
+  @JvmField
   public val linkGetEnterCostName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("link_get_enter_cost")
 
-  @JvmStatic
+  @JvmField
   public val linkSetTravelCostName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("link_set_travel_cost")
 
-  @JvmStatic
+  @JvmField
   public val linkGetTravelCostName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("link_get_travel_cost")
 
-  @JvmStatic
+  @JvmField
   public val linkSetOwnerIdName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("link_set_owner_id")
 
-  @JvmStatic
+  @JvmField
   public val linkGetOwnerIdName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("link_get_owner_id")
 
-  @JvmStatic
+  @JvmField
   public val agentCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("agent_create")
 
-  @JvmStatic
+  @JvmField
   public val agentSetAvoidanceEnabledName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean>
       = MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("agent_set_avoidance_enabled")
 
-  @JvmStatic
+  @JvmField
   public val agentGetAvoidanceEnabledName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("agent_get_avoidance_enabled")
 
-  @JvmStatic
+  @JvmField
   public val agentSetMapName: MethodStringName2<NavigationServer2D, Unit, RID, RID> =
       MethodStringName2<NavigationServer2D, Unit, RID, RID>("agent_set_map")
 
-  @JvmStatic
+  @JvmField
   public val agentGetMapName: MethodStringName1<NavigationServer2D, RID, RID> =
       MethodStringName1<NavigationServer2D, RID, RID>("agent_get_map")
 
-  @JvmStatic
+  @JvmField
   public val agentSetPausedName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("agent_set_paused")
 
-  @JvmStatic
+  @JvmField
   public val agentGetPausedName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("agent_get_paused")
 
-  @JvmStatic
+  @JvmField
   public val agentSetNeighborDistanceName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_neighbor_distance")
 
-  @JvmStatic
+  @JvmField
   public val agentGetNeighborDistanceName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_neighbor_distance")
 
-  @JvmStatic
+  @JvmField
   public val agentSetMaxNeighborsName: MethodStringName2<NavigationServer2D, Unit, RID, Int> =
       MethodStringName2<NavigationServer2D, Unit, RID, Int>("agent_set_max_neighbors")
 
-  @JvmStatic
+  @JvmField
   public val agentGetMaxNeighborsName: MethodStringName1<NavigationServer2D, Int, RID> =
       MethodStringName1<NavigationServer2D, Int, RID>("agent_get_max_neighbors")
 
-  @JvmStatic
+  @JvmField
   public val agentSetTimeHorizonAgentsName: MethodStringName2<NavigationServer2D, Unit, RID, Float>
       = MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_time_horizon_agents")
 
-  @JvmStatic
+  @JvmField
   public val agentGetTimeHorizonAgentsName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_time_horizon_agents")
 
-  @JvmStatic
+  @JvmField
   public val agentSetTimeHorizonObstaclesName:
       MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_time_horizon_obstacles")
 
-  @JvmStatic
+  @JvmField
   public val agentGetTimeHorizonObstaclesName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_time_horizon_obstacles")
 
-  @JvmStatic
+  @JvmField
   public val agentSetRadiusName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_radius")
 
-  @JvmStatic
+  @JvmField
   public val agentGetRadiusName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_radius")
 
-  @JvmStatic
+  @JvmField
   public val agentSetMaxSpeedName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_max_speed")
 
-  @JvmStatic
+  @JvmField
   public val agentGetMaxSpeedName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_max_speed")
 
-  @JvmStatic
+  @JvmField
   public val agentSetVelocityForcedName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("agent_set_velocity_forced")
 
-  @JvmStatic
+  @JvmField
   public val agentSetVelocityName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("agent_set_velocity")
 
-  @JvmStatic
+  @JvmField
   public val agentGetVelocityName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("agent_get_velocity")
 
-  @JvmStatic
+  @JvmField
   public val agentSetPositionName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("agent_set_position")
 
-  @JvmStatic
+  @JvmField
   public val agentGetPositionName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("agent_get_position")
 
-  @JvmStatic
+  @JvmField
   public val agentIsMapChangedName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("agent_is_map_changed")
 
-  @JvmStatic
+  @JvmField
   public val agentSetAvoidanceCallbackName:
       MethodStringName2<NavigationServer2D, Unit, RID, Callable> =
       MethodStringName2<NavigationServer2D, Unit, RID, Callable>("agent_set_avoidance_callback")
 
-  @JvmStatic
+  @JvmField
   public val agentHasAvoidanceCallbackName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("agent_has_avoidance_callback")
 
-  @JvmStatic
+  @JvmField
   public val agentSetAvoidanceLayersName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("agent_set_avoidance_layers")
 
-  @JvmStatic
+  @JvmField
   public val agentGetAvoidanceLayersName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("agent_get_avoidance_layers")
 
-  @JvmStatic
+  @JvmField
   public val agentSetAvoidanceMaskName: MethodStringName2<NavigationServer2D, Unit, RID, Long> =
       MethodStringName2<NavigationServer2D, Unit, RID, Long>("agent_set_avoidance_mask")
 
-  @JvmStatic
+  @JvmField
   public val agentGetAvoidanceMaskName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("agent_get_avoidance_mask")
 
-  @JvmStatic
+  @JvmField
   public val agentSetAvoidancePriorityName: MethodStringName2<NavigationServer2D, Unit, RID, Float>
       = MethodStringName2<NavigationServer2D, Unit, RID, Float>("agent_set_avoidance_priority")
 
-  @JvmStatic
+  @JvmField
   public val agentGetAvoidancePriorityName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("agent_get_avoidance_priority")
 
-  @JvmStatic
+  @JvmField
   public val obstacleCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("obstacle_create")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetAvoidanceEnabledName:
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("obstacle_set_avoidance_enabled")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetAvoidanceEnabledName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("obstacle_get_avoidance_enabled")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetMapName: MethodStringName2<NavigationServer2D, Unit, RID, RID> =
       MethodStringName2<NavigationServer2D, Unit, RID, RID>("obstacle_set_map")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetMapName: MethodStringName1<NavigationServer2D, RID, RID> =
       MethodStringName1<NavigationServer2D, RID, RID>("obstacle_get_map")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetPausedName: MethodStringName2<NavigationServer2D, Unit, RID, Boolean> =
       MethodStringName2<NavigationServer2D, Unit, RID, Boolean>("obstacle_set_paused")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetPausedName: MethodStringName1<NavigationServer2D, Boolean, RID> =
       MethodStringName1<NavigationServer2D, Boolean, RID>("obstacle_get_paused")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetRadiusName: MethodStringName2<NavigationServer2D, Unit, RID, Float> =
       MethodStringName2<NavigationServer2D, Unit, RID, Float>("obstacle_set_radius")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetRadiusName: MethodStringName1<NavigationServer2D, Float, RID> =
       MethodStringName1<NavigationServer2D, Float, RID>("obstacle_get_radius")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetVelocityName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("obstacle_set_velocity")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetVelocityName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("obstacle_get_velocity")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetPositionName: MethodStringName2<NavigationServer2D, Unit, RID, Vector2> =
       MethodStringName2<NavigationServer2D, Unit, RID, Vector2>("obstacle_set_position")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetPositionName: MethodStringName1<NavigationServer2D, Vector2, RID> =
       MethodStringName1<NavigationServer2D, Vector2, RID>("obstacle_get_position")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetVerticesName:
       MethodStringName2<NavigationServer2D, Unit, RID, PackedVector2Array> =
       MethodStringName2<NavigationServer2D, Unit, RID, PackedVector2Array>("obstacle_set_vertices")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetVerticesName: MethodStringName1<NavigationServer2D, PackedVector2Array, RID>
       = MethodStringName1<NavigationServer2D, PackedVector2Array, RID>("obstacle_get_vertices")
 
-  @JvmStatic
+  @JvmField
   public val obstacleSetAvoidanceLayersName: MethodStringName2<NavigationServer2D, Unit, RID, Long>
       = MethodStringName2<NavigationServer2D, Unit, RID, Long>("obstacle_set_avoidance_layers")
 
-  @JvmStatic
+  @JvmField
   public val obstacleGetAvoidanceLayersName: MethodStringName1<NavigationServer2D, Long, RID> =
       MethodStringName1<NavigationServer2D, Long, RID>("obstacle_get_avoidance_layers")
 
-  @JvmStatic
+  @JvmField
   public val parseSourceGeometryDataName:
       MethodStringName4<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Node?, Callable>
       =
       MethodStringName4<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Node?, Callable>("parse_source_geometry_data")
 
-  @JvmStatic
+  @JvmField
   public val bakeFromSourceGeometryDataName:
       MethodStringName3<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Callable>
       =
       MethodStringName3<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Callable>("bake_from_source_geometry_data")
 
-  @JvmStatic
+  @JvmField
   public val bakeFromSourceGeometryDataAsyncName:
       MethodStringName3<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Callable>
       =
       MethodStringName3<NavigationServer2D, Unit, NavigationPolygon?, NavigationMeshSourceGeometryData2D?, Callable>("bake_from_source_geometry_data_async")
 
-  @JvmStatic
+  @JvmField
   public val isBakingNavigationPolygonName:
       MethodStringName1<NavigationServer2D, Boolean, NavigationPolygon?> =
       MethodStringName1<NavigationServer2D, Boolean, NavigationPolygon?>("is_baking_navigation_polygon")
 
-  @JvmStatic
+  @JvmField
   public val sourceGeometryParserCreateName: MethodStringName0<NavigationServer2D, RID> =
       MethodStringName0<NavigationServer2D, RID>("source_geometry_parser_create")
 
-  @JvmStatic
+  @JvmField
   public val sourceGeometryParserSetCallbackName:
       MethodStringName2<NavigationServer2D, Unit, RID, Callable> =
       MethodStringName2<NavigationServer2D, Unit, RID, Callable>("source_geometry_parser_set_callback")
 
-  @JvmStatic
+  @JvmField
   public val simplifyPathName:
       MethodStringName2<NavigationServer2D, PackedVector2Array, PackedVector2Array, Float> =
       MethodStringName2<NavigationServer2D, PackedVector2Array, PackedVector2Array, Float>("simplify_path")
 
-  @JvmStatic
+  @JvmField
   public val freeRidName: MethodStringName1<NavigationServer2D, Unit, RID> =
       MethodStringName1<NavigationServer2D, Unit, RID>("free_rid")
 
-  @JvmStatic
+  @JvmField
   public val setDebugEnabledName: MethodStringName1<NavigationServer2D, Unit, Boolean> =
       MethodStringName1<NavigationServer2D, Unit, Boolean>("set_debug_enabled")
 
-  @JvmStatic
+  @JvmField
   public val getDebugEnabledName: MethodStringName0<NavigationServer2D, Boolean> =
       MethodStringName0<NavigationServer2D, Boolean>("get_debug_enabled")
 

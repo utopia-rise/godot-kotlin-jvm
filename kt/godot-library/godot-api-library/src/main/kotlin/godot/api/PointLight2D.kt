@@ -24,8 +24,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Casts light in a 2D environment. This light's shape is defined by a (usually grayscale) texture.
@@ -142,27 +142,27 @@ public open class PointLight2D : Light2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<PointLight2D, Unit, Texture2D?> =
         MethodStringName1<PointLight2D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<PointLight2D, Texture2D?> =
         MethodStringName0<PointLight2D, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setTextureOffsetName: MethodStringName1<PointLight2D, Unit, Vector2> =
         MethodStringName1<PointLight2D, Unit, Vector2>("set_texture_offset")
 
-    @JvmStatic
+    @JvmField
     public val getTextureOffsetName: MethodStringName0<PointLight2D, Vector2> =
         MethodStringName0<PointLight2D, Vector2>("get_texture_offset")
 
-    @JvmStatic
+    @JvmField
     public val setTextureScaleName: MethodStringName1<PointLight2D, Unit, Float> =
         MethodStringName1<PointLight2D, Unit, Float>("set_texture_scale")
 
-    @JvmStatic
+    @JvmField
     public val getTextureScaleName: MethodStringName0<PointLight2D, Float> =
         MethodStringName0<PointLight2D, Float>("get_texture_scale")
   }

@@ -25,8 +25,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [BaseButton] is an abstract base class for GUI buttons. It doesn't display anything by itself.
@@ -406,95 +406,95 @@ public open class BaseButton : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPressedName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isPressedName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setPressedNoSignalName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_pressed_no_signal")
 
-    @JvmStatic
+    @JvmField
     public val isHoveredName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_hovered")
 
-    @JvmStatic
+    @JvmField
     public val setToggleModeName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_toggle_mode")
 
-    @JvmStatic
+    @JvmField
     public val isToggleModeName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_toggle_mode")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutInTooltipName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_shortcut_in_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val isShortcutInTooltipEnabledName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_shortcut_in_tooltip_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDisabledName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDisabledName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setActionModeName: MethodStringName1<BaseButton, Unit, ActionMode> =
         MethodStringName1<BaseButton, Unit, ActionMode>("set_action_mode")
 
-    @JvmStatic
+    @JvmField
     public val getActionModeName: MethodStringName0<BaseButton, ActionMode> =
         MethodStringName0<BaseButton, ActionMode>("get_action_mode")
 
-    @JvmStatic
+    @JvmField
     public val setButtonMaskName: MethodStringName1<BaseButton, Unit, MouseButtonMask> =
         MethodStringName1<BaseButton, Unit, MouseButtonMask>("set_button_mask")
 
-    @JvmStatic
+    @JvmField
     public val getButtonMaskName: MethodStringName0<BaseButton, MouseButtonMask> =
         MethodStringName0<BaseButton, MouseButtonMask>("get_button_mask")
 
-    @JvmStatic
+    @JvmField
     public val getDrawModeName: MethodStringName0<BaseButton, DrawMode> =
         MethodStringName0<BaseButton, DrawMode>("get_draw_mode")
 
-    @JvmStatic
+    @JvmField
     public val setKeepPressedOutsideName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_keep_pressed_outside")
 
-    @JvmStatic
+    @JvmField
     public val isKeepPressedOutsideName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_keep_pressed_outside")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutFeedbackName: MethodStringName1<BaseButton, Unit, Boolean> =
         MethodStringName1<BaseButton, Unit, Boolean>("set_shortcut_feedback")
 
-    @JvmStatic
+    @JvmField
     public val isShortcutFeedbackName: MethodStringName0<BaseButton, Boolean> =
         MethodStringName0<BaseButton, Boolean>("is_shortcut_feedback")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutName: MethodStringName1<BaseButton, Unit, Shortcut?> =
         MethodStringName1<BaseButton, Unit, Shortcut?>("set_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val getShortcutName: MethodStringName0<BaseButton, Shortcut?> =
         MethodStringName0<BaseButton, Shortcut?>("get_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val setButtonGroupName: MethodStringName1<BaseButton, Unit, ButtonGroup?> =
         MethodStringName1<BaseButton, Unit, ButtonGroup?>("set_button_group")
 
-    @JvmStatic
+    @JvmField
     public val getButtonGroupName: MethodStringName0<BaseButton, ButtonGroup?> =
         MethodStringName0<BaseButton, ButtonGroup?>("get_button_group")
   }

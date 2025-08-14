@@ -23,8 +23,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A stream peer that handles TLS connections. This object can be used to connect to a TLS server or
@@ -138,28 +138,28 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<StreamPeerTLS, Unit> =
         MethodStringName0<StreamPeerTLS, Unit>("poll")
 
-    @JvmStatic
+    @JvmField
     public val acceptStreamName: MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?> =
         MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?>("accept_stream")
 
-    @JvmStatic
+    @JvmField
     public val connectToStreamName:
         MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?> =
         MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?>("connect_to_stream")
 
-    @JvmStatic
+    @JvmField
     public val getStatusName: MethodStringName0<StreamPeerTLS, Status> =
         MethodStringName0<StreamPeerTLS, Status>("get_status")
 
-    @JvmStatic
+    @JvmField
     public val getStreamName: MethodStringName0<StreamPeerTLS, StreamPeer?> =
         MethodStringName0<StreamPeerTLS, StreamPeer?>("get_stream")
 
-    @JvmStatic
+    @JvmField
     public val disconnectFromStreamName: MethodStringName0<StreamPeerTLS, Unit> =
         MethodStringName0<StreamPeerTLS, Unit>("disconnect_from_stream")
   }

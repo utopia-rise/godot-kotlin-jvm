@@ -19,8 +19,8 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class that has everything pertaining to a world: A physics space, a visual scenario, and a sound
@@ -153,43 +153,43 @@ public open class World3D : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getSpaceName: MethodStringName0<World3D, RID> =
         MethodStringName0<World3D, RID>("get_space")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationMapName: MethodStringName0<World3D, RID> =
         MethodStringName0<World3D, RID>("get_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val getScenarioName: MethodStringName0<World3D, RID> =
         MethodStringName0<World3D, RID>("get_scenario")
 
-    @JvmStatic
+    @JvmField
     public val setEnvironmentName: MethodStringName1<World3D, Unit, Environment?> =
         MethodStringName1<World3D, Unit, Environment?>("set_environment")
 
-    @JvmStatic
+    @JvmField
     public val getEnvironmentName: MethodStringName0<World3D, Environment?> =
         MethodStringName0<World3D, Environment?>("get_environment")
 
-    @JvmStatic
+    @JvmField
     public val setFallbackEnvironmentName: MethodStringName1<World3D, Unit, Environment?> =
         MethodStringName1<World3D, Unit, Environment?>("set_fallback_environment")
 
-    @JvmStatic
+    @JvmField
     public val getFallbackEnvironmentName: MethodStringName0<World3D, Environment?> =
         MethodStringName0<World3D, Environment?>("get_fallback_environment")
 
-    @JvmStatic
+    @JvmField
     public val setCameraAttributesName: MethodStringName1<World3D, Unit, CameraAttributes?> =
         MethodStringName1<World3D, Unit, CameraAttributes?>("set_camera_attributes")
 
-    @JvmStatic
+    @JvmField
     public val getCameraAttributesName: MethodStringName0<World3D, CameraAttributes?> =
         MethodStringName0<World3D, CameraAttributes?>("get_camera_attributes")
 
-    @JvmStatic
+    @JvmField
     public val getDirectSpaceStateName: MethodStringName0<World3D, PhysicsDirectSpaceState3D?> =
         MethodStringName0<World3D, PhysicsDirectSpaceState3D?>("get_direct_space_state")
   }

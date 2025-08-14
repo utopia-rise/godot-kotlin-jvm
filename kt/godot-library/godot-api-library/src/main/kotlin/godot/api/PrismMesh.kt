@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a prism-shaped [PrimitiveMesh].
@@ -176,43 +176,43 @@ public open class PrismMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLeftToRightName: MethodStringName1<PrismMesh, Unit, Float> =
         MethodStringName1<PrismMesh, Unit, Float>("set_left_to_right")
 
-    @JvmStatic
+    @JvmField
     public val getLeftToRightName: MethodStringName0<PrismMesh, Float> =
         MethodStringName0<PrismMesh, Float>("get_left_to_right")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<PrismMesh, Unit, Vector3> =
         MethodStringName1<PrismMesh, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<PrismMesh, Vector3> =
         MethodStringName0<PrismMesh, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideWidthName: MethodStringName1<PrismMesh, Unit, Int> =
         MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideWidthName: MethodStringName0<PrismMesh, Int> =
         MethodStringName0<PrismMesh, Int>("get_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideHeightName: MethodStringName1<PrismMesh, Unit, Int> =
         MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_height")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideHeightName: MethodStringName0<PrismMesh, Int> =
         MethodStringName0<PrismMesh, Int>("get_subdivide_height")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideDepthName: MethodStringName1<PrismMesh, Unit, Int> =
         MethodStringName1<PrismMesh, Unit, Int>("set_subdivide_depth")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideDepthName: MethodStringName0<PrismMesh, Int> =
         MethodStringName0<PrismMesh, Int>("get_subdivide_depth")
   }

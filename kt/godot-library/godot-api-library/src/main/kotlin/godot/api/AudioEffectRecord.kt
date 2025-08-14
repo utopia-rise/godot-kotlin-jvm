@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
@@ -94,23 +94,23 @@ public open class AudioEffectRecord : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRecordingActiveName: MethodStringName1<AudioEffectRecord, Unit, Boolean> =
         MethodStringName1<AudioEffectRecord, Unit, Boolean>("set_recording_active")
 
-    @JvmStatic
+    @JvmField
     public val isRecordingActiveName: MethodStringName0<AudioEffectRecord, Boolean> =
         MethodStringName0<AudioEffectRecord, Boolean>("is_recording_active")
 
-    @JvmStatic
+    @JvmField
     public val setFormatName: MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format> =
         MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format>("set_format")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format> =
         MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val getRecordingName: MethodStringName0<AudioEffectRecord, AudioStreamWAV?> =
         MethodStringName0<AudioEffectRecord, AudioStreamWAV?>("get_recording")
   }

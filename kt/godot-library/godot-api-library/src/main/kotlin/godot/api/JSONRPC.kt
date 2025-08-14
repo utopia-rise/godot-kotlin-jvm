@@ -28,8 +28,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [url=https://www.jsonrpc.org/]JSON-RPC[/url] is a standard which wraps a method call in a [JSON]
@@ -181,33 +181,33 @@ public open class JSONRPC : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setScopeName: MethodStringName2<JSONRPC, Unit, String, Object?> =
         MethodStringName2<JSONRPC, Unit, String, Object?>("set_scope")
 
-    @JvmStatic
+    @JvmField
     public val processActionName: MethodStringName2<JSONRPC, Any?, Any?, Boolean> =
         MethodStringName2<JSONRPC, Any?, Any?, Boolean>("process_action")
 
-    @JvmStatic
+    @JvmField
     public val processStringName: MethodStringName1<JSONRPC, String, String> =
         MethodStringName1<JSONRPC, String, String>("process_string")
 
-    @JvmStatic
+    @JvmField
     public val makeRequestName:
         MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, String, Any?, Any?> =
         MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, String, Any?, Any?>("make_request")
 
-    @JvmStatic
+    @JvmField
     public val makeResponseName: MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, Any?, Any?> =
         MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, Any?, Any?>("make_response")
 
-    @JvmStatic
+    @JvmField
     public val makeNotificationName:
         MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, String, Any?> =
         MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, String, Any?>("make_notification")
 
-    @JvmStatic
+    @JvmField
     public val makeResponseErrorName:
         MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, Int, String, Any?> =
         MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, Int, String, Any?>("make_response_error")

@@ -29,9 +29,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Spawnable scenes can be configured in the editor or through code (see [addSpawnableScene]).
@@ -186,47 +186,47 @@ public open class MultiplayerSpawner : Node() {
   public final fun setSpawnPath(path: String) = setSpawnPath(path.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addSpawnableSceneName: MethodStringName1<MultiplayerSpawner, Unit, String> =
         MethodStringName1<MultiplayerSpawner, Unit, String>("add_spawnable_scene")
 
-    @JvmStatic
+    @JvmField
     public val getSpawnableSceneCountName: MethodStringName0<MultiplayerSpawner, Int> =
         MethodStringName0<MultiplayerSpawner, Int>("get_spawnable_scene_count")
 
-    @JvmStatic
+    @JvmField
     public val getSpawnableSceneName: MethodStringName1<MultiplayerSpawner, String, Int> =
         MethodStringName1<MultiplayerSpawner, String, Int>("get_spawnable_scene")
 
-    @JvmStatic
+    @JvmField
     public val clearSpawnableScenesName: MethodStringName0<MultiplayerSpawner, Unit> =
         MethodStringName0<MultiplayerSpawner, Unit>("clear_spawnable_scenes")
 
-    @JvmStatic
+    @JvmField
     public val spawnName: MethodStringName1<MultiplayerSpawner, Node?, Any?> =
         MethodStringName1<MultiplayerSpawner, Node?, Any?>("spawn")
 
-    @JvmStatic
+    @JvmField
     public val getSpawnPathName: MethodStringName0<MultiplayerSpawner, NodePath> =
         MethodStringName0<MultiplayerSpawner, NodePath>("get_spawn_path")
 
-    @JvmStatic
+    @JvmField
     public val setSpawnPathName: MethodStringName1<MultiplayerSpawner, Unit, NodePath> =
         MethodStringName1<MultiplayerSpawner, Unit, NodePath>("set_spawn_path")
 
-    @JvmStatic
+    @JvmField
     public val getSpawnLimitName: MethodStringName0<MultiplayerSpawner, Long> =
         MethodStringName0<MultiplayerSpawner, Long>("get_spawn_limit")
 
-    @JvmStatic
+    @JvmField
     public val setSpawnLimitName: MethodStringName1<MultiplayerSpawner, Unit, Long> =
         MethodStringName1<MultiplayerSpawner, Unit, Long>("set_spawn_limit")
 
-    @JvmStatic
+    @JvmField
     public val getSpawnFunctionName: MethodStringName0<MultiplayerSpawner, Callable> =
         MethodStringName0<MultiplayerSpawner, Callable>("get_spawn_function")
 
-    @JvmStatic
+    @JvmField
     public val setSpawnFunctionName: MethodStringName1<MultiplayerSpawner, Unit, Callable> =
         MethodStringName1<MultiplayerSpawner, Unit, Callable>("set_spawn_function")
   }

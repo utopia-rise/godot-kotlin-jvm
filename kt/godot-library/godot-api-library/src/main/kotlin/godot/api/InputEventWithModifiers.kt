@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about mouse, keyboard, and touch gesture input events. This includes
@@ -172,52 +172,52 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCommandOrControlAutoremapName:
         MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
         MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_command_or_control_autoremap")
 
-    @JvmStatic
+    @JvmField
     public val isCommandOrControlAutoremapName: MethodStringName0<InputEventWithModifiers, Boolean>
         = MethodStringName0<InputEventWithModifiers, Boolean>("is_command_or_control_autoremap")
 
-    @JvmStatic
+    @JvmField
     public val isCommandOrControlPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
         MethodStringName0<InputEventWithModifiers, Boolean>("is_command_or_control_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setAltPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
         MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_alt_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isAltPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
         MethodStringName0<InputEventWithModifiers, Boolean>("is_alt_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setShiftPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
         MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_shift_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isShiftPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
         MethodStringName0<InputEventWithModifiers, Boolean>("is_shift_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setCtrlPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
         MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_ctrl_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isCtrlPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
         MethodStringName0<InputEventWithModifiers, Boolean>("is_ctrl_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setMetaPressedName: MethodStringName1<InputEventWithModifiers, Unit, Boolean> =
         MethodStringName1<InputEventWithModifiers, Unit, Boolean>("set_meta_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isMetaPressedName: MethodStringName0<InputEventWithModifiers, Boolean> =
         MethodStringName0<InputEventWithModifiers, Boolean>("is_meta_pressed")
 
-    @JvmStatic
+    @JvmField
     public val getModifiersMaskName: MethodStringName0<InputEventWithModifiers, KeyModifierMask> =
         MethodStringName0<InputEventWithModifiers, KeyModifierMask>("get_modifiers_mask")
   }

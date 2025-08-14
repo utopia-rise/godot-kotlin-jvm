@@ -25,8 +25,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
@@ -157,23 +157,23 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getSkeletonName: MethodStringName0<SkeletonModifier3D, Skeleton3D?> =
         MethodStringName0<SkeletonModifier3D, Skeleton3D?>("get_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val setActiveName: MethodStringName1<SkeletonModifier3D, Unit, Boolean> =
         MethodStringName1<SkeletonModifier3D, Unit, Boolean>("set_active")
 
-    @JvmStatic
+    @JvmField
     public val isActiveName: MethodStringName0<SkeletonModifier3D, Boolean> =
         MethodStringName0<SkeletonModifier3D, Boolean>("is_active")
 
-    @JvmStatic
+    @JvmField
     public val setInfluenceName: MethodStringName1<SkeletonModifier3D, Unit, Float> =
         MethodStringName1<SkeletonModifier3D, Unit, Float>("set_influence")
 
-    @JvmStatic
+    @JvmField
     public val getInfluenceName: MethodStringName0<SkeletonModifier3D, Float> =
         MethodStringName0<SkeletonModifier3D, Float>("get_influence")
   }

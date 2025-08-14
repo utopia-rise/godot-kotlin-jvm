@@ -19,7 +19,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
@@ -70,19 +70,19 @@ public open class AudioListener3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val makeCurrentName: MethodStringName0<AudioListener3D, Unit> =
         MethodStringName0<AudioListener3D, Unit>("make_current")
 
-    @JvmStatic
+    @JvmField
     public val clearCurrentName: MethodStringName0<AudioListener3D, Unit> =
         MethodStringName0<AudioListener3D, Unit>("clear_current")
 
-    @JvmStatic
+    @JvmField
     public val isCurrentName: MethodStringName0<AudioListener3D, Boolean> =
         MethodStringName0<AudioListener3D, Boolean>("is_current")
 
-    @JvmStatic
+    @JvmField
     public val getListenerTransformName: MethodStringName0<AudioListener3D, Transform3D> =
         MethodStringName0<AudioListener3D, Transform3D>("get_listener_transform")
   }

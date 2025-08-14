@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class allows to compress or decompress data using GZIP/deflate in a streaming fashion. This
@@ -83,19 +83,19 @@ public open class StreamPeerGZIP : StreamPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val startCompressionName: MethodStringName2<StreamPeerGZIP, Error, Boolean, Int> =
         MethodStringName2<StreamPeerGZIP, Error, Boolean, Int>("start_compression")
 
-    @JvmStatic
+    @JvmField
     public val startDecompressionName: MethodStringName2<StreamPeerGZIP, Error, Boolean, Int> =
         MethodStringName2<StreamPeerGZIP, Error, Boolean, Int>("start_decompression")
 
-    @JvmStatic
+    @JvmField
     public val finishName: MethodStringName0<StreamPeerGZIP, Error> =
         MethodStringName0<StreamPeerGZIP, Error>("finish")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<StreamPeerGZIP, Unit> =
         MethodStringName0<StreamPeerGZIP, Unit>("clear")
   }

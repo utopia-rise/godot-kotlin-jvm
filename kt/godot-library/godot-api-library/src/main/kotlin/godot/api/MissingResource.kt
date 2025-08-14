@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is an internal editor class intended for keeping data of resources of unknown type (most
@@ -83,19 +83,19 @@ public open class MissingResource : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOriginalClassName: MethodStringName1<MissingResource, Unit, String> =
         MethodStringName1<MissingResource, Unit, String>("set_original_class")
 
-    @JvmStatic
+    @JvmField
     public val getOriginalClassName: MethodStringName0<MissingResource, String> =
         MethodStringName0<MissingResource, String>("get_original_class")
 
-    @JvmStatic
+    @JvmField
     public val setRecordingPropertiesName: MethodStringName1<MissingResource, Unit, Boolean> =
         MethodStringName1<MissingResource, Unit, Boolean>("set_recording_properties")
 
-    @JvmStatic
+    @JvmField
     public val isRecordingPropertiesName: MethodStringName0<MissingResource, Boolean> =
         MethodStringName0<MissingResource, Boolean>("is_recording_properties")
   }

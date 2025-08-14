@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
@@ -90,11 +90,11 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFlagsName: MethodStringName1<VisualShaderNodeParticleEmit, Unit, EmitFlags> =
         MethodStringName1<VisualShaderNodeParticleEmit, Unit, EmitFlags>("set_flags")
 
-    @JvmStatic
+    @JvmField
     public val getFlagsName: MethodStringName0<VisualShaderNodeParticleEmit, EmitFlags> =
         MethodStringName0<VisualShaderNodeParticleEmit, EmitFlags>("get_flags")
   }

@@ -18,7 +18,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The [GDExtension] resource type represents a
@@ -88,11 +88,11 @@ public open class GDExtension : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isLibraryOpenName: MethodStringName0<GDExtension, Boolean> =
         MethodStringName0<GDExtension, Boolean>("is_library_open")
 
-    @JvmStatic
+    @JvmField
     public val getMinimumLibraryInitializationLevelName:
         MethodStringName0<GDExtension, InitializationLevel> =
         MethodStringName0<GDExtension, InitializationLevel>("get_minimum_library_initialization_level")

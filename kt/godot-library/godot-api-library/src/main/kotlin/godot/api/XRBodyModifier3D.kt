@@ -24,7 +24,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: XRBodyModifier3D.BodyUpdate): Long = this.or(other.flag)
 
@@ -195,27 +194,27 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBodyTrackerName: MethodStringName1<XRBodyModifier3D, Unit, StringName> =
         MethodStringName1<XRBodyModifier3D, Unit, StringName>("set_body_tracker")
 
-    @JvmStatic
+    @JvmField
     public val getBodyTrackerName: MethodStringName0<XRBodyModifier3D, StringName> =
         MethodStringName0<XRBodyModifier3D, StringName>("get_body_tracker")
 
-    @JvmStatic
+    @JvmField
     public val setBodyUpdateName: MethodStringName1<XRBodyModifier3D, Unit, BodyUpdate> =
         MethodStringName1<XRBodyModifier3D, Unit, BodyUpdate>("set_body_update")
 
-    @JvmStatic
+    @JvmField
     public val getBodyUpdateName: MethodStringName0<XRBodyModifier3D, BodyUpdate> =
         MethodStringName0<XRBodyModifier3D, BodyUpdate>("get_body_update")
 
-    @JvmStatic
+    @JvmField
     public val setBoneUpdateName: MethodStringName1<XRBodyModifier3D, Unit, BoneUpdate> =
         MethodStringName1<XRBodyModifier3D, Unit, BoneUpdate>("set_bone_update")
 
-    @JvmStatic
+    @JvmField
     public val getBoneUpdateName: MethodStringName0<XRBodyModifier3D, BoneUpdate> =
         MethodStringName0<XRBodyModifier3D, BoneUpdate>("get_bone_update")
   }

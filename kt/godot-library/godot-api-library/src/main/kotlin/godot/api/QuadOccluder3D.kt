@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [QuadOccluder3D] stores a flat plane shape that can be used by the engine's occlusion culling
@@ -85,11 +85,11 @@ public open class QuadOccluder3D : Occluder3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<QuadOccluder3D, Unit, Vector2> =
         MethodStringName1<QuadOccluder3D, Unit, Vector2>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<QuadOccluder3D, Vector2> =
         MethodStringName0<QuadOccluder3D, Vector2>("get_size")
   }

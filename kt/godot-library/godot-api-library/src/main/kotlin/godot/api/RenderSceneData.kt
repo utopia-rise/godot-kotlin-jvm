@@ -25,7 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Abstract scene data object, exists for the duration of rendering a single viewport.
@@ -101,27 +101,27 @@ public open class RenderSceneData internal constructor() : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getCamTransformName: MethodStringName0<RenderSceneData, Transform3D> =
         MethodStringName0<RenderSceneData, Transform3D>("get_cam_transform")
 
-    @JvmStatic
+    @JvmField
     public val getCamProjectionName: MethodStringName0<RenderSceneData, Projection> =
         MethodStringName0<RenderSceneData, Projection>("get_cam_projection")
 
-    @JvmStatic
+    @JvmField
     public val getViewCountName: MethodStringName0<RenderSceneData, Long> =
         MethodStringName0<RenderSceneData, Long>("get_view_count")
 
-    @JvmStatic
+    @JvmField
     public val getViewEyeOffsetName: MethodStringName1<RenderSceneData, Vector3, Long> =
         MethodStringName1<RenderSceneData, Vector3, Long>("get_view_eye_offset")
 
-    @JvmStatic
+    @JvmField
     public val getViewProjectionName: MethodStringName1<RenderSceneData, Projection, Long> =
         MethodStringName1<RenderSceneData, Projection, Long>("get_view_projection")
 
-    @JvmStatic
+    @JvmField
     public val getUniformBufferName: MethodStringName0<RenderSceneData, RID> =
         MethodStringName0<RenderSceneData, RID>("get_uniform_buffer")
   }

@@ -32,9 +32,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This is an audio stream that can playback music interactively, combining clips and a transition
@@ -420,105 +420,105 @@ public open class AudioStreamInteractive : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setClipCountName: MethodStringName1<AudioStreamInteractive, Unit, Int> =
         MethodStringName1<AudioStreamInteractive, Unit, Int>("set_clip_count")
 
-    @JvmStatic
+    @JvmField
     public val getClipCountName: MethodStringName0<AudioStreamInteractive, Int> =
         MethodStringName0<AudioStreamInteractive, Int>("get_clip_count")
 
-    @JvmStatic
+    @JvmField
     public val setInitialClipName: MethodStringName1<AudioStreamInteractive, Unit, Int> =
         MethodStringName1<AudioStreamInteractive, Unit, Int>("set_initial_clip")
 
-    @JvmStatic
+    @JvmField
     public val getInitialClipName: MethodStringName0<AudioStreamInteractive, Int> =
         MethodStringName0<AudioStreamInteractive, Int>("get_initial_clip")
 
-    @JvmStatic
+    @JvmField
     public val setClipNameName: MethodStringName2<AudioStreamInteractive, Unit, Int, StringName> =
         MethodStringName2<AudioStreamInteractive, Unit, Int, StringName>("set_clip_name")
 
-    @JvmStatic
+    @JvmField
     public val getClipNameName: MethodStringName1<AudioStreamInteractive, StringName, Int> =
         MethodStringName1<AudioStreamInteractive, StringName, Int>("get_clip_name")
 
-    @JvmStatic
+    @JvmField
     public val setClipStreamName: MethodStringName2<AudioStreamInteractive, Unit, Int, AudioStream?>
         = MethodStringName2<AudioStreamInteractive, Unit, Int, AudioStream?>("set_clip_stream")
 
-    @JvmStatic
+    @JvmField
     public val getClipStreamName: MethodStringName1<AudioStreamInteractive, AudioStream?, Int> =
         MethodStringName1<AudioStreamInteractive, AudioStream?, Int>("get_clip_stream")
 
-    @JvmStatic
+    @JvmField
     public val setClipAutoAdvanceName:
         MethodStringName2<AudioStreamInteractive, Unit, Int, AutoAdvanceMode> =
         MethodStringName2<AudioStreamInteractive, Unit, Int, AutoAdvanceMode>("set_clip_auto_advance")
 
-    @JvmStatic
+    @JvmField
     public val getClipAutoAdvanceName:
         MethodStringName1<AudioStreamInteractive, AutoAdvanceMode, Int> =
         MethodStringName1<AudioStreamInteractive, AutoAdvanceMode, Int>("get_clip_auto_advance")
 
-    @JvmStatic
+    @JvmField
     public val setClipAutoAdvanceNextClipName:
         MethodStringName2<AudioStreamInteractive, Unit, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Unit, Int, Int>("set_clip_auto_advance_next_clip")
 
-    @JvmStatic
+    @JvmField
     public val getClipAutoAdvanceNextClipName: MethodStringName1<AudioStreamInteractive, Int, Int> =
         MethodStringName1<AudioStreamInteractive, Int, Int>("get_clip_auto_advance_next_clip")
 
-    @JvmStatic
+    @JvmField
     public val addTransitionName:
         MethodStringName9<AudioStreamInteractive, Unit, Int, Int, TransitionFromTime, TransitionToTime, FadeMode, Float, Boolean, Int, Boolean>
         =
         MethodStringName9<AudioStreamInteractive, Unit, Int, Int, TransitionFromTime, TransitionToTime, FadeMode, Float, Boolean, Int, Boolean>("add_transition")
 
-    @JvmStatic
+    @JvmField
     public val hasTransitionName: MethodStringName2<AudioStreamInteractive, Boolean, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Boolean, Int, Int>("has_transition")
 
-    @JvmStatic
+    @JvmField
     public val eraseTransitionName: MethodStringName2<AudioStreamInteractive, Unit, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Unit, Int, Int>("erase_transition")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionListName: MethodStringName0<AudioStreamInteractive, PackedInt32Array> =
         MethodStringName0<AudioStreamInteractive, PackedInt32Array>("get_transition_list")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionFromTimeName:
         MethodStringName2<AudioStreamInteractive, TransitionFromTime, Int, Int> =
         MethodStringName2<AudioStreamInteractive, TransitionFromTime, Int, Int>("get_transition_from_time")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionToTimeName:
         MethodStringName2<AudioStreamInteractive, TransitionToTime, Int, Int> =
         MethodStringName2<AudioStreamInteractive, TransitionToTime, Int, Int>("get_transition_to_time")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionFadeModeName:
         MethodStringName2<AudioStreamInteractive, FadeMode, Int, Int> =
         MethodStringName2<AudioStreamInteractive, FadeMode, Int, Int>("get_transition_fade_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionFadeBeatsName:
         MethodStringName2<AudioStreamInteractive, Float, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Float, Int, Int>("get_transition_fade_beats")
 
-    @JvmStatic
+    @JvmField
     public val isTransitionUsingFillerClipName:
         MethodStringName2<AudioStreamInteractive, Boolean, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Boolean, Int, Int>("is_transition_using_filler_clip")
 
-    @JvmStatic
+    @JvmField
     public val getTransitionFillerClipName: MethodStringName2<AudioStreamInteractive, Int, Int, Int>
         = MethodStringName2<AudioStreamInteractive, Int, Int, Int>("get_transition_filler_clip")
 
-    @JvmStatic
+    @JvmField
     public val isTransitionHoldingPreviousName:
         MethodStringName2<AudioStreamInteractive, Boolean, Int, Int> =
         MethodStringName2<AudioStreamInteractive, Boolean, Int, Int>("is_transition_holding_previous")

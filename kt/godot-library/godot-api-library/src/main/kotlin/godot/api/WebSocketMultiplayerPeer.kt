@@ -31,9 +31,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Base class for WebSocket server and client, allowing them to be used as multiplayer peer for the
@@ -336,77 +336,77 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createClientName:
         MethodStringName2<WebSocketMultiplayerPeer, Error, String, TLSOptions?> =
         MethodStringName2<WebSocketMultiplayerPeer, Error, String, TLSOptions?>("create_client")
 
-    @JvmStatic
+    @JvmField
     public val createServerName:
         MethodStringName3<WebSocketMultiplayerPeer, Error, Int, String, TLSOptions?> =
         MethodStringName3<WebSocketMultiplayerPeer, Error, Int, String, TLSOptions?>("create_server")
 
-    @JvmStatic
+    @JvmField
     public val getPeerName: MethodStringName1<WebSocketMultiplayerPeer, WebSocketPeer?, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, WebSocketPeer?, Int>("get_peer")
 
-    @JvmStatic
+    @JvmField
     public val getPeerAddressName: MethodStringName1<WebSocketMultiplayerPeer, String, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, String, Int>("get_peer_address")
 
-    @JvmStatic
+    @JvmField
     public val getPeerPortName: MethodStringName1<WebSocketMultiplayerPeer, Int, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, Int, Int>("get_peer_port")
 
-    @JvmStatic
+    @JvmField
     public val getSupportedProtocolsName:
         MethodStringName0<WebSocketMultiplayerPeer, PackedStringArray> =
         MethodStringName0<WebSocketMultiplayerPeer, PackedStringArray>("get_supported_protocols")
 
-    @JvmStatic
+    @JvmField
     public val setSupportedProtocolsName:
         MethodStringName1<WebSocketMultiplayerPeer, Unit, PackedStringArray> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, PackedStringArray>("set_supported_protocols")
 
-    @JvmStatic
+    @JvmField
     public val getHandshakeHeadersName:
         MethodStringName0<WebSocketMultiplayerPeer, PackedStringArray> =
         MethodStringName0<WebSocketMultiplayerPeer, PackedStringArray>("get_handshake_headers")
 
-    @JvmStatic
+    @JvmField
     public val setHandshakeHeadersName:
         MethodStringName1<WebSocketMultiplayerPeer, Unit, PackedStringArray> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, PackedStringArray>("set_handshake_headers")
 
-    @JvmStatic
+    @JvmField
     public val getInboundBufferSizeName: MethodStringName0<WebSocketMultiplayerPeer, Int> =
         MethodStringName0<WebSocketMultiplayerPeer, Int>("get_inbound_buffer_size")
 
-    @JvmStatic
+    @JvmField
     public val setInboundBufferSizeName: MethodStringName1<WebSocketMultiplayerPeer, Unit, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, Int>("set_inbound_buffer_size")
 
-    @JvmStatic
+    @JvmField
     public val getOutboundBufferSizeName: MethodStringName0<WebSocketMultiplayerPeer, Int> =
         MethodStringName0<WebSocketMultiplayerPeer, Int>("get_outbound_buffer_size")
 
-    @JvmStatic
+    @JvmField
     public val setOutboundBufferSizeName: MethodStringName1<WebSocketMultiplayerPeer, Unit, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, Int>("set_outbound_buffer_size")
 
-    @JvmStatic
+    @JvmField
     public val getHandshakeTimeoutName: MethodStringName0<WebSocketMultiplayerPeer, Float> =
         MethodStringName0<WebSocketMultiplayerPeer, Float>("get_handshake_timeout")
 
-    @JvmStatic
+    @JvmField
     public val setHandshakeTimeoutName: MethodStringName1<WebSocketMultiplayerPeer, Unit, Float> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, Float>("set_handshake_timeout")
 
-    @JvmStatic
+    @JvmField
     public val setMaxQueuedPacketsName: MethodStringName1<WebSocketMultiplayerPeer, Unit, Int> =
         MethodStringName1<WebSocketMultiplayerPeer, Unit, Int>("set_max_queued_packets")
 
-    @JvmStatic
+    @JvmField
     public val getMaxQueuedPacketsName: MethodStringName0<WebSocketMultiplayerPeer, Int> =
         MethodStringName0<WebSocketMultiplayerPeer, Int>("get_max_queued_packets")
   }

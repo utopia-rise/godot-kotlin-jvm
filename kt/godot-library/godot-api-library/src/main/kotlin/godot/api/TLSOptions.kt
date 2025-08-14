@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -106,39 +107,39 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val clientName: MethodStringName2<TLSOptions, TLSOptions?, X509Certificate?, String> =
         MethodStringName2<TLSOptions, TLSOptions?, X509Certificate?, String>("client")
 
-    @JvmStatic
+    @JvmField
     public val clientUnsafeName: MethodStringName1<TLSOptions, TLSOptions?, X509Certificate?> =
         MethodStringName1<TLSOptions, TLSOptions?, X509Certificate?>("client_unsafe")
 
-    @JvmStatic
+    @JvmField
     public val serverName: MethodStringName2<TLSOptions, TLSOptions?, CryptoKey?, X509Certificate?>
         = MethodStringName2<TLSOptions, TLSOptions?, CryptoKey?, X509Certificate?>("server")
 
-    @JvmStatic
+    @JvmField
     public val isServerName: MethodStringName0<TLSOptions, Boolean> =
         MethodStringName0<TLSOptions, Boolean>("is_server")
 
-    @JvmStatic
+    @JvmField
     public val isUnsafeClientName: MethodStringName0<TLSOptions, Boolean> =
         MethodStringName0<TLSOptions, Boolean>("is_unsafe_client")
 
-    @JvmStatic
+    @JvmField
     public val getCommonNameOverrideName: MethodStringName0<TLSOptions, String> =
         MethodStringName0<TLSOptions, String>("get_common_name_override")
 
-    @JvmStatic
+    @JvmField
     public val getTrustedCaChainName: MethodStringName0<TLSOptions, X509Certificate?> =
         MethodStringName0<TLSOptions, X509Certificate?>("get_trusted_ca_chain")
 
-    @JvmStatic
+    @JvmField
     public val getPrivateKeyName: MethodStringName0<TLSOptions, CryptoKey?> =
         MethodStringName0<TLSOptions, CryptoKey?>("get_private_key")
 
-    @JvmStatic
+    @JvmField
     public val getOwnCertificateName: MethodStringName0<TLSOptions, X509Certificate?> =
         MethodStringName0<TLSOptions, X509Certificate?>("get_own_certificate")
 

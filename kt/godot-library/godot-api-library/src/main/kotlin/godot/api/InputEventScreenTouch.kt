@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about multi-touch press/release input events. Supports touch press, touch
@@ -165,35 +165,35 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setIndexName: MethodStringName1<InputEventScreenTouch, Unit, Int> =
         MethodStringName1<InputEventScreenTouch, Unit, Int>("set_index")
 
-    @JvmStatic
+    @JvmField
     public val getIndexName: MethodStringName0<InputEventScreenTouch, Int> =
         MethodStringName0<InputEventScreenTouch, Int>("get_index")
 
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<InputEventScreenTouch, Unit, Vector2> =
         MethodStringName1<InputEventScreenTouch, Unit, Vector2>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<InputEventScreenTouch, Vector2> =
         MethodStringName0<InputEventScreenTouch, Vector2>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val setPressedName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
         MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setCanceledName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
         MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_canceled")
 
-    @JvmStatic
+    @JvmField
     public val setDoubleTapName: MethodStringName1<InputEventScreenTouch, Unit, Boolean> =
         MethodStringName1<InputEventScreenTouch, Unit, Boolean>("set_double_tap")
 
-    @JvmStatic
+    @JvmField
     public val isDoubleTapName: MethodStringName0<InputEventScreenTouch, Boolean> =
         MethodStringName0<InputEventScreenTouch, Boolean>("is_double_tap")
   }

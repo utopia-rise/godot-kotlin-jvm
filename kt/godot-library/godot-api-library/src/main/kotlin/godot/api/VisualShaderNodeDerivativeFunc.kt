@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node is only available in `Fragment` and `Light` visual shaders.
@@ -202,27 +202,27 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, OpType> =
         MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeDerivativeFunc, OpType> =
         MethodStringName0<VisualShaderNodeDerivativeFunc, OpType>("get_op_type")
 
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeDerivativeFunc, Function> =
         MethodStringName0<VisualShaderNodeDerivativeFunc, Function>("get_function")
 
-    @JvmStatic
+    @JvmField
     public val setPrecisionName: MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Precision>
         = MethodStringName1<VisualShaderNodeDerivativeFunc, Unit, Precision>("set_precision")
 
-    @JvmStatic
+    @JvmField
     public val getPrecisionName: MethodStringName0<VisualShaderNodeDerivativeFunc, Precision> =
         MethodStringName0<VisualShaderNodeDerivativeFunc, Precision>("get_precision")
   }

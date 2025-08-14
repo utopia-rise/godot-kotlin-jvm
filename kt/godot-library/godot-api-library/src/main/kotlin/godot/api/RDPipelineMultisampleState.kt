@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is
@@ -184,56 +184,56 @@ public open class RDPipelineMultisampleState : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSampleCountName:
         MethodStringName1<RDPipelineMultisampleState, Unit, RenderingDevice.TextureSamples> =
         MethodStringName1<RDPipelineMultisampleState, Unit, RenderingDevice.TextureSamples>("set_sample_count")
 
-    @JvmStatic
+    @JvmField
     public val getSampleCountName:
         MethodStringName0<RDPipelineMultisampleState, RenderingDevice.TextureSamples> =
         MethodStringName0<RDPipelineMultisampleState, RenderingDevice.TextureSamples>("get_sample_count")
 
-    @JvmStatic
+    @JvmField
     public val setEnableSampleShadingName:
         MethodStringName1<RDPipelineMultisampleState, Unit, Boolean> =
         MethodStringName1<RDPipelineMultisampleState, Unit, Boolean>("set_enable_sample_shading")
 
-    @JvmStatic
+    @JvmField
     public val getEnableSampleShadingName: MethodStringName0<RDPipelineMultisampleState, Boolean> =
         MethodStringName0<RDPipelineMultisampleState, Boolean>("get_enable_sample_shading")
 
-    @JvmStatic
+    @JvmField
     public val setMinSampleShadingName: MethodStringName1<RDPipelineMultisampleState, Unit, Float> =
         MethodStringName1<RDPipelineMultisampleState, Unit, Float>("set_min_sample_shading")
 
-    @JvmStatic
+    @JvmField
     public val getMinSampleShadingName: MethodStringName0<RDPipelineMultisampleState, Float> =
         MethodStringName0<RDPipelineMultisampleState, Float>("get_min_sample_shading")
 
-    @JvmStatic
+    @JvmField
     public val setEnableAlphaToCoverageName:
         MethodStringName1<RDPipelineMultisampleState, Unit, Boolean> =
         MethodStringName1<RDPipelineMultisampleState, Unit, Boolean>("set_enable_alpha_to_coverage")
 
-    @JvmStatic
+    @JvmField
     public val getEnableAlphaToCoverageName: MethodStringName0<RDPipelineMultisampleState, Boolean>
         = MethodStringName0<RDPipelineMultisampleState, Boolean>("get_enable_alpha_to_coverage")
 
-    @JvmStatic
+    @JvmField
     public val setEnableAlphaToOneName: MethodStringName1<RDPipelineMultisampleState, Unit, Boolean>
         = MethodStringName1<RDPipelineMultisampleState, Unit, Boolean>("set_enable_alpha_to_one")
 
-    @JvmStatic
+    @JvmField
     public val getEnableAlphaToOneName: MethodStringName0<RDPipelineMultisampleState, Boolean> =
         MethodStringName0<RDPipelineMultisampleState, Boolean>("get_enable_alpha_to_one")
 
-    @JvmStatic
+    @JvmField
     public val setSampleMasksName:
         MethodStringName1<RDPipelineMultisampleState, Unit, VariantArray<Long>> =
         MethodStringName1<RDPipelineMultisampleState, Unit, VariantArray<Long>>("set_sample_masks")
 
-    @JvmStatic
+    @JvmField
     public val getSampleMasksName: MethodStringName0<RDPipelineMultisampleState, VariantArray<Long>>
         = MethodStringName0<RDPipelineMultisampleState, VariantArray<Long>>("get_sample_masks")
   }

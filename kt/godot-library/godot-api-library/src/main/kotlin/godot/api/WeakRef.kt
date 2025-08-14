@@ -16,7 +16,7 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A weakref can hold a [RefCounted] without contributing to the reference counter. A weakref can be
@@ -44,7 +44,7 @@ public open class WeakRef : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getRefName: MethodStringName0<WeakRef, Any?> =
         MethodStringName0<WeakRef, Any?>("get_ref")
   }

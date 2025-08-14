@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Displays the content of an external buffer provided by the platform.
@@ -109,15 +109,15 @@ public open class ExternalTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<ExternalTexture, Unit, Vector2> =
         MethodStringName1<ExternalTexture, Unit, Vector2>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getExternalTextureIdName: MethodStringName0<ExternalTexture, Long> =
         MethodStringName0<ExternalTexture, Long>("get_external_texture_id")
 
-    @JvmStatic
+    @JvmField
     public val setExternalBufferIdName: MethodStringName1<ExternalTexture, Unit, Long> =
         MethodStringName1<ExternalTexture, Unit, Long>("set_external_buffer_id")
   }

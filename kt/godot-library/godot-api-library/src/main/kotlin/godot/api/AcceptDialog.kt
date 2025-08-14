@@ -25,9 +25,9 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The default use of [AcceptDialog] is to allow it to only be accepted or closed, with the same
@@ -248,67 +248,67 @@ public open class AcceptDialog : Window() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getOkButtonName: MethodStringName0<AcceptDialog, Button?> =
         MethodStringName0<AcceptDialog, Button?>("get_ok_button")
 
-    @JvmStatic
+    @JvmField
     public val getLabelName: MethodStringName0<AcceptDialog, Label?> =
         MethodStringName0<AcceptDialog, Label?>("get_label")
 
-    @JvmStatic
+    @JvmField
     public val setHideOnOkName: MethodStringName1<AcceptDialog, Unit, Boolean> =
         MethodStringName1<AcceptDialog, Unit, Boolean>("set_hide_on_ok")
 
-    @JvmStatic
+    @JvmField
     public val getHideOnOkName: MethodStringName0<AcceptDialog, Boolean> =
         MethodStringName0<AcceptDialog, Boolean>("get_hide_on_ok")
 
-    @JvmStatic
+    @JvmField
     public val setCloseOnEscapeName: MethodStringName1<AcceptDialog, Unit, Boolean> =
         MethodStringName1<AcceptDialog, Unit, Boolean>("set_close_on_escape")
 
-    @JvmStatic
+    @JvmField
     public val getCloseOnEscapeName: MethodStringName0<AcceptDialog, Boolean> =
         MethodStringName0<AcceptDialog, Boolean>("get_close_on_escape")
 
-    @JvmStatic
+    @JvmField
     public val addButtonName: MethodStringName3<AcceptDialog, Button?, String, Boolean, String> =
         MethodStringName3<AcceptDialog, Button?, String, Boolean, String>("add_button")
 
-    @JvmStatic
+    @JvmField
     public val addCancelButtonName: MethodStringName1<AcceptDialog, Button?, String> =
         MethodStringName1<AcceptDialog, Button?, String>("add_cancel_button")
 
-    @JvmStatic
+    @JvmField
     public val removeButtonName: MethodStringName1<AcceptDialog, Unit, Button?> =
         MethodStringName1<AcceptDialog, Unit, Button?>("remove_button")
 
-    @JvmStatic
+    @JvmField
     public val registerTextEnterName: MethodStringName1<AcceptDialog, Unit, LineEdit?> =
         MethodStringName1<AcceptDialog, Unit, LineEdit?>("register_text_enter")
 
-    @JvmStatic
+    @JvmField
     public val setTextName: MethodStringName1<AcceptDialog, Unit, String> =
         MethodStringName1<AcceptDialog, Unit, String>("set_text")
 
-    @JvmStatic
+    @JvmField
     public val getTextName: MethodStringName0<AcceptDialog, String> =
         MethodStringName0<AcceptDialog, String>("get_text")
 
-    @JvmStatic
+    @JvmField
     public val setAutowrapName: MethodStringName1<AcceptDialog, Unit, Boolean> =
         MethodStringName1<AcceptDialog, Unit, Boolean>("set_autowrap")
 
-    @JvmStatic
+    @JvmField
     public val hasAutowrapName: MethodStringName0<AcceptDialog, Boolean> =
         MethodStringName0<AcceptDialog, Boolean>("has_autowrap")
 
-    @JvmStatic
+    @JvmField
     public val setOkButtonTextName: MethodStringName1<AcceptDialog, Unit, String> =
         MethodStringName1<AcceptDialog, Unit, String>("set_ok_button_text")
 
-    @JvmStatic
+    @JvmField
     public val getOkButtonTextName: MethodStringName0<AcceptDialog, String> =
         MethodStringName0<AcceptDialog, String>("get_ok_button_text")
   }

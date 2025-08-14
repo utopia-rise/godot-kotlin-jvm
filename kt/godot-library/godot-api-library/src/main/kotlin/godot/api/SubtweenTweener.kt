@@ -17,7 +17,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [SubtweenTweener] is used to execute a [Tween] as one step in a sequence defined by another
@@ -43,7 +43,7 @@ public open class SubtweenTweener : Tweener() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDelayName: MethodStringName1<SubtweenTweener, SubtweenTweener?, Double> =
         MethodStringName1<SubtweenTweener, SubtweenTweener?, Double>("set_delay")
   }

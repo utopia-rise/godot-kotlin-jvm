@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for all joints in 2D physics. 2D joints bind together two physics bodies
@@ -147,39 +147,39 @@ public open class Joint2D internal constructor() : Node2D() {
   public final fun setNodeB(node: String) = setNodeB(node.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setNodeAName: MethodStringName1<Joint2D, Unit, NodePath> =
         MethodStringName1<Joint2D, Unit, NodePath>("set_node_a")
 
-    @JvmStatic
+    @JvmField
     public val getNodeAName: MethodStringName0<Joint2D, NodePath> =
         MethodStringName0<Joint2D, NodePath>("get_node_a")
 
-    @JvmStatic
+    @JvmField
     public val setNodeBName: MethodStringName1<Joint2D, Unit, NodePath> =
         MethodStringName1<Joint2D, Unit, NodePath>("set_node_b")
 
-    @JvmStatic
+    @JvmField
     public val getNodeBName: MethodStringName0<Joint2D, NodePath> =
         MethodStringName0<Joint2D, NodePath>("get_node_b")
 
-    @JvmStatic
+    @JvmField
     public val setBiasName: MethodStringName1<Joint2D, Unit, Float> =
         MethodStringName1<Joint2D, Unit, Float>("set_bias")
 
-    @JvmStatic
+    @JvmField
     public val getBiasName: MethodStringName0<Joint2D, Float> =
         MethodStringName0<Joint2D, Float>("get_bias")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeNodesFromCollisionName: MethodStringName1<Joint2D, Unit, Boolean> =
         MethodStringName1<Joint2D, Unit, Boolean>("set_exclude_nodes_from_collision")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeNodesFromCollisionName: MethodStringName0<Joint2D, Boolean> =
         MethodStringName0<Joint2D, Boolean>("get_exclude_nodes_from_collision")
 
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<Joint2D, RID> =
         MethodStringName0<Joint2D, RID>("get_rid")
   }

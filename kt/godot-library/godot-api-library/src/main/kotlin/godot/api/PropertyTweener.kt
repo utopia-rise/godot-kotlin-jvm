@@ -23,7 +23,7 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [PropertyTweener] is used to interpolate a property in an object. See [Tween.tweenProperty] for
@@ -188,33 +188,33 @@ public open class PropertyTweener : Tweener() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val fromName: MethodStringName1<PropertyTweener, PropertyTweener?, Any?> =
         MethodStringName1<PropertyTweener, PropertyTweener?, Any?>("from")
 
-    @JvmStatic
+    @JvmField
     public val fromCurrentName: MethodStringName0<PropertyTweener, PropertyTweener?> =
         MethodStringName0<PropertyTweener, PropertyTweener?>("from_current")
 
-    @JvmStatic
+    @JvmField
     public val asRelativeName: MethodStringName0<PropertyTweener, PropertyTweener?> =
         MethodStringName0<PropertyTweener, PropertyTweener?>("as_relative")
 
-    @JvmStatic
+    @JvmField
     public val setTransName:
         MethodStringName1<PropertyTweener, PropertyTweener?, Tween.TransitionType> =
         MethodStringName1<PropertyTweener, PropertyTweener?, Tween.TransitionType>("set_trans")
 
-    @JvmStatic
+    @JvmField
     public val setEaseName: MethodStringName1<PropertyTweener, PropertyTweener?, Tween.EaseType> =
         MethodStringName1<PropertyTweener, PropertyTweener?, Tween.EaseType>("set_ease")
 
-    @JvmStatic
+    @JvmField
     public val setCustomInterpolatorName:
         MethodStringName1<PropertyTweener, PropertyTweener?, Callable> =
         MethodStringName1<PropertyTweener, PropertyTweener?, Callable>("set_custom_interpolator")
 
-    @JvmStatic
+    @JvmField
     public val setDelayName: MethodStringName1<PropertyTweener, PropertyTweener?, Double> =
         MethodStringName1<PropertyTweener, PropertyTweener?, Double>("set_delay")
   }

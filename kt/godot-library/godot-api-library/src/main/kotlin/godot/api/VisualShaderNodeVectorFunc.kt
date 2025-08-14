@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A visual shader node able to perform different functions using vectors.
@@ -206,11 +206,11 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeVectorFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeVectorFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeVectorFunc, Function> =
         MethodStringName0<VisualShaderNodeVectorFunc, Function>("get_function")
   }

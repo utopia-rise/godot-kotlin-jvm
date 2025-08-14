@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translates to `step(edge, x)` in the shader language.
@@ -102,11 +102,11 @@ public open class VisualShaderNodeStep : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeStep, Unit, OpType> =
         MethodStringName1<VisualShaderNodeStep, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeStep, OpType> =
         MethodStringName0<VisualShaderNodeStep, OpType>("get_op_type")
   }

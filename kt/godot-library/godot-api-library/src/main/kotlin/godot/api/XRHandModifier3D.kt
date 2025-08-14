@@ -22,8 +22,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node uses hand tracking data from an [XRHandTracker] to pose the skeleton of a hand mesh.
@@ -118,19 +118,19 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHandTrackerName: MethodStringName1<XRHandModifier3D, Unit, StringName> =
         MethodStringName1<XRHandModifier3D, Unit, StringName>("set_hand_tracker")
 
-    @JvmStatic
+    @JvmField
     public val getHandTrackerName: MethodStringName0<XRHandModifier3D, StringName> =
         MethodStringName0<XRHandModifier3D, StringName>("get_hand_tracker")
 
-    @JvmStatic
+    @JvmField
     public val setBoneUpdateName: MethodStringName1<XRHandModifier3D, Unit, BoneUpdate> =
         MethodStringName1<XRHandModifier3D, Unit, BoneUpdate>("set_bone_update")
 
-    @JvmStatic
+    @JvmField
     public val getBoneUpdateName: MethodStringName0<XRHandModifier3D, BoneUpdate> =
         MethodStringName0<XRHandModifier3D, BoneUpdate>("get_bone_update")
   }

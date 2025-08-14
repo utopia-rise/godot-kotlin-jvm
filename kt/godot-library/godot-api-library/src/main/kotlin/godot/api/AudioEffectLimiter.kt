@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
@@ -123,35 +123,35 @@ public open class AudioEffectLimiter : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCeilingDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
         MethodStringName1<AudioEffectLimiter, Unit, Float>("set_ceiling_db")
 
-    @JvmStatic
+    @JvmField
     public val getCeilingDbName: MethodStringName0<AudioEffectLimiter, Float> =
         MethodStringName0<AudioEffectLimiter, Float>("get_ceiling_db")
 
-    @JvmStatic
+    @JvmField
     public val setThresholdDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
         MethodStringName1<AudioEffectLimiter, Unit, Float>("set_threshold_db")
 
-    @JvmStatic
+    @JvmField
     public val getThresholdDbName: MethodStringName0<AudioEffectLimiter, Float> =
         MethodStringName0<AudioEffectLimiter, Float>("get_threshold_db")
 
-    @JvmStatic
+    @JvmField
     public val setSoftClipDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
         MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_db")
 
-    @JvmStatic
+    @JvmField
     public val getSoftClipDbName: MethodStringName0<AudioEffectLimiter, Float> =
         MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_db")
 
-    @JvmStatic
+    @JvmField
     public val setSoftClipRatioName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
         MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getSoftClipRatioName: MethodStringName0<AudioEffectLimiter, Float> =
         MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_ratio")
   }

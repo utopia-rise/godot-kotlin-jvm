@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -298,104 +298,104 @@ public open class RDTextureFormat : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFormatName: MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat>("set_format")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<RDTextureFormat, RenderingDevice.DataFormat> =
         MethodStringName0<RDTextureFormat, RenderingDevice.DataFormat>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<RDTextureFormat, Unit, Long> =
         MethodStringName1<RDTextureFormat, Unit, Long>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<RDTextureFormat, Long> =
         MethodStringName0<RDTextureFormat, Long>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<RDTextureFormat, Unit, Long> =
         MethodStringName1<RDTextureFormat, Unit, Long>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<RDTextureFormat, Long> =
         MethodStringName0<RDTextureFormat, Long>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setDepthName: MethodStringName1<RDTextureFormat, Unit, Long> =
         MethodStringName1<RDTextureFormat, Unit, Long>("set_depth")
 
-    @JvmStatic
+    @JvmField
     public val getDepthName: MethodStringName0<RDTextureFormat, Long> =
         MethodStringName0<RDTextureFormat, Long>("get_depth")
 
-    @JvmStatic
+    @JvmField
     public val setArrayLayersName: MethodStringName1<RDTextureFormat, Unit, Long> =
         MethodStringName1<RDTextureFormat, Unit, Long>("set_array_layers")
 
-    @JvmStatic
+    @JvmField
     public val getArrayLayersName: MethodStringName0<RDTextureFormat, Long> =
         MethodStringName0<RDTextureFormat, Long>("get_array_layers")
 
-    @JvmStatic
+    @JvmField
     public val setMipmapsName: MethodStringName1<RDTextureFormat, Unit, Long> =
         MethodStringName1<RDTextureFormat, Unit, Long>("set_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val getMipmapsName: MethodStringName0<RDTextureFormat, Long> =
         MethodStringName0<RDTextureFormat, Long>("get_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val setTextureTypeName:
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureType> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureType>("set_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val getTextureTypeName: MethodStringName0<RDTextureFormat, RenderingDevice.TextureType> =
         MethodStringName0<RDTextureFormat, RenderingDevice.TextureType>("get_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val setSamplesName:
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureSamples> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureSamples>("set_samples")
 
-    @JvmStatic
+    @JvmField
     public val getSamplesName: MethodStringName0<RDTextureFormat, RenderingDevice.TextureSamples> =
         MethodStringName0<RDTextureFormat, RenderingDevice.TextureSamples>("get_samples")
 
-    @JvmStatic
+    @JvmField
     public val setUsageBitsName:
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureUsageBits> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.TextureUsageBits>("set_usage_bits")
 
-    @JvmStatic
+    @JvmField
     public val getUsageBitsName:
         MethodStringName0<RDTextureFormat, RenderingDevice.TextureUsageBits> =
         MethodStringName0<RDTextureFormat, RenderingDevice.TextureUsageBits>("get_usage_bits")
 
-    @JvmStatic
+    @JvmField
     public val setIsResolveBufferName: MethodStringName1<RDTextureFormat, Unit, Boolean> =
         MethodStringName1<RDTextureFormat, Unit, Boolean>("set_is_resolve_buffer")
 
-    @JvmStatic
+    @JvmField
     public val getIsResolveBufferName: MethodStringName0<RDTextureFormat, Boolean> =
         MethodStringName0<RDTextureFormat, Boolean>("get_is_resolve_buffer")
 
-    @JvmStatic
+    @JvmField
     public val setIsDiscardableName: MethodStringName1<RDTextureFormat, Unit, Boolean> =
         MethodStringName1<RDTextureFormat, Unit, Boolean>("set_is_discardable")
 
-    @JvmStatic
+    @JvmField
     public val getIsDiscardableName: MethodStringName0<RDTextureFormat, Boolean> =
         MethodStringName0<RDTextureFormat, Boolean>("get_is_discardable")
 
-    @JvmStatic
+    @JvmField
     public val addShareableFormatName:
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat>("add_shareable_format")
 
-    @JvmStatic
+    @JvmField
     public val removeShareableFormatName:
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat> =
         MethodStringName1<RDTextureFormat, Unit, RenderingDevice.DataFormat>("remove_shareable_format")

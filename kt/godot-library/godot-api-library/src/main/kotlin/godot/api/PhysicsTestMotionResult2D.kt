@@ -24,7 +24,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].
@@ -156,55 +156,55 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTravelName: MethodStringName0<PhysicsTestMotionResult2D, Vector2> =
         MethodStringName0<PhysicsTestMotionResult2D, Vector2>("get_travel")
 
-    @JvmStatic
+    @JvmField
     public val getRemainderName: MethodStringName0<PhysicsTestMotionResult2D, Vector2> =
         MethodStringName0<PhysicsTestMotionResult2D, Vector2>("get_remainder")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionPointName: MethodStringName0<PhysicsTestMotionResult2D, Vector2> =
         MethodStringName0<PhysicsTestMotionResult2D, Vector2>("get_collision_point")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionNormalName: MethodStringName0<PhysicsTestMotionResult2D, Vector2> =
         MethodStringName0<PhysicsTestMotionResult2D, Vector2>("get_collision_normal")
 
-    @JvmStatic
+    @JvmField
     public val getColliderVelocityName: MethodStringName0<PhysicsTestMotionResult2D, Vector2> =
         MethodStringName0<PhysicsTestMotionResult2D, Vector2>("get_collider_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getColliderIdName: MethodStringName0<PhysicsTestMotionResult2D, Long> =
         MethodStringName0<PhysicsTestMotionResult2D, Long>("get_collider_id")
 
-    @JvmStatic
+    @JvmField
     public val getColliderRidName: MethodStringName0<PhysicsTestMotionResult2D, RID> =
         MethodStringName0<PhysicsTestMotionResult2D, RID>("get_collider_rid")
 
-    @JvmStatic
+    @JvmField
     public val getColliderName: MethodStringName0<PhysicsTestMotionResult2D, Object?> =
         MethodStringName0<PhysicsTestMotionResult2D, Object?>("get_collider")
 
-    @JvmStatic
+    @JvmField
     public val getColliderShapeName: MethodStringName0<PhysicsTestMotionResult2D, Int> =
         MethodStringName0<PhysicsTestMotionResult2D, Int>("get_collider_shape")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionLocalShapeName: MethodStringName0<PhysicsTestMotionResult2D, Int> =
         MethodStringName0<PhysicsTestMotionResult2D, Int>("get_collision_local_shape")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionDepthName: MethodStringName0<PhysicsTestMotionResult2D, Float> =
         MethodStringName0<PhysicsTestMotionResult2D, Float>("get_collision_depth")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionSafeFractionName: MethodStringName0<PhysicsTestMotionResult2D, Float> =
         MethodStringName0<PhysicsTestMotionResult2D, Float>("get_collision_safe_fraction")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionUnsafeFractionName: MethodStringName0<PhysicsTestMotionResult2D, Float> =
         MethodStringName0<PhysicsTestMotionResult2D, Float>("get_collision_unsafe_fraction")
   }

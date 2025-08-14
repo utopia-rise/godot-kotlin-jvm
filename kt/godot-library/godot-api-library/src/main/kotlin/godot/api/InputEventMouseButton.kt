@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about mouse click events. See [Node.Input].
@@ -143,35 +143,35 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFactorName: MethodStringName1<InputEventMouseButton, Unit, Float> =
         MethodStringName1<InputEventMouseButton, Unit, Float>("set_factor")
 
-    @JvmStatic
+    @JvmField
     public val getFactorName: MethodStringName0<InputEventMouseButton, Float> =
         MethodStringName0<InputEventMouseButton, Float>("get_factor")
 
-    @JvmStatic
+    @JvmField
     public val setButtonIndexName: MethodStringName1<InputEventMouseButton, Unit, MouseButton> =
         MethodStringName1<InputEventMouseButton, Unit, MouseButton>("set_button_index")
 
-    @JvmStatic
+    @JvmField
     public val getButtonIndexName: MethodStringName0<InputEventMouseButton, MouseButton> =
         MethodStringName0<InputEventMouseButton, MouseButton>("get_button_index")
 
-    @JvmStatic
+    @JvmField
     public val setPressedName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
         MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setCanceledName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
         MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_canceled")
 
-    @JvmStatic
+    @JvmField
     public val setDoubleClickName: MethodStringName1<InputEventMouseButton, Unit, Boolean> =
         MethodStringName1<InputEventMouseButton, Unit, Boolean>("set_double_click")
 
-    @JvmStatic
+    @JvmField
     public val isDoubleClickName: MethodStringName0<InputEventMouseButton, Boolean> =
         MethodStringName0<InputEventMouseButton, Boolean>("is_double_click")
   }

@@ -22,8 +22,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node enables OpenXR's hand tracking functionality. The node should be a child node of an
@@ -270,43 +270,43 @@ public open class OpenXRHand : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHandName: MethodStringName1<OpenXRHand, Unit, Hands> =
         MethodStringName1<OpenXRHand, Unit, Hands>("set_hand")
 
-    @JvmStatic
+    @JvmField
     public val getHandName: MethodStringName0<OpenXRHand, Hands> =
         MethodStringName0<OpenXRHand, Hands>("get_hand")
 
-    @JvmStatic
+    @JvmField
     public val setHandSkeletonName: MethodStringName1<OpenXRHand, Unit, NodePath> =
         MethodStringName1<OpenXRHand, Unit, NodePath>("set_hand_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val getHandSkeletonName: MethodStringName0<OpenXRHand, NodePath> =
         MethodStringName0<OpenXRHand, NodePath>("get_hand_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val setMotionRangeName: MethodStringName1<OpenXRHand, Unit, MotionRange> =
         MethodStringName1<OpenXRHand, Unit, MotionRange>("set_motion_range")
 
-    @JvmStatic
+    @JvmField
     public val getMotionRangeName: MethodStringName0<OpenXRHand, MotionRange> =
         MethodStringName0<OpenXRHand, MotionRange>("get_motion_range")
 
-    @JvmStatic
+    @JvmField
     public val setSkeletonRigName: MethodStringName1<OpenXRHand, Unit, SkeletonRig> =
         MethodStringName1<OpenXRHand, Unit, SkeletonRig>("set_skeleton_rig")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonRigName: MethodStringName0<OpenXRHand, SkeletonRig> =
         MethodStringName0<OpenXRHand, SkeletonRig>("get_skeleton_rig")
 
-    @JvmStatic
+    @JvmField
     public val setBoneUpdateName: MethodStringName1<OpenXRHand, Unit, BoneUpdate> =
         MethodStringName1<OpenXRHand, Unit, BoneUpdate>("set_bone_update")
 
-    @JvmStatic
+    @JvmField
     public val getBoneUpdateName: MethodStringName0<OpenXRHand, BoneUpdate> =
         MethodStringName0<OpenXRHand, BoneUpdate>("get_bone_update")
   }

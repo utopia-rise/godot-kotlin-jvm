@@ -37,9 +37,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [PopupMenu] is a modal window used to display a list of options. Useful for toolbars and context
@@ -1133,358 +1133,358 @@ public open class PopupMenu : Popup() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val activateItemByEventName: MethodStringName2<PopupMenu, Boolean, InputEvent?, Boolean>
         = MethodStringName2<PopupMenu, Boolean, InputEvent?, Boolean>("activate_item_by_event")
 
-    @JvmStatic
+    @JvmField
     public val setPreferNativeMenuName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_prefer_native_menu")
 
-    @JvmStatic
+    @JvmField
     public val isPreferNativeMenuName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_prefer_native_menu")
 
-    @JvmStatic
+    @JvmField
     public val isNativeMenuName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_native_menu")
 
-    @JvmStatic
+    @JvmField
     public val addItemName: MethodStringName3<PopupMenu, Unit, String, Int, Key> =
         MethodStringName3<PopupMenu, Unit, String, Int, Key>("add_item")
 
-    @JvmStatic
+    @JvmField
     public val addIconItemName: MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key> =
         MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key>("add_icon_item")
 
-    @JvmStatic
+    @JvmField
     public val addCheckItemName: MethodStringName3<PopupMenu, Unit, String, Int, Key> =
         MethodStringName3<PopupMenu, Unit, String, Int, Key>("add_check_item")
 
-    @JvmStatic
+    @JvmField
     public val addIconCheckItemName:
         MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key> =
         MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key>("add_icon_check_item")
 
-    @JvmStatic
+    @JvmField
     public val addRadioCheckItemName: MethodStringName3<PopupMenu, Unit, String, Int, Key> =
         MethodStringName3<PopupMenu, Unit, String, Int, Key>("add_radio_check_item")
 
-    @JvmStatic
+    @JvmField
     public val addIconRadioCheckItemName:
         MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key> =
         MethodStringName4<PopupMenu, Unit, Texture2D?, String, Int, Key>("add_icon_radio_check_item")
 
-    @JvmStatic
+    @JvmField
     public val addMultistateItemName: MethodStringName5<PopupMenu, Unit, String, Int, Int, Int, Key>
         = MethodStringName5<PopupMenu, Unit, String, Int, Int, Int, Key>("add_multistate_item")
 
-    @JvmStatic
+    @JvmField
     public val addShortcutName: MethodStringName4<PopupMenu, Unit, Shortcut?, Int, Boolean, Boolean>
         = MethodStringName4<PopupMenu, Unit, Shortcut?, Int, Boolean, Boolean>("add_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addIconShortcutName:
         MethodStringName5<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean, Boolean> =
         MethodStringName5<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean, Boolean>("add_icon_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addCheckShortcutName: MethodStringName3<PopupMenu, Unit, Shortcut?, Int, Boolean> =
         MethodStringName3<PopupMenu, Unit, Shortcut?, Int, Boolean>("add_check_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addIconCheckShortcutName:
         MethodStringName4<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean> =
         MethodStringName4<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean>("add_icon_check_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addRadioCheckShortcutName:
         MethodStringName3<PopupMenu, Unit, Shortcut?, Int, Boolean> =
         MethodStringName3<PopupMenu, Unit, Shortcut?, Int, Boolean>("add_radio_check_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addIconRadioCheckShortcutName:
         MethodStringName4<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean> =
         MethodStringName4<PopupMenu, Unit, Texture2D?, Shortcut?, Int, Boolean>("add_icon_radio_check_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val addSubmenuItemName: MethodStringName3<PopupMenu, Unit, String, String, Int> =
         MethodStringName3<PopupMenu, Unit, String, String, Int>("add_submenu_item")
 
-    @JvmStatic
+    @JvmField
     public val addSubmenuNodeItemName: MethodStringName3<PopupMenu, Unit, String, PopupMenu?, Int> =
         MethodStringName3<PopupMenu, Unit, String, PopupMenu?, Int>("add_submenu_node_item")
 
-    @JvmStatic
+    @JvmField
     public val setItemTextName: MethodStringName2<PopupMenu, Unit, Int, String> =
         MethodStringName2<PopupMenu, Unit, Int, String>("set_item_text")
 
-    @JvmStatic
+    @JvmField
     public val setItemTextDirectionName:
         MethodStringName2<PopupMenu, Unit, Int, Control.TextDirection> =
         MethodStringName2<PopupMenu, Unit, Int, Control.TextDirection>("set_item_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setItemLanguageName: MethodStringName2<PopupMenu, Unit, Int, String> =
         MethodStringName2<PopupMenu, Unit, Int, String>("set_item_language")
 
-    @JvmStatic
+    @JvmField
     public val setItemIconName: MethodStringName2<PopupMenu, Unit, Int, Texture2D?> =
         MethodStringName2<PopupMenu, Unit, Int, Texture2D?>("set_item_icon")
 
-    @JvmStatic
+    @JvmField
     public val setItemIconMaxWidthName: MethodStringName2<PopupMenu, Unit, Int, Int> =
         MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_icon_max_width")
 
-    @JvmStatic
+    @JvmField
     public val setItemIconModulateName: MethodStringName2<PopupMenu, Unit, Int, Color> =
         MethodStringName2<PopupMenu, Unit, Int, Color>("set_item_icon_modulate")
 
-    @JvmStatic
+    @JvmField
     public val setItemCheckedName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_checked")
 
-    @JvmStatic
+    @JvmField
     public val setItemIdName: MethodStringName2<PopupMenu, Unit, Int, Int> =
         MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_id")
 
-    @JvmStatic
+    @JvmField
     public val setItemAcceleratorName: MethodStringName2<PopupMenu, Unit, Int, Key> =
         MethodStringName2<PopupMenu, Unit, Int, Key>("set_item_accelerator")
 
-    @JvmStatic
+    @JvmField
     public val setItemMetadataName: MethodStringName2<PopupMenu, Unit, Int, Any?> =
         MethodStringName2<PopupMenu, Unit, Int, Any?>("set_item_metadata")
 
-    @JvmStatic
+    @JvmField
     public val setItemDisabledName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setItemSubmenuName: MethodStringName2<PopupMenu, Unit, Int, String> =
         MethodStringName2<PopupMenu, Unit, Int, String>("set_item_submenu")
 
-    @JvmStatic
+    @JvmField
     public val setItemSubmenuNodeName: MethodStringName2<PopupMenu, Unit, Int, PopupMenu?> =
         MethodStringName2<PopupMenu, Unit, Int, PopupMenu?>("set_item_submenu_node")
 
-    @JvmStatic
+    @JvmField
     public val setItemAsSeparatorName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_as_separator")
 
-    @JvmStatic
+    @JvmField
     public val setItemAsCheckableName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_as_checkable")
 
-    @JvmStatic
+    @JvmField
     public val setItemAsRadioCheckableName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_as_radio_checkable")
 
-    @JvmStatic
+    @JvmField
     public val setItemTooltipName: MethodStringName2<PopupMenu, Unit, Int, String> =
         MethodStringName2<PopupMenu, Unit, Int, String>("set_item_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val setItemShortcutName: MethodStringName3<PopupMenu, Unit, Int, Shortcut?, Boolean> =
         MethodStringName3<PopupMenu, Unit, Int, Shortcut?, Boolean>("set_item_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val setItemIndentName: MethodStringName2<PopupMenu, Unit, Int, Int> =
         MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_indent")
 
-    @JvmStatic
+    @JvmField
     public val setItemMultistateName: MethodStringName2<PopupMenu, Unit, Int, Int> =
         MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_multistate")
 
-    @JvmStatic
+    @JvmField
     public val setItemMultistateMaxName: MethodStringName2<PopupMenu, Unit, Int, Int> =
         MethodStringName2<PopupMenu, Unit, Int, Int>("set_item_multistate_max")
 
-    @JvmStatic
+    @JvmField
     public val setItemShortcutDisabledName: MethodStringName2<PopupMenu, Unit, Int, Boolean> =
         MethodStringName2<PopupMenu, Unit, Int, Boolean>("set_item_shortcut_disabled")
 
-    @JvmStatic
+    @JvmField
     public val toggleItemCheckedName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("toggle_item_checked")
 
-    @JvmStatic
+    @JvmField
     public val toggleItemMultistateName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("toggle_item_multistate")
 
-    @JvmStatic
+    @JvmField
     public val getItemTextName: MethodStringName1<PopupMenu, String, Int> =
         MethodStringName1<PopupMenu, String, Int>("get_item_text")
 
-    @JvmStatic
+    @JvmField
     public val getItemTextDirectionName: MethodStringName1<PopupMenu, Control.TextDirection, Int> =
         MethodStringName1<PopupMenu, Control.TextDirection, Int>("get_item_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getItemLanguageName: MethodStringName1<PopupMenu, String, Int> =
         MethodStringName1<PopupMenu, String, Int>("get_item_language")
 
-    @JvmStatic
+    @JvmField
     public val getItemIconName: MethodStringName1<PopupMenu, Texture2D?, Int> =
         MethodStringName1<PopupMenu, Texture2D?, Int>("get_item_icon")
 
-    @JvmStatic
+    @JvmField
     public val getItemIconMaxWidthName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_icon_max_width")
 
-    @JvmStatic
+    @JvmField
     public val getItemIconModulateName: MethodStringName1<PopupMenu, Color, Int> =
         MethodStringName1<PopupMenu, Color, Int>("get_item_icon_modulate")
 
-    @JvmStatic
+    @JvmField
     public val isItemCheckedName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_checked")
 
-    @JvmStatic
+    @JvmField
     public val getItemIdName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_id")
 
-    @JvmStatic
+    @JvmField
     public val getItemIndexName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_index")
 
-    @JvmStatic
+    @JvmField
     public val getItemAcceleratorName: MethodStringName1<PopupMenu, Key, Int> =
         MethodStringName1<PopupMenu, Key, Int>("get_item_accelerator")
 
-    @JvmStatic
+    @JvmField
     public val getItemMetadataName: MethodStringName1<PopupMenu, Any?, Int> =
         MethodStringName1<PopupMenu, Any?, Int>("get_item_metadata")
 
-    @JvmStatic
+    @JvmField
     public val isItemDisabledName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_disabled")
 
-    @JvmStatic
+    @JvmField
     public val getItemSubmenuName: MethodStringName1<PopupMenu, String, Int> =
         MethodStringName1<PopupMenu, String, Int>("get_item_submenu")
 
-    @JvmStatic
+    @JvmField
     public val getItemSubmenuNodeName: MethodStringName1<PopupMenu, PopupMenu?, Int> =
         MethodStringName1<PopupMenu, PopupMenu?, Int>("get_item_submenu_node")
 
-    @JvmStatic
+    @JvmField
     public val isItemSeparatorName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_separator")
 
-    @JvmStatic
+    @JvmField
     public val isItemCheckableName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_checkable")
 
-    @JvmStatic
+    @JvmField
     public val isItemRadioCheckableName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_radio_checkable")
 
-    @JvmStatic
+    @JvmField
     public val isItemShortcutDisabledName: MethodStringName1<PopupMenu, Boolean, Int> =
         MethodStringName1<PopupMenu, Boolean, Int>("is_item_shortcut_disabled")
 
-    @JvmStatic
+    @JvmField
     public val getItemTooltipName: MethodStringName1<PopupMenu, String, Int> =
         MethodStringName1<PopupMenu, String, Int>("get_item_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val getItemShortcutName: MethodStringName1<PopupMenu, Shortcut?, Int> =
         MethodStringName1<PopupMenu, Shortcut?, Int>("get_item_shortcut")
 
-    @JvmStatic
+    @JvmField
     public val getItemIndentName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_indent")
 
-    @JvmStatic
+    @JvmField
     public val getItemMultistateMaxName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_multistate_max")
 
-    @JvmStatic
+    @JvmField
     public val getItemMultistateName: MethodStringName1<PopupMenu, Int, Int> =
         MethodStringName1<PopupMenu, Int, Int>("get_item_multistate")
 
-    @JvmStatic
+    @JvmField
     public val setFocusedItemName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("set_focused_item")
 
-    @JvmStatic
+    @JvmField
     public val getFocusedItemName: MethodStringName0<PopupMenu, Int> =
         MethodStringName0<PopupMenu, Int>("get_focused_item")
 
-    @JvmStatic
+    @JvmField
     public val setItemCountName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("set_item_count")
 
-    @JvmStatic
+    @JvmField
     public val getItemCountName: MethodStringName0<PopupMenu, Int> =
         MethodStringName0<PopupMenu, Int>("get_item_count")
 
-    @JvmStatic
+    @JvmField
     public val scrollToItemName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("scroll_to_item")
 
-    @JvmStatic
+    @JvmField
     public val removeItemName: MethodStringName1<PopupMenu, Unit, Int> =
         MethodStringName1<PopupMenu, Unit, Int>("remove_item")
 
-    @JvmStatic
+    @JvmField
     public val addSeparatorName: MethodStringName2<PopupMenu, Unit, String, Int> =
         MethodStringName2<PopupMenu, Unit, String, Int>("add_separator")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("clear")
 
-    @JvmStatic
+    @JvmField
     public val setHideOnItemSelectionName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_hide_on_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val isHideOnItemSelectionName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_hide_on_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val setHideOnCheckableItemSelectionName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_hide_on_checkable_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val isHideOnCheckableItemSelectionName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_hide_on_checkable_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val setHideOnStateItemSelectionName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_hide_on_state_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val isHideOnStateItemSelectionName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_hide_on_state_item_selection")
 
-    @JvmStatic
+    @JvmField
     public val setSubmenuPopupDelayName: MethodStringName1<PopupMenu, Unit, Float> =
         MethodStringName1<PopupMenu, Unit, Float>("set_submenu_popup_delay")
 
-    @JvmStatic
+    @JvmField
     public val getSubmenuPopupDelayName: MethodStringName0<PopupMenu, Float> =
         MethodStringName0<PopupMenu, Float>("get_submenu_popup_delay")
 
-    @JvmStatic
+    @JvmField
     public val setAllowSearchName: MethodStringName1<PopupMenu, Unit, Boolean> =
         MethodStringName1<PopupMenu, Unit, Boolean>("set_allow_search")
 
-    @JvmStatic
+    @JvmField
     public val getAllowSearchName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("get_allow_search")
 
-    @JvmStatic
+    @JvmField
     public val isSystemMenuName: MethodStringName0<PopupMenu, Boolean> =
         MethodStringName0<PopupMenu, Boolean>("is_system_menu")
 
-    @JvmStatic
+    @JvmField
     public val setSystemMenuName: MethodStringName1<PopupMenu, Unit, NativeMenu.SystemMenus> =
         MethodStringName1<PopupMenu, Unit, NativeMenu.SystemMenus>("set_system_menu")
 
-    @JvmStatic
+    @JvmField
     public val getSystemMenuName: MethodStringName0<PopupMenu, NativeMenu.SystemMenus> =
         MethodStringName0<PopupMenu, NativeMenu.SystemMenus>("get_system_menu")
   }

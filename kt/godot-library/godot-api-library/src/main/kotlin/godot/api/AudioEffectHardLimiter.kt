@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A limiter is an effect designed to disallow sound from going over a given dB threshold. Hard
@@ -105,27 +105,27 @@ public open class AudioEffectHardLimiter : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCeilingDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
         MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_ceiling_db")
 
-    @JvmStatic
+    @JvmField
     public val getCeilingDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
         MethodStringName0<AudioEffectHardLimiter, Float>("get_ceiling_db")
 
-    @JvmStatic
+    @JvmField
     public val setPreGainDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
         MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_pre_gain_db")
 
-    @JvmStatic
+    @JvmField
     public val getPreGainDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
         MethodStringName0<AudioEffectHardLimiter, Float>("get_pre_gain_db")
 
-    @JvmStatic
+    @JvmField
     public val setReleaseName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
         MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_release")
 
-    @JvmStatic
+    @JvmField
     public val getReleaseName: MethodStringName0<AudioEffectHardLimiter, Float> =
         MethodStringName0<AudioEffectHardLimiter, Float>("get_release")
   }

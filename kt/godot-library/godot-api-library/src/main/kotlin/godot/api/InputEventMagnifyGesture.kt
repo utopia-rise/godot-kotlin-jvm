@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches
@@ -60,11 +60,11 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFactorName: MethodStringName1<InputEventMagnifyGesture, Unit, Float> =
         MethodStringName1<InputEventMagnifyGesture, Unit, Float>("set_factor")
 
-    @JvmStatic
+    @JvmField
     public val getFactorName: MethodStringName0<InputEventMagnifyGesture, Float> =
         MethodStringName0<InputEventMagnifyGesture, Float>("get_factor")
   }

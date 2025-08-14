@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A capsule shape collision that interacts with [SpringBoneSimulator3D].
@@ -100,27 +100,27 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
         MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
         MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float> =
         MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<SpringBoneCollisionCapsule3D, Float> =
         MethodStringName0<SpringBoneCollisionCapsule3D, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setInsideName: MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean> =
         MethodStringName1<SpringBoneCollisionCapsule3D, Unit, Boolean>("set_inside")
 
-    @JvmStatic
+    @JvmField
     public val isInsideName: MethodStringName0<SpringBoneCollisionCapsule3D, Boolean> =
         MethodStringName0<SpringBoneCollisionCapsule3D, Boolean>("is_inside")
   }

@@ -21,8 +21,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A box-shaped attractor with varying directions and strengths defined in it that influences
@@ -120,20 +120,20 @@ public open class GPUParticlesAttractorVectorField3D : GPUParticlesAttractor3D()
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<GPUParticlesAttractorVectorField3D, Unit, Vector3> =
         MethodStringName1<GPUParticlesAttractorVectorField3D, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<GPUParticlesAttractorVectorField3D, Vector3> =
         MethodStringName0<GPUParticlesAttractorVectorField3D, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName:
         MethodStringName1<GPUParticlesAttractorVectorField3D, Unit, Texture3D?> =
         MethodStringName1<GPUParticlesAttractorVectorField3D, Unit, Texture3D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<GPUParticlesAttractorVectorField3D, Texture3D?> =
         MethodStringName0<GPUParticlesAttractorVectorField3D, Texture3D?>("get_texture")
   }

@@ -40,7 +40,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * External XR interface plugins should inherit from this class.
@@ -335,25 +335,25 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getColorTextureName: MethodStringName0<XRInterfaceExtension, RID> =
         MethodStringName0<XRInterfaceExtension, RID>("get_color_texture")
 
-    @JvmStatic
+    @JvmField
     public val getDepthTextureName: MethodStringName0<XRInterfaceExtension, RID> =
         MethodStringName0<XRInterfaceExtension, RID>("get_depth_texture")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityTextureName: MethodStringName0<XRInterfaceExtension, RID> =
         MethodStringName0<XRInterfaceExtension, RID>("get_velocity_texture")
 
-    @JvmStatic
+    @JvmField
     public val addBlitName:
         MethodStringName11<XRInterfaceExtension, Unit, RID, Rect2, Rect2i, Boolean, Long, Boolean, Vector2, Double, Double, Double, Double>
         =
         MethodStringName11<XRInterfaceExtension, Unit, RID, Rect2, Rect2i, Boolean, Long, Boolean, Vector2, Double, Double, Double, Double>("add_blit")
 
-    @JvmStatic
+    @JvmField
     public val getRenderTargetTextureName: MethodStringName1<XRInterfaceExtension, RID, RID> =
         MethodStringName1<XRInterfaceExtension, RID, RID>("get_render_target_texture")
   }

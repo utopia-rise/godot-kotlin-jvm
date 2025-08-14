@@ -41,9 +41,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * GridMap lets you place meshes on a grid interactively. It works both from the editor and from
@@ -618,191 +618,191 @@ public open class GridMap : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCollisionLayerName: MethodStringName1<GridMap, Unit, Long> =
         MethodStringName1<GridMap, Unit, Long>("set_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionLayerName: MethodStringName0<GridMap, Long> =
         MethodStringName0<GridMap, Long>("get_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<GridMap, Unit, Long> =
         MethodStringName1<GridMap, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<GridMap, Long> =
         MethodStringName0<GridMap, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskValueName: MethodStringName2<GridMap, Unit, Int, Boolean> =
         MethodStringName2<GridMap, Unit, Int, Boolean>("set_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskValueName: MethodStringName1<GridMap, Boolean, Int> =
         MethodStringName1<GridMap, Boolean, Int>("get_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionLayerValueName: MethodStringName2<GridMap, Unit, Int, Boolean> =
         MethodStringName2<GridMap, Unit, Int, Boolean>("set_collision_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionLayerValueName: MethodStringName1<GridMap, Boolean, Int> =
         MethodStringName1<GridMap, Boolean, Int>("get_collision_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionPriorityName: MethodStringName1<GridMap, Unit, Float> =
         MethodStringName1<GridMap, Unit, Float>("set_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionPriorityName: MethodStringName0<GridMap, Float> =
         MethodStringName0<GridMap, Float>("get_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsMaterialName: MethodStringName1<GridMap, Unit, PhysicsMaterial?> =
         MethodStringName1<GridMap, Unit, PhysicsMaterial?>("set_physics_material")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsMaterialName: MethodStringName0<GridMap, PhysicsMaterial?> =
         MethodStringName0<GridMap, PhysicsMaterial?>("get_physics_material")
 
-    @JvmStatic
+    @JvmField
     public val setBakeNavigationName: MethodStringName1<GridMap, Unit, Boolean> =
         MethodStringName1<GridMap, Unit, Boolean>("set_bake_navigation")
 
-    @JvmStatic
+    @JvmField
     public val isBakingNavigationName: MethodStringName0<GridMap, Boolean> =
         MethodStringName0<GridMap, Boolean>("is_baking_navigation")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationMapName: MethodStringName1<GridMap, Unit, RID> =
         MethodStringName1<GridMap, Unit, RID>("set_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationMapName: MethodStringName0<GridMap, RID> =
         MethodStringName0<GridMap, RID>("get_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val setMeshLibraryName: MethodStringName1<GridMap, Unit, MeshLibrary?> =
         MethodStringName1<GridMap, Unit, MeshLibrary?>("set_mesh_library")
 
-    @JvmStatic
+    @JvmField
     public val getMeshLibraryName: MethodStringName0<GridMap, MeshLibrary?> =
         MethodStringName0<GridMap, MeshLibrary?>("get_mesh_library")
 
-    @JvmStatic
+    @JvmField
     public val setCellSizeName: MethodStringName1<GridMap, Unit, Vector3> =
         MethodStringName1<GridMap, Unit, Vector3>("set_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val getCellSizeName: MethodStringName0<GridMap, Vector3> =
         MethodStringName0<GridMap, Vector3>("get_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val setCellScaleName: MethodStringName1<GridMap, Unit, Float> =
         MethodStringName1<GridMap, Unit, Float>("set_cell_scale")
 
-    @JvmStatic
+    @JvmField
     public val getCellScaleName: MethodStringName0<GridMap, Float> =
         MethodStringName0<GridMap, Float>("get_cell_scale")
 
-    @JvmStatic
+    @JvmField
     public val setOctantSizeName: MethodStringName1<GridMap, Unit, Int> =
         MethodStringName1<GridMap, Unit, Int>("set_octant_size")
 
-    @JvmStatic
+    @JvmField
     public val getOctantSizeName: MethodStringName0<GridMap, Int> =
         MethodStringName0<GridMap, Int>("get_octant_size")
 
-    @JvmStatic
+    @JvmField
     public val setCellItemName: MethodStringName3<GridMap, Unit, Vector3i, Int, Int> =
         MethodStringName3<GridMap, Unit, Vector3i, Int, Int>("set_cell_item")
 
-    @JvmStatic
+    @JvmField
     public val getCellItemName: MethodStringName1<GridMap, Int, Vector3i> =
         MethodStringName1<GridMap, Int, Vector3i>("get_cell_item")
 
-    @JvmStatic
+    @JvmField
     public val getCellItemOrientationName: MethodStringName1<GridMap, Int, Vector3i> =
         MethodStringName1<GridMap, Int, Vector3i>("get_cell_item_orientation")
 
-    @JvmStatic
+    @JvmField
     public val getCellItemBasisName: MethodStringName1<GridMap, Basis, Vector3i> =
         MethodStringName1<GridMap, Basis, Vector3i>("get_cell_item_basis")
 
-    @JvmStatic
+    @JvmField
     public val getBasisWithOrthogonalIndexName: MethodStringName1<GridMap, Basis, Int> =
         MethodStringName1<GridMap, Basis, Int>("get_basis_with_orthogonal_index")
 
-    @JvmStatic
+    @JvmField
     public val getOrthogonalIndexFromBasisName: MethodStringName1<GridMap, Int, Basis> =
         MethodStringName1<GridMap, Int, Basis>("get_orthogonal_index_from_basis")
 
-    @JvmStatic
+    @JvmField
     public val localToMapName: MethodStringName1<GridMap, Vector3i, Vector3> =
         MethodStringName1<GridMap, Vector3i, Vector3>("local_to_map")
 
-    @JvmStatic
+    @JvmField
     public val mapToLocalName: MethodStringName1<GridMap, Vector3, Vector3i> =
         MethodStringName1<GridMap, Vector3, Vector3i>("map_to_local")
 
-    @JvmStatic
+    @JvmField
     public val resourceChangedName: MethodStringName1<GridMap, Unit, Resource?> =
         MethodStringName1<GridMap, Unit, Resource?>("resource_changed")
 
-    @JvmStatic
+    @JvmField
     public val setCenterXName: MethodStringName1<GridMap, Unit, Boolean> =
         MethodStringName1<GridMap, Unit, Boolean>("set_center_x")
 
-    @JvmStatic
+    @JvmField
     public val getCenterXName: MethodStringName0<GridMap, Boolean> =
         MethodStringName0<GridMap, Boolean>("get_center_x")
 
-    @JvmStatic
+    @JvmField
     public val setCenterYName: MethodStringName1<GridMap, Unit, Boolean> =
         MethodStringName1<GridMap, Unit, Boolean>("set_center_y")
 
-    @JvmStatic
+    @JvmField
     public val getCenterYName: MethodStringName0<GridMap, Boolean> =
         MethodStringName0<GridMap, Boolean>("get_center_y")
 
-    @JvmStatic
+    @JvmField
     public val setCenterZName: MethodStringName1<GridMap, Unit, Boolean> =
         MethodStringName1<GridMap, Unit, Boolean>("set_center_z")
 
-    @JvmStatic
+    @JvmField
     public val getCenterZName: MethodStringName0<GridMap, Boolean> =
         MethodStringName0<GridMap, Boolean>("get_center_z")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<GridMap, Unit> =
         MethodStringName0<GridMap, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val getUsedCellsName: MethodStringName0<GridMap, VariantArray<Vector3i>> =
         MethodStringName0<GridMap, VariantArray<Vector3i>>("get_used_cells")
 
-    @JvmStatic
+    @JvmField
     public val getUsedCellsByItemName: MethodStringName1<GridMap, VariantArray<Vector3i>, Int> =
         MethodStringName1<GridMap, VariantArray<Vector3i>, Int>("get_used_cells_by_item")
 
-    @JvmStatic
+    @JvmField
     public val getMeshesName: MethodStringName0<GridMap, VariantArray<Any?>> =
         MethodStringName0<GridMap, VariantArray<Any?>>("get_meshes")
 
-    @JvmStatic
+    @JvmField
     public val getBakeMeshesName: MethodStringName0<GridMap, VariantArray<Any?>> =
         MethodStringName0<GridMap, VariantArray<Any?>>("get_bake_meshes")
 
-    @JvmStatic
+    @JvmField
     public val getBakeMeshInstanceName: MethodStringName1<GridMap, RID, Int> =
         MethodStringName1<GridMap, RID, Int>("get_bake_mesh_instance")
 
-    @JvmStatic
+    @JvmField
     public val clearBakedMeshesName: MethodStringName0<GridMap, Unit> =
         MethodStringName0<GridMap, Unit>("clear_baked_meshes")
 
-    @JvmStatic
+    @JvmField
     public val makeBakedMeshesName: MethodStringName2<GridMap, Unit, Boolean, Float> =
         MethodStringName2<GridMap, Unit, Boolean, Float>("make_baked_meshes")
 

@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A container type that arranges its child controls in a way that preserves their proportions
@@ -189,37 +189,37 @@ public open class AspectRatioContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRatioName: MethodStringName1<AspectRatioContainer, Unit, Float> =
         MethodStringName1<AspectRatioContainer, Unit, Float>("set_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getRatioName: MethodStringName0<AspectRatioContainer, Float> =
         MethodStringName0<AspectRatioContainer, Float>("get_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setStretchModeName: MethodStringName1<AspectRatioContainer, Unit, StretchMode> =
         MethodStringName1<AspectRatioContainer, Unit, StretchMode>("set_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val getStretchModeName: MethodStringName0<AspectRatioContainer, StretchMode> =
         MethodStringName0<AspectRatioContainer, StretchMode>("get_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAlignmentHorizontalName:
         MethodStringName1<AspectRatioContainer, Unit, AlignmentMode> =
         MethodStringName1<AspectRatioContainer, Unit, AlignmentMode>("set_alignment_horizontal")
 
-    @JvmStatic
+    @JvmField
     public val getAlignmentHorizontalName: MethodStringName0<AspectRatioContainer, AlignmentMode> =
         MethodStringName0<AspectRatioContainer, AlignmentMode>("get_alignment_horizontal")
 
-    @JvmStatic
+    @JvmField
     public val setAlignmentVerticalName:
         MethodStringName1<AspectRatioContainer, Unit, AlignmentMode> =
         MethodStringName1<AspectRatioContainer, Unit, AlignmentMode>("set_alignment_vertical")
 
-    @JvmStatic
+    @JvmField
     public val getAlignmentVerticalName: MethodStringName0<AspectRatioContainer, AlignmentMode> =
         MethodStringName0<AspectRatioContainer, AlignmentMode>("get_alignment_vertical")
   }

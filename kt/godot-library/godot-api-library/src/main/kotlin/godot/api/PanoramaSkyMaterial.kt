@@ -22,8 +22,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
@@ -110,27 +110,27 @@ public open class PanoramaSkyMaterial : Material() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPanoramaName: MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?> =
         MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?>("set_panorama")
 
-    @JvmStatic
+    @JvmField
     public val getPanoramaName: MethodStringName0<PanoramaSkyMaterial, Texture2D?> =
         MethodStringName0<PanoramaSkyMaterial, Texture2D?>("get_panorama")
 
-    @JvmStatic
+    @JvmField
     public val setFilteringEnabledName: MethodStringName1<PanoramaSkyMaterial, Unit, Boolean> =
         MethodStringName1<PanoramaSkyMaterial, Unit, Boolean>("set_filtering_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isFilteringEnabledName: MethodStringName0<PanoramaSkyMaterial, Boolean> =
         MethodStringName0<PanoramaSkyMaterial, Boolean>("is_filtering_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEnergyMultiplierName: MethodStringName1<PanoramaSkyMaterial, Unit, Float> =
         MethodStringName1<PanoramaSkyMaterial, Unit, Float>("set_energy_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val getEnergyMultiplierName: MethodStringName0<PanoramaSkyMaterial, Float> =
         MethodStringName0<PanoramaSkyMaterial, Float>("get_energy_multiplier")
   }

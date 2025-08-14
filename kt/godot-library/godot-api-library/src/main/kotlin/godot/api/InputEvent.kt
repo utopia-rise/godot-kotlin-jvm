@@ -35,9 +35,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class of all types of input events. See [Node.Input].
@@ -303,64 +303,64 @@ public open class InputEvent internal constructor() : Resource() {
       getActionStrength(action.asCachedStringName(), exactMatch)
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDeviceName: MethodStringName1<InputEvent, Unit, Int> =
         MethodStringName1<InputEvent, Unit, Int>("set_device")
 
-    @JvmStatic
+    @JvmField
     public val getDeviceName: MethodStringName0<InputEvent, Int> =
         MethodStringName0<InputEvent, Int>("get_device")
 
-    @JvmStatic
+    @JvmField
     public val isActionName: MethodStringName2<InputEvent, Boolean, StringName, Boolean> =
         MethodStringName2<InputEvent, Boolean, StringName, Boolean>("is_action")
 
-    @JvmStatic
+    @JvmField
     public val isActionPressedName:
         MethodStringName3<InputEvent, Boolean, StringName, Boolean, Boolean> =
         MethodStringName3<InputEvent, Boolean, StringName, Boolean, Boolean>("is_action_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isActionReleasedName: MethodStringName2<InputEvent, Boolean, StringName, Boolean> =
         MethodStringName2<InputEvent, Boolean, StringName, Boolean>("is_action_released")
 
-    @JvmStatic
+    @JvmField
     public val getActionStrengthName: MethodStringName2<InputEvent, Float, StringName, Boolean> =
         MethodStringName2<InputEvent, Float, StringName, Boolean>("get_action_strength")
 
-    @JvmStatic
+    @JvmField
     public val isCanceledName: MethodStringName0<InputEvent, Boolean> =
         MethodStringName0<InputEvent, Boolean>("is_canceled")
 
-    @JvmStatic
+    @JvmField
     public val isPressedName: MethodStringName0<InputEvent, Boolean> =
         MethodStringName0<InputEvent, Boolean>("is_pressed")
 
-    @JvmStatic
+    @JvmField
     public val isReleasedName: MethodStringName0<InputEvent, Boolean> =
         MethodStringName0<InputEvent, Boolean>("is_released")
 
-    @JvmStatic
+    @JvmField
     public val isEchoName: MethodStringName0<InputEvent, Boolean> =
         MethodStringName0<InputEvent, Boolean>("is_echo")
 
-    @JvmStatic
+    @JvmField
     public val asTextName: MethodStringName0<InputEvent, String> =
         MethodStringName0<InputEvent, String>("as_text")
 
-    @JvmStatic
+    @JvmField
     public val isMatchName: MethodStringName2<InputEvent, Boolean, InputEvent?, Boolean> =
         MethodStringName2<InputEvent, Boolean, InputEvent?, Boolean>("is_match")
 
-    @JvmStatic
+    @JvmField
     public val isActionTypeName: MethodStringName0<InputEvent, Boolean> =
         MethodStringName0<InputEvent, Boolean>("is_action_type")
 
-    @JvmStatic
+    @JvmField
     public val accumulateName: MethodStringName1<InputEvent, Boolean, InputEvent?> =
         MethodStringName1<InputEvent, Boolean, InputEvent?>("accumulate")
 
-    @JvmStatic
+    @JvmField
     public val xformedByName: MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2> =
         MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2>("xformed_by")
 

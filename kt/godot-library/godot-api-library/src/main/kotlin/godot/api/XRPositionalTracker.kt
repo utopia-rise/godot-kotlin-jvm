@@ -38,8 +38,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An instance of this object represents a device that is tracked, such as a controller or anchor
@@ -276,45 +276,45 @@ public open class XRPositionalTracker : XRTracker() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTrackerProfileName: MethodStringName0<XRPositionalTracker, String> =
         MethodStringName0<XRPositionalTracker, String>("get_tracker_profile")
 
-    @JvmStatic
+    @JvmField
     public val setTrackerProfileName: MethodStringName1<XRPositionalTracker, Unit, String> =
         MethodStringName1<XRPositionalTracker, Unit, String>("set_tracker_profile")
 
-    @JvmStatic
+    @JvmField
     public val getTrackerHandName: MethodStringName0<XRPositionalTracker, TrackerHand> =
         MethodStringName0<XRPositionalTracker, TrackerHand>("get_tracker_hand")
 
-    @JvmStatic
+    @JvmField
     public val setTrackerHandName: MethodStringName1<XRPositionalTracker, Unit, TrackerHand> =
         MethodStringName1<XRPositionalTracker, Unit, TrackerHand>("set_tracker_hand")
 
-    @JvmStatic
+    @JvmField
     public val hasPoseName: MethodStringName1<XRPositionalTracker, Boolean, StringName> =
         MethodStringName1<XRPositionalTracker, Boolean, StringName>("has_pose")
 
-    @JvmStatic
+    @JvmField
     public val getPoseName: MethodStringName1<XRPositionalTracker, XRPose?, StringName> =
         MethodStringName1<XRPositionalTracker, XRPose?, StringName>("get_pose")
 
-    @JvmStatic
+    @JvmField
     public val invalidatePoseName: MethodStringName1<XRPositionalTracker, Unit, StringName> =
         MethodStringName1<XRPositionalTracker, Unit, StringName>("invalidate_pose")
 
-    @JvmStatic
+    @JvmField
     public val setPoseName:
         MethodStringName5<XRPositionalTracker, Unit, StringName, Transform3D, Vector3, Vector3, XRPose.TrackingConfidence>
         =
         MethodStringName5<XRPositionalTracker, Unit, StringName, Transform3D, Vector3, Vector3, XRPose.TrackingConfidence>("set_pose")
 
-    @JvmStatic
+    @JvmField
     public val getInputName: MethodStringName1<XRPositionalTracker, Any?, StringName> =
         MethodStringName1<XRPositionalTracker, Any?, StringName>("get_input")
 
-    @JvmStatic
+    @JvmField
     public val setInputName: MethodStringName2<XRPositionalTracker, Unit, StringName, Any?> =
         MethodStringName2<XRPositionalTracker, Unit, StringName, Any?>("set_input")
   }

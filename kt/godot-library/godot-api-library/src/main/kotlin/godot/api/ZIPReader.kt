@@ -27,8 +27,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class implements a reader that can extract the content of individual files inside a ZIP
@@ -134,23 +134,23 @@ public open class ZIPReader : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val openName: MethodStringName1<ZIPReader, Error, String> =
         MethodStringName1<ZIPReader, Error, String>("open")
 
-    @JvmStatic
+    @JvmField
     public val closeName: MethodStringName0<ZIPReader, Error> =
         MethodStringName0<ZIPReader, Error>("close")
 
-    @JvmStatic
+    @JvmField
     public val getFilesName: MethodStringName0<ZIPReader, PackedStringArray> =
         MethodStringName0<ZIPReader, PackedStringArray>("get_files")
 
-    @JvmStatic
+    @JvmField
     public val readFileName: MethodStringName2<ZIPReader, PackedByteArray, String, Boolean> =
         MethodStringName2<ZIPReader, PackedByteArray, String, Boolean>("read_file")
 
-    @JvmStatic
+    @JvmField
     public val fileExistsName: MethodStringName2<ZIPReader, Boolean, String, Boolean> =
         MethodStringName2<ZIPReader, Boolean, String, Boolean>("file_exists")
   }

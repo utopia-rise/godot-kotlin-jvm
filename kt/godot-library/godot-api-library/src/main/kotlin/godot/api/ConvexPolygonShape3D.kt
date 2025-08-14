@@ -21,8 +21,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D convex polyhedron shape, intended for use in physics. Usually used to provide a shape for a
@@ -119,11 +119,11 @@ public open class ConvexPolygonShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPointsName: MethodStringName1<ConvexPolygonShape3D, Unit, PackedVector3Array> =
         MethodStringName1<ConvexPolygonShape3D, Unit, PackedVector3Array>("set_points")
 
-    @JvmStatic
+    @JvmField
     public val getPointsName: MethodStringName0<ConvexPolygonShape3D, PackedVector3Array> =
         MethodStringName0<ConvexPolygonShape3D, PackedVector3Array>("get_points")
   }

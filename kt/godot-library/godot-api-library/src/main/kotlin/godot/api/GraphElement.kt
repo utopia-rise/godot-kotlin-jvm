@@ -25,8 +25,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements
@@ -222,43 +222,43 @@ public open class GraphElement : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setResizableName: MethodStringName1<GraphElement, Unit, Boolean> =
         MethodStringName1<GraphElement, Unit, Boolean>("set_resizable")
 
-    @JvmStatic
+    @JvmField
     public val isResizableName: MethodStringName0<GraphElement, Boolean> =
         MethodStringName0<GraphElement, Boolean>("is_resizable")
 
-    @JvmStatic
+    @JvmField
     public val setDraggableName: MethodStringName1<GraphElement, Unit, Boolean> =
         MethodStringName1<GraphElement, Unit, Boolean>("set_draggable")
 
-    @JvmStatic
+    @JvmField
     public val isDraggableName: MethodStringName0<GraphElement, Boolean> =
         MethodStringName0<GraphElement, Boolean>("is_draggable")
 
-    @JvmStatic
+    @JvmField
     public val setSelectableName: MethodStringName1<GraphElement, Unit, Boolean> =
         MethodStringName1<GraphElement, Unit, Boolean>("set_selectable")
 
-    @JvmStatic
+    @JvmField
     public val isSelectableName: MethodStringName0<GraphElement, Boolean> =
         MethodStringName0<GraphElement, Boolean>("is_selectable")
 
-    @JvmStatic
+    @JvmField
     public val setSelectedName: MethodStringName1<GraphElement, Unit, Boolean> =
         MethodStringName1<GraphElement, Unit, Boolean>("set_selected")
 
-    @JvmStatic
+    @JvmField
     public val isSelectedName: MethodStringName0<GraphElement, Boolean> =
         MethodStringName0<GraphElement, Boolean>("is_selected")
 
-    @JvmStatic
+    @JvmField
     public val setPositionOffsetName: MethodStringName1<GraphElement, Unit, Vector2> =
         MethodStringName1<GraphElement, Unit, Vector2>("set_position_offset")
 
-    @JvmStatic
+    @JvmField
     public val getPositionOffsetName: MethodStringName0<GraphElement, Vector2> =
         MethodStringName0<GraphElement, Vector2>("get_position_offset")
   }

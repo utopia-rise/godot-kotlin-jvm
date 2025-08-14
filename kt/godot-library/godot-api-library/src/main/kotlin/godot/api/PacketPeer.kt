@@ -26,9 +26,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
@@ -139,35 +139,35 @@ public open class PacketPeer internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getVarName: MethodStringName1<PacketPeer, Any?, Boolean> =
         MethodStringName1<PacketPeer, Any?, Boolean>("get_var")
 
-    @JvmStatic
+    @JvmField
     public val putVarName: MethodStringName2<PacketPeer, Error, Any?, Boolean> =
         MethodStringName2<PacketPeer, Error, Any?, Boolean>("put_var")
 
-    @JvmStatic
+    @JvmField
     public val getPacketName: MethodStringName0<PacketPeer, PackedByteArray> =
         MethodStringName0<PacketPeer, PackedByteArray>("get_packet")
 
-    @JvmStatic
+    @JvmField
     public val putPacketName: MethodStringName1<PacketPeer, Error, PackedByteArray> =
         MethodStringName1<PacketPeer, Error, PackedByteArray>("put_packet")
 
-    @JvmStatic
+    @JvmField
     public val getPacketErrorName: MethodStringName0<PacketPeer, Error> =
         MethodStringName0<PacketPeer, Error>("get_packet_error")
 
-    @JvmStatic
+    @JvmField
     public val getAvailablePacketCountName: MethodStringName0<PacketPeer, Int> =
         MethodStringName0<PacketPeer, Int>("get_available_packet_count")
 
-    @JvmStatic
+    @JvmField
     public val getEncodeBufferMaxSizeName: MethodStringName0<PacketPeer, Int> =
         MethodStringName0<PacketPeer, Int>("get_encode_buffer_max_size")
 
-    @JvmStatic
+    @JvmField
     public val setEncodeBufferMaxSizeName: MethodStringName1<PacketPeer, Unit, Int> =
         MethodStringName1<PacketPeer, Unit, Int>("set_encode_buffer_max_size")
   }

@@ -29,8 +29,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * *Root motion* refers to an animation technique where a mesh's skeleton is used to give impulse to
@@ -190,43 +190,43 @@ public open class RootMotionView : VisualInstance3D() {
   public final fun setAnimationPath(path: String) = setAnimationPath(path.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAnimationPathName: MethodStringName1<RootMotionView, Unit, NodePath> =
         MethodStringName1<RootMotionView, Unit, NodePath>("set_animation_path")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationPathName: MethodStringName0<RootMotionView, NodePath> =
         MethodStringName0<RootMotionView, NodePath>("get_animation_path")
 
-    @JvmStatic
+    @JvmField
     public val setColorName: MethodStringName1<RootMotionView, Unit, Color> =
         MethodStringName1<RootMotionView, Unit, Color>("set_color")
 
-    @JvmStatic
+    @JvmField
     public val getColorName: MethodStringName0<RootMotionView, Color> =
         MethodStringName0<RootMotionView, Color>("get_color")
 
-    @JvmStatic
+    @JvmField
     public val setCellSizeName: MethodStringName1<RootMotionView, Unit, Float> =
         MethodStringName1<RootMotionView, Unit, Float>("set_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val getCellSizeName: MethodStringName0<RootMotionView, Float> =
         MethodStringName0<RootMotionView, Float>("get_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<RootMotionView, Unit, Float> =
         MethodStringName1<RootMotionView, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<RootMotionView, Float> =
         MethodStringName0<RootMotionView, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setZeroYName: MethodStringName1<RootMotionView, Unit, Boolean> =
         MethodStringName1<RootMotionView, Unit, Boolean>("set_zero_y")
 
-    @JvmStatic
+    @JvmField
     public val getZeroYName: MethodStringName0<RootMotionView, Boolean> =
         MethodStringName0<RootMotionView, Boolean>("get_zero_y")
   }

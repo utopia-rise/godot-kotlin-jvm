@@ -23,8 +23,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D world boundary shape, intended for use in physics. [WorldBoundaryShape2D] works like an
@@ -117,19 +117,19 @@ public open class WorldBoundaryShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setNormalName: MethodStringName1<WorldBoundaryShape2D, Unit, Vector2> =
         MethodStringName1<WorldBoundaryShape2D, Unit, Vector2>("set_normal")
 
-    @JvmStatic
+    @JvmField
     public val getNormalName: MethodStringName0<WorldBoundaryShape2D, Vector2> =
         MethodStringName0<WorldBoundaryShape2D, Vector2>("get_normal")
 
-    @JvmStatic
+    @JvmField
     public val setDistanceName: MethodStringName1<WorldBoundaryShape2D, Unit, Float> =
         MethodStringName1<WorldBoundaryShape2D, Unit, Float>("set_distance")
 
-    @JvmStatic
+    @JvmField
     public val getDistanceName: MethodStringName0<WorldBoundaryShape2D, Float> =
         MethodStringName0<WorldBoundaryShape2D, Float>("get_distance")
   }

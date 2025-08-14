@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A sphere-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
@@ -63,11 +63,11 @@ public open class GPUParticlesCollisionSphere3D : GPUParticlesCollision3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<GPUParticlesCollisionSphere3D, Unit, Float> =
         MethodStringName1<GPUParticlesCollisionSphere3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<GPUParticlesCollisionSphere3D, Float> =
         MethodStringName0<GPUParticlesCollisionSphere3D, Float>("get_radius")
   }

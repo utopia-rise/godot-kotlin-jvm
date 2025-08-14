@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Generic 2D position hint for editing. It's just like a plain [Node2D], but it displays as a cross
@@ -56,11 +56,11 @@ public open class Marker2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setGizmoExtentsName: MethodStringName1<Marker2D, Unit, Float> =
         MethodStringName1<Marker2D, Unit, Float>("set_gizmo_extents")
 
-    @JvmStatic
+    @JvmField
     public val getGizmoExtentsName: MethodStringName0<Marker2D, Float> =
         MethodStringName0<Marker2D, Float>("get_gizmo_extents")
   }

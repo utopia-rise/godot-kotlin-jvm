@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture where pixel brightness corresponds to points on a unit [Curve] resource, either in
@@ -124,23 +124,23 @@ public open class CurveTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<CurveTexture, Unit, Int> =
         MethodStringName1<CurveTexture, Unit, Int>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val setCurveName: MethodStringName1<CurveTexture, Unit, Curve?> =
         MethodStringName1<CurveTexture, Unit, Curve?>("set_curve")
 
-    @JvmStatic
+    @JvmField
     public val getCurveName: MethodStringName0<CurveTexture, Curve?> =
         MethodStringName0<CurveTexture, Curve?>("get_curve")
 
-    @JvmStatic
+    @JvmField
     public val setTextureModeName: MethodStringName1<CurveTexture, Unit, TextureMode> =
         MethodStringName1<CurveTexture, Unit, TextureMode>("set_texture_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTextureModeName: MethodStringName0<CurveTexture, TextureMode> =
         MethodStringName0<CurveTexture, TextureMode>("get_texture_mode")
   }

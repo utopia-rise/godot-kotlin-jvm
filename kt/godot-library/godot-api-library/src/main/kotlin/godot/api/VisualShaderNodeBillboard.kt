@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The output port of this node needs to be connected to `Model View Matrix` port of
@@ -114,20 +114,20 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBillboardTypeName:
         MethodStringName1<VisualShaderNodeBillboard, Unit, BillboardType> =
         MethodStringName1<VisualShaderNodeBillboard, Unit, BillboardType>("set_billboard_type")
 
-    @JvmStatic
+    @JvmField
     public val getBillboardTypeName: MethodStringName0<VisualShaderNodeBillboard, BillboardType> =
         MethodStringName0<VisualShaderNodeBillboard, BillboardType>("get_billboard_type")
 
-    @JvmStatic
+    @JvmField
     public val setKeepScaleEnabledName: MethodStringName1<VisualShaderNodeBillboard, Unit, Boolean>
         = MethodStringName1<VisualShaderNodeBillboard, Unit, Boolean>("set_keep_scale_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isKeepScaleEnabledName: MethodStringName0<VisualShaderNodeBillboard, Boolean> =
         MethodStringName0<VisualShaderNodeBillboard, Boolean>("is_keep_scale_enabled")
   }

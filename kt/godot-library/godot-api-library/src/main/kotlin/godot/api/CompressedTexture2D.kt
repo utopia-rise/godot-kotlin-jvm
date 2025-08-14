@@ -20,8 +20,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A texture that is loaded from a `.ctex` file. This file format is internal to Godot; it is
@@ -76,11 +76,11 @@ public open class CompressedTexture2D : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<CompressedTexture2D, Error, String> =
         MethodStringName1<CompressedTexture2D, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val getLoadPathName: MethodStringName0<CompressedTexture2D, String> =
         MethodStringName0<CompressedTexture2D, String>("get_load_path")
   }

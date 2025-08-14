@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node takes its parent [Path2D], and returns the coordinates of a point within it, given a
@@ -212,59 +212,59 @@ public open class PathFollow2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setProgressName: MethodStringName1<PathFollow2D, Unit, Float> =
         MethodStringName1<PathFollow2D, Unit, Float>("set_progress")
 
-    @JvmStatic
+    @JvmField
     public val getProgressName: MethodStringName0<PathFollow2D, Float> =
         MethodStringName0<PathFollow2D, Float>("get_progress")
 
-    @JvmStatic
+    @JvmField
     public val setHOffsetName: MethodStringName1<PathFollow2D, Unit, Float> =
         MethodStringName1<PathFollow2D, Unit, Float>("set_h_offset")
 
-    @JvmStatic
+    @JvmField
     public val getHOffsetName: MethodStringName0<PathFollow2D, Float> =
         MethodStringName0<PathFollow2D, Float>("get_h_offset")
 
-    @JvmStatic
+    @JvmField
     public val setVOffsetName: MethodStringName1<PathFollow2D, Unit, Float> =
         MethodStringName1<PathFollow2D, Unit, Float>("set_v_offset")
 
-    @JvmStatic
+    @JvmField
     public val getVOffsetName: MethodStringName0<PathFollow2D, Float> =
         MethodStringName0<PathFollow2D, Float>("get_v_offset")
 
-    @JvmStatic
+    @JvmField
     public val setProgressRatioName: MethodStringName1<PathFollow2D, Unit, Float> =
         MethodStringName1<PathFollow2D, Unit, Float>("set_progress_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getProgressRatioName: MethodStringName0<PathFollow2D, Float> =
         MethodStringName0<PathFollow2D, Float>("get_progress_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setRotatesName: MethodStringName1<PathFollow2D, Unit, Boolean> =
         MethodStringName1<PathFollow2D, Unit, Boolean>("set_rotates")
 
-    @JvmStatic
+    @JvmField
     public val isRotatingName: MethodStringName0<PathFollow2D, Boolean> =
         MethodStringName0<PathFollow2D, Boolean>("is_rotating")
 
-    @JvmStatic
+    @JvmField
     public val setCubicInterpolationName: MethodStringName1<PathFollow2D, Unit, Boolean> =
         MethodStringName1<PathFollow2D, Unit, Boolean>("set_cubic_interpolation")
 
-    @JvmStatic
+    @JvmField
     public val getCubicInterpolationName: MethodStringName0<PathFollow2D, Boolean> =
         MethodStringName0<PathFollow2D, Boolean>("get_cubic_interpolation")
 
-    @JvmStatic
+    @JvmField
     public val setLoopName: MethodStringName1<PathFollow2D, Unit, Boolean> =
         MethodStringName1<PathFollow2D, Unit, Boolean>("set_loop")
 
-    @JvmStatic
+    @JvmField
     public val hasLoopName: MethodStringName0<PathFollow2D, Boolean> =
         MethodStringName0<PathFollow2D, Boolean>("has_loop")
   }

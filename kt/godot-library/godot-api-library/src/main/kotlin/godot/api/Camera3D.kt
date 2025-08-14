@@ -42,9 +42,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [Camera3D] is a special node that displays what is visible from its current location. Cameras
@@ -771,199 +771,199 @@ public open class Camera3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val projectRayNormalName: MethodStringName1<Camera3D, Vector3, Vector2> =
         MethodStringName1<Camera3D, Vector3, Vector2>("project_ray_normal")
 
-    @JvmStatic
+    @JvmField
     public val projectLocalRayNormalName: MethodStringName1<Camera3D, Vector3, Vector2> =
         MethodStringName1<Camera3D, Vector3, Vector2>("project_local_ray_normal")
 
-    @JvmStatic
+    @JvmField
     public val projectRayOriginName: MethodStringName1<Camera3D, Vector3, Vector2> =
         MethodStringName1<Camera3D, Vector3, Vector2>("project_ray_origin")
 
-    @JvmStatic
+    @JvmField
     public val unprojectPositionName: MethodStringName1<Camera3D, Vector2, Vector3> =
         MethodStringName1<Camera3D, Vector2, Vector3>("unproject_position")
 
-    @JvmStatic
+    @JvmField
     public val isPositionBehindName: MethodStringName1<Camera3D, Boolean, Vector3> =
         MethodStringName1<Camera3D, Boolean, Vector3>("is_position_behind")
 
-    @JvmStatic
+    @JvmField
     public val projectPositionName: MethodStringName2<Camera3D, Vector3, Vector2, Float> =
         MethodStringName2<Camera3D, Vector3, Vector2, Float>("project_position")
 
-    @JvmStatic
+    @JvmField
     public val setPerspectiveName: MethodStringName3<Camera3D, Unit, Float, Float, Float> =
         MethodStringName3<Camera3D, Unit, Float, Float, Float>("set_perspective")
 
-    @JvmStatic
+    @JvmField
     public val setOrthogonalName: MethodStringName3<Camera3D, Unit, Float, Float, Float> =
         MethodStringName3<Camera3D, Unit, Float, Float, Float>("set_orthogonal")
 
-    @JvmStatic
+    @JvmField
     public val setFrustumName: MethodStringName4<Camera3D, Unit, Float, Vector2, Float, Float> =
         MethodStringName4<Camera3D, Unit, Float, Vector2, Float, Float>("set_frustum")
 
-    @JvmStatic
+    @JvmField
     public val makeCurrentName: MethodStringName0<Camera3D, Unit> =
         MethodStringName0<Camera3D, Unit>("make_current")
 
-    @JvmStatic
+    @JvmField
     public val clearCurrentName: MethodStringName1<Camera3D, Unit, Boolean> =
         MethodStringName1<Camera3D, Unit, Boolean>("clear_current")
 
-    @JvmStatic
+    @JvmField
     public val setCurrentName: MethodStringName1<Camera3D, Unit, Boolean> =
         MethodStringName1<Camera3D, Unit, Boolean>("set_current")
 
-    @JvmStatic
+    @JvmField
     public val isCurrentName: MethodStringName0<Camera3D, Boolean> =
         MethodStringName0<Camera3D, Boolean>("is_current")
 
-    @JvmStatic
+    @JvmField
     public val getCameraTransformName: MethodStringName0<Camera3D, Transform3D> =
         MethodStringName0<Camera3D, Transform3D>("get_camera_transform")
 
-    @JvmStatic
+    @JvmField
     public val getCameraProjectionName: MethodStringName0<Camera3D, Projection> =
         MethodStringName0<Camera3D, Projection>("get_camera_projection")
 
-    @JvmStatic
+    @JvmField
     public val getFovName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_fov")
 
-    @JvmStatic
+    @JvmField
     public val getFrustumOffsetName: MethodStringName0<Camera3D, Vector2> =
         MethodStringName0<Camera3D, Vector2>("get_frustum_offset")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val getFarName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_far")
 
-    @JvmStatic
+    @JvmField
     public val getNearName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_near")
 
-    @JvmStatic
+    @JvmField
     public val setFovName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_fov")
 
-    @JvmStatic
+    @JvmField
     public val setFrustumOffsetName: MethodStringName1<Camera3D, Unit, Vector2> =
         MethodStringName1<Camera3D, Unit, Vector2>("set_frustum_offset")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val setFarName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_far")
 
-    @JvmStatic
+    @JvmField
     public val setNearName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_near")
 
-    @JvmStatic
+    @JvmField
     public val getProjectionName: MethodStringName0<Camera3D, ProjectionType> =
         MethodStringName0<Camera3D, ProjectionType>("get_projection")
 
-    @JvmStatic
+    @JvmField
     public val setProjectionName: MethodStringName1<Camera3D, Unit, ProjectionType> =
         MethodStringName1<Camera3D, Unit, ProjectionType>("set_projection")
 
-    @JvmStatic
+    @JvmField
     public val setHOffsetName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_h_offset")
 
-    @JvmStatic
+    @JvmField
     public val getHOffsetName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_h_offset")
 
-    @JvmStatic
+    @JvmField
     public val setVOffsetName: MethodStringName1<Camera3D, Unit, Float> =
         MethodStringName1<Camera3D, Unit, Float>("set_v_offset")
 
-    @JvmStatic
+    @JvmField
     public val getVOffsetName: MethodStringName0<Camera3D, Float> =
         MethodStringName0<Camera3D, Float>("get_v_offset")
 
-    @JvmStatic
+    @JvmField
     public val setCullMaskName: MethodStringName1<Camera3D, Unit, Long> =
         MethodStringName1<Camera3D, Unit, Long>("set_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCullMaskName: MethodStringName0<Camera3D, Long> =
         MethodStringName0<Camera3D, Long>("get_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val setEnvironmentName: MethodStringName1<Camera3D, Unit, Environment?> =
         MethodStringName1<Camera3D, Unit, Environment?>("set_environment")
 
-    @JvmStatic
+    @JvmField
     public val getEnvironmentName: MethodStringName0<Camera3D, Environment?> =
         MethodStringName0<Camera3D, Environment?>("get_environment")
 
-    @JvmStatic
+    @JvmField
     public val setAttributesName: MethodStringName1<Camera3D, Unit, CameraAttributes?> =
         MethodStringName1<Camera3D, Unit, CameraAttributes?>("set_attributes")
 
-    @JvmStatic
+    @JvmField
     public val getAttributesName: MethodStringName0<Camera3D, CameraAttributes?> =
         MethodStringName0<Camera3D, CameraAttributes?>("get_attributes")
 
-    @JvmStatic
+    @JvmField
     public val setCompositorName: MethodStringName1<Camera3D, Unit, Compositor?> =
         MethodStringName1<Camera3D, Unit, Compositor?>("set_compositor")
 
-    @JvmStatic
+    @JvmField
     public val getCompositorName: MethodStringName0<Camera3D, Compositor?> =
         MethodStringName0<Camera3D, Compositor?>("get_compositor")
 
-    @JvmStatic
+    @JvmField
     public val setKeepAspectModeName: MethodStringName1<Camera3D, Unit, KeepAspect> =
         MethodStringName1<Camera3D, Unit, KeepAspect>("set_keep_aspect_mode")
 
-    @JvmStatic
+    @JvmField
     public val getKeepAspectModeName: MethodStringName0<Camera3D, KeepAspect> =
         MethodStringName0<Camera3D, KeepAspect>("get_keep_aspect_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDopplerTrackingName: MethodStringName1<Camera3D, Unit, DopplerTracking> =
         MethodStringName1<Camera3D, Unit, DopplerTracking>("set_doppler_tracking")
 
-    @JvmStatic
+    @JvmField
     public val getDopplerTrackingName: MethodStringName0<Camera3D, DopplerTracking> =
         MethodStringName0<Camera3D, DopplerTracking>("get_doppler_tracking")
 
-    @JvmStatic
+    @JvmField
     public val getFrustumName: MethodStringName0<Camera3D, VariantArray<Plane>> =
         MethodStringName0<Camera3D, VariantArray<Plane>>("get_frustum")
 
-    @JvmStatic
+    @JvmField
     public val isPositionInFrustumName: MethodStringName1<Camera3D, Boolean, Vector3> =
         MethodStringName1<Camera3D, Boolean, Vector3>("is_position_in_frustum")
 
-    @JvmStatic
+    @JvmField
     public val getCameraRidName: MethodStringName0<Camera3D, RID> =
         MethodStringName0<Camera3D, RID>("get_camera_rid")
 
-    @JvmStatic
+    @JvmField
     public val getPyramidShapeRidName: MethodStringName0<Camera3D, RID> =
         MethodStringName0<Camera3D, RID>("get_pyramid_shape_rid")
 
-    @JvmStatic
+    @JvmField
     public val setCullMaskValueName: MethodStringName2<Camera3D, Unit, Int, Boolean> =
         MethodStringName2<Camera3D, Unit, Int, Boolean>("set_cull_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getCullMaskValueName: MethodStringName1<Camera3D, Boolean, Int> =
         MethodStringName1<Camera3D, Boolean, Int>("get_cull_mask_value")
   }

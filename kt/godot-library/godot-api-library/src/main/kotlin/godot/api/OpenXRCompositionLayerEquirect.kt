@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
@@ -147,48 +147,48 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
         MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setCentralHorizontalAngleName:
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_central_horizontal_angle")
 
-    @JvmStatic
+    @JvmField
     public val getCentralHorizontalAngleName:
         MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
         MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_central_horizontal_angle")
 
-    @JvmStatic
+    @JvmField
     public val setUpperVerticalAngleName:
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_upper_vertical_angle")
 
-    @JvmStatic
+    @JvmField
     public val getUpperVerticalAngleName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
         MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_upper_vertical_angle")
 
-    @JvmStatic
+    @JvmField
     public val setLowerVerticalAngleName:
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Float>("set_lower_vertical_angle")
 
-    @JvmStatic
+    @JvmField
     public val getLowerVerticalAngleName: MethodStringName0<OpenXRCompositionLayerEquirect, Float> =
         MethodStringName0<OpenXRCompositionLayerEquirect, Float>("get_lower_vertical_angle")
 
-    @JvmStatic
+    @JvmField
     public val setFallbackSegmentsName:
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Long> =
         MethodStringName1<OpenXRCompositionLayerEquirect, Unit, Long>("set_fallback_segments")
 
-    @JvmStatic
+    @JvmField
     public val getFallbackSegmentsName: MethodStringName0<OpenXRCompositionLayerEquirect, Long> =
         MethodStringName0<OpenXRCompositionLayerEquirect, Long>("get_fallback_segments")
   }

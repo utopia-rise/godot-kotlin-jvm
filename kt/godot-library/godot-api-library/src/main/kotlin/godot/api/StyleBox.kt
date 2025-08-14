@@ -32,8 +32,8 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [StyleBox] is an abstract base class for drawing stylized boxes for UI elements. It is used for
@@ -223,39 +223,39 @@ public open class StyleBox : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getMinimumSizeName: MethodStringName0<StyleBox, Vector2> =
         MethodStringName0<StyleBox, Vector2>("get_minimum_size")
 
-    @JvmStatic
+    @JvmField
     public val setContentMarginName: MethodStringName2<StyleBox, Unit, Side, Float> =
         MethodStringName2<StyleBox, Unit, Side, Float>("set_content_margin")
 
-    @JvmStatic
+    @JvmField
     public val setContentMarginAllName: MethodStringName1<StyleBox, Unit, Float> =
         MethodStringName1<StyleBox, Unit, Float>("set_content_margin_all")
 
-    @JvmStatic
+    @JvmField
     public val getContentMarginName: MethodStringName1<StyleBox, Float, Side> =
         MethodStringName1<StyleBox, Float, Side>("get_content_margin")
 
-    @JvmStatic
+    @JvmField
     public val getMarginName: MethodStringName1<StyleBox, Float, Side> =
         MethodStringName1<StyleBox, Float, Side>("get_margin")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName0<StyleBox, Vector2> =
         MethodStringName0<StyleBox, Vector2>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val drawName: MethodStringName2<StyleBox, Unit, RID, Rect2> =
         MethodStringName2<StyleBox, Unit, RID, Rect2>("draw")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentItemDrawnName: MethodStringName0<StyleBox, CanvasItem?> =
         MethodStringName0<StyleBox, CanvasItem?>("get_current_item_drawn")
 
-    @JvmStatic
+    @JvmField
     public val testMaskName: MethodStringName2<StyleBox, Boolean, Vector2, Rect2> =
         MethodStringName2<StyleBox, Boolean, Vector2, Rect2>("test_mask")
   }

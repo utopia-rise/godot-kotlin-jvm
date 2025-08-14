@@ -39,8 +39,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D agent used to pathfind to a position while avoiding static and dynamic obstacles. The
@@ -1133,322 +1133,322 @@ public open class NavigationAgent3D : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getRidName: MethodStringName0<NavigationAgent3D, RID> =
         MethodStringName0<NavigationAgent3D, RID>("get_rid")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceEnabledName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_avoidance_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceEnabledName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_avoidance_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPathDesiredDistanceName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_desired_distance")
 
-    @JvmStatic
+    @JvmField
     public val getPathDesiredDistanceName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_path_desired_distance")
 
-    @JvmStatic
+    @JvmField
     public val setTargetDesiredDistanceName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_target_desired_distance")
 
-    @JvmStatic
+    @JvmField
     public val getTargetDesiredDistanceName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_target_desired_distance")
 
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setPathHeightOffsetName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_height_offset")
 
-    @JvmStatic
+    @JvmField
     public val getPathHeightOffsetName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_path_height_offset")
 
-    @JvmStatic
+    @JvmField
     public val setUse3dAvoidanceName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_use_3d_avoidance")
 
-    @JvmStatic
+    @JvmField
     public val getUse3dAvoidanceName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_use_3d_avoidance")
 
-    @JvmStatic
+    @JvmField
     public val setKeepYVelocityName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_keep_y_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getKeepYVelocityName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_keep_y_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setNeighborDistanceName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_neighbor_distance")
 
-    @JvmStatic
+    @JvmField
     public val getNeighborDistanceName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_neighbor_distance")
 
-    @JvmStatic
+    @JvmField
     public val setMaxNeighborsName: MethodStringName1<NavigationAgent3D, Unit, Int> =
         MethodStringName1<NavigationAgent3D, Unit, Int>("set_max_neighbors")
 
-    @JvmStatic
+    @JvmField
     public val getMaxNeighborsName: MethodStringName0<NavigationAgent3D, Int> =
         MethodStringName0<NavigationAgent3D, Int>("get_max_neighbors")
 
-    @JvmStatic
+    @JvmField
     public val setTimeHorizonAgentsName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_time_horizon_agents")
 
-    @JvmStatic
+    @JvmField
     public val getTimeHorizonAgentsName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_time_horizon_agents")
 
-    @JvmStatic
+    @JvmField
     public val setTimeHorizonObstaclesName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_time_horizon_obstacles")
 
-    @JvmStatic
+    @JvmField
     public val getTimeHorizonObstaclesName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_time_horizon_obstacles")
 
-    @JvmStatic
+    @JvmField
     public val setMaxSpeedName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_max_speed")
 
-    @JvmStatic
+    @JvmField
     public val getMaxSpeedName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_max_speed")
 
-    @JvmStatic
+    @JvmField
     public val setPathMaxDistanceName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val getPathMaxDistanceName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_path_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayersName: MethodStringName1<NavigationAgent3D, Unit, Long> =
         MethodStringName1<NavigationAgent3D, Unit, Long>("set_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayersName: MethodStringName0<NavigationAgent3D, Long> =
         MethodStringName0<NavigationAgent3D, Long>("get_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayerValueName: MethodStringName2<NavigationAgent3D, Unit, Int, Boolean>
         = MethodStringName2<NavigationAgent3D, Unit, Int, Boolean>("set_navigation_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayerValueName: MethodStringName1<NavigationAgent3D, Boolean, Int> =
         MethodStringName1<NavigationAgent3D, Boolean, Int>("get_navigation_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setPathfindingAlgorithmName:
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathfindingAlgorithm>
         =
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathfindingAlgorithm>("set_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val getPathfindingAlgorithmName:
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathfindingAlgorithm> =
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathfindingAlgorithm>("get_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val setPathPostprocessingName:
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathPostProcessing>
         =
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathPostProcessing>("set_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val getPathPostprocessingName:
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathPostProcessing> =
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathPostProcessing>("get_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val setPathMetadataFlagsName:
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathMetadataFlags>
         =
         MethodStringName1<NavigationAgent3D, Unit, NavigationPathQueryParameters3D.PathMetadataFlags>("set_path_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val getPathMetadataFlagsName:
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathMetadataFlags> =
         MethodStringName0<NavigationAgent3D, NavigationPathQueryParameters3D.PathMetadataFlags>("get_path_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationMapName: MethodStringName1<NavigationAgent3D, Unit, RID> =
         MethodStringName1<NavigationAgent3D, Unit, RID>("set_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationMapName: MethodStringName0<NavigationAgent3D, RID> =
         MethodStringName0<NavigationAgent3D, RID>("get_navigation_map")
 
-    @JvmStatic
+    @JvmField
     public val setTargetPositionName: MethodStringName1<NavigationAgent3D, Unit, Vector3> =
         MethodStringName1<NavigationAgent3D, Unit, Vector3>("set_target_position")
 
-    @JvmStatic
+    @JvmField
     public val getTargetPositionName: MethodStringName0<NavigationAgent3D, Vector3> =
         MethodStringName0<NavigationAgent3D, Vector3>("get_target_position")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyPathName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyPathName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyEpsilonName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_simplify_epsilon")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyEpsilonName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_simplify_epsilon")
 
-    @JvmStatic
+    @JvmField
     public val getNextPathPositionName: MethodStringName0<NavigationAgent3D, Vector3> =
         MethodStringName0<NavigationAgent3D, Vector3>("get_next_path_position")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityForcedName: MethodStringName1<NavigationAgent3D, Unit, Vector3> =
         MethodStringName1<NavigationAgent3D, Unit, Vector3>("set_velocity_forced")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityName: MethodStringName1<NavigationAgent3D, Unit, Vector3> =
         MethodStringName1<NavigationAgent3D, Unit, Vector3>("set_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityName: MethodStringName0<NavigationAgent3D, Vector3> =
         MethodStringName0<NavigationAgent3D, Vector3>("get_velocity")
 
-    @JvmStatic
+    @JvmField
     public val distanceToTargetName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("distance_to_target")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentNavigationResultName:
         MethodStringName0<NavigationAgent3D, NavigationPathQueryResult3D?> =
         MethodStringName0<NavigationAgent3D, NavigationPathQueryResult3D?>("get_current_navigation_result")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentNavigationPathName:
         MethodStringName0<NavigationAgent3D, PackedVector3Array> =
         MethodStringName0<NavigationAgent3D, PackedVector3Array>("get_current_navigation_path")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentNavigationPathIndexName: MethodStringName0<NavigationAgent3D, Int> =
         MethodStringName0<NavigationAgent3D, Int>("get_current_navigation_path_index")
 
-    @JvmStatic
+    @JvmField
     public val isTargetReachedName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("is_target_reached")
 
-    @JvmStatic
+    @JvmField
     public val isTargetReachableName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("is_target_reachable")
 
-    @JvmStatic
+    @JvmField
     public val isNavigationFinishedName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("is_navigation_finished")
 
-    @JvmStatic
+    @JvmField
     public val getFinalPositionName: MethodStringName0<NavigationAgent3D, Vector3> =
         MethodStringName0<NavigationAgent3D, Vector3>("get_final_position")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceLayersName: MethodStringName1<NavigationAgent3D, Unit, Long> =
         MethodStringName1<NavigationAgent3D, Unit, Long>("set_avoidance_layers")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceLayersName: MethodStringName0<NavigationAgent3D, Long> =
         MethodStringName0<NavigationAgent3D, Long>("get_avoidance_layers")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceMaskName: MethodStringName1<NavigationAgent3D, Unit, Long> =
         MethodStringName1<NavigationAgent3D, Unit, Long>("set_avoidance_mask")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceMaskName: MethodStringName0<NavigationAgent3D, Long> =
         MethodStringName0<NavigationAgent3D, Long>("get_avoidance_mask")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceLayerValueName: MethodStringName2<NavigationAgent3D, Unit, Int, Boolean>
         = MethodStringName2<NavigationAgent3D, Unit, Int, Boolean>("set_avoidance_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceLayerValueName: MethodStringName1<NavigationAgent3D, Boolean, Int> =
         MethodStringName1<NavigationAgent3D, Boolean, Int>("get_avoidance_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidanceMaskValueName: MethodStringName2<NavigationAgent3D, Unit, Int, Boolean> =
         MethodStringName2<NavigationAgent3D, Unit, Int, Boolean>("set_avoidance_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidanceMaskValueName: MethodStringName1<NavigationAgent3D, Boolean, Int> =
         MethodStringName1<NavigationAgent3D, Boolean, Int>("get_avoidance_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val setAvoidancePriorityName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_avoidance_priority")
 
-    @JvmStatic
+    @JvmField
     public val getAvoidancePriorityName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_avoidance_priority")
 
-    @JvmStatic
+    @JvmField
     public val setDebugEnabledName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_debug_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getDebugEnabledName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_debug_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDebugUseCustomName: MethodStringName1<NavigationAgent3D, Unit, Boolean> =
         MethodStringName1<NavigationAgent3D, Unit, Boolean>("set_debug_use_custom")
 
-    @JvmStatic
+    @JvmField
     public val getDebugUseCustomName: MethodStringName0<NavigationAgent3D, Boolean> =
         MethodStringName0<NavigationAgent3D, Boolean>("get_debug_use_custom")
 
-    @JvmStatic
+    @JvmField
     public val setDebugPathCustomColorName: MethodStringName1<NavigationAgent3D, Unit, Color> =
         MethodStringName1<NavigationAgent3D, Unit, Color>("set_debug_path_custom_color")
 
-    @JvmStatic
+    @JvmField
     public val getDebugPathCustomColorName: MethodStringName0<NavigationAgent3D, Color> =
         MethodStringName0<NavigationAgent3D, Color>("get_debug_path_custom_color")
 
-    @JvmStatic
+    @JvmField
     public val setDebugPathCustomPointSizeName: MethodStringName1<NavigationAgent3D, Unit, Float> =
         MethodStringName1<NavigationAgent3D, Unit, Float>("set_debug_path_custom_point_size")
 
-    @JvmStatic
+    @JvmField
     public val getDebugPathCustomPointSizeName: MethodStringName0<NavigationAgent3D, Float> =
         MethodStringName0<NavigationAgent3D, Float>("get_debug_path_custom_point_size")
   }

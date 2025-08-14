@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translates to `smoothstep(edge0, edge1, x)` in the shader language.
@@ -103,11 +103,11 @@ public open class VisualShaderNodeSmoothStep : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeSmoothStep, Unit, OpType> =
         MethodStringName1<VisualShaderNodeSmoothStep, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeSmoothStep, OpType> =
         MethodStringName0<VisualShaderNodeSmoothStep, OpType>("get_op_type")
   }

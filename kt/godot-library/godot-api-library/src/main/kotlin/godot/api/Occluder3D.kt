@@ -18,7 +18,7 @@ import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [Occluder3D] stores an occluder shape that can be used by the engine's occlusion culling system.
@@ -50,11 +50,11 @@ public open class Occluder3D internal constructor() : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getVerticesName: MethodStringName0<Occluder3D, PackedVector3Array> =
         MethodStringName0<Occluder3D, PackedVector3Array>("get_vertices")
 
-    @JvmStatic
+    @JvmField
     public val getIndicesName: MethodStringName0<Occluder3D, PackedInt32Array> =
         MethodStringName0<Occluder3D, PackedInt32Array>("get_indices")
   }

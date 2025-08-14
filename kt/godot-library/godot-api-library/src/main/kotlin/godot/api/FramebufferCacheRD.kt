@@ -20,6 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -34,7 +35,7 @@ public open class FramebufferCacheRD : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getCacheMultipassName:
         MethodStringName3<FramebufferCacheRD, RID, VariantArray<RID>, VariantArray<RDFramebufferPass>, Long>
         =

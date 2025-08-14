@@ -28,6 +28,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -187,45 +188,45 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createFromImageName:
         MethodStringName4<PortableCompressedTexture2D, Unit, Image?, CompressionMode, Boolean, Float>
         =
         MethodStringName4<PortableCompressedTexture2D, Unit, Image?, CompressionMode, Boolean, Float>("create_from_image")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<PortableCompressedTexture2D, Image.Format> =
         MethodStringName0<PortableCompressedTexture2D, Image.Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val getCompressionModeName:
         MethodStringName0<PortableCompressedTexture2D, CompressionMode> =
         MethodStringName0<PortableCompressedTexture2D, CompressionMode>("get_compression_mode")
 
-    @JvmStatic
+    @JvmField
     public val setSizeOverrideName: MethodStringName1<PortableCompressedTexture2D, Unit, Vector2> =
         MethodStringName1<PortableCompressedTexture2D, Unit, Vector2>("set_size_override")
 
-    @JvmStatic
+    @JvmField
     public val getSizeOverrideName: MethodStringName0<PortableCompressedTexture2D, Vector2> =
         MethodStringName0<PortableCompressedTexture2D, Vector2>("get_size_override")
 
-    @JvmStatic
+    @JvmField
     public val setKeepCompressedBufferName:
         MethodStringName1<PortableCompressedTexture2D, Unit, Boolean> =
         MethodStringName1<PortableCompressedTexture2D, Unit, Boolean>("set_keep_compressed_buffer")
 
-    @JvmStatic
+    @JvmField
     public val isKeepingCompressedBufferName:
         MethodStringName0<PortableCompressedTexture2D, Boolean> =
         MethodStringName0<PortableCompressedTexture2D, Boolean>("is_keeping_compressed_buffer")
 
-    @JvmStatic
+    @JvmField
     public val setKeepAllCompressedBuffersName:
         MethodStringName1<PortableCompressedTexture2D, Unit, Boolean> =
         MethodStringName1<PortableCompressedTexture2D, Unit, Boolean>("set_keep_all_compressed_buffers")
 
-    @JvmStatic
+    @JvmField
     public val isKeepingAllCompressedBuffersName:
         MethodStringName0<PortableCompressedTexture2D, Boolean> =
         MethodStringName0<PortableCompressedTexture2D, Boolean>("is_keeping_all_compressed_buffers")

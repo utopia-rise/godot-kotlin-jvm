@@ -15,7 +15,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A cubemap is made of 6 textures organized in layers. They are typically used for faking
@@ -100,7 +100,7 @@ public open class Cubemap : ImageTextureLayered() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<Cubemap, Resource?> =
         MethodStringName0<Cubemap, Resource?>("create_placeholder")
   }

@@ -51,9 +51,9 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [GraphEdit] provides tools for creation, manipulation, and display of various graphs. Its main
@@ -1317,302 +1317,302 @@ public open class GraphEdit : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val connectNodeName:
         MethodStringName5<GraphEdit, Error, StringName, Int, StringName, Int, Boolean> =
         MethodStringName5<GraphEdit, Error, StringName, Int, StringName, Int, Boolean>("connect_node")
 
-    @JvmStatic
+    @JvmField
     public val isNodeConnectedName:
         MethodStringName4<GraphEdit, Boolean, StringName, Int, StringName, Int> =
         MethodStringName4<GraphEdit, Boolean, StringName, Int, StringName, Int>("is_node_connected")
 
-    @JvmStatic
+    @JvmField
     public val disconnectNodeName:
         MethodStringName4<GraphEdit, Unit, StringName, Int, StringName, Int> =
         MethodStringName4<GraphEdit, Unit, StringName, Int, StringName, Int>("disconnect_node")
 
-    @JvmStatic
+    @JvmField
     public val setConnectionActivityName:
         MethodStringName5<GraphEdit, Unit, StringName, Int, StringName, Int, Float> =
         MethodStringName5<GraphEdit, Unit, StringName, Int, StringName, Int, Float>("set_connection_activity")
 
-    @JvmStatic
+    @JvmField
     public val setConnectionsName:
         MethodStringName1<GraphEdit, Unit, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName1<GraphEdit, Unit, VariantArray<Dictionary<Any?, Any?>>>("set_connections")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionListName:
         MethodStringName0<GraphEdit, VariantArray<Dictionary<Any?, Any?>>> =
         MethodStringName0<GraphEdit, VariantArray<Dictionary<Any?, Any?>>>("get_connection_list")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionCountName: MethodStringName2<GraphEdit, Int, StringName, Int> =
         MethodStringName2<GraphEdit, Int, StringName, Int>("get_connection_count")
 
-    @JvmStatic
+    @JvmField
     public val getClosestConnectionAtPointName:
         MethodStringName2<GraphEdit, Dictionary<Any?, Any?>, Vector2, Float> =
         MethodStringName2<GraphEdit, Dictionary<Any?, Any?>, Vector2, Float>("get_closest_connection_at_point")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionsIntersectingWithRectName:
         MethodStringName1<GraphEdit, VariantArray<Dictionary<Any?, Any?>>, Rect2> =
         MethodStringName1<GraphEdit, VariantArray<Dictionary<Any?, Any?>>, Rect2>("get_connections_intersecting_with_rect")
 
-    @JvmStatic
+    @JvmField
     public val clearConnectionsName: MethodStringName0<GraphEdit, Unit> =
         MethodStringName0<GraphEdit, Unit>("clear_connections")
 
-    @JvmStatic
+    @JvmField
     public val forceConnectionDragEndName: MethodStringName0<GraphEdit, Unit> =
         MethodStringName0<GraphEdit, Unit>("force_connection_drag_end")
 
-    @JvmStatic
+    @JvmField
     public val getScrollOffsetName: MethodStringName0<GraphEdit, Vector2> =
         MethodStringName0<GraphEdit, Vector2>("get_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val setScrollOffsetName: MethodStringName1<GraphEdit, Unit, Vector2> =
         MethodStringName1<GraphEdit, Unit, Vector2>("set_scroll_offset")
 
-    @JvmStatic
+    @JvmField
     public val addValidRightDisconnectTypeName: MethodStringName1<GraphEdit, Unit, Int> =
         MethodStringName1<GraphEdit, Unit, Int>("add_valid_right_disconnect_type")
 
-    @JvmStatic
+    @JvmField
     public val removeValidRightDisconnectTypeName: MethodStringName1<GraphEdit, Unit, Int> =
         MethodStringName1<GraphEdit, Unit, Int>("remove_valid_right_disconnect_type")
 
-    @JvmStatic
+    @JvmField
     public val addValidLeftDisconnectTypeName: MethodStringName1<GraphEdit, Unit, Int> =
         MethodStringName1<GraphEdit, Unit, Int>("add_valid_left_disconnect_type")
 
-    @JvmStatic
+    @JvmField
     public val removeValidLeftDisconnectTypeName: MethodStringName1<GraphEdit, Unit, Int> =
         MethodStringName1<GraphEdit, Unit, Int>("remove_valid_left_disconnect_type")
 
-    @JvmStatic
+    @JvmField
     public val addValidConnectionTypeName: MethodStringName2<GraphEdit, Unit, Int, Int> =
         MethodStringName2<GraphEdit, Unit, Int, Int>("add_valid_connection_type")
 
-    @JvmStatic
+    @JvmField
     public val removeValidConnectionTypeName: MethodStringName2<GraphEdit, Unit, Int, Int> =
         MethodStringName2<GraphEdit, Unit, Int, Int>("remove_valid_connection_type")
 
-    @JvmStatic
+    @JvmField
     public val isValidConnectionTypeName: MethodStringName2<GraphEdit, Boolean, Int, Int> =
         MethodStringName2<GraphEdit, Boolean, Int, Int>("is_valid_connection_type")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionLineName:
         MethodStringName2<GraphEdit, PackedVector2Array, Vector2, Vector2> =
         MethodStringName2<GraphEdit, PackedVector2Array, Vector2, Vector2>("get_connection_line")
 
-    @JvmStatic
+    @JvmField
     public val attachGraphElementToFrameName:
         MethodStringName2<GraphEdit, Unit, StringName, StringName> =
         MethodStringName2<GraphEdit, Unit, StringName, StringName>("attach_graph_element_to_frame")
 
-    @JvmStatic
+    @JvmField
     public val detachGraphElementFromFrameName: MethodStringName1<GraphEdit, Unit, StringName> =
         MethodStringName1<GraphEdit, Unit, StringName>("detach_graph_element_from_frame")
 
-    @JvmStatic
+    @JvmField
     public val getElementFrameName: MethodStringName1<GraphEdit, GraphFrame?, StringName> =
         MethodStringName1<GraphEdit, GraphFrame?, StringName>("get_element_frame")
 
-    @JvmStatic
+    @JvmField
     public val getAttachedNodesOfFrameName:
         MethodStringName1<GraphEdit, VariantArray<StringName>, StringName> =
         MethodStringName1<GraphEdit, VariantArray<StringName>, StringName>("get_attached_nodes_of_frame")
 
-    @JvmStatic
+    @JvmField
     public val setPanningSchemeName: MethodStringName1<GraphEdit, Unit, PanningScheme> =
         MethodStringName1<GraphEdit, Unit, PanningScheme>("set_panning_scheme")
 
-    @JvmStatic
+    @JvmField
     public val getPanningSchemeName: MethodStringName0<GraphEdit, PanningScheme> =
         MethodStringName0<GraphEdit, PanningScheme>("get_panning_scheme")
 
-    @JvmStatic
+    @JvmField
     public val setZoomName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_zoom")
 
-    @JvmStatic
+    @JvmField
     public val getZoomName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_zoom")
 
-    @JvmStatic
+    @JvmField
     public val setZoomMinName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_zoom_min")
 
-    @JvmStatic
+    @JvmField
     public val getZoomMinName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_zoom_min")
 
-    @JvmStatic
+    @JvmField
     public val setZoomMaxName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_zoom_max")
 
-    @JvmStatic
+    @JvmField
     public val getZoomMaxName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_zoom_max")
 
-    @JvmStatic
+    @JvmField
     public val setZoomStepName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_zoom_step")
 
-    @JvmStatic
+    @JvmField
     public val getZoomStepName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_zoom_step")
 
-    @JvmStatic
+    @JvmField
     public val setShowGridName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_grid")
 
-    @JvmStatic
+    @JvmField
     public val isShowingGridName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_grid")
 
-    @JvmStatic
+    @JvmField
     public val setGridPatternName: MethodStringName1<GraphEdit, Unit, GridPattern> =
         MethodStringName1<GraphEdit, Unit, GridPattern>("set_grid_pattern")
 
-    @JvmStatic
+    @JvmField
     public val getGridPatternName: MethodStringName0<GraphEdit, GridPattern> =
         MethodStringName0<GraphEdit, GridPattern>("get_grid_pattern")
 
-    @JvmStatic
+    @JvmField
     public val setSnappingEnabledName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_snapping_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isSnappingEnabledName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_snapping_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSnappingDistanceName: MethodStringName1<GraphEdit, Unit, Int> =
         MethodStringName1<GraphEdit, Unit, Int>("set_snapping_distance")
 
-    @JvmStatic
+    @JvmField
     public val getSnappingDistanceName: MethodStringName0<GraphEdit, Int> =
         MethodStringName0<GraphEdit, Int>("get_snapping_distance")
 
-    @JvmStatic
+    @JvmField
     public val setConnectionLinesCurvatureName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_connection_lines_curvature")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionLinesCurvatureName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_connection_lines_curvature")
 
-    @JvmStatic
+    @JvmField
     public val setConnectionLinesThicknessName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_connection_lines_thickness")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionLinesThicknessName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_connection_lines_thickness")
 
-    @JvmStatic
+    @JvmField
     public val setConnectionLinesAntialiasedName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_connection_lines_antialiased")
 
-    @JvmStatic
+    @JvmField
     public val isConnectionLinesAntialiasedName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_connection_lines_antialiased")
 
-    @JvmStatic
+    @JvmField
     public val setMinimapSizeName: MethodStringName1<GraphEdit, Unit, Vector2> =
         MethodStringName1<GraphEdit, Unit, Vector2>("set_minimap_size")
 
-    @JvmStatic
+    @JvmField
     public val getMinimapSizeName: MethodStringName0<GraphEdit, Vector2> =
         MethodStringName0<GraphEdit, Vector2>("get_minimap_size")
 
-    @JvmStatic
+    @JvmField
     public val setMinimapOpacityName: MethodStringName1<GraphEdit, Unit, Float> =
         MethodStringName1<GraphEdit, Unit, Float>("set_minimap_opacity")
 
-    @JvmStatic
+    @JvmField
     public val getMinimapOpacityName: MethodStringName0<GraphEdit, Float> =
         MethodStringName0<GraphEdit, Float>("get_minimap_opacity")
 
-    @JvmStatic
+    @JvmField
     public val setMinimapEnabledName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_minimap_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isMinimapEnabledName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_minimap_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setShowMenuName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_menu")
 
-    @JvmStatic
+    @JvmField
     public val isShowingMenuName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_menu")
 
-    @JvmStatic
+    @JvmField
     public val setShowZoomLabelName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_zoom_label")
 
-    @JvmStatic
+    @JvmField
     public val isShowingZoomLabelName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_zoom_label")
 
-    @JvmStatic
+    @JvmField
     public val setShowGridButtonsName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_grid_buttons")
 
-    @JvmStatic
+    @JvmField
     public val isShowingGridButtonsName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_grid_buttons")
 
-    @JvmStatic
+    @JvmField
     public val setShowZoomButtonsName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_zoom_buttons")
 
-    @JvmStatic
+    @JvmField
     public val isShowingZoomButtonsName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_zoom_buttons")
 
-    @JvmStatic
+    @JvmField
     public val setShowMinimapButtonName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_minimap_button")
 
-    @JvmStatic
+    @JvmField
     public val isShowingMinimapButtonName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_minimap_button")
 
-    @JvmStatic
+    @JvmField
     public val setShowArrangeButtonName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_show_arrange_button")
 
-    @JvmStatic
+    @JvmField
     public val isShowingArrangeButtonName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_showing_arrange_button")
 
-    @JvmStatic
+    @JvmField
     public val setRightDisconnectsName: MethodStringName1<GraphEdit, Unit, Boolean> =
         MethodStringName1<GraphEdit, Unit, Boolean>("set_right_disconnects")
 
-    @JvmStatic
+    @JvmField
     public val isRightDisconnectsEnabledName: MethodStringName0<GraphEdit, Boolean> =
         MethodStringName0<GraphEdit, Boolean>("is_right_disconnects_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getMenuHboxName: MethodStringName0<GraphEdit, HBoxContainer?> =
         MethodStringName0<GraphEdit, HBoxContainer?>("get_menu_hbox")
 
-    @JvmStatic
+    @JvmField
     public val arrangeNodesName: MethodStringName0<GraphEdit, Unit> =
         MethodStringName0<GraphEdit, Unit>("arrange_nodes")
 
-    @JvmStatic
+    @JvmField
     public val setSelectedName: MethodStringName1<GraphEdit, Unit, Node?> =
         MethodStringName1<GraphEdit, Unit, Node?>("set_selected")
   }

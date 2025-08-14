@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [RibbonTrailMesh] represents a straight ribbon-shaped mesh with variable width. The ribbon is
@@ -199,51 +199,51 @@ public open class RibbonTrailMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<RibbonTrailMesh, Unit, Float> =
         MethodStringName1<RibbonTrailMesh, Unit, Float>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<RibbonTrailMesh, Float> =
         MethodStringName0<RibbonTrailMesh, Float>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setSectionsName: MethodStringName1<RibbonTrailMesh, Unit, Int> =
         MethodStringName1<RibbonTrailMesh, Unit, Int>("set_sections")
 
-    @JvmStatic
+    @JvmField
     public val getSectionsName: MethodStringName0<RibbonTrailMesh, Int> =
         MethodStringName0<RibbonTrailMesh, Int>("get_sections")
 
-    @JvmStatic
+    @JvmField
     public val setSectionLengthName: MethodStringName1<RibbonTrailMesh, Unit, Float> =
         MethodStringName1<RibbonTrailMesh, Unit, Float>("set_section_length")
 
-    @JvmStatic
+    @JvmField
     public val getSectionLengthName: MethodStringName0<RibbonTrailMesh, Float> =
         MethodStringName0<RibbonTrailMesh, Float>("get_section_length")
 
-    @JvmStatic
+    @JvmField
     public val setSectionSegmentsName: MethodStringName1<RibbonTrailMesh, Unit, Int> =
         MethodStringName1<RibbonTrailMesh, Unit, Int>("set_section_segments")
 
-    @JvmStatic
+    @JvmField
     public val getSectionSegmentsName: MethodStringName0<RibbonTrailMesh, Int> =
         MethodStringName0<RibbonTrailMesh, Int>("get_section_segments")
 
-    @JvmStatic
+    @JvmField
     public val setCurveName: MethodStringName1<RibbonTrailMesh, Unit, Curve?> =
         MethodStringName1<RibbonTrailMesh, Unit, Curve?>("set_curve")
 
-    @JvmStatic
+    @JvmField
     public val getCurveName: MethodStringName0<RibbonTrailMesh, Curve?> =
         MethodStringName0<RibbonTrailMesh, Curve?>("get_curve")
 
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<RibbonTrailMesh, Unit, Shape> =
         MethodStringName1<RibbonTrailMesh, Unit, Shape>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<RibbonTrailMesh, Shape> =
         MethodStringName0<RibbonTrailMesh, Shape>("get_shape")
   }

@@ -25,7 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Provides a low-level interface for creating parsers for
@@ -287,71 +287,71 @@ public open class XMLParser : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val readName: MethodStringName0<XMLParser, Error> =
         MethodStringName0<XMLParser, Error>("read")
 
-    @JvmStatic
+    @JvmField
     public val getNodeTypeName: MethodStringName0<XMLParser, NodeType> =
         MethodStringName0<XMLParser, NodeType>("get_node_type")
 
-    @JvmStatic
+    @JvmField
     public val getNodeNameName: MethodStringName0<XMLParser, String> =
         MethodStringName0<XMLParser, String>("get_node_name")
 
-    @JvmStatic
+    @JvmField
     public val getNodeDataName: MethodStringName0<XMLParser, String> =
         MethodStringName0<XMLParser, String>("get_node_data")
 
-    @JvmStatic
+    @JvmField
     public val getNodeOffsetName: MethodStringName0<XMLParser, Long> =
         MethodStringName0<XMLParser, Long>("get_node_offset")
 
-    @JvmStatic
+    @JvmField
     public val getAttributeCountName: MethodStringName0<XMLParser, Int> =
         MethodStringName0<XMLParser, Int>("get_attribute_count")
 
-    @JvmStatic
+    @JvmField
     public val getAttributeNameName: MethodStringName1<XMLParser, String, Int> =
         MethodStringName1<XMLParser, String, Int>("get_attribute_name")
 
-    @JvmStatic
+    @JvmField
     public val getAttributeValueName: MethodStringName1<XMLParser, String, Int> =
         MethodStringName1<XMLParser, String, Int>("get_attribute_value")
 
-    @JvmStatic
+    @JvmField
     public val hasAttributeName: MethodStringName1<XMLParser, Boolean, String> =
         MethodStringName1<XMLParser, Boolean, String>("has_attribute")
 
-    @JvmStatic
+    @JvmField
     public val getNamedAttributeValueName: MethodStringName1<XMLParser, String, String> =
         MethodStringName1<XMLParser, String, String>("get_named_attribute_value")
 
-    @JvmStatic
+    @JvmField
     public val getNamedAttributeValueSafeName: MethodStringName1<XMLParser, String, String> =
         MethodStringName1<XMLParser, String, String>("get_named_attribute_value_safe")
 
-    @JvmStatic
+    @JvmField
     public val isEmptyName: MethodStringName0<XMLParser, Boolean> =
         MethodStringName0<XMLParser, Boolean>("is_empty")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentLineName: MethodStringName0<XMLParser, Int> =
         MethodStringName0<XMLParser, Int>("get_current_line")
 
-    @JvmStatic
+    @JvmField
     public val skipSectionName: MethodStringName0<XMLParser, Unit> =
         MethodStringName0<XMLParser, Unit>("skip_section")
 
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<XMLParser, Error, Long> =
         MethodStringName1<XMLParser, Error, Long>("seek")
 
-    @JvmStatic
+    @JvmField
     public val openName: MethodStringName1<XMLParser, Error, String> =
         MethodStringName1<XMLParser, Error, String>("open")
 
-    @JvmStatic
+    @JvmField
     public val openBufferName: MethodStringName1<XMLParser, Error, PackedByteArray> =
         MethodStringName1<XMLParser, Error, PackedByteArray>("open_buffer")
   }

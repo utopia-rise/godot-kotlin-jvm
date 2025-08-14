@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Performs a lookup operation on the provided texture, with support for multiple texture sources to
@@ -186,27 +186,27 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSourceName: MethodStringName1<VisualShaderNodeTexture, Unit, Source> =
         MethodStringName1<VisualShaderNodeTexture, Unit, Source>("set_source")
 
-    @JvmStatic
+    @JvmField
     public val getSourceName: MethodStringName0<VisualShaderNodeTexture, Source> =
         MethodStringName0<VisualShaderNodeTexture, Source>("get_source")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<VisualShaderNodeTexture, Unit, Texture2D?> =
         MethodStringName1<VisualShaderNodeTexture, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<VisualShaderNodeTexture, Texture2D?> =
         MethodStringName0<VisualShaderNodeTexture, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setTextureTypeName: MethodStringName1<VisualShaderNodeTexture, Unit, TextureType> =
         MethodStringName1<VisualShaderNodeTexture, Unit, TextureType>("set_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val getTextureTypeName: MethodStringName0<VisualShaderNodeTexture, TextureType> =
         MethodStringName0<VisualShaderNodeTexture, TextureType>("get_texture_type")
   }

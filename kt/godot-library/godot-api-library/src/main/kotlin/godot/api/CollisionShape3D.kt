@@ -23,8 +23,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node that provides a [Shape3D] to a [CollisionObject3D] parent and allows to edit it. This can
@@ -183,43 +183,43 @@ public open class CollisionShape3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val resourceChangedName: MethodStringName1<CollisionShape3D, Unit, Resource?> =
         MethodStringName1<CollisionShape3D, Unit, Resource?>("resource_changed")
 
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<CollisionShape3D, Unit, Shape3D?> =
         MethodStringName1<CollisionShape3D, Unit, Shape3D?>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<CollisionShape3D, Shape3D?> =
         MethodStringName0<CollisionShape3D, Shape3D?>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val setDisabledName: MethodStringName1<CollisionShape3D, Unit, Boolean> =
         MethodStringName1<CollisionShape3D, Unit, Boolean>("set_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDisabledName: MethodStringName0<CollisionShape3D, Boolean> =
         MethodStringName0<CollisionShape3D, Boolean>("is_disabled")
 
-    @JvmStatic
+    @JvmField
     public val makeConvexFromSiblingsName: MethodStringName0<CollisionShape3D, Unit> =
         MethodStringName0<CollisionShape3D, Unit>("make_convex_from_siblings")
 
-    @JvmStatic
+    @JvmField
     public val setDebugColorName: MethodStringName1<CollisionShape3D, Unit, Color> =
         MethodStringName1<CollisionShape3D, Unit, Color>("set_debug_color")
 
-    @JvmStatic
+    @JvmField
     public val getDebugColorName: MethodStringName0<CollisionShape3D, Color> =
         MethodStringName0<CollisionShape3D, Color>("get_debug_color")
 
-    @JvmStatic
+    @JvmField
     public val setEnableDebugFillName: MethodStringName1<CollisionShape3D, Unit, Boolean> =
         MethodStringName1<CollisionShape3D, Unit, Boolean>("set_enable_debug_fill")
 
-    @JvmStatic
+    @JvmField
     public val getEnableDebugFillName: MethodStringName0<CollisionShape3D, Boolean> =
         MethodStringName0<CollisionShape3D, Boolean>("get_enable_debug_fill")
   }

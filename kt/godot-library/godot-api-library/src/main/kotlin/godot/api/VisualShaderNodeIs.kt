@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Returns the boolean result of the comparison between `INF` or `NaN` and a scalar parameter.
@@ -81,11 +81,11 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeIs, Unit, Function> =
         MethodStringName1<VisualShaderNodeIs, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeIs, Function> =
         MethodStringName0<VisualShaderNodeIs, Function>("get_function")
   }

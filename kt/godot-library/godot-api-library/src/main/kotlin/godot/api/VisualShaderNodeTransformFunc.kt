@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Computes an inverse or transpose function on the provided [Transform3D].
@@ -80,11 +80,11 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeTransformFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeTransformFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeTransformFunc, Function> =
         MethodStringName0<VisualShaderNodeTransformFunc, Function>("get_function")
   }

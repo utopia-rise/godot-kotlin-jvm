@@ -34,8 +34,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the shape, you can configure the
@@ -341,79 +341,79 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Resource?> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Resource?>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<PhysicsShapeQueryParameters3D, Resource?> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Resource?>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val setShapeRidName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, RID> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, RID>("set_shape_rid")
 
-    @JvmStatic
+    @JvmField
     public val getShapeRidName: MethodStringName0<PhysicsShapeQueryParameters3D, RID> =
         MethodStringName0<PhysicsShapeQueryParameters3D, RID>("get_shape_rid")
 
-    @JvmStatic
+    @JvmField
     public val setTransformName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Transform3D>
         = MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Transform3D>("set_transform")
 
-    @JvmStatic
+    @JvmField
     public val getTransformName: MethodStringName0<PhysicsShapeQueryParameters3D, Transform3D> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Transform3D>("get_transform")
 
-    @JvmStatic
+    @JvmField
     public val setMotionName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Vector3> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Vector3>("set_motion")
 
-    @JvmStatic
+    @JvmField
     public val getMotionName: MethodStringName0<PhysicsShapeQueryParameters3D, Vector3> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Vector3>("get_motion")
 
-    @JvmStatic
+    @JvmField
     public val setMarginName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Float> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Float>("set_margin")
 
-    @JvmStatic
+    @JvmField
     public val getMarginName: MethodStringName0<PhysicsShapeQueryParameters3D, Float> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Float>("get_margin")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Long> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<PhysicsShapeQueryParameters3D, Long> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeName:
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, VariantArray<RID>> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, VariantArray<RID>>("set_exclude")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeName: MethodStringName0<PhysicsShapeQueryParameters3D, VariantArray<RID>> =
         MethodStringName0<PhysicsShapeQueryParameters3D, VariantArray<RID>>("get_exclude")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithBodiesName:
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Boolean>("set_collide_with_bodies")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithBodiesEnabledName:
         MethodStringName0<PhysicsShapeQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Boolean>("is_collide_with_bodies_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithAreasName:
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Boolean> =
         MethodStringName1<PhysicsShapeQueryParameters3D, Unit, Boolean>("set_collide_with_areas")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithAreasEnabledName:
         MethodStringName0<PhysicsShapeQueryParameters3D, Boolean> =
         MethodStringName0<PhysicsShapeQueryParameters3D, Boolean>("is_collide_with_areas_enabled")

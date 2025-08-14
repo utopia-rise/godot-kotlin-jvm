@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [AudioStreamGenerator] is a type of audio stream that does not play back sounds on its own;
@@ -219,29 +219,29 @@ public open class AudioStreamGenerator : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMixRateName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
         MethodStringName1<AudioStreamGenerator, Unit, Float>("set_mix_rate")
 
-    @JvmStatic
+    @JvmField
     public val getMixRateName: MethodStringName0<AudioStreamGenerator, Float> =
         MethodStringName0<AudioStreamGenerator, Float>("get_mix_rate")
 
-    @JvmStatic
+    @JvmField
     public val setMixRateModeName:
         MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate> =
         MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate>("set_mix_rate_mode")
 
-    @JvmStatic
+    @JvmField
     public val getMixRateModeName:
         MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate> =
         MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate>("get_mix_rate_mode")
 
-    @JvmStatic
+    @JvmField
     public val setBufferLengthName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
         MethodStringName1<AudioStreamGenerator, Unit, Float>("set_buffer_length")
 
-    @JvmStatic
+    @JvmField
     public val getBufferLengthName: MethodStringName0<AudioStreamGenerator, Float> =
         MethodStringName0<AudioStreamGenerator, Float>("get_buffer_length")
   }

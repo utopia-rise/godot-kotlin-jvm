@@ -33,8 +33,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * GLTFObjectModelProperty defines a mapping between a property in the glTF object model and a
@@ -360,84 +360,84 @@ public open class GLTFObjectModelProperty : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val appendNodePathName: MethodStringName1<GLTFObjectModelProperty, Unit, NodePath> =
         MethodStringName1<GLTFObjectModelProperty, Unit, NodePath>("append_node_path")
 
-    @JvmStatic
+    @JvmField
     public val appendPathToPropertyName:
         MethodStringName2<GLTFObjectModelProperty, Unit, NodePath, StringName> =
         MethodStringName2<GLTFObjectModelProperty, Unit, NodePath, StringName>("append_path_to_property")
 
-    @JvmStatic
+    @JvmField
     public val getAccessorTypeName:
         MethodStringName0<GLTFObjectModelProperty, GLTFAccessor.GLTFAccessorType> =
         MethodStringName0<GLTFObjectModelProperty, GLTFAccessor.GLTFAccessorType>("get_accessor_type")
 
-    @JvmStatic
+    @JvmField
     public val getGltfToGodotExpressionName: MethodStringName0<GLTFObjectModelProperty, Expression?>
         = MethodStringName0<GLTFObjectModelProperty, Expression?>("get_gltf_to_godot_expression")
 
-    @JvmStatic
+    @JvmField
     public val setGltfToGodotExpressionName:
         MethodStringName1<GLTFObjectModelProperty, Unit, Expression?> =
         MethodStringName1<GLTFObjectModelProperty, Unit, Expression?>("set_gltf_to_godot_expression")
 
-    @JvmStatic
+    @JvmField
     public val getGodotToGltfExpressionName: MethodStringName0<GLTFObjectModelProperty, Expression?>
         = MethodStringName0<GLTFObjectModelProperty, Expression?>("get_godot_to_gltf_expression")
 
-    @JvmStatic
+    @JvmField
     public val setGodotToGltfExpressionName:
         MethodStringName1<GLTFObjectModelProperty, Unit, Expression?> =
         MethodStringName1<GLTFObjectModelProperty, Unit, Expression?>("set_godot_to_gltf_expression")
 
-    @JvmStatic
+    @JvmField
     public val getNodePathsName: MethodStringName0<GLTFObjectModelProperty, VariantArray<NodePath>>
         = MethodStringName0<GLTFObjectModelProperty, VariantArray<NodePath>>("get_node_paths")
 
-    @JvmStatic
+    @JvmField
     public val hasNodePathsName: MethodStringName0<GLTFObjectModelProperty, Boolean> =
         MethodStringName0<GLTFObjectModelProperty, Boolean>("has_node_paths")
 
-    @JvmStatic
+    @JvmField
     public val setNodePathsName:
         MethodStringName1<GLTFObjectModelProperty, Unit, VariantArray<NodePath>> =
         MethodStringName1<GLTFObjectModelProperty, Unit, VariantArray<NodePath>>("set_node_paths")
 
-    @JvmStatic
+    @JvmField
     public val getObjectModelTypeName:
         MethodStringName0<GLTFObjectModelProperty, GLTFObjectModelType> =
         MethodStringName0<GLTFObjectModelProperty, GLTFObjectModelType>("get_object_model_type")
 
-    @JvmStatic
+    @JvmField
     public val setObjectModelTypeName:
         MethodStringName1<GLTFObjectModelProperty, Unit, GLTFObjectModelType> =
         MethodStringName1<GLTFObjectModelProperty, Unit, GLTFObjectModelType>("set_object_model_type")
 
-    @JvmStatic
+    @JvmField
     public val getJsonPointersName:
         MethodStringName0<GLTFObjectModelProperty, VariantArray<PackedStringArray>> =
         MethodStringName0<GLTFObjectModelProperty, VariantArray<PackedStringArray>>("get_json_pointers")
 
-    @JvmStatic
+    @JvmField
     public val hasJsonPointersName: MethodStringName0<GLTFObjectModelProperty, Boolean> =
         MethodStringName0<GLTFObjectModelProperty, Boolean>("has_json_pointers")
 
-    @JvmStatic
+    @JvmField
     public val setJsonPointersName:
         MethodStringName1<GLTFObjectModelProperty, Unit, VariantArray<PackedStringArray>> =
         MethodStringName1<GLTFObjectModelProperty, Unit, VariantArray<PackedStringArray>>("set_json_pointers")
 
-    @JvmStatic
+    @JvmField
     public val getVariantTypeName: MethodStringName0<GLTFObjectModelProperty, VariantType> =
         MethodStringName0<GLTFObjectModelProperty, VariantType>("get_variant_type")
 
-    @JvmStatic
+    @JvmField
     public val setVariantTypeName: MethodStringName1<GLTFObjectModelProperty, Unit, VariantType> =
         MethodStringName1<GLTFObjectModelProperty, Unit, VariantType>("set_variant_type")
 
-    @JvmStatic
+    @JvmField
     public val setTypesName:
         MethodStringName2<GLTFObjectModelProperty, Unit, VariantType, GLTFObjectModelType> =
         MethodStringName2<GLTFObjectModelProperty, Unit, VariantType, GLTFObjectModelType>("set_types")

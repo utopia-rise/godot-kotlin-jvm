@@ -24,9 +24,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Universal Plug and Play (UPnP) device. See [UPNP] for UPnP discovery and utility functions.
@@ -275,67 +275,67 @@ public open class UPNPDevice : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isValidGatewayName: MethodStringName0<UPNPDevice, Boolean> =
         MethodStringName0<UPNPDevice, Boolean>("is_valid_gateway")
 
-    @JvmStatic
+    @JvmField
     public val queryExternalAddressName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("query_external_address")
 
-    @JvmStatic
+    @JvmField
     public val addPortMappingName: MethodStringName5<UPNPDevice, Int, Int, Int, String, String, Int>
         = MethodStringName5<UPNPDevice, Int, Int, Int, String, String, Int>("add_port_mapping")
 
-    @JvmStatic
+    @JvmField
     public val deletePortMappingName: MethodStringName2<UPNPDevice, Int, Int, String> =
         MethodStringName2<UPNPDevice, Int, Int, String>("delete_port_mapping")
 
-    @JvmStatic
+    @JvmField
     public val setDescriptionUrlName: MethodStringName1<UPNPDevice, Unit, String> =
         MethodStringName1<UPNPDevice, Unit, String>("set_description_url")
 
-    @JvmStatic
+    @JvmField
     public val getDescriptionUrlName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("get_description_url")
 
-    @JvmStatic
+    @JvmField
     public val setServiceTypeName: MethodStringName1<UPNPDevice, Unit, String> =
         MethodStringName1<UPNPDevice, Unit, String>("set_service_type")
 
-    @JvmStatic
+    @JvmField
     public val getServiceTypeName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("get_service_type")
 
-    @JvmStatic
+    @JvmField
     public val setIgdControlUrlName: MethodStringName1<UPNPDevice, Unit, String> =
         MethodStringName1<UPNPDevice, Unit, String>("set_igd_control_url")
 
-    @JvmStatic
+    @JvmField
     public val getIgdControlUrlName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("get_igd_control_url")
 
-    @JvmStatic
+    @JvmField
     public val setIgdServiceTypeName: MethodStringName1<UPNPDevice, Unit, String> =
         MethodStringName1<UPNPDevice, Unit, String>("set_igd_service_type")
 
-    @JvmStatic
+    @JvmField
     public val getIgdServiceTypeName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("get_igd_service_type")
 
-    @JvmStatic
+    @JvmField
     public val setIgdOurAddrName: MethodStringName1<UPNPDevice, Unit, String> =
         MethodStringName1<UPNPDevice, Unit, String>("set_igd_our_addr")
 
-    @JvmStatic
+    @JvmField
     public val getIgdOurAddrName: MethodStringName0<UPNPDevice, String> =
         MethodStringName0<UPNPDevice, String>("get_igd_our_addr")
 
-    @JvmStatic
+    @JvmField
     public val setIgdStatusName: MethodStringName1<UPNPDevice, Unit, IGDStatus> =
         MethodStringName1<UPNPDevice, Unit, IGDStatus>("set_igd_status")
 
-    @JvmStatic
+    @JvmField
     public val getIgdStatusName: MethodStringName0<UPNPDevice, IGDStatus> =
         MethodStringName0<UPNPDevice, IGDStatus>("get_igd_status")
   }

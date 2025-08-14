@@ -17,6 +17,7 @@ open class Signal internal constructor(
         godotObject.emitSignal(name, *args)
     }
 
+    @JvmOverloads
     fun connectUnsafe(
         callable: Callable,
         flags: ConnectFlags = ConnectFlags.DEFAULT

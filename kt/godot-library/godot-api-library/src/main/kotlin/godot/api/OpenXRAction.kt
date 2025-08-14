@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This resource defines an OpenXR action. Actions can be used both for inputs (buttons, joysticks,
@@ -192,27 +192,27 @@ public open class OpenXRAction : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLocalizedNameName: MethodStringName1<OpenXRAction, Unit, String> =
         MethodStringName1<OpenXRAction, Unit, String>("set_localized_name")
 
-    @JvmStatic
+    @JvmField
     public val getLocalizedNameName: MethodStringName0<OpenXRAction, String> =
         MethodStringName0<OpenXRAction, String>("get_localized_name")
 
-    @JvmStatic
+    @JvmField
     public val setActionTypeName: MethodStringName1<OpenXRAction, Unit, ActionType> =
         MethodStringName1<OpenXRAction, Unit, ActionType>("set_action_type")
 
-    @JvmStatic
+    @JvmField
     public val getActionTypeName: MethodStringName0<OpenXRAction, ActionType> =
         MethodStringName0<OpenXRAction, ActionType>("get_action_type")
 
-    @JvmStatic
+    @JvmField
     public val setToplevelPathsName: MethodStringName1<OpenXRAction, Unit, PackedStringArray> =
         MethodStringName1<OpenXRAction, Unit, PackedStringArray>("set_toplevel_paths")
 
-    @JvmStatic
+    @JvmField
     public val getToplevelPathsName: MethodStringName0<OpenXRAction, PackedStringArray> =
         MethodStringName0<OpenXRAction, PackedStringArray>("get_toplevel_paths")
   }

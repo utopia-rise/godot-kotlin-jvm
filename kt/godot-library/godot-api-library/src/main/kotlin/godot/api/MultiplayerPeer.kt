@@ -22,9 +22,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Manages the connection with one or more remote peers acting as server or client and assigning
@@ -302,71 +302,71 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTransferChannelName: MethodStringName1<MultiplayerPeer, Unit, Int> =
         MethodStringName1<MultiplayerPeer, Unit, Int>("set_transfer_channel")
 
-    @JvmStatic
+    @JvmField
     public val getTransferChannelName: MethodStringName0<MultiplayerPeer, Int> =
         MethodStringName0<MultiplayerPeer, Int>("get_transfer_channel")
 
-    @JvmStatic
+    @JvmField
     public val setTransferModeName: MethodStringName1<MultiplayerPeer, Unit, TransferMode> =
         MethodStringName1<MultiplayerPeer, Unit, TransferMode>("set_transfer_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTransferModeName: MethodStringName0<MultiplayerPeer, TransferMode> =
         MethodStringName0<MultiplayerPeer, TransferMode>("get_transfer_mode")
 
-    @JvmStatic
+    @JvmField
     public val setTargetPeerName: MethodStringName1<MultiplayerPeer, Unit, Int> =
         MethodStringName1<MultiplayerPeer, Unit, Int>("set_target_peer")
 
-    @JvmStatic
+    @JvmField
     public val getPacketPeerName: MethodStringName0<MultiplayerPeer, Int> =
         MethodStringName0<MultiplayerPeer, Int>("get_packet_peer")
 
-    @JvmStatic
+    @JvmField
     public val getPacketChannelName: MethodStringName0<MultiplayerPeer, Int> =
         MethodStringName0<MultiplayerPeer, Int>("get_packet_channel")
 
-    @JvmStatic
+    @JvmField
     public val getPacketModeName: MethodStringName0<MultiplayerPeer, TransferMode> =
         MethodStringName0<MultiplayerPeer, TransferMode>("get_packet_mode")
 
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<MultiplayerPeer, Unit> =
         MethodStringName0<MultiplayerPeer, Unit>("poll")
 
-    @JvmStatic
+    @JvmField
     public val closeName: MethodStringName0<MultiplayerPeer, Unit> =
         MethodStringName0<MultiplayerPeer, Unit>("close")
 
-    @JvmStatic
+    @JvmField
     public val disconnectPeerName: MethodStringName2<MultiplayerPeer, Unit, Int, Boolean> =
         MethodStringName2<MultiplayerPeer, Unit, Int, Boolean>("disconnect_peer")
 
-    @JvmStatic
+    @JvmField
     public val getConnectionStatusName: MethodStringName0<MultiplayerPeer, ConnectionStatus> =
         MethodStringName0<MultiplayerPeer, ConnectionStatus>("get_connection_status")
 
-    @JvmStatic
+    @JvmField
     public val getUniqueIdName: MethodStringName0<MultiplayerPeer, Int> =
         MethodStringName0<MultiplayerPeer, Int>("get_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val generateUniqueIdName: MethodStringName0<MultiplayerPeer, Long> =
         MethodStringName0<MultiplayerPeer, Long>("generate_unique_id")
 
-    @JvmStatic
+    @JvmField
     public val setRefuseNewConnectionsName: MethodStringName1<MultiplayerPeer, Unit, Boolean> =
         MethodStringName1<MultiplayerPeer, Unit, Boolean>("set_refuse_new_connections")
 
-    @JvmStatic
+    @JvmField
     public val isRefusingNewConnectionsName: MethodStringName0<MultiplayerPeer, Boolean> =
         MethodStringName0<MultiplayerPeer, Boolean>("is_refusing_new_connections")
 
-    @JvmStatic
+    @JvmField
     public val isServerRelaySupportedName: MethodStringName0<MultiplayerPeer, Boolean> =
         MethodStringName0<MultiplayerPeer, Boolean>("is_server_relay_supported")
 

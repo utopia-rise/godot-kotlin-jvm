@@ -36,9 +36,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * CPU-based 2D particle node used to create a variety of particle systems and effects.
@@ -1649,295 +1649,295 @@ public open class CPUParticles2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEmittingName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_emitting")
 
-    @JvmStatic
+    @JvmField
     public val setAmountName: MethodStringName1<CPUParticles2D, Unit, Int> =
         MethodStringName1<CPUParticles2D, Unit, Int>("set_amount")
 
-    @JvmStatic
+    @JvmField
     public val setLifetimeName: MethodStringName1<CPUParticles2D, Unit, Double> =
         MethodStringName1<CPUParticles2D, Unit, Double>("set_lifetime")
 
-    @JvmStatic
+    @JvmField
     public val setOneShotName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_one_shot")
 
-    @JvmStatic
+    @JvmField
     public val setPreProcessTimeName: MethodStringName1<CPUParticles2D, Unit, Double> =
         MethodStringName1<CPUParticles2D, Unit, Double>("set_pre_process_time")
 
-    @JvmStatic
+    @JvmField
     public val setExplosivenessRatioName: MethodStringName1<CPUParticles2D, Unit, Float> =
         MethodStringName1<CPUParticles2D, Unit, Float>("set_explosiveness_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setRandomnessRatioName: MethodStringName1<CPUParticles2D, Unit, Float> =
         MethodStringName1<CPUParticles2D, Unit, Float>("set_randomness_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setLifetimeRandomnessName: MethodStringName1<CPUParticles2D, Unit, Double> =
         MethodStringName1<CPUParticles2D, Unit, Double>("set_lifetime_randomness")
 
-    @JvmStatic
+    @JvmField
     public val setUseLocalCoordinatesName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_use_local_coordinates")
 
-    @JvmStatic
+    @JvmField
     public val setFixedFpsName: MethodStringName1<CPUParticles2D, Unit, Int> =
         MethodStringName1<CPUParticles2D, Unit, Int>("set_fixed_fps")
 
-    @JvmStatic
+    @JvmField
     public val setFractionalDeltaName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_fractional_delta")
 
-    @JvmStatic
+    @JvmField
     public val setSpeedScaleName: MethodStringName1<CPUParticles2D, Unit, Double> =
         MethodStringName1<CPUParticles2D, Unit, Double>("set_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val requestParticlesProcessName: MethodStringName1<CPUParticles2D, Unit, Float> =
         MethodStringName1<CPUParticles2D, Unit, Float>("request_particles_process")
 
-    @JvmStatic
+    @JvmField
     public val isEmittingName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("is_emitting")
 
-    @JvmStatic
+    @JvmField
     public val getAmountName: MethodStringName0<CPUParticles2D, Int> =
         MethodStringName0<CPUParticles2D, Int>("get_amount")
 
-    @JvmStatic
+    @JvmField
     public val getLifetimeName: MethodStringName0<CPUParticles2D, Double> =
         MethodStringName0<CPUParticles2D, Double>("get_lifetime")
 
-    @JvmStatic
+    @JvmField
     public val getOneShotName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("get_one_shot")
 
-    @JvmStatic
+    @JvmField
     public val getPreProcessTimeName: MethodStringName0<CPUParticles2D, Double> =
         MethodStringName0<CPUParticles2D, Double>("get_pre_process_time")
 
-    @JvmStatic
+    @JvmField
     public val getExplosivenessRatioName: MethodStringName0<CPUParticles2D, Float> =
         MethodStringName0<CPUParticles2D, Float>("get_explosiveness_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getRandomnessRatioName: MethodStringName0<CPUParticles2D, Float> =
         MethodStringName0<CPUParticles2D, Float>("get_randomness_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getLifetimeRandomnessName: MethodStringName0<CPUParticles2D, Double> =
         MethodStringName0<CPUParticles2D, Double>("get_lifetime_randomness")
 
-    @JvmStatic
+    @JvmField
     public val getUseLocalCoordinatesName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("get_use_local_coordinates")
 
-    @JvmStatic
+    @JvmField
     public val getFixedFpsName: MethodStringName0<CPUParticles2D, Int> =
         MethodStringName0<CPUParticles2D, Int>("get_fixed_fps")
 
-    @JvmStatic
+    @JvmField
     public val getFractionalDeltaName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("get_fractional_delta")
 
-    @JvmStatic
+    @JvmField
     public val getSpeedScaleName: MethodStringName0<CPUParticles2D, Double> =
         MethodStringName0<CPUParticles2D, Double>("get_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val setUseFixedSeedName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_use_fixed_seed")
 
-    @JvmStatic
+    @JvmField
     public val getUseFixedSeedName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("get_use_fixed_seed")
 
-    @JvmStatic
+    @JvmField
     public val setSeedName: MethodStringName1<CPUParticles2D, Unit, Long> =
         MethodStringName1<CPUParticles2D, Unit, Long>("set_seed")
 
-    @JvmStatic
+    @JvmField
     public val getSeedName: MethodStringName0<CPUParticles2D, Long> =
         MethodStringName0<CPUParticles2D, Long>("get_seed")
 
-    @JvmStatic
+    @JvmField
     public val setDrawOrderName: MethodStringName1<CPUParticles2D, Unit, DrawOrder> =
         MethodStringName1<CPUParticles2D, Unit, DrawOrder>("set_draw_order")
 
-    @JvmStatic
+    @JvmField
     public val getDrawOrderName: MethodStringName0<CPUParticles2D, DrawOrder> =
         MethodStringName0<CPUParticles2D, DrawOrder>("get_draw_order")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<CPUParticles2D, Unit, Texture2D?> =
         MethodStringName1<CPUParticles2D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<CPUParticles2D, Texture2D?> =
         MethodStringName0<CPUParticles2D, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val restartName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("restart")
 
-    @JvmStatic
+    @JvmField
     public val setDirectionName: MethodStringName1<CPUParticles2D, Unit, Vector2> =
         MethodStringName1<CPUParticles2D, Unit, Vector2>("set_direction")
 
-    @JvmStatic
+    @JvmField
     public val getDirectionName: MethodStringName0<CPUParticles2D, Vector2> =
         MethodStringName0<CPUParticles2D, Vector2>("get_direction")
 
-    @JvmStatic
+    @JvmField
     public val setSpreadName: MethodStringName1<CPUParticles2D, Unit, Float> =
         MethodStringName1<CPUParticles2D, Unit, Float>("set_spread")
 
-    @JvmStatic
+    @JvmField
     public val getSpreadName: MethodStringName0<CPUParticles2D, Float> =
         MethodStringName0<CPUParticles2D, Float>("get_spread")
 
-    @JvmStatic
+    @JvmField
     public val setParamMinName: MethodStringName2<CPUParticles2D, Unit, Parameter, Float> =
         MethodStringName2<CPUParticles2D, Unit, Parameter, Float>("set_param_min")
 
-    @JvmStatic
+    @JvmField
     public val getParamMinName: MethodStringName1<CPUParticles2D, Float, Parameter> =
         MethodStringName1<CPUParticles2D, Float, Parameter>("get_param_min")
 
-    @JvmStatic
+    @JvmField
     public val setParamMaxName: MethodStringName2<CPUParticles2D, Unit, Parameter, Float> =
         MethodStringName2<CPUParticles2D, Unit, Parameter, Float>("set_param_max")
 
-    @JvmStatic
+    @JvmField
     public val getParamMaxName: MethodStringName1<CPUParticles2D, Float, Parameter> =
         MethodStringName1<CPUParticles2D, Float, Parameter>("get_param_max")
 
-    @JvmStatic
+    @JvmField
     public val setParamCurveName: MethodStringName2<CPUParticles2D, Unit, Parameter, Curve?> =
         MethodStringName2<CPUParticles2D, Unit, Parameter, Curve?>("set_param_curve")
 
-    @JvmStatic
+    @JvmField
     public val getParamCurveName: MethodStringName1<CPUParticles2D, Curve?, Parameter> =
         MethodStringName1<CPUParticles2D, Curve?, Parameter>("get_param_curve")
 
-    @JvmStatic
+    @JvmField
     public val setColorName: MethodStringName1<CPUParticles2D, Unit, Color> =
         MethodStringName1<CPUParticles2D, Unit, Color>("set_color")
 
-    @JvmStatic
+    @JvmField
     public val getColorName: MethodStringName0<CPUParticles2D, Color> =
         MethodStringName0<CPUParticles2D, Color>("get_color")
 
-    @JvmStatic
+    @JvmField
     public val setColorRampName: MethodStringName1<CPUParticles2D, Unit, Gradient?> =
         MethodStringName1<CPUParticles2D, Unit, Gradient?>("set_color_ramp")
 
-    @JvmStatic
+    @JvmField
     public val getColorRampName: MethodStringName0<CPUParticles2D, Gradient?> =
         MethodStringName0<CPUParticles2D, Gradient?>("get_color_ramp")
 
-    @JvmStatic
+    @JvmField
     public val setColorInitialRampName: MethodStringName1<CPUParticles2D, Unit, Gradient?> =
         MethodStringName1<CPUParticles2D, Unit, Gradient?>("set_color_initial_ramp")
 
-    @JvmStatic
+    @JvmField
     public val getColorInitialRampName: MethodStringName0<CPUParticles2D, Gradient?> =
         MethodStringName0<CPUParticles2D, Gradient?>("get_color_initial_ramp")
 
-    @JvmStatic
+    @JvmField
     public val setParticleFlagName: MethodStringName2<CPUParticles2D, Unit, ParticleFlags, Boolean>
         = MethodStringName2<CPUParticles2D, Unit, ParticleFlags, Boolean>("set_particle_flag")
 
-    @JvmStatic
+    @JvmField
     public val getParticleFlagName: MethodStringName1<CPUParticles2D, Boolean, ParticleFlags> =
         MethodStringName1<CPUParticles2D, Boolean, ParticleFlags>("get_particle_flag")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionShapeName: MethodStringName1<CPUParticles2D, Unit, EmissionShape> =
         MethodStringName1<CPUParticles2D, Unit, EmissionShape>("set_emission_shape")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionShapeName: MethodStringName0<CPUParticles2D, EmissionShape> =
         MethodStringName0<CPUParticles2D, EmissionShape>("get_emission_shape")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionSphereRadiusName: MethodStringName1<CPUParticles2D, Unit, Float> =
         MethodStringName1<CPUParticles2D, Unit, Float>("set_emission_sphere_radius")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionSphereRadiusName: MethodStringName0<CPUParticles2D, Float> =
         MethodStringName0<CPUParticles2D, Float>("get_emission_sphere_radius")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionRectExtentsName: MethodStringName1<CPUParticles2D, Unit, Vector2> =
         MethodStringName1<CPUParticles2D, Unit, Vector2>("set_emission_rect_extents")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionRectExtentsName: MethodStringName0<CPUParticles2D, Vector2> =
         MethodStringName0<CPUParticles2D, Vector2>("get_emission_rect_extents")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionPointsName: MethodStringName1<CPUParticles2D, Unit, PackedVector2Array> =
         MethodStringName1<CPUParticles2D, Unit, PackedVector2Array>("set_emission_points")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionPointsName: MethodStringName0<CPUParticles2D, PackedVector2Array> =
         MethodStringName0<CPUParticles2D, PackedVector2Array>("get_emission_points")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionNormalsName: MethodStringName1<CPUParticles2D, Unit, PackedVector2Array> =
         MethodStringName1<CPUParticles2D, Unit, PackedVector2Array>("set_emission_normals")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionNormalsName: MethodStringName0<CPUParticles2D, PackedVector2Array> =
         MethodStringName0<CPUParticles2D, PackedVector2Array>("get_emission_normals")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionColorsName: MethodStringName1<CPUParticles2D, Unit, PackedColorArray> =
         MethodStringName1<CPUParticles2D, Unit, PackedColorArray>("set_emission_colors")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionColorsName: MethodStringName0<CPUParticles2D, PackedColorArray> =
         MethodStringName0<CPUParticles2D, PackedColorArray>("get_emission_colors")
 
-    @JvmStatic
+    @JvmField
     public val getGravityName: MethodStringName0<CPUParticles2D, Vector2> =
         MethodStringName0<CPUParticles2D, Vector2>("get_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setGravityName: MethodStringName1<CPUParticles2D, Unit, Vector2> =
         MethodStringName1<CPUParticles2D, Unit, Vector2>("set_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getSplitScaleName: MethodStringName0<CPUParticles2D, Boolean> =
         MethodStringName0<CPUParticles2D, Boolean>("get_split_scale")
 
-    @JvmStatic
+    @JvmField
     public val setSplitScaleName: MethodStringName1<CPUParticles2D, Unit, Boolean> =
         MethodStringName1<CPUParticles2D, Unit, Boolean>("set_split_scale")
 
-    @JvmStatic
+    @JvmField
     public val getScaleCurveXName: MethodStringName0<CPUParticles2D, Curve?> =
         MethodStringName0<CPUParticles2D, Curve?>("get_scale_curve_x")
 
-    @JvmStatic
+    @JvmField
     public val setScaleCurveXName: MethodStringName1<CPUParticles2D, Unit, Curve?> =
         MethodStringName1<CPUParticles2D, Unit, Curve?>("set_scale_curve_x")
 
-    @JvmStatic
+    @JvmField
     public val getScaleCurveYName: MethodStringName0<CPUParticles2D, Curve?> =
         MethodStringName0<CPUParticles2D, Curve?>("get_scale_curve_y")
 
-    @JvmStatic
+    @JvmField
     public val setScaleCurveYName: MethodStringName1<CPUParticles2D, Unit, Curve?> =
         MethodStringName1<CPUParticles2D, Unit, Curve?>("set_scale_curve_y")
 
-    @JvmStatic
+    @JvmField
     public val convertFromParticlesName: MethodStringName1<CPUParticles2D, Unit, Node?> =
         MethodStringName1<CPUParticles2D, Unit, Node?>("convert_from_particles")
   }

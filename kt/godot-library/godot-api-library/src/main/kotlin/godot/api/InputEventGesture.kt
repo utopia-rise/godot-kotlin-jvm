@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * InputEventGestures are sent when a user performs a supported gesture on a touch screen. Gestures
@@ -85,11 +85,11 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<InputEventGesture, Unit, Vector2> =
         MethodStringName1<InputEventGesture, Unit, Vector2>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<InputEventGesture, Vector2> =
         MethodStringName0<InputEventGesture, Vector2>("get_position")
   }

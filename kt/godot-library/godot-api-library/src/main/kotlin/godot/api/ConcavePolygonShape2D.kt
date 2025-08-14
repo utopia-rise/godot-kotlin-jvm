@@ -21,8 +21,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D polyline shape, intended for use in physics. Used internally in [CollisionPolygon2D] when
@@ -128,11 +128,11 @@ public open class ConcavePolygonShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSegmentsName: MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array> =
         MethodStringName1<ConcavePolygonShape2D, Unit, PackedVector2Array>("set_segments")
 
-    @JvmStatic
+    @JvmField
     public val getSegmentsName: MethodStringName0<ConcavePolygonShape2D, PackedVector2Array> =
         MethodStringName0<ConcavePolygonShape2D, PackedVector2Array>("get_segments")
   }

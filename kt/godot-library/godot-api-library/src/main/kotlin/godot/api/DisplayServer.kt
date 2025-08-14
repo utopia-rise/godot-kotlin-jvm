@@ -65,6 +65,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -79,810 +80,810 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object DisplayServer : Object() {
-  @JvmStatic
+  @JvmField
   public val hasFeatureName: MethodStringName1<DisplayServer, Boolean, Feature> =
       MethodStringName1<DisplayServer, Boolean, Feature>("has_feature")
 
-  @JvmStatic
+  @JvmField
   public val getNameName: MethodStringName0<DisplayServer, String> =
       MethodStringName0<DisplayServer, String>("get_name")
 
-  @JvmStatic
+  @JvmField
   public val helpSetSearchCallbacksName: MethodStringName2<DisplayServer, Unit, Callable, Callable>
       = MethodStringName2<DisplayServer, Unit, Callable, Callable>("help_set_search_callbacks")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetPopupCallbacksName:
       MethodStringName3<DisplayServer, Unit, String, Callable, Callable> =
       MethodStringName3<DisplayServer, Unit, String, Callable, Callable>("global_menu_set_popup_callbacks")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddSubmenuItemName:
       MethodStringName4<DisplayServer, Int, String, String, String, Int> =
       MethodStringName4<DisplayServer, Int, String, String, String, Int>("global_menu_add_submenu_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddItemName:
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int> =
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int>("global_menu_add_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddCheckItemName:
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int> =
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int>("global_menu_add_check_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddIconItemName:
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>
       =
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>("global_menu_add_icon_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddIconCheckItemName:
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>
       =
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>("global_menu_add_icon_check_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddRadioCheckItemName:
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int> =
       MethodStringName7<DisplayServer, Int, String, String, Callable, Callable, Any?, Key, Int>("global_menu_add_radio_check_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddIconRadioCheckItemName:
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>
       =
       MethodStringName8<DisplayServer, Int, String, Texture2D?, String, Callable, Callable, Any?, Key, Int>("global_menu_add_icon_radio_check_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddMultistateItemName:
       MethodStringName9<DisplayServer, Int, String, String, Int, Int, Callable, Callable, Any?, Key, Int>
       =
       MethodStringName9<DisplayServer, Int, String, String, Int, Int, Callable, Callable, Any?, Key, Int>("global_menu_add_multistate_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuAddSeparatorName: MethodStringName2<DisplayServer, Int, String, Int> =
       MethodStringName2<DisplayServer, Int, String, Int>("global_menu_add_separator")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemIndexFromTextName:
       MethodStringName2<DisplayServer, Int, String, String> =
       MethodStringName2<DisplayServer, Int, String, String>("global_menu_get_item_index_from_text")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemIndexFromTagName: MethodStringName2<DisplayServer, Int, String, Any?>
       = MethodStringName2<DisplayServer, Int, String, Any?>("global_menu_get_item_index_from_tag")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuIsItemCheckedName: MethodStringName2<DisplayServer, Boolean, String, Int> =
       MethodStringName2<DisplayServer, Boolean, String, Int>("global_menu_is_item_checked")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuIsItemCheckableName: MethodStringName2<DisplayServer, Boolean, String, Int> =
       MethodStringName2<DisplayServer, Boolean, String, Int>("global_menu_is_item_checkable")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuIsItemRadioCheckableName:
       MethodStringName2<DisplayServer, Boolean, String, Int> =
       MethodStringName2<DisplayServer, Boolean, String, Int>("global_menu_is_item_radio_checkable")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemCallbackName: MethodStringName2<DisplayServer, Callable, String, Int>
       = MethodStringName2<DisplayServer, Callable, String, Int>("global_menu_get_item_callback")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemKeyCallbackName:
       MethodStringName2<DisplayServer, Callable, String, Int> =
       MethodStringName2<DisplayServer, Callable, String, Int>("global_menu_get_item_key_callback")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemTagName: MethodStringName2<DisplayServer, Any?, String, Int> =
       MethodStringName2<DisplayServer, Any?, String, Int>("global_menu_get_item_tag")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemTextName: MethodStringName2<DisplayServer, String, String, Int> =
       MethodStringName2<DisplayServer, String, String, Int>("global_menu_get_item_text")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemSubmenuName: MethodStringName2<DisplayServer, String, String, Int> =
       MethodStringName2<DisplayServer, String, String, Int>("global_menu_get_item_submenu")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemAcceleratorName: MethodStringName2<DisplayServer, Key, String, Int> =
       MethodStringName2<DisplayServer, Key, String, Int>("global_menu_get_item_accelerator")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuIsItemDisabledName: MethodStringName2<DisplayServer, Boolean, String, Int> =
       MethodStringName2<DisplayServer, Boolean, String, Int>("global_menu_is_item_disabled")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuIsItemHiddenName: MethodStringName2<DisplayServer, Boolean, String, Int> =
       MethodStringName2<DisplayServer, Boolean, String, Int>("global_menu_is_item_hidden")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemTooltipName: MethodStringName2<DisplayServer, String, String, Int> =
       MethodStringName2<DisplayServer, String, String, Int>("global_menu_get_item_tooltip")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemStateName: MethodStringName2<DisplayServer, Int, String, Int> =
       MethodStringName2<DisplayServer, Int, String, Int>("global_menu_get_item_state")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemMaxStatesName: MethodStringName2<DisplayServer, Int, String, Int> =
       MethodStringName2<DisplayServer, Int, String, Int>("global_menu_get_item_max_states")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemIconName: MethodStringName2<DisplayServer, Texture2D?, String, Int> =
       MethodStringName2<DisplayServer, Texture2D?, String, Int>("global_menu_get_item_icon")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemIndentationLevelName:
       MethodStringName2<DisplayServer, Int, String, Int> =
       MethodStringName2<DisplayServer, Int, String, Int>("global_menu_get_item_indentation_level")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemCheckedName:
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean> =
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean>("global_menu_set_item_checked")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemCheckableName:
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean> =
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean>("global_menu_set_item_checkable")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemRadioCheckableName:
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean> =
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean>("global_menu_set_item_radio_checkable")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemCallbackName:
       MethodStringName3<DisplayServer, Unit, String, Int, Callable> =
       MethodStringName3<DisplayServer, Unit, String, Int, Callable>("global_menu_set_item_callback")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemHoverCallbacksName:
       MethodStringName3<DisplayServer, Unit, String, Int, Callable> =
       MethodStringName3<DisplayServer, Unit, String, Int, Callable>("global_menu_set_item_hover_callbacks")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemKeyCallbackName:
       MethodStringName3<DisplayServer, Unit, String, Int, Callable> =
       MethodStringName3<DisplayServer, Unit, String, Int, Callable>("global_menu_set_item_key_callback")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemTagName: MethodStringName3<DisplayServer, Unit, String, Int, Any?> =
       MethodStringName3<DisplayServer, Unit, String, Int, Any?>("global_menu_set_item_tag")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemTextName: MethodStringName3<DisplayServer, Unit, String, Int, String>
       = MethodStringName3<DisplayServer, Unit, String, Int, String>("global_menu_set_item_text")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemSubmenuName:
       MethodStringName3<DisplayServer, Unit, String, Int, String> =
       MethodStringName3<DisplayServer, Unit, String, Int, String>("global_menu_set_item_submenu")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemAcceleratorName:
       MethodStringName3<DisplayServer, Unit, String, Int, Key> =
       MethodStringName3<DisplayServer, Unit, String, Int, Key>("global_menu_set_item_accelerator")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemDisabledName:
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean> =
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean>("global_menu_set_item_disabled")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemHiddenName:
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean> =
       MethodStringName3<DisplayServer, Unit, String, Int, Boolean>("global_menu_set_item_hidden")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemTooltipName:
       MethodStringName3<DisplayServer, Unit, String, Int, String> =
       MethodStringName3<DisplayServer, Unit, String, Int, String>("global_menu_set_item_tooltip")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemStateName: MethodStringName3<DisplayServer, Unit, String, Int, Int> =
       MethodStringName3<DisplayServer, Unit, String, Int, Int>("global_menu_set_item_state")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemMaxStatesName:
       MethodStringName3<DisplayServer, Unit, String, Int, Int> =
       MethodStringName3<DisplayServer, Unit, String, Int, Int>("global_menu_set_item_max_states")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemIconName:
       MethodStringName3<DisplayServer, Unit, String, Int, Texture2D?> =
       MethodStringName3<DisplayServer, Unit, String, Int, Texture2D?>("global_menu_set_item_icon")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuSetItemIndentationLevelName:
       MethodStringName3<DisplayServer, Unit, String, Int, Int> =
       MethodStringName3<DisplayServer, Unit, String, Int, Int>("global_menu_set_item_indentation_level")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetItemCountName: MethodStringName1<DisplayServer, Int, String> =
       MethodStringName1<DisplayServer, Int, String>("global_menu_get_item_count")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuRemoveItemName: MethodStringName2<DisplayServer, Unit, String, Int> =
       MethodStringName2<DisplayServer, Unit, String, Int>("global_menu_remove_item")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuClearName: MethodStringName1<DisplayServer, Unit, String> =
       MethodStringName1<DisplayServer, Unit, String>("global_menu_clear")
 
-  @JvmStatic
+  @JvmField
   public val globalMenuGetSystemMenuRootsName:
       MethodStringName0<DisplayServer, Dictionary<Any?, Any?>> =
       MethodStringName0<DisplayServer, Dictionary<Any?, Any?>>("global_menu_get_system_menu_roots")
 
-  @JvmStatic
+  @JvmField
   public val ttsIsSpeakingName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("tts_is_speaking")
 
-  @JvmStatic
+  @JvmField
   public val ttsIsPausedName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("tts_is_paused")
 
-  @JvmStatic
+  @JvmField
   public val ttsGetVoicesName:
       MethodStringName0<DisplayServer, VariantArray<Dictionary<Any?, Any?>>> =
       MethodStringName0<DisplayServer, VariantArray<Dictionary<Any?, Any?>>>("tts_get_voices")
 
-  @JvmStatic
+  @JvmField
   public val ttsGetVoicesForLanguageName:
       MethodStringName1<DisplayServer, PackedStringArray, String> =
       MethodStringName1<DisplayServer, PackedStringArray, String>("tts_get_voices_for_language")
 
-  @JvmStatic
+  @JvmField
   public val ttsSpeakName:
       MethodStringName7<DisplayServer, Unit, String, String, Int, Float, Float, Int, Boolean> =
       MethodStringName7<DisplayServer, Unit, String, String, Int, Float, Float, Int, Boolean>("tts_speak")
 
-  @JvmStatic
+  @JvmField
   public val ttsPauseName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("tts_pause")
 
-  @JvmStatic
+  @JvmField
   public val ttsResumeName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("tts_resume")
 
-  @JvmStatic
+  @JvmField
   public val ttsStopName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("tts_stop")
 
-  @JvmStatic
+  @JvmField
   public val ttsSetUtteranceCallbackName:
       MethodStringName2<DisplayServer, Unit, TTSUtteranceEvent, Callable> =
       MethodStringName2<DisplayServer, Unit, TTSUtteranceEvent, Callable>("tts_set_utterance_callback")
 
-  @JvmStatic
+  @JvmField
   public val isDarkModeSupportedName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("is_dark_mode_supported")
 
-  @JvmStatic
+  @JvmField
   public val isDarkModeName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("is_dark_mode")
 
-  @JvmStatic
+  @JvmField
   public val getAccentColorName: MethodStringName0<DisplayServer, Color> =
       MethodStringName0<DisplayServer, Color>("get_accent_color")
 
-  @JvmStatic
+  @JvmField
   public val getBaseColorName: MethodStringName0<DisplayServer, Color> =
       MethodStringName0<DisplayServer, Color>("get_base_color")
 
-  @JvmStatic
+  @JvmField
   public val setSystemThemeChangeCallbackName: MethodStringName1<DisplayServer, Unit, Callable> =
       MethodStringName1<DisplayServer, Unit, Callable>("set_system_theme_change_callback")
 
-  @JvmStatic
+  @JvmField
   public val mouseSetModeName: MethodStringName1<DisplayServer, Unit, MouseMode> =
       MethodStringName1<DisplayServer, Unit, MouseMode>("mouse_set_mode")
 
-  @JvmStatic
+  @JvmField
   public val mouseGetModeName: MethodStringName0<DisplayServer, MouseMode> =
       MethodStringName0<DisplayServer, MouseMode>("mouse_get_mode")
 
-  @JvmStatic
+  @JvmField
   public val warpMouseName: MethodStringName1<DisplayServer, Unit, Vector2i> =
       MethodStringName1<DisplayServer, Unit, Vector2i>("warp_mouse")
 
-  @JvmStatic
+  @JvmField
   public val mouseGetPositionName: MethodStringName0<DisplayServer, Vector2i> =
       MethodStringName0<DisplayServer, Vector2i>("mouse_get_position")
 
-  @JvmStatic
+  @JvmField
   public val mouseGetButtonStateName: MethodStringName0<DisplayServer, MouseButtonMask> =
       MethodStringName0<DisplayServer, MouseButtonMask>("mouse_get_button_state")
 
-  @JvmStatic
+  @JvmField
   public val clipboardSetName: MethodStringName1<DisplayServer, Unit, String> =
       MethodStringName1<DisplayServer, Unit, String>("clipboard_set")
 
-  @JvmStatic
+  @JvmField
   public val clipboardGetName: MethodStringName0<DisplayServer, String> =
       MethodStringName0<DisplayServer, String>("clipboard_get")
 
-  @JvmStatic
+  @JvmField
   public val clipboardGetImageName: MethodStringName0<DisplayServer, Image?> =
       MethodStringName0<DisplayServer, Image?>("clipboard_get_image")
 
-  @JvmStatic
+  @JvmField
   public val clipboardHasName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("clipboard_has")
 
-  @JvmStatic
+  @JvmField
   public val clipboardHasImageName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("clipboard_has_image")
 
-  @JvmStatic
+  @JvmField
   public val clipboardSetPrimaryName: MethodStringName1<DisplayServer, Unit, String> =
       MethodStringName1<DisplayServer, Unit, String>("clipboard_set_primary")
 
-  @JvmStatic
+  @JvmField
   public val clipboardGetPrimaryName: MethodStringName0<DisplayServer, String> =
       MethodStringName0<DisplayServer, String>("clipboard_get_primary")
 
-  @JvmStatic
+  @JvmField
   public val getDisplayCutoutsName: MethodStringName0<DisplayServer, VariantArray<Rect2>> =
       MethodStringName0<DisplayServer, VariantArray<Rect2>>("get_display_cutouts")
 
-  @JvmStatic
+  @JvmField
   public val getDisplaySafeAreaName: MethodStringName0<DisplayServer, Rect2i> =
       MethodStringName0<DisplayServer, Rect2i>("get_display_safe_area")
 
-  @JvmStatic
+  @JvmField
   public val getScreenCountName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("get_screen_count")
 
-  @JvmStatic
+  @JvmField
   public val getPrimaryScreenName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("get_primary_screen")
 
-  @JvmStatic
+  @JvmField
   public val getKeyboardFocusScreenName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("get_keyboard_focus_screen")
 
-  @JvmStatic
+  @JvmField
   public val getScreenFromRectName: MethodStringName1<DisplayServer, Int, Rect2> =
       MethodStringName1<DisplayServer, Int, Rect2>("get_screen_from_rect")
 
-  @JvmStatic
+  @JvmField
   public val screenGetPositionName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("screen_get_position")
 
-  @JvmStatic
+  @JvmField
   public val screenGetSizeName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("screen_get_size")
 
-  @JvmStatic
+  @JvmField
   public val screenGetUsableRectName: MethodStringName1<DisplayServer, Rect2i, Int> =
       MethodStringName1<DisplayServer, Rect2i, Int>("screen_get_usable_rect")
 
-  @JvmStatic
+  @JvmField
   public val screenGetDpiName: MethodStringName1<DisplayServer, Int, Int> =
       MethodStringName1<DisplayServer, Int, Int>("screen_get_dpi")
 
-  @JvmStatic
+  @JvmField
   public val screenGetScaleName: MethodStringName1<DisplayServer, Float, Int> =
       MethodStringName1<DisplayServer, Float, Int>("screen_get_scale")
 
-  @JvmStatic
+  @JvmField
   public val isTouchscreenAvailableName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("is_touchscreen_available")
 
-  @JvmStatic
+  @JvmField
   public val screenGetMaxScaleName: MethodStringName0<DisplayServer, Float> =
       MethodStringName0<DisplayServer, Float>("screen_get_max_scale")
 
-  @JvmStatic
+  @JvmField
   public val screenGetRefreshRateName: MethodStringName1<DisplayServer, Float, Int> =
       MethodStringName1<DisplayServer, Float, Int>("screen_get_refresh_rate")
 
-  @JvmStatic
+  @JvmField
   public val screenGetPixelName: MethodStringName1<DisplayServer, Color, Vector2i> =
       MethodStringName1<DisplayServer, Color, Vector2i>("screen_get_pixel")
 
-  @JvmStatic
+  @JvmField
   public val screenGetImageName: MethodStringName1<DisplayServer, Image?, Int> =
       MethodStringName1<DisplayServer, Image?, Int>("screen_get_image")
 
-  @JvmStatic
+  @JvmField
   public val screenGetImageRectName: MethodStringName1<DisplayServer, Image?, Rect2i> =
       MethodStringName1<DisplayServer, Image?, Rect2i>("screen_get_image_rect")
 
-  @JvmStatic
+  @JvmField
   public val screenSetOrientationName:
       MethodStringName2<DisplayServer, Unit, ScreenOrientation, Int> =
       MethodStringName2<DisplayServer, Unit, ScreenOrientation, Int>("screen_set_orientation")
 
-  @JvmStatic
+  @JvmField
   public val screenGetOrientationName: MethodStringName1<DisplayServer, ScreenOrientation, Int> =
       MethodStringName1<DisplayServer, ScreenOrientation, Int>("screen_get_orientation")
 
-  @JvmStatic
+  @JvmField
   public val screenSetKeepOnName: MethodStringName1<DisplayServer, Unit, Boolean> =
       MethodStringName1<DisplayServer, Unit, Boolean>("screen_set_keep_on")
 
-  @JvmStatic
+  @JvmField
   public val screenIsKeptOnName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("screen_is_kept_on")
 
-  @JvmStatic
+  @JvmField
   public val getWindowListName: MethodStringName0<DisplayServer, PackedInt32Array> =
       MethodStringName0<DisplayServer, PackedInt32Array>("get_window_list")
 
-  @JvmStatic
+  @JvmField
   public val getWindowAtScreenPositionName: MethodStringName1<DisplayServer, Int, Vector2i> =
       MethodStringName1<DisplayServer, Int, Vector2i>("get_window_at_screen_position")
 
-  @JvmStatic
+  @JvmField
   public val windowGetNativeHandleName: MethodStringName2<DisplayServer, Long, HandleType, Int> =
       MethodStringName2<DisplayServer, Long, HandleType, Int>("window_get_native_handle")
 
-  @JvmStatic
+  @JvmField
   public val windowGetActivePopupName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("window_get_active_popup")
 
-  @JvmStatic
+  @JvmField
   public val windowSetPopupSafeRectName: MethodStringName2<DisplayServer, Unit, Int, Rect2i> =
       MethodStringName2<DisplayServer, Unit, Int, Rect2i>("window_set_popup_safe_rect")
 
-  @JvmStatic
+  @JvmField
   public val windowGetPopupSafeRectName: MethodStringName1<DisplayServer, Rect2i, Int> =
       MethodStringName1<DisplayServer, Rect2i, Int>("window_get_popup_safe_rect")
 
-  @JvmStatic
+  @JvmField
   public val windowSetTitleName: MethodStringName2<DisplayServer, Unit, String, Int> =
       MethodStringName2<DisplayServer, Unit, String, Int>("window_set_title")
 
-  @JvmStatic
+  @JvmField
   public val windowGetTitleSizeName: MethodStringName2<DisplayServer, Vector2i, String, Int> =
       MethodStringName2<DisplayServer, Vector2i, String, Int>("window_get_title_size")
 
-  @JvmStatic
+  @JvmField
   public val windowSetMousePassthroughName:
       MethodStringName2<DisplayServer, Unit, PackedVector2Array, Int> =
       MethodStringName2<DisplayServer, Unit, PackedVector2Array, Int>("window_set_mouse_passthrough")
 
-  @JvmStatic
+  @JvmField
   public val windowGetCurrentScreenName: MethodStringName1<DisplayServer, Int, Int> =
       MethodStringName1<DisplayServer, Int, Int>("window_get_current_screen")
 
-  @JvmStatic
+  @JvmField
   public val windowSetCurrentScreenName: MethodStringName2<DisplayServer, Unit, Int, Int> =
       MethodStringName2<DisplayServer, Unit, Int, Int>("window_set_current_screen")
 
-  @JvmStatic
+  @JvmField
   public val windowGetPositionName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_position")
 
-  @JvmStatic
+  @JvmField
   public val windowGetPositionWithDecorationsName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_position_with_decorations")
 
-  @JvmStatic
+  @JvmField
   public val windowSetPositionName: MethodStringName2<DisplayServer, Unit, Vector2i, Int> =
       MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_position")
 
-  @JvmStatic
+  @JvmField
   public val windowGetSizeName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_size")
 
-  @JvmStatic
+  @JvmField
   public val windowSetSizeName: MethodStringName2<DisplayServer, Unit, Vector2i, Int> =
       MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_size")
 
-  @JvmStatic
+  @JvmField
   public val windowSetRectChangedCallbackName: MethodStringName2<DisplayServer, Unit, Callable, Int>
       = MethodStringName2<DisplayServer, Unit, Callable, Int>("window_set_rect_changed_callback")
 
-  @JvmStatic
+  @JvmField
   public val windowSetWindowEventCallbackName: MethodStringName2<DisplayServer, Unit, Callable, Int>
       = MethodStringName2<DisplayServer, Unit, Callable, Int>("window_set_window_event_callback")
 
-  @JvmStatic
+  @JvmField
   public val windowSetInputEventCallbackName: MethodStringName2<DisplayServer, Unit, Callable, Int>
       = MethodStringName2<DisplayServer, Unit, Callable, Int>("window_set_input_event_callback")
 
-  @JvmStatic
+  @JvmField
   public val windowSetInputTextCallbackName: MethodStringName2<DisplayServer, Unit, Callable, Int> =
       MethodStringName2<DisplayServer, Unit, Callable, Int>("window_set_input_text_callback")
 
-  @JvmStatic
+  @JvmField
   public val windowSetDropFilesCallbackName: MethodStringName2<DisplayServer, Unit, Callable, Int> =
       MethodStringName2<DisplayServer, Unit, Callable, Int>("window_set_drop_files_callback")
 
-  @JvmStatic
+  @JvmField
   public val windowGetAttachedInstanceIdName: MethodStringName1<DisplayServer, Long, Int> =
       MethodStringName1<DisplayServer, Long, Int>("window_get_attached_instance_id")
 
-  @JvmStatic
+  @JvmField
   public val windowGetMaxSizeName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_max_size")
 
-  @JvmStatic
+  @JvmField
   public val windowSetMaxSizeName: MethodStringName2<DisplayServer, Unit, Vector2i, Int> =
       MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_max_size")
 
-  @JvmStatic
+  @JvmField
   public val windowGetMinSizeName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_min_size")
 
-  @JvmStatic
+  @JvmField
   public val windowSetMinSizeName: MethodStringName2<DisplayServer, Unit, Vector2i, Int> =
       MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_min_size")
 
-  @JvmStatic
+  @JvmField
   public val windowGetSizeWithDecorationsName: MethodStringName1<DisplayServer, Vector2i, Int> =
       MethodStringName1<DisplayServer, Vector2i, Int>("window_get_size_with_decorations")
 
-  @JvmStatic
+  @JvmField
   public val windowGetModeName: MethodStringName1<DisplayServer, WindowMode, Int> =
       MethodStringName1<DisplayServer, WindowMode, Int>("window_get_mode")
 
-  @JvmStatic
+  @JvmField
   public val windowSetModeName: MethodStringName2<DisplayServer, Unit, WindowMode, Int> =
       MethodStringName2<DisplayServer, Unit, WindowMode, Int>("window_set_mode")
 
-  @JvmStatic
+  @JvmField
   public val windowSetFlagName: MethodStringName3<DisplayServer, Unit, WindowFlags, Boolean, Int> =
       MethodStringName3<DisplayServer, Unit, WindowFlags, Boolean, Int>("window_set_flag")
 
-  @JvmStatic
+  @JvmField
   public val windowGetFlagName: MethodStringName2<DisplayServer, Boolean, WindowFlags, Int> =
       MethodStringName2<DisplayServer, Boolean, WindowFlags, Int>("window_get_flag")
 
-  @JvmStatic
+  @JvmField
   public val windowSetWindowButtonsOffsetName: MethodStringName2<DisplayServer, Unit, Vector2i, Int>
       = MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_window_buttons_offset")
 
-  @JvmStatic
+  @JvmField
   public val windowGetSafeTitleMarginsName: MethodStringName1<DisplayServer, Vector3i, Int> =
       MethodStringName1<DisplayServer, Vector3i, Int>("window_get_safe_title_margins")
 
-  @JvmStatic
+  @JvmField
   public val windowRequestAttentionName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("window_request_attention")
 
-  @JvmStatic
+  @JvmField
   public val windowMoveToForegroundName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("window_move_to_foreground")
 
-  @JvmStatic
+  @JvmField
   public val windowIsFocusedName: MethodStringName1<DisplayServer, Boolean, Int> =
       MethodStringName1<DisplayServer, Boolean, Int>("window_is_focused")
 
-  @JvmStatic
+  @JvmField
   public val windowCanDrawName: MethodStringName1<DisplayServer, Boolean, Int> =
       MethodStringName1<DisplayServer, Boolean, Int>("window_can_draw")
 
-  @JvmStatic
+  @JvmField
   public val windowSetTransientName: MethodStringName2<DisplayServer, Unit, Int, Int> =
       MethodStringName2<DisplayServer, Unit, Int, Int>("window_set_transient")
 
-  @JvmStatic
+  @JvmField
   public val windowSetExclusiveName: MethodStringName2<DisplayServer, Unit, Int, Boolean> =
       MethodStringName2<DisplayServer, Unit, Int, Boolean>("window_set_exclusive")
 
-  @JvmStatic
+  @JvmField
   public val windowSetImeActiveName: MethodStringName2<DisplayServer, Unit, Boolean, Int> =
       MethodStringName2<DisplayServer, Unit, Boolean, Int>("window_set_ime_active")
 
-  @JvmStatic
+  @JvmField
   public val windowSetImePositionName: MethodStringName2<DisplayServer, Unit, Vector2i, Int> =
       MethodStringName2<DisplayServer, Unit, Vector2i, Int>("window_set_ime_position")
 
-  @JvmStatic
+  @JvmField
   public val windowSetVsyncModeName: MethodStringName2<DisplayServer, Unit, VSyncMode, Int> =
       MethodStringName2<DisplayServer, Unit, VSyncMode, Int>("window_set_vsync_mode")
 
-  @JvmStatic
+  @JvmField
   public val windowGetVsyncModeName: MethodStringName1<DisplayServer, VSyncMode, Int> =
       MethodStringName1<DisplayServer, VSyncMode, Int>("window_get_vsync_mode")
 
-  @JvmStatic
+  @JvmField
   public val windowIsMaximizeAllowedName: MethodStringName1<DisplayServer, Boolean, Int> =
       MethodStringName1<DisplayServer, Boolean, Int>("window_is_maximize_allowed")
 
-  @JvmStatic
+  @JvmField
   public val windowMaximizeOnTitleDblClickName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("window_maximize_on_title_dbl_click")
 
-  @JvmStatic
+  @JvmField
   public val windowMinimizeOnTitleDblClickName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("window_minimize_on_title_dbl_click")
 
-  @JvmStatic
+  @JvmField
   public val windowStartDragName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("window_start_drag")
 
-  @JvmStatic
+  @JvmField
   public val windowStartResizeName: MethodStringName2<DisplayServer, Unit, WindowResizeEdge, Int> =
       MethodStringName2<DisplayServer, Unit, WindowResizeEdge, Int>("window_start_resize")
 
-  @JvmStatic
+  @JvmField
   public val imeGetSelectionName: MethodStringName0<DisplayServer, Vector2i> =
       MethodStringName0<DisplayServer, Vector2i>("ime_get_selection")
 
-  @JvmStatic
+  @JvmField
   public val imeGetTextName: MethodStringName0<DisplayServer, String> =
       MethodStringName0<DisplayServer, String>("ime_get_text")
 
-  @JvmStatic
+  @JvmField
   public val virtualKeyboardShowName:
       MethodStringName6<DisplayServer, Unit, String, Rect2, VirtualKeyboardType, Int, Int, Int> =
       MethodStringName6<DisplayServer, Unit, String, Rect2, VirtualKeyboardType, Int, Int, Int>("virtual_keyboard_show")
 
-  @JvmStatic
+  @JvmField
   public val virtualKeyboardHideName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("virtual_keyboard_hide")
 
-  @JvmStatic
+  @JvmField
   public val virtualKeyboardGetHeightName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("virtual_keyboard_get_height")
 
-  @JvmStatic
+  @JvmField
   public val hasHardwareKeyboardName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("has_hardware_keyboard")
 
-  @JvmStatic
+  @JvmField
   public val cursorSetShapeName: MethodStringName1<DisplayServer, Unit, CursorShape> =
       MethodStringName1<DisplayServer, Unit, CursorShape>("cursor_set_shape")
 
-  @JvmStatic
+  @JvmField
   public val cursorGetShapeName: MethodStringName0<DisplayServer, CursorShape> =
       MethodStringName0<DisplayServer, CursorShape>("cursor_get_shape")
 
-  @JvmStatic
+  @JvmField
   public val cursorSetCustomImageName:
       MethodStringName3<DisplayServer, Unit, Resource?, CursorShape, Vector2> =
       MethodStringName3<DisplayServer, Unit, Resource?, CursorShape, Vector2>("cursor_set_custom_image")
 
-  @JvmStatic
+  @JvmField
   public val getSwapCancelOkName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("get_swap_cancel_ok")
 
-  @JvmStatic
+  @JvmField
   public val enableForStealingFocusName: MethodStringName1<DisplayServer, Unit, Long> =
       MethodStringName1<DisplayServer, Unit, Long>("enable_for_stealing_focus")
 
-  @JvmStatic
+  @JvmField
   public val dialogShowName:
       MethodStringName4<DisplayServer, Error, String, String, PackedStringArray, Callable> =
       MethodStringName4<DisplayServer, Error, String, String, PackedStringArray, Callable>("dialog_show")
 
-  @JvmStatic
+  @JvmField
   public val dialogInputTextName:
       MethodStringName4<DisplayServer, Error, String, String, String, Callable> =
       MethodStringName4<DisplayServer, Error, String, String, String, Callable>("dialog_input_text")
 
-  @JvmStatic
+  @JvmField
   public val fileDialogShowName:
       MethodStringName7<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable>
       =
       MethodStringName7<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable>("file_dialog_show")
 
-  @JvmStatic
+  @JvmField
   public val fileDialogWithOptionsShowName:
       MethodStringName9<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable>
       =
       MethodStringName9<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable>("file_dialog_with_options_show")
 
-  @JvmStatic
+  @JvmField
   public val beepName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("beep")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetLayoutCountName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("keyboard_get_layout_count")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetCurrentLayoutName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("keyboard_get_current_layout")
 
-  @JvmStatic
+  @JvmField
   public val keyboardSetCurrentLayoutName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("keyboard_set_current_layout")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetLayoutLanguageName: MethodStringName1<DisplayServer, String, Int> =
       MethodStringName1<DisplayServer, String, Int>("keyboard_get_layout_language")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetLayoutNameName: MethodStringName1<DisplayServer, String, Int> =
       MethodStringName1<DisplayServer, String, Int>("keyboard_get_layout_name")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetKeycodeFromPhysicalName: MethodStringName1<DisplayServer, Key, Key> =
       MethodStringName1<DisplayServer, Key, Key>("keyboard_get_keycode_from_physical")
 
-  @JvmStatic
+  @JvmField
   public val keyboardGetLabelFromPhysicalName: MethodStringName1<DisplayServer, Key, Key> =
       MethodStringName1<DisplayServer, Key, Key>("keyboard_get_label_from_physical")
 
-  @JvmStatic
+  @JvmField
   public val showEmojiAndSymbolPickerName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("show_emoji_and_symbol_picker")
 
-  @JvmStatic
+  @JvmField
   public val processEventsName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("process_events")
 
-  @JvmStatic
+  @JvmField
   public val forceProcessAndDropEventsName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("force_process_and_drop_events")
 
-  @JvmStatic
+  @JvmField
   public val setNativeIconName: MethodStringName1<DisplayServer, Unit, String> =
       MethodStringName1<DisplayServer, Unit, String>("set_native_icon")
 
-  @JvmStatic
+  @JvmField
   public val setIconName: MethodStringName1<DisplayServer, Unit, Image?> =
       MethodStringName1<DisplayServer, Unit, Image?>("set_icon")
 
-  @JvmStatic
+  @JvmField
   public val createStatusIndicatorName:
       MethodStringName3<DisplayServer, Int, Texture2D?, String, Callable> =
       MethodStringName3<DisplayServer, Int, Texture2D?, String, Callable>("create_status_indicator")
 
-  @JvmStatic
+  @JvmField
   public val statusIndicatorSetIconName: MethodStringName2<DisplayServer, Unit, Int, Texture2D?> =
       MethodStringName2<DisplayServer, Unit, Int, Texture2D?>("status_indicator_set_icon")
 
-  @JvmStatic
+  @JvmField
   public val statusIndicatorSetTooltipName: MethodStringName2<DisplayServer, Unit, Int, String> =
       MethodStringName2<DisplayServer, Unit, Int, String>("status_indicator_set_tooltip")
 
-  @JvmStatic
+  @JvmField
   public val statusIndicatorSetMenuName: MethodStringName2<DisplayServer, Unit, Int, RID> =
       MethodStringName2<DisplayServer, Unit, Int, RID>("status_indicator_set_menu")
 
-  @JvmStatic
+  @JvmField
   public val statusIndicatorSetCallbackName: MethodStringName2<DisplayServer, Unit, Int, Callable> =
       MethodStringName2<DisplayServer, Unit, Int, Callable>("status_indicator_set_callback")
 
-  @JvmStatic
+  @JvmField
   public val statusIndicatorGetRectName: MethodStringName1<DisplayServer, Rect2, Int> =
       MethodStringName1<DisplayServer, Rect2, Int>("status_indicator_get_rect")
 
-  @JvmStatic
+  @JvmField
   public val deleteStatusIndicatorName: MethodStringName1<DisplayServer, Unit, Int> =
       MethodStringName1<DisplayServer, Unit, Int>("delete_status_indicator")
 
-  @JvmStatic
+  @JvmField
   public val tabletGetDriverCountName: MethodStringName0<DisplayServer, Int> =
       MethodStringName0<DisplayServer, Int>("tablet_get_driver_count")
 
-  @JvmStatic
+  @JvmField
   public val tabletGetDriverNameName: MethodStringName1<DisplayServer, String, Int> =
       MethodStringName1<DisplayServer, String, Int>("tablet_get_driver_name")
 
-  @JvmStatic
+  @JvmField
   public val tabletGetCurrentDriverName: MethodStringName0<DisplayServer, String> =
       MethodStringName0<DisplayServer, String>("tablet_get_current_driver")
 
-  @JvmStatic
+  @JvmField
   public val tabletSetCurrentDriverName: MethodStringName1<DisplayServer, Unit, String> =
       MethodStringName1<DisplayServer, Unit, String>("tablet_set_current_driver")
 
-  @JvmStatic
+  @JvmField
   public val isWindowTransparencyAvailableName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("is_window_transparency_available")
 
-  @JvmStatic
+  @JvmField
   public val registerAdditionalOutputName: MethodStringName1<DisplayServer, Unit, Object?> =
       MethodStringName1<DisplayServer, Unit, Object?>("register_additional_output")
 
-  @JvmStatic
+  @JvmField
   public val unregisterAdditionalOutputName: MethodStringName1<DisplayServer, Unit, Object?> =
       MethodStringName1<DisplayServer, Unit, Object?>("unregister_additional_output")
 
-  @JvmStatic
+  @JvmField
   public val hasAdditionalOutputsName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("has_additional_outputs")
 

@@ -22,7 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but
@@ -98,12 +98,12 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createFromImagesName:
         MethodStringName1<ImageTextureLayered, Error, VariantArray<Image>> =
         MethodStringName1<ImageTextureLayered, Error, VariantArray<Image>>("create_from_images")
 
-    @JvmStatic
+    @JvmField
     public val updateLayerName: MethodStringName2<ImageTextureLayered, Unit, Image?, Int> =
         MethodStringName2<ImageTextureLayered, Unit, Image?, Int>("update_layer")
   }

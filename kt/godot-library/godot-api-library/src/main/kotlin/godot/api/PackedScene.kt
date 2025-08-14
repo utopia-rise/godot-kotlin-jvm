@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A simplified interface to a scene file. Provides access to operations and checks that can be
@@ -191,19 +191,19 @@ public open class PackedScene : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val packName: MethodStringName1<PackedScene, Error, Node?> =
         MethodStringName1<PackedScene, Error, Node?>("pack")
 
-    @JvmStatic
+    @JvmField
     public val instantiateName: MethodStringName1<PackedScene, Node?, GenEditState> =
         MethodStringName1<PackedScene, Node?, GenEditState>("instantiate")
 
-    @JvmStatic
+    @JvmField
     public val canInstantiateName: MethodStringName0<PackedScene, Boolean> =
         MethodStringName0<PackedScene, Boolean>("can_instantiate")
 
-    @JvmStatic
+    @JvmField
     public val getStateName: MethodStringName0<PackedScene, SceneState?> =
         MethodStringName0<PackedScene, SceneState?>("get_state")
   }

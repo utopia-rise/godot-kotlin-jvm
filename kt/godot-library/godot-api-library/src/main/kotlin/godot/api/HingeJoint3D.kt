@@ -23,7 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A physics joint that restricts the rotation of a 3D physics body around an axis relative to
@@ -148,19 +148,19 @@ public open class HingeJoint3D : Joint3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setParamName: MethodStringName2<HingeJoint3D, Unit, Param, Float> =
         MethodStringName2<HingeJoint3D, Unit, Param, Float>("set_param")
 
-    @JvmStatic
+    @JvmField
     public val getParamName: MethodStringName1<HingeJoint3D, Float, Param> =
         MethodStringName1<HingeJoint3D, Float, Param>("get_param")
 
-    @JvmStatic
+    @JvmField
     public val setFlagName: MethodStringName2<HingeJoint3D, Unit, Flag, Boolean> =
         MethodStringName2<HingeJoint3D, Unit, Flag, Boolean>("set_flag")
 
-    @JvmStatic
+    @JvmField
     public val getFlagName: MethodStringName1<HingeJoint3D, Boolean, Flag> =
         MethodStringName1<HingeJoint3D, Boolean, Flag>("get_flag")
   }

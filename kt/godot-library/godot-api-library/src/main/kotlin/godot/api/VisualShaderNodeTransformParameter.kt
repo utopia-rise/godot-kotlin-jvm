@@ -22,8 +22,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform mat4` in the shader language.
@@ -107,22 +107,22 @@ public open class VisualShaderNodeTransformParameter : VisualShaderNodeParameter
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeTransformParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeTransformParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName:
         MethodStringName0<VisualShaderNodeTransformParameter, Boolean> =
         MethodStringName0<VisualShaderNodeTransformParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName:
         MethodStringName1<VisualShaderNodeTransformParameter, Unit, Transform3D> =
         MethodStringName1<VisualShaderNodeTransformParameter, Unit, Transform3D>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName:
         MethodStringName0<VisualShaderNodeTransformParameter, Transform3D> =
         MethodStringName0<VisualShaderNodeTransformParameter, Transform3D>("get_default_value")

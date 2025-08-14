@@ -29,9 +29,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Plays audio with positional sound effects, based on the relative position of the audio listener.
@@ -685,207 +685,207 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStreamName: MethodStringName1<AudioStreamPlayer3D, Unit, AudioStream?> =
         MethodStringName1<AudioStreamPlayer3D, Unit, AudioStream?>("set_stream")
 
-    @JvmStatic
+    @JvmField
     public val getStreamName: MethodStringName0<AudioStreamPlayer3D, AudioStream?> =
         MethodStringName0<AudioStreamPlayer3D, AudioStream?>("get_stream")
 
-    @JvmStatic
+    @JvmField
     public val setVolumeDbName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeDbName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_volume_db")
 
-    @JvmStatic
+    @JvmField
     public val setVolumeLinearName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_volume_linear")
 
-    @JvmStatic
+    @JvmField
     public val getVolumeLinearName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_volume_linear")
 
-    @JvmStatic
+    @JvmField
     public val setUnitSizeName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_unit_size")
 
-    @JvmStatic
+    @JvmField
     public val getUnitSizeName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_unit_size")
 
-    @JvmStatic
+    @JvmField
     public val setMaxDbName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_max_db")
 
-    @JvmStatic
+    @JvmField
     public val getMaxDbName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_max_db")
 
-    @JvmStatic
+    @JvmField
     public val setPitchScaleName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPitchScaleName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val playName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("play")
 
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("seek")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<AudioStreamPlayer3D, Unit> =
         MethodStringName0<AudioStreamPlayer3D, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val isPlayingName: MethodStringName0<AudioStreamPlayer3D, Boolean> =
         MethodStringName0<AudioStreamPlayer3D, Boolean>("is_playing")
 
-    @JvmStatic
+    @JvmField
     public val getPlaybackPositionName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_playback_position")
 
-    @JvmStatic
+    @JvmField
     public val setBusName: MethodStringName1<AudioStreamPlayer3D, Unit, StringName> =
         MethodStringName1<AudioStreamPlayer3D, Unit, StringName>("set_bus")
 
-    @JvmStatic
+    @JvmField
     public val getBusName: MethodStringName0<AudioStreamPlayer3D, StringName> =
         MethodStringName0<AudioStreamPlayer3D, StringName>("get_bus")
 
-    @JvmStatic
+    @JvmField
     public val setAutoplayName: MethodStringName1<AudioStreamPlayer3D, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Boolean>("set_autoplay")
 
-    @JvmStatic
+    @JvmField
     public val isAutoplayEnabledName: MethodStringName0<AudioStreamPlayer3D, Boolean> =
         MethodStringName0<AudioStreamPlayer3D, Boolean>("is_autoplay_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPlayingName: MethodStringName1<AudioStreamPlayer3D, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Boolean>("set_playing")
 
-    @JvmStatic
+    @JvmField
     public val setMaxDistanceName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val getMaxDistanceName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val setAreaMaskName: MethodStringName1<AudioStreamPlayer3D, Unit, Long> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Long>("set_area_mask")
 
-    @JvmStatic
+    @JvmField
     public val getAreaMaskName: MethodStringName0<AudioStreamPlayer3D, Long> =
         MethodStringName0<AudioStreamPlayer3D, Long>("get_area_mask")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionAngleName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_emission_angle")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionAngleName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_emission_angle")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionAngleEnabledName: MethodStringName1<AudioStreamPlayer3D, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Boolean>("set_emission_angle_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isEmissionAngleEnabledName: MethodStringName0<AudioStreamPlayer3D, Boolean> =
         MethodStringName0<AudioStreamPlayer3D, Boolean>("is_emission_angle_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionAngleFilterAttenuationDbName:
         MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_emission_angle_filter_attenuation_db")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionAngleFilterAttenuationDbName:
         MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_emission_angle_filter_attenuation_db")
 
-    @JvmStatic
+    @JvmField
     public val setAttenuationFilterCutoffHzName: MethodStringName1<AudioStreamPlayer3D, Unit, Float>
         = MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_attenuation_filter_cutoff_hz")
 
-    @JvmStatic
+    @JvmField
     public val getAttenuationFilterCutoffHzName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_attenuation_filter_cutoff_hz")
 
-    @JvmStatic
+    @JvmField
     public val setAttenuationFilterDbName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_attenuation_filter_db")
 
-    @JvmStatic
+    @JvmField
     public val getAttenuationFilterDbName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_attenuation_filter_db")
 
-    @JvmStatic
+    @JvmField
     public val setAttenuationModelName:
         MethodStringName1<AudioStreamPlayer3D, Unit, AttenuationModel> =
         MethodStringName1<AudioStreamPlayer3D, Unit, AttenuationModel>("set_attenuation_model")
 
-    @JvmStatic
+    @JvmField
     public val getAttenuationModelName: MethodStringName0<AudioStreamPlayer3D, AttenuationModel> =
         MethodStringName0<AudioStreamPlayer3D, AttenuationModel>("get_attenuation_model")
 
-    @JvmStatic
+    @JvmField
     public val setDopplerTrackingName: MethodStringName1<AudioStreamPlayer3D, Unit, DopplerTracking>
         = MethodStringName1<AudioStreamPlayer3D, Unit, DopplerTracking>("set_doppler_tracking")
 
-    @JvmStatic
+    @JvmField
     public val getDopplerTrackingName: MethodStringName0<AudioStreamPlayer3D, DopplerTracking> =
         MethodStringName0<AudioStreamPlayer3D, DopplerTracking>("get_doppler_tracking")
 
-    @JvmStatic
+    @JvmField
     public val setStreamPausedName: MethodStringName1<AudioStreamPlayer3D, Unit, Boolean> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Boolean>("set_stream_paused")
 
-    @JvmStatic
+    @JvmField
     public val getStreamPausedName: MethodStringName0<AudioStreamPlayer3D, Boolean> =
         MethodStringName0<AudioStreamPlayer3D, Boolean>("get_stream_paused")
 
-    @JvmStatic
+    @JvmField
     public val setMaxPolyphonyName: MethodStringName1<AudioStreamPlayer3D, Unit, Int> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Int>("set_max_polyphony")
 
-    @JvmStatic
+    @JvmField
     public val getMaxPolyphonyName: MethodStringName0<AudioStreamPlayer3D, Int> =
         MethodStringName0<AudioStreamPlayer3D, Int>("get_max_polyphony")
 
-    @JvmStatic
+    @JvmField
     public val setPanningStrengthName: MethodStringName1<AudioStreamPlayer3D, Unit, Float> =
         MethodStringName1<AudioStreamPlayer3D, Unit, Float>("set_panning_strength")
 
-    @JvmStatic
+    @JvmField
     public val getPanningStrengthName: MethodStringName0<AudioStreamPlayer3D, Float> =
         MethodStringName0<AudioStreamPlayer3D, Float>("get_panning_strength")
 
-    @JvmStatic
+    @JvmField
     public val hasStreamPlaybackName: MethodStringName0<AudioStreamPlayer3D, Boolean> =
         MethodStringName0<AudioStreamPlayer3D, Boolean>("has_stream_playback")
 
-    @JvmStatic
+    @JvmField
     public val getStreamPlaybackName: MethodStringName0<AudioStreamPlayer3D, AudioStreamPlayback?> =
         MethodStringName0<AudioStreamPlayer3D, AudioStreamPlayback?>("get_stream_playback")
 
-    @JvmStatic
+    @JvmField
     public val setPlaybackTypeName:
         MethodStringName1<AudioStreamPlayer3D, Unit, AudioServer.PlaybackType> =
         MethodStringName1<AudioStreamPlayer3D, Unit, AudioServer.PlaybackType>("set_playback_type")
 
-    @JvmStatic
+    @JvmField
     public val getPlaybackTypeName: MethodStringName0<AudioStreamPlayer3D, AudioServer.PlaybackType>
         = MethodStringName0<AudioStreamPlayer3D, AudioServer.PlaybackType>("get_playback_type")
   }

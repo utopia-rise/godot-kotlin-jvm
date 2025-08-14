@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
@@ -430,22 +430,22 @@ public open class RDShaderSPIRV : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setStageBytecodeName:
         MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray> =
         MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, PackedByteArray>("set_stage_bytecode")
 
-    @JvmStatic
+    @JvmField
     public val getStageBytecodeName:
         MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage> =
         MethodStringName1<RDShaderSPIRV, PackedByteArray, RenderingDevice.ShaderStage>("get_stage_bytecode")
 
-    @JvmStatic
+    @JvmField
     public val setStageCompileErrorName:
         MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String> =
         MethodStringName2<RDShaderSPIRV, Unit, RenderingDevice.ShaderStage, String>("set_stage_compile_error")
 
-    @JvmStatic
+    @JvmField
     public val getStageCompileErrorName:
         MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage> =
         MethodStringName1<RDShaderSPIRV, String, RenderingDevice.ShaderStage>("get_stage_compile_error")

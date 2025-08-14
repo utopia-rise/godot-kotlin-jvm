@@ -26,8 +26,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class GLTFAnimation : Resource() {
@@ -128,27 +128,27 @@ public open class GLTFAnimation : Resource() {
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getOriginalNameName: MethodStringName0<GLTFAnimation, String> =
         MethodStringName0<GLTFAnimation, String>("get_original_name")
 
-    @JvmStatic
+    @JvmField
     public val setOriginalNameName: MethodStringName1<GLTFAnimation, Unit, String> =
         MethodStringName1<GLTFAnimation, Unit, String>("set_original_name")
 
-    @JvmStatic
+    @JvmField
     public val getLoopName: MethodStringName0<GLTFAnimation, Boolean> =
         MethodStringName0<GLTFAnimation, Boolean>("get_loop")
 
-    @JvmStatic
+    @JvmField
     public val setLoopName: MethodStringName1<GLTFAnimation, Unit, Boolean> =
         MethodStringName1<GLTFAnimation, Unit, Boolean>("set_loop")
 
-    @JvmStatic
+    @JvmField
     public val getAdditionalDataName: MethodStringName1<GLTFAnimation, Any?, StringName> =
         MethodStringName1<GLTFAnimation, Any?, StringName>("get_additional_data")
 
-    @JvmStatic
+    @JvmField
     public val setAdditionalDataName: MethodStringName2<GLTFAnimation, Unit, StringName, Any?> =
         MethodStringName2<GLTFAnimation, Unit, StringName, Any?>("set_additional_data")
   }

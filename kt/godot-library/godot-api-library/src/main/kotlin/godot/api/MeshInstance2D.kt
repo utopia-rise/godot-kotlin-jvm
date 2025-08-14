@@ -18,8 +18,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Node used for displaying a [Mesh] in 2D. A [MeshInstance2D] can be automatically created from an
@@ -83,19 +83,19 @@ public open class MeshInstance2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<MeshInstance2D, Unit, Mesh?> =
         MethodStringName1<MeshInstance2D, Unit, Mesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<MeshInstance2D, Mesh?> =
         MethodStringName0<MeshInstance2D, Mesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<MeshInstance2D, Unit, Texture2D?> =
         MethodStringName1<MeshInstance2D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<MeshInstance2D, Texture2D?> =
         MethodStringName0<MeshInstance2D, Texture2D?>("get_texture")
   }

@@ -21,8 +21,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This resource defines a custom rendering effect that can be applied to [Viewport]s through the
@@ -294,60 +294,60 @@ public open class CompositorEffect : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEnabledName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getEnabledName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEffectCallbackTypeName:
         MethodStringName1<CompositorEffect, Unit, EffectCallbackType> =
         MethodStringName1<CompositorEffect, Unit, EffectCallbackType>("set_effect_callback_type")
 
-    @JvmStatic
+    @JvmField
     public val getEffectCallbackTypeName: MethodStringName0<CompositorEffect, EffectCallbackType> =
         MethodStringName0<CompositorEffect, EffectCallbackType>("get_effect_callback_type")
 
-    @JvmStatic
+    @JvmField
     public val setAccessResolvedColorName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_access_resolved_color")
 
-    @JvmStatic
+    @JvmField
     public val getAccessResolvedColorName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_access_resolved_color")
 
-    @JvmStatic
+    @JvmField
     public val setAccessResolvedDepthName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_access_resolved_depth")
 
-    @JvmStatic
+    @JvmField
     public val getAccessResolvedDepthName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_access_resolved_depth")
 
-    @JvmStatic
+    @JvmField
     public val setNeedsMotionVectorsName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_motion_vectors")
 
-    @JvmStatic
+    @JvmField
     public val getNeedsMotionVectorsName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_needs_motion_vectors")
 
-    @JvmStatic
+    @JvmField
     public val setNeedsNormalRoughnessName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_normal_roughness")
 
-    @JvmStatic
+    @JvmField
     public val getNeedsNormalRoughnessName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_needs_normal_roughness")
 
-    @JvmStatic
+    @JvmField
     public val setNeedsSeparateSpecularName: MethodStringName1<CompositorEffect, Unit, Boolean> =
         MethodStringName1<CompositorEffect, Unit, Boolean>("set_needs_separate_specular")
 
-    @JvmStatic
+    @JvmField
     public val getNeedsSeparateSpecularName: MethodStringName0<CompositorEffect, Boolean> =
         MethodStringName0<CompositorEffect, Boolean>("get_needs_separate_specular")
   }

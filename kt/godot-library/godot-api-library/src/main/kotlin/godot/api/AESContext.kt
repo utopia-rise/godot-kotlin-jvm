@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class holds the context information required for encryption and decryption operations with
@@ -194,20 +194,20 @@ public open class AESContext : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val startName:
         MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray> =
         MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray>("start")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName1<AESContext, PackedByteArray, PackedByteArray> =
         MethodStringName1<AESContext, PackedByteArray, PackedByteArray>("update")
 
-    @JvmStatic
+    @JvmField
     public val getIvStateName: MethodStringName0<AESContext, PackedByteArray> =
         MethodStringName0<AESContext, PackedByteArray>("get_iv_state")
 
-    @JvmStatic
+    @JvmField
     public val finishName: MethodStringName0<AESContext, Unit> =
         MethodStringName0<AESContext, Unit>("finish")
   }

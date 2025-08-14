@@ -34,9 +34,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class describes a Bézier curve in 3D space. It is mainly used to give a shape to a [Path3D],
@@ -436,132 +436,132 @@ public open class Curve3D : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getPointCountName: MethodStringName0<Curve3D, Int> =
         MethodStringName0<Curve3D, Int>("get_point_count")
 
-    @JvmStatic
+    @JvmField
     public val setPointCountName: MethodStringName1<Curve3D, Unit, Int> =
         MethodStringName1<Curve3D, Unit, Int>("set_point_count")
 
-    @JvmStatic
+    @JvmField
     public val addPointName: MethodStringName4<Curve3D, Unit, Vector3, Vector3, Vector3, Int> =
         MethodStringName4<Curve3D, Unit, Vector3, Vector3, Vector3, Int>("add_point")
 
-    @JvmStatic
+    @JvmField
     public val setPointPositionName: MethodStringName2<Curve3D, Unit, Int, Vector3> =
         MethodStringName2<Curve3D, Unit, Int, Vector3>("set_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getPointPositionName: MethodStringName1<Curve3D, Vector3, Int> =
         MethodStringName1<Curve3D, Vector3, Int>("get_point_position")
 
-    @JvmStatic
+    @JvmField
     public val setPointTiltName: MethodStringName2<Curve3D, Unit, Int, Float> =
         MethodStringName2<Curve3D, Unit, Int, Float>("set_point_tilt")
 
-    @JvmStatic
+    @JvmField
     public val getPointTiltName: MethodStringName1<Curve3D, Float, Int> =
         MethodStringName1<Curve3D, Float, Int>("get_point_tilt")
 
-    @JvmStatic
+    @JvmField
     public val setPointInName: MethodStringName2<Curve3D, Unit, Int, Vector3> =
         MethodStringName2<Curve3D, Unit, Int, Vector3>("set_point_in")
 
-    @JvmStatic
+    @JvmField
     public val getPointInName: MethodStringName1<Curve3D, Vector3, Int> =
         MethodStringName1<Curve3D, Vector3, Int>("get_point_in")
 
-    @JvmStatic
+    @JvmField
     public val setPointOutName: MethodStringName2<Curve3D, Unit, Int, Vector3> =
         MethodStringName2<Curve3D, Unit, Int, Vector3>("set_point_out")
 
-    @JvmStatic
+    @JvmField
     public val getPointOutName: MethodStringName1<Curve3D, Vector3, Int> =
         MethodStringName1<Curve3D, Vector3, Int>("get_point_out")
 
-    @JvmStatic
+    @JvmField
     public val removePointName: MethodStringName1<Curve3D, Unit, Int> =
         MethodStringName1<Curve3D, Unit, Int>("remove_point")
 
-    @JvmStatic
+    @JvmField
     public val clearPointsName: MethodStringName0<Curve3D, Unit> =
         MethodStringName0<Curve3D, Unit>("clear_points")
 
-    @JvmStatic
+    @JvmField
     public val sampleName: MethodStringName2<Curve3D, Vector3, Int, Float> =
         MethodStringName2<Curve3D, Vector3, Int, Float>("sample")
 
-    @JvmStatic
+    @JvmField
     public val samplefName: MethodStringName1<Curve3D, Vector3, Float> =
         MethodStringName1<Curve3D, Vector3, Float>("samplef")
 
-    @JvmStatic
+    @JvmField
     public val setClosedName: MethodStringName1<Curve3D, Unit, Boolean> =
         MethodStringName1<Curve3D, Unit, Boolean>("set_closed")
 
-    @JvmStatic
+    @JvmField
     public val isClosedName: MethodStringName0<Curve3D, Boolean> =
         MethodStringName0<Curve3D, Boolean>("is_closed")
 
-    @JvmStatic
+    @JvmField
     public val setBakeIntervalName: MethodStringName1<Curve3D, Unit, Float> =
         MethodStringName1<Curve3D, Unit, Float>("set_bake_interval")
 
-    @JvmStatic
+    @JvmField
     public val getBakeIntervalName: MethodStringName0<Curve3D, Float> =
         MethodStringName0<Curve3D, Float>("get_bake_interval")
 
-    @JvmStatic
+    @JvmField
     public val setUpVectorEnabledName: MethodStringName1<Curve3D, Unit, Boolean> =
         MethodStringName1<Curve3D, Unit, Boolean>("set_up_vector_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isUpVectorEnabledName: MethodStringName0<Curve3D, Boolean> =
         MethodStringName0<Curve3D, Boolean>("is_up_vector_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getBakedLengthName: MethodStringName0<Curve3D, Float> =
         MethodStringName0<Curve3D, Float>("get_baked_length")
 
-    @JvmStatic
+    @JvmField
     public val sampleBakedName: MethodStringName2<Curve3D, Vector3, Float, Boolean> =
         MethodStringName2<Curve3D, Vector3, Float, Boolean>("sample_baked")
 
-    @JvmStatic
+    @JvmField
     public val sampleBakedWithRotationName:
         MethodStringName3<Curve3D, Transform3D, Float, Boolean, Boolean> =
         MethodStringName3<Curve3D, Transform3D, Float, Boolean, Boolean>("sample_baked_with_rotation")
 
-    @JvmStatic
+    @JvmField
     public val sampleBakedUpVectorName: MethodStringName2<Curve3D, Vector3, Float, Boolean> =
         MethodStringName2<Curve3D, Vector3, Float, Boolean>("sample_baked_up_vector")
 
-    @JvmStatic
+    @JvmField
     public val getBakedPointsName: MethodStringName0<Curve3D, PackedVector3Array> =
         MethodStringName0<Curve3D, PackedVector3Array>("get_baked_points")
 
-    @JvmStatic
+    @JvmField
     public val getBakedTiltsName: MethodStringName0<Curve3D, PackedFloat32Array> =
         MethodStringName0<Curve3D, PackedFloat32Array>("get_baked_tilts")
 
-    @JvmStatic
+    @JvmField
     public val getBakedUpVectorsName: MethodStringName0<Curve3D, PackedVector3Array> =
         MethodStringName0<Curve3D, PackedVector3Array>("get_baked_up_vectors")
 
-    @JvmStatic
+    @JvmField
     public val getClosestPointName: MethodStringName1<Curve3D, Vector3, Vector3> =
         MethodStringName1<Curve3D, Vector3, Vector3>("get_closest_point")
 
-    @JvmStatic
+    @JvmField
     public val getClosestOffsetName: MethodStringName1<Curve3D, Float, Vector3> =
         MethodStringName1<Curve3D, Float, Vector3>("get_closest_offset")
 
-    @JvmStatic
+    @JvmField
     public val tessellateName: MethodStringName2<Curve3D, PackedVector3Array, Int, Float> =
         MethodStringName2<Curve3D, PackedVector3Array, Int, Float>("tessellate")
 
-    @JvmStatic
+    @JvmField
     public val tessellateEvenLengthName: MethodStringName2<Curve3D, PackedVector3Array, Int, Float>
         = MethodStringName2<Curve3D, PackedVector3Array, Int, Float>("tessellate_even_length")
   }

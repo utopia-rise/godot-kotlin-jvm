@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [FogVolume]s are used to add localized fog into the global volumetric fog effect. [FogVolume]s
@@ -169,27 +169,27 @@ public open class FogVolume : VisualInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<FogVolume, Unit, Vector3> =
         MethodStringName1<FogVolume, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<FogVolume, Vector3> =
         MethodStringName0<FogVolume, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<FogVolume, Unit, RenderingServer.FogVolumeShape> =
         MethodStringName1<FogVolume, Unit, RenderingServer.FogVolumeShape>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<FogVolume, RenderingServer.FogVolumeShape> =
         MethodStringName0<FogVolume, RenderingServer.FogVolumeShape>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<FogVolume, Unit, Material?> =
         MethodStringName1<FogVolume, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<FogVolume, Material?> =
         MethodStringName0<FogVolume, Material?>("get_material")
   }

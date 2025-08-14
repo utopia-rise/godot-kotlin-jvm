@@ -41,9 +41,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Represents a glTF node. glTF nodes may have names, transforms, children (other glTF nodes), and
@@ -582,123 +582,123 @@ public open class GLTFNode : Resource() {
       setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getOriginalNameName: MethodStringName0<GLTFNode, String> =
         MethodStringName0<GLTFNode, String>("get_original_name")
 
-    @JvmStatic
+    @JvmField
     public val setOriginalNameName: MethodStringName1<GLTFNode, Unit, String> =
         MethodStringName1<GLTFNode, Unit, String>("set_original_name")
 
-    @JvmStatic
+    @JvmField
     public val getParentName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_parent")
 
-    @JvmStatic
+    @JvmField
     public val setParentName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_parent")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val setHeightName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_height")
 
-    @JvmStatic
+    @JvmField
     public val getXformName: MethodStringName0<GLTFNode, Transform3D> =
         MethodStringName0<GLTFNode, Transform3D>("get_xform")
 
-    @JvmStatic
+    @JvmField
     public val setXformName: MethodStringName1<GLTFNode, Unit, Transform3D> =
         MethodStringName1<GLTFNode, Unit, Transform3D>("set_xform")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getCameraName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_camera")
 
-    @JvmStatic
+    @JvmField
     public val setCameraName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_camera")
 
-    @JvmStatic
+    @JvmField
     public val getSkinName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_skin")
 
-    @JvmStatic
+    @JvmField
     public val setSkinName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_skin")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val setSkeletonName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<GLTFNode, Vector3> =
         MethodStringName0<GLTFNode, Vector3>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<GLTFNode, Unit, Vector3> =
         MethodStringName1<GLTFNode, Unit, Vector3>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getRotationName: MethodStringName0<GLTFNode, Quaternion> =
         MethodStringName0<GLTFNode, Quaternion>("get_rotation")
 
-    @JvmStatic
+    @JvmField
     public val setRotationName: MethodStringName1<GLTFNode, Unit, Quaternion> =
         MethodStringName1<GLTFNode, Unit, Quaternion>("set_rotation")
 
-    @JvmStatic
+    @JvmField
     public val getScaleName: MethodStringName0<GLTFNode, Vector3> =
         MethodStringName0<GLTFNode, Vector3>("get_scale")
 
-    @JvmStatic
+    @JvmField
     public val setScaleName: MethodStringName1<GLTFNode, Unit, Vector3> =
         MethodStringName1<GLTFNode, Unit, Vector3>("set_scale")
 
-    @JvmStatic
+    @JvmField
     public val getChildrenName: MethodStringName0<GLTFNode, PackedInt32Array> =
         MethodStringName0<GLTFNode, PackedInt32Array>("get_children")
 
-    @JvmStatic
+    @JvmField
     public val setChildrenName: MethodStringName1<GLTFNode, Unit, PackedInt32Array> =
         MethodStringName1<GLTFNode, Unit, PackedInt32Array>("set_children")
 
-    @JvmStatic
+    @JvmField
     public val appendChildIndexName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("append_child_index")
 
-    @JvmStatic
+    @JvmField
     public val getLightName: MethodStringName0<GLTFNode, Int> =
         MethodStringName0<GLTFNode, Int>("get_light")
 
-    @JvmStatic
+    @JvmField
     public val setLightName: MethodStringName1<GLTFNode, Unit, Int> =
         MethodStringName1<GLTFNode, Unit, Int>("set_light")
 
-    @JvmStatic
+    @JvmField
     public val getAdditionalDataName: MethodStringName1<GLTFNode, Any?, StringName> =
         MethodStringName1<GLTFNode, Any?, StringName>("get_additional_data")
 
-    @JvmStatic
+    @JvmField
     public val setAdditionalDataName: MethodStringName2<GLTFNode, Unit, StringName, Any?> =
         MethodStringName2<GLTFNode, Unit, StringName, Any?>("set_additional_data")
 
-    @JvmStatic
+    @JvmField
     public val getSceneNodePathName: MethodStringName2<GLTFNode, NodePath, GLTFState?, Boolean> =
         MethodStringName2<GLTFNode, NodePath, GLTFState?, Boolean>("get_scene_node_path")
   }

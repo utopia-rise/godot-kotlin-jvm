@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Randomness node will output pseudo-random values of the given type based on the specified minimum
@@ -89,11 +89,11 @@ public open class VisualShaderNodeParticleRandomness : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeParticleRandomness, Unit, OpType> =
         MethodStringName1<VisualShaderNodeParticleRandomness, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeParticleRandomness, OpType> =
         MethodStringName0<VisualShaderNodeParticleRandomness, OpType>("get_op_type")
   }

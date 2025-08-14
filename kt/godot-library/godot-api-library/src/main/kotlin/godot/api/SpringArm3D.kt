@@ -26,8 +26,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [SpringArm3D] casts a ray or a shape along its Z axis and moves all its direct children to the
@@ -182,51 +182,51 @@ public open class SpringArm3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getHitLengthName: MethodStringName0<SpringArm3D, Float> =
         MethodStringName0<SpringArm3D, Float>("get_hit_length")
 
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<SpringArm3D, Unit, Float> =
         MethodStringName1<SpringArm3D, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<SpringArm3D, Float> =
         MethodStringName0<SpringArm3D, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<SpringArm3D, Unit, Shape3D?> =
         MethodStringName1<SpringArm3D, Unit, Shape3D?>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<SpringArm3D, Shape3D?> =
         MethodStringName0<SpringArm3D, Shape3D?>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val addExcludedObjectName: MethodStringName1<SpringArm3D, Unit, RID> =
         MethodStringName1<SpringArm3D, Unit, RID>("add_excluded_object")
 
-    @JvmStatic
+    @JvmField
     public val removeExcludedObjectName: MethodStringName1<SpringArm3D, Boolean, RID> =
         MethodStringName1<SpringArm3D, Boolean, RID>("remove_excluded_object")
 
-    @JvmStatic
+    @JvmField
     public val clearExcludedObjectsName: MethodStringName0<SpringArm3D, Unit> =
         MethodStringName0<SpringArm3D, Unit>("clear_excluded_objects")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<SpringArm3D, Unit, Long> =
         MethodStringName1<SpringArm3D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<SpringArm3D, Long> =
         MethodStringName0<SpringArm3D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setMarginName: MethodStringName1<SpringArm3D, Unit, Float> =
         MethodStringName1<SpringArm3D, Unit, Float>("set_margin")
 
-    @JvmStatic
+    @JvmField
     public val getMarginName: MethodStringName0<SpringArm3D, Float> =
         MethodStringName0<SpringArm3D, Float>("get_margin")
   }

@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about joystick motions. One [InputEventJoypadMotion] represents one axis at a
@@ -81,19 +81,19 @@ public open class InputEventJoypadMotion : InputEvent() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAxisName: MethodStringName1<InputEventJoypadMotion, Unit, JoyAxis> =
         MethodStringName1<InputEventJoypadMotion, Unit, JoyAxis>("set_axis")
 
-    @JvmStatic
+    @JvmField
     public val getAxisName: MethodStringName0<InputEventJoypadMotion, JoyAxis> =
         MethodStringName0<InputEventJoypadMotion, JoyAxis>("get_axis")
 
-    @JvmStatic
+    @JvmField
     public val setAxisValueName: MethodStringName1<InputEventJoypadMotion, Unit, Float> =
         MethodStringName1<InputEventJoypadMotion, Unit, Float>("set_axis_value")
 
-    @JvmStatic
+    @JvmField
     public val getAxisValueName: MethodStringName0<InputEventJoypadMotion, Float> =
         MethodStringName0<InputEventJoypadMotion, Float>("get_axis_value")
   }

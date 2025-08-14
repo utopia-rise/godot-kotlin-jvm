@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform bool` in the shader language.
@@ -75,22 +75,22 @@ public open class VisualShaderNodeBooleanParameter : VisualShaderNodeParameter()
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeBooleanParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeBooleanParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName:
         MethodStringName0<VisualShaderNodeBooleanParameter, Boolean> =
         MethodStringName0<VisualShaderNodeBooleanParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName:
         MethodStringName1<VisualShaderNodeBooleanParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeBooleanParameter, Unit, Boolean>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeBooleanParameter, Boolean> =
         MethodStringName0<VisualShaderNodeBooleanParameter, Boolean>("get_default_value")
   }

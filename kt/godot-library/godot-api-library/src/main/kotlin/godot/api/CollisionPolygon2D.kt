@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
@@ -246,43 +246,43 @@ public open class CollisionPolygon2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPolygonName: MethodStringName1<CollisionPolygon2D, Unit, PackedVector2Array> =
         MethodStringName1<CollisionPolygon2D, Unit, PackedVector2Array>("set_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getPolygonName: MethodStringName0<CollisionPolygon2D, PackedVector2Array> =
         MethodStringName0<CollisionPolygon2D, PackedVector2Array>("get_polygon")
 
-    @JvmStatic
+    @JvmField
     public val setBuildModeName: MethodStringName1<CollisionPolygon2D, Unit, BuildMode> =
         MethodStringName1<CollisionPolygon2D, Unit, BuildMode>("set_build_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBuildModeName: MethodStringName0<CollisionPolygon2D, BuildMode> =
         MethodStringName0<CollisionPolygon2D, BuildMode>("get_build_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDisabledName: MethodStringName1<CollisionPolygon2D, Unit, Boolean> =
         MethodStringName1<CollisionPolygon2D, Unit, Boolean>("set_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDisabledName: MethodStringName0<CollisionPolygon2D, Boolean> =
         MethodStringName0<CollisionPolygon2D, Boolean>("is_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setOneWayCollisionName: MethodStringName1<CollisionPolygon2D, Unit, Boolean> =
         MethodStringName1<CollisionPolygon2D, Unit, Boolean>("set_one_way_collision")
 
-    @JvmStatic
+    @JvmField
     public val isOneWayCollisionEnabledName: MethodStringName0<CollisionPolygon2D, Boolean> =
         MethodStringName0<CollisionPolygon2D, Boolean>("is_one_way_collision_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setOneWayCollisionMarginName: MethodStringName1<CollisionPolygon2D, Unit, Float> =
         MethodStringName1<CollisionPolygon2D, Unit, Float>("set_one_way_collision_margin")
 
-    @JvmStatic
+    @JvmField
     public val getOneWayCollisionMarginName: MethodStringName0<CollisionPolygon2D, Float> =
         MethodStringName0<CollisionPolygon2D, Float>("get_one_way_collision_margin")
   }

@@ -23,8 +23,8 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].
@@ -216,58 +216,58 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setInputCountName: MethodStringName1<AnimationNodeTransition, Unit, Int> =
         MethodStringName1<AnimationNodeTransition, Unit, Int>("set_input_count")
 
-    @JvmStatic
+    @JvmField
     public val setInputAsAutoAdvanceName:
         MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
         MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_as_auto_advance")
 
-    @JvmStatic
+    @JvmField
     public val isInputSetAsAutoAdvanceName: MethodStringName1<AnimationNodeTransition, Boolean, Int>
         = MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_set_as_auto_advance")
 
-    @JvmStatic
+    @JvmField
     public val setInputBreakLoopAtEndName:
         MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
         MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_break_loop_at_end")
 
-    @JvmStatic
+    @JvmField
     public val isInputLoopBrokenAtEndName: MethodStringName1<AnimationNodeTransition, Boolean, Int>
         = MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_loop_broken_at_end")
 
-    @JvmStatic
+    @JvmField
     public val setInputResetName: MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean> =
         MethodStringName2<AnimationNodeTransition, Unit, Int, Boolean>("set_input_reset")
 
-    @JvmStatic
+    @JvmField
     public val isInputResetName: MethodStringName1<AnimationNodeTransition, Boolean, Int> =
         MethodStringName1<AnimationNodeTransition, Boolean, Int>("is_input_reset")
 
-    @JvmStatic
+    @JvmField
     public val setXfadeTimeName: MethodStringName1<AnimationNodeTransition, Unit, Double> =
         MethodStringName1<AnimationNodeTransition, Unit, Double>("set_xfade_time")
 
-    @JvmStatic
+    @JvmField
     public val getXfadeTimeName: MethodStringName0<AnimationNodeTransition, Double> =
         MethodStringName0<AnimationNodeTransition, Double>("get_xfade_time")
 
-    @JvmStatic
+    @JvmField
     public val setXfadeCurveName: MethodStringName1<AnimationNodeTransition, Unit, Curve?> =
         MethodStringName1<AnimationNodeTransition, Unit, Curve?>("set_xfade_curve")
 
-    @JvmStatic
+    @JvmField
     public val getXfadeCurveName: MethodStringName0<AnimationNodeTransition, Curve?> =
         MethodStringName0<AnimationNodeTransition, Curve?>("get_xfade_curve")
 
-    @JvmStatic
+    @JvmField
     public val setAllowTransitionToSelfName:
         MethodStringName1<AnimationNodeTransition, Unit, Boolean> =
         MethodStringName1<AnimationNodeTransition, Unit, Boolean>("set_allow_transition_to_self")
 
-    @JvmStatic
+    @JvmField
     public val isAllowTransitionToSelfName: MethodStringName0<AnimationNodeTransition, Boolean> =
         MethodStringName0<AnimationNodeTransition, Boolean>("is_allow_transition_to_self")
   }

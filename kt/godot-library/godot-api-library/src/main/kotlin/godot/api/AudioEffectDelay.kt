@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Plays input signal back after a period of time. The delayed signal may be played back multiple
@@ -324,107 +324,107 @@ public open class AudioEffectDelay : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDryName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_dry")
 
-    @JvmStatic
+    @JvmField
     public val getDryName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_dry")
 
-    @JvmStatic
+    @JvmField
     public val setTap1ActiveName: MethodStringName1<AudioEffectDelay, Unit, Boolean> =
         MethodStringName1<AudioEffectDelay, Unit, Boolean>("set_tap1_active")
 
-    @JvmStatic
+    @JvmField
     public val isTap1ActiveName: MethodStringName0<AudioEffectDelay, Boolean> =
         MethodStringName0<AudioEffectDelay, Boolean>("is_tap1_active")
 
-    @JvmStatic
+    @JvmField
     public val setTap1DelayMsName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap1_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val getTap1DelayMsName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap1_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val setTap1LevelDbName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap1_level_db")
 
-    @JvmStatic
+    @JvmField
     public val getTap1LevelDbName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap1_level_db")
 
-    @JvmStatic
+    @JvmField
     public val setTap1PanName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap1_pan")
 
-    @JvmStatic
+    @JvmField
     public val getTap1PanName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap1_pan")
 
-    @JvmStatic
+    @JvmField
     public val setTap2ActiveName: MethodStringName1<AudioEffectDelay, Unit, Boolean> =
         MethodStringName1<AudioEffectDelay, Unit, Boolean>("set_tap2_active")
 
-    @JvmStatic
+    @JvmField
     public val isTap2ActiveName: MethodStringName0<AudioEffectDelay, Boolean> =
         MethodStringName0<AudioEffectDelay, Boolean>("is_tap2_active")
 
-    @JvmStatic
+    @JvmField
     public val setTap2DelayMsName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap2_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val getTap2DelayMsName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap2_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val setTap2LevelDbName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap2_level_db")
 
-    @JvmStatic
+    @JvmField
     public val getTap2LevelDbName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap2_level_db")
 
-    @JvmStatic
+    @JvmField
     public val setTap2PanName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_tap2_pan")
 
-    @JvmStatic
+    @JvmField
     public val getTap2PanName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_tap2_pan")
 
-    @JvmStatic
+    @JvmField
     public val setFeedbackActiveName: MethodStringName1<AudioEffectDelay, Unit, Boolean> =
         MethodStringName1<AudioEffectDelay, Unit, Boolean>("set_feedback_active")
 
-    @JvmStatic
+    @JvmField
     public val isFeedbackActiveName: MethodStringName0<AudioEffectDelay, Boolean> =
         MethodStringName0<AudioEffectDelay, Boolean>("is_feedback_active")
 
-    @JvmStatic
+    @JvmField
     public val setFeedbackDelayMsName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_feedback_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val getFeedbackDelayMsName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_feedback_delay_ms")
 
-    @JvmStatic
+    @JvmField
     public val setFeedbackLevelDbName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_feedback_level_db")
 
-    @JvmStatic
+    @JvmField
     public val getFeedbackLevelDbName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_feedback_level_db")
 
-    @JvmStatic
+    @JvmField
     public val setFeedbackLowpassName: MethodStringName1<AudioEffectDelay, Unit, Float> =
         MethodStringName1<AudioEffectDelay, Unit, Float>("set_feedback_lowpass")
 
-    @JvmStatic
+    @JvmField
     public val getFeedbackLowpassName: MethodStringName0<AudioEffectDelay, Float> =
         MethodStringName0<AudioEffectDelay, Float>("get_feedback_lowpass")
   }

@@ -23,7 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The [Generic6DOFJoint3D] (6 Degrees Of Freedom) joint allows for implementing custom types of
@@ -232,51 +232,51 @@ public open class Generic6DOFJoint3D : Joint3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setParamXName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_x")
 
-    @JvmStatic
+    @JvmField
     public val getParamXName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
         MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_x")
 
-    @JvmStatic
+    @JvmField
     public val setParamYName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_y")
 
-    @JvmStatic
+    @JvmField
     public val getParamYName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
         MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_y")
 
-    @JvmStatic
+    @JvmField
     public val setParamZName: MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Param, Float>("set_param_z")
 
-    @JvmStatic
+    @JvmField
     public val getParamZName: MethodStringName1<Generic6DOFJoint3D, Float, Param> =
         MethodStringName1<Generic6DOFJoint3D, Float, Param>("get_param_z")
 
-    @JvmStatic
+    @JvmField
     public val setFlagXName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_x")
 
-    @JvmStatic
+    @JvmField
     public val getFlagXName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
         MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_x")
 
-    @JvmStatic
+    @JvmField
     public val setFlagYName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_y")
 
-    @JvmStatic
+    @JvmField
     public val getFlagYName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
         MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_y")
 
-    @JvmStatic
+    @JvmField
     public val setFlagZName: MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean> =
         MethodStringName2<Generic6DOFJoint3D, Unit, Flag, Boolean>("set_flag_z")
 
-    @JvmStatic
+    @JvmField
     public val getFlagZName: MethodStringName1<Generic6DOFJoint3D, Boolean, Flag> =
         MethodStringName1<Generic6DOFJoint3D, Boolean, Flag>("get_flag_z")
   }

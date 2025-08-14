@@ -32,8 +32,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A texture-based nine-patch [StyleBox], in a way similar to [NinePatchRect]. This stylebox
@@ -436,75 +436,75 @@ public open class StyleBoxTexture : StyleBox() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<StyleBoxTexture, Unit, Texture2D?> =
         MethodStringName1<StyleBoxTexture, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<StyleBoxTexture, Texture2D?> =
         MethodStringName0<StyleBoxTexture, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setTextureMarginName: MethodStringName2<StyleBoxTexture, Unit, Side, Float> =
         MethodStringName2<StyleBoxTexture, Unit, Side, Float>("set_texture_margin")
 
-    @JvmStatic
+    @JvmField
     public val setTextureMarginAllName: MethodStringName1<StyleBoxTexture, Unit, Float> =
         MethodStringName1<StyleBoxTexture, Unit, Float>("set_texture_margin_all")
 
-    @JvmStatic
+    @JvmField
     public val getTextureMarginName: MethodStringName1<StyleBoxTexture, Float, Side> =
         MethodStringName1<StyleBoxTexture, Float, Side>("get_texture_margin")
 
-    @JvmStatic
+    @JvmField
     public val setExpandMarginName: MethodStringName2<StyleBoxTexture, Unit, Side, Float> =
         MethodStringName2<StyleBoxTexture, Unit, Side, Float>("set_expand_margin")
 
-    @JvmStatic
+    @JvmField
     public val setExpandMarginAllName: MethodStringName1<StyleBoxTexture, Unit, Float> =
         MethodStringName1<StyleBoxTexture, Unit, Float>("set_expand_margin_all")
 
-    @JvmStatic
+    @JvmField
     public val getExpandMarginName: MethodStringName1<StyleBoxTexture, Float, Side> =
         MethodStringName1<StyleBoxTexture, Float, Side>("get_expand_margin")
 
-    @JvmStatic
+    @JvmField
     public val setRegionRectName: MethodStringName1<StyleBoxTexture, Unit, Rect2> =
         MethodStringName1<StyleBoxTexture, Unit, Rect2>("set_region_rect")
 
-    @JvmStatic
+    @JvmField
     public val getRegionRectName: MethodStringName0<StyleBoxTexture, Rect2> =
         MethodStringName0<StyleBoxTexture, Rect2>("get_region_rect")
 
-    @JvmStatic
+    @JvmField
     public val setDrawCenterName: MethodStringName1<StyleBoxTexture, Unit, Boolean> =
         MethodStringName1<StyleBoxTexture, Unit, Boolean>("set_draw_center")
 
-    @JvmStatic
+    @JvmField
     public val isDrawCenterEnabledName: MethodStringName0<StyleBoxTexture, Boolean> =
         MethodStringName0<StyleBoxTexture, Boolean>("is_draw_center_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setModulateName: MethodStringName1<StyleBoxTexture, Unit, Color> =
         MethodStringName1<StyleBoxTexture, Unit, Color>("set_modulate")
 
-    @JvmStatic
+    @JvmField
     public val getModulateName: MethodStringName0<StyleBoxTexture, Color> =
         MethodStringName0<StyleBoxTexture, Color>("get_modulate")
 
-    @JvmStatic
+    @JvmField
     public val setHAxisStretchModeName: MethodStringName1<StyleBoxTexture, Unit, AxisStretchMode> =
         MethodStringName1<StyleBoxTexture, Unit, AxisStretchMode>("set_h_axis_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val getHAxisStretchModeName: MethodStringName0<StyleBoxTexture, AxisStretchMode> =
         MethodStringName0<StyleBoxTexture, AxisStretchMode>("get_h_axis_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val setVAxisStretchModeName: MethodStringName1<StyleBoxTexture, Unit, AxisStretchMode> =
         MethodStringName1<StyleBoxTexture, Unit, AxisStretchMode>("set_v_axis_stretch_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVAxisStretchModeName: MethodStringName0<StyleBoxTexture, AxisStretchMode> =
         MethodStringName0<StyleBoxTexture, AxisStretchMode>("get_v_axis_stretch_mode")
   }

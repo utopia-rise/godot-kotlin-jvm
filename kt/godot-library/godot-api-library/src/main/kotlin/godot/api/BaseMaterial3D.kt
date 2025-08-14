@@ -31,8 +31,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class serves as a default material with a wide variety of rendering features and properties
@@ -3362,552 +3362,552 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAlbedoName: MethodStringName1<BaseMaterial3D, Unit, Color> =
         MethodStringName1<BaseMaterial3D, Unit, Color>("set_albedo")
 
-    @JvmStatic
+    @JvmField
     public val getAlbedoName: MethodStringName0<BaseMaterial3D, Color> =
         MethodStringName0<BaseMaterial3D, Color>("get_albedo")
 
-    @JvmStatic
+    @JvmField
     public val setTransparencyName: MethodStringName1<BaseMaterial3D, Unit, Transparency> =
         MethodStringName1<BaseMaterial3D, Unit, Transparency>("set_transparency")
 
-    @JvmStatic
+    @JvmField
     public val getTransparencyName: MethodStringName0<BaseMaterial3D, Transparency> =
         MethodStringName0<BaseMaterial3D, Transparency>("get_transparency")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaAntialiasingName: MethodStringName1<BaseMaterial3D, Unit, AlphaAntiAliasing>
         = MethodStringName1<BaseMaterial3D, Unit, AlphaAntiAliasing>("set_alpha_antialiasing")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaAntialiasingName: MethodStringName0<BaseMaterial3D, AlphaAntiAliasing> =
         MethodStringName0<BaseMaterial3D, AlphaAntiAliasing>("get_alpha_antialiasing")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaAntialiasingEdgeName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_alpha_antialiasing_edge")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaAntialiasingEdgeName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_alpha_antialiasing_edge")
 
-    @JvmStatic
+    @JvmField
     public val setShadingModeName: MethodStringName1<BaseMaterial3D, Unit, ShadingMode> =
         MethodStringName1<BaseMaterial3D, Unit, ShadingMode>("set_shading_mode")
 
-    @JvmStatic
+    @JvmField
     public val getShadingModeName: MethodStringName0<BaseMaterial3D, ShadingMode> =
         MethodStringName0<BaseMaterial3D, ShadingMode>("get_shading_mode")
 
-    @JvmStatic
+    @JvmField
     public val setSpecularName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_specular")
 
-    @JvmStatic
+    @JvmField
     public val getSpecularName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_specular")
 
-    @JvmStatic
+    @JvmField
     public val setMetallicName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_metallic")
 
-    @JvmStatic
+    @JvmField
     public val getMetallicName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_metallic")
 
-    @JvmStatic
+    @JvmField
     public val setRoughnessName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_roughness")
 
-    @JvmStatic
+    @JvmField
     public val getRoughnessName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_roughness")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionName: MethodStringName1<BaseMaterial3D, Unit, Color> =
         MethodStringName1<BaseMaterial3D, Unit, Color>("set_emission")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionName: MethodStringName0<BaseMaterial3D, Color> =
         MethodStringName0<BaseMaterial3D, Color>("get_emission")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionEnergyMultiplierName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_emission_energy_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionEnergyMultiplierName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_emission_energy_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionIntensityName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_emission_intensity")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionIntensityName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_emission_intensity")
 
-    @JvmStatic
+    @JvmField
     public val setNormalScaleName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_normal_scale")
 
-    @JvmStatic
+    @JvmField
     public val getNormalScaleName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_normal_scale")
 
-    @JvmStatic
+    @JvmField
     public val setRimName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_rim")
 
-    @JvmStatic
+    @JvmField
     public val getRimName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_rim")
 
-    @JvmStatic
+    @JvmField
     public val setRimTintName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_rim_tint")
 
-    @JvmStatic
+    @JvmField
     public val getRimTintName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_rim_tint")
 
-    @JvmStatic
+    @JvmField
     public val setClearcoatName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_clearcoat")
 
-    @JvmStatic
+    @JvmField
     public val getClearcoatName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_clearcoat")
 
-    @JvmStatic
+    @JvmField
     public val setClearcoatRoughnessName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_clearcoat_roughness")
 
-    @JvmStatic
+    @JvmField
     public val getClearcoatRoughnessName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_clearcoat_roughness")
 
-    @JvmStatic
+    @JvmField
     public val setAnisotropyName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_anisotropy")
 
-    @JvmStatic
+    @JvmField
     public val getAnisotropyName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_anisotropy")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapScaleName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_heightmap_scale")
 
-    @JvmStatic
+    @JvmField
     public val getHeightmapScaleName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_heightmap_scale")
 
-    @JvmStatic
+    @JvmField
     public val setSubsurfaceScatteringStrengthName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_subsurface_scattering_strength")
 
-    @JvmStatic
+    @JvmField
     public val getSubsurfaceScatteringStrengthName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_subsurface_scattering_strength")
 
-    @JvmStatic
+    @JvmField
     public val setTransmittanceColorName: MethodStringName1<BaseMaterial3D, Unit, Color> =
         MethodStringName1<BaseMaterial3D, Unit, Color>("set_transmittance_color")
 
-    @JvmStatic
+    @JvmField
     public val getTransmittanceColorName: MethodStringName0<BaseMaterial3D, Color> =
         MethodStringName0<BaseMaterial3D, Color>("get_transmittance_color")
 
-    @JvmStatic
+    @JvmField
     public val setTransmittanceDepthName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_transmittance_depth")
 
-    @JvmStatic
+    @JvmField
     public val getTransmittanceDepthName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_transmittance_depth")
 
-    @JvmStatic
+    @JvmField
     public val setTransmittanceBoostName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_transmittance_boost")
 
-    @JvmStatic
+    @JvmField
     public val getTransmittanceBoostName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_transmittance_boost")
 
-    @JvmStatic
+    @JvmField
     public val setBacklightName: MethodStringName1<BaseMaterial3D, Unit, Color> =
         MethodStringName1<BaseMaterial3D, Unit, Color>("set_backlight")
 
-    @JvmStatic
+    @JvmField
     public val getBacklightName: MethodStringName0<BaseMaterial3D, Color> =
         MethodStringName0<BaseMaterial3D, Color>("get_backlight")
 
-    @JvmStatic
+    @JvmField
     public val setRefractionName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_refraction")
 
-    @JvmStatic
+    @JvmField
     public val getRefractionName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_refraction")
 
-    @JvmStatic
+    @JvmField
     public val setPointSizeName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_point_size")
 
-    @JvmStatic
+    @JvmField
     public val getPointSizeName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_point_size")
 
-    @JvmStatic
+    @JvmField
     public val setDetailUvName: MethodStringName1<BaseMaterial3D, Unit, DetailUV> =
         MethodStringName1<BaseMaterial3D, Unit, DetailUV>("set_detail_uv")
 
-    @JvmStatic
+    @JvmField
     public val getDetailUvName: MethodStringName0<BaseMaterial3D, DetailUV> =
         MethodStringName0<BaseMaterial3D, DetailUV>("get_detail_uv")
 
-    @JvmStatic
+    @JvmField
     public val setBlendModeName: MethodStringName1<BaseMaterial3D, Unit, BlendMode> =
         MethodStringName1<BaseMaterial3D, Unit, BlendMode>("set_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBlendModeName: MethodStringName0<BaseMaterial3D, BlendMode> =
         MethodStringName0<BaseMaterial3D, BlendMode>("get_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDepthDrawModeName: MethodStringName1<BaseMaterial3D, Unit, DepthDrawMode> =
         MethodStringName1<BaseMaterial3D, Unit, DepthDrawMode>("set_depth_draw_mode")
 
-    @JvmStatic
+    @JvmField
     public val getDepthDrawModeName: MethodStringName0<BaseMaterial3D, DepthDrawMode> =
         MethodStringName0<BaseMaterial3D, DepthDrawMode>("get_depth_draw_mode")
 
-    @JvmStatic
+    @JvmField
     public val setCullModeName: MethodStringName1<BaseMaterial3D, Unit, CullMode> =
         MethodStringName1<BaseMaterial3D, Unit, CullMode>("set_cull_mode")
 
-    @JvmStatic
+    @JvmField
     public val getCullModeName: MethodStringName0<BaseMaterial3D, CullMode> =
         MethodStringName0<BaseMaterial3D, CullMode>("get_cull_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDiffuseModeName: MethodStringName1<BaseMaterial3D, Unit, DiffuseMode> =
         MethodStringName1<BaseMaterial3D, Unit, DiffuseMode>("set_diffuse_mode")
 
-    @JvmStatic
+    @JvmField
     public val getDiffuseModeName: MethodStringName0<BaseMaterial3D, DiffuseMode> =
         MethodStringName0<BaseMaterial3D, DiffuseMode>("get_diffuse_mode")
 
-    @JvmStatic
+    @JvmField
     public val setSpecularModeName: MethodStringName1<BaseMaterial3D, Unit, SpecularMode> =
         MethodStringName1<BaseMaterial3D, Unit, SpecularMode>("set_specular_mode")
 
-    @JvmStatic
+    @JvmField
     public val getSpecularModeName: MethodStringName0<BaseMaterial3D, SpecularMode> =
         MethodStringName0<BaseMaterial3D, SpecularMode>("get_specular_mode")
 
-    @JvmStatic
+    @JvmField
     public val setFlagName: MethodStringName2<BaseMaterial3D, Unit, Flags, Boolean> =
         MethodStringName2<BaseMaterial3D, Unit, Flags, Boolean>("set_flag")
 
-    @JvmStatic
+    @JvmField
     public val getFlagName: MethodStringName1<BaseMaterial3D, Boolean, Flags> =
         MethodStringName1<BaseMaterial3D, Boolean, Flags>("get_flag")
 
-    @JvmStatic
+    @JvmField
     public val setTextureFilterName: MethodStringName1<BaseMaterial3D, Unit, TextureFilter> =
         MethodStringName1<BaseMaterial3D, Unit, TextureFilter>("set_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val getTextureFilterName: MethodStringName0<BaseMaterial3D, TextureFilter> =
         MethodStringName0<BaseMaterial3D, TextureFilter>("get_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val setFeatureName: MethodStringName2<BaseMaterial3D, Unit, Feature, Boolean> =
         MethodStringName2<BaseMaterial3D, Unit, Feature, Boolean>("set_feature")
 
-    @JvmStatic
+    @JvmField
     public val getFeatureName: MethodStringName1<BaseMaterial3D, Boolean, Feature> =
         MethodStringName1<BaseMaterial3D, Boolean, Feature>("get_feature")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName2<BaseMaterial3D, Unit, TextureParam, Texture2D?> =
         MethodStringName2<BaseMaterial3D, Unit, TextureParam, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName1<BaseMaterial3D, Texture2D?, TextureParam> =
         MethodStringName1<BaseMaterial3D, Texture2D?, TextureParam>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setDetailBlendModeName: MethodStringName1<BaseMaterial3D, Unit, BlendMode> =
         MethodStringName1<BaseMaterial3D, Unit, BlendMode>("set_detail_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val getDetailBlendModeName: MethodStringName0<BaseMaterial3D, BlendMode> =
         MethodStringName0<BaseMaterial3D, BlendMode>("get_detail_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val setUv1ScaleName: MethodStringName1<BaseMaterial3D, Unit, Vector3> =
         MethodStringName1<BaseMaterial3D, Unit, Vector3>("set_uv1_scale")
 
-    @JvmStatic
+    @JvmField
     public val getUv1ScaleName: MethodStringName0<BaseMaterial3D, Vector3> =
         MethodStringName0<BaseMaterial3D, Vector3>("get_uv1_scale")
 
-    @JvmStatic
+    @JvmField
     public val setUv1OffsetName: MethodStringName1<BaseMaterial3D, Unit, Vector3> =
         MethodStringName1<BaseMaterial3D, Unit, Vector3>("set_uv1_offset")
 
-    @JvmStatic
+    @JvmField
     public val getUv1OffsetName: MethodStringName0<BaseMaterial3D, Vector3> =
         MethodStringName0<BaseMaterial3D, Vector3>("get_uv1_offset")
 
-    @JvmStatic
+    @JvmField
     public val setUv1TriplanarBlendSharpnessName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_uv1_triplanar_blend_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val getUv1TriplanarBlendSharpnessName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_uv1_triplanar_blend_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val setUv2ScaleName: MethodStringName1<BaseMaterial3D, Unit, Vector3> =
         MethodStringName1<BaseMaterial3D, Unit, Vector3>("set_uv2_scale")
 
-    @JvmStatic
+    @JvmField
     public val getUv2ScaleName: MethodStringName0<BaseMaterial3D, Vector3> =
         MethodStringName0<BaseMaterial3D, Vector3>("get_uv2_scale")
 
-    @JvmStatic
+    @JvmField
     public val setUv2OffsetName: MethodStringName1<BaseMaterial3D, Unit, Vector3> =
         MethodStringName1<BaseMaterial3D, Unit, Vector3>("set_uv2_offset")
 
-    @JvmStatic
+    @JvmField
     public val getUv2OffsetName: MethodStringName0<BaseMaterial3D, Vector3> =
         MethodStringName0<BaseMaterial3D, Vector3>("get_uv2_offset")
 
-    @JvmStatic
+    @JvmField
     public val setUv2TriplanarBlendSharpnessName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_uv2_triplanar_blend_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val getUv2TriplanarBlendSharpnessName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_uv2_triplanar_blend_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val setBillboardModeName: MethodStringName1<BaseMaterial3D, Unit, BillboardMode> =
         MethodStringName1<BaseMaterial3D, Unit, BillboardMode>("set_billboard_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBillboardModeName: MethodStringName0<BaseMaterial3D, BillboardMode> =
         MethodStringName0<BaseMaterial3D, BillboardMode>("get_billboard_mode")
 
-    @JvmStatic
+    @JvmField
     public val setParticlesAnimHFramesName: MethodStringName1<BaseMaterial3D, Unit, Int> =
         MethodStringName1<BaseMaterial3D, Unit, Int>("set_particles_anim_h_frames")
 
-    @JvmStatic
+    @JvmField
     public val getParticlesAnimHFramesName: MethodStringName0<BaseMaterial3D, Int> =
         MethodStringName0<BaseMaterial3D, Int>("get_particles_anim_h_frames")
 
-    @JvmStatic
+    @JvmField
     public val setParticlesAnimVFramesName: MethodStringName1<BaseMaterial3D, Unit, Int> =
         MethodStringName1<BaseMaterial3D, Unit, Int>("set_particles_anim_v_frames")
 
-    @JvmStatic
+    @JvmField
     public val getParticlesAnimVFramesName: MethodStringName0<BaseMaterial3D, Int> =
         MethodStringName0<BaseMaterial3D, Int>("get_particles_anim_v_frames")
 
-    @JvmStatic
+    @JvmField
     public val setParticlesAnimLoopName: MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_particles_anim_loop")
 
-    @JvmStatic
+    @JvmField
     public val getParticlesAnimLoopName: MethodStringName0<BaseMaterial3D, Boolean> =
         MethodStringName0<BaseMaterial3D, Boolean>("get_particles_anim_loop")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapDeepParallaxName: MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_heightmap_deep_parallax")
 
-    @JvmStatic
+    @JvmField
     public val isHeightmapDeepParallaxEnabledName: MethodStringName0<BaseMaterial3D, Boolean> =
         MethodStringName0<BaseMaterial3D, Boolean>("is_heightmap_deep_parallax_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapDeepParallaxMinLayersName: MethodStringName1<BaseMaterial3D, Unit, Int> =
         MethodStringName1<BaseMaterial3D, Unit, Int>("set_heightmap_deep_parallax_min_layers")
 
-    @JvmStatic
+    @JvmField
     public val getHeightmapDeepParallaxMinLayersName: MethodStringName0<BaseMaterial3D, Int> =
         MethodStringName0<BaseMaterial3D, Int>("get_heightmap_deep_parallax_min_layers")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapDeepParallaxMaxLayersName: MethodStringName1<BaseMaterial3D, Unit, Int> =
         MethodStringName1<BaseMaterial3D, Unit, Int>("set_heightmap_deep_parallax_max_layers")
 
-    @JvmStatic
+    @JvmField
     public val getHeightmapDeepParallaxMaxLayersName: MethodStringName0<BaseMaterial3D, Int> =
         MethodStringName0<BaseMaterial3D, Int>("get_heightmap_deep_parallax_max_layers")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapDeepParallaxFlipTangentName:
         MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_heightmap_deep_parallax_flip_tangent")
 
-    @JvmStatic
+    @JvmField
     public val getHeightmapDeepParallaxFlipTangentName: MethodStringName0<BaseMaterial3D, Boolean> =
         MethodStringName0<BaseMaterial3D, Boolean>("get_heightmap_deep_parallax_flip_tangent")
 
-    @JvmStatic
+    @JvmField
     public val setHeightmapDeepParallaxFlipBinormalName:
         MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_heightmap_deep_parallax_flip_binormal")
 
-    @JvmStatic
+    @JvmField
     public val getHeightmapDeepParallaxFlipBinormalName: MethodStringName0<BaseMaterial3D, Boolean>
         = MethodStringName0<BaseMaterial3D, Boolean>("get_heightmap_deep_parallax_flip_binormal")
 
-    @JvmStatic
+    @JvmField
     public val setGrowName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_grow")
 
-    @JvmStatic
+    @JvmField
     public val getGrowName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_grow")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionOperatorName: MethodStringName1<BaseMaterial3D, Unit, EmissionOperator> =
         MethodStringName1<BaseMaterial3D, Unit, EmissionOperator>("set_emission_operator")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionOperatorName: MethodStringName0<BaseMaterial3D, EmissionOperator> =
         MethodStringName0<BaseMaterial3D, EmissionOperator>("get_emission_operator")
 
-    @JvmStatic
+    @JvmField
     public val setAoLightAffectName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_ao_light_affect")
 
-    @JvmStatic
+    @JvmField
     public val getAoLightAffectName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_ao_light_affect")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaScissorThresholdName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_alpha_scissor_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaScissorThresholdName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_alpha_scissor_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaHashScaleName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_alpha_hash_scale")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaHashScaleName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_alpha_hash_scale")
 
-    @JvmStatic
+    @JvmField
     public val setGrowEnabledName: MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_grow_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isGrowEnabledName: MethodStringName0<BaseMaterial3D, Boolean> =
         MethodStringName0<BaseMaterial3D, Boolean>("is_grow_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setMetallicTextureChannelName:
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel> =
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel>("set_metallic_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val getMetallicTextureChannelName: MethodStringName0<BaseMaterial3D, TextureChannel> =
         MethodStringName0<BaseMaterial3D, TextureChannel>("get_metallic_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val setRoughnessTextureChannelName:
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel> =
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel>("set_roughness_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val getRoughnessTextureChannelName: MethodStringName0<BaseMaterial3D, TextureChannel> =
         MethodStringName0<BaseMaterial3D, TextureChannel>("get_roughness_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val setAoTextureChannelName: MethodStringName1<BaseMaterial3D, Unit, TextureChannel> =
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel>("set_ao_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val getAoTextureChannelName: MethodStringName0<BaseMaterial3D, TextureChannel> =
         MethodStringName0<BaseMaterial3D, TextureChannel>("get_ao_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val setRefractionTextureChannelName:
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel> =
         MethodStringName1<BaseMaterial3D, Unit, TextureChannel>("set_refraction_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val getRefractionTextureChannelName: MethodStringName0<BaseMaterial3D, TextureChannel> =
         MethodStringName0<BaseMaterial3D, TextureChannel>("get_refraction_texture_channel")
 
-    @JvmStatic
+    @JvmField
     public val setProximityFadeEnabledName: MethodStringName1<BaseMaterial3D, Unit, Boolean> =
         MethodStringName1<BaseMaterial3D, Unit, Boolean>("set_proximity_fade_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isProximityFadeEnabledName: MethodStringName0<BaseMaterial3D, Boolean> =
         MethodStringName0<BaseMaterial3D, Boolean>("is_proximity_fade_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setProximityFadeDistanceName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_proximity_fade_distance")
 
-    @JvmStatic
+    @JvmField
     public val getProximityFadeDistanceName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_proximity_fade_distance")
 
-    @JvmStatic
+    @JvmField
     public val setMsdfPixelRangeName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_msdf_pixel_range")
 
-    @JvmStatic
+    @JvmField
     public val getMsdfPixelRangeName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_msdf_pixel_range")
 
-    @JvmStatic
+    @JvmField
     public val setMsdfOutlineSizeName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_msdf_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val getMsdfOutlineSizeName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_msdf_outline_size")
 
-    @JvmStatic
+    @JvmField
     public val setDistanceFadeName: MethodStringName1<BaseMaterial3D, Unit, DistanceFadeMode> =
         MethodStringName1<BaseMaterial3D, Unit, DistanceFadeMode>("set_distance_fade")
 
-    @JvmStatic
+    @JvmField
     public val getDistanceFadeName: MethodStringName0<BaseMaterial3D, DistanceFadeMode> =
         MethodStringName0<BaseMaterial3D, DistanceFadeMode>("get_distance_fade")
 
-    @JvmStatic
+    @JvmField
     public val setDistanceFadeMaxDistanceName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_distance_fade_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val getDistanceFadeMaxDistanceName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_distance_fade_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val setDistanceFadeMinDistanceName: MethodStringName1<BaseMaterial3D, Unit, Float> =
         MethodStringName1<BaseMaterial3D, Unit, Float>("set_distance_fade_min_distance")
 
-    @JvmStatic
+    @JvmField
     public val getDistanceFadeMinDistanceName: MethodStringName0<BaseMaterial3D, Float> =
         MethodStringName0<BaseMaterial3D, Float>("get_distance_fade_min_distance")
   }

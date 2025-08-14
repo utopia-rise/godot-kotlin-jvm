@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Node for back-buffering the currently-displayed screen. The region defined in the
@@ -142,19 +142,19 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRectName: MethodStringName1<BackBufferCopy, Unit, Rect2> =
         MethodStringName1<BackBufferCopy, Unit, Rect2>("set_rect")
 
-    @JvmStatic
+    @JvmField
     public val getRectName: MethodStringName0<BackBufferCopy, Rect2> =
         MethodStringName0<BackBufferCopy, Rect2>("get_rect")
 
-    @JvmStatic
+    @JvmField
     public val setCopyModeName: MethodStringName1<BackBufferCopy, Unit, CopyMode> =
         MethodStringName1<BackBufferCopy, Unit, CopyMode>("set_copy_mode")
 
-    @JvmStatic
+    @JvmField
     public val getCopyModeName: MethodStringName0<BackBufferCopy, CopyMode> =
         MethodStringName0<BackBufferCopy, CopyMode>("get_copy_mode")
   }

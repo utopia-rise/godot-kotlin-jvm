@@ -25,8 +25,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * UDP packet peer. Can be used to send and receive raw UDP packets as well as [Variant]s.
@@ -265,55 +265,55 @@ public open class PacketPeerUDP : PacketPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val bindName: MethodStringName3<PacketPeerUDP, Error, Int, String, Int> =
         MethodStringName3<PacketPeerUDP, Error, Int, String, Int>("bind")
 
-    @JvmStatic
+    @JvmField
     public val closeName: MethodStringName0<PacketPeerUDP, Unit> =
         MethodStringName0<PacketPeerUDP, Unit>("close")
 
-    @JvmStatic
+    @JvmField
     public val waitName: MethodStringName0<PacketPeerUDP, Error> =
         MethodStringName0<PacketPeerUDP, Error>("wait")
 
-    @JvmStatic
+    @JvmField
     public val isBoundName: MethodStringName0<PacketPeerUDP, Boolean> =
         MethodStringName0<PacketPeerUDP, Boolean>("is_bound")
 
-    @JvmStatic
+    @JvmField
     public val connectToHostName: MethodStringName2<PacketPeerUDP, Error, String, Int> =
         MethodStringName2<PacketPeerUDP, Error, String, Int>("connect_to_host")
 
-    @JvmStatic
+    @JvmField
     public val isSocketConnectedName: MethodStringName0<PacketPeerUDP, Boolean> =
         MethodStringName0<PacketPeerUDP, Boolean>("is_socket_connected")
 
-    @JvmStatic
+    @JvmField
     public val getPacketIpName: MethodStringName0<PacketPeerUDP, String> =
         MethodStringName0<PacketPeerUDP, String>("get_packet_ip")
 
-    @JvmStatic
+    @JvmField
     public val getPacketPortName: MethodStringName0<PacketPeerUDP, Int> =
         MethodStringName0<PacketPeerUDP, Int>("get_packet_port")
 
-    @JvmStatic
+    @JvmField
     public val getLocalPortName: MethodStringName0<PacketPeerUDP, Int> =
         MethodStringName0<PacketPeerUDP, Int>("get_local_port")
 
-    @JvmStatic
+    @JvmField
     public val setDestAddressName: MethodStringName2<PacketPeerUDP, Error, String, Int> =
         MethodStringName2<PacketPeerUDP, Error, String, Int>("set_dest_address")
 
-    @JvmStatic
+    @JvmField
     public val setBroadcastEnabledName: MethodStringName1<PacketPeerUDP, Unit, Boolean> =
         MethodStringName1<PacketPeerUDP, Unit, Boolean>("set_broadcast_enabled")
 
-    @JvmStatic
+    @JvmField
     public val joinMulticastGroupName: MethodStringName2<PacketPeerUDP, Error, String, String> =
         MethodStringName2<PacketPeerUDP, Error, String, String>("join_multicast_group")
 
-    @JvmStatic
+    @JvmField
     public val leaveMulticastGroupName: MethodStringName2<PacketPeerUDP, Error, String, String> =
         MethodStringName2<PacketPeerUDP, Error, String, String>("leave_multicast_group")
   }

@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -159,43 +160,43 @@ public open class JSON : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val stringifyName: MethodStringName4<JSON, String, Any?, String, Boolean, Boolean> =
         MethodStringName4<JSON, String, Any?, String, Boolean, Boolean>("stringify")
 
-    @JvmStatic
+    @JvmField
     public val parseStringName: MethodStringName1<JSON, Any?, String> =
         MethodStringName1<JSON, Any?, String>("parse_string")
 
-    @JvmStatic
+    @JvmField
     public val parseName: MethodStringName2<JSON, Error, String, Boolean> =
         MethodStringName2<JSON, Error, String, Boolean>("parse")
 
-    @JvmStatic
+    @JvmField
     public val getDataName: MethodStringName0<JSON, Any?> =
         MethodStringName0<JSON, Any?>("get_data")
 
-    @JvmStatic
+    @JvmField
     public val setDataName: MethodStringName1<JSON, Unit, Any?> =
         MethodStringName1<JSON, Unit, Any?>("set_data")
 
-    @JvmStatic
+    @JvmField
     public val getParsedTextName: MethodStringName0<JSON, String> =
         MethodStringName0<JSON, String>("get_parsed_text")
 
-    @JvmStatic
+    @JvmField
     public val getErrorLineName: MethodStringName0<JSON, Int> =
         MethodStringName0<JSON, Int>("get_error_line")
 
-    @JvmStatic
+    @JvmField
     public val getErrorMessageName: MethodStringName0<JSON, String> =
         MethodStringName0<JSON, String>("get_error_message")
 
-    @JvmStatic
+    @JvmField
     public val fromNativeName: MethodStringName2<JSON, Any?, Any?, Boolean> =
         MethodStringName2<JSON, Any?, Any?, Boolean>("from_native")
 
-    @JvmStatic
+    @JvmField
     public val toNativeName: MethodStringName2<JSON, Any?, Any?, Boolean> =
         MethodStringName2<JSON, Any?, Any?, Boolean>("to_native")
 

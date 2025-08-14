@@ -26,8 +26,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node that provides a [Shape2D] to a [CollisionObject2D] parent and allows to edit it. This can
@@ -192,43 +192,43 @@ public open class CollisionShape2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<CollisionShape2D, Unit, Shape2D?> =
         MethodStringName1<CollisionShape2D, Unit, Shape2D?>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<CollisionShape2D, Shape2D?> =
         MethodStringName0<CollisionShape2D, Shape2D?>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val setDisabledName: MethodStringName1<CollisionShape2D, Unit, Boolean> =
         MethodStringName1<CollisionShape2D, Unit, Boolean>("set_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDisabledName: MethodStringName0<CollisionShape2D, Boolean> =
         MethodStringName0<CollisionShape2D, Boolean>("is_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setOneWayCollisionName: MethodStringName1<CollisionShape2D, Unit, Boolean> =
         MethodStringName1<CollisionShape2D, Unit, Boolean>("set_one_way_collision")
 
-    @JvmStatic
+    @JvmField
     public val isOneWayCollisionEnabledName: MethodStringName0<CollisionShape2D, Boolean> =
         MethodStringName0<CollisionShape2D, Boolean>("is_one_way_collision_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setOneWayCollisionMarginName: MethodStringName1<CollisionShape2D, Unit, Float> =
         MethodStringName1<CollisionShape2D, Unit, Float>("set_one_way_collision_margin")
 
-    @JvmStatic
+    @JvmField
     public val getOneWayCollisionMarginName: MethodStringName0<CollisionShape2D, Float> =
         MethodStringName0<CollisionShape2D, Float>("get_one_way_collision_margin")
 
-    @JvmStatic
+    @JvmField
     public val setDebugColorName: MethodStringName1<CollisionShape2D, Unit, Color> =
         MethodStringName1<CollisionShape2D, Unit, Color>("set_debug_color")
 
-    @JvmStatic
+    @JvmField
     public val getDebugColorName: MethodStringName0<CollisionShape2D, Color> =
         MethodStringName0<CollisionShape2D, Color>("get_debug_color")
   }

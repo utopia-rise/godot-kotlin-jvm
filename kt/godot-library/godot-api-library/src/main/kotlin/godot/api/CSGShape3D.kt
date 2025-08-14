@@ -28,8 +28,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
@@ -337,91 +337,91 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isRootShapeName: MethodStringName0<CSGShape3D, Boolean> =
         MethodStringName0<CSGShape3D, Boolean>("is_root_shape")
 
-    @JvmStatic
+    @JvmField
     public val setOperationName: MethodStringName1<CSGShape3D, Unit, Operation> =
         MethodStringName1<CSGShape3D, Unit, Operation>("set_operation")
 
-    @JvmStatic
+    @JvmField
     public val getOperationName: MethodStringName0<CSGShape3D, Operation> =
         MethodStringName0<CSGShape3D, Operation>("get_operation")
 
-    @JvmStatic
+    @JvmField
     public val setSnapName: MethodStringName1<CSGShape3D, Unit, Float> =
         MethodStringName1<CSGShape3D, Unit, Float>("set_snap")
 
-    @JvmStatic
+    @JvmField
     public val getSnapName: MethodStringName0<CSGShape3D, Float> =
         MethodStringName0<CSGShape3D, Float>("get_snap")
 
-    @JvmStatic
+    @JvmField
     public val setUseCollisionName: MethodStringName1<CSGShape3D, Unit, Boolean> =
         MethodStringName1<CSGShape3D, Unit, Boolean>("set_use_collision")
 
-    @JvmStatic
+    @JvmField
     public val isUsingCollisionName: MethodStringName0<CSGShape3D, Boolean> =
         MethodStringName0<CSGShape3D, Boolean>("is_using_collision")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionLayerName: MethodStringName1<CSGShape3D, Unit, Long> =
         MethodStringName1<CSGShape3D, Unit, Long>("set_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionLayerName: MethodStringName0<CSGShape3D, Long> =
         MethodStringName0<CSGShape3D, Long>("get_collision_layer")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<CSGShape3D, Unit, Long> =
         MethodStringName1<CSGShape3D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<CSGShape3D, Long> =
         MethodStringName0<CSGShape3D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskValueName: MethodStringName2<CSGShape3D, Unit, Int, Boolean> =
         MethodStringName2<CSGShape3D, Unit, Int, Boolean>("set_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskValueName: MethodStringName1<CSGShape3D, Boolean, Int> =
         MethodStringName1<CSGShape3D, Boolean, Int>("get_collision_mask_value")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionLayerValueName: MethodStringName2<CSGShape3D, Unit, Int, Boolean> =
         MethodStringName2<CSGShape3D, Unit, Int, Boolean>("set_collision_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionLayerValueName: MethodStringName1<CSGShape3D, Boolean, Int> =
         MethodStringName1<CSGShape3D, Boolean, Int>("get_collision_layer_value")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionPriorityName: MethodStringName1<CSGShape3D, Unit, Float> =
         MethodStringName1<CSGShape3D, Unit, Float>("set_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionPriorityName: MethodStringName0<CSGShape3D, Float> =
         MethodStringName0<CSGShape3D, Float>("get_collision_priority")
 
-    @JvmStatic
+    @JvmField
     public val setCalculateTangentsName: MethodStringName1<CSGShape3D, Unit, Boolean> =
         MethodStringName1<CSGShape3D, Unit, Boolean>("set_calculate_tangents")
 
-    @JvmStatic
+    @JvmField
     public val isCalculatingTangentsName: MethodStringName0<CSGShape3D, Boolean> =
         MethodStringName0<CSGShape3D, Boolean>("is_calculating_tangents")
 
-    @JvmStatic
+    @JvmField
     public val getMeshesName: MethodStringName0<CSGShape3D, VariantArray<Any?>> =
         MethodStringName0<CSGShape3D, VariantArray<Any?>>("get_meshes")
 
-    @JvmStatic
+    @JvmField
     public val bakeStaticMeshName: MethodStringName0<CSGShape3D, ArrayMesh?> =
         MethodStringName0<CSGShape3D, ArrayMesh?>("bake_static_mesh")
 
-    @JvmStatic
+    @JvmField
     public val bakeCollisionShapeName: MethodStringName0<CSGShape3D, ConcavePolygonShape3D?> =
         MethodStringName0<CSGShape3D, ConcavePolygonShape3D?>("bake_collision_shape")
   }

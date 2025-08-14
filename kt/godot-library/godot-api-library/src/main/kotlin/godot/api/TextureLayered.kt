@@ -21,7 +21,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for [ImageTextureLayered] and [CompressedTextureLayered]. Cannot be used directly, but
@@ -183,31 +183,31 @@ public open class TextureLayered : Texture() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<TextureLayered, Image.Format> =
         MethodStringName0<TextureLayered, Image.Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val getLayeredTypeName: MethodStringName0<TextureLayered, LayeredType> =
         MethodStringName0<TextureLayered, LayeredType>("get_layered_type")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<TextureLayered, Int> =
         MethodStringName0<TextureLayered, Int>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<TextureLayered, Int> =
         MethodStringName0<TextureLayered, Int>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val getLayersName: MethodStringName0<TextureLayered, Int> =
         MethodStringName0<TextureLayered, Int>("get_layers")
 
-    @JvmStatic
+    @JvmField
     public val hasMipmapsName: MethodStringName0<TextureLayered, Boolean> =
         MethodStringName0<TextureLayered, Boolean>("has_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val getLayerDataName: MethodStringName1<TextureLayered, Image?, Int> =
         MethodStringName1<TextureLayered, Image?, Int>("get_layer_data")
   }

@@ -22,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -130,7 +131,7 @@ public open class MovieWriter : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addWriterName: MethodStringName1<MovieWriter, Unit, MovieWriter?> =
         MethodStringName1<MovieWriter, Unit, MovieWriter?>("add_writer")
 

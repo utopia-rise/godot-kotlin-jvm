@@ -46,26 +46,26 @@ public infix fun Long.and(other: ResourceSaver.SaverFlags): Long = this.and(othe
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
-  @JvmStatic
+  @JvmField
   public val saveName: MethodStringName3<ResourceSaver, Error, Resource?, String, SaverFlags> =
       MethodStringName3<ResourceSaver, Error, Resource?, String, SaverFlags>("save")
 
-  @JvmStatic
+  @JvmField
   public val getRecognizedExtensionsName:
       MethodStringName1<ResourceSaver, PackedStringArray, Resource?> =
       MethodStringName1<ResourceSaver, PackedStringArray, Resource?>("get_recognized_extensions")
 
-  @JvmStatic
+  @JvmField
   public val addResourceFormatSaverName:
       MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver?, Boolean> =
       MethodStringName2<ResourceSaver, Unit, ResourceFormatSaver?, Boolean>("add_resource_format_saver")
 
-  @JvmStatic
+  @JvmField
   public val removeResourceFormatSaverName:
       MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver?> =
       MethodStringName1<ResourceSaver, Unit, ResourceFormatSaver?>("remove_resource_format_saver")
 
-  @JvmStatic
+  @JvmField
   public val getResourceIdForPathName: MethodStringName2<ResourceSaver, Long, String, Boolean> =
       MethodStringName2<ResourceSaver, Long, String, Boolean>("get_resource_id_for_path")
 

@@ -22,8 +22,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
@@ -138,35 +138,35 @@ public open class Slider internal constructor() : Range() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTicksName: MethodStringName1<Slider, Unit, Int> =
         MethodStringName1<Slider, Unit, Int>("set_ticks")
 
-    @JvmStatic
+    @JvmField
     public val getTicksName: MethodStringName0<Slider, Int> =
         MethodStringName0<Slider, Int>("get_ticks")
 
-    @JvmStatic
+    @JvmField
     public val getTicksOnBordersName: MethodStringName0<Slider, Boolean> =
         MethodStringName0<Slider, Boolean>("get_ticks_on_borders")
 
-    @JvmStatic
+    @JvmField
     public val setTicksOnBordersName: MethodStringName1<Slider, Unit, Boolean> =
         MethodStringName1<Slider, Unit, Boolean>("set_ticks_on_borders")
 
-    @JvmStatic
+    @JvmField
     public val setEditableName: MethodStringName1<Slider, Unit, Boolean> =
         MethodStringName1<Slider, Unit, Boolean>("set_editable")
 
-    @JvmStatic
+    @JvmField
     public val isEditableName: MethodStringName0<Slider, Boolean> =
         MethodStringName0<Slider, Boolean>("is_editable")
 
-    @JvmStatic
+    @JvmField
     public val setScrollableName: MethodStringName1<Slider, Unit, Boolean> =
         MethodStringName1<Slider, Unit, Boolean>("set_scrollable")
 
-    @JvmStatic
+    @JvmField
     public val isScrollableName: MethodStringName0<Slider, Boolean> =
         MethodStringName0<Slider, Boolean>("is_scrollable")
   }

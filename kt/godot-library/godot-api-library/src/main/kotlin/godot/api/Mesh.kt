@@ -40,7 +40,6 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: Mesh.ArrayFormat): Long = this.or(other.flag)
 
@@ -763,61 +762,61 @@ public open class Mesh : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLightmapSizeHintName: MethodStringName1<Mesh, Unit, Vector2i> =
         MethodStringName1<Mesh, Unit, Vector2i>("set_lightmap_size_hint")
 
-    @JvmStatic
+    @JvmField
     public val getLightmapSizeHintName: MethodStringName0<Mesh, Vector2i> =
         MethodStringName0<Mesh, Vector2i>("get_lightmap_size_hint")
 
-    @JvmStatic
+    @JvmField
     public val getAabbName: MethodStringName0<Mesh, AABB> =
         MethodStringName0<Mesh, AABB>("get_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getFacesName: MethodStringName0<Mesh, PackedVector3Array> =
         MethodStringName0<Mesh, PackedVector3Array>("get_faces")
 
-    @JvmStatic
+    @JvmField
     public val getSurfaceCountName: MethodStringName0<Mesh, Int> =
         MethodStringName0<Mesh, Int>("get_surface_count")
 
-    @JvmStatic
+    @JvmField
     public val surfaceGetArraysName: MethodStringName1<Mesh, VariantArray<Any?>, Int> =
         MethodStringName1<Mesh, VariantArray<Any?>, Int>("surface_get_arrays")
 
-    @JvmStatic
+    @JvmField
     public val surfaceGetBlendShapeArraysName:
         MethodStringName1<Mesh, VariantArray<VariantArray<Any?>>, Int> =
         MethodStringName1<Mesh, VariantArray<VariantArray<Any?>>, Int>("surface_get_blend_shape_arrays")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetMaterialName: MethodStringName2<Mesh, Unit, Int, Material?> =
         MethodStringName2<Mesh, Unit, Int, Material?>("surface_set_material")
 
-    @JvmStatic
+    @JvmField
     public val surfaceGetMaterialName: MethodStringName1<Mesh, Material?, Int> =
         MethodStringName1<Mesh, Material?, Int>("surface_get_material")
 
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<Mesh, Resource?> =
         MethodStringName0<Mesh, Resource?>("create_placeholder")
 
-    @JvmStatic
+    @JvmField
     public val createTrimeshShapeName: MethodStringName0<Mesh, ConcavePolygonShape3D?> =
         MethodStringName0<Mesh, ConcavePolygonShape3D?>("create_trimesh_shape")
 
-    @JvmStatic
+    @JvmField
     public val createConvexShapeName:
         MethodStringName2<Mesh, ConvexPolygonShape3D?, Boolean, Boolean> =
         MethodStringName2<Mesh, ConvexPolygonShape3D?, Boolean, Boolean>("create_convex_shape")
 
-    @JvmStatic
+    @JvmField
     public val createOutlineName: MethodStringName1<Mesh, Mesh?, Float> =
         MethodStringName1<Mesh, Mesh?, Float>("create_outline")
 
-    @JvmStatic
+    @JvmField
     public val generateTriangleMeshName: MethodStringName0<Mesh, TriangleMesh?> =
         MethodStringName0<Mesh, TriangleMesh?>("generate_triangle_mesh")
   }

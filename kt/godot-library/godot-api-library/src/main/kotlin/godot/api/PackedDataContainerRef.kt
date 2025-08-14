@@ -16,7 +16,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * When packing nested containers using [PackedDataContainer], they are recursively packed into
@@ -73,7 +73,7 @@ public open class PackedDataContainerRef internal constructor() : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val sizeName: MethodStringName0<PackedDataContainerRef, Int> =
         MethodStringName0<PackedDataContainerRef, Int>("size")
   }

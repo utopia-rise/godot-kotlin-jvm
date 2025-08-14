@@ -22,8 +22,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [VisibleOnScreenEnabler2D] contains a rectangular region of 2D space and a target node. The
@@ -121,19 +121,19 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setEnableModeName: MethodStringName1<VisibleOnScreenEnabler2D, Unit, EnableMode> =
         MethodStringName1<VisibleOnScreenEnabler2D, Unit, EnableMode>("set_enable_mode")
 
-    @JvmStatic
+    @JvmField
     public val getEnableModeName: MethodStringName0<VisibleOnScreenEnabler2D, EnableMode> =
         MethodStringName0<VisibleOnScreenEnabler2D, EnableMode>("get_enable_mode")
 
-    @JvmStatic
+    @JvmField
     public val setEnableNodePathName: MethodStringName1<VisibleOnScreenEnabler2D, Unit, NodePath> =
         MethodStringName1<VisibleOnScreenEnabler2D, Unit, NodePath>("set_enable_node_path")
 
-    @JvmStatic
+    @JvmField
     public val getEnableNodePathName: MethodStringName0<VisibleOnScreenEnabler2D, NodePath> =
         MethodStringName0<VisibleOnScreenEnabler2D, NodePath>("get_enable_node_path")
   }

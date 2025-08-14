@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A multiplication operation on a transform (4×4 matrix) and a vector, with support for different
@@ -91,11 +91,11 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOperatorName: MethodStringName1<VisualShaderNodeTransformVecMult, Unit, Operator>
         = MethodStringName1<VisualShaderNodeTransformVecMult, Unit, Operator>("set_operator")
 
-    @JvmStatic
+    @JvmField
     public val getOperatorName: MethodStringName0<VisualShaderNodeTransformVecMult, Operator> =
         MethodStringName0<VisualShaderNodeTransformVecMult, Operator>("get_operator")
   }

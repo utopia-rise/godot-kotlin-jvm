@@ -24,7 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Currently, has no direct usage, use the derived classes instead.
@@ -227,90 +227,90 @@ public open class VisualShaderNodeGroupBase internal constructor() : VisualShade
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setInputsName: MethodStringName1<VisualShaderNodeGroupBase, Unit, String> =
         MethodStringName1<VisualShaderNodeGroupBase, Unit, String>("set_inputs")
 
-    @JvmStatic
+    @JvmField
     public val getInputsName: MethodStringName0<VisualShaderNodeGroupBase, String> =
         MethodStringName0<VisualShaderNodeGroupBase, String>("get_inputs")
 
-    @JvmStatic
+    @JvmField
     public val setOutputsName: MethodStringName1<VisualShaderNodeGroupBase, Unit, String> =
         MethodStringName1<VisualShaderNodeGroupBase, Unit, String>("set_outputs")
 
-    @JvmStatic
+    @JvmField
     public val getOutputsName: MethodStringName0<VisualShaderNodeGroupBase, String> =
         MethodStringName0<VisualShaderNodeGroupBase, String>("get_outputs")
 
-    @JvmStatic
+    @JvmField
     public val isValidPortNameName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, String> =
         MethodStringName1<VisualShaderNodeGroupBase, Boolean, String>("is_valid_port_name")
 
-    @JvmStatic
+    @JvmField
     public val addInputPortName:
         MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String> =
         MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String>("add_input_port")
 
-    @JvmStatic
+    @JvmField
     public val removeInputPortName: MethodStringName1<VisualShaderNodeGroupBase, Unit, Int> =
         MethodStringName1<VisualShaderNodeGroupBase, Unit, Int>("remove_input_port")
 
-    @JvmStatic
+    @JvmField
     public val getInputPortCountName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
         MethodStringName0<VisualShaderNodeGroupBase, Int>("get_input_port_count")
 
-    @JvmStatic
+    @JvmField
     public val hasInputPortName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int> =
         MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int>("has_input_port")
 
-    @JvmStatic
+    @JvmField
     public val clearInputPortsName: MethodStringName0<VisualShaderNodeGroupBase, Unit> =
         MethodStringName0<VisualShaderNodeGroupBase, Unit>("clear_input_ports")
 
-    @JvmStatic
+    @JvmField
     public val addOutputPortName:
         MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String> =
         MethodStringName3<VisualShaderNodeGroupBase, Unit, Int, Int, String>("add_output_port")
 
-    @JvmStatic
+    @JvmField
     public val removeOutputPortName: MethodStringName1<VisualShaderNodeGroupBase, Unit, Int> =
         MethodStringName1<VisualShaderNodeGroupBase, Unit, Int>("remove_output_port")
 
-    @JvmStatic
+    @JvmField
     public val getOutputPortCountName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
         MethodStringName0<VisualShaderNodeGroupBase, Int>("get_output_port_count")
 
-    @JvmStatic
+    @JvmField
     public val hasOutputPortName: MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int> =
         MethodStringName1<VisualShaderNodeGroupBase, Boolean, Int>("has_output_port")
 
-    @JvmStatic
+    @JvmField
     public val clearOutputPortsName: MethodStringName0<VisualShaderNodeGroupBase, Unit> =
         MethodStringName0<VisualShaderNodeGroupBase, Unit>("clear_output_ports")
 
-    @JvmStatic
+    @JvmField
     public val setInputPortNameName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>
         = MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>("set_input_port_name")
 
-    @JvmStatic
+    @JvmField
     public val setInputPortTypeName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int> =
         MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int>("set_input_port_type")
 
-    @JvmStatic
+    @JvmField
     public val setOutputPortNameName:
         MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String> =
         MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, String>("set_output_port_name")
 
-    @JvmStatic
+    @JvmField
     public val setOutputPortTypeName: MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int> =
         MethodStringName2<VisualShaderNodeGroupBase, Unit, Int, Int>("set_output_port_type")
 
-    @JvmStatic
+    @JvmField
     public val getFreeInputPortIdName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
         MethodStringName0<VisualShaderNodeGroupBase, Int>("get_free_input_port_id")
 
-    @JvmStatic
+    @JvmField
     public val getFreeOutputPortIdName: MethodStringName0<VisualShaderNodeGroupBase, Int> =
         MethodStringName0<VisualShaderNodeGroupBase, Int>("get_free_output_port_id")
   }

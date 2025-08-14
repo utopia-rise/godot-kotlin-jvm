@@ -33,6 +33,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -440,85 +441,85 @@ public open class GLTFPhysicsBody : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val fromNodeName:
         MethodStringName1<GLTFPhysicsBody, GLTFPhysicsBody?, CollisionObject3D?> =
         MethodStringName1<GLTFPhysicsBody, GLTFPhysicsBody?, CollisionObject3D?>("from_node")
 
-    @JvmStatic
+    @JvmField
     public val toNodeName: MethodStringName0<GLTFPhysicsBody, CollisionObject3D?> =
         MethodStringName0<GLTFPhysicsBody, CollisionObject3D?>("to_node")
 
-    @JvmStatic
+    @JvmField
     public val fromDictionaryName:
         MethodStringName1<GLTFPhysicsBody, GLTFPhysicsBody?, Dictionary<Any?, Any?>> =
         MethodStringName1<GLTFPhysicsBody, GLTFPhysicsBody?, Dictionary<Any?, Any?>>("from_dictionary")
 
-    @JvmStatic
+    @JvmField
     public val toDictionaryName: MethodStringName0<GLTFPhysicsBody, Dictionary<Any?, Any?>> =
         MethodStringName0<GLTFPhysicsBody, Dictionary<Any?, Any?>>("to_dictionary")
 
-    @JvmStatic
+    @JvmField
     public val getBodyTypeName: MethodStringName0<GLTFPhysicsBody, String> =
         MethodStringName0<GLTFPhysicsBody, String>("get_body_type")
 
-    @JvmStatic
+    @JvmField
     public val setBodyTypeName: MethodStringName1<GLTFPhysicsBody, Unit, String> =
         MethodStringName1<GLTFPhysicsBody, Unit, String>("set_body_type")
 
-    @JvmStatic
+    @JvmField
     public val getMassName: MethodStringName0<GLTFPhysicsBody, Float> =
         MethodStringName0<GLTFPhysicsBody, Float>("get_mass")
 
-    @JvmStatic
+    @JvmField
     public val setMassName: MethodStringName1<GLTFPhysicsBody, Unit, Float> =
         MethodStringName1<GLTFPhysicsBody, Unit, Float>("set_mass")
 
-    @JvmStatic
+    @JvmField
     public val getLinearVelocityName: MethodStringName0<GLTFPhysicsBody, Vector3> =
         MethodStringName0<GLTFPhysicsBody, Vector3>("get_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setLinearVelocityName: MethodStringName1<GLTFPhysicsBody, Unit, Vector3> =
         MethodStringName1<GLTFPhysicsBody, Unit, Vector3>("set_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getAngularVelocityName: MethodStringName0<GLTFPhysicsBody, Vector3> =
         MethodStringName0<GLTFPhysicsBody, Vector3>("get_angular_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setAngularVelocityName: MethodStringName1<GLTFPhysicsBody, Unit, Vector3> =
         MethodStringName1<GLTFPhysicsBody, Unit, Vector3>("set_angular_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getCenterOfMassName: MethodStringName0<GLTFPhysicsBody, Vector3> =
         MethodStringName0<GLTFPhysicsBody, Vector3>("get_center_of_mass")
 
-    @JvmStatic
+    @JvmField
     public val setCenterOfMassName: MethodStringName1<GLTFPhysicsBody, Unit, Vector3> =
         MethodStringName1<GLTFPhysicsBody, Unit, Vector3>("set_center_of_mass")
 
-    @JvmStatic
+    @JvmField
     public val getInertiaDiagonalName: MethodStringName0<GLTFPhysicsBody, Vector3> =
         MethodStringName0<GLTFPhysicsBody, Vector3>("get_inertia_diagonal")
 
-    @JvmStatic
+    @JvmField
     public val setInertiaDiagonalName: MethodStringName1<GLTFPhysicsBody, Unit, Vector3> =
         MethodStringName1<GLTFPhysicsBody, Unit, Vector3>("set_inertia_diagonal")
 
-    @JvmStatic
+    @JvmField
     public val getInertiaOrientationName: MethodStringName0<GLTFPhysicsBody, Quaternion> =
         MethodStringName0<GLTFPhysicsBody, Quaternion>("get_inertia_orientation")
 
-    @JvmStatic
+    @JvmField
     public val setInertiaOrientationName: MethodStringName1<GLTFPhysicsBody, Unit, Quaternion> =
         MethodStringName1<GLTFPhysicsBody, Unit, Quaternion>("set_inertia_orientation")
 
-    @JvmStatic
+    @JvmField
     public val getInertiaTensorName: MethodStringName0<GLTFPhysicsBody, Basis> =
         MethodStringName0<GLTFPhysicsBody, Basis>("get_inertia_tensor")
 
-    @JvmStatic
+    @JvmField
     public val setInertiaTensorName: MethodStringName1<GLTFPhysicsBody, Unit, Basis> =
         MethodStringName1<GLTFPhysicsBody, Unit, Basis>("set_inertia_tensor")
 

@@ -29,8 +29,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [PhysicsBody2D] is an abstract base class for 2D game objects affected by physics. All 2D physics
@@ -137,31 +137,31 @@ public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val moveAndCollideName:
         MethodStringName4<PhysicsBody2D, KinematicCollision2D?, Vector2, Boolean, Float, Boolean> =
         MethodStringName4<PhysicsBody2D, KinematicCollision2D?, Vector2, Boolean, Float, Boolean>("move_and_collide")
 
-    @JvmStatic
+    @JvmField
     public val testMoveName:
         MethodStringName5<PhysicsBody2D, Boolean, Transform2D, Vector2, KinematicCollision2D?, Float, Boolean>
         =
         MethodStringName5<PhysicsBody2D, Boolean, Transform2D, Vector2, KinematicCollision2D?, Float, Boolean>("test_move")
 
-    @JvmStatic
+    @JvmField
     public val getGravityName: MethodStringName0<PhysicsBody2D, Vector2> =
         MethodStringName0<PhysicsBody2D, Vector2>("get_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionExceptionsName:
         MethodStringName0<PhysicsBody2D, VariantArray<PhysicsBody2D>> =
         MethodStringName0<PhysicsBody2D, VariantArray<PhysicsBody2D>>("get_collision_exceptions")
 
-    @JvmStatic
+    @JvmField
     public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody2D, Unit, Node?> =
         MethodStringName1<PhysicsBody2D, Unit, Node?>("add_collision_exception_with")
 
-    @JvmStatic
+    @JvmField
     public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody2D, Unit, Node?> =
         MethodStringName1<PhysicsBody2D, Unit, Node?>("remove_collision_exception_with")
   }

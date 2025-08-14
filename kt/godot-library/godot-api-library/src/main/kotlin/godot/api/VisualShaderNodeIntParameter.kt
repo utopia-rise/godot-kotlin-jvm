@@ -25,8 +25,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A [VisualShaderNodeParameter] of type [int]. Offers additional customization for range of
@@ -281,61 +281,61 @@ public open class VisualShaderNodeIntParameter : VisualShaderNodeParameter() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHintName: MethodStringName1<VisualShaderNodeIntParameter, Unit, Hint> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Hint>("set_hint")
 
-    @JvmStatic
+    @JvmField
     public val getHintName: MethodStringName0<VisualShaderNodeIntParameter, Hint> =
         MethodStringName0<VisualShaderNodeIntParameter, Hint>("get_hint")
 
-    @JvmStatic
+    @JvmField
     public val setMinName: MethodStringName1<VisualShaderNodeIntParameter, Unit, Int> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Int>("set_min")
 
-    @JvmStatic
+    @JvmField
     public val getMinName: MethodStringName0<VisualShaderNodeIntParameter, Int> =
         MethodStringName0<VisualShaderNodeIntParameter, Int>("get_min")
 
-    @JvmStatic
+    @JvmField
     public val setMaxName: MethodStringName1<VisualShaderNodeIntParameter, Unit, Int> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Int>("set_max")
 
-    @JvmStatic
+    @JvmField
     public val getMaxName: MethodStringName0<VisualShaderNodeIntParameter, Int> =
         MethodStringName0<VisualShaderNodeIntParameter, Int>("get_max")
 
-    @JvmStatic
+    @JvmField
     public val setStepName: MethodStringName1<VisualShaderNodeIntParameter, Unit, Int> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Int>("set_step")
 
-    @JvmStatic
+    @JvmField
     public val getStepName: MethodStringName0<VisualShaderNodeIntParameter, Int> =
         MethodStringName0<VisualShaderNodeIntParameter, Int>("get_step")
 
-    @JvmStatic
+    @JvmField
     public val setEnumNamesName:
         MethodStringName1<VisualShaderNodeIntParameter, Unit, PackedStringArray> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, PackedStringArray>("set_enum_names")
 
-    @JvmStatic
+    @JvmField
     public val getEnumNamesName: MethodStringName0<VisualShaderNodeIntParameter, PackedStringArray>
         = MethodStringName0<VisualShaderNodeIntParameter, PackedStringArray>("get_enum_names")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeIntParameter, Boolean> =
         MethodStringName0<VisualShaderNodeIntParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName: MethodStringName1<VisualShaderNodeIntParameter, Unit, Int> =
         MethodStringName1<VisualShaderNodeIntParameter, Unit, Int>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeIntParameter, Int> =
         MethodStringName0<VisualShaderNodeIntParameter, Int>("get_default_value")
   }

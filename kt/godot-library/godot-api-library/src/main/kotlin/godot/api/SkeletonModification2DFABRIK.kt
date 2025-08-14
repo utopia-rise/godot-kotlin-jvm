@@ -27,8 +27,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This [SkeletonModification2D] uses an algorithm called Forward And Backward Reaching Inverse
@@ -189,59 +189,59 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
       setFabrikJointBone2dNode(jointIdx, bone2dNodepath.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTargetNodeName: MethodStringName1<SkeletonModification2DFABRIK, Unit, NodePath> =
         MethodStringName1<SkeletonModification2DFABRIK, Unit, NodePath>("set_target_node")
 
-    @JvmStatic
+    @JvmField
     public val getTargetNodeName: MethodStringName0<SkeletonModification2DFABRIK, NodePath> =
         MethodStringName0<SkeletonModification2DFABRIK, NodePath>("get_target_node")
 
-    @JvmStatic
+    @JvmField
     public val setFabrikDataChainLengthName:
         MethodStringName1<SkeletonModification2DFABRIK, Unit, Int> =
         MethodStringName1<SkeletonModification2DFABRIK, Unit, Int>("set_fabrik_data_chain_length")
 
-    @JvmStatic
+    @JvmField
     public val getFabrikDataChainLengthName: MethodStringName0<SkeletonModification2DFABRIK, Int> =
         MethodStringName0<SkeletonModification2DFABRIK, Int>("get_fabrik_data_chain_length")
 
-    @JvmStatic
+    @JvmField
     public val setFabrikJointBone2dNodeName:
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, NodePath> =
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, NodePath>("set_fabrik_joint_bone2d_node")
 
-    @JvmStatic
+    @JvmField
     public val getFabrikJointBone2dNodeName:
         MethodStringName1<SkeletonModification2DFABRIK, NodePath, Int> =
         MethodStringName1<SkeletonModification2DFABRIK, NodePath, Int>("get_fabrik_joint_bone2d_node")
 
-    @JvmStatic
+    @JvmField
     public val setFabrikJointBoneIndexName:
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Int> =
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Int>("set_fabrik_joint_bone_index")
 
-    @JvmStatic
+    @JvmField
     public val getFabrikJointBoneIndexName:
         MethodStringName1<SkeletonModification2DFABRIK, Int, Int> =
         MethodStringName1<SkeletonModification2DFABRIK, Int, Int>("get_fabrik_joint_bone_index")
 
-    @JvmStatic
+    @JvmField
     public val setFabrikJointMagnetPositionName:
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Vector2> =
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Vector2>("set_fabrik_joint_magnet_position")
 
-    @JvmStatic
+    @JvmField
     public val getFabrikJointMagnetPositionName:
         MethodStringName1<SkeletonModification2DFABRIK, Vector2, Int> =
         MethodStringName1<SkeletonModification2DFABRIK, Vector2, Int>("get_fabrik_joint_magnet_position")
 
-    @JvmStatic
+    @JvmField
     public val setFabrikJointUseTargetRotationName:
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Boolean> =
         MethodStringName2<SkeletonModification2DFABRIK, Unit, Int, Boolean>("set_fabrik_joint_use_target_rotation")
 
-    @JvmStatic
+    @JvmField
     public val getFabrikJointUseTargetRotationName:
         MethodStringName1<SkeletonModification2DFABRIK, Boolean, Int> =
         MethodStringName1<SkeletonModification2DFABRIK, Boolean, Int>("get_fabrik_joint_use_target_rotation")

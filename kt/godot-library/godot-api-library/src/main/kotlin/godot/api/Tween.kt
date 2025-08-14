@@ -36,6 +36,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -961,105 +962,105 @@ public open class Tween : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val tweenPropertyName:
         MethodStringName4<Tween, PropertyTweener?, Object?, NodePath, Any?, Double> =
         MethodStringName4<Tween, PropertyTweener?, Object?, NodePath, Any?, Double>("tween_property")
 
-    @JvmStatic
+    @JvmField
     public val tweenIntervalName: MethodStringName1<Tween, IntervalTweener?, Double> =
         MethodStringName1<Tween, IntervalTweener?, Double>("tween_interval")
 
-    @JvmStatic
+    @JvmField
     public val tweenCallbackName: MethodStringName1<Tween, CallbackTweener?, Callable> =
         MethodStringName1<Tween, CallbackTweener?, Callable>("tween_callback")
 
-    @JvmStatic
+    @JvmField
     public val tweenMethodName:
         MethodStringName4<Tween, MethodTweener?, Callable, Any?, Any?, Double> =
         MethodStringName4<Tween, MethodTweener?, Callable, Any?, Any?, Double>("tween_method")
 
-    @JvmStatic
+    @JvmField
     public val tweenSubtweenName: MethodStringName1<Tween, SubtweenTweener?, Tween?> =
         MethodStringName1<Tween, SubtweenTweener?, Tween?>("tween_subtween")
 
-    @JvmStatic
+    @JvmField
     public val customStepName: MethodStringName1<Tween, Boolean, Double> =
         MethodStringName1<Tween, Boolean, Double>("custom_step")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<Tween, Unit> = MethodStringName0<Tween, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val pauseName: MethodStringName0<Tween, Unit> = MethodStringName0<Tween, Unit>("pause")
 
-    @JvmStatic
+    @JvmField
     public val playName: MethodStringName0<Tween, Unit> = MethodStringName0<Tween, Unit>("play")
 
-    @JvmStatic
+    @JvmField
     public val killName: MethodStringName0<Tween, Unit> = MethodStringName0<Tween, Unit>("kill")
 
-    @JvmStatic
+    @JvmField
     public val getTotalElapsedTimeName: MethodStringName0<Tween, Double> =
         MethodStringName0<Tween, Double>("get_total_elapsed_time")
 
-    @JvmStatic
+    @JvmField
     public val isRunningName: MethodStringName0<Tween, Boolean> =
         MethodStringName0<Tween, Boolean>("is_running")
 
-    @JvmStatic
+    @JvmField
     public val isValidName: MethodStringName0<Tween, Boolean> =
         MethodStringName0<Tween, Boolean>("is_valid")
 
-    @JvmStatic
+    @JvmField
     public val bindNodeName: MethodStringName1<Tween, Tween?, Node?> =
         MethodStringName1<Tween, Tween?, Node?>("bind_node")
 
-    @JvmStatic
+    @JvmField
     public val setProcessModeName: MethodStringName1<Tween, Tween?, TweenProcessMode> =
         MethodStringName1<Tween, Tween?, TweenProcessMode>("set_process_mode")
 
-    @JvmStatic
+    @JvmField
     public val setPauseModeName: MethodStringName1<Tween, Tween?, TweenPauseMode> =
         MethodStringName1<Tween, Tween?, TweenPauseMode>("set_pause_mode")
 
-    @JvmStatic
+    @JvmField
     public val setIgnoreTimeScaleName: MethodStringName1<Tween, Tween?, Boolean> =
         MethodStringName1<Tween, Tween?, Boolean>("set_ignore_time_scale")
 
-    @JvmStatic
+    @JvmField
     public val setParallelName: MethodStringName1<Tween, Tween?, Boolean> =
         MethodStringName1<Tween, Tween?, Boolean>("set_parallel")
 
-    @JvmStatic
+    @JvmField
     public val setLoopsName: MethodStringName1<Tween, Tween?, Int> =
         MethodStringName1<Tween, Tween?, Int>("set_loops")
 
-    @JvmStatic
+    @JvmField
     public val getLoopsLeftName: MethodStringName0<Tween, Int> =
         MethodStringName0<Tween, Int>("get_loops_left")
 
-    @JvmStatic
+    @JvmField
     public val setSpeedScaleName: MethodStringName1<Tween, Tween?, Float> =
         MethodStringName1<Tween, Tween?, Float>("set_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val setTransName: MethodStringName1<Tween, Tween?, TransitionType> =
         MethodStringName1<Tween, Tween?, TransitionType>("set_trans")
 
-    @JvmStatic
+    @JvmField
     public val setEaseName: MethodStringName1<Tween, Tween?, EaseType> =
         MethodStringName1<Tween, Tween?, EaseType>("set_ease")
 
-    @JvmStatic
+    @JvmField
     public val parallelName: MethodStringName0<Tween, Tween?> =
         MethodStringName0<Tween, Tween?>("parallel")
 
-    @JvmStatic
+    @JvmField
     public val chainName: MethodStringName0<Tween, Tween?> =
         MethodStringName0<Tween, Tween?>("chain")
 
-    @JvmStatic
+    @JvmField
     public val interpolateValueName:
         MethodStringName6<Tween, Any?, Any?, Any?, Double, Double, TransitionType, EaseType> =
         MethodStringName6<Tween, Any?, Any?, Any?, Double, Double, TransitionType, EaseType>("interpolate_value")

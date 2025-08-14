@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Applies [operator] to two transform (4×4 matrices) inputs.
@@ -108,11 +108,11 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOperatorName: MethodStringName1<VisualShaderNodeTransformOp, Unit, Operator> =
         MethodStringName1<VisualShaderNodeTransformOp, Unit, Operator>("set_operator")
 
-    @JvmStatic
+    @JvmField
     public val getOperatorName: MethodStringName0<VisualShaderNodeTransformOp, Operator> =
         MethodStringName0<VisualShaderNodeTransformOp, Operator>("get_operator")
   }

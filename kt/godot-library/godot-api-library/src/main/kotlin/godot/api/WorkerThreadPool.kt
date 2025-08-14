@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -84,32 +85,32 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object WorkerThreadPool : Object() {
-  @JvmStatic
+  @JvmField
   public val addTaskName: MethodStringName3<WorkerThreadPool, Long, Callable, Boolean, String> =
       MethodStringName3<WorkerThreadPool, Long, Callable, Boolean, String>("add_task")
 
-  @JvmStatic
+  @JvmField
   public val isTaskCompletedName: MethodStringName1<WorkerThreadPool, Boolean, Long> =
       MethodStringName1<WorkerThreadPool, Boolean, Long>("is_task_completed")
 
-  @JvmStatic
+  @JvmField
   public val waitForTaskCompletionName: MethodStringName1<WorkerThreadPool, Error, Long> =
       MethodStringName1<WorkerThreadPool, Error, Long>("wait_for_task_completion")
 
-  @JvmStatic
+  @JvmField
   public val addGroupTaskName:
       MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String> =
       MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String>("add_group_task")
 
-  @JvmStatic
+  @JvmField
   public val isGroupTaskCompletedName: MethodStringName1<WorkerThreadPool, Boolean, Long> =
       MethodStringName1<WorkerThreadPool, Boolean, Long>("is_group_task_completed")
 
-  @JvmStatic
+  @JvmField
   public val getGroupProcessedElementCountName: MethodStringName1<WorkerThreadPool, Long, Long> =
       MethodStringName1<WorkerThreadPool, Long, Long>("get_group_processed_element_count")
 
-  @JvmStatic
+  @JvmField
   public val waitForGroupTaskCompletionName: MethodStringName1<WorkerThreadPool, Unit, Long> =
       MethodStringName1<WorkerThreadPool, Unit, Long>("wait_for_group_task_completion")
 

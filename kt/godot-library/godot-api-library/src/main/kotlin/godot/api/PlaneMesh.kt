@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a planar [PrimitiveMesh]. This flat mesh does not have a thickness. By
@@ -236,43 +236,43 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<PlaneMesh, Unit, Vector2> =
         MethodStringName1<PlaneMesh, Unit, Vector2>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<PlaneMesh, Vector2> =
         MethodStringName0<PlaneMesh, Vector2>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideWidthName: MethodStringName1<PlaneMesh, Unit, Int> =
         MethodStringName1<PlaneMesh, Unit, Int>("set_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideWidthName: MethodStringName0<PlaneMesh, Int> =
         MethodStringName0<PlaneMesh, Int>("get_subdivide_width")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivideDepthName: MethodStringName1<PlaneMesh, Unit, Int> =
         MethodStringName1<PlaneMesh, Unit, Int>("set_subdivide_depth")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivideDepthName: MethodStringName0<PlaneMesh, Int> =
         MethodStringName0<PlaneMesh, Int>("get_subdivide_depth")
 
-    @JvmStatic
+    @JvmField
     public val setCenterOffsetName: MethodStringName1<PlaneMesh, Unit, Vector3> =
         MethodStringName1<PlaneMesh, Unit, Vector3>("set_center_offset")
 
-    @JvmStatic
+    @JvmField
     public val getCenterOffsetName: MethodStringName0<PlaneMesh, Vector3> =
         MethodStringName0<PlaneMesh, Vector3>("get_center_offset")
 
-    @JvmStatic
+    @JvmField
     public val setOrientationName: MethodStringName1<PlaneMesh, Unit, Orientation> =
         MethodStringName1<PlaneMesh, Unit, Orientation>("set_orientation")
 
-    @JvmStatic
+    @JvmField
     public val getOrientationName: MethodStringName0<PlaneMesh, Orientation> =
         MethodStringName0<PlaneMesh, Orientation>("get_orientation")
   }

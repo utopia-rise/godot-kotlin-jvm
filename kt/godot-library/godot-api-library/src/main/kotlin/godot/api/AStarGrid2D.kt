@@ -40,9 +40,9 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [AStarGrid2D] is a variant of [AStar2D] that is specialized for partial 2D grids. It is simpler
@@ -742,137 +742,137 @@ public open class AStarGrid2D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRegionName: MethodStringName1<AStarGrid2D, Unit, Rect2i> =
         MethodStringName1<AStarGrid2D, Unit, Rect2i>("set_region")
 
-    @JvmStatic
+    @JvmField
     public val getRegionName: MethodStringName0<AStarGrid2D, Rect2i> =
         MethodStringName0<AStarGrid2D, Rect2i>("get_region")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<AStarGrid2D, Unit, Vector2i> =
         MethodStringName1<AStarGrid2D, Unit, Vector2i>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<AStarGrid2D, Vector2i> =
         MethodStringName0<AStarGrid2D, Vector2i>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetName: MethodStringName1<AStarGrid2D, Unit, Vector2> =
         MethodStringName1<AStarGrid2D, Unit, Vector2>("set_offset")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName0<AStarGrid2D, Vector2> =
         MethodStringName0<AStarGrid2D, Vector2>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val setCellSizeName: MethodStringName1<AStarGrid2D, Unit, Vector2> =
         MethodStringName1<AStarGrid2D, Unit, Vector2>("set_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val getCellSizeName: MethodStringName0<AStarGrid2D, Vector2> =
         MethodStringName0<AStarGrid2D, Vector2>("get_cell_size")
 
-    @JvmStatic
+    @JvmField
     public val setCellShapeName: MethodStringName1<AStarGrid2D, Unit, CellShape> =
         MethodStringName1<AStarGrid2D, Unit, CellShape>("set_cell_shape")
 
-    @JvmStatic
+    @JvmField
     public val getCellShapeName: MethodStringName0<AStarGrid2D, CellShape> =
         MethodStringName0<AStarGrid2D, CellShape>("get_cell_shape")
 
-    @JvmStatic
+    @JvmField
     public val isInBoundsName: MethodStringName2<AStarGrid2D, Boolean, Int, Int> =
         MethodStringName2<AStarGrid2D, Boolean, Int, Int>("is_in_bounds")
 
-    @JvmStatic
+    @JvmField
     public val isInBoundsvName: MethodStringName1<AStarGrid2D, Boolean, Vector2i> =
         MethodStringName1<AStarGrid2D, Boolean, Vector2i>("is_in_boundsv")
 
-    @JvmStatic
+    @JvmField
     public val isDirtyName: MethodStringName0<AStarGrid2D, Boolean> =
         MethodStringName0<AStarGrid2D, Boolean>("is_dirty")
 
-    @JvmStatic
+    @JvmField
     public val updateName: MethodStringName0<AStarGrid2D, Unit> =
         MethodStringName0<AStarGrid2D, Unit>("update")
 
-    @JvmStatic
+    @JvmField
     public val setJumpingEnabledName: MethodStringName1<AStarGrid2D, Unit, Boolean> =
         MethodStringName1<AStarGrid2D, Unit, Boolean>("set_jumping_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isJumpingEnabledName: MethodStringName0<AStarGrid2D, Boolean> =
         MethodStringName0<AStarGrid2D, Boolean>("is_jumping_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDiagonalModeName: MethodStringName1<AStarGrid2D, Unit, DiagonalMode> =
         MethodStringName1<AStarGrid2D, Unit, DiagonalMode>("set_diagonal_mode")
 
-    @JvmStatic
+    @JvmField
     public val getDiagonalModeName: MethodStringName0<AStarGrid2D, DiagonalMode> =
         MethodStringName0<AStarGrid2D, DiagonalMode>("get_diagonal_mode")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultComputeHeuristicName: MethodStringName1<AStarGrid2D, Unit, Heuristic> =
         MethodStringName1<AStarGrid2D, Unit, Heuristic>("set_default_compute_heuristic")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultComputeHeuristicName: MethodStringName0<AStarGrid2D, Heuristic> =
         MethodStringName0<AStarGrid2D, Heuristic>("get_default_compute_heuristic")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultEstimateHeuristicName: MethodStringName1<AStarGrid2D, Unit, Heuristic> =
         MethodStringName1<AStarGrid2D, Unit, Heuristic>("set_default_estimate_heuristic")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultEstimateHeuristicName: MethodStringName0<AStarGrid2D, Heuristic> =
         MethodStringName0<AStarGrid2D, Heuristic>("get_default_estimate_heuristic")
 
-    @JvmStatic
+    @JvmField
     public val setPointSolidName: MethodStringName2<AStarGrid2D, Unit, Vector2i, Boolean> =
         MethodStringName2<AStarGrid2D, Unit, Vector2i, Boolean>("set_point_solid")
 
-    @JvmStatic
+    @JvmField
     public val isPointSolidName: MethodStringName1<AStarGrid2D, Boolean, Vector2i> =
         MethodStringName1<AStarGrid2D, Boolean, Vector2i>("is_point_solid")
 
-    @JvmStatic
+    @JvmField
     public val setPointWeightScaleName: MethodStringName2<AStarGrid2D, Unit, Vector2i, Float> =
         MethodStringName2<AStarGrid2D, Unit, Vector2i, Float>("set_point_weight_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPointWeightScaleName: MethodStringName1<AStarGrid2D, Float, Vector2i> =
         MethodStringName1<AStarGrid2D, Float, Vector2i>("get_point_weight_scale")
 
-    @JvmStatic
+    @JvmField
     public val fillSolidRegionName: MethodStringName2<AStarGrid2D, Unit, Rect2i, Boolean> =
         MethodStringName2<AStarGrid2D, Unit, Rect2i, Boolean>("fill_solid_region")
 
-    @JvmStatic
+    @JvmField
     public val fillWeightScaleRegionName: MethodStringName2<AStarGrid2D, Unit, Rect2i, Float> =
         MethodStringName2<AStarGrid2D, Unit, Rect2i, Float>("fill_weight_scale_region")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<AStarGrid2D, Unit> =
         MethodStringName0<AStarGrid2D, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val getPointPositionName: MethodStringName1<AStarGrid2D, Vector2, Vector2i> =
         MethodStringName1<AStarGrid2D, Vector2, Vector2i>("get_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getPointDataInRegionName:
         MethodStringName1<AStarGrid2D, VariantArray<Dictionary<Any?, Any?>>, Rect2i> =
         MethodStringName1<AStarGrid2D, VariantArray<Dictionary<Any?, Any?>>, Rect2i>("get_point_data_in_region")
 
-    @JvmStatic
+    @JvmField
     public val getPointPathName:
         MethodStringName3<AStarGrid2D, PackedVector2Array, Vector2i, Vector2i, Boolean> =
         MethodStringName3<AStarGrid2D, PackedVector2Array, Vector2i, Vector2i, Boolean>("get_point_path")
 
-    @JvmStatic
+    @JvmField
     public val getIdPathName:
         MethodStringName3<AStarGrid2D, VariantArray<Vector2i>, Vector2i, Vector2i, Boolean> =
         MethodStringName3<AStarGrid2D, VariantArray<Vector2i>, Vector2i, Vector2i, Boolean>("get_id_path")

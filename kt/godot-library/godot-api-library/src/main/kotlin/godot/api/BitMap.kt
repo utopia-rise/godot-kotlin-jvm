@@ -32,8 +32,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A two-dimensional array of boolean values, can be used to efficiently store a binary matrix
@@ -181,55 +181,55 @@ public open class BitMap : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createName: MethodStringName1<BitMap, Unit, Vector2i> =
         MethodStringName1<BitMap, Unit, Vector2i>("create")
 
-    @JvmStatic
+    @JvmField
     public val createFromImageAlphaName: MethodStringName2<BitMap, Unit, Image?, Float> =
         MethodStringName2<BitMap, Unit, Image?, Float>("create_from_image_alpha")
 
-    @JvmStatic
+    @JvmField
     public val setBitvName: MethodStringName2<BitMap, Unit, Vector2i, Boolean> =
         MethodStringName2<BitMap, Unit, Vector2i, Boolean>("set_bitv")
 
-    @JvmStatic
+    @JvmField
     public val setBitName: MethodStringName3<BitMap, Unit, Int, Int, Boolean> =
         MethodStringName3<BitMap, Unit, Int, Int, Boolean>("set_bit")
 
-    @JvmStatic
+    @JvmField
     public val getBitvName: MethodStringName1<BitMap, Boolean, Vector2i> =
         MethodStringName1<BitMap, Boolean, Vector2i>("get_bitv")
 
-    @JvmStatic
+    @JvmField
     public val getBitName: MethodStringName2<BitMap, Boolean, Int, Int> =
         MethodStringName2<BitMap, Boolean, Int, Int>("get_bit")
 
-    @JvmStatic
+    @JvmField
     public val setBitRectName: MethodStringName2<BitMap, Unit, Rect2i, Boolean> =
         MethodStringName2<BitMap, Unit, Rect2i, Boolean>("set_bit_rect")
 
-    @JvmStatic
+    @JvmField
     public val getTrueBitCountName: MethodStringName0<BitMap, Int> =
         MethodStringName0<BitMap, Int>("get_true_bit_count")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<BitMap, Vector2i> =
         MethodStringName0<BitMap, Vector2i>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val resizeName: MethodStringName1<BitMap, Unit, Vector2i> =
         MethodStringName1<BitMap, Unit, Vector2i>("resize")
 
-    @JvmStatic
+    @JvmField
     public val growMaskName: MethodStringName2<BitMap, Unit, Int, Rect2i> =
         MethodStringName2<BitMap, Unit, Int, Rect2i>("grow_mask")
 
-    @JvmStatic
+    @JvmField
     public val convertToImageName: MethodStringName0<BitMap, Image?> =
         MethodStringName0<BitMap, Image?>("convert_to_image")
 
-    @JvmStatic
+    @JvmField
     public val opaqueToPolygonsName:
         MethodStringName2<BitMap, VariantArray<PackedVector2Array>, Rect2i, Float> =
         MethodStringName2<BitMap, VariantArray<PackedVector2Array>, Rect2i, Float>("opaque_to_polygons")

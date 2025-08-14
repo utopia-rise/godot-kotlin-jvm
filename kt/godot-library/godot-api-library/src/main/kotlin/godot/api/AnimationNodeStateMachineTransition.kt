@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The path generated when using [AnimationNodeStateMachinePlayback.travel] is limited to the nodes
@@ -337,84 +337,84 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSwitchModeName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, SwitchMode> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, SwitchMode>("set_switch_mode")
 
-    @JvmStatic
+    @JvmField
     public val getSwitchModeName: MethodStringName0<AnimationNodeStateMachineTransition, SwitchMode>
         = MethodStringName0<AnimationNodeStateMachineTransition, SwitchMode>("get_switch_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAdvanceModeName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, AdvanceMode> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, AdvanceMode>("set_advance_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAdvanceModeName:
         MethodStringName0<AnimationNodeStateMachineTransition, AdvanceMode> =
         MethodStringName0<AnimationNodeStateMachineTransition, AdvanceMode>("get_advance_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAdvanceConditionName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, StringName> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, StringName>("set_advance_condition")
 
-    @JvmStatic
+    @JvmField
     public val getAdvanceConditionName:
         MethodStringName0<AnimationNodeStateMachineTransition, StringName> =
         MethodStringName0<AnimationNodeStateMachineTransition, StringName>("get_advance_condition")
 
-    @JvmStatic
+    @JvmField
     public val setXfadeTimeName: MethodStringName1<AnimationNodeStateMachineTransition, Unit, Float>
         = MethodStringName1<AnimationNodeStateMachineTransition, Unit, Float>("set_xfade_time")
 
-    @JvmStatic
+    @JvmField
     public val getXfadeTimeName: MethodStringName0<AnimationNodeStateMachineTransition, Float> =
         MethodStringName0<AnimationNodeStateMachineTransition, Float>("get_xfade_time")
 
-    @JvmStatic
+    @JvmField
     public val setXfadeCurveName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Curve?> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Curve?>("set_xfade_curve")
 
-    @JvmStatic
+    @JvmField
     public val getXfadeCurveName: MethodStringName0<AnimationNodeStateMachineTransition, Curve?> =
         MethodStringName0<AnimationNodeStateMachineTransition, Curve?>("get_xfade_curve")
 
-    @JvmStatic
+    @JvmField
     public val setBreakLoopAtEndName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Boolean> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Boolean>("set_break_loop_at_end")
 
-    @JvmStatic
+    @JvmField
     public val isLoopBrokenAtEndName:
         MethodStringName0<AnimationNodeStateMachineTransition, Boolean> =
         MethodStringName0<AnimationNodeStateMachineTransition, Boolean>("is_loop_broken_at_end")
 
-    @JvmStatic
+    @JvmField
     public val setResetName: MethodStringName1<AnimationNodeStateMachineTransition, Unit, Boolean> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Boolean>("set_reset")
 
-    @JvmStatic
+    @JvmField
     public val isResetName: MethodStringName0<AnimationNodeStateMachineTransition, Boolean> =
         MethodStringName0<AnimationNodeStateMachineTransition, Boolean>("is_reset")
 
-    @JvmStatic
+    @JvmField
     public val setPriorityName: MethodStringName1<AnimationNodeStateMachineTransition, Unit, Int> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, Int>("set_priority")
 
-    @JvmStatic
+    @JvmField
     public val getPriorityName: MethodStringName0<AnimationNodeStateMachineTransition, Int> =
         MethodStringName0<AnimationNodeStateMachineTransition, Int>("get_priority")
 
-    @JvmStatic
+    @JvmField
     public val setAdvanceExpressionName:
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, String> =
         MethodStringName1<AnimationNodeStateMachineTransition, Unit, String>("set_advance_expression")
 
-    @JvmStatic
+    @JvmField
     public val getAdvanceExpressionName:
         MethodStringName0<AnimationNodeStateMachineTransition, String> =
         MethodStringName0<AnimationNodeStateMachineTransition, String>("get_advance_expression")

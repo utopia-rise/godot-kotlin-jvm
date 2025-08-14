@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D heightmap shape, intended for use in physics. Usually used to provide a shape for a
@@ -209,39 +209,39 @@ public open class HeightMapShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMapWidthName: MethodStringName1<HeightMapShape3D, Unit, Int> =
         MethodStringName1<HeightMapShape3D, Unit, Int>("set_map_width")
 
-    @JvmStatic
+    @JvmField
     public val getMapWidthName: MethodStringName0<HeightMapShape3D, Int> =
         MethodStringName0<HeightMapShape3D, Int>("get_map_width")
 
-    @JvmStatic
+    @JvmField
     public val setMapDepthName: MethodStringName1<HeightMapShape3D, Unit, Int> =
         MethodStringName1<HeightMapShape3D, Unit, Int>("set_map_depth")
 
-    @JvmStatic
+    @JvmField
     public val getMapDepthName: MethodStringName0<HeightMapShape3D, Int> =
         MethodStringName0<HeightMapShape3D, Int>("get_map_depth")
 
-    @JvmStatic
+    @JvmField
     public val setMapDataName: MethodStringName1<HeightMapShape3D, Unit, PackedFloat32Array> =
         MethodStringName1<HeightMapShape3D, Unit, PackedFloat32Array>("set_map_data")
 
-    @JvmStatic
+    @JvmField
     public val getMapDataName: MethodStringName0<HeightMapShape3D, PackedFloat32Array> =
         MethodStringName0<HeightMapShape3D, PackedFloat32Array>("get_map_data")
 
-    @JvmStatic
+    @JvmField
     public val getMinHeightName: MethodStringName0<HeightMapShape3D, Float> =
         MethodStringName0<HeightMapShape3D, Float>("get_min_height")
 
-    @JvmStatic
+    @JvmField
     public val getMaxHeightName: MethodStringName0<HeightMapShape3D, Float> =
         MethodStringName0<HeightMapShape3D, Float>("get_max_height")
 
-    @JvmStatic
+    @JvmField
     public val updateMapDataFromImageName:
         MethodStringName3<HeightMapShape3D, Unit, Image?, Float, Float> =
         MethodStringName3<HeightMapShape3D, Unit, Image?, Float, Float>("update_map_data_from_image")

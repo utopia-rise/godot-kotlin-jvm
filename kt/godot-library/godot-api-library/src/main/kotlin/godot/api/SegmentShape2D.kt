@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 2D line segment shape, intended for use in physics. Usually used to provide a shape for a
@@ -132,19 +132,19 @@ public open class SegmentShape2D : Shape2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setAName: MethodStringName1<SegmentShape2D, Unit, Vector2> =
         MethodStringName1<SegmentShape2D, Unit, Vector2>("set_a")
 
-    @JvmStatic
+    @JvmField
     public val getAName: MethodStringName0<SegmentShape2D, Vector2> =
         MethodStringName0<SegmentShape2D, Vector2>("get_a")
 
-    @JvmStatic
+    @JvmField
     public val setBName: MethodStringName1<SegmentShape2D, Unit, Vector2> =
         MethodStringName1<SegmentShape2D, Unit, Vector2>("set_b")
 
-    @JvmStatic
+    @JvmField
     public val getBName: MethodStringName0<SegmentShape2D, Vector2> =
         MethodStringName0<SegmentShape2D, Vector2>("get_b")
   }

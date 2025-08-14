@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Accept an unsigned integer scalar (`x`) to the input port and transform it according to
@@ -82,11 +82,11 @@ public open class VisualShaderNodeUIntFunc : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeUIntFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeUIntFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeUIntFunc, Function> =
         MethodStringName0<VisualShaderNodeUIntFunc, Function>("get_function")
   }

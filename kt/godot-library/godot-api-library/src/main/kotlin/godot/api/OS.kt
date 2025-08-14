@@ -38,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -53,324 +54,324 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object OS : Object() {
-  @JvmStatic
+  @JvmField
   public val getEntropyName: MethodStringName1<OS, PackedByteArray, Int> =
       MethodStringName1<OS, PackedByteArray, Int>("get_entropy")
 
-  @JvmStatic
+  @JvmField
   public val getSystemCaCertificatesName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_system_ca_certificates")
 
-  @JvmStatic
+  @JvmField
   public val getConnectedMidiInputsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_connected_midi_inputs")
 
-  @JvmStatic
+  @JvmField
   public val openMidiInputsName: MethodStringName0<OS, Unit> =
       MethodStringName0<OS, Unit>("open_midi_inputs")
 
-  @JvmStatic
+  @JvmField
   public val closeMidiInputsName: MethodStringName0<OS, Unit> =
       MethodStringName0<OS, Unit>("close_midi_inputs")
 
-  @JvmStatic
+  @JvmField
   public val alertName: MethodStringName2<OS, Unit, String, String> =
       MethodStringName2<OS, Unit, String, String>("alert")
 
-  @JvmStatic
+  @JvmField
   public val crashName: MethodStringName1<OS, Unit, String> =
       MethodStringName1<OS, Unit, String>("crash")
 
-  @JvmStatic
+  @JvmField
   public val setLowProcessorUsageModeName: MethodStringName1<OS, Unit, Boolean> =
       MethodStringName1<OS, Unit, Boolean>("set_low_processor_usage_mode")
 
-  @JvmStatic
+  @JvmField
   public val isInLowProcessorUsageModeName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_in_low_processor_usage_mode")
 
-  @JvmStatic
+  @JvmField
   public val setLowProcessorUsageModeSleepUsecName: MethodStringName1<OS, Unit, Int> =
       MethodStringName1<OS, Unit, Int>("set_low_processor_usage_mode_sleep_usec")
 
-  @JvmStatic
+  @JvmField
   public val getLowProcessorUsageModeSleepUsecName: MethodStringName0<OS, Int> =
       MethodStringName0<OS, Int>("get_low_processor_usage_mode_sleep_usec")
 
-  @JvmStatic
+  @JvmField
   public val setDeltaSmoothingName: MethodStringName1<OS, Unit, Boolean> =
       MethodStringName1<OS, Unit, Boolean>("set_delta_smoothing")
 
-  @JvmStatic
+  @JvmField
   public val isDeltaSmoothingEnabledName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_delta_smoothing_enabled")
 
-  @JvmStatic
+  @JvmField
   public val getProcessorCountName: MethodStringName0<OS, Int> =
       MethodStringName0<OS, Int>("get_processor_count")
 
-  @JvmStatic
+  @JvmField
   public val getProcessorNameName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_processor_name")
 
-  @JvmStatic
+  @JvmField
   public val getSystemFontsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_system_fonts")
 
-  @JvmStatic
+  @JvmField
   public val getSystemFontPathName: MethodStringName4<OS, String, String, Int, Int, Boolean> =
       MethodStringName4<OS, String, String, Int, Int, Boolean>("get_system_font_path")
 
-  @JvmStatic
+  @JvmField
   public val getSystemFontPathForTextName:
       MethodStringName7<OS, PackedStringArray, String, String, String, String, Int, Int, Boolean> =
       MethodStringName7<OS, PackedStringArray, String, String, String, String, Int, Int, Boolean>("get_system_font_path_for_text")
 
-  @JvmStatic
+  @JvmField
   public val getExecutablePathName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_executable_path")
 
-  @JvmStatic
+  @JvmField
   public val readStringFromStdinName: MethodStringName1<OS, String, Long> =
       MethodStringName1<OS, String, Long>("read_string_from_stdin")
 
-  @JvmStatic
+  @JvmField
   public val readBufferFromStdinName: MethodStringName1<OS, PackedByteArray, Long> =
       MethodStringName1<OS, PackedByteArray, Long>("read_buffer_from_stdin")
 
-  @JvmStatic
+  @JvmField
   public val getStdinTypeName: MethodStringName0<OS, StdHandleType> =
       MethodStringName0<OS, StdHandleType>("get_stdin_type")
 
-  @JvmStatic
+  @JvmField
   public val getStdoutTypeName: MethodStringName0<OS, StdHandleType> =
       MethodStringName0<OS, StdHandleType>("get_stdout_type")
 
-  @JvmStatic
+  @JvmField
   public val getStderrTypeName: MethodStringName0<OS, StdHandleType> =
       MethodStringName0<OS, StdHandleType>("get_stderr_type")
 
-  @JvmStatic
+  @JvmField
   public val executeName:
       MethodStringName5<OS, Int, String, PackedStringArray, VariantArray<Any?>, Boolean, Boolean> =
       MethodStringName5<OS, Int, String, PackedStringArray, VariantArray<Any?>, Boolean, Boolean>("execute")
 
-  @JvmStatic
+  @JvmField
   public val executeWithPipeName:
       MethodStringName3<OS, Dictionary<Any?, Any?>, String, PackedStringArray, Boolean> =
       MethodStringName3<OS, Dictionary<Any?, Any?>, String, PackedStringArray, Boolean>("execute_with_pipe")
 
-  @JvmStatic
+  @JvmField
   public val createProcessName: MethodStringName3<OS, Int, String, PackedStringArray, Boolean> =
       MethodStringName3<OS, Int, String, PackedStringArray, Boolean>("create_process")
 
-  @JvmStatic
+  @JvmField
   public val createInstanceName: MethodStringName1<OS, Int, PackedStringArray> =
       MethodStringName1<OS, Int, PackedStringArray>("create_instance")
 
-  @JvmStatic
+  @JvmField
   public val killName: MethodStringName1<OS, Error, Int> = MethodStringName1<OS, Error, Int>("kill")
 
-  @JvmStatic
+  @JvmField
   public val shellOpenName: MethodStringName1<OS, Error, String> =
       MethodStringName1<OS, Error, String>("shell_open")
 
-  @JvmStatic
+  @JvmField
   public val shellShowInFileManagerName: MethodStringName2<OS, Error, String, Boolean> =
       MethodStringName2<OS, Error, String, Boolean>("shell_show_in_file_manager")
 
-  @JvmStatic
+  @JvmField
   public val isProcessRunningName: MethodStringName1<OS, Boolean, Int> =
       MethodStringName1<OS, Boolean, Int>("is_process_running")
 
-  @JvmStatic
+  @JvmField
   public val getProcessExitCodeName: MethodStringName1<OS, Int, Int> =
       MethodStringName1<OS, Int, Int>("get_process_exit_code")
 
-  @JvmStatic
+  @JvmField
   public val getProcessIdName: MethodStringName0<OS, Int> =
       MethodStringName0<OS, Int>("get_process_id")
 
-  @JvmStatic
+  @JvmField
   public val hasEnvironmentName: MethodStringName1<OS, Boolean, String> =
       MethodStringName1<OS, Boolean, String>("has_environment")
 
-  @JvmStatic
+  @JvmField
   public val getEnvironmentName: MethodStringName1<OS, String, String> =
       MethodStringName1<OS, String, String>("get_environment")
 
-  @JvmStatic
+  @JvmField
   public val setEnvironmentName: MethodStringName2<OS, Unit, String, String> =
       MethodStringName2<OS, Unit, String, String>("set_environment")
 
-  @JvmStatic
+  @JvmField
   public val unsetEnvironmentName: MethodStringName1<OS, Unit, String> =
       MethodStringName1<OS, Unit, String>("unset_environment")
 
-  @JvmStatic
+  @JvmField
   public val getNameName: MethodStringName0<OS, String> = MethodStringName0<OS, String>("get_name")
 
-  @JvmStatic
+  @JvmField
   public val getDistributionNameName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_distribution_name")
 
-  @JvmStatic
+  @JvmField
   public val getVersionName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_version")
 
-  @JvmStatic
+  @JvmField
   public val getVersionAliasName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_version_alias")
 
-  @JvmStatic
+  @JvmField
   public val getCmdlineArgsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_cmdline_args")
 
-  @JvmStatic
+  @JvmField
   public val getCmdlineUserArgsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_cmdline_user_args")
 
-  @JvmStatic
+  @JvmField
   public val getVideoAdapterDriverInfoName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_video_adapter_driver_info")
 
-  @JvmStatic
+  @JvmField
   public val setRestartOnExitName: MethodStringName2<OS, Unit, Boolean, PackedStringArray> =
       MethodStringName2<OS, Unit, Boolean, PackedStringArray>("set_restart_on_exit")
 
-  @JvmStatic
+  @JvmField
   public val isRestartOnExitSetName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_restart_on_exit_set")
 
-  @JvmStatic
+  @JvmField
   public val getRestartOnExitArgumentsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_restart_on_exit_arguments")
 
-  @JvmStatic
+  @JvmField
   public val delayUsecName: MethodStringName1<OS, Unit, Int> =
       MethodStringName1<OS, Unit, Int>("delay_usec")
 
-  @JvmStatic
+  @JvmField
   public val delayMsecName: MethodStringName1<OS, Unit, Int> =
       MethodStringName1<OS, Unit, Int>("delay_msec")
 
-  @JvmStatic
+  @JvmField
   public val getLocaleName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_locale")
 
-  @JvmStatic
+  @JvmField
   public val getLocaleLanguageName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_locale_language")
 
-  @JvmStatic
+  @JvmField
   public val getModelNameName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_model_name")
 
-  @JvmStatic
+  @JvmField
   public val isUserfsPersistentName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_userfs_persistent")
 
-  @JvmStatic
+  @JvmField
   public val isStdoutVerboseName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_stdout_verbose")
 
-  @JvmStatic
+  @JvmField
   public val isDebugBuildName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_debug_build")
 
-  @JvmStatic
+  @JvmField
   public val getStaticMemoryUsageName: MethodStringName0<OS, Long> =
       MethodStringName0<OS, Long>("get_static_memory_usage")
 
-  @JvmStatic
+  @JvmField
   public val getStaticMemoryPeakUsageName: MethodStringName0<OS, Long> =
       MethodStringName0<OS, Long>("get_static_memory_peak_usage")
 
-  @JvmStatic
+  @JvmField
   public val getMemoryInfoName: MethodStringName0<OS, Dictionary<Any?, Any?>> =
       MethodStringName0<OS, Dictionary<Any?, Any?>>("get_memory_info")
 
-  @JvmStatic
+  @JvmField
   public val moveToTrashName: MethodStringName1<OS, Error, String> =
       MethodStringName1<OS, Error, String>("move_to_trash")
 
-  @JvmStatic
+  @JvmField
   public val getUserDataDirName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_user_data_dir")
 
-  @JvmStatic
+  @JvmField
   public val getSystemDirName: MethodStringName2<OS, String, SystemDir, Boolean> =
       MethodStringName2<OS, String, SystemDir, Boolean>("get_system_dir")
 
-  @JvmStatic
+  @JvmField
   public val getConfigDirName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_config_dir")
 
-  @JvmStatic
+  @JvmField
   public val getDataDirName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_data_dir")
 
-  @JvmStatic
+  @JvmField
   public val getCacheDirName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_cache_dir")
 
-  @JvmStatic
+  @JvmField
   public val getTempDirName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_temp_dir")
 
-  @JvmStatic
+  @JvmField
   public val getUniqueIdName: MethodStringName0<OS, String> =
       MethodStringName0<OS, String>("get_unique_id")
 
-  @JvmStatic
+  @JvmField
   public val getKeycodeStringName: MethodStringName1<OS, String, Key> =
       MethodStringName1<OS, String, Key>("get_keycode_string")
 
-  @JvmStatic
+  @JvmField
   public val isKeycodeUnicodeName: MethodStringName1<OS, Boolean, Long> =
       MethodStringName1<OS, Boolean, Long>("is_keycode_unicode")
 
-  @JvmStatic
+  @JvmField
   public val findKeycodeFromStringName: MethodStringName1<OS, Key, String> =
       MethodStringName1<OS, Key, String>("find_keycode_from_string")
 
-  @JvmStatic
+  @JvmField
   public val setUseFileAccessSaveAndSwapName: MethodStringName1<OS, Unit, Boolean> =
       MethodStringName1<OS, Unit, Boolean>("set_use_file_access_save_and_swap")
 
-  @JvmStatic
+  @JvmField
   public val setThreadNameName: MethodStringName1<OS, Error, String> =
       MethodStringName1<OS, Error, String>("set_thread_name")
 
-  @JvmStatic
+  @JvmField
   public val getThreadCallerIdName: MethodStringName0<OS, Long> =
       MethodStringName0<OS, Long>("get_thread_caller_id")
 
-  @JvmStatic
+  @JvmField
   public val getMainThreadIdName: MethodStringName0<OS, Long> =
       MethodStringName0<OS, Long>("get_main_thread_id")
 
-  @JvmStatic
+  @JvmField
   public val hasFeatureName: MethodStringName1<OS, Boolean, String> =
       MethodStringName1<OS, Boolean, String>("has_feature")
 
-  @JvmStatic
+  @JvmField
   public val isSandboxedName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("is_sandboxed")
 
-  @JvmStatic
+  @JvmField
   public val requestPermissionName: MethodStringName1<OS, Boolean, String> =
       MethodStringName1<OS, Boolean, String>("request_permission")
 
-  @JvmStatic
+  @JvmField
   public val requestPermissionsName: MethodStringName0<OS, Boolean> =
       MethodStringName0<OS, Boolean>("request_permissions")
 
-  @JvmStatic
+  @JvmField
   public val getGrantedPermissionsName: MethodStringName0<OS, PackedStringArray> =
       MethodStringName0<OS, PackedStringArray>("get_granted_permissions")
 
-  @JvmStatic
+  @JvmField
   public val revokeGrantedPermissionsName: MethodStringName0<OS, Unit> =
       MethodStringName0<OS, Unit>("revoke_granted_permissions")
 

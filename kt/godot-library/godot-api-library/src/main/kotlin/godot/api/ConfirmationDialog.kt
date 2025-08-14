@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A dialog used for confirmation of actions. This window is similar to [AcceptDialog], but pressing
@@ -80,15 +80,15 @@ public open class ConfirmationDialog : AcceptDialog() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getCancelButtonName: MethodStringName0<ConfirmationDialog, Button?> =
         MethodStringName0<ConfirmationDialog, Button?>("get_cancel_button")
 
-    @JvmStatic
+    @JvmField
     public val setCancelButtonTextName: MethodStringName1<ConfirmationDialog, Unit, String> =
         MethodStringName1<ConfirmationDialog, Unit, String>("set_cancel_button_text")
 
-    @JvmStatic
+    @JvmField
     public val getCancelButtonTextName: MethodStringName0<ConfirmationDialog, String> =
         MethodStringName0<ConfirmationDialog, String>("get_cancel_button_text")
   }

@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Controls camera-specific attributes such as depth of field and exposure override.
@@ -164,43 +164,43 @@ public open class CameraAttributes : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setExposureMultiplierName: MethodStringName1<CameraAttributes, Unit, Float> =
         MethodStringName1<CameraAttributes, Unit, Float>("set_exposure_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val getExposureMultiplierName: MethodStringName0<CameraAttributes, Float> =
         MethodStringName0<CameraAttributes, Float>("get_exposure_multiplier")
 
-    @JvmStatic
+    @JvmField
     public val setExposureSensitivityName: MethodStringName1<CameraAttributes, Unit, Float> =
         MethodStringName1<CameraAttributes, Unit, Float>("set_exposure_sensitivity")
 
-    @JvmStatic
+    @JvmField
     public val getExposureSensitivityName: MethodStringName0<CameraAttributes, Float> =
         MethodStringName0<CameraAttributes, Float>("get_exposure_sensitivity")
 
-    @JvmStatic
+    @JvmField
     public val setAutoExposureEnabledName: MethodStringName1<CameraAttributes, Unit, Boolean> =
         MethodStringName1<CameraAttributes, Unit, Boolean>("set_auto_exposure_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isAutoExposureEnabledName: MethodStringName0<CameraAttributes, Boolean> =
         MethodStringName0<CameraAttributes, Boolean>("is_auto_exposure_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setAutoExposureSpeedName: MethodStringName1<CameraAttributes, Unit, Float> =
         MethodStringName1<CameraAttributes, Unit, Float>("set_auto_exposure_speed")
 
-    @JvmStatic
+    @JvmField
     public val getAutoExposureSpeedName: MethodStringName0<CameraAttributes, Float> =
         MethodStringName0<CameraAttributes, Float>("get_auto_exposure_speed")
 
-    @JvmStatic
+    @JvmField
     public val setAutoExposureScaleName: MethodStringName1<CameraAttributes, Unit, Float> =
         MethodStringName1<CameraAttributes, Unit, Float>("set_auto_exposure_scale")
 
-    @JvmStatic
+    @JvmField
     public val getAutoExposureScaleName: MethodStringName0<CameraAttributes, Float> =
         MethodStringName0<CameraAttributes, Float>("get_auto_exposure_scale")
   }

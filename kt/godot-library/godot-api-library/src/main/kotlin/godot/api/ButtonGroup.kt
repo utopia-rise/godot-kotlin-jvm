@@ -22,8 +22,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
@@ -85,19 +85,19 @@ public open class ButtonGroup : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getPressedButtonName: MethodStringName0<ButtonGroup, BaseButton?> =
         MethodStringName0<ButtonGroup, BaseButton?>("get_pressed_button")
 
-    @JvmStatic
+    @JvmField
     public val getButtonsName: MethodStringName0<ButtonGroup, VariantArray<BaseButton>> =
         MethodStringName0<ButtonGroup, VariantArray<BaseButton>>("get_buttons")
 
-    @JvmStatic
+    @JvmField
     public val setAllowUnpressName: MethodStringName1<ButtonGroup, Unit, Boolean> =
         MethodStringName1<ButtonGroup, Unit, Boolean>("set_allow_unpress")
 
-    @JvmStatic
+    @JvmField
     public val isAllowUnpressName: MethodStringName0<ButtonGroup, Boolean> =
         MethodStringName0<ButtonGroup, Boolean>("is_allow_unpress")
   }

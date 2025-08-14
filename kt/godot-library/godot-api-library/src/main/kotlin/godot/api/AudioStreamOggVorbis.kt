@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -167,62 +168,62 @@ public open class AudioStreamOggVorbis : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val loadFromBufferName:
         MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, PackedByteArray> =
         MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, PackedByteArray>("load_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val loadFromFileName:
         MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, String> =
         MethodStringName1<AudioStreamOggVorbis, AudioStreamOggVorbis?, String>("load_from_file")
 
-    @JvmStatic
+    @JvmField
     public val setPacketSequenceName:
         MethodStringName1<AudioStreamOggVorbis, Unit, OggPacketSequence?> =
         MethodStringName1<AudioStreamOggVorbis, Unit, OggPacketSequence?>("set_packet_sequence")
 
-    @JvmStatic
+    @JvmField
     public val getPacketSequenceName: MethodStringName0<AudioStreamOggVorbis, OggPacketSequence?> =
         MethodStringName0<AudioStreamOggVorbis, OggPacketSequence?>("get_packet_sequence")
 
-    @JvmStatic
+    @JvmField
     public val setLoopName: MethodStringName1<AudioStreamOggVorbis, Unit, Boolean> =
         MethodStringName1<AudioStreamOggVorbis, Unit, Boolean>("set_loop")
 
-    @JvmStatic
+    @JvmField
     public val hasLoopName: MethodStringName0<AudioStreamOggVorbis, Boolean> =
         MethodStringName0<AudioStreamOggVorbis, Boolean>("has_loop")
 
-    @JvmStatic
+    @JvmField
     public val setLoopOffsetName: MethodStringName1<AudioStreamOggVorbis, Unit, Double> =
         MethodStringName1<AudioStreamOggVorbis, Unit, Double>("set_loop_offset")
 
-    @JvmStatic
+    @JvmField
     public val getLoopOffsetName: MethodStringName0<AudioStreamOggVorbis, Double> =
         MethodStringName0<AudioStreamOggVorbis, Double>("get_loop_offset")
 
-    @JvmStatic
+    @JvmField
     public val setBpmName: MethodStringName1<AudioStreamOggVorbis, Unit, Double> =
         MethodStringName1<AudioStreamOggVorbis, Unit, Double>("set_bpm")
 
-    @JvmStatic
+    @JvmField
     public val getBpmName: MethodStringName0<AudioStreamOggVorbis, Double> =
         MethodStringName0<AudioStreamOggVorbis, Double>("get_bpm")
 
-    @JvmStatic
+    @JvmField
     public val setBeatCountName: MethodStringName1<AudioStreamOggVorbis, Unit, Int> =
         MethodStringName1<AudioStreamOggVorbis, Unit, Int>("set_beat_count")
 
-    @JvmStatic
+    @JvmField
     public val getBeatCountName: MethodStringName0<AudioStreamOggVorbis, Int> =
         MethodStringName0<AudioStreamOggVorbis, Int>("get_beat_count")
 
-    @JvmStatic
+    @JvmField
     public val setBarBeatsName: MethodStringName1<AudioStreamOggVorbis, Unit, Int> =
         MethodStringName1<AudioStreamOggVorbis, Unit, Int>("set_bar_beats")
 
-    @JvmStatic
+    @JvmField
     public val getBarBeatsName: MethodStringName0<AudioStreamOggVorbis, Int> =
         MethodStringName0<AudioStreamOggVorbis, Int>("get_bar_beats")
 

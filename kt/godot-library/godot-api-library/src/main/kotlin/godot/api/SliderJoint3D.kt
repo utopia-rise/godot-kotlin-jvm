@@ -21,7 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * A physics joint that restricts the movement of a 3D physics body along an axis relative to
@@ -179,11 +179,11 @@ public open class SliderJoint3D : Joint3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setParamName: MethodStringName2<SliderJoint3D, Unit, Param, Float> =
         MethodStringName2<SliderJoint3D, Unit, Param, Float>("set_param")
 
-    @JvmStatic
+    @JvmField
     public val getParamName: MethodStringName1<SliderJoint3D, Float, Param> =
         MethodStringName1<SliderJoint3D, Float, Param>("get_param")
   }

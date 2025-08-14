@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -47,163 +48,163 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Engine : Object() {
-  @JvmStatic
+  @JvmField
   public val setPhysicsTicksPerSecondName: MethodStringName1<Engine, Unit, Int> =
       MethodStringName1<Engine, Unit, Int>("set_physics_ticks_per_second")
 
-  @JvmStatic
+  @JvmField
   public val getPhysicsTicksPerSecondName: MethodStringName0<Engine, Int> =
       MethodStringName0<Engine, Int>("get_physics_ticks_per_second")
 
-  @JvmStatic
+  @JvmField
   public val setMaxPhysicsStepsPerFrameName: MethodStringName1<Engine, Unit, Int> =
       MethodStringName1<Engine, Unit, Int>("set_max_physics_steps_per_frame")
 
-  @JvmStatic
+  @JvmField
   public val getMaxPhysicsStepsPerFrameName: MethodStringName0<Engine, Int> =
       MethodStringName0<Engine, Int>("get_max_physics_steps_per_frame")
 
-  @JvmStatic
+  @JvmField
   public val setPhysicsJitterFixName: MethodStringName1<Engine, Unit, Double> =
       MethodStringName1<Engine, Unit, Double>("set_physics_jitter_fix")
 
-  @JvmStatic
+  @JvmField
   public val getPhysicsJitterFixName: MethodStringName0<Engine, Double> =
       MethodStringName0<Engine, Double>("get_physics_jitter_fix")
 
-  @JvmStatic
+  @JvmField
   public val getPhysicsInterpolationFractionName: MethodStringName0<Engine, Double> =
       MethodStringName0<Engine, Double>("get_physics_interpolation_fraction")
 
-  @JvmStatic
+  @JvmField
   public val setMaxFpsName: MethodStringName1<Engine, Unit, Int> =
       MethodStringName1<Engine, Unit, Int>("set_max_fps")
 
-  @JvmStatic
+  @JvmField
   public val getMaxFpsName: MethodStringName0<Engine, Int> =
       MethodStringName0<Engine, Int>("get_max_fps")
 
-  @JvmStatic
+  @JvmField
   public val setTimeScaleName: MethodStringName1<Engine, Unit, Double> =
       MethodStringName1<Engine, Unit, Double>("set_time_scale")
 
-  @JvmStatic
+  @JvmField
   public val getTimeScaleName: MethodStringName0<Engine, Double> =
       MethodStringName0<Engine, Double>("get_time_scale")
 
-  @JvmStatic
+  @JvmField
   public val getFramesDrawnName: MethodStringName0<Engine, Int> =
       MethodStringName0<Engine, Int>("get_frames_drawn")
 
-  @JvmStatic
+  @JvmField
   public val getFramesPerSecondName: MethodStringName0<Engine, Double> =
       MethodStringName0<Engine, Double>("get_frames_per_second")
 
-  @JvmStatic
+  @JvmField
   public val getPhysicsFramesName: MethodStringName0<Engine, Long> =
       MethodStringName0<Engine, Long>("get_physics_frames")
 
-  @JvmStatic
+  @JvmField
   public val getProcessFramesName: MethodStringName0<Engine, Long> =
       MethodStringName0<Engine, Long>("get_process_frames")
 
-  @JvmStatic
+  @JvmField
   public val getMainLoopName: MethodStringName0<Engine, MainLoop?> =
       MethodStringName0<Engine, MainLoop?>("get_main_loop")
 
-  @JvmStatic
+  @JvmField
   public val getVersionInfoName: MethodStringName0<Engine, Dictionary<Any?, Any?>> =
       MethodStringName0<Engine, Dictionary<Any?, Any?>>("get_version_info")
 
-  @JvmStatic
+  @JvmField
   public val getAuthorInfoName: MethodStringName0<Engine, Dictionary<Any?, Any?>> =
       MethodStringName0<Engine, Dictionary<Any?, Any?>>("get_author_info")
 
-  @JvmStatic
+  @JvmField
   public val getCopyrightInfoName: MethodStringName0<Engine, VariantArray<Dictionary<Any?, Any?>>> =
       MethodStringName0<Engine, VariantArray<Dictionary<Any?, Any?>>>("get_copyright_info")
 
-  @JvmStatic
+  @JvmField
   public val getDonorInfoName: MethodStringName0<Engine, Dictionary<Any?, Any?>> =
       MethodStringName0<Engine, Dictionary<Any?, Any?>>("get_donor_info")
 
-  @JvmStatic
+  @JvmField
   public val getLicenseInfoName: MethodStringName0<Engine, Dictionary<Any?, Any?>> =
       MethodStringName0<Engine, Dictionary<Any?, Any?>>("get_license_info")
 
-  @JvmStatic
+  @JvmField
   public val getLicenseTextName: MethodStringName0<Engine, String> =
       MethodStringName0<Engine, String>("get_license_text")
 
-  @JvmStatic
+  @JvmField
   public val getArchitectureNameName: MethodStringName0<Engine, String> =
       MethodStringName0<Engine, String>("get_architecture_name")
 
-  @JvmStatic
+  @JvmField
   public val isInPhysicsFrameName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_in_physics_frame")
 
-  @JvmStatic
+  @JvmField
   public val hasSingletonName: MethodStringName1<Engine, Boolean, StringName> =
       MethodStringName1<Engine, Boolean, StringName>("has_singleton")
 
-  @JvmStatic
+  @JvmField
   public val getSingletonName: MethodStringName1<Engine, Object?, StringName> =
       MethodStringName1<Engine, Object?, StringName>("get_singleton")
 
-  @JvmStatic
+  @JvmField
   public val registerSingletonName: MethodStringName2<Engine, Unit, StringName, Object?> =
       MethodStringName2<Engine, Unit, StringName, Object?>("register_singleton")
 
-  @JvmStatic
+  @JvmField
   public val unregisterSingletonName: MethodStringName1<Engine, Unit, StringName> =
       MethodStringName1<Engine, Unit, StringName>("unregister_singleton")
 
-  @JvmStatic
+  @JvmField
   public val getSingletonListName: MethodStringName0<Engine, PackedStringArray> =
       MethodStringName0<Engine, PackedStringArray>("get_singleton_list")
 
-  @JvmStatic
+  @JvmField
   public val registerScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage?> =
       MethodStringName1<Engine, Error, ScriptLanguage?>("register_script_language")
 
-  @JvmStatic
+  @JvmField
   public val unregisterScriptLanguageName: MethodStringName1<Engine, Error, ScriptLanguage?> =
       MethodStringName1<Engine, Error, ScriptLanguage?>("unregister_script_language")
 
-  @JvmStatic
+  @JvmField
   public val getScriptLanguageCountName: MethodStringName0<Engine, Int> =
       MethodStringName0<Engine, Int>("get_script_language_count")
 
-  @JvmStatic
+  @JvmField
   public val getScriptLanguageName: MethodStringName1<Engine, ScriptLanguage?, Int> =
       MethodStringName1<Engine, ScriptLanguage?, Int>("get_script_language")
 
-  @JvmStatic
+  @JvmField
   public val isEditorHintName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_editor_hint")
 
-  @JvmStatic
+  @JvmField
   public val isEmbeddedInEditorName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_embedded_in_editor")
 
-  @JvmStatic
+  @JvmField
   public val getWriteMoviePathName: MethodStringName0<Engine, String> =
       MethodStringName0<Engine, String>("get_write_movie_path")
 
-  @JvmStatic
+  @JvmField
   public val setPrintToStdoutName: MethodStringName1<Engine, Unit, Boolean> =
       MethodStringName1<Engine, Unit, Boolean>("set_print_to_stdout")
 
-  @JvmStatic
+  @JvmField
   public val isPrintingToStdoutName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_printing_to_stdout")
 
-  @JvmStatic
+  @JvmField
   public val setPrintErrorMessagesName: MethodStringName1<Engine, Unit, Boolean> =
       MethodStringName1<Engine, Unit, Boolean>("set_print_error_messages")
 
-  @JvmStatic
+  @JvmField
   public val isPrintingErrorMessagesName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_printing_error_messages")
 

@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This object is used by [RenderingDevice].
@@ -142,44 +142,44 @@ public open class RDVertexAttribute : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLocationName: MethodStringName1<RDVertexAttribute, Unit, Long> =
         MethodStringName1<RDVertexAttribute, Unit, Long>("set_location")
 
-    @JvmStatic
+    @JvmField
     public val getLocationName: MethodStringName0<RDVertexAttribute, Long> =
         MethodStringName0<RDVertexAttribute, Long>("get_location")
 
-    @JvmStatic
+    @JvmField
     public val setOffsetName: MethodStringName1<RDVertexAttribute, Unit, Long> =
         MethodStringName1<RDVertexAttribute, Unit, Long>("set_offset")
 
-    @JvmStatic
+    @JvmField
     public val getOffsetName: MethodStringName0<RDVertexAttribute, Long> =
         MethodStringName0<RDVertexAttribute, Long>("get_offset")
 
-    @JvmStatic
+    @JvmField
     public val setFormatName: MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.DataFormat>
         = MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.DataFormat>("set_format")
 
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<RDVertexAttribute, RenderingDevice.DataFormat> =
         MethodStringName0<RDVertexAttribute, RenderingDevice.DataFormat>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val setStrideName: MethodStringName1<RDVertexAttribute, Unit, Long> =
         MethodStringName1<RDVertexAttribute, Unit, Long>("set_stride")
 
-    @JvmStatic
+    @JvmField
     public val getStrideName: MethodStringName0<RDVertexAttribute, Long> =
         MethodStringName0<RDVertexAttribute, Long>("get_stride")
 
-    @JvmStatic
+    @JvmField
     public val setFrequencyName:
         MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.VertexFrequency> =
         MethodStringName1<RDVertexAttribute, Unit, RenderingDevice.VertexFrequency>("set_frequency")
 
-    @JvmStatic
+    @JvmField
     public val getFrequencyName:
         MethodStringName0<RDVertexAttribute, RenderingDevice.VertexFrequency> =
         MethodStringName0<RDVertexAttribute, RenderingDevice.VertexFrequency>("get_frequency")

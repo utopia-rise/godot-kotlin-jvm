@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A visual shader node for use of vector operators. Operates on vector `a` and vector `b`.
@@ -122,11 +122,11 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOperatorName: MethodStringName1<VisualShaderNodeVectorOp, Unit, Operator> =
         MethodStringName1<VisualShaderNodeVectorOp, Unit, Operator>("set_operator")
 
-    @JvmStatic
+    @JvmField
     public val getOperatorName: MethodStringName0<VisualShaderNodeVectorOp, Operator> =
         MethodStringName0<VisualShaderNodeVectorOp, Operator>("get_operator")
   }

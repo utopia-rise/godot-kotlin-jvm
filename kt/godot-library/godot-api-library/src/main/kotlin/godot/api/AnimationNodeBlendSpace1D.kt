@@ -28,9 +28,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A resource used by [AnimationNodeBlendTree].
@@ -277,83 +277,83 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addBlendPointName:
         MethodStringName3<AnimationNodeBlendSpace1D, Unit, AnimationRootNode?, Float, Int> =
         MethodStringName3<AnimationNodeBlendSpace1D, Unit, AnimationRootNode?, Float, Int>("add_blend_point")
 
-    @JvmStatic
+    @JvmField
     public val setBlendPointPositionName:
         MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, Float> =
         MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, Float>("set_blend_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getBlendPointPositionName: MethodStringName1<AnimationNodeBlendSpace1D, Float, Int> =
         MethodStringName1<AnimationNodeBlendSpace1D, Float, Int>("get_blend_point_position")
 
-    @JvmStatic
+    @JvmField
     public val setBlendPointNodeName:
         MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, AnimationRootNode?> =
         MethodStringName2<AnimationNodeBlendSpace1D, Unit, Int, AnimationRootNode?>("set_blend_point_node")
 
-    @JvmStatic
+    @JvmField
     public val getBlendPointNodeName:
         MethodStringName1<AnimationNodeBlendSpace1D, AnimationRootNode?, Int> =
         MethodStringName1<AnimationNodeBlendSpace1D, AnimationRootNode?, Int>("get_blend_point_node")
 
-    @JvmStatic
+    @JvmField
     public val removeBlendPointName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Int> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, Int>("remove_blend_point")
 
-    @JvmStatic
+    @JvmField
     public val getBlendPointCountName: MethodStringName0<AnimationNodeBlendSpace1D, Int> =
         MethodStringName0<AnimationNodeBlendSpace1D, Int>("get_blend_point_count")
 
-    @JvmStatic
+    @JvmField
     public val setMinSpaceName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_min_space")
 
-    @JvmStatic
+    @JvmField
     public val getMinSpaceName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
         MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_min_space")
 
-    @JvmStatic
+    @JvmField
     public val setMaxSpaceName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_max_space")
 
-    @JvmStatic
+    @JvmField
     public val getMaxSpaceName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
         MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_max_space")
 
-    @JvmStatic
+    @JvmField
     public val setSnapName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, Float>("set_snap")
 
-    @JvmStatic
+    @JvmField
     public val getSnapName: MethodStringName0<AnimationNodeBlendSpace1D, Float> =
         MethodStringName0<AnimationNodeBlendSpace1D, Float>("get_snap")
 
-    @JvmStatic
+    @JvmField
     public val setValueLabelName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, String> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, String>("set_value_label")
 
-    @JvmStatic
+    @JvmField
     public val getValueLabelName: MethodStringName0<AnimationNodeBlendSpace1D, String> =
         MethodStringName0<AnimationNodeBlendSpace1D, String>("get_value_label")
 
-    @JvmStatic
+    @JvmField
     public val setBlendModeName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, BlendMode> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, BlendMode>("set_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBlendModeName: MethodStringName0<AnimationNodeBlendSpace1D, BlendMode> =
         MethodStringName0<AnimationNodeBlendSpace1D, BlendMode>("get_blend_mode")
 
-    @JvmStatic
+    @JvmField
     public val setUseSyncName: MethodStringName1<AnimationNodeBlendSpace1D, Unit, Boolean> =
         MethodStringName1<AnimationNodeBlendSpace1D, Unit, Boolean>("set_use_sync")
 
-    @JvmStatic
+    @JvmField
     public val isUsingSyncName: MethodStringName0<AnimationNodeBlendSpace1D, Boolean> =
         MethodStringName0<AnimationNodeBlendSpace1D, Boolean>("is_using_sync")
   }

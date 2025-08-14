@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -145,27 +146,27 @@ public open class Thread : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val startName: MethodStringName2<Thread, Error, Callable, Priority> =
         MethodStringName2<Thread, Error, Callable, Priority>("start")
 
-    @JvmStatic
+    @JvmField
     public val getIdName: MethodStringName0<Thread, String> =
         MethodStringName0<Thread, String>("get_id")
 
-    @JvmStatic
+    @JvmField
     public val isStartedName: MethodStringName0<Thread, Boolean> =
         MethodStringName0<Thread, Boolean>("is_started")
 
-    @JvmStatic
+    @JvmField
     public val isAliveName: MethodStringName0<Thread, Boolean> =
         MethodStringName0<Thread, Boolean>("is_alive")
 
-    @JvmStatic
+    @JvmField
     public val waitToFinishName: MethodStringName0<Thread, Any?> =
         MethodStringName0<Thread, Any?>("wait_to_finish")
 
-    @JvmStatic
+    @JvmField
     public val setThreadSafetyChecksEnabledName: MethodStringName1<Thread, Unit, Boolean> =
         MethodStringName1<Thread, Unit, Boolean>("set_thread_safety_checks_enabled")
 

@@ -20,8 +20,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Resizable nodes have a handle that allows the user to adjust their size as needed.
@@ -82,11 +82,11 @@ public open class VisualShaderNodeResizableBase internal constructor() : VisualS
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<VisualShaderNodeResizableBase, Unit, Vector2> =
         MethodStringName1<VisualShaderNodeResizableBase, Unit, Vector2>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<VisualShaderNodeResizableBase, Vector2> =
         MethodStringName0<VisualShaderNodeResizableBase, Vector2>("get_size")
   }

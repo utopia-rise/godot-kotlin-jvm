@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that attaches two 2D physics bodies at a single point, allowing them to freely
@@ -169,51 +169,51 @@ public open class PinJoint2D : Joint2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSoftnessName: MethodStringName1<PinJoint2D, Unit, Float> =
         MethodStringName1<PinJoint2D, Unit, Float>("set_softness")
 
-    @JvmStatic
+    @JvmField
     public val getSoftnessName: MethodStringName0<PinJoint2D, Float> =
         MethodStringName0<PinJoint2D, Float>("get_softness")
 
-    @JvmStatic
+    @JvmField
     public val setAngularLimitLowerName: MethodStringName1<PinJoint2D, Unit, Float> =
         MethodStringName1<PinJoint2D, Unit, Float>("set_angular_limit_lower")
 
-    @JvmStatic
+    @JvmField
     public val getAngularLimitLowerName: MethodStringName0<PinJoint2D, Float> =
         MethodStringName0<PinJoint2D, Float>("get_angular_limit_lower")
 
-    @JvmStatic
+    @JvmField
     public val setAngularLimitUpperName: MethodStringName1<PinJoint2D, Unit, Float> =
         MethodStringName1<PinJoint2D, Unit, Float>("set_angular_limit_upper")
 
-    @JvmStatic
+    @JvmField
     public val getAngularLimitUpperName: MethodStringName0<PinJoint2D, Float> =
         MethodStringName0<PinJoint2D, Float>("get_angular_limit_upper")
 
-    @JvmStatic
+    @JvmField
     public val setMotorTargetVelocityName: MethodStringName1<PinJoint2D, Unit, Float> =
         MethodStringName1<PinJoint2D, Unit, Float>("set_motor_target_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getMotorTargetVelocityName: MethodStringName0<PinJoint2D, Float> =
         MethodStringName0<PinJoint2D, Float>("get_motor_target_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setMotorEnabledName: MethodStringName1<PinJoint2D, Unit, Boolean> =
         MethodStringName1<PinJoint2D, Unit, Boolean>("set_motor_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isMotorEnabledName: MethodStringName0<PinJoint2D, Boolean> =
         MethodStringName0<PinJoint2D, Boolean>("is_motor_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setAngularLimitEnabledName: MethodStringName1<PinJoint2D, Unit, Boolean> =
         MethodStringName1<PinJoint2D, Unit, Boolean>("set_angular_limit_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isAngularLimitEnabledName: MethodStringName0<PinJoint2D, Boolean> =
         MethodStringName0<PinJoint2D, Boolean>("is_angular_limit_enabled")
   }

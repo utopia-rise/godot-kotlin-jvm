@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Performs a lookup operation on the texture provided as a uniform for the shader.
@@ -357,51 +357,51 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureTypeName:
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureType> =
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureType>("set_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val getTextureTypeName: MethodStringName0<VisualShaderNodeTextureParameter, TextureType>
         = MethodStringName0<VisualShaderNodeTextureParameter, TextureType>("get_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val setColorDefaultName:
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, ColorDefault> =
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, ColorDefault>("set_color_default")
 
-    @JvmStatic
+    @JvmField
     public val getColorDefaultName:
         MethodStringName0<VisualShaderNodeTextureParameter, ColorDefault> =
         MethodStringName0<VisualShaderNodeTextureParameter, ColorDefault>("get_color_default")
 
-    @JvmStatic
+    @JvmField
     public val setTextureFilterName:
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureFilter> =
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureFilter>("set_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val getTextureFilterName:
         MethodStringName0<VisualShaderNodeTextureParameter, TextureFilter> =
         MethodStringName0<VisualShaderNodeTextureParameter, TextureFilter>("get_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val setTextureRepeatName:
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureRepeat> =
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureRepeat>("set_texture_repeat")
 
-    @JvmStatic
+    @JvmField
     public val getTextureRepeatName:
         MethodStringName0<VisualShaderNodeTextureParameter, TextureRepeat> =
         MethodStringName0<VisualShaderNodeTextureParameter, TextureRepeat>("get_texture_repeat")
 
-    @JvmStatic
+    @JvmField
     public val setTextureSourceName:
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureSource> =
         MethodStringName1<VisualShaderNodeTextureParameter, Unit, TextureSource>("set_texture_source")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSourceName:
         MethodStringName0<VisualShaderNodeTextureParameter, TextureSource> =
         MethodStringName0<VisualShaderNodeTextureParameter, TextureSource>("get_texture_source")

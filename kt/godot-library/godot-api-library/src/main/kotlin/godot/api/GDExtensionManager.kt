@@ -26,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -36,27 +37,27 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object GDExtensionManager : Object() {
-  @JvmStatic
+  @JvmField
   public val loadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
       MethodStringName1<GDExtensionManager, LoadStatus, String>("load_extension")
 
-  @JvmStatic
+  @JvmField
   public val reloadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
       MethodStringName1<GDExtensionManager, LoadStatus, String>("reload_extension")
 
-  @JvmStatic
+  @JvmField
   public val unloadExtensionName: MethodStringName1<GDExtensionManager, LoadStatus, String> =
       MethodStringName1<GDExtensionManager, LoadStatus, String>("unload_extension")
 
-  @JvmStatic
+  @JvmField
   public val isExtensionLoadedName: MethodStringName1<GDExtensionManager, Boolean, String> =
       MethodStringName1<GDExtensionManager, Boolean, String>("is_extension_loaded")
 
-  @JvmStatic
+  @JvmField
   public val getLoadedExtensionsName: MethodStringName0<GDExtensionManager, PackedStringArray> =
       MethodStringName0<GDExtensionManager, PackedStringArray>("get_loaded_extensions")
 
-  @JvmStatic
+  @JvmField
   public val getExtensionName: MethodStringName1<GDExtensionManager, GDExtension?, String> =
       MethodStringName1<GDExtensionManager, GDExtension?, String>("get_extension")
 

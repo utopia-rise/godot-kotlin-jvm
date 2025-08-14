@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Holds physics-related properties of a surface, namely its roughness and bounciness. This class is
@@ -132,35 +132,35 @@ public open class PhysicsMaterial : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFrictionName: MethodStringName1<PhysicsMaterial, Unit, Float> =
         MethodStringName1<PhysicsMaterial, Unit, Float>("set_friction")
 
-    @JvmStatic
+    @JvmField
     public val getFrictionName: MethodStringName0<PhysicsMaterial, Float> =
         MethodStringName0<PhysicsMaterial, Float>("get_friction")
 
-    @JvmStatic
+    @JvmField
     public val setRoughName: MethodStringName1<PhysicsMaterial, Unit, Boolean> =
         MethodStringName1<PhysicsMaterial, Unit, Boolean>("set_rough")
 
-    @JvmStatic
+    @JvmField
     public val isRoughName: MethodStringName0<PhysicsMaterial, Boolean> =
         MethodStringName0<PhysicsMaterial, Boolean>("is_rough")
 
-    @JvmStatic
+    @JvmField
     public val setBounceName: MethodStringName1<PhysicsMaterial, Unit, Float> =
         MethodStringName1<PhysicsMaterial, Unit, Float>("set_bounce")
 
-    @JvmStatic
+    @JvmField
     public val getBounceName: MethodStringName0<PhysicsMaterial, Float> =
         MethodStringName0<PhysicsMaterial, Float>("get_bounce")
 
-    @JvmStatic
+    @JvmField
     public val setAbsorbentName: MethodStringName1<PhysicsMaterial, Unit, Boolean> =
         MethodStringName1<PhysicsMaterial, Unit, Boolean>("set_absorbent")
 
-    @JvmStatic
+    @JvmField
     public val isAbsorbentName: MethodStringName0<PhysicsMaterial, Boolean> =
         MethodStringName0<PhysicsMaterial, Boolean>("is_absorbent")
   }

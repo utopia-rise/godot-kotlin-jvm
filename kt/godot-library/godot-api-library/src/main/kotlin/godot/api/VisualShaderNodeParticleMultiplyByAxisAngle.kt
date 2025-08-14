@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This node helps to multiply a position input vector by rotation using specific axis. Intended to
@@ -54,12 +54,12 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDegreesModeName:
         MethodStringName1<VisualShaderNodeParticleMultiplyByAxisAngle, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeParticleMultiplyByAxisAngle, Unit, Boolean>("set_degrees_mode")
 
-    @JvmStatic
+    @JvmField
     public val isDegreesModeName:
         MethodStringName0<VisualShaderNodeParticleMultiplyByAxisAngle, Boolean> =
         MethodStringName0<VisualShaderNodeParticleMultiplyByAxisAngle, Boolean>("is_degrees_mode")

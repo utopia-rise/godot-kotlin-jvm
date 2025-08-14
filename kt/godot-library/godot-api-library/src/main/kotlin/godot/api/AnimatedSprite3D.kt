@@ -32,9 +32,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [AnimatedSprite3D] is similar to the [Sprite3D] node, except it carries multiple textures as
@@ -333,79 +333,79 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   public final fun playBackwards(name: String) = playBackwards(name.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSpriteFramesName: MethodStringName1<AnimatedSprite3D, Unit, SpriteFrames?> =
         MethodStringName1<AnimatedSprite3D, Unit, SpriteFrames?>("set_sprite_frames")
 
-    @JvmStatic
+    @JvmField
     public val getSpriteFramesName: MethodStringName0<AnimatedSprite3D, SpriteFrames?> =
         MethodStringName0<AnimatedSprite3D, SpriteFrames?>("get_sprite_frames")
 
-    @JvmStatic
+    @JvmField
     public val setAnimationName: MethodStringName1<AnimatedSprite3D, Unit, StringName> =
         MethodStringName1<AnimatedSprite3D, Unit, StringName>("set_animation")
 
-    @JvmStatic
+    @JvmField
     public val getAnimationName: MethodStringName0<AnimatedSprite3D, StringName> =
         MethodStringName0<AnimatedSprite3D, StringName>("get_animation")
 
-    @JvmStatic
+    @JvmField
     public val setAutoplayName: MethodStringName1<AnimatedSprite3D, Unit, String> =
         MethodStringName1<AnimatedSprite3D, Unit, String>("set_autoplay")
 
-    @JvmStatic
+    @JvmField
     public val getAutoplayName: MethodStringName0<AnimatedSprite3D, String> =
         MethodStringName0<AnimatedSprite3D, String>("get_autoplay")
 
-    @JvmStatic
+    @JvmField
     public val isPlayingName: MethodStringName0<AnimatedSprite3D, Boolean> =
         MethodStringName0<AnimatedSprite3D, Boolean>("is_playing")
 
-    @JvmStatic
+    @JvmField
     public val playName: MethodStringName3<AnimatedSprite3D, Unit, StringName, Float, Boolean> =
         MethodStringName3<AnimatedSprite3D, Unit, StringName, Float, Boolean>("play")
 
-    @JvmStatic
+    @JvmField
     public val playBackwardsName: MethodStringName1<AnimatedSprite3D, Unit, StringName> =
         MethodStringName1<AnimatedSprite3D, Unit, StringName>("play_backwards")
 
-    @JvmStatic
+    @JvmField
     public val pauseName: MethodStringName0<AnimatedSprite3D, Unit> =
         MethodStringName0<AnimatedSprite3D, Unit>("pause")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<AnimatedSprite3D, Unit> =
         MethodStringName0<AnimatedSprite3D, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val setFrameName: MethodStringName1<AnimatedSprite3D, Unit, Int> =
         MethodStringName1<AnimatedSprite3D, Unit, Int>("set_frame")
 
-    @JvmStatic
+    @JvmField
     public val getFrameName: MethodStringName0<AnimatedSprite3D, Int> =
         MethodStringName0<AnimatedSprite3D, Int>("get_frame")
 
-    @JvmStatic
+    @JvmField
     public val setFrameProgressName: MethodStringName1<AnimatedSprite3D, Unit, Float> =
         MethodStringName1<AnimatedSprite3D, Unit, Float>("set_frame_progress")
 
-    @JvmStatic
+    @JvmField
     public val getFrameProgressName: MethodStringName0<AnimatedSprite3D, Float> =
         MethodStringName0<AnimatedSprite3D, Float>("get_frame_progress")
 
-    @JvmStatic
+    @JvmField
     public val setFrameAndProgressName: MethodStringName2<AnimatedSprite3D, Unit, Int, Float> =
         MethodStringName2<AnimatedSprite3D, Unit, Int, Float>("set_frame_and_progress")
 
-    @JvmStatic
+    @JvmField
     public val setSpeedScaleName: MethodStringName1<AnimatedSprite3D, Unit, Float> =
         MethodStringName1<AnimatedSprite3D, Unit, Float>("set_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val getSpeedScaleName: MethodStringName0<AnimatedSprite3D, Float> =
         MethodStringName0<AnimatedSprite3D, Float>("get_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPlayingSpeedName: MethodStringName0<AnimatedSprite3D, Float> =
         MethodStringName0<AnimatedSprite3D, Float>("get_playing_speed")
   }

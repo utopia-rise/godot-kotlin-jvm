@@ -26,9 +26,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class can be used to discover compatible [UPNPDevice]s on the local network and execute
@@ -484,71 +484,71 @@ public open class UPNP : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getDeviceCountName: MethodStringName0<UPNP, Int> =
         MethodStringName0<UPNP, Int>("get_device_count")
 
-    @JvmStatic
+    @JvmField
     public val getDeviceName: MethodStringName1<UPNP, UPNPDevice?, Int> =
         MethodStringName1<UPNP, UPNPDevice?, Int>("get_device")
 
-    @JvmStatic
+    @JvmField
     public val addDeviceName: MethodStringName1<UPNP, Unit, UPNPDevice?> =
         MethodStringName1<UPNP, Unit, UPNPDevice?>("add_device")
 
-    @JvmStatic
+    @JvmField
     public val setDeviceName: MethodStringName2<UPNP, Unit, Int, UPNPDevice?> =
         MethodStringName2<UPNP, Unit, Int, UPNPDevice?>("set_device")
 
-    @JvmStatic
+    @JvmField
     public val removeDeviceName: MethodStringName1<UPNP, Unit, Int> =
         MethodStringName1<UPNP, Unit, Int>("remove_device")
 
-    @JvmStatic
+    @JvmField
     public val clearDevicesName: MethodStringName0<UPNP, Unit> =
         MethodStringName0<UPNP, Unit>("clear_devices")
 
-    @JvmStatic
+    @JvmField
     public val getGatewayName: MethodStringName0<UPNP, UPNPDevice?> =
         MethodStringName0<UPNP, UPNPDevice?>("get_gateway")
 
-    @JvmStatic
+    @JvmField
     public val discoverName: MethodStringName3<UPNP, Int, Int, Int, String> =
         MethodStringName3<UPNP, Int, Int, Int, String>("discover")
 
-    @JvmStatic
+    @JvmField
     public val queryExternalAddressName: MethodStringName0<UPNP, String> =
         MethodStringName0<UPNP, String>("query_external_address")
 
-    @JvmStatic
+    @JvmField
     public val addPortMappingName: MethodStringName5<UPNP, Int, Int, Int, String, String, Int> =
         MethodStringName5<UPNP, Int, Int, Int, String, String, Int>("add_port_mapping")
 
-    @JvmStatic
+    @JvmField
     public val deletePortMappingName: MethodStringName2<UPNP, Int, Int, String> =
         MethodStringName2<UPNP, Int, Int, String>("delete_port_mapping")
 
-    @JvmStatic
+    @JvmField
     public val setDiscoverMulticastIfName: MethodStringName1<UPNP, Unit, String> =
         MethodStringName1<UPNP, Unit, String>("set_discover_multicast_if")
 
-    @JvmStatic
+    @JvmField
     public val getDiscoverMulticastIfName: MethodStringName0<UPNP, String> =
         MethodStringName0<UPNP, String>("get_discover_multicast_if")
 
-    @JvmStatic
+    @JvmField
     public val setDiscoverLocalPortName: MethodStringName1<UPNP, Unit, Int> =
         MethodStringName1<UPNP, Unit, Int>("set_discover_local_port")
 
-    @JvmStatic
+    @JvmField
     public val getDiscoverLocalPortName: MethodStringName0<UPNP, Int> =
         MethodStringName0<UPNP, Int>("get_discover_local_port")
 
-    @JvmStatic
+    @JvmField
     public val setDiscoverIpv6Name: MethodStringName1<UPNP, Unit, Boolean> =
         MethodStringName1<UPNP, Unit, Boolean>("set_discover_ipv6")
 
-    @JvmStatic
+    @JvmField
     public val isDiscoverIpv6Name: MethodStringName0<UPNP, Boolean> =
         MethodStringName0<UPNP, Boolean>("is_discover_ipv6")
   }

@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Accept an integer scalar (`x`) to the input port and transform it according to [function].
@@ -90,11 +90,11 @@ public open class VisualShaderNodeIntFunc : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeIntFunc, Unit, Function> =
         MethodStringName1<VisualShaderNodeIntFunc, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeIntFunc, Function> =
         MethodStringName0<VisualShaderNodeIntFunc, Function>("get_function")
   }

@@ -29,8 +29,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Captures its surroundings as a cubemap, and stores versions of it with increasing levels of blur
@@ -582,123 +582,123 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setIntensityName: MethodStringName1<ReflectionProbe, Unit, Float> =
         MethodStringName1<ReflectionProbe, Unit, Float>("set_intensity")
 
-    @JvmStatic
+    @JvmField
     public val getIntensityName: MethodStringName0<ReflectionProbe, Float> =
         MethodStringName0<ReflectionProbe, Float>("get_intensity")
 
-    @JvmStatic
+    @JvmField
     public val setBlendDistanceName: MethodStringName1<ReflectionProbe, Unit, Float> =
         MethodStringName1<ReflectionProbe, Unit, Float>("set_blend_distance")
 
-    @JvmStatic
+    @JvmField
     public val getBlendDistanceName: MethodStringName0<ReflectionProbe, Float> =
         MethodStringName0<ReflectionProbe, Float>("get_blend_distance")
 
-    @JvmStatic
+    @JvmField
     public val setAmbientModeName: MethodStringName1<ReflectionProbe, Unit, AmbientMode> =
         MethodStringName1<ReflectionProbe, Unit, AmbientMode>("set_ambient_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAmbientModeName: MethodStringName0<ReflectionProbe, AmbientMode> =
         MethodStringName0<ReflectionProbe, AmbientMode>("get_ambient_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAmbientColorName: MethodStringName1<ReflectionProbe, Unit, Color> =
         MethodStringName1<ReflectionProbe, Unit, Color>("set_ambient_color")
 
-    @JvmStatic
+    @JvmField
     public val getAmbientColorName: MethodStringName0<ReflectionProbe, Color> =
         MethodStringName0<ReflectionProbe, Color>("get_ambient_color")
 
-    @JvmStatic
+    @JvmField
     public val setAmbientColorEnergyName: MethodStringName1<ReflectionProbe, Unit, Float> =
         MethodStringName1<ReflectionProbe, Unit, Float>("set_ambient_color_energy")
 
-    @JvmStatic
+    @JvmField
     public val getAmbientColorEnergyName: MethodStringName0<ReflectionProbe, Float> =
         MethodStringName0<ReflectionProbe, Float>("get_ambient_color_energy")
 
-    @JvmStatic
+    @JvmField
     public val setMaxDistanceName: MethodStringName1<ReflectionProbe, Unit, Float> =
         MethodStringName1<ReflectionProbe, Unit, Float>("set_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val getMaxDistanceName: MethodStringName0<ReflectionProbe, Float> =
         MethodStringName0<ReflectionProbe, Float>("get_max_distance")
 
-    @JvmStatic
+    @JvmField
     public val setMeshLodThresholdName: MethodStringName1<ReflectionProbe, Unit, Float> =
         MethodStringName1<ReflectionProbe, Unit, Float>("set_mesh_lod_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getMeshLodThresholdName: MethodStringName0<ReflectionProbe, Float> =
         MethodStringName0<ReflectionProbe, Float>("get_mesh_lod_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<ReflectionProbe, Unit, Vector3> =
         MethodStringName1<ReflectionProbe, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<ReflectionProbe, Vector3> =
         MethodStringName0<ReflectionProbe, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setOriginOffsetName: MethodStringName1<ReflectionProbe, Unit, Vector3> =
         MethodStringName1<ReflectionProbe, Unit, Vector3>("set_origin_offset")
 
-    @JvmStatic
+    @JvmField
     public val getOriginOffsetName: MethodStringName0<ReflectionProbe, Vector3> =
         MethodStringName0<ReflectionProbe, Vector3>("get_origin_offset")
 
-    @JvmStatic
+    @JvmField
     public val setAsInteriorName: MethodStringName1<ReflectionProbe, Unit, Boolean> =
         MethodStringName1<ReflectionProbe, Unit, Boolean>("set_as_interior")
 
-    @JvmStatic
+    @JvmField
     public val isSetAsInteriorName: MethodStringName0<ReflectionProbe, Boolean> =
         MethodStringName0<ReflectionProbe, Boolean>("is_set_as_interior")
 
-    @JvmStatic
+    @JvmField
     public val setEnableBoxProjectionName: MethodStringName1<ReflectionProbe, Unit, Boolean> =
         MethodStringName1<ReflectionProbe, Unit, Boolean>("set_enable_box_projection")
 
-    @JvmStatic
+    @JvmField
     public val isBoxProjectionEnabledName: MethodStringName0<ReflectionProbe, Boolean> =
         MethodStringName0<ReflectionProbe, Boolean>("is_box_projection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEnableShadowsName: MethodStringName1<ReflectionProbe, Unit, Boolean> =
         MethodStringName1<ReflectionProbe, Unit, Boolean>("set_enable_shadows")
 
-    @JvmStatic
+    @JvmField
     public val areShadowsEnabledName: MethodStringName0<ReflectionProbe, Boolean> =
         MethodStringName0<ReflectionProbe, Boolean>("are_shadows_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCullMaskName: MethodStringName1<ReflectionProbe, Unit, Long> =
         MethodStringName1<ReflectionProbe, Unit, Long>("set_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCullMaskName: MethodStringName0<ReflectionProbe, Long> =
         MethodStringName0<ReflectionProbe, Long>("get_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val setReflectionMaskName: MethodStringName1<ReflectionProbe, Unit, Long> =
         MethodStringName1<ReflectionProbe, Unit, Long>("set_reflection_mask")
 
-    @JvmStatic
+    @JvmField
     public val getReflectionMaskName: MethodStringName0<ReflectionProbe, Long> =
         MethodStringName0<ReflectionProbe, Long>("get_reflection_mask")
 
-    @JvmStatic
+    @JvmField
     public val setUpdateModeName: MethodStringName1<ReflectionProbe, Unit, UpdateMode> =
         MethodStringName1<ReflectionProbe, Unit, UpdateMode>("set_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val getUpdateModeName: MethodStringName0<ReflectionProbe, UpdateMode> =
         MethodStringName0<ReflectionProbe, UpdateMode>("get_update_mode")
   }

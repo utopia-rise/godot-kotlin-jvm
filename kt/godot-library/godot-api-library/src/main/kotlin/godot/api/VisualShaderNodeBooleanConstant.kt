@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Has only one output port and no inputs.
@@ -55,11 +55,11 @@ public open class VisualShaderNodeBooleanConstant : VisualShaderNodeConstant() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setConstantName: MethodStringName1<VisualShaderNodeBooleanConstant, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeBooleanConstant, Unit, Boolean>("set_constant")
 
-    @JvmStatic
+    @JvmField
     public val getConstantName: MethodStringName0<VisualShaderNodeBooleanConstant, Boolean> =
         MethodStringName0<VisualShaderNodeBooleanConstant, Boolean>("get_constant")
   }

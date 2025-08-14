@@ -18,8 +18,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture where the red, green, and blue color channels correspond to points on 3 unit [Curve]
@@ -120,31 +120,31 @@ public open class CurveXYZTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<CurveXYZTexture, Unit, Int> =
         MethodStringName1<CurveXYZTexture, Unit, Int>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val setCurveXName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
         MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_x")
 
-    @JvmStatic
+    @JvmField
     public val getCurveXName: MethodStringName0<CurveXYZTexture, Curve?> =
         MethodStringName0<CurveXYZTexture, Curve?>("get_curve_x")
 
-    @JvmStatic
+    @JvmField
     public val setCurveYName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
         MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_y")
 
-    @JvmStatic
+    @JvmField
     public val getCurveYName: MethodStringName0<CurveXYZTexture, Curve?> =
         MethodStringName0<CurveXYZTexture, Curve?>("get_curve_y")
 
-    @JvmStatic
+    @JvmField
     public val setCurveZName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
         MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_z")
 
-    @JvmStatic
+    @JvmField
     public val getCurveZName: MethodStringName0<CurveXYZTexture, Curve?> =
         MethodStringName0<CurveXYZTexture, Curve?>("get_curve_z")
   }

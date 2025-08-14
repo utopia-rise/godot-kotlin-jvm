@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An OpenXR composition layer that allows rendering a [SubViewport] on an internal slice of a
@@ -123,36 +123,36 @@ public open class OpenXRCompositionLayerCylinder : OpenXRCompositionLayer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
         MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setAspectRatioName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_aspect_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getAspectRatioName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
         MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_aspect_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setCentralAngleName: MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float> =
         MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Float>("set_central_angle")
 
-    @JvmStatic
+    @JvmField
     public val getCentralAngleName: MethodStringName0<OpenXRCompositionLayerCylinder, Float> =
         MethodStringName0<OpenXRCompositionLayerCylinder, Float>("get_central_angle")
 
-    @JvmStatic
+    @JvmField
     public val setFallbackSegmentsName:
         MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Long> =
         MethodStringName1<OpenXRCompositionLayerCylinder, Unit, Long>("set_fallback_segments")
 
-    @JvmStatic
+    @JvmField
     public val getFallbackSegmentsName: MethodStringName0<OpenXRCompositionLayerCylinder, Long> =
         MethodStringName0<OpenXRCompositionLayerCylinder, Long>("get_fallback_segments")
   }

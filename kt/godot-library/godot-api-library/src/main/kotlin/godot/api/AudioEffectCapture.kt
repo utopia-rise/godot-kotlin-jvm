@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * AudioEffectCapture is an AudioEffect which copies all audio frames from the attached audio effect
@@ -142,39 +142,39 @@ public open class AudioEffectCapture : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val canGetBufferName: MethodStringName1<AudioEffectCapture, Boolean, Int> =
         MethodStringName1<AudioEffectCapture, Boolean, Int>("can_get_buffer")
 
-    @JvmStatic
+    @JvmField
     public val getBufferName: MethodStringName1<AudioEffectCapture, PackedVector2Array, Int> =
         MethodStringName1<AudioEffectCapture, PackedVector2Array, Int>("get_buffer")
 
-    @JvmStatic
+    @JvmField
     public val clearBufferName: MethodStringName0<AudioEffectCapture, Unit> =
         MethodStringName0<AudioEffectCapture, Unit>("clear_buffer")
 
-    @JvmStatic
+    @JvmField
     public val setBufferLengthName: MethodStringName1<AudioEffectCapture, Unit, Float> =
         MethodStringName1<AudioEffectCapture, Unit, Float>("set_buffer_length")
 
-    @JvmStatic
+    @JvmField
     public val getBufferLengthName: MethodStringName0<AudioEffectCapture, Float> =
         MethodStringName0<AudioEffectCapture, Float>("get_buffer_length")
 
-    @JvmStatic
+    @JvmField
     public val getFramesAvailableName: MethodStringName0<AudioEffectCapture, Int> =
         MethodStringName0<AudioEffectCapture, Int>("get_frames_available")
 
-    @JvmStatic
+    @JvmField
     public val getDiscardedFramesName: MethodStringName0<AudioEffectCapture, Long> =
         MethodStringName0<AudioEffectCapture, Long>("get_discarded_frames")
 
-    @JvmStatic
+    @JvmField
     public val getBufferLengthFramesName: MethodStringName0<AudioEffectCapture, Int> =
         MethodStringName0<AudioEffectCapture, Int>("get_buffer_length_frames")
 
-    @JvmStatic
+    @JvmField
     public val getPushedFramesName: MethodStringName0<AudioEffectCapture, Long> =
         MethodStringName0<AudioEffectCapture, Long>("get_pushed_frames")
   }

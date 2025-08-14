@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Range is an abstract base class for controls that represent a number within a range, using a
@@ -315,95 +315,95 @@ public open class Range : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getValueName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_value")
 
-    @JvmStatic
+    @JvmField
     public val getMinName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_min")
 
-    @JvmStatic
+    @JvmField
     public val getMaxName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_max")
 
-    @JvmStatic
+    @JvmField
     public val getStepName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_step")
 
-    @JvmStatic
+    @JvmField
     public val getPageName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_page")
 
-    @JvmStatic
+    @JvmField
     public val getAsRatioName: MethodStringName0<Range, Double> =
         MethodStringName0<Range, Double>("get_as_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setValueName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_value")
 
-    @JvmStatic
+    @JvmField
     public val setValueNoSignalName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_value_no_signal")
 
-    @JvmStatic
+    @JvmField
     public val setMinName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_min")
 
-    @JvmStatic
+    @JvmField
     public val setMaxName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_max")
 
-    @JvmStatic
+    @JvmField
     public val setStepName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_step")
 
-    @JvmStatic
+    @JvmField
     public val setPageName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_page")
 
-    @JvmStatic
+    @JvmField
     public val setAsRatioName: MethodStringName1<Range, Unit, Double> =
         MethodStringName1<Range, Unit, Double>("set_as_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setUseRoundedValuesName: MethodStringName1<Range, Unit, Boolean> =
         MethodStringName1<Range, Unit, Boolean>("set_use_rounded_values")
 
-    @JvmStatic
+    @JvmField
     public val isUsingRoundedValuesName: MethodStringName0<Range, Boolean> =
         MethodStringName0<Range, Boolean>("is_using_rounded_values")
 
-    @JvmStatic
+    @JvmField
     public val setExpRatioName: MethodStringName1<Range, Unit, Boolean> =
         MethodStringName1<Range, Unit, Boolean>("set_exp_ratio")
 
-    @JvmStatic
+    @JvmField
     public val isRatioExpName: MethodStringName0<Range, Boolean> =
         MethodStringName0<Range, Boolean>("is_ratio_exp")
 
-    @JvmStatic
+    @JvmField
     public val setAllowGreaterName: MethodStringName1<Range, Unit, Boolean> =
         MethodStringName1<Range, Unit, Boolean>("set_allow_greater")
 
-    @JvmStatic
+    @JvmField
     public val isGreaterAllowedName: MethodStringName0<Range, Boolean> =
         MethodStringName0<Range, Boolean>("is_greater_allowed")
 
-    @JvmStatic
+    @JvmField
     public val setAllowLesserName: MethodStringName1<Range, Unit, Boolean> =
         MethodStringName1<Range, Unit, Boolean>("set_allow_lesser")
 
-    @JvmStatic
+    @JvmField
     public val isLesserAllowedName: MethodStringName0<Range, Boolean> =
         MethodStringName0<Range, Boolean>("is_lesser_allowed")
 
-    @JvmStatic
+    @JvmField
     public val shareName: MethodStringName1<Range, Unit, Node?> =
         MethodStringName1<Range, Unit, Node?>("share")
 
-    @JvmStatic
+    @JvmField
     public val unshareName: MethodStringName0<Range, Unit> =
         MethodStringName0<Range, Unit>("unshare")
   }

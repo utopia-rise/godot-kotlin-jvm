@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -37,43 +38,43 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object IP : Object() {
-  @JvmStatic
+  @JvmField
   public val resolveHostnameName: MethodStringName2<IP, String, String, Type> =
       MethodStringName2<IP, String, String, Type>("resolve_hostname")
 
-  @JvmStatic
+  @JvmField
   public val resolveHostnameAddressesName: MethodStringName2<IP, PackedStringArray, String, Type> =
       MethodStringName2<IP, PackedStringArray, String, Type>("resolve_hostname_addresses")
 
-  @JvmStatic
+  @JvmField
   public val resolveHostnameQueueItemName: MethodStringName2<IP, Int, String, Type> =
       MethodStringName2<IP, Int, String, Type>("resolve_hostname_queue_item")
 
-  @JvmStatic
+  @JvmField
   public val getResolveItemStatusName: MethodStringName1<IP, ResolverStatus, Int> =
       MethodStringName1<IP, ResolverStatus, Int>("get_resolve_item_status")
 
-  @JvmStatic
+  @JvmField
   public val getResolveItemAddressName: MethodStringName1<IP, String, Int> =
       MethodStringName1<IP, String, Int>("get_resolve_item_address")
 
-  @JvmStatic
+  @JvmField
   public val getResolveItemAddressesName: MethodStringName1<IP, VariantArray<Any?>, Int> =
       MethodStringName1<IP, VariantArray<Any?>, Int>("get_resolve_item_addresses")
 
-  @JvmStatic
+  @JvmField
   public val eraseResolveItemName: MethodStringName1<IP, Unit, Int> =
       MethodStringName1<IP, Unit, Int>("erase_resolve_item")
 
-  @JvmStatic
+  @JvmField
   public val getLocalAddressesName: MethodStringName0<IP, PackedStringArray> =
       MethodStringName0<IP, PackedStringArray>("get_local_addresses")
 
-  @JvmStatic
+  @JvmField
   public val getLocalInterfacesName: MethodStringName0<IP, VariantArray<Dictionary<Any?, Any?>>> =
       MethodStringName0<IP, VariantArray<Dictionary<Any?, Any?>>>("get_local_interfaces")
 
-  @JvmStatic
+  @JvmField
   public val clearCacheName: MethodStringName1<IP, Unit, String> =
       MethodStringName1<IP, Unit, String>("clear_cache")
 

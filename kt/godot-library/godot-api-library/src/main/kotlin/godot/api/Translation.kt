@@ -29,8 +29,8 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [Translation]s are resources that can be loaded and unloaded on demand. They map a collection of
@@ -230,46 +230,46 @@ public open class Translation : Resource() {
       eraseMessage(srcMessage.asCachedStringName(), context.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLocaleName: MethodStringName1<Translation, Unit, String> =
         MethodStringName1<Translation, Unit, String>("set_locale")
 
-    @JvmStatic
+    @JvmField
     public val getLocaleName: MethodStringName0<Translation, String> =
         MethodStringName0<Translation, String>("get_locale")
 
-    @JvmStatic
+    @JvmField
     public val addMessageName:
         MethodStringName3<Translation, Unit, StringName, StringName, StringName> =
         MethodStringName3<Translation, Unit, StringName, StringName, StringName>("add_message")
 
-    @JvmStatic
+    @JvmField
     public val addPluralMessageName:
         MethodStringName3<Translation, Unit, StringName, PackedStringArray, StringName> =
         MethodStringName3<Translation, Unit, StringName, PackedStringArray, StringName>("add_plural_message")
 
-    @JvmStatic
+    @JvmField
     public val getMessageName: MethodStringName2<Translation, StringName, StringName, StringName> =
         MethodStringName2<Translation, StringName, StringName, StringName>("get_message")
 
-    @JvmStatic
+    @JvmField
     public val getPluralMessageName:
         MethodStringName4<Translation, StringName, StringName, StringName, Int, StringName> =
         MethodStringName4<Translation, StringName, StringName, StringName, Int, StringName>("get_plural_message")
 
-    @JvmStatic
+    @JvmField
     public val eraseMessageName: MethodStringName2<Translation, Unit, StringName, StringName> =
         MethodStringName2<Translation, Unit, StringName, StringName>("erase_message")
 
-    @JvmStatic
+    @JvmField
     public val getMessageListName: MethodStringName0<Translation, PackedStringArray> =
         MethodStringName0<Translation, PackedStringArray>("get_message_list")
 
-    @JvmStatic
+    @JvmField
     public val getTranslatedMessageListName: MethodStringName0<Translation, PackedStringArray> =
         MethodStringName0<Translation, PackedStringArray>("get_translated_message_list")
 
-    @JvmStatic
+    @JvmField
     public val getMessageCountName: MethodStringName0<Translation, Int> =
         MethodStringName0<Translation, Int>("get_message_count")
   }

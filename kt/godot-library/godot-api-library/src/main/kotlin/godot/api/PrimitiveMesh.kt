@@ -29,8 +29,8 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Base class for all primitive meshes. Handles applying a [Material] to a primitive mesh. Examples
@@ -233,51 +233,51 @@ public open class PrimitiveMesh : Mesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMaterialName: MethodStringName1<PrimitiveMesh, Unit, Material?> =
         MethodStringName1<PrimitiveMesh, Unit, Material?>("set_material")
 
-    @JvmStatic
+    @JvmField
     public val getMaterialName: MethodStringName0<PrimitiveMesh, Material?> =
         MethodStringName0<PrimitiveMesh, Material?>("get_material")
 
-    @JvmStatic
+    @JvmField
     public val getMeshArraysName: MethodStringName0<PrimitiveMesh, VariantArray<Any?>> =
         MethodStringName0<PrimitiveMesh, VariantArray<Any?>>("get_mesh_arrays")
 
-    @JvmStatic
+    @JvmField
     public val setCustomAabbName: MethodStringName1<PrimitiveMesh, Unit, AABB> =
         MethodStringName1<PrimitiveMesh, Unit, AABB>("set_custom_aabb")
 
-    @JvmStatic
+    @JvmField
     public val getCustomAabbName: MethodStringName0<PrimitiveMesh, AABB> =
         MethodStringName0<PrimitiveMesh, AABB>("get_custom_aabb")
 
-    @JvmStatic
+    @JvmField
     public val setFlipFacesName: MethodStringName1<PrimitiveMesh, Unit, Boolean> =
         MethodStringName1<PrimitiveMesh, Unit, Boolean>("set_flip_faces")
 
-    @JvmStatic
+    @JvmField
     public val getFlipFacesName: MethodStringName0<PrimitiveMesh, Boolean> =
         MethodStringName0<PrimitiveMesh, Boolean>("get_flip_faces")
 
-    @JvmStatic
+    @JvmField
     public val setAddUv2Name: MethodStringName1<PrimitiveMesh, Unit, Boolean> =
         MethodStringName1<PrimitiveMesh, Unit, Boolean>("set_add_uv2")
 
-    @JvmStatic
+    @JvmField
     public val getAddUv2Name: MethodStringName0<PrimitiveMesh, Boolean> =
         MethodStringName0<PrimitiveMesh, Boolean>("get_add_uv2")
 
-    @JvmStatic
+    @JvmField
     public val setUv2PaddingName: MethodStringName1<PrimitiveMesh, Unit, Float> =
         MethodStringName1<PrimitiveMesh, Unit, Float>("set_uv2_padding")
 
-    @JvmStatic
+    @JvmField
     public val getUv2PaddingName: MethodStringName0<PrimitiveMesh, Float> =
         MethodStringName0<PrimitiveMesh, Float>("get_uv2_padding")
 
-    @JvmStatic
+    @JvmField
     public val requestUpdateName: MethodStringName0<PrimitiveMesh, Unit> =
         MethodStringName0<PrimitiveMesh, Unit>("request_update")
   }

@@ -30,7 +30,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: XRHandTracker.HandJointFlags): Long = this.or(other.flag)
 
@@ -413,63 +412,63 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHasTrackingDataName: MethodStringName1<XRHandTracker, Unit, Boolean> =
         MethodStringName1<XRHandTracker, Unit, Boolean>("set_has_tracking_data")
 
-    @JvmStatic
+    @JvmField
     public val getHasTrackingDataName: MethodStringName0<XRHandTracker, Boolean> =
         MethodStringName0<XRHandTracker, Boolean>("get_has_tracking_data")
 
-    @JvmStatic
+    @JvmField
     public val setHandTrackingSourceName: MethodStringName1<XRHandTracker, Unit, HandTrackingSource>
         = MethodStringName1<XRHandTracker, Unit, HandTrackingSource>("set_hand_tracking_source")
 
-    @JvmStatic
+    @JvmField
     public val getHandTrackingSourceName: MethodStringName0<XRHandTracker, HandTrackingSource> =
         MethodStringName0<XRHandTracker, HandTrackingSource>("get_hand_tracking_source")
 
-    @JvmStatic
+    @JvmField
     public val setHandJointFlagsName:
         MethodStringName2<XRHandTracker, Unit, HandJoint, HandJointFlags> =
         MethodStringName2<XRHandTracker, Unit, HandJoint, HandJointFlags>("set_hand_joint_flags")
 
-    @JvmStatic
+    @JvmField
     public val getHandJointFlagsName: MethodStringName1<XRHandTracker, HandJointFlags, HandJoint> =
         MethodStringName1<XRHandTracker, HandJointFlags, HandJoint>("get_hand_joint_flags")
 
-    @JvmStatic
+    @JvmField
     public val setHandJointTransformName:
         MethodStringName2<XRHandTracker, Unit, HandJoint, Transform3D> =
         MethodStringName2<XRHandTracker, Unit, HandJoint, Transform3D>("set_hand_joint_transform")
 
-    @JvmStatic
+    @JvmField
     public val getHandJointTransformName: MethodStringName1<XRHandTracker, Transform3D, HandJoint> =
         MethodStringName1<XRHandTracker, Transform3D, HandJoint>("get_hand_joint_transform")
 
-    @JvmStatic
+    @JvmField
     public val setHandJointRadiusName: MethodStringName2<XRHandTracker, Unit, HandJoint, Float> =
         MethodStringName2<XRHandTracker, Unit, HandJoint, Float>("set_hand_joint_radius")
 
-    @JvmStatic
+    @JvmField
     public val getHandJointRadiusName: MethodStringName1<XRHandTracker, Float, HandJoint> =
         MethodStringName1<XRHandTracker, Float, HandJoint>("get_hand_joint_radius")
 
-    @JvmStatic
+    @JvmField
     public val setHandJointLinearVelocityName:
         MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3> =
         MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3>("set_hand_joint_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getHandJointLinearVelocityName: MethodStringName1<XRHandTracker, Vector3, HandJoint>
         = MethodStringName1<XRHandTracker, Vector3, HandJoint>("get_hand_joint_linear_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setHandJointAngularVelocityName:
         MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3> =
         MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3>("set_hand_joint_angular_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getHandJointAngularVelocityName: MethodStringName1<XRHandTracker, Vector3, HandJoint>
         = MethodStringName1<XRHandTracker, Vector3, HandJoint>("get_hand_joint_angular_velocity")
   }

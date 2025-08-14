@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores general information about mouse events.
@@ -173,27 +173,27 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setButtonMaskName: MethodStringName1<InputEventMouse, Unit, MouseButtonMask> =
         MethodStringName1<InputEventMouse, Unit, MouseButtonMask>("set_button_mask")
 
-    @JvmStatic
+    @JvmField
     public val getButtonMaskName: MethodStringName0<InputEventMouse, MouseButtonMask> =
         MethodStringName0<InputEventMouse, MouseButtonMask>("get_button_mask")
 
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<InputEventMouse, Unit, Vector2> =
         MethodStringName1<InputEventMouse, Unit, Vector2>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<InputEventMouse, Vector2> =
         MethodStringName0<InputEventMouse, Vector2>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val setGlobalPositionName: MethodStringName1<InputEventMouse, Unit, Vector2> =
         MethodStringName1<InputEventMouse, Unit, Vector2>("set_global_position")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalPositionName: MethodStringName0<InputEventMouse, Vector2> =
         MethodStringName0<InputEventMouse, Vector2>("get_global_position")
   }

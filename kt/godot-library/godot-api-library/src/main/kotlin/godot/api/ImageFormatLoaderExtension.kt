@@ -19,7 +19,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The engine supports multiple image formats out of the box (PNG, SVG, JPEG, WebP to name a few),
@@ -72,11 +72,11 @@ public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val addFormatLoaderName: MethodStringName0<ImageFormatLoaderExtension, Unit> =
         MethodStringName0<ImageFormatLoaderExtension, Unit>("add_format_loader")
 
-    @JvmStatic
+    @JvmField
     public val removeFormatLoaderName: MethodStringName0<ImageFormatLoaderExtension, Unit> =
         MethodStringName0<ImageFormatLoaderExtension, Unit>("remove_format_loader")
   }

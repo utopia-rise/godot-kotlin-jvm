@@ -23,7 +23,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [OpenXRExtensionWrapperExtension] allows clients to implement OpenXR extensions with GDExtension.
@@ -272,12 +272,12 @@ public open class OpenXRExtensionWrapperExtension : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getOpenxrApiName:
         MethodStringName0<OpenXRExtensionWrapperExtension, OpenXRAPIExtension?> =
         MethodStringName0<OpenXRExtensionWrapperExtension, OpenXRAPIExtension?>("get_openxr_api")
 
-    @JvmStatic
+    @JvmField
     public val registerExtensionWrapperName:
         MethodStringName0<OpenXRExtensionWrapperExtension, Unit> =
         MethodStringName0<OpenXRExtensionWrapperExtension, Unit>("register_extension_wrapper")

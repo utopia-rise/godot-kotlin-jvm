@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Class representing a torus [PrimitiveMesh].
@@ -122,35 +122,35 @@ public open class TorusMesh : PrimitiveMesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setInnerRadiusName: MethodStringName1<TorusMesh, Unit, Float> =
         MethodStringName1<TorusMesh, Unit, Float>("set_inner_radius")
 
-    @JvmStatic
+    @JvmField
     public val getInnerRadiusName: MethodStringName0<TorusMesh, Float> =
         MethodStringName0<TorusMesh, Float>("get_inner_radius")
 
-    @JvmStatic
+    @JvmField
     public val setOuterRadiusName: MethodStringName1<TorusMesh, Unit, Float> =
         MethodStringName1<TorusMesh, Unit, Float>("set_outer_radius")
 
-    @JvmStatic
+    @JvmField
     public val getOuterRadiusName: MethodStringName0<TorusMesh, Float> =
         MethodStringName0<TorusMesh, Float>("get_outer_radius")
 
-    @JvmStatic
+    @JvmField
     public val setRingsName: MethodStringName1<TorusMesh, Unit, Int> =
         MethodStringName1<TorusMesh, Unit, Int>("set_rings")
 
-    @JvmStatic
+    @JvmField
     public val getRingsName: MethodStringName0<TorusMesh, Int> =
         MethodStringName0<TorusMesh, Int>("get_rings")
 
-    @JvmStatic
+    @JvmField
     public val setRingSegmentsName: MethodStringName1<TorusMesh, Unit, Int> =
         MethodStringName1<TorusMesh, Unit, Int>("set_ring_segments")
 
-    @JvmStatic
+    @JvmField
     public val getRingSegmentsName: MethodStringName0<TorusMesh, Int> =
         MethodStringName0<TorusMesh, Int>("get_ring_segments")
   }

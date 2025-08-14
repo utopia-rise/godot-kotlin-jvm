@@ -35,9 +35,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A control used to show a set of internal [TreeItem]s in a hierarchical structure. The tree items
@@ -942,255 +942,255 @@ public open class Tree : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<Tree, Unit> = MethodStringName0<Tree, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val createItemName: MethodStringName2<Tree, TreeItem?, TreeItem?, Int> =
         MethodStringName2<Tree, TreeItem?, TreeItem?, Int>("create_item")
 
-    @JvmStatic
+    @JvmField
     public val getRootName: MethodStringName0<Tree, TreeItem?> =
         MethodStringName0<Tree, TreeItem?>("get_root")
 
-    @JvmStatic
+    @JvmField
     public val setColumnCustomMinimumWidthName: MethodStringName2<Tree, Unit, Int, Int> =
         MethodStringName2<Tree, Unit, Int, Int>("set_column_custom_minimum_width")
 
-    @JvmStatic
+    @JvmField
     public val setColumnExpandName: MethodStringName2<Tree, Unit, Int, Boolean> =
         MethodStringName2<Tree, Unit, Int, Boolean>("set_column_expand")
 
-    @JvmStatic
+    @JvmField
     public val setColumnExpandRatioName: MethodStringName2<Tree, Unit, Int, Int> =
         MethodStringName2<Tree, Unit, Int, Int>("set_column_expand_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setColumnClipContentName: MethodStringName2<Tree, Unit, Int, Boolean> =
         MethodStringName2<Tree, Unit, Int, Boolean>("set_column_clip_content")
 
-    @JvmStatic
+    @JvmField
     public val isColumnExpandingName: MethodStringName1<Tree, Boolean, Int> =
         MethodStringName1<Tree, Boolean, Int>("is_column_expanding")
 
-    @JvmStatic
+    @JvmField
     public val isColumnClippingContentName: MethodStringName1<Tree, Boolean, Int> =
         MethodStringName1<Tree, Boolean, Int>("is_column_clipping_content")
 
-    @JvmStatic
+    @JvmField
     public val getColumnExpandRatioName: MethodStringName1<Tree, Int, Int> =
         MethodStringName1<Tree, Int, Int>("get_column_expand_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getColumnWidthName: MethodStringName1<Tree, Int, Int> =
         MethodStringName1<Tree, Int, Int>("get_column_width")
 
-    @JvmStatic
+    @JvmField
     public val setHideRootName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_hide_root")
 
-    @JvmStatic
+    @JvmField
     public val isRootHiddenName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_root_hidden")
 
-    @JvmStatic
+    @JvmField
     public val getNextSelectedName: MethodStringName1<Tree, TreeItem?, TreeItem?> =
         MethodStringName1<Tree, TreeItem?, TreeItem?>("get_next_selected")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedName: MethodStringName0<Tree, TreeItem?> =
         MethodStringName0<Tree, TreeItem?>("get_selected")
 
-    @JvmStatic
+    @JvmField
     public val setSelectedName: MethodStringName2<Tree, Unit, TreeItem?, Int> =
         MethodStringName2<Tree, Unit, TreeItem?, Int>("set_selected")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedColumnName: MethodStringName0<Tree, Int> =
         MethodStringName0<Tree, Int>("get_selected_column")
 
-    @JvmStatic
+    @JvmField
     public val getPressedButtonName: MethodStringName0<Tree, Int> =
         MethodStringName0<Tree, Int>("get_pressed_button")
 
-    @JvmStatic
+    @JvmField
     public val setSelectModeName: MethodStringName1<Tree, Unit, SelectMode> =
         MethodStringName1<Tree, Unit, SelectMode>("set_select_mode")
 
-    @JvmStatic
+    @JvmField
     public val getSelectModeName: MethodStringName0<Tree, SelectMode> =
         MethodStringName0<Tree, SelectMode>("get_select_mode")
 
-    @JvmStatic
+    @JvmField
     public val deselectAllName: MethodStringName0<Tree, Unit> =
         MethodStringName0<Tree, Unit>("deselect_all")
 
-    @JvmStatic
+    @JvmField
     public val setColumnsName: MethodStringName1<Tree, Unit, Int> =
         MethodStringName1<Tree, Unit, Int>("set_columns")
 
-    @JvmStatic
+    @JvmField
     public val getColumnsName: MethodStringName0<Tree, Int> =
         MethodStringName0<Tree, Int>("get_columns")
 
-    @JvmStatic
+    @JvmField
     public val getEditedName: MethodStringName0<Tree, TreeItem?> =
         MethodStringName0<Tree, TreeItem?>("get_edited")
 
-    @JvmStatic
+    @JvmField
     public val getEditedColumnName: MethodStringName0<Tree, Int> =
         MethodStringName0<Tree, Int>("get_edited_column")
 
-    @JvmStatic
+    @JvmField
     public val editSelectedName: MethodStringName1<Tree, Boolean, Boolean> =
         MethodStringName1<Tree, Boolean, Boolean>("edit_selected")
 
-    @JvmStatic
+    @JvmField
     public val getCustomPopupRectName: MethodStringName0<Tree, Rect2> =
         MethodStringName0<Tree, Rect2>("get_custom_popup_rect")
 
-    @JvmStatic
+    @JvmField
     public val getItemAreaRectName: MethodStringName3<Tree, Rect2, TreeItem?, Int, Int> =
         MethodStringName3<Tree, Rect2, TreeItem?, Int, Int>("get_item_area_rect")
 
-    @JvmStatic
+    @JvmField
     public val getItemAtPositionName: MethodStringName1<Tree, TreeItem?, Vector2> =
         MethodStringName1<Tree, TreeItem?, Vector2>("get_item_at_position")
 
-    @JvmStatic
+    @JvmField
     public val getColumnAtPositionName: MethodStringName1<Tree, Int, Vector2> =
         MethodStringName1<Tree, Int, Vector2>("get_column_at_position")
 
-    @JvmStatic
+    @JvmField
     public val getDropSectionAtPositionName: MethodStringName1<Tree, Int, Vector2> =
         MethodStringName1<Tree, Int, Vector2>("get_drop_section_at_position")
 
-    @JvmStatic
+    @JvmField
     public val getButtonIdAtPositionName: MethodStringName1<Tree, Int, Vector2> =
         MethodStringName1<Tree, Int, Vector2>("get_button_id_at_position")
 
-    @JvmStatic
+    @JvmField
     public val ensureCursorIsVisibleName: MethodStringName0<Tree, Unit> =
         MethodStringName0<Tree, Unit>("ensure_cursor_is_visible")
 
-    @JvmStatic
+    @JvmField
     public val setColumnTitlesVisibleName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_column_titles_visible")
 
-    @JvmStatic
+    @JvmField
     public val areColumnTitlesVisibleName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("are_column_titles_visible")
 
-    @JvmStatic
+    @JvmField
     public val setColumnTitleName: MethodStringName2<Tree, Unit, Int, String> =
         MethodStringName2<Tree, Unit, Int, String>("set_column_title")
 
-    @JvmStatic
+    @JvmField
     public val getColumnTitleName: MethodStringName1<Tree, String, Int> =
         MethodStringName1<Tree, String, Int>("get_column_title")
 
-    @JvmStatic
+    @JvmField
     public val setColumnTitleAlignmentName: MethodStringName2<Tree, Unit, Int, HorizontalAlignment>
         = MethodStringName2<Tree, Unit, Int, HorizontalAlignment>("set_column_title_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getColumnTitleAlignmentName: MethodStringName1<Tree, HorizontalAlignment, Int> =
         MethodStringName1<Tree, HorizontalAlignment, Int>("get_column_title_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setColumnTitleDirectionName:
         MethodStringName2<Tree, Unit, Int, Control.TextDirection> =
         MethodStringName2<Tree, Unit, Int, Control.TextDirection>("set_column_title_direction")
 
-    @JvmStatic
+    @JvmField
     public val getColumnTitleDirectionName: MethodStringName1<Tree, Control.TextDirection, Int> =
         MethodStringName1<Tree, Control.TextDirection, Int>("get_column_title_direction")
 
-    @JvmStatic
+    @JvmField
     public val setColumnTitleLanguageName: MethodStringName2<Tree, Unit, Int, String> =
         MethodStringName2<Tree, Unit, Int, String>("set_column_title_language")
 
-    @JvmStatic
+    @JvmField
     public val getColumnTitleLanguageName: MethodStringName1<Tree, String, Int> =
         MethodStringName1<Tree, String, Int>("get_column_title_language")
 
-    @JvmStatic
+    @JvmField
     public val getScrollName: MethodStringName0<Tree, Vector2> =
         MethodStringName0<Tree, Vector2>("get_scroll")
 
-    @JvmStatic
+    @JvmField
     public val scrollToItemName: MethodStringName2<Tree, Unit, TreeItem?, Boolean> =
         MethodStringName2<Tree, Unit, TreeItem?, Boolean>("scroll_to_item")
 
-    @JvmStatic
+    @JvmField
     public val setHScrollEnabledName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_h_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isHScrollEnabledName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_h_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setVScrollEnabledName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_v_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isVScrollEnabledName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_v_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHideFoldingName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_hide_folding")
 
-    @JvmStatic
+    @JvmField
     public val isFoldingHiddenName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_folding_hidden")
 
-    @JvmStatic
+    @JvmField
     public val setEnableRecursiveFoldingName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_enable_recursive_folding")
 
-    @JvmStatic
+    @JvmField
     public val isRecursiveFoldingEnabledName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_recursive_folding_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDropModeFlagsName: MethodStringName1<Tree, Unit, Int> =
         MethodStringName1<Tree, Unit, Int>("set_drop_mode_flags")
 
-    @JvmStatic
+    @JvmField
     public val getDropModeFlagsName: MethodStringName0<Tree, Int> =
         MethodStringName0<Tree, Int>("get_drop_mode_flags")
 
-    @JvmStatic
+    @JvmField
     public val setAllowRmbSelectName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_allow_rmb_select")
 
-    @JvmStatic
+    @JvmField
     public val getAllowRmbSelectName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("get_allow_rmb_select")
 
-    @JvmStatic
+    @JvmField
     public val setAllowReselectName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_allow_reselect")
 
-    @JvmStatic
+    @JvmField
     public val getAllowReselectName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("get_allow_reselect")
 
-    @JvmStatic
+    @JvmField
     public val setAllowSearchName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_allow_search")
 
-    @JvmStatic
+    @JvmField
     public val getAllowSearchName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("get_allow_search")
 
-    @JvmStatic
+    @JvmField
     public val setAutoTooltipName: MethodStringName1<Tree, Unit, Boolean> =
         MethodStringName1<Tree, Unit, Boolean>("set_auto_tooltip")
 
-    @JvmStatic
+    @JvmField
     public val isAutoTooltipEnabledName: MethodStringName0<Tree, Boolean> =
         MethodStringName0<Tree, Boolean>("is_auto_tooltip_enabled")
   }

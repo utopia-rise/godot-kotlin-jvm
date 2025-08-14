@@ -51,9 +51,9 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
@@ -3150,971 +3150,971 @@ public open class TextEdit : Control() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val hasImeTextName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("has_ime_text")
 
-    @JvmStatic
+    @JvmField
     public val cancelImeName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("cancel_ime")
 
-    @JvmStatic
+    @JvmField
     public val applyImeName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("apply_ime")
 
-    @JvmStatic
+    @JvmField
     public val setEditableName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_editable")
 
-    @JvmStatic
+    @JvmField
     public val isEditableName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_editable")
 
-    @JvmStatic
+    @JvmField
     public val setTextDirectionName: MethodStringName1<TextEdit, Unit, Control.TextDirection> =
         MethodStringName1<TextEdit, Unit, Control.TextDirection>("set_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getTextDirectionName: MethodStringName0<TextEdit, Control.TextDirection> =
         MethodStringName0<TextEdit, Control.TextDirection>("get_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName: MethodStringName1<TextEdit, Unit, String> =
         MethodStringName1<TextEdit, Unit, String>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<TextEdit, String> =
         MethodStringName0<TextEdit, String>("get_language")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideName:
         MethodStringName1<TextEdit, Unit, TextServer.StructuredTextParser> =
         MethodStringName1<TextEdit, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideName:
         MethodStringName0<TextEdit, TextServer.StructuredTextParser> =
         MethodStringName0<TextEdit, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideOptionsName:
         MethodStringName1<TextEdit, Unit, VariantArray<Any?>> =
         MethodStringName1<TextEdit, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideOptionsName:
         MethodStringName0<TextEdit, VariantArray<Any?>> =
         MethodStringName0<TextEdit, VariantArray<Any?>>("get_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val setTabSizeName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("set_tab_size")
 
-    @JvmStatic
+    @JvmField
     public val getTabSizeName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_tab_size")
 
-    @JvmStatic
+    @JvmField
     public val setIndentWrappedLinesName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_indent_wrapped_lines")
 
-    @JvmStatic
+    @JvmField
     public val isIndentWrappedLinesName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_indent_wrapped_lines")
 
-    @JvmStatic
+    @JvmField
     public val setOvertypeModeEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_overtype_mode_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isOvertypeModeEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_overtype_mode_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setContextMenuEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_context_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isContextMenuEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_context_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEmojiMenuEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_emoji_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isEmojiMenuEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_emoji_menu_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setShortcutKeysEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_shortcut_keys_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isShortcutKeysEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_shortcut_keys_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setVirtualKeyboardEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_virtual_keyboard_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isVirtualKeyboardEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_virtual_keyboard_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setMiddleMousePasteEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_middle_mouse_paste_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isMiddleMousePasteEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_middle_mouse_paste_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setEmptySelectionClipboardEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_empty_selection_clipboard_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isEmptySelectionClipboardEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_empty_selection_clipboard_enabled")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val setTextName: MethodStringName1<TextEdit, Unit, String> =
         MethodStringName1<TextEdit, Unit, String>("set_text")
 
-    @JvmStatic
+    @JvmField
     public val getTextName: MethodStringName0<TextEdit, String> =
         MethodStringName0<TextEdit, String>("get_text")
 
-    @JvmStatic
+    @JvmField
     public val getLineCountName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_line_count")
 
-    @JvmStatic
+    @JvmField
     public val setPlaceholderName: MethodStringName1<TextEdit, Unit, String> =
         MethodStringName1<TextEdit, Unit, String>("set_placeholder")
 
-    @JvmStatic
+    @JvmField
     public val getPlaceholderName: MethodStringName0<TextEdit, String> =
         MethodStringName0<TextEdit, String>("get_placeholder")
 
-    @JvmStatic
+    @JvmField
     public val setLineName: MethodStringName2<TextEdit, Unit, Int, String> =
         MethodStringName2<TextEdit, Unit, Int, String>("set_line")
 
-    @JvmStatic
+    @JvmField
     public val getLineName: MethodStringName1<TextEdit, String, Int> =
         MethodStringName1<TextEdit, String, Int>("get_line")
 
-    @JvmStatic
+    @JvmField
     public val getLineWithImeName: MethodStringName1<TextEdit, String, Int> =
         MethodStringName1<TextEdit, String, Int>("get_line_with_ime")
 
-    @JvmStatic
+    @JvmField
     public val getLineWidthName: MethodStringName2<TextEdit, Int, Int, Int> =
         MethodStringName2<TextEdit, Int, Int, Int>("get_line_width")
 
-    @JvmStatic
+    @JvmField
     public val getLineHeightName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_line_height")
 
-    @JvmStatic
+    @JvmField
     public val getIndentLevelName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_indent_level")
 
-    @JvmStatic
+    @JvmField
     public val getFirstNonWhitespaceColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_first_non_whitespace_column")
 
-    @JvmStatic
+    @JvmField
     public val swapLinesName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("swap_lines")
 
-    @JvmStatic
+    @JvmField
     public val insertLineAtName: MethodStringName2<TextEdit, Unit, Int, String> =
         MethodStringName2<TextEdit, Unit, Int, String>("insert_line_at")
 
-    @JvmStatic
+    @JvmField
     public val removeLineAtName: MethodStringName2<TextEdit, Unit, Int, Boolean> =
         MethodStringName2<TextEdit, Unit, Int, Boolean>("remove_line_at")
 
-    @JvmStatic
+    @JvmField
     public val insertTextAtCaretName: MethodStringName2<TextEdit, Unit, String, Int> =
         MethodStringName2<TextEdit, Unit, String, Int>("insert_text_at_caret")
 
-    @JvmStatic
+    @JvmField
     public val insertTextName: MethodStringName5<TextEdit, Unit, String, Int, Int, Boolean, Boolean>
         = MethodStringName5<TextEdit, Unit, String, Int, Int, Boolean, Boolean>("insert_text")
 
-    @JvmStatic
+    @JvmField
     public val removeTextName: MethodStringName4<TextEdit, Unit, Int, Int, Int, Int> =
         MethodStringName4<TextEdit, Unit, Int, Int, Int, Int>("remove_text")
 
-    @JvmStatic
+    @JvmField
     public val getLastUnhiddenLineName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_last_unhidden_line")
 
-    @JvmStatic
+    @JvmField
     public val getNextVisibleLineOffsetFromName: MethodStringName2<TextEdit, Int, Int, Int> =
         MethodStringName2<TextEdit, Int, Int, Int>("get_next_visible_line_offset_from")
 
-    @JvmStatic
+    @JvmField
     public val getNextVisibleLineIndexOffsetFromName:
         MethodStringName3<TextEdit, Vector2i, Int, Int, Int> =
         MethodStringName3<TextEdit, Vector2i, Int, Int, Int>("get_next_visible_line_index_offset_from")
 
-    @JvmStatic
+    @JvmField
     public val backspaceName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("backspace")
 
-    @JvmStatic
+    @JvmField
     public val cutName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("cut")
 
-    @JvmStatic
+    @JvmField
     public val copyName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("copy")
 
-    @JvmStatic
+    @JvmField
     public val pasteName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("paste")
 
-    @JvmStatic
+    @JvmField
     public val pastePrimaryClipboardName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("paste_primary_clipboard")
 
-    @JvmStatic
+    @JvmField
     public val startActionName: MethodStringName1<TextEdit, Unit, EditAction> =
         MethodStringName1<TextEdit, Unit, EditAction>("start_action")
 
-    @JvmStatic
+    @JvmField
     public val endActionName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("end_action")
 
-    @JvmStatic
+    @JvmField
     public val beginComplexOperationName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("begin_complex_operation")
 
-    @JvmStatic
+    @JvmField
     public val endComplexOperationName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("end_complex_operation")
 
-    @JvmStatic
+    @JvmField
     public val hasUndoName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("has_undo")
 
-    @JvmStatic
+    @JvmField
     public val hasRedoName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("has_redo")
 
-    @JvmStatic
+    @JvmField
     public val undoName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("undo")
 
-    @JvmStatic
+    @JvmField
     public val redoName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("redo")
 
-    @JvmStatic
+    @JvmField
     public val clearUndoHistoryName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("clear_undo_history")
 
-    @JvmStatic
+    @JvmField
     public val tagSavedVersionName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("tag_saved_version")
 
-    @JvmStatic
+    @JvmField
     public val getVersionName: MethodStringName0<TextEdit, Long> =
         MethodStringName0<TextEdit, Long>("get_version")
 
-    @JvmStatic
+    @JvmField
     public val getSavedVersionName: MethodStringName0<TextEdit, Long> =
         MethodStringName0<TextEdit, Long>("get_saved_version")
 
-    @JvmStatic
+    @JvmField
     public val setSearchTextName: MethodStringName1<TextEdit, Unit, String> =
         MethodStringName1<TextEdit, Unit, String>("set_search_text")
 
-    @JvmStatic
+    @JvmField
     public val setSearchFlagsName: MethodStringName1<TextEdit, Unit, Long> =
         MethodStringName1<TextEdit, Unit, Long>("set_search_flags")
 
-    @JvmStatic
+    @JvmField
     public val searchName: MethodStringName4<TextEdit, Vector2i, String, Long, Int, Int> =
         MethodStringName4<TextEdit, Vector2i, String, Long, Int, Int>("search")
 
-    @JvmStatic
+    @JvmField
     public val setTooltipRequestFuncName: MethodStringName1<TextEdit, Unit, Callable> =
         MethodStringName1<TextEdit, Unit, Callable>("set_tooltip_request_func")
 
-    @JvmStatic
+    @JvmField
     public val getLocalMousePosName: MethodStringName0<TextEdit, Vector2> =
         MethodStringName0<TextEdit, Vector2>("get_local_mouse_pos")
 
-    @JvmStatic
+    @JvmField
     public val getWordAtPosName: MethodStringName1<TextEdit, String, Vector2> =
         MethodStringName1<TextEdit, String, Vector2>("get_word_at_pos")
 
-    @JvmStatic
+    @JvmField
     public val getLineColumnAtPosName:
         MethodStringName3<TextEdit, Vector2i, Vector2i, Boolean, Boolean> =
         MethodStringName3<TextEdit, Vector2i, Vector2i, Boolean, Boolean>("get_line_column_at_pos")
 
-    @JvmStatic
+    @JvmField
     public val getPosAtLineColumnName: MethodStringName2<TextEdit, Vector2i, Int, Int> =
         MethodStringName2<TextEdit, Vector2i, Int, Int>("get_pos_at_line_column")
 
-    @JvmStatic
+    @JvmField
     public val getRectAtLineColumnName: MethodStringName2<TextEdit, Rect2i, Int, Int> =
         MethodStringName2<TextEdit, Rect2i, Int, Int>("get_rect_at_line_column")
 
-    @JvmStatic
+    @JvmField
     public val getMinimapLineAtPosName: MethodStringName1<TextEdit, Int, Vector2i> =
         MethodStringName1<TextEdit, Int, Vector2i>("get_minimap_line_at_pos")
 
-    @JvmStatic
+    @JvmField
     public val isDraggingCursorName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_dragging_cursor")
 
-    @JvmStatic
+    @JvmField
     public val isMouseOverSelectionName: MethodStringName2<TextEdit, Boolean, Boolean, Int> =
         MethodStringName2<TextEdit, Boolean, Boolean, Int>("is_mouse_over_selection")
 
-    @JvmStatic
+    @JvmField
     public val setCaretTypeName: MethodStringName1<TextEdit, Unit, CaretType> =
         MethodStringName1<TextEdit, Unit, CaretType>("set_caret_type")
 
-    @JvmStatic
+    @JvmField
     public val getCaretTypeName: MethodStringName0<TextEdit, CaretType> =
         MethodStringName0<TextEdit, CaretType>("get_caret_type")
 
-    @JvmStatic
+    @JvmField
     public val setCaretBlinkEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_caret_blink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isCaretBlinkEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_caret_blink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCaretBlinkIntervalName: MethodStringName1<TextEdit, Unit, Float> =
         MethodStringName1<TextEdit, Unit, Float>("set_caret_blink_interval")
 
-    @JvmStatic
+    @JvmField
     public val getCaretBlinkIntervalName: MethodStringName0<TextEdit, Float> =
         MethodStringName0<TextEdit, Float>("get_caret_blink_interval")
 
-    @JvmStatic
+    @JvmField
     public val setDrawCaretWhenEditableDisabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_draw_caret_when_editable_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDrawingCaretWhenEditableDisabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_drawing_caret_when_editable_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setMoveCaretOnRightClickEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_move_caret_on_right_click_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isMoveCaretOnRightClickEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_move_caret_on_right_click_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCaretMidGraphemeEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_caret_mid_grapheme_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isCaretMidGraphemeEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_caret_mid_grapheme_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setMultipleCaretsEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_multiple_carets_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isMultipleCaretsEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_multiple_carets_enabled")
 
-    @JvmStatic
+    @JvmField
     public val addCaretName: MethodStringName2<TextEdit, Int, Int, Int> =
         MethodStringName2<TextEdit, Int, Int, Int>("add_caret")
 
-    @JvmStatic
+    @JvmField
     public val removeCaretName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("remove_caret")
 
-    @JvmStatic
+    @JvmField
     public val removeSecondaryCaretsName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("remove_secondary_carets")
 
-    @JvmStatic
+    @JvmField
     public val getCaretCountName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_caret_count")
 
-    @JvmStatic
+    @JvmField
     public val addCaretAtCaretsName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("add_caret_at_carets")
 
-    @JvmStatic
+    @JvmField
     public val getSortedCaretsName: MethodStringName1<TextEdit, PackedInt32Array, Boolean> =
         MethodStringName1<TextEdit, PackedInt32Array, Boolean>("get_sorted_carets")
 
-    @JvmStatic
+    @JvmField
     public val collapseCaretsName: MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Boolean> =
         MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Boolean>("collapse_carets")
 
-    @JvmStatic
+    @JvmField
     public val mergeOverlappingCaretsName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("merge_overlapping_carets")
 
-    @JvmStatic
+    @JvmField
     public val beginMulticaretEditName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("begin_multicaret_edit")
 
-    @JvmStatic
+    @JvmField
     public val endMulticaretEditName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("end_multicaret_edit")
 
-    @JvmStatic
+    @JvmField
     public val isInMulitcaretEditName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_in_mulitcaret_edit")
 
-    @JvmStatic
+    @JvmField
     public val multicaretEditIgnoreCaretName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("multicaret_edit_ignore_caret")
 
-    @JvmStatic
+    @JvmField
     public val isCaretVisibleName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_caret_visible")
 
-    @JvmStatic
+    @JvmField
     public val getCaretDrawPosName: MethodStringName1<TextEdit, Vector2, Int> =
         MethodStringName1<TextEdit, Vector2, Int>("get_caret_draw_pos")
 
-    @JvmStatic
+    @JvmField
     public val setCaretLineName: MethodStringName5<TextEdit, Unit, Int, Boolean, Boolean, Int, Int>
         = MethodStringName5<TextEdit, Unit, Int, Boolean, Boolean, Int, Int>("set_caret_line")
 
-    @JvmStatic
+    @JvmField
     public val getCaretLineName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_caret_line")
 
-    @JvmStatic
+    @JvmField
     public val setCaretColumnName: MethodStringName3<TextEdit, Unit, Int, Boolean, Int> =
         MethodStringName3<TextEdit, Unit, Int, Boolean, Int>("set_caret_column")
 
-    @JvmStatic
+    @JvmField
     public val getCaretColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_caret_column")
 
-    @JvmStatic
+    @JvmField
     public val getCaretWrapIndexName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_caret_wrap_index")
 
-    @JvmStatic
+    @JvmField
     public val getWordUnderCaretName: MethodStringName1<TextEdit, String, Int> =
         MethodStringName1<TextEdit, String, Int>("get_word_under_caret")
 
-    @JvmStatic
+    @JvmField
     public val setUseDefaultWordSeparatorsName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_use_default_word_separators")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultWordSeparatorsEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_default_word_separators_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setUseCustomWordSeparatorsName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_use_custom_word_separators")
 
-    @JvmStatic
+    @JvmField
     public val isCustomWordSeparatorsEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_custom_word_separators_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCustomWordSeparatorsName: MethodStringName1<TextEdit, Unit, String> =
         MethodStringName1<TextEdit, Unit, String>("set_custom_word_separators")
 
-    @JvmStatic
+    @JvmField
     public val getCustomWordSeparatorsName: MethodStringName0<TextEdit, String> =
         MethodStringName0<TextEdit, String>("get_custom_word_separators")
 
-    @JvmStatic
+    @JvmField
     public val setSelectingEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_selecting_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isSelectingEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_selecting_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDeselectOnFocusLossEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_deselect_on_focus_loss_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDeselectOnFocusLossEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_deselect_on_focus_loss_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDragAndDropSelectionEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_drag_and_drop_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDragAndDropSelectionEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_drag_and_drop_selection_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSelectionModeName: MethodStringName1<TextEdit, Unit, SelectionMode> =
         MethodStringName1<TextEdit, Unit, SelectionMode>("set_selection_mode")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionModeName: MethodStringName0<TextEdit, SelectionMode> =
         MethodStringName0<TextEdit, SelectionMode>("get_selection_mode")
 
-    @JvmStatic
+    @JvmField
     public val selectAllName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("select_all")
 
-    @JvmStatic
+    @JvmField
     public val selectWordUnderCaretName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("select_word_under_caret")
 
-    @JvmStatic
+    @JvmField
     public val addSelectionForNextOccurrenceName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("add_selection_for_next_occurrence")
 
-    @JvmStatic
+    @JvmField
     public val skipSelectionForNextOccurrenceName: MethodStringName0<TextEdit, Unit> =
         MethodStringName0<TextEdit, Unit>("skip_selection_for_next_occurrence")
 
-    @JvmStatic
+    @JvmField
     public val selectName: MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Int> =
         MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Int>("select")
 
-    @JvmStatic
+    @JvmField
     public val hasSelectionName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("has_selection")
 
-    @JvmStatic
+    @JvmField
     public val getSelectedTextName: MethodStringName1<TextEdit, String, Int> =
         MethodStringName1<TextEdit, String, Int>("get_selected_text")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionAtLineColumnName:
         MethodStringName4<TextEdit, Int, Int, Int, Boolean, Boolean> =
         MethodStringName4<TextEdit, Int, Int, Int, Boolean, Boolean>("get_selection_at_line_column")
 
-    @JvmStatic
+    @JvmField
     public val getLineRangesFromCaretsName:
         MethodStringName2<TextEdit, VariantArray<Vector2i>, Boolean, Boolean> =
         MethodStringName2<TextEdit, VariantArray<Vector2i>, Boolean, Boolean>("get_line_ranges_from_carets")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionOriginLineName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_origin_line")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionOriginColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_origin_column")
 
-    @JvmStatic
+    @JvmField
     public val setSelectionOriginLineName: MethodStringName4<TextEdit, Unit, Int, Boolean, Int, Int>
         = MethodStringName4<TextEdit, Unit, Int, Boolean, Int, Int>("set_selection_origin_line")
 
-    @JvmStatic
+    @JvmField
     public val setSelectionOriginColumnName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_selection_origin_column")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionFromLineName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_from_line")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionFromColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_from_column")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionToLineName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_to_line")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionToColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_to_column")
 
-    @JvmStatic
+    @JvmField
     public val isCaretAfterSelectionOriginName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_caret_after_selection_origin")
 
-    @JvmStatic
+    @JvmField
     public val deselectName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("deselect")
 
-    @JvmStatic
+    @JvmField
     public val deleteSelectionName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("delete_selection")
 
-    @JvmStatic
+    @JvmField
     public val setLineWrappingModeName: MethodStringName1<TextEdit, Unit, LineWrappingMode> =
         MethodStringName1<TextEdit, Unit, LineWrappingMode>("set_line_wrapping_mode")
 
-    @JvmStatic
+    @JvmField
     public val getLineWrappingModeName: MethodStringName0<TextEdit, LineWrappingMode> =
         MethodStringName0<TextEdit, LineWrappingMode>("get_line_wrapping_mode")
 
-    @JvmStatic
+    @JvmField
     public val setAutowrapModeName: MethodStringName1<TextEdit, Unit, TextServer.AutowrapMode> =
         MethodStringName1<TextEdit, Unit, TextServer.AutowrapMode>("set_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val getAutowrapModeName: MethodStringName0<TextEdit, TextServer.AutowrapMode> =
         MethodStringName0<TextEdit, TextServer.AutowrapMode>("get_autowrap_mode")
 
-    @JvmStatic
+    @JvmField
     public val isLineWrappedName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_line_wrapped")
 
-    @JvmStatic
+    @JvmField
     public val getLineWrapCountName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_line_wrap_count")
 
-    @JvmStatic
+    @JvmField
     public val getLineWrapIndexAtColumnName: MethodStringName2<TextEdit, Int, Int, Int> =
         MethodStringName2<TextEdit, Int, Int, Int>("get_line_wrap_index_at_column")
 
-    @JvmStatic
+    @JvmField
     public val getLineWrappedTextName: MethodStringName1<TextEdit, PackedStringArray, Int> =
         MethodStringName1<TextEdit, PackedStringArray, Int>("get_line_wrapped_text")
 
-    @JvmStatic
+    @JvmField
     public val setSmoothScrollEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_smooth_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isSmoothScrollEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_smooth_scroll_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollBarName: MethodStringName0<TextEdit, VScrollBar?> =
         MethodStringName0<TextEdit, VScrollBar?>("get_v_scroll_bar")
 
-    @JvmStatic
+    @JvmField
     public val getHScrollBarName: MethodStringName0<TextEdit, HScrollBar?> =
         MethodStringName0<TextEdit, HScrollBar?>("get_h_scroll_bar")
 
-    @JvmStatic
+    @JvmField
     public val setVScrollName: MethodStringName1<TextEdit, Unit, Double> =
         MethodStringName1<TextEdit, Unit, Double>("set_v_scroll")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollName: MethodStringName0<TextEdit, Double> =
         MethodStringName0<TextEdit, Double>("get_v_scroll")
 
-    @JvmStatic
+    @JvmField
     public val setHScrollName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("set_h_scroll")
 
-    @JvmStatic
+    @JvmField
     public val getHScrollName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_h_scroll")
 
-    @JvmStatic
+    @JvmField
     public val setScrollPastEndOfFileEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_scroll_past_end_of_file_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isScrollPastEndOfFileEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_scroll_past_end_of_file_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setVScrollSpeedName: MethodStringName1<TextEdit, Unit, Float> =
         MethodStringName1<TextEdit, Unit, Float>("set_v_scroll_speed")
 
-    @JvmStatic
+    @JvmField
     public val getVScrollSpeedName: MethodStringName0<TextEdit, Float> =
         MethodStringName0<TextEdit, Float>("get_v_scroll_speed")
 
-    @JvmStatic
+    @JvmField
     public val setFitContentHeightEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_fit_content_height_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isFitContentHeightEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_fit_content_height_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setFitContentWidthEnabledName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_fit_content_width_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isFitContentWidthEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_fit_content_width_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getScrollPosForLineName: MethodStringName2<TextEdit, Double, Int, Int> =
         MethodStringName2<TextEdit, Double, Int, Int>("get_scroll_pos_for_line")
 
-    @JvmStatic
+    @JvmField
     public val setLineAsFirstVisibleName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_line_as_first_visible")
 
-    @JvmStatic
+    @JvmField
     public val getFirstVisibleLineName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_first_visible_line")
 
-    @JvmStatic
+    @JvmField
     public val setLineAsCenterVisibleName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_line_as_center_visible")
 
-    @JvmStatic
+    @JvmField
     public val setLineAsLastVisibleName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_line_as_last_visible")
 
-    @JvmStatic
+    @JvmField
     public val getLastFullVisibleLineName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_last_full_visible_line")
 
-    @JvmStatic
+    @JvmField
     public val getLastFullVisibleLineWrapIndexName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_last_full_visible_line_wrap_index")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleLineCountName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_visible_line_count")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleLineCountInRangeName: MethodStringName2<TextEdit, Int, Int, Int> =
         MethodStringName2<TextEdit, Int, Int, Int>("get_visible_line_count_in_range")
 
-    @JvmStatic
+    @JvmField
     public val getTotalVisibleLineCountName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_total_visible_line_count")
 
-    @JvmStatic
+    @JvmField
     public val adjustViewportToCaretName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("adjust_viewport_to_caret")
 
-    @JvmStatic
+    @JvmField
     public val centerViewportToCaretName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("center_viewport_to_caret")
 
-    @JvmStatic
+    @JvmField
     public val setDrawMinimapName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_draw_minimap")
 
-    @JvmStatic
+    @JvmField
     public val isDrawingMinimapName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_drawing_minimap")
 
-    @JvmStatic
+    @JvmField
     public val setMinimapWidthName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("set_minimap_width")
 
-    @JvmStatic
+    @JvmField
     public val getMinimapWidthName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_minimap_width")
 
-    @JvmStatic
+    @JvmField
     public val getMinimapVisibleLinesName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_minimap_visible_lines")
 
-    @JvmStatic
+    @JvmField
     public val addGutterName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("add_gutter")
 
-    @JvmStatic
+    @JvmField
     public val removeGutterName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("remove_gutter")
 
-    @JvmStatic
+    @JvmField
     public val getGutterCountName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_gutter_count")
 
-    @JvmStatic
+    @JvmField
     public val setGutterNameName: MethodStringName2<TextEdit, Unit, Int, String> =
         MethodStringName2<TextEdit, Unit, Int, String>("set_gutter_name")
 
-    @JvmStatic
+    @JvmField
     public val getGutterNameName: MethodStringName1<TextEdit, String, Int> =
         MethodStringName1<TextEdit, String, Int>("get_gutter_name")
 
-    @JvmStatic
+    @JvmField
     public val setGutterTypeName: MethodStringName2<TextEdit, Unit, Int, GutterType> =
         MethodStringName2<TextEdit, Unit, Int, GutterType>("set_gutter_type")
 
-    @JvmStatic
+    @JvmField
     public val getGutterTypeName: MethodStringName1<TextEdit, GutterType, Int> =
         MethodStringName1<TextEdit, GutterType, Int>("get_gutter_type")
 
-    @JvmStatic
+    @JvmField
     public val setGutterWidthName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("set_gutter_width")
 
-    @JvmStatic
+    @JvmField
     public val getGutterWidthName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_gutter_width")
 
-    @JvmStatic
+    @JvmField
     public val setGutterDrawName: MethodStringName2<TextEdit, Unit, Int, Boolean> =
         MethodStringName2<TextEdit, Unit, Int, Boolean>("set_gutter_draw")
 
-    @JvmStatic
+    @JvmField
     public val isGutterDrawnName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_gutter_drawn")
 
-    @JvmStatic
+    @JvmField
     public val setGutterClickableName: MethodStringName2<TextEdit, Unit, Int, Boolean> =
         MethodStringName2<TextEdit, Unit, Int, Boolean>("set_gutter_clickable")
 
-    @JvmStatic
+    @JvmField
     public val isGutterClickableName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_gutter_clickable")
 
-    @JvmStatic
+    @JvmField
     public val setGutterOverwritableName: MethodStringName2<TextEdit, Unit, Int, Boolean> =
         MethodStringName2<TextEdit, Unit, Int, Boolean>("set_gutter_overwritable")
 
-    @JvmStatic
+    @JvmField
     public val isGutterOverwritableName: MethodStringName1<TextEdit, Boolean, Int> =
         MethodStringName1<TextEdit, Boolean, Int>("is_gutter_overwritable")
 
-    @JvmStatic
+    @JvmField
     public val mergeGuttersName: MethodStringName2<TextEdit, Unit, Int, Int> =
         MethodStringName2<TextEdit, Unit, Int, Int>("merge_gutters")
 
-    @JvmStatic
+    @JvmField
     public val setGutterCustomDrawName: MethodStringName2<TextEdit, Unit, Int, Callable> =
         MethodStringName2<TextEdit, Unit, Int, Callable>("set_gutter_custom_draw")
 
-    @JvmStatic
+    @JvmField
     public val getTotalGutterWidthName: MethodStringName0<TextEdit, Int> =
         MethodStringName0<TextEdit, Int>("get_total_gutter_width")
 
-    @JvmStatic
+    @JvmField
     public val setLineGutterMetadataName: MethodStringName3<TextEdit, Unit, Int, Int, Any?> =
         MethodStringName3<TextEdit, Unit, Int, Int, Any?>("set_line_gutter_metadata")
 
-    @JvmStatic
+    @JvmField
     public val getLineGutterMetadataName: MethodStringName2<TextEdit, Any?, Int, Int> =
         MethodStringName2<TextEdit, Any?, Int, Int>("get_line_gutter_metadata")
 
-    @JvmStatic
+    @JvmField
     public val setLineGutterTextName: MethodStringName3<TextEdit, Unit, Int, Int, String> =
         MethodStringName3<TextEdit, Unit, Int, Int, String>("set_line_gutter_text")
 
-    @JvmStatic
+    @JvmField
     public val getLineGutterTextName: MethodStringName2<TextEdit, String, Int, Int> =
         MethodStringName2<TextEdit, String, Int, Int>("get_line_gutter_text")
 
-    @JvmStatic
+    @JvmField
     public val setLineGutterIconName: MethodStringName3<TextEdit, Unit, Int, Int, Texture2D?> =
         MethodStringName3<TextEdit, Unit, Int, Int, Texture2D?>("set_line_gutter_icon")
 
-    @JvmStatic
+    @JvmField
     public val getLineGutterIconName: MethodStringName2<TextEdit, Texture2D?, Int, Int> =
         MethodStringName2<TextEdit, Texture2D?, Int, Int>("get_line_gutter_icon")
 
-    @JvmStatic
+    @JvmField
     public val setLineGutterItemColorName: MethodStringName3<TextEdit, Unit, Int, Int, Color> =
         MethodStringName3<TextEdit, Unit, Int, Int, Color>("set_line_gutter_item_color")
 
-    @JvmStatic
+    @JvmField
     public val getLineGutterItemColorName: MethodStringName2<TextEdit, Color, Int, Int> =
         MethodStringName2<TextEdit, Color, Int, Int>("get_line_gutter_item_color")
 
-    @JvmStatic
+    @JvmField
     public val setLineGutterClickableName: MethodStringName3<TextEdit, Unit, Int, Int, Boolean> =
         MethodStringName3<TextEdit, Unit, Int, Int, Boolean>("set_line_gutter_clickable")
 
-    @JvmStatic
+    @JvmField
     public val isLineGutterClickableName: MethodStringName2<TextEdit, Boolean, Int, Int> =
         MethodStringName2<TextEdit, Boolean, Int, Int>("is_line_gutter_clickable")
 
-    @JvmStatic
+    @JvmField
     public val setLineBackgroundColorName: MethodStringName2<TextEdit, Unit, Int, Color> =
         MethodStringName2<TextEdit, Unit, Int, Color>("set_line_background_color")
 
-    @JvmStatic
+    @JvmField
     public val getLineBackgroundColorName: MethodStringName1<TextEdit, Color, Int> =
         MethodStringName1<TextEdit, Color, Int>("get_line_background_color")
 
-    @JvmStatic
+    @JvmField
     public val setSyntaxHighlighterName: MethodStringName1<TextEdit, Unit, SyntaxHighlighter?> =
         MethodStringName1<TextEdit, Unit, SyntaxHighlighter?>("set_syntax_highlighter")
 
-    @JvmStatic
+    @JvmField
     public val getSyntaxHighlighterName: MethodStringName0<TextEdit, SyntaxHighlighter?> =
         MethodStringName0<TextEdit, SyntaxHighlighter?>("get_syntax_highlighter")
 
-    @JvmStatic
+    @JvmField
     public val setHighlightCurrentLineName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_highlight_current_line")
 
-    @JvmStatic
+    @JvmField
     public val isHighlightCurrentLineEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_highlight_current_line_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setHighlightAllOccurrencesName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_highlight_all_occurrences")
 
-    @JvmStatic
+    @JvmField
     public val isHighlightAllOccurrencesEnabledName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_highlight_all_occurrences_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getDrawControlCharsName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("get_draw_control_chars")
 
-    @JvmStatic
+    @JvmField
     public val setDrawControlCharsName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_draw_control_chars")
 
-    @JvmStatic
+    @JvmField
     public val setDrawTabsName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_draw_tabs")
 
-    @JvmStatic
+    @JvmField
     public val isDrawingTabsName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_drawing_tabs")
 
-    @JvmStatic
+    @JvmField
     public val setDrawSpacesName: MethodStringName1<TextEdit, Unit, Boolean> =
         MethodStringName1<TextEdit, Unit, Boolean>("set_draw_spaces")
 
-    @JvmStatic
+    @JvmField
     public val isDrawingSpacesName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_drawing_spaces")
 
-    @JvmStatic
+    @JvmField
     public val getMenuName: MethodStringName0<TextEdit, PopupMenu?> =
         MethodStringName0<TextEdit, PopupMenu?>("get_menu")
 
-    @JvmStatic
+    @JvmField
     public val isMenuVisibleName: MethodStringName0<TextEdit, Boolean> =
         MethodStringName0<TextEdit, Boolean>("is_menu_visible")
 
-    @JvmStatic
+    @JvmField
     public val menuOptionName: MethodStringName1<TextEdit, Unit, Int> =
         MethodStringName1<TextEdit, Unit, Int>("menu_option")
 
-    @JvmStatic
+    @JvmField
     public val adjustCaretsAfterEditName: MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Int>
         = MethodStringName5<TextEdit, Unit, Int, Int, Int, Int, Int>("adjust_carets_after_edit")
 
-    @JvmStatic
+    @JvmField
     public val getCaretIndexEditOrderName: MethodStringName0<TextEdit, PackedInt32Array> =
         MethodStringName0<TextEdit, PackedInt32Array>("get_caret_index_edit_order")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionLineName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_line")
 
-    @JvmStatic
+    @JvmField
     public val getSelectionColumnName: MethodStringName1<TextEdit, Int, Int> =
         MethodStringName1<TextEdit, Int, Int>("get_selection_column")
   }

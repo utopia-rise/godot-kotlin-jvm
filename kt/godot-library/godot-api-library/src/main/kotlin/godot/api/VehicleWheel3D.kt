@@ -24,8 +24,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node used as a child of a [VehicleBody3D] parent to simulate the behavior of one of its wheels.
@@ -451,139 +451,139 @@ public open class VehicleWheel3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_radius")
 
-    @JvmStatic
+    @JvmField
     public val setSuspensionRestLengthName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_suspension_rest_length")
 
-    @JvmStatic
+    @JvmField
     public val getSuspensionRestLengthName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_suspension_rest_length")
 
-    @JvmStatic
+    @JvmField
     public val setSuspensionTravelName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_suspension_travel")
 
-    @JvmStatic
+    @JvmField
     public val getSuspensionTravelName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_suspension_travel")
 
-    @JvmStatic
+    @JvmField
     public val setSuspensionStiffnessName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_suspension_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val getSuspensionStiffnessName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_suspension_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val setSuspensionMaxForceName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_suspension_max_force")
 
-    @JvmStatic
+    @JvmField
     public val getSuspensionMaxForceName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_suspension_max_force")
 
-    @JvmStatic
+    @JvmField
     public val setDampingCompressionName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_damping_compression")
 
-    @JvmStatic
+    @JvmField
     public val getDampingCompressionName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_damping_compression")
 
-    @JvmStatic
+    @JvmField
     public val setDampingRelaxationName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_damping_relaxation")
 
-    @JvmStatic
+    @JvmField
     public val getDampingRelaxationName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_damping_relaxation")
 
-    @JvmStatic
+    @JvmField
     public val setUseAsTractionName: MethodStringName1<VehicleWheel3D, Unit, Boolean> =
         MethodStringName1<VehicleWheel3D, Unit, Boolean>("set_use_as_traction")
 
-    @JvmStatic
+    @JvmField
     public val isUsedAsTractionName: MethodStringName0<VehicleWheel3D, Boolean> =
         MethodStringName0<VehicleWheel3D, Boolean>("is_used_as_traction")
 
-    @JvmStatic
+    @JvmField
     public val setUseAsSteeringName: MethodStringName1<VehicleWheel3D, Unit, Boolean> =
         MethodStringName1<VehicleWheel3D, Unit, Boolean>("set_use_as_steering")
 
-    @JvmStatic
+    @JvmField
     public val isUsedAsSteeringName: MethodStringName0<VehicleWheel3D, Boolean> =
         MethodStringName0<VehicleWheel3D, Boolean>("is_used_as_steering")
 
-    @JvmStatic
+    @JvmField
     public val setFrictionSlipName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_friction_slip")
 
-    @JvmStatic
+    @JvmField
     public val getFrictionSlipName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_friction_slip")
 
-    @JvmStatic
+    @JvmField
     public val isInContactName: MethodStringName0<VehicleWheel3D, Boolean> =
         MethodStringName0<VehicleWheel3D, Boolean>("is_in_contact")
 
-    @JvmStatic
+    @JvmField
     public val getContactBodyName: MethodStringName0<VehicleWheel3D, Node3D?> =
         MethodStringName0<VehicleWheel3D, Node3D?>("get_contact_body")
 
-    @JvmStatic
+    @JvmField
     public val getContactPointName: MethodStringName0<VehicleWheel3D, Vector3> =
         MethodStringName0<VehicleWheel3D, Vector3>("get_contact_point")
 
-    @JvmStatic
+    @JvmField
     public val getContactNormalName: MethodStringName0<VehicleWheel3D, Vector3> =
         MethodStringName0<VehicleWheel3D, Vector3>("get_contact_normal")
 
-    @JvmStatic
+    @JvmField
     public val setRollInfluenceName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_roll_influence")
 
-    @JvmStatic
+    @JvmField
     public val getRollInfluenceName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_roll_influence")
 
-    @JvmStatic
+    @JvmField
     public val getSkidinfoName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_skidinfo")
 
-    @JvmStatic
+    @JvmField
     public val getRpmName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_rpm")
 
-    @JvmStatic
+    @JvmField
     public val setEngineForceName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_engine_force")
 
-    @JvmStatic
+    @JvmField
     public val getEngineForceName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_engine_force")
 
-    @JvmStatic
+    @JvmField
     public val setBrakeName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_brake")
 
-    @JvmStatic
+    @JvmField
     public val getBrakeName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_brake")
 
-    @JvmStatic
+    @JvmField
     public val setSteeringName: MethodStringName1<VehicleWheel3D, Unit, Float> =
         MethodStringName1<VehicleWheel3D, Unit, Float>("set_steering")
 
-    @JvmStatic
+    @JvmField
     public val getSteeringName: MethodStringName0<VehicleWheel3D, Float> =
         MethodStringName0<VehicleWheel3D, Float>("get_steering")
   }

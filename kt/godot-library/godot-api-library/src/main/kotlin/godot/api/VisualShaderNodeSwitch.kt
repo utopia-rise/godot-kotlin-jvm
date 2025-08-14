@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Returns an associated value of the [opType] type if the provided boolean value is `true` or
@@ -105,11 +105,11 @@ public open class VisualShaderNodeSwitch : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeSwitch, Unit, OpType> =
         MethodStringName1<VisualShaderNodeSwitch, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeSwitch, OpType> =
         MethodStringName0<VisualShaderNodeSwitch, OpType>("get_op_type")
   }

@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -58,11 +59,11 @@ public open class AnimationNodeExtension : AnimationNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isLoopingName: MethodStringName1<AnimationNodeExtension, Boolean, PackedFloat32Array>
         = MethodStringName1<AnimationNodeExtension, Boolean, PackedFloat32Array>("is_looping")
 
-    @JvmStatic
+    @JvmField
     public val getRemainingTimeName:
         MethodStringName2<AnimationNodeExtension, Double, PackedFloat32Array, Boolean> =
         MethodStringName2<AnimationNodeExtension, Double, PackedFloat32Array, Boolean>("get_remaining_time")

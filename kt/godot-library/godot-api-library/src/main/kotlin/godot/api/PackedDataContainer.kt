@@ -20,7 +20,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is
@@ -87,11 +87,11 @@ public open class PackedDataContainer : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val packName: MethodStringName1<PackedDataContainer, Error, Any?> =
         MethodStringName1<PackedDataContainer, Error, Any?>("pack")
 
-    @JvmStatic
+    @JvmField
     public val sizeName: MethodStringName0<PackedDataContainer, Int> =
         MethodStringName0<PackedDataContainer, Int>("size")
   }

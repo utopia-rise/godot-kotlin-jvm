@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 3D sphere shape, intended for use in physics. Usually used to provide a shape for a
@@ -58,11 +58,11 @@ public open class SphereShape3D : Shape3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRadiusName: MethodStringName1<SphereShape3D, Unit, Float> =
         MethodStringName1<SphereShape3D, Unit, Float>("set_radius")
 
-    @JvmStatic
+    @JvmField
     public val getRadiusName: MethodStringName0<SphereShape3D, Float> =
         MethodStringName0<SphereShape3D, Float>("get_radius")
   }

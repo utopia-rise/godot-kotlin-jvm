@@ -23,7 +23,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: RetargetModifier3D.TransformFlag): Long = this.or(other.flag)
 
@@ -236,51 +235,51 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setProfileName: MethodStringName1<RetargetModifier3D, Unit, SkeletonProfile?> =
         MethodStringName1<RetargetModifier3D, Unit, SkeletonProfile?>("set_profile")
 
-    @JvmStatic
+    @JvmField
     public val getProfileName: MethodStringName0<RetargetModifier3D, SkeletonProfile?> =
         MethodStringName0<RetargetModifier3D, SkeletonProfile?>("get_profile")
 
-    @JvmStatic
+    @JvmField
     public val setUseGlobalPoseName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
         MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_use_global_pose")
 
-    @JvmStatic
+    @JvmField
     public val isUsingGlobalPoseName: MethodStringName0<RetargetModifier3D, Boolean> =
         MethodStringName0<RetargetModifier3D, Boolean>("is_using_global_pose")
 
-    @JvmStatic
+    @JvmField
     public val setEnableFlagsName: MethodStringName1<RetargetModifier3D, Unit, TransformFlag> =
         MethodStringName1<RetargetModifier3D, Unit, TransformFlag>("set_enable_flags")
 
-    @JvmStatic
+    @JvmField
     public val getEnableFlagsName: MethodStringName0<RetargetModifier3D, TransformFlag> =
         MethodStringName0<RetargetModifier3D, TransformFlag>("get_enable_flags")
 
-    @JvmStatic
+    @JvmField
     public val setPositionEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
         MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_position_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPositionEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
         MethodStringName0<RetargetModifier3D, Boolean>("is_position_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setRotationEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
         MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_rotation_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isRotationEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
         MethodStringName0<RetargetModifier3D, Boolean>("is_rotation_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setScaleEnabledName: MethodStringName1<RetargetModifier3D, Unit, Boolean> =
         MethodStringName1<RetargetModifier3D, Unit, Boolean>("set_scale_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isScaleEnabledName: MethodStringName0<RetargetModifier3D, Boolean> =
         MethodStringName0<RetargetModifier3D, Boolean>("is_scale_enabled")
   }

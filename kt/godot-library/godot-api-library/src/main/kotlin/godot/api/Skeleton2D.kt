@@ -30,7 +30,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
@@ -136,37 +136,37 @@ public open class Skeleton2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getBoneCountName: MethodStringName0<Skeleton2D, Int> =
         MethodStringName0<Skeleton2D, Int>("get_bone_count")
 
-    @JvmStatic
+    @JvmField
     public val getBoneName: MethodStringName1<Skeleton2D, Bone2D?, Int> =
         MethodStringName1<Skeleton2D, Bone2D?, Int>("get_bone")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonName: MethodStringName0<Skeleton2D, RID> =
         MethodStringName0<Skeleton2D, RID>("get_skeleton")
 
-    @JvmStatic
+    @JvmField
     public val setModificationStackName:
         MethodStringName1<Skeleton2D, Unit, SkeletonModificationStack2D?> =
         MethodStringName1<Skeleton2D, Unit, SkeletonModificationStack2D?>("set_modification_stack")
 
-    @JvmStatic
+    @JvmField
     public val getModificationStackName: MethodStringName0<Skeleton2D, SkeletonModificationStack2D?>
         = MethodStringName0<Skeleton2D, SkeletonModificationStack2D?>("get_modification_stack")
 
-    @JvmStatic
+    @JvmField
     public val executeModificationsName: MethodStringName2<Skeleton2D, Unit, Float, Int> =
         MethodStringName2<Skeleton2D, Unit, Float, Int>("execute_modifications")
 
-    @JvmStatic
+    @JvmField
     public val setBoneLocalPoseOverrideName:
         MethodStringName4<Skeleton2D, Unit, Int, Transform2D, Float, Boolean> =
         MethodStringName4<Skeleton2D, Unit, Int, Transform2D, Float, Boolean>("set_bone_local_pose_override")
 
-    @JvmStatic
+    @JvmField
     public val getBoneLocalPoseOverrideName: MethodStringName1<Skeleton2D, Transform2D, Int> =
         MethodStringName1<Skeleton2D, Transform2D, Int>("get_bone_local_pose_override")
   }

@@ -22,7 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * AudioEffectEQ gives you control over frequencies. Use it to compensate for existing deficiencies
@@ -63,15 +63,15 @@ public open class AudioEffectEQ : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setBandGainDbName: MethodStringName2<AudioEffectEQ, Unit, Int, Float> =
         MethodStringName2<AudioEffectEQ, Unit, Int, Float>("set_band_gain_db")
 
-    @JvmStatic
+    @JvmField
     public val getBandGainDbName: MethodStringName1<AudioEffectEQ, Float, Int> =
         MethodStringName1<AudioEffectEQ, Float, Int>("get_band_gain_db")
 
-    @JvmStatic
+    @JvmField
     public val getBandCountName: MethodStringName0<AudioEffectEQ, Int> =
         MethodStringName0<AudioEffectEQ, Int>("get_band_count")
   }

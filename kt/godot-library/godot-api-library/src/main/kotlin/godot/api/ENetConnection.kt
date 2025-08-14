@@ -35,8 +35,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * ENet's purpose is to provide a relatively thin, simple and robust network communication layer on
@@ -411,77 +411,77 @@ public open class ENetConnection : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val createHostBoundName:
         MethodStringName6<ENetConnection, Error, String, Int, Int, Int, Int, Int> =
         MethodStringName6<ENetConnection, Error, String, Int, Int, Int, Int, Int>("create_host_bound")
 
-    @JvmStatic
+    @JvmField
     public val createHostName: MethodStringName4<ENetConnection, Error, Int, Int, Int, Int> =
         MethodStringName4<ENetConnection, Error, Int, Int, Int, Int>("create_host")
 
-    @JvmStatic
+    @JvmField
     public val destroyName: MethodStringName0<ENetConnection, Unit> =
         MethodStringName0<ENetConnection, Unit>("destroy")
 
-    @JvmStatic
+    @JvmField
     public val connectToHostName:
         MethodStringName4<ENetConnection, ENetPacketPeer?, String, Int, Int, Int> =
         MethodStringName4<ENetConnection, ENetPacketPeer?, String, Int, Int, Int>("connect_to_host")
 
-    @JvmStatic
+    @JvmField
     public val serviceName: MethodStringName1<ENetConnection, VariantArray<Any?>, Int> =
         MethodStringName1<ENetConnection, VariantArray<Any?>, Int>("service")
 
-    @JvmStatic
+    @JvmField
     public val flushName: MethodStringName0<ENetConnection, Unit> =
         MethodStringName0<ENetConnection, Unit>("flush")
 
-    @JvmStatic
+    @JvmField
     public val bandwidthLimitName: MethodStringName2<ENetConnection, Unit, Int, Int> =
         MethodStringName2<ENetConnection, Unit, Int, Int>("bandwidth_limit")
 
-    @JvmStatic
+    @JvmField
     public val channelLimitName: MethodStringName1<ENetConnection, Unit, Int> =
         MethodStringName1<ENetConnection, Unit, Int>("channel_limit")
 
-    @JvmStatic
+    @JvmField
     public val broadcastName: MethodStringName3<ENetConnection, Unit, Int, PackedByteArray, Int> =
         MethodStringName3<ENetConnection, Unit, Int, PackedByteArray, Int>("broadcast")
 
-    @JvmStatic
+    @JvmField
     public val compressName: MethodStringName1<ENetConnection, Unit, CompressionMode> =
         MethodStringName1<ENetConnection, Unit, CompressionMode>("compress")
 
-    @JvmStatic
+    @JvmField
     public val dtlsServerSetupName: MethodStringName1<ENetConnection, Error, TLSOptions?> =
         MethodStringName1<ENetConnection, Error, TLSOptions?>("dtls_server_setup")
 
-    @JvmStatic
+    @JvmField
     public val dtlsClientSetupName: MethodStringName2<ENetConnection, Error, String, TLSOptions?> =
         MethodStringName2<ENetConnection, Error, String, TLSOptions?>("dtls_client_setup")
 
-    @JvmStatic
+    @JvmField
     public val refuseNewConnectionsName: MethodStringName1<ENetConnection, Unit, Boolean> =
         MethodStringName1<ENetConnection, Unit, Boolean>("refuse_new_connections")
 
-    @JvmStatic
+    @JvmField
     public val popStatisticName: MethodStringName1<ENetConnection, Double, HostStatistic> =
         MethodStringName1<ENetConnection, Double, HostStatistic>("pop_statistic")
 
-    @JvmStatic
+    @JvmField
     public val getMaxChannelsName: MethodStringName0<ENetConnection, Int> =
         MethodStringName0<ENetConnection, Int>("get_max_channels")
 
-    @JvmStatic
+    @JvmField
     public val getLocalPortName: MethodStringName0<ENetConnection, Int> =
         MethodStringName0<ENetConnection, Int>("get_local_port")
 
-    @JvmStatic
+    @JvmField
     public val getPeersName: MethodStringName0<ENetConnection, VariantArray<ENetPacketPeer>> =
         MethodStringName0<ENetConnection, VariantArray<ENetPacketPeer>>("get_peers")
 
-    @JvmStatic
+    @JvmField
     public val socketSendName: MethodStringName3<ENetConnection, Unit, String, Int, PackedByteArray>
         = MethodStringName3<ENetConnection, Unit, String, Int, PackedByteArray>("socket_send")
   }

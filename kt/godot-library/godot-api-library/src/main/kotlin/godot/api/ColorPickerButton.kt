@@ -25,8 +25,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Encapsulates a [ColorPicker], making it accessible by pressing a button. Pressing the button will
@@ -156,27 +156,27 @@ public open class ColorPickerButton : Button() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPickColorName: MethodStringName1<ColorPickerButton, Unit, Color> =
         MethodStringName1<ColorPickerButton, Unit, Color>("set_pick_color")
 
-    @JvmStatic
+    @JvmField
     public val getPickColorName: MethodStringName0<ColorPickerButton, Color> =
         MethodStringName0<ColorPickerButton, Color>("get_pick_color")
 
-    @JvmStatic
+    @JvmField
     public val getPickerName: MethodStringName0<ColorPickerButton, ColorPicker?> =
         MethodStringName0<ColorPickerButton, ColorPicker?>("get_picker")
 
-    @JvmStatic
+    @JvmField
     public val getPopupName: MethodStringName0<ColorPickerButton, PopupPanel?> =
         MethodStringName0<ColorPickerButton, PopupPanel?>("get_popup")
 
-    @JvmStatic
+    @JvmField
     public val setEditAlphaName: MethodStringName1<ColorPickerButton, Unit, Boolean> =
         MethodStringName1<ColorPickerButton, Unit, Boolean>("set_edit_alpha")
 
-    @JvmStatic
+    @JvmField
     public val isEditingAlphaName: MethodStringName0<ColorPickerButton, Boolean> =
         MethodStringName0<ColorPickerButton, Boolean>("is_editing_alpha")
   }

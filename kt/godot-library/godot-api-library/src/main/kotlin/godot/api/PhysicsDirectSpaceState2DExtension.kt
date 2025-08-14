@@ -18,7 +18,7 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This class extends [PhysicsDirectSpaceState2D] by providing additional virtual methods that can
@@ -41,7 +41,7 @@ public open class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isBodyExcludedFromQueryName:
         MethodStringName1<PhysicsDirectSpaceState2DExtension, Boolean, RID> =
         MethodStringName1<PhysicsDirectSpaceState2DExtension, Boolean, RID>("is_body_excluded_from_query")

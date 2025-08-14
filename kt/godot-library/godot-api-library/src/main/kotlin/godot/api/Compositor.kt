@@ -18,8 +18,8 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * The compositor resource stores attributes used to customize how a [Viewport] is rendered.
@@ -54,12 +54,12 @@ public open class Compositor : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCompositorEffectsName:
         MethodStringName1<Compositor, Unit, VariantArray<CompositorEffect>> =
         MethodStringName1<Compositor, Unit, VariantArray<CompositorEffect>>("set_compositor_effects")
 
-    @JvmStatic
+    @JvmField
     public val getCompositorEffectsName:
         MethodStringName0<Compositor, VariantArray<CompositorEffect>> =
         MethodStringName0<Compositor, VariantArray<CompositorEffect>>("get_compositor_effects")

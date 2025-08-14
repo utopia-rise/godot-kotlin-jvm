@@ -39,8 +39,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This object manages all 3D rendering buffers for the rendering device based renderers. An
@@ -472,127 +472,127 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
   public final fun clearContext(context: String) = clearContext(context.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val hasTextureName:
         MethodStringName2<RenderSceneBuffersRD, Boolean, StringName, StringName> =
         MethodStringName2<RenderSceneBuffersRD, Boolean, StringName, StringName>("has_texture")
 
-    @JvmStatic
+    @JvmField
     public val createTextureName:
         MethodStringName10<RenderSceneBuffersRD, RID, StringName, StringName, RenderingDevice.DataFormat, Long, RenderingDevice.TextureSamples, Vector2i, Long, Long, Boolean, Boolean>
         =
         MethodStringName10<RenderSceneBuffersRD, RID, StringName, StringName, RenderingDevice.DataFormat, Long, RenderingDevice.TextureSamples, Vector2i, Long, Long, Boolean, Boolean>("create_texture")
 
-    @JvmStatic
+    @JvmField
     public val createTextureFromFormatName:
         MethodStringName5<RenderSceneBuffersRD, RID, StringName, StringName, RDTextureFormat?, RDTextureView?, Boolean>
         =
         MethodStringName5<RenderSceneBuffersRD, RID, StringName, StringName, RDTextureFormat?, RDTextureView?, Boolean>("create_texture_from_format")
 
-    @JvmStatic
+    @JvmField
     public val createTextureViewName:
         MethodStringName4<RenderSceneBuffersRD, RID, StringName, StringName, StringName, RDTextureView?>
         =
         MethodStringName4<RenderSceneBuffersRD, RID, StringName, StringName, StringName, RDTextureView?>("create_texture_view")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName2<RenderSceneBuffersRD, RID, StringName, StringName>
         = MethodStringName2<RenderSceneBuffersRD, RID, StringName, StringName>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureFormatName:
         MethodStringName2<RenderSceneBuffersRD, RDTextureFormat?, StringName, StringName> =
         MethodStringName2<RenderSceneBuffersRD, RDTextureFormat?, StringName, StringName>("get_texture_format")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSliceName:
         MethodStringName6<RenderSceneBuffersRD, RID, StringName, StringName, Long, Long, Long, Long>
         =
         MethodStringName6<RenderSceneBuffersRD, RID, StringName, StringName, Long, Long, Long, Long>("get_texture_slice")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSliceViewName:
         MethodStringName7<RenderSceneBuffersRD, RID, StringName, StringName, Long, Long, Long, Long, RDTextureView?>
         =
         MethodStringName7<RenderSceneBuffersRD, RID, StringName, StringName, Long, Long, Long, Long, RDTextureView?>("get_texture_slice_view")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSliceSizeName:
         MethodStringName3<RenderSceneBuffersRD, Vector2i, StringName, StringName, Long> =
         MethodStringName3<RenderSceneBuffersRD, Vector2i, StringName, StringName, Long>("get_texture_slice_size")
 
-    @JvmStatic
+    @JvmField
     public val clearContextName: MethodStringName1<RenderSceneBuffersRD, Unit, StringName> =
         MethodStringName1<RenderSceneBuffersRD, Unit, StringName>("clear_context")
 
-    @JvmStatic
+    @JvmField
     public val getColorTextureName: MethodStringName1<RenderSceneBuffersRD, RID, Boolean> =
         MethodStringName1<RenderSceneBuffersRD, RID, Boolean>("get_color_texture")
 
-    @JvmStatic
+    @JvmField
     public val getColorLayerName: MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean> =
         MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean>("get_color_layer")
 
-    @JvmStatic
+    @JvmField
     public val getDepthTextureName: MethodStringName1<RenderSceneBuffersRD, RID, Boolean> =
         MethodStringName1<RenderSceneBuffersRD, RID, Boolean>("get_depth_texture")
 
-    @JvmStatic
+    @JvmField
     public val getDepthLayerName: MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean> =
         MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean>("get_depth_layer")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityTextureName: MethodStringName1<RenderSceneBuffersRD, RID, Boolean> =
         MethodStringName1<RenderSceneBuffersRD, RID, Boolean>("get_velocity_texture")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityLayerName: MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean> =
         MethodStringName2<RenderSceneBuffersRD, RID, Long, Boolean>("get_velocity_layer")
 
-    @JvmStatic
+    @JvmField
     public val getRenderTargetName: MethodStringName0<RenderSceneBuffersRD, RID> =
         MethodStringName0<RenderSceneBuffersRD, RID>("get_render_target")
 
-    @JvmStatic
+    @JvmField
     public val getViewCountName: MethodStringName0<RenderSceneBuffersRD, Long> =
         MethodStringName0<RenderSceneBuffersRD, Long>("get_view_count")
 
-    @JvmStatic
+    @JvmField
     public val getInternalSizeName: MethodStringName0<RenderSceneBuffersRD, Vector2i> =
         MethodStringName0<RenderSceneBuffersRD, Vector2i>("get_internal_size")
 
-    @JvmStatic
+    @JvmField
     public val getTargetSizeName: MethodStringName0<RenderSceneBuffersRD, Vector2i> =
         MethodStringName0<RenderSceneBuffersRD, Vector2i>("get_target_size")
 
-    @JvmStatic
+    @JvmField
     public val getScaling3dModeName:
         MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportScaling3DMode> =
         MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportScaling3DMode>("get_scaling_3d_mode")
 
-    @JvmStatic
+    @JvmField
     public val getFsrSharpnessName: MethodStringName0<RenderSceneBuffersRD, Float> =
         MethodStringName0<RenderSceneBuffersRD, Float>("get_fsr_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val getMsaa3dName: MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportMSAA>
         = MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportMSAA>("get_msaa_3d")
 
-    @JvmStatic
+    @JvmField
     public val getTextureSamplesName:
         MethodStringName0<RenderSceneBuffersRD, RenderingDevice.TextureSamples> =
         MethodStringName0<RenderSceneBuffersRD, RenderingDevice.TextureSamples>("get_texture_samples")
 
-    @JvmStatic
+    @JvmField
     public val getScreenSpaceAaName:
         MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportScreenSpaceAA> =
         MethodStringName0<RenderSceneBuffersRD, RenderingServer.ViewportScreenSpaceAA>("get_screen_space_aa")
 
-    @JvmStatic
+    @JvmField
     public val getUseTaaName: MethodStringName0<RenderSceneBuffersRD, Boolean> =
         MethodStringName0<RenderSceneBuffersRD, Boolean>("get_use_taa")
 
-    @JvmStatic
+    @JvmField
     public val getUseDebandingName: MethodStringName0<RenderSceneBuffersRD, Boolean> =
         MethodStringName0<RenderSceneBuffersRD, Boolean>("get_use_debanding")
   }

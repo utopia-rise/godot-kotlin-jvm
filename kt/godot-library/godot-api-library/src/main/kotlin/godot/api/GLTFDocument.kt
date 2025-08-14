@@ -37,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -262,79 +263,79 @@ public open class GLTFDocument : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setImageFormatName: MethodStringName1<GLTFDocument, Unit, String> =
         MethodStringName1<GLTFDocument, Unit, String>("set_image_format")
 
-    @JvmStatic
+    @JvmField
     public val getImageFormatName: MethodStringName0<GLTFDocument, String> =
         MethodStringName0<GLTFDocument, String>("get_image_format")
 
-    @JvmStatic
+    @JvmField
     public val setLossyQualityName: MethodStringName1<GLTFDocument, Unit, Float> =
         MethodStringName1<GLTFDocument, Unit, Float>("set_lossy_quality")
 
-    @JvmStatic
+    @JvmField
     public val getLossyQualityName: MethodStringName0<GLTFDocument, Float> =
         MethodStringName0<GLTFDocument, Float>("get_lossy_quality")
 
-    @JvmStatic
+    @JvmField
     public val setRootNodeModeName: MethodStringName1<GLTFDocument, Unit, RootNodeMode> =
         MethodStringName1<GLTFDocument, Unit, RootNodeMode>("set_root_node_mode")
 
-    @JvmStatic
+    @JvmField
     public val getRootNodeModeName: MethodStringName0<GLTFDocument, RootNodeMode> =
         MethodStringName0<GLTFDocument, RootNodeMode>("get_root_node_mode")
 
-    @JvmStatic
+    @JvmField
     public val appendFromFileName:
         MethodStringName4<GLTFDocument, Error, String, GLTFState?, Long, String> =
         MethodStringName4<GLTFDocument, Error, String, GLTFState?, Long, String>("append_from_file")
 
-    @JvmStatic
+    @JvmField
     public val appendFromBufferName:
         MethodStringName4<GLTFDocument, Error, PackedByteArray, String, GLTFState?, Long> =
         MethodStringName4<GLTFDocument, Error, PackedByteArray, String, GLTFState?, Long>("append_from_buffer")
 
-    @JvmStatic
+    @JvmField
     public val appendFromSceneName: MethodStringName3<GLTFDocument, Error, Node?, GLTFState?, Long>
         = MethodStringName3<GLTFDocument, Error, Node?, GLTFState?, Long>("append_from_scene")
 
-    @JvmStatic
+    @JvmField
     public val generateSceneName:
         MethodStringName4<GLTFDocument, Node?, GLTFState?, Float, Boolean, Boolean> =
         MethodStringName4<GLTFDocument, Node?, GLTFState?, Float, Boolean, Boolean>("generate_scene")
 
-    @JvmStatic
+    @JvmField
     public val generateBufferName: MethodStringName1<GLTFDocument, PackedByteArray, GLTFState?> =
         MethodStringName1<GLTFDocument, PackedByteArray, GLTFState?>("generate_buffer")
 
-    @JvmStatic
+    @JvmField
     public val writeToFilesystemName: MethodStringName2<GLTFDocument, Error, GLTFState?, String> =
         MethodStringName2<GLTFDocument, Error, GLTFState?, String>("write_to_filesystem")
 
-    @JvmStatic
+    @JvmField
     public val importObjectModelPropertyName:
         MethodStringName2<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, String> =
         MethodStringName2<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, String>("import_object_model_property")
 
-    @JvmStatic
+    @JvmField
     public val exportObjectModelPropertyName:
         MethodStringName4<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, NodePath, Node?, Int>
         =
         MethodStringName4<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, NodePath, Node?, Int>("export_object_model_property")
 
-    @JvmStatic
+    @JvmField
     public val registerGltfDocumentExtensionName:
         MethodStringName2<GLTFDocument, Unit, GLTFDocumentExtension?, Boolean> =
         MethodStringName2<GLTFDocument, Unit, GLTFDocumentExtension?, Boolean>("register_gltf_document_extension")
 
-    @JvmStatic
+    @JvmField
     public val unregisterGltfDocumentExtensionName:
         MethodStringName1<GLTFDocument, Unit, GLTFDocumentExtension?> =
         MethodStringName1<GLTFDocument, Unit, GLTFDocumentExtension?>("unregister_gltf_document_extension")
 
-    @JvmStatic
+    @JvmField
     public val getSupportedGltfExtensionsName: MethodStringName0<GLTFDocument, PackedStringArray> =
         MethodStringName0<GLTFDocument, PackedStringArray>("get_supported_gltf_extensions")
 

@@ -31,9 +31,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A custom shader program implemented in the Godot shading language, saved with the `.gdshader`
@@ -200,32 +200,32 @@ public open class Shader : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getModeName: MethodStringName0<Shader, Mode> =
         MethodStringName0<Shader, Mode>("get_mode")
 
-    @JvmStatic
+    @JvmField
     public val setCodeName: MethodStringName1<Shader, Unit, String> =
         MethodStringName1<Shader, Unit, String>("set_code")
 
-    @JvmStatic
+    @JvmField
     public val getCodeName: MethodStringName0<Shader, String> =
         MethodStringName0<Shader, String>("get_code")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultTextureParameterName:
         MethodStringName3<Shader, Unit, StringName, Texture?, Int> =
         MethodStringName3<Shader, Unit, StringName, Texture?, Int>("set_default_texture_parameter")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultTextureParameterName: MethodStringName2<Shader, Texture?, StringName, Int>
         = MethodStringName2<Shader, Texture?, StringName, Int>("get_default_texture_parameter")
 
-    @JvmStatic
+    @JvmField
     public val getShaderUniformListName: MethodStringName1<Shader, VariantArray<Any?>, Boolean> =
         MethodStringName1<Shader, VariantArray<Any?>, Boolean>("get_shader_uniform_list")
 
-    @JvmStatic
+    @JvmField
     public val inspectNativeShaderCodeName: MethodStringName0<Shader, Unit> =
         MethodStringName0<Shader, Unit>("inspect_native_shader_code")
   }

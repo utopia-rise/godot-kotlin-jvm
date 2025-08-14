@@ -32,9 +32,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * By default, [MultiplayerSynchronizer] synchronizes configured properties to all peers.
@@ -296,76 +296,76 @@ public open class MultiplayerSynchronizer : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRootPathName: MethodStringName1<MultiplayerSynchronizer, Unit, NodePath> =
         MethodStringName1<MultiplayerSynchronizer, Unit, NodePath>("set_root_path")
 
-    @JvmStatic
+    @JvmField
     public val getRootPathName: MethodStringName0<MultiplayerSynchronizer, NodePath> =
         MethodStringName0<MultiplayerSynchronizer, NodePath>("get_root_path")
 
-    @JvmStatic
+    @JvmField
     public val setReplicationIntervalName: MethodStringName1<MultiplayerSynchronizer, Unit, Double>
         = MethodStringName1<MultiplayerSynchronizer, Unit, Double>("set_replication_interval")
 
-    @JvmStatic
+    @JvmField
     public val getReplicationIntervalName: MethodStringName0<MultiplayerSynchronizer, Double> =
         MethodStringName0<MultiplayerSynchronizer, Double>("get_replication_interval")
 
-    @JvmStatic
+    @JvmField
     public val setDeltaIntervalName: MethodStringName1<MultiplayerSynchronizer, Unit, Double> =
         MethodStringName1<MultiplayerSynchronizer, Unit, Double>("set_delta_interval")
 
-    @JvmStatic
+    @JvmField
     public val getDeltaIntervalName: MethodStringName0<MultiplayerSynchronizer, Double> =
         MethodStringName0<MultiplayerSynchronizer, Double>("get_delta_interval")
 
-    @JvmStatic
+    @JvmField
     public val setReplicationConfigName:
         MethodStringName1<MultiplayerSynchronizer, Unit, SceneReplicationConfig?> =
         MethodStringName1<MultiplayerSynchronizer, Unit, SceneReplicationConfig?>("set_replication_config")
 
-    @JvmStatic
+    @JvmField
     public val getReplicationConfigName:
         MethodStringName0<MultiplayerSynchronizer, SceneReplicationConfig?> =
         MethodStringName0<MultiplayerSynchronizer, SceneReplicationConfig?>("get_replication_config")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityUpdateModeName:
         MethodStringName1<MultiplayerSynchronizer, Unit, VisibilityUpdateMode> =
         MethodStringName1<MultiplayerSynchronizer, Unit, VisibilityUpdateMode>("set_visibility_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityUpdateModeName:
         MethodStringName0<MultiplayerSynchronizer, VisibilityUpdateMode> =
         MethodStringName0<MultiplayerSynchronizer, VisibilityUpdateMode>("get_visibility_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val updateVisibilityName: MethodStringName1<MultiplayerSynchronizer, Unit, Int> =
         MethodStringName1<MultiplayerSynchronizer, Unit, Int>("update_visibility")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityPublicName: MethodStringName1<MultiplayerSynchronizer, Unit, Boolean> =
         MethodStringName1<MultiplayerSynchronizer, Unit, Boolean>("set_visibility_public")
 
-    @JvmStatic
+    @JvmField
     public val isVisibilityPublicName: MethodStringName0<MultiplayerSynchronizer, Boolean> =
         MethodStringName0<MultiplayerSynchronizer, Boolean>("is_visibility_public")
 
-    @JvmStatic
+    @JvmField
     public val addVisibilityFilterName: MethodStringName1<MultiplayerSynchronizer, Unit, Callable> =
         MethodStringName1<MultiplayerSynchronizer, Unit, Callable>("add_visibility_filter")
 
-    @JvmStatic
+    @JvmField
     public val removeVisibilityFilterName:
         MethodStringName1<MultiplayerSynchronizer, Unit, Callable> =
         MethodStringName1<MultiplayerSynchronizer, Unit, Callable>("remove_visibility_filter")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityForName: MethodStringName2<MultiplayerSynchronizer, Unit, Int, Boolean>
         = MethodStringName2<MultiplayerSynchronizer, Unit, Int, Boolean>("set_visibility_for")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityForName: MethodStringName1<MultiplayerSynchronizer, Boolean, Int> =
         MethodStringName1<MultiplayerSynchronizer, Boolean, Int>("get_visibility_for")
   }

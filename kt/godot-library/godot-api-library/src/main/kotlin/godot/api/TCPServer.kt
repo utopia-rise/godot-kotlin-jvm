@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A TCP server. Listens to connections on a port and returns a [StreamPeerTCP] when it gets an
@@ -106,27 +106,27 @@ public open class TCPServer : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val listenName: MethodStringName2<TCPServer, Error, Int, String> =
         MethodStringName2<TCPServer, Error, Int, String>("listen")
 
-    @JvmStatic
+    @JvmField
     public val isConnectionAvailableName: MethodStringName0<TCPServer, Boolean> =
         MethodStringName0<TCPServer, Boolean>("is_connection_available")
 
-    @JvmStatic
+    @JvmField
     public val isListeningName: MethodStringName0<TCPServer, Boolean> =
         MethodStringName0<TCPServer, Boolean>("is_listening")
 
-    @JvmStatic
+    @JvmField
     public val getLocalPortName: MethodStringName0<TCPServer, Int> =
         MethodStringName0<TCPServer, Int>("get_local_port")
 
-    @JvmStatic
+    @JvmField
     public val takeConnectionName: MethodStringName0<TCPServer, StreamPeerTCP?> =
         MethodStringName0<TCPServer, StreamPeerTCP?>("take_connection")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<TCPServer, Unit> =
         MethodStringName0<TCPServer, Unit>("stop")
   }

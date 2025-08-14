@@ -18,8 +18,8 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Base class for [Texture2DArrayRD], [TextureCubemapRD] and [TextureCubemapArrayRD]. Cannot be used
@@ -54,11 +54,11 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureRdRidName: MethodStringName1<TextureLayeredRD, Unit, RID> =
         MethodStringName1<TextureLayeredRD, Unit, RID>("set_texture_rd_rid")
 
-    @JvmStatic
+    @JvmField
     public val getTextureRdRidName: MethodStringName0<TextureLayeredRD, RID> =
         MethodStringName0<TextureLayeredRD, RID>("get_texture_rd_rid")
   }

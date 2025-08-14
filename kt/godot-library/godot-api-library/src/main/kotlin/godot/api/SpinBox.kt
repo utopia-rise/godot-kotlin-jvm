@@ -26,8 +26,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
@@ -251,67 +251,67 @@ public open class SpinBox : Range() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHorizontalAlignmentName: MethodStringName1<SpinBox, Unit, HorizontalAlignment> =
         MethodStringName1<SpinBox, Unit, HorizontalAlignment>("set_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val getHorizontalAlignmentName: MethodStringName0<SpinBox, HorizontalAlignment> =
         MethodStringName0<SpinBox, HorizontalAlignment>("get_horizontal_alignment")
 
-    @JvmStatic
+    @JvmField
     public val setSuffixName: MethodStringName1<SpinBox, Unit, String> =
         MethodStringName1<SpinBox, Unit, String>("set_suffix")
 
-    @JvmStatic
+    @JvmField
     public val getSuffixName: MethodStringName0<SpinBox, String> =
         MethodStringName0<SpinBox, String>("get_suffix")
 
-    @JvmStatic
+    @JvmField
     public val setPrefixName: MethodStringName1<SpinBox, Unit, String> =
         MethodStringName1<SpinBox, Unit, String>("set_prefix")
 
-    @JvmStatic
+    @JvmField
     public val getPrefixName: MethodStringName0<SpinBox, String> =
         MethodStringName0<SpinBox, String>("get_prefix")
 
-    @JvmStatic
+    @JvmField
     public val setEditableName: MethodStringName1<SpinBox, Unit, Boolean> =
         MethodStringName1<SpinBox, Unit, Boolean>("set_editable")
 
-    @JvmStatic
+    @JvmField
     public val setCustomArrowStepName: MethodStringName1<SpinBox, Unit, Double> =
         MethodStringName1<SpinBox, Unit, Double>("set_custom_arrow_step")
 
-    @JvmStatic
+    @JvmField
     public val getCustomArrowStepName: MethodStringName0<SpinBox, Double> =
         MethodStringName0<SpinBox, Double>("get_custom_arrow_step")
 
-    @JvmStatic
+    @JvmField
     public val isEditableName: MethodStringName0<SpinBox, Boolean> =
         MethodStringName0<SpinBox, Boolean>("is_editable")
 
-    @JvmStatic
+    @JvmField
     public val setUpdateOnTextChangedName: MethodStringName1<SpinBox, Unit, Boolean> =
         MethodStringName1<SpinBox, Unit, Boolean>("set_update_on_text_changed")
 
-    @JvmStatic
+    @JvmField
     public val getUpdateOnTextChangedName: MethodStringName0<SpinBox, Boolean> =
         MethodStringName0<SpinBox, Boolean>("get_update_on_text_changed")
 
-    @JvmStatic
+    @JvmField
     public val setSelectAllOnFocusName: MethodStringName1<SpinBox, Unit, Boolean> =
         MethodStringName1<SpinBox, Unit, Boolean>("set_select_all_on_focus")
 
-    @JvmStatic
+    @JvmField
     public val isSelectAllOnFocusName: MethodStringName0<SpinBox, Boolean> =
         MethodStringName0<SpinBox, Boolean>("is_select_all_on_focus")
 
-    @JvmStatic
+    @JvmField
     public val applyName: MethodStringName0<SpinBox, Unit> =
         MethodStringName0<SpinBox, Unit>("apply")
 
-    @JvmStatic
+    @JvmField
     public val getLineEditName: MethodStringName0<SpinBox, LineEdit?> =
         MethodStringName0<SpinBox, LineEdit?>("get_line_edit")
   }

@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * GLTFAccessor is a data structure representing a glTF `accessor` that would be found in the
@@ -609,123 +609,123 @@ public open class GLTFAccessor : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getBufferViewName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val setBufferViewName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val getByteOffsetName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_byte_offset")
 
-    @JvmStatic
+    @JvmField
     public val setByteOffsetName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_byte_offset")
 
-    @JvmStatic
+    @JvmField
     public val getComponentTypeName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_component_type")
 
-    @JvmStatic
+    @JvmField
     public val setComponentTypeName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_component_type")
 
-    @JvmStatic
+    @JvmField
     public val getNormalizedName: MethodStringName0<GLTFAccessor, Boolean> =
         MethodStringName0<GLTFAccessor, Boolean>("get_normalized")
 
-    @JvmStatic
+    @JvmField
     public val setNormalizedName: MethodStringName1<GLTFAccessor, Unit, Boolean> =
         MethodStringName1<GLTFAccessor, Unit, Boolean>("set_normalized")
 
-    @JvmStatic
+    @JvmField
     public val getCountName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_count")
 
-    @JvmStatic
+    @JvmField
     public val setCountName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_count")
 
-    @JvmStatic
+    @JvmField
     public val getAccessorTypeName: MethodStringName0<GLTFAccessor, GLTFAccessorType> =
         MethodStringName0<GLTFAccessor, GLTFAccessorType>("get_accessor_type")
 
-    @JvmStatic
+    @JvmField
     public val setAccessorTypeName: MethodStringName1<GLTFAccessor, Unit, GLTFAccessorType> =
         MethodStringName1<GLTFAccessor, Unit, GLTFAccessorType>("set_accessor_type")
 
-    @JvmStatic
+    @JvmField
     public val getTypeName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_type")
 
-    @JvmStatic
+    @JvmField
     public val setTypeName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_type")
 
-    @JvmStatic
+    @JvmField
     public val getMinName: MethodStringName0<GLTFAccessor, PackedFloat64Array> =
         MethodStringName0<GLTFAccessor, PackedFloat64Array>("get_min")
 
-    @JvmStatic
+    @JvmField
     public val setMinName: MethodStringName1<GLTFAccessor, Unit, PackedFloat64Array> =
         MethodStringName1<GLTFAccessor, Unit, PackedFloat64Array>("set_min")
 
-    @JvmStatic
+    @JvmField
     public val getMaxName: MethodStringName0<GLTFAccessor, PackedFloat64Array> =
         MethodStringName0<GLTFAccessor, PackedFloat64Array>("get_max")
 
-    @JvmStatic
+    @JvmField
     public val setMaxName: MethodStringName1<GLTFAccessor, Unit, PackedFloat64Array> =
         MethodStringName1<GLTFAccessor, Unit, PackedFloat64Array>("set_max")
 
-    @JvmStatic
+    @JvmField
     public val getSparseCountName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_count")
 
-    @JvmStatic
+    @JvmField
     public val setSparseCountName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_count")
 
-    @JvmStatic
+    @JvmField
     public val getSparseIndicesBufferViewName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_indices_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val setSparseIndicesBufferViewName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_indices_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val getSparseIndicesByteOffsetName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_indices_byte_offset")
 
-    @JvmStatic
+    @JvmField
     public val setSparseIndicesByteOffsetName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_indices_byte_offset")
 
-    @JvmStatic
+    @JvmField
     public val getSparseIndicesComponentTypeName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_indices_component_type")
 
-    @JvmStatic
+    @JvmField
     public val setSparseIndicesComponentTypeName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_indices_component_type")
 
-    @JvmStatic
+    @JvmField
     public val getSparseValuesBufferViewName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_values_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val setSparseValuesBufferViewName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_values_buffer_view")
 
-    @JvmStatic
+    @JvmField
     public val getSparseValuesByteOffsetName: MethodStringName0<GLTFAccessor, Int> =
         MethodStringName0<GLTFAccessor, Int>("get_sparse_values_byte_offset")
 
-    @JvmStatic
+    @JvmField
     public val setSparseValuesByteOffsetName: MethodStringName1<GLTFAccessor, Unit, Int> =
         MethodStringName1<GLTFAccessor, Unit, Int>("set_sparse_values_byte_offset")
   }

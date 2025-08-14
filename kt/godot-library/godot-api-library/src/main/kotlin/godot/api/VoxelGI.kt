@@ -26,9 +26,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * [VoxelGI]s are used to provide high-quality real-time indirect light and reflections to scenes.
@@ -259,43 +259,43 @@ public open class VoxelGI : VisualInstance3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setProbeDataName: MethodStringName1<VoxelGI, Unit, VoxelGIData?> =
         MethodStringName1<VoxelGI, Unit, VoxelGIData?>("set_probe_data")
 
-    @JvmStatic
+    @JvmField
     public val getProbeDataName: MethodStringName0<VoxelGI, VoxelGIData?> =
         MethodStringName0<VoxelGI, VoxelGIData?>("get_probe_data")
 
-    @JvmStatic
+    @JvmField
     public val setSubdivName: MethodStringName1<VoxelGI, Unit, Subdiv> =
         MethodStringName1<VoxelGI, Unit, Subdiv>("set_subdiv")
 
-    @JvmStatic
+    @JvmField
     public val getSubdivName: MethodStringName0<VoxelGI, Subdiv> =
         MethodStringName0<VoxelGI, Subdiv>("get_subdiv")
 
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<VoxelGI, Unit, Vector3> =
         MethodStringName1<VoxelGI, Unit, Vector3>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<VoxelGI, Vector3> =
         MethodStringName0<VoxelGI, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setCameraAttributesName: MethodStringName1<VoxelGI, Unit, CameraAttributes?> =
         MethodStringName1<VoxelGI, Unit, CameraAttributes?>("set_camera_attributes")
 
-    @JvmStatic
+    @JvmField
     public val getCameraAttributesName: MethodStringName0<VoxelGI, CameraAttributes?> =
         MethodStringName0<VoxelGI, CameraAttributes?>("get_camera_attributes")
 
-    @JvmStatic
+    @JvmField
     public val bakeName: MethodStringName2<VoxelGI, Unit, Node?, Boolean> =
         MethodStringName2<VoxelGI, Unit, Node?, Boolean>("bake")
 
-    @JvmStatic
+    @JvmField
     public val debugBakeName: MethodStringName0<VoxelGI, Unit> =
         MethodStringName0<VoxelGI, Unit>("debug_bake")
   }

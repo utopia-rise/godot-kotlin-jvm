@@ -17,8 +17,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform sampler2DArray` in the shader language.
@@ -53,12 +53,12 @@ public open class VisualShaderNodeTexture2DArray : VisualShaderNodeSample3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureArrayName:
         MethodStringName1<VisualShaderNodeTexture2DArray, Unit, TextureLayered?> =
         MethodStringName1<VisualShaderNodeTexture2DArray, Unit, TextureLayered?>("set_texture_array")
 
-    @JvmStatic
+    @JvmField
     public val getTextureArrayName:
         MethodStringName0<VisualShaderNodeTexture2DArray, TextureLayered?> =
         MethodStringName0<VisualShaderNodeTexture2DArray, TextureLayered?>("get_texture_array")

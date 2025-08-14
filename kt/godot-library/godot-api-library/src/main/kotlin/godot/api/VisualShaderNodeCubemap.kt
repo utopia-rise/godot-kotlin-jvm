@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `texture(cubemap, vec3)` in the shader language. Returns a color vector and alpha
@@ -160,27 +160,27 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSourceName: MethodStringName1<VisualShaderNodeCubemap, Unit, Source> =
         MethodStringName1<VisualShaderNodeCubemap, Unit, Source>("set_source")
 
-    @JvmStatic
+    @JvmField
     public val getSourceName: MethodStringName0<VisualShaderNodeCubemap, Source> =
         MethodStringName0<VisualShaderNodeCubemap, Source>("get_source")
 
-    @JvmStatic
+    @JvmField
     public val setCubeMapName: MethodStringName1<VisualShaderNodeCubemap, Unit, TextureLayered?> =
         MethodStringName1<VisualShaderNodeCubemap, Unit, TextureLayered?>("set_cube_map")
 
-    @JvmStatic
+    @JvmField
     public val getCubeMapName: MethodStringName0<VisualShaderNodeCubemap, TextureLayered?> =
         MethodStringName0<VisualShaderNodeCubemap, TextureLayered?>("get_cube_map")
 
-    @JvmStatic
+    @JvmField
     public val setTextureTypeName: MethodStringName1<VisualShaderNodeCubemap, Unit, TextureType> =
         MethodStringName1<VisualShaderNodeCubemap, Unit, TextureType>("set_texture_type")
 
-    @JvmStatic
+    @JvmField
     public val getTextureTypeName: MethodStringName0<VisualShaderNodeCubemap, TextureType> =
         MethodStringName0<VisualShaderNodeCubemap, TextureType>("get_texture_type")
   }

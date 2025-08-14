@@ -18,7 +18,7 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The [XRAnchor3D] point is an [XRNode3D] that maps a real world location identified by the AR
@@ -60,11 +60,11 @@ public open class XRAnchor3D : XRNode3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<XRAnchor3D, Vector3> =
         MethodStringName0<XRAnchor3D, Vector3>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val getPlaneName: MethodStringName0<XRAnchor3D, Plane> =
         MethodStringName0<XRAnchor3D, Plane>("get_plane")
   }

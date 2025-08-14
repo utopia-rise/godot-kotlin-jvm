@@ -26,8 +26,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 @GodotBaseType
 public open class ImporterMeshInstance3D : Node3D() {
@@ -232,89 +232,89 @@ public open class ImporterMeshInstance3D : Node3D() {
       setSkeletonPath(skeletonPath.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<ImporterMeshInstance3D, Unit, ImporterMesh?> =
         MethodStringName1<ImporterMeshInstance3D, Unit, ImporterMesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<ImporterMeshInstance3D, ImporterMesh?> =
         MethodStringName0<ImporterMeshInstance3D, ImporterMesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setSkinName: MethodStringName1<ImporterMeshInstance3D, Unit, Skin?> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Skin?>("set_skin")
 
-    @JvmStatic
+    @JvmField
     public val getSkinName: MethodStringName0<ImporterMeshInstance3D, Skin?> =
         MethodStringName0<ImporterMeshInstance3D, Skin?>("get_skin")
 
-    @JvmStatic
+    @JvmField
     public val setSkeletonPathName: MethodStringName1<ImporterMeshInstance3D, Unit, NodePath> =
         MethodStringName1<ImporterMeshInstance3D, Unit, NodePath>("set_skeleton_path")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonPathName: MethodStringName0<ImporterMeshInstance3D, NodePath> =
         MethodStringName0<ImporterMeshInstance3D, NodePath>("get_skeleton_path")
 
-    @JvmStatic
+    @JvmField
     public val setLayerMaskName: MethodStringName1<ImporterMeshInstance3D, Unit, Long> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Long>("set_layer_mask")
 
-    @JvmStatic
+    @JvmField
     public val getLayerMaskName: MethodStringName0<ImporterMeshInstance3D, Long> =
         MethodStringName0<ImporterMeshInstance3D, Long>("get_layer_mask")
 
-    @JvmStatic
+    @JvmField
     public val setCastShadowsSettingName:
         MethodStringName1<ImporterMeshInstance3D, Unit, GeometryInstance3D.ShadowCastingSetting> =
         MethodStringName1<ImporterMeshInstance3D, Unit, GeometryInstance3D.ShadowCastingSetting>("set_cast_shadows_setting")
 
-    @JvmStatic
+    @JvmField
     public val getCastShadowsSettingName:
         MethodStringName0<ImporterMeshInstance3D, GeometryInstance3D.ShadowCastingSetting> =
         MethodStringName0<ImporterMeshInstance3D, GeometryInstance3D.ShadowCastingSetting>("get_cast_shadows_setting")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeEndMarginName:
         MethodStringName1<ImporterMeshInstance3D, Unit, Float> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Float>("set_visibility_range_end_margin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeEndMarginName: MethodStringName0<ImporterMeshInstance3D, Float> =
         MethodStringName0<ImporterMeshInstance3D, Float>("get_visibility_range_end_margin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeEndName: MethodStringName1<ImporterMeshInstance3D, Unit, Float> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Float>("set_visibility_range_end")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeEndName: MethodStringName0<ImporterMeshInstance3D, Float> =
         MethodStringName0<ImporterMeshInstance3D, Float>("get_visibility_range_end")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeBeginMarginName:
         MethodStringName1<ImporterMeshInstance3D, Unit, Float> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Float>("set_visibility_range_begin_margin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeBeginMarginName: MethodStringName0<ImporterMeshInstance3D, Float> =
         MethodStringName0<ImporterMeshInstance3D, Float>("get_visibility_range_begin_margin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeBeginName: MethodStringName1<ImporterMeshInstance3D, Unit, Float> =
         MethodStringName1<ImporterMeshInstance3D, Unit, Float>("set_visibility_range_begin")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeBeginName: MethodStringName0<ImporterMeshInstance3D, Float> =
         MethodStringName0<ImporterMeshInstance3D, Float>("get_visibility_range_begin")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityRangeFadeModeName:
         MethodStringName1<ImporterMeshInstance3D, Unit, GeometryInstance3D.VisibilityRangeFadeMode>
         =
         MethodStringName1<ImporterMeshInstance3D, Unit, GeometryInstance3D.VisibilityRangeFadeMode>("set_visibility_range_fade_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityRangeFadeModeName:
         MethodStringName0<ImporterMeshInstance3D, GeometryInstance3D.VisibilityRangeFadeMode> =
         MethodStringName0<ImporterMeshInstance3D, GeometryInstance3D.VisibilityRangeFadeMode>("get_visibility_range_fade_mode")

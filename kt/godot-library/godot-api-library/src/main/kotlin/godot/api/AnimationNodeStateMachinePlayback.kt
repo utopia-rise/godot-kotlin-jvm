@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * Allows control of [AnimationTree] state machines created with [AnimationNodeStateMachine].
@@ -181,47 +181,47 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
       start(node.asCachedStringName(), reset)
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val travelName:
         MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean> =
         MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean>("travel")
 
-    @JvmStatic
+    @JvmField
     public val startName:
         MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean> =
         MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean>("start")
 
-    @JvmStatic
+    @JvmField
     public val nextName: MethodStringName0<AnimationNodeStateMachinePlayback, Unit> =
         MethodStringName0<AnimationNodeStateMachinePlayback, Unit>("next")
 
-    @JvmStatic
+    @JvmField
     public val stopName: MethodStringName0<AnimationNodeStateMachinePlayback, Unit> =
         MethodStringName0<AnimationNodeStateMachinePlayback, Unit>("stop")
 
-    @JvmStatic
+    @JvmField
     public val isPlayingName: MethodStringName0<AnimationNodeStateMachinePlayback, Boolean> =
         MethodStringName0<AnimationNodeStateMachinePlayback, Boolean>("is_playing")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentNodeName: MethodStringName0<AnimationNodeStateMachinePlayback, StringName>
         = MethodStringName0<AnimationNodeStateMachinePlayback, StringName>("get_current_node")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentPlayPositionName:
         MethodStringName0<AnimationNodeStateMachinePlayback, Float> =
         MethodStringName0<AnimationNodeStateMachinePlayback, Float>("get_current_play_position")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentLengthName: MethodStringName0<AnimationNodeStateMachinePlayback, Float> =
         MethodStringName0<AnimationNodeStateMachinePlayback, Float>("get_current_length")
 
-    @JvmStatic
+    @JvmField
     public val getFadingFromNodeName:
         MethodStringName0<AnimationNodeStateMachinePlayback, StringName> =
         MethodStringName0<AnimationNodeStateMachinePlayback, StringName>("get_fading_from_node")
 
-    @JvmStatic
+    @JvmField
     public val getTravelPathName:
         MethodStringName0<AnimationNodeStateMachinePlayback, VariantArray<StringName>> =
         MethodStringName0<AnimationNodeStateMachinePlayback, VariantArray<StringName>>("get_travel_path")

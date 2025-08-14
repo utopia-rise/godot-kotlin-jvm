@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Stores information about screen drag events. See [Node.Input].
@@ -434,75 +434,75 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setIndexName: MethodStringName1<InputEventScreenDrag, Unit, Int> =
         MethodStringName1<InputEventScreenDrag, Unit, Int>("set_index")
 
-    @JvmStatic
+    @JvmField
     public val getIndexName: MethodStringName0<InputEventScreenDrag, Int> =
         MethodStringName0<InputEventScreenDrag, Int>("get_index")
 
-    @JvmStatic
+    @JvmField
     public val setTiltName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_tilt")
 
-    @JvmStatic
+    @JvmField
     public val getTiltName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_tilt")
 
-    @JvmStatic
+    @JvmField
     public val setPressureName: MethodStringName1<InputEventScreenDrag, Unit, Float> =
         MethodStringName1<InputEventScreenDrag, Unit, Float>("set_pressure")
 
-    @JvmStatic
+    @JvmField
     public val getPressureName: MethodStringName0<InputEventScreenDrag, Float> =
         MethodStringName0<InputEventScreenDrag, Float>("get_pressure")
 
-    @JvmStatic
+    @JvmField
     public val setPenInvertedName: MethodStringName1<InputEventScreenDrag, Unit, Boolean> =
         MethodStringName1<InputEventScreenDrag, Unit, Boolean>("set_pen_inverted")
 
-    @JvmStatic
+    @JvmField
     public val getPenInvertedName: MethodStringName0<InputEventScreenDrag, Boolean> =
         MethodStringName0<InputEventScreenDrag, Boolean>("get_pen_inverted")
 
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val setRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_relative")
 
-    @JvmStatic
+    @JvmField
     public val getRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_relative")
 
-    @JvmStatic
+    @JvmField
     public val setScreenRelativeName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_relative")
 
-    @JvmStatic
+    @JvmField
     public val getScreenRelativeName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_relative")
 
-    @JvmStatic
+    @JvmField
     public val setVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_velocity")
 
-    @JvmStatic
+    @JvmField
     public val setScreenVelocityName: MethodStringName1<InputEventScreenDrag, Unit, Vector2> =
         MethodStringName1<InputEventScreenDrag, Unit, Vector2>("set_screen_velocity")
 
-    @JvmStatic
+    @JvmField
     public val getScreenVelocityName: MethodStringName0<InputEventScreenDrag, Vector2> =
         MethodStringName0<InputEventScreenDrag, Vector2>("get_screen_velocity")
   }

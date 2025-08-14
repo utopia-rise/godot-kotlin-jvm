@@ -33,9 +33,9 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This node draws a 2D polyline, i.e. a shape consisting of several points connected by segments.
@@ -598,139 +598,139 @@ public open class Line2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPointsName: MethodStringName1<Line2D, Unit, PackedVector2Array> =
         MethodStringName1<Line2D, Unit, PackedVector2Array>("set_points")
 
-    @JvmStatic
+    @JvmField
     public val getPointsName: MethodStringName0<Line2D, PackedVector2Array> =
         MethodStringName0<Line2D, PackedVector2Array>("get_points")
 
-    @JvmStatic
+    @JvmField
     public val setPointPositionName: MethodStringName2<Line2D, Unit, Int, Vector2> =
         MethodStringName2<Line2D, Unit, Int, Vector2>("set_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getPointPositionName: MethodStringName1<Line2D, Vector2, Int> =
         MethodStringName1<Line2D, Vector2, Int>("get_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getPointCountName: MethodStringName0<Line2D, Int> =
         MethodStringName0<Line2D, Int>("get_point_count")
 
-    @JvmStatic
+    @JvmField
     public val addPointName: MethodStringName2<Line2D, Unit, Vector2, Int> =
         MethodStringName2<Line2D, Unit, Vector2, Int>("add_point")
 
-    @JvmStatic
+    @JvmField
     public val removePointName: MethodStringName1<Line2D, Unit, Int> =
         MethodStringName1<Line2D, Unit, Int>("remove_point")
 
-    @JvmStatic
+    @JvmField
     public val clearPointsName: MethodStringName0<Line2D, Unit> =
         MethodStringName0<Line2D, Unit>("clear_points")
 
-    @JvmStatic
+    @JvmField
     public val setClosedName: MethodStringName1<Line2D, Unit, Boolean> =
         MethodStringName1<Line2D, Unit, Boolean>("set_closed")
 
-    @JvmStatic
+    @JvmField
     public val isClosedName: MethodStringName0<Line2D, Boolean> =
         MethodStringName0<Line2D, Boolean>("is_closed")
 
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<Line2D, Unit, Float> =
         MethodStringName1<Line2D, Unit, Float>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<Line2D, Float> =
         MethodStringName0<Line2D, Float>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val setCurveName: MethodStringName1<Line2D, Unit, Curve?> =
         MethodStringName1<Line2D, Unit, Curve?>("set_curve")
 
-    @JvmStatic
+    @JvmField
     public val getCurveName: MethodStringName0<Line2D, Curve?> =
         MethodStringName0<Line2D, Curve?>("get_curve")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultColorName: MethodStringName1<Line2D, Unit, Color> =
         MethodStringName1<Line2D, Unit, Color>("set_default_color")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultColorName: MethodStringName0<Line2D, Color> =
         MethodStringName0<Line2D, Color>("get_default_color")
 
-    @JvmStatic
+    @JvmField
     public val setGradientName: MethodStringName1<Line2D, Unit, Gradient?> =
         MethodStringName1<Line2D, Unit, Gradient?>("set_gradient")
 
-    @JvmStatic
+    @JvmField
     public val getGradientName: MethodStringName0<Line2D, Gradient?> =
         MethodStringName0<Line2D, Gradient?>("get_gradient")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<Line2D, Unit, Texture2D?> =
         MethodStringName1<Line2D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<Line2D, Texture2D?> =
         MethodStringName0<Line2D, Texture2D?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setTextureModeName: MethodStringName1<Line2D, Unit, LineTextureMode> =
         MethodStringName1<Line2D, Unit, LineTextureMode>("set_texture_mode")
 
-    @JvmStatic
+    @JvmField
     public val getTextureModeName: MethodStringName0<Line2D, LineTextureMode> =
         MethodStringName0<Line2D, LineTextureMode>("get_texture_mode")
 
-    @JvmStatic
+    @JvmField
     public val setJointModeName: MethodStringName1<Line2D, Unit, LineJointMode> =
         MethodStringName1<Line2D, Unit, LineJointMode>("set_joint_mode")
 
-    @JvmStatic
+    @JvmField
     public val getJointModeName: MethodStringName0<Line2D, LineJointMode> =
         MethodStringName0<Line2D, LineJointMode>("get_joint_mode")
 
-    @JvmStatic
+    @JvmField
     public val setBeginCapModeName: MethodStringName1<Line2D, Unit, LineCapMode> =
         MethodStringName1<Line2D, Unit, LineCapMode>("set_begin_cap_mode")
 
-    @JvmStatic
+    @JvmField
     public val getBeginCapModeName: MethodStringName0<Line2D, LineCapMode> =
         MethodStringName0<Line2D, LineCapMode>("get_begin_cap_mode")
 
-    @JvmStatic
+    @JvmField
     public val setEndCapModeName: MethodStringName1<Line2D, Unit, LineCapMode> =
         MethodStringName1<Line2D, Unit, LineCapMode>("set_end_cap_mode")
 
-    @JvmStatic
+    @JvmField
     public val getEndCapModeName: MethodStringName0<Line2D, LineCapMode> =
         MethodStringName0<Line2D, LineCapMode>("get_end_cap_mode")
 
-    @JvmStatic
+    @JvmField
     public val setSharpLimitName: MethodStringName1<Line2D, Unit, Float> =
         MethodStringName1<Line2D, Unit, Float>("set_sharp_limit")
 
-    @JvmStatic
+    @JvmField
     public val getSharpLimitName: MethodStringName0<Line2D, Float> =
         MethodStringName0<Line2D, Float>("get_sharp_limit")
 
-    @JvmStatic
+    @JvmField
     public val setRoundPrecisionName: MethodStringName1<Line2D, Unit, Int> =
         MethodStringName1<Line2D, Unit, Int>("set_round_precision")
 
-    @JvmStatic
+    @JvmField
     public val getRoundPrecisionName: MethodStringName0<Line2D, Int> =
         MethodStringName0<Line2D, Int>("get_round_precision")
 
-    @JvmStatic
+    @JvmField
     public val setAntialiasedName: MethodStringName1<Line2D, Unit, Boolean> =
         MethodStringName1<Line2D, Unit, Boolean>("set_antialiased")
 
-    @JvmStatic
+    @JvmField
     public val getAntialiasedName: MethodStringName0<Line2D, Boolean> =
         MethodStringName0<Line2D, Boolean>("get_antialiased")
   }

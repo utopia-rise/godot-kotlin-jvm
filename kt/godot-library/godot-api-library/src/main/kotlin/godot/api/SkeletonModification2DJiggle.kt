@@ -32,8 +32,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This modification moves a series of bones, typically called a bone chain, towards a target. What
@@ -429,154 +429,154 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
       setJiggleJointBone2dNode(jointIdx, bone2dNode.asCachedNodePath())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTargetNodeName: MethodStringName1<SkeletonModification2DJiggle, Unit, NodePath> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, NodePath>("set_target_node")
 
-    @JvmStatic
+    @JvmField
     public val getTargetNodeName: MethodStringName0<SkeletonModification2DJiggle, NodePath> =
         MethodStringName0<SkeletonModification2DJiggle, NodePath>("get_target_node")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleDataChainLengthName:
         MethodStringName1<SkeletonModification2DJiggle, Unit, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Int>("set_jiggle_data_chain_length")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleDataChainLengthName: MethodStringName0<SkeletonModification2DJiggle, Int> =
         MethodStringName0<SkeletonModification2DJiggle, Int>("get_jiggle_data_chain_length")
 
-    @JvmStatic
+    @JvmField
     public val setStiffnessName: MethodStringName1<SkeletonModification2DJiggle, Unit, Float> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Float>("set_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val getStiffnessName: MethodStringName0<SkeletonModification2DJiggle, Float> =
         MethodStringName0<SkeletonModification2DJiggle, Float>("get_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val setMassName: MethodStringName1<SkeletonModification2DJiggle, Unit, Float> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Float>("set_mass")
 
-    @JvmStatic
+    @JvmField
     public val getMassName: MethodStringName0<SkeletonModification2DJiggle, Float> =
         MethodStringName0<SkeletonModification2DJiggle, Float>("get_mass")
 
-    @JvmStatic
+    @JvmField
     public val setDampingName: MethodStringName1<SkeletonModification2DJiggle, Unit, Float> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Float>("set_damping")
 
-    @JvmStatic
+    @JvmField
     public val getDampingName: MethodStringName0<SkeletonModification2DJiggle, Float> =
         MethodStringName0<SkeletonModification2DJiggle, Float>("get_damping")
 
-    @JvmStatic
+    @JvmField
     public val setUseGravityName: MethodStringName1<SkeletonModification2DJiggle, Unit, Boolean> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Boolean>("set_use_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getUseGravityName: MethodStringName0<SkeletonModification2DJiggle, Boolean> =
         MethodStringName0<SkeletonModification2DJiggle, Boolean>("get_use_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setGravityName: MethodStringName1<SkeletonModification2DJiggle, Unit, Vector2> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Vector2>("set_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getGravityName: MethodStringName0<SkeletonModification2DJiggle, Vector2> =
         MethodStringName0<SkeletonModification2DJiggle, Vector2>("get_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setUseCollidersName: MethodStringName1<SkeletonModification2DJiggle, Unit, Boolean> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Boolean>("set_use_colliders")
 
-    @JvmStatic
+    @JvmField
     public val getUseCollidersName: MethodStringName0<SkeletonModification2DJiggle, Boolean> =
         MethodStringName0<SkeletonModification2DJiggle, Boolean>("get_use_colliders")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<SkeletonModification2DJiggle, Unit, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Unit, Int>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<SkeletonModification2DJiggle, Int> =
         MethodStringName0<SkeletonModification2DJiggle, Int>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointBone2dNodeName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, NodePath> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, NodePath>("set_jiggle_joint_bone2d_node")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointBone2dNodeName:
         MethodStringName1<SkeletonModification2DJiggle, NodePath, Int> =
         MethodStringName1<SkeletonModification2DJiggle, NodePath, Int>("get_jiggle_joint_bone2d_node")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointBoneIndexName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Int> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Int>("set_jiggle_joint_bone_index")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointBoneIndexName:
         MethodStringName1<SkeletonModification2DJiggle, Int, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Int, Int>("get_jiggle_joint_bone_index")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointOverrideName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Boolean> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Boolean>("set_jiggle_joint_override")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointOverrideName:
         MethodStringName1<SkeletonModification2DJiggle, Boolean, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Boolean, Int>("get_jiggle_joint_override")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointStiffnessName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float>("set_jiggle_joint_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointStiffnessName:
         MethodStringName1<SkeletonModification2DJiggle, Float, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Float, Int>("get_jiggle_joint_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointMassName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float>("set_jiggle_joint_mass")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointMassName: MethodStringName1<SkeletonModification2DJiggle, Float, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Float, Int>("get_jiggle_joint_mass")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointDampingName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Float>("set_jiggle_joint_damping")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointDampingName:
         MethodStringName1<SkeletonModification2DJiggle, Float, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Float, Int>("get_jiggle_joint_damping")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointUseGravityName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Boolean> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Boolean>("set_jiggle_joint_use_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointUseGravityName:
         MethodStringName1<SkeletonModification2DJiggle, Boolean, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Boolean, Int>("get_jiggle_joint_use_gravity")
 
-    @JvmStatic
+    @JvmField
     public val setJiggleJointGravityName:
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Vector2> =
         MethodStringName2<SkeletonModification2DJiggle, Unit, Int, Vector2>("set_jiggle_joint_gravity")
 
-    @JvmStatic
+    @JvmField
     public val getJiggleJointGravityName:
         MethodStringName1<SkeletonModification2DJiggle, Vector2, Int> =
         MethodStringName1<SkeletonModification2DJiggle, Vector2, Int>("get_jiggle_joint_gravity")

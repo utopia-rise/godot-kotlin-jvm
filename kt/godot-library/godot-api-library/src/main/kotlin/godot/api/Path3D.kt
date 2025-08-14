@@ -18,8 +18,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Can have [PathFollow3D] child nodes moving along the [Curve3D]. See [PathFollow3D] for more
@@ -62,11 +62,11 @@ public open class Path3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCurveName: MethodStringName1<Path3D, Unit, Curve3D?> =
         MethodStringName1<Path3D, Unit, Curve3D?>("set_curve")
 
-    @JvmStatic
+    @JvmField
     public val getCurveName: MethodStringName0<Path3D, Curve3D?> =
         MethodStringName0<Path3D, Curve3D?>("get_curve")
   }

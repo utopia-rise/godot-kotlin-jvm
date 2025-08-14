@@ -30,8 +30,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [TranslationDomain] is a self-contained collection of [Translation] resources. Translations can
@@ -386,115 +386,115 @@ public open class TranslationDomain : RefCounted() {
       pseudolocalize(message.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getTranslationObjectName: MethodStringName1<TranslationDomain, Translation?, String>
         = MethodStringName1<TranslationDomain, Translation?, String>("get_translation_object")
 
-    @JvmStatic
+    @JvmField
     public val addTranslationName: MethodStringName1<TranslationDomain, Unit, Translation?> =
         MethodStringName1<TranslationDomain, Unit, Translation?>("add_translation")
 
-    @JvmStatic
+    @JvmField
     public val removeTranslationName: MethodStringName1<TranslationDomain, Unit, Translation?> =
         MethodStringName1<TranslationDomain, Unit, Translation?>("remove_translation")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<TranslationDomain, Unit> =
         MethodStringName0<TranslationDomain, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val translateName:
         MethodStringName2<TranslationDomain, StringName, StringName, StringName> =
         MethodStringName2<TranslationDomain, StringName, StringName, StringName>("translate")
 
-    @JvmStatic
+    @JvmField
     public val translatePluralName:
         MethodStringName4<TranslationDomain, StringName, StringName, StringName, Int, StringName> =
         MethodStringName4<TranslationDomain, StringName, StringName, StringName, Int, StringName>("translate_plural")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationEnabledName: MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationEnabledName: MethodStringName1<TranslationDomain, Unit, Boolean>
         = MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationAccentsEnabledName: MethodStringName0<TranslationDomain, Boolean>
         = MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_accents_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationAccentsEnabledName:
         MethodStringName1<TranslationDomain, Unit, Boolean> =
         MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_accents_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationDoubleVowelsEnabledName:
         MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_double_vowels_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationDoubleVowelsEnabledName:
         MethodStringName1<TranslationDomain, Unit, Boolean> =
         MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_double_vowels_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationFakeBidiEnabledName:
         MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_fake_bidi_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationFakeBidiEnabledName:
         MethodStringName1<TranslationDomain, Unit, Boolean> =
         MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_fake_bidi_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationOverrideEnabledName:
         MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_override_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationOverrideEnabledName:
         MethodStringName1<TranslationDomain, Unit, Boolean> =
         MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_override_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPseudolocalizationSkipPlaceholdersEnabledName:
         MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_skip_placeholders_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationSkipPlaceholdersEnabledName:
         MethodStringName1<TranslationDomain, Unit, Boolean> =
         MethodStringName1<TranslationDomain, Unit, Boolean>("set_pseudolocalization_skip_placeholders_enabled")
 
-    @JvmStatic
+    @JvmField
     public val getPseudolocalizationExpansionRatioName: MethodStringName0<TranslationDomain, Float>
         = MethodStringName0<TranslationDomain, Float>("get_pseudolocalization_expansion_ratio")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationExpansionRatioName:
         MethodStringName1<TranslationDomain, Unit, Float> =
         MethodStringName1<TranslationDomain, Unit, Float>("set_pseudolocalization_expansion_ratio")
 
-    @JvmStatic
+    @JvmField
     public val getPseudolocalizationPrefixName: MethodStringName0<TranslationDomain, String> =
         MethodStringName0<TranslationDomain, String>("get_pseudolocalization_prefix")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationPrefixName: MethodStringName1<TranslationDomain, Unit, String> =
         MethodStringName1<TranslationDomain, Unit, String>("set_pseudolocalization_prefix")
 
-    @JvmStatic
+    @JvmField
     public val getPseudolocalizationSuffixName: MethodStringName0<TranslationDomain, String> =
         MethodStringName0<TranslationDomain, String>("get_pseudolocalization_suffix")
 
-    @JvmStatic
+    @JvmField
     public val setPseudolocalizationSuffixName: MethodStringName1<TranslationDomain, Unit, String> =
         MethodStringName1<TranslationDomain, Unit, String>("set_pseudolocalization_suffix")
 
-    @JvmStatic
+    @JvmField
     public val pseudolocalizeName: MethodStringName1<TranslationDomain, StringName, StringName> =
         MethodStringName1<TranslationDomain, StringName, StringName>("pseudolocalize")
   }

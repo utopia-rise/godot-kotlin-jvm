@@ -43,9 +43,9 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport.
@@ -2435,494 +2435,494 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setWorld2dName: MethodStringName1<Viewport, Unit, World2D?> =
         MethodStringName1<Viewport, Unit, World2D?>("set_world_2d")
 
-    @JvmStatic
+    @JvmField
     public val getWorld2dName: MethodStringName0<Viewport, World2D?> =
         MethodStringName0<Viewport, World2D?>("get_world_2d")
 
-    @JvmStatic
+    @JvmField
     public val findWorld2dName: MethodStringName0<Viewport, World2D?> =
         MethodStringName0<Viewport, World2D?>("find_world_2d")
 
-    @JvmStatic
+    @JvmField
     public val setCanvasTransformName: MethodStringName1<Viewport, Unit, Transform2D> =
         MethodStringName1<Viewport, Unit, Transform2D>("set_canvas_transform")
 
-    @JvmStatic
+    @JvmField
     public val getCanvasTransformName: MethodStringName0<Viewport, Transform2D> =
         MethodStringName0<Viewport, Transform2D>("get_canvas_transform")
 
-    @JvmStatic
+    @JvmField
     public val setGlobalCanvasTransformName: MethodStringName1<Viewport, Unit, Transform2D> =
         MethodStringName1<Viewport, Unit, Transform2D>("set_global_canvas_transform")
 
-    @JvmStatic
+    @JvmField
     public val getGlobalCanvasTransformName: MethodStringName0<Viewport, Transform2D> =
         MethodStringName0<Viewport, Transform2D>("get_global_canvas_transform")
 
-    @JvmStatic
+    @JvmField
     public val getStretchTransformName: MethodStringName0<Viewport, Transform2D> =
         MethodStringName0<Viewport, Transform2D>("get_stretch_transform")
 
-    @JvmStatic
+    @JvmField
     public val getFinalTransformName: MethodStringName0<Viewport, Transform2D> =
         MethodStringName0<Viewport, Transform2D>("get_final_transform")
 
-    @JvmStatic
+    @JvmField
     public val getScreenTransformName: MethodStringName0<Viewport, Transform2D> =
         MethodStringName0<Viewport, Transform2D>("get_screen_transform")
 
-    @JvmStatic
+    @JvmField
     public val getVisibleRectName: MethodStringName0<Viewport, Rect2> =
         MethodStringName0<Viewport, Rect2>("get_visible_rect")
 
-    @JvmStatic
+    @JvmField
     public val setTransparentBackgroundName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_transparent_background")
 
-    @JvmStatic
+    @JvmField
     public val hasTransparentBackgroundName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("has_transparent_background")
 
-    @JvmStatic
+    @JvmField
     public val setUseHdr2dName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_hdr_2d")
 
-    @JvmStatic
+    @JvmField
     public val isUsingHdr2dName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_hdr_2d")
 
-    @JvmStatic
+    @JvmField
     public val setMsaa2dName: MethodStringName1<Viewport, Unit, MSAA> =
         MethodStringName1<Viewport, Unit, MSAA>("set_msaa_2d")
 
-    @JvmStatic
+    @JvmField
     public val getMsaa2dName: MethodStringName0<Viewport, MSAA> =
         MethodStringName0<Viewport, MSAA>("get_msaa_2d")
 
-    @JvmStatic
+    @JvmField
     public val setMsaa3dName: MethodStringName1<Viewport, Unit, MSAA> =
         MethodStringName1<Viewport, Unit, MSAA>("set_msaa_3d")
 
-    @JvmStatic
+    @JvmField
     public val getMsaa3dName: MethodStringName0<Viewport, MSAA> =
         MethodStringName0<Viewport, MSAA>("get_msaa_3d")
 
-    @JvmStatic
+    @JvmField
     public val setScreenSpaceAaName: MethodStringName1<Viewport, Unit, ScreenSpaceAA> =
         MethodStringName1<Viewport, Unit, ScreenSpaceAA>("set_screen_space_aa")
 
-    @JvmStatic
+    @JvmField
     public val getScreenSpaceAaName: MethodStringName0<Viewport, ScreenSpaceAA> =
         MethodStringName0<Viewport, ScreenSpaceAA>("get_screen_space_aa")
 
-    @JvmStatic
+    @JvmField
     public val setUseTaaName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_taa")
 
-    @JvmStatic
+    @JvmField
     public val isUsingTaaName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_taa")
 
-    @JvmStatic
+    @JvmField
     public val setUseDebandingName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_debanding")
 
-    @JvmStatic
+    @JvmField
     public val isUsingDebandingName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_debanding")
 
-    @JvmStatic
+    @JvmField
     public val setUseOcclusionCullingName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_occlusion_culling")
 
-    @JvmStatic
+    @JvmField
     public val isUsingOcclusionCullingName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_occlusion_culling")
 
-    @JvmStatic
+    @JvmField
     public val setDebugDrawName: MethodStringName1<Viewport, Unit, DebugDraw> =
         MethodStringName1<Viewport, Unit, DebugDraw>("set_debug_draw")
 
-    @JvmStatic
+    @JvmField
     public val getDebugDrawName: MethodStringName0<Viewport, DebugDraw> =
         MethodStringName0<Viewport, DebugDraw>("get_debug_draw")
 
-    @JvmStatic
+    @JvmField
     public val getRenderInfoName: MethodStringName2<Viewport, Int, RenderInfoType, RenderInfo> =
         MethodStringName2<Viewport, Int, RenderInfoType, RenderInfo>("get_render_info")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<Viewport, ViewportTexture?> =
         MethodStringName0<Viewport, ViewportTexture?>("get_texture")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsObjectPickingName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_physics_object_picking")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsObjectPickingName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("get_physics_object_picking")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsObjectPickingSortName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_physics_object_picking_sort")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsObjectPickingSortName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("get_physics_object_picking_sort")
 
-    @JvmStatic
+    @JvmField
     public val setPhysicsObjectPickingFirstOnlyName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_physics_object_picking_first_only")
 
-    @JvmStatic
+    @JvmField
     public val getPhysicsObjectPickingFirstOnlyName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("get_physics_object_picking_first_only")
 
-    @JvmStatic
+    @JvmField
     public val getViewportRidName: MethodStringName0<Viewport, RID> =
         MethodStringName0<Viewport, RID>("get_viewport_rid")
 
-    @JvmStatic
+    @JvmField
     public val pushTextInputName: MethodStringName1<Viewport, Unit, String> =
         MethodStringName1<Viewport, Unit, String>("push_text_input")
 
-    @JvmStatic
+    @JvmField
     public val pushInputName: MethodStringName2<Viewport, Unit, InputEvent?, Boolean> =
         MethodStringName2<Viewport, Unit, InputEvent?, Boolean>("push_input")
 
-    @JvmStatic
+    @JvmField
     public val pushUnhandledInputName: MethodStringName2<Viewport, Unit, InputEvent?, Boolean> =
         MethodStringName2<Viewport, Unit, InputEvent?, Boolean>("push_unhandled_input")
 
-    @JvmStatic
+    @JvmField
     public val notifyMouseEnteredName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("notify_mouse_entered")
 
-    @JvmStatic
+    @JvmField
     public val notifyMouseExitedName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("notify_mouse_exited")
 
-    @JvmStatic
+    @JvmField
     public val getMousePositionName: MethodStringName0<Viewport, Vector2> =
         MethodStringName0<Viewport, Vector2>("get_mouse_position")
 
-    @JvmStatic
+    @JvmField
     public val warpMouseName: MethodStringName1<Viewport, Unit, Vector2> =
         MethodStringName1<Viewport, Unit, Vector2>("warp_mouse")
 
-    @JvmStatic
+    @JvmField
     public val updateMouseCursorStateName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("update_mouse_cursor_state")
 
-    @JvmStatic
+    @JvmField
     public val guiCancelDragName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("gui_cancel_drag")
 
-    @JvmStatic
+    @JvmField
     public val guiGetDragDataName: MethodStringName0<Viewport, Any?> =
         MethodStringName0<Viewport, Any?>("gui_get_drag_data")
 
-    @JvmStatic
+    @JvmField
     public val guiIsDraggingName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("gui_is_dragging")
 
-    @JvmStatic
+    @JvmField
     public val guiIsDragSuccessfulName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("gui_is_drag_successful")
 
-    @JvmStatic
+    @JvmField
     public val guiReleaseFocusName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("gui_release_focus")
 
-    @JvmStatic
+    @JvmField
     public val guiGetFocusOwnerName: MethodStringName0<Viewport, Control?> =
         MethodStringName0<Viewport, Control?>("gui_get_focus_owner")
 
-    @JvmStatic
+    @JvmField
     public val guiGetHoveredControlName: MethodStringName0<Viewport, Control?> =
         MethodStringName0<Viewport, Control?>("gui_get_hovered_control")
 
-    @JvmStatic
+    @JvmField
     public val setDisableInputName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_disable_input")
 
-    @JvmStatic
+    @JvmField
     public val isInputDisabledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_input_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setPositionalShadowAtlasSizeName: MethodStringName1<Viewport, Unit, Int> =
         MethodStringName1<Viewport, Unit, Int>("set_positional_shadow_atlas_size")
 
-    @JvmStatic
+    @JvmField
     public val getPositionalShadowAtlasSizeName: MethodStringName0<Viewport, Int> =
         MethodStringName0<Viewport, Int>("get_positional_shadow_atlas_size")
 
-    @JvmStatic
+    @JvmField
     public val setPositionalShadowAtlas16BitsName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_positional_shadow_atlas_16_bits")
 
-    @JvmStatic
+    @JvmField
     public val getPositionalShadowAtlas16BitsName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("get_positional_shadow_atlas_16_bits")
 
-    @JvmStatic
+    @JvmField
     public val setSnapControlsToPixelsName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_snap_controls_to_pixels")
 
-    @JvmStatic
+    @JvmField
     public val isSnapControlsToPixelsEnabledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_snap_controls_to_pixels_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSnap2dTransformsToPixelName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_snap_2d_transforms_to_pixel")
 
-    @JvmStatic
+    @JvmField
     public val isSnap2dTransformsToPixelEnabledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_snap_2d_transforms_to_pixel_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setSnap2dVerticesToPixelName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_snap_2d_vertices_to_pixel")
 
-    @JvmStatic
+    @JvmField
     public val isSnap2dVerticesToPixelEnabledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_snap_2d_vertices_to_pixel_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setPositionalShadowAtlasQuadrantSubdivName:
         MethodStringName2<Viewport, Unit, Int, PositionalShadowAtlasQuadrantSubdiv> =
         MethodStringName2<Viewport, Unit, Int, PositionalShadowAtlasQuadrantSubdiv>("set_positional_shadow_atlas_quadrant_subdiv")
 
-    @JvmStatic
+    @JvmField
     public val getPositionalShadowAtlasQuadrantSubdivName:
         MethodStringName1<Viewport, PositionalShadowAtlasQuadrantSubdiv, Int> =
         MethodStringName1<Viewport, PositionalShadowAtlasQuadrantSubdiv, Int>("get_positional_shadow_atlas_quadrant_subdiv")
 
-    @JvmStatic
+    @JvmField
     public val setInputAsHandledName: MethodStringName0<Viewport, Unit> =
         MethodStringName0<Viewport, Unit>("set_input_as_handled")
 
-    @JvmStatic
+    @JvmField
     public val isInputHandledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_input_handled")
 
-    @JvmStatic
+    @JvmField
     public val setHandleInputLocallyName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_handle_input_locally")
 
-    @JvmStatic
+    @JvmField
     public val isHandlingInputLocallyName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_handling_input_locally")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultCanvasItemTextureFilterName:
         MethodStringName1<Viewport, Unit, DefaultCanvasItemTextureFilter> =
         MethodStringName1<Viewport, Unit, DefaultCanvasItemTextureFilter>("set_default_canvas_item_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultCanvasItemTextureFilterName:
         MethodStringName0<Viewport, DefaultCanvasItemTextureFilter> =
         MethodStringName0<Viewport, DefaultCanvasItemTextureFilter>("get_default_canvas_item_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val setEmbeddingSubwindowsName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_embedding_subwindows")
 
-    @JvmStatic
+    @JvmField
     public val isEmbeddingSubwindowsName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_embedding_subwindows")
 
-    @JvmStatic
+    @JvmField
     public val getEmbeddedSubwindowsName: MethodStringName0<Viewport, VariantArray<Window>> =
         MethodStringName0<Viewport, VariantArray<Window>>("get_embedded_subwindows")
 
-    @JvmStatic
+    @JvmField
     public val setCanvasCullMaskName: MethodStringName1<Viewport, Unit, Long> =
         MethodStringName1<Viewport, Unit, Long>("set_canvas_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCanvasCullMaskName: MethodStringName0<Viewport, Long> =
         MethodStringName0<Viewport, Long>("get_canvas_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val setCanvasCullMaskBitName: MethodStringName2<Viewport, Unit, Long, Boolean> =
         MethodStringName2<Viewport, Unit, Long, Boolean>("set_canvas_cull_mask_bit")
 
-    @JvmStatic
+    @JvmField
     public val getCanvasCullMaskBitName: MethodStringName1<Viewport, Boolean, Long> =
         MethodStringName1<Viewport, Boolean, Long>("get_canvas_cull_mask_bit")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultCanvasItemTextureRepeatName:
         MethodStringName1<Viewport, Unit, DefaultCanvasItemTextureRepeat> =
         MethodStringName1<Viewport, Unit, DefaultCanvasItemTextureRepeat>("set_default_canvas_item_texture_repeat")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultCanvasItemTextureRepeatName:
         MethodStringName0<Viewport, DefaultCanvasItemTextureRepeat> =
         MethodStringName0<Viewport, DefaultCanvasItemTextureRepeat>("get_default_canvas_item_texture_repeat")
 
-    @JvmStatic
+    @JvmField
     public val setSdfOversizeName: MethodStringName1<Viewport, Unit, SDFOversize> =
         MethodStringName1<Viewport, Unit, SDFOversize>("set_sdf_oversize")
 
-    @JvmStatic
+    @JvmField
     public val getSdfOversizeName: MethodStringName0<Viewport, SDFOversize> =
         MethodStringName0<Viewport, SDFOversize>("get_sdf_oversize")
 
-    @JvmStatic
+    @JvmField
     public val setSdfScaleName: MethodStringName1<Viewport, Unit, SDFScale> =
         MethodStringName1<Viewport, Unit, SDFScale>("set_sdf_scale")
 
-    @JvmStatic
+    @JvmField
     public val getSdfScaleName: MethodStringName0<Viewport, SDFScale> =
         MethodStringName0<Viewport, SDFScale>("get_sdf_scale")
 
-    @JvmStatic
+    @JvmField
     public val setMeshLodThresholdName: MethodStringName1<Viewport, Unit, Float> =
         MethodStringName1<Viewport, Unit, Float>("set_mesh_lod_threshold")
 
-    @JvmStatic
+    @JvmField
     public val getMeshLodThresholdName: MethodStringName0<Viewport, Float> =
         MethodStringName0<Viewport, Float>("get_mesh_lod_threshold")
 
-    @JvmStatic
+    @JvmField
     public val setAsAudioListener2dName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_as_audio_listener_2d")
 
-    @JvmStatic
+    @JvmField
     public val isAudioListener2dName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_audio_listener_2d")
 
-    @JvmStatic
+    @JvmField
     public val getAudioListener2dName: MethodStringName0<Viewport, AudioListener2D?> =
         MethodStringName0<Viewport, AudioListener2D?>("get_audio_listener_2d")
 
-    @JvmStatic
+    @JvmField
     public val getCamera2dName: MethodStringName0<Viewport, Camera2D?> =
         MethodStringName0<Viewport, Camera2D?>("get_camera_2d")
 
-    @JvmStatic
+    @JvmField
     public val setWorld3dName: MethodStringName1<Viewport, Unit, World3D?> =
         MethodStringName1<Viewport, Unit, World3D?>("set_world_3d")
 
-    @JvmStatic
+    @JvmField
     public val getWorld3dName: MethodStringName0<Viewport, World3D?> =
         MethodStringName0<Viewport, World3D?>("get_world_3d")
 
-    @JvmStatic
+    @JvmField
     public val findWorld3dName: MethodStringName0<Viewport, World3D?> =
         MethodStringName0<Viewport, World3D?>("find_world_3d")
 
-    @JvmStatic
+    @JvmField
     public val setUseOwnWorld3dName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_own_world_3d")
 
-    @JvmStatic
+    @JvmField
     public val isUsingOwnWorld3dName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_own_world_3d")
 
-    @JvmStatic
+    @JvmField
     public val getAudioListener3dName: MethodStringName0<Viewport, AudioListener3D?> =
         MethodStringName0<Viewport, AudioListener3D?>("get_audio_listener_3d")
 
-    @JvmStatic
+    @JvmField
     public val getCamera3dName: MethodStringName0<Viewport, Camera3D?> =
         MethodStringName0<Viewport, Camera3D?>("get_camera_3d")
 
-    @JvmStatic
+    @JvmField
     public val setAsAudioListener3dName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_as_audio_listener_3d")
 
-    @JvmStatic
+    @JvmField
     public val isAudioListener3dName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_audio_listener_3d")
 
-    @JvmStatic
+    @JvmField
     public val setDisable3dName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_disable_3d")
 
-    @JvmStatic
+    @JvmField
     public val is3dDisabledName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_3d_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setUseXrName: MethodStringName1<Viewport, Unit, Boolean> =
         MethodStringName1<Viewport, Unit, Boolean>("set_use_xr")
 
-    @JvmStatic
+    @JvmField
     public val isUsingXrName: MethodStringName0<Viewport, Boolean> =
         MethodStringName0<Viewport, Boolean>("is_using_xr")
 
-    @JvmStatic
+    @JvmField
     public val setScaling3dModeName: MethodStringName1<Viewport, Unit, Scaling3DMode> =
         MethodStringName1<Viewport, Unit, Scaling3DMode>("set_scaling_3d_mode")
 
-    @JvmStatic
+    @JvmField
     public val getScaling3dModeName: MethodStringName0<Viewport, Scaling3DMode> =
         MethodStringName0<Viewport, Scaling3DMode>("get_scaling_3d_mode")
 
-    @JvmStatic
+    @JvmField
     public val setScaling3dScaleName: MethodStringName1<Viewport, Unit, Float> =
         MethodStringName1<Viewport, Unit, Float>("set_scaling_3d_scale")
 
-    @JvmStatic
+    @JvmField
     public val getScaling3dScaleName: MethodStringName0<Viewport, Float> =
         MethodStringName0<Viewport, Float>("get_scaling_3d_scale")
 
-    @JvmStatic
+    @JvmField
     public val setFsrSharpnessName: MethodStringName1<Viewport, Unit, Float> =
         MethodStringName1<Viewport, Unit, Float>("set_fsr_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val getFsrSharpnessName: MethodStringName0<Viewport, Float> =
         MethodStringName0<Viewport, Float>("get_fsr_sharpness")
 
-    @JvmStatic
+    @JvmField
     public val setTextureMipmapBiasName: MethodStringName1<Viewport, Unit, Float> =
         MethodStringName1<Viewport, Unit, Float>("set_texture_mipmap_bias")
 
-    @JvmStatic
+    @JvmField
     public val getTextureMipmapBiasName: MethodStringName0<Viewport, Float> =
         MethodStringName0<Viewport, Float>("get_texture_mipmap_bias")
 
-    @JvmStatic
+    @JvmField
     public val setAnisotropicFilteringLevelName:
         MethodStringName1<Viewport, Unit, AnisotropicFiltering> =
         MethodStringName1<Viewport, Unit, AnisotropicFiltering>("set_anisotropic_filtering_level")
 
-    @JvmStatic
+    @JvmField
     public val getAnisotropicFilteringLevelName: MethodStringName0<Viewport, AnisotropicFiltering> =
         MethodStringName0<Viewport, AnisotropicFiltering>("get_anisotropic_filtering_level")
 
-    @JvmStatic
+    @JvmField
     public val setVrsModeName: MethodStringName1<Viewport, Unit, VRSMode> =
         MethodStringName1<Viewport, Unit, VRSMode>("set_vrs_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVrsModeName: MethodStringName0<Viewport, VRSMode> =
         MethodStringName0<Viewport, VRSMode>("get_vrs_mode")
 
-    @JvmStatic
+    @JvmField
     public val setVrsUpdateModeName: MethodStringName1<Viewport, Unit, VRSUpdateMode> =
         MethodStringName1<Viewport, Unit, VRSUpdateMode>("set_vrs_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVrsUpdateModeName: MethodStringName0<Viewport, VRSUpdateMode> =
         MethodStringName0<Viewport, VRSUpdateMode>("get_vrs_update_mode")
 
-    @JvmStatic
+    @JvmField
     public val setVrsTextureName: MethodStringName1<Viewport, Unit, Texture2D?> =
         MethodStringName1<Viewport, Unit, Texture2D?>("set_vrs_texture")
 
-    @JvmStatic
+    @JvmField
     public val getVrsTextureName: MethodStringName0<Viewport, Texture2D?> =
         MethodStringName0<Viewport, Texture2D?>("get_vrs_texture")
   }

@@ -32,7 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * This is a helper 3D node that is linked to the tracking of controllers. It also offers several
@@ -153,23 +153,23 @@ public open class XRController3D : XRNode3D() {
   public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val isButtonPressedName: MethodStringName1<XRController3D, Boolean, StringName> =
         MethodStringName1<XRController3D, Boolean, StringName>("is_button_pressed")
 
-    @JvmStatic
+    @JvmField
     public val getInputName: MethodStringName1<XRController3D, Any?, StringName> =
         MethodStringName1<XRController3D, Any?, StringName>("get_input")
 
-    @JvmStatic
+    @JvmField
     public val getFloatName: MethodStringName1<XRController3D, Float, StringName> =
         MethodStringName1<XRController3D, Float, StringName>("get_float")
 
-    @JvmStatic
+    @JvmField
     public val getVector2Name: MethodStringName1<XRController3D, Vector2, StringName> =
         MethodStringName1<XRController3D, Vector2, StringName>("get_vector2")
 
-    @JvmStatic
+    @JvmField
     public val getTrackerHandName:
         MethodStringName0<XRController3D, XRPositionalTracker.TrackerHand> =
         MethodStringName0<XRController3D, XRPositionalTracker.TrackerHand>("get_tracker_hand")

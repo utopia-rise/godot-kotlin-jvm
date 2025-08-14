@@ -35,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -59,76 +60,76 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ProjectSettings : Object() {
-  @JvmStatic
+  @JvmField
   public val hasSettingName: MethodStringName1<ProjectSettings, Boolean, String> =
       MethodStringName1<ProjectSettings, Boolean, String>("has_setting")
 
-  @JvmStatic
+  @JvmField
   public val setSettingName: MethodStringName2<ProjectSettings, Unit, String, Any?> =
       MethodStringName2<ProjectSettings, Unit, String, Any?>("set_setting")
 
-  @JvmStatic
+  @JvmField
   public val getSettingName: MethodStringName2<ProjectSettings, Any?, String, Any?> =
       MethodStringName2<ProjectSettings, Any?, String, Any?>("get_setting")
 
-  @JvmStatic
+  @JvmField
   public val getSettingWithOverrideName: MethodStringName1<ProjectSettings, Any?, StringName> =
       MethodStringName1<ProjectSettings, Any?, StringName>("get_setting_with_override")
 
-  @JvmStatic
+  @JvmField
   public val getGlobalClassListName:
       MethodStringName0<ProjectSettings, VariantArray<Dictionary<Any?, Any?>>> =
       MethodStringName0<ProjectSettings, VariantArray<Dictionary<Any?, Any?>>>("get_global_class_list")
 
-  @JvmStatic
+  @JvmField
   public val setOrderName: MethodStringName2<ProjectSettings, Unit, String, Int> =
       MethodStringName2<ProjectSettings, Unit, String, Int>("set_order")
 
-  @JvmStatic
+  @JvmField
   public val getOrderName: MethodStringName1<ProjectSettings, Int, String> =
       MethodStringName1<ProjectSettings, Int, String>("get_order")
 
-  @JvmStatic
+  @JvmField
   public val setInitialValueName: MethodStringName2<ProjectSettings, Unit, String, Any?> =
       MethodStringName2<ProjectSettings, Unit, String, Any?>("set_initial_value")
 
-  @JvmStatic
+  @JvmField
   public val setAsBasicName: MethodStringName2<ProjectSettings, Unit, String, Boolean> =
       MethodStringName2<ProjectSettings, Unit, String, Boolean>("set_as_basic")
 
-  @JvmStatic
+  @JvmField
   public val setAsInternalName: MethodStringName2<ProjectSettings, Unit, String, Boolean> =
       MethodStringName2<ProjectSettings, Unit, String, Boolean>("set_as_internal")
 
-  @JvmStatic
+  @JvmField
   public val addPropertyInfoName: MethodStringName1<ProjectSettings, Unit, Dictionary<Any?, Any?>> =
       MethodStringName1<ProjectSettings, Unit, Dictionary<Any?, Any?>>("add_property_info")
 
-  @JvmStatic
+  @JvmField
   public val setRestartIfChangedName: MethodStringName2<ProjectSettings, Unit, String, Boolean> =
       MethodStringName2<ProjectSettings, Unit, String, Boolean>("set_restart_if_changed")
 
-  @JvmStatic
+  @JvmField
   public val clearName: MethodStringName1<ProjectSettings, Unit, String> =
       MethodStringName1<ProjectSettings, Unit, String>("clear")
 
-  @JvmStatic
+  @JvmField
   public val localizePathName: MethodStringName1<ProjectSettings, String, String> =
       MethodStringName1<ProjectSettings, String, String>("localize_path")
 
-  @JvmStatic
+  @JvmField
   public val globalizePathName: MethodStringName1<ProjectSettings, String, String> =
       MethodStringName1<ProjectSettings, String, String>("globalize_path")
 
-  @JvmStatic
+  @JvmField
   public val saveName: MethodStringName0<ProjectSettings, Error> =
       MethodStringName0<ProjectSettings, Error>("save")
 
-  @JvmStatic
+  @JvmField
   public val loadResourcePackName: MethodStringName3<ProjectSettings, Boolean, String, Boolean, Int>
       = MethodStringName3<ProjectSettings, Boolean, String, Boolean, Int>("load_resource_pack")
 
-  @JvmStatic
+  @JvmField
   public val saveCustomName: MethodStringName1<ProjectSettings, Error, String> =
       MethodStringName1<ProjectSettings, Error, String>("save_custom")
 

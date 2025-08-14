@@ -13,6 +13,7 @@ import kotlin.PublishedApi
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
@@ -25,6 +26,7 @@ public class Signal0 @PublishedApi internal constructor(
         emitUnsafe()
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable0<*>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -61,6 +63,7 @@ public class Signal1<P0> @PublishedApi internal constructor(
         emitUnsafe(p0)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable1<*, P0>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -99,6 +102,7 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
         emitUnsafe(p0, p1)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable2<*, P0, P1>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -142,6 +146,7 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable3<*, P0, P1, P2>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -186,6 +191,7 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable4<*, P0, P1, P2, P3>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -232,6 +238,7 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable5<*, P0, P1, P2, P3, P4>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -279,6 +286,7 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
         emitUnsafe(p0, p1, p2, p3, p4, p5)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable6<*, P0, P1, P2, P3, P4, P5>, flags: Object.ConnectFlags =
             Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -327,6 +335,7 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable7<*, P0, P1, P2, P3, P4, P5, P6>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -377,6 +386,7 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable8<*, P0, P1, P2, P3, P4, P5, P6, P7>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -429,6 +439,7 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable9<*, P0, P1, P2, P3, P4, P5, P6, P7, P8>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -482,6 +493,7 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable10<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -538,6 +550,7 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable11<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -596,6 +609,7 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11)
     }
 
+    @JvmOverloads
     public fun connect(callable: Callable12<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
         connectUnsafe(callable, flags)
@@ -657,6 +671,7 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12)
     }
 
+    @JvmOverloads
     public
             fun connect(callable: Callable13<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
@@ -721,6 +736,7 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13)
     }
 
+    @JvmOverloads
     public
             fun connect(callable: Callable14<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
@@ -786,6 +802,7 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14)
     }
 
+    @JvmOverloads
     public
             fun connect(callable: Callable15<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {
@@ -853,6 +870,7 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
         emitUnsafe(p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15)
     }
 
+    @JvmOverloads
     public
             fun connect(callable: Callable16<*, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>,
             flags: Object.ConnectFlags = Object.ConnectFlags.DEFAULT): Unit {

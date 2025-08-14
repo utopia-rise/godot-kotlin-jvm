@@ -24,8 +24,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A [Material] resource that can be used by [FogVolume]s to draw volumetric effects.
@@ -245,51 +245,51 @@ public open class FogMaterial : Material() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDensityName: MethodStringName1<FogMaterial, Unit, Float> =
         MethodStringName1<FogMaterial, Unit, Float>("set_density")
 
-    @JvmStatic
+    @JvmField
     public val getDensityName: MethodStringName0<FogMaterial, Float> =
         MethodStringName0<FogMaterial, Float>("get_density")
 
-    @JvmStatic
+    @JvmField
     public val setAlbedoName: MethodStringName1<FogMaterial, Unit, Color> =
         MethodStringName1<FogMaterial, Unit, Color>("set_albedo")
 
-    @JvmStatic
+    @JvmField
     public val getAlbedoName: MethodStringName0<FogMaterial, Color> =
         MethodStringName0<FogMaterial, Color>("get_albedo")
 
-    @JvmStatic
+    @JvmField
     public val setEmissionName: MethodStringName1<FogMaterial, Unit, Color> =
         MethodStringName1<FogMaterial, Unit, Color>("set_emission")
 
-    @JvmStatic
+    @JvmField
     public val getEmissionName: MethodStringName0<FogMaterial, Color> =
         MethodStringName0<FogMaterial, Color>("get_emission")
 
-    @JvmStatic
+    @JvmField
     public val setHeightFalloffName: MethodStringName1<FogMaterial, Unit, Float> =
         MethodStringName1<FogMaterial, Unit, Float>("set_height_falloff")
 
-    @JvmStatic
+    @JvmField
     public val getHeightFalloffName: MethodStringName0<FogMaterial, Float> =
         MethodStringName0<FogMaterial, Float>("get_height_falloff")
 
-    @JvmStatic
+    @JvmField
     public val setEdgeFadeName: MethodStringName1<FogMaterial, Unit, Float> =
         MethodStringName1<FogMaterial, Unit, Float>("set_edge_fade")
 
-    @JvmStatic
+    @JvmField
     public val getEdgeFadeName: MethodStringName0<FogMaterial, Float> =
         MethodStringName0<FogMaterial, Float>("get_edge_fade")
 
-    @JvmStatic
+    @JvmField
     public val setDensityTextureName: MethodStringName1<FogMaterial, Unit, Texture3D?> =
         MethodStringName1<FogMaterial, Unit, Texture3D?>("set_density_texture")
 
-    @JvmStatic
+    @JvmField
     public val getDensityTextureName: MethodStringName0<FogMaterial, Texture3D?> =
         MethodStringName0<FogMaterial, Texture3D?>("get_density_texture")
   }

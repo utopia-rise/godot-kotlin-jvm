@@ -18,8 +18,8 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
@@ -54,11 +54,11 @@ public open class Texture2DRD : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureRdRidName: MethodStringName1<Texture2DRD, Unit, RID> =
         MethodStringName1<Texture2DRD, Unit, RID>("set_texture_rd_rid")
 
-    @JvmStatic
+    @JvmField
     public val getTextureRdRidName: MethodStringName0<Texture2DRD, RID> =
         MethodStringName0<Texture2DRD, RID>("get_texture_rd_rid")
   }

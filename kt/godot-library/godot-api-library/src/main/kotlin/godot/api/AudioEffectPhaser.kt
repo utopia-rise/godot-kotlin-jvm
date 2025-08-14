@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Combines phase-shifted signals with the original signal. The movement of the phase-shifted
@@ -146,43 +146,43 @@ public open class AudioEffectPhaser : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setRangeMinHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
         MethodStringName1<AudioEffectPhaser, Unit, Float>("set_range_min_hz")
 
-    @JvmStatic
+    @JvmField
     public val getRangeMinHzName: MethodStringName0<AudioEffectPhaser, Float> =
         MethodStringName0<AudioEffectPhaser, Float>("get_range_min_hz")
 
-    @JvmStatic
+    @JvmField
     public val setRangeMaxHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
         MethodStringName1<AudioEffectPhaser, Unit, Float>("set_range_max_hz")
 
-    @JvmStatic
+    @JvmField
     public val getRangeMaxHzName: MethodStringName0<AudioEffectPhaser, Float> =
         MethodStringName0<AudioEffectPhaser, Float>("get_range_max_hz")
 
-    @JvmStatic
+    @JvmField
     public val setRateHzName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
         MethodStringName1<AudioEffectPhaser, Unit, Float>("set_rate_hz")
 
-    @JvmStatic
+    @JvmField
     public val getRateHzName: MethodStringName0<AudioEffectPhaser, Float> =
         MethodStringName0<AudioEffectPhaser, Float>("get_rate_hz")
 
-    @JvmStatic
+    @JvmField
     public val setFeedbackName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
         MethodStringName1<AudioEffectPhaser, Unit, Float>("set_feedback")
 
-    @JvmStatic
+    @JvmField
     public val getFeedbackName: MethodStringName0<AudioEffectPhaser, Float> =
         MethodStringName0<AudioEffectPhaser, Float>("get_feedback")
 
-    @JvmStatic
+    @JvmField
     public val setDepthName: MethodStringName1<AudioEffectPhaser, Unit, Float> =
         MethodStringName1<AudioEffectPhaser, Unit, Float>("set_depth")
 
-    @JvmStatic
+    @JvmField
     public val getDepthName: MethodStringName0<AudioEffectPhaser, Float> =
         MethodStringName0<AudioEffectPhaser, Float>("get_depth")
   }

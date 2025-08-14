@@ -18,8 +18,8 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This texture class allows you to use a 3D texture created directly on the [RenderingDevice] as a
@@ -54,11 +54,11 @@ public open class Texture3DRD : Texture3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureRdRidName: MethodStringName1<Texture3DRD, Unit, RID> =
         MethodStringName1<Texture3DRD, Unit, RID>("set_texture_rd_rid")
 
-    @JvmStatic
+    @JvmField
     public val getTextureRdRidName: MethodStringName0<Texture3DRD, RID> =
         MethodStringName0<Texture3DRD, RID>("get_texture_rd_rid")
   }

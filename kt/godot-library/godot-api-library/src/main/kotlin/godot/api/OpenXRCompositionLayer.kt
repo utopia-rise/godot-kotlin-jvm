@@ -30,8 +30,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Composition layers allow 2D viewports to be displayed inside of the headset by the XR compositor
@@ -262,63 +262,63 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLayerViewportName: MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?> =
         MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?>("set_layer_viewport")
 
-    @JvmStatic
+    @JvmField
     public val getLayerViewportName: MethodStringName0<OpenXRCompositionLayer, SubViewport?> =
         MethodStringName0<OpenXRCompositionLayer, SubViewport?>("get_layer_viewport")
 
-    @JvmStatic
+    @JvmField
     public val setUseAndroidSurfaceName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
         MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_use_android_surface")
 
-    @JvmStatic
+    @JvmField
     public val getUseAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
         MethodStringName0<OpenXRCompositionLayer, Boolean>("get_use_android_surface")
 
-    @JvmStatic
+    @JvmField
     public val setAndroidSurfaceSizeName: MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>
         = MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>("set_android_surface_size")
 
-    @JvmStatic
+    @JvmField
     public val getAndroidSurfaceSizeName: MethodStringName0<OpenXRCompositionLayer, Vector2i> =
         MethodStringName0<OpenXRCompositionLayer, Vector2i>("get_android_surface_size")
 
-    @JvmStatic
+    @JvmField
     public val setEnableHolePunchName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
         MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_enable_hole_punch")
 
-    @JvmStatic
+    @JvmField
     public val getEnableHolePunchName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
         MethodStringName0<OpenXRCompositionLayer, Boolean>("get_enable_hole_punch")
 
-    @JvmStatic
+    @JvmField
     public val setSortOrderName: MethodStringName1<OpenXRCompositionLayer, Unit, Int> =
         MethodStringName1<OpenXRCompositionLayer, Unit, Int>("set_sort_order")
 
-    @JvmStatic
+    @JvmField
     public val getSortOrderName: MethodStringName0<OpenXRCompositionLayer, Int> =
         MethodStringName0<OpenXRCompositionLayer, Int>("get_sort_order")
 
-    @JvmStatic
+    @JvmField
     public val setAlphaBlendName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
         MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_alpha_blend")
 
-    @JvmStatic
+    @JvmField
     public val getAlphaBlendName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
         MethodStringName0<OpenXRCompositionLayer, Boolean>("get_alpha_blend")
 
-    @JvmStatic
+    @JvmField
     public val getAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, JavaObject?> =
         MethodStringName0<OpenXRCompositionLayer, JavaObject?>("get_android_surface")
 
-    @JvmStatic
+    @JvmField
     public val isNativelySupportedName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
         MethodStringName0<OpenXRCompositionLayer, Boolean>("is_natively_supported")
 
-    @JvmStatic
+    @JvmField
     public val intersectsRayName:
         MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3> =
         MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3>("intersects_ray")

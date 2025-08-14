@@ -21,6 +21,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -35,15 +36,15 @@ public open class ShaderIncludeDB : Object() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val listBuiltInIncludeFilesName: MethodStringName0<ShaderIncludeDB, PackedStringArray> =
         MethodStringName0<ShaderIncludeDB, PackedStringArray>("list_built_in_include_files")
 
-    @JvmStatic
+    @JvmField
     public val hasBuiltInIncludeFileName: MethodStringName1<ShaderIncludeDB, Boolean, String> =
         MethodStringName1<ShaderIncludeDB, Boolean, String>("has_built_in_include_file")
 
-    @JvmStatic
+    @JvmField
     public val getBuiltInIncludeFileName: MethodStringName1<ShaderIncludeDB, String, String> =
         MethodStringName1<ShaderIncludeDB, String, String>("get_built_in_include_file")
 

@@ -24,8 +24,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A data buffer stream peer that uses a byte array as the stream. This object can be used to handle
@@ -161,35 +161,35 @@ public open class StreamPeerBuffer : StreamPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val seekName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
         MethodStringName1<StreamPeerBuffer, Unit, Int>("seek")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<StreamPeerBuffer, Int> =
         MethodStringName0<StreamPeerBuffer, Int>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<StreamPeerBuffer, Int> =
         MethodStringName0<StreamPeerBuffer, Int>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val resizeName: MethodStringName1<StreamPeerBuffer, Unit, Int> =
         MethodStringName1<StreamPeerBuffer, Unit, Int>("resize")
 
-    @JvmStatic
+    @JvmField
     public val setDataArrayName: MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray> =
         MethodStringName1<StreamPeerBuffer, Unit, PackedByteArray>("set_data_array")
 
-    @JvmStatic
+    @JvmField
     public val getDataArrayName: MethodStringName0<StreamPeerBuffer, PackedByteArray> =
         MethodStringName0<StreamPeerBuffer, PackedByteArray>("get_data_array")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<StreamPeerBuffer, Unit> =
         MethodStringName0<StreamPeerBuffer, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val duplicateName: MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?> =
         MethodStringName0<StreamPeerBuffer, StreamPeerBuffer?>("duplicate")
   }

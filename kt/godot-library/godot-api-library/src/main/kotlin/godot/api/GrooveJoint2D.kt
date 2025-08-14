@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that restricts the movement of two 2D physics bodies to a fixed axis. For
@@ -80,19 +80,19 @@ public open class GrooveJoint2D : Joint2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<GrooveJoint2D, Unit, Float> =
         MethodStringName1<GrooveJoint2D, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<GrooveJoint2D, Float> =
         MethodStringName0<GrooveJoint2D, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setInitialOffsetName: MethodStringName1<GrooveJoint2D, Unit, Float> =
         MethodStringName1<GrooveJoint2D, Unit, Float>("set_initial_offset")
 
-    @JvmStatic
+    @JvmField
     public val getInitialOffsetName: MethodStringName0<GrooveJoint2D, Float> =
         MethodStringName0<GrooveJoint2D, Float>("get_initial_offset")
   }

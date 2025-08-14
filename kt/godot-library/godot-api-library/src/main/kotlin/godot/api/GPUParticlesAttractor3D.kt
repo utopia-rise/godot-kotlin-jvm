@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Particle attractors can be used to attract particles towards the attractor's origin, or to push
@@ -148,35 +148,35 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setCullMaskName: MethodStringName1<GPUParticlesAttractor3D, Unit, Long> =
         MethodStringName1<GPUParticlesAttractor3D, Unit, Long>("set_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCullMaskName: MethodStringName0<GPUParticlesAttractor3D, Long> =
         MethodStringName0<GPUParticlesAttractor3D, Long>("get_cull_mask")
 
-    @JvmStatic
+    @JvmField
     public val setStrengthName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
         MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_strength")
 
-    @JvmStatic
+    @JvmField
     public val getStrengthName: MethodStringName0<GPUParticlesAttractor3D, Float> =
         MethodStringName0<GPUParticlesAttractor3D, Float>("get_strength")
 
-    @JvmStatic
+    @JvmField
     public val setAttenuationName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
         MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_attenuation")
 
-    @JvmStatic
+    @JvmField
     public val getAttenuationName: MethodStringName0<GPUParticlesAttractor3D, Float> =
         MethodStringName0<GPUParticlesAttractor3D, Float>("get_attenuation")
 
-    @JvmStatic
+    @JvmField
     public val setDirectionalityName: MethodStringName1<GPUParticlesAttractor3D, Unit, Float> =
         MethodStringName1<GPUParticlesAttractor3D, Unit, Float>("set_directionality")
 
-    @JvmStatic
+    @JvmField
     public val getDirectionalityName: MethodStringName0<GPUParticlesAttractor3D, Float> =
         MethodStringName0<GPUParticlesAttractor3D, Float>("get_directionality")
   }

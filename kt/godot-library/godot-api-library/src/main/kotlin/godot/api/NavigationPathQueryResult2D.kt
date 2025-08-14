@@ -29,8 +29,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class stores the result of a 2D navigation path query from the [NavigationServer2D].
@@ -306,42 +306,42 @@ public open class NavigationPathQueryResult2D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPathName: MethodStringName1<NavigationPathQueryResult2D, Unit, PackedVector2Array>
         = MethodStringName1<NavigationPathQueryResult2D, Unit, PackedVector2Array>("set_path")
 
-    @JvmStatic
+    @JvmField
     public val getPathName: MethodStringName0<NavigationPathQueryResult2D, PackedVector2Array> =
         MethodStringName0<NavigationPathQueryResult2D, PackedVector2Array>("get_path")
 
-    @JvmStatic
+    @JvmField
     public val setPathTypesName:
         MethodStringName1<NavigationPathQueryResult2D, Unit, PackedInt32Array> =
         MethodStringName1<NavigationPathQueryResult2D, Unit, PackedInt32Array>("set_path_types")
 
-    @JvmStatic
+    @JvmField
     public val getPathTypesName: MethodStringName0<NavigationPathQueryResult2D, PackedInt32Array> =
         MethodStringName0<NavigationPathQueryResult2D, PackedInt32Array>("get_path_types")
 
-    @JvmStatic
+    @JvmField
     public val setPathRidsName:
         MethodStringName1<NavigationPathQueryResult2D, Unit, VariantArray<RID>> =
         MethodStringName1<NavigationPathQueryResult2D, Unit, VariantArray<RID>>("set_path_rids")
 
-    @JvmStatic
+    @JvmField
     public val getPathRidsName: MethodStringName0<NavigationPathQueryResult2D, VariantArray<RID>> =
         MethodStringName0<NavigationPathQueryResult2D, VariantArray<RID>>("get_path_rids")
 
-    @JvmStatic
+    @JvmField
     public val setPathOwnerIdsName:
         MethodStringName1<NavigationPathQueryResult2D, Unit, PackedInt64Array> =
         MethodStringName1<NavigationPathQueryResult2D, Unit, PackedInt64Array>("set_path_owner_ids")
 
-    @JvmStatic
+    @JvmField
     public val getPathOwnerIdsName: MethodStringName0<NavigationPathQueryResult2D, PackedInt64Array>
         = MethodStringName0<NavigationPathQueryResult2D, PackedInt64Array>("get_path_owner_ids")
 
-    @JvmStatic
+    @JvmField
     public val resetName: MethodStringName0<NavigationPathQueryResult2D, Unit> =
         MethodStringName0<NavigationPathQueryResult2D, Unit>("reset")
   }

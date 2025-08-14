@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Applies [operator] to two floating-point inputs: `a` and `b`.
@@ -115,11 +115,11 @@ public open class VisualShaderNodeFloatOp : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOperatorName: MethodStringName1<VisualShaderNodeFloatOp, Unit, Operator> =
         MethodStringName1<VisualShaderNodeFloatOp, Unit, Operator>("set_operator")
 
-    @JvmStatic
+    @JvmField
     public val getOperatorName: MethodStringName0<VisualShaderNodeFloatOp, Operator> =
         MethodStringName0<VisualShaderNodeFloatOp, Operator>("get_operator")
   }

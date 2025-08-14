@@ -19,8 +19,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An Omnidirectional light is a type of [Light3D] that emits light in all directions. The light is
@@ -129,11 +129,11 @@ public open class OmniLight3D : Light3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setShadowModeName: MethodStringName1<OmniLight3D, Unit, ShadowMode> =
         MethodStringName1<OmniLight3D, Unit, ShadowMode>("set_shadow_mode")
 
-    @JvmStatic
+    @JvmField
     public val getShadowModeName: MethodStringName0<OmniLight3D, ShadowMode> =
         MethodStringName0<OmniLight3D, ShadowMode>("get_shadow_mode")
   }

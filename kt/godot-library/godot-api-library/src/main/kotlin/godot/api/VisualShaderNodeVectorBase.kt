@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This is an abstract class. See the derived types for descriptions of the possible operations.
@@ -84,11 +84,11 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setOpTypeName: MethodStringName1<VisualShaderNodeVectorBase, Unit, OpType> =
         MethodStringName1<VisualShaderNodeVectorBase, Unit, OpType>("set_op_type")
 
-    @JvmStatic
+    @JvmField
     public val getOpTypeName: MethodStringName0<VisualShaderNodeVectorBase, OpType> =
         MethodStringName0<VisualShaderNodeVectorBase, OpType>("get_op_type")
   }

@@ -18,8 +18,8 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [MultiMeshInstance2D] is a specialized node to instance a [MultiMesh] resource in 2D.
@@ -83,19 +83,19 @@ public open class MultiMeshInstance2D : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMultimeshName: MethodStringName1<MultiMeshInstance2D, Unit, MultiMesh?> =
         MethodStringName1<MultiMeshInstance2D, Unit, MultiMesh?>("set_multimesh")
 
-    @JvmStatic
+    @JvmField
     public val getMultimeshName: MethodStringName0<MultiMeshInstance2D, MultiMesh?> =
         MethodStringName0<MultiMeshInstance2D, MultiMesh?>("get_multimesh")
 
-    @JvmStatic
+    @JvmField
     public val setTextureName: MethodStringName1<MultiMeshInstance2D, Unit, Texture2D?> =
         MethodStringName1<MultiMeshInstance2D, Unit, Texture2D?>("set_texture")
 
-    @JvmStatic
+    @JvmField
     public val getTextureName: MethodStringName0<MultiMeshInstance2D, Texture2D?> =
         MethodStringName0<MultiMeshInstance2D, Texture2D?>("get_texture")
   }

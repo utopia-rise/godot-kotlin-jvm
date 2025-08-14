@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [GridContainer] arranges its child controls in a grid layout. The number of columns is specified
@@ -59,11 +59,11 @@ public open class GridContainer : Container() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setColumnsName: MethodStringName1<GridContainer, Unit, Int> =
         MethodStringName1<GridContainer, Unit, Int>("set_columns")
 
-    @JvmStatic
+    @JvmField
     public val getColumnsName: MethodStringName0<GridContainer, Int> =
         MethodStringName0<GridContainer, Int>("get_columns")
   }

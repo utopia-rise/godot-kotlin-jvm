@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A stream peer that handles TCP connections. This object can be used to connect to TCP servers, or
@@ -163,39 +163,39 @@ public open class StreamPeerTCP : StreamPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val bindName: MethodStringName2<StreamPeerTCP, Error, Int, String> =
         MethodStringName2<StreamPeerTCP, Error, Int, String>("bind")
 
-    @JvmStatic
+    @JvmField
     public val connectToHostName: MethodStringName2<StreamPeerTCP, Error, String, Int> =
         MethodStringName2<StreamPeerTCP, Error, String, Int>("connect_to_host")
 
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<StreamPeerTCP, Error> =
         MethodStringName0<StreamPeerTCP, Error>("poll")
 
-    @JvmStatic
+    @JvmField
     public val getStatusName: MethodStringName0<StreamPeerTCP, Status> =
         MethodStringName0<StreamPeerTCP, Status>("get_status")
 
-    @JvmStatic
+    @JvmField
     public val getConnectedHostName: MethodStringName0<StreamPeerTCP, String> =
         MethodStringName0<StreamPeerTCP, String>("get_connected_host")
 
-    @JvmStatic
+    @JvmField
     public val getConnectedPortName: MethodStringName0<StreamPeerTCP, Int> =
         MethodStringName0<StreamPeerTCP, Int>("get_connected_port")
 
-    @JvmStatic
+    @JvmField
     public val getLocalPortName: MethodStringName0<StreamPeerTCP, Int> =
         MethodStringName0<StreamPeerTCP, Int>("get_local_port")
 
-    @JvmStatic
+    @JvmField
     public val disconnectFromHostName: MethodStringName0<StreamPeerTCP, Unit> =
         MethodStringName0<StreamPeerTCP, Unit>("disconnect_from_host")
 
-    @JvmStatic
+    @JvmField
     public val setNoDelayName: MethodStringName1<StreamPeerTCP, Unit, Boolean> =
         MethodStringName1<StreamPeerTCP, Unit, Boolean>("set_no_delay")
   }

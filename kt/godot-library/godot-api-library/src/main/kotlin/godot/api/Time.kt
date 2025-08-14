@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -55,89 +56,89 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Time : Object() {
-  @JvmStatic
+  @JvmField
   public val getDatetimeDictFromUnixTimeName: MethodStringName1<Time, Dictionary<Any?, Any?>, Long>
       = MethodStringName1<Time, Dictionary<Any?, Any?>, Long>("get_datetime_dict_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getDateDictFromUnixTimeName: MethodStringName1<Time, Dictionary<Any?, Any?>, Long> =
       MethodStringName1<Time, Dictionary<Any?, Any?>, Long>("get_date_dict_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getTimeDictFromUnixTimeName: MethodStringName1<Time, Dictionary<Any?, Any?>, Long> =
       MethodStringName1<Time, Dictionary<Any?, Any?>, Long>("get_time_dict_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getDatetimeStringFromUnixTimeName: MethodStringName2<Time, String, Long, Boolean> =
       MethodStringName2<Time, String, Long, Boolean>("get_datetime_string_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getDateStringFromUnixTimeName: MethodStringName1<Time, String, Long> =
       MethodStringName1<Time, String, Long>("get_date_string_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getTimeStringFromUnixTimeName: MethodStringName1<Time, String, Long> =
       MethodStringName1<Time, String, Long>("get_time_string_from_unix_time")
 
-  @JvmStatic
+  @JvmField
   public val getDatetimeDictFromDatetimeStringName:
       MethodStringName2<Time, Dictionary<Any?, Any?>, String, Boolean> =
       MethodStringName2<Time, Dictionary<Any?, Any?>, String, Boolean>("get_datetime_dict_from_datetime_string")
 
-  @JvmStatic
+  @JvmField
   public val getDatetimeStringFromDatetimeDictName:
       MethodStringName2<Time, String, Dictionary<Any?, Any?>, Boolean> =
       MethodStringName2<Time, String, Dictionary<Any?, Any?>, Boolean>("get_datetime_string_from_datetime_dict")
 
-  @JvmStatic
+  @JvmField
   public val getUnixTimeFromDatetimeDictName: MethodStringName1<Time, Long, Dictionary<Any?, Any?>>
       = MethodStringName1<Time, Long, Dictionary<Any?, Any?>>("get_unix_time_from_datetime_dict")
 
-  @JvmStatic
+  @JvmField
   public val getUnixTimeFromDatetimeStringName: MethodStringName1<Time, Long, String> =
       MethodStringName1<Time, Long, String>("get_unix_time_from_datetime_string")
 
-  @JvmStatic
+  @JvmField
   public val getOffsetStringFromOffsetMinutesName: MethodStringName1<Time, String, Long> =
       MethodStringName1<Time, String, Long>("get_offset_string_from_offset_minutes")
 
-  @JvmStatic
+  @JvmField
   public val getDatetimeDictFromSystemName: MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean>
       = MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean>("get_datetime_dict_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getDateDictFromSystemName: MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean> =
       MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean>("get_date_dict_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getTimeDictFromSystemName: MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean> =
       MethodStringName1<Time, Dictionary<Any?, Any?>, Boolean>("get_time_dict_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getDatetimeStringFromSystemName: MethodStringName2<Time, String, Boolean, Boolean> =
       MethodStringName2<Time, String, Boolean, Boolean>("get_datetime_string_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getDateStringFromSystemName: MethodStringName1<Time, String, Boolean> =
       MethodStringName1<Time, String, Boolean>("get_date_string_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getTimeStringFromSystemName: MethodStringName1<Time, String, Boolean> =
       MethodStringName1<Time, String, Boolean>("get_time_string_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getTimeZoneFromSystemName: MethodStringName0<Time, Dictionary<Any?, Any?>> =
       MethodStringName0<Time, Dictionary<Any?, Any?>>("get_time_zone_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getUnixTimeFromSystemName: MethodStringName0<Time, Double> =
       MethodStringName0<Time, Double>("get_unix_time_from_system")
 
-  @JvmStatic
+  @JvmField
   public val getTicksMsecName: MethodStringName0<Time, Long> =
       MethodStringName0<Time, Long>("get_ticks_msec")
 
-  @JvmStatic
+  @JvmField
   public val getTicksUsecName: MethodStringName0<Time, Long> =
       MethodStringName0<Time, Long>("get_ticks_usec")
 

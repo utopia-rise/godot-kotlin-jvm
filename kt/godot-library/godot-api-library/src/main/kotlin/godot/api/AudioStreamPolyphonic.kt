@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * AudioStream that lets the user play custom streams at any time from code, simultaneously using a
@@ -60,11 +60,11 @@ public open class AudioStreamPolyphonic : AudioStream() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPolyphonyName: MethodStringName1<AudioStreamPolyphonic, Unit, Int> =
         MethodStringName1<AudioStreamPolyphonic, Unit, Int>("set_polyphony")
 
-    @JvmStatic
+    @JvmField
     public val getPolyphonyName: MethodStringName0<AudioStreamPolyphonic, Int> =
         MethodStringName0<AudioStreamPolyphonic, Int>("get_polyphony")
   }

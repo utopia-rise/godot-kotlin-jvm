@@ -32,8 +32,8 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of
@@ -510,95 +510,95 @@ public open class AStar3D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getAvailablePointIdName: MethodStringName0<AStar3D, Long> =
         MethodStringName0<AStar3D, Long>("get_available_point_id")
 
-    @JvmStatic
+    @JvmField
     public val addPointName: MethodStringName3<AStar3D, Unit, Long, Vector3, Float> =
         MethodStringName3<AStar3D, Unit, Long, Vector3, Float>("add_point")
 
-    @JvmStatic
+    @JvmField
     public val getPointPositionName: MethodStringName1<AStar3D, Vector3, Long> =
         MethodStringName1<AStar3D, Vector3, Long>("get_point_position")
 
-    @JvmStatic
+    @JvmField
     public val setPointPositionName: MethodStringName2<AStar3D, Unit, Long, Vector3> =
         MethodStringName2<AStar3D, Unit, Long, Vector3>("set_point_position")
 
-    @JvmStatic
+    @JvmField
     public val getPointWeightScaleName: MethodStringName1<AStar3D, Float, Long> =
         MethodStringName1<AStar3D, Float, Long>("get_point_weight_scale")
 
-    @JvmStatic
+    @JvmField
     public val setPointWeightScaleName: MethodStringName2<AStar3D, Unit, Long, Float> =
         MethodStringName2<AStar3D, Unit, Long, Float>("set_point_weight_scale")
 
-    @JvmStatic
+    @JvmField
     public val removePointName: MethodStringName1<AStar3D, Unit, Long> =
         MethodStringName1<AStar3D, Unit, Long>("remove_point")
 
-    @JvmStatic
+    @JvmField
     public val hasPointName: MethodStringName1<AStar3D, Boolean, Long> =
         MethodStringName1<AStar3D, Boolean, Long>("has_point")
 
-    @JvmStatic
+    @JvmField
     public val getPointConnectionsName: MethodStringName1<AStar3D, PackedInt64Array, Long> =
         MethodStringName1<AStar3D, PackedInt64Array, Long>("get_point_connections")
 
-    @JvmStatic
+    @JvmField
     public val getPointIdsName: MethodStringName0<AStar3D, PackedInt64Array> =
         MethodStringName0<AStar3D, PackedInt64Array>("get_point_ids")
 
-    @JvmStatic
+    @JvmField
     public val setPointDisabledName: MethodStringName2<AStar3D, Unit, Long, Boolean> =
         MethodStringName2<AStar3D, Unit, Long, Boolean>("set_point_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isPointDisabledName: MethodStringName1<AStar3D, Boolean, Long> =
         MethodStringName1<AStar3D, Boolean, Long>("is_point_disabled")
 
-    @JvmStatic
+    @JvmField
     public val connectPointsName: MethodStringName3<AStar3D, Unit, Long, Long, Boolean> =
         MethodStringName3<AStar3D, Unit, Long, Long, Boolean>("connect_points")
 
-    @JvmStatic
+    @JvmField
     public val disconnectPointsName: MethodStringName3<AStar3D, Unit, Long, Long, Boolean> =
         MethodStringName3<AStar3D, Unit, Long, Long, Boolean>("disconnect_points")
 
-    @JvmStatic
+    @JvmField
     public val arePointsConnectedName: MethodStringName3<AStar3D, Boolean, Long, Long, Boolean> =
         MethodStringName3<AStar3D, Boolean, Long, Long, Boolean>("are_points_connected")
 
-    @JvmStatic
+    @JvmField
     public val getPointCountName: MethodStringName0<AStar3D, Long> =
         MethodStringName0<AStar3D, Long>("get_point_count")
 
-    @JvmStatic
+    @JvmField
     public val getPointCapacityName: MethodStringName0<AStar3D, Long> =
         MethodStringName0<AStar3D, Long>("get_point_capacity")
 
-    @JvmStatic
+    @JvmField
     public val reserveSpaceName: MethodStringName1<AStar3D, Unit, Long> =
         MethodStringName1<AStar3D, Unit, Long>("reserve_space")
 
-    @JvmStatic
+    @JvmField
     public val clearName: MethodStringName0<AStar3D, Unit> =
         MethodStringName0<AStar3D, Unit>("clear")
 
-    @JvmStatic
+    @JvmField
     public val getClosestPointName: MethodStringName2<AStar3D, Long, Vector3, Boolean> =
         MethodStringName2<AStar3D, Long, Vector3, Boolean>("get_closest_point")
 
-    @JvmStatic
+    @JvmField
     public val getClosestPositionInSegmentName: MethodStringName1<AStar3D, Vector3, Vector3> =
         MethodStringName1<AStar3D, Vector3, Vector3>("get_closest_position_in_segment")
 
-    @JvmStatic
+    @JvmField
     public val getPointPathName: MethodStringName3<AStar3D, PackedVector3Array, Long, Long, Boolean>
         = MethodStringName3<AStar3D, PackedVector3Array, Long, Long, Boolean>("get_point_path")
 
-    @JvmStatic
+    @JvmField
     public val getIdPathName: MethodStringName3<AStar3D, PackedInt64Array, Long, Long, Boolean> =
         MethodStringName3<AStar3D, PackedInt64Array, Long, Long, Boolean>("get_id_path")
   }

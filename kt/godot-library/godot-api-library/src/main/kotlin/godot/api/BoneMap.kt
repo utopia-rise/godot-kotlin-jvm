@@ -23,8 +23,8 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class contains a dictionary that uses a list of bone names in [SkeletonProfile] as key
@@ -133,23 +133,23 @@ public open class BoneMap : Resource() {
       findProfileBoneName(skeletonBoneName.asCachedStringName())
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getProfileName: MethodStringName0<BoneMap, SkeletonProfile?> =
         MethodStringName0<BoneMap, SkeletonProfile?>("get_profile")
 
-    @JvmStatic
+    @JvmField
     public val setProfileName: MethodStringName1<BoneMap, Unit, SkeletonProfile?> =
         MethodStringName1<BoneMap, Unit, SkeletonProfile?>("set_profile")
 
-    @JvmStatic
+    @JvmField
     public val getSkeletonBoneNameName: MethodStringName1<BoneMap, StringName, StringName> =
         MethodStringName1<BoneMap, StringName, StringName>("get_skeleton_bone_name")
 
-    @JvmStatic
+    @JvmField
     public val setSkeletonBoneNameName: MethodStringName2<BoneMap, Unit, StringName, StringName> =
         MethodStringName2<BoneMap, Unit, StringName, StringName>("set_skeleton_bone_name")
 
-    @JvmStatic
+    @JvmField
     public val findProfileBoneNameName: MethodStringName1<BoneMap, StringName, StringName> =
         MethodStringName1<BoneMap, StringName, StringName>("find_profile_bone_name")
   }

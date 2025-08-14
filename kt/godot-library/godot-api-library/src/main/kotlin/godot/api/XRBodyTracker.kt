@@ -25,7 +25,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: XRBodyTracker.BodyFlags): Long = this.or(other.flag)
 
@@ -559,35 +558,35 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setHasTrackingDataName: MethodStringName1<XRBodyTracker, Unit, Boolean> =
         MethodStringName1<XRBodyTracker, Unit, Boolean>("set_has_tracking_data")
 
-    @JvmStatic
+    @JvmField
     public val getHasTrackingDataName: MethodStringName0<XRBodyTracker, Boolean> =
         MethodStringName0<XRBodyTracker, Boolean>("get_has_tracking_data")
 
-    @JvmStatic
+    @JvmField
     public val setBodyFlagsName: MethodStringName1<XRBodyTracker, Unit, BodyFlags> =
         MethodStringName1<XRBodyTracker, Unit, BodyFlags>("set_body_flags")
 
-    @JvmStatic
+    @JvmField
     public val getBodyFlagsName: MethodStringName0<XRBodyTracker, BodyFlags> =
         MethodStringName0<XRBodyTracker, BodyFlags>("get_body_flags")
 
-    @JvmStatic
+    @JvmField
     public val setJointFlagsName: MethodStringName2<XRBodyTracker, Unit, Joint, JointFlags> =
         MethodStringName2<XRBodyTracker, Unit, Joint, JointFlags>("set_joint_flags")
 
-    @JvmStatic
+    @JvmField
     public val getJointFlagsName: MethodStringName1<XRBodyTracker, JointFlags, Joint> =
         MethodStringName1<XRBodyTracker, JointFlags, Joint>("get_joint_flags")
 
-    @JvmStatic
+    @JvmField
     public val setJointTransformName: MethodStringName2<XRBodyTracker, Unit, Joint, Transform3D> =
         MethodStringName2<XRBodyTracker, Unit, Joint, Transform3D>("set_joint_transform")
 
-    @JvmStatic
+    @JvmField
     public val getJointTransformName: MethodStringName1<XRBodyTracker, Transform3D, Joint> =
         MethodStringName1<XRBodyTracker, Transform3D, Joint>("get_joint_transform")
   }

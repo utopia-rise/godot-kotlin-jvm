@@ -20,8 +20,8 @@ import godot.core.Vector3i
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [Texture3D] subclass in 2 conditions:
@@ -92,11 +92,11 @@ public open class PlaceholderTexture3D : Texture3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<PlaceholderTexture3D, Unit, Vector3i> =
         MethodStringName1<PlaceholderTexture3D, Unit, Vector3i>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<PlaceholderTexture3D, Vector3i> =
         MethodStringName0<PlaceholderTexture3D, Vector3i>("get_size")
   }

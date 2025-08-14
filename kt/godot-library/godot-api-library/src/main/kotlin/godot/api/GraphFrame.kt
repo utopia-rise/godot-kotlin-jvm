@@ -28,8 +28,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * GraphFrame is a special [GraphElement] to which other [GraphElement]s can be attached. It can be
@@ -224,55 +224,55 @@ public open class GraphFrame : GraphElement() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTitleName: MethodStringName1<GraphFrame, Unit, String> =
         MethodStringName1<GraphFrame, Unit, String>("set_title")
 
-    @JvmStatic
+    @JvmField
     public val getTitleName: MethodStringName0<GraphFrame, String> =
         MethodStringName0<GraphFrame, String>("get_title")
 
-    @JvmStatic
+    @JvmField
     public val getTitlebarHboxName: MethodStringName0<GraphFrame, HBoxContainer?> =
         MethodStringName0<GraphFrame, HBoxContainer?>("get_titlebar_hbox")
 
-    @JvmStatic
+    @JvmField
     public val setAutoshrinkEnabledName: MethodStringName1<GraphFrame, Unit, Boolean> =
         MethodStringName1<GraphFrame, Unit, Boolean>("set_autoshrink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isAutoshrinkEnabledName: MethodStringName0<GraphFrame, Boolean> =
         MethodStringName0<GraphFrame, Boolean>("is_autoshrink_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setAutoshrinkMarginName: MethodStringName1<GraphFrame, Unit, Int> =
         MethodStringName1<GraphFrame, Unit, Int>("set_autoshrink_margin")
 
-    @JvmStatic
+    @JvmField
     public val getAutoshrinkMarginName: MethodStringName0<GraphFrame, Int> =
         MethodStringName0<GraphFrame, Int>("get_autoshrink_margin")
 
-    @JvmStatic
+    @JvmField
     public val setDragMarginName: MethodStringName1<GraphFrame, Unit, Int> =
         MethodStringName1<GraphFrame, Unit, Int>("set_drag_margin")
 
-    @JvmStatic
+    @JvmField
     public val getDragMarginName: MethodStringName0<GraphFrame, Int> =
         MethodStringName0<GraphFrame, Int>("get_drag_margin")
 
-    @JvmStatic
+    @JvmField
     public val setTintColorEnabledName: MethodStringName1<GraphFrame, Unit, Boolean> =
         MethodStringName1<GraphFrame, Unit, Boolean>("set_tint_color_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isTintColorEnabledName: MethodStringName0<GraphFrame, Boolean> =
         MethodStringName0<GraphFrame, Boolean>("is_tint_color_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setTintColorName: MethodStringName1<GraphFrame, Unit, Color> =
         MethodStringName1<GraphFrame, Unit, Color>("set_tint_color")
 
-    @JvmStatic
+    @JvmField
     public val getTintColorName: MethodStringName0<GraphFrame, Color> =
         MethodStringName0<GraphFrame, Color>("get_tint_color")
   }

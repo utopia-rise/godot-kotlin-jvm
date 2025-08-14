@@ -24,8 +24,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * TouchScreenButton allows you to create on-screen buttons for touch devices. It's intended for
@@ -293,79 +293,79 @@ public open class TouchScreenButton : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextureNormalName: MethodStringName1<TouchScreenButton, Unit, Texture2D?> =
         MethodStringName1<TouchScreenButton, Unit, Texture2D?>("set_texture_normal")
 
-    @JvmStatic
+    @JvmField
     public val getTextureNormalName: MethodStringName0<TouchScreenButton, Texture2D?> =
         MethodStringName0<TouchScreenButton, Texture2D?>("get_texture_normal")
 
-    @JvmStatic
+    @JvmField
     public val setTexturePressedName: MethodStringName1<TouchScreenButton, Unit, Texture2D?> =
         MethodStringName1<TouchScreenButton, Unit, Texture2D?>("set_texture_pressed")
 
-    @JvmStatic
+    @JvmField
     public val getTexturePressedName: MethodStringName0<TouchScreenButton, Texture2D?> =
         MethodStringName0<TouchScreenButton, Texture2D?>("get_texture_pressed")
 
-    @JvmStatic
+    @JvmField
     public val setBitmaskName: MethodStringName1<TouchScreenButton, Unit, BitMap?> =
         MethodStringName1<TouchScreenButton, Unit, BitMap?>("set_bitmask")
 
-    @JvmStatic
+    @JvmField
     public val getBitmaskName: MethodStringName0<TouchScreenButton, BitMap?> =
         MethodStringName0<TouchScreenButton, BitMap?>("get_bitmask")
 
-    @JvmStatic
+    @JvmField
     public val setShapeName: MethodStringName1<TouchScreenButton, Unit, Shape2D?> =
         MethodStringName1<TouchScreenButton, Unit, Shape2D?>("set_shape")
 
-    @JvmStatic
+    @JvmField
     public val getShapeName: MethodStringName0<TouchScreenButton, Shape2D?> =
         MethodStringName0<TouchScreenButton, Shape2D?>("get_shape")
 
-    @JvmStatic
+    @JvmField
     public val setShapeCenteredName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
         MethodStringName1<TouchScreenButton, Unit, Boolean>("set_shape_centered")
 
-    @JvmStatic
+    @JvmField
     public val isShapeCenteredName: MethodStringName0<TouchScreenButton, Boolean> =
         MethodStringName0<TouchScreenButton, Boolean>("is_shape_centered")
 
-    @JvmStatic
+    @JvmField
     public val setShapeVisibleName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
         MethodStringName1<TouchScreenButton, Unit, Boolean>("set_shape_visible")
 
-    @JvmStatic
+    @JvmField
     public val isShapeVisibleName: MethodStringName0<TouchScreenButton, Boolean> =
         MethodStringName0<TouchScreenButton, Boolean>("is_shape_visible")
 
-    @JvmStatic
+    @JvmField
     public val setActionName: MethodStringName1<TouchScreenButton, Unit, String> =
         MethodStringName1<TouchScreenButton, Unit, String>("set_action")
 
-    @JvmStatic
+    @JvmField
     public val getActionName: MethodStringName0<TouchScreenButton, String> =
         MethodStringName0<TouchScreenButton, String>("get_action")
 
-    @JvmStatic
+    @JvmField
     public val setVisibilityModeName: MethodStringName1<TouchScreenButton, Unit, VisibilityMode> =
         MethodStringName1<TouchScreenButton, Unit, VisibilityMode>("set_visibility_mode")
 
-    @JvmStatic
+    @JvmField
     public val getVisibilityModeName: MethodStringName0<TouchScreenButton, VisibilityMode> =
         MethodStringName0<TouchScreenButton, VisibilityMode>("get_visibility_mode")
 
-    @JvmStatic
+    @JvmField
     public val setPassbyPressName: MethodStringName1<TouchScreenButton, Unit, Boolean> =
         MethodStringName1<TouchScreenButton, Unit, Boolean>("set_passby_press")
 
-    @JvmStatic
+    @JvmField
     public val isPassbyPressEnabledName: MethodStringName0<TouchScreenButton, Boolean> =
         MethodStringName0<TouchScreenButton, Boolean>("is_passby_press_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isPressedName: MethodStringName0<TouchScreenButton, Boolean> =
         MethodStringName0<TouchScreenButton, Boolean>("is_pressed")
   }

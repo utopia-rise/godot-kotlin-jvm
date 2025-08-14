@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Allows modulation of pitch independently of tempo. All frequencies can be increased/decreased
@@ -151,27 +151,27 @@ public open class AudioEffectPitchShift : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPitchScaleName: MethodStringName1<AudioEffectPitchShift, Unit, Float> =
         MethodStringName1<AudioEffectPitchShift, Unit, Float>("set_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val getPitchScaleName: MethodStringName0<AudioEffectPitchShift, Float> =
         MethodStringName0<AudioEffectPitchShift, Float>("get_pitch_scale")
 
-    @JvmStatic
+    @JvmField
     public val setOversamplingName: MethodStringName1<AudioEffectPitchShift, Unit, Int> =
         MethodStringName1<AudioEffectPitchShift, Unit, Int>("set_oversampling")
 
-    @JvmStatic
+    @JvmField
     public val getOversamplingName: MethodStringName0<AudioEffectPitchShift, Int> =
         MethodStringName0<AudioEffectPitchShift, Int>("get_oversampling")
 
-    @JvmStatic
+    @JvmField
     public val setFftSizeName: MethodStringName1<AudioEffectPitchShift, Unit, FFTSize> =
         MethodStringName1<AudioEffectPitchShift, Unit, FFTSize>("set_fft_size")
 
-    @JvmStatic
+    @JvmField
     public val getFftSizeName: MethodStringName0<AudioEffectPitchShift, FFTSize> =
         MethodStringName0<AudioEffectPitchShift, FFTSize>("get_fft_size")
   }

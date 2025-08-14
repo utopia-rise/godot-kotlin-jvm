@@ -20,8 +20,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A 1D texture that obtains colors from a [Gradient] to fill the texture data. The texture is
@@ -99,23 +99,23 @@ public open class GradientTexture1D : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setGradientName: MethodStringName1<GradientTexture1D, Unit, Gradient?> =
         MethodStringName1<GradientTexture1D, Unit, Gradient?>("set_gradient")
 
-    @JvmStatic
+    @JvmField
     public val getGradientName: MethodStringName0<GradientTexture1D, Gradient?> =
         MethodStringName0<GradientTexture1D, Gradient?>("get_gradient")
 
-    @JvmStatic
+    @JvmField
     public val setWidthName: MethodStringName1<GradientTexture1D, Unit, Int> =
         MethodStringName1<GradientTexture1D, Unit, Int>("set_width")
 
-    @JvmStatic
+    @JvmField
     public val setUseHdrName: MethodStringName1<GradientTexture1D, Unit, Boolean> =
         MethodStringName1<GradientTexture1D, Unit, Boolean>("set_use_hdr")
 
-    @JvmStatic
+    @JvmField
     public val isUsingHdrName: MethodStringName0<GradientTexture1D, Boolean> =
         MethodStringName0<GradientTexture1D, Boolean>("is_using_hdr")
   }

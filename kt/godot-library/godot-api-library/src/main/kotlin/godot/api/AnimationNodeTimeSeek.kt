@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This animation node can be used to cause a seek command to happen to any sub-children of the
@@ -81,11 +81,11 @@ public open class AnimationNodeTimeSeek : AnimationNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setExplicitElapseName: MethodStringName1<AnimationNodeTimeSeek, Unit, Boolean> =
         MethodStringName1<AnimationNodeTimeSeek, Unit, Boolean>("set_explicit_elapse")
 
-    @JvmStatic
+    @JvmField
     public val isExplicitElapseName: MethodStringName0<AnimationNodeTimeSeek, Boolean> =
         MethodStringName0<AnimationNodeTimeSeek, Boolean>("is_explicit_elapse")
   }

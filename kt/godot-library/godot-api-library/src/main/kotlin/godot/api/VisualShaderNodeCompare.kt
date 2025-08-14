@@ -18,8 +18,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
@@ -223,28 +223,28 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setComparisonTypeName:
         MethodStringName1<VisualShaderNodeCompare, Unit, ComparisonType> =
         MethodStringName1<VisualShaderNodeCompare, Unit, ComparisonType>("set_comparison_type")
 
-    @JvmStatic
+    @JvmField
     public val getComparisonTypeName: MethodStringName0<VisualShaderNodeCompare, ComparisonType> =
         MethodStringName0<VisualShaderNodeCompare, ComparisonType>("get_comparison_type")
 
-    @JvmStatic
+    @JvmField
     public val setFunctionName: MethodStringName1<VisualShaderNodeCompare, Unit, Function> =
         MethodStringName1<VisualShaderNodeCompare, Unit, Function>("set_function")
 
-    @JvmStatic
+    @JvmField
     public val getFunctionName: MethodStringName0<VisualShaderNodeCompare, Function> =
         MethodStringName0<VisualShaderNodeCompare, Function>("get_function")
 
-    @JvmStatic
+    @JvmField
     public val setConditionName: MethodStringName1<VisualShaderNodeCompare, Unit, Condition> =
         MethodStringName1<VisualShaderNodeCompare, Unit, Condition>("set_condition")
 
-    @JvmStatic
+    @JvmField
     public val getConditionName: MethodStringName0<VisualShaderNodeCompare, Condition> =
         MethodStringName0<VisualShaderNodeCompare, Condition>("get_condition")
   }

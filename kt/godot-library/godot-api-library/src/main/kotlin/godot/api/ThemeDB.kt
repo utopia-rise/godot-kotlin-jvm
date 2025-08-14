@@ -23,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
@@ -35,51 +36,51 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ThemeDB : Object() {
-  @JvmStatic
+  @JvmField
   public val getDefaultThemeName: MethodStringName0<ThemeDB, Theme?> =
       MethodStringName0<ThemeDB, Theme?>("get_default_theme")
 
-  @JvmStatic
+  @JvmField
   public val getProjectThemeName: MethodStringName0<ThemeDB, Theme?> =
       MethodStringName0<ThemeDB, Theme?>("get_project_theme")
 
-  @JvmStatic
+  @JvmField
   public val setFallbackBaseScaleName: MethodStringName1<ThemeDB, Unit, Float> =
       MethodStringName1<ThemeDB, Unit, Float>("set_fallback_base_scale")
 
-  @JvmStatic
+  @JvmField
   public val getFallbackBaseScaleName: MethodStringName0<ThemeDB, Float> =
       MethodStringName0<ThemeDB, Float>("get_fallback_base_scale")
 
-  @JvmStatic
+  @JvmField
   public val setFallbackFontName: MethodStringName1<ThemeDB, Unit, Font?> =
       MethodStringName1<ThemeDB, Unit, Font?>("set_fallback_font")
 
-  @JvmStatic
+  @JvmField
   public val getFallbackFontName: MethodStringName0<ThemeDB, Font?> =
       MethodStringName0<ThemeDB, Font?>("get_fallback_font")
 
-  @JvmStatic
+  @JvmField
   public val setFallbackFontSizeName: MethodStringName1<ThemeDB, Unit, Int> =
       MethodStringName1<ThemeDB, Unit, Int>("set_fallback_font_size")
 
-  @JvmStatic
+  @JvmField
   public val getFallbackFontSizeName: MethodStringName0<ThemeDB, Int> =
       MethodStringName0<ThemeDB, Int>("get_fallback_font_size")
 
-  @JvmStatic
+  @JvmField
   public val setFallbackIconName: MethodStringName1<ThemeDB, Unit, Texture2D?> =
       MethodStringName1<ThemeDB, Unit, Texture2D?>("set_fallback_icon")
 
-  @JvmStatic
+  @JvmField
   public val getFallbackIconName: MethodStringName0<ThemeDB, Texture2D?> =
       MethodStringName0<ThemeDB, Texture2D?>("get_fallback_icon")
 
-  @JvmStatic
+  @JvmField
   public val setFallbackStyleboxName: MethodStringName1<ThemeDB, Unit, StyleBox?> =
       MethodStringName1<ThemeDB, Unit, StyleBox?>("set_fallback_stylebox")
 
-  @JvmStatic
+  @JvmField
   public val getFallbackStyleboxName: MethodStringName0<ThemeDB, StyleBox?> =
       MethodStringName0<ThemeDB, StyleBox?>("get_fallback_stylebox")
 

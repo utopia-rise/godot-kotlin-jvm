@@ -21,8 +21,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned
@@ -102,29 +102,29 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Mesh?> =
         MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Mesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Mesh?> =
         MethodStringName0<VisualShaderNodeParticleMeshEmitter, Mesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setUseAllSurfacesName:
         MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Boolean>("set_use_all_surfaces")
 
-    @JvmStatic
+    @JvmField
     public val isUseAllSurfacesName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Boolean>
         = MethodStringName0<VisualShaderNodeParticleMeshEmitter, Boolean>("is_use_all_surfaces")
 
-    @JvmStatic
+    @JvmField
     public val setSurfaceIndexName:
         MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Int> =
         MethodStringName1<VisualShaderNodeParticleMeshEmitter, Unit, Int>("set_surface_index")
 
-    @JvmStatic
+    @JvmField
     public val getSurfaceIndexName: MethodStringName0<VisualShaderNodeParticleMeshEmitter, Int> =
         MethodStringName0<VisualShaderNodeParticleMeshEmitter, Int>("get_surface_index")
   }

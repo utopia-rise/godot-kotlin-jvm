@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is
@@ -231,55 +231,55 @@ public open class LightmapGIData : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLightmapTexturesName:
         MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
         MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_lightmap_textures")
 
-    @JvmStatic
+    @JvmField
     public val getLightmapTexturesName:
         MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
         MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_lightmap_textures")
 
-    @JvmStatic
+    @JvmField
     public val setShadowmaskTexturesName:
         MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
         MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_shadowmask_textures")
 
-    @JvmStatic
+    @JvmField
     public val getShadowmaskTexturesName:
         MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
         MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_shadowmask_textures")
 
-    @JvmStatic
+    @JvmField
     public val setUsesSphericalHarmonicsName: MethodStringName1<LightmapGIData, Unit, Boolean> =
         MethodStringName1<LightmapGIData, Unit, Boolean>("set_uses_spherical_harmonics")
 
-    @JvmStatic
+    @JvmField
     public val isUsingSphericalHarmonicsName: MethodStringName0<LightmapGIData, Boolean> =
         MethodStringName0<LightmapGIData, Boolean>("is_using_spherical_harmonics")
 
-    @JvmStatic
+    @JvmField
     public val addUserName: MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int> =
         MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int>("add_user")
 
-    @JvmStatic
+    @JvmField
     public val getUserCountName: MethodStringName0<LightmapGIData, Int> =
         MethodStringName0<LightmapGIData, Int>("get_user_count")
 
-    @JvmStatic
+    @JvmField
     public val getUserPathName: MethodStringName1<LightmapGIData, NodePath, Int> =
         MethodStringName1<LightmapGIData, NodePath, Int>("get_user_path")
 
-    @JvmStatic
+    @JvmField
     public val clearUsersName: MethodStringName0<LightmapGIData, Unit> =
         MethodStringName0<LightmapGIData, Unit>("clear_users")
 
-    @JvmStatic
+    @JvmField
     public val setLightTextureName: MethodStringName1<LightmapGIData, Unit, TextureLayered?> =
         MethodStringName1<LightmapGIData, Unit, TextureLayered?>("set_light_texture")
 
-    @JvmStatic
+    @JvmField
     public val getLightTextureName: MethodStringName0<LightmapGIData, TextureLayered?> =
         MethodStringName0<LightmapGIData, TextureLayered?>("get_light_texture")
   }

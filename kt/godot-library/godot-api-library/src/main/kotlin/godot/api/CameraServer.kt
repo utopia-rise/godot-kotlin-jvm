@@ -22,6 +22,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -36,23 +37,23 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object CameraServer : Object() {
-  @JvmStatic
+  @JvmField
   public val getFeedName: MethodStringName1<CameraServer, CameraFeed?, Int> =
       MethodStringName1<CameraServer, CameraFeed?, Int>("get_feed")
 
-  @JvmStatic
+  @JvmField
   public val getFeedCountName: MethodStringName0<CameraServer, Int> =
       MethodStringName0<CameraServer, Int>("get_feed_count")
 
-  @JvmStatic
+  @JvmField
   public val feedsName: MethodStringName0<CameraServer, VariantArray<CameraFeed>> =
       MethodStringName0<CameraServer, VariantArray<CameraFeed>>("feeds")
 
-  @JvmStatic
+  @JvmField
   public val addFeedName: MethodStringName1<CameraServer, Unit, CameraFeed?> =
       MethodStringName1<CameraServer, Unit, CameraFeed?>("add_feed")
 
-  @JvmStatic
+  @JvmField
   public val removeFeedName: MethodStringName1<CameraServer, Unit, CameraFeed?> =
       MethodStringName1<CameraServer, Unit, CameraFeed?>("remove_feed")
 

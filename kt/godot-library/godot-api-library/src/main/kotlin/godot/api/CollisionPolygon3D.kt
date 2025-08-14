@@ -28,8 +28,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A node that provides a thickened polygon shape (a prism) to a [CollisionObject3D] parent and
@@ -262,51 +262,51 @@ public open class CollisionPolygon3D : Node3D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDepthName: MethodStringName1<CollisionPolygon3D, Unit, Float> =
         MethodStringName1<CollisionPolygon3D, Unit, Float>("set_depth")
 
-    @JvmStatic
+    @JvmField
     public val getDepthName: MethodStringName0<CollisionPolygon3D, Float> =
         MethodStringName0<CollisionPolygon3D, Float>("get_depth")
 
-    @JvmStatic
+    @JvmField
     public val setPolygonName: MethodStringName1<CollisionPolygon3D, Unit, PackedVector2Array> =
         MethodStringName1<CollisionPolygon3D, Unit, PackedVector2Array>("set_polygon")
 
-    @JvmStatic
+    @JvmField
     public val getPolygonName: MethodStringName0<CollisionPolygon3D, PackedVector2Array> =
         MethodStringName0<CollisionPolygon3D, PackedVector2Array>("get_polygon")
 
-    @JvmStatic
+    @JvmField
     public val setDisabledName: MethodStringName1<CollisionPolygon3D, Unit, Boolean> =
         MethodStringName1<CollisionPolygon3D, Unit, Boolean>("set_disabled")
 
-    @JvmStatic
+    @JvmField
     public val isDisabledName: MethodStringName0<CollisionPolygon3D, Boolean> =
         MethodStringName0<CollisionPolygon3D, Boolean>("is_disabled")
 
-    @JvmStatic
+    @JvmField
     public val setDebugColorName: MethodStringName1<CollisionPolygon3D, Unit, Color> =
         MethodStringName1<CollisionPolygon3D, Unit, Color>("set_debug_color")
 
-    @JvmStatic
+    @JvmField
     public val getDebugColorName: MethodStringName0<CollisionPolygon3D, Color> =
         MethodStringName0<CollisionPolygon3D, Color>("get_debug_color")
 
-    @JvmStatic
+    @JvmField
     public val setEnableDebugFillName: MethodStringName1<CollisionPolygon3D, Unit, Boolean> =
         MethodStringName1<CollisionPolygon3D, Unit, Boolean>("set_enable_debug_fill")
 
-    @JvmStatic
+    @JvmField
     public val getEnableDebugFillName: MethodStringName0<CollisionPolygon3D, Boolean> =
         MethodStringName0<CollisionPolygon3D, Boolean>("get_enable_debug_fill")
 
-    @JvmStatic
+    @JvmField
     public val setMarginName: MethodStringName1<CollisionPolygon3D, Unit, Float> =
         MethodStringName1<CollisionPolygon3D, Unit, Float>("set_margin")
 
-    @JvmStatic
+    @JvmField
     public val getMarginName: MethodStringName0<CollisionPolygon3D, Float> =
         MethodStringName0<CollisionPolygon3D, Float>("get_margin")
   }

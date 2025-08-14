@@ -31,7 +31,6 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 public infix fun Long.or(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long =
     this.or(other.flag)
@@ -429,86 +428,86 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPathfindingAlgorithmName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathfindingAlgorithm> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathfindingAlgorithm>("set_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val getPathfindingAlgorithmName:
         MethodStringName0<NavigationPathQueryParameters3D, PathfindingAlgorithm> =
         MethodStringName0<NavigationPathQueryParameters3D, PathfindingAlgorithm>("get_pathfinding_algorithm")
 
-    @JvmStatic
+    @JvmField
     public val setPathPostprocessingName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathPostProcessing> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathPostProcessing>("set_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val getPathPostprocessingName:
         MethodStringName0<NavigationPathQueryParameters3D, PathPostProcessing> =
         MethodStringName0<NavigationPathQueryParameters3D, PathPostProcessing>("get_path_postprocessing")
 
-    @JvmStatic
+    @JvmField
     public val setMapName: MethodStringName1<NavigationPathQueryParameters3D, Unit, RID> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, RID>("set_map")
 
-    @JvmStatic
+    @JvmField
     public val getMapName: MethodStringName0<NavigationPathQueryParameters3D, RID> =
         MethodStringName0<NavigationPathQueryParameters3D, RID>("get_map")
 
-    @JvmStatic
+    @JvmField
     public val setStartPositionName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3>("set_start_position")
 
-    @JvmStatic
+    @JvmField
     public val getStartPositionName: MethodStringName0<NavigationPathQueryParameters3D, Vector3> =
         MethodStringName0<NavigationPathQueryParameters3D, Vector3>("get_start_position")
 
-    @JvmStatic
+    @JvmField
     public val setTargetPositionName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Vector3>("set_target_position")
 
-    @JvmStatic
+    @JvmField
     public val getTargetPositionName: MethodStringName0<NavigationPathQueryParameters3D, Vector3> =
         MethodStringName0<NavigationPathQueryParameters3D, Vector3>("get_target_position")
 
-    @JvmStatic
+    @JvmField
     public val setNavigationLayersName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Long> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Long>("set_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val getNavigationLayersName: MethodStringName0<NavigationPathQueryParameters3D, Long> =
         MethodStringName0<NavigationPathQueryParameters3D, Long>("get_navigation_layers")
 
-    @JvmStatic
+    @JvmField
     public val setMetadataFlagsName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathMetadataFlags> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, PathMetadataFlags>("set_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val getMetadataFlagsName:
         MethodStringName0<NavigationPathQueryParameters3D, PathMetadataFlags> =
         MethodStringName0<NavigationPathQueryParameters3D, PathMetadataFlags>("get_metadata_flags")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyPathName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Boolean> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Boolean>("set_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyPathName: MethodStringName0<NavigationPathQueryParameters3D, Boolean> =
         MethodStringName0<NavigationPathQueryParameters3D, Boolean>("get_simplify_path")
 
-    @JvmStatic
+    @JvmField
     public val setSimplifyEpsilonName:
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Float> =
         MethodStringName1<NavigationPathQueryParameters3D, Unit, Float>("set_simplify_epsilon")
 
-    @JvmStatic
+    @JvmField
     public val getSimplifyEpsilonName: MethodStringName0<NavigationPathQueryParameters3D, Float> =
         MethodStringName0<NavigationPathQueryParameters3D, Float>("get_simplify_epsilon")
   }

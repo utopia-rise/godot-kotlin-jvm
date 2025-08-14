@@ -27,8 +27,8 @@ import godot.core.Vector3
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * A mesh type optimized for creating geometry manually, similar to OpenGL 1.x immediate mode.
@@ -147,44 +147,44 @@ public open class ImmediateMesh : Mesh() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val surfaceBeginName:
         MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?> =
         MethodStringName2<ImmediateMesh, Unit, Mesh.PrimitiveType, Material?>("surface_begin")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetColorName: MethodStringName1<ImmediateMesh, Unit, Color> =
         MethodStringName1<ImmediateMesh, Unit, Color>("surface_set_color")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetNormalName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
         MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_set_normal")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetTangentName: MethodStringName1<ImmediateMesh, Unit, Plane> =
         MethodStringName1<ImmediateMesh, Unit, Plane>("surface_set_tangent")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetUvName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
         MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv")
 
-    @JvmStatic
+    @JvmField
     public val surfaceSetUv2Name: MethodStringName1<ImmediateMesh, Unit, Vector2> =
         MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_set_uv2")
 
-    @JvmStatic
+    @JvmField
     public val surfaceAddVertexName: MethodStringName1<ImmediateMesh, Unit, Vector3> =
         MethodStringName1<ImmediateMesh, Unit, Vector3>("surface_add_vertex")
 
-    @JvmStatic
+    @JvmField
     public val surfaceAddVertex2dName: MethodStringName1<ImmediateMesh, Unit, Vector2> =
         MethodStringName1<ImmediateMesh, Unit, Vector2>("surface_add_vertex_2d")
 
-    @JvmStatic
+    @JvmField
     public val surfaceEndName: MethodStringName0<ImmediateMesh, Unit> =
         MethodStringName0<ImmediateMesh, Unit>("surface_end")
 
-    @JvmStatic
+    @JvmField
     public val clearSurfacesName: MethodStringName0<ImmediateMesh, Unit> =
         MethodStringName0<ImmediateMesh, Unit>("clear_surfaces")
   }

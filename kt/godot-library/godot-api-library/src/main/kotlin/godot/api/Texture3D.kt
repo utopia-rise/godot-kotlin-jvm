@@ -22,7 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * Base class for [ImageTexture3D] and [CompressedTexture3D]. Cannot be used directly, but contains
@@ -148,31 +148,31 @@ public open class Texture3D : Texture() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getFormatName: MethodStringName0<Texture3D, Image.Format> =
         MethodStringName0<Texture3D, Image.Format>("get_format")
 
-    @JvmStatic
+    @JvmField
     public val getWidthName: MethodStringName0<Texture3D, Int> =
         MethodStringName0<Texture3D, Int>("get_width")
 
-    @JvmStatic
+    @JvmField
     public val getHeightName: MethodStringName0<Texture3D, Int> =
         MethodStringName0<Texture3D, Int>("get_height")
 
-    @JvmStatic
+    @JvmField
     public val getDepthName: MethodStringName0<Texture3D, Int> =
         MethodStringName0<Texture3D, Int>("get_depth")
 
-    @JvmStatic
+    @JvmField
     public val hasMipmapsName: MethodStringName0<Texture3D, Boolean> =
         MethodStringName0<Texture3D, Boolean>("has_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val getDataName: MethodStringName0<Texture3D, VariantArray<Image>> =
         MethodStringName0<Texture3D, VariantArray<Image>>("get_data")
 
-    @JvmStatic
+    @JvmField
     public val createPlaceholderName: MethodStringName0<Texture3D, Resource?> =
         MethodStringName0<Texture3D, Resource?>("create_placeholder")
   }

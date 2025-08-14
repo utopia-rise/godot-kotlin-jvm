@@ -25,8 +25,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [AnimatedTexture] is a resource format for frame-based animations, where multiple textures can be
@@ -208,59 +208,59 @@ public open class AnimatedTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFramesName: MethodStringName1<AnimatedTexture, Unit, Int> =
         MethodStringName1<AnimatedTexture, Unit, Int>("set_frames")
 
-    @JvmStatic
+    @JvmField
     public val getFramesName: MethodStringName0<AnimatedTexture, Int> =
         MethodStringName0<AnimatedTexture, Int>("get_frames")
 
-    @JvmStatic
+    @JvmField
     public val setCurrentFrameName: MethodStringName1<AnimatedTexture, Unit, Int> =
         MethodStringName1<AnimatedTexture, Unit, Int>("set_current_frame")
 
-    @JvmStatic
+    @JvmField
     public val getCurrentFrameName: MethodStringName0<AnimatedTexture, Int> =
         MethodStringName0<AnimatedTexture, Int>("get_current_frame")
 
-    @JvmStatic
+    @JvmField
     public val setPauseName: MethodStringName1<AnimatedTexture, Unit, Boolean> =
         MethodStringName1<AnimatedTexture, Unit, Boolean>("set_pause")
 
-    @JvmStatic
+    @JvmField
     public val getPauseName: MethodStringName0<AnimatedTexture, Boolean> =
         MethodStringName0<AnimatedTexture, Boolean>("get_pause")
 
-    @JvmStatic
+    @JvmField
     public val setOneShotName: MethodStringName1<AnimatedTexture, Unit, Boolean> =
         MethodStringName1<AnimatedTexture, Unit, Boolean>("set_one_shot")
 
-    @JvmStatic
+    @JvmField
     public val getOneShotName: MethodStringName0<AnimatedTexture, Boolean> =
         MethodStringName0<AnimatedTexture, Boolean>("get_one_shot")
 
-    @JvmStatic
+    @JvmField
     public val setSpeedScaleName: MethodStringName1<AnimatedTexture, Unit, Float> =
         MethodStringName1<AnimatedTexture, Unit, Float>("set_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val getSpeedScaleName: MethodStringName0<AnimatedTexture, Float> =
         MethodStringName0<AnimatedTexture, Float>("get_speed_scale")
 
-    @JvmStatic
+    @JvmField
     public val setFrameTextureName: MethodStringName2<AnimatedTexture, Unit, Int, Texture2D?> =
         MethodStringName2<AnimatedTexture, Unit, Int, Texture2D?>("set_frame_texture")
 
-    @JvmStatic
+    @JvmField
     public val getFrameTextureName: MethodStringName1<AnimatedTexture, Texture2D?, Int> =
         MethodStringName1<AnimatedTexture, Texture2D?, Int>("get_frame_texture")
 
-    @JvmStatic
+    @JvmField
     public val setFrameDurationName: MethodStringName2<AnimatedTexture, Unit, Int, Float> =
         MethodStringName2<AnimatedTexture, Unit, Int, Float>("set_frame_duration")
 
-    @JvmStatic
+    @JvmField
     public val getFrameDurationName: MethodStringName1<AnimatedTexture, Float, Int> =
         MethodStringName1<AnimatedTexture, Float, Int>("get_frame_duration")
 

@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An audio effect that can be used to adjust the intensity of stereo panning.
@@ -101,27 +101,27 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPanPulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
         MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_pan_pullout")
 
-    @JvmStatic
+    @JvmField
     public val getPanPulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
         MethodStringName0<AudioEffectStereoEnhance, Float>("get_pan_pullout")
 
-    @JvmStatic
+    @JvmField
     public val setTimePulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
         MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_time_pullout")
 
-    @JvmStatic
+    @JvmField
     public val getTimePulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
         MethodStringName0<AudioEffectStereoEnhance, Float>("get_time_pullout")
 
-    @JvmStatic
+    @JvmField
     public val setSurroundName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
         MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_surround")
 
-    @JvmStatic
+    @JvmField
     public val getSurroundName: MethodStringName0<AudioEffectStereoEnhance, Float> =
         MethodStringName0<AudioEffectStereoEnhance, Float>("get_surround")
   }

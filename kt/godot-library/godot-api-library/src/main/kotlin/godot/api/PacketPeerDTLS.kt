@@ -22,8 +22,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * This class represents a DTLS peer connection. It can be used to connect to a DTLS server, and is
@@ -124,20 +124,20 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val pollName: MethodStringName0<PacketPeerDTLS, Unit> =
         MethodStringName0<PacketPeerDTLS, Unit>("poll")
 
-    @JvmStatic
+    @JvmField
     public val connectToPeerName:
         MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?> =
         MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?>("connect_to_peer")
 
-    @JvmStatic
+    @JvmField
     public val getStatusName: MethodStringName0<PacketPeerDTLS, Status> =
         MethodStringName0<PacketPeerDTLS, Status>("get_status")
 
-    @JvmStatic
+    @JvmField
     public val disconnectFromPeerName: MethodStringName0<PacketPeerDTLS, Unit> =
         MethodStringName0<PacketPeerDTLS, Unit>("disconnect_from_peer")
   }

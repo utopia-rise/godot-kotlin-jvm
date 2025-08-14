@@ -22,8 +22,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Translated to `uniform vec4` in the shader language.
@@ -106,20 +106,20 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDefaultValueEnabledName:
         MethodStringName1<VisualShaderNodeColorParameter, Unit, Boolean> =
         MethodStringName1<VisualShaderNodeColorParameter, Unit, Boolean>("set_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val isDefaultValueEnabledName: MethodStringName0<VisualShaderNodeColorParameter, Boolean>
         = MethodStringName0<VisualShaderNodeColorParameter, Boolean>("is_default_value_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setDefaultValueName: MethodStringName1<VisualShaderNodeColorParameter, Unit, Color> =
         MethodStringName1<VisualShaderNodeColorParameter, Unit, Color>("set_default_value")
 
-    @JvmStatic
+    @JvmField
     public val getDefaultValueName: MethodStringName0<VisualShaderNodeColorParameter, Color> =
         MethodStringName0<VisualShaderNodeColorParameter, Color>("get_default_value")
   }

@@ -20,8 +20,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * The runtime part of an [AudioEffectSpectrumAnalyzer], which can be used to query the magnitude of
@@ -78,7 +78,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val getMagnitudeForFrequencyRangeName:
         MethodStringName3<AudioEffectSpectrumAnalyzerInstance, Vector2, Float, Float, MagnitudeMode>
         =

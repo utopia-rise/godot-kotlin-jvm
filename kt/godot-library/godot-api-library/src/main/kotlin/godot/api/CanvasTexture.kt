@@ -26,8 +26,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * [CanvasTexture] is an alternative to [ImageTexture] for 2D rendering. It allows using normal maps
@@ -242,61 +242,61 @@ public open class CanvasTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setDiffuseTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
         MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_diffuse_texture")
 
-    @JvmStatic
+    @JvmField
     public val getDiffuseTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
         MethodStringName0<CanvasTexture, Texture2D?>("get_diffuse_texture")
 
-    @JvmStatic
+    @JvmField
     public val setNormalTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
         MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_normal_texture")
 
-    @JvmStatic
+    @JvmField
     public val getNormalTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
         MethodStringName0<CanvasTexture, Texture2D?>("get_normal_texture")
 
-    @JvmStatic
+    @JvmField
     public val setSpecularTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
         MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_specular_texture")
 
-    @JvmStatic
+    @JvmField
     public val getSpecularTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
         MethodStringName0<CanvasTexture, Texture2D?>("get_specular_texture")
 
-    @JvmStatic
+    @JvmField
     public val setSpecularColorName: MethodStringName1<CanvasTexture, Unit, Color> =
         MethodStringName1<CanvasTexture, Unit, Color>("set_specular_color")
 
-    @JvmStatic
+    @JvmField
     public val getSpecularColorName: MethodStringName0<CanvasTexture, Color> =
         MethodStringName0<CanvasTexture, Color>("get_specular_color")
 
-    @JvmStatic
+    @JvmField
     public val setSpecularShininessName: MethodStringName1<CanvasTexture, Unit, Float> =
         MethodStringName1<CanvasTexture, Unit, Float>("set_specular_shininess")
 
-    @JvmStatic
+    @JvmField
     public val getSpecularShininessName: MethodStringName0<CanvasTexture, Float> =
         MethodStringName0<CanvasTexture, Float>("get_specular_shininess")
 
-    @JvmStatic
+    @JvmField
     public val setTextureFilterName:
         MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureFilter> =
         MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureFilter>("set_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val getTextureFilterName: MethodStringName0<CanvasTexture, CanvasItem.TextureFilter> =
         MethodStringName0<CanvasTexture, CanvasItem.TextureFilter>("get_texture_filter")
 
-    @JvmStatic
+    @JvmField
     public val setTextureRepeatName:
         MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureRepeat> =
         MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureRepeat>("set_texture_repeat")
 
-    @JvmStatic
+    @JvmField
     public val getTextureRepeatName: MethodStringName0<CanvasTexture, CanvasItem.TextureRepeat> =
         MethodStringName0<CanvasTexture, CanvasItem.TextureRepeat>("get_texture_repeat")
   }

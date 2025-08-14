@@ -27,8 +27,8 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * By changing various properties of this object, such as the point position, you can configure the
@@ -211,55 +211,55 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setPositionName: MethodStringName1<PhysicsPointQueryParameters2D, Unit, Vector2> =
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Vector2>("set_position")
 
-    @JvmStatic
+    @JvmField
     public val getPositionName: MethodStringName0<PhysicsPointQueryParameters2D, Vector2> =
         MethodStringName0<PhysicsPointQueryParameters2D, Vector2>("get_position")
 
-    @JvmStatic
+    @JvmField
     public val setCanvasInstanceIdName: MethodStringName1<PhysicsPointQueryParameters2D, Unit, Long>
         = MethodStringName1<PhysicsPointQueryParameters2D, Unit, Long>("set_canvas_instance_id")
 
-    @JvmStatic
+    @JvmField
     public val getCanvasInstanceIdName: MethodStringName0<PhysicsPointQueryParameters2D, Long> =
         MethodStringName0<PhysicsPointQueryParameters2D, Long>("get_canvas_instance_id")
 
-    @JvmStatic
+    @JvmField
     public val setCollisionMaskName: MethodStringName1<PhysicsPointQueryParameters2D, Unit, Long> =
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Long>("set_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val getCollisionMaskName: MethodStringName0<PhysicsPointQueryParameters2D, Long> =
         MethodStringName0<PhysicsPointQueryParameters2D, Long>("get_collision_mask")
 
-    @JvmStatic
+    @JvmField
     public val setExcludeName:
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, VariantArray<RID>> =
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, VariantArray<RID>>("set_exclude")
 
-    @JvmStatic
+    @JvmField
     public val getExcludeName: MethodStringName0<PhysicsPointQueryParameters2D, VariantArray<RID>> =
         MethodStringName0<PhysicsPointQueryParameters2D, VariantArray<RID>>("get_exclude")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithBodiesName:
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Boolean> =
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Boolean>("set_collide_with_bodies")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithBodiesEnabledName:
         MethodStringName0<PhysicsPointQueryParameters2D, Boolean> =
         MethodStringName0<PhysicsPointQueryParameters2D, Boolean>("is_collide_with_bodies_enabled")
 
-    @JvmStatic
+    @JvmField
     public val setCollideWithAreasName:
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Boolean> =
         MethodStringName1<PhysicsPointQueryParameters2D, Unit, Boolean>("set_collide_with_areas")
 
-    @JvmStatic
+    @JvmField
     public val isCollideWithAreasEnabledName:
         MethodStringName0<PhysicsPointQueryParameters2D, Boolean> =
         MethodStringName0<PhysicsPointQueryParameters2D, Boolean>("is_collide_with_areas_enabled")

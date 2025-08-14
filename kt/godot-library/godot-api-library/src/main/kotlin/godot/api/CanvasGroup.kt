@@ -21,8 +21,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Child [CanvasItem] nodes of a [CanvasGroup] are drawn as a single object. It allows to e.g. draw
@@ -138,27 +138,27 @@ public open class CanvasGroup : Node2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setFitMarginName: MethodStringName1<CanvasGroup, Unit, Float> =
         MethodStringName1<CanvasGroup, Unit, Float>("set_fit_margin")
 
-    @JvmStatic
+    @JvmField
     public val getFitMarginName: MethodStringName0<CanvasGroup, Float> =
         MethodStringName0<CanvasGroup, Float>("get_fit_margin")
 
-    @JvmStatic
+    @JvmField
     public val setClearMarginName: MethodStringName1<CanvasGroup, Unit, Float> =
         MethodStringName1<CanvasGroup, Unit, Float>("set_clear_margin")
 
-    @JvmStatic
+    @JvmField
     public val getClearMarginName: MethodStringName0<CanvasGroup, Float> =
         MethodStringName0<CanvasGroup, Float>("get_clear_margin")
 
-    @JvmStatic
+    @JvmField
     public val setUseMipmapsName: MethodStringName1<CanvasGroup, Unit, Boolean> =
         MethodStringName1<CanvasGroup, Unit, Boolean>("set_use_mipmaps")
 
-    @JvmStatic
+    @JvmField
     public val isUsingMipmapsName: MethodStringName0<CanvasGroup, Boolean> =
         MethodStringName0<CanvasGroup, Boolean>("is_using_mipmaps")
   }

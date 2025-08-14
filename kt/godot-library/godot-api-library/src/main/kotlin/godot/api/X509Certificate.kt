@@ -20,7 +20,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmField
 
 /**
  * The X509Certificate class represents an X509 certificate. Certificates can be loaded and saved
@@ -74,19 +74,19 @@ public open class X509Certificate : Resource() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val saveName: MethodStringName1<X509Certificate, Error, String> =
         MethodStringName1<X509Certificate, Error, String>("save")
 
-    @JvmStatic
+    @JvmField
     public val loadName: MethodStringName1<X509Certificate, Error, String> =
         MethodStringName1<X509Certificate, Error, String>("load")
 
-    @JvmStatic
+    @JvmField
     public val saveToStringName: MethodStringName0<X509Certificate, String> =
         MethodStringName0<X509Certificate, String>("save_to_string")
 
-    @JvmStatic
+    @JvmField
     public val loadFromStringName: MethodStringName1<X509Certificate, Error, String> =
         MethodStringName1<X509Certificate, Error, String>("load_from_string")
   }

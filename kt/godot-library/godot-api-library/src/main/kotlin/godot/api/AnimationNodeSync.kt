@@ -18,8 +18,8 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * An animation node used to combine, mix, or blend two or more animations together while keeping
@@ -56,11 +56,11 @@ public open class AnimationNodeSync : AnimationNode() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setUseSyncName: MethodStringName1<AnimationNodeSync, Unit, Boolean> =
         MethodStringName1<AnimationNodeSync, Unit, Boolean>("set_use_sync")
 
-    @JvmStatic
+    @JvmField
     public val isUsingSyncName: MethodStringName0<AnimationNodeSync, Boolean> =
         MethodStringName0<AnimationNodeSync, Boolean>("is_using_sync")
   }

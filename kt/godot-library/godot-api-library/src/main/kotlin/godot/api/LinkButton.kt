@@ -23,8 +23,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A button that represents a link. This type of button is primarily used for interactions that
@@ -239,62 +239,62 @@ public open class LinkButton : BaseButton() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setTextName: MethodStringName1<LinkButton, Unit, String> =
         MethodStringName1<LinkButton, Unit, String>("set_text")
 
-    @JvmStatic
+    @JvmField
     public val getTextName: MethodStringName0<LinkButton, String> =
         MethodStringName0<LinkButton, String>("get_text")
 
-    @JvmStatic
+    @JvmField
     public val setTextDirectionName: MethodStringName1<LinkButton, Unit, Control.TextDirection> =
         MethodStringName1<LinkButton, Unit, Control.TextDirection>("set_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val getTextDirectionName: MethodStringName0<LinkButton, Control.TextDirection> =
         MethodStringName0<LinkButton, Control.TextDirection>("get_text_direction")
 
-    @JvmStatic
+    @JvmField
     public val setLanguageName: MethodStringName1<LinkButton, Unit, String> =
         MethodStringName1<LinkButton, Unit, String>("set_language")
 
-    @JvmStatic
+    @JvmField
     public val getLanguageName: MethodStringName0<LinkButton, String> =
         MethodStringName0<LinkButton, String>("get_language")
 
-    @JvmStatic
+    @JvmField
     public val setUriName: MethodStringName1<LinkButton, Unit, String> =
         MethodStringName1<LinkButton, Unit, String>("set_uri")
 
-    @JvmStatic
+    @JvmField
     public val getUriName: MethodStringName0<LinkButton, String> =
         MethodStringName0<LinkButton, String>("get_uri")
 
-    @JvmStatic
+    @JvmField
     public val setUnderlineModeName: MethodStringName1<LinkButton, Unit, UnderlineMode> =
         MethodStringName1<LinkButton, Unit, UnderlineMode>("set_underline_mode")
 
-    @JvmStatic
+    @JvmField
     public val getUnderlineModeName: MethodStringName0<LinkButton, UnderlineMode> =
         MethodStringName0<LinkButton, UnderlineMode>("get_underline_mode")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideName:
         MethodStringName1<LinkButton, Unit, TextServer.StructuredTextParser> =
         MethodStringName1<LinkButton, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideName:
         MethodStringName0<LinkButton, TextServer.StructuredTextParser> =
         MethodStringName0<LinkButton, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
 
-    @JvmStatic
+    @JvmField
     public val setStructuredTextBidiOverrideOptionsName:
         MethodStringName1<LinkButton, Unit, VariantArray<Any?>> =
         MethodStringName1<LinkButton, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
 
-    @JvmStatic
+    @JvmField
     public val getStructuredTextBidiOverrideOptionsName:
         MethodStringName0<LinkButton, VariantArray<Any?>> =
         MethodStringName0<LinkButton, VariantArray<Any?>>("get_structured_text_bidi_override_options")

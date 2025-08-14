@@ -21,8 +21,8 @@ import godot.core.Vector2
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * Simple texture that uses a mesh to draw itself. It's limited because flags can't be changed and
@@ -128,27 +128,27 @@ public open class MeshTexture : Texture2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setMeshName: MethodStringName1<MeshTexture, Unit, Mesh?> =
         MethodStringName1<MeshTexture, Unit, Mesh?>("set_mesh")
 
-    @JvmStatic
+    @JvmField
     public val getMeshName: MethodStringName0<MeshTexture, Mesh?> =
         MethodStringName0<MeshTexture, Mesh?>("get_mesh")
 
-    @JvmStatic
+    @JvmField
     public val setImageSizeName: MethodStringName1<MeshTexture, Unit, Vector2> =
         MethodStringName1<MeshTexture, Unit, Vector2>("set_image_size")
 
-    @JvmStatic
+    @JvmField
     public val getImageSizeName: MethodStringName0<MeshTexture, Vector2> =
         MethodStringName0<MeshTexture, Vector2>("get_image_size")
 
-    @JvmStatic
+    @JvmField
     public val setBaseTextureName: MethodStringName1<MeshTexture, Unit, Texture2D?> =
         MethodStringName1<MeshTexture, Unit, Texture2D?>("set_base_texture")
 
-    @JvmStatic
+    @JvmField
     public val getBaseTextureName: MethodStringName0<MeshTexture, Texture2D?> =
         MethodStringName0<MeshTexture, Texture2D?>("get_base_texture")
   }

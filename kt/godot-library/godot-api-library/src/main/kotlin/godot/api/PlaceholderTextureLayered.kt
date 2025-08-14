@@ -21,8 +21,8 @@ import godot.core.Vector2i
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * This class is used when loading a project that uses a [TextureLayered] subclass in 2 conditions:
@@ -109,15 +109,15 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setSizeName: MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i> =
         MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i>("set_size")
 
-    @JvmStatic
+    @JvmField
     public val getSizeName: MethodStringName0<PlaceholderTextureLayered, Vector2i> =
         MethodStringName0<PlaceholderTextureLayered, Vector2i>("get_size")
 
-    @JvmStatic
+    @JvmField
     public val setLayersName: MethodStringName1<PlaceholderTextureLayered, Unit, Int> =
         MethodStringName1<PlaceholderTextureLayered, Unit, Int>("set_layers")
   }

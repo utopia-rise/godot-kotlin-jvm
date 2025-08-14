@@ -19,8 +19,8 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
-import kotlin.jvm.JvmStatic
 
 /**
  * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
@@ -126,35 +126,35 @@ public open class DampedSpringJoint2D : Joint2D() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val setLengthName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
         MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_length")
 
-    @JvmStatic
+    @JvmField
     public val getLengthName: MethodStringName0<DampedSpringJoint2D, Float> =
         MethodStringName0<DampedSpringJoint2D, Float>("get_length")
 
-    @JvmStatic
+    @JvmField
     public val setRestLengthName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
         MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_rest_length")
 
-    @JvmStatic
+    @JvmField
     public val getRestLengthName: MethodStringName0<DampedSpringJoint2D, Float> =
         MethodStringName0<DampedSpringJoint2D, Float>("get_rest_length")
 
-    @JvmStatic
+    @JvmField
     public val setStiffnessName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
         MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val getStiffnessName: MethodStringName0<DampedSpringJoint2D, Float> =
         MethodStringName0<DampedSpringJoint2D, Float>("get_stiffness")
 
-    @JvmStatic
+    @JvmField
     public val setDampingName: MethodStringName1<DampedSpringJoint2D, Unit, Float> =
         MethodStringName1<DampedSpringJoint2D, Unit, Float>("set_damping")
 
-    @JvmStatic
+    @JvmField
     public val getDampingName: MethodStringName0<DampedSpringJoint2D, Float> =
         MethodStringName0<DampedSpringJoint2D, Float>("get_damping")
   }

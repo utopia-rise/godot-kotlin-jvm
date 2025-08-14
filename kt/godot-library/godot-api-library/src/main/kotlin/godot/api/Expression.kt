@@ -30,8 +30,8 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
-import kotlin.jvm.JvmStatic
 
 /**
  * An expression can be made of any arithmetic operation, built-in math function call, method call
@@ -142,20 +142,20 @@ public open class Expression : RefCounted() {
   }
 
   public companion object {
-    @JvmStatic
+    @JvmField
     public val parseName: MethodStringName2<Expression, Error, String, PackedStringArray> =
         MethodStringName2<Expression, Error, String, PackedStringArray>("parse")
 
-    @JvmStatic
+    @JvmField
     public val executeName:
         MethodStringName4<Expression, Any?, VariantArray<Any?>, Object?, Boolean, Boolean> =
         MethodStringName4<Expression, Any?, VariantArray<Any?>, Object?, Boolean, Boolean>("execute")
 
-    @JvmStatic
+    @JvmField
     public val hasExecuteFailedName: MethodStringName0<Expression, Boolean> =
         MethodStringName0<Expression, Boolean>("has_execute_failed")
 
-    @JvmStatic
+    @JvmField
     public val getErrorTextName: MethodStringName0<Expression, String> =
         MethodStringName0<Expression, String>("get_error_text")
   }
