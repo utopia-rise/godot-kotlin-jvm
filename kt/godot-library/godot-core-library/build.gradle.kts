@@ -18,11 +18,6 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 dependencies {
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-internal-library"))
@@ -47,17 +42,14 @@ val targetSuffix = if (isRelease) "release" else "debug"
 
 publishing {
     publications {
-        @Suppress("UNUSED_VARIABLE")
-        val godotLibraryPublication by creating(MavenPublication::class) {
+        @Suppress("UNUSED_VARIABLE", "unused")
+        val godotCoreLibraryPublication by creating(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
                 description.set("Contains godot api as kotlin classes and jvm cpp interaction code.")
             }
             artifactId = "godot-core-library-$targetSuffix"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
-            artifact(tasks.jar)
-            artifact(tasks.getByName("sourcesJar"))
-            artifact(tasks.getByName("javadocJar"))
         }
     }
 }
