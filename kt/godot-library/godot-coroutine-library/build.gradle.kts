@@ -18,11 +18,6 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
@@ -48,7 +43,7 @@ val targetSuffix = if (isRelease) "release" else "debug"
 
 publishing {
     publications {
-        @Suppress("UNUSED_VARIABLE")
+        @Suppress("UNUSED_VARIABLE", "unused")
         val godotCoroutineLibraryPublication by creating(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
@@ -56,9 +51,6 @@ publishing {
             }
             artifactId = "godot-coroutine-library-$targetSuffix"
             description = "Godot library extension allowing the use of coroutines in a Godot context."
-            artifact(tasks.jar)
-            artifact(tasks.getByName("sourcesJar"))
-            artifact(tasks.getByName("javadocJar"))
         }
     }
 }

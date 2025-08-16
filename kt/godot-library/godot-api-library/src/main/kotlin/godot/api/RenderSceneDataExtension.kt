@@ -30,35 +30,35 @@ public open class RenderSceneDataExtension : RenderSceneData() {
    * Implement this in GDExtension to return the camera [Transform3D].
    */
   public open fun _getCamTransform(): Transform3D {
-    throw NotImplementedError("_getCamTransform is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getCamTransform is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to return the camera [Projection].
    */
   public open fun _getCamProjection(): Projection {
-    throw NotImplementedError("_getCamProjection is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getCamProjection is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to return the view count.
    */
   public open fun _getViewCount(): Long {
-    throw NotImplementedError("_getViewCount is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getViewCount is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to return the eye offset for the given [view].
    */
   public open fun _getViewEyeOffset(view: Long): Vector3 {
-    throw NotImplementedError("_getViewEyeOffset is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getViewEyeOffset is not implemented.")
   }
 
   /**
    * Implement this in GDExtension to return the view [Projection] for the given [view].
    */
   public open fun _getViewProjection(view: Long): Projection {
-    throw NotImplementedError("_getViewProjection is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getViewProjection is not implemented.")
   }
 
   /**
@@ -66,7 +66,7 @@ public open class RenderSceneDataExtension : RenderSceneData() {
    * data as a UBO.
    */
   public open fun _getUniformBuffer(): RID {
-    throw NotImplementedError("_getUniformBuffer is not implemented for RenderSceneDataExtension")
+    throw NotImplementedError("RenderSceneDataExtension::_getUniformBuffer is not implemented.")
   }
 
   public companion object

@@ -625,35 +625,35 @@ public open class TextEdit : Control() {
    * [unicodeChar].
    */
   public open fun _handleUnicodeInput(unicodeChar: Int, caretIndex: Int): Unit {
-    throw NotImplementedError("_handleUnicodeInput is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_handleUnicodeInput is not implemented.")
   }
 
   /**
    * Override this method to define what happens when the user presses the backspace key.
    */
   public open fun _backspace(caretIndex: Int): Unit {
-    throw NotImplementedError("_backspace is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_backspace is not implemented.")
   }
 
   /**
    * Override this method to define what happens when the user performs a cut operation.
    */
   public open fun _cut(caretIndex: Int): Unit {
-    throw NotImplementedError("_cut is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_cut is not implemented.")
   }
 
   /**
    * Override this method to define what happens when the user performs a copy operation.
    */
   public open fun _copy(caretIndex: Int): Unit {
-    throw NotImplementedError("_copy is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_copy is not implemented.")
   }
 
   /**
    * Override this method to define what happens when the user performs a paste operation.
    */
   public open fun _paste(caretIndex: Int): Unit {
-    throw NotImplementedError("_paste is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_paste is not implemented.")
   }
 
   /**
@@ -663,7 +663,7 @@ public open class TextEdit : Control() {
    * **Note:** This method is only implemented on Linux.
    */
   public open fun _pastePrimaryClipboard(caretIndex: Int): Unit {
-    throw NotImplementedError("_pastePrimaryClipboard is not implemented for TextEdit")
+    throw NotImplementedError("TextEdit::_pastePrimaryClipboard is not implemented.")
   }
 
   /**

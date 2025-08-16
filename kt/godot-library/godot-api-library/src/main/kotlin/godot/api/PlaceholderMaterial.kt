@@ -7,7 +7,9 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.core.RID
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,6 +27,20 @@ import kotlin.Unit
 public open class PlaceholderMaterial : Material() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(489, scriptIndex)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getShaderRid(): RID {
+    throw NotImplementedError("PlaceholderMaterial::_getShaderRid can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _getShaderMode(): Shader.Mode {
+    throw NotImplementedError("PlaceholderMaterial::_getShaderMode can't be called from the JVM.")
   }
 
   public companion object

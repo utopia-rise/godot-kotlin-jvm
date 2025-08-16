@@ -566,7 +566,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * custom force integration for a body.
    */
   public open fun _integrateForces(state: PhysicsDirectBodyState2D?): Unit {
-    throw NotImplementedError("_integrateForces is not implemented for RigidBody2D")
+    throw NotImplementedError("RigidBody2D::_integrateForces is not implemented.")
   }
 
   public final fun setMass(mass: Float): Unit {

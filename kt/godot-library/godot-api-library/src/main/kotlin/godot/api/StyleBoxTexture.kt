@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.RID
 import godot.core.Rect2
 import godot.core.Side
 import godot.core.VariantParser.BOOL
@@ -27,6 +28,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -398,6 +400,13 @@ public open class StyleBoxTexture : StyleBox() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getVAxisStretchModePtr, LONG)
     return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+    throw NotImplementedError("StyleBoxTexture::_draw can't be called from the JVM.")
   }
 
   public enum class AxisStretchMode(

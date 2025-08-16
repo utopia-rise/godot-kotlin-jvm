@@ -1,83 +1,45 @@
+
 package publish
 
+import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import com.vanniktech.maven.publish.MavenPublishPlugin
+import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.SourceSetContainer
-import org.gradle.jvm.tasks.Jar
 import org.gradle.plugins.signing.Sign
-import org.gradle.plugins.signing.SigningExtension
 
+@Suppress("unused") // false positive
 class PublishToMavenCentralPlugin : Plugin<Project> {
     override fun apply(target: Project) {
-        target.plugins.apply("maven-publish")
+        target.plugins.apply(org.gradle.api.publish.maven.plugins.MavenPublishPlugin::class.java)
 
-        val ossrhUser = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_USERNAME")
-        val ossrhPassword = target.propOrEnv("GODOT_KOTLIN_MAVEN_CENTRAL_TOKEN_PASSWORD")
-        val signingKey = target.propOrEnv("GODOT_KOTLIN_GPG_PRIVATE_KEY_ASCII")
-        val signingPassword = target.propOrEnv("GODOT_KOTLIN_GPG_KEY_PASSPHRASE")
-        val canSign = ossrhUser != null && ossrhPassword != null && signingKey != null && signingPassword != null
+        target.afterEvaluate { evaluatedProject ->
+            val mavenCentralUser = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralUsername") ?: target.propOrEnv("mavenCentralUsername")
+            val mavenCentralPassword = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralPassword") ?: target.propOrEnv("mavenCentralPassword")
+            val gpgInMemoryKey = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKey") ?: target.propOrEnv("signingInMemoryKey")
+            val gpgPassword = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword") ?: target.propOrEnv("signingInMemoryKeyPassword")
 
-        if (canSign) {
-            target.plugins.apply("signing")
-            target.logger.info("Will sign artifact for project \"${target.name}\" and setup publishing")
-        } else {
-            target.logger.warn("Cannot sign project \"${target.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
-        }
+            val canSign = mavenCentralUser != null && mavenCentralPassword != null && gpgInMemoryKey != null && gpgPassword != null
 
-        target.afterEvaluate { project ->
-            val isReleaseMode = !(project.version as String).endsWith("-SNAPSHOT")
-
-            if (canSign) { // for local development, If missing in CI it will fail later on deploy so we would notice the issue then
-                project.extensions.configure(SigningExtension::class.java) { signingExtension ->
-                    signingExtension.useInMemoryPgpKeys(signingKey, signingPassword)
-                    project.extensions.findByType(PublishingExtension::class.java)?.publications?.all { publication ->
-                        signingExtension.sign(publication)
-                    }
-                }
-            }
-
-            project.extensions.getByType(JavaPluginExtension::class.java).apply {
-                withSourcesJar()
-                withJavadocJar()
-            }
-
-            project.extensions.getByType(PublishingExtension::class.java).apply {
-                repositories.apply {
-                    maven { mavenArtifactRepository ->
-                        val targetRepo = if (isReleaseMode) {
-                            "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-                        } else {
-                            "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-                        }
-                        mavenArtifactRepository.setUrl(targetRepo)
-
-                        if (canSign) {
-                            mavenArtifactRepository.credentials { passwordCredentials ->
-                                passwordCredentials.username = ossrhUser
-                                passwordCredentials.password = ossrhPassword
-                            }
-                        }
-                    }
-                }
+            target.extensions.getByType(PublishingExtension::class.java).apply {
                 publications { publicationContainer ->
                     publicationContainer.all { publication ->
                         if (publication is MavenPublication) {
                             publication.groupId = "com.utopia-rise"
                             val artifactId = publication.artifactId
-                            publication.artifactId = if (artifactId.isNullOrEmpty()) project.name else artifactId
-                            publication.version = project.version as String
+                            publication.artifactId = if (artifactId.isNullOrEmpty()) target.name else artifactId
+                            publication.version = target.version as String
 
                             publication.pom { mavenPom ->
                                 mavenPom.url.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
 
                                 if (mavenPom.name.getOrElse("").isNullOrEmpty()) {
-                                    mavenPom.name.set(project.name)
+                                    mavenPom.name.set(target.name)
                                 }
                                 if (mavenPom.description.getOrElse("").isNullOrEmpty()) {
-                                    mavenPom.description.set(project.description ?: "Godot kotlin jvm module")
+                                    mavenPom.description.set(target.description ?: "Godot kotlin jvm module")
                                 }
 
                                 mavenPom.scm { mavenPomScm ->
@@ -127,22 +89,33 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                 }
             }
 
+
             if (canSign) {
-                project
-                    .tasks
-                    .filter { task -> task.name.startsWith("publish") }
-                    .forEach { task ->
-                        task.dependsOn(project.tasks.withType(Sign::class.java))
-                    }
+                evaluatedProject.logger.info("Will sign artifact for project \"${evaluatedProject.name}\" and setup publishing")
+
+                evaluatedProject.pluginManager.apply(MavenPublishPlugin::class.java)
+                evaluatedProject.extensions.getByType(MavenPublishBaseExtension::class.java).apply {
+                    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+                    signAllPublications()
+                }
+
+                target.afterEvaluate {
+                    target
+                        .tasks
+                        .filter { task -> task.name.startsWith("publish") }
+                        .forEach { task ->
+                            task.dependsOn(target.tasks.withType(Sign::class.java))
+                        }
+                }
+            } else {
+                evaluatedProject.logger.warn("Cannot sign project \"${evaluatedProject.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
             }
         }
     }
 }
 
 fun Project.propOrEnv(name: String): String? {
-    var property: String? = findProperty(name) as String?
-    if (property == null) {
-        property = System.getenv(name)
-    }
-    return property
+    return findProperty(name) as? String?
+        ?: System.getenv(name)?.ifEmpty { null }
+        ?: providers.systemProperty(name).orNull
 }

@@ -192,14 +192,14 @@ public open class BaseButton : Control() {
    * [toggleMode] is active), use [_toggled] instead.
    */
   public open fun _pressed(): Unit {
-    throw NotImplementedError("_pressed is not implemented for BaseButton")
+    throw NotImplementedError("BaseButton::_pressed is not implemented.")
   }
 
   /**
    * Called when the button is toggled (only if [toggleMode] is active).
    */
   public open fun _toggled(toggledOn: Boolean): Unit {
-    throw NotImplementedError("_toggled is not implemented for BaseButton")
+    throw NotImplementedError("BaseButton::_toggled is not implemented.")
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

@@ -171,7 +171,7 @@ public open class Range : Control() {
    * value_changed]).
    */
   public open fun _valueChanged(newValue: Double): Unit {
-    throw NotImplementedError("_valueChanged is not implemented for Range")
+    throw NotImplementedError("Range::_valueChanged is not implemented.")
   }
 
   public final fun getValue(): Double {

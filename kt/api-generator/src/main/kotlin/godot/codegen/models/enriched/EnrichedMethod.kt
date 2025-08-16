@@ -10,7 +10,15 @@ import godot.codegen.workarounds.sanitizeApiType
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToCamelCase
 
-class EnrichedMethod(model: Method) : CallableGeneratorTrait, DocumentedGenerationTrait {
+class EnrichedMethod(private val model: Method, override: Boolean = false) : CallableGeneratorTrait, DocumentedGenerationTrait {
+    enum class Modifier {
+        DEFAULT,
+        STATIC,
+        VIRTUAL,
+        ABSTRACT,
+        OVERRIDE
+    }
+
     override val type = GenerationType(model.returnValue?.type?.sanitizeApiType() ?: "void")
     override val nullable = type.isObjectSubClass() || type.isVariant()
     override val genericParameters = emptyList<ClassName>()
@@ -29,21 +37,42 @@ class EnrichedMethod(model: Method) : CallableGeneratorTrait, DocumentedGenerati
     override var description = model.description
 
     val hash = model.hash
-    val isVirtual = model.isVirtual
-    val isStatic = model.isStatic
-    val godotName = model.name
+    private val modifier = run {
+        if (override) {
+            Modifier.OVERRIDE
+        } else if (model.isVirtual) {
+            if(model.isRequired) {
+                Modifier.ABSTRACT
+            } else  {
+                Modifier.VIRTUAL
+            }
 
+        } else if (model.isStatic) {
+            Modifier.STATIC
+
+        } else {
+            Modifier.DEFAULT
+        }
+    }
+    val isVirtual: Boolean
+        get() = modifier == Modifier.VIRTUAL || modifier == Modifier.ABSTRACT
+    val isAbstract: Boolean
+        get() = modifier == Modifier.ABSTRACT
+    val isStatic: Boolean
+        get() = modifier == Modifier.STATIC
+    val isOverride: Boolean
+        get() = modifier == Modifier.OVERRIDE
+
+    val originalName = model.name
     init {
         if (arguments.size > Constraints.MAX_FUNCTION_ARG_COUNT) {
             throw TooManyMethodArgument(model)
         }
     }
+
+    fun override(): EnrichedMethod {
+        return EnrichedMethod(model, true)
+    }
 }
 
 fun List<Method>.toEnriched() = map { EnrichedMethod(it) }
-
-fun EnrichedMethod.isSameSignature(other: EnrichedMethod): Boolean {
-    return name == other.name &&
-        type == other.type
-    arguments == other.arguments
-}

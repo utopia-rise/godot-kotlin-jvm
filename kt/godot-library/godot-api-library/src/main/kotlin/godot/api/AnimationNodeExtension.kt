@@ -18,7 +18,6 @@ import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
-import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
@@ -29,7 +28,7 @@ import kotlin.jvm.JvmStatic
  * classes. It is used to create custom nodes for the [AnimationTree] system.
  */
 @GodotBaseType
-public open class AnimationNodeExtension : AnimationNode() {
+public abstract class AnimationNodeExtension : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(24, scriptIndex)
   }
@@ -50,10 +49,8 @@ public open class AnimationNodeExtension : AnimationNode() {
    * whether the animation is infinite (encoded as a float greater than `0`). All values must be
    * included in the returned array.
    */
-  public open fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean):
-      PackedFloat32Array {
-    throw NotImplementedError("_processAnimationNode is not implemented for AnimationNodeExtension")
-  }
+  public abstract fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean):
+      PackedFloat32Array
 
   public companion object {
     /**

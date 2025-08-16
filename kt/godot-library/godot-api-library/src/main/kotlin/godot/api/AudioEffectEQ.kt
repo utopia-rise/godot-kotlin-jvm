@@ -17,6 +17,7 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -56,6 +57,13 @@ public open class AudioEffectEQ : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBandCountPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiate(): AudioEffectInstance? {
+    throw NotImplementedError("AudioEffectEQ::_instantiate can't be called from the JVM.")
   }
 
   public companion object

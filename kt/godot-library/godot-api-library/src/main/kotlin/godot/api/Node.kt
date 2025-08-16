@@ -653,7 +653,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Unit {
-    throw NotImplementedError("_process is not implemented for Node")
+    throw NotImplementedError("Node::_process is not implemented.")
   }
 
   /**
@@ -681,7 +681,7 @@ public open class Node : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Unit {
-    throw NotImplementedError("_physicsProcess is not implemented for Node")
+    throw NotImplementedError("Node::_physicsProcess is not implemented.")
   }
 
   /**
@@ -692,7 +692,7 @@ public open class Node : Object() {
    * Corresponds to the [NOTIFICATION_ENTER_TREE] notification in [Object.Notification].
    */
   public open fun _enterTree(): Unit {
-    throw NotImplementedError("_enterTree is not implemented for Node")
+    throw NotImplementedError("Node::_enterTree is not implemented.")
   }
 
   /**
@@ -705,7 +705,7 @@ public open class Node : Object() {
    * the [signal tree_exited].
    */
   public open fun _exitTree(): Unit {
-    throw NotImplementedError("_exitTree is not implemented for Node")
+    throw NotImplementedError("Node::_exitTree is not implemented.")
   }
 
   /**
@@ -725,7 +725,7 @@ public open class Node : Object() {
    * adding the node again.
    */
   public open fun _ready(): Unit {
-    throw NotImplementedError("_ready is not implemented for Node")
+    throw NotImplementedError("Node::_ready is not implemented.")
   }
 
   /**
@@ -750,7 +750,7 @@ public open class Node : Object() {
    * ```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
-    throw NotImplementedError("_getConfigurationWarnings is not implemented for Node")
+    throw NotImplementedError("Node::_getConfigurationWarnings is not implemented.")
   }
 
   /**
@@ -770,7 +770,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _input(event: InputEvent?): Unit {
-    throw NotImplementedError("_input is not implemented for Node")
+    throw NotImplementedError("Node::_input is not implemented.")
   }
 
   /**
@@ -791,7 +791,7 @@ public open class Node : Object() {
    * orphan).
    */
   public open fun _shortcutInput(event: InputEvent?): Unit {
-    throw NotImplementedError("_shortcutInput is not implemented for Node")
+    throw NotImplementedError("Node::_shortcutInput is not implemented.")
   }
 
   /**
@@ -814,7 +814,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledInput(event: InputEvent?): Unit {
-    throw NotImplementedError("_unhandledInput is not implemented for Node")
+    throw NotImplementedError("Node::_unhandledInput is not implemented.")
   }
 
   /**
@@ -840,7 +840,7 @@ public open class Node : Object() {
    * an orphan).
    */
   public open fun _unhandledKeyInput(event: InputEvent?): Unit {
-    throw NotImplementedError("_unhandledKeyInput is not implemented for Node")
+    throw NotImplementedError("Node::_unhandledKeyInput is not implemented.")
   }
 
   /**

@@ -43,7 +43,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * is enabled.
    */
   public open fun _getRequestedExtensions(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_getRequestedExtensions is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getRequestedExtensions is not implemented.")
   }
 
   /**
@@ -54,7 +54,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayerCount(): Int {
-    throw NotImplementedError("_getCompositionLayerCount is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getCompositionLayerCount is not implemented.")
   }
 
   /**
@@ -65,7 +65,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayer(index: Int): Long {
-    throw NotImplementedError("_getCompositionLayer is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getCompositionLayer is not implemented.")
   }
 
   /**
@@ -78,7 +78,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [OpenXRAPIExtension.registerCompositionLayerProvider].
    */
   public open fun _getCompositionLayerOrder(index: Int): Int {
-    throw NotImplementedError("_getCompositionLayerOrder is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getCompositionLayerOrder is not implemented.")
   }
 
   /**
@@ -86,7 +86,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * wrapper.
    */
   public open fun _getSuggestedTrackerNames(): PackedStringArray {
-    throw NotImplementedError("_getSuggestedTrackerNames is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getSuggestedTrackerNames is not implemented.")
   }
 
   /**
@@ -98,35 +98,35 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * relevant hardware.
    */
   public open fun _onRegisterMetadata(): Unit {
-    throw NotImplementedError("_onRegisterMetadata is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onRegisterMetadata is not implemented.")
   }
 
   /**
    * Called before the OpenXR instance is created.
    */
   public open fun _onBeforeInstanceCreated(): Unit {
-    throw NotImplementedError("_onBeforeInstanceCreated is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onBeforeInstanceCreated is not implemented.")
   }
 
   /**
    * Called right after the OpenXR instance is created.
    */
   public open fun _onInstanceCreated(instance: Long): Unit {
-    throw NotImplementedError("_onInstanceCreated is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onInstanceCreated is not implemented.")
   }
 
   /**
    * Called right before the OpenXR instance is destroyed.
    */
   public open fun _onInstanceDestroyed(): Unit {
-    throw NotImplementedError("_onInstanceDestroyed is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onInstanceDestroyed is not implemented.")
   }
 
   /**
    * Called right after the OpenXR session is created.
    */
   public open fun _onSessionCreated(session: Long): Unit {
-    throw NotImplementedError("_onSessionCreated is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onSessionCreated is not implemented.")
   }
 
   /**
@@ -135,28 +135,28 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * to game logic.
    */
   public open fun _onProcess(): Unit {
-    throw NotImplementedError("_onProcess is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onProcess is not implemented.")
   }
 
   /**
    * Called right before the XR viewports begin their rendering step.
    */
   public open fun _onPreRender(): Unit {
-    throw NotImplementedError("_onPreRender is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onPreRender is not implemented.")
   }
 
   /**
    * Called right after the main swapchains are (re)created.
    */
   public open fun _onMainSwapchainsCreated(): Unit {
-    throw NotImplementedError("_onMainSwapchainsCreated is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onMainSwapchainsCreated is not implemented.")
   }
 
   /**
    * Called right before the given viewport is rendered.
    */
   public open fun _onPreDrawViewport(viewport: RID): Unit {
-    throw NotImplementedError("_onPreDrawViewport is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onPreDrawViewport is not implemented.")
   }
 
   /**
@@ -165,21 +165,21 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * **Note:** The draw commands might only be queued at this point, not executed.
    */
   public open fun _onPostDrawViewport(viewport: RID): Unit {
-    throw NotImplementedError("_onPostDrawViewport is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onPostDrawViewport is not implemented.")
   }
 
   /**
    * Called right before the OpenXR session is destroyed.
    */
   public open fun _onSessionDestroyed(): Unit {
-    throw NotImplementedError("_onSessionDestroyed is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onSessionDestroyed is not implemented.")
   }
 
   /**
    * Called when the OpenXR session state is changed to idle.
    */
   public open fun _onStateIdle(): Unit {
-    throw NotImplementedError("_onStateIdle is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateIdle is not implemented.")
   }
 
   /**
@@ -187,7 +187,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * the session.
    */
   public open fun _onStateReady(): Unit {
-    throw NotImplementedError("_onStateReady is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateReady is not implemented.")
   }
 
   /**
@@ -195,7 +195,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * state when the application loses focus.
    */
   public open fun _onStateSynchronized(): Unit {
-    throw NotImplementedError("_onStateSynchronized is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateSynchronized is not implemented.")
   }
 
   /**
@@ -203,7 +203,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * receive frames.
    */
   public open fun _onStateVisible(): Unit {
-    throw NotImplementedError("_onStateVisible is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateVisible is not implemented.")
   }
 
   /**
@@ -211,28 +211,28 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * the game runs.
    */
   public open fun _onStateFocused(): Unit {
-    throw NotImplementedError("_onStateFocused is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateFocused is not implemented.")
   }
 
   /**
    * Called when the OpenXR session state is changed to stopping.
    */
   public open fun _onStateStopping(): Unit {
-    throw NotImplementedError("_onStateStopping is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateStopping is not implemented.")
   }
 
   /**
    * Called when the OpenXR session state is changed to loss pending.
    */
   public open fun _onStateLossPending(): Unit {
-    throw NotImplementedError("_onStateLossPending is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateLossPending is not implemented.")
   }
 
   /**
    * Called when the OpenXR session state is changed to exiting.
    */
   public open fun _onStateExiting(): Unit {
-    throw NotImplementedError("_onStateExiting is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_onStateExiting is not implemented.")
   }
 
   /**
@@ -241,7 +241,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    */
   public open fun _getViewportCompositionLayerExtensionProperties():
       VariantArray<Dictionary<Any?, Any?>> {
-    throw NotImplementedError("_getViewportCompositionLayerExtensionProperties is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getViewportCompositionLayerExtensionProperties is not implemented.")
   }
 
   /**
@@ -249,7 +249,7 @@ public open class OpenXRExtensionWrapperExtension : Object() {
    * [_getViewportCompositionLayerExtensionProperties].
    */
   public open fun _getViewportCompositionLayerExtensionPropertyDefaults(): Dictionary<Any?, Any?> {
-    throw NotImplementedError("_getViewportCompositionLayerExtensionPropertyDefaults is not implemented for OpenXRExtensionWrapperExtension")
+    throw NotImplementedError("OpenXRExtensionWrapperExtension::_getViewportCompositionLayerExtensionPropertyDefaults is not implemented.")
   }
 
   /**

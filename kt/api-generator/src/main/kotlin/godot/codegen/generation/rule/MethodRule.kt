@@ -29,18 +29,9 @@ import godot.tools.common.constants.godotCorePackage
 
 interface BaseMethodeRule {
     fun FunSpec.Builder.configureMethod(method: EnrichedMethod, clazz: EnrichedClass, context: GenerationContext) {
-
-        addKdoc(method)
         // This method already exist in the Kotlin class Any. We have to override it because Godot uses the same name in Object.
         if (method.name == "toString") {
             addModifiers(KModifier.OVERRIDE)
-        }
-
-        // Godot doesn't override its methods, they are either final or meant to be implemented by script or extension.
-        if (method.isVirtual) {
-            addModifiers(KModifier.OPEN)
-        } else {
-            addModifiers(KModifier.FINAL)
         }
 
         val methodTypeName = method.getCastedType()
@@ -51,15 +42,32 @@ interface BaseMethodeRule {
 
         generateParameters(method, context)
 
-        if (!method.isVirtual) {
-            writeCode(method, clazz)
-        } else {
+        // Godot can override virtual methods in child classes, we have to create a dummy final implementation for theM
+        if (method.isOverride) {
+            addModifiers(KModifier.OVERRIDE)
             addStatement(
                 "%L·%T(%S)",
                 "throw",
                 NotImplementedError::class,
-                "${method.name} is not implemented for ${clazz.identifier}"
+                "${clazz.identifier}::${method.name} can't be called from the JVM."
             )
+            addKdoc("Virtual method inherited from base class implemented in non-JVM code. Don't call it.")
+        } else if (method.isAbstract) {
+            addModifiers(KModifier.ABSTRACT)
+            addKdoc(method)
+        } else if (method.isVirtual) {
+            addModifiers(KModifier.OPEN)
+            addStatement(
+                "%L·%T(%S)",
+                "throw",
+                NotImplementedError::class,
+                "${clazz.identifier}::${method.name} is not implemented."
+            )
+            addKdoc(method)
+        } else {
+            addModifiers(KModifier.FINAL)
+            writeCode(method, clazz)
+            addKdoc(method)
         }
     }
 
@@ -215,7 +223,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
     }
 
     private fun createStringOnlyMethod(method: EnrichedMethod, clazz: EnrichedClass, context: GenerationContext): EnrichedMethodTask? {
-        if (method.isVirtual) {
+        if (method.isVirtual || method.isOverride) {
             return null
         }
         if (method.arguments.none { it.type.identifier == GodotTypes.stringName || it.type.identifier == GodotTypes.nodePath }) {

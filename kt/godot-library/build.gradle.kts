@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import versioninfo.fullGodotKotlinJvmVersion
 
 plugins {
@@ -31,11 +30,6 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
@@ -62,7 +56,7 @@ val targetSuffix = if (isRelease) "release" else "debug"
 
 publishing {
     publications {
-        @Suppress("UNUSED_VARIABLE")
+        @Suppress("UNUSED_VARIABLE", "unused")
         val godotLibraryPublication by registering(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
@@ -70,9 +64,6 @@ publishing {
             }
             artifactId = "godot-library-$targetSuffix"
             description = "A library allowing to define scripts for the Godot Engine."
-            artifact(tasks.jar)
-            artifact(tasks.getByName("sourcesJar"))
-            artifact(tasks.getByName("javadocJar"))
         }
     }
 }

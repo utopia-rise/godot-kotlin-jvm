@@ -95,7 +95,7 @@ public open class MainLoop : Object() {
    * Called once during initialization.
    */
   public open fun _initialize(): Unit {
-    throw NotImplementedError("_initialize is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_initialize is not implemented.")
   }
 
   /**
@@ -113,7 +113,7 @@ public open class MainLoop : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _physicsProcess(delta: Double): Boolean {
-    throw NotImplementedError("_physicsProcess is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_physicsProcess is not implemented.")
   }
 
   /**
@@ -131,14 +131,14 @@ public open class MainLoop : Object() {
    * methods for this purpose instead, such as [Time.getTicksUsec].
    */
   public open fun _process(delta: Double): Boolean {
-    throw NotImplementedError("_process is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_process is not implemented.")
   }
 
   /**
    * Called before the program exits.
    */
   public open fun _finalize(): Unit {
-    throw NotImplementedError("_finalize is not implemented for MainLoop")
+    throw NotImplementedError("MainLoop::_finalize is not implemented.")
   }
 
   public companion object {

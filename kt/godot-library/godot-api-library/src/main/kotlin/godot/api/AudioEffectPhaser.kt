@@ -15,6 +15,7 @@ import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
 import kotlin.Int
+import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -140,6 +141,13 @@ public open class AudioEffectPhaser : AudioEffect() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDepthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _instantiate(): AudioEffectInstance? {
+    throw NotImplementedError("AudioEffectPhaser::_instantiate can't be called from the JVM.")
   }
 
   public companion object
