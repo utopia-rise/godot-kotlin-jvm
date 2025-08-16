@@ -27,8 +27,9 @@ def generate_header_from_files(directory, header_file):
         header.write("#ifndef FILE_CONTENTS_H\n")
         header.write("#define FILE_CONTENTS_H\n\n")
 
-        for root, _, files in os.walk(directory):
-            for file_name in files:
+        for root, dirs, files in os.walk(directory):
+            dirs.sort()
+            for file_name in sorted(files):
                 # Only process files with .template or .godot_template extensions
                 if not(file_name.endswith('.template')) and not(file_name.endswith('.godot_template')):
                     continue
