@@ -8,6 +8,7 @@ def encode_file_to_base64(file_path):
     """Encode the content of a file to a Base64 string."""
     with open(file_path, 'rb') as file:
         file_content = file.read()
+        file_content = file_content.replace(b'\r\n', b'\n').replace(b'\r', b'\n')
         encoded_content = base64.b64encode(file_content).decode('utf-8')
     return encoded_content
 
