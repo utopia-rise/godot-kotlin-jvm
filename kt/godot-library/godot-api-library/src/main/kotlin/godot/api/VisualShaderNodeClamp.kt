@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -39,7 +40,7 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
   }
 
   public final fun setOpType(opType: OpType): Unit {
-    TransferContext.writeArguments(LONG to opType.id)
+    TransferContext.writeArguments(LONG to opType.value)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
 
@@ -50,8 +51,8 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
   }
 
   public enum class OpType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * A floating-point scalar.
      */
@@ -82,13 +83,13 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OpType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OpType = entries.single { it.`value` == `value` }
     }
   }
 

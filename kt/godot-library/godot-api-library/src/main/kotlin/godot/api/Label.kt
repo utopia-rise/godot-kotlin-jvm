@@ -344,7 +344,7 @@ public open class Label : Control() {
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
@@ -355,7 +355,7 @@ public open class Label : Control() {
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
@@ -388,7 +388,7 @@ public open class Label : Control() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -421,7 +421,7 @@ public open class Label : Control() {
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -465,7 +465,7 @@ public open class Label : Control() {
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.writeArguments(LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
@@ -558,7 +558,7 @@ public open class Label : Control() {
 
   public final fun setVisibleCharactersBehavior(behavior: TextServer.VisibleCharactersBehavior):
       Unit {
-    TransferContext.writeArguments(LONG to behavior.id)
+    TransferContext.writeArguments(LONG to behavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setVisibleCharactersBehaviorPtr, NIL)
   }
 
@@ -596,7 +596,7 @@ public open class Label : Control() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 

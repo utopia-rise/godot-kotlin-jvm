@@ -172,7 +172,7 @@ public open class Crypto : RefCounted() {
     hash: PackedByteArray,
     key: CryptoKey?,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, OBJECT to key)
+    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to hash, OBJECT to key)
     TransferContext.callMethod(ptr, MethodBindings.signPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
@@ -187,7 +187,7 @@ public open class Crypto : RefCounted() {
     signature: PackedByteArray,
     key: CryptoKey?,
   ): Boolean {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
+    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to hash, PACKED_BYTE_ARRAY to signature, OBJECT to key)
     TransferContext.callMethod(ptr, MethodBindings.verifyPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -225,7 +225,7 @@ public open class Crypto : RefCounted() {
     key: PackedByteArray,
     msg: PackedByteArray,
   ): PackedByteArray {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
+    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to msg)
     TransferContext.callMethod(ptr, MethodBindings.hmacDigestPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -326,7 +327,7 @@ public open class TabBar : Control() {
    * Sets tab title base writing direction.
    */
   public final fun setTabTextDirection(tabIdx: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to direction.id)
+    TransferContext.writeArguments(LONG to tabIdx.toLong(), LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabTextDirectionPtr, NIL)
   }
 
@@ -494,7 +495,7 @@ public open class TabBar : Control() {
   }
 
   public final fun setTabAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabAlignmentPtr, NIL)
   }
 
@@ -560,7 +561,7 @@ public open class TabBar : Control() {
   }
 
   public final fun setTabCloseDisplayPolicy(policy: CloseButtonDisplayPolicy): Unit {
-    TransferContext.writeArguments(LONG to policy.id)
+    TransferContext.writeArguments(LONG to policy.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
   }
 
@@ -656,8 +657,8 @@ public open class TabBar : Control() {
   }
 
   public enum class AlignmentMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Places tabs to the left.
      */
@@ -676,19 +677,19 @@ public open class TabBar : Control() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CloseButtonDisplayPolicy(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Never show the close buttons.
      */
@@ -707,13 +708,14 @@ public open class TabBar : Control() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CloseButtonDisplayPolicy = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CloseButtonDisplayPolicy =
+          entries.single { it.`value` == `value` }
     }
   }
 

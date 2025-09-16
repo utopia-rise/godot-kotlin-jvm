@@ -4,7 +4,7 @@ import godot.core.PropertyHint
 import godot.core.KtClass
 import godot.core.KtConstructor
 import godot.core.KtEnumListProperty
-import godot.core.KtEnumProperty
+import godot.core.KtEnumFlagProperty
 import godot.core.KtFunction
 import godot.core.KtFunction0
 import godot.core.KtFunction1
@@ -36,6 +36,9 @@ import godot.core.toVariantArray
 import godot.core.variantArrayOf
 import godot.common.constants.Constraints
 import godot.common.extensions.convertToSnakeCase
+import godot.core.VariantCaster
+import godot.core.enumFromGodotOrdinal
+import godot.core.godotOrdinal
 import kotlin.reflect.KClass
 import kotlin.reflect.KFunction1
 import kotlin.reflect.KFunction10
@@ -126,31 +129,6 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    inline fun <reified P : Enum<P>> enumProperty(
-        kProperty: KMutableProperty1<T, P>,
-        usage: Long,
-        hintString: String
-    ) {
-        val propertyName = kProperty.name.convertToSnakeCase()
-        require(!properties.contains(propertyName)) {
-            "Found two properties with name $propertyName for class $registeredName"
-        }
-
-        properties[propertyName] = KtEnumProperty(
-            KtPropertyInfo(
-                VariantParser.LONG,
-                propertyName,
-                "Int",
-                PropertyHint.ENUM,
-                hintString,
-                usage,
-            ),
-            kProperty,
-            { enum: P? -> enum?.ordinal ?: 1 },
-            { i -> enumValues<P>()[i] }
-        )
-    }
-
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         kProperty: KMutableProperty1<T, L>,
         usage: Long,
@@ -172,14 +150,20 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             { enumList: Collection<P>? ->
-                enumList
-                    ?.map { it.ordinal }
+                println("GET: $enumList")
+                (enumList
+                    ?.map { it.godotOrdinal.toInt() }
                     ?.toVariantArray()
-                    ?: variantArrayOf()
+                    ?: variantArrayOf()).also {
+                    println("RESULTING: $it")
+                }
             },
             { enumOrdinalVariantArray ->
+                println("SET: $enumOrdinalVariantArray")
                 @Suppress("UNCHECKED_CAST")
-                enumOrdinalVariantArray.map { enumValues<P>()[it] } as L
+                (enumOrdinalVariantArray.map { enumFromGodotOrdinal<P>(it) } as L).also {
+                    println("RESULTING: $it")
+                }
             }
         )
     }
@@ -207,9 +191,11 @@ class ClassBuilderDsl<T : KtObject>(
             "Found two properties with name $propertyName for class $registeredName"
         }
 
-        properties[propertyName] = KtEnumProperty(
+        val variantCaster = VariantCaster.ENUM(enumValues<P>())
+
+        properties[propertyName] = KtEnumFlagProperty(
             KtPropertyInfo(
-                VariantParser.LONG,
+                variantCaster,
                 propertyName,
                 "Int",
                 PropertyHint.FLAGS,
@@ -220,19 +206,19 @@ class ClassBuilderDsl<T : KtObject>(
             { enumSet ->
                 var intFlag = 0
                 enumSet?.forEach { enum ->
-                    intFlag += 1 shl enum.ordinal
+                    intFlag += 1 shl enum.godotOrdinal.toInt()
                 }
                 intFlag
             },
             { value ->
-                val intFlag = (value as P).ordinal
+                val intFlag = (value as P).godotOrdinal.toInt()
 
                 val enums = mutableSetOf<P>()
                 var bit = 1
 
                 for (i in 0 until Int.SIZE_BITS) {
                     if ((intFlag and bit) > 0) {
-                        val element = enumValues<P>().firstOrNull { it.ordinal == i }
+                        val element = enumValues<P>().firstOrNull { it.godotOrdinal.toInt() == i }
                         if (element != null) {
                             enums.add(element)
                         }

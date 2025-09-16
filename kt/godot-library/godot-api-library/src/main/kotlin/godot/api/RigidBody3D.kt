@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Basis
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
@@ -710,7 +711,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun setCenterOfMassMode(mode: CenterOfMassMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCenterOfMassModePtr, NIL)
   }
 
@@ -786,7 +787,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to linearDampMode.id)
+    TransferContext.writeArguments(LONG to linearDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
   }
 
@@ -797,7 +798,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
-    TransferContext.writeArguments(LONG to angularDampMode.id)
+    TransferContext.writeArguments(LONG to angularDampMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
   }
 
@@ -1072,7 +1073,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public final fun setFreezeMode(freezeMode: FreezeMode): Unit {
-    TransferContext.writeArguments(LONG to freezeMode.id)
+    TransferContext.writeArguments(LONG to freezeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setFreezeModePtr, NIL)
   }
 
@@ -1097,8 +1098,8 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   public enum class FreezeMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
      * only moved by user code and doesn't collide with other bodies along its path.
@@ -1111,19 +1112,19 @@ public open class RigidBody3D : PhysicsBody3D() {
     KINEMATIC(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FreezeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FreezeMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CenterOfMassMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * In this mode, the body's center of mass is calculated automatically based on its shapes. This
      * assumes that the shapes' origins are also their center of mass.
@@ -1136,19 +1137,19 @@ public open class RigidBody3D : PhysicsBody3D() {
     CUSTOM(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CenterOfMassMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CenterOfMassMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DampMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * In this mode, the body's damping value is added to any value set in areas or the default
      * value.
@@ -1160,13 +1161,13 @@ public open class RigidBody3D : PhysicsBody3D() {
     REPLACE(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DampMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DampMode = entries.single { it.`value` == `value` }
     }
   }
 

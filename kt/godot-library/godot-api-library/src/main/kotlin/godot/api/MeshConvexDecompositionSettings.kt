@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -277,7 +278,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -321,8 +322,8 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
   }
 
   public enum class Mode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Constant for voxel-based approximate convex decomposition.
      */
@@ -333,13 +334,13 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     CONVEX_DECOMPOSITION_TETRAHEDRON(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

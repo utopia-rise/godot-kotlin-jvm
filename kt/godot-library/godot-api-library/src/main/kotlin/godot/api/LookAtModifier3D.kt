@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -468,7 +469,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setForwardAxis(forwardAxis: SkeletonModifier3D.BoneAxis): Unit {
-    TransferContext.writeArguments(LONG to forwardAxis.id)
+    TransferContext.writeArguments(LONG to forwardAxis.value)
     TransferContext.callMethod(ptr, MethodBindings.setForwardAxisPtr, NIL)
   }
 
@@ -479,7 +480,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setPrimaryRotationAxis(axis: Vector3.Axis): Unit {
-    TransferContext.writeArguments(LONG to axis.id)
+    TransferContext.writeArguments(LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryRotationAxisPtr, NIL)
   }
 
@@ -512,7 +513,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setOriginFrom(originFrom: OriginFrom): Unit {
-    TransferContext.writeArguments(LONG to originFrom.id)
+    TransferContext.writeArguments(LONG to originFrom.value)
     TransferContext.callMethod(ptr, MethodBindings.setOriginFromPtr, NIL)
   }
 
@@ -578,7 +579,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setTransitionType(transitionType: Tween.TransitionType): Unit {
-    TransferContext.writeArguments(LONG to transitionType.id)
+    TransferContext.writeArguments(LONG to transitionType.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransitionTypePtr, NIL)
   }
 
@@ -589,7 +590,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setEaseType(easeType: Tween.EaseType): Unit {
-    TransferContext.writeArguments(LONG to easeType.id)
+    TransferContext.writeArguments(LONG to easeType.value)
     TransferContext.callMethod(ptr, MethodBindings.setEaseTypePtr, NIL)
   }
 
@@ -793,8 +794,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
       setOriginExternalNode(externalNode.asCachedNodePath())
 
   public enum class OriginFrom(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The bone rest position of the bone specified in [bone] is used as origin.
      */
@@ -818,13 +819,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     EXTERNAL_NODE(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OriginFrom = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OriginFrom = entries.single { it.`value` == `value` }
     }
   }
 

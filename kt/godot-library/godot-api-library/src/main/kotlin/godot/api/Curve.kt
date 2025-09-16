@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -142,7 +143,7 @@ public open class Curve : Resource() {
     leftMode: TangentMode = Curve.TangentMode.FREE,
     rightMode: TangentMode = Curve.TangentMode.FREE,
   ): Int {
-    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent.toDouble(), DOUBLE to rightTangent.toDouble(), LONG to leftMode.id, LONG to rightMode.id)
+    TransferContext.writeArguments(VECTOR2 to position, DOUBLE to leftTangent.toDouble(), DOUBLE to rightTangent.toDouble(), LONG to leftMode.value, LONG to rightMode.value)
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -264,7 +265,7 @@ public open class Curve : Resource() {
    * Sets the left [TangentMode] for the point at [index] to [mode].
    */
   public final fun setPointLeftMode(index: Int, mode: TangentMode): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPointLeftModePtr, NIL)
   }
 
@@ -272,7 +273,7 @@ public open class Curve : Resource() {
    * Sets the right [TangentMode] for the point at [index] to [mode].
    */
   public final fun setPointRightMode(index: Int, mode: TangentMode): Unit {
-    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPointRightModePtr, NIL)
   }
 
@@ -367,8 +368,8 @@ public open class Curve : Resource() {
   }
 
   public enum class TangentMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The tangent on this side of the point is user-defined.
      */
@@ -384,13 +385,13 @@ public open class Curve : Resource() {
     COUNT(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TangentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TangentMode = entries.single { it.`value` == `value` }
     }
   }
 

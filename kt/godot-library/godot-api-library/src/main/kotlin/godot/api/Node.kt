@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Signal0
@@ -927,7 +928,7 @@ public open class Node : Object() {
     forceReadableName: Boolean = false,
     `internal`: InternalMode = Node.InternalMode.DISABLED,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.id)
+    TransferContext.writeArguments(OBJECT to node, BOOL to forceReadableName, LONG to internal.value)
     TransferContext.callMethod(ptr, MethodBindings.addChildPtr, NIL)
   }
 
@@ -1774,7 +1775,7 @@ public open class Node : Object() {
   }
 
   public final fun setProcessMode(mode: ProcessMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessModePtr, NIL)
   }
 
@@ -1811,7 +1812,7 @@ public open class Node : Object() {
   }
 
   public final fun setProcessThreadGroup(mode: ProcessThreadGroup): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessThreadGroupPtr, NIL)
   }
 
@@ -1910,7 +1911,7 @@ public open class Node : Object() {
   }
 
   public final fun setPhysicsInterpolationMode(mode: PhysicsInterpolationMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsInterpolationModePtr, NIL)
   }
 
@@ -1968,7 +1969,7 @@ public open class Node : Object() {
   }
 
   public final fun setAutoTranslateMode(mode: AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutoTranslateModePtr, NIL)
   }
 
@@ -2732,8 +2733,8 @@ public open class Node : Object() {
       setThreadSafe(property.asCachedStringName(), value)
 
   public enum class ProcessMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Inherits [processMode] from the node's parent. This is the default for any newly created
      * node.
@@ -2761,19 +2762,19 @@ public open class Node : Object() {
     DISABLED(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProcessMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ProcessThreadGroup(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Process this node based on the thread group mode of the first parent (or grandparent) node
      * that has a thread group mode that is not inherit. See [processThreadGroup] for more information.
@@ -2791,13 +2792,13 @@ public open class Node : Object() {
     SUB_THREAD(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProcessThreadGroup = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProcessThreadGroup = entries.single { it.`value` == `value` }
     }
   }
 
@@ -2858,8 +2859,8 @@ public open class Node : Object() {
   }
 
   public enum class PhysicsInterpolationMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Inherits [physicsInterpolationMode] from the node's parent. This is the default for any newly
      * created node.
@@ -2877,19 +2878,20 @@ public open class Node : Object() {
     OFF(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PhysicsInterpolationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PhysicsInterpolationMode =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DuplicateFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Duplicate the node's signal connections.
      */
@@ -2910,19 +2912,19 @@ public open class Node : Object() {
     USE_INSTANTIATION(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DuplicateFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DuplicateFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InternalMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The node will not be internal.
      */
@@ -2938,19 +2940,19 @@ public open class Node : Object() {
     BACK(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InternalMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InternalMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AutoTranslateMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Inherits [autoTranslateMode] from the node's parent. This is the default for any newly
      * created node.
@@ -2970,13 +2972,13 @@ public open class Node : Object() {
     DISABLED(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AutoTranslateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AutoTranslateMode = entries.single { it.`value` == `value` }
     }
   }
 

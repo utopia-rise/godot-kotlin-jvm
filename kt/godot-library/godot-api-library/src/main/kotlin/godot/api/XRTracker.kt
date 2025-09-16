@@ -88,7 +88,7 @@ public open class XRTracker internal constructor() : RefCounted() {
   }
 
   public final fun setTrackerType(type: XRServer.TrackerType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerTypePtr, NIL)
   }
 

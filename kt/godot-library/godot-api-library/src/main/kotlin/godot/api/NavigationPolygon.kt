@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
@@ -487,7 +488,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
-    TransferContext.writeArguments(LONG to samplePartitionType.id)
+    TransferContext.writeArguments(LONG to samplePartitionType.value)
     TransferContext.callMethod(ptr, MethodBindings.setSamplePartitionTypePtr, NIL)
   }
 
@@ -498,7 +499,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
-    TransferContext.writeArguments(LONG to geometryType.id)
+    TransferContext.writeArguments(LONG to geometryType.value)
     TransferContext.callMethod(ptr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
 
@@ -539,7 +540,7 @@ public open class NavigationPolygon : Resource() {
   }
 
   public final fun setSourceGeometryMode(geometryMode: SourceGeometryMode): Unit {
-    TransferContext.writeArguments(LONG to geometryMode.id)
+    TransferContext.writeArguments(LONG to geometryMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
 
@@ -605,8 +606,8 @@ public open class NavigationPolygon : Resource() {
       setSourceGeometryGroupName(groupName.asCachedStringName())
 
   public enum class SamplePartitionType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Convex partitioning that yields navigation mesh with convex polygons.
      */
@@ -621,19 +622,19 @@ public open class NavigationPolygon : Resource() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SamplePartitionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SamplePartitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParsedGeometryType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Parses mesh instances as obstruction geometry. This includes [Polygon2D], [MeshInstance2D],
      * [MultiMeshInstance2D], and [TileMap] nodes.
@@ -656,19 +657,19 @@ public open class NavigationPolygon : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParsedGeometryType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParsedGeometryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SourceGeometryMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
@@ -688,13 +689,13 @@ public open class NavigationPolygon : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SourceGeometryMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SourceGeometryMode = entries.single { it.`value` == `value` }
     }
   }
 

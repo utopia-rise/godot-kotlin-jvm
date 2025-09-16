@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -37,7 +38,7 @@ public open class HingeJoint3D : Joint3D() {
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
@@ -45,7 +46,7 @@ public open class HingeJoint3D : Joint3D() {
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -54,7 +55,7 @@ public open class HingeJoint3D : Joint3D() {
    * If `true`, enables the specified flag.
    */
   public final fun setFlag(flag: Flag, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFlagPtr, NIL)
   }
 
@@ -62,14 +63,14 @@ public open class HingeJoint3D : Joint3D() {
    * Returns the value of the specified flag.
    */
   public final fun getFlag(flag: Flag): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public enum class Param(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The speed with which the two bodies get pulled together when they move in different
      * directions.
@@ -106,19 +107,19 @@ public open class HingeJoint3D : Joint3D() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Param = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Flag(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If `true`, the hinges maximum and minimum rotation, defined by [angularLimit/lower] and
      * [angularLimit/upper] has effects.
@@ -134,13 +135,13 @@ public open class HingeJoint3D : Joint3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Flag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Flag = entries.single { it.`value` == `value` }
     }
   }
 

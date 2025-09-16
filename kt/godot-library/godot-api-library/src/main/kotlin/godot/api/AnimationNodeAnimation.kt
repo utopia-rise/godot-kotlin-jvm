@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -153,7 +154,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun setPlayMode(mode: PlayMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlayModePtr, NIL)
   }
 
@@ -219,7 +220,7 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   }
 
   public final fun setLoopMode(loopMode: Animation.LoopMode): Unit {
-    TransferContext.writeArguments(LONG to loopMode.id)
+    TransferContext.writeArguments(LONG to loopMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
 
@@ -232,8 +233,8 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
   public final fun setAnimation(name: String) = setAnimation(name.asCachedStringName())
 
   public enum class PlayMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Plays animation in forward direction.
      */
@@ -244,13 +245,13 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
     BACKWARD(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PlayMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlayMode = entries.single { it.`value` == `value` }
     }
   }
 

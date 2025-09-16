@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -116,7 +117,7 @@ public open class AESContext : RefCounted() {
     key: PackedByteArray,
     iv: PackedByteArray = PackedByteArray(),
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
+    TransferContext.writeArguments(LONG to mode.value, PACKED_BYTE_ARRAY to key, PACKED_BYTE_ARRAY to iv)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -155,8 +156,8 @@ public open class AESContext : RefCounted() {
   }
 
   public enum class Mode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * AES electronic codebook encryption mode.
      */
@@ -179,13 +180,13 @@ public open class AESContext : RefCounted() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

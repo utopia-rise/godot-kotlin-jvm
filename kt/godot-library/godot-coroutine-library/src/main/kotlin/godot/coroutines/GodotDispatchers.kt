@@ -34,7 +34,7 @@ object GodotDispatchers {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
             sceneTree.processFrame.connect(
                 { block.run() }.asCallable { context.cancel() },
-                Object.ConnectFlags.ONE_SHOT.id.toInt()
+                Object.ConnectFlags.ONE_SHOT.value.toInt()
             )
         }
     }
@@ -43,7 +43,7 @@ object GodotDispatchers {
         override fun dispatch(context: CoroutineContext, block: Runnable) {
             sceneTree.physicsFrame.connect(
                 { block.run() }.asCallable { context.cancel() },
-                Object.ConnectFlags.ONE_SHOT.id.toInt()
+                Object.ConnectFlags.ONE_SHOT.value.toInt()
             )
         }
     }

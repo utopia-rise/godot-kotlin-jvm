@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -475,7 +476,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * Sets the value of the specified [Light3D.Param] parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
@@ -483,7 +484,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * Returns the value of the specified [Light3D.Param] parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -599,7 +600,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public final fun setBakeMode(bakeMode: BakeMode): Unit {
-    TransferContext.writeArguments(LONG to bakeMode.id)
+    TransferContext.writeArguments(LONG to bakeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBakeModePtr, NIL)
   }
 
@@ -643,8 +644,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   public enum class Param(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Constant for accessing [lightEnergy].
      */
@@ -736,19 +737,19 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     MAX(21),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Param = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class BakeMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Light is ignored when baking. This is the fastest mode, but the light will be taken into
      * account when baking global illumination. This mode should generally be used for dynamic lights
@@ -778,13 +779,13 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     DYNAMIC(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BakeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BakeMode = entries.single { it.`value` == `value` }
     }
   }
 

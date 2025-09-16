@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedVector3Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -313,8 +314,8 @@ public abstract class Mesh : Resource() {
   }
 
   public enum class PrimitiveType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Render array as points (one vertex equals one point).
      */
@@ -337,19 +338,19 @@ public abstract class Mesh : Resource() {
     TRIANGLE_STRIP(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PrimitiveType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PrimitiveType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * [PackedVector3Array], [PackedVector2Array], or [Array] of vertex positions.
      */
@@ -435,19 +436,19 @@ public abstract class Mesh : Resource() {
     MAX(13),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ArrayType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ArrayCustomFormat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Indicates this custom channel contains unsigned normalized byte colors from 0 to 1, encoded
      * as [PackedByteArray].
@@ -493,13 +494,13 @@ public abstract class Mesh : Resource() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ArrayCustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
@@ -707,8 +708,8 @@ public abstract class Mesh : Resource() {
   }
 
   public enum class BlendShapeMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Blend shapes are normalized.
      */
@@ -719,13 +720,13 @@ public abstract class Mesh : Resource() {
     RELATIVE(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendShapeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendShapeMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -71,7 +72,7 @@ public open class VisualShaderNode internal constructor() : Resource() {
    * result of dragging a connection from an existing node to the empty space on the graph.
    */
   public final fun getDefaultInputPort(type: PortType): Int {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getDefaultInputPortPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -156,8 +157,8 @@ public open class VisualShaderNode internal constructor() : Resource() {
   }
 
   public enum class PortType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Floating-point scalar. Translated to [code skip-lint]float[/code] type in shader code.
      */
@@ -204,13 +205,13 @@ public open class VisualShaderNode internal constructor() : Resource() {
     MAX(9),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PortType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PortType = entries.single { it.`value` == `value` }
     }
   }
 

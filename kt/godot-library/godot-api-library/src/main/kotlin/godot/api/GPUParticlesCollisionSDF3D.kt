@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -162,7 +163,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.id)
+    TransferContext.writeArguments(LONG to resolution.value)
     TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
   }
 
@@ -225,8 +226,8 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
   }
 
   public enum class Resolution(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Bake a 16×16×16 signed distance field. This is the fastest option, but also the least
      * precise.
@@ -259,13 +260,13 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Resolution = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Resolution = entries.single { it.`value` == `value` }
     }
   }
 

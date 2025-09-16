@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -222,7 +223,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun setFill(fill: Fill): Unit {
-    TransferContext.writeArguments(LONG to fill.id)
+    TransferContext.writeArguments(LONG to fill.value)
     TransferContext.callMethod(ptr, MethodBindings.setFillPtr, NIL)
   }
 
@@ -255,7 +256,7 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public final fun setRepeat(repeat: Repeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
+    TransferContext.writeArguments(LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.setRepeatPtr, NIL)
   }
 
@@ -280,8 +281,8 @@ public open class GradientTexture2D : Texture2D() {
   }
 
   public enum class Fill(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The colors are linearly interpolated in a straight line.
      */
@@ -296,19 +297,19 @@ public open class GradientTexture2D : Texture2D() {
     SQUARE(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Fill = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Fill = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Repeat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The gradient fill is restricted to the range defined by [fillFrom] to [fillTo] offsets.
      */
@@ -325,13 +326,13 @@ public open class GradientTexture2D : Texture2D() {
     MIRROR(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Repeat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Repeat = entries.single { it.`value` == `value` }
     }
   }
 

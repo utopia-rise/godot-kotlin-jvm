@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -535,7 +536,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public final fun setAttenuationModel(model: AttenuationModel): Unit {
-    TransferContext.writeArguments(LONG to model.id)
+    TransferContext.writeArguments(LONG to model.value)
     TransferContext.callMethod(ptr, MethodBindings.setAttenuationModelPtr, NIL)
   }
 
@@ -546,7 +547,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDopplerTrackingPtr, NIL)
   }
 
@@ -608,7 +609,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
-    TransferContext.writeArguments(LONG to playbackType.id)
+    TransferContext.writeArguments(LONG to playbackType.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
 
@@ -621,8 +622,8 @@ public open class AudioStreamPlayer3D : Node3D() {
   public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
 
   public enum class AttenuationModel(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Attenuation of loudness according to linear distance.
      */
@@ -643,19 +644,19 @@ public open class AudioStreamPlayer3D : Node3D() {
     DISABLED(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AttenuationModel = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AttenuationModel = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DopplerTracking(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disables doppler tracking.
      */
@@ -671,13 +672,13 @@ public open class AudioStreamPlayer3D : Node3D() {
     PHYSICS_STEP(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DopplerTracking = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }
     }
   }
 

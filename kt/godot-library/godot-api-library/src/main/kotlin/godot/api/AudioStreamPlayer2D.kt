@@ -420,7 +420,7 @@ public open class AudioStreamPlayer2D : Node2D() {
   }
 
   public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
-    TransferContext.writeArguments(LONG to playbackType.id)
+    TransferContext.writeArguments(LONG to playbackType.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
 

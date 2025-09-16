@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -1070,7 +1071,7 @@ public open class CodeEdit : TextEdit() {
     `value`: Any? = null,
     location: Int = 1024,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value, LONG to location.toLong())
+    TransferContext.writeArguments(LONG to type.value, STRING to displayText, STRING to insertText, COLOR to textColor, OBJECT to icon, ANY to value, LONG to location.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addCodeCompletionOptionPtr, NIL)
   }
 
@@ -1273,8 +1274,8 @@ public open class CodeEdit : TextEdit() {
   }
 
   public enum class CodeCompletionKind(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Marks the option as a class.
      */
@@ -1317,19 +1318,19 @@ public open class CodeEdit : TextEdit() {
     KIND_PLAIN_TEXT(9),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CodeCompletionKind = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionKind = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CodeCompletionLocation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
      * Subsequent value of location represent options from the outer class, the exact value represent
@@ -1355,13 +1356,14 @@ public open class CodeEdit : TextEdit() {
     LOCATION_OTHER(1024),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CodeCompletionLocation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionLocation =
+          entries.single { it.`value` == `value` }
     }
   }
 

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -125,7 +126,7 @@ public open class PackedScene : Resource() {
    */
   @JvmOverloads
   public final fun instantiate(editState: GenEditState = PackedScene.GenEditState.DISABLED): Node? {
-    TransferContext.writeArguments(LONG to editState.id)
+    TransferContext.writeArguments(LONG to editState.value)
     TransferContext.callMethod(ptr, MethodBindings.instantiatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
@@ -149,8 +150,8 @@ public open class PackedScene : Resource() {
   }
 
   public enum class GenEditState(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If passed to [instantiate], blocks edits to the scene state.
      */
@@ -177,13 +178,13 @@ public open class PackedScene : Resource() {
     MAIN_INHERITED(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GenEditState = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GenEditState = entries.single { it.`value` == `value` }
     }
   }
 

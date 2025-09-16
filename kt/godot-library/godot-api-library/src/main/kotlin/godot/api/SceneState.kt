@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.StringName
@@ -254,8 +255,8 @@ public open class SceneState internal constructor() : RefCounted() {
   }
 
   public enum class GenEditState(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If passed to [PackedScene.instantiate], blocks edits to the scene state.
      */
@@ -283,13 +284,13 @@ public open class SceneState internal constructor() : RefCounted() {
     MAIN_INHERITED(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GenEditState = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GenEditState = entries.single { it.`value` == `value` }
     }
   }
 

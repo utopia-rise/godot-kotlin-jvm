@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -513,7 +514,7 @@ public open class TextureProgressBar : Range() {
    * properties.
    */
   public final fun setStretchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
+    TransferContext.writeArguments(LONG to margin.value, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setStretchMarginPtr, NIL)
   }
 
@@ -522,7 +523,7 @@ public open class TextureProgressBar : Range() {
    * properties.
    */
   public final fun getStretchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getStretchMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -539,8 +540,8 @@ public open class TextureProgressBar : Range() {
   }
 
   public enum class FillMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The [textureProgress] fills from left to right.
      */
@@ -585,13 +586,13 @@ public open class TextureProgressBar : Range() {
     CLOCKWISE_AND_COUNTER_CLOCKWISE(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FillMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FillMode = entries.single { it.`value` == `value` }
     }
   }
 

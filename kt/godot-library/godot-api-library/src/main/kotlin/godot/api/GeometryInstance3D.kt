@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
@@ -339,7 +340,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setCastShadowsSetting(shadowCastingSetting: ShadowCastingSetting): Unit {
-    TransferContext.writeArguments(LONG to shadowCastingSetting.id)
+    TransferContext.writeArguments(LONG to shadowCastingSetting.value)
     TransferContext.callMethod(ptr, MethodBindings.setCastShadowsSettingPtr, NIL)
   }
 
@@ -416,7 +417,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setVisibilityRangeFadeMode(mode: VisibilityRangeFadeMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
   }
 
@@ -478,7 +479,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setLightmapScale(scale: LightmapScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
+    TransferContext.writeArguments(LONG to scale.value)
     TransferContext.callMethod(ptr, MethodBindings.setLightmapScalePtr, NIL)
   }
 
@@ -489,7 +490,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
   }
 
   public final fun setGiMode(mode: GIMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setGiModePtr, NIL)
   }
 
@@ -546,8 +547,8 @@ public open class GeometryInstance3D : VisualInstance3D() {
       getInstanceShaderParameter(name.asCachedStringName())
 
   public enum class ShadowCastingSetting(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Will not cast any shadows. Use this to improve performance for small geometry that is
      * unlikely to cast noticeable shadows (such as debris).
@@ -576,19 +577,20 @@ public open class GeometryInstance3D : VisualInstance3D() {
     SHADOWS_ONLY(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowCastingSetting = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowCastingSetting =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GIMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disabled global illumination mode. Use for dynamic objects that do not contribute to global
      * illumination (such as characters). When using [VoxelGI] and SDFGI, the geometry will *receive*
@@ -611,19 +613,19 @@ public open class GeometryInstance3D : VisualInstance3D() {
     DYNAMIC(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GIMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GIMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LightmapScale(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The standard texel density for lightmapping with [LightmapGI].
      */
@@ -649,19 +651,19 @@ public open class GeometryInstance3D : VisualInstance3D() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LightmapScale = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LightmapScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VisibilityRangeFadeMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Will not fade itself nor its visibility dependencies, hysteresis will be used instead. This
      * is the fastest approach to manual LOD, but it can result in noticeable LOD transitions depending
@@ -692,13 +694,14 @@ public open class GeometryInstance3D : VisualInstance3D() {
     DEPENDENCIES(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VisibilityRangeFadeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VisibilityRangeFadeMode =
+          entries.single { it.`value` == `value` }
     }
   }
 

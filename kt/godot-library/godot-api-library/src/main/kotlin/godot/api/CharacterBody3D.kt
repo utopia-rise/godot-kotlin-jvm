@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -486,7 +487,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   public final fun setMotionMode(mode: MotionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setMotionModePtr, NIL)
   }
 
@@ -497,7 +498,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   public final fun setPlatformOnLeave(onLeaveApplyVelocity: PlatformOnLeave): Unit {
-    TransferContext.writeArguments(LONG to onLeaveApplyVelocity.id)
+    TransferContext.writeArguments(LONG to onLeaveApplyVelocity.value)
     TransferContext.callMethod(ptr, MethodBindings.setPlatformOnLeavePtr, NIL)
   }
 
@@ -693,8 +694,8 @@ public open class CharacterBody3D : PhysicsBody3D() {
   }
 
   public enum class MotionMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Apply when notions of walls, ceiling and floor are relevant. In this mode the body motion
      * will react to slopes (acceleration/slowdown). This mode is suitable for grounded games like
@@ -709,19 +710,19 @@ public open class CharacterBody3D : PhysicsBody3D() {
     FLOATING(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MotionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MotionMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlatformOnLeave(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Add the last platform velocity to the [velocity] when you leave a moving platform.
      */
@@ -738,13 +739,13 @@ public open class CharacterBody3D : PhysicsBody3D() {
     DO_NOTHING(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PlatformOnLeave = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlatformOnLeave = entries.single { it.`value` == `value` }
     }
   }
 

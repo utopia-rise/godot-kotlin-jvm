@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -99,8 +100,8 @@ public object CameraServer : Object() {
   }
 
   public enum class FeedImage(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The RGBA camera image.
      */
@@ -119,13 +120,13 @@ public object CameraServer : Object() {
     CBCR(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FeedImage = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedImage = entries.single { it.`value` == `value` }
     }
   }
 

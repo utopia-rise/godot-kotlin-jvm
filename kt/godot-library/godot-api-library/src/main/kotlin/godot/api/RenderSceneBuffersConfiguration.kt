@@ -253,7 +253,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun setScaling3dMode(scaling3dMode: RenderingServer.ViewportScaling3DMode): Unit {
-    TransferContext.writeArguments(LONG to scaling3dMode.id)
+    TransferContext.writeArguments(LONG to scaling3dMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setScaling3dModePtr, NIL)
   }
 
@@ -264,7 +264,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun setMsaa3d(msaa3d: RenderingServer.ViewportMSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa3d.id)
+    TransferContext.writeArguments(LONG to msaa3d.value)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa3dPtr, NIL)
   }
 
@@ -275,7 +275,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: RenderingServer.ViewportScreenSpaceAA): Unit {
-    TransferContext.writeArguments(LONG to screenSpaceAa.id)
+    TransferContext.writeArguments(LONG to screenSpaceAa.value)
     TransferContext.callMethod(ptr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
 
@@ -310,7 +310,7 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
   public final
       fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: RenderingServer.ViewportAnisotropicFiltering):
       Unit {
-    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
+    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.value)
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
   }
 

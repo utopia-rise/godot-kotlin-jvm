@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -101,7 +102,7 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public final fun setBoneUpdate(boneUpdate: BoneUpdate): Unit {
-    TransferContext.writeArguments(LONG to boneUpdate.id)
+    TransferContext.writeArguments(LONG to boneUpdate.value)
     TransferContext.callMethod(ptr, MethodBindings.setBoneUpdatePtr, NIL)
   }
 
@@ -163,8 +164,8 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
   }
 
   public enum class BoneUpdate(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The skeleton's bones are fully updated (both position and rotation) to match the tracked
      * bones.
@@ -181,13 +182,13 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneUpdate = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneUpdate = entries.single { it.`value` == `value` }
     }
   }
 

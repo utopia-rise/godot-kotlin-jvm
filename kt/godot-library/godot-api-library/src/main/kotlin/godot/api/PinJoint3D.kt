@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -35,7 +36,7 @@ public open class PinJoint3D : Joint3D() {
    * Sets the value of the specified parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
@@ -43,14 +44,14 @@ public open class PinJoint3D : Joint3D() {
    * Returns the value of the specified parameter.
    */
   public final fun getParam(`param`: Param): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   public enum class Param(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The force with which the pinned objects stay in positional relation to each other. The
      * higher, the stronger.
@@ -67,13 +68,13 @@ public open class PinJoint3D : Joint3D() {
     IMPULSE_CLAMP(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Param = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Param = entries.single { it.`value` == `value` }
     }
   }
 

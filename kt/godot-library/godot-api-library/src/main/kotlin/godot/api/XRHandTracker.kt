@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -81,7 +82,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   public final fun setHandTrackingSource(source: HandTrackingSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.writeArguments(LONG to source.value)
     TransferContext.callMethod(ptr, MethodBindings.setHandTrackingSourcePtr, NIL)
   }
 
@@ -95,7 +96,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Sets flags about the validity of the tracking data for the given hand joint.
    */
   public final fun setHandJointFlags(joint: HandJoint, flags: HandJointFlags): Unit {
-    TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
+    TransferContext.writeArguments(LONG to joint.value, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointFlagsPtr, NIL)
   }
 
@@ -104,7 +105,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * [XRHandTracker.HandJointFlags]).
    */
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointFlagsPtr, LONG)
     return HandJointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -113,7 +114,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Sets the transform for the given hand joint.
    */
   public final fun setHandJointTransform(joint: HandJoint, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
+    TransferContext.writeArguments(LONG to joint.value, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointTransformPtr, NIL)
   }
 
@@ -121,7 +122,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Returns the transform for the given hand joint.
    */
   public final fun getHandJointTransform(joint: HandJoint): Transform3D {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -130,7 +131,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Sets the radius of the given hand joint.
    */
   public final fun setHandJointRadius(joint: HandJoint, radius: Float): Unit {
-    TransferContext.writeArguments(LONG to joint.id, DOUBLE to radius.toDouble())
+    TransferContext.writeArguments(LONG to joint.value, DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHandJointRadiusPtr, NIL)
   }
 
@@ -138,7 +139,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Returns the radius of the given hand joint.
    */
   public final fun getHandJointRadius(joint: HandJoint): Float {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointRadiusPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -147,7 +148,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Sets the linear velocity for the given hand joint.
    */
   public final fun setHandJointLinearVelocity(joint: HandJoint, linearVelocity: Vector3): Unit {
-    TransferContext.writeArguments(LONG to joint.id, VECTOR3 to linearVelocity)
+    TransferContext.writeArguments(LONG to joint.value, VECTOR3 to linearVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointLinearVelocityPtr, NIL)
   }
 
@@ -155,7 +156,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Returns the linear velocity for the given hand joint.
    */
   public final fun getHandJointLinearVelocity(joint: HandJoint): Vector3 {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointLinearVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
@@ -164,7 +165,7 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Sets the angular velocity for the given hand joint.
    */
   public final fun setHandJointAngularVelocity(joint: HandJoint, angularVelocity: Vector3): Unit {
-    TransferContext.writeArguments(LONG to joint.id, VECTOR3 to angularVelocity)
+    TransferContext.writeArguments(LONG to joint.value, VECTOR3 to angularVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setHandJointAngularVelocityPtr, NIL)
   }
 
@@ -172,14 +173,14 @@ public open class XRHandTracker : XRPositionalTracker() {
    * Returns the angular velocity for the given hand joint.
    */
   public final fun getHandJointAngularVelocity(joint: HandJoint): Vector3 {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getHandJointAngularVelocityPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
   public enum class HandTrackingSource(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The source of hand tracking data is unknown.
      */
@@ -205,19 +206,19 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandTrackingSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandTrackingSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandJoint(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Palm joint.
      */
@@ -328,13 +329,13 @@ public open class XRHandTracker : XRPositionalTracker() {
     MAX(26),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandJoint = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandJoint = entries.single { it.`value` == `value` }
     }
   }
 

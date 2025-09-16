@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -40,7 +41,7 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public final fun setMode(mode: Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -51,8 +52,8 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
   }
 
   public enum class Mode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The particles will be accelerated based on their velocity.
      */
@@ -72,13 +73,13 @@ public open class VisualShaderNodeParticleAccelerator : VisualShaderNode() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Mode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Mode = entries.single { it.`value` == `value` }
     }
   }
 

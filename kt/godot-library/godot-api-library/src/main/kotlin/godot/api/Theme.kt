@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -676,7 +677,7 @@ public open class Theme : Resource() {
     themeType: StringName,
     `value`: Any?,
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
+    TransferContext.writeArguments(LONG to dataType.value, STRING_NAME to name, STRING_NAME to themeType, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.setThemeItemPtr, NIL)
   }
 
@@ -694,7 +695,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName,
   ): Any? {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.writeArguments(LONG to dataType.value, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeItemPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
@@ -712,7 +713,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName,
   ): Boolean {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.writeArguments(LONG to dataType.value, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.hasThemeItemPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -733,7 +734,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.writeArguments(LONG to dataType.value, STRING_NAME to oldName, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.renameThemeItemPtr, NIL)
   }
 
@@ -750,7 +751,7 @@ public open class Theme : Resource() {
     name: StringName,
     themeType: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to dataType.id, STRING_NAME to name, STRING_NAME to themeType)
+    TransferContext.writeArguments(LONG to dataType.value, STRING_NAME to name, STRING_NAME to themeType)
     TransferContext.callMethod(ptr, MethodBindings.clearThemeItemPtr, NIL)
   }
 
@@ -762,7 +763,7 @@ public open class Theme : Resource() {
    * can be used for more generalized logic.
    */
   public final fun getThemeItemList(dataType: DataType, themeType: String): PackedStringArray {
-    TransferContext.writeArguments(LONG to dataType.id, STRING to themeType)
+    TransferContext.writeArguments(LONG to dataType.value, STRING to themeType)
     TransferContext.callMethod(ptr, MethodBindings.getThemeItemListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -775,7 +776,7 @@ public open class Theme : Resource() {
    * can be used for more generalized logic.
    */
   public final fun getThemeItemTypeList(dataType: DataType): PackedStringArray {
-    TransferContext.writeArguments(LONG to dataType.id)
+    TransferContext.writeArguments(LONG to dataType.value)
     TransferContext.callMethod(ptr, MethodBindings.getThemeItemTypeListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
@@ -1313,8 +1314,8 @@ public open class Theme : Resource() {
   public final fun removeType(themeType: String) = removeType(themeType.asCachedStringName())
 
   public enum class DataType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Theme's [Color] item type.
      */
@@ -1345,13 +1346,13 @@ public open class Theme : Resource() {
     MAX(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DataType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DataType = entries.single { it.`value` == `value` }
     }
   }
 

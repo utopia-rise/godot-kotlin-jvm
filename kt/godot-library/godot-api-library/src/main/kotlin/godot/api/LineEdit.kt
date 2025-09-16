@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.Signal1
 import godot.core.VariantArray
@@ -554,7 +555,7 @@ public open class LineEdit : Control() {
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
@@ -729,7 +730,7 @@ public open class LineEdit : Control() {
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -751,7 +752,7 @@ public open class LineEdit : Control() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -1037,7 +1038,7 @@ public open class LineEdit : Control() {
   }
 
   public final fun setVirtualKeyboardType(type: VirtualKeyboardType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardTypePtr, NIL)
   }
 
@@ -1147,8 +1148,8 @@ public open class LineEdit : Control() {
   }
 
   public enum class MenuItems(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Cuts (copies and clears) the selected text.
      */
@@ -1282,19 +1283,19 @@ public open class LineEdit : Control() {
     MAX(31),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MenuItems = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MenuItems = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VirtualKeyboardType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Default text virtual keyboard.
      */
@@ -1333,13 +1334,13 @@ public open class LineEdit : Control() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.`value` == `value` }
     }
   }
 

@@ -192,7 +192,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun setKeycode(keycode: Key): Unit {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.setKeycodePtr, NIL)
   }
 
@@ -203,7 +203,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun setPhysicalKeycode(physicalKeycode: Key): Unit {
-    TransferContext.writeArguments(LONG to physicalKeycode.id)
+    TransferContext.writeArguments(LONG to physicalKeycode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicalKeycodePtr, NIL)
   }
 
@@ -214,7 +214,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun setKeyLabel(keyLabel: Key): Unit {
-    TransferContext.writeArguments(LONG to keyLabel.id)
+    TransferContext.writeArguments(LONG to keyLabel.value)
     TransferContext.callMethod(ptr, MethodBindings.setKeyLabelPtr, NIL)
   }
 
@@ -236,7 +236,7 @@ public open class InputEventKey : InputEventWithModifiers() {
   }
 
   public final fun setLocation(location: KeyLocation): Unit {
-    TransferContext.writeArguments(LONG to location.id)
+    TransferContext.writeArguments(LONG to location.value)
     TransferContext.callMethod(ptr, MethodBindings.setLocationPtr, NIL)
   }
 

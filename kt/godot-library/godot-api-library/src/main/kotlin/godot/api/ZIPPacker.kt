@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
@@ -55,7 +56,7 @@ public open class ZIPPacker : RefCounted() {
   @JvmOverloads
   public final fun `open`(path: String, append: ZipAppend = ZIPPacker.ZipAppend.APPEND_CREATE):
       Error {
-    TransferContext.writeArguments(STRING to path, LONG to append.id)
+    TransferContext.writeArguments(STRING to path, LONG to append.value)
     TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -103,8 +104,8 @@ public open class ZIPPacker : RefCounted() {
   }
 
   public enum class ZipAppend(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Create a new zip archive at the given path.
      */
@@ -119,13 +120,13 @@ public open class ZIPPacker : RefCounted() {
     APPEND_ADDINZIP(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ZipAppend = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ZipAppend = entries.single { it.`value` == `value` }
     }
   }
 

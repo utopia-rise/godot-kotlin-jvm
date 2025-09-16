@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -199,8 +200,8 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public abstract fun _getGlobalClassName(path: String): Dictionary<Any?, Any?>
 
   public enum class LookupResultType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     SCRIPT_LOCATION(0),
     CLASS(1),
     CLASS_CONSTANT(2),
@@ -215,19 +216,19 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     MAX(11),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LookupResultType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LookupResultType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CodeCompletionLocation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The option is local to the location of the code completion query - e.g. a local variable.
      * Subsequent value of location represent options from the outer class, the exact value represent
@@ -253,19 +254,20 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     LOCATION_OTHER(1024),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CodeCompletionLocation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionLocation =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CodeCompletionKind(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     CLASS(0),
     FUNCTION(1),
     SIGNAL(2),
@@ -279,13 +281,13 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CodeCompletionKind = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CodeCompletionKind = entries.single { it.`value` == `value` }
     }
   }
 

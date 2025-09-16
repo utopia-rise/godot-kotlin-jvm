@@ -10,8 +10,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class VariantType(
-  id: Long,
-) {
+  `value`: Long,
+) : GodotEnum {
   /**
    * Variable is `null`.
    */
@@ -174,12 +174,12 @@ public enum class VariantType(
   TYPE_MAX(39),
   ;
 
-  public val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): VariantType = entries.single { it.id == `value` }
+    public fun from(`value`: Long): VariantType = entries.single { it.`value` == `value` }
   }
 }

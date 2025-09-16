@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
@@ -193,7 +194,7 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public final fun setOrientation(orientation: Orientation): Unit {
-    TransferContext.writeArguments(LONG to orientation.id)
+    TransferContext.writeArguments(LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
 
@@ -204,8 +205,8 @@ public open class PlaneMesh : PrimitiveMesh() {
   }
 
   public enum class Orientation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * [PlaneMesh] will face the positive X-axis.
      */
@@ -222,13 +223,13 @@ public open class PlaneMesh : PrimitiveMesh() {
     FACE_Z(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Orientation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }
     }
   }
 

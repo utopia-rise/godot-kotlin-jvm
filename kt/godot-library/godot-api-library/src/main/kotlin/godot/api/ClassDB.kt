@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import godot.core.VariantArray
@@ -665,8 +666,8 @@ public object ClassDB : Object() {
       isClassEnabled(`class`.asCachedStringName())
 
   public enum class APIType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Native Core class type.
      */
@@ -689,13 +690,13 @@ public object ClassDB : Object() {
     NONE(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): APIType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): APIType = entries.single { it.`value` == `value` }
     }
   }
 

@@ -306,7 +306,7 @@ public open class FontVariation : Font() {
    * relative to the font size).
    */
   public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to spacing.id, LONG to value.toLong())
+    TransferContext.writeArguments(LONG to spacing.value, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSpacingPtr, NIL)
   }
 

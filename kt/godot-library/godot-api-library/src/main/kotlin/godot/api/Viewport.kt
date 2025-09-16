@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Signal0
@@ -972,7 +973,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setMsaa2d(msaa: MSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa.id)
+    TransferContext.writeArguments(LONG to msaa.value)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa2dPtr, NIL)
   }
 
@@ -983,7 +984,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setMsaa3d(msaa: MSAA): Unit {
-    TransferContext.writeArguments(LONG to msaa.id)
+    TransferContext.writeArguments(LONG to msaa.value)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa3dPtr, NIL)
   }
 
@@ -994,7 +995,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setScreenSpaceAa(screenSpaceAa: ScreenSpaceAA): Unit {
-    TransferContext.writeArguments(LONG to screenSpaceAa.id)
+    TransferContext.writeArguments(LONG to screenSpaceAa.value)
     TransferContext.callMethod(ptr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
 
@@ -1038,7 +1039,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setDebugDraw(debugDraw: DebugDraw): Unit {
-    TransferContext.writeArguments(LONG to debugDraw.id)
+    TransferContext.writeArguments(LONG to debugDraw.value)
     TransferContext.callMethod(ptr, MethodBindings.setDebugDrawPtr, NIL)
   }
 
@@ -1053,7 +1054,7 @@ public open class Viewport internal constructor() : Node() {
    * options.
    */
   public final fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
-    TransferContext.writeArguments(LONG to type.id, LONG to info.id)
+    TransferContext.writeArguments(LONG to type.value, LONG to info.value)
     TransferContext.callMethod(ptr, MethodBindings.getRenderInfoPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -1408,7 +1409,7 @@ public open class Viewport internal constructor() : Node() {
    */
   public final fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
       subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
-    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
+    TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.value)
     TransferContext.callMethod(ptr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr, NIL)
   }
 
@@ -1460,7 +1461,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setDefaultCanvasItemTextureFilter(mode: DefaultCanvasItemTextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCanvasItemTextureFilterPtr, NIL)
   }
 
@@ -1522,7 +1523,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setDefaultCanvasItemTextureRepeat(mode: DefaultCanvasItemTextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCanvasItemTextureRepeatPtr, NIL)
   }
 
@@ -1533,7 +1534,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setSdfOversize(oversize: SDFOversize): Unit {
-    TransferContext.writeArguments(LONG to oversize.id)
+    TransferContext.writeArguments(LONG to oversize.value)
     TransferContext.callMethod(ptr, MethodBindings.setSdfOversizePtr, NIL)
   }
 
@@ -1544,7 +1545,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setSdfScale(scale: SDFScale): Unit {
-    TransferContext.writeArguments(LONG to scale.id)
+    TransferContext.writeArguments(LONG to scale.value)
     TransferContext.callMethod(ptr, MethodBindings.setSdfScalePtr, NIL)
   }
 
@@ -1680,7 +1681,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setScaling3dMode(scaling3dMode: Scaling3DMode): Unit {
-    TransferContext.writeArguments(LONG to scaling3dMode.id)
+    TransferContext.writeArguments(LONG to scaling3dMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setScaling3dModePtr, NIL)
   }
 
@@ -1725,7 +1726,7 @@ public open class Viewport internal constructor() : Node() {
 
   public final fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: AnisotropicFiltering):
       Unit {
-    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
+    TransferContext.writeArguments(LONG to anisotropicFilteringLevel.value)
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
   }
 
@@ -1736,7 +1737,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setVrsMode(mode: VRSMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVrsModePtr, NIL)
   }
 
@@ -1747,7 +1748,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public final fun setVrsUpdateMode(mode: VRSUpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVrsUpdateModePtr, NIL)
   }
 
@@ -1769,8 +1770,8 @@ public open class Viewport internal constructor() : Node() {
   }
 
   public enum class PositionalShadowAtlasQuadrantSubdiv(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * This quadrant will not be used.
      */
@@ -1809,20 +1810,20 @@ public open class Viewport internal constructor() : Node() {
     SHADOW_ATLAS_QUADRANT_SUBDIV_MAX(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): PositionalShadowAtlasQuadrantSubdiv =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Scaling3DMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
      * [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than
@@ -1886,19 +1887,19 @@ public open class Viewport internal constructor() : Node() {
     SCALING_3D_MODE_MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Scaling3DMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Scaling3DMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MSAA(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
      * setting.
@@ -1926,19 +1927,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MSAA = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MSAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AnisotropicFiltering(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Anisotropic filtering is disabled.
      */
@@ -1965,19 +1966,20 @@ public open class Viewport internal constructor() : Node() {
     ANISOTROPY_MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AnisotropicFiltering = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AnisotropicFiltering =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScreenSpaceAA(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Do not perform any antialiasing in the full screen post-process.
      */
@@ -1994,19 +1996,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ScreenSpaceAA = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScreenSpaceAA = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderInfo(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Amount of objects in frame.
      */
@@ -2025,19 +2027,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RenderInfo = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderInfo = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class RenderInfoType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Visible render pass (excluding shadows).
      */
@@ -2057,19 +2059,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RenderInfoType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RenderInfoType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DebugDraw(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Objects are displayed normally.
      */
@@ -2200,19 +2202,19 @@ public open class Viewport internal constructor() : Node() {
     INTERNAL_BUFFER(26),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DebugDraw = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DebugDraw = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DefaultCanvasItemTextureFilter(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
      * from up close, and grainy from a distance (due to mipmaps not being sampled).
@@ -2251,20 +2253,20 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): DefaultCanvasItemTextureFilter =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DefaultCanvasItemTextureRepeat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
      * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
@@ -2287,20 +2289,20 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): DefaultCanvasItemTextureRepeat =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SDFOversize(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The signed distance field only covers the viewport's own rectangle.
      */
@@ -2326,19 +2328,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SDFOversize = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFOversize = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SDFScale(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The signed distance field is rendered at full resolution.
      */
@@ -2357,19 +2359,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SDFScale = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SDFScale = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VRSMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Variable Rate Shading is disabled.
      */
@@ -2389,19 +2391,19 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VRSMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VRSMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VRSUpdateMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The input texture for variable rate shading will not be processed.
      */
@@ -2420,13 +2422,13 @@ public open class Viewport internal constructor() : Node() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VRSUpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VRSUpdateMode = entries.single { it.`value` == `value` }
     }
   }
 

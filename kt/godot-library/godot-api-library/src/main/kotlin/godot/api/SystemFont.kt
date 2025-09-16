@@ -282,7 +282,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun setAntialiasing(antialiasing: TextServer.FontAntialiasing): Unit {
-    TransferContext.writeArguments(LONG to antialiasing.id)
+    TransferContext.writeArguments(LONG to antialiasing.value)
     TransferContext.callMethod(ptr, MethodBindings.setAntialiasingPtr, NIL)
   }
 
@@ -337,7 +337,7 @@ public open class SystemFont : Font() {
   }
 
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
-    TransferContext.writeArguments(LONG to hinting.id)
+    TransferContext.writeArguments(LONG to hinting.value)
     TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
   }
 
@@ -349,7 +349,7 @@ public open class SystemFont : Font() {
 
   public final fun setSubpixelPositioning(subpixelPositioning: TextServer.SubpixelPositioning):
       Unit {
-    TransferContext.writeArguments(LONG to subpixelPositioning.id)
+    TransferContext.writeArguments(LONG to subpixelPositioning.value)
     TransferContext.callMethod(ptr, MethodBindings.setSubpixelPositioningPtr, NIL)
   }
 
