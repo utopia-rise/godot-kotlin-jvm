@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,7 +17,6 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -85,11 +81,11 @@ public open class SphereMesh : PrimitiveMesh() {
       setIsHemisphere(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(614, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -100,7 +96,7 @@ public open class SphereMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -111,7 +107,7 @@ public open class SphereMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRadialSegments(radialSegments: Int): Unit {
+  public final fun setRadialSegments(radialSegments: Int) {
     TransferContext.writeArguments(LONG to radialSegments.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRadialSegmentsPtr, NIL)
   }
@@ -122,7 +118,7 @@ public open class SphereMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setRings(rings: Int): Unit {
+  public final fun setRings(rings: Int) {
     TransferContext.writeArguments(LONG to rings.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setRingsPtr, NIL)
   }
@@ -133,7 +129,7 @@ public open class SphereMesh : PrimitiveMesh() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setIsHemisphere(isHemisphere: Boolean): Unit {
+  public final fun setIsHemisphere(isHemisphere: Boolean) {
     TransferContext.writeArguments(BOOL to isHemisphere)
     TransferContext.callMethod(ptr, MethodBindings.setIsHemispherePtr, NIL)
   }
@@ -148,33 +144,33 @@ public open class SphereMesh : PrimitiveMesh() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("SphereMesh", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("SphereMesh", "get_radius", 1_740_695_150)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("SphereMesh", "set_height", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("SphereMesh", "get_height", 1_740_695_150)
 
     internal val setRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_radial_segments", 1286410249)
+        TypeManager.getMethodBindPtr("SphereMesh", "set_radial_segments", 1_286_410_249)
 
     internal val getRadialSegmentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_radial_segments", 3905245786)
+        TypeManager.getMethodBindPtr("SphereMesh", "get_radial_segments", 3_905_245_786)
 
     internal val setRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_rings", 1286410249)
+        TypeManager.getMethodBindPtr("SphereMesh", "set_rings", 1_286_410_249)
 
     internal val getRingsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_rings", 3905245786)
+        TypeManager.getMethodBindPtr("SphereMesh", "get_rings", 3_905_245_786)
 
     internal val setIsHemispherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "set_is_hemisphere", 2586408642)
+        TypeManager.getMethodBindPtr("SphereMesh", "set_is_hemisphere", 2_586_408_642)
 
     internal val getIsHemispherePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SphereMesh", "get_is_hemisphere", 36873697)
+        TypeManager.getMethodBindPtr("SphereMesh", "get_is_hemisphere", 36_873_697)
   }
 }

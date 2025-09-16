@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,16 +14,11 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is
- * packed into raw bytes and can be saved to file. Only [Array] and [Dictionary] can be stored this
- * way.
+ * [PackedDataContainer] can be used to efficiently store data from untyped containers. The data is packed into raw bytes and can be saved to file. Only [Array] and [Dictionary] can be stored this way.
  *
- * You can retrieve the data by iterating on the container, which will work as if iterating on the
- * packed data itself. If the packed container is a [Dictionary], the data can be retrieved by key
- * names ([String]/[StringName] only).
+ * You can retrieve the data by iterating on the container, which will work as if iterating on the packed data itself. If the packed container is a [Dictionary], the data can be retrieved by key names ([String]/[StringName] only).
  *
  * ```
  * var data = { "key": "value", "another_key": 123, "lock": Vector2() }
@@ -53,18 +45,16 @@ import kotlin.Unit
  *
  * ```
  *
- * Nested containers will be packed recursively. While iterating, they will be returned as
- * [PackedDataContainerRef].
+ * Nested containers will be packed recursively. While iterating, they will be returned as [PackedDataContainerRef].
  */
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(435, scriptIndex)
   }
 
   /**
-   * Packs the given container into a binary representation. The [value] must be either [Array] or
-   * [Dictionary], any other type will result in invalid data error.
+   * Packs the given container into a binary representation. The [value] must be either [Array] or [Dictionary], any other type will result in invalid data error.
    *
    * **Note:** Subsequent calls to this method will overwrite the existing data.
    */
@@ -87,9 +77,9 @@ public open class PackedDataContainer : Resource() {
 
   public object MethodBindings {
     internal val packPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainer", "pack", 966674026)
+        TypeManager.getMethodBindPtr("PackedDataContainer", "pack", 966_674_026)
 
     internal val sizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedDataContainer", "size", 3905245786)
+        TypeManager.getMethodBindPtr("PackedDataContainer", "size", 3_905_245_786)
   }
 }

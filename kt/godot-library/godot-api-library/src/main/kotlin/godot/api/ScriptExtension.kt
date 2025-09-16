@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,11 +14,10 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public abstract class ScriptExtension : Script() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(573, scriptIndex)
   }
 
@@ -43,7 +39,7 @@ public abstract class ScriptExtension : Script() {
 
   public abstract fun _getSourceCode(): String
 
-  public abstract fun _setSourceCode(code: String): Unit
+  public abstract fun _setSourceCode(code: String)
 
   public abstract fun _reload(keepState: Boolean): Error
 
@@ -60,8 +56,7 @@ public abstract class ScriptExtension : Script() {
   public abstract fun _hasStaticMethod(method: StringName): Boolean
 
   /**
-   * Return the expected argument count for the given [method], or `null` if it can't be determined
-   * (which will then fall back to the default behavior).
+   * Return the expected argument count for the given [method], or `null` if it can't be determined (which will then fall back to the default behavior).
    */
   public open fun _getScriptMethodArgumentCount(method: StringName): Any? {
     throw NotImplementedError("ScriptExtension::_getScriptMethodArgumentCount is not implemented.")
@@ -74,8 +69,7 @@ public abstract class ScriptExtension : Script() {
   public abstract fun _isValid(): Boolean
 
   /**
-   * Returns `true` if the script is an abstract script. An abstract script does not have a
-   * constructor and cannot be instantiated.
+   * Returns `true` if the script is an abstract script. An abstract script does not have a constructor and cannot be instantiated.
    */
   public open fun _isAbstract(): Boolean {
     throw NotImplementedError("ScriptExtension::_isAbstract is not implemented.")
@@ -91,7 +85,7 @@ public abstract class ScriptExtension : Script() {
 
   public abstract fun _getPropertyDefaultValue(`property`: StringName): Any?
 
-  public abstract fun _updateExports(): Unit
+  public abstract fun _updateExports()
 
   public abstract fun _getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>>
 

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -36,26 +33,19 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [ParticleProcessMaterial] defines particle properties and behavior. It is used in the
- * `process_material` of the [GPUParticles2D] and [GPUParticles3D] nodes. Some of this material's
- * properties are applied to each particle when emitted, while others can have a [CurveTexture] or a
- * [GradientTexture1D] applied to vary numerical or color values over the lifetime of the particle.
+ * [ParticleProcessMaterial] defines particle properties and behavior. It is used in the `process_material` of the [GPUParticles2D] and [GPUParticles3D] nodes. Some of this material's properties are applied to each particle when emitted, while others can have a [CurveTexture] or a [GradientTexture1D] applied to vary numerical or color values over the lifetime of the particle.
  */
 @GodotBaseType
 public open class ParticleProcessMaterial : Material() {
   /**
-   * Emitted when this material's emission shape is changed in any way. This includes changes to
-   * [emissionShape], [emissionShapeScale], or [emissionSphereRadius], and any other property that
-   * affects the emission shape's offset, size, scale, or orientation.
+   * Emitted when this material's emission shape is changed in any way. This includes changes to [emissionShape], [emissionShapeScale], or [emissionSphereRadius], and any other property that affects the emission shape's offset, size, scale, or orientation.
    *
    * **Note:** This signal is only emitted inside the editor for performance reasons.
    */
   public val emissionShapeChanged: Signal0 by Signal0
 
   /**
-   * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime *
-   * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the
-   * lifetime between `0.6` to `1.0` of its original value.
+   * Particle lifetime randomness ratio. The equation for the lifetime of a particle is `lifetime * (1.0 - randf() * lifetime_randomness)`. For example, a [lifetimeRandomness] of `0.4` scales the lifetime between `0.6` to `1.0` of its original value.
    */
   public final inline var lifetimeRandomness: Double
     @JvmName("lifetimeRandomnessProperty")
@@ -99,8 +89,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Changes the behavior of the damping properties from a linear deceleration to a deceleration
-   * based on speed percentage.
+   * Changes the behavior of the damping properties from a linear deceleration to a deceleration based on speed percentage.
    */
   public final inline var particleFlagDampingAsFriction: Boolean
     @JvmName("particleFlagDampingAsFrictionProperty")
@@ -114,11 +103,8 @@ public open class ParticleProcessMaterial : Material() {
    * The offset for the [emissionShape], in local space.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionShapeOffset: Vector3
@@ -133,11 +119,8 @@ public open class ParticleProcessMaterial : Material() {
    * The scale of the [emissionShape], in local space.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionShapeScale: Vector3
@@ -173,15 +156,11 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    *
-   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
-   * in both directions. The size is twice the area of the extents.
+   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values in both directions. The size is twice the area of the extents.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionBoxExtents: Vector3
@@ -193,10 +172,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particles will be emitted at positions determined by sampling this texture at a random
-   * position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created
-   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
-   * "Particles" tool in the toolbar.
+   * Particles will be emitted at positions determined by sampling this texture at a random position. Used with [EMISSION_SHAPE_POINTS] and [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
   public final inline var emissionPointTexture: Texture2D?
     @JvmName("emissionPointTextureProperty")
@@ -207,10 +183,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particle velocity and rotation will be set by sampling this texture at the same point as the
-   * [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created
-   * automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the
-   * "Particles" tool in the toolbar.
+   * Particle velocity and rotation will be set by sampling this texture at the same point as the [emissionPointTexture]. Used only in [EMISSION_SHAPE_DIRECTED_POINTS]. Can be created automatically from mesh or node by selecting "Create Emission Points from Mesh/Node" under the "Particles" tool in the toolbar.
    */
   public final inline var emissionNormalTexture: Texture2D?
     @JvmName("emissionNormalTextureProperty")
@@ -221,13 +194,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particle color will be modulated by color determined by sampling this texture at the same point
-   * as the [emissionPointTexture].
+   * Particle color will be modulated by color determined by sampling this texture at the same point as the [emissionPointTexture].
    *
-   * **Note:** [emissionColorTexture] multiplies the particle mesh's vertex colors. To have a
-   * visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`.
-   * For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()`
-   * function. Otherwise, [emissionColorTexture] will have no visible effect.
+   * **Note:** [emissionColorTexture] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [emissionColorTexture] will have no visible effect.
    */
   public final inline var emissionColorTexture: Texture2D?
     @JvmName("emissionColorTextureProperty")
@@ -238,8 +207,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The number of emission points if [emissionShape] is set to [EMISSION_SHAPE_POINTS] or
-   * [EMISSION_SHAPE_DIRECTED_POINTS].
+   * The number of emission points if [emissionShape] is set to [EMISSION_SHAPE_POINTS] or [EMISSION_SHAPE_DIRECTED_POINTS].
    */
   public final inline var emissionPointCount: Int
     @JvmName("emissionPointCountProperty")
@@ -253,11 +221,8 @@ public open class ParticleProcessMaterial : Material() {
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var emissionRingAxis: Vector3
@@ -302,12 +267,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90
-   * degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will
-   * result in a ring where one end is larger than the other.
+   * The angle of the cone when using the emitter [EMISSION_SHAPE_RING]. The default angle of 90 degrees results in a ring, while an angle of 0 degrees results in a cone. Intermediate values will result in a ring where one end is larger than the other.
    *
-   * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is
-   * reached to form a perfect cone.
+   * **Note:** Depending on [emissionRingHeight], the angle may be clamped if the ring's end is reached to form a perfect cone.
    */
   public final inline var emissionRingConeAngle: Float
     @JvmName("emissionRingConeAngleProperty")
@@ -321,11 +283,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angle: Vector2
@@ -350,8 +309,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum initial rotation applied to each particle, in degrees.
    *
-   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
-   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
   public final inline var angleMax: Float
     @JvmName("angleMaxProperty")
@@ -373,8 +331,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by
-   * each particle when spawning.
+   * Percentage of the velocity of the respective [GPUParticles2D] or [GPUParticles3D] inherited by each particle when spawning.
    */
   public final inline var inheritVelocityRatio: Double
     @JvmName("inheritVelocityRatioProperty")
@@ -388,11 +345,8 @@ public open class ParticleProcessMaterial : Material() {
    * A pivot point used to calculate radial and orbital velocity of particles.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocityPivot: Vector3
@@ -407,11 +361,8 @@ public open class ParticleProcessMaterial : Material() {
    * Unit vector specifying the particles' emission direction.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var direction: Vector3
@@ -448,11 +399,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var initialVelocity: Vector2
@@ -475,8 +423,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and
-   * [spread].
+   * Maximum initial velocity magnitude for each particle. Direction comes from [direction] and [spread].
    */
   public final inline var initialVelocityMax: Float
     @JvmName("initialVelocityMaxProperty")
@@ -490,11 +437,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector2
@@ -517,11 +461,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per
-   * second.
+   * Maximum initial angular velocity (rotation speed) applied to each particle in *degrees* per second.
    *
-   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the
-   * [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
+   * Only applied when [particleFlagDisableZ] or [particleFlagRotateY] are `true` or the [BaseMaterial3D] being used to draw the particle is using [BaseMaterial3D.BILLBOARD_PARTICLES].
    */
   public final inline var angularVelocityMax: Float
     @JvmName("angularVelocityMaxProperty")
@@ -532,8 +474,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's angular velocity (rotation speed) will vary along this [CurveTexture] over its
-   * lifetime.
+   * Each particle's angular velocity (rotation speed) will vary along this [CurveTexture] over its lifetime.
    */
   public final inline var angularVelocityCurve: Texture2D?
     @JvmName("angularVelocityCurveProperty")
@@ -547,11 +488,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var directionalVelocity: Vector2
@@ -565,8 +503,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum directional velocity value, which is multiplied by [directionalVelocityCurve].
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var directionalVelocityMin: Float
     @JvmName("directionalVelocityMinProperty")
@@ -579,8 +516,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum directional velocity value, which is multiplied by [directionalVelocityCurve].
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var directionalVelocityMax: Float
     @JvmName("directionalVelocityMaxProperty")
@@ -591,11 +527,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A curve that specifies the velocity along each of the axes of the particle system along its
-   * lifetime.
+   * A curve that specifies the velocity along each of the axes of the particle system along its lifetime.
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var directionalVelocityCurve: Texture2D?
     @JvmName("directionalVelocityCurveProperty")
@@ -609,11 +543,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var orbitVelocity: Vector2
@@ -627,8 +558,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum equivalent of [orbitVelocityMax].
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var orbitVelocityMin: Float
     @JvmName("orbitVelocityMinProperty")
@@ -639,11 +569,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin.
-   * Specified in number of full rotations around origin per second.
+   * Maximum orbital velocity applied to each particle. Makes the particles circle around origin. Specified in number of full rotations around origin per second.
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var orbitVelocityMax: Float
     @JvmName("orbitVelocityMaxProperty")
@@ -658,8 +586,7 @@ public open class ParticleProcessMaterial : Material() {
    *
    * **Note:** For 3D orbital velocity, use a [CurveXYZTexture].
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var orbitVelocityCurve: Texture2D?
     @JvmName("orbitVelocityCurveProperty")
@@ -673,11 +600,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var radialVelocity: Vector2
@@ -689,11 +613,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Minimum radial velocity applied to each particle. Makes particles move away from the
-   * [velocityPivot], or toward it if negative.
+   * Minimum radial velocity applied to each particle. Makes particles move away from the [velocityPivot], or toward it if negative.
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var radialVelocityMin: Float
     @JvmName("radialVelocityMinProperty")
@@ -704,11 +626,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum radial velocity applied to each particle. Makes particles move away from the
-   * [velocityPivot], or toward it if negative.
+   * Maximum radial velocity applied to each particle. Makes particles move away from the [velocityPivot], or toward it if negative.
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var radialVelocityMax: Float
     @JvmName("radialVelocityMaxProperty")
@@ -719,11 +639,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A [CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the
-   * [velocityPivot].
+   * A [CurveTexture] that defines the velocity over the particle's lifetime away (or toward) the [velocityPivot].
    *
-   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve]
-   * instead.
+   * **Note:** Animated velocities will not be affected by damping, use [velocityLimitCurve] instead.
    */
   public final inline var radialVelocityCurve: Texture2D?
     @JvmName("radialVelocityCurveProperty")
@@ -748,11 +666,8 @@ public open class ParticleProcessMaterial : Material() {
    * Gravity applied to every particle.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var gravity: Vector3
@@ -767,11 +682,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearAccel: Vector2
@@ -819,11 +731,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var radialAccel: Vector2
@@ -846,8 +755,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the
-   * origin or towards it if negative.
+   * Maximum radial acceleration applied to each particle. Makes particle accelerate away from the origin or towards it if negative.
    */
   public final inline var radialAccelMax: Float
     @JvmName("radialAccelMaxProperty")
@@ -872,11 +780,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tangentialAccel: Vector2
@@ -899,8 +804,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum tangential acceleration applied to each particle. Tangential acceleration is
-   * perpendicular to the particle's velocity giving the particles a swirling motion.
+   * Maximum tangential acceleration applied to each particle. Tangential acceleration is perpendicular to the particle's velocity giving the particles a swirling motion.
    */
   public final inline var tangentialAccelMax: Float
     @JvmName("tangentialAccelMaxProperty")
@@ -925,11 +829,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var damping: Vector2
@@ -952,8 +853,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The maximum rate at which particles lose velocity. For example value of `100` means that the
-   * particle will go from `100` velocity to `0` in `1` second.
+   * The maximum rate at which particles lose velocity. For example value of `100` means that the particle will go from `100` velocity to `0` in `1` second.
    */
   public final inline var dampingMax: Float
     @JvmName("dampingMaxProperty")
@@ -975,8 +875,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs
-   * within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
+   * If `true`, interaction with particle attractors is enabled. In 3D, attraction only occurs within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
    */
   public final inline var attractorInteractionEnabled: Boolean
     @JvmName("attractorInteractionEnabledProperty")
@@ -990,11 +889,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scale: Vector2
@@ -1028,8 +924,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's scale will vary along this [CurveTexture] over its lifetime. If a
-   * [CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
+   * Each particle's scale will vary along this [CurveTexture] over its lifetime. If a [CurveXYZTexture] is supplied instead, the scale will be separated per-axis.
    */
   public final inline var scaleCurve: Texture2D?
     @JvmName("scaleCurveProperty")
@@ -1043,11 +938,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var scaleOverVelocity: Vector2
@@ -1061,8 +953,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum velocity value reference for [scaleOverVelocityCurve].
    *
-   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
-   * [scaleOverVelocityMax].
+   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and [scaleOverVelocityMax].
    */
   public final inline var scaleOverVelocityMin: Float
     @JvmName("scaleOverVelocityMinProperty")
@@ -1075,8 +966,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum velocity value reference for [scaleOverVelocityCurve].
    *
-   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and
-   * [scaleOverVelocityMax].
+   * [scaleOverVelocityCurve] will be interpolated between [scaleOverVelocityMin] and [scaleOverVelocityMax].
    */
   public final inline var scaleOverVelocityMax: Float
     @JvmName("scaleOverVelocityMaxProperty")
@@ -1098,20 +988,13 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
-   * multiplied by this color.
+   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
    *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
-   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [color] will have no visible effect.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -1123,13 +1006,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied
-   * with [color]).
+   * Each particle's color will vary along this [GradientTexture1D] over its lifetime (multiplied with [color]).
    *
-   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on
-   * a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [colorRamp] will have no visible effect.
+   * **Note:** [colorRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorRamp] will have no visible effect.
    */
   public final inline var colorRamp: Texture2D?
     @JvmName("colorRampProperty")
@@ -1140,13 +1019,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with
-   * [color]).
+   * Each particle's initial color will vary along this [GradientTexture1D] (multiplied with [color]).
    *
-   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible
-   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [colorInitialRamp] will have no visible effect.
+   * **Note:** [colorInitialRamp] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [colorInitialRamp] will have no visible effect.
    */
   public final inline var colorInitialRamp: Texture2D?
     @JvmName("colorInitialRampProperty")
@@ -1157,13 +1032,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The alpha value of each particle's color will be multiplied by this [CurveTexture] over its
-   * lifetime.
+   * The alpha value of each particle's color will be multiplied by this [CurveTexture] over its lifetime.
    *
-   * **Note:** [alphaCurve] multiplies the particle mesh's vertex colors. To have a visible effect
-   * on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [alphaCurve] will have no visible effect.
+   * **Note:** [alphaCurve] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [alphaCurve] will have no visible effect.
    */
   public final inline var alphaCurve: Texture2D?
     @JvmName("alphaCurveProperty")
@@ -1176,10 +1047,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Each particle's color will be multiplied by this [CurveTexture] over its lifetime.
    *
-   * **Note:** [emissionCurve] multiplies the particle mesh's vertex colors. To have a visible
-   * effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [emissionCurve] will have no visible effect.
+   * **Note:** [emissionCurve] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [emissionCurve] will have no visible effect.
    */
   public final inline var emissionCurve: Texture2D?
     @JvmName("emissionCurveProperty")
@@ -1193,11 +1061,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var hueVariation: Vector2
@@ -1245,11 +1110,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var animSpeed: Vector2
@@ -1272,11 +1134,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum particle animation speed. Animation speed of `1` means that the particles will make
-   * full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
+   * Maximum particle animation speed. Animation speed of `1` means that the particles will make full `0` to `1` offset cycle during lifetime, `2` means `2` cycles etc.
    *
-   * With animation speed greater than `1`, remember to enable
-   * [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
+   * With animation speed greater than `1`, remember to enable [CanvasItemMaterial.particlesAnimLoop] property if you want the animation to repeat.
    */
   public final inline var animSpeedMax: Float
     @JvmName("animSpeedMaxProperty")
@@ -1301,11 +1161,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var animOffset: Vector2
@@ -1328,8 +1185,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first
-   * frame, `1` is the last one. See [CanvasItemMaterial.particlesAnimation].
+   * Maximum animation offset that corresponds to frame index in the texture. `0` is the first frame, `1` is the last one. See [CanvasItemMaterial.particlesAnimation].
    */
   public final inline var animOffsetMax: Float
     @JvmName("animOffsetMaxProperty")
@@ -1351,14 +1207,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle
-   * movement according to its position (based on a 3D noise pattern). In 3D,
-   * [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to
-   * turbulence that works in world space and with multiple particle systems reacting in the same way.
+   * If `true`, enables turbulence for the particle system. Turbulence can be used to vary particle movement according to its position (based on a 3D noise pattern). In 3D, [GPUParticlesAttractorVectorField3D] with [NoiseTexture3D] can be used as an alternative to turbulence that works in world space and with multiple particle systems reacting in the same way.
    *
-   * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on
-   * a few particle systems at once at most, and consider disabling it when targeting mobile/web
-   * platforms.
+   * **Note:** Enabling turbulence has a high performance cost on the GPU. Only enable turbulence on a few particle systems at once at most, and consider disabling it when targeting mobile/web platforms.
    */
   public final inline var turbulenceEnabled: Boolean
     @JvmName("turbulenceEnabledProperty")
@@ -1369,8 +1220,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting,
-   * flow pattern.
+   * The turbulence noise strength. Increasing this will result in a stronger, more contrasting, flow pattern.
    */
   public final inline var turbulenceNoiseStrength: Float
     @JvmName("turbulenceNoiseStrengthProperty")
@@ -1383,8 +1233,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * This value controls the overall scale/frequency of the turbulence noise pattern.
    *
-   * A small scale will result in smaller features with more detail while a high scale will result
-   * in smoother noise with larger features.
+   * A small scale will result in smaller features with more detail while a high scale will result in smoother noise with larger features.
    */
   public final inline var turbulenceNoiseScale: Float
     @JvmName("turbulenceNoiseScaleProperty")
@@ -1395,17 +1244,13 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
-   * move in over time.
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
    *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var turbulenceNoiseSpeed: Vector3
@@ -1417,8 +1262,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern
-   * varies over time.
+   * The in-place rate of change of the turbulence field. This defines how quickly the noise pattern varies over time.
    *
    * A value of 0.0 will result in a fixed pattern.
    */
@@ -1434,11 +1278,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var turbulenceInfluence: Vector2
@@ -1452,9 +1293,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum turbulence influence on each particle.
    *
-   * The actual amount of turbulence influence on each particle is calculated as a random value
-   * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
-   * turbulence influence from [turbulenceInfluenceOverLife].
+   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
    */
   public final inline var turbulenceInfluenceMin: Float
     @JvmName("turbulenceInfluenceMinProperty")
@@ -1467,9 +1306,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum turbulence influence on each particle.
    *
-   * The actual amount of turbulence influence on each particle is calculated as a random value
-   * between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of
-   * turbulence influence from [turbulenceInfluenceOverLife].
+   * The actual amount of turbulence influence on each particle is calculated as a random value between [turbulenceInfluenceMin] and [turbulenceInfluenceMax] and multiplied by the amount of turbulence influence from [turbulenceInfluenceOverLife].
    */
   public final inline var turbulenceInfluenceMax: Float
     @JvmName("turbulenceInfluenceMaxProperty")
@@ -1483,11 +1320,8 @@ public open class ParticleProcessMaterial : Material() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var turbulenceInitialDisplacement: Vector2
@@ -1501,8 +1335,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Minimum displacement of each particle's spawn position by the turbulence.
    *
-   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
-   * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
   public final inline var turbulenceInitialDisplacementMin: Float
     @JvmName("turbulenceInitialDisplacementMinProperty")
@@ -1515,8 +1348,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Maximum displacement of each particle's spawn position by the turbulence.
    *
-   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a
-   * random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
+   * The actual amount of displacement will be a factor of the underlying turbulence multiplied by a random value between [turbulenceInitialDisplacementMin] and [turbulenceInitialDisplacementMax].
    */
   public final inline var turbulenceInitialDisplacementMax: Float
     @JvmName("turbulenceInitialDisplacementMaxProperty")
@@ -1527,8 +1359,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Each particle's amount of turbulence will be influenced along this [CurveTexture] over its life
-   * time.
+   * Each particle's amount of turbulence will be influenced along this [CurveTexture] over its life time.
    */
   public final inline var turbulenceInfluenceOverLife: Texture2D?
     @JvmName("turbulenceInfluenceOverLifeProperty")
@@ -1541,13 +1372,9 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The particles' collision mode.
    *
-   * **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not
-   * [PhysicsBody3D] nodes. To make particles collide with various objects, you can add
-   * [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur
-   * within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
+   * **Note:** 3D Particles can only collide with [GPUParticlesCollision3D] nodes, not [PhysicsBody3D] nodes. To make particles collide with various objects, you can add [GPUParticlesCollision3D] nodes as children of [PhysicsBody3D] nodes. In 3D, collisions only occur within the area defined by the [GPUParticles3D] node's [GPUParticles3D.visibilityAabb].
    *
-   * **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D]
-   * nodes.
+   * **Note:** 2D Particles can only collide with [LightOccluder2D] nodes, not [PhysicsBody2D] nodes.
    */
   public final inline var collisionMode: CollisionMode
     @JvmName("collisionModeProperty")
@@ -1558,8 +1385,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only
-   * effective if [collisionMode] is [COLLISION_RIGID].
+   * The particles' friction. Values range from `0` (frictionless) to `1` (maximum friction). Only effective if [collisionMode] is [COLLISION_RIGID].
    */
   public final inline var collisionFriction: Float
     @JvmName("collisionFrictionProperty")
@@ -1570,8 +1396,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only
-   * effective if [collisionMode] is [COLLISION_RIGID].
+   * The particles' bounciness. Values range from `0` (no bounce) to `1` (full bounciness). Only effective if [collisionMode] is [COLLISION_RIGID].
    */
   public final inline var collisionBounce: Float
     @JvmName("collisionBounceProperty")
@@ -1582,8 +1407,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * If `true`, [GPUParticles3D.collisionBaseSize] is multiplied by the particle's effective scale
-   * (see [scaleMin], [scaleMax], [scaleCurve], and [scaleOverVelocityCurve]).
+   * If `true`, [GPUParticles3D.collisionBaseSize] is multiplied by the particle's effective scale (see [scaleMin], [scaleMax], [scaleCurve], and [scaleOverVelocityCurve]).
    */
   public final inline var collisionUseScale: Boolean
     @JvmName("collisionUseScaleProperty")
@@ -1605,13 +1429,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The frequency at which particles should be emitted from the subemitter node. One particle will
-   * be spawned every [subEmitterFrequency] seconds.
+   * The frequency at which particles should be emitted from the subemitter node. One particle will be spawned every [subEmitterFrequency] seconds.
    *
-   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
-   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
-   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
-   * until enough particles have expired.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public final inline var subEmitterFrequency: Double
     @JvmName("subEmitterFrequencyProperty")
@@ -1624,10 +1444,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The amount of particles to spawn from the subemitter node when the particle expires.
    *
-   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
-   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
-   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
-   * until enough particles have expired.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public final inline var subEmitterAmountAtEnd: Int
     @JvmName("subEmitterAmountAtEndProperty")
@@ -1638,14 +1455,9 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * The amount of particles to spawn from the subemitter node when a collision occurs. When
-   * combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to
-   * achieve effects such as raindrops hitting the ground.
+   * The amount of particles to spawn from the subemitter node when a collision occurs. When combined with [COLLISION_HIDE_ON_CONTACT] on the main particles material, this can be used to achieve effects such as raindrops hitting the ground.
    *
-   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
-   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
-   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
-   * until enough particles have expired.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public final inline var subEmitterAmountAtCollision: Int
     @JvmName("subEmitterAmountAtCollisionProperty")
@@ -1658,10 +1470,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * The amount of particles to spawn from the subemitter node when the particle spawns.
    *
-   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount]
-   * defined on the *subemitter node* (not the main node), relative to the subemitter's particle
-   * lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter
-   * until enough particles have expired.
+   * **Note:** This value shouldn't exceed [GPUParticles2D.amount] or [GPUParticles3D.amount] defined on the *subemitter node* (not the main node), relative to the subemitter's particle lifetime. If the number of particles is exceeded, no new particles will spawn from the subemitter until enough particles have expired.
    */
   public final inline var subEmitterAmountAtStart: Int
     @JvmName("subEmitterAmountAtStartProperty")
@@ -1682,7 +1491,7 @@ public open class ParticleProcessMaterial : Material() {
       setSubEmitterKeepVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(449, scriptIndex)
   }
 
@@ -1700,8 +1509,7 @@ public open class ParticleProcessMaterial : Material() {
    * The offset for the [emissionShape], in local space.
    */
   @CoreTypeHelper
-  public final fun emissionShapeOffsetMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionShapeOffset.apply {
+  public final fun emissionShapeOffsetMutate(block: Vector3.() -> Unit): Vector3 = emissionShapeOffset.apply {
      block(this)
      emissionShapeOffset = this
   }
@@ -1720,8 +1528,7 @@ public open class ParticleProcessMaterial : Material() {
    * The scale of the [emissionShape], in local space.
    */
   @CoreTypeHelper
-  public final fun emissionShapeScaleMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionShapeScale.apply {
+  public final fun emissionShapeScaleMutate(block: Vector3.() -> Unit): Vector3 = emissionShapeScale.apply {
      block(this)
      emissionShapeScale = this
   }
@@ -1739,12 +1546,10 @@ public open class ParticleProcessMaterial : Material() {
    *
    * The box's extents if [emissionShape] is set to [EMISSION_SHAPE_BOX].
    *
-   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values
-   * in both directions. The size is twice the area of the extents.
+   * **Note:** [emissionBoxExtents] starts from the center point and applies the X, Y, and Z values in both directions. The size is twice the area of the extents.
    */
   @CoreTypeHelper
-  public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionBoxExtents.apply {
+  public final fun emissionBoxExtentsMutate(block: Vector3.() -> Unit): Vector3 = emissionBoxExtents.apply {
      block(this)
      emissionBoxExtents = this
   }
@@ -1763,8 +1568,7 @@ public open class ParticleProcessMaterial : Material() {
    * The axis of the ring when using the emitter [EMISSION_SHAPE_RING].
    */
   @CoreTypeHelper
-  public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 =
-      emissionRingAxis.apply {
+  public final fun emissionRingAxisMutate(block: Vector3.() -> Unit): Vector3 = emissionRingAxis.apply {
      block(this)
      emissionRingAxis = this
   }
@@ -1836,8 +1640,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun initialVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      initialVelocity.apply {
+  public final fun initialVelocityMutate(block: Vector2.() -> Unit): Vector2 = initialVelocity.apply {
      block(this)
      initialVelocity = this
   }
@@ -1854,8 +1657,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun angularVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      angularVelocity.apply {
+  public final fun angularVelocityMutate(block: Vector2.() -> Unit): Vector2 = angularVelocity.apply {
      block(this)
      angularVelocity = this
   }
@@ -1872,8 +1674,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun directionalVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      directionalVelocity.apply {
+  public final fun directionalVelocityMutate(block: Vector2.() -> Unit): Vector2 = directionalVelocity.apply {
      block(this)
      directionalVelocity = this
   }
@@ -1977,8 +1778,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun tangentialAccelMutate(block: Vector2.() -> Unit): Vector2 =
-      tangentialAccel.apply {
+  public final fun tangentialAccelMutate(block: Vector2.() -> Unit): Vector2 = tangentialAccel.apply {
      block(this)
      tangentialAccel = this
   }
@@ -2029,8 +1829,7 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun scaleOverVelocityMutate(block: Vector2.() -> Unit): Vector2 =
-      scaleOverVelocity.apply {
+  public final fun scaleOverVelocityMutate(block: Vector2.() -> Unit): Vector2 = scaleOverVelocity.apply {
      block(this)
      scaleOverVelocity = this
   }
@@ -2046,13 +1845,9 @@ public open class ParticleProcessMaterial : Material() {
    * particleprocessmaterial.color = myCoreType
    * ``````
    *
-   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be
-   * multiplied by this color.
+   * Each particle's initial color. If the [GPUParticles2D]'s `texture` is defined, it will be multiplied by this color.
    *
-   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a
-   * [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a
-   * [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function.
-   * Otherwise, [color] will have no visible effect.
+   * **Note:** [color] multiplies the particle mesh's vertex colors. To have a visible effect on a [BaseMaterial3D], [BaseMaterial3D.vertexColorUseAsAlbedo] *must* be `true`. For a [ShaderMaterial], `ALBEDO *= COLOR.rgb;` must be inserted in the shader's `fragment()` function. Otherwise, [color] will have no visible effect.
    */
   @CoreTypeHelper
   public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {
@@ -2122,14 +1917,12 @@ public open class ParticleProcessMaterial : Material() {
    * particleprocessmaterial.turbulenceNoiseSpeed = myCoreType
    * ``````
    *
-   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to
-   * move in over time.
+   * A scrolling velocity for the turbulence field. This sets a directional trend for the pattern to move in over time.
    *
    * The default value of `Vector3(0, 0, 0)` turns off the scrolling.
    */
   @CoreTypeHelper
-  public final fun turbulenceNoiseSpeedMutate(block: Vector3.() -> Unit): Vector3 =
-      turbulenceNoiseSpeed.apply {
+  public final fun turbulenceNoiseSpeedMutate(block: Vector3.() -> Unit): Vector3 = turbulenceNoiseSpeed.apply {
      block(this)
      turbulenceNoiseSpeed = this
   }
@@ -2146,15 +1939,13 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun turbulenceInfluenceMutate(block: Vector2.() -> Unit): Vector2 =
-      turbulenceInfluence.apply {
+  public final fun turbulenceInfluenceMutate(block: Vector2.() -> Unit): Vector2 = turbulenceInfluence.apply {
      block(this)
      turbulenceInfluence = this
   }
 
   /**
-   * This is a helper function for [turbulenceInitialDisplacement] to make dealing with local copies
-   * easier.
+   * This is a helper function for [turbulenceInitialDisplacement] to make dealing with local copies easier.
    * Allow to directly modify the local copy of the property and assign it back to the Object.
    *
    * Prefer that over writing:
@@ -2165,13 +1956,12 @@ public open class ParticleProcessMaterial : Material() {
    * ``````
    */
   @CoreTypeHelper
-  public final fun turbulenceInitialDisplacementMutate(block: Vector2.() -> Unit): Vector2 =
-      turbulenceInitialDisplacement.apply {
+  public final fun turbulenceInitialDisplacementMutate(block: Vector2.() -> Unit): Vector2 = turbulenceInitialDisplacement.apply {
      block(this)
      turbulenceInitialDisplacement = this
   }
 
-  public final fun setDirection(degrees: Vector3): Unit {
+  public final fun setDirection(degrees: Vector3) {
     TransferContext.writeArguments(VECTOR3 to degrees)
     TransferContext.callMethod(ptr, MethodBindings.setDirectionPtr, NIL)
   }
@@ -2182,7 +1972,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setInheritVelocityRatio(ratio: Double): Unit {
+  public final fun setInheritVelocityRatio(ratio: Double) {
     TransferContext.writeArguments(DOUBLE to ratio)
     TransferContext.callMethod(ptr, MethodBindings.setInheritVelocityRatioPtr, NIL)
   }
@@ -2193,7 +1983,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setSpread(degrees: Float): Unit {
+  public final fun setSpread(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpreadPtr, NIL)
   }
@@ -2204,7 +1994,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFlatness(amount: Float): Unit {
+  public final fun setFlatness(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFlatnessPtr, NIL)
   }
@@ -2218,10 +2008,9 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the minimum and maximum values of the given [param].
    *
-   * The `x` component of the argument vector corresponds to minimum and the `y` component
-   * corresponds to maximum.
+   * The `x` component of the argument vector corresponds to minimum and the `y` component corresponds to maximum.
    */
-  public final fun setParam(`param`: Parameter, `value`: Vector2): Unit {
+  public final fun setParam(`param`: Parameter, `value`: Vector2) {
     TransferContext.writeArguments(LONG to param.id, VECTOR2 to value)
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
@@ -2229,8 +2018,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Returns the minimum and maximum values of the given [param] as a vector.
    *
-   * The `x` component of the returned vector corresponds to minimum and the `y` component
-   * corresponds to maximum.
+   * The `x` component of the returned vector corresponds to minimum and the `y` component corresponds to maximum.
    */
   public final fun getParam(`param`: Parameter): Vector2 {
     TransferContext.writeArguments(LONG to param.id)
@@ -2241,7 +2029,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the minimum value range for the given parameter.
    */
-  public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
+  public final fun setParamMin(`param`: Parameter, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMinPtr, NIL)
   }
@@ -2258,7 +2046,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the maximum value range for the given parameter.
    */
-  public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
+  public final fun setParamMax(`param`: Parameter, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMaxPtr, NIL)
   }
@@ -2275,7 +2063,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Sets the [Texture2D] for the specified [Parameter].
    */
-  public final fun setParamTexture(`param`: Parameter, texture: Texture2D?): Unit {
+  public final fun setParamTexture(`param`: Parameter, texture: Texture2D?) {
     TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setParamTexturePtr, NIL)
   }
@@ -2289,7 +2077,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -2300,7 +2088,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setColorRamp(ramp: Texture2D?): Unit {
+  public final fun setColorRamp(ramp: Texture2D?) {
     TransferContext.writeArguments(OBJECT to ramp)
     TransferContext.callMethod(ptr, MethodBindings.setColorRampPtr, NIL)
   }
@@ -2311,7 +2099,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setAlphaCurve(curve: Texture2D?): Unit {
+  public final fun setAlphaCurve(curve: Texture2D?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaCurvePtr, NIL)
   }
@@ -2322,7 +2110,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setEmissionCurve(curve: Texture2D?): Unit {
+  public final fun setEmissionCurve(curve: Texture2D?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionCurvePtr, NIL)
   }
@@ -2333,7 +2121,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setColorInitialRamp(ramp: Texture2D?): Unit {
+  public final fun setColorInitialRamp(ramp: Texture2D?) {
     TransferContext.writeArguments(OBJECT to ramp)
     TransferContext.callMethod(ptr, MethodBindings.setColorInitialRampPtr, NIL)
   }
@@ -2344,7 +2132,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setVelocityLimitCurve(curve: Texture2D?): Unit {
+  public final fun setVelocityLimitCurve(curve: Texture2D?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityLimitCurvePtr, NIL)
   }
@@ -2358,7 +2146,7 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * If `true`, enables the specified particle flag. See [ParticleFlags] for options.
    */
-  public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
+  public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean) {
     TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setParticleFlagPtr, NIL)
   }
@@ -2372,7 +2160,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVelocityPivot(pivot: Vector3): Unit {
+  public final fun setVelocityPivot(pivot: Vector3) {
     TransferContext.writeArguments(VECTOR3 to pivot)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPivotPtr, NIL)
   }
@@ -2383,7 +2171,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEmissionShape(shape: EmissionShape): Unit {
+  public final fun setEmissionShape(shape: EmissionShape) {
     TransferContext.writeArguments(LONG to shape.id)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapePtr, NIL)
   }
@@ -2394,7 +2182,7 @@ public open class ParticleProcessMaterial : Material() {
     return EmissionShape.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEmissionSphereRadius(radius: Float): Unit {
+  public final fun setEmissionSphereRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionSphereRadiusPtr, NIL)
   }
@@ -2405,7 +2193,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionBoxExtents(extents: Vector3): Unit {
+  public final fun setEmissionBoxExtents(extents: Vector3) {
     TransferContext.writeArguments(VECTOR3 to extents)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionBoxExtentsPtr, NIL)
   }
@@ -2416,7 +2204,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEmissionPointTexture(texture: Texture2D?): Unit {
+  public final fun setEmissionPointTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionPointTexturePtr, NIL)
   }
@@ -2427,7 +2215,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setEmissionNormalTexture(texture: Texture2D?): Unit {
+  public final fun setEmissionNormalTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionNormalTexturePtr, NIL)
   }
@@ -2438,7 +2226,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setEmissionColorTexture(texture: Texture2D?): Unit {
+  public final fun setEmissionColorTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionColorTexturePtr, NIL)
   }
@@ -2449,7 +2237,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setEmissionPointCount(pointCount: Int): Unit {
+  public final fun setEmissionPointCount(pointCount: Int) {
     TransferContext.writeArguments(LONG to pointCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionPointCountPtr, NIL)
   }
@@ -2460,7 +2248,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setEmissionRingAxis(axis: Vector3): Unit {
+  public final fun setEmissionRingAxis(axis: Vector3) {
     TransferContext.writeArguments(VECTOR3 to axis)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionRingAxisPtr, NIL)
   }
@@ -2471,7 +2259,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEmissionRingHeight(height: Float): Unit {
+  public final fun setEmissionRingHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionRingHeightPtr, NIL)
   }
@@ -2482,7 +2270,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionRingRadius(radius: Float): Unit {
+  public final fun setEmissionRingRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionRingRadiusPtr, NIL)
   }
@@ -2493,7 +2281,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionRingInnerRadius(innerRadius: Float): Unit {
+  public final fun setEmissionRingInnerRadius(innerRadius: Float) {
     TransferContext.writeArguments(DOUBLE to innerRadius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionRingInnerRadiusPtr, NIL)
   }
@@ -2504,7 +2292,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionRingConeAngle(coneAngle: Float): Unit {
+  public final fun setEmissionRingConeAngle(coneAngle: Float) {
     TransferContext.writeArguments(DOUBLE to coneAngle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionRingConeAnglePtr, NIL)
   }
@@ -2515,7 +2303,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionShapeOffset(emissionShapeOffset: Vector3): Unit {
+  public final fun setEmissionShapeOffset(emissionShapeOffset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to emissionShapeOffset)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapeOffsetPtr, NIL)
   }
@@ -2526,7 +2314,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEmissionShapeScale(emissionShapeScale: Vector3): Unit {
+  public final fun setEmissionShapeScale(emissionShapeScale: Vector3) {
     TransferContext.writeArguments(VECTOR3 to emissionShapeScale)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapeScalePtr, NIL)
   }
@@ -2543,7 +2331,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTurbulenceEnabled(turbulenceEnabled: Boolean): Unit {
+  public final fun setTurbulenceEnabled(turbulenceEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to turbulenceEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setTurbulenceEnabledPtr, NIL)
   }
@@ -2554,7 +2342,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTurbulenceNoiseStrength(turbulenceNoiseStrength: Float): Unit {
+  public final fun setTurbulenceNoiseStrength(turbulenceNoiseStrength: Float) {
     TransferContext.writeArguments(DOUBLE to turbulenceNoiseStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTurbulenceNoiseStrengthPtr, NIL)
   }
@@ -2565,7 +2353,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTurbulenceNoiseScale(turbulenceNoiseScale: Float): Unit {
+  public final fun setTurbulenceNoiseScale(turbulenceNoiseScale: Float) {
     TransferContext.writeArguments(DOUBLE to turbulenceNoiseScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTurbulenceNoiseScalePtr, NIL)
   }
@@ -2576,7 +2364,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTurbulenceNoiseSpeedRandom(turbulenceNoiseSpeedRandom: Float): Unit {
+  public final fun setTurbulenceNoiseSpeedRandom(turbulenceNoiseSpeedRandom: Float) {
     TransferContext.writeArguments(DOUBLE to turbulenceNoiseSpeedRandom.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTurbulenceNoiseSpeedRandomPtr, NIL)
   }
@@ -2587,7 +2375,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setTurbulenceNoiseSpeed(turbulenceNoiseSpeed: Vector3): Unit {
+  public final fun setTurbulenceNoiseSpeed(turbulenceNoiseSpeed: Vector3) {
     TransferContext.writeArguments(VECTOR3 to turbulenceNoiseSpeed)
     TransferContext.callMethod(ptr, MethodBindings.setTurbulenceNoiseSpeedPtr, NIL)
   }
@@ -2598,12 +2386,12 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setGravity(accelVec: Vector3): Unit {
+  public final fun setGravity(accelVec: Vector3) {
     TransferContext.writeArguments(VECTOR3 to accelVec)
     TransferContext.callMethod(ptr, MethodBindings.setGravityPtr, NIL)
   }
 
-  public final fun setLifetimeRandomness(randomness: Double): Unit {
+  public final fun setLifetimeRandomness(randomness: Double) {
     TransferContext.writeArguments(DOUBLE to randomness)
     TransferContext.callMethod(ptr, MethodBindings.setLifetimeRandomnessPtr, NIL)
   }
@@ -2620,7 +2408,7 @@ public open class ParticleProcessMaterial : Material() {
     return SubEmitterMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSubEmitterMode(mode: SubEmitterMode): Unit {
+  public final fun setSubEmitterMode(mode: SubEmitterMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterModePtr, NIL)
   }
@@ -2631,7 +2419,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setSubEmitterFrequency(hz: Double): Unit {
+  public final fun setSubEmitterFrequency(hz: Double) {
     TransferContext.writeArguments(DOUBLE to hz)
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterFrequencyPtr, NIL)
   }
@@ -2642,7 +2430,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubEmitterAmountAtEnd(amount: Int): Unit {
+  public final fun setSubEmitterAmountAtEnd(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterAmountAtEndPtr, NIL)
   }
@@ -2653,7 +2441,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubEmitterAmountAtCollision(amount: Int): Unit {
+  public final fun setSubEmitterAmountAtCollision(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterAmountAtCollisionPtr, NIL)
   }
@@ -2664,7 +2452,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSubEmitterAmountAtStart(amount: Int): Unit {
+  public final fun setSubEmitterAmountAtStart(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterAmountAtStartPtr, NIL)
   }
@@ -2675,12 +2463,12 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSubEmitterKeepVelocity(enable: Boolean): Unit {
+  public final fun setSubEmitterKeepVelocity(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterKeepVelocityPtr, NIL)
   }
 
-  public final fun setAttractorInteractionEnabled(enabled: Boolean): Unit {
+  public final fun setAttractorInteractionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAttractorInteractionEnabledPtr, NIL)
   }
@@ -2691,7 +2479,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollisionMode(mode: CollisionMode): Unit {
+  public final fun setCollisionMode(mode: CollisionMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionModePtr, NIL)
   }
@@ -2702,7 +2490,7 @@ public open class ParticleProcessMaterial : Material() {
     return CollisionMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCollisionUseScale(radius: Boolean): Unit {
+  public final fun setCollisionUseScale(radius: Boolean) {
     TransferContext.writeArguments(BOOL to radius)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionUseScalePtr, NIL)
   }
@@ -2713,7 +2501,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollisionFriction(friction: Float): Unit {
+  public final fun setCollisionFriction(friction: Float) {
     TransferContext.writeArguments(DOUBLE to friction.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionFrictionPtr, NIL)
   }
@@ -2724,7 +2512,7 @@ public open class ParticleProcessMaterial : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCollisionBounce(bounce: Float): Unit {
+  public final fun setCollisionBounce(bounce: Float) {
     TransferContext.writeArguments(DOUBLE to bounce.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCollisionBouncePtr, NIL)
   }
@@ -2738,14 +2526,14 @@ public open class ParticleProcessMaterial : Material() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderRid(): RID {
+  override fun _getShaderRid(): RID {
     throw NotImplementedError("ParticleProcessMaterial::_getShaderRid can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderMode(): Shader.Mode {
+  override fun _getShaderMode(): Shader.Mode {
     throw NotImplementedError("ParticleProcessMaterial::_getShaderMode can't be called from the JVM.")
   }
 
@@ -2753,33 +2541,27 @@ public open class ParticleProcessMaterial : Material() {
     id: Long,
   ) {
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity properties.
      */
     INITIAL_LINEAR_VELOCITY(0),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set angular velocity properties.
      */
     ANGULAR_VELOCITY(1),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set orbital velocity properties.
      */
     ORBIT_VELOCITY(2),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set linear acceleration properties.
      */
     LINEAR_ACCEL(3),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial acceleration properties.
      */
     RADIAL_ACCEL(4),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set tangential acceleration properties.
      */
     TANGENTIAL_ACCEL(5),
     /**
@@ -2799,28 +2581,23 @@ public open class ParticleProcessMaterial : Material() {
      */
     HUE_VARIATION(9),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation speed properties.
      */
     ANIM_SPEED(10),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set animation offset properties.
      */
     ANIM_OFFSET(11),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set radial velocity properties.
      */
     RADIAL_VELOCITY(15),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set directional velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set directional velocity properties.
      */
     DIRECTIONAL_VELOCITY(16),
     /**
-     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale over velocity
-     * properties.
+     * Use with [setParamMin], [setParamMax], and [setParamTexture] to set scale over velocity properties.
      */
     SCALE_OVER_VELOCITY(17),
     /**
@@ -2828,13 +2605,11 @@ public open class ParticleProcessMaterial : Material() {
      */
     MAX(18),
     /**
-     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum und maximum influence
-     * on each particles velocity.
+     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum und maximum influence on each particles velocity.
      */
     TURB_VEL_INFLUENCE(13),
     /**
-     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum and maximum
-     * displacement of the particles spawn position.
+     * Use with [setParamMin] and [setParamMax] to set the turbulence minimum and maximum displacement of the particles spawn position.
      */
     TURB_INIT_DISPLACEMENT(14),
     /**
@@ -2905,14 +2680,11 @@ public open class ParticleProcessMaterial : Material() {
      */
     BOX(3),
     /**
-     * Particles will be emitted at a position determined by sampling a random point on the
-     * [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
+     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle color will be modulated by [emissionColorTexture].
      */
     POINTS(4),
     /**
-     * Particles will be emitted at a position determined by sampling a random point on the
-     * [emissionPointTexture]. Particle velocity and rotation will be set based on
-     * [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
+     * Particles will be emitted at a position determined by sampling a random point on the [emissionPointTexture]. Particle velocity and rotation will be set based on [emissionNormalTexture]. Particle color will be modulated by [emissionColorTexture].
      */
     DIRECTED_POINTS(5),
     /**
@@ -2971,9 +2743,7 @@ public open class ParticleProcessMaterial : Material() {
      */
     RIGID(1),
     /**
-     * Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be
-     * combined with a subemitter that uses the [COLLISION_RIGID] collision mode to "replace" the
-     * parent particle with the subemitter on impact.
+     * Hide particles instantly when colliding with a [GPUParticlesCollision3D] node. This can be combined with a subemitter that uses the [COLLISION_RIGID] collision mode to "replace" the parent particle with the subemitter on impact.
      */
     HIDE_ON_CONTACT(2),
     /**
@@ -2996,291 +2766,291 @@ public open class ParticleProcessMaterial : Material() {
 
   public object MethodBindings {
     internal val setDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_direction", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_direction", 3_460_891_852)
 
     internal val getDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_direction", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_direction", 3_360_562_783)
 
     internal val setInheritVelocityRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_inherit_velocity_ratio", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_inherit_velocity_ratio", 373_806_689)
 
     internal val getInheritVelocityRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_inherit_velocity_ratio", 191475506)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_inherit_velocity_ratio", 191_475_506)
 
     internal val setSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_spread", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_spread", 373_806_689)
 
     internal val getSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_spread", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_spread", 1_740_695_150)
 
     internal val setFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_flatness", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_flatness", 373_806_689)
 
     internal val getFlatnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_flatness", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_flatness", 1_740_695_150)
 
     internal val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param", 676779352)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param", 676_779_352)
 
     internal val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param", 2623708480)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param", 2_623_708_480)
 
     internal val setParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_min", 2295964248)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_min", 2_295_964_248)
 
     internal val getParamMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_min", 3903786503)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_min", 3_903_786_503)
 
     internal val setParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_max", 2295964248)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_max", 2_295_964_248)
 
     internal val getParamMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_max", 3903786503)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_max", 3_903_786_503)
 
     internal val setParamTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_texture", 526976089)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_param_texture", 526_976_089)
 
     internal val getParamTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_texture", 3489372978)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_param_texture", 3_489_372_978)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color", 3_444_240_500)
 
     internal val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_ramp", 4_051_416_890)
 
     internal val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_ramp", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_ramp", 3_635_182_373)
 
     internal val setAlphaCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_alpha_curve", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_alpha_curve", 4_051_416_890)
 
     internal val getAlphaCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_alpha_curve", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_alpha_curve", 3_635_182_373)
 
     internal val setEmissionCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_curve", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_curve", 4_051_416_890)
 
     internal val getEmissionCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_curve", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_curve", 3_635_182_373)
 
     internal val setColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_initial_ramp", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_color_initial_ramp", 4_051_416_890)
 
     internal val getColorInitialRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_initial_ramp", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_color_initial_ramp", 3_635_182_373)
 
     internal val setVelocityLimitCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_limit_curve", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_limit_curve", 4_051_416_890)
 
     internal val getVelocityLimitCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_limit_curve", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_limit_curve", 3_635_182_373)
 
     internal val setParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_particle_flag", 1711815571)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_particle_flag", 1_711_815_571)
 
     internal val getParticleFlagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_particle_flag", 3895316907)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_particle_flag", 3_895_316_907)
 
     internal val setVelocityPivotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_pivot", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_velocity_pivot", 3_460_891_852)
 
     internal val getVelocityPivotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_pivot", 3783033775)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_velocity_pivot", 3_783_033_775)
 
     internal val setEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape", 461501442)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape", 461_501_442)
 
     internal val getEmissionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape", 3719733018)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape", 3_719_733_018)
 
     internal val setEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_sphere_radius", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_sphere_radius", 373_806_689)
 
     internal val getEmissionSphereRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_sphere_radius", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_sphere_radius", 1_740_695_150)
 
     internal val setEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_box_extents", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_box_extents", 3_460_891_852)
 
     internal val getEmissionBoxExtentsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_box_extents", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_box_extents", 3_360_562_783)
 
     internal val setEmissionPointTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_texture", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_texture", 4_051_416_890)
 
     internal val getEmissionPointTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_texture", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_texture", 3_635_182_373)
 
     internal val setEmissionNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_normal_texture", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_normal_texture", 4_051_416_890)
 
     internal val getEmissionNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_normal_texture", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_normal_texture", 3_635_182_373)
 
     internal val setEmissionColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_color_texture", 4051416890)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_color_texture", 4_051_416_890)
 
     internal val getEmissionColorTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_color_texture", 3635182373)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_color_texture", 3_635_182_373)
 
     internal val setEmissionPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_count", 1286410249)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_point_count", 1_286_410_249)
 
     internal val getEmissionPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_point_count", 3_905_245_786)
 
     internal val setEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_axis", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_axis", 3_460_891_852)
 
     internal val getEmissionRingAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_axis", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_axis", 3_360_562_783)
 
     internal val setEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_height", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_height", 373_806_689)
 
     internal val getEmissionRingHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_height", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_height", 1_740_695_150)
 
     internal val setEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_radius", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_radius", 373_806_689)
 
     internal val getEmissionRingRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_radius", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_radius", 1_740_695_150)
 
     internal val setEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_inner_radius", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_inner_radius", 373_806_689)
 
     internal val getEmissionRingInnerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_inner_radius", 1_740_695_150)
 
     internal val setEmissionRingConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_cone_angle", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_ring_cone_angle", 373_806_689)
 
     internal val getEmissionRingConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_cone_angle", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_ring_cone_angle", 1_740_695_150)
 
     internal val setEmissionShapeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_offset", 3_460_891_852)
 
     internal val getEmissionShapeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_offset", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_offset", 3_360_562_783)
 
     internal val setEmissionShapeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_scale", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_emission_shape_scale", 3_460_891_852)
 
     internal val getEmissionShapeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_scale", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_emission_shape_scale", 3_360_562_783)
 
     internal val getTurbulenceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_enabled", 36873697)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_enabled", 36_873_697)
 
     internal val setTurbulenceEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_enabled", 2_586_408_642)
 
     internal val getTurbulenceNoiseStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_strength", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_strength", 1_740_695_150)
 
     internal val setTurbulenceNoiseStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_strength", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_strength", 373_806_689)
 
     internal val getTurbulenceNoiseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_scale", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_scale", 1_740_695_150)
 
     internal val setTurbulenceNoiseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_scale", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_scale", 373_806_689)
 
     internal val getTurbulenceNoiseSpeedRandomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed_random", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed_random", 1_740_695_150)
 
     internal val setTurbulenceNoiseSpeedRandomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed_random", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed_random", 373_806_689)
 
     internal val getTurbulenceNoiseSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_turbulence_noise_speed", 3_360_562_783)
 
     internal val setTurbulenceNoiseSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_turbulence_noise_speed", 3_460_891_852)
 
     internal val getGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_gravity", 3360562783)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_gravity", 3_360_562_783)
 
     internal val setGravityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_gravity", 3460891852)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_gravity", 3_460_891_852)
 
     internal val setLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_lifetime_randomness", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_lifetime_randomness", 373_806_689)
 
     internal val getLifetimeRandomnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_lifetime_randomness", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_lifetime_randomness", 1_740_695_150)
 
     internal val getSubEmitterModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_mode", 2399052877)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_mode", 2_399_052_877)
 
     internal val setSubEmitterModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_mode", 2161806672)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_mode", 2_161_806_672)
 
     internal val getSubEmitterFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_frequency", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_frequency", 1_740_695_150)
 
     internal val setSubEmitterFrequencyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_frequency", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_frequency", 373_806_689)
 
     internal val getSubEmitterAmountAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_end", 3905245786)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_end", 3_905_245_786)
 
     internal val setSubEmitterAmountAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_end", 1286410249)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_end", 1_286_410_249)
 
     internal val getSubEmitterAmountAtCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_collision", 3905245786)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_collision", 3_905_245_786)
 
     internal val setSubEmitterAmountAtCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision", 1286410249)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_collision", 1_286_410_249)
 
     internal val getSubEmitterAmountAtStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_start", 3905245786)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_amount_at_start", 3_905_245_786)
 
     internal val setSubEmitterAmountAtStartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_start", 1286410249)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_amount_at_start", 1_286_410_249)
 
     internal val getSubEmitterKeepVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity", 36873697)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_sub_emitter_keep_velocity", 36_873_697)
 
     internal val setSubEmitterKeepVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_keep_velocity", 2586408642)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_sub_emitter_keep_velocity", 2_586_408_642)
 
     internal val setAttractorInteractionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_attractor_interaction_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_attractor_interaction_enabled", 2_586_408_642)
 
     internal val isAttractorInteractionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_attractor_interaction_enabled", 36873697)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_attractor_interaction_enabled", 36_873_697)
 
     internal val setCollisionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_mode", 653804659)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_mode", 653_804_659)
 
     internal val getCollisionModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_mode", 139371864)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_mode", 139_371_864)
 
     internal val setCollisionUseScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_use_scale", 2586408642)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_use_scale", 2_586_408_642)
 
     internal val isCollisionUsingScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_collision_using_scale", 36873697)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "is_collision_using_scale", 36_873_697)
 
     internal val setCollisionFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_friction", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_friction", 373_806_689)
 
     internal val getCollisionFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_friction", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_friction", 1_740_695_150)
 
     internal val setCollisionBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_bounce", 373806689)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "set_collision_bounce", 373_806_689)
 
     internal val getCollisionBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce", 1740695150)
+        TypeManager.getMethodBindPtr("ParticleProcessMaterial", "get_collision_bounce", 1_740_695_150)
   }
 }

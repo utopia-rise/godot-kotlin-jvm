@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,17 +15,14 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a
- * uniform set and reuse it in subsequent calls for as long as the uniform set exists. Uniform set will
- * automatically be cleaned up when dependent objects are freed.
+ * Uniform set cache manager for Rendering Device based renderers. Provides a way to create a uniform set and reuse it in subsequent calls for as long as the uniform set exists. Uniform set will automatically be cleaned up when dependent objects are freed.
  */
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(706, scriptIndex)
   }
 
@@ -50,6 +44,6 @@ public open class UniformSetCacheRD : Object() {
 
   public object MethodBindings {
     internal val getCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UniformSetCacheRD", "get_cache", 658571723)
+        TypeManager.getMethodBindPtr("UniformSetCacheRD", "get_cache", 658_571_723)
   }
 }

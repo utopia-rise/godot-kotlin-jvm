@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,15 +28,12 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit
- * vertex data of meshes. It also creates an array of faces and edges.
+ * MeshDataTool provides access to individual vertices in a [Mesh]. It allows users to read and edit vertex data of meshes. It also creates an array of faces and edges.
  *
- * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data
- * commit the data to a mesh with [commitToSurface].
+ * To use MeshDataTool, load a mesh with [createFromSurface]. When you are finished editing the data commit the data to a mesh with [commitToSurface].
  *
  * Below is an example of how MeshDataTool may be used.
  *
@@ -51,8 +45,7 @@ import kotlin.jvm.JvmOverloads
  * mdt.create_from_surface(mesh, 0)
  * for i in range(mdt.get_vertex_count()):
  *     var vertex = mdt.get_vertex(i)
- *     # In this example we extend the mesh by one unit, which results in separated faces as it is
- * flat shaded.
+ *     # In this example we extend the mesh by one unit, which results in separated faces as it is flat shaded.
  *     vertex += mdt.get_vertex_normal(i)
  *     # Save your change.
  *     mdt.set_vertex(i, vertex)
@@ -72,8 +65,7 @@ import kotlin.jvm.JvmOverloads
  * for (var i = 0; i < mdt.GetVertexCount(); i++)
  * {
  *     Vector3 vertex = mdt.GetVertex(i);
- *     // In this example we extend the mesh by one unit, which results in separated faces as it is
- * flat shaded.
+ *     // In this example we extend the mesh by one unit, which results in separated faces as it is flat shaded.
  *     vertex += mdt.GetVertexNormal(i);
  *     // Save your change.
  *     mdt.SetVertex(i, vertex);
@@ -87,19 +79,18 @@ import kotlin.jvm.JvmOverloads
  *
  * See also [ArrayMesh], [ImmediateMesh] and [SurfaceTool] for procedural geometry generation.
  *
- * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding
- * order[/url] for front faces of triangle primitive modes.
+ * **Note:** Godot uses clockwise [url=https://learnopengl.com/Advanced-OpenGL/Face-culling]winding order[/url] for front faces of triangle primitive modes.
  */
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(353, scriptIndex)
   }
 
   /**
    * Clears all data currently in MeshDataTool.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -126,9 +117,7 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns the [Mesh]'s format as a combination of the [Mesh.ArrayFormat] flags. For example, a
-   * mesh containing both vertices and normals would return a format of `3` because
-   * [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
+   * Returns the [Mesh]'s format as a combination of the [Mesh.ArrayFormat] flags. For example, a mesh containing both vertices and normals would return a format of `3` because [Mesh.ARRAY_FORMAT_VERTEX] is `1` and [Mesh.ARRAY_FORMAT_NORMAL] is `2`.
    */
   public final fun getFormat(): Long {
     TransferContext.writeArguments()
@@ -166,7 +155,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the position of the given vertex.
    */
-  public final fun setVertex(idx: Int, vertex: Vector3): Unit {
+  public final fun setVertex(idx: Int, vertex: Vector3) {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to vertex)
     TransferContext.callMethod(ptr, MethodBindings.setVertexPtr, NIL)
   }
@@ -183,7 +172,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the normal of the given vertex.
    */
-  public final fun setVertexNormal(idx: Int, normal: Vector3): Unit {
+  public final fun setVertexNormal(idx: Int, normal: Vector3) {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR3 to normal)
     TransferContext.callMethod(ptr, MethodBindings.setVertexNormalPtr, NIL)
   }
@@ -200,7 +189,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the tangent of the given vertex.
    */
-  public final fun setVertexTangent(idx: Int, tangent: Plane): Unit {
+  public final fun setVertexTangent(idx: Int, tangent: Plane) {
     TransferContext.writeArguments(LONG to idx.toLong(), PLANE to tangent)
     TransferContext.callMethod(ptr, MethodBindings.setVertexTangentPtr, NIL)
   }
@@ -217,7 +206,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the UV of the given vertex.
    */
-  public final fun setVertexUv(idx: Int, uv: Vector2): Unit {
+  public final fun setVertexUv(idx: Int, uv: Vector2) {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to uv)
     TransferContext.callMethod(ptr, MethodBindings.setVertexUvPtr, NIL)
   }
@@ -234,7 +223,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the UV2 of the given vertex.
    */
-  public final fun setVertexUv2(idx: Int, uv2: Vector2): Unit {
+  public final fun setVertexUv2(idx: Int, uv2: Vector2) {
     TransferContext.writeArguments(LONG to idx.toLong(), VECTOR2 to uv2)
     TransferContext.callMethod(ptr, MethodBindings.setVertexUv2Ptr, NIL)
   }
@@ -251,7 +240,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the color of the given vertex.
    */
-  public final fun setVertexColor(idx: Int, color: Color): Unit {
+  public final fun setVertexColor(idx: Int, color: Color) {
     TransferContext.writeArguments(LONG to idx.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setVertexColorPtr, NIL)
   }
@@ -268,7 +257,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the bones of the given vertex.
    */
-  public final fun setVertexBones(idx: Int, bones: PackedInt32Array): Unit {
+  public final fun setVertexBones(idx: Int, bones: PackedInt32Array) {
     TransferContext.writeArguments(LONG to idx.toLong(), PACKED_INT_32_ARRAY to bones)
     TransferContext.callMethod(ptr, MethodBindings.setVertexBonesPtr, NIL)
   }
@@ -285,7 +274,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the bone weights of the given vertex.
    */
-  public final fun setVertexWeights(idx: Int, weights: PackedFloat32Array): Unit {
+  public final fun setVertexWeights(idx: Int, weights: PackedFloat32Array) {
     TransferContext.writeArguments(LONG to idx.toLong(), PACKED_FLOAT_32_ARRAY to weights)
     TransferContext.callMethod(ptr, MethodBindings.setVertexWeightsPtr, NIL)
   }
@@ -302,7 +291,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata associated with the given vertex.
    */
-  public final fun setVertexMeta(idx: Int, meta: Any?): Unit {
+  public final fun setVertexMeta(idx: Int, meta: Any?) {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(ptr, MethodBindings.setVertexMetaPtr, NIL)
   }
@@ -357,7 +346,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata of the given edge.
    */
-  public final fun setEdgeMeta(idx: Int, meta: Any?): Unit {
+  public final fun setEdgeMeta(idx: Int, meta: Any?) {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(ptr, MethodBindings.setEdgeMetaPtr, NIL)
   }
@@ -378,16 +367,14 @@ public open class MeshDataTool : RefCounted() {
    *
    * ```gdscript
    * //gdscript
-   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the
-   * first face.
+   * var index = mesh_data_tool.get_face_vertex(0, 1) # Gets the index of the second vertex of the first face.
    * var position = mesh_data_tool.get_vertex(index)
    * var normal = mesh_data_tool.get_vertex_normal(index)
    * ```
    *
    * ```csharp
    * //csharp
-   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the
-   * first face.
+   * int index = meshDataTool.GetFaceVertex(0, 1); // Gets the index of the second vertex of the first face.
    * Vector3 position = meshDataTool.GetVertex(index);
    * Vector3 normal = meshDataTool.GetVertexNormal(index);
    * ```
@@ -412,7 +399,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the metadata of the given face.
    */
-  public final fun setFaceMeta(idx: Int, meta: Any?): Unit {
+  public final fun setFaceMeta(idx: Int, meta: Any?) {
     TransferContext.writeArguments(LONG to idx.toLong(), ANY to meta)
     TransferContext.callMethod(ptr, MethodBindings.setFaceMetaPtr, NIL)
   }
@@ -438,7 +425,7 @@ public open class MeshDataTool : RefCounted() {
   /**
    * Sets the material to be used by newly-constructed [Mesh].
    */
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -456,117 +443,117 @@ public open class MeshDataTool : RefCounted() {
 
   public object MethodBindings {
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("MeshDataTool", "clear", 3_218_959_716)
 
     internal val createFromSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "create_from_surface", 2727020678)
+        TypeManager.getMethodBindPtr("MeshDataTool", "create_from_surface", 2_727_020_678)
 
     internal val commitToSurfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "commit_to_surface", 2021686445)
+        TypeManager.getMethodBindPtr("MeshDataTool", "commit_to_surface", 2_021_686_445)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_format", 3905245786)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_format", 3_905_245_786)
 
     internal val getVertexCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_count", 3905245786)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_count", 3_905_245_786)
 
     internal val getEdgeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_count", 3905245786)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_count", 3_905_245_786)
 
     internal val getFaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_count", 3905245786)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_count", 3_905_245_786)
 
     internal val setVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex", 1530502735)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex", 1_530_502_735)
 
     internal val getVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex", 711720468)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex", 711_720_468)
 
     internal val setVertexNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_normal", 1530502735)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_normal", 1_530_502_735)
 
     internal val getVertexNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_normal", 711720468)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_normal", 711_720_468)
 
     internal val setVertexTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_tangent", 1104099133)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_tangent", 1_104_099_133)
 
     internal val getVertexTangentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_tangent", 1372055458)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_tangent", 1_372_055_458)
 
     internal val setVertexUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv", 163021252)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv", 163_021_252)
 
     internal val getVertexUvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv", 2299179447)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv", 2_299_179_447)
 
     internal val setVertexUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv2", 163021252)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_uv2", 163_021_252)
 
     internal val getVertexUv2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv2", 2299179447)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_uv2", 2_299_179_447)
 
     internal val setVertexColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_color", 2878471219)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_color", 2_878_471_219)
 
     internal val getVertexColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_color", 3457211756)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_color", 3_457_211_756)
 
     internal val setVertexBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_bones", 3500328261)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_bones", 3_500_328_261)
 
     internal val getVertexBonesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_bones", 1706082319)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_bones", 1_706_082_319)
 
     internal val setVertexWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_weights", 1345852415)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_weights", 1_345_852_415)
 
     internal val getVertexWeightsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_weights", 1542882410)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_weights", 1_542_882_410)
 
     internal val setVertexMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_meta", 2152698145)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_vertex_meta", 2_152_698_145)
 
     internal val getVertexMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_meta", 4227898402)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_meta", 4_227_898_402)
 
     internal val getVertexEdgesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_edges", 1706082319)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_edges", 1_706_082_319)
 
     internal val getVertexFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_faces", 1706082319)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_vertex_faces", 1_706_082_319)
 
     internal val getEdgeVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_vertex", 3175239445)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_vertex", 3_175_239_445)
 
     internal val getEdgeFacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_faces", 1706082319)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_faces", 1_706_082_319)
 
     internal val setEdgeMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_edge_meta", 2152698145)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_edge_meta", 2_152_698_145)
 
     internal val getEdgeMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_meta", 4227898402)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_edge_meta", 4_227_898_402)
 
     internal val getFaceVertexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_vertex", 3175239445)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_vertex", 3_175_239_445)
 
     internal val getFaceEdgePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_edge", 3175239445)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_edge", 3_175_239_445)
 
     internal val setFaceMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_face_meta", 2152698145)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_face_meta", 2_152_698_145)
 
     internal val getFaceMetaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_meta", 4227898402)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_meta", 4_227_898_402)
 
     internal val getFaceNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_normal", 711720468)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_face_normal", 711_720_468)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("MeshDataTool", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MeshDataTool", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("MeshDataTool", "get_material", 5_934_680)
   }
 }

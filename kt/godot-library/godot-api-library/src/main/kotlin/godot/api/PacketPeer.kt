@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,29 +19,20 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides
- * an API for sending and receiving packets both as raw data or variables. This makes it easy to
- * transfer data over a protocol, without having to encode data as low-level bytes or having to worry
- * about network ordering.
+ * PacketPeer is an abstraction and base class for packet-based protocols (such as UDP). It provides an API for sending and receiving packets both as raw data or variables. This makes it easy to transfer data over a protocol, without having to encode data as low-level bytes or having to worry about network ordering.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class PacketPeer internal constructor() : RefCounted() {
   /**
-   * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier
-   * memory allocations.
+   * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier memory allocations.
    *
-   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically
-   * to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than
-   * [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
+   * The [putVar] method allocates memory on the stack, and the buffer used will grow automatically to the closest power of two to match the size of the [Variant]. If the [Variant] is bigger than [encodeBufferMaxSize], the method will error out with [ERR_OUT_OF_MEMORY].
    */
   public final inline var encodeBufferMaxSize: Int
     @JvmName("encodeBufferMaxSizeProperty")
@@ -54,7 +42,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
       setEncodeBufferMaxSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(438, scriptIndex)
   }
 
@@ -63,9 +51,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
    *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
-   * if the serialized object comes from untrusted sources to avoid potential security threats such as
-   * remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   @JvmOverloads
   public final fun getVar(allowObjects: Boolean = false): Any? {
@@ -75,8 +61,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can
-   * potentially include code).
+   * Sends a [Variant] as a packet. If [fullObjects] is `true`, encoding objects is allowed (and can potentially include code).
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
@@ -129,7 +114,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setEncodeBufferMaxSize(maxSize: Int): Unit {
+  public final fun setEncodeBufferMaxSize(maxSize: Int) {
     TransferContext.writeArguments(LONG to maxSize.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setEncodeBufferMaxSizePtr, NIL)
   }
@@ -138,27 +123,27 @@ public open class PacketPeer internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val getVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_var", 3442865206)
+        TypeManager.getMethodBindPtr("PacketPeer", "get_var", 3_442_865_206)
 
     internal val putVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "put_var", 2436251611)
+        TypeManager.getMethodBindPtr("PacketPeer", "put_var", 2_436_251_611)
 
     internal val getPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_packet", 2115431945)
+        TypeManager.getMethodBindPtr("PacketPeer", "get_packet", 2_115_431_945)
 
     internal val putPacketPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "put_packet", 680677267)
+        TypeManager.getMethodBindPtr("PacketPeer", "put_packet", 680_677_267)
 
     internal val getPacketErrorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_packet_error", 3185525595)
+        TypeManager.getMethodBindPtr("PacketPeer", "get_packet_error", 3_185_525_595)
 
     internal val getAvailablePacketCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_available_packet_count", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeer", "get_available_packet_count", 3_905_245_786)
 
     internal val getEncodeBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "get_encode_buffer_max_size", 3905245786)
+        TypeManager.getMethodBindPtr("PacketPeer", "get_encode_buffer_max_size", 3_905_245_786)
 
     internal val setEncodeBufferMaxSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PacketPeer", "set_encode_buffer_max_size", 1286410249)
+        TypeManager.getMethodBindPtr("PacketPeer", "set_encode_buffer_max_size", 1_286_410_249)
   }
 }

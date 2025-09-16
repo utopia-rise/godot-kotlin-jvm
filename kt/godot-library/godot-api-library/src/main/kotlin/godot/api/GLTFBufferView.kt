@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,23 +17,17 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the
- * `"bufferViews"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer that
- * can be used to identify and extract data from the buffer.
+ * GLTFBufferView is a data structure representing a glTF `bufferView` that would be found in the `"bufferViews"` array. A buffer is a blob of binary data. A buffer view is a slice of a buffer that can be used to identify and extract data from the buffer.
  *
- * Most custom uses of buffers only need to use the [buffer], [byteLength], and [byteOffset]. The
- * [byteStride] and [indices] properties are for more advanced use cases such as interleaved mesh data
- * encoded for the GPU.
+ * Most custom uses of buffers only need to use the [buffer], [byteLength], and [byteOffset]. The [byteStride] and [indices] properties are for more advanced use cases such as interleaved mesh data encoded for the GPU.
  */
 @GodotBaseType
 public open class GLTFBufferView : Resource() {
   /**
-   * The index of the buffer this buffer view is referencing. If `-1`, this buffer view is not
-   * referencing any buffer.
+   * The index of the buffer this buffer view is referencing. If `-1`, this buffer view is not referencing any buffer.
    */
   public final inline var buffer: Int
     @JvmName("bufferProperty")
@@ -80,11 +71,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   /**
-   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ELEMENT_ARRAY_BUFFER` used for
-   * vertex indices (integer constant `34963`). `false` if the buffer type is any other value. See
-   * [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers,
-   * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
-   * export.
+   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ELEMENT_ARRAY_BUFFER` used for vertex indices (integer constant `34963`). `false` if the buffer type is any other value. See [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers, BufferViews, and Accessors[/url] for possible values. This property is set on import and used on export.
    */
   public final inline var indices: Boolean
     @JvmName("indicesProperty")
@@ -95,11 +82,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   /**
-   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ARRAY_BUFFER` used for vertex
-   * attributes (integer constant `34962`). `false` if the buffer type is any other value. See
-   * [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers,
-   * BufferViews, and Accessors[/url] for possible values. This property is set on import and used on
-   * export.
+   * `true` if the GLTFBufferView's OpenGL GPU buffer type is an `ARRAY_BUFFER` used for vertex attributes (integer constant `34962`). `false` if the buffer type is any other value. See [url=https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/gltfTutorial_005_BuffersBufferViewsAccessors.md]Buffers, BufferViews, and Accessors[/url] for possible values. This property is set on import and used on export.
    */
   public final inline var vertexAttributes: Boolean
     @JvmName("vertexAttributesProperty")
@@ -109,14 +92,12 @@ public open class GLTFBufferView : Resource() {
       setVertexAttributes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(226, scriptIndex)
   }
 
   /**
-   * Loads the buffer view data from the buffer referenced by this buffer view in the given
-   * [GLTFState]. Interleaved data with a byte stride is not yet supported by this method. The data is
-   * returned as a [PackedByteArray].
+   * Loads the buffer view data from the buffer referenced by this buffer view in the given [GLTFState]. Interleaved data with a byte stride is not yet supported by this method. The data is returned as a [PackedByteArray].
    */
   public final fun loadBufferViewData(state: GLTFState?): PackedByteArray {
     TransferContext.writeArguments(OBJECT to state)
@@ -130,7 +111,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBuffer(buffer: Int): Unit {
+  public final fun setBuffer(buffer: Int) {
     TransferContext.writeArguments(LONG to buffer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
@@ -141,7 +122,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setByteOffset(byteOffset: Int): Unit {
+  public final fun setByteOffset(byteOffset: Int) {
     TransferContext.writeArguments(LONG to byteOffset.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
   }
@@ -152,7 +133,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setByteLength(byteLength: Int): Unit {
+  public final fun setByteLength(byteLength: Int) {
     TransferContext.writeArguments(LONG to byteLength.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setByteLengthPtr, NIL)
   }
@@ -163,7 +144,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setByteStride(byteStride: Int): Unit {
+  public final fun setByteStride(byteStride: Int) {
     TransferContext.writeArguments(LONG to byteStride.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setByteStridePtr, NIL)
   }
@@ -174,7 +155,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIndices(indices: Boolean): Unit {
+  public final fun setIndices(indices: Boolean) {
     TransferContext.writeArguments(BOOL to indices)
     TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
   }
@@ -185,7 +166,7 @@ public open class GLTFBufferView : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVertexAttributes(isAttributes: Boolean): Unit {
+  public final fun setVertexAttributes(isAttributes: Boolean) {
     TransferContext.writeArguments(BOOL to isAttributes)
     TransferContext.callMethod(ptr, MethodBindings.setVertexAttributesPtr, NIL)
   }
@@ -194,42 +175,42 @@ public open class GLTFBufferView : Resource() {
 
   public object MethodBindings {
     internal val loadBufferViewDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3945446907)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "load_buffer_view_data", 3_945_446_907)
 
     internal val getBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_buffer", 3_905_245_786)
 
     internal val setBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_buffer", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_buffer", 1_286_410_249)
 
     internal val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_offset", 3_905_245_786)
 
     internal val setByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_offset", 1_286_410_249)
 
     internal val getByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_length", 3_905_245_786)
 
     internal val setByteLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_length", 1_286_410_249)
 
     internal val getByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3905245786)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_byte_stride", 3_905_245_786)
 
     internal val setByteStridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_byte_stride", 1_286_410_249)
 
     internal val getIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_indices", 36873697)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_indices", 36_873_697)
 
     internal val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_indices", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_indices", 2_586_408_642)
 
     internal val getVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36873697)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "get_vertex_attributes", 36_873_697)
 
     internal val setVertexAttributesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2586408642)
+        TypeManager.getMethodBindPtr("GLTFBufferView", "set_vertex_attributes", 2_586_408_642)
   }
 }

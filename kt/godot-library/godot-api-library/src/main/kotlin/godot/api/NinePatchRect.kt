@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,10 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Also known as 9-slice panels, [NinePatchRect] produces clean panels of any size based on a small
- * texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the
- * texture's edges horizontally or vertically, tiles the center on both axes, and leaves the corners
- * unchanged.
+ * Also known as 9-slice panels, [NinePatchRect] produces clean panels of any size based on a small texture. To do so, it splits the texture in a 3×3 grid. When you scale the node, it tiles the texture's edges horizontally or vertically, tiles the center on both axes, and leaves the corners unchanged.
  */
 @GodotBaseType
 public open class NinePatchRect : Control() {
@@ -63,16 +57,11 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
-   * property to define the area the 9-slice should use. All other properties are relative to this one.
-   * If the rect is empty, NinePatchRect will use the whole texture.
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var regionRect: Rect2
@@ -84,9 +73,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and
-   * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
-   * with non-uniform borders.
+   * The width of the 9-slice's left column. A margin of 16 means the 9-slice's left corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
    */
   public final inline var patchMarginLeft: Int
     @JvmName("patchMarginLeftProperty")
@@ -97,9 +84,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side
-   * will have a height of 16 pixels. You can set all 4 margin values individually to create panels
-   * with non-uniform borders.
+   * The height of the 9-slice's top row. A margin of 16 means the 9-slice's top corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
    */
   public final inline var patchMarginTop: Int
     @JvmName("patchMarginTopProperty")
@@ -110,9 +95,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and
-   * side will have a width of 16 pixels. You can set all 4 margin values individually to create panels
-   * with non-uniform borders.
+   * The width of the 9-slice's right column. A margin of 16 means the 9-slice's right corners and side will have a width of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
    */
   public final inline var patchMarginRight: Int
     @JvmName("patchMarginRightProperty")
@@ -123,9 +106,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and
-   * side will have a height of 16 pixels. You can set all 4 margin values individually to create
-   * panels with non-uniform borders.
+   * The height of the 9-slice's bottom row. A margin of 16 means the 9-slice's bottom corners and side will have a height of 16 pixels. You can set all 4 margin values individually to create panels with non-uniform borders.
    */
   public final inline var patchMarginBottom: Int
     @JvmName("patchMarginBottomProperty")
@@ -136,8 +117,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
-   * for possible values.
+   * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode] for possible values.
    */
   public final inline var axisStretchHorizontal: AxisStretchMode
     @JvmName("axisStretchHorizontalProperty")
@@ -148,8 +128,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
-   * possible values.
+   * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for possible values.
    */
   public final inline var axisStretchVertical: AxisStretchMode
     @JvmName("axisStretchVerticalProperty")
@@ -159,7 +138,7 @@ public open class NinePatchRect : Control() {
       setVAxisStretchMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(393, scriptIndex)
   }
 
@@ -174,9 +153,7 @@ public open class NinePatchRect : Control() {
    * ninepatchrect.regionRect = myCoreType
    * ``````
    *
-   * Rectangular region of the texture to sample from. If you're working with an atlas, use this
-   * property to define the area the 9-slice should use. All other properties are relative to this one.
-   * If the rect is empty, NinePatchRect will use the whole texture.
+   * Rectangular region of the texture to sample from. If you're working with an atlas, use this property to define the area the 9-slice should use. All other properties are relative to this one. If the rect is empty, NinePatchRect will use the whole texture.
    */
   @CoreTypeHelper
   public final fun regionRectMutate(block: Rect2.() -> Unit): Rect2 = regionRect.apply {
@@ -184,7 +161,7 @@ public open class NinePatchRect : Control() {
      regionRect = this
   }
 
-  public final fun setTexture(texture: Texture2D?): Unit {
+  public final fun setTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setTexturePtr, NIL)
   }
@@ -198,7 +175,7 @@ public open class NinePatchRect : Control() {
   /**
    * Sets the size of the margin on the specified [Side] to [value] pixels.
    */
-  public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
+  public final fun setPatchMargin(margin: Side, `value`: Int) {
     TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPatchMarginPtr, NIL)
   }
@@ -212,7 +189,7 @@ public open class NinePatchRect : Control() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setRegionRect(rect: Rect2): Unit {
+  public final fun setRegionRect(rect: Rect2) {
     TransferContext.writeArguments(RECT2 to rect)
     TransferContext.callMethod(ptr, MethodBindings.setRegionRectPtr, NIL)
   }
@@ -223,7 +200,7 @@ public open class NinePatchRect : Control() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setDrawCenter(drawCenter: Boolean): Unit {
+  public final fun setDrawCenter(drawCenter: Boolean) {
     TransferContext.writeArguments(BOOL to drawCenter)
     TransferContext.callMethod(ptr, MethodBindings.setDrawCenterPtr, NIL)
   }
@@ -234,7 +211,7 @@ public open class NinePatchRect : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setHAxisStretchMode(mode: AxisStretchMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
@@ -245,7 +222,7 @@ public open class NinePatchRect : Control() {
     return AxisStretchMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
+  public final fun setVAxisStretchMode(mode: AxisStretchMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
@@ -260,20 +237,15 @@ public open class NinePatchRect : Control() {
     id: Long,
   ) {
     /**
-     * Stretches the center texture across the NinePatchRect. This may cause the texture to be
-     * distorted.
+     * Stretches the center texture across the NinePatchRect. This may cause the texture to be distorted.
      */
     STRETCH(0),
     /**
-     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion.
-     * The texture must be seamless for this to work without displaying artifacts between edges.
+     * Repeats the center texture across the NinePatchRect. This won't cause any visible distortion. The texture must be seamless for this to work without displaying artifacts between edges.
      */
     TILE(1),
     /**
-     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to
-     * make sure each tile is visible in full. This may cause the texture to be distorted, but less
-     * than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without
-     * displaying artifacts between edges.
+     * Repeats the center texture across the NinePatchRect, but will also stretch the texture to make sure each tile is visible in full. This may cause the texture to be distorted, but less than [AXIS_STRETCH_MODE_STRETCH]. The texture must be seamless for this to work without displaying artifacts between edges.
      */
     TILE_FIT(2),
     ;
@@ -292,39 +264,39 @@ public open class NinePatchRect : Control() {
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_texture", 4051416890)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_texture", 4_051_416_890)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_texture", 3635182373)
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_texture", 3_635_182_373)
 
     internal val setPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437707142)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_patch_margin", 437_707_142)
 
     internal val getPatchMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1983885014)
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_patch_margin", 1_983_885_014)
 
     internal val setRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_region_rect", 2046264180)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_region_rect", 2_046_264_180)
 
     internal val getRegionRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_region_rect", 1639390495)
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_region_rect", 1_639_390_495)
 
     internal val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_draw_center", 2586408642)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_draw_center", 2_586_408_642)
 
     internal val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36873697)
+        TypeManager.getMethodBindPtr("NinePatchRect", "is_draw_center_enabled", 36_873_697)
 
     internal val setHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3219608417)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_h_axis_stretch_mode", 3_219_608_417)
 
     internal val getHAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3317113799)
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_h_axis_stretch_mode", 3_317_113_799)
 
     internal val setVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3219608417)
+        TypeManager.getMethodBindPtr("NinePatchRect", "set_v_axis_stretch_mode", 3_219_608_417)
 
     internal val getVAxisStretchModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3317113799)
+        TypeManager.getMethodBindPtr("NinePatchRect", "get_v_axis_stretch_mode", 3_317_113_799)
   }
 }

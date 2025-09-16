@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,30 +25,22 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D]
- * nodes.
+ * A hierarchy of [Bone2D]s can be bound to a [Skeleton2D] to control and animate other [Node2D] nodes.
  *
- * You can use [Bone2D] and [Skeleton2D] nodes to animate 2D meshes created with the [Polygon2D] UV
- * editor.
+ * You can use [Bone2D] and [Skeleton2D] nodes to animate 2D meshes created with the [Polygon2D] UV editor.
  *
- * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are
- * relative to the bone's parent.
+ * Each bone has a [rest] transform that you can reset to with [applyRest]. These rest poses are relative to the bone's parent.
  *
- * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the
- * code, you need to iterate over the bones to set their individual rest poses.
+ * If in the editor, you can set the rest pose of an entire skeleton using a menu option, from the code, you need to iterate over the bones to set their individual rest poses.
  */
 @GodotBaseType
 public open class Bone2D : Node2D() {
   /**
-   * Rest transform of the bone. You can reset the node's transforms to this value using
-   * [applyRest].
+   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rest: Transform2D
@@ -62,7 +51,7 @@ public open class Bone2D : Node2D() {
       setRest(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(106, scriptIndex)
   }
 
@@ -77,8 +66,7 @@ public open class Bone2D : Node2D() {
    * bone2d.rest = myCoreType
    * ``````
    *
-   * Rest transform of the bone. You can reset the node's transforms to this value using
-   * [applyRest].
+   * Rest transform of the bone. You can reset the node's transforms to this value using [applyRest].
    */
   @CoreTypeHelper
   public final fun restMutate(block: Transform2D.() -> Unit): Transform2D = rest.apply {
@@ -86,7 +74,7 @@ public open class Bone2D : Node2D() {
      rest = this
   }
 
-  public final fun setRest(rest: Transform2D): Unit {
+  public final fun setRest(rest: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to rest)
     TransferContext.callMethod(ptr, MethodBindings.setRestPtr, NIL)
   }
@@ -100,14 +88,13 @@ public open class Bone2D : Node2D() {
   /**
    * Resets the bone to the rest pose. This is equivalent to setting [Node2D.transform] to [rest].
    */
-  public final fun applyRest(): Unit {
+  public final fun applyRest() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.applyRestPtr, NIL)
   }
 
   /**
-   * Returns the node's [rest] [Transform2D] if it doesn't have a parent, or its rest pose relative
-   * to its parent.
+   * Returns the node's [rest] [Transform2D] if it doesn't have a parent, or its rest pose relative to its parent.
    */
   public final fun getSkeletonRest(): Transform2D {
     TransferContext.writeArguments()
@@ -125,19 +112,15 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * When set to `true`, the [Bone2D] node will attempt to automatically calculate the bone angle
-   * and length using the first child [Bone2D] node, if one exists. If none exist, the [Bone2D] cannot
-   * automatically calculate these values and will print a warning.
+   * When set to `true`, the [Bone2D] node will attempt to automatically calculate the bone angle and length using the first child [Bone2D] node, if one exists. If none exist, the [Bone2D] cannot automatically calculate these values and will print a warning.
    */
-  public final fun setAutocalculateLengthAndAngle(autoCalculate: Boolean): Unit {
+  public final fun setAutocalculateLengthAndAngle(autoCalculate: Boolean) {
     TransferContext.writeArguments(BOOL to autoCalculate)
     TransferContext.callMethod(ptr, MethodBindings.setAutocalculateLengthAndAnglePtr, NIL)
   }
 
   /**
-   * Returns whether this [Bone2D] is going to autocalculate its length and bone angle using its
-   * first [Bone2D] child node, if one exists. If there are no [Bone2D] children, then it cannot
-   * autocalculate these values and will print a warning.
+   * Returns whether this [Bone2D] is going to autocalculate its length and bone angle using its first [Bone2D] child node, if one exists. If there are no [Bone2D] children, then it cannot autocalculate these values and will print a warning.
    */
   public final fun getAutocalculateLengthAndAngle(): Boolean {
     TransferContext.writeArguments()
@@ -148,7 +131,7 @@ public open class Bone2D : Node2D() {
   /**
    * Sets the length of the bone in the [Bone2D].
    */
-  public final fun setLength(length: Float): Unit {
+  public final fun setLength(length: Float) {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLengthPtr, NIL)
   }
@@ -163,13 +146,11 @@ public open class Bone2D : Node2D() {
   }
 
   /**
-   * Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D]
-   * to a child [Bone2D] node.
+   * Sets the bone angle for the [Bone2D]. This is typically set to the rotation from the [Bone2D] to a child [Bone2D] node.
    *
-   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
-   * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
+   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
-  public final fun setBoneAngle(angle: Float): Unit {
+  public final fun setBoneAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBoneAnglePtr, NIL)
   }
@@ -177,8 +158,7 @@ public open class Bone2D : Node2D() {
   /**
    * Returns the angle of the bone in the [Bone2D].
    *
-   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of
-   * the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
+   * **Note:** This is different from the [Bone2D]'s rotation. The bone's angle is the rotation of the bone shown by the gizmo, which is unaffected by the [Bone2D]'s [Node2D.transform].
    */
   public final fun getBoneAngle(): Float {
     TransferContext.writeArguments()
@@ -190,36 +170,36 @@ public open class Bone2D : Node2D() {
 
   public object MethodBindings {
     internal val setRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_rest", 2761652528)
+        TypeManager.getMethodBindPtr("Bone2D", "set_rest", 2_761_652_528)
 
     internal val getRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_rest", 3814499831)
+        TypeManager.getMethodBindPtr("Bone2D", "get_rest", 3_814_499_831)
 
     internal val applyRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "apply_rest", 3218959716)
+        TypeManager.getMethodBindPtr("Bone2D", "apply_rest", 3_218_959_716)
 
     internal val getSkeletonRestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3814499831)
+        TypeManager.getMethodBindPtr("Bone2D", "get_skeleton_rest", 3_814_499_831)
 
     internal val getIndexInSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3905245786)
+        TypeManager.getMethodBindPtr("Bone2D", "get_index_in_skeleton", 3_905_245_786)
 
     internal val setAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2586408642)
+        TypeManager.getMethodBindPtr("Bone2D", "set_autocalculate_length_and_angle", 2_586_408_642)
 
     internal val getAutocalculateLengthAndAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36873697)
+        TypeManager.getMethodBindPtr("Bone2D", "get_autocalculate_length_and_angle", 36_873_697)
 
     internal val setLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_length", 373806689)
+        TypeManager.getMethodBindPtr("Bone2D", "set_length", 373_806_689)
 
     internal val getLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_length", 1740695150)
+        TypeManager.getMethodBindPtr("Bone2D", "get_length", 1_740_695_150)
 
     internal val setBoneAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle", 373806689)
+        TypeManager.getMethodBindPtr("Bone2D", "set_bone_angle", 373_806_689)
 
     internal val getBoneAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle", 1740695150)
+        TypeManager.getMethodBindPtr("Bone2D", "get_bone_angle", 1_740_695_150)
   }
 }

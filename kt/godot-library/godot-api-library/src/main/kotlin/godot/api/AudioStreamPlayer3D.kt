@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,19 +28,13 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Plays audio with positional sound effects, based on the relative position of the audio listener.
- * Positional effects include distance attenuation, directionality, and the Doppler effect. For greater
- * realism, a low-pass filter is applied to distant sounds. This can be disabled by setting
- * [attenuationFilterCutoffHz] to `20500`.
+ * Plays audio with positional sound effects, based on the relative position of the audio listener. Positional effects include distance attenuation, directionality, and the Doppler effect. For greater realism, a low-pass filter is applied to distant sounds. This can be disabled by setting [attenuationFilterCutoffHz] to `20500`.
  *
- * By default, audio is heard from the camera position. This can be changed by adding an
- * [AudioListener3D] node to the scene and enabling it by calling [AudioListener3D.makeCurrent] on it.
+ * By default, audio is heard from the camera position. This can be changed by adding an [AudioListener3D] node to the scene and enabling it by calling [AudioListener3D.makeCurrent] on it.
  *
  * See also [AudioStreamPlayer] to play a sound non-positionally.
  *
- * **Note:** Hiding an [AudioStreamPlayer3D] node does not disable its audio output. To temporarily
- * disable an [AudioStreamPlayer3D]'s audio output, set [volumeDb] to a very low value like `-100`
- * (which isn't audible to human hearing).
+ * **Note:** Hiding an [AudioStreamPlayer3D] node does not disable its audio output. To temporarily disable an [AudioStreamPlayer3D]'s audio output, set [volumeDb] to a very low value like `-100` (which isn't audible to human hearing).
  */
 @GodotBaseType
 public open class AudioStreamPlayer3D : Node3D() {
@@ -64,8 +55,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or
-   * not be affected by distance, effectively disabling attenuation.
+   * Decides if audio should get quieter with distance linearly, quadratically, logarithmically, or not be affected by distance, effectively disabling attenuation.
    */
   public final inline var attenuationModel: AttenuationModel
     @JvmName("attenuationModelProperty")
@@ -89,9 +79,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * The base sound level before attenuation, as a linear value.
    *
-   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to
-   * the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to
-   * setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
+   * **Note:** This member modifies [volumeDb] for convenience. The returned value is equivalent to the result of [@GlobalScope.dbToLinear] on [volumeDb]. Setting this member is equivalent to setting [volumeDb] to the result of [@GlobalScope.linearToDb] on a value.
    */
   public final inline var volumeLinear: Float
     @JvmName("volumeLinearProperty")
@@ -102,8 +90,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The factor for the attenuation effect. Higher values make the sound audible over a larger
-   * distance.
+   * The factor for the attenuation effect. Higher values make the sound audible over a larger distance.
    */
   public final inline var unitSize: Float
     @JvmName("unitSizeProperty")
@@ -169,11 +156,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The distance past which the sound can no longer be heard at all. Only has an effect if set to a
-   * value greater than `0.0`. [maxDistance] works in tandem with [unitSize]. However, unlike
-   * [unitSize] whose behavior depends on the [attenuationModel], [maxDistance] always works in a
-   * linear fashion. This can be used to prevent the [AudioStreamPlayer3D] from requiring audio mixing
-   * when the listener is far away, which saves CPU resources.
+   * The distance past which the sound can no longer be heard at all. Only has an effect if set to a value greater than `0.0`. [maxDistance] works in tandem with [unitSize]. However, unlike [unitSize] whose behavior depends on the [attenuationModel], [maxDistance] always works in a linear fashion. This can be used to prevent the [AudioStreamPlayer3D] from requiring audio mixing when the listener is far away, which saves CPU resources.
    */
   public final inline var maxDistance: Float
     @JvmName("maxDistanceProperty")
@@ -184,8 +167,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The maximum number of sounds this node can play at the same time. Playing additional sounds
-   * after this value is reached will cut off the oldest sounds.
+   * The maximum number of sounds this node can play at the same time. Playing additional sounds after this value is reached will cut off the oldest sounds.
    */
   public final inline var maxPolyphony: Int
     @JvmName("maxPolyphonyProperty")
@@ -196,9 +178,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Scales the panning strength for this node by multiplying the base
-   * [ProjectSettings.audio/general/3dPanningStrength] with this factor. Higher values will pan audio
-   * from left to right more dramatically than lower values.
+   * Scales the panning strength for this node by multiplying the base [ProjectSettings.audio/general/3dPanningStrength] with this factor. Higher values will pan audio from left to right more dramatically than lower values.
    */
   public final inline var panningStrength: Float
     @JvmName("panningStrengthProperty")
@@ -211,10 +191,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * The bus on which this audio is playing.
    *
-   * **Note:** When setting this property, keep in mind that no validation is performed to see if
-   * the given name matches an existing bus. This is because audio bus layouts might be loaded after
-   * this property is set. If this given name can't be resolved at runtime, it will fall back to
-   * `"Master"`.
+   * **Note:** When setting this property, keep in mind that no validation is performed to see if the given name matches an existing bus. This is because audio bus layouts might be loaded after this property is set. If this given name can't be resolved at runtime, it will fall back to `"Master"`.
    */
   public final inline var bus: StringName
     @JvmName("busProperty")
@@ -225,10 +202,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Determines which [Area3D] layers affect the sound for reverb and audio bus effects. Areas can
-   * be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you
-   * might use this is making a "water" area so that sounds played in the water are redirected through
-   * an audio bus to make them sound like they are being played underwater.
+   * Determines which [Area3D] layers affect the sound for reverb and audio bus effects. Areas can be used to redirect [AudioStream]s so that they play in a certain audio bus. An example of how you might use this is making a "water" area so that sounds played in the water are redirected through an audio bus to make them sound like they are being played underwater.
    */
   public final inline var areaMask: Long
     @JvmName("areaMaskProperty")
@@ -239,8 +213,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The playback type of the stream player. If set other than to the default value, it will force
-   * that playback type.
+   * The playback type of the stream player. If set other than to the default value, it will force that playback type.
    */
   public final inline var playbackType: AudioServer.PlaybackType
     @JvmName("playbackTypeProperty")
@@ -273,8 +246,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * Attenuation factor used if listener is outside of [emissionAngleDegrees] and
-   * [emissionAngleEnabled] is set, in decibels.
+   * Attenuation factor used if listener is outside of [emissionAngleDegrees] and [emissionAngleEnabled] is set, in decibels.
    */
   public final inline var emissionAngleFilterAttenuationDb: Float
     @JvmName("emissionAngleFilterAttenuationDbProperty")
@@ -285,9 +257,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   /**
-   * The cutoff frequency of the attenuation low-pass filter, in Hz. A sound above this frequency is
-   * attenuated more than a sound below this frequency. To disable this effect, set this to `20500` as
-   * this frequency is above the human hearing limit.
+   * The cutoff frequency of the attenuation low-pass filter, in Hz. A sound above this frequency is attenuated more than a sound below this frequency. To disable this effect, set this to `20500` as this frequency is above the human hearing limit.
    */
   public final inline var attenuationFilterCutoffHz: Float
     @JvmName("attenuationFilterCutoffHzProperty")
@@ -319,11 +289,11 @@ public open class AudioStreamPlayer3D : Node3D() {
       setDopplerTracking(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(96, scriptIndex)
   }
 
-  public final fun setStream(stream: AudioStream?): Unit {
+  public final fun setStream(stream: AudioStream?) {
     TransferContext.writeArguments(OBJECT to stream)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPtr, NIL)
   }
@@ -334,7 +304,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStream?)
   }
 
-  public final fun setVolumeDb(volumeDb: Float): Unit {
+  public final fun setVolumeDb(volumeDb: Float) {
     TransferContext.writeArguments(DOUBLE to volumeDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeDbPtr, NIL)
   }
@@ -345,7 +315,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumeLinear(volumeLinear: Float): Unit {
+  public final fun setVolumeLinear(volumeLinear: Float) {
     TransferContext.writeArguments(DOUBLE to volumeLinear.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumeLinearPtr, NIL)
   }
@@ -356,7 +326,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setUnitSize(unitSize: Float): Unit {
+  public final fun setUnitSize(unitSize: Float) {
     TransferContext.writeArguments(DOUBLE to unitSize.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setUnitSizePtr, NIL)
   }
@@ -367,7 +337,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxDb(maxDb: Float): Unit {
+  public final fun setMaxDb(maxDb: Float) {
     TransferContext.writeArguments(DOUBLE to maxDb.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxDbPtr, NIL)
   }
@@ -378,7 +348,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPitchScale(pitchScale: Float): Unit {
+  public final fun setPitchScale(pitchScale: Float) {
     TransferContext.writeArguments(DOUBLE to pitchScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPitchScalePtr, NIL)
   }
@@ -390,11 +360,10 @@ public open class AudioStreamPlayer3D : Node3D() {
   }
 
   /**
-   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in
-   * seconds.
+   * Queues the audio to play on the next physics frame, from the given position [fromPosition], in seconds.
    */
   @JvmOverloads
-  public final fun play(fromPosition: Float = 0.0f): Unit {
+  public final fun play(fromPosition: Float = 0.0f) {
     TransferContext.writeArguments(DOUBLE to fromPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.playPtr, NIL)
   }
@@ -402,7 +371,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Sets the position from which audio will be played, in seconds.
    */
-  public final fun seek(toPosition: Float): Unit {
+  public final fun seek(toPosition: Float) {
     TransferContext.writeArguments(DOUBLE to toPosition.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.seekPtr, NIL)
   }
@@ -410,7 +379,7 @@ public open class AudioStreamPlayer3D : Node3D() {
   /**
    * Stops the audio.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
@@ -430,7 +399,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBus(bus: StringName): Unit {
+  public final fun setBus(bus: StringName) {
     TransferContext.writeArguments(STRING_NAME to bus)
     TransferContext.callMethod(ptr, MethodBindings.setBusPtr, NIL)
   }
@@ -441,7 +410,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setAutoplay(enable: Boolean): Unit {
+  public final fun setAutoplay(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutoplayPtr, NIL)
   }
@@ -452,12 +421,12 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPlaying(enable: Boolean): Unit {
+  public final fun setPlaying(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPlayingPtr, NIL)
   }
 
-  public final fun setMaxDistance(meters: Float): Unit {
+  public final fun setMaxDistance(meters: Float) {
     TransferContext.writeArguments(DOUBLE to meters.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMaxDistancePtr, NIL)
   }
@@ -468,7 +437,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAreaMask(mask: Long): Unit {
+  public final fun setAreaMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setAreaMaskPtr, NIL)
   }
@@ -479,7 +448,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEmissionAngle(degrees: Float): Unit {
+  public final fun setEmissionAngle(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionAnglePtr, NIL)
   }
@@ -490,7 +459,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEmissionAngleEnabled(enabled: Boolean): Unit {
+  public final fun setEmissionAngleEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionAngleEnabledPtr, NIL)
   }
@@ -501,7 +470,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEmissionAngleFilterAttenuationDb(db: Float): Unit {
+  public final fun setEmissionAngleFilterAttenuationDb(db: Float) {
     TransferContext.writeArguments(DOUBLE to db.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEmissionAngleFilterAttenuationDbPtr, NIL)
   }
@@ -512,7 +481,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAttenuationFilterCutoffHz(degrees: Float): Unit {
+  public final fun setAttenuationFilterCutoffHz(degrees: Float) {
     TransferContext.writeArguments(DOUBLE to degrees.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAttenuationFilterCutoffHzPtr, NIL)
   }
@@ -523,7 +492,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAttenuationFilterDb(db: Float): Unit {
+  public final fun setAttenuationFilterDb(db: Float) {
     TransferContext.writeArguments(DOUBLE to db.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAttenuationFilterDbPtr, NIL)
   }
@@ -534,7 +503,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAttenuationModel(model: AttenuationModel): Unit {
+  public final fun setAttenuationModel(model: AttenuationModel) {
     TransferContext.writeArguments(LONG to model.id)
     TransferContext.callMethod(ptr, MethodBindings.setAttenuationModelPtr, NIL)
   }
@@ -545,7 +514,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return AttenuationModel.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDopplerTracking(mode: DopplerTracking): Unit {
+  public final fun setDopplerTracking(mode: DopplerTracking) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDopplerTrackingPtr, NIL)
   }
@@ -556,7 +525,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setStreamPaused(pause: Boolean): Unit {
+  public final fun setStreamPaused(pause: Boolean) {
     TransferContext.writeArguments(BOOL to pause)
     TransferContext.callMethod(ptr, MethodBindings.setStreamPausedPtr, NIL)
   }
@@ -567,7 +536,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMaxPolyphony(maxPolyphony: Int): Unit {
+  public final fun setMaxPolyphony(maxPolyphony: Int) {
     TransferContext.writeArguments(LONG to maxPolyphony.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxPolyphonyPtr, NIL)
   }
@@ -578,7 +547,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPanningStrength(panningStrength: Float): Unit {
+  public final fun setPanningStrength(panningStrength: Float) {
     TransferContext.writeArguments(DOUBLE to panningStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPanningStrengthPtr, NIL)
   }
@@ -607,7 +576,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as AudioStreamPlayback?)
   }
 
-  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType): Unit {
+  public final fun setPlaybackType(playbackType: AudioServer.PlaybackType) {
     TransferContext.writeArguments(LONG to playbackType.id)
     TransferContext.callMethod(ptr, MethodBindings.setPlaybackTypePtr, NIL)
   }
@@ -618,7 +587,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     return AudioServer.PlaybackType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBus(bus: String) = setBus(bus.asCachedStringName())
+  public final fun setBus(bus: String): Unit = setBus(bus.asCachedStringName())
 
   public enum class AttenuationModel(
     id: Long,
@@ -636,9 +605,7 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     LOGARITHMIC(2),
     /**
-     * No attenuation of loudness according to distance. The sound will still be heard positionally,
-     * unlike an [AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value
-     * greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
+     * No attenuation of loudness according to distance. The sound will still be heard positionally, unlike an [AudioStreamPlayer]. [ATTENUATION_DISABLED] can be combined with a [maxDistance] value greater than `0.0` to achieve linear attenuation clamped to a sphere of a defined size.
      */
     DISABLED(3),
     ;
@@ -665,8 +632,7 @@ public open class AudioStreamPlayer3D : Node3D() {
      */
     IDLE_STEP(1),
     /**
-     * Executes doppler tracking during physics frames (see
-     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Executes doppler tracking during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     PHYSICS_STEP(2),
     ;
@@ -685,153 +651,153 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   public object MethodBindings {
     internal val setStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_stream", 2210767741)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_stream", 2_210_767_741)
 
     internal val getStreamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream", 160907539)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream", 160_907_539)
 
     internal val setVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_volume_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_volume_db", 373_806_689)
 
     internal val getVolumeDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_volume_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_volume_db", 1_740_695_150)
 
     internal val setVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_volume_linear", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_volume_linear", 373_806_689)
 
     internal val getVolumeLinearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_volume_linear", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_volume_linear", 1_740_695_150)
 
     internal val setUnitSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_unit_size", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_unit_size", 373_806_689)
 
     internal val getUnitSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_unit_size", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_unit_size", 1_740_695_150)
 
     internal val setMaxDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_db", 373_806_689)
 
     internal val getMaxDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_db", 1_740_695_150)
 
     internal val setPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_pitch_scale", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_pitch_scale", 373_806_689)
 
     internal val getPitchScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_pitch_scale", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_pitch_scale", 1_740_695_150)
 
     internal val playPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "play", 1958160172)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "play", 1_958_160_172)
 
     internal val seekPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "seek", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "seek", 373_806_689)
 
     internal val stopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "stop", 3218959716)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "stop", 3_218_959_716)
 
     internal val isPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_playing", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_playing", 36_873_697)
 
     internal val getPlaybackPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_position", 191475506)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_position", 191_475_506)
 
     internal val setBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_bus", 3304788590)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_bus", 3_304_788_590)
 
     internal val getBusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_bus", 2002593661)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_bus", 2_002_593_661)
 
     internal val setAutoplayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_autoplay", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_autoplay", 2_586_408_642)
 
     internal val isAutoplayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_autoplay_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_autoplay_enabled", 36_873_697)
 
     internal val setPlayingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_playing", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_playing", 2_586_408_642)
 
     internal val setMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_distance", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_distance", 373_806_689)
 
     internal val getMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_distance", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_distance", 1_740_695_150)
 
     internal val setAreaMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_area_mask", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_area_mask", 1_286_410_249)
 
     internal val getAreaMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_area_mask", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_area_mask", 3_905_245_786)
 
     internal val setEmissionAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle", 373_806_689)
 
     internal val getEmissionAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle", 1_740_695_150)
 
     internal val setEmissionAngleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_enabled", 2_586_408_642)
 
     internal val isEmissionAngleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_emission_angle_enabled", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "is_emission_angle_enabled", 36_873_697)
 
     internal val setEmissionAngleFilterAttenuationDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_filter_attenuation_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_emission_angle_filter_attenuation_db", 373_806_689)
 
     internal val getEmissionAngleFilterAttenuationDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle_filter_attenuation_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_emission_angle_filter_attenuation_db", 1_740_695_150)
 
     internal val setAttenuationFilterCutoffHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_cutoff_hz", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_cutoff_hz", 373_806_689)
 
     internal val getAttenuationFilterCutoffHzPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_cutoff_hz", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_cutoff_hz", 1_740_695_150)
 
     internal val setAttenuationFilterDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_filter_db", 373_806_689)
 
     internal val getAttenuationFilterDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_filter_db", 1_740_695_150)
 
     internal val setAttenuationModelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_model", 2988086229)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_attenuation_model", 2_988_086_229)
 
     internal val getAttenuationModelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_model", 3035106060)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_attenuation_model", 3_035_106_060)
 
     internal val setDopplerTrackingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_doppler_tracking", 3968161450)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_doppler_tracking", 3_968_161_450)
 
     internal val getDopplerTrackingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_doppler_tracking", 1702418664)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_doppler_tracking", 1_702_418_664)
 
     internal val setStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_stream_paused", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_stream_paused", 2_586_408_642)
 
     internal val getStreamPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_paused", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_paused", 36_873_697)
 
     internal val setMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_polyphony", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_max_polyphony", 1_286_410_249)
 
     internal val getMaxPolyphonyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_polyphony", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_max_polyphony", 3_905_245_786)
 
     internal val setPanningStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_panning_strength", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_panning_strength", 373_806_689)
 
     internal val getPanningStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_panning_strength", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_panning_strength", 1_740_695_150)
 
     internal val hasStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "has_stream_playback", 2240911060)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "has_stream_playback", 2_240_911_060)
 
     internal val getStreamPlaybackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_playback", 210135309)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_stream_playback", 210_135_309)
 
     internal val setPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_playback_type", 725473817)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "set_playback_type", 725_473_817)
 
     internal val getPlaybackTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_type", 4011264623)
+        TypeManager.getMethodBindPtr("AudioStreamPlayer3D", "get_playback_type", 4_011_264_623)
   }
 }

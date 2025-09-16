@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if`
- * instruction in shader code.
+ * Compares `a` and `b` of [type] by [function]. Returns a boolean scalar. Translates to `if` instruction in shader code.
  */
 @GodotBaseType
 public open class VisualShaderNodeCompare : VisualShaderNode() {
@@ -57,11 +52,11 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
       setCondition(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(737, scriptIndex)
   }
 
-  public final fun setComparisonType(type: ComparisonType): Unit {
+  public final fun setComparisonType(type: ComparisonType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setComparisonTypePtr, NIL)
   }
@@ -72,7 +67,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     return ComparisonType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -83,7 +78,7 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
     return Function.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCondition(condition: Condition): Unit {
+  public final fun setCondition(condition: Condition) {
     TransferContext.writeArguments(LONG to condition.id)
     TransferContext.callMethod(ptr, MethodBindings.setConditionPtr, NIL)
   }
@@ -157,23 +152,19 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
      */
     NOT_EQUAL(1),
     /**
-     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or
-     * [CTYPE_TRANSFORM].
+     * Comparison for greater than (`a > b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
     GREATER_THAN(2),
     /**
-     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to
-     * [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
+     * Comparison for greater than or equal (`a >= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
     GREATER_THAN_EQUAL(3),
     /**
-     * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or
-     * [CTYPE_TRANSFORM].
+     * Comparison for less than (`a < b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
     LESS_THAN(4),
     /**
-     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN]
-     * or [CTYPE_TRANSFORM].
+     * Comparison for less than or equal (`a <= b`). Cannot be used if [type] set to [CTYPE_BOOLEAN] or [CTYPE_TRANSFORM].
      */
     LESS_THAN_EQUAL(5),
     /**
@@ -223,21 +214,21 @@ public open class VisualShaderNodeCompare : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type", 516558320)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_comparison_type", 516_558_320)
 
     internal val getComparisonTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type", 3495315961)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_comparison_type", 3_495_315_961)
 
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function", 2370951349)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_function", 2_370_951_349)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function", 4089164265)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_function", 4_089_164_265)
 
     internal val setConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition", 918742392)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "set_condition", 918_742_392)
 
     internal val getConditionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition", 3281078941)
+        TypeManager.getMethodBindPtr("VisualShaderNodeCompare", "get_condition", 3_281_078_941)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
       setOpType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(829, scriptIndex)
   }
 
-  public final fun setOpType(type: OpType): Unit {
+  public final fun setOpType(type: OpType) {
     TransferContext.writeArguments(LONG to type.id)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
@@ -84,9 +80,9 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "set_op_type", 1692596998)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "set_op_type", 1_692_596_998)
 
     internal val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "get_op_type", 2568738462)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorBase", "get_op_type", 2_568_738_462)
   }
 }

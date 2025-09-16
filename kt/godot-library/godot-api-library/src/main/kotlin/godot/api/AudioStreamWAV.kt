@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,29 +32,22 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an
- * [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for
- * positional audio). The sound can be looped.
+ * AudioStreamWAV stores sound samples loaded from WAV files. To play the stored sound, use an [AudioStreamPlayer] (for non-positional audio) or [AudioStreamPlayer2D]/[AudioStreamPlayer3D] (for positional audio). The sound can be looped.
  *
- * This class can also be used to store dynamically-generated PCM audio data. See also
- * [AudioStreamGenerator] for procedural audio generation.
+ * This class can also be used to store dynamically-generated PCM audio data. See also [AudioStreamGenerator] for procedural audio generation.
  */
 @GodotBaseType
 public open class AudioStreamWAV : AudioStream() {
   /**
    * Contains the audio data in bytes.
    *
-   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
-   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data. To convert from unsigned 8-bit PCM, subtract 128 from each byte.
    *
    * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
@@ -113,18 +103,11 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The sample rate for mixing this audio. Higher values require more storage space, but result in
-   * better quality.
+   * The sample rate for mixing this audio. Higher values require more storage space, but result in better quality.
    *
-   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and
-   * `48000`.
+   * In games, common sample rates in use are `11025`, `16000`, `22050`, `32000`, `44100`, and `48000`.
    *
-   * According to the
-   * [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon
-   * sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz
-   * (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched
-   * sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in
-   * quality.
+   * According to the [url=https://en.wikipedia.org/wiki/Nyquist&#37;E2&#37;80&#37;93Shannon_sampling_theorem]Nyquist-Shannon sampling theorem[/url], there is no quality difference to human hearing when going past 40,000 Hz (since most humans can only hear up to ~20,000 Hz, often less). If you are using lower-pitched sounds such as voices, lower sample rates such as `32000` or `22050` may be usable with no loss in quality.
    */
   public final inline var mixRate: Int
     @JvmName("mixRateProperty")
@@ -145,7 +128,7 @@ public open class AudioStreamWAV : AudioStream() {
       setStereo(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(101, scriptIndex)
   }
 
@@ -162,8 +145,7 @@ public open class AudioStreamWAV : AudioStream() {
    *
    * Contains the audio data in bytes.
    *
-   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
-   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data. To convert from unsigned 8-bit PCM, subtract 128 from each byte.
    *
    * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
    */
@@ -175,19 +157,16 @@ public open class AudioStreamWAV : AudioStream() {
 
   /**
    * This is a helper function for [data] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Contains the audio data in bytes.
    *
-   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data.
-   * To convert from unsigned 8-bit PCM, subtract 128 from each byte.
+   * **Note:** If [format] is set to [FORMAT_8_BITS], this property expects signed 8-bit PCM data. To convert from unsigned 8-bit PCM, subtract 128 from each byte.
    *
    * **Note:** If [format] is set to [FORMAT_QOA], this property expects data from a full QOA file.
    */
   @CoreTypeHelper
-  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
-      data.apply {
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray = data.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -195,7 +174,7 @@ public open class AudioStreamWAV : AudioStream() {
      data = this
   }
 
-  public final fun setData(`data`: PackedByteArray): Unit {
+  public final fun setData(`data`: PackedByteArray) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
@@ -206,7 +185,7 @@ public open class AudioStreamWAV : AudioStream() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
-  public final fun setFormat(format: Format): Unit {
+  public final fun setFormat(format: Format) {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
@@ -217,7 +196,7 @@ public open class AudioStreamWAV : AudioStream() {
     return Format.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLoopMode(loopMode: LoopMode): Unit {
+  public final fun setLoopMode(loopMode: LoopMode) {
     TransferContext.writeArguments(LONG to loopMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
@@ -228,7 +207,7 @@ public open class AudioStreamWAV : AudioStream() {
     return LoopMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLoopBegin(loopBegin: Int): Unit {
+  public final fun setLoopBegin(loopBegin: Int) {
     TransferContext.writeArguments(LONG to loopBegin.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLoopBeginPtr, NIL)
   }
@@ -239,7 +218,7 @@ public open class AudioStreamWAV : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLoopEnd(loopEnd: Int): Unit {
+  public final fun setLoopEnd(loopEnd: Int) {
     TransferContext.writeArguments(LONG to loopEnd.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLoopEndPtr, NIL)
   }
@@ -250,7 +229,7 @@ public open class AudioStreamWAV : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMixRate(mixRate: Int): Unit {
+  public final fun setMixRate(mixRate: Int) {
     TransferContext.writeArguments(LONG to mixRate.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMixRatePtr, NIL)
   }
@@ -261,7 +240,7 @@ public open class AudioStreamWAV : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setStereo(stereo: Boolean): Unit {
+  public final fun setStereo(stereo: Boolean) {
     TransferContext.writeArguments(BOOL to stereo)
     TransferContext.callMethod(ptr, MethodBindings.setStereoPtr, NIL)
   }
@@ -273,8 +252,7 @@ public open class AudioStreamWAV : AudioStream() {
   }
 
   /**
-   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or Quite OK Audio
-   * formats can't be saved.
+   * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or Quite OK Audio formats can't be saved.
    *
    * **Note:** A `.wav` extension is automatically appended to [path] if it is missing.
    */
@@ -348,24 +326,20 @@ public open class AudioStreamWAV : AudioStream() {
 
   public companion object {
     /**
-     * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV
-     * data.
+     * Creates a new [AudioStreamWAV] instance from the given buffer. The buffer must contain WAV data.
      *
-     * The keys and values of [options] match the properties of [ResourceImporterWAV]. The usage of
-     * [options] is identical to [AudioStreamWAV.loadFromFile].
+     * The keys and values of [options] match the properties of [ResourceImporterWAV]. The usage of [options] is identical to [AudioStreamWAV.loadFromFile].
      */
     @JvmOverloads
     @JvmStatic
-    public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> =
-        Dictionary()): AudioStreamWAV? {
+    public final fun loadFromBuffer(streamData: PackedByteArray, options: Dictionary<Any?, Any?> = Dictionary()): AudioStreamWAV? {
       TransferContext.writeArguments(PACKED_BYTE_ARRAY to streamData, DICTIONARY to options)
       TransferContext.callMethod(0, MethodBindings.loadFromBufferPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
     }
 
     /**
-     * Creates a new [AudioStreamWAV] instance from the given file path. The file must be in WAV
-     * format.
+     * Creates a new [AudioStreamWAV] instance from the given file path. The file must be in WAV format.
      *
      * The keys and values of [options] match the properties of [ResourceImporterWAV].
      *
@@ -388,8 +362,7 @@ public open class AudioStreamWAV : AudioStream() {
      */
     @JvmOverloads
     @JvmStatic
-    public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()):
-        AudioStreamWAV? {
+    public final fun loadFromFile(path: String, options: Dictionary<Any?, Any?> = Dictionary()): AudioStreamWAV? {
       TransferContext.writeArguments(STRING to path, DICTIONARY to options)
       TransferContext.callMethod(0, MethodBindings.loadFromFilePtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as AudioStreamWAV?)
@@ -398,54 +371,54 @@ public open class AudioStreamWAV : AudioStream() {
 
   public object MethodBindings {
     internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4266838938)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_buffer", 4_266_838_938)
 
     internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4015802384)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "load_from_file", 4_015_802_384)
 
     internal val setDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data", 2971499966)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_data", 2_971_499_966)
 
     internal val getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_data", 2362200018)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_data", 2_362_200_018)
 
     internal val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_format", 60648488)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_format", 60_648_488)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_format", 3151724922)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_format", 3_151_724_922)
 
     internal val setLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_mode", 2444882972)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_mode", 2_444_882_972)
 
     internal val getLoopModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_mode", 393560655)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_mode", 393_560_655)
 
     internal val setLoopBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_begin", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_begin", 1_286_410_249)
 
     internal val getLoopBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_begin", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_begin", 3_905_245_786)
 
     internal val setLoopEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_end", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_loop_end", 1_286_410_249)
 
     internal val getLoopEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_end", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_loop_end", 3_905_245_786)
 
     internal val setMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_mix_rate", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_mix_rate", 1_286_410_249)
 
     internal val getMixRatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_mix_rate", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_mix_rate", 3_905_245_786)
 
     internal val setStereoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_stereo", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_stereo", 2_586_408_642)
 
     internal val isStereoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "is_stereo", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "is_stereo", 36_873_697)
 
     internal val saveToWavPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166001499)
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166_001_499)
   }
 }

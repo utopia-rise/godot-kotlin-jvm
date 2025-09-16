@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,16 +14,12 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going
- * over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects
- * of clipping.
+ * A limiter is similar to a compressor, but it's less flexible and designed to disallow sound going over a given dB threshold. Adding one in the Master bus is always recommended to reduce the effects of clipping.
  *
- * Soft clipping starts to reduce the peaks a little below the threshold level and progressively
- * increases its effect as the input level increases such that the threshold is never exceeded.
+ * Soft clipping starts to reduce the peaks a little below the threshold level and progressively increases its effect as the input level increases such that the threshold is never exceeded.
  */
 @GodotBaseType
 public open class AudioEffectLimiter : AudioEffect() {
@@ -42,8 +35,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     }
 
   /**
-   * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to
-   * 0.
+   * Threshold from which the limiter begins to be active, in decibels. Value can range from -30 to 0.
    */
   public final inline var thresholdDb: Float
     @JvmName("thresholdDbProperty")
@@ -72,11 +64,11 @@ public open class AudioEffectLimiter : AudioEffect() {
       setSoftClipRatio(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(63, scriptIndex)
   }
 
-  public final fun setCeilingDb(ceiling: Float): Unit {
+  public final fun setCeilingDb(ceiling: Float) {
     TransferContext.writeArguments(DOUBLE to ceiling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setCeilingDbPtr, NIL)
   }
@@ -87,7 +79,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setThresholdDb(threshold: Float): Unit {
+  public final fun setThresholdDb(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setThresholdDbPtr, NIL)
   }
@@ -98,7 +90,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSoftClipDb(softClip: Float): Unit {
+  public final fun setSoftClipDb(softClip: Float) {
     TransferContext.writeArguments(DOUBLE to softClip.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSoftClipDbPtr, NIL)
   }
@@ -109,7 +101,7 @@ public open class AudioEffectLimiter : AudioEffect() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSoftClipRatio(softClip: Float): Unit {
+  public final fun setSoftClipRatio(softClip: Float) {
     TransferContext.writeArguments(DOUBLE to softClip.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSoftClipRatioPtr, NIL)
   }
@@ -123,7 +115,7 @@ public open class AudioEffectLimiter : AudioEffect() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _instantiate(): AudioEffectInstance? {
+  override fun _instantiate(): AudioEffectInstance? {
     throw NotImplementedError("AudioEffectLimiter::_instantiate can't be called from the JVM.")
   }
 
@@ -131,27 +123,27 @@ public open class AudioEffectLimiter : AudioEffect() {
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_ceiling_db", 373_806_689)
 
     internal val getCeilingDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_ceiling_db", 1_740_695_150)
 
     internal val setThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_threshold_db", 373_806_689)
 
     internal val getThresholdDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_threshold_db", 1_740_695_150)
 
     internal val setSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_db", 373_806_689)
 
     internal val getSoftClipDbPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_db", 1_740_695_150)
 
     internal val setSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373806689)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "set_soft_clip_ratio", 373_806_689)
 
     internal val getSoftClipRatioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1740695150)
+        TypeManager.getMethodBindPtr("AudioEffectLimiter", "get_soft_clip_ratio", 1_740_695_150)
   }
 }

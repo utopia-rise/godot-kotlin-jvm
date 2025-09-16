@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,11 +32,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * By configuring various properties of this style box, you can achieve many common looks without
- * the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
+ * By configuring various properties of this style box, you can achieve many common looks without the need of a texture. This includes optionally rounded borders, antialiasing, shadows, and skew.
  *
- * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will
- * switch to a relative system:
+ * Setting corner radius to high values is allowed. As soon as corners overlap, the stylebox will switch to a relative system:
  *
  * [codeblock lang=text]
  *
@@ -50,8 +45,7 @@ import kotlin.jvm.JvmName
  * corner_radius_bottom_left = 100
  *
  * ```
- * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual
- * corner width. Both corners added will **never** be more than the height. Result:
+ * The relative system now would take the 1:2 ratio of the two left corners to calculate the actual corner width. Both corners added will **never** be more than the height. Result:
  * [codeblock lang=text]
  * corner_radius_top_left: 10
  * corner_radius_bottom_left: 20
@@ -63,11 +57,8 @@ public open class StyleBoxFlat : StyleBox() {
    * The background color of the stylebox.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bgColor: Color
@@ -90,22 +81,13 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
-   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
-   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
-   * (X axis) and downwards (Y axis).
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
    *
-   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
-   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
-   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
-   * margin does not increase the size of the clickable area for [Control]s.
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [Control]s.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skew: Vector2
@@ -164,11 +146,8 @@ public open class StyleBoxFlat : StyleBox() {
    * Sets the color of the border.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var borderColor: Color
@@ -235,15 +214,11 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This sets the number of vertices used for each corner. Higher values result in rounder corners
-   * but take more processing power to compute. When choosing a value, you should take the corner
-   * radius ([setCornerRadiusAll]) into account.
+   * This sets the number of vertices used for each corner. Higher values result in rounder corners but take more processing power to compute. When choosing a value, you should take the corner radius ([setCornerRadiusAll]) into account.
    *
-   * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30,
-   * values between `8` and `12` should be enough.
+   * For corner radii less than 10, `4` or `5` should be enough. For corner radii less than 30, values between `8` and `12` should be enough.
    *
-   * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is
-   * useful for some artistic effects.
+   * A corner detail of `1` will result in chamfered corners instead of rounded corners, which is useful for some artistic effects.
    */
   public final inline var cornerDetail: Int
     @JvmName("cornerDetailProperty")
@@ -254,12 +229,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the left edge. Useful in combination with
-   * [borderWidthLeft] to draw a border outside the control rect.
+   * Expands the stylebox outside of the control rect on the left edge. Useful in combination with [borderWidthLeft] to draw a border outside the control rect.
    *
-   * **Note:** Unlike [StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of
-   * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
-   * may try to click an area of the StyleBox that cannot actually receive clicks.
+   * **Note:** Unlike [StyleBox.contentMarginLeft], [expandMarginLeft] does *not* affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginLeft: Float
     @JvmName("expandMarginLeftProperty")
@@ -270,12 +242,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the top edge. Useful in combination with
-   * [borderWidthTop] to draw a border outside the control rect.
+   * Expands the stylebox outside of the control rect on the top edge. Useful in combination with [borderWidthTop] to draw a border outside the control rect.
    *
-   * **Note:** Unlike [StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of
-   * the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user
-   * may try to click an area of the StyleBox that cannot actually receive clicks.
+   * **Note:** Unlike [StyleBox.contentMarginTop], [expandMarginTop] does *not* affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginTop: Float
     @JvmName("expandMarginTopProperty")
@@ -286,12 +255,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the right edge. Useful in combination with
-   * [borderWidthRight] to draw a border outside the control rect.
+   * Expands the stylebox outside of the control rect on the right edge. Useful in combination with [borderWidthRight] to draw a border outside the control rect.
    *
-   * **Note:** Unlike [StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size
-   * of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the
-   * user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * **Note:** Unlike [StyleBox.contentMarginRight], [expandMarginRight] does *not* affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginRight: Float
     @JvmName("expandMarginRightProperty")
@@ -302,12 +268,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with
-   * [borderWidthBottom] to draw a border outside the control rect.
+   * Expands the stylebox outside of the control rect on the bottom edge. Useful in combination with [borderWidthBottom] to draw a border outside the control rect.
    *
-   * **Note:** Unlike [StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the
-   * size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as
-   * the user may try to click an area of the StyleBox that cannot actually receive clicks.
+   * **Note:** Unlike [StyleBox.contentMarginBottom], [expandMarginBottom] does *not* affect the size of the clickable area for [Control]s. This can negatively impact usability if used wrong, as the user may try to click an area of the StyleBox that cannot actually receive clicks.
    */
   public final inline var expandMarginBottom: Float
     @JvmName("expandMarginBottomProperty")
@@ -321,11 +284,8 @@ public open class StyleBoxFlat : StyleBox() {
    * The color of the shadow. This has no effect if [shadowSize] is lower than 1.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -351,11 +311,8 @@ public open class StyleBoxFlat : StyleBox() {
    * The shadow offset in pixels. Adjusts the position of the shadow relatively to the stylebox.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowOffset: Vector2
@@ -367,12 +324,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result,
-   * edges look much smoother. This is only noticeable when using rounded corners or [skew].
+   * Antialiasing draws a small ring around the edges, which fades to transparency. As a result, edges look much smoother. This is only noticeable when using rounded corners or [skew].
    *
-   * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is
-   * recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual
-   * glitches.
+   * **Note:** When using beveled corners with 45-degree angles ([cornerDetail] = 1), it is recommended to set [antiAliasing] to `false` to ensure crisp visuals and avoid possible visual glitches.
    */
   public final inline var antiAliasing: Boolean
     @JvmName("antiAliasingProperty")
@@ -383,12 +337,9 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   /**
-   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at
-   * 100&#37; scale, identical to how rounded rectangles are rendered in web browsers and most vector
-   * drawing software.
+   * This changes the size of the antialiasing effect. `1.0` is recommended for an optimal result at 100&#37; scale, identical to how rounded rectangles are rendered in web browsers and most vector drawing software.
    *
-   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on
-   * small boxes with large-radius corners.
+   * **Note:** Higher values may produce a blur effect but can also create undesired artifacts on small boxes with large-radius corners.
    */
   public final inline var antiAliasingSize: Float
     @JvmName("antiAliasingSizeProperty")
@@ -398,7 +349,7 @@ public open class StyleBoxFlat : StyleBox() {
       setAaSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(642, scriptIndex)
   }
 
@@ -432,15 +383,9 @@ public open class StyleBoxFlat : StyleBox() {
    * styleboxflat.skew = myCoreType
    * ``````
    *
-   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or
-   * vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards
-   * the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left
-   * (X axis) and downwards (Y axis).
+   * If set to a non-zero value on either axis, [skew] distorts the StyleBox horizontally and/or vertically. This can be used for "futuristic"-style UIs. Positive values skew the StyleBox towards the right (X axis) and upwards (Y axis), while negative values skew the StyleBox towards the left (X axis) and downwards (Y axis).
    *
-   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the
-   * [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the
-   * content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand
-   * margin does not increase the size of the clickable area for [Control]s.
+   * **Note:** To ensure text does not touch the StyleBox's edges, consider increasing the [StyleBox]'s content margin (see [StyleBox.contentMarginBottom]). It is preferable to increase the content margin instead of the expand margin (see [expandMarginBottom]), as increasing the expand margin does not increase the size of the clickable area for [Control]s.
    */
   @CoreTypeHelper
   public final fun skewMutate(block: Vector2.() -> Unit): Vector2 = skew.apply {
@@ -505,7 +450,7 @@ public open class StyleBoxFlat : StyleBox() {
      shadowOffset = this
   }
 
-  public final fun setBgColor(color: Color): Unit {
+  public final fun setBgColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setBgColorPtr, NIL)
   }
@@ -516,7 +461,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setBorderColor(color: Color): Unit {
+  public final fun setBorderColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setBorderColorPtr, NIL)
   }
@@ -530,7 +475,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the border width to [width] pixels for all sides.
    */
-  public final fun setBorderWidthAll(width: Int): Unit {
+  public final fun setBorderWidthAll(width: Int) {
     TransferContext.writeArguments(LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBorderWidthAllPtr, NIL)
   }
@@ -547,7 +492,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the specified [Side]'s border width to [width] pixels.
    */
-  public final fun setBorderWidth(margin: Side, width: Int): Unit {
+  public final fun setBorderWidth(margin: Side, width: Int) {
     TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBorderWidthPtr, NIL)
   }
@@ -561,7 +506,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBorderBlend(blend: Boolean): Unit {
+  public final fun setBorderBlend(blend: Boolean) {
     TransferContext.writeArguments(BOOL to blend)
     TransferContext.callMethod(ptr, MethodBindings.setBorderBlendPtr, NIL)
   }
@@ -575,16 +520,15 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the corner radius to [radius] pixels for all corners.
    */
-  public final fun setCornerRadiusAll(radius: Int): Unit {
+  public final fun setCornerRadiusAll(radius: Int) {
     TransferContext.writeArguments(LONG to radius.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCornerRadiusAllPtr, NIL)
   }
 
   /**
-   * Sets the corner radius to [radius] pixels for the given [corner]. See [Corner] for possible
-   * values.
+   * Sets the corner radius to [radius] pixels for the given [corner]. See [Corner] for possible values.
    */
-  public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
+  public final fun setCornerRadius(corner: Corner, radius: Int) {
     TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCornerRadiusPtr, NIL)
   }
@@ -601,7 +545,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
-  public final fun setExpandMargin(margin: Side, size: Float): Unit {
+  public final fun setExpandMargin(margin: Side, size: Float) {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginPtr, NIL)
   }
@@ -609,7 +553,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Sets the expand margin to [size] pixels for all sides.
    */
-  public final fun setExpandMarginAll(size: Float): Unit {
+  public final fun setExpandMarginAll(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginAllPtr, NIL)
   }
@@ -623,7 +567,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDrawCenter(drawCenter: Boolean): Unit {
+  public final fun setDrawCenter(drawCenter: Boolean) {
     TransferContext.writeArguments(BOOL to drawCenter)
     TransferContext.callMethod(ptr, MethodBindings.setDrawCenterPtr, NIL)
   }
@@ -634,7 +578,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSkew(skew: Vector2): Unit {
+  public final fun setSkew(skew: Vector2) {
     TransferContext.writeArguments(VECTOR2 to skew)
     TransferContext.callMethod(ptr, MethodBindings.setSkewPtr, NIL)
   }
@@ -645,7 +589,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setShadowColor(color: Color): Unit {
+  public final fun setShadowColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setShadowColorPtr, NIL)
   }
@@ -656,7 +600,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setShadowSize(size: Int): Unit {
+  public final fun setShadowSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setShadowSizePtr, NIL)
   }
@@ -667,7 +611,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setShadowOffset(offset: Vector2): Unit {
+  public final fun setShadowOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setShadowOffsetPtr, NIL)
   }
@@ -678,7 +622,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setAntiAliased(antiAliased: Boolean): Unit {
+  public final fun setAntiAliased(antiAliased: Boolean) {
     TransferContext.writeArguments(BOOL to antiAliased)
     TransferContext.callMethod(ptr, MethodBindings.setAntiAliasedPtr, NIL)
   }
@@ -689,7 +633,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAaSize(size: Float): Unit {
+  public final fun setAaSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAaSizePtr, NIL)
   }
@@ -700,7 +644,7 @@ public open class StyleBoxFlat : StyleBox() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCornerDetail(detail: Int): Unit {
+  public final fun setCornerDetail(detail: Int) {
     TransferContext.writeArguments(LONG to detail.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCornerDetailPtr, NIL)
   }
@@ -714,7 +658,7 @@ public open class StyleBoxFlat : StyleBox() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _draw(toCanvasItem: RID, rect: Rect2): Unit {
+  override fun _draw(toCanvasItem: RID, rect: Rect2) {
     throw NotImplementedError("StyleBoxFlat::_draw can't be called from the JVM.")
   }
 
@@ -722,99 +666,99 @@ public open class StyleBoxFlat : StyleBox() {
 
   public object MethodBindings {
     internal val setBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_bg_color", 2920490490)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_bg_color", 2_920_490_490)
 
     internal val getBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_bg_color", 3444240500)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_bg_color", 3_444_240_500)
 
     internal val setBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_color", 2920490490)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_color", 2_920_490_490)
 
     internal val getBorderColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_color", 3444240500)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_color", 3_444_240_500)
 
     internal val setBorderWidthAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width_all", 1286410249)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width_all", 1_286_410_249)
 
     internal val getBorderWidthMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width_min", 3905245786)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width_min", 3_905_245_786)
 
     internal val setBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width", 437707142)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_width", 437_707_142)
 
     internal val getBorderWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width", 1983885014)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_width", 1_983_885_014)
 
     internal val setBorderBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_blend", 2586408642)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_border_blend", 2_586_408_642)
 
     internal val getBorderBlendPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_blend", 36873697)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_border_blend", 36_873_697)
 
     internal val setCornerRadiusAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all", 1286410249)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius_all", 1_286_410_249)
 
     internal val setCornerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius", 2696158768)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_radius", 2_696_158_768)
 
     internal val getCornerRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_radius", 3982397690)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_radius", 3_982_397_690)
 
     internal val setExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin", 4290182280)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin", 4_290_182_280)
 
     internal val setExpandMarginAllPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_expand_margin_all", 373_806_689)
 
     internal val getExpandMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_expand_margin", 2869120046)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_expand_margin", 2_869_120_046)
 
     internal val setDrawCenterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_draw_center", 2586408642)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_draw_center", 2_586_408_642)
 
     internal val isDrawCenterEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled", 36873697)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_draw_center_enabled", 36_873_697)
 
     internal val setSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_skew", 743155724)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_skew", 743_155_724)
 
     internal val getSkewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_skew", 3341600327)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_skew", 3_341_600_327)
 
     internal val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_color", 2920490490)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_color", 2_920_490_490)
 
     internal val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_color", 3444240500)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_color", 3_444_240_500)
 
     internal val setShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_size", 1286410249)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_size", 1_286_410_249)
 
     internal val getShadowSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_size", 3905245786)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_size", 3_905_245_786)
 
     internal val setShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset", 743155724)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_shadow_offset", 743_155_724)
 
     internal val getShadowOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset", 3341600327)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_shadow_offset", 3_341_600_327)
 
     internal val setAntiAliasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased", 2586408642)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_anti_aliased", 2_586_408_642)
 
     internal val isAntiAliasedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased", 36873697)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "is_anti_aliased", 36_873_697)
 
     internal val setAaSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_aa_size", 373806689)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_aa_size", 373_806_689)
 
     internal val getAaSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_aa_size", 1740695150)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_aa_size", 1_740_695_150)
 
     internal val setCornerDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_detail", 1286410249)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "set_corner_detail", 1_286_410_249)
 
     internal val getCornerDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_detail", 3905245786)
+        TypeManager.getMethodBindPtr("StyleBoxFlat", "get_corner_detail", 3_905_245_786)
   }
 }

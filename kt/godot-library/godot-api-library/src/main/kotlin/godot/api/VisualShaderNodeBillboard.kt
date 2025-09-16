@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,12 +14,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The output port of this node needs to be connected to `Model View Matrix` port of
- * [VisualShaderNodeOutput].
+ * The output port of this node needs to be connected to `Model View Matrix` port of [VisualShaderNodeOutput].
  */
 @GodotBaseType
 public open class VisualShaderNodeBillboard : VisualShaderNode() {
@@ -38,8 +33,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   /**
-   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when
-   * billboarding.
+   * If `true`, the shader will keep the scale set for the mesh. Otherwise, the scale is lost when billboarding.
    */
   public final inline var keepScale: Boolean
     @JvmName("keepScaleProperty")
@@ -49,11 +43,11 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
       setKeepScaleEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(728, scriptIndex)
   }
 
-  public final fun setBillboardType(billboardType: BillboardType): Unit {
+  public final fun setBillboardType(billboardType: BillboardType) {
     TransferContext.writeArguments(LONG to billboardType.id)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardTypePtr, NIL)
   }
@@ -64,7 +58,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     return BillboardType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setKeepScaleEnabled(enabled: Boolean): Unit {
+  public final fun setKeepScaleEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setKeepScaleEnabledPtr, NIL)
   }
@@ -114,15 +108,15 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setBillboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_billboard_type", 1227463289)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_billboard_type", 1_227_463_289)
 
     internal val getBillboardTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "get_billboard_type", 3724188517)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "get_billboard_type", 3_724_188_517)
 
     internal val setKeepScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_keep_scale_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "set_keep_scale_enabled", 2_586_408_642)
 
     internal val isKeepScaleEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "is_keep_scale_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeBillboard", "is_keep_scale_enabled", 36_873_697)
   }
 }

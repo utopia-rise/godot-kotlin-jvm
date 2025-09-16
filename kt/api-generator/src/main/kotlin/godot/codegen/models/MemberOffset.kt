@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class MemberOffset @JsonCreator constructor(
-    @JsonProperty("member") val member: String,
-    @JsonProperty("offset") val offset: Int,
-    @JsonProperty("meta") val meta: String?
+    @param:JsonProperty("member") val member: String,
+    @param:JsonProperty("offset") val offset: Int,
+    @param:JsonProperty("meta") val meta: String?
 )

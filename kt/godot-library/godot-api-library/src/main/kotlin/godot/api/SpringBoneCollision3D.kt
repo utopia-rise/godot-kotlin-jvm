@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,18 +25,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A collision can be a child of [SpringBoneSimulator3D]. If it is not a child of
- * [SpringBoneSimulator3D], it has no effect.
+ * A collision can be a child of [SpringBoneSimulator3D]. If it is not a child of [SpringBoneSimulator3D], it has no effect.
  *
- * The colliding and sliding are done in the [SpringBoneSimulator3D]'s modification process in order
- * of its collision list which is set by [SpringBoneSimulator3D.setCollisionPath]. If
- * [SpringBoneSimulator3D.areAllChildCollisionsEnabled] is `true`, the order matches [SceneTree].
+ * The colliding and sliding are done in the [SpringBoneSimulator3D]'s modification process in order of its collision list which is set by [SpringBoneSimulator3D.setCollisionPath]. If [SpringBoneSimulator3D.areAllChildCollisionsEnabled] is `true`, the order matches [SceneTree].
  *
- * If [bone] is set, it synchronizes with the bone pose of the ancestor [Skeleton3D], which is done
- * in before the [SpringBoneSimulator3D]'s modification process as the pre-process.
+ * If [bone] is set, it synchronizes with the bone pose of the ancestor [Skeleton3D], which is done in before the [SpringBoneSimulator3D]'s modification process as the pre-process.
  *
- * **Warning:** A scaled [SpringBoneCollision3D] will likely not behave as expected. Make sure that
- * the parent [Skeleton3D] and its bones are not scaled.
+ * **Warning:** A scaled [SpringBoneCollision3D] will likely not behave as expected. Make sure that the parent [Skeleton3D] and its bones are not scaled.
  */
 @GodotBaseType
 public open class SpringBoneCollision3D : Node3D() {
@@ -69,11 +61,8 @@ public open class SpringBoneCollision3D : Node3D() {
    * The offset of the position from [Skeleton3D]'s [bone] pose position.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var positionOffset: Vector3
@@ -88,11 +77,8 @@ public open class SpringBoneCollision3D : Node3D() {
    * The offset of the rotation from [Skeleton3D]'s [bone] pose rotation.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var rotationOffset: Quaternion
@@ -103,7 +89,7 @@ public open class SpringBoneCollision3D : Node3D() {
       setRotationOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(621, scriptIndex)
   }
 
@@ -140,8 +126,7 @@ public open class SpringBoneCollision3D : Node3D() {
    * The offset of the rotation from [Skeleton3D]'s [bone] pose rotation.
    */
   @CoreTypeHelper
-  public final fun rotationOffsetMutate(block: Quaternion.() -> Unit): Quaternion =
-      rotationOffset.apply {
+  public final fun rotationOffsetMutate(block: Quaternion.() -> Unit): Quaternion = rotationOffset.apply {
      block(this)
      rotationOffset = this
   }
@@ -155,7 +140,7 @@ public open class SpringBoneCollision3D : Node3D() {
     return (TransferContext.readReturnValue(OBJECT) as Skeleton3D?)
   }
 
-  public final fun setBoneName(boneName: String): Unit {
+  public final fun setBoneName(boneName: String) {
     TransferContext.writeArguments(STRING to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
   }
@@ -166,7 +151,7 @@ public open class SpringBoneCollision3D : Node3D() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setBone(bone: Int): Unit {
+  public final fun setBone(bone: Int) {
     TransferContext.writeArguments(LONG to bone.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBonePtr, NIL)
   }
@@ -177,7 +162,7 @@ public open class SpringBoneCollision3D : Node3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPositionOffset(offset: Vector3): Unit {
+  public final fun setPositionOffset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setPositionOffsetPtr, NIL)
   }
@@ -188,7 +173,7 @@ public open class SpringBoneCollision3D : Node3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setRotationOffset(offset: Quaternion): Unit {
+  public final fun setRotationOffset(offset: Quaternion) {
     TransferContext.writeArguments(QUATERNION to offset)
     TransferContext.callMethod(ptr, MethodBindings.setRotationOffsetPtr, NIL)
   }
@@ -203,30 +188,30 @@ public open class SpringBoneCollision3D : Node3D() {
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_skeleton", 1488626673)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_skeleton", 1_488_626_673)
 
     internal val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_bone_name", 83702148)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_bone_name", 83_702_148)
 
     internal val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_bone_name", 201670096)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_bone_name", 201_670_096)
 
     internal val setBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_bone", 1286410249)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_bone", 1_286_410_249)
 
     internal val getBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_bone", 3905245786)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_bone", 3_905_245_786)
 
     internal val setPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_position_offset", 3460891852)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_position_offset", 3_460_891_852)
 
     internal val getPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_position_offset", 3360562783)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_position_offset", 3_360_562_783)
 
     internal val setRotationOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_rotation_offset", 1727505552)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "set_rotation_offset", 1_727_505_552)
 
     internal val getRotationOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_rotation_offset", 1222331677)
+        TypeManager.getMethodBindPtr("SpringBoneCollision3D", "get_rotation_offset", 1_222_331_677)
   }
 }

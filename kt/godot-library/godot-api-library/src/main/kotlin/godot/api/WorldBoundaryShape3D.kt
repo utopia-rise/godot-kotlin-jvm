@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,15 +18,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an
- * infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines
- * which direction is considered as "above" and in the editor, the line over the plane represents this
- * direction. It can for example be used for endless flat floors.
+ * A 3D world boundary shape, intended for use in physics. [WorldBoundaryShape3D] works like an infinite plane that forces all physics bodies to stay above it. The [plane]'s normal determines which direction is considered as "above" and in the editor, the line over the plane represents this direction. It can for example be used for endless flat floors.
  *
- * **Note:** When the physics engine is set to **Jolt Physics** in the project settings
- * ([ProjectSettings.physics/3d/physicsEngine]), [WorldBoundaryShape3D] has a finite size (centered at
- * the shape's origin). It can be adjusted by changing
- * [ProjectSettings.physics/joltPhysics3d/limits/worldBoundaryShapeSize].
+ * **Note:** When the physics engine is set to **Jolt Physics** in the project settings ([ProjectSettings.physics/3d/physicsEngine]), [WorldBoundaryShape3D] has a finite size (centered at the shape's origin). It can be adjusted by changing [ProjectSettings.physics/joltPhysics3d/limits/worldBoundaryShapeSize].
  */
 @GodotBaseType
 public open class WorldBoundaryShape3D : Shape3D() {
@@ -37,11 +28,8 @@ public open class WorldBoundaryShape3D : Shape3D() {
    * The [Plane] used by the [WorldBoundaryShape3D] for collision.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var plane: Plane
@@ -52,7 +40,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
       setPlane(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(854, scriptIndex)
   }
 
@@ -75,7 +63,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
      plane = this
   }
 
-  public final fun setPlane(plane: Plane): Unit {
+  public final fun setPlane(plane: Plane) {
     TransferContext.writeArguments(PLANE to plane)
     TransferContext.callMethod(ptr, MethodBindings.setPlanePtr, NIL)
   }
@@ -90,9 +78,9 @@ public open class WorldBoundaryShape3D : Shape3D() {
 
   public object MethodBindings {
     internal val setPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3505987427)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "set_plane", 3_505_987_427)
 
     internal val getPlanePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2753500971)
+        TypeManager.getMethodBindPtr("WorldBoundaryShape3D", "get_plane", 2_753_500_971)
   }
 }

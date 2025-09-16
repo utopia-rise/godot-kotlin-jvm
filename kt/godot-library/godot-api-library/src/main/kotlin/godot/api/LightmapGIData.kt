@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,8 +27,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is
- * replaced every time lightmaps are baked in [LightmapGI].
+ * [LightmapGIData] contains baked lightmap and dynamic object probe data for [LightmapGI]. It is replaced every time lightmaps are baked in [LightmapGI].
  */
 @GodotBaseType
 public open class LightmapGIData : Resource() {
@@ -76,11 +72,11 @@ public open class LightmapGIData : Resource() {
       setLightTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(335, scriptIndex)
   }
 
-  public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {
+  public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>) {
     TransferContext.writeArguments(ARRAY to lightTextures)
     TransferContext.callMethod(ptr, MethodBindings.setLightmapTexturesPtr, NIL)
   }
@@ -91,7 +87,7 @@ public open class LightmapGIData : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<TextureLayered>)
   }
 
-  public final fun setShadowmaskTextures(shadowmaskTextures: VariantArray<TextureLayered>): Unit {
+  public final fun setShadowmaskTextures(shadowmaskTextures: VariantArray<TextureLayered>) {
     TransferContext.writeArguments(ARRAY to shadowmaskTextures)
     TransferContext.callMethod(ptr, MethodBindings.setShadowmaskTexturesPtr, NIL)
   }
@@ -103,22 +99,17 @@ public open class LightmapGIData : Resource() {
   }
 
   /**
-   * If [usesSphericalHarmonics] is `true`, tells the engine to treat the lightmap data as if it was
-   * baked with directional information.
+   * If [usesSphericalHarmonics] is `true`, tells the engine to treat the lightmap data as if it was baked with directional information.
    *
-   * **Note:** Changing this value on already baked lightmaps will not cause them to be baked again.
-   * This means the material appearance will look incorrect until lightmaps are baked again, in which
-   * case the value set here is discarded as the entire [LightmapGIData] resource is replaced by the
-   * lightmapper.
+   * **Note:** Changing this value on already baked lightmaps will not cause them to be baked again. This means the material appearance will look incorrect until lightmaps are baked again, in which case the value set here is discarded as the entire [LightmapGIData] resource is replaced by the lightmapper.
    */
-  public final fun setUsesSphericalHarmonics(usesSphericalHarmonics: Boolean): Unit {
+  public final fun setUsesSphericalHarmonics(usesSphericalHarmonics: Boolean) {
     TransferContext.writeArguments(BOOL to usesSphericalHarmonics)
     TransferContext.callMethod(ptr, MethodBindings.setUsesSphericalHarmonicsPtr, NIL)
   }
 
   /**
-   * If `true`, lightmaps were baked with directional information. See also
-   * [LightmapGI.directional].
+   * If `true`, lightmaps were baked with directional information. See also [LightmapGI.directional].
    */
   public final fun isUsingSphericalHarmonics(): Boolean {
     TransferContext.writeArguments()
@@ -134,7 +125,7 @@ public open class LightmapGIData : Resource() {
     uvScale: Rect2,
     sliceIndex: Int,
     subInstance: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(NODE_PATH to path, RECT2 to uvScale, LONG to sliceIndex.toLong(), LONG to subInstance.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addUserPtr, NIL)
   }
@@ -160,12 +151,12 @@ public open class LightmapGIData : Resource() {
   /**
    * Clear all objects that are considered baked within this [LightmapGIData].
    */
-  public final fun clearUsers(): Unit {
+  public final fun clearUsers() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearUsersPtr, NIL)
   }
 
-  public final fun setLightTexture(lightTexture: TextureLayered?): Unit {
+  public final fun setLightTexture(lightTexture: TextureLayered?) {
     TransferContext.writeArguments(OBJECT to lightTexture)
     TransferContext.callMethod(ptr, MethodBindings.setLightTexturePtr, NIL)
   }
@@ -184,34 +175,21 @@ public open class LightmapGIData : Resource() {
     uvScale: Rect2,
     sliceIndex: Int,
     subInstance: Int,
-  ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
+  ): Unit = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
 
   public enum class ShadowmaskMode(
     id: Long,
   ) {
     /**
-     * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps.
-     * Existing shadowmask textures will be removed during baking.
+     * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps. Existing shadowmask textures will be removed during baking.
      */
     NONE(0),
     /**
-     * Shadowmasking is enabled. Directional shadows that are outside the
-     * [DirectionalLight3D.directionalShadowMaxDistance] will be rendered using the shadowmask texture.
-     * Shadows that are inside the range will be rendered using real-time shadows exclusively. This
-     * mode allows for more precise real-time shadows up close, without the potential "smearing" effect
-     * that can occur when using lightmaps with a high texel size. The downside is that when the camera
-     * moves fast, the transition between the real-time light and shadowmask can be obvious. Also,
-     * objects that only have shadows baked in the shadowmask (and no real-time shadows) won't display
-     * any shadows up close.
+     * Shadowmasking is enabled. Directional shadows that are outside the [DirectionalLight3D.directionalShadowMaxDistance] will be rendered using the shadowmask texture. Shadows that are inside the range will be rendered using real-time shadows exclusively. This mode allows for more precise real-time shadows up close, without the potential "smearing" effect that can occur when using lightmaps with a high texel size. The downside is that when the camera moves fast, the transition between the real-time light and shadowmask can be obvious. Also, objects that only have shadows baked in the shadowmask (and no real-time shadows) won't display any shadows up close.
      */
     REPLACE(1),
     /**
-     * Shadowmasking is enabled. Directional shadows will be rendered with real-time shadows
-     * overlaid on top of the shadowmask texture. This mode makes for smoother shadow transitions when
-     * the camera moves fast, at the cost of a potential smearing effect for directional shadows that
-     * are up close (due to the real-time shadow being mixed with a low-resolution shadowmask). Objects
-     * that only have shadows baked in the shadowmask (and no real-time shadows) will keep their
-     * shadows up close.
+     * Shadowmasking is enabled. Directional shadows will be rendered with real-time shadows overlaid on top of the shadowmask texture. This mode makes for smoother shadow transitions when the camera moves fast, at the cost of a potential smearing effect for directional shadows that are up close (due to the real-time shadow being mixed with a low-resolution shadowmask). Objects that only have shadows baked in the shadowmask (and no real-time shadows) will keep their shadows up close.
      */
     OVERLAY(2),
     ;
@@ -230,39 +208,39 @@ public open class LightmapGIData : Resource() {
 
   public object MethodBindings {
     internal val setLightmapTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_lightmap_textures", 381264803)
+        TypeManager.getMethodBindPtr("LightmapGIData", "set_lightmap_textures", 381_264_803)
 
     internal val getLightmapTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_lightmap_textures", 3995934104)
+        TypeManager.getMethodBindPtr("LightmapGIData", "get_lightmap_textures", 3_995_934_104)
 
     internal val setShadowmaskTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_shadowmask_textures", 381264803)
+        TypeManager.getMethodBindPtr("LightmapGIData", "set_shadowmask_textures", 381_264_803)
 
     internal val getShadowmaskTexturesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_shadowmask_textures", 3995934104)
+        TypeManager.getMethodBindPtr("LightmapGIData", "get_shadowmask_textures", 3_995_934_104)
 
     internal val setUsesSphericalHarmonicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_uses_spherical_harmonics", 2586408642)
+        TypeManager.getMethodBindPtr("LightmapGIData", "set_uses_spherical_harmonics", 2_586_408_642)
 
     internal val isUsingSphericalHarmonicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "is_using_spherical_harmonics", 36873697)
+        TypeManager.getMethodBindPtr("LightmapGIData", "is_using_spherical_harmonics", 36_873_697)
 
     internal val addUserPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "add_user", 4272570515)
+        TypeManager.getMethodBindPtr("LightmapGIData", "add_user", 4_272_570_515)
 
     internal val getUserCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_count", 3905245786)
+        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_count", 3_905_245_786)
 
     internal val getUserPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_path", 408788394)
+        TypeManager.getMethodBindPtr("LightmapGIData", "get_user_path", 408_788_394)
 
     internal val clearUsersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "clear_users", 3218959716)
+        TypeManager.getMethodBindPtr("LightmapGIData", "clear_users", 3_218_959_716)
 
     internal val setLightTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "set_light_texture", 1278366092)
+        TypeManager.getMethodBindPtr("LightmapGIData", "set_light_texture", 1_278_366_092)
 
     internal val getLightTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LightmapGIData", "get_light_texture", 3984243839)
+        TypeManager.getMethodBindPtr("LightmapGIData", "get_light_texture", 3_984_243_839)
   }
 }

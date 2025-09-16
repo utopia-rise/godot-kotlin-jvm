@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -44,25 +41,20 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport.
- * Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.
+ * A [Viewport] creates a different view into the screen, or a sub-view inside another viewport. Child 2D nodes will display on it, and child Camera3D 3D nodes will render on it too.
  *
- * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with
- * other viewports.
+ * Optionally, a viewport can have its own 2D or 3D world, so it doesn't share what it draws with other viewports.
  *
- * Viewports can also choose to be audio listeners, so they generate positional audio depending on a
- * 2D or 3D camera child of it.
+ * Viewports can also choose to be audio listeners, so they generate positional audio depending on a 2D or 3D camera child of it.
  *
  * Also, viewports can be assigned to different screens in case the devices have multiple screens.
  *
- * Finally, viewports can also behave as render targets, in which case they will not be visible
- * unless the associated texture is used to draw.
+ * Finally, viewports can also behave as render targets, in which case they will not be visible unless the associated texture is used to draw.
  */
 @GodotBaseType
 public open class Viewport internal constructor() : Node() {
   /**
-   * Emitted when the size of the viewport is changed, whether by resizing of window, or some other
-   * means.
+   * Emitted when the size of the viewport is changed, whether by resizing of window, or some other means.
    */
   public val sizeChanged: Signal0 by Signal0
 
@@ -85,8 +77,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the viewport will use the primary XR interface to render XR output. When applicable
-   * this can result in a stereoscopic image and the resulting render being output to a headset.
+   * If `true`, the viewport will use the primary XR interface to render XR output. When applicable this can result in a stereoscopic image and the resulting render being output to a headset.
    */
   public final inline var useXr: Boolean
     @JvmName("useXrProperty")
@@ -141,11 +132,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this
-   * is instead done by the first parent viewport that is set to handle input locally.
+   * If `true`, this viewport will mark incoming input events as handled by itself. If `false`, this is instead done by the first parent viewport that is set to handle input locally.
    *
-   * A [SubViewportContainer] will automatically set this property to `false` for the [Viewport]
-   * contained inside of it.
+   * A [SubViewportContainer] will automatically set this property to `false` for the [Viewport] contained inside of it.
    *
    * See also [setInputAsHandled] and [isInputHandled].
    */
@@ -158,9 +147,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, [CanvasItem] nodes will internally snap to full pixels. Their position can still be
-   * sub-pixel, but the decimals will not have effect. This can lead to a crisper appearance at the
-   * cost of less smooth movement, especially when [Camera2D] smoothing is enabled.
+   * If `true`, [CanvasItem] nodes will internally snap to full pixels. Their position can still be sub-pixel, but the decimals will not have effect. This can lead to a crisper appearance at the cost of less smooth movement, especially when [Camera2D] smoothing is enabled.
    */
   public final inline var snap2dTransformsToPixel: Boolean
     @JvmName("snap2dTransformsToPixelProperty")
@@ -171,9 +158,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, vertices of [CanvasItem] nodes will snap to full pixels. Only affects the final
-   * vertex positions, not the transforms. This can lead to a crisper appearance at the cost of less
-   * smooth movement, especially when [Camera2D] smoothing is enabled.
+   * If `true`, vertices of [CanvasItem] nodes will snap to full pixels. Only affects the final vertex positions, not the transforms. This can lead to a crisper appearance at the cost of less smooth movement, especially when [Camera2D] smoothing is enabled.
    */
   public final inline var snap2dVerticesToPixel: Boolean
     @JvmName("snap2dVerticesToPixelProperty")
@@ -184,13 +169,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample antialiasing mode for 2D/Canvas rendering. A higher number results in smoother
-   * edges at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or
-   * [Viewport.MSAA_4X] is best unless targeting very high-end systems. This has no effect on
-   * shader-induced aliasing or texture aliasing.
+   * The multisample antialiasing mode for 2D/Canvas rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or [Viewport.MSAA_4X] is best unless targeting very high-end systems. This has no effect on shader-induced aliasing or texture aliasing.
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa2d] and
-   * [RenderingServer.viewportSetMsaa2d].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa2d] and [RenderingServer.viewportSetMsaa2d].
    */
   public final inline var msaa2d: MSAA
     @JvmName("msaa2dProperty")
@@ -201,14 +182,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The multisample antialiasing mode for 3D rendering. A higher number results in smoother edges
-   * at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or
-   * [Viewport.MSAA_4X] is best unless targeting very high-end systems. See also bilinear scaling 3D
-   * [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This
-   * has no effect on shader-induced aliasing or texture aliasing.
+   * The multisample antialiasing mode for 3D rendering. A higher number results in smoother edges at the cost of significantly worse performance. A value of [Viewport.MSAA_2X] or [Viewport.MSAA_4X] is best unless targeting very high-end systems. See also bilinear scaling 3D [scaling3dMode] for supersampling, which provides higher quality but is much more expensive. This has no effect on shader-induced aliasing or texture aliasing.
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa3d] and
-   * [RenderingServer.viewportSetMsaa3d].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/msaa3d] and [RenderingServer.viewportSetMsaa3d].
    */
   public final inline var msaa3d: MSAA
     @JvmName("msaa3dProperty")
@@ -219,13 +195,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively
-   * blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage
-   * samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will
-   * smooth out specular aliasing, but tend to make scenes appear blurry.
+   * Sets the screen-space antialiasing method used. Screen-space antialiasing works by selectively blurring edges in a post-process shader. It differs from MSAA which takes multiple coverage samples while rendering objects. Screen-space AA methods are typically faster than MSAA and will smooth out specular aliasing, but tend to make scenes appear blurry.
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa] and
-   * [RenderingServer.viewportSetScreenSpaceAa].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/screenSpaceAa] and [RenderingServer.viewportSetScreenSpaceAa].
    */
   public final inline var screenSpaceAa: ScreenSpaceAA
     @JvmName("screenSpaceAaProperty")
@@ -236,15 +208,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Enables temporal antialiasing for this viewport. TAA works by jittering the camera and
-   * accumulating the images of the last rendered frames, motion vector rendering is used to account
-   * for camera and object motion.
+   * Enables temporal antialiasing for this viewport. TAA works by jittering the camera and accumulating the images of the last rendered frames, motion vector rendering is used to account for camera and object motion.
    *
-   * **Note:** The implementation is not complete yet, some visual instances such as particles and
-   * skinned meshes may show artifacts.
+   * **Note:** The implementation is not complete yet, some visual instances such as particles and skinned meshes may show artifacts.
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/useTaa] and
-   * [RenderingServer.viewportSetUseTaa].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useTaa] and [RenderingServer.viewportSetUseTaa].
    */
   public final inline var useTaa: Boolean
     @JvmName("useTaaProperty")
@@ -255,16 +223,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
-   * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
-   * [Environment.BG_CANVAS].
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D. 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is [Environment.BG_CANVAS].
    *
-   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
-   * recommended to enable debanding only when actually needed since the dithering pattern will make
-   * lossless-compressed screenshots larger.
+   * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's recommended to enable debanding only when actually needed since the dithering pattern will make lossless-compressed screenshots larger.
    *
-   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and
-   * [RenderingServer.viewportSetUseDebanding].
+   * See also [ProjectSettings.rendering/antiAliasing/quality/useDebanding] and [RenderingServer.viewportSetUseDebanding].
    */
   public final inline var useDebanding: Boolean
     @JvmName("useDebandingProperty")
@@ -275,20 +238,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this
-   * viewport. For the root viewport, [ProjectSettings.rendering/occlusionCulling/useOcclusionCulling]
-   * must be set to `true` instead.
+   * If `true`, [OccluderInstance3D] nodes will be usable for occlusion culling in 3D for this viewport. For the root viewport, [ProjectSettings.rendering/occlusionCulling/useOcclusionCulling] must be set to `true` instead.
    *
-   * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if
-   * you actually plan to use it, and think whether your scene can actually benefit from occlusion
-   * culling. Large, open scenes with few or no objects blocking the view will generally not benefit
-   * much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility
-   * ranges ([GeometryInstance3D.visibilityRangeBegin] and [GeometryInstance3D.visibilityRangeEnd])
-   * compared to occlusion culling.
+   * **Note:** Enabling occlusion culling has a cost on the CPU. Only enable occlusion culling if you actually plan to use it, and think whether your scene can actually benefit from occlusion culling. Large, open scenes with few or no objects blocking the view will generally not benefit much from occlusion culling. Large open scenes generally benefit more from mesh LOD and visibility ranges ([GeometryInstance3D.visibilityRangeBegin] and [GeometryInstance3D.visibilityRangeEnd]) compared to occlusion culling.
    *
-   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web
-   * export templates. It can be enabled by compiling custom Web export templates with
-   * `module_raycast_enabled=yes`.
+   * **Note:** Due to memory constraints, occlusion culling is not supported by default in Web export templates. It can be enabled by compiling custom Web export templates with `module_raycast_enabled=yes`.
    */
   public final inline var useOcclusionCulling: Boolean
     @JvmName("useOcclusionCullingProperty")
@@ -299,16 +253,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to
-   * [ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that
-   * have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase
-   * [meshLodThreshold] to improve performance at the cost of geometry detail.
+   * The automatic LOD bias to use for meshes rendered within the [Viewport] (this is analogous to [ReflectionProbe.meshLodThreshold]). Higher values will use less detailed versions of meshes that have LOD variations generated. If set to `0.0`, automatic LOD is disabled. Increase [meshLodThreshold] to improve performance at the cost of geometry detail.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
+   * To control this property on the root viewport, set the [ProjectSettings.rendering/meshLod/lodChange/thresholdPixels] project setting.
    *
-   * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known
-   * as "manual" LOD or hierarchical LOD).
+   * **Note:** [meshLodThreshold] does not affect [GeometryInstance3D] visibility ranges (also known as "manual" LOD or hierarchical LOD).
    */
   public final inline var meshLodThreshold: Float
     @JvmName("meshLodThresholdProperty")
@@ -330,18 +279,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the
-   * bit depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16`
-   * framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer.
-   * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
-   * space immediately before blitting to the screen (if the Viewport is attached to the screen).
-   * Practically speaking, this means that the end result of the Viewport will not be clamped into the
-   * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
-   * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
-   * substantially improves the appearance of effects requiring highly detailed gradients.
+   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the bit depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16` framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer. Additionally, 2D rendering will take place in linear color space and will be converted to sRGB space immediately before blitting to the screen (if the Viewport is attached to the screen). Practically speaking, this means that the end result of the Viewport will not be clamped into the `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as substantially improves the appearance of effects requiring highly detailed gradients.
    *
-   * **Note:** This setting will have no effect when using the Compatibility renderer, which always
-   * renders in low dynamic range for performance reasons.
+   * **Note:** This setting will have no effect when using the Compatibility renderer, which always renders in low dynamic range for performance reasons.
    */
   public final inline var useHdr2d: Boolean
     @JvmName("useHdr2dProperty")
@@ -352,14 +292,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets scaling 3D mode. Bilinear scaling renders at different resolution to either undersample or
-   * supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling
-   * technology that produces high quality images at fast framerates by using a spatially aware
-   * upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly
-   * higher image quality. FSR should be used where possible.
+   * Sets scaling 3D mode. Bilinear scaling renders at different resolution to either undersample or supersample the viewport. FidelityFX Super Resolution 1.0, abbreviated to FSR, is an upscaling technology that produces high quality images at fast framerates by using a spatially aware upscaling algorithm. FSR is slightly more expensive than bilinear, but it produces significantly higher image quality. FSR should be used where possible.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/scaling3d/mode] project setting.
+   * To control this property on the root viewport, set the [ProjectSettings.rendering/scaling3d/mode] project setting.
    */
   public final inline var scaling3dMode: Scaling3DMode
     @JvmName("scaling3dModeProperty")
@@ -370,20 +305,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Scales the 3D render buffer based on the viewport size uses an image filter specified in
-   * [ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size.
-   * Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality
-   * (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to
-   * improve 3D rendering quality at a high performance cost (supersampling). See also
-   * [ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is
-   * significantly cheaper but only smooths the edges of polygons.
+   * Scales the 3D render buffer based on the viewport size uses an image filter specified in [ProjectSettings.rendering/scaling3d/mode] to scale the output image to the full viewport size. Values lower than `1.0` can be used to speed up 3D rendering at the cost of quality (undersampling). Values greater than `1.0` are only valid for bilinear mode and can be used to improve 3D rendering quality at a high performance cost (supersampling). See also [ProjectSettings.rendering/antiAliasing/quality/msaa3d] for multi-sample antialiasing, which is significantly cheaper but only smooths the edges of polygons.
    *
-   * When using FSR upscaling, AMD recommends exposing the following values as preset options to
-   * users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of
-   * exposing the entire scale.
+   * When using FSR upscaling, AMD recommends exposing the following values as preset options to users "Ultra Quality: 0.77", "Quality: 0.67", "Balanced: 0.59", "Performance: 0.5" instead of exposing the entire scale.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/scaling3d/scale] project setting.
+   * To control this property on the root viewport, set the [ProjectSettings.rendering/scaling3d/scale] project setting.
    */
   public final inline var scaling3dScale: Float
     @JvmName("scaling3dScaleProperty")
@@ -394,21 +320,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called
-   * "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a
-   * distance, while positive values make mipmapped textures blurrier (even when up close).
+   * Affects the final texture sharpness by reading from a lower or higher mipmap (also called "texture LOD bias"). Negative values make mipmapped textures sharper but grainier when viewed at a distance, while positive values make mipmapped textures blurrier (even when up close).
    *
-   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this
-   * value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this
-   * value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this
-   * value.
+   * Enabling temporal antialiasing ([useTaa]) will automatically apply a `-0.5` offset to this value, while enabling FXAA ([screenSpaceAa]) will automatically apply a `-0.25` offset to this value. If both TAA and FXAA are enabled at the same time, an offset of `-0.75` is applied to this value.
    *
-   * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to
-   * adjust the automatic mipmap bias which is calculated internally based on the scale factor. The
-   * formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
+   * **Note:** If [scaling3dScale] is lower than `1.0` (exclusive), [textureMipmapBias] is used to adjust the automatic mipmap bias which is calculated internally based on the scale factor. The formula for this is `log2(scaling_3d_scale) + mipmap_bias`.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
+   * To control this property on the root viewport, set the [ProjectSettings.rendering/textures/defaultFilters/textureMipmapBias] project setting.
    */
   public final inline var textureMipmapBias: Float
     @JvmName("textureMipmapBiasProperty")
@@ -419,24 +337,13 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the maximum number of samples to take when using anisotropic filtering on textures (as a
-   * power of two). A higher sample count will result in sharper textures at oblique angles, but is
-   * more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on
-   * materials where it is enabled.
+   * Sets the maximum number of samples to take when using anisotropic filtering on textures (as a power of two). A higher sample count will result in sharper textures at oblique angles, but is more expensive to compute. A value of `0` forcibly disables anisotropic filtering, even on materials where it is enabled.
    *
-   * The anisotropic filtering level also affects decals and light projectors if they are configured
-   * to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and
-   * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   * The anisotropic filtering level also affects decals and light projectors if they are configured to use anisotropic filtering. See [ProjectSettings.rendering/textures/decals/filter] and [ProjectSettings.rendering/textures/lightProjectors/filter].
    *
-   * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to
-   * [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
-   * [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
+   * **Note:** In 3D, for this setting to have an effect, set [BaseMaterial3D.textureFilter] to [BaseMaterial3D.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or [BaseMaterial3D.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on materials.
    *
-   * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to
-   * [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or
-   * [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying
-   * the texture (or in [CanvasTexture]). However, anisotropic filtering is rarely useful in 2D, so
-   * only enable it for textures in 2D if it makes a meaningful visual difference.
+   * **Note:** In 2D, for this setting to have an effect, set [CanvasItem.textureFilter] to [CanvasItem.TEXTURE_FILTER_LINEAR_WITH_MIPMAPS_ANISOTROPIC] or [CanvasItem.TEXTURE_FILTER_NEAREST_WITH_MIPMAPS_ANISOTROPIC] on the [CanvasItem] node displaying the texture (or in [CanvasTexture]). However, anisotropic filtering is rarely useful in 2D, so only enable it for textures in 2D if it makes a meaningful visual difference.
    */
   public final inline var anisotropicFilteringLevel: AnisotropicFiltering
     @JvmName("anisotropicFilteringLevelProperty")
@@ -447,12 +354,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness
-   * halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make
-   * a visible difference.
+   * Determines how sharp the upscaled image will be when using the FSR upscaling mode. Sharpness halves with every whole number. Values go from 0.0 (sharpest) to 2.0. Values above 2.0 won't make a visible difference.
    *
-   * To control this property on the root viewport, set the
-   * [ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
+   * To control this property on the root viewport, set the [ProjectSettings.rendering/scaling3d/fsrSharpness] project setting.
    */
   public final inline var fsrSharpness: Float
     @JvmName("fsrSharpnessProperty")
@@ -463,8 +367,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not
-   * support VRS this property is ignored.
+   * The Variable Rate Shading (VRS) mode that is used for this viewport. Note, if hardware does not support VRS this property is ignored.
    */
   public final inline var vrsMode: VRSMode
     @JvmName("vrsModeProperty")
@@ -475,10 +378,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the update mode for Variable Rate Shading (VRS) for the viewport. VRS requires the input
-   * texture to be converted to the format usable by the VRS method supported by the hardware. The
-   * update mode defines how often this happens. If the GPU does not support VRS, or VRS is not
-   * enabled, this property is ignored.
+   * Sets the update mode for Variable Rate Shading (VRS) for the viewport. VRS requires the input texture to be converted to the format usable by the VRS method supported by the hardware. The update mode defines how often this happens. If the GPU does not support VRS, or VRS is not enabled, this property is ignored.
    */
   public final inline var vrsUpdateMode: VRSUpdateMode
     @JvmName("vrsUpdateModeProperty")
@@ -491,9 +391,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Texture to use when [vrsMode] is set to [Viewport.VRS_TEXTURE].
    *
-   * The texture *must* use a lossless compression format so that colors can be matched precisely.
-   * The following VRS densities are mapped to various colors, with brighter colors representing a
-   * lower level of shading precision:
+   * The texture *must* use a lossless compression format so that colors can be matched precisely. The following VRS densities are mapped to various colors, with brighter colors representing a lower level of shading precision:
    *
    * [codeblock lang=text]
    *
@@ -528,8 +426,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See
-   * [DefaultCanvasItemTextureFilter] for options.
+   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See [DefaultCanvasItemTextureFilter] for options.
    */
   public final inline var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     @JvmName("canvasItemDefaultTextureFilterProperty")
@@ -540,8 +437,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See
-   * [DefaultCanvasItemTextureRepeat] for options.
+   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See [DefaultCanvasItemTextureRepeat] for options.
    */
   public final inline var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     @JvmName("canvasItemDefaultTextureRepeatProperty")
@@ -576,8 +472,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * If `true`, the objects rendered by viewport become subjects of mouse picking process.
    *
-   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected
-   * in a non-deterministic order, which can be different in each picking process.
+   * **Note:** The number of simultaneously pickable objects is limited to 64 and they are selected in a non-deterministic order, which can be different in each picking process.
    */
   public final inline var physicsObjectPicking: Boolean
     @JvmName("physicsObjectPickingProperty")
@@ -588,15 +483,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, objects receive mouse picking events sorted primarily by their [CanvasItem.zIndex]
-   * and secondarily by their position in the scene tree. If `false`, the order is undetermined.
+   * If `true`, objects receive mouse picking events sorted primarily by their [CanvasItem.zIndex] and secondarily by their position in the scene tree. If `false`, the order is undetermined.
    *
-   * **Note:** This setting is disabled by default because of its potential expensive computational
-   * cost.
+   * **Note:** This setting is disabled by default because of its potential expensive computational cost.
    *
-   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64
-   * simultaneously pickable objects, it is not guaranteed that the object with the highest
-   * [CanvasItem.zIndex] receives the picking event.
+   * **Note:** Sorting happens after selecting the pickable objects. Because of the limitation of 64 simultaneously pickable objects, it is not guaranteed that the object with the highest [CanvasItem.zIndex] receives the picking event.
    */
   public final inline var physicsObjectPickingSort: Boolean
     @JvmName("physicsObjectPickingSortProperty")
@@ -607,11 +498,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the input_event signal will only be sent to one physics object in the mouse picking
-   * process. If you want to get the top object only, you must also enable [physicsObjectPickingSort].
+   * If `true`, the input_event signal will only be sent to one physics object in the mouse picking process. If you want to get the top object only, you must also enable [physicsObjectPickingSort].
    *
-   * If `false`, an input_event signal will be sent to all physics objects in the mouse picking
-   * process.
+   * If `false`, an input_event signal will be sent to all physics objects in the mouse picking process.
    *
    * This applies to 2D CanvasItem object picking only.
    */
@@ -646,9 +535,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as
-   * control-like nodes. If `false`, they will appear as separate windows handled by the operating
-   * system.
+   * If `true`, sub-windows (popups and dialogs) will be embedded inside application window as control-like nodes. If `false`, they will appear as separate windows handled by the operating system.
    */
   public final inline var guiEmbedSubwindows: Boolean
     @JvmName("guiEmbedSubwindowsProperty")
@@ -659,16 +546,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Controls how much of the original viewport's size should be covered by the 2D signed distance
-   * field. This SDF can be sampled in [CanvasItem] shaders and is also used for [GPUParticles2D]
-   * collision. Higher values allow portions of occluders located outside the viewport to still be
-   * taken into account in the generated signed distance field, at the cost of performance. If you
-   * notice particles falling through [LightOccluder2D]s as the occluders leave the viewport, increase
-   * this setting.
+   * Controls how much of the original viewport's size should be covered by the 2D signed distance field. This SDF can be sampled in [CanvasItem] shaders and is also used for [GPUParticles2D] collision. Higher values allow portions of occluders located outside the viewport to still be taken into account in the generated signed distance field, at the cost of performance. If you notice particles falling through [LightOccluder2D]s as the occluders leave the viewport, increase this setting.
    *
-   * The percentage is added on each axis and on both sides. For example, with the default
-   * [SDF_OVERSIZE_120_PERCENT], the signed distance field will cover 20&#37; of the viewport's size
-   * outside the viewport on each side (top, right, bottom, left).
+   * The percentage is added on each axis and on both sides. For example, with the default [SDF_OVERSIZE_120_PERCENT], the signed distance field will cover 20&#37; of the viewport's size outside the viewport on each side (top, right, bottom, left).
    */
   public final inline var sdfOversize: SDFOversize
     @JvmName("sdfOversizeProperty")
@@ -679,8 +559,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The resolution scale to use for the 2D signed distance field. Higher values lead to a more
-   * precise and more stable signed distance field as the camera moves, at the cost of performance.
+   * The resolution scale to use for the 2D signed distance field. Higher values lead to a more precise and more stable signed distance field as the camera moves, at the cost of performance.
    */
   public final inline var sdfScale: SDFScale
     @JvmName("sdfScaleProperty")
@@ -691,12 +570,9 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the
-   * nearest power of 2.
+   * The shadow atlas' resolution (used for omni and spot lights). The value is rounded up to the nearest power of 2.
    *
-   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve
-   * performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw
-   * calls are needed to draw the scene without shadows).
+   * **Note:** If this is set to `0`, no positional shadows will be visible at all. This can improve performance significantly on low-end systems by reducing both the CPU and GPU load (as fewer draw calls are needed to draw the scene without shadows).
    */
   public final inline var positionalShadowAtlasSize: Int
     @JvmName("positionalShadowAtlasSizeProperty")
@@ -707,8 +583,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less
-   * precision and may result in shadow acne, but can lead to performance improvements on some devices.
+   * Use 16 bits for the omni/spot shadow depth map. Enabling this results in shadows having less precision and may result in shadow acne, but can lead to performance improvements on some devices.
    */
   public final inline var positionalShadowAtlas16Bits: Boolean
     @JvmName("positionalShadowAtlas16BitsProperty")
@@ -763,15 +638,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
-   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var canvasTransform: Transform2D
@@ -786,11 +657,8 @@ public open class Viewport internal constructor() : Node() {
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalCanvasTransform: Transform2D
@@ -812,7 +680,7 @@ public open class Viewport internal constructor() : Node() {
       setCanvasCullMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(719, scriptIndex)
   }
 
@@ -827,12 +695,10 @@ public open class Viewport internal constructor() : Node() {
    * viewport.canvasTransform = myCoreType
    * ``````
    *
-   * The canvas transform of the viewport, useful for changing the on-screen positions of all child
-   * [CanvasItem]s. This is relative to the global canvas transform of the viewport.
+   * The canvas transform of the viewport, useful for changing the on-screen positions of all child [CanvasItem]s. This is relative to the global canvas transform of the viewport.
    */
   @CoreTypeHelper
-  public final fun canvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      canvasTransform.apply {
+  public final fun canvasTransformMutate(block: Transform2D.() -> Unit): Transform2D = canvasTransform.apply {
      block(this)
      canvasTransform = this
   }
@@ -851,13 +717,12 @@ public open class Viewport internal constructor() : Node() {
    * The global canvas transform of the viewport. The canvas transform is relative to this.
    */
   @CoreTypeHelper
-  public final fun globalCanvasTransformMutate(block: Transform2D.() -> Unit): Transform2D =
-      globalCanvasTransform.apply {
+  public final fun globalCanvasTransformMutate(block: Transform2D.() -> Unit): Transform2D = globalCanvasTransform.apply {
      block(this)
      globalCanvasTransform = this
   }
 
-  public final fun setWorld2d(world2d: World2D?): Unit {
+  public final fun setWorld2d(world2d: World2D?) {
     TransferContext.writeArguments(OBJECT to world2d)
     TransferContext.callMethod(ptr, MethodBindings.setWorld2dPtr, NIL)
   }
@@ -869,8 +734,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the first valid [World2D] for this viewport, searching the [world2d] property of itself
-   * and any Viewport ancestor.
+   * Returns the first valid [World2D] for this viewport, searching the [world2d] property of itself and any Viewport ancestor.
    */
   public final fun findWorld2d(): World2D? {
     TransferContext.writeArguments()
@@ -878,7 +742,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as World2D?)
   }
 
-  public final fun setCanvasTransform(xform: Transform2D): Unit {
+  public final fun setCanvasTransform(xform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to xform)
     TransferContext.callMethod(ptr, MethodBindings.setCanvasTransformPtr, NIL)
   }
@@ -889,7 +753,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(TRANSFORM2D) as Transform2D)
   }
 
-  public final fun setGlobalCanvasTransform(xform: Transform2D): Unit {
+  public final fun setGlobalCanvasTransform(xform: Transform2D) {
     TransferContext.writeArguments(TRANSFORM2D to xform)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalCanvasTransformPtr, NIL)
   }
@@ -901,18 +765,9 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the automatically computed 2D stretch transform, taking the [Viewport]'s stretch
-   * settings into account. The final value is multiplied by [Window.contentScaleFactor], but only for
-   * the root viewport. If this method is called on a [SubViewport] (e.g., in a scene tree with
-   * [SubViewportContainer] and [SubViewport]), the scale factor of the root window will not be
-   * applied. Using [Transform2D.getScale] on the returned value, this can be used to compensate for
-   * scaling when zooming a [Camera2D] node, or to scale down a [TextureRect] to be pixel-perfect
-   * regardless of the automatically computed scale factor.
+   * Returns the automatically computed 2D stretch transform, taking the [Viewport]'s stretch settings into account. The final value is multiplied by [Window.contentScaleFactor], but only for the root viewport. If this method is called on a [SubViewport] (e.g., in a scene tree with [SubViewportContainer] and [SubViewport]), the scale factor of the root window will not be applied. Using [Transform2D.getScale] on the returned value, this can be used to compensate for scaling when zooming a [Camera2D] node, or to scale down a [TextureRect] to be pixel-perfect regardless of the automatically computed scale factor.
    *
-   * **Note:** Due to how pixel scaling works, the returned transform's X and Y scale may differ
-   * slightly, even when [Window.contentScaleAspect] is set to a mode that preserves the pixels' aspect
-   * ratio. If [Window.contentScaleAspect] is [Window.CONTENT_SCALE_ASPECT_IGNORE], the X and Y scale
-   * may differ *significantly*.
+   * **Note:** Due to how pixel scaling works, the returned transform's X and Y scale may differ slightly, even when [Window.contentScaleAspect] is set to a mode that preserves the pixels' aspect ratio. If [Window.contentScaleAspect] is [Window.CONTENT_SCALE_ASPECT_IGNORE], the X and Y scale may differ *significantly*.
    */
   public final fun getStretchTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -921,8 +776,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the viewport's coordinate system to the embedder's coordinate
-   * system.
+   * Returns the transform from the viewport's coordinate system to the embedder's coordinate system.
    */
   public final fun getFinalTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -931,8 +785,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the Viewport's coordinates to the screen coordinates of the
-   * containing window manager window.
+   * Returns the transform from the Viewport's coordinates to the screen coordinates of the containing window manager window.
    */
   public final fun getScreenTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -949,7 +802,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setTransparentBackground(enable: Boolean): Unit {
+  public final fun setTransparentBackground(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setTransparentBackgroundPtr, NIL)
   }
@@ -960,7 +813,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseHdr2d(enable: Boolean): Unit {
+  public final fun setUseHdr2d(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseHdr2dPtr, NIL)
   }
@@ -971,7 +824,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMsaa2d(msaa: MSAA): Unit {
+  public final fun setMsaa2d(msaa: MSAA) {
     TransferContext.writeArguments(LONG to msaa.id)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa2dPtr, NIL)
   }
@@ -982,7 +835,7 @@ public open class Viewport internal constructor() : Node() {
     return MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMsaa3d(msaa: MSAA): Unit {
+  public final fun setMsaa3d(msaa: MSAA) {
     TransferContext.writeArguments(LONG to msaa.id)
     TransferContext.callMethod(ptr, MethodBindings.setMsaa3dPtr, NIL)
   }
@@ -993,7 +846,7 @@ public open class Viewport internal constructor() : Node() {
     return MSAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setScreenSpaceAa(screenSpaceAa: ScreenSpaceAA): Unit {
+  public final fun setScreenSpaceAa(screenSpaceAa: ScreenSpaceAA) {
     TransferContext.writeArguments(LONG to screenSpaceAa.id)
     TransferContext.callMethod(ptr, MethodBindings.setScreenSpaceAaPtr, NIL)
   }
@@ -1004,7 +857,7 @@ public open class Viewport internal constructor() : Node() {
     return ScreenSpaceAA.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseTaa(enable: Boolean): Unit {
+  public final fun setUseTaa(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseTaaPtr, NIL)
   }
@@ -1015,7 +868,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseDebanding(enable: Boolean): Unit {
+  public final fun setUseDebanding(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseDebandingPtr, NIL)
   }
@@ -1026,7 +879,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseOcclusionCulling(enable: Boolean): Unit {
+  public final fun setUseOcclusionCulling(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseOcclusionCullingPtr, NIL)
   }
@@ -1037,7 +890,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDebugDraw(debugDraw: DebugDraw): Unit {
+  public final fun setDebugDraw(debugDraw: DebugDraw) {
     TransferContext.writeArguments(LONG to debugDraw.id)
     TransferContext.callMethod(ptr, MethodBindings.setDebugDrawPtr, NIL)
   }
@@ -1049,8 +902,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns rendering statistics of the given type. See [RenderInfoType] and [RenderInfo] for
-   * options.
+   * Returns rendering statistics of the given type. See [RenderInfoType] and [RenderInfo] for options.
    */
   public final fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.id, LONG to info.id)
@@ -1061,9 +913,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the viewport's texture.
    *
-   * **Note:** When trying to store the current texture (e.g. in a file), it might be completely
-   * black or outdated if used too early, especially when used in e.g. [Node.Ready]. To make sure the
-   * texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
+   * **Note:** When trying to store the current texture (e.g. in a file), it might be completely black or outdated if used too early, especially when used in e.g. [Node.Ready]. To make sure the texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
    *
    * ```
    * func _ready():
@@ -1071,8 +921,7 @@ public open class Viewport internal constructor() : Node() {
    *     $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
    * ```
    *
-   * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear
-   * space.
+   * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear space.
    */
   public final fun getTexture(): ViewportTexture? {
     TransferContext.writeArguments()
@@ -1080,7 +929,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as ViewportTexture?)
   }
 
-  public final fun setPhysicsObjectPicking(enable: Boolean): Unit {
+  public final fun setPhysicsObjectPicking(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsObjectPickingPtr, NIL)
   }
@@ -1091,7 +940,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPhysicsObjectPickingSort(enable: Boolean): Unit {
+  public final fun setPhysicsObjectPickingSort(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsObjectPickingSortPtr, NIL)
   }
@@ -1102,7 +951,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPhysicsObjectPickingFirstOnly(enable: Boolean): Unit {
+  public final fun setPhysicsObjectPickingFirstOnly(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsObjectPickingFirstOnlyPtr, NIL)
   }
@@ -1123,28 +972,21 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Helper method which calls the `set_text()` method on the currently focused [Control], provided
-   * that it is defined (e.g. if the focused Control is [Button] or [LineEdit]).
+   * Helper method which calls the `set_text()` method on the currently focused [Control], provided that it is defined (e.g. if the focused Control is [Button] or [LineEdit]).
    */
-  public final fun pushTextInput(text: String): Unit {
+  public final fun pushTextInput(text: String) {
     TransferContext.writeArguments(STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.pushTextInputPtr, NIL)
   }
 
   /**
-   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
-   * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
    *
-   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
-   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
-   * viewport coordinates.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
    *
-   * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the
-   * specified [event] based on project settings like
-   * [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
+   * While this method serves a similar purpose as [Input.parseInputEvent], it does not remap the specified [event] based on project settings like [ProjectSettings.inputDevices/pointing/emulateTouchFromMouse].
    *
-   * Calling this method will propagate calls to child nodes for following methods in the given
-   * order:
+   * Calling this method will propagate calls to child nodes for following methods in the given order:
    *
    * - [Node.Input]
    *
@@ -1156,28 +998,22 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [Node.UnhandledInput]
    *
-   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
-   * this list will not be called.
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
-   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
-   * for physics object picking.
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
    */
   @JvmOverloads
-  public final fun pushInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
+  public final fun pushInput(event: InputEvent?, inLocalCoords: Boolean = false) {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(ptr, MethodBindings.pushInputPtr, NIL)
   }
 
   /**
-   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between
-   * viewports, or to locally apply inputs that were sent over the network or saved to a file.
+   * Triggers the given [event] in this [Viewport]. This can be used to pass an [InputEvent] between viewports, or to locally apply inputs that were sent over the network or saved to a file.
    *
-   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will
-   * be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in
-   * viewport coordinates.
+   * If [inLocalCoords] is `false`, the event's position is in the embedder's coordinates and will be converted to viewport coordinates. If [inLocalCoords] is `true`, the event's position is in viewport coordinates.
    *
-   * Calling this method will propagate calls to child nodes for following methods in the given
-   * order:
+   * Calling this method will propagate calls to child nodes for following methods in the given order:
    *
    * - [Node.ShortcutInput]
    *
@@ -1185,46 +1021,34 @@ public open class Viewport internal constructor() : Node() {
    *
    * - [Node.UnhandledInput]
    *
-   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in
-   * this list will not be called.
+   * If an earlier method marks the input as handled via [setInputAsHandled], any later method in this list will not be called.
    *
-   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used
-   * for physics object picking.
+   * If none of the methods handle the event and [physicsObjectPicking] is `true`, the event is used for physics object picking.
    *
    * **Note:** This method doesn't propagate input events to embedded [Window]s or [SubViewport]s.
    */
   @JvmOverloads
-  public final fun pushUnhandledInput(event: InputEvent?, inLocalCoords: Boolean = false): Unit {
+  public final fun pushUnhandledInput(event: InputEvent?, inLocalCoords: Boolean = false) {
     TransferContext.writeArguments(OBJECT to event, BOOL to inLocalCoords)
     TransferContext.callMethod(ptr, MethodBindings.pushUnhandledInputPtr, NIL)
   }
 
   /**
-   * Inform the Viewport that the mouse has entered its area. Use this function before sending an
-   * [InputEventMouseButton] or [InputEventMouseMotion] to the [Viewport] with [Viewport.pushInput].
-   * See also [notifyMouseExited].
+   * Inform the Viewport that the mouse has entered its area. Use this function before sending an [InputEventMouseButton] or [InputEventMouseMotion] to the [Viewport] with [Viewport.pushInput]. See also [notifyMouseExited].
    *
-   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
-   * that are children of [SubViewportContainer] are notified automatically. This is only necessary
-   * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
-   * with an [Area3D] that forwards input events.
+   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes that are children of [SubViewportContainer] are notified automatically. This is only necessary when interacting with viewports in non-default ways, for example as textures in [TextureRect] or with an [Area3D] that forwards input events.
    */
-  public final fun notifyMouseEntered(): Unit {
+  public final fun notifyMouseEntered() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.notifyMouseEnteredPtr, NIL)
   }
 
   /**
-   * Inform the Viewport that the mouse has left its area. Use this function when the node that
-   * displays the viewport notices the mouse has left the area of the displayed viewport. See also
-   * [notifyMouseEntered].
+   * Inform the Viewport that the mouse has left its area. Use this function when the node that displays the viewport notices the mouse has left the area of the displayed viewport. See also [notifyMouseEntered].
    *
-   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes
-   * that are children of [SubViewportContainer] are notified automatically. This is only necessary
-   * when interacting with viewports in non-default ways, for example as textures in [TextureRect] or
-   * with an [Area3D] that forwards input events.
+   * **Note:** In most cases, it is not necessary to call this function because [SubViewport] nodes that are children of [SubViewportContainer] are notified automatically. This is only necessary when interacting with viewports in non-default ways, for example as textures in [TextureRect] or with an [Area3D] that forwards input events.
    */
-  public final fun notifyMouseExited(): Unit {
+  public final fun notifyMouseExited() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.notifyMouseExitedPtr, NIL)
   }
@@ -1239,33 +1063,27 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Moves the mouse pointer to the specified position in this [Viewport] using the coordinate
-   * system of this [Viewport].
+   * Moves the mouse pointer to the specified position in this [Viewport] using the coordinate system of this [Viewport].
    *
-   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on
-   * Android, iOS and Web.
+   * **Note:** [warpMouse] is only supported on Windows, macOS and Linux. It has no effect on Android, iOS and Web.
    */
-  public final fun warpMouse(position: Vector2): Unit {
+  public final fun warpMouse(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.warpMousePtr, NIL)
   }
 
   /**
-   * Force instantly updating the display based on the current mouse cursor position. This includes
-   * updating the mouse cursor shape and sending necessary [signal Control.mouse_entered], [signal
-   * CollisionObject2D.mouse_entered], [signal CollisionObject3D.mouse_entered] and [signal
-   * Window.mouse_entered] signals and their respective `mouse_exited` counterparts.
+   * Force instantly updating the display based on the current mouse cursor position. This includes updating the mouse cursor shape and sending necessary [signal Control.mouse_entered], [signal CollisionObject2D.mouse_entered], [signal CollisionObject3D.mouse_entered] and [signal Window.mouse_entered] signals and their respective `mouse_exited` counterparts.
    */
-  public final fun updateMouseCursorState(): Unit {
+  public final fun updateMouseCursorState() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateMouseCursorStatePtr, NIL)
   }
 
   /**
-   * Cancels the drag operation that was previously started through [Control.GetDragData] or forced
-   * with [Control.forceDrag].
+   * Cancels the drag operation that was previously started through [Control.GetDragData] or forced with [Control.forceDrag].
    */
-  public final fun guiCancelDrag(): Unit {
+  public final fun guiCancelDrag() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiCancelDragPtr, NIL)
   }
@@ -1280,11 +1098,9 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if a drag operation is currently ongoing and where the drop action could happen
-   * in this viewport.
+   * Returns `true` if a drag operation is currently ongoing and where the drop action could happen in this viewport.
    *
-   * Alternative to [Node.NOTIFICATION_DRAG_BEGIN] and [Node.NOTIFICATION_DRAG_END] when you prefer
-   * polling the value.
+   * Alternative to [Node.NOTIFICATION_DRAG_BEGIN] and [Node.NOTIFICATION_DRAG_END] when you prefer polling the value.
    */
   public final fun guiIsDragging(): Boolean {
     TransferContext.writeArguments()
@@ -1302,17 +1118,15 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Removes the focus from the currently focused [Control] within this viewport. If no [Control]
-   * has the focus, does nothing.
+   * Removes the focus from the currently focused [Control] within this viewport. If no [Control] has the focus, does nothing.
    */
-  public final fun guiReleaseFocus(): Unit {
+  public final fun guiReleaseFocus() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiReleaseFocusPtr, NIL)
   }
 
   /**
-   * Returns the currently focused [Control] within this viewport. If no [Control] is focused,
-   * returns `null`.
+   * Returns the currently focused [Control] within this viewport. If no [Control] is focused, returns `null`.
    */
   public final fun guiGetFocusOwner(): Control? {
     TransferContext.writeArguments()
@@ -1321,12 +1135,9 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the [Control] that the mouse is currently hovering over in this viewport. If no
-   * [Control] has the cursor, returns `null`.
+   * Returns the [Control] that the mouse is currently hovering over in this viewport. If no [Control] has the cursor, returns `null`.
    *
-   * Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is
-   * very useful when used together with [Node.isAncestorOf] to find if the mouse is within a control
-   * tree.
+   * Typically the leaf [Control] node or deepest level of the subtree which claims hover. This is very useful when used together with [Node.isAncestorOf] to find if the mouse is within a control tree.
    */
   public final fun guiGetHoveredControl(): Control? {
     TransferContext.writeArguments()
@@ -1334,7 +1145,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
-  public final fun setDisableInput(disable: Boolean): Unit {
+  public final fun setDisableInput(disable: Boolean) {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(ptr, MethodBindings.setDisableInputPtr, NIL)
   }
@@ -1345,7 +1156,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPositionalShadowAtlasSize(size: Int): Unit {
+  public final fun setPositionalShadowAtlasSize(size: Int) {
     TransferContext.writeArguments(LONG to size.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPositionalShadowAtlasSizePtr, NIL)
   }
@@ -1356,7 +1167,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setPositionalShadowAtlas16Bits(enable: Boolean): Unit {
+  public final fun setPositionalShadowAtlas16Bits(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setPositionalShadowAtlas16BitsPtr, NIL)
   }
@@ -1367,7 +1178,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSnapControlsToPixels(enabled: Boolean): Unit {
+  public final fun setSnapControlsToPixels(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSnapControlsToPixelsPtr, NIL)
   }
@@ -1378,7 +1189,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSnap2dTransformsToPixel(enabled: Boolean): Unit {
+  public final fun setSnap2dTransformsToPixel(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSnap2dTransformsToPixelPtr, NIL)
   }
@@ -1389,7 +1200,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSnap2dVerticesToPixel(enabled: Boolean): Unit {
+  public final fun setSnap2dVerticesToPixel(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSnap2dVerticesToPixelPtr, NIL)
   }
@@ -1401,13 +1212,9 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Sets the number of subdivisions to use in the specified quadrant. A higher number of
-   * subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the
-   * shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as
-   * few subdivisions as possible.
+   * Sets the number of subdivisions to use in the specified quadrant. A higher number of subdivisions allows you to have more shadows in the scene at once, but reduces the quality of the shadows. A good practice is to have quadrants with a varying number of subdivisions and to have as few subdivisions as possible.
    */
-  public final fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int,
-      subdiv: PositionalShadowAtlasQuadrantSubdiv): Unit {
+  public final fun setPositionalShadowAtlasQuadrantSubdiv(quadrant: Int, subdiv: PositionalShadowAtlasQuadrantSubdiv) {
     TransferContext.writeArguments(LONG to quadrant.toLong(), LONG to subdiv.id)
     TransferContext.callMethod(ptr, MethodBindings.setPositionalShadowAtlasQuadrantSubdivPtr, NIL)
   }
@@ -1415,8 +1222,7 @@ public open class Viewport internal constructor() : Node() {
   /**
    * Returns the positional shadow atlas quadrant subdivision of the specified quadrant.
    */
-  public final fun getPositionalShadowAtlasQuadrantSubdiv(quadrant: Int):
-      PositionalShadowAtlasQuadrantSubdiv {
+  public final fun getPositionalShadowAtlasQuadrantSubdiv(quadrant: Int): PositionalShadowAtlasQuadrantSubdiv {
     TransferContext.writeArguments(LONG to quadrant.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPositionalShadowAtlasQuadrantSubdivPtr, LONG)
     return PositionalShadowAtlasQuadrantSubdiv.from(TransferContext.readReturnValue(LONG) as Long)
@@ -1427,20 +1233,17 @@ public open class Viewport internal constructor() : Node() {
    *
    * **Note:** This does not affect the methods in [Input], only the way events are propagated.
    */
-  public final fun setInputAsHandled(): Unit {
+  public final fun setInputAsHandled() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.setInputAsHandledPtr, NIL)
   }
 
   /**
-   * Returns whether the current [InputEvent] has been handled. Input events are not handled until
-   * [setInputAsHandled] has been called during the lifetime of an [InputEvent].
+   * Returns whether the current [InputEvent] has been handled. Input events are not handled until [setInputAsHandled] has been called during the lifetime of an [InputEvent].
    *
-   * This is usually done as part of input handling methods like [Node.Input], [Control.GuiInput] or
-   * others, as well as in corresponding signal handlers.
+   * This is usually done as part of input handling methods like [Node.Input], [Control.GuiInput] or others, as well as in corresponding signal handlers.
    *
-   * If [handleInputLocally] is set to `false`, this method will try finding the first parent
-   * viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
+   * If [handleInputLocally] is set to `false`, this method will try finding the first parent viewport that is set to handle input locally, and return its value for [isInputHandled] instead.
    */
   public final fun isInputHandled(): Boolean {
     TransferContext.writeArguments()
@@ -1448,7 +1251,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHandleInputLocally(enable: Boolean): Unit {
+  public final fun setHandleInputLocally(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHandleInputLocallyPtr, NIL)
   }
@@ -1459,7 +1262,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultCanvasItemTextureFilter(mode: DefaultCanvasItemTextureFilter): Unit {
+  public final fun setDefaultCanvasItemTextureFilter(mode: DefaultCanvasItemTextureFilter) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCanvasItemTextureFilterPtr, NIL)
   }
@@ -1470,7 +1273,7 @@ public open class Viewport internal constructor() : Node() {
     return DefaultCanvasItemTextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEmbeddingSubwindows(enable: Boolean): Unit {
+  public final fun setEmbeddingSubwindows(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEmbeddingSubwindowsPtr, NIL)
   }
@@ -1492,7 +1295,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Window>)
   }
 
-  public final fun setCanvasCullMask(mask: Long): Unit {
+  public final fun setCanvasCullMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setCanvasCullMaskPtr, NIL)
   }
@@ -1504,10 +1307,9 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Set/clear individual bits on the rendering layer mask. This simplifies editing this
-   * [Viewport]'s layers.
+   * Set/clear individual bits on the rendering layer mask. This simplifies editing this [Viewport]'s layers.
    */
-  public final fun setCanvasCullMaskBit(layer: Long, enable: Boolean): Unit {
+  public final fun setCanvasCullMaskBit(layer: Long, enable: Boolean) {
     TransferContext.writeArguments(LONG to layer, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCanvasCullMaskBitPtr, NIL)
   }
@@ -1521,7 +1323,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultCanvasItemTextureRepeat(mode: DefaultCanvasItemTextureRepeat): Unit {
+  public final fun setDefaultCanvasItemTextureRepeat(mode: DefaultCanvasItemTextureRepeat) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCanvasItemTextureRepeatPtr, NIL)
   }
@@ -1532,7 +1334,7 @@ public open class Viewport internal constructor() : Node() {
     return DefaultCanvasItemTextureRepeat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSdfOversize(oversize: SDFOversize): Unit {
+  public final fun setSdfOversize(oversize: SDFOversize) {
     TransferContext.writeArguments(LONG to oversize.id)
     TransferContext.callMethod(ptr, MethodBindings.setSdfOversizePtr, NIL)
   }
@@ -1543,7 +1345,7 @@ public open class Viewport internal constructor() : Node() {
     return SDFOversize.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSdfScale(scale: SDFScale): Unit {
+  public final fun setSdfScale(scale: SDFScale) {
     TransferContext.writeArguments(LONG to scale.id)
     TransferContext.callMethod(ptr, MethodBindings.setSdfScalePtr, NIL)
   }
@@ -1554,7 +1356,7 @@ public open class Viewport internal constructor() : Node() {
     return SDFScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMeshLodThreshold(pixels: Float): Unit {
+  public final fun setMeshLodThreshold(pixels: Float) {
     TransferContext.writeArguments(DOUBLE to pixels.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMeshLodThresholdPtr, NIL)
   }
@@ -1565,7 +1367,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAsAudioListener2d(enable: Boolean): Unit {
+  public final fun setAsAudioListener2d(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAsAudioListener2dPtr, NIL)
   }
@@ -1577,8 +1379,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the currently active 2D audio listener. Returns `null` if there are no active 2D audio
-   * listeners, in which case the active 2D camera will be treated as listener.
+   * Returns the currently active 2D audio listener. Returns `null` if there are no active 2D audio listeners, in which case the active 2D camera will be treated as listener.
    */
   public final fun getAudioListener2d(): AudioListener2D? {
     TransferContext.writeArguments()
@@ -1595,7 +1396,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Camera2D?)
   }
 
-  public final fun setWorld3d(world3d: World3D?): Unit {
+  public final fun setWorld3d(world3d: World3D?) {
     TransferContext.writeArguments(OBJECT to world3d)
     TransferContext.callMethod(ptr, MethodBindings.setWorld3dPtr, NIL)
   }
@@ -1607,8 +1408,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the first valid [World3D] for this viewport, searching the [world3d] property of itself
-   * and any Viewport ancestor.
+   * Returns the first valid [World3D] for this viewport, searching the [world3d] property of itself and any Viewport ancestor.
    */
   public final fun findWorld3d(): World3D? {
     TransferContext.writeArguments()
@@ -1616,7 +1416,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as World3D?)
   }
 
-  public final fun setUseOwnWorld3d(enable: Boolean): Unit {
+  public final fun setUseOwnWorld3d(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseOwnWorld3dPtr, NIL)
   }
@@ -1628,8 +1428,7 @@ public open class Viewport internal constructor() : Node() {
   }
 
   /**
-   * Returns the currently active 3D audio listener. Returns `null` if there are no active 3D audio
-   * listeners, in which case the active 3D camera will be treated as listener.
+   * Returns the currently active 3D audio listener. Returns `null` if there are no active 3D audio listeners, in which case the active 3D camera will be treated as listener.
    */
   public final fun getAudioListener3d(): AudioListener3D? {
     TransferContext.writeArguments()
@@ -1646,7 +1445,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(OBJECT) as Camera3D?)
   }
 
-  public final fun setAsAudioListener3d(enable: Boolean): Unit {
+  public final fun setAsAudioListener3d(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAsAudioListener3dPtr, NIL)
   }
@@ -1657,7 +1456,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDisable3d(disable: Boolean): Unit {
+  public final fun setDisable3d(disable: Boolean) {
     TransferContext.writeArguments(BOOL to disable)
     TransferContext.callMethod(ptr, MethodBindings.setDisable3dPtr, NIL)
   }
@@ -1668,7 +1467,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseXr(use: Boolean): Unit {
+  public final fun setUseXr(use: Boolean) {
     TransferContext.writeArguments(BOOL to use)
     TransferContext.callMethod(ptr, MethodBindings.setUseXrPtr, NIL)
   }
@@ -1679,7 +1478,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setScaling3dMode(scaling3dMode: Scaling3DMode): Unit {
+  public final fun setScaling3dMode(scaling3dMode: Scaling3DMode) {
     TransferContext.writeArguments(LONG to scaling3dMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setScaling3dModePtr, NIL)
   }
@@ -1690,7 +1489,7 @@ public open class Viewport internal constructor() : Node() {
     return Scaling3DMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setScaling3dScale(scale: Float): Unit {
+  public final fun setScaling3dScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setScaling3dScalePtr, NIL)
   }
@@ -1701,7 +1500,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFsrSharpness(fsrSharpness: Float): Unit {
+  public final fun setFsrSharpness(fsrSharpness: Float) {
     TransferContext.writeArguments(DOUBLE to fsrSharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFsrSharpnessPtr, NIL)
   }
@@ -1712,7 +1511,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTextureMipmapBias(textureMipmapBias: Float): Unit {
+  public final fun setTextureMipmapBias(textureMipmapBias: Float) {
     TransferContext.writeArguments(DOUBLE to textureMipmapBias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTextureMipmapBiasPtr, NIL)
   }
@@ -1723,8 +1522,7 @@ public open class Viewport internal constructor() : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: AnisotropicFiltering):
-      Unit {
+  public final fun setAnisotropicFilteringLevel(anisotropicFilteringLevel: AnisotropicFiltering) {
     TransferContext.writeArguments(LONG to anisotropicFilteringLevel.id)
     TransferContext.callMethod(ptr, MethodBindings.setAnisotropicFilteringLevelPtr, NIL)
   }
@@ -1735,7 +1533,7 @@ public open class Viewport internal constructor() : Node() {
     return AnisotropicFiltering.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVrsMode(mode: VRSMode): Unit {
+  public final fun setVrsMode(mode: VRSMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVrsModePtr, NIL)
   }
@@ -1746,7 +1544,7 @@ public open class Viewport internal constructor() : Node() {
     return VRSMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVrsUpdateMode(mode: VRSUpdateMode): Unit {
+  public final fun setVrsUpdateMode(mode: VRSUpdateMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setVrsUpdateModePtr, NIL)
   }
@@ -1757,7 +1555,7 @@ public open class Viewport internal constructor() : Node() {
     return VRSUpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setVrsTexture(texture: Texture2D?): Unit {
+  public final fun setVrsTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setVrsTexturePtr, NIL)
   }
@@ -1792,15 +1590,11 @@ public open class Viewport internal constructor() : Node() {
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_64(4),
     /**
-     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the
-     * [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low
-     * resolution.
+     * This quadrant will be split 256 ways and used by up to 256 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_256(5),
     /**
-     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the
-     * [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low
-     * resolution.
+     * This quadrant will be split 1024 ways and used by up to 1024 shadow maps. Unless the [positionalShadowAtlasSize] is very high, the shadows in this quadrant will be very low resolution.
      */
     SHADOW_ATLAS_QUADRANT_SUBDIV_1024(6),
     /**
@@ -1815,8 +1609,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long): PositionalShadowAtlasQuadrantSubdiv =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): PositionalShadowAtlasQuadrantSubdiv = entries.single { it.id == `value` }
     }
   }
 
@@ -1824,60 +1617,39 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using
-     * [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than
-     * `1.0` will result in supersampling. A value of `1.0` disables scaling.
+     * Use bilinear scaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will result in undersampling while values greater than `1.0` will result in supersampling. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_BILINEAR(0),
     /**
-     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport
-     * being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling
-     * will be used instead. A value of `1.0` disables scaling.
+     * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_FSR(1),
     /**
-     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
-     * viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear
-     * downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA
-     * solution.
+     * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA solution.
      */
     SCALING_3D_MODE_FSR2(2),
     /**
-     * Use the
-     * [url=https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler#overview]MetalFX
-     * spatial upscaler[/url] for the viewport's 3D buffer.
+     * Use the [url=https://developer.apple.com/documentation/metalfx/mtlfxspatialscaler#overview]MetalFX spatial upscaler[/url] for the viewport's 3D buffer.
      *
      * The amount of scaling can be set using [scaling3dScale].
      *
-     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
-     * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
-     * `1.0` disables scaling.
+     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` disables scaling.
      *
      * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
      *
-     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
-     * mode to macOS and iOS.
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling mode to macOS and iOS.
      */
     SCALING_3D_MODE_METALFX_SPATIAL(3),
     /**
-     * Use the
-     * [url=https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler#overview]MetalFX
-     * temporal upscaler[/url] for the viewport's 3D buffer.
+     * Use the [url=https://developer.apple.com/documentation/metalfx/mtlfxtemporalscaler#overview]MetalFX temporal upscaler[/url] for the viewport's 3D buffer.
      *
-     * The amount of scaling can be set using [scaling3dScale]. To determine the minimum input
-     * scale, use the [RenderingDevice.limitGet] method with
-     * [RenderingDevice.LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE].
+     * The amount of scaling can be set using [scaling3dScale]. To determine the minimum input scale, use the [RenderingDevice.limitGet] method with [RenderingDevice.LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE].
      *
-     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
-     * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
-     * `1.0` will use MetalFX at native resolution as a TAA solution.
+     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of `1.0` will use MetalFX at native resolution as a TAA solution.
      *
      * More information: [url=https://developer.apple.com/documentation/metalfx]MetalFX[/url].
      *
-     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling
-     * mode to macOS and iOS.
+     * **Note:** Only supported when the Metal rendering driver is in use, which limits this scaling mode to macOS and iOS.
      */
     SCALING_3D_MODE_METALFX_TEMPORAL(4),
     /**
@@ -1900,24 +1672,19 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest
-     * setting.
+     * Multisample antialiasing mode disabled. This is the default value, and is also the fastest setting.
      */
     DISABLED(0),
     /**
-     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce
-     * aliasing noticeably, but 4× MSAA still looks substantially better.
+     * Use 2× Multisample Antialiasing. This has a moderate performance cost. It helps reduce aliasing noticeably, but 4× MSAA still looks substantially better.
      */
     MSAA_2X(1),
     /**
-     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a
-     * good compromise between performance and quality.
+     * Use 4× Multisample Antialiasing. This has a significant performance cost, and is generally a good compromise between performance and quality.
      */
     MSAA_4X(2),
     /**
-     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference
-     * between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported
-     * on low-end and older hardware.
+     * Use 8× Multisample Antialiasing. This has a very high performance cost. The difference between 4× and 8× MSAA may not always be visible in real gameplay conditions. Likely unsupported on low-end and older hardware.
      */
     MSAA_8X(3),
     /**
@@ -1983,9 +1750,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DISABLED(0),
     /**
-     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which
-     * is fast but will make the image look blurry, especially at lower resolutions. It can still work
-     * relatively well at large resolutions such as 1440p and 4K.
+     * Use fast approximate antialiasing. FXAA is a popular screen-space antialiasing method, which is fast but will make the image look blurry, especially at lower resolutions. It can still work relatively well at large resolutions such as 1440p and 4K.
      */
     FXAA(1),
     /**
@@ -2043,8 +1808,7 @@ public open class Viewport internal constructor() : Node() {
      */
     VISIBLE(0),
     /**
-     * Shadow render pass. Objects will be rendered several times depending on the number of amounts
-     * of lights with shadows and the number of directional shadow splits.
+     * Shadow render pass. Objects will be rendered several times depending on the number of amounts of lights with shadows and the number of directional shadow splits.
      */
     SHADOW(1),
     /**
@@ -2083,21 +1847,17 @@ public open class Viewport internal constructor() : Node() {
      */
     LIGHTING(2),
     /**
-     * Objects are displayed semi-transparent with additive blending so you can see where they are
-     * drawing over top of one another. A higher overdraw means you are wasting performance on drawing
-     * pixels that are being hidden behind others.
+     * Objects are displayed semi-transparent with additive blending so you can see where they are drawing over top of one another. A higher overdraw means you are wasting performance on drawing pixels that are being hidden behind others.
      */
     OVERDRAW(3),
     /**
      * Objects are displayed as wireframe models.
      *
-     * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any
-     * meshes for wireframes to be visible when using the Compatibility renderer.
+     * **Note:** [RenderingServer.setDebugGenerateWireframes] must be called before loading any meshes for wireframes to be visible when using the Compatibility renderer.
      */
     WIREFRAME(4),
     /**
-     * Objects are displayed without lighting information and their textures replaced by normal
-     * mapping.
+     * Objects are displayed without lighting information and their textures replaced by normal mapping.
      */
     NORMAL_BUFFER(5),
     /**
@@ -2113,13 +1873,11 @@ public open class Viewport internal constructor() : Node() {
      */
     VOXEL_GI_EMISSION(8),
     /**
-     * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the
-     * upper left quadrant of the [Viewport].
+     * Draws the shadow atlas that stores shadows from [OmniLight3D]s and [SpotLight3D]s in the upper left quadrant of the [Viewport].
      */
     SHADOW_ATLAS(9),
     /**
-     * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left
-     * quadrant of the [Viewport].
+     * Draws the shadow atlas that stores shadows from [DirectionalLight3D]s in the upper left quadrant of the [Viewport].
      */
     DIRECTIONAL_SHADOW_ATLAS(10),
     /**
@@ -2127,39 +1885,31 @@ public open class Viewport internal constructor() : Node() {
      */
     SCENE_LUMINANCE(11),
     /**
-     * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
-     * see how it is affecting objects. In order for this display mode to work, you must have
-     * [Environment.ssaoEnabled] set in your [WorldEnvironment].
+     * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [Environment.ssaoEnabled] set in your [WorldEnvironment].
      */
     SSAO(12),
     /**
-     * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly
-     * see how it is affecting objects. In order for this display mode to work, you must have
-     * [Environment.ssilEnabled] set in your [WorldEnvironment].
+     * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly see how it is affecting objects. In order for this display mode to work, you must have [Environment.ssilEnabled] set in your [WorldEnvironment].
      */
     SSIL(13),
     /**
-     * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
-     * can see where the splits are. In order, they will be colored red, green, blue, and yellow.
+     * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you can see where the splits are. In order, they will be colored red, green, blue, and yellow.
      */
     PSSM_SPLITS(14),
     /**
-     * Draws the decal atlas used by [Decal]s and light projector textures in the upper left
-     * quadrant of the [Viewport].
+     * Draws the decal atlas used by [Decal]s and light projector textures in the upper left quadrant of the [Viewport].
      */
     DECAL_ATLAS(15),
     /**
      * Draws the cascades used to render signed distance field global illumination (SDFGI).
      *
-     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
-     * not supported on the platform.
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is not supported on the platform.
      */
     SDFGI(16),
     /**
      * Draws the probes used for signed distance field global illumination (SDFGI).
      *
-     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
-     * not supported on the platform.
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is not supported on the platform.
      */
     SDFGI_PROBES(17),
     /**
@@ -2214,35 +1964,23 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated
-     * from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter reads from the nearest pixel only. This makes the texture look pixelated from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     NEAREST(0),
     /**
-     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth
-     * from up close, and grainy from a distance (due to mipmaps not being sampled).
+     * The texture filter blends between the nearest 4 pixels. This makes the texture look smooth from up close, and grainy from a distance (due to mipmaps not being sampled).
      */
     LINEAR(1),
     /**
-     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or
-     * uses the nearest mipmap if
-     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
-     * makes the texture look smooth from up close, and smooth from a distance.
+     * The texture filter blends between the nearest 4 pixels and between the nearest 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look smooth from up close, and smooth from a distance.
      *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
-     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
-     * on-screen pixels.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
      */
     LINEAR_WITH_MIPMAPS(2),
     /**
-     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or
-     * uses the nearest mipmap if
-     * [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This
-     * makes the texture look pixelated from up close, and smooth from a distance.
+     * The texture filter reads from the nearest pixel and blends between the nearest 2 mipmaps (or uses the nearest mipmap if [ProjectSettings.rendering/textures/defaultFilters/useNearestMipmapFilter] is `true`). This makes the texture look pixelated from up close, and smooth from a distance.
      *
-     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D]
-     * zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than
-     * on-screen pixels.
+     * Use this for non-pixel art textures that may be viewed at a low scale (e.g. due to [Camera2D] zoom or sprite scaling), as mipmaps are important to smooth out pixels that are smaller than on-screen pixels.
      */
     NEAREST_WITH_MIPMAPS(3),
     /**
@@ -2257,8 +1995,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long): DefaultCanvasItemTextureFilter =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): DefaultCanvasItemTextureFilter = entries.single { it.id == `value` }
     }
   }
 
@@ -2266,15 +2003,11 @@ public open class Viewport internal constructor() : Node() {
     id: Long,
   ) {
     /**
-     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will
-     * be clamped to the edge of the texture, resulting in a stretched out look at the borders of the
-     * texture.
+     * Disables textures repeating. Instead, when reading UVs outside the 0-1 range, the value will be clamped to the edge of the texture, resulting in a stretched out look at the borders of the texture.
      */
     DISABLED(0),
     /**
-     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of
-     * the linear filtering modes, this can result in artifacts at the edges of a texture when the
-     * sampler filters across the edges of the texture.
+     * Enables the texture to repeat when UV coordinates are outside the 0-1 range. If using one of the linear filtering modes, this can result in artifacts at the edges of a texture when the sampler filters across the edges of the texture.
      */
     ENABLED(1),
     /**
@@ -2293,8 +2026,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
     public companion object {
-      public fun from(`value`: Long): DefaultCanvasItemTextureRepeat =
-          entries.single { it.id == `value` }
+      public fun from(`value`: Long): DefaultCanvasItemTextureRepeat = entries.single { it.id == `value` }
     }
   }
 
@@ -2306,18 +2038,15 @@ public open class Viewport internal constructor() : Node() {
      */
     SDF_OVERSIZE_100_PERCENT(0),
     /**
-     * The signed distance field is expanded to cover 20&#37; of the viewport's size around the
-     * borders.
+     * The signed distance field is expanded to cover 20&#37; of the viewport's size around the borders.
      */
     SDF_OVERSIZE_120_PERCENT(1),
     /**
-     * The signed distance field is expanded to cover 50&#37; of the viewport's size around the
-     * borders.
+     * The signed distance field is expanded to cover 50&#37; of the viewport's size around the borders.
      */
     SDF_OVERSIZE_150_PERCENT(2),
     /**
-     * The signed distance field is expanded to cover 100&#37; (double) of the viewport's size
-     * around the borders.
+     * The signed distance field is expanded to cover 100&#37; (double) of the viewport's size around the borders.
      */
     SDF_OVERSIZE_200_PERCENT(3),
     /**
@@ -2375,8 +2104,7 @@ public open class Viewport internal constructor() : Node() {
      */
     DISABLED(0),
     /**
-     * Variable Rate Shading uses a texture. Note, for stereoscopic use a texture atlas with a
-     * texture for each view.
+     * Variable Rate Shading uses a texture. Note, for stereoscopic use a texture atlas with a texture for each view.
      */
     TEXTURE(1),
     /**
@@ -2434,366 +2162,366 @@ public open class Viewport internal constructor() : Node() {
 
   public object MethodBindings {
     internal val setWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_world_2d", 2736080068)
+        TypeManager.getMethodBindPtr("Viewport", "set_world_2d", 2_736_080_068)
 
     internal val getWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_world_2d", 2339128592)
+        TypeManager.getMethodBindPtr("Viewport", "get_world_2d", 2_339_128_592)
 
     internal val findWorld2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "find_world_2d", 2339128592)
+        TypeManager.getMethodBindPtr("Viewport", "find_world_2d", 2_339_128_592)
 
     internal val setCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform", 2761652528)
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_transform", 2_761_652_528)
 
     internal val getCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform", 3814499831)
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_transform", 3_814_499_831)
 
     internal val setGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform", 2761652528)
+        TypeManager.getMethodBindPtr("Viewport", "set_global_canvas_transform", 2_761_652_528)
 
     internal val getGlobalCanvasTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3814499831)
+        TypeManager.getMethodBindPtr("Viewport", "get_global_canvas_transform", 3_814_499_831)
 
     internal val getStretchTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_stretch_transform", 3814499831)
+        TypeManager.getMethodBindPtr("Viewport", "get_stretch_transform", 3_814_499_831)
 
     internal val getFinalTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_final_transform", 3814499831)
+        TypeManager.getMethodBindPtr("Viewport", "get_final_transform", 3_814_499_831)
 
     internal val getScreenTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform", 3814499831)
+        TypeManager.getMethodBindPtr("Viewport", "get_screen_transform", 3_814_499_831)
 
     internal val getVisibleRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect", 1639390495)
+        TypeManager.getMethodBindPtr("Viewport", "get_visible_rect", 1_639_390_495)
 
     internal val setTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_transparent_background", 2_586_408_642)
 
     internal val hasTransparentBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "has_transparent_background", 36_873_697)
 
     internal val setUseHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_hdr_2d", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_hdr_2d", 2_586_408_642)
 
     internal val isUsingHdr2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_hdr_2d", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_hdr_2d", 36_873_697)
 
     internal val setMsaa2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d", 3330258708)
+        TypeManager.getMethodBindPtr("Viewport", "set_msaa_2d", 3_330_258_708)
 
     internal val getMsaa2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d", 2542055527)
+        TypeManager.getMethodBindPtr("Viewport", "get_msaa_2d", 2_542_055_527)
 
     internal val setMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d", 3330258708)
+        TypeManager.getMethodBindPtr("Viewport", "set_msaa_3d", 3_330_258_708)
 
     internal val getMsaa3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d", 2542055527)
+        TypeManager.getMethodBindPtr("Viewport", "get_msaa_3d", 2_542_055_527)
 
     internal val setScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa", 3544169389)
+        TypeManager.getMethodBindPtr("Viewport", "set_screen_space_aa", 3_544_169_389)
 
     internal val getScreenSpaceAaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa", 1390814124)
+        TypeManager.getMethodBindPtr("Viewport", "get_screen_space_aa", 1_390_814_124)
 
     internal val setUseTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_taa", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_taa", 2_586_408_642)
 
     internal val isUsingTaaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_taa", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_taa", 36_873_697)
 
     internal val setUseDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_debanding", 2_586_408_642)
 
     internal val isUsingDebandingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_debanding", 36_873_697)
 
     internal val setUseOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_occlusion_culling", 2_586_408_642)
 
     internal val isUsingOcclusionCullingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_occlusion_culling", 36_873_697)
 
     internal val setDebugDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_debug_draw", 1970246205)
+        TypeManager.getMethodBindPtr("Viewport", "set_debug_draw", 1_970_246_205)
 
     internal val getDebugDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_debug_draw", 579191299)
+        TypeManager.getMethodBindPtr("Viewport", "get_debug_draw", 579_191_299)
 
     internal val getRenderInfoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_render_info", 481977019)
+        TypeManager.getMethodBindPtr("Viewport", "get_render_info", 481_977_019)
 
     internal val getTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture", 1746695840)
+        TypeManager.getMethodBindPtr("Viewport", "get_texture", 1_746_695_840)
 
     internal val setPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking", 2_586_408_642)
 
     internal val getPhysicsObjectPickingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking", 2240911060)
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking", 2_240_911_060)
 
     internal val setPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_sort", 2_586_408_642)
 
     internal val getPhysicsObjectPickingSortPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort", 2240911060)
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_sort", 2_240_911_060)
 
     internal val setPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_physics_object_picking_first_only", 2_586_408_642)
 
     internal val getPhysicsObjectPickingFirstOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only", 2240911060)
+        TypeManager.getMethodBindPtr("Viewport", "get_physics_object_picking_first_only", 2_240_911_060)
 
     internal val getViewportRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid", 2944877500)
+        TypeManager.getMethodBindPtr("Viewport", "get_viewport_rid", 2_944_877_500)
 
     internal val pushTextInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_text_input", 83702148)
+        TypeManager.getMethodBindPtr("Viewport", "push_text_input", 83_702_148)
 
     internal val pushInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_input", 3644664830)
+        TypeManager.getMethodBindPtr("Viewport", "push_input", 3_644_664_830)
 
     internal val pushUnhandledInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input", 3644664830)
+        TypeManager.getMethodBindPtr("Viewport", "push_unhandled_input", 3_644_664_830)
 
     internal val notifyMouseEnteredPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_entered", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_entered", 3_218_959_716)
 
     internal val notifyMouseExitedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_exited", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "notify_mouse_exited", 3_218_959_716)
 
     internal val getMousePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position", 3341600327)
+        TypeManager.getMethodBindPtr("Viewport", "get_mouse_position", 3_341_600_327)
 
     internal val warpMousePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "warp_mouse", 743155724)
+        TypeManager.getMethodBindPtr("Viewport", "warp_mouse", 743_155_724)
 
     internal val updateMouseCursorStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "update_mouse_cursor_state", 3_218_959_716)
 
     internal val guiCancelDragPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_cancel_drag", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "gui_cancel_drag", 3_218_959_716)
 
     internal val guiGetDragDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1_214_101_251)
 
     internal val guiIsDraggingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging", 36_873_697)
 
     internal val guiIsDragSuccessfulPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "gui_is_drag_successful", 36_873_697)
 
     internal val guiReleaseFocusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "gui_release_focus", 3_218_959_716)
 
     internal val guiGetFocusOwnerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner", 2783021301)
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_focus_owner", 2_783_021_301)
 
     internal val guiGetHoveredControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control", 2783021301)
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_hovered_control", 2_783_021_301)
 
     internal val setDisableInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_input", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_disable_input", 2_586_408_642)
 
     internal val isInputDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_input_disabled", 36_873_697)
 
     internal val setPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size", 1286410249)
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_size", 1_286_410_249)
 
     internal val getPositionalShadowAtlasSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size", 3905245786)
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_size", 3_905_245_786)
 
     internal val setPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_16_bits", 2_586_408_642)
 
     internal val getPositionalShadowAtlas16BitsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_16_bits", 36_873_697)
 
     internal val setSnapControlsToPixelsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_controls_to_pixels", 2_586_408_642)
 
     internal val isSnapControlsToPixelsEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_controls_to_pixels_enabled", 36_873_697)
 
     internal val setSnap2dTransformsToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_transforms_to_pixel", 2_586_408_642)
 
     internal val isSnap2dTransformsToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_transforms_to_pixel_enabled", 36_873_697)
 
     internal val setSnap2dVerticesToPixelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_snap_2d_vertices_to_pixel", 2_586_408_642)
 
     internal val isSnap2dVerticesToPixelEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_snap_2d_vertices_to_pixel_enabled", 36_873_697)
 
     internal val setPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv", 2596956071)
+        TypeManager.getMethodBindPtr("Viewport", "set_positional_shadow_atlas_quadrant_subdiv", 2_596_956_071)
 
     internal val getPositionalShadowAtlasQuadrantSubdivPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv", 2676778355)
+        TypeManager.getMethodBindPtr("Viewport", "get_positional_shadow_atlas_quadrant_subdiv", 2_676_778_355)
 
     internal val setInputAsHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled", 3218959716)
+        TypeManager.getMethodBindPtr("Viewport", "set_input_as_handled", 3_218_959_716)
 
     internal val isInputHandledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_input_handled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_input_handled", 36_873_697)
 
     internal val setHandleInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_handle_input_locally", 2_586_408_642)
 
     internal val isHandlingInputLocallyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_handling_input_locally", 36_873_697)
 
     internal val setDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter", 2815160100)
+        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_filter", 2_815_160_100)
 
     internal val getDefaultCanvasItemTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter", 896601198)
+        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_filter", 896_601_198)
 
     internal val setEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_embedding_subwindows", 2_586_408_642)
 
     internal val isEmbeddingSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_embedding_subwindows", 36_873_697)
 
     internal val getEmbeddedSubwindowsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3995934104)
+        TypeManager.getMethodBindPtr("Viewport", "get_embedded_subwindows", 3_995_934_104)
 
     internal val setCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1286410249)
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask", 1_286_410_249)
 
     internal val getCanvasCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask", 3905245786)
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask", 3_905_245_786)
 
     internal val setCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit", 300928843)
+        TypeManager.getMethodBindPtr("Viewport", "set_canvas_cull_mask_bit", 300_928_843)
 
     internal val getCanvasCullMaskBitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit", 1116898809)
+        TypeManager.getMethodBindPtr("Viewport", "get_canvas_cull_mask_bit", 1_116_898_809)
 
     internal val setDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat", 1658513413)
+        TypeManager.getMethodBindPtr("Viewport", "set_default_canvas_item_texture_repeat", 1_658_513_413)
 
     internal val getDefaultCanvasItemTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat", 4049774160)
+        TypeManager.getMethodBindPtr("Viewport", "get_default_canvas_item_texture_repeat", 4_049_774_160)
 
     internal val setSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize", 2574159017)
+        TypeManager.getMethodBindPtr("Viewport", "set_sdf_oversize", 2_574_159_017)
 
     internal val getSdfOversizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize", 2631427510)
+        TypeManager.getMethodBindPtr("Viewport", "get_sdf_oversize", 2_631_427_510)
 
     internal val setSdfScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale", 1402773951)
+        TypeManager.getMethodBindPtr("Viewport", "set_sdf_scale", 1_402_773_951)
 
     internal val getSdfScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale", 3162688184)
+        TypeManager.getMethodBindPtr("Viewport", "get_sdf_scale", 3_162_688_184)
 
     internal val setMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold", 373806689)
+        TypeManager.getMethodBindPtr("Viewport", "set_mesh_lod_threshold", 373_806_689)
 
     internal val getMeshLodThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("Viewport", "get_mesh_lod_threshold", 1_740_695_150)
 
     internal val setAsAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_2d", 2_586_408_642)
 
     internal val isAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_2d", 36_873_697)
 
     internal val getAudioListener2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_2d", 1840977180)
+        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_2d", 1_840_977_180)
 
     internal val getCamera2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_camera_2d", 3551466917)
+        TypeManager.getMethodBindPtr("Viewport", "get_camera_2d", 3_551_466_917)
 
     internal val setWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_world_3d", 1400875337)
+        TypeManager.getMethodBindPtr("Viewport", "set_world_3d", 1_400_875_337)
 
     internal val getWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_world_3d", 317588385)
+        TypeManager.getMethodBindPtr("Viewport", "get_world_3d", 317_588_385)
 
     internal val findWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "find_world_3d", 317588385)
+        TypeManager.getMethodBindPtr("Viewport", "find_world_3d", 317_588_385)
 
     internal val setUseOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_own_world_3d", 2_586_408_642)
 
     internal val isUsingOwnWorld3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_own_world_3d", 36_873_697)
 
     internal val getAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_3d", 3472246991)
+        TypeManager.getMethodBindPtr("Viewport", "get_audio_listener_3d", 3_472_246_991)
 
     internal val getCamera3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_camera_3d", 2285090890)
+        TypeManager.getMethodBindPtr("Viewport", "get_camera_3d", 2_285_090_890)
 
     internal val setAsAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_as_audio_listener_3d", 2_586_408_642)
 
     internal val isAudioListener3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_audio_listener_3d", 36_873_697)
 
     internal val setDisable3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_disable_3d", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_disable_3d", 2_586_408_642)
 
     internal val is3dDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled", 36873697)
+        TypeManager.getMethodBindPtr("Viewport", "is_3d_disabled", 36_873_697)
 
     internal val setUseXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_use_xr", 2586408642)
+        TypeManager.getMethodBindPtr("Viewport", "set_use_xr", 2_586_408_642)
 
     internal val isUsingXrPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 2240911060)
+        TypeManager.getMethodBindPtr("Viewport", "is_using_xr", 2_240_911_060)
 
     internal val setScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1531597597)
+        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_mode", 1_531_597_597)
 
     internal val getScaling3dModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode", 2597660574)
+        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_mode", 2_597_660_574)
 
     internal val setScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale", 373806689)
+        TypeManager.getMethodBindPtr("Viewport", "set_scaling_3d_scale", 373_806_689)
 
     internal val getScaling3dScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale", 1740695150)
+        TypeManager.getMethodBindPtr("Viewport", "get_scaling_3d_scale", 1_740_695_150)
 
     internal val setFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("Viewport", "set_fsr_sharpness", 373_806_689)
 
     internal val getFsrSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("Viewport", "get_fsr_sharpness", 1_740_695_150)
 
     internal val setTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias", 373806689)
+        TypeManager.getMethodBindPtr("Viewport", "set_texture_mipmap_bias", 373_806_689)
 
     internal val getTextureMipmapBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1740695150)
+        TypeManager.getMethodBindPtr("Viewport", "get_texture_mipmap_bias", 1_740_695_150)
 
     internal val setAnisotropicFilteringLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_anisotropic_filtering_level", 3445583046)
+        TypeManager.getMethodBindPtr("Viewport", "set_anisotropic_filtering_level", 3_445_583_046)
 
     internal val getAnisotropicFilteringLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_anisotropic_filtering_level", 3991528932)
+        TypeManager.getMethodBindPtr("Viewport", "get_anisotropic_filtering_level", 3_991_528_932)
 
     internal val setVrsModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode", 2749867817)
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_mode", 2_749_867_817)
 
     internal val getVrsModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode", 349660525)
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_mode", 349_660_525)
 
     internal val setVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode", 3182412319)
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_update_mode", 3_182_412_319)
 
     internal val getVrsUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode", 2255951583)
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_update_mode", 2_255_951_583)
 
     internal val setVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture", 4051416890)
+        TypeManager.getMethodBindPtr("Viewport", "set_vrs_texture", 4_051_416_890)
 
     internal val getVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture", 3635182373)
+        TypeManager.getMethodBindPtr("Viewport", "get_vrs_texture", 3_635_182_373)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,14 +15,10 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket
- * joint. The twist axis is initiated as the X axis of the [ConeTwistJoint3D]. Once the physics bodies
- * swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of
- * the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
+ * A physics joint that connects two 3D physics bodies in a way that simulates a ball-and-socket joint. The twist axis is initiated as the X axis of the [ConeTwistJoint3D]. Once the physics bodies swing, the twist axis is calculated as the middle of the X axes of the joint in the local space of the two physics bodies. Useful for limbs like shoulders and hips, lamps hanging off a ceiling, etc.
  */
 @GodotBaseType
 public open class ConeTwistJoint3D : Joint3D() {
@@ -73,8 +66,7 @@ public open class ConeTwistJoint3D : Joint3D() {
     }
 
   /**
-   * The ease with which the joint starts to twist. If it's too low, it takes more force to start
-   * twisting the joint.
+   * The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint.
    */
   public final inline var softness: Float
     @JvmName("softnessProperty")
@@ -95,14 +87,14 @@ public open class ConeTwistJoint3D : Joint3D() {
       setParam(ConeTwistJoint3D.Param.RELAXATION, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(174, scriptIndex)
   }
 
   /**
    * Sets the value of the specified parameter.
    */
-  public final fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
@@ -142,8 +134,7 @@ public open class ConeTwistJoint3D : Joint3D() {
      */
     BIAS(2),
     /**
-     * The ease with which the joint starts to twist. If it's too low, it takes more force to start
-     * twisting the joint.
+     * The ease with which the joint starts to twist. If it's too low, it takes more force to start twisting the joint.
      */
     SOFTNESS(3),
     /**
@@ -170,9 +161,9 @@ public open class ConeTwistJoint3D : Joint3D() {
 
   public object MethodBindings {
     internal val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "set_param", 1062470226)
+        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "set_param", 1_062_470_226)
 
     internal val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "get_param", 2928790850)
+        TypeManager.getMethodBindPtr("ConeTwistJoint3D", "get_param", 2_928_790_850)
   }
 }

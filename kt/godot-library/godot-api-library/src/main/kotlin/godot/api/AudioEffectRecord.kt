@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,27 +16,21 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the
- * "Master" audio bus, this includes all audio output by Godot.
+ * Allows the user to record the sound from an audio bus into an [AudioStreamWAV]. When used on the "Master" audio bus, this includes all audio output by Godot.
  *
- * Unlike [AudioEffectCapture], this effect encodes the recording with the given format (8-bit,
- * 16-bit, or compressed) instead of giving access to the raw audio samples.
+ * Unlike [AudioEffectCapture], this effect encodes the recording with the given format (8-bit, 16-bit, or compressed) instead of giving access to the raw audio samples.
  *
  * Can be used (with an [AudioStreamMicrophone]) to record from a microphone.
  *
- * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See
- * also that setting's description for caveats related to permissions and operating system privacy
- * settings.
+ * **Note:** [ProjectSettings.audio/driver/enableInput] must be `true` for audio input to work. See also that setting's description for caveats related to permissions and operating system privacy settings.
  */
 @GodotBaseType
 public open class AudioEffectRecord : AudioEffect() {
   /**
-   * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
-   * available formats.
+   * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for available formats.
    */
   public final inline var format: AudioStreamWAV.Format
     @JvmName("formatProperty")
@@ -49,15 +40,14 @@ public open class AudioEffectRecord : AudioEffect() {
       setFormat(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(70, scriptIndex)
   }
 
   /**
-   * If `true`, the sound will be recorded. Note that restarting the recording will remove the
-   * previously recorded sample.
+   * If `true`, the sound will be recorded. Note that restarting the recording will remove the previously recorded sample.
    */
-  public final fun setRecordingActive(record: Boolean): Unit {
+  public final fun setRecordingActive(record: Boolean) {
     TransferContext.writeArguments(BOOL to record)
     TransferContext.callMethod(ptr, MethodBindings.setRecordingActivePtr, NIL)
   }
@@ -71,7 +61,7 @@ public open class AudioEffectRecord : AudioEffect() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFormat(format: AudioStreamWAV.Format): Unit {
+  public final fun setFormat(format: AudioStreamWAV.Format) {
     TransferContext.writeArguments(LONG to format.id)
     TransferContext.callMethod(ptr, MethodBindings.setFormatPtr, NIL)
   }
@@ -94,7 +84,7 @@ public open class AudioEffectRecord : AudioEffect() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _instantiate(): AudioEffectInstance? {
+  override fun _instantiate(): AudioEffectInstance? {
     throw NotImplementedError("AudioEffectRecord::_instantiate can't be called from the JVM.")
   }
 
@@ -102,18 +92,18 @@ public open class AudioEffectRecord : AudioEffect() {
 
   public object MethodBindings {
     internal val setRecordingActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_recording_active", 2586408642)
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_recording_active", 2_586_408_642)
 
     internal val isRecordingActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectRecord", "is_recording_active", 36873697)
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "is_recording_active", 36_873_697)
 
     internal val setFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_format", 60648488)
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "set_format", 60_648_488)
 
     internal val getFormatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_format", 3151724922)
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_format", 3_151_724_922)
 
     internal val getRecordingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_recording", 2964110865)
+        TypeManager.getMethodBindPtr("AudioEffectRecord", "get_recording", 2_964_110_865)
   }
 }

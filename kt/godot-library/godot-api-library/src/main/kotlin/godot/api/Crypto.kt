@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,15 +17,12 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
  * The Crypto class provides access to advanced cryptographic functionalities.
  *
- * Currently, this includes asymmetric key encryption/decryption, signing/verification, and
- * generating cryptographically secure random bytes, RSA keys, HMAC digests, and self-signed
- * [X509Certificate]s.
+ * Currently, this includes asymmetric key encryption/decryption, signing/verification, and generating cryptographically secure random bytes, RSA keys, HMAC digests, and self-signed [X509Certificate]s.
  *
  * ```gdscript
  * //gdscript
@@ -73,8 +67,7 @@ import kotlin.jvm.JvmOverloads
  * CryptoKey key = crypto.GenerateRsa(4096);
  *
  * // Generate new self-signed certificate with the given key.
- * X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game
- * Company,C=IT");
+ * X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game Company,C=IT");
  *
  * // Save key and certificate in the user folder.
  * key.Save("user://generated.key");
@@ -91,8 +84,7 @@ import kotlin.jvm.JvmOverloads
  * byte[] signature = crypto.Sign(HashingContext.HashType.Sha256, Data.Sha256Buffer(), key);
  *
  * // Verifying
- * bool verified = crypto.Verify(HashingContext.HashType.Sha256, Data.Sha256Buffer(), signature,
- * key);
+ * bool verified = crypto.Verify(HashingContext.HashType.Sha256, Data.Sha256Buffer(), signature, key);
  *
  * // Checks
  * Debug.Assert(verified);
@@ -101,7 +93,7 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Crypto : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(181, scriptIndex)
   }
 
@@ -115,8 +107,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates an RSA [CryptoKey] that can be used for creating self-signed certificates and passed
-   * to [StreamPeerTLS.acceptStream].
+   * Generates an RSA [CryptoKey] that can be used for creating self-signed certificates and passed to [StreamPeerTLS.acceptStream].
    */
   public final fun generateRsa(size: Int): CryptoKey? {
     TransferContext.writeArguments(LONG to size.toLong())
@@ -125,11 +116,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates a self-signed [X509Certificate] from the given [CryptoKey] and [issuerName]. The
-   * certificate validity will be defined by [notBefore] and [notAfter] (first valid date and last
-   * valid date). The [issuerName] must contain at least "CN=" (common name, i.e. the domain name),
-   * "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the
-   * country the organization is based in).
+   * Generates a self-signed [X509Certificate] from the given [CryptoKey] and [issuerName]. The certificate validity will be defined by [notBefore] and [notAfter] (first valid date and last valid date). The [issuerName] must contain at least "CN=" (common name, i.e. the domain name), "O=" (organization, i.e. your company name), "C=" (country, i.e. 2 lettered ISO-3166 code of the country the organization is based in).
    *
    * A small example to generate an RSA key and an X509 self-signed certificate.
    *
@@ -148,8 +135,7 @@ public open class Crypto : RefCounted() {
    * // Generate 4096 bits RSA key.
    * CryptoKey key = crypto.GenerateRsa(4096);
    * // Generate self-signed certificate using the given key.
-   * X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game
-   * Company,C=IT");
+   * X509Certificate cert = crypto.GenerateSelfSignedCertificate(key, "CN=mydomain.com,O=My Game Company,C=IT");
    * ```
    */
   @JvmOverloads
@@ -178,8 +164,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Verify that a given [signature] for [hash] of type [hashType] against the provided public
-   * [key].
+   * Verify that a given [signature] for [hash] of type [hashType] against the provided public [key].
    */
   public final fun verify(
     hashType: HashingContext.HashType,
@@ -215,8 +200,7 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [msg] using [key].
-   * The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
+   * Generates an [url=https://en.wikipedia.org/wiki/HMAC]HMAC[/url] digest of [msg] using [key]. The [hashType] parameter is the hashing algorithm that is used for the inner and outer hashes.
    *
    * Currently, only [HashingContext.HASH_SHA256] and [HashingContext.HASH_SHA1] are supported.
    */
@@ -231,15 +215,11 @@ public open class Crypto : RefCounted() {
   }
 
   /**
-   * Compares two [PackedByteArray]s for equality without leaking timing information in order to
-   * prevent timing attacks.
+   * Compares two [PackedByteArray]s for equality without leaking timing information in order to prevent timing attacks.
    *
-   * See
-   * [url=https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy]this
-   * blog post[/url] for more information.
+   * See [url=https://paragonie.com/blog/2015/11/preventing-timing-attacks-on-string-comparison-with-double-hmac-strategy]this blog post[/url] for more information.
    */
-  public final fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray):
-      Boolean {
+  public final fun constantTimeCompare(trusted: PackedByteArray, received: PackedByteArray): Boolean {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to trusted, PACKED_BYTE_ARRAY to received)
     TransferContext.callMethod(ptr, MethodBindings.constantTimeComparePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
@@ -249,26 +229,29 @@ public open class Crypto : RefCounted() {
 
   public object MethodBindings {
     internal val generateRandomBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_random_bytes", 47165747)
+        TypeManager.getMethodBindPtr("Crypto", "generate_random_bytes", 47_165_747)
 
     internal val generateRsaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_rsa", 1237515462)
+        TypeManager.getMethodBindPtr("Crypto", "generate_rsa", 1_237_515_462)
 
     internal val generateSelfSignedCertificatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "generate_self_signed_certificate", 492266173)
+        TypeManager.getMethodBindPtr("Crypto", "generate_self_signed_certificate", 492_266_173)
 
-    internal val signPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "sign", 1673662703)
+    internal val signPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "sign", 1_673_662_703)
 
-    internal val verifyPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "verify", 2805902225)
+    internal val verifyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Crypto", "verify", 2_805_902_225)
 
-    internal val encryptPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "encrypt", 2361793670)
+    internal val encryptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Crypto", "encrypt", 2_361_793_670)
 
-    internal val decryptPtr: VoidPtr = TypeManager.getMethodBindPtr("Crypto", "decrypt", 2361793670)
+    internal val decryptPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Crypto", "decrypt", 2_361_793_670)
 
     internal val hmacDigestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "hmac_digest", 2368951203)
+        TypeManager.getMethodBindPtr("Crypto", "hmac_digest", 2_368_951_203)
 
     internal val constantTimeComparePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Crypto", "constant_time_compare", 1024142237)
+        TypeManager.getMethodBindPtr("Crypto", "constant_time_compare", 1_024_142_237)
   }
 }

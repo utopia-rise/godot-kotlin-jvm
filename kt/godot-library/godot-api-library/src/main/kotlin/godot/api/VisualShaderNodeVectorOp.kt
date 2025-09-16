@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
       setOperator(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(835, scriptIndex)
   }
 
-  public final fun setOperator(op: Operator): Unit {
+  public final fun setOperator(op: Operator) {
     TransferContext.writeArguments(LONG to op.id)
     TransferContext.callMethod(ptr, MethodBindings.setOperatorPtr, NIL)
   }
@@ -73,8 +69,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     MOD(4),
     /**
-     * Returns the value of the first parameter raised to the power of the second, for each
-     * component of the vectors.
+     * Returns the value of the first parameter raised to the power of the second, for each component of the vectors.
      */
     POW(5),
     /**
@@ -94,8 +89,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
      */
     ATAN2(9),
     /**
-     * Returns the vector that points in the direction of reflection. `a` is incident vector and `b`
-     * is the normal vector.
+     * Returns the vector that points in the direction of reflection. `a` is incident vector and `b` is the normal vector.
      */
     REFLECT(10),
     /**
@@ -122,9 +116,9 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
 
   public object MethodBindings {
     internal val setOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "set_operator", 3371507302)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "set_operator", 3_371_507_302)
 
     internal val getOperatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "get_operator", 11793929)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVectorOp", "get_operator", 11_793_929)
   }
 }

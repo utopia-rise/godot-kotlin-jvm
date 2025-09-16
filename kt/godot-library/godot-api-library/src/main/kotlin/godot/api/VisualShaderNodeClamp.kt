@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
       setOpType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(731, scriptIndex)
   }
 
-  public final fun setOpType(opType: OpType): Unit {
+  public final fun setOpType(opType: OpType) {
     TransferContext.writeArguments(LONG to opType.id)
     TransferContext.callMethod(ptr, MethodBindings.setOpTypePtr, NIL)
   }
@@ -96,9 +92,9 @@ public open class VisualShaderNodeClamp : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeClamp", "set_op_type", 405010749)
+        TypeManager.getMethodBindPtr("VisualShaderNodeClamp", "set_op_type", 405_010_749)
 
     internal val getOpTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeClamp", "get_op_type", 233276050)
+        TypeManager.getMethodBindPtr("VisualShaderNodeClamp", "get_op_type", 233_276_050)
   }
 }

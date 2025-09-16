@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,15 +21,11 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
- * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file
- * formats. It offers functionality for loading and playing back Ogg Vorbis files, as well as managing
- * looping and other playback properties. This class is part of the audio stream system, which also
- * supports WAV files through the [AudioStreamWAV] class.
+ * The AudioStreamOggVorbis class is a specialized [AudioStream] for handling Ogg Vorbis file formats. It offers functionality for loading and playing back Ogg Vorbis files, as well as managing looping and other playback properties. This class is part of the audio stream system, which also supports WAV files through the [AudioStreamWAV] class.
  */
 @GodotBaseType
 public open class AudioStreamOggVorbis : AudioStream() {
@@ -72,8 +65,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   /**
-   * If `true`, the audio will play again from the specified [loopOffset] once it is done playing.
-   * Useful for ambient sounds and background music.
+   * If `true`, the audio will play again from the specified [loopOffset] once it is done playing. Useful for ambient sounds and background music.
    */
   public final inline var loop: Boolean
     @JvmName("loopProperty")
@@ -94,11 +86,11 @@ public open class AudioStreamOggVorbis : AudioStream() {
       setLoopOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(86, scriptIndex)
   }
 
-  public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {
+  public final fun setPacketSequence(packetSequence: OggPacketSequence?) {
     TransferContext.writeArguments(OBJECT to packetSequence)
     TransferContext.callMethod(ptr, MethodBindings.setPacketSequencePtr, NIL)
   }
@@ -109,7 +101,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(OBJECT) as OggPacketSequence?)
   }
 
-  public final fun setLoop(enable: Boolean): Unit {
+  public final fun setLoop(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
@@ -120,7 +112,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLoopOffset(seconds: Double): Unit {
+  public final fun setLoopOffset(seconds: Double) {
     TransferContext.writeArguments(DOUBLE to seconds)
     TransferContext.callMethod(ptr, MethodBindings.setLoopOffsetPtr, NIL)
   }
@@ -131,7 +123,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setBpm(bpm: Double): Unit {
+  public final fun setBpm(bpm: Double) {
     TransferContext.writeArguments(DOUBLE to bpm)
     TransferContext.callMethod(ptr, MethodBindings.setBpmPtr, NIL)
   }
@@ -142,7 +134,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setBeatCount(count: Int): Unit {
+  public final fun setBeatCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBeatCountPtr, NIL)
   }
@@ -153,7 +145,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBarBeats(count: Int): Unit {
+  public final fun setBarBeats(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBarBeatsPtr, NIL)
   }
@@ -166,8 +158,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
   public companion object {
     /**
-     * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain
-     * Ogg Vorbis data.
+     * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain Ogg Vorbis data.
      */
     @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamOggVorbis? {
@@ -177,8 +168,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
     /**
-     * Creates a new [AudioStreamOggVorbis] instance from the given file path. The file must be in
-     * Ogg Vorbis format.
+     * Creates a new [AudioStreamOggVorbis] instance from the given file path. The file must be in Ogg Vorbis format.
      */
     @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamOggVorbis? {
@@ -190,45 +180,45 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
   public object MethodBindings {
     internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354904730)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_buffer", 354_904_730)
 
     internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797568536)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "load_from_file", 797_568_536)
 
     internal val setPacketSequencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence", 438882457)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_packet_sequence", 438_882_457)
 
     internal val getPacketSequencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_packet_sequence", 2801636033)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_packet_sequence", 2_801_636_033)
 
     internal val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop", 2_586_408_642)
 
     internal val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "has_loop", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "has_loop", 36_873_697)
 
     internal val setLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop_offset", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_loop_offset", 373_806_689)
 
     internal val getLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_loop_offset", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_loop_offset", 1_740_695_150)
 
     internal val setBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bpm", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bpm", 373_806_689)
 
     internal val getBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bpm", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bpm", 1_740_695_150)
 
     internal val setBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_beat_count", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_beat_count", 1_286_410_249)
 
     internal val getBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_beat_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_beat_count", 3_905_245_786)
 
     internal val setBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bar_beats", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_bar_beats", 1_286_410_249)
 
     internal val getBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3_905_245_786)
   }
 }

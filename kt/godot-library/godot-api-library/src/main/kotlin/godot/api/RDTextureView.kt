@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -24,9 +20,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class RDTextureView : RefCounted() {
   /**
-   * Optional override for the data format to return sampled values in. The corresponding
-   * [RDTextureFormat] must have had this added as a shareable format. The default value of
-   * [RenderingDevice.DATA_FORMAT_MAX] does not override the format.
+   * Optional override for the data format to return sampled values in. The corresponding [RDTextureFormat] must have had this added as a shareable format. The default value of [RenderingDevice.DATA_FORMAT_MAX] does not override the format.
    */
   public final inline var formatOverride: RenderingDevice.DataFormat
     @JvmName("formatOverrideProperty")
@@ -80,11 +74,11 @@ public open class RDTextureView : RefCounted() {
       setSwizzleA(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(526, scriptIndex)
   }
 
-  public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {
+  public final fun setFormatOverride(pMember: RenderingDevice.DataFormat) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setFormatOverridePtr, NIL)
   }
@@ -95,7 +89,7 @@ public open class RDTextureView : RefCounted() {
     return RenderingDevice.DataFormat.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSwizzleR(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleR(pMember: RenderingDevice.TextureSwizzle) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSwizzleRPtr, NIL)
   }
@@ -106,7 +100,7 @@ public open class RDTextureView : RefCounted() {
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSwizzleG(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleG(pMember: RenderingDevice.TextureSwizzle) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSwizzleGPtr, NIL)
   }
@@ -117,7 +111,7 @@ public open class RDTextureView : RefCounted() {
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSwizzleB(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleB(pMember: RenderingDevice.TextureSwizzle) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSwizzleBPtr, NIL)
   }
@@ -128,7 +122,7 @@ public open class RDTextureView : RefCounted() {
     return RenderingDevice.TextureSwizzle.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSwizzleA(pMember: RenderingDevice.TextureSwizzle): Unit {
+  public final fun setSwizzleA(pMember: RenderingDevice.TextureSwizzle) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSwizzleAPtr, NIL)
   }
@@ -143,33 +137,33 @@ public open class RDTextureView : RefCounted() {
 
   public object MethodBindings {
     internal val setFormatOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_format_override", 565531219)
+        TypeManager.getMethodBindPtr("RDTextureView", "set_format_override", 565_531_219)
 
     internal val getFormatOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_format_override", 2235804183)
+        TypeManager.getMethodBindPtr("RDTextureView", "get_format_override", 2_235_804_183)
 
     internal val setSwizzleRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_r", 3833362581)
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_r", 3_833_362_581)
 
     internal val getSwizzleRPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_r", 4150792614)
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_r", 4_150_792_614)
 
     internal val setSwizzleGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_g", 3833362581)
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_g", 3_833_362_581)
 
     internal val getSwizzleGPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_g", 4150792614)
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_g", 4_150_792_614)
 
     internal val setSwizzleBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_b", 3833362581)
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_b", 3_833_362_581)
 
     internal val getSwizzleBPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_b", 4150792614)
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_b", 4_150_792_614)
 
     internal val setSwizzleAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_a", 3833362581)
+        TypeManager.getMethodBindPtr("RDTextureView", "set_swizzle_a", 3_833_362_581)
 
     internal val getSwizzleAPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_a", 4150792614)
+        TypeManager.getMethodBindPtr("RDTextureView", "get_swizzle_a", 4_150_792_614)
   }
 }

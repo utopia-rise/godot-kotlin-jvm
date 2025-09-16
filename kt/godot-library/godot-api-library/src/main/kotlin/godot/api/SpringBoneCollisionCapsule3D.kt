@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,7 +15,6 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -59,11 +55,11 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
       setInside(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(622, scriptIndex)
   }
 
-  public final fun setRadius(radius: Float): Unit {
+  public final fun setRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRadiusPtr, NIL)
   }
@@ -74,7 +70,7 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
@@ -85,7 +81,7 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setInside(enabled: Boolean): Unit {
+  public final fun setInside(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setInsidePtr, NIL)
   }
@@ -100,21 +96,21 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
 
   public object MethodBindings {
     internal val setRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_radius", 373806689)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_radius", 373_806_689)
 
     internal val getRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_radius", 1740695150)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_radius", 1_740_695_150)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_height", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_height", 1_740_695_150)
 
     internal val setInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_inside", 2586408642)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_inside", 2_586_408_642)
 
     internal val isInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "is_inside", 36873697)
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "is_inside", 36_873_697)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,7 +27,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -39,7 +35,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ClassDB : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(2)
   }
 
@@ -94,8 +90,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns
-   * `false`.
+   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns `false`.
    */
   @JvmStatic
   public final fun canInstantiate(`class`: StringName): Boolean {
@@ -135,9 +130,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with
-   * the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint,
-   * hint_string, name, type, usage)`.
+   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    */
   @JvmStatic
   public final fun classGetSignal(`class`: StringName, signal: StringName): Dictionary<Any?, Any?> {
@@ -147,26 +140,22 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`.
-   * Every element of the array is a [Dictionary] as described in [classGetSignal].
+   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [Dictionary] as described in [classGetSignal].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetSignalList(`class`: StringName, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> {
+  public final fun classGetSignalList(`class`: StringName, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetSignalListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
-   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is
-   * `false`.
+   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetPropertyList(`class`: StringName, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> {
+  public final fun classGetPropertyList(`class`: StringName, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetPropertyListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
@@ -227,8 +216,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called
-   * [method] or not.
+   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
    */
   @JvmOverloads
   @JvmStatic
@@ -243,8 +231,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the number of arguments of the method [method] of [class] or its ancestry if
-   * [noInheritance] is `false`.
+   * Returns the number of arguments of the method [method] of [class] or its ancestry if [noInheritance] is `false`.
    */
   @JvmOverloads
   @JvmStatic
@@ -259,17 +246,13 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`.
-   * Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`,
-   * `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    *
-   * **Note:** In exported release builds the debug info is not available, so the returned
-   * dictionaries will contain only method names.
+   * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetMethodList(`class`: StringName, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> {
+  public final fun classGetMethodList(`class`: StringName, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetMethodListPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
@@ -294,11 +277,9 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false):
-      PackedStringArray {
+  public final fun classGetIntegerConstantList(`class`: StringName, noInheritance: Boolean = false): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
-    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantListPtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.classGetIntegerConstantListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
@@ -313,8 +294,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0
-   * when the constant could not be found.
+   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0 when the constant could not be found.
    */
   @JvmStatic
   public final fun classGetIntegerConstant(`class`: StringName, name: StringName): Long {
@@ -343,8 +323,7 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetEnumList(`class`: StringName, noInheritance: Boolean = false):
-      PackedStringArray {
+  public final fun classGetEnumList(`class`: StringName, noInheritance: Boolean = false): PackedStringArray {
     TransferContext.writeArguments(STRING_NAME to `class`, BOOL to noInheritance)
     TransferContext.callMethod(ptr, MethodBindings.classGetEnumListPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
@@ -381,8 +360,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum
-   * called [enum] that is a bitfield.
+   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum called [enum] that is a bitfield.
    */
   @JvmOverloads
   @JvmStatic
@@ -410,15 +388,13 @@ public object ClassDB : Object() {
    * Returns the names of all the classes that directly or indirectly inherit from [class].
    */
   @JvmStatic
-  public final fun getInheritersFromClass(`class`: String): PackedStringArray =
-      getInheritersFromClass(`class`.asCachedStringName())
+  public final fun getInheritersFromClass(`class`: String): PackedStringArray = getInheritersFromClass(`class`.asCachedStringName())
 
   /**
    * Returns the parent class of [class].
    */
   @JvmStatic
-  public final fun getParentClass(`class`: String): StringName =
-      getParentClass(`class`.asCachedStringName())
+  public final fun getParentClass(`class`: String): StringName = getParentClass(`class`.asCachedStringName())
 
   /**
    * Returns whether the specified [class] is available or not.
@@ -430,16 +406,13 @@ public object ClassDB : Object() {
    * Returns whether [inherits] is an ancestor of [class] or not.
    */
   @JvmStatic
-  public final fun isParentClass(`class`: String, inherits: String): Boolean =
-      isParentClass(`class`.asCachedStringName(), inherits.asCachedStringName())
+  public final fun isParentClass(`class`: String, inherits: String): Boolean = isParentClass(`class`.asCachedStringName(), inherits.asCachedStringName())
 
   /**
-   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns
-   * `false`.
+   * Returns `true` if objects can be instantiated from the specified [class], otherwise returns `false`.
    */
   @JvmStatic
-  public final fun canInstantiate(`class`: String): Boolean =
-      canInstantiate(`class`.asCachedStringName())
+  public final fun canInstantiate(`class`: String): Boolean = canInstantiate(`class`.asCachedStringName())
 
   /**
    * Creates an instance of [class].
@@ -451,65 +424,51 @@ public object ClassDB : Object() {
    * Returns the API type of [class]. See [APIType].
    */
   @JvmStatic
-  public final fun classGetApiType(`class`: String): APIType =
-      classGetApiType(`class`.asCachedStringName())
+  public final fun classGetApiType(`class`: String): APIType = classGetApiType(`class`.asCachedStringName())
 
   /**
    * Returns whether [class] or its ancestry has a signal called [signal] or not.
    */
   @JvmStatic
-  public final fun classHasSignal(`class`: String, signal: String): Boolean =
-      classHasSignal(`class`.asCachedStringName(), signal.asCachedStringName())
+  public final fun classHasSignal(`class`: String, signal: String): Boolean = classHasSignal(`class`.asCachedStringName(), signal.asCachedStringName())
 
   /**
-   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with
-   * the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint,
-   * hint_string, name, type, usage)`.
+   * Returns the [signal] data of [class] or its ancestry. The returned value is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    */
   @JvmStatic
-  public final fun classGetSignal(`class`: String, signal: String): Dictionary<Any?, Any?> =
-      classGetSignal(`class`.asCachedStringName(), signal.asCachedStringName())
+  public final fun classGetSignal(`class`: String, signal: String): Dictionary<Any?, Any?> = classGetSignal(`class`.asCachedStringName(), signal.asCachedStringName())
 
   /**
-   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`.
-   * Every element of the array is a [Dictionary] as described in [classGetSignal].
+   * Returns an array with all the signals of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [Dictionary] as described in [classGetSignal].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetSignalList(`class`: String, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> =
-      classGetSignalList(`class`.asCachedStringName(), noInheritance)
+  public final fun classGetSignalList(`class`: String, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> = classGetSignalList(`class`.asCachedStringName(), noInheritance)
 
   /**
-   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is
-   * `false`.
+   * Returns an array with all the properties of [class] or its ancestry if [noInheritance] is `false`.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetPropertyList(`class`: String, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> =
-      classGetPropertyList(`class`.asCachedStringName(), noInheritance)
+  public final fun classGetPropertyList(`class`: String, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> = classGetPropertyList(`class`.asCachedStringName(), noInheritance)
 
   /**
    * Returns the getter method name of [property] of [class].
    */
   @JvmStatic
-  public final fun classGetPropertyGetter(`class`: String, `property`: String): StringName =
-      classGetPropertyGetter(`class`.asCachedStringName(), property.asCachedStringName())
+  public final fun classGetPropertyGetter(`class`: String, `property`: String): StringName = classGetPropertyGetter(`class`.asCachedStringName(), property.asCachedStringName())
 
   /**
    * Returns the setter method name of [property] of [class].
    */
   @JvmStatic
-  public final fun classGetPropertySetter(`class`: String, `property`: String): StringName =
-      classGetPropertySetter(`class`.asCachedStringName(), property.asCachedStringName())
+  public final fun classGetPropertySetter(`class`: String, `property`: String): StringName = classGetPropertySetter(`class`.asCachedStringName(), property.asCachedStringName())
 
   /**
    * Returns the value of [property] of [object] or its ancestry.
    */
   @JvmStatic
-  public final fun classGetProperty(`object`: Object?, `property`: String): Any? =
-      classGetProperty(`object`, property.asCachedStringName())
+  public final fun classGetProperty(`object`: Object?, `property`: String): Any? = classGetProperty(`object`, property.asCachedStringName())
 
   /**
    * Sets [property] value of [object] to [value].
@@ -525,12 +484,10 @@ public object ClassDB : Object() {
    * Returns the default value of [property] of [class] or its ancestor classes.
    */
   @JvmStatic
-  public final fun classGetPropertyDefaultValue(`class`: String, `property`: String): Any? =
-      classGetPropertyDefaultValue(`class`.asCachedStringName(), property.asCachedStringName())
+  public final fun classGetPropertyDefaultValue(`class`: String, `property`: String): Any? = classGetPropertyDefaultValue(`class`.asCachedStringName(), property.asCachedStringName())
 
   /**
-   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called
-   * [method] or not.
+   * Returns whether [class] (or its ancestry if [noInheritance] is `false`) has a method called [method] or not.
    */
   @JvmOverloads
   @JvmStatic
@@ -538,12 +495,10 @@ public object ClassDB : Object() {
     `class`: String,
     method: String,
     noInheritance: Boolean = false,
-  ): Boolean =
-      classHasMethod(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
+  ): Boolean = classHasMethod(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
 
   /**
-   * Returns the number of arguments of the method [method] of [class] or its ancestry if
-   * [noInheritance] is `false`.
+   * Returns the number of arguments of the method [method] of [class] or its ancestry if [noInheritance] is `false`.
    */
   @JvmOverloads
   @JvmStatic
@@ -551,22 +506,16 @@ public object ClassDB : Object() {
     `class`: String,
     method: String,
     noInheritance: Boolean = false,
-  ): Int =
-      classGetMethodArgumentCount(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
+  ): Int = classGetMethodArgumentCount(`class`.asCachedStringName(), method.asCachedStringName(), noInheritance)
 
   /**
-   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`.
-   * Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`,
-   * `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
+   * Returns an array with all the methods of [class] or its ancestry if [noInheritance] is `false`. Every element of the array is a [Dictionary] with the following keys: `args`, `default_args`, `flags`, `id`, `name`, `return: (class_name, hint, hint_string, name, type, usage)`.
    *
-   * **Note:** In exported release builds the debug info is not available, so the returned
-   * dictionaries will contain only method names.
+   * **Note:** In exported release builds the debug info is not available, so the returned dictionaries will contain only method names.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetMethodList(`class`: String, noInheritance: Boolean = false):
-      VariantArray<Dictionary<Any?, Any?>> =
-      classGetMethodList(`class`.asCachedStringName(), noInheritance)
+  public final fun classGetMethodList(`class`: String, noInheritance: Boolean = false): VariantArray<Dictionary<Any?, Any?>> = classGetMethodList(`class`.asCachedStringName(), noInheritance)
 
   /**
    * Calls a static method on a class.
@@ -583,23 +532,19 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetIntegerConstantList(`class`: String, noInheritance: Boolean = false):
-      PackedStringArray = classGetIntegerConstantList(`class`.asCachedStringName(), noInheritance)
+  public final fun classGetIntegerConstantList(`class`: String, noInheritance: Boolean = false): PackedStringArray = classGetIntegerConstantList(`class`.asCachedStringName(), noInheritance)
 
   /**
    * Returns whether [class] or its ancestry has an integer constant called [name] or not.
    */
   @JvmStatic
-  public final fun classHasIntegerConstant(`class`: String, name: String): Boolean =
-      classHasIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
+  public final fun classHasIntegerConstant(`class`: String, name: String): Boolean = classHasIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
 
   /**
-   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0
-   * when the constant could not be found.
+   * Returns the value of the integer constant [name] of [class] or its ancestry. Always returns 0 when the constant could not be found.
    */
   @JvmStatic
-  public final fun classGetIntegerConstant(`class`: String, name: String): Long =
-      classGetIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
+  public final fun classGetIntegerConstant(`class`: String, name: String): Long = classGetIntegerConstant(`class`.asCachedStringName(), name.asCachedStringName())
 
   /**
    * Returns whether [class] or its ancestry has an enum called [name] or not.
@@ -617,8 +562,7 @@ public object ClassDB : Object() {
    */
   @JvmOverloads
   @JvmStatic
-  public final fun classGetEnumList(`class`: String, noInheritance: Boolean = false):
-      PackedStringArray = classGetEnumList(`class`.asCachedStringName(), noInheritance)
+  public final fun classGetEnumList(`class`: String, noInheritance: Boolean = false): PackedStringArray = classGetEnumList(`class`.asCachedStringName(), noInheritance)
 
   /**
    * Returns an array with all the keys in [enum] of [class] or its ancestry.
@@ -629,8 +573,7 @@ public object ClassDB : Object() {
     `class`: String,
     `enum`: String,
     noInheritance: Boolean = false,
-  ): PackedStringArray =
-      classGetEnumConstants(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
+  ): PackedStringArray = classGetEnumConstants(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
 
   /**
    * Returns which enum the integer constant [name] of [class] or its ancestry belongs to.
@@ -641,12 +584,10 @@ public object ClassDB : Object() {
     `class`: String,
     name: String,
     noInheritance: Boolean = false,
-  ): StringName =
-      classGetIntegerConstantEnum(`class`.asCachedStringName(), name.asCachedStringName(), noInheritance)
+  ): StringName = classGetIntegerConstantEnum(`class`.asCachedStringName(), name.asCachedStringName(), noInheritance)
 
   /**
-   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum
-   * called [enum] that is a bitfield.
+   * Returns whether [class] (or its ancestor classes if [noInheritance] is `false`) has an enum called [enum] that is a bitfield.
    */
   @JvmOverloads
   @JvmStatic
@@ -654,15 +595,13 @@ public object ClassDB : Object() {
     `class`: String,
     `enum`: String,
     noInheritance: Boolean = false,
-  ): Boolean =
-      isClassEnumBitfield(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
+  ): Boolean = isClassEnumBitfield(`class`.asCachedStringName(), `enum`.asCachedStringName(), noInheritance)
 
   /**
    * Returns whether this [class] is enabled or not.
    */
   @JvmStatic
-  public final fun isClassEnabled(`class`: String): Boolean =
-      isClassEnabled(`class`.asCachedStringName())
+  public final fun isClassEnabled(`class`: String): Boolean = isClassEnabled(`class`.asCachedStringName())
 
   public enum class APIType(
     id: Long,
@@ -701,93 +640,93 @@ public object ClassDB : Object() {
 
   public object MethodBindings {
     internal val getClassListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_class_list", 1139954409)
+        TypeManager.getMethodBindPtr("ClassDB", "get_class_list", 1_139_954_409)
 
     internal val getInheritersFromClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1761182771)
+        TypeManager.getMethodBindPtr("ClassDB", "get_inheriters_from_class", 1_761_182_771)
 
     internal val getParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class", 1965194235)
+        TypeManager.getMethodBindPtr("ClassDB", "get_parent_class", 1_965_194_235)
 
     internal val classExistsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_exists", 2619796661)
+        TypeManager.getMethodBindPtr("ClassDB", "class_exists", 2_619_796_661)
 
     internal val isParentClassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class", 471820014)
+        TypeManager.getMethodBindPtr("ClassDB", "is_parent_class", 471_820_014)
 
     internal val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate", 2619796661)
+        TypeManager.getMethodBindPtr("ClassDB", "can_instantiate", 2_619_796_661)
 
     internal val instantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "instantiate", 2760726917)
+        TypeManager.getMethodBindPtr("ClassDB", "instantiate", 2_760_726_917)
 
     internal val classGetApiTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_api_type", 2475317043)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_api_type", 2_475_317_043)
 
     internal val classHasSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal", 471820014)
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_signal", 471_820_014)
 
     internal val classGetSignalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal", 3061114238)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal", 3_061_114_238)
 
     internal val classGetSignalListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list", 3504980660)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_signal_list", 3_504_980_660)
 
     internal val classGetPropertyListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list", 3504980660)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_list", 3_504_980_660)
 
     internal val classGetPropertyGetterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_getter", 3770832642)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_getter", 3_770_832_642)
 
     internal val classGetPropertySetterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_setter", 3770832642)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_setter", 3_770_832_642)
 
     internal val classGetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property", 2498641674)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property", 2_498_641_674)
 
     internal val classSetPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_set_property", 1690314931)
+        TypeManager.getMethodBindPtr("ClassDB", "class_set_property", 1_690_314_931)
 
     internal val classGetPropertyDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2718203076)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_property_default_value", 2_718_203_076)
 
     internal val classHasMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_method", 3860701026)
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_method", 3_860_701_026)
 
     internal val classGetMethodArgumentCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3885694822)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_argument_count", 3_885_694_822)
 
     internal val classGetMethodListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list", 3504980660)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_method_list", 3_504_980_660)
 
     internal val classCallStaticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_call_static", 3344196419)
+        TypeManager.getMethodBindPtr("ClassDB", "class_call_static", 3_344_196_419)
 
     internal val classGetIntegerConstantListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3031669221)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_list", 3_031_669_221)
 
     internal val classHasIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471820014)
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_integer_constant", 471_820_014)
 
     internal val classGetIntegerConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2419549490)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant", 2_419_549_490)
 
     internal val classHasEnumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_has_enum", 3860701026)
+        TypeManager.getMethodBindPtr("ClassDB", "class_has_enum", 3_860_701_026)
 
     internal val classGetEnumListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list", 3031669221)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_list", 3_031_669_221)
 
     internal val classGetEnumConstantsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661528303)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_enum_constants", 661_528_303)
 
     internal val classGetIntegerConstantEnumPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2457504236)
+        TypeManager.getMethodBindPtr("ClassDB", "class_get_integer_constant_enum", 2_457_504_236)
 
     internal val isClassEnumBitfieldPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3860701026)
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enum_bitfield", 3_860_701_026)
 
     internal val isClassEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled", 2619796661)
+        TypeManager.getMethodBindPtr("ClassDB", "is_class_enabled", 2_619_796_661)
   }
 }

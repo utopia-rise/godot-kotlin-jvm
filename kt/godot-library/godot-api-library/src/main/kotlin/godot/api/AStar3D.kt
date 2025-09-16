@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,23 +24,14 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of
- * plotting short paths among vertices (points), passing through a given set of edges (segments). It
- * enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in
- * 3D space and Euclidean distances by default.
+ * A* (A star) is a computer algorithm used in pathfinding and graph traversal, the process of plotting short paths among vertices (points), passing through a given set of edges (segments). It enjoys widespread use due to its performance and accuracy. Godot's A* implementation uses points in 3D space and Euclidean distances by default.
  *
- * You must add points manually with [addPoint] and create segments manually with [connectPoints].
- * Once done, you can test if there is a path between two points with the [arePointsConnected]
- * function, get a path containing indices by [getIdPath], or one containing actual coordinates with
- * [getPointPath].
+ * You must add points manually with [addPoint] and create segments manually with [connectPoints]. Once done, you can test if there is a path between two points with the [arePointsConnected] function, get a path containing indices by [getIdPath], or one containing actual coordinates with [getPointPath].
  *
- * It is also possible to use non-Euclidean distances. To do so, create a script that extends
- * [AStar3D] and override the methods [_computeCost] and [_estimateCost]. Both should take two point
- * IDs and return the distance between the corresponding points.
+ * It is also possible to use non-Euclidean distances. To do so, create a script that extends [AStar3D] and override the methods [_computeCost] and [_estimateCost]. Both should take two point IDs and return the distance between the corresponding points.
  *
  * **Example:** Use Manhattan distance instead of Euclidean distance:
  *
@@ -75,35 +63,25 @@ import kotlin.jvm.JvmOverloads
  *         Vector3 fromPoint = GetPointPosition(fromId);
  *         Vector3 toPoint = GetPointPosition(toId);
  *
- *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
- * Mathf.Abs(fromPoint.Z - toPoint.Z);
+ *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) + Mathf.Abs(fromPoint.Z - toPoint.Z);
  *     }
  *
  *     public override float _EstimateCost(long fromId, long toId)
  *     {
  *         Vector3 fromPoint = GetPointPosition(fromId);
  *         Vector3 toPoint = GetPointPosition(toId);
- *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
- * Mathf.Abs(fromPoint.Z - toPoint.Z);
+ *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) + Mathf.Abs(fromPoint.Z - toPoint.Z);
  *     }
  * }
  * ```
  *
- * [_estimateCost] should return a lower bound of the distance, i.e. `_estimate_cost(u, v) <=
- * _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom [_computeCost] might
- * be computation-heavy. If this is not the case, make [_estimateCost] return the same value as
- * [_computeCost] to provide the algorithm with the most accurate information.
+ * [_estimateCost] should return a lower bound of the distance, i.e. `_estimate_cost(u, v) <= _compute_cost(u, v)`. This serves as a hint to the algorithm because the custom [_computeCost] might be computation-heavy. If this is not the case, make [_estimateCost] return the same value as [_computeCost] to provide the algorithm with the most accurate information.
  *
- * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied
- * [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the
- * lowest-cost paths. Here, the cost of a path equals the sum of the [_computeCost] results of all
- * segments in the path multiplied by the `weight_scale`s of the endpoints of the respective segments.
- * If the default methods are used and the `weight_scale`s of all points are set to `1.0`, then this
- * equals the sum of Euclidean distances of all segments in the path.
+ * If the default [_estimateCost] and [_computeCost] methods are used, or if the supplied [_estimateCost] method returns a lower bound of the cost, then the paths returned by A* will be the lowest-cost paths. Here, the cost of a path equals the sum of the [_computeCost] results of all segments in the path multiplied by the `weight_scale`s of the endpoints of the respective segments. If the default methods are used and the `weight_scale`s of all points are set to `1.0`, then this equals the sum of Euclidean distances of all segments in the path.
  */
 @GodotBaseType
 public open class AStar3D : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(4, scriptIndex)
   }
 
@@ -135,12 +113,9 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Adds a new point at the given position with the given identifier. The [id] must be 0 or larger,
-   * and the [weightScale] must be 0.0 or greater.
+   * Adds a new point at the given position with the given identifier. The [id] must be 0 or larger, and the [weightScale] must be 0.0 or greater.
    *
-   * The [weightScale] is multiplied by the result of [_computeCost] when determining the overall
-   * cost of traveling across a segment from a neighboring point to this point. Thus, all else being
-   * equal, the algorithm prefers points with lower [weightScale]s to form a path.
+   * The [weightScale] is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point. Thus, all else being equal, the algorithm prefers points with lower [weightScale]s to form a path.
    *
    * ```gdscript
    * //gdscript
@@ -151,19 +126,17 @@ public open class AStar3D : RefCounted() {
    * ```csharp
    * //csharp
    * var astar = new AStar3D();
-   * astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and
-   * id 1
+   * astar.AddPoint(1, new Vector3(1, 0, 0), 4); // Adds the point (1, 0, 0) with weight_scale 4 and id 1
    * ```
    *
-   * If there already exists a point for the given [id], its position and weight scale are updated
-   * to the given values.
+   * If there already exists a point for the given [id], its position and weight scale are updated to the given values.
    */
   @JvmOverloads
   public final fun addPoint(
     id: Long,
     position: Vector3,
     weightScale: Float = 1.0f,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.addPointPtr, NIL)
   }
@@ -180,7 +153,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Sets the [position] for the point with the given [id].
    */
-  public final fun setPointPosition(id: Long, position: Vector3): Unit {
+  public final fun setPointPosition(id: Long, position: Vector3) {
     TransferContext.writeArguments(LONG to id, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPointPositionPtr, NIL)
   }
@@ -195,11 +168,9 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by
-   * the result of [_computeCost] when determining the overall cost of traveling across a segment from
-   * a neighboring point to this point.
+   * Sets the [weightScale] for the point with the given [id]. The [weightScale] is multiplied by the result of [_computeCost] when determining the overall cost of traveling across a segment from a neighboring point to this point.
    */
-  public final fun setPointWeightScale(id: Long, weightScale: Float): Unit {
+  public final fun setPointWeightScale(id: Long, weightScale: Float) {
     TransferContext.writeArguments(LONG to id, DOUBLE to weightScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPointWeightScalePtr, NIL)
   }
@@ -207,7 +178,7 @@ public open class AStar3D : RefCounted() {
   /**
    * Removes the point associated with the given [id] from the points pool.
    */
-  public final fun removePoint(id: Long): Unit {
+  public final fun removePoint(id: Long) {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(ptr, MethodBindings.removePointPtr, NIL)
   }
@@ -267,11 +238,10 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Disables or enables the specified point for pathfinding. Useful for making a temporary
-   * obstacle.
+   * Disables or enables the specified point for pathfinding. Useful for making a temporary obstacle.
    */
   @JvmOverloads
-  public final fun setPointDisabled(id: Long, disabled: Boolean = true): Unit {
+  public final fun setPointDisabled(id: Long, disabled: Boolean = true) {
     TransferContext.writeArguments(LONG to id, BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setPointDisabledPtr, NIL)
   }
@@ -286,8 +256,7 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Creates a segment between the given points. If [bidirectional] is `false`, only movement from
-   * [id] to [toId] is allowed, not the reverse direction.
+   * Creates a segment between the given points. If [bidirectional] is `false`, only movement from [id] to [toId] is allowed, not the reverse direction.
    *
    * ```gdscript
    * //gdscript
@@ -310,28 +279,26 @@ public open class AStar3D : RefCounted() {
     id: Long,
     toId: Long,
     bidirectional: Boolean = true,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(ptr, MethodBindings.connectPointsPtr, NIL)
   }
 
   /**
-   * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from
-   * [id] to [toId] is prevented, and a unidirectional segment possibly remains.
+   * Deletes the segment between the given points. If [bidirectional] is `false`, only movement from [id] to [toId] is prevented, and a unidirectional segment possibly remains.
    */
   @JvmOverloads
   public final fun disconnectPoints(
     id: Long,
     toId: Long,
     bidirectional: Boolean = true,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to id, LONG to toId, BOOL to bidirectional)
     TransferContext.callMethod(ptr, MethodBindings.disconnectPointsPtr, NIL)
   }
 
   /**
-   * Returns whether the two given points are directly connected by a segment. If [bidirectional] is
-   * `false`, returns whether movement from [id] to [toId] is possible through this segment.
+   * Returns whether the two given points are directly connected by a segment. If [bidirectional] is `false`, returns whether movement from [id] to [toId] is possible through this segment.
    */
   @JvmOverloads
   public final fun arePointsConnected(
@@ -354,8 +321,7 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Returns the capacity of the structure backing the points, useful in conjunction with
-   * [reserveSpace].
+   * Returns the capacity of the structure backing the points, useful in conjunction with [reserveSpace].
    */
   public final fun getPointCapacity(): Long {
     TransferContext.writeArguments()
@@ -364,11 +330,9 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Reserves space internally for [numNodes] points. Useful if you're adding a known large number
-   * of points at once, such as points on a grid. New capacity must be greater or equals to old
-   * capacity.
+   * Reserves space internally for [numNodes] points. Useful if you're adding a known large number of points at once, such as points on a grid. New capacity must be greater or equals to old capacity.
    */
-  public final fun reserveSpace(numNodes: Long): Unit {
+  public final fun reserveSpace(numNodes: Long) {
     TransferContext.writeArguments(LONG to numNodes)
     TransferContext.callMethod(ptr, MethodBindings.reserveSpacePtr, NIL)
   }
@@ -376,17 +340,15 @@ public open class AStar3D : RefCounted() {
   /**
    * Clears all the points and segments.
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
   /**
-   * Returns the ID of the closest point to [toPosition], optionally taking disabled points into
-   * account. Returns `-1` if there are no points in the points pool.
+   * Returns the ID of the closest point to [toPosition], optionally taking disabled points into account. Returns `-1` if there are no points in the points pool.
    *
-   * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will
-   * be returned, ensuring a deterministic result.
+   * **Note:** If several points are the closest to [toPosition], the one with the smallest ID will be returned, ensuring a deterministic result.
    */
   @JvmOverloads
   public final fun getClosestPoint(toPosition: Vector3, includeDisabled: Boolean = false): Long {
@@ -396,8 +358,7 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Returns the closest position to [toPosition] that resides inside a segment between two
-   * connected points.
+   * Returns the closest position to [toPosition] that resides inside a segment between two connected points.
    *
    * ```gdscript
    * //gdscript
@@ -417,8 +378,7 @@ public open class AStar3D : RefCounted() {
    * Vector3 res = astar.GetClosestPositionInSegment(new Vector3(3, 3, 0)); // Returns (0, 3, 0)
    * ```
    *
-   * The result is in the segment that goes from `y = 0` to `y = 5`. It's the closest position in
-   * the segment to the given point.
+   * The result is in the segment that goes from `y = 0` to `y = 5`. It's the closest position in the segment to the given point.
    */
   public final fun getClosestPositionInSegment(toPosition: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to toPosition)
@@ -427,17 +387,13 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Returns an array with the points that are in the path found by AStar3D between the given
-   * points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the points that are in the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.
    *
-   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
-   * the point closest to the target that can be reached.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to the point closest to the target that can be reached.
    *
-   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * array and will print an error message.
+   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty array and will print an error message.
    *
-   * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
-   * unusually long time to finish.
+   * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an unusually long time to finish.
    */
   @JvmOverloads
   public final fun getPointPath(
@@ -451,14 +407,11 @@ public open class AStar3D : RefCounted() {
   }
 
   /**
-   * Returns an array with the IDs of the points that form the path found by AStar3D between the
-   * given points. The array is ordered from the starting point to the ending point of the path.
+   * Returns an array with the IDs of the points that form the path found by AStar3D between the given points. The array is ordered from the starting point to the ending point of the path.
    *
-   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
-   * the point closest to the target that can be reached.
+   * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to the point closest to the target that can be reached.
    *
-   * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an
-   * unusually long time to finish.
+   * **Note:** When [allowPartialPath] is `true` and [toId] is disabled the search may take an unusually long time to finish.
    *
    * ```gdscript
    * //gdscript
@@ -490,8 +443,7 @@ public open class AStar3D : RefCounted() {
    * long[] res = astar.GetIdPath(1, 3); // Returns [1, 2, 3]
    * ```
    *
-   * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because
-   * now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
+   * If you change the 2nd point's weight to 3, then the result will be `[1, 4, 3]` instead, because now even though the distance is longer, it's "easier" to get through point 4 than through point 2.
    */
   @JvmOverloads
   public final fun getIdPath(
@@ -508,71 +460,71 @@ public open class AStar3D : RefCounted() {
 
   public object MethodBindings {
     internal val getAvailablePointIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_available_point_id", 3905245786)
+        TypeManager.getMethodBindPtr("AStar3D", "get_available_point_id", 3_905_245_786)
 
     internal val addPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "add_point", 1038703438)
+        TypeManager.getMethodBindPtr("AStar3D", "add_point", 1_038_703_438)
 
     internal val getPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_position", 711720468)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_position", 711_720_468)
 
     internal val setPointPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_position", 1530502735)
+        TypeManager.getMethodBindPtr("AStar3D", "set_point_position", 1_530_502_735)
 
     internal val getPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_weight_scale", 2339986948)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_weight_scale", 2_339_986_948)
 
     internal val setPointWeightScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_weight_scale", 1602489585)
+        TypeManager.getMethodBindPtr("AStar3D", "set_point_weight_scale", 1_602_489_585)
 
     internal val removePointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "remove_point", 1286410249)
+        TypeManager.getMethodBindPtr("AStar3D", "remove_point", 1_286_410_249)
 
     internal val hasPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "has_point", 1116898809)
+        TypeManager.getMethodBindPtr("AStar3D", "has_point", 1_116_898_809)
 
     internal val getPointConnectionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_connections", 2865087369)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_connections", 2_865_087_369)
 
     internal val getPointIdsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_ids", 3851388692)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_ids", 3_851_388_692)
 
     internal val setPointDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "set_point_disabled", 972357352)
+        TypeManager.getMethodBindPtr("AStar3D", "set_point_disabled", 972_357_352)
 
     internal val isPointDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "is_point_disabled", 1116898809)
+        TypeManager.getMethodBindPtr("AStar3D", "is_point_disabled", 1_116_898_809)
 
     internal val connectPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "connect_points", 3710494224)
+        TypeManager.getMethodBindPtr("AStar3D", "connect_points", 3_710_494_224)
 
     internal val disconnectPointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "disconnect_points", 3710494224)
+        TypeManager.getMethodBindPtr("AStar3D", "disconnect_points", 3_710_494_224)
 
     internal val arePointsConnectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "are_points_connected", 2288175859)
+        TypeManager.getMethodBindPtr("AStar3D", "are_points_connected", 2_288_175_859)
 
     internal val getPointCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_count", 3905245786)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_count", 3_905_245_786)
 
     internal val getPointCapacityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_capacity", 3905245786)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_capacity", 3_905_245_786)
 
     internal val reserveSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "reserve_space", 1286410249)
+        TypeManager.getMethodBindPtr("AStar3D", "reserve_space", 1_286_410_249)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStar3D", "clear", 3218959716)
+    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("AStar3D", "clear", 3_218_959_716)
 
     internal val getClosestPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_closest_point", 3241074317)
+        TypeManager.getMethodBindPtr("AStar3D", "get_closest_point", 3_241_074_317)
 
     internal val getClosestPositionInSegmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_closest_position_in_segment", 192990374)
+        TypeManager.getMethodBindPtr("AStar3D", "get_closest_position_in_segment", 192_990_374)
 
     internal val getPointPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_point_path", 1562654675)
+        TypeManager.getMethodBindPtr("AStar3D", "get_point_path", 1_562_654_675)
 
     internal val getIdPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AStar3D", "get_id_path", 3136199648)
+        TypeManager.getMethodBindPtr("AStar3D", "get_id_path", 3_136_199_648)
   }
 }

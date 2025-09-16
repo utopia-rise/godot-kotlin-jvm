@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,17 +26,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It
- * provides an API for sending and receiving data through streams as raw data or strings.
+ * StreamPeer is an abstract base class mostly used for stream-based protocols (such as TCP). It provides an API for sending and receiving data through streams as raw data or strings.
  *
- * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
- * export preset before exporting the project or using one-click deploy. Otherwise, network
- * communication of any kind will be blocked by Android.
+ * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android export preset before exporting the project or using one-click deploy. Otherwise, network communication of any kind will be blocked by Android.
  */
 @GodotBaseType
 public open class StreamPeer internal constructor() : RefCounted() {
@@ -54,13 +47,12 @@ public open class StreamPeer internal constructor() : RefCounted() {
       setBigEndian(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(634, scriptIndex)
   }
 
   /**
-   * Sends a chunk of data through the connection, blocking if necessary until the data is done
-   * sending. This function returns an [Error] code.
+   * Sends a chunk of data through the connection, blocking if necessary until the data is done sending. This function returns an [Error] code.
    */
   public final fun putData(`data`: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -69,9 +61,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sends a chunk of data through the connection. If all the data could not be sent at once, only
-   * part of it will. This function returns two values, an [Error] code and an integer, describing how
-   * much data was actually sent.
+   * Sends a chunk of data through the connection. If all the data could not be sent at once, only part of it will. This function returns two values, an [Error] code and an integer, describing how much data was actually sent.
    */
   public final fun putPartialData(`data`: PackedByteArray): VariantArray<Any?> {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
@@ -80,10 +70,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be
-   * requested in the [bytes] argument. If not enough bytes are available, the function will block
-   * until the desired amount is received. This function returns two values, an [Error] code and a data
-   * array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the [bytes] argument. If not enough bytes are available, the function will block until the desired amount is received. This function returns two values, an [Error] code and a data array.
    */
   public final fun getData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
@@ -92,9 +79,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a chunk data with the received bytes. The number of bytes to be received can be
-   * requested in the "bytes" argument. If not enough bytes are available, the function will return how
-   * many were actually received. This function returns two values, an [Error] code, and a data array.
+   * Returns a chunk data with the received bytes. The number of bytes to be received can be requested in the "bytes" argument. If not enough bytes are available, the function will return how many were actually received. This function returns two values, an [Error] code, and a data array.
    */
   public final fun getPartialData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())
@@ -111,7 +96,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBigEndian(enable: Boolean): Unit {
+  public final fun setBigEndian(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setBigEndianPtr, NIL)
   }
@@ -125,7 +110,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed byte into the stream.
    */
-  public final fun put8(`value`: Int): Unit {
+  public final fun put8(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.put8Ptr, NIL)
   }
@@ -133,7 +118,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned byte into the stream.
    */
-  public final fun putU8(`value`: Int): Unit {
+  public final fun putU8(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.putU8Ptr, NIL)
   }
@@ -141,7 +126,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 16-bit value into the stream.
    */
-  public final fun put16(`value`: Int): Unit {
+  public final fun put16(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.put16Ptr, NIL)
   }
@@ -149,7 +134,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 16-bit value into the stream.
    */
-  public final fun putU16(`value`: Int): Unit {
+  public final fun putU16(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.putU16Ptr, NIL)
   }
@@ -157,7 +142,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 32-bit value into the stream.
    */
-  public final fun put32(`value`: Int): Unit {
+  public final fun put32(`value`: Int) {
     TransferContext.writeArguments(LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.put32Ptr, NIL)
   }
@@ -165,7 +150,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 32-bit value into the stream.
    */
-  public final fun putU32(`value`: Long): Unit {
+  public final fun putU32(`value`: Long) {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.putU32Ptr, NIL)
   }
@@ -173,7 +158,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a signed 64-bit value into the stream.
    */
-  public final fun put64(`value`: Long): Unit {
+  public final fun put64(`value`: Long) {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.put64Ptr, NIL)
   }
@@ -181,7 +166,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts an unsigned 64-bit value into the stream.
    */
-  public final fun putU64(`value`: Long): Unit {
+  public final fun putU64(`value`: Long) {
     TransferContext.writeArguments(LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.putU64Ptr, NIL)
   }
@@ -189,7 +174,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a half-precision float into the stream.
    */
-  public final fun putHalf(`value`: Float): Unit {
+  public final fun putHalf(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.putHalfPtr, NIL)
   }
@@ -197,7 +182,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a single-precision float into the stream.
    */
-  public final fun putFloat(`value`: Float): Unit {
+  public final fun putFloat(`value`: Float) {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.putFloatPtr, NIL)
   }
@@ -205,14 +190,13 @@ public open class StreamPeer internal constructor() : RefCounted() {
   /**
    * Puts a double-precision float into the stream.
    */
-  public final fun putDouble(`value`: Double): Unit {
+  public final fun putDouble(`value`: Double) {
     TransferContext.writeArguments(DOUBLE to value)
     TransferContext.callMethod(ptr, MethodBindings.putDoublePtr, NIL)
   }
 
   /**
-   * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer
-   * representing its size.
+   * Puts a zero-terminated ASCII string into the stream prepended by a 32-bit unsigned integer representing its size.
    *
    * **Note:** To put an ASCII string without prepending its size, you can use [putData]:
    *
@@ -226,14 +210,13 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * PutData("Hello World".ToAsciiBuffer());
    * ```
    */
-  public final fun putString(`value`: String): Unit {
+  public final fun putString(`value`: String) {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(ptr, MethodBindings.putStringPtr, NIL)
   }
 
   /**
-   * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer
-   * representing its size.
+   * Puts a zero-terminated UTF-8 string into the stream prepended by a 32 bits unsigned integer representing its size.
    *
    * **Note:** To put a UTF-8 string without prepending its size, you can use [putData]:
    *
@@ -247,19 +230,18 @@ public open class StreamPeer internal constructor() : RefCounted() {
    * PutData("Hello World".ToUtf8Buffer());
    * ```
    */
-  public final fun putUtf8String(`value`: String): Unit {
+  public final fun putUtf8String(`value`: String) {
     TransferContext.writeArguments(STRING to value)
     TransferContext.callMethod(ptr, MethodBindings.putUtf8StringPtr, NIL)
   }
 
   /**
-   * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can
-   * potentially include code).
+   * Puts a Variant into the stream. If [fullObjects] is `true` encoding objects is allowed (and can potentially include code).
    *
    * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
    */
   @JvmOverloads
-  public final fun putVar(`value`: Any?, fullObjects: Boolean = false): Unit {
+  public final fun putVar(`value`: Any?, fullObjects: Boolean = false) {
     TransferContext.writeArguments(ANY to value, BOOL to fullObjects)
     TransferContext.callMethod(ptr, MethodBindings.putVarPtr, NIL)
   }
@@ -364,8 +346,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets an ASCII string with byte-length [bytes] from the stream. If [bytes] is negative (default)
-   * the length will be read from the stream using the reverse process of [putString].
+   * Gets an ASCII string with byte-length [bytes] from the stream. If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putString].
    */
   @JvmOverloads
   public final fun getString(bytes: Int = -1): String {
@@ -375,9 +356,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
   }
 
   /**
-   * Gets a UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as
-   * UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse
-   * process of [putUtf8String].
+   * Gets a UTF-8 string with byte-length [bytes] from the stream (this decodes the string sent as UTF-8). If [bytes] is negative (default) the length will be read from the stream using the reverse process of [putUtf8String].
    */
   @JvmOverloads
   public final fun getUtf8String(bytes: Int = -1): String {
@@ -391,9 +370,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
    *
    * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
    *
-   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
-   * if the serialized object comes from untrusted sources to avoid potential security threats such as
-   * remote code execution.
+   * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option if the serialized object comes from untrusted sources to avoid potential security threats such as remote code execution.
    */
   @JvmOverloads
   public final fun getVar(allowObjects: Boolean = false): Any? {
@@ -406,106 +383,108 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val putDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_data", 680677267)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_data", 680_677_267)
 
     internal val putPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_partial_data", 2934048347)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_partial_data", 2_934_048_347)
 
     internal val getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_data", 1171824711)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_data", 1_171_824_711)
 
     internal val getPartialDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_partial_data", 1171824711)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_partial_data", 1_171_824_711)
 
     internal val getAvailableBytesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_available_bytes", 3905245786)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_available_bytes", 3_905_245_786)
 
     internal val setBigEndianPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "set_big_endian", 2586408642)
+        TypeManager.getMethodBindPtr("StreamPeer", "set_big_endian", 2_586_408_642)
 
     internal val isBigEndianEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "is_big_endian_enabled", 36873697)
+        TypeManager.getMethodBindPtr("StreamPeer", "is_big_endian_enabled", 36_873_697)
 
-    internal val put8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "put_8", 1286410249)
+    internal val put8Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "put_8", 1_286_410_249)
 
     internal val putU8Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_u8", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u8", 1_286_410_249)
 
     internal val put16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_16", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_16", 1_286_410_249)
 
     internal val putU16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_u16", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u16", 1_286_410_249)
 
     internal val put32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_32", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_32", 1_286_410_249)
 
     internal val putU32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_u32", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u32", 1_286_410_249)
 
     internal val put64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_64", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_64", 1_286_410_249)
 
     internal val putU64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_u64", 1286410249)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_u64", 1_286_410_249)
 
     internal val putHalfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_half", 373806689)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_half", 373_806_689)
 
     internal val putFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_float", 373806689)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_float", 373_806_689)
 
     internal val putDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_double", 373806689)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_double", 373_806_689)
 
     internal val putStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_string", 83702148)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_string", 83_702_148)
 
     internal val putUtf8StringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_utf8_string", 83702148)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_utf8_string", 83_702_148)
 
     internal val putVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "put_var", 738511890)
+        TypeManager.getMethodBindPtr("StreamPeer", "put_var", 738_511_890)
 
-    internal val get8Ptr: VoidPtr = TypeManager.getMethodBindPtr("StreamPeer", "get_8", 2455072627)
+    internal val get8Ptr: VoidPtr =
+        TypeManager.getMethodBindPtr("StreamPeer", "get_8", 2_455_072_627)
 
     internal val getU8Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_u8", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u8", 2_455_072_627)
 
     internal val get16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_16", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_16", 2_455_072_627)
 
     internal val getU16Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_u16", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u16", 2_455_072_627)
 
     internal val get32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_32", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_32", 2_455_072_627)
 
     internal val getU32Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_u32", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u32", 2_455_072_627)
 
     internal val get64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_64", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_64", 2_455_072_627)
 
     internal val getU64Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_u64", 2455072627)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_u64", 2_455_072_627)
 
     internal val getHalfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_half", 191475506)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_half", 191_475_506)
 
     internal val getFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_float", 191475506)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_float", 191_475_506)
 
     internal val getDoublePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_double", 191475506)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_double", 191_475_506)
 
     internal val getStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_string", 2309358862)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_string", 2_309_358_862)
 
     internal val getUtf8StringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_utf8_string", 2309358862)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_utf8_string", 2_309_358_862)
 
     internal val getVarPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("StreamPeer", "get_var", 3442865206)
+        TypeManager.getMethodBindPtr("StreamPeer", "get_var", 3_442_865_206)
   }
 }

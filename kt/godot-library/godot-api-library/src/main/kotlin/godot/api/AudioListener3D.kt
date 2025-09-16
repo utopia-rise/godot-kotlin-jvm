@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,23 +14,20 @@ import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Once added to the scene tree and enabled using [makeCurrent], this node will override the
- * location sounds are heard from. This can be used to listen from a location different from the
- * [Camera3D].
+ * Once added to the scene tree and enabled using [makeCurrent], this node will override the location sounds are heard from. This can be used to listen from a location different from the [Camera3D].
  */
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(76, scriptIndex)
   }
 
   /**
    * Enables the listener. This will override the current camera's listener.
    */
-  public final fun makeCurrent(): Unit {
+  public final fun makeCurrent() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makeCurrentPtr, NIL)
   }
@@ -41,7 +35,7 @@ public open class AudioListener3D : Node3D() {
   /**
    * Disables the listener to use the current camera's listener instead.
    */
-  public final fun clearCurrent(): Unit {
+  public final fun clearCurrent() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearCurrentPtr, NIL)
   }
@@ -49,8 +43,7 @@ public open class AudioListener3D : Node3D() {
   /**
    * Returns `true` if the listener was made current using [makeCurrent], `false` otherwise.
    *
-   * **Note:** There may be more than one AudioListener3D marked as "current" in the scene tree, but
-   * only the one that was made current last will be used.
+   * **Note:** There may be more than one AudioListener3D marked as "current" in the scene tree, but only the one that was made current last will be used.
    */
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
@@ -71,15 +64,15 @@ public open class AudioListener3D : Node3D() {
 
   public object MethodBindings {
     internal val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "make_current", 3218959716)
+        TypeManager.getMethodBindPtr("AudioListener3D", "make_current", 3_218_959_716)
 
     internal val clearCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "clear_current", 3218959716)
+        TypeManager.getMethodBindPtr("AudioListener3D", "clear_current", 3_218_959_716)
 
     internal val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "is_current", 36873697)
+        TypeManager.getMethodBindPtr("AudioListener3D", "is_current", 36_873_697)
 
     internal val getListenerTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3229777777)
+        TypeManager.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3_229_777_777)
   }
 }

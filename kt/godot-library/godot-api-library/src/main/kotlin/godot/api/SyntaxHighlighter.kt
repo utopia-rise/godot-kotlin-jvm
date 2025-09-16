@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,17 +16,15 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The
- * associated [TextEdit] will call into the [SyntaxHighlighter] on an as-needed basis.
+ * Base class for syntax highlighters. Provides syntax highlighting data to a [TextEdit]. The associated [TextEdit] will call into the [SyntaxHighlighter] on an as-needed basis.
  *
  * **Note:** A [SyntaxHighlighter] instance should not be used across multiple [TextEdit] nodes.
  */
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(649, scriptIndex)
   }
 
@@ -45,28 +40,23 @@ public open class SyntaxHighlighter : Resource() {
   /**
    * Virtual method which can be overridden to clear any local caches.
    */
-  public open fun _clearHighlightingCache(): Unit {
+  public open fun _clearHighlightingCache() {
     throw NotImplementedError("SyntaxHighlighter::_clearHighlightingCache is not implemented.")
   }
 
   /**
    * Virtual method which can be overridden to update any local caches.
    */
-  public open fun _updateCache(): Unit {
+  public open fun _updateCache() {
     throw NotImplementedError("SyntaxHighlighter::_updateCache is not implemented.")
   }
 
   /**
-   * Returns the syntax highlighting data for the line at index [line]. If the line is not cached,
-   * calls [_getLineSyntaxHighlighting] first to calculate the data.
+   * Returns the syntax highlighting data for the line at index [line]. If the line is not cached, calls [_getLineSyntaxHighlighting] first to calculate the data.
    *
-   * Each entry is a column number containing a nested [Dictionary]. The column number denotes the
-   * start of a region, the region will end if another region is found, or at the end of the line. The
-   * nested [Dictionary] contains the data for that region. Currently only the key `"color"` is
-   * supported.
+   * Each entry is a column number containing a nested [Dictionary]. The column number denotes the start of a region, the region will end if another region is found, or at the end of the line. The nested [Dictionary] contains the data for that region. Currently only the key `"color"` is supported.
    *
-   * **Example:** Possible return value. This means columns `0` to `4` should be red, and columns
-   * `5` to the end of the line should be green:
+   * **Example:** Possible return value. This means columns `0` to `4` should be red, and columns `5` to the end of the line should be green:
    *
    * ```
    * {
@@ -88,10 +78,9 @@ public open class SyntaxHighlighter : Resource() {
   /**
    * Clears then updates the [SyntaxHighlighter] caches. Override [_updateCache] for a callback.
    *
-   * **Note:** This is called automatically when the associated [TextEdit] node, updates its own
-   * cache.
+   * **Note:** This is called automatically when the associated [TextEdit] node, updates its own cache.
    */
-  public final fun updateCache(): Unit {
+  public final fun updateCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.updateCachePtr, NIL)
   }
@@ -101,7 +90,7 @@ public open class SyntaxHighlighter : Resource() {
    *
    * Then calls overridable method [_clearHighlightingCache].
    */
-  public final fun clearHighlightingCache(): Unit {
+  public final fun clearHighlightingCache() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearHighlightingCachePtr, NIL)
   }
@@ -119,15 +108,15 @@ public open class SyntaxHighlighter : Resource() {
 
   public object MethodBindings {
     internal val getLineSyntaxHighlightingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_line_syntax_highlighting", 3554694381)
+        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_line_syntax_highlighting", 3_554_694_381)
 
     internal val updateCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "update_cache", 3218959716)
+        TypeManager.getMethodBindPtr("SyntaxHighlighter", "update_cache", 3_218_959_716)
 
     internal val clearHighlightingCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "clear_highlighting_cache", 3218959716)
+        TypeManager.getMethodBindPtr("SyntaxHighlighter", "clear_highlighting_cache", 3_218_959_716)
 
     internal val getTextEditPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_text_edit", 1893027089)
+        TypeManager.getMethodBindPtr("SyntaxHighlighter", "get_text_edit", 1_893_027_089)
   }
 }

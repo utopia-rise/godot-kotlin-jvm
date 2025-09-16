@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,11 +28,8 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
    * A [Color] constant which represents a state of this node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constant: Color
@@ -46,7 +40,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
       setConstant(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(732, scriptIndex)
   }
 
@@ -69,7 +63,7 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
      constant = this
   }
 
-  public final fun setConstant(constant: Color): Unit {
+  public final fun setConstant(constant: Color) {
     TransferContext.writeArguments(COLOR to constant)
     TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
@@ -84,9 +78,9 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant", 2920490490)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "set_constant", 2_920_490_490)
 
     internal val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant", 3444240500)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorConstant", "get_constant", 3_444_240_500)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,18 +31,14 @@ import kotlin.jvm.JvmStatic
 /**
  * MP3 audio stream driver. See [data] if you want to load an MP3 file at run-time.
  *
- * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine
- * is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled
- * by default.
+ * **Note:** This class can optionally support legacy MP1 and MP2 formats, provided that the engine is compiled with the `minimp3_extra_formats=yes` SCons option. These extra formats are not enabled by default.
  */
 @GodotBaseType
 public open class AudioStreamMP3 : AudioStream() {
   /**
    * Contains the audio data in bytes.
    *
-   * You can load a file without having to import it beforehand using the code snippet below. Keep
-   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
-   * (hundreds of megabytes or more).
+   * You can load a file without having to import it beforehand using the code snippet below. Keep in mind that this snippet loads the whole file into memory and may not be ideal for huge files (hundreds of megabytes or more).
    *
    * ```gdscript
    * //gdscript
@@ -70,11 +63,8 @@ public open class AudioStreamMP3 : AudioStream() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var `data`: PackedByteArray
@@ -131,7 +121,7 @@ public open class AudioStreamMP3 : AudioStream() {
       setLoopOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(84, scriptIndex)
   }
 
@@ -148,9 +138,7 @@ public open class AudioStreamMP3 : AudioStream() {
    *
    * Contains the audio data in bytes.
    *
-   * You can load a file without having to import it beforehand using the code snippet below. Keep
-   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
-   * (hundreds of megabytes or more).
+   * You can load a file without having to import it beforehand using the code snippet below. Keep in mind that this snippet loads the whole file into memory and may not be ideal for huge files (hundreds of megabytes or more).
    *
    * ```gdscript
    * //gdscript
@@ -180,14 +168,11 @@ public open class AudioStreamMP3 : AudioStream() {
 
   /**
    * This is a helper function for [data] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Contains the audio data in bytes.
    *
-   * You can load a file without having to import it beforehand using the code snippet below. Keep
-   * in mind that this snippet loads the whole file into memory and may not be ideal for huge files
-   * (hundreds of megabytes or more).
+   * You can load a file without having to import it beforehand using the code snippet below. Keep in mind that this snippet loads the whole file into memory and may not be ideal for huge files (hundreds of megabytes or more).
    *
    * ```gdscript
    * //gdscript
@@ -210,8 +195,7 @@ public open class AudioStreamMP3 : AudioStream() {
    * ```
    */
   @CoreTypeHelper
-  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray =
-      data.apply {
+  public final fun dataMutateEach(block: (index: Int, `value`: Byte) -> Unit): PackedByteArray = data.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -219,7 +203,7 @@ public open class AudioStreamMP3 : AudioStream() {
      data = this
   }
 
-  public final fun setData(`data`: PackedByteArray): Unit {
+  public final fun setData(`data`: PackedByteArray) {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
@@ -230,7 +214,7 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
-  public final fun setLoop(enable: Boolean): Unit {
+  public final fun setLoop(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setLoopPtr, NIL)
   }
@@ -241,7 +225,7 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLoopOffset(seconds: Double): Unit {
+  public final fun setLoopOffset(seconds: Double) {
     TransferContext.writeArguments(DOUBLE to seconds)
     TransferContext.callMethod(ptr, MethodBindings.setLoopOffsetPtr, NIL)
   }
@@ -252,7 +236,7 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setBpm(bpm: Double): Unit {
+  public final fun setBpm(bpm: Double) {
     TransferContext.writeArguments(DOUBLE to bpm)
     TransferContext.callMethod(ptr, MethodBindings.setBpmPtr, NIL)
   }
@@ -263,7 +247,7 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setBeatCount(count: Int): Unit {
+  public final fun setBeatCount(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBeatCountPtr, NIL)
   }
@@ -274,7 +258,7 @@ public open class AudioStreamMP3 : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setBarBeats(count: Int): Unit {
+  public final fun setBarBeats(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBarBeatsPtr, NIL)
   }
@@ -287,8 +271,7 @@ public open class AudioStreamMP3 : AudioStream() {
 
   public companion object {
     /**
-     * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3
-     * data.
+     * Creates a new [AudioStreamMP3] instance from the given buffer. The buffer must contain MP3 data.
      */
     @JvmStatic
     public final fun loadFromBuffer(streamData: PackedByteArray): AudioStreamMP3? {
@@ -298,8 +281,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
     /**
-     * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3
-     * format.
+     * Creates a new [AudioStreamMP3] instance from the given file path. The file must be in MP3 format.
      */
     @JvmStatic
     public final fun loadFromFile(path: String): AudioStreamMP3? {
@@ -311,45 +293,45 @@ public open class AudioStreamMP3 : AudioStream() {
 
   public object MethodBindings {
     internal val loadFromBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1674970313)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_buffer", 1_674_970_313)
 
     internal val loadFromFilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4238362998)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "load_from_file", 4_238_362_998)
 
     internal val setDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2971499966)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_data", 2_971_499_966)
 
     internal val getDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_data", 2362200018)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_data", 2_362_200_018)
 
     internal val setLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop", 2586408642)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop", 2_586_408_642)
 
     internal val hasLoopPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "has_loop", 36873697)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "has_loop", 36_873_697)
 
     internal val setLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop_offset", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_loop_offset", 373_806_689)
 
     internal val getLoopOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_loop_offset", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_loop_offset", 1_740_695_150)
 
     internal val setBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bpm", 373806689)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bpm", 373_806_689)
 
     internal val getBpmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bpm", 1740695150)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bpm", 1_740_695_150)
 
     internal val setBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_beat_count", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_beat_count", 1_286_410_249)
 
     internal val getBeatCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_beat_count", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_beat_count", 3_905_245_786)
 
     internal val setBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bar_beats", 1286410249)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "set_bar_beats", 1_286_410_249)
 
     internal val getBarBeatsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3905245786)
+        TypeManager.getMethodBindPtr("AudioStreamMP3", "get_bar_beats", 3_905_245_786)
   }
 }

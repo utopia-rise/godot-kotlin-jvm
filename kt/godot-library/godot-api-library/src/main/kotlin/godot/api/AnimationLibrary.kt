@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,8 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * An animation library stores a set of animations accessible through [StringName] keys, for use
- * with [AnimationPlayer] nodes.
+ * An animation library stores a set of animations accessible through [StringName] keys, for use with [AnimationPlayer] nodes.
  */
 @GodotBaseType
 public open class AnimationLibrary : Resource() {
@@ -51,14 +47,13 @@ public open class AnimationLibrary : Resource() {
   public val animationRenamed: Signal2<StringName, StringName> by Signal2
 
   /**
-   * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have
-   * changed paths. [name] is the key of the animation that was changed.
+   * Emitted when there's a change in one of the animations, e.g. tracks are added, moved or have changed paths. [name] is the key of the animation that was changed.
    *
    * See also [signal Resource.changed], which this acts as a relay for.
    */
   public val animationChanged: Signal1<StringName> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(13, scriptIndex)
   }
 
@@ -74,7 +69,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Removes the [Animation] with the key [name].
    */
-  public final fun removeAnimation(name: StringName): Unit {
+  public final fun removeAnimation(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeAnimationPtr, NIL)
   }
@@ -82,7 +77,7 @@ public open class AnimationLibrary : Resource() {
   /**
    * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
-  public final fun renameAnimation(name: StringName, newname: StringName): Unit {
+  public final fun renameAnimation(name: StringName, newname: StringName) {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newname)
     TransferContext.callMethod(ptr, MethodBindings.renameAnimationPtr, NIL)
   }
@@ -97,8 +92,7 @@ public open class AnimationLibrary : Resource() {
   }
 
   /**
-   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
-   * returned and an error is logged.
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
    */
   public final fun getAnimation(name: StringName): Animation? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -127,19 +121,17 @@ public open class AnimationLibrary : Resource() {
   /**
    * Adds the [animation] to the library, accessible by the key [name].
    */
-  public final fun addAnimation(name: String, animation: Animation?): Error =
-      addAnimation(name.asCachedStringName(), animation)
+  public final fun addAnimation(name: String, animation: Animation?): Error = addAnimation(name.asCachedStringName(), animation)
 
   /**
    * Removes the [Animation] with the key [name].
    */
-  public final fun removeAnimation(name: String) = removeAnimation(name.asCachedStringName())
+  public final fun removeAnimation(name: String): Unit = removeAnimation(name.asCachedStringName())
 
   /**
    * Changes the key of the [Animation] associated with the key [name] to [newname].
    */
-  public final fun renameAnimation(name: String, newname: String) =
-      renameAnimation(name.asCachedStringName(), newname.asCachedStringName())
+  public final fun renameAnimation(name: String, newname: String): Unit = renameAnimation(name.asCachedStringName(), newname.asCachedStringName())
 
   /**
    * Returns `true` if the library stores an [Animation] with [name] as the key.
@@ -147,8 +139,7 @@ public open class AnimationLibrary : Resource() {
   public final fun hasAnimation(name: String): Boolean = hasAnimation(name.asCachedStringName())
 
   /**
-   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is
-   * returned and an error is logged.
+   * Returns the [Animation] with the key [name]. If the animation does not exist, `null` is returned and an error is logged.
    */
   public final fun getAnimation(name: String): Animation? = getAnimation(name.asCachedStringName())
 
@@ -156,24 +147,24 @@ public open class AnimationLibrary : Resource() {
 
   public object MethodBindings {
     internal val addAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "add_animation", 1811855551)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "add_animation", 1_811_855_551)
 
     internal val removeAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "remove_animation", 3304788590)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "remove_animation", 3_304_788_590)
 
     internal val renameAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "rename_animation", 3740211285)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "rename_animation", 3_740_211_285)
 
     internal val hasAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "has_animation", 2619796661)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "has_animation", 2_619_796_661)
 
     internal val getAnimationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation", 2933122410)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation", 2_933_122_410)
 
     internal val getAnimationListPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list", 3995934104)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list", 3_995_934_104)
 
     internal val getAnimationListSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list_size", 3905245786)
+        TypeManager.getMethodBindPtr("AnimationLibrary", "get_animation_list_size", 3_905_245_786)
   }
 }

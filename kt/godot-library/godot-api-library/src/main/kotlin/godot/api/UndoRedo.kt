@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,13 +30,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * UndoRedo works by registering methods and property changes inside "actions". You can create an
- * action, then provide ways to do and undo this action using function calls and property changes, then
- * commit the action.
+ * UndoRedo works by registering methods and property changes inside "actions". You can create an action, then provide ways to do and undo this action using function calls and property changes, then commit the action.
  *
- * When an action is committed, all of the `do_*` methods will run. If the [undo] method is used,
- * the `undo_*` methods will run. If the [redo] method is used, once again, all of the `do_*` methods
- * will run.
+ * When an action is committed, all of the `do_*` methods will run. If the [undo] method is used, the `undo_*` methods will run. If the [redo] method is used, once again, all of the `do_*` methods will run.
  *
  * Here's an example on how to add an action:
  *
@@ -94,19 +87,13 @@ import kotlin.jvm.JvmOverloads
  * }
  * ```
  *
- * Before calling any of the `add_(un)do_*` methods, you need to first call [createAction].
- * Afterwards you need to call [commitAction].
+ * Before calling any of the `add_(un)do_*` methods, you need to first call [createAction]. Afterwards you need to call [commitAction].
  *
- * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the
- * same goes for properties. You can also register more than one method/property.
+ * If you don't need to register a method, you can leave [addDoMethod] and [addUndoMethod] out; the same goes for properties. You can also register more than one method/property.
  *
- * If you are making an [EditorPlugin] and want to integrate into the editor's undo history, use
- * [EditorUndoRedoManager] instead.
+ * If you are making an [EditorPlugin] and want to integrate into the editor's undo history, use [EditorUndoRedoManager] instead.
  *
- * If you are registering multiple properties/method which depend on one another, be aware that by
- * default undo operation are called in the same order they have been added. Therefore instead of
- * grouping do operation with their undo operations it is better to group do on one side and undo on
- * the other as shown below.
+ * If you are registering multiple properties/method which depend on one another, be aware that by default undo operation are called in the same order they have been added. Therefore instead of grouping do operation with their undo operations it is better to group do on one side and undo on the other as shown below.
  *
  * ```gdscript
  * //gdscript
@@ -146,9 +133,7 @@ public open class UndoRedo : Object() {
   public val versionChanged: Signal0 by Signal0
 
   /**
-   * The maximum number of steps that can be stored in the undo/redo history. If the number of
-   * stored steps exceeds this limit, older steps are removed from history and can no longer be reached
-   * by calling [undo]. A value of `0` or lower means no limit.
+   * The maximum number of steps that can be stored in the undo/redo history. If the number of stored steps exceeds this limit, older steps are removed from history and can no longer be reached by calling [undo]. A value of `0` or lower means no limit.
    */
   public final inline var maxSteps: Int
     @JvmName("maxStepsProperty")
@@ -158,43 +143,38 @@ public open class UndoRedo : Object() {
       setMaxSteps(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(705, scriptIndex)
   }
 
   /**
-   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod],
-   * [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
+   * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod], [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
    *
    * The way actions are merged is dictated by [mergeMode]. See [MergeMode] for details.
    *
-   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When
-   * [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which
-   * means the first operation to be added will be the first to be undone.
+   * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which means the first operation to be added will be the first to be undone.
    */
   @JvmOverloads
   public final fun createAction(
     name: String,
     mergeMode: MergeMode = UndoRedo.MergeMode.DISABLE,
     backwardUndoOps: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, BOOL to backwardUndoOps)
     TransferContext.callMethod(ptr, MethodBindings.createActionPtr, NIL)
   }
 
   /**
-   * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties
-   * are called/set when this function is called.
+   * Commit the action. If [execute] is `true` (which it is by default), all "do" methods/properties are called/set when this function is called.
    */
   @JvmOverloads
-  public final fun commitAction(execute: Boolean = true): Unit {
+  public final fun commitAction(execute: Boolean = true) {
     TransferContext.writeArguments(BOOL to execute)
     TransferContext.callMethod(ptr, MethodBindings.commitActionPtr, NIL)
   }
 
   /**
-   * Returns `true` if the [UndoRedo] is currently committing the action, i.e. running its "do"
-   * method or property change (see [commitAction]).
+   * Returns `true` if the [UndoRedo] is currently committing the action, i.e. running its "do" method or property change (see [commitAction]).
    */
   public final fun isCommittingAction(): Boolean {
     TransferContext.writeArguments()
@@ -205,7 +185,7 @@ public open class UndoRedo : Object() {
   /**
    * Register a [Callable] that will be called when the action is committed.
    */
-  public final fun addDoMethod(callable: Callable): Unit {
+  public final fun addDoMethod(callable: Callable) {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.addDoMethodPtr, NIL)
   }
@@ -213,7 +193,7 @@ public open class UndoRedo : Object() {
   /**
    * Register a [Callable] that will be called when the action is undone.
    */
-  public final fun addUndoMethod(callable: Callable): Unit {
+  public final fun addUndoMethod(callable: Callable) {
     TransferContext.writeArguments(CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.addUndoMethodPtr, NIL)
   }
@@ -225,7 +205,7 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: StringName,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.addDoPropertyPtr, NIL)
   }
@@ -237,17 +217,15 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: StringName,
     `value`: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to `object`, STRING_NAME to property, ANY to value)
     TransferContext.callMethod(ptr, MethodBindings.addUndoPropertyPtr, NIL)
   }
 
   /**
-   * Register a reference to an object that will be erased if the "do" history is deleted. This is
-   * useful for objects added by the "do" action and removed by the "undo" action.
+   * Register a reference to an object that will be erased if the "do" history is deleted. This is useful for objects added by the "do" action and removed by the "undo" action.
    *
-   * When the "do" history is deleted, if the object is a [RefCounted], it will be unreferenced.
-   * Otherwise, it will be freed. Do not use for resources.
+   * When the "do" history is deleted, if the object is a [RefCounted], it will be unreferenced. Otherwise, it will be freed. Do not use for resources.
    *
    * ```
    * var node = Node2D.new()
@@ -258,17 +236,15 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * ```
    */
-  public final fun addDoReference(`object`: Object?): Unit {
+  public final fun addDoReference(`object`: Object?) {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(ptr, MethodBindings.addDoReferencePtr, NIL)
   }
 
   /**
-   * Register a reference to an object that will be erased if the "undo" history is deleted. This is
-   * useful for objects added by the "undo" action and removed by the "do" action.
+   * Register a reference to an object that will be erased if the "undo" history is deleted. This is useful for objects added by the "undo" action and removed by the "do" action.
    *
-   * When the "undo" history is deleted, if the object is a [RefCounted], it will be unreferenced.
-   * Otherwise, it will be freed. Do not use for resources.
+   * When the "undo" history is deleted, if the object is a [RefCounted], it will be unreferenced. Otherwise, it will be freed. Do not use for resources.
    *
    * ```
    * var node = $Node2D
@@ -279,25 +255,23 @@ public open class UndoRedo : Object() {
    * undo_redo.commit_action()
    * ```
    */
-  public final fun addUndoReference(`object`: Object?): Unit {
+  public final fun addUndoReference(`object`: Object?) {
     TransferContext.writeArguments(OBJECT to `object`)
     TransferContext.callMethod(ptr, MethodBindings.addUndoReferencePtr, NIL)
   }
 
   /**
-   * Marks the next "do" and "undo" operations to be processed even if the action gets merged with
-   * another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
+   * Marks the next "do" and "undo" operations to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. Return to normal operation using [endForceKeepInMergeEnds].
    */
-  public final fun startForceKeepInMergeEnds(): Unit {
+  public final fun startForceKeepInMergeEnds() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.startForceKeepInMergeEndsPtr, NIL)
   }
 
   /**
-   * Stops marking operations as to be processed even if the action gets merged with another in the
-   * [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
+   * Stops marking operations as to be processed even if the action gets merged with another in the [MERGE_ENDS] mode. See [startForceKeepInMergeEnds].
    */
-  public final fun endForceKeepInMergeEnds(): Unit {
+  public final fun endForceKeepInMergeEnds() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.endForceKeepInMergeEndsPtr, NIL)
   }
@@ -332,11 +306,10 @@ public open class UndoRedo : Object() {
   /**
    * Clear the undo/redo history and associated references.
    *
-   * Passing `false` to [increaseVersion] will prevent the version number from increasing when the
-   * history is cleared.
+   * Passing `false` to [increaseVersion] will prevent the version number from increasing when the history is cleared.
    */
   @JvmOverloads
-  public final fun clearHistory(increaseVersion: Boolean = true): Unit {
+  public final fun clearHistory(increaseVersion: Boolean = true) {
     TransferContext.writeArguments(BOOL to increaseVersion)
     TransferContext.callMethod(ptr, MethodBindings.clearHistoryPtr, NIL)
   }
@@ -369,8 +342,7 @@ public open class UndoRedo : Object() {
   }
 
   /**
-   * Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is
-   * increased automatically.
+   * Gets the version. Every time a new action is committed, the [UndoRedo]'s version number is increased automatically.
    *
    * This is useful mostly to check if something changed from a saved version.
    */
@@ -380,7 +352,7 @@ public open class UndoRedo : Object() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMaxSteps(maxSteps: Int): Unit {
+  public final fun setMaxSteps(maxSteps: Int) {
     TransferContext.writeArguments(LONG to maxSteps.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxStepsPtr, NIL)
   }
@@ -416,7 +388,7 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: String,
     `value`: Any?,
-  ) = addDoProperty(`object`, property.asCachedStringName(), value)
+  ): Unit = addDoProperty(`object`, property.asCachedStringName(), value)
 
   /**
    * Register a [property] that would change its value to [value] when the action is undone.
@@ -425,7 +397,7 @@ public open class UndoRedo : Object() {
     `object`: Object?,
     `property`: String,
     `value`: Any?,
-  ) = addUndoProperty(`object`, property.asCachedStringName(), value)
+  ): Unit = addUndoProperty(`object`, property.asCachedStringName(), value)
 
   public enum class MergeMode(
     id: Long,
@@ -435,9 +407,7 @@ public open class UndoRedo : Object() {
      */
     DISABLE(0),
     /**
-     * Merges this action with the previous one if they have the same name. Keeps only the first
-     * action's "undo" operations and the last action's "do" operations. Useful for sequential changes
-     * to a single value.
+     * Merges this action with the previous one if they have the same name. Keeps only the first action's "undo" operations and the last action's "do" operations. Useful for sequential changes to a single value.
      */
     ENDS(1),
     /**
@@ -460,70 +430,70 @@ public open class UndoRedo : Object() {
 
   public object MethodBindings {
     internal val createActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "create_action", 3171901514)
+        TypeManager.getMethodBindPtr("UndoRedo", "create_action", 3_171_901_514)
 
     internal val commitActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "commit_action", 3216645846)
+        TypeManager.getMethodBindPtr("UndoRedo", "commit_action", 3_216_645_846)
 
     internal val isCommittingActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "is_committing_action", 36873697)
+        TypeManager.getMethodBindPtr("UndoRedo", "is_committing_action", 36_873_697)
 
     internal val addDoMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_method", 1611583062)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_method", 1_611_583_062)
 
     internal val addUndoMethodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_method", 1611583062)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_method", 1_611_583_062)
 
     internal val addDoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_property", 1017172818)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_property", 1_017_172_818)
 
     internal val addUndoPropertyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_property", 1017172818)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_property", 1_017_172_818)
 
     internal val addDoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_do_reference", 3975164845)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_do_reference", 3_975_164_845)
 
     internal val addUndoReferencePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_reference", 3975164845)
+        TypeManager.getMethodBindPtr("UndoRedo", "add_undo_reference", 3_975_164_845)
 
     internal val startForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3218959716)
+        TypeManager.getMethodBindPtr("UndoRedo", "start_force_keep_in_merge_ends", 3_218_959_716)
 
     internal val endForceKeepInMergeEndsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3218959716)
+        TypeManager.getMethodBindPtr("UndoRedo", "end_force_keep_in_merge_ends", 3_218_959_716)
 
     internal val getHistoryCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_history_count", 2455072627)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_history_count", 2_455_072_627)
 
     internal val getCurrentActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action", 2455072627)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action", 2_455_072_627)
 
     internal val getActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_action_name", 990163283)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_action_name", 990_163_283)
 
     internal val clearHistoryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "clear_history", 3216645846)
+        TypeManager.getMethodBindPtr("UndoRedo", "clear_history", 3_216_645_846)
 
     internal val getCurrentActionNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action_name", 201670096)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_current_action_name", 201_670_096)
 
     internal val hasUndoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "has_undo", 36873697)
+        TypeManager.getMethodBindPtr("UndoRedo", "has_undo", 36_873_697)
 
     internal val hasRedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "has_redo", 36873697)
+        TypeManager.getMethodBindPtr("UndoRedo", "has_redo", 36_873_697)
 
     internal val getVersionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_version", 3905245786)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_version", 3_905_245_786)
 
     internal val setMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps", 1286410249)
+        TypeManager.getMethodBindPtr("UndoRedo", "set_max_steps", 1_286_410_249)
 
     internal val getMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps", 3905245786)
+        TypeManager.getMethodBindPtr("UndoRedo", "get_max_steps", 3_905_245_786)
 
-    internal val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo", 2240911060)
+    internal val redoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "redo", 2_240_911_060)
 
-    internal val undoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "undo", 2240911060)
+    internal val undoPtr: VoidPtr = TypeManager.getMethodBindPtr("UndoRedo", "undo", 2_240_911_060)
   }
 }

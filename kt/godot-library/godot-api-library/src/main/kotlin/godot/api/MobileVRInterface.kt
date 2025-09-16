@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,12 +21,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This is a generic mobile VR implementation where you need to provide details about the phone and
- * HMD used. It does not rely on any existing framework. This is the most basic interface we have. For
- * the best effect, you need a mobile phone with a gyroscope and accelerometer.
+ * This is a generic mobile VR implementation where you need to provide details about the phone and HMD used. It does not rely on any existing framework. This is the most basic interface we have. For the best effect, you need a mobile phone with a gyroscope and accelerometer.
  *
- * Note that even though there is no positional tracking, the camera will assume the headset is at a
- * height of 1.85 meters. You can change this by setting [eyeHeight].
+ * Note that even though there is no positional tracking, the camera will assume the headset is at a height of 1.85 meters. You can change this by setting [eyeHeight].
  *
  * You can initialize this interface as follows:
  *
@@ -39,10 +33,7 @@ import kotlin.jvm.JvmName
  *     get_viewport().use_xr = true
  * ```
  *
- * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer],
- * [ProjectSettings.inputDevices/sensors/enableGravity],
- * [ProjectSettings.inputDevices/sensors/enableGyroscope] and
- * [ProjectSettings.inputDevices/sensors/enableMagnetometer] must be enabled.
+ * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer], [ProjectSettings.inputDevices/sensors/enableGravity], [ProjectSettings.inputDevices/sensors/enableGyroscope] and [ProjectSettings.inputDevices/sensors/enableMagnetometer] must be enabled.
  */
 @GodotBaseType
 public open class MobileVRInterface : XRInterface() {
@@ -58,8 +49,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * The interocular distance, also known as the interpupillary distance. The distance between the
-   * pupils of the left and right eye.
+   * The interocular distance, also known as the interpupillary distance. The distance between the pupils of the left and right eye.
    */
   public final inline var iod: Double
     @JvmName("iodProperty")
@@ -92,15 +82,11 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
-   * rendering area on that axis.
+   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole rendering area on that axis.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offsetRect: Rect2
@@ -112,9 +98,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * The oversample setting. Because of the lens distortion we have to render our buffers at a
-   * higher resolution then the screen can natively handle. A value between 1.5 and 2.0 often provides
-   * good results but at the cost of performance.
+   * The oversample setting. Because of the lens distortion we have to render our buffers at a higher resolution then the screen can natively handle. A value between 1.5 and 2.0 often provides good results but at the cost of performance.
    */
   public final inline var oversample: Double
     @JvmName("oversampleProperty")
@@ -125,8 +109,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * The k1 lens factor is one of the two constants that define the strength of the lens used and
-   * directly influences the lens distortion effect.
+   * The k1 lens factor is one of the two constants that define the strength of the lens used and directly influences the lens distortion effect.
    */
   public final inline var k1: Double
     @JvmName("k1Property")
@@ -148,11 +131,9 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
-   * percentage of screen size.
+   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size.
    *
-   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
-   * [Viewport.VRS_XR].
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to [Viewport.VRS_XR].
    */
   public final inline var vrsMinRadius: Float
     @JvmName("vrsMinRadiusProperty")
@@ -163,11 +144,9 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   /**
-   * The strength used to calculate the VRS density map. The greater this value, the more noticeable
-   * VRS is. This improves performance at the cost of quality.
+   * The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is. This improves performance at the cost of quality.
    *
-   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to
-   * [Viewport.VRS_XR].
+   * **Note:** Mobile and Forward+ renderers only. Requires [Viewport.vrsMode] to be set to [Viewport.VRS_XR].
    */
   public final inline var vrsStrength: Float
     @JvmName("vrsStrengthProperty")
@@ -177,7 +156,7 @@ public open class MobileVRInterface : XRInterface() {
       setVrsStrength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(361, scriptIndex)
   }
 
@@ -192,8 +171,7 @@ public open class MobileVRInterface : XRInterface() {
    * mobilevrinterface.offsetRect = myCoreType
    * ``````
    *
-   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole
-   * rendering area on that axis.
+   * Set the offset rect relative to the area being rendered. A length of 1 represents the whole rendering area on that axis.
    */
   @CoreTypeHelper
   public final fun offsetRectMutate(block: Rect2.() -> Unit): Rect2 = offsetRect.apply {
@@ -201,7 +179,7 @@ public open class MobileVRInterface : XRInterface() {
      offsetRect = this
   }
 
-  public final fun setEyeHeight(eyeHeight: Double): Unit {
+  public final fun setEyeHeight(eyeHeight: Double) {
     TransferContext.writeArguments(DOUBLE to eyeHeight)
     TransferContext.callMethod(ptr, MethodBindings.setEyeHeightPtr, NIL)
   }
@@ -212,7 +190,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setIod(iod: Double): Unit {
+  public final fun setIod(iod: Double) {
     TransferContext.writeArguments(DOUBLE to iod)
     TransferContext.callMethod(ptr, MethodBindings.setIodPtr, NIL)
   }
@@ -223,7 +201,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setDisplayWidth(displayWidth: Double): Unit {
+  public final fun setDisplayWidth(displayWidth: Double) {
     TransferContext.writeArguments(DOUBLE to displayWidth)
     TransferContext.callMethod(ptr, MethodBindings.setDisplayWidthPtr, NIL)
   }
@@ -234,7 +212,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setDisplayToLens(displayToLens: Double): Unit {
+  public final fun setDisplayToLens(displayToLens: Double) {
     TransferContext.writeArguments(DOUBLE to displayToLens)
     TransferContext.callMethod(ptr, MethodBindings.setDisplayToLensPtr, NIL)
   }
@@ -245,7 +223,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setOffsetRect(offsetRect: Rect2): Unit {
+  public final fun setOffsetRect(offsetRect: Rect2) {
     TransferContext.writeArguments(RECT2 to offsetRect)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetRectPtr, NIL)
   }
@@ -256,7 +234,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setOversample(oversample: Double): Unit {
+  public final fun setOversample(oversample: Double) {
     TransferContext.writeArguments(DOUBLE to oversample)
     TransferContext.callMethod(ptr, MethodBindings.setOversamplePtr, NIL)
   }
@@ -267,7 +245,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setK1(k: Double): Unit {
+  public final fun setK1(k: Double) {
     TransferContext.writeArguments(DOUBLE to k)
     TransferContext.callMethod(ptr, MethodBindings.setK1Ptr, NIL)
   }
@@ -278,7 +256,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setK2(k: Double): Unit {
+  public final fun setK2(k: Double) {
     TransferContext.writeArguments(DOUBLE to k)
     TransferContext.callMethod(ptr, MethodBindings.setK2Ptr, NIL)
   }
@@ -295,7 +273,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVrsMinRadius(radius: Float): Unit {
+  public final fun setVrsMinRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
@@ -306,7 +284,7 @@ public open class MobileVRInterface : XRInterface() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVrsStrength(strength: Float): Unit {
+  public final fun setVrsStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVrsStrengthPtr, NIL)
   }
@@ -315,63 +293,63 @@ public open class MobileVRInterface : XRInterface() {
 
   public object MethodBindings {
     internal val setEyeHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_eye_height", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_eye_height", 373_806_689)
 
     internal val getEyeHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_eye_height", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_eye_height", 1_740_695_150)
 
     internal val setIodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_iod", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_iod", 373_806_689)
 
     internal val getIodPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_iod", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_iod", 1_740_695_150)
 
     internal val setDisplayWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_width", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_width", 373_806_689)
 
     internal val getDisplayWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_width", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_width", 1_740_695_150)
 
     internal val setDisplayToLensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_to_lens", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_display_to_lens", 373_806_689)
 
     internal val getDisplayToLensPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_display_to_lens", 1_740_695_150)
 
     internal val setOffsetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_offset_rect", 2046264180)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_offset_rect", 2_046_264_180)
 
     internal val getOffsetRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_offset_rect", 1639390495)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_offset_rect", 1_639_390_495)
 
     internal val setOversamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_oversample", 373_806_689)
 
     internal val getOversamplePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_oversample", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_oversample", 1_740_695_150)
 
     internal val setK1Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k1", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k1", 373_806_689)
 
     internal val getK1Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k1", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k1", 1_740_695_150)
 
     internal val setK2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_k2", 373_806_689)
 
     internal val getK2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_k2", 1_740_695_150)
 
     internal val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_min_radius", 1_740_695_150)
 
     internal val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_min_radius", 373_806_689)
 
     internal val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_strength", 1740695150)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "get_vrs_strength", 1_740_695_150)
 
     internal val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_strength", 373806689)
+        TypeManager.getMethodBindPtr("MobileVRInterface", "set_vrs_strength", 373_806_689)
   }
 }

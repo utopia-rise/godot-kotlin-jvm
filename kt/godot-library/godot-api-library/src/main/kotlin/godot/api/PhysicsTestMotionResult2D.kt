@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,14 +19,13 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
  * Describes the motion and collision result from [PhysicsServer2D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(483, scriptIndex)
   }
 
@@ -79,8 +75,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the unique instance ID of the colliding body's attached [Object], if a collision
-   * occurred. See [Object.getInstanceId].
+   * Returns the unique instance ID of the colliding body's attached [Object], if a collision occurred. See [Object.getInstanceId].
    */
   public final fun getColliderId(): Long {
     TransferContext.writeArguments()
@@ -134,8 +129,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and
-   * `1`.
+   * Returns the maximum fraction of the motion that can occur without a collision, between `0` and `1`.
    */
   public final fun getCollisionSafeFraction(): Float {
     TransferContext.writeArguments()
@@ -144,8 +138,7 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
   }
 
   /**
-   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between
-   * `0` and `1`.
+   * Returns the minimum fraction of the motion needed to collide, if a collision occurred, between `0` and `1`.
    */
   public final fun getCollisionUnsafeFraction(): Float {
     TransferContext.writeArguments()
@@ -157,42 +150,42 @@ public open class PhysicsTestMotionResult2D : RefCounted() {
 
   public object MethodBindings {
     internal val getTravelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_travel", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_travel", 3_341_600_327)
 
     internal val getRemainderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_remainder", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_remainder", 3_341_600_327)
 
     internal val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_point", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_point", 3_341_600_327)
 
     internal val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_normal", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_normal", 3_341_600_327)
 
     internal val getColliderVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_velocity", 3_341_600_327)
 
     internal val getColliderIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_id", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_id", 3_905_245_786)
 
     internal val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_rid", 2944877500)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_rid", 2_944_877_500)
 
     internal val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider", 1981248198)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider", 1_981_248_198)
 
     internal val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_shape", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collider_shape", 3_905_245_786)
 
     internal val getCollisionLocalShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_local_shape", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_local_shape", 3_905_245_786)
 
     internal val getCollisionDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_depth", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_depth", 1_740_695_150)
 
     internal val getCollisionSafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_safe_fraction", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_safe_fraction", 1_740_695_150)
 
     internal val getCollisionUnsafeFractionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_unsafe_fraction", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionResult2D", "get_collision_unsafe_fraction", 1_740_695_150)
   }
 }

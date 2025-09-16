@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,19 +17,15 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the
- * engine. When a timer reaches the end of its [waitTime], it will emit the [signal timeout] signal.
+ * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the engine. When a timer reaches the end of its [waitTime], it will emit the [signal timeout] signal.
  *
- * After a timer enters the tree, it can be manually started with [start]. A timer node is also
- * started automatically if [autostart] is `true`.
+ * After a timer enters the tree, it can be manually started with [start]. A timer node is also started automatically if [autostart] is `true`.
  *
- * Without requiring much code, a timer node can be added and configured in the editor. The [signal
- * timeout] signal it emits can also be connected through the Node dock in the editor:
+ * Without requiring much code, a timer node can be added and configured in the editor. The [signal timeout] signal it emits can also be connected through the Node dock in the editor:
  *
  * ```
  * func _on_timer_timeout():
@@ -41,8 +34,7 @@ import kotlin.jvm.JvmOverloads
  *
  * **Note:** To create a one-shot timer without instantiating a node, use [SceneTree.createTimer].
  *
- * **Note:** Timers are affected by [Engine.timeScale]. The higher the time scale, the sooner timers
- * will end. How often a timer processes may depend on the framerate or [Engine.physicsTicksPerSecond].
+ * **Note:** Timers are affected by [Engine.timeScale]. The higher the time scale, the sooner timers will end. How often a timer processes may depend on the framerate or [Engine.physicsTicksPerSecond].
  */
 @GodotBaseType
 public open class Timer : Node() {
@@ -63,14 +55,9 @@ public open class Timer : Node() {
     }
 
   /**
-   * The time required for the timer to end, in seconds. This property can also be set every time
-   * [start] is called.
+   * The time required for the timer to end, in seconds. This property can also be set every time [start] is called.
    *
-   * **Note:** Timers can only process once per physics or process frame (depending on the
-   * [processCallback]). An unstable framerate may cause the timer to end inconsistently, which is
-   * especially noticeable if the wait time is lower than roughly `0.05` seconds. For very short
-   * timers, it is recommended to write your own code instead of using a [Timer] node. Timers are also
-   * affected by [Engine.timeScale].
+   * **Note:** Timers can only process once per physics or process frame (depending on the [processCallback]). An unstable framerate may cause the timer to end inconsistently, which is especially noticeable if the wait time is lower than roughly `0.05` seconds. For very short timers, it is recommended to write your own code instead of using a [Timer] node. Timers are also affected by [Engine.timeScale].
    */
   public final inline var waitTime: Double
     @JvmName("waitTimeProperty")
@@ -81,8 +68,7 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer will stop after reaching the end. Otherwise, as by default, the timer will
-   * automatically restart.
+   * If `true`, the timer will stop after reaching the end. Otherwise, as by default, the timer will automatically restart.
    */
   public final inline var oneShot: Boolean
     @JvmName("oneShotProperty")
@@ -108,8 +94,7 @@ public open class Timer : Node() {
     }
 
   /**
-   * If `true`, the timer is paused. A paused timer does not process until this property is set back
-   * to `false`, even when [start] is called.
+   * If `true`, the timer is paused. A paused timer does not process until this property is set back to `false`, even when [start] is called.
    */
   public final inline var paused: Boolean
     @JvmName("pausedProperty")
@@ -139,11 +124,11 @@ public open class Timer : Node() {
     @JvmName("timeLeftProperty")
     get() = getTimeLeft()
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(690, scriptIndex)
   }
 
-  public final fun setWaitTime(timeSec: Double): Unit {
+  public final fun setWaitTime(timeSec: Double) {
     TransferContext.writeArguments(DOUBLE to timeSec)
     TransferContext.callMethod(ptr, MethodBindings.setWaitTimePtr, NIL)
   }
@@ -154,7 +139,7 @@ public open class Timer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setOneShot(enable: Boolean): Unit {
+  public final fun setOneShot(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setOneShotPtr, NIL)
   }
@@ -165,7 +150,7 @@ public open class Timer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutostart(enable: Boolean): Unit {
+  public final fun setAutostart(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAutostartPtr, NIL)
   }
@@ -177,13 +162,12 @@ public open class Timer : Node() {
   }
 
   /**
-   * Starts the timer, or resets the timer if it was started already. Fails if the timer is not
-   * inside the tree. If [timeSec] is greater than `0`, this value is used for the [waitTime].
+   * Starts the timer, or resets the timer if it was started already. Fails if the timer is not inside the tree. If [timeSec] is greater than `0`, this value is used for the [waitTime].
    *
    * **Note:** This method does not resume a paused timer. See [paused].
    */
   @JvmOverloads
-  public final fun start(timeSec: Double = -1.0): Unit {
+  public final fun start(timeSec: Double = -1.0) {
     TransferContext.writeArguments(DOUBLE to timeSec)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, NIL)
   }
@@ -191,12 +175,12 @@ public open class Timer : Node() {
   /**
    * Stops the timer.
    */
-  public final fun stop(): Unit {
+  public final fun stop() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.stopPtr, NIL)
   }
 
-  public final fun setPaused(paused: Boolean): Unit {
+  public final fun setPaused(paused: Boolean) {
     TransferContext.writeArguments(BOOL to paused)
     TransferContext.callMethod(ptr, MethodBindings.setPausedPtr, NIL)
   }
@@ -207,7 +191,7 @@ public open class Timer : Node() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setIgnoreTimeScale(ignore: Boolean): Unit {
+  public final fun setIgnoreTimeScale(ignore: Boolean) {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreTimeScalePtr, NIL)
   }
@@ -233,7 +217,7 @@ public open class Timer : Node() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setTimerProcessCallback(callback: TimerProcessCallback): Unit {
+  public final fun setTimerProcessCallback(callback: TimerProcessCallback) {
     TransferContext.writeArguments(LONG to callback.id)
     TransferContext.callMethod(ptr, MethodBindings.setTimerProcessCallbackPtr, NIL)
   }
@@ -248,8 +232,7 @@ public open class Timer : Node() {
     id: Long,
   ) {
     /**
-     * Update the timer every physics process frame (see
-     * [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
+     * Update the timer every physics process frame (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      */
     PHYSICS(0),
     /**
@@ -272,48 +255,49 @@ public open class Timer : Node() {
 
   public object MethodBindings {
     internal val setWaitTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_wait_time", 373806689)
+        TypeManager.getMethodBindPtr("Timer", "set_wait_time", 373_806_689)
 
     internal val getWaitTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_wait_time", 1740695150)
+        TypeManager.getMethodBindPtr("Timer", "get_wait_time", 1_740_695_150)
 
     internal val setOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_one_shot", 2586408642)
+        TypeManager.getMethodBindPtr("Timer", "set_one_shot", 2_586_408_642)
 
     internal val isOneShotPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "is_one_shot", 36873697)
+        TypeManager.getMethodBindPtr("Timer", "is_one_shot", 36_873_697)
 
     internal val setAutostartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_autostart", 2586408642)
+        TypeManager.getMethodBindPtr("Timer", "set_autostart", 2_586_408_642)
 
     internal val hasAutostartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "has_autostart", 36873697)
+        TypeManager.getMethodBindPtr("Timer", "has_autostart", 36_873_697)
 
-    internal val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "start", 1392008558)
+    internal val startPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "start", 1_392_008_558)
 
-    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "stop", 3218959716)
+    internal val stopPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "stop", 3_218_959_716)
 
     internal val setPausedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_paused", 2586408642)
+        TypeManager.getMethodBindPtr("Timer", "set_paused", 2_586_408_642)
 
-    internal val isPausedPtr: VoidPtr = TypeManager.getMethodBindPtr("Timer", "is_paused", 36873697)
+    internal val isPausedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Timer", "is_paused", 36_873_697)
 
     internal val setIgnoreTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_ignore_time_scale", 2586408642)
+        TypeManager.getMethodBindPtr("Timer", "set_ignore_time_scale", 2_586_408_642)
 
     internal val isIgnoringTimeScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "is_ignoring_time_scale", 2240911060)
+        TypeManager.getMethodBindPtr("Timer", "is_ignoring_time_scale", 2_240_911_060)
 
     internal val isStoppedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "is_stopped", 36873697)
+        TypeManager.getMethodBindPtr("Timer", "is_stopped", 36_873_697)
 
     internal val getTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_time_left", 1740695150)
+        TypeManager.getMethodBindPtr("Timer", "get_time_left", 1_740_695_150)
 
     internal val setTimerProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "set_timer_process_callback", 3469495063)
+        TypeManager.getMethodBindPtr("Timer", "set_timer_process_callback", 3_469_495_063)
 
     internal val getTimerProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Timer", "get_timer_process_callback", 2672570227)
+        TypeManager.getMethodBindPtr("Timer", "get_timer_process_callback", 2_672_570_227)
   }
 }

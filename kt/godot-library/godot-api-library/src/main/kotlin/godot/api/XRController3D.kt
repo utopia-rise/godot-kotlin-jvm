@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,20 +26,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * This is a helper 3D node that is linked to the tracking of controllers. It also offers several
- * handy passthroughs to the state of buttons and such on the controllers.
+ * This is a helper 3D node that is linked to the tracking of controllers. It also offers several handy passthroughs to the state of buttons and such on the controllers.
  *
- * Controllers are linked by their ID. You can create controller nodes before the controllers are
- * available. If your game always uses two controllers (one for each hand), you can predefine the
- * controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If
- * you expect additional controllers to be used, you should react to the signals and add XRController3D
- * nodes to your scene.
+ * Controllers are linked by their ID. You can create controller nodes before the controllers are available. If your game always uses two controllers (one for each hand), you can predefine the controllers with ID 1 and 2; they will become active as soon as the controllers are identified. If you expect additional controllers to be used, you should react to the signals and add XRController3D nodes to your scene.
  *
- * The position of the controller node is automatically updated by the [XRServer]. This makes this
- * node ideal to add child nodes to visualize the controller.
+ * The position of the controller node is automatically updated by the [XRServer]. This makes this node ideal to add child nodes to visualize the controller.
  *
  * As many XR runtimes now use a configurable action map all inputs are named.
  */
@@ -73,7 +63,7 @@ public open class XRController3D : XRNode3D() {
    */
   public val profileChanged: Signal1<String> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(862, scriptIndex)
   }
 
@@ -87,8 +77,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [Variant] for the input with the given [name]. This works for any input type, the
-   * variant will be typed according to the actions configuration.
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the variant will be typed according to the actions configuration.
    */
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -97,8 +86,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
-   * sensors.
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
    */
   public final fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -107,8 +95,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
-   * thumbpads found on many controllers.
+   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and thumbpads found on many controllers.
    */
   public final fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -128,24 +115,20 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns `true` if the button with the given [name] is pressed.
    */
-  public final fun isButtonPressed(name: String): Boolean =
-      isButtonPressed(name.asCachedStringName())
+  public final fun isButtonPressed(name: String): Boolean = isButtonPressed(name.asCachedStringName())
 
   /**
-   * Returns a [Variant] for the input with the given [name]. This works for any input type, the
-   * variant will be typed according to the actions configuration.
+   * Returns a [Variant] for the input with the given [name]. This works for any input type, the variant will be typed according to the actions configuration.
    */
   public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
 
   /**
-   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
-   * sensors.
+   * Returns a numeric value for the input with the given [name]. This is used for triggers and grip sensors.
    */
   public final fun getFloat(name: String): Float = getFloat(name.asCachedStringName())
 
   /**
-   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
-   * thumbpads found on many controllers.
+   * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and thumbpads found on many controllers.
    */
   public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 
@@ -153,18 +136,18 @@ public open class XRController3D : XRNode3D() {
 
   public object MethodBindings {
     internal val isButtonPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "is_button_pressed", 2619796661)
+        TypeManager.getMethodBindPtr("XRController3D", "is_button_pressed", 2_619_796_661)
 
     internal val getInputPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_input", 2760726917)
+        TypeManager.getMethodBindPtr("XRController3D", "get_input", 2_760_726_917)
 
     internal val getFloatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_float", 2349060816)
+        TypeManager.getMethodBindPtr("XRController3D", "get_float", 2_349_060_816)
 
     internal val getVector2Ptr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_vector2", 3100822709)
+        TypeManager.getMethodBindPtr("XRController3D", "get_vector2", 3_100_822_709)
 
     internal val getTrackerHandPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRController3D", "get_tracker_hand", 4181770860)
+        TypeManager.getMethodBindPtr("XRController3D", "get_tracker_hand", 4_181_770_860)
   }
 }

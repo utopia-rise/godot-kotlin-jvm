@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,20 +22,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An
- * additional [margin] can also be set, which is useful for small adjustments.
+ * [Texture2D] resource that draws only part of its [atlas] texture, as defined by the [region]. An additional [margin] can also be set, which is useful for small adjustments.
  *
- * Multiple [AtlasTexture] resources can be cropped from the same [atlas]. Packing many smaller
- * textures into a singular large texture helps to optimize video memory costs and render calls.
+ * Multiple [AtlasTexture] resources can be cropped from the same [atlas]. Packing many smaller textures into a singular large texture helps to optimize video memory costs and render calls.
  *
- * **Note:** [AtlasTexture] cannot be used in an [AnimatedTexture], and will not tile properly in
- * nodes such as [TextureRect] or [Sprite2D]. To tile an [AtlasTexture], modify its [region] instead.
+ * **Note:** [AtlasTexture] cannot be used in an [AnimatedTexture], and will not tile properly in nodes such as [TextureRect] or [Sprite2D]. To tile an [AtlasTexture], modify its [region] instead.
  */
 @GodotBaseType
 public open class AtlasTexture : Texture2D() {
   /**
-   * The texture that contains the atlas. Can be any type inheriting from [Texture2D], including
-   * another [AtlasTexture].
+   * The texture that contains the atlas. Can be any type inheriting from [Texture2D], including another [AtlasTexture].
    */
   public final inline var atlas: Texture2D?
     @JvmName("atlasProperty")
@@ -49,15 +42,11 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
-   * from [atlas] size will be used for that axis instead.
+   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value from [atlas] size will be used for that axis instead.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var region: Rect2
@@ -69,16 +58,11 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
-   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
-   * margin.
+   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var margin: Rect2
@@ -90,8 +74,7 @@ public open class AtlasTexture : Texture2D() {
     }
 
   /**
-   * If `true`, the area outside of the [region] is clipped to avoid bleeding of the surrounding
-   * texture pixels.
+   * If `true`, the area outside of the [region] is clipped to avoid bleeding of the surrounding texture pixels.
    */
   public final inline var filterClip: Boolean
     @JvmName("filterClipProperty")
@@ -101,7 +84,7 @@ public open class AtlasTexture : Texture2D() {
       setFilterClip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(43, scriptIndex)
   }
 
@@ -116,8 +99,7 @@ public open class AtlasTexture : Texture2D() {
    * atlastexture.region = myCoreType
    * ``````
    *
-   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value
-   * from [atlas] size will be used for that axis instead.
+   * The region used to draw the [atlas]. If either dimension of the region's size is `0`, the value from [atlas] size will be used for that axis instead.
    */
   @CoreTypeHelper
   public final fun regionMutate(block: Rect2.() -> Unit): Rect2 = region.apply {
@@ -136,9 +118,7 @@ public open class AtlasTexture : Texture2D() {
    * atlastexture.margin = myCoreType
    * ``````
    *
-   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this
-   * property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the
-   * margin.
+   * The margin around the [region]. Useful for small adjustments. If the [Rect2.size] of this property ("w" and "h" in the editor) is set, the drawn texture is resized to fit within the margin.
    */
   @CoreTypeHelper
   public final fun marginMutate(block: Rect2.() -> Unit): Rect2 = margin.apply {
@@ -146,7 +126,7 @@ public open class AtlasTexture : Texture2D() {
      margin = this
   }
 
-  public final fun setAtlas(atlas: Texture2D?): Unit {
+  public final fun setAtlas(atlas: Texture2D?) {
     TransferContext.writeArguments(OBJECT to atlas)
     TransferContext.callMethod(ptr, MethodBindings.setAtlasPtr, NIL)
   }
@@ -157,7 +137,7 @@ public open class AtlasTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setRegion(region: Rect2): Unit {
+  public final fun setRegion(region: Rect2) {
     TransferContext.writeArguments(RECT2 to region)
     TransferContext.callMethod(ptr, MethodBindings.setRegionPtr, NIL)
   }
@@ -168,7 +148,7 @@ public open class AtlasTexture : Texture2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setMargin(margin: Rect2): Unit {
+  public final fun setMargin(margin: Rect2) {
     TransferContext.writeArguments(RECT2 to margin)
     TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
   }
@@ -179,7 +159,7 @@ public open class AtlasTexture : Texture2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
-  public final fun setFilterClip(enable: Boolean): Unit {
+  public final fun setFilterClip(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setFilterClipPtr, NIL)
   }
@@ -193,14 +173,14 @@ public open class AtlasTexture : Texture2D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("AtlasTexture::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("AtlasTexture::_getHeight can't be called from the JVM.")
   }
 
@@ -208,27 +188,27 @@ public open class AtlasTexture : Texture2D() {
 
   public object MethodBindings {
     internal val setAtlasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "set_atlas", 4051416890)
+        TypeManager.getMethodBindPtr("AtlasTexture", "set_atlas", 4_051_416_890)
 
     internal val getAtlasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "get_atlas", 3635182373)
+        TypeManager.getMethodBindPtr("AtlasTexture", "get_atlas", 3_635_182_373)
 
     internal val setRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "set_region", 2046264180)
+        TypeManager.getMethodBindPtr("AtlasTexture", "set_region", 2_046_264_180)
 
     internal val getRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "get_region", 1639390495)
+        TypeManager.getMethodBindPtr("AtlasTexture", "get_region", 1_639_390_495)
 
     internal val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "set_margin", 2046264180)
+        TypeManager.getMethodBindPtr("AtlasTexture", "set_margin", 2_046_264_180)
 
     internal val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "get_margin", 1639390495)
+        TypeManager.getMethodBindPtr("AtlasTexture", "get_margin", 1_639_390_495)
 
     internal val setFilterClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "set_filter_clip", 2586408642)
+        TypeManager.getMethodBindPtr("AtlasTexture", "set_filter_clip", 2_586_408_642)
 
     internal val hasFilterClipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AtlasTexture", "has_filter_clip", 36873697)
+        TypeManager.getMethodBindPtr("AtlasTexture", "has_filter_clip", 36_873_697)
   }
 }

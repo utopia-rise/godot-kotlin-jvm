@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,14 +12,11 @@ import kotlin.Any
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * This class can be used to extend or replace the default [MultiplayerAPI] implementation via
- * script or extensions.
+ * This class can be used to extend or replace the default [MultiplayerAPI] implementation via script or extensions.
  *
- * The following example extend the default implementation ([SceneMultiplayer]) by logging every RPC
- * being made, and every object being configured for replication.
+ * The following example extend the default implementation ([SceneMultiplayer]) by logging every RPC being made, and every object being configured for replication.
  *
  * ```gdscript
  * //gdscript
@@ -51,28 +45,23 @@ import kotlin.Unit
  *     print("Got RPC for &#37;d: &#37;s::&#37;s(&#37;s)" &#37; [peer, object, method, args])
  *     return base_multiplayer.rpc(peer, object, method, args)
  *
- * # Log configuration add. E.g. root path (nullptr, NodePath), replication (Node,
- * Spawner|Synchronizer), custom.
+ * # Log configuration add. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
  * func _object_configuration_add(object, config: Variant) -> Error:
  *     if config is MultiplayerSynchronizer:
- *         print("Adding synchronization configuration for &#37;s. Synchronizer: &#37;s" &#37;
- * [object, config])
+ *         print("Adding synchronization configuration for &#37;s. Synchronizer: &#37;s" &#37; [object, config])
  *     elif config is MultiplayerSpawner:
  *         print("Adding node &#37;s to the spawn list. Spawner: &#37;s" &#37; [object, config])
  *     return base_multiplayer.object_configuration_add(object, config)
  *
- * # Log configuration remove. E.g. root path (nullptr, NodePath), replication (Node,
- * Spawner|Synchronizer), custom.
+ * # Log configuration remove. E.g. root path (nullptr, NodePath), replication (Node, Spawner|Synchronizer), custom.
  * func _object_configuration_remove(object, config: Variant) -> Error:
  *     if config is MultiplayerSynchronizer:
- *         print("Removing synchronization configuration for &#37;s. Synchronizer: &#37;s" &#37;
- * [object, config])
+ *         print("Removing synchronization configuration for &#37;s. Synchronizer: &#37;s" &#37; [object, config])
  *     elif config is MultiplayerSpawner:
  *         print("Removing node &#37;s from the spawn list. Spawner: &#37;s" &#37; [object, config])
  *     return base_multiplayer.object_configuration_remove(object, config)
  *
- * # These can be optional, but in our case we want to extend SceneMultiplayer, so forward
- * everything.
+ * # These can be optional, but in our case we want to extend SceneMultiplayer, so forward everything.
  * func _set_multiplayer_peer(p_peer: MultiplayerPeer):
  *     base_multiplayer.multiplayer_peer = p_peer
  *
@@ -86,8 +75,7 @@ import kotlin.Unit
  *     return base_multiplayer.get_peers()
  * ```
  *
- * Then in your main scene or in an autoload call [SceneTree.setMultiplayer] to start using your
- * custom [MultiplayerAPI]:
+ * Then in your main scene or in an autoload call [SceneTree.setMultiplayer] to start using your custom [MultiplayerAPI]:
  *
  * ```gdscript
  * //gdscript
@@ -97,12 +85,11 @@ import kotlin.Unit
  *     get_tree().set_multiplayer(LogMultiplayer.new())
  * ```
  *
- * Native extensions can alternatively use the [MultiplayerAPI.setDefaultInterface] method during
- * initialization to configure themselves as the default implementation.
+ * Native extensions can alternatively use the [MultiplayerAPI.setDefaultInterface] method during initialization to configure themselves as the default implementation.
  */
 @GodotBaseType
 public open class MultiplayerAPIExtension : MultiplayerAPI() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(367, scriptIndex)
   }
 
@@ -116,7 +103,7 @@ public open class MultiplayerAPIExtension : MultiplayerAPI() {
   /**
    * Called when the [MultiplayerAPI.multiplayerPeer] is set.
    */
-  public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?): Unit {
+  public open fun _setMultiplayerPeer(multiplayerPeer: MultiplayerPeer?) {
     throw NotImplementedError("MultiplayerAPIExtension::_setMultiplayerPeer is not implemented.")
   }
 

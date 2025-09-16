@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,12 +29,9 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D]
- * react to physics.
+ * The [PhysicalBone3D] node is a physics body that can be used to make bones in a [Skeleton3D] react to physics.
  *
- * **Note:** In order to detect physical bones with raycasts, the [SkeletonModifier3D.active]
- * property of the parent [PhysicalBoneSimulator3D] must be `true` and the [Skeleton3D]'s bone must be
- * assigned to [PhysicalBone3D] correctly; it means that [getBoneId] should return a valid id (`>= 0`).
+ * **Note:** In order to detect physical bones with raycasts, the [SkeletonModifier3D.active] property of the parent [PhysicalBoneSimulator3D] must be `true` and the [Skeleton3D]'s bone must be assigned to [PhysicalBone3D] correctly; it means that [getBoneId] should return a valid id (`>= 0`).
  */
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {
@@ -56,11 +50,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Sets the joint's transform.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var jointOffset: Transform3D
@@ -75,11 +66,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Sets the joint's rotation in radians.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var jointRotation: Vector3
@@ -94,11 +82,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Sets the body's transform.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var bodyOffset: Transform3D
@@ -134,10 +119,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * The body's bounciness. Values range from `0` (no bounce) to `1` (full bounciness).
    *
-   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and
-   * angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [bounce]
-   * to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to
-   * [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
+   * **Note:** Even with [bounce] set to `1.0`, some energy will be lost over time due to linear and angular damping. To have a [PhysicalBone3D] that preserves all its energy over time, set [bounce] to `1.0`, [linearDampMode] to [DAMP_MODE_REPLACE], [linearDamp] to `0.0`, [angularDampMode] to [DAMP_MODE_REPLACE], and [angularDamp] to `0.0`.
    */
   public final inline var bounce: Float
     @JvmName("bounceProperty")
@@ -148,9 +130,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's
-   * gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the
-   * gravity, and `0.5` will apply half the gravity to this body.
+   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the gravity, and `0.5` will apply half the gravity to this body.
    */
   public final inline var gravityScale: Float
     @JvmName("gravityScaleProperty")
@@ -161,12 +141,9 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the standard force integration (like gravity or damping) will be disabled for this
-   * body. Other than collision response, the body will only move as determined by the
-   * [_integrateForces] method, if that virtual method is overridden.
+   * If `true`, the standard force integration (like gravity or damping) will be disabled for this body. Other than collision response, the body will only move as determined by the [_integrateForces] method, if that virtual method is overridden.
    *
-   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
-   * internally.
+   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration] internally.
    */
   public final inline var customIntegrator: Boolean
     @JvmName("customIntegratorProperty")
@@ -188,10 +165,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use
-   * [ProjectSettings.physics/3d/defaultLinearDamp] or any value override set by an [Area3D] the body
-   * is in. Depending on [linearDampMode], [linearDamp] may be added to or replace the body's damping
-   * value.
+   * Damps the body's movement. By default, the body will use [ProjectSettings.physics/3d/defaultLinearDamp] or any value override set by an [Area3D] the body is in. Depending on [linearDampMode], [linearDamp] may be added to or replace the body's damping value.
    *
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
@@ -215,10 +189,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the
-   * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
-   * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
-   * or to replace the body's damping value.
+   * Damps the body's rotation. By default, the body will use the [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the body's damping value.
    *
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
@@ -231,16 +202,11 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
-   * every frame**, because physics may run in another thread and runs at a different granularity. Use
-   * [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -255,11 +221,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -271,8 +234,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the body is deactivated when there is no movement, so it will not take part in the
-   * simulation until it is awakened by an external force.
+   * If `true`, the body is deactivated when there is no movement, so it will not take part in the simulation until it is awakened by an external force.
    */
   public final inline var canSleep: Boolean
     @JvmName("canSleepProperty")
@@ -282,7 +244,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       setCanSleep(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(456, scriptIndex)
   }
 
@@ -300,8 +262,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * Sets the joint's transform.
    */
   @CoreTypeHelper
-  public final fun jointOffsetMutate(block: Transform3D.() -> Unit): Transform3D =
-      jointOffset.apply {
+  public final fun jointOffsetMutate(block: Transform3D.() -> Unit): Transform3D = jointOffset.apply {
      block(this)
      jointOffset = this
   }
@@ -355,9 +316,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * physicalbone3d.linearVelocity = myCoreType
    * ``````
    *
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
-   * every frame**, because physics may run in another thread and runs at a different granularity. Use
-   * [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
   @CoreTypeHelper
   public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
@@ -379,32 +338,26 @@ public open class PhysicalBone3D : PhysicsBody3D() {
    * The PhysicalBone3D's rotational velocity in *radians* per second.
    */
   @CoreTypeHelper
-  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply {
+  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply {
      block(this)
      angularVelocity = this
   }
 
   /**
-   * Called during physics processing, allowing you to read and safely modify the simulation state
-   * for the object. By default, it is called before the standard force integration, but the
-   * [customIntegrator] property allows you to disable the standard force integration and do fully
-   * custom force integration for a body.
+   * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it is called before the standard force integration, but the [customIntegrator] property allows you to disable the standard force integration and do fully custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D?) {
     throw NotImplementedError("PhysicalBone3D::_integrateForces is not implemented.")
   }
 
   /**
    * Applies a directional impulse without affecting rotation.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_integrate_forces" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_integrate_forces" functions otherwise).
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public final fun applyCentralImpulse(impulse: Vector3): Unit {
+  public final fun applyCentralImpulse(impulse: Vector3) {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
@@ -412,19 +365,17 @@ public open class PhysicalBone3D : PhysicsBody3D() {
   /**
    * Applies a positioned impulse to the PhysicsBone3D.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_integrate_forces" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_integrate_forces" functions otherwise).
    *
    * [position] is the offset from the PhysicsBone3D origin in global coordinates.
    */
   @JvmOverloads
-  public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
+  public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)) {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
   }
 
-  public final fun setJointType(jointType: JointType): Unit {
+  public final fun setJointType(jointType: JointType) {
     TransferContext.writeArguments(LONG to jointType.id)
     TransferContext.callMethod(ptr, MethodBindings.setJointTypePtr, NIL)
   }
@@ -435,7 +386,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return JointType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJointOffset(offset: Transform3D): Unit {
+  public final fun setJointOffset(offset: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to offset)
     TransferContext.callMethod(ptr, MethodBindings.setJointOffsetPtr, NIL)
   }
@@ -446,7 +397,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setJointRotation(euler: Vector3): Unit {
+  public final fun setJointRotation(euler: Vector3) {
     TransferContext.writeArguments(VECTOR3 to euler)
     TransferContext.callMethod(ptr, MethodBindings.setJointRotationPtr, NIL)
   }
@@ -457,7 +408,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setBodyOffset(offset: Transform3D): Unit {
+  public final fun setBodyOffset(offset: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to offset)
     TransferContext.callMethod(ptr, MethodBindings.setBodyOffsetPtr, NIL)
   }
@@ -495,7 +446,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMass(mass: Float): Unit {
+  public final fun setMass(mass: Float) {
     TransferContext.writeArguments(DOUBLE to mass.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMassPtr, NIL)
   }
@@ -506,7 +457,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFriction(friction: Float): Unit {
+  public final fun setFriction(friction: Float) {
     TransferContext.writeArguments(DOUBLE to friction.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFrictionPtr, NIL)
   }
@@ -517,7 +468,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBounce(bounce: Float): Unit {
+  public final fun setBounce(bounce: Float) {
     TransferContext.writeArguments(DOUBLE to bounce.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBouncePtr, NIL)
   }
@@ -528,7 +479,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGravityScale(gravityScale: Float): Unit {
+  public final fun setGravityScale(gravityScale: Float) {
     TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGravityScalePtr, NIL)
   }
@@ -539,7 +490,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
+  public final fun setLinearDampMode(linearDampMode: DampMode) {
     TransferContext.writeArguments(LONG to linearDampMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
   }
@@ -550,7 +501,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
+  public final fun setAngularDampMode(angularDampMode: DampMode) {
     TransferContext.writeArguments(LONG to angularDampMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
   }
@@ -561,7 +512,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLinearDamp(linearDamp: Float): Unit {
+  public final fun setLinearDamp(linearDamp: Float) {
     TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampPtr, NIL)
   }
@@ -572,7 +523,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAngularDamp(angularDamp: Float): Unit {
+  public final fun setAngularDamp(angularDamp: Float) {
     TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampPtr, NIL)
   }
@@ -583,7 +534,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
+  public final fun setLinearVelocity(linearVelocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to linearVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
@@ -594,7 +545,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
+  public final fun setAngularVelocity(angularVelocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to angularVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
@@ -605,7 +556,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setUseCustomIntegrator(enable: Boolean): Unit {
+  public final fun setUseCustomIntegrator(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseCustomIntegratorPtr, NIL)
   }
@@ -616,7 +567,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCanSleep(ableToSleep: Boolean): Unit {
+  public final fun setCanSleep(ableToSleep: Boolean) {
     TransferContext.writeArguments(BOOL to ableToSleep)
     TransferContext.callMethod(ptr, MethodBindings.setCanSleepPtr, NIL)
   }
@@ -631,8 +582,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's damping value is added to any value set in areas or the default
-     * value.
+     * In this mode, the body's damping value is added to any value set in areas or the default value.
      */
     COMBINE(0),
     /**
@@ -694,114 +644,114 @@ public open class PhysicalBone3D : PhysicsBody3D() {
 
   public object MethodBindings {
     internal val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_central_impulse", 3_460_891_852)
 
     internal val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_impulse", 2754756483)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "apply_impulse", 2_754_756_483)
 
     internal val setJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_type", 2289552604)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_type", 2_289_552_604)
 
     internal val getJointTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_type", 931347320)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_type", 931_347_320)
 
     internal val setJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_offset", 2952846383)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_offset", 2_952_846_383)
 
     internal val getJointOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_offset", 3229777777)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_offset", 3_229_777_777)
 
     internal val setJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_joint_rotation", 3_460_891_852)
 
     internal val getJointRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_joint_rotation", 3_360_562_783)
 
     internal val setBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_body_offset", 2952846383)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_body_offset", 2_952_846_383)
 
     internal val getBodyOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_body_offset", 3229777777)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_body_offset", 3_229_777_777)
 
     internal val getSimulatePhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics", 2240911060)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_simulate_physics", 2_240_911_060)
 
     internal val isSimulatingPhysicsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics", 2240911060)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_simulating_physics", 2_240_911_060)
 
     internal val getBoneIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bone_id", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bone_id", 3_905_245_786)
 
     internal val setMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_mass", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_mass", 373_806_689)
 
     internal val getMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_mass", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_mass", 1_740_695_150)
 
     internal val setFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_friction", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_friction", 373_806_689)
 
     internal val getFrictionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_friction", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_friction", 1_740_695_150)
 
     internal val setBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_bounce", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_bounce", 373_806_689)
 
     internal val getBouncePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bounce", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_bounce", 1_740_695_150)
 
     internal val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_gravity_scale", 373_806_689)
 
     internal val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_gravity_scale", 1_740_695_150)
 
     internal val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode", 1244972221)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp_mode", 1_244_972_221)
 
     internal val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode", 205884699)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp_mode", 205_884_699)
 
     internal val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode", 1244972221)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp_mode", 1_244_972_221)
 
     internal val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode", 205884699)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp_mode", 205_884_699)
 
     internal val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_damp", 373_806_689)
 
     internal val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_damp", 1_740_695_150)
 
     internal val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp", 373806689)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_damp", 373_806_689)
 
     internal val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_damp", 1_740_695_150)
 
     internal val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_linear_velocity", 3_460_891_852)
 
     internal val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_linear_velocity", 3_360_562_783)
 
     internal val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_angular_velocity", 3_460_891_852)
 
     internal val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "get_angular_velocity", 3_360_562_783)
 
     internal val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_use_custom_integrator", 2_586_408_642)
 
     internal val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator", 2240911060)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_using_custom_integrator", 2_240_911_060)
 
     internal val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_can_sleep", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "set_can_sleep", 2_586_408_642)
 
     internal val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep", 36873697)
+        TypeManager.getMethodBindPtr("PhysicalBone3D", "is_able_to_sleep", 36_873_697)
   }
 }

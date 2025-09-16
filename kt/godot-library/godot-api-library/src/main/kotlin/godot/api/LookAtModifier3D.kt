@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,19 +30,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This [SkeletonModifier3D] rotates a bone to look at a target. This is helpful for moving a
- * character's head to look at the player, rotating a turret to look at a target, or any other case
- * where you want to make a bone rotate towards something quickly and easily.
+ * This [SkeletonModifier3D] rotates a bone to look at a target. This is helpful for moving a character's head to look at the player, rotating a turret to look at a target, or any other case where you want to make a bone rotate towards something quickly and easily.
  *
- * When applying multiple [LookAtModifier3D]s, the [LookAtModifier3D] assigned to the parent bone
- * must be put above the [LookAtModifier3D] assigned to the child bone in the list in order for the
- * child bone results to be correct.
+ * When applying multiple [LookAtModifier3D]s, the [LookAtModifier3D] assigned to the parent bone must be put above the [LookAtModifier3D] assigned to the child bone in the list in order for the child bone results to be correct.
  */
 @GodotBaseType
 public open class LookAtModifier3D : SkeletonModifier3D() {
   /**
-   * The [NodePath] to the node that is the target for the look at modification. This node is what
-   * the modification will rotate the bone to.
+   * The [NodePath] to the node that is the target for the look at modification. This node is what the modification will rotate the bone to.
    */
   public final inline var targetNode: NodePath
     @JvmName("targetNodeProperty")
@@ -78,8 +70,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The forward axis of the bone. This [SkeletonModifier3D] modifies the bone so that this axis
-   * points toward the [targetNode].
+   * The forward axis of the bone. This [SkeletonModifier3D] modifies the bone so that this axis points toward the [targetNode].
    */
   public final inline var forwardAxis: SkeletonModifier3D.BoneAxis
     @JvmName("forwardAxisProperty")
@@ -90,8 +81,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The axis of the first rotation. This [SkeletonModifier3D] works by compositing the rotation by
-   * Euler angles to prevent to rotate the [forwardAxis].
+   * The axis of the first rotation. This [SkeletonModifier3D] works by compositing the rotation by Euler angles to prevent to rotate the [forwardAxis].
    */
   public final inline var primaryRotationAxis: Vector3.Axis
     @JvmName("primaryRotationAxisProperty")
@@ -113,8 +103,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * This value determines from what origin is retrieved for use in the calculation of the forward
-   * vector.
+   * This value determines from what origin is retrieved for use in the calculation of the forward vector.
    */
   public final inline var originFrom: OriginFrom
     @JvmName("originFromProperty")
@@ -125,8 +114,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If [originFrom] is [ORIGIN_FROM_SPECIFIC_BONE], the bone global pose position specified for
-   * this is used as origin.
+   * If [originFrom] is [ORIGIN_FROM_SPECIFIC_BONE], the bone global pose position specified for this is used as origin.
    */
   public final inline var originBoneName: String
     @JvmName("originBoneNameProperty")
@@ -148,8 +136,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If [originFrom] is [ORIGIN_FROM_EXTERNAL_NODE], the global position of the [Node3D] specified
-   * for this is used as origin.
+   * If [originFrom] is [ORIGIN_FROM_EXTERNAL_NODE], the global position of the [Node3D] specified for this is used as origin.
    */
   public final inline var originExternalNode: NodePath
     @JvmName("originExternalNodeProperty")
@@ -160,17 +147,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
-   * multiple bones must always face the same direction, such as the eyes.
+   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where multiple bones must always face the same direction, such as the eyes.
    *
    * **Note:** This value indicates the local position of the object set in [originFrom].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var originOffset: Vector3
@@ -182,9 +165,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If the target passes through too close to the origin than this value, time-based interpolation
-   * is used even if the target is within the angular limitations, to prevent the angular velocity from
-   * becoming too high.
+   * If the target passes through too close to the origin than this value, time-based interpolation is used even if the target is within the angular limitations, to prevent the angular velocity from becoming too high.
    */
   public final inline var originSafeMargin: Float
     @JvmName("originSafeMarginProperty")
@@ -195,17 +176,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The duration of the time-based interpolation. Interpolation is triggered at the following
-   * cases:
+   * The duration of the time-based interpolation. Interpolation is triggered at the following cases:
    *
    * - When the target node is changed
    *
    * - When an axis is flipped due to angle limitation
    *
-   * **Note:** The flipping occurs when the target is outside the angle limitation and the
-   * internally computed secondary rotation axis of the forward vector is flipped. Visually, it occurs
-   * when the target is outside the angle limitation and crosses the plane of the [forwardAxis] and
-   * [primaryRotationAxis].
+   * **Note:** The flipping occurs when the target is outside the angle limitation and the internally computed secondary rotation axis of the forward vector is flipped. Visually, it occurs when the target is outside the angle limitation and crosses the plane of the [forwardAxis] and [primaryRotationAxis].
    */
   public final inline var duration: Float
     @JvmName("durationProperty")
@@ -238,16 +215,11 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If `true`, limits the degree of rotation. This helps prevent the character's neck from rotating
-   * 360 degrees.
+   * If `true`, limits the degree of rotation. This helps prevent the character's neck from rotating 360 degrees.
    *
-   * **Note:** As with [AnimationTree] blending, interpolation is provided that favors
-   * [Skeleton3D.getBoneRest]. This means that interpolation does not select the shortest path in some
-   * cases.
+   * **Note:** As with [AnimationTree] blending, interpolation is provided that favors [Skeleton3D.getBoneRest]. This means that interpolation does not select the shortest path in some cases.
    *
-   * **Note:** Some [transitionType] may exceed the limitations (e.g. `Back`, `Elastic`, and
-   * `Spring`). If interpolation occurs while overshooting the limitations, the result might possibly
-   * not respect the bone rest.
+   * **Note:** Some [transitionType] may exceed the limitations (e.g. `Back`, `Elastic`, and `Spring`). If interpolation occurs while overshooting the limitations, the result might possibly not respect the bone rest.
    */
   public final inline var useAngleLimitation: Boolean
     @JvmName("useAngleLimitationProperty")
@@ -282,9 +254,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The threshold to start damping for [primaryLimitAngle]. It provides non-linear (b-spline)
-   * interpolation, let it feel more resistance the more it rotate to the edge limit. This is useful
-   * for simulating the limits of human motion.
+   * The threshold to start damping for [primaryLimitAngle]. It provides non-linear (b-spline) interpolation, let it feel more resistance the more it rotate to the edge limit. This is useful for simulating the limits of human motion.
    *
    * If `1.0`, no damping is performed. If `0.0`, damping is always performed.
    */
@@ -363,8 +333,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of positive side of the secondary rotation when [symmetryLimitation] is
-   * `false`.
+   * The limit angle of positive side of the secondary rotation when [symmetryLimitation] is `false`.
    */
   public final inline var secondaryPositiveLimitAngle: Float
     @JvmName("secondaryPositiveLimitAngleProperty")
@@ -386,8 +355,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * The limit angle of negative side of the secondary rotation when [symmetryLimitation] is
-   * `false`.
+   * The limit angle of negative side of the secondary rotation when [symmetryLimitation] is `false`.
    */
   public final inline var secondaryNegativeLimitAngle: Float
     @JvmName("secondaryNegativeLimitAngleProperty")
@@ -408,7 +376,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
       setSecondaryNegativeDampThreshold(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(342, scriptIndex)
   }
 
@@ -423,8 +391,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
    * lookatmodifier3d.originOffset = myCoreType
    * ``````
    *
-   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where
-   * multiple bones must always face the same direction, such as the eyes.
+   * The offset of the bone pose origin. Matching the origins by offset is useful for cases where multiple bones must always face the same direction, such as the eyes.
    *
    * **Note:** This value indicates the local position of the object set in [originFrom].
    */
@@ -434,7 +401,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
      originOffset = this
   }
 
-  public final fun setTargetNode(targetNode: NodePath): Unit {
+  public final fun setTargetNode(targetNode: NodePath) {
     TransferContext.writeArguments(NODE_PATH to targetNode)
     TransferContext.callMethod(ptr, MethodBindings.setTargetNodePtr, NIL)
   }
@@ -445,7 +412,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setBoneName(boneName: String): Unit {
+  public final fun setBoneName(boneName: String) {
     TransferContext.writeArguments(STRING to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setBoneNamePtr, NIL)
   }
@@ -456,7 +423,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setBone(bone: Int): Unit {
+  public final fun setBone(bone: Int) {
     TransferContext.writeArguments(LONG to bone.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBonePtr, NIL)
   }
@@ -467,7 +434,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setForwardAxis(forwardAxis: SkeletonModifier3D.BoneAxis): Unit {
+  public final fun setForwardAxis(forwardAxis: SkeletonModifier3D.BoneAxis) {
     TransferContext.writeArguments(LONG to forwardAxis.id)
     TransferContext.callMethod(ptr, MethodBindings.setForwardAxisPtr, NIL)
   }
@@ -478,7 +445,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return SkeletonModifier3D.BoneAxis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPrimaryRotationAxis(axis: Vector3.Axis): Unit {
+  public final fun setPrimaryRotationAxis(axis: Vector3.Axis) {
     TransferContext.writeArguments(LONG to axis.id)
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryRotationAxisPtr, NIL)
   }
@@ -489,7 +456,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return Vector3.Axis.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseSecondaryRotation(enabled: Boolean): Unit {
+  public final fun setUseSecondaryRotation(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseSecondaryRotationPtr, NIL)
   }
@@ -500,7 +467,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOriginSafeMargin(margin: Float): Unit {
+  public final fun setOriginSafeMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOriginSafeMarginPtr, NIL)
   }
@@ -511,7 +478,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOriginFrom(originFrom: OriginFrom): Unit {
+  public final fun setOriginFrom(originFrom: OriginFrom) {
     TransferContext.writeArguments(LONG to originFrom.id)
     TransferContext.callMethod(ptr, MethodBindings.setOriginFromPtr, NIL)
   }
@@ -522,7 +489,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return OriginFrom.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setOriginBoneName(boneName: String): Unit {
+  public final fun setOriginBoneName(boneName: String) {
     TransferContext.writeArguments(STRING to boneName)
     TransferContext.callMethod(ptr, MethodBindings.setOriginBoneNamePtr, NIL)
   }
@@ -533,7 +500,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setOriginBone(bone: Int): Unit {
+  public final fun setOriginBone(bone: Int) {
     TransferContext.writeArguments(LONG to bone.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setOriginBonePtr, NIL)
   }
@@ -544,7 +511,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setOriginExternalNode(externalNode: NodePath): Unit {
+  public final fun setOriginExternalNode(externalNode: NodePath) {
     TransferContext.writeArguments(NODE_PATH to externalNode)
     TransferContext.callMethod(ptr, MethodBindings.setOriginExternalNodePtr, NIL)
   }
@@ -555,7 +522,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  public final fun setOriginOffset(offset: Vector3): Unit {
+  public final fun setOriginOffset(offset: Vector3) {
     TransferContext.writeArguments(VECTOR3 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOriginOffsetPtr, NIL)
   }
@@ -566,7 +533,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setDuration(duration: Float): Unit {
+  public final fun setDuration(duration: Float) {
     TransferContext.writeArguments(DOUBLE to duration.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDurationPtr, NIL)
   }
@@ -577,7 +544,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTransitionType(transitionType: Tween.TransitionType): Unit {
+  public final fun setTransitionType(transitionType: Tween.TransitionType) {
     TransferContext.writeArguments(LONG to transitionType.id)
     TransferContext.callMethod(ptr, MethodBindings.setTransitionTypePtr, NIL)
   }
@@ -588,7 +555,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return Tween.TransitionType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEaseType(easeType: Tween.EaseType): Unit {
+  public final fun setEaseType(easeType: Tween.EaseType) {
     TransferContext.writeArguments(LONG to easeType.id)
     TransferContext.callMethod(ptr, MethodBindings.setEaseTypePtr, NIL)
   }
@@ -599,7 +566,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return Tween.EaseType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUseAngleLimitation(enabled: Boolean): Unit {
+  public final fun setUseAngleLimitation(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseAngleLimitationPtr, NIL)
   }
@@ -610,7 +577,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSymmetryLimitation(enabled: Boolean): Unit {
+  public final fun setSymmetryLimitation(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSymmetryLimitationPtr, NIL)
   }
@@ -621,7 +588,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPrimaryLimitAngle(angle: Float): Unit {
+  public final fun setPrimaryLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryLimitAnglePtr, NIL)
   }
@@ -632,7 +599,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPrimaryDampThreshold(power: Float): Unit {
+  public final fun setPrimaryDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryDampThresholdPtr, NIL)
   }
@@ -643,7 +610,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPrimaryPositiveLimitAngle(angle: Float): Unit {
+  public final fun setPrimaryPositiveLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryPositiveLimitAnglePtr, NIL)
   }
@@ -654,7 +621,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPrimaryPositiveDampThreshold(power: Float): Unit {
+  public final fun setPrimaryPositiveDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryPositiveDampThresholdPtr, NIL)
   }
@@ -665,7 +632,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPrimaryNegativeLimitAngle(angle: Float): Unit {
+  public final fun setPrimaryNegativeLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryNegativeLimitAnglePtr, NIL)
   }
@@ -676,7 +643,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPrimaryNegativeDampThreshold(power: Float): Unit {
+  public final fun setPrimaryNegativeDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryNegativeDampThresholdPtr, NIL)
   }
@@ -687,7 +654,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryLimitAngle(angle: Float): Unit {
+  public final fun setSecondaryLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryLimitAnglePtr, NIL)
   }
@@ -698,7 +665,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryDampThreshold(power: Float): Unit {
+  public final fun setSecondaryDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryDampThresholdPtr, NIL)
   }
@@ -709,7 +676,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryPositiveLimitAngle(angle: Float): Unit {
+  public final fun setSecondaryPositiveLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryPositiveLimitAnglePtr, NIL)
   }
@@ -720,7 +687,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryPositiveDampThreshold(power: Float): Unit {
+  public final fun setSecondaryPositiveDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryPositiveDampThresholdPtr, NIL)
   }
@@ -731,7 +698,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryNegativeLimitAngle(angle: Float): Unit {
+  public final fun setSecondaryNegativeLimitAngle(angle: Float) {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryNegativeLimitAnglePtr, NIL)
   }
@@ -742,7 +709,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSecondaryNegativeDampThreshold(power: Float): Unit {
+  public final fun setSecondaryNegativeDampThreshold(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSecondaryNegativeDampThresholdPtr, NIL)
   }
@@ -763,8 +730,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns whether the time-based interpolation is running or not. If `true`, it is equivalent to
-   * [getInterpolationRemaining] being `0`.
+   * Returns whether the time-based interpolation is running or not. If `true`, it is equivalent to [getInterpolationRemaining] being `0`.
    *
    * This is useful to determine whether a [LookAtModifier3D] can be removed safely.
    */
@@ -775,11 +741,9 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns whether the target is within the angle limitations. It is useful for unsetting the
-   * [targetNode] when the target is outside of the angle limitations.
+   * Returns whether the target is within the angle limitations. It is useful for unsetting the [targetNode] when the target is outside of the angle limitations.
    *
-   * **Note:** The value is updated after [SkeletonModifier3D.ProcessModification]. To retrieve this
-   * value correctly, we recommend using the signal [signal SkeletonModifier3D.modification_processed].
+   * **Note:** The value is updated after [SkeletonModifier3D.ProcessModification]. To retrieve this value correctly, we recommend using the signal [signal SkeletonModifier3D.modification_processed].
    */
   public final fun isTargetWithinLimitation(): Boolean {
     TransferContext.writeArguments()
@@ -787,10 +751,9 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetNode(targetNode: String) = setTargetNode(targetNode.asCachedNodePath())
+  public final fun setTargetNode(targetNode: String): Unit = setTargetNode(targetNode.asCachedNodePath())
 
-  public final fun setOriginExternalNode(externalNode: String) =
-      setOriginExternalNode(externalNode.asCachedNodePath())
+  public final fun setOriginExternalNode(externalNode: String): Unit = setOriginExternalNode(externalNode.asCachedNodePath())
 
   public enum class OriginFrom(
     id: Long,
@@ -802,18 +765,13 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     /**
      * The bone global pose position of the bone specified in [originBone] is used as origin.
      *
-     * **Note:** It is recommended that you select only the parent bone unless you are familiar with
-     * the bone processing process. The specified bone pose at the time the [LookAtModifier3D] is
-     * processed is used as a reference. In other words, if you specify a child bone and the
-     * [LookAtModifier3D] causes the child bone to move, the rendered result and direction will not
-     * match.
+     * **Note:** It is recommended that you select only the parent bone unless you are familiar with the bone processing process. The specified bone pose at the time the [LookAtModifier3D] is processed is used as a reference. In other words, if you specify a child bone and the [LookAtModifier3D] causes the child bone to move, the rendered result and direction will not match.
      */
     SPECIFIC_BONE(1),
     /**
      * The global position of the [Node3D] specified in [originExternalNode] is used as origin.
      *
-     * **Note:** Same as [ORIGIN_FROM_SPECIFIC_BONE], when specifying a [BoneAttachment3D] with a
-     * child bone assigned, the rendered result and direction will not match.
+     * **Note:** Same as [ORIGIN_FROM_SPECIFIC_BONE], when specifying a [BoneAttachment3D] with a child bone assigned, the rendered result and direction will not match.
      */
     EXTERNAL_NODE(2),
     ;
@@ -832,186 +790,186 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
 
   public object MethodBindings {
     internal val setTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_target_node", 1348162250)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_target_node", 1_348_162_250)
 
     internal val getTargetNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_target_node", 4075236667)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_target_node", 4_075_236_667)
 
     internal val setBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_bone_name", 83702148)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_bone_name", 83_702_148)
 
     internal val getBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_bone_name", 201670096)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_bone_name", 201_670_096)
 
     internal val setBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_bone", 1286410249)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_bone", 1_286_410_249)
 
     internal val getBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_bone", 3905245786)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_bone", 3_905_245_786)
 
     internal val setForwardAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_forward_axis", 3199955933)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_forward_axis", 3_199_955_933)
 
     internal val getForwardAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_forward_axis", 4076020284)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_forward_axis", 4_076_020_284)
 
     internal val setPrimaryRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_rotation_axis", 1144690656)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_rotation_axis", 1_144_690_656)
 
     internal val getPrimaryRotationAxisPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_rotation_axis", 3050976882)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_rotation_axis", 3_050_976_882)
 
     internal val setUseSecondaryRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_use_secondary_rotation", 2586408642)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_use_secondary_rotation", 2_586_408_642)
 
     internal val isUsingSecondaryRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_using_secondary_rotation", 36873697)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_using_secondary_rotation", 36_873_697)
 
     internal val setOriginSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_safe_margin", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_safe_margin", 373_806_689)
 
     internal val getOriginSafeMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_safe_margin", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_safe_margin", 1_740_695_150)
 
     internal val setOriginFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_from", 4254695669)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_from", 4_254_695_669)
 
     internal val getOriginFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_from", 4057166297)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_from", 4_057_166_297)
 
     internal val setOriginBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_bone_name", 83702148)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_bone_name", 83_702_148)
 
     internal val getOriginBoneNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_bone_name", 201670096)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_bone_name", 201_670_096)
 
     internal val setOriginBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_bone", 1286410249)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_bone", 1_286_410_249)
 
     internal val getOriginBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_bone", 3905245786)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_bone", 3_905_245_786)
 
     internal val setOriginExternalNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_external_node", 1348162250)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_external_node", 1_348_162_250)
 
     internal val getOriginExternalNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_external_node", 4075236667)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_external_node", 4_075_236_667)
 
     internal val setOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_offset", 3460891852)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_origin_offset", 3_460_891_852)
 
     internal val getOriginOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_offset", 3360562783)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_origin_offset", 3_360_562_783)
 
     internal val setDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_duration", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_duration", 373_806_689)
 
     internal val getDurationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_duration", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_duration", 1_740_695_150)
 
     internal val setTransitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_transition_type", 1058637742)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_transition_type", 1_058_637_742)
 
     internal val getTransitionTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_transition_type", 3842314528)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_transition_type", 3_842_314_528)
 
     internal val setEaseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_ease_type", 1208105857)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_ease_type", 1_208_105_857)
 
     internal val getEaseTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_ease_type", 631880200)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_ease_type", 631_880_200)
 
     internal val setUseAngleLimitationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_use_angle_limitation", 2586408642)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_use_angle_limitation", 2_586_408_642)
 
     internal val isUsingAngleLimitationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_using_angle_limitation", 36873697)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_using_angle_limitation", 36_873_697)
 
     internal val setSymmetryLimitationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_symmetry_limitation", 2586408642)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_symmetry_limitation", 2_586_408_642)
 
     internal val isLimitationSymmetryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_limitation_symmetry", 36873697)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_limitation_symmetry", 36_873_697)
 
     internal val setPrimaryLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_limit_angle", 373_806_689)
 
     internal val getPrimaryLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_limit_angle", 1_740_695_150)
 
     internal val setPrimaryDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_damp_threshold", 373_806_689)
 
     internal val getPrimaryDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_damp_threshold", 1_740_695_150)
 
     internal val setPrimaryPositiveLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_positive_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_positive_limit_angle", 373_806_689)
 
     internal val getPrimaryPositiveLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_positive_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_positive_limit_angle", 1_740_695_150)
 
     internal val setPrimaryPositiveDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_positive_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_positive_damp_threshold", 373_806_689)
 
     internal val getPrimaryPositiveDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_positive_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_positive_damp_threshold", 1_740_695_150)
 
     internal val setPrimaryNegativeLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_negative_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_negative_limit_angle", 373_806_689)
 
     internal val getPrimaryNegativeLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_negative_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_negative_limit_angle", 1_740_695_150)
 
     internal val setPrimaryNegativeDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_negative_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_primary_negative_damp_threshold", 373_806_689)
 
     internal val getPrimaryNegativeDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_negative_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_primary_negative_damp_threshold", 1_740_695_150)
 
     internal val setSecondaryLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_limit_angle", 373_806_689)
 
     internal val getSecondaryLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_limit_angle", 1_740_695_150)
 
     internal val setSecondaryDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_damp_threshold", 373_806_689)
 
     internal val getSecondaryDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_damp_threshold", 1_740_695_150)
 
     internal val setSecondaryPositiveLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_positive_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_positive_limit_angle", 373_806_689)
 
     internal val getSecondaryPositiveLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_positive_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_positive_limit_angle", 1_740_695_150)
 
     internal val setSecondaryPositiveDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_positive_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_positive_damp_threshold", 373_806_689)
 
     internal val getSecondaryPositiveDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_positive_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_positive_damp_threshold", 1_740_695_150)
 
     internal val setSecondaryNegativeLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_negative_limit_angle", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_negative_limit_angle", 373_806_689)
 
     internal val getSecondaryNegativeLimitAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_negative_limit_angle", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_negative_limit_angle", 1_740_695_150)
 
     internal val setSecondaryNegativeDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_negative_damp_threshold", 373806689)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "set_secondary_negative_damp_threshold", 373_806_689)
 
     internal val getSecondaryNegativeDampThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_negative_damp_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_secondary_negative_damp_threshold", 1_740_695_150)
 
     internal val getInterpolationRemainingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_interpolation_remaining", 1740695150)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "get_interpolation_remaining", 1_740_695_150)
 
     internal val isInterpolatingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_interpolating", 36873697)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_interpolating", 36_873_697)
 
     internal val isTargetWithinLimitationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_target_within_limitation", 36873697)
+        TypeManager.getMethodBindPtr("LookAtModifier3D", "is_target_within_limitation", 36_873_697)
   }
 }

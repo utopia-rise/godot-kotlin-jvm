@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,18 +16,14 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine].
- * Animations can be connected to the inputs and transition times can be specified.
+ * Simple state machine for cases which don't require a more advanced [AnimationNodeStateMachine]. Animations can be connected to the inputs and transition times can be specified.
  *
- * After setting the request and changing the animation playback, the transition node automatically
- * clears the request on the next process frame by setting its `transition_request` value to empty.
+ * After setting the request and changing the animation playback, the transition node automatically clears the request on the next process frame by setting its `transition_request` value to empty.
  *
- * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state
- * immediately after the cross-fade begins.
+ * **Note:** When using a cross-fade, `current_state` and `current_index` change to the next state immediately after the cross-fade begins.
  *
  * ```gdscript
  * //gdscript
@@ -67,10 +60,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * Cross-fading time (in seconds) between each animation connected to the inputs.
    *
-   * **Note:** [AnimationNodeTransition] transitions the current state immediately after the start
-   * of the fading. The precise remaining time can only be inferred from the main animation. When
-   * [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled
-   * depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
+   * **Note:** [AnimationNodeTransition] transitions the current state immediately after the start of the fading. The precise remaining time can only be inferred from the main animation. When [AnimationNodeOutput] is considered as the most upstream, so the [xfadeTime] is not scaled depending on the downstream delta. See also [AnimationNodeOneShot.fadeoutTime].
    */
   public final inline var xfadeTime: Double
     @JvmName("xfadeTimeProperty")
@@ -81,8 +71,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear. Should be a unit [Curve].
+   * Determines how cross-fading between animations is eased. If empty, the transition will be linear. Should be a unit [Curve].
    */
   public final inline var xfadeCurve: Curve?
     @JvmName("xfadeCurveProperty")
@@ -93,8 +82,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   /**
-   * If `true`, allows transition to the self state. When the reset option is enabled in input, the
-   * animation is restarted. If `false`, nothing happens on the transition to the self state.
+   * If `true`, allows transition to the self state. When the reset option is enabled in input, the animation is restarted. If `false`, nothing happens on the transition to the self state.
    */
   public final inline var allowTransitionToSelf: Boolean
     @JvmName("allowTransitionToSelfProperty")
@@ -115,21 +103,19 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
       setInputCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(34, scriptIndex)
   }
 
-  public final fun setInputCount(inputCount: Int): Unit {
+  public final fun setInputCount(inputCount: Int) {
     TransferContext.writeArguments(LONG to inputCount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setInputCountPtr, NIL)
   }
 
   /**
-   * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the
-   * next input after playing the animation once. If enabled for the last input state, it loops to the
-   * first.
+   * Enables or disables auto-advance for the given [input] index. If enabled, state changes to the next input after playing the animation once. If enabled for the last input state, it loops to the first.
    */
-  public final fun setInputAsAutoAdvance(input: Int, enable: Boolean): Unit {
+  public final fun setInputAsAutoAdvance(input: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setInputAsAutoAdvancePtr, NIL)
   }
@@ -144,10 +130,9 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   }
 
   /**
-   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
-   * is looping.
+   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation is looping.
    */
-  public final fun setInputBreakLoopAtEnd(input: Int, enable: Boolean): Unit {
+  public final fun setInputBreakLoopAtEnd(input: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setInputBreakLoopAtEndPtr, NIL)
   }
@@ -164,7 +149,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
   /**
    * If `true`, the destination animation is restarted when the animation transitions.
    */
-  public final fun setInputReset(input: Int, enable: Boolean): Unit {
+  public final fun setInputReset(input: Int, enable: Boolean) {
     TransferContext.writeArguments(LONG to input.toLong(), BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setInputResetPtr, NIL)
   }
@@ -178,7 +163,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setXfadeTime(time: Double): Unit {
+  public final fun setXfadeTime(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setXfadeTimePtr, NIL)
   }
@@ -189,7 +174,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setXfadeCurve(curve: Curve?): Unit {
+  public final fun setXfadeCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setXfadeCurvePtr, NIL)
   }
@@ -200,7 +185,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setAllowTransitionToSelf(enable: Boolean): Unit {
+  public final fun setAllowTransitionToSelf(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setAllowTransitionToSelfPtr, NIL)
   }
@@ -215,42 +200,42 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
 
   public object MethodBindings {
     internal val setInputCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_count", 1286410249)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_count", 1_286_410_249)
 
     internal val setInputAsAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance", 300928843)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_as_auto_advance", 300_928_843)
 
     internal val isInputSetAsAutoAdvancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance", 1116898809)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_set_as_auto_advance", 1_116_898_809)
 
     internal val setInputBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end", 300928843)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_break_loop_at_end", 300_928_843)
 
     internal val isInputLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end", 1116898809)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_loop_broken_at_end", 1_116_898_809)
 
     internal val setInputResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_reset", 300928843)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_input_reset", 300_928_843)
 
     internal val isInputResetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_reset", 1116898809)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_input_reset", 1_116_898_809)
 
     internal val setXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_time", 373_806_689)
 
     internal val getXfadeTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_time", 1_740_695_150)
 
     internal val setXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve", 270443179)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_xfade_curve", 270_443_179)
 
     internal val getXfadeCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve", 2460114913)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "get_xfade_curve", 2_460_114_913)
 
     internal val setAllowTransitionToSelfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "set_allow_transition_to_self", 2_586_408_642)
 
     internal val isAllowTransitionToSelfPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeTransition", "is_allow_transition_to_self", 36_873_697)
   }
 }

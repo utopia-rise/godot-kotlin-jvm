@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,22 +13,17 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches
- * the touch screen and used for zooming in/out.
+ * Stores the factor of a magnifying touch gesture. This is usually performed when the user pinches the touch screen and used for zooming in/out.
  *
- * **Note:** On Android, this requires the
- * [ProjectSettings.inputDevices/pointing/android/enablePanAndScaleGestures] project setting to be
- * enabled.
+ * **Note:** On Android, this requires the [ProjectSettings.inputDevices/pointing/android/enablePanAndScaleGestures] project setting to be enabled.
  */
 @GodotBaseType
 public open class InputEventMagnifyGesture : InputEventGesture() {
   /**
-   * The amount (or delta) of the event. This value is closer to `1.0` the slower the gesture is
-   * performed.
+   * The amount (or delta) of the event. This value is closer to `1.0` the slower the gesture is performed.
    */
   public final inline var factor: Float
     @JvmName("factorProperty")
@@ -41,11 +33,11 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
       setFactor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(300, scriptIndex)
   }
 
-  public final fun setFactor(factor: Float): Unit {
+  public final fun setFactor(factor: Float) {
     TransferContext.writeArguments(DOUBLE to factor.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFactorPtr, NIL)
   }
@@ -60,9 +52,9 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
 
   public object MethodBindings {
     internal val setFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "set_factor", 373806689)
+        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "set_factor", 373_806_689)
 
     internal val getFactorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "get_factor", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventMagnifyGesture", "get_factor", 1_740_695_150)
   }
 }

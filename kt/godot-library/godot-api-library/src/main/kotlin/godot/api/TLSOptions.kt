@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,16 +14,13 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS]
- * classes.
+ * TLSOptions abstracts the configuration options for the [StreamPeerTLS] and [PacketPeerDTLS] classes.
  *
- * Objects of this class cannot be instantiated directly, and one of the static methods [client],
- * [clientUnsafe], or [server] should be used instead.
+ * Objects of this class cannot be instantiated directly, and one of the static methods [client], [clientUnsafe], or [server] should be used instead.
  *
  * ```gdscript
  * //gdscript
@@ -42,7 +36,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(652, scriptIndex)
   }
 
@@ -65,8 +59,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the common name (domain name) override specified when creating with
-   * [TLSOptions.client].
+   * Returns the common name (domain name) override specified when creating with [TLSOptions.client].
    */
   public final fun getCommonNameOverride(): String {
     TransferContext.writeArguments()
@@ -75,8 +68,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the CA [X509Certificate] chain specified when creating with [TLSOptions.client] or
-   * [TLSOptions.clientUnsafe].
+   * Returns the CA [X509Certificate] chain specified when creating with [TLSOptions.client] or [TLSOptions.clientUnsafe].
    */
   public final fun getTrustedCaChain(): X509Certificate? {
     TransferContext.writeArguments()
@@ -104,33 +96,24 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
   public companion object {
     /**
-     * Creates a TLS client configuration which validates certificates and their common names (fully
-     * qualified domain names).
+     * Creates a TLS client configuration which validates certificates and their common names (fully qualified domain names).
      *
-     * You can specify a custom [trustedChain] of certification authorities (the default CA list
-     * will be used if `null`), and optionally provide a [commonNameOverride] if you expect the
-     * certificate to have a common name other than the server FQDN.
+     * You can specify a custom [trustedChain] of certification authorities (the default CA list will be used if `null`), and optionally provide a [commonNameOverride] if you expect the certificate to have a common name other than the server FQDN.
      *
-     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
-     * web browser. This is considered a security feature.
+     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
      */
     @JvmOverloads
     @JvmStatic
-    public final fun client(trustedChain: X509Certificate? = null, commonNameOverride: String = ""):
-        TLSOptions? {
+    public final fun client(trustedChain: X509Certificate? = null, commonNameOverride: String = ""): TLSOptions? {
       TransferContext.writeArguments(OBJECT to trustedChain, STRING to commonNameOverride)
       TransferContext.callMethod(0, MethodBindings.clientPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as TLSOptions?)
     }
 
     /**
-     * Creates an **unsafe** TLS client configuration where certificate validation is optional. You
-     * can optionally provide a valid [trustedChain], but the common name of the certificates will
-     * never be checked. Using this configuration for purposes other than testing **is not
-     * recommended**.
+     * Creates an **unsafe** TLS client configuration where certificate validation is optional. You can optionally provide a valid [trustedChain], but the common name of the certificates will never be checked. Using this configuration for purposes other than testing **is not recommended**.
      *
-     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the
-     * web browser. This is considered a security feature.
+     * **Note:** On the Web platform, TLS verification is always enforced against the CA list of the web browser. This is considered a security feature.
      */
     @JvmOverloads
     @JvmStatic
@@ -143,8 +126,7 @@ public open class TLSOptions internal constructor() : RefCounted() {
     /**
      * Creates a TLS server configuration using the provided [key] and [certificate].
      *
-     * **Note:** The [certificate] should include the full certificate chain up to the signing CA
-     * (certificates file can be concatenated using a general purpose text editor).
+     * **Note:** The [certificate] should include the full certificate chain up to the signing CA (certificates file can be concatenated using a general purpose text editor).
      */
     @JvmStatic
     public final fun server(key: CryptoKey?, certificate: X509Certificate?): TLSOptions? {
@@ -156,29 +138,30 @@ public open class TLSOptions internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val clientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "client", 3565000357)
+        TypeManager.getMethodBindPtr("TLSOptions", "client", 3_565_000_357)
 
     internal val clientUnsafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe", 2090251749)
+        TypeManager.getMethodBindPtr("TLSOptions", "client_unsafe", 2_090_251_749)
 
-    internal val serverPtr: VoidPtr = TypeManager.getMethodBindPtr("TLSOptions", "server", 36969539)
+    internal val serverPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TLSOptions", "server", 36_969_539)
 
     internal val isServerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "is_server", 36873697)
+        TypeManager.getMethodBindPtr("TLSOptions", "is_server", 36_873_697)
 
     internal val isUnsafeClientPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "is_unsafe_client", 36873697)
+        TypeManager.getMethodBindPtr("TLSOptions", "is_unsafe_client", 36_873_697)
 
     internal val getCommonNameOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_common_name_override", 201670096)
+        TypeManager.getMethodBindPtr("TLSOptions", "get_common_name_override", 201_670_096)
 
     internal val getTrustedCaChainPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain", 1120709175)
+        TypeManager.getMethodBindPtr("TLSOptions", "get_trusted_ca_chain", 1_120_709_175)
 
     internal val getPrivateKeyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_private_key", 2119971811)
+        TypeManager.getMethodBindPtr("TLSOptions", "get_private_key", 2_119_971_811)
 
     internal val getOwnCertificatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate", 1120709175)
+        TypeManager.getMethodBindPtr("TLSOptions", "get_own_certificate", 1_120_709_175)
   }
 }

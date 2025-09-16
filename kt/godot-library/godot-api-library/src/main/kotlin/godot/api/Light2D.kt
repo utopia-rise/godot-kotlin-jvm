@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,8 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see
- * constants), and various other parameters (range and shadows-related).
+ * Casts light in a 2D environment. A light is defined as a color, an energy value, a mode (see constants), and various other parameters (range and shadows-related).
  */
 @GodotBaseType
 public open class Light2D internal constructor() : Node2D() {
@@ -59,11 +55,8 @@ public open class Light2D internal constructor() : Node2D() {
    * The Light2D's [Color].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -141,11 +134,9 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the
-   * Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
+   * The layer mask. Only objects with a matching [CanvasItem.lightMask] will be affected by the Light2D. See also [shadowItemCullMask], which affects which objects can cast shadows.
    *
-   * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D
-   * node regardless of the 2D node's [CanvasItem.lightMask].
+   * **Note:** [rangeItemCullMask] is ignored by [DirectionalLight2D], which will always light a 2D node regardless of the 2D node's [CanvasItem.lightMask].
    */
   public final inline var rangeItemCullMask: Int
     @JvmName("rangeItemCullMaskProperty")
@@ -170,11 +161,8 @@ public open class Light2D internal constructor() : Node2D() {
    * [Color] of shadows cast by the Light2D.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var shadowColor: Color
@@ -197,9 +185,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of
-   * visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if
-   * [shadowFilter] is [SHADOW_FILTER_PCF5] or [SHADOW_FILTER_PCF13].
+   * Smoothing value for shadows. Higher values will result in softer shadows, at the cost of visible streaks that can appear in shadow rendering. [shadowFilterSmooth] only has an effect if [shadowFilter] is [SHADOW_FILTER_PCF5] or [SHADOW_FILTER_PCF13].
    */
   public final inline var shadowFilterSmooth: Float
     @JvmName("shadowFilterSmoothProperty")
@@ -210,9 +196,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching
-   * [CanvasItem.lightMask] will cast shadows. See also [rangeItemCullMask], which affects which
-   * objects can *receive* the light.
+   * The shadow mask. Used with [LightOccluder2D] to cast shadows. Only occluders with a matching [CanvasItem.lightMask] will cast shadows. See also [rangeItemCullMask], which affects which objects can *receive* the light.
    */
   public final inline var shadowItemCullMask: Int
     @JvmName("shadowItemCullMaskProperty")
@@ -222,7 +206,7 @@ public open class Light2D internal constructor() : Node2D() {
       setItemShadowCullMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(331, scriptIndex)
   }
 
@@ -264,7 +248,7 @@ public open class Light2D internal constructor() : Node2D() {
      shadowColor = this
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -275,7 +259,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEditorOnly(editorOnly: Boolean): Unit {
+  public final fun setEditorOnly(editorOnly: Boolean) {
     TransferContext.writeArguments(BOOL to editorOnly)
     TransferContext.callMethod(ptr, MethodBindings.setEditorOnlyPtr, NIL)
   }
@@ -286,7 +270,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -297,7 +281,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setEnergy(energy: Float): Unit {
+  public final fun setEnergy(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnergyPtr, NIL)
   }
@@ -308,7 +292,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setZRangeMin(z: Int): Unit {
+  public final fun setZRangeMin(z: Int) {
     TransferContext.writeArguments(LONG to z.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setZRangeMinPtr, NIL)
   }
@@ -319,7 +303,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setZRangeMax(z: Int): Unit {
+  public final fun setZRangeMax(z: Int) {
     TransferContext.writeArguments(LONG to z.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setZRangeMaxPtr, NIL)
   }
@@ -330,7 +314,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLayerRangeMin(layer: Int): Unit {
+  public final fun setLayerRangeMin(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLayerRangeMinPtr, NIL)
   }
@@ -341,7 +325,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLayerRangeMax(layer: Int): Unit {
+  public final fun setLayerRangeMax(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLayerRangeMaxPtr, NIL)
   }
@@ -352,7 +336,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setItemCullMask(itemCullMask: Int): Unit {
+  public final fun setItemCullMask(itemCullMask: Int) {
     TransferContext.writeArguments(LONG to itemCullMask.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemCullMaskPtr, NIL)
   }
@@ -363,7 +347,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setItemShadowCullMask(itemShadowCullMask: Int): Unit {
+  public final fun setItemShadowCullMask(itemShadowCullMask: Int) {
     TransferContext.writeArguments(LONG to itemShadowCullMask.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemShadowCullMaskPtr, NIL)
   }
@@ -374,7 +358,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setShadowEnabled(enabled: Boolean): Unit {
+  public final fun setShadowEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShadowEnabledPtr, NIL)
   }
@@ -385,7 +369,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShadowSmooth(smooth: Float): Unit {
+  public final fun setShadowSmooth(smooth: Float) {
     TransferContext.writeArguments(DOUBLE to smooth.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setShadowSmoothPtr, NIL)
   }
@@ -396,7 +380,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setShadowFilter(filter: ShadowFilter): Unit {
+  public final fun setShadowFilter(filter: ShadowFilter) {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(ptr, MethodBindings.setShadowFilterPtr, NIL)
   }
@@ -407,7 +391,7 @@ public open class Light2D internal constructor() : Node2D() {
     return ShadowFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setShadowColor(shadowColor: Color): Unit {
+  public final fun setShadowColor(shadowColor: Color) {
     TransferContext.writeArguments(COLOR to shadowColor)
     TransferContext.callMethod(ptr, MethodBindings.setShadowColorPtr, NIL)
   }
@@ -418,7 +402,7 @@ public open class Light2D internal constructor() : Node2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setBlendMode(mode: BlendMode): Unit {
+  public final fun setBlendMode(mode: BlendMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
@@ -430,17 +414,15 @@ public open class Light2D internal constructor() : Node2D() {
   }
 
   /**
-   * Sets the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and
-   * [DirectionalLight2D.height].
+   * Sets the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and [DirectionalLight2D.height].
    */
-  public final fun setHeight(height: Float): Unit {
+  public final fun setHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
   }
 
   /**
-   * Returns the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and
-   * [DirectionalLight2D.height].
+   * Returns the light's height, which is used in 2D normal mapping. See [PointLight2D.height] and [DirectionalLight2D.height].
    */
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
@@ -452,18 +434,15 @@ public open class Light2D internal constructor() : Node2D() {
     id: Long,
   ) {
     /**
-     * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to
-     * render. See [shadowFilter].
+     * No filter applies to the shadow map. This provides hard shadow edges and is the fastest to render. See [shadowFilter].
      */
     NONE(0),
     /**
-     * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to
-     * hard shadow rendering. See [shadowFilter].
+     * Percentage closer filtering (5 samples) applies to the shadow map. This is slower compared to hard shadow rendering. See [shadowFilter].
      */
     PCF5(1),
     /**
-     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest
-     * shadow filtering mode, and should be used sparingly. See [shadowFilter].
+     * Percentage closer filtering (13 samples) applies to the shadow map. This is the slowest shadow filtering mode, and should be used sparingly. See [shadowFilter].
      */
     PCF13(2),
     ;
@@ -482,18 +461,15 @@ public open class Light2D internal constructor() : Node2D() {
     id: Long,
   ) {
     /**
-     * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This
-     * is the common behavior of a light.
+     * Adds the value of pixels corresponding to the Light2D to the values of pixels under it. This is the common behavior of a light.
      */
     ADD(0),
     /**
-     * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it,
-     * resulting in inversed light effect.
+     * Subtracts the value of pixels corresponding to the Light2D to the values of pixels under it, resulting in inversed light effect.
      */
     SUB(1),
     /**
-     * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by
-     * linear interpolation.
+     * Mix the value of pixels corresponding to the Light2D to the values of pixels under it by linear interpolation.
      */
     MIX(2),
     ;
@@ -512,99 +488,99 @@ public open class Light2D internal constructor() : Node2D() {
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Light2D", "set_enabled", 2_586_408_642)
 
     internal val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Light2D", "is_enabled", 36_873_697)
 
     internal val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_editor_only", 2586408642)
+        TypeManager.getMethodBindPtr("Light2D", "set_editor_only", 2_586_408_642)
 
     internal val isEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_editor_only", 36873697)
+        TypeManager.getMethodBindPtr("Light2D", "is_editor_only", 36_873_697)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("Light2D", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("Light2D", "get_color", 3_444_240_500)
 
     internal val setEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_energy", 373806689)
+        TypeManager.getMethodBindPtr("Light2D", "set_energy", 373_806_689)
 
     internal val getEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_energy", 1740695150)
+        TypeManager.getMethodBindPtr("Light2D", "get_energy", 1_740_695_150)
 
     internal val setZRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_z_range_min", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_z_range_min", 1_286_410_249)
 
     internal val getZRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_z_range_min", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_z_range_min", 3_905_245_786)
 
     internal val setZRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_z_range_max", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_z_range_max", 1_286_410_249)
 
     internal val getZRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_z_range_max", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_z_range_max", 3_905_245_786)
 
     internal val setLayerRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_min", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_min", 1_286_410_249)
 
     internal val getLayerRangeMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_min", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_min", 3_905_245_786)
 
     internal val setLayerRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_max", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_layer_range_max", 1_286_410_249)
 
     internal val getLayerRangeMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_max", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_layer_range_max", 3_905_245_786)
 
     internal val setItemCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_item_cull_mask", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_item_cull_mask", 1_286_410_249)
 
     internal val getItemCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_item_cull_mask", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_item_cull_mask", 3_905_245_786)
 
     internal val setItemShadowCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask", 1286410249)
+        TypeManager.getMethodBindPtr("Light2D", "set_item_shadow_cull_mask", 1_286_410_249)
 
     internal val getItemShadowCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask", 3905245786)
+        TypeManager.getMethodBindPtr("Light2D", "get_item_shadow_cull_mask", 3_905_245_786)
 
     internal val setShadowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_enabled", 2_586_408_642)
 
     internal val isShadowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "is_shadow_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Light2D", "is_shadow_enabled", 36_873_697)
 
     internal val setShadowSmoothPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_smooth", 373806689)
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_smooth", 373_806_689)
 
     internal val getShadowSmoothPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_smooth", 1740695150)
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_smooth", 1_740_695_150)
 
     internal val setShadowFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_filter", 3209356555)
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_filter", 3_209_356_555)
 
     internal val getShadowFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_filter", 1973619177)
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_filter", 1_973_619_177)
 
     internal val setShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_shadow_color", 2920490490)
+        TypeManager.getMethodBindPtr("Light2D", "set_shadow_color", 2_920_490_490)
 
     internal val getShadowColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_shadow_color", 3444240500)
+        TypeManager.getMethodBindPtr("Light2D", "get_shadow_color", 3_444_240_500)
 
     internal val setBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_blend_mode", 2916638796)
+        TypeManager.getMethodBindPtr("Light2D", "set_blend_mode", 2_916_638_796)
 
     internal val getBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_blend_mode", 936255250)
+        TypeManager.getMethodBindPtr("Light2D", "get_blend_mode", 936_255_250)
 
     internal val setHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "set_height", 373806689)
+        TypeManager.getMethodBindPtr("Light2D", "set_height", 373_806_689)
 
     internal val getHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light2D", "get_height", 1740695150)
+        TypeManager.getMethodBindPtr("Light2D", "get_height", 1_740_695_150)
   }
 }

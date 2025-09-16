@@ -55,8 +55,8 @@ class WarningRule() : GodotApiRule<FileTask>() {
 }
 
 class StaticRule : GodotApiRule<FileTask>() {
-    override fun apply(fileTask: FileTask, context: GenerationContext) = configure(fileTask.builder) {
-        for (classTask in fileTask.classes) {
+    override fun apply(task: FileTask, context: GenerationContext) = configure(task.builder) {
+        for (classTask in task.classes) {
             for (method in classTask.enrichedStaticMethods) {
                 method.builder.addAnnotation(JvmStatic::class)
             }
@@ -114,7 +114,7 @@ class DocumentationRule : GodotApiRule<ApiTask>() {
     private val codeBlockRegex = Regex("""```[\s\S]*?```""")
     private val doubleSkipRegex = Regex("(?<!\n)\n(?!\n)")
 
-    override fun apply(fileTask: ApiTask, context: GenerationContext) {
+    override fun apply(task: ApiTask, context: GenerationContext) {
         val enumValues = context
             .globalEnumList
             .flatMap { it.values }

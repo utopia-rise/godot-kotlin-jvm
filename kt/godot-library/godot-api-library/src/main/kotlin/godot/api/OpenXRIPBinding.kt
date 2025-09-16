@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,11 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This binding resource binds an [OpenXRAction] to an input or output. As most controllers have
- * left hand and right versions that are handled by the same interaction profile we can specify
- * multiple bindings. For instance an action "Fire" could be bound to both
- * "/user/hand/left/input/trigger" and "/user/hand/right/input/trigger". This would require two binding
- * entries.
+ * This binding resource binds an [OpenXRAction] to an input or output. As most controllers have left hand and right versions that are handled by the same interaction profile we can specify multiple bindings. For instance an action "Fire" could be bound to both "/user/hand/left/input/trigger" and "/user/hand/right/input/trigger". This would require two binding entries.
  */
 @GodotBaseType
 public open class OpenXRIPBinding : Resource() {
@@ -53,8 +46,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Binding path that defines the input or output bound to [action].
    *
-   * **Note:** Binding paths are suggestions, an XR runtime may choose to bind the action to a
-   * different input or output emulating this input or output.
+   * **Note:** Binding paths are suggestions, an XR runtime may choose to bind the action to a different input or output emulating this input or output.
    */
   public final inline var bindingPath: String
     @JvmName("bindingPathProperty")
@@ -79,11 +71,8 @@ public open class OpenXRIPBinding : Resource() {
    * Paths that define the inputs or outputs bound on the device.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var paths: PackedStringArray
@@ -94,7 +83,7 @@ public open class OpenXRIPBinding : Resource() {
       setPaths(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(426, scriptIndex)
   }
 
@@ -112,22 +101,19 @@ public open class OpenXRIPBinding : Resource() {
    * Paths that define the inputs or outputs bound on the device.
    */
   @CoreTypeHelper
-  public final fun pathsMutate(block: PackedStringArray.() -> Unit): PackedStringArray =
-      paths.apply {
+  public final fun pathsMutate(block: PackedStringArray.() -> Unit): PackedStringArray = paths.apply {
      block(this)
      paths = this
   }
 
   /**
    * This is a helper function for [paths] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * Paths that define the inputs or outputs bound on the device.
    */
   @CoreTypeHelper
-  public final fun pathsMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray
-      = paths.apply {
+  public final fun pathsMutateEach(block: (index: Int, `value`: String) -> Unit): PackedStringArray = paths.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -135,7 +121,7 @@ public open class OpenXRIPBinding : Resource() {
      paths = this
   }
 
-  public final fun setAction(action: OpenXRAction?): Unit {
+  public final fun setAction(action: OpenXRAction?) {
     TransferContext.writeArguments(OBJECT to action)
     TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
   }
@@ -146,7 +132,7 @@ public open class OpenXRIPBinding : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRAction?)
   }
 
-  public final fun setBindingPath(bindingPath: String): Unit {
+  public final fun setBindingPath(bindingPath: String) {
     TransferContext.writeArguments(STRING to bindingPath)
     TransferContext.callMethod(ptr, MethodBindings.setBindingPathPtr, NIL)
   }
@@ -175,7 +161,7 @@ public open class OpenXRIPBinding : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRActionBindingModifier?)
   }
 
-  public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>): Unit {
+  public final fun setBindingModifiers(bindingModifiers: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to bindingModifiers)
     TransferContext.callMethod(ptr, MethodBindings.setBindingModifiersPtr, NIL)
   }
@@ -186,7 +172,7 @@ public open class OpenXRIPBinding : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Any?>)
   }
 
-  public final fun setPaths(paths: PackedStringArray): Unit {
+  public final fun setPaths(paths: PackedStringArray) {
     TransferContext.writeArguments(PACKED_STRING_ARRAY to paths)
     TransferContext.callMethod(ptr, MethodBindings.setPathsPtr, NIL)
   }
@@ -218,7 +204,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Add an input/output path to this binding.
    */
-  public final fun addPath(path: String): Unit {
+  public final fun addPath(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.addPathPtr, NIL)
   }
@@ -226,7 +212,7 @@ public open class OpenXRIPBinding : Resource() {
   /**
    * Removes this input/output path from this binding.
    */
-  public final fun removePath(path: String): Unit {
+  public final fun removePath(path: String) {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.removePathPtr, NIL)
   }
@@ -235,45 +221,45 @@ public open class OpenXRIPBinding : Resource() {
 
   public object MethodBindings {
     internal val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_action", 349361333)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_action", 349_361_333)
 
     internal val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_action", 4072409085)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_action", 4_072_409_085)
 
     internal val setBindingPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_binding_path", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_binding_path", 83_702_148)
 
     internal val getBindingPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_path", 201670096)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_path", 201_670_096)
 
     internal val getBindingModifierCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifier_count", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifier_count", 3_905_245_786)
 
     internal val getBindingModifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifier", 3538296211)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifier", 3_538_296_211)
 
     internal val setBindingModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_binding_modifiers", 381264803)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_binding_modifiers", 381_264_803)
 
     internal val getBindingModifiersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifiers", 3995934104)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_binding_modifiers", 3_995_934_104)
 
     internal val setPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_paths", 4015028928)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "set_paths", 4_015_028_928)
 
     internal val getPathsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_paths", 1139954409)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_paths", 1_139_954_409)
 
     internal val getPathCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_path_count", 3905245786)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "get_path_count", 3_905_245_786)
 
     internal val hasPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "has_path", 3927539163)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "has_path", 3_927_539_163)
 
     internal val addPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "add_path", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "add_path", 83_702_148)
 
     internal val removePathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRIPBinding", "remove_path", 83702148)
+        TypeManager.getMethodBindPtr("OpenXRIPBinding", "remove_path", 83_702_148)
   }
 }

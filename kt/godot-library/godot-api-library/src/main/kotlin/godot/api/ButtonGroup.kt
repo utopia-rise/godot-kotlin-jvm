@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,13 +16,10 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio
- * buttons: No more than one button can be pressed at a time. Some types of buttons (such as
- * [CheckBox]) may have a special appearance in this state.
+ * A group of [BaseButton]-derived buttons. The buttons in a [ButtonGroup] are treated like radio buttons: No more than one button can be pressed at a time. Some types of buttons (such as [CheckBox]) may have a special appearance in this state.
  *
  * Every member of a [ButtonGroup] should have [BaseButton.toggleMode] set to `true`.
  */
@@ -47,7 +41,7 @@ public open class ButtonGroup : Resource() {
       setAllowUnpress(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(114, scriptIndex)
   }
 
@@ -61,8 +55,7 @@ public open class ButtonGroup : Resource() {
   }
 
   /**
-   * Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see
-   * [BaseButton.buttonGroup]).
+   * Returns an [Array] of [Button]s who have this as their [ButtonGroup] (see [BaseButton.buttonGroup]).
    */
   public final fun getButtons(): VariantArray<BaseButton> {
     TransferContext.writeArguments()
@@ -70,7 +63,7 @@ public open class ButtonGroup : Resource() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<BaseButton>)
   }
 
-  public final fun setAllowUnpress(enabled: Boolean): Unit {
+  public final fun setAllowUnpress(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAllowUnpressPtr, NIL)
   }
@@ -85,15 +78,15 @@ public open class ButtonGroup : Resource() {
 
   public object MethodBindings {
     internal val getPressedButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "get_pressed_button", 3886434893)
+        TypeManager.getMethodBindPtr("ButtonGroup", "get_pressed_button", 3_886_434_893)
 
     internal val getButtonsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "get_buttons", 2915620761)
+        TypeManager.getMethodBindPtr("ButtonGroup", "get_buttons", 2_915_620_761)
 
     internal val setAllowUnpressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "set_allow_unpress", 2586408642)
+        TypeManager.getMethodBindPtr("ButtonGroup", "set_allow_unpress", 2_586_408_642)
 
     internal val isAllowUnpressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ButtonGroup", "is_allow_unpress", 2240911060)
+        TypeManager.getMethodBindPtr("ButtonGroup", "is_allow_unpress", 2_240_911_060)
   }
 }

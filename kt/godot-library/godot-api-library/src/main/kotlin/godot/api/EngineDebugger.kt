@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,12 +30,11 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * [EngineDebugger] handles the communication between the editor and the running game. It is active
- * in the running game. Messages can be sent/received through it. It also manages the profilers.
+ * [EngineDebugger] handles the communication between the editor and the running game. It is active in the running game. Messages can be sent/received through it. It also manages the profilers.
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(5)
   }
 
@@ -56,7 +52,7 @@ public object EngineDebugger : Object() {
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
   @JvmStatic
-  public final fun registerProfiler(name: StringName, profiler: EngineProfiler?): Unit {
+  public final fun registerProfiler(name: StringName, profiler: EngineProfiler?) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to profiler)
     TransferContext.callMethod(ptr, MethodBindings.registerProfilerPtr, NIL)
   }
@@ -65,7 +61,7 @@ public object EngineDebugger : Object() {
    * Unregisters a profiler with given [name].
    */
   @JvmStatic
-  public final fun unregisterProfiler(name: StringName): Unit {
+  public final fun unregisterProfiler(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.unregisterProfilerPtr, NIL)
   }
@@ -94,14 +90,13 @@ public object EngineDebugger : Object() {
    * Calls the `add` callable of the profiler with given [name] and [data].
    */
   @JvmStatic
-  public final fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>): Unit {
+  public final fun profilerAddFrameData(name: StringName, `data`: VariantArray<Any?>) {
     TransferContext.writeArguments(STRING_NAME to name, ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.profilerAddFrameDataPtr, NIL)
   }
 
   /**
-   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables
-   * the same profiler depending on [enable] argument.
+   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on [enable] argument.
    */
   @JvmOverloads
   @JvmStatic
@@ -109,23 +104,20 @@ public object EngineDebugger : Object() {
     name: StringName,
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to name, BOOL to enable, ARRAY to arguments)
     TransferContext.callMethod(ptr, MethodBindings.profilerEnablePtr, NIL)
   }
 
   /**
-   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
-   * with "my_message:" will be called with the given callable.
+   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting with "my_message:" will be called with the given callable.
    *
-   * The callable must accept a message string and a data array as argument. The callable should
-   * return `true` if the message is recognized.
+   * The callable must accept a message string and a data array as argument. The callable should return `true` if the message is recognized.
    *
-   * **Note:** The callable will receive the message with the prefix stripped, unlike
-   * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
+   * **Note:** The callable will receive the message with the prefix stripped, unlike [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */
   @JvmStatic
-  public final fun registerMessageCapture(name: StringName, callable: Callable): Unit {
+  public final fun registerMessageCapture(name: StringName, callable: Callable) {
     TransferContext.writeArguments(STRING_NAME to name, CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.registerMessageCapturePtr, NIL)
   }
@@ -134,7 +126,7 @@ public object EngineDebugger : Object() {
    * Unregisters the message capture with given [name].
    */
   @JvmStatic
-  public final fun unregisterMessageCapture(name: StringName): Unit {
+  public final fun unregisterMessageCapture(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.unregisterMessageCapturePtr, NIL)
   }
@@ -150,12 +142,10 @@ public object EngineDebugger : Object() {
   }
 
   /**
-   * Forces a processing loop of debugger events. The purpose of this method is just processing
-   * events every now and then when the script might get too busy, so that bugs like infinite loops can
-   * be caught.
+   * Forces a processing loop of debugger events. The purpose of this method is just processing events every now and then when the script might get too busy, so that bugs like infinite loops can be caught.
    */
   @JvmStatic
-  public final fun linePoll(): Unit {
+  public final fun linePoll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.linePollPtr, NIL)
   }
@@ -164,25 +154,23 @@ public object EngineDebugger : Object() {
    * Sends a message with given [message] and [data] array.
    */
   @JvmStatic
-  public final fun sendMessage(message: String, `data`: VariantArray<Any?>): Unit {
+  public final fun sendMessage(message: String, `data`: VariantArray<Any?>) {
     TransferContext.writeArguments(STRING to message, ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.sendMessagePtr, NIL)
   }
 
   /**
-   * Starts a debug break in script execution, optionally specifying whether the program can
-   * continue based on [canContinue] and whether the break was due to a breakpoint.
+   * Starts a debug break in script execution, optionally specifying whether the program can continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false): Unit {
+  public final fun debug(canContinue: Boolean = true, isErrorBreakpoint: Boolean = false) {
     TransferContext.writeArguments(BOOL to canContinue, BOOL to isErrorBreakpoint)
     TransferContext.callMethod(ptr, MethodBindings.debugPtr, NIL)
   }
 
   /**
-   * Starts a debug break in script execution, optionally specifying whether the program can
-   * continue based on [canContinue] and whether the break was due to a breakpoint.
+   * Starts a debug break in script execution, optionally specifying whether the program can continue based on [canContinue] and whether the break was due to a breakpoint.
    */
   @JvmOverloads
   @JvmStatic
@@ -190,7 +178,7 @@ public object EngineDebugger : Object() {
     language: ScriptLanguage?,
     canContinue: Boolean = true,
     isErrorBreakpoint: Boolean = false,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(OBJECT to language, BOOL to canContinue, BOOL to isErrorBreakpoint)
     TransferContext.callMethod(ptr, MethodBindings.scriptDebugPtr, NIL)
   }
@@ -199,7 +187,7 @@ public object EngineDebugger : Object() {
    * Sets the current debugging lines that remain.
    */
   @JvmStatic
-  public final fun setLinesLeft(lines: Int): Unit {
+  public final fun setLinesLeft(lines: Int) {
     TransferContext.writeArguments(LONG to lines.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLinesLeftPtr, NIL)
   }
@@ -218,7 +206,7 @@ public object EngineDebugger : Object() {
    * Sets the current debugging depth.
    */
   @JvmStatic
-  public final fun setDepth(depth: Int): Unit {
+  public final fun setDepth(depth: Int) {
     TransferContext.writeArguments(LONG to depth.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setDepthPtr, NIL)
   }
@@ -257,7 +245,7 @@ public object EngineDebugger : Object() {
    * Inserts a new breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun insertBreakpoint(line: Int, source: StringName): Unit {
+  public final fun insertBreakpoint(line: Int, source: StringName) {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(ptr, MethodBindings.insertBreakpointPtr, NIL)
   }
@@ -266,7 +254,7 @@ public object EngineDebugger : Object() {
    * Removes a breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun removeBreakpoint(line: Int, source: StringName): Unit {
+  public final fun removeBreakpoint(line: Int, source: StringName) {
     TransferContext.writeArguments(LONG to line.toLong(), STRING_NAME to source)
     TransferContext.callMethod(ptr, MethodBindings.removeBreakpointPtr, NIL)
   }
@@ -275,7 +263,7 @@ public object EngineDebugger : Object() {
    * Clears all breakpoints.
    */
   @JvmStatic
-  public final fun clearBreakpoints(): Unit {
+  public final fun clearBreakpoints() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearBreakpointsPtr, NIL)
   }
@@ -284,14 +272,13 @@ public object EngineDebugger : Object() {
    * Registers a profiler with the given [name]. See [EngineProfiler] for more information.
    */
   @JvmStatic
-  public final fun registerProfiler(name: String, profiler: EngineProfiler?) =
-      registerProfiler(name.asCachedStringName(), profiler)
+  public final fun registerProfiler(name: String, profiler: EngineProfiler?): Unit = registerProfiler(name.asCachedStringName(), profiler)
 
   /**
    * Unregisters a profiler with given [name].
    */
   @JvmStatic
-  public final fun unregisterProfiler(name: String) = unregisterProfiler(name.asCachedStringName())
+  public final fun unregisterProfiler(name: String): Unit = unregisterProfiler(name.asCachedStringName())
 
   /**
    * Returns `true` if a profiler with the given name is present and active otherwise `false`.
@@ -309,12 +296,10 @@ public object EngineDebugger : Object() {
    * Calls the `add` callable of the profiler with given [name] and [data].
    */
   @JvmStatic
-  public final fun profilerAddFrameData(name: String, `data`: VariantArray<Any?>) =
-      profilerAddFrameData(name.asCachedStringName(), data)
+  public final fun profilerAddFrameData(name: String, `data`: VariantArray<Any?>): Unit = profilerAddFrameData(name.asCachedStringName(), data)
 
   /**
-   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables
-   * the same profiler depending on [enable] argument.
+   * Calls the `toggle` callable of the profiler with given [name] and [arguments]. Enables/Disables the same profiler depending on [enable] argument.
    */
   @JvmOverloads
   @JvmStatic
@@ -322,28 +307,23 @@ public object EngineDebugger : Object() {
     name: String,
     enable: Boolean,
     arguments: VariantArray<Any?> = godot.core.variantArrayOf(),
-  ) = profilerEnable(name.asCachedStringName(), enable, arguments)
+  ): Unit = profilerEnable(name.asCachedStringName(), enable, arguments)
 
   /**
-   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting
-   * with "my_message:" will be called with the given callable.
+   * Registers a message capture with given [name]. If [name] is "my_message" then messages starting with "my_message:" will be called with the given callable.
    *
-   * The callable must accept a message string and a data array as argument. The callable should
-   * return `true` if the message is recognized.
+   * The callable must accept a message string and a data array as argument. The callable should return `true` if the message is recognized.
    *
-   * **Note:** The callable will receive the message with the prefix stripped, unlike
-   * [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
+   * **Note:** The callable will receive the message with the prefix stripped, unlike [EditorDebuggerPlugin.Capture]. See the [EditorDebuggerPlugin] description for an example.
    */
   @JvmStatic
-  public final fun registerMessageCapture(name: String, callable: Callable) =
-      registerMessageCapture(name.asCachedStringName(), callable)
+  public final fun registerMessageCapture(name: String, callable: Callable): Unit = registerMessageCapture(name.asCachedStringName(), callable)
 
   /**
    * Unregisters the message capture with given [name].
    */
   @JvmStatic
-  public final fun unregisterMessageCapture(name: String) =
-      unregisterMessageCapture(name.asCachedStringName())
+  public final fun unregisterMessageCapture(name: String): Unit = unregisterMessageCapture(name.asCachedStringName())
 
   /**
    * Returns `true` if a capture with the given name is present otherwise `false`.
@@ -355,91 +335,88 @@ public object EngineDebugger : Object() {
    * Returns `true` if the given [source] and [line] represent an existing breakpoint.
    */
   @JvmStatic
-  public final fun isBreakpoint(line: Int, source: String): Boolean =
-      isBreakpoint(line, source.asCachedStringName())
+  public final fun isBreakpoint(line: Int, source: String): Boolean = isBreakpoint(line, source.asCachedStringName())
 
   /**
    * Inserts a new breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun insertBreakpoint(line: Int, source: String) =
-      insertBreakpoint(line, source.asCachedStringName())
+  public final fun insertBreakpoint(line: Int, source: String): Unit = insertBreakpoint(line, source.asCachedStringName())
 
   /**
    * Removes a breakpoint with the given [source] and [line].
    */
   @JvmStatic
-  public final fun removeBreakpoint(line: Int, source: String) =
-      removeBreakpoint(line, source.asCachedStringName())
+  public final fun removeBreakpoint(line: Int, source: String): Unit = removeBreakpoint(line, source.asCachedStringName())
 
   public object MethodBindings {
     internal val isActivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_active", 2240911060)
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_active", 2_240_911_060)
 
     internal val registerProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_profiler", 3651669560)
+        TypeManager.getMethodBindPtr("EngineDebugger", "register_profiler", 3_651_669_560)
 
     internal val unregisterProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3304788590)
+        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_profiler", 3_304_788_590)
 
     internal val isProfilingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_profiling", 2041966384)
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_profiling", 2_041_966_384)
 
     internal val hasProfilerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_profiler", 2041966384)
+        TypeManager.getMethodBindPtr("EngineDebugger", "has_profiler", 2_041_966_384)
 
     internal val profilerAddFrameDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1895267858)
+        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_add_frame_data", 1_895_267_858)
 
     internal val profilerEnablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_enable", 3192561009)
+        TypeManager.getMethodBindPtr("EngineDebugger", "profiler_enable", 3_192_561_009)
 
     internal val registerMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "register_message_capture", 1874754934)
+        TypeManager.getMethodBindPtr("EngineDebugger", "register_message_capture", 1_874_754_934)
 
     internal val unregisterMessageCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3304788590)
+        TypeManager.getMethodBindPtr("EngineDebugger", "unregister_message_capture", 3_304_788_590)
 
     internal val hasCapturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "has_capture", 2041966384)
+        TypeManager.getMethodBindPtr("EngineDebugger", "has_capture", 2_041_966_384)
 
     internal val linePollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "line_poll", 3218959716)
+        TypeManager.getMethodBindPtr("EngineDebugger", "line_poll", 3_218_959_716)
 
     internal val sendMessagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "send_message", 1209351045)
+        TypeManager.getMethodBindPtr("EngineDebugger", "send_message", 1_209_351_045)
 
     internal val debugPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "debug", 2751962654)
+        TypeManager.getMethodBindPtr("EngineDebugger", "debug", 2_751_962_654)
 
     internal val scriptDebugPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "script_debug", 2442343672)
+        TypeManager.getMethodBindPtr("EngineDebugger", "script_debug", 2_442_343_672)
 
     internal val setLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "set_lines_left", 1286410249)
+        TypeManager.getMethodBindPtr("EngineDebugger", "set_lines_left", 1_286_410_249)
 
     internal val getLinesLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "get_lines_left", 3905245786)
+        TypeManager.getMethodBindPtr("EngineDebugger", "get_lines_left", 3_905_245_786)
 
     internal val setDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "set_depth", 1286410249)
+        TypeManager.getMethodBindPtr("EngineDebugger", "set_depth", 1_286_410_249)
 
     internal val getDepthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "get_depth", 3905245786)
+        TypeManager.getMethodBindPtr("EngineDebugger", "get_depth", 3_905_245_786)
 
     internal val isBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921227809)
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_breakpoint", 921_227_809)
 
     internal val isSkippingBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36873697)
+        TypeManager.getMethodBindPtr("EngineDebugger", "is_skipping_breakpoints", 36_873_697)
 
     internal val insertBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3780747571)
+        TypeManager.getMethodBindPtr("EngineDebugger", "insert_breakpoint", 3_780_747_571)
 
     internal val removeBreakpointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3780747571)
+        TypeManager.getMethodBindPtr("EngineDebugger", "remove_breakpoint", 3_780_747_571)
 
     internal val clearBreakpointsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3218959716)
+        TypeManager.getMethodBindPtr("EngineDebugger", "clear_breakpoints", 3_218_959_716)
   }
 }

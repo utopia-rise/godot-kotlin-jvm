@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -32,9 +29,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * This animation node may contain a sub-tree of any other type animation nodes, such as
- * [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot],
- * etc. This is one of the most commonly used animation node roots.
+ * This animation node may contain a sub-tree of any other type animation nodes, such as [AnimationNodeTransition], [AnimationNodeBlend2], [AnimationNodeBlend3], [AnimationNodeOneShot], etc. This is one of the most commonly used animation node roots.
  *
  * An [AnimationNodeOutput] node named `output` is created by default.
  */
@@ -49,11 +44,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
    * The global offset of all sub animation nodes.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var graphOffset: Vector2
@@ -64,7 +56,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
       setGraphOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(23, scriptIndex)
   }
 
@@ -88,15 +80,14 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
-   * animation node later.
+   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub animation node later.
    */
   @JvmOverloads
   public final fun addNode(
     name: StringName,
     node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to name, OBJECT to node, VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.addNodePtr, NIL)
   }
@@ -113,7 +104,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub animation node.
    */
-  public final fun removeNode(name: StringName): Unit {
+  public final fun removeNode(name: StringName) {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.removeNodePtr, NIL)
   }
@@ -121,7 +112,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Changes the name of a sub animation node.
    */
-  public final fun renameNode(name: StringName, newName: StringName): Unit {
+  public final fun renameNode(name: StringName, newName: StringName) {
     TransferContext.writeArguments(STRING_NAME to name, STRING_NAME to newName)
     TransferContext.callMethod(ptr, MethodBindings.renameNodePtr, NIL)
   }
@@ -136,14 +127,13 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
-   * port specified by [inputIndex].
+   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input port specified by [inputIndex].
    */
   public final fun connectNode(
     inputNode: StringName,
     inputIndex: Int,
     outputNode: StringName,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong(), STRING_NAME to outputNode)
     TransferContext.callMethod(ptr, MethodBindings.connectNodePtr, NIL)
   }
@@ -151,7 +141,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Disconnects the animation node connected to the specified input.
    */
-  public final fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
+  public final fun disconnectNode(inputNode: StringName, inputIndex: Int) {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.disconnectNodePtr, NIL)
   }
@@ -159,7 +149,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Modifies the position of a sub animation node.
    */
-  public final fun setNodePosition(name: StringName, position: Vector2): Unit {
+  public final fun setNodePosition(name: StringName, position: Vector2) {
     TransferContext.writeArguments(STRING_NAME to name, VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setNodePositionPtr, NIL)
   }
@@ -173,7 +163,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setGraphOffset(offset: Vector2): Unit {
+  public final fun setGraphOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
   }
@@ -185,15 +175,14 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   }
 
   /**
-   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub
-   * animation node later.
+   * Adds an [AnimationNode] at the given [position]. The [name] is used to identify the created sub animation node later.
    */
   @JvmOverloads
   public final fun addNode(
     name: String,
     node: AnimationNode?,
     position: Vector2 = Vector2(0, 0),
-  ) = addNode(name.asCachedStringName(), node, position)
+  ): Unit = addNode(name.asCachedStringName(), node, position)
 
   /**
    * Returns the sub animation node with the specified [name].
@@ -203,13 +192,12 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   /**
    * Removes a sub animation node.
    */
-  public final fun removeNode(name: String) = removeNode(name.asCachedStringName())
+  public final fun removeNode(name: String): Unit = removeNode(name.asCachedStringName())
 
   /**
    * Changes the name of a sub animation node.
    */
-  public final fun renameNode(name: String, newName: String) =
-      renameNode(name.asCachedStringName(), newName.asCachedStringName())
+  public final fun renameNode(name: String, newName: String): Unit = renameNode(name.asCachedStringName(), newName.asCachedStringName())
 
   /**
    * Returns `true` if a sub animation node with specified [name] exists.
@@ -217,32 +205,28 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun hasNode(name: String): Boolean = hasNode(name.asCachedStringName())
 
   /**
-   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input
-   * port specified by [inputIndex].
+   * Connects the output of an [AnimationNode] as input for another [AnimationNode], at the input port specified by [inputIndex].
    */
   public final fun connectNode(
     inputNode: String,
     inputIndex: Int,
     outputNode: String,
-  ) = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
+  ): Unit = connectNode(inputNode.asCachedStringName(), inputIndex, outputNode.asCachedStringName())
 
   /**
    * Disconnects the animation node connected to the specified input.
    */
-  public final fun disconnectNode(inputNode: String, inputIndex: Int) =
-      disconnectNode(inputNode.asCachedStringName(), inputIndex)
+  public final fun disconnectNode(inputNode: String, inputIndex: Int): Unit = disconnectNode(inputNode.asCachedStringName(), inputIndex)
 
   /**
    * Modifies the position of a sub animation node.
    */
-  public final fun setNodePosition(name: String, position: Vector2) =
-      setNodePosition(name.asCachedStringName(), position)
+  public final fun setNodePosition(name: String, position: Vector2): Unit = setNodePosition(name.asCachedStringName(), position)
 
   /**
    * Returns the position of the sub animation node with the specified [name].
    */
-  public final fun getNodePosition(name: String): Vector2 =
-      getNodePosition(name.asCachedStringName())
+  public final fun getNodePosition(name: String): Vector2 = getNodePosition(name.asCachedStringName())
 
   public companion object {
     /**
@@ -278,36 +262,36 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
   public object MethodBindings {
     internal val addNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "add_node", 1980270704)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "add_node", 1_980_270_704)
 
     internal val getNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node", 625644256)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node", 625_644_256)
 
     internal val removeNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "remove_node", 3304788590)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "remove_node", 3_304_788_590)
 
     internal val renameNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "rename_node", 3740211285)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "rename_node", 3_740_211_285)
 
     internal val hasNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "has_node", 2619796661)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "has_node", 2_619_796_661)
 
     internal val connectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "connect_node", 2168001410)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "connect_node", 2_168_001_410)
 
     internal val disconnectNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node", 2415702435)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node", 2_415_702_435)
 
     internal val setNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position", 1999414630)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position", 1_999_414_630)
 
     internal val getNodePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node_position", 3100822709)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node_position", 3_100_822_709)
 
     internal val setGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_graph_offset", 743155724)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_graph_offset", 743_155_724)
 
     internal val getGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_graph_offset", 3341600327)
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_graph_offset", 3_341_600_327)
   }
 }

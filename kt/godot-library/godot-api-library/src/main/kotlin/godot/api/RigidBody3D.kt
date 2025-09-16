@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -39,82 +36,53 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * [RigidBody3D] implements full 3D physics. It cannot be controlled directly, instead, you must
- * apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the
- * resulting movement, rotation, react to collisions, and affect other physics bodies in its path.
+ * [RigidBody3D] implements full 3D physics. It cannot be controlled directly, instead, you must apply forces to it (gravity, impulses, etc.), and the physics simulation will calculate the resulting movement, rotation, react to collisions, and affect other physics bodies in its path.
  *
- * The body's behavior can be adjusted via [lockRotation], [freeze], and [freezeMode]. By changing
- * various properties of the object, such as [mass], you can control how the physics simulation acts on
- * it.
+ * The body's behavior can be adjusted via [lockRotation], [freeze], and [freezeMode]. By changing various properties of the object, such as [mass], you can control how the physics simulation acts on it.
  *
- * A rigid body will always maintain its shape and size, even when forces are applied to it. It is
- * useful for objects that can be interacted with in an environment, such as a tree that can be knocked
- * over or a stack of crates that can be pushed around.
+ * A rigid body will always maintain its shape and size, even when forces are applied to it. It is useful for objects that can be interacted with in an environment, such as a tree that can be knocked over or a stack of crates that can be pushed around.
  *
- * If you need to override the default physics behavior, you can write a custom force integration
- * function. See [customIntegrator].
+ * If you need to override the default physics behavior, you can write a custom force integration function. See [customIntegrator].
  *
- * **Note:** Changing the 3D transform or [linearVelocity] of a [RigidBody3D] very often may lead to
- * some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as
- * it allows you to directly access the physics state.
+ * **Note:** Changing the 3D transform or [linearVelocity] of a [RigidBody3D] very often may lead to some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as it allows you to directly access the physics state.
  */
 @GodotBaseType
 public open class RigidBody3D : PhysicsBody3D() {
   /**
-   * Emitted when one of this RigidBody3D's [Shape3D]s collides with another [PhysicsBody3D] or
-   * [GridMap]'s [Shape3D]s. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to
-   * be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has
-   * Collision [Shape3D]s.
+   * Emitted when one of this RigidBody3D's [Shape3D]s collides with another [PhysicsBody3D] or [GridMap]'s [Shape3D]s. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    *
-   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by
-   * the [PhysicsServer3D].
+   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D].
    *
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    *
-   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by
-   * the [PhysicsServer3D]. Get the [CollisionShape3D] node with
-   * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D].
-   * Get the [CollisionShape3D] node with
-   * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeEntered: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
-   * Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another
-   * [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [contactMonitor] to be set to `true` and
-   * [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected
-   * if the [MeshLibrary] has Collision [Shape3D]s.
+   * Emitted when the collision between one of this RigidBody3D's [Shape3D]s and another [PhysicsBody3D] or [GridMap]'s [Shape3D]s ends. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    *
-   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by
-   * the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.
+   * [bodyRid] the [RID] of the other [PhysicsBody3D] or [MeshLibrary]'s [CollisionObject3D] used by the [PhysicsServer3D]. [GridMap]s are detected if the Meshes have [Shape3D]s.
    *
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    *
-   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by
-   * the [PhysicsServer3D]. Get the [CollisionShape3D] node with
-   * `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
+   * [bodyShapeIndex] the index of the [Shape3D] of the other [PhysicsBody3D] or [GridMap] used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `body.shape_owner_get_owner(body.shape_find_owner(body_shape_index))`.
    *
-   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D].
-   * Get the [CollisionShape3D] node with
-   * `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
+   * [localShapeIndex] the index of the [Shape3D] of this RigidBody3D used by the [PhysicsServer3D]. Get the [CollisionShape3D] node with `self.shape_owner_get_owner(self.shape_find_owner(local_shape_index))`.
    */
   public val bodyShapeExited: Signal4<RID, Node, Long, Long> by Signal4
 
   /**
-   * Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires
-   * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
-   * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
+   * Emitted when a collision with another [PhysicsBody3D] or [GridMap] occurs. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    *
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
   public val bodyEntered: Signal1<Node> by Signal1
 
   /**
-   * Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires
-   * [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all
-   * the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
+   * Emitted when the collision with another [PhysicsBody3D] or [GridMap] ends. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all the collisions. [GridMap]s are detected if the [MeshLibrary] has Collision [Shape3D]s.
    *
    * [body] the [Node], if it exists in the tree, of the other [PhysicsBody3D] or [GridMap].
    */
@@ -123,9 +91,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Emitted when the physics engine changes the body's sleeping state.
    *
-   * **Note:** Changing the value [sleeping] will not trigger this signal. It is only emitted if the
-   * sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is
-   * used.
+   * **Note:** Changing the value [sleeping] will not trigger this signal. It is only emitted if the sleeping state is changed by the physics engine or `emit_signal("sleeping_state_changed")` is used.
    */
   public val sleepingStateChanged: Signal0 by Signal0
 
@@ -143,8 +109,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * The physics material override for the body.
    *
-   * If a material is assigned to this property, it will be used instead of any other physics
-   * material, such as an inherited one.
+   * If a material is assigned to this property, it will be used instead of any other physics material, such as an inherited one.
    */
   public final inline var physicsMaterialOverride: PhysicsMaterial?
     @JvmName("physicsMaterialOverrideProperty")
@@ -155,9 +120,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's
-   * gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the
-   * gravity, and `0.5` will apply half the gravity to this body.
+   * This is multiplied by [ProjectSettings.physics/3d/defaultGravity] to produce this body's gravity. For example, a value of `1.0` will apply normal gravity, `2.0` will apply double the gravity, and `0.5` will apply half the gravity to this body.
    */
   public final inline var gravityScale: Float
     @JvmName("gravityScaleProperty")
@@ -179,20 +142,13 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body,
-   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
-   * causes angular acceleration.
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
    *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var centerOfMass: Vector3
@@ -204,14 +160,11 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's moment of inertia. This is like mass, but for rotation: it determines how much
-   * torque it takes to rotate the body on each axis. The moment of inertia is usually computed
-   * automatically from the mass and the shapes, but this property allows you to set a custom value.
+   * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
    * If set to [Vector3.ZERO], inertia is automatically computed (default value).
    *
-   * **Note:** This value does not change when inertia is automatically computed. Use
-   * [PhysicsServer3D] to get the computed inertia.
+   * **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer3D] to get the computed inertia.
    *
    * ```gdscript
    * //gdscript
@@ -239,11 +192,8 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var inertia: Vector3
@@ -255,8 +205,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the body will not move and will not calculate forces until woken up by another body
-   * through, for example, a collision, or by using the [applyImpulse] or [applyForce] methods.
+   * If `true`, the body will not move and will not calculate forces until woken up by another body through, for example, a collision, or by using the [applyImpulse] or [applyForce] methods.
    */
   public final inline var sleeping: Boolean
     @JvmName("sleepingProperty")
@@ -304,8 +253,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See
-   * [FreezeMode] for possible values.
+   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See [FreezeMode] for possible values.
    *
    * For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
    */
@@ -318,12 +266,9 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * If `true`, the standard force integration (like gravity or damping) will be disabled for this
-   * body. Other than collision response, the body will only move as determined by the
-   * [_integrateForces] method, if that virtual method is overridden.
+   * If `true`, the standard force integration (like gravity or damping) will be disabled for this body. Other than collision response, the body will only move as determined by the [_integrateForces] method, if that virtual method is overridden.
    *
-   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration]
-   * internally.
+   * Setting this property will call the method [PhysicsServer3D.bodySetOmitForceIntegration] internally.
    */
   public final inline var customIntegrator: Boolean
     @JvmName("customIntegratorProperty")
@@ -336,10 +281,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * If `true`, continuous collision detection is used.
    *
-   * Continuous collision detection tries to predict where a moving body will collide, instead of
-   * moving it and correcting its movement if it collided. Continuous collision detection is more
-   * precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision
-   * detection is faster to compute, but can miss small, fast-moving objects.
+   * Continuous collision detection tries to predict where a moving body will collide, instead of moving it and correcting its movement if it collided. Continuous collision detection is more precise, and misses fewer impacts by small, fast-moving objects. Not using continuous collision detection is faster to compute, but can miss small, fast-moving objects.
    */
   public final inline var continuousCd: Boolean
     @JvmName("continuousCdProperty")
@@ -352,8 +294,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * If `true`, the RigidBody3D will emit signals when it collides with another body.
    *
-   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be
-   * recorded, see [maxContactsReported].
+   * **Note:** By default the maximum contacts reported is set to 0, meaning nothing will be recorded, see [maxContactsReported].
    */
   public final inline var contactMonitor: Boolean
     @JvmName("contactMonitorProperty")
@@ -364,13 +305,9 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and
-   * [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to
-   * retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
+   * The maximum number of contacts that will be recorded. Requires a value greater than 0 and [contactMonitor] to be set to `true` to start to register contacts. Use [getContactCount] to retrieve the count or [getCollidingBodies] to retrieve bodies that have been collided with.
    *
-   * **Note:** The number of contacts is different from the number of collisions. Collisions between
-   * parallel edges will result in two contacts (one at each end), and collisions between parallel
-   * faces will result in four contacts (one at each corner).
+   * **Note:** The number of contacts is different from the number of collisions. Collisions between parallel edges will result in two contacts (one at each end), and collisions between parallel faces will result in four contacts (one at each corner).
    */
   public final inline var maxContactsReported: Int
     @JvmName("maxContactsReportedProperty")
@@ -381,16 +318,11 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
-   * every frame**, because physics may run in another thread and runs at a different granularity. Use
-   * [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var linearVelocity: Vector3
@@ -413,10 +345,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's movement. By default, the body will use the
-   * [ProjectSettings.physics/3d/defaultLinearDamp] project setting or any value override set by an
-   * [Area3D] the body is in. Depending on [linearDampMode], you can set [linearDamp] to be added to or
-   * to replace the body's damping value.
+   * Damps the body's movement. By default, the body will use the [ProjectSettings.physics/3d/defaultLinearDamp] project setting or any value override set by an [Area3D] the body is in. Depending on [linearDampMode], you can set [linearDamp] to be added to or to replace the body's damping value.
    *
    * See [ProjectSettings.physics/3d/defaultLinearDamp] for more details about damping.
    */
@@ -432,11 +361,8 @@ public open class RigidBody3D : PhysicsBody3D() {
    * The RigidBody3D's rotational velocity in *radians* per second.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var angularVelocity: Vector3
@@ -459,10 +385,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Damps the body's rotation. By default, the body will use the
-   * [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an
-   * [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to
-   * or to replace the body's damping value.
+   * Damps the body's rotation. By default, the body will use the [ProjectSettings.physics/3d/defaultAngularDamp] project setting or any value override set by an [Area3D] the body is in. Depending on [angularDampMode], you can set [angularDamp] to be added to or to replace the body's damping value.
    *
    * See [ProjectSettings.physics/3d/defaultAngularDamp] for more details about damping.
    */
@@ -480,11 +403,8 @@ public open class RigidBody3D : PhysicsBody3D() {
    * See [addConstantForce] and [addConstantCentralForce].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantForce: Vector3
@@ -501,11 +421,8 @@ public open class RigidBody3D : PhysicsBody3D() {
    * See [addConstantTorque].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constantTorque: Vector3
@@ -516,7 +433,7 @@ public open class RigidBody3D : PhysicsBody3D() {
       setConstantTorque(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(565, scriptIndex)
   }
 
@@ -531,13 +448,9 @@ public open class RigidBody3D : PhysicsBody3D() {
    * rigidbody3d.centerOfMass = myCoreType
    * ``````
    *
-   * The body's custom center of mass, relative to the body's origin position, when
-   * [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body,
-   * where applied forces only cause linear acceleration. Applying forces outside of the center of mass
-   * causes angular acceleration.
+   * The body's custom center of mass, relative to the body's origin position, when [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_CUSTOM]. This is the balanced point of the body, where applied forces only cause linear acceleration. Applying forces outside of the center of mass causes angular acceleration.
    *
-   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of mass is automatically computed.
    */
   @CoreTypeHelper
   public final fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply {
@@ -556,14 +469,11 @@ public open class RigidBody3D : PhysicsBody3D() {
    * rigidbody3d.inertia = myCoreType
    * ``````
    *
-   * The body's moment of inertia. This is like mass, but for rotation: it determines how much
-   * torque it takes to rotate the body on each axis. The moment of inertia is usually computed
-   * automatically from the mass and the shapes, but this property allows you to set a custom value.
+   * The body's moment of inertia. This is like mass, but for rotation: it determines how much torque it takes to rotate the body on each axis. The moment of inertia is usually computed automatically from the mass and the shapes, but this property allows you to set a custom value.
    *
    * If set to [Vector3.ZERO], inertia is automatically computed (default value).
    *
-   * **Note:** This value does not change when inertia is automatically computed. Use
-   * [PhysicsServer3D] to get the computed inertia.
+   * **Note:** This value does not change when inertia is automatically computed. Use [PhysicsServer3D] to get the computed inertia.
    *
    * ```gdscript
    * //gdscript
@@ -605,9 +515,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * rigidbody3d.linearVelocity = myCoreType
    * ``````
    *
-   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this
-   * every frame**, because physics may run in another thread and runs at a different granularity. Use
-   * [_integrateForces] as your process loop for precise control of the body state.
+   * The body's linear velocity in units per second. Can be used sporadically, but **don't set this every frame**, because physics may run in another thread and runs at a different granularity. Use [_integrateForces] as your process loop for precise control of the body state.
    */
   @CoreTypeHelper
   public final fun linearVelocityMutate(block: Vector3.() -> Unit): Vector3 = linearVelocity.apply {
@@ -629,8 +537,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * The RigidBody3D's rotational velocity in *radians* per second.
    */
   @CoreTypeHelper
-  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 =
-      angularVelocity.apply {
+  public final fun angularVelocityMutate(block: Vector3.() -> Unit): Vector3 = angularVelocity.apply {
      block(this)
      angularVelocity = this
   }
@@ -678,16 +585,13 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Called during physics processing, allowing you to read and safely modify the simulation state
-   * for the object. By default, it is called before the standard force integration, but the
-   * [customIntegrator] property allows you to disable the standard force integration and do fully
-   * custom force integration for a body.
+   * Called during physics processing, allowing you to read and safely modify the simulation state for the object. By default, it is called before the standard force integration, but the [customIntegrator] property allows you to disable the standard force integration and do fully custom force integration for a body.
    */
-  public open fun _integrateForces(state: PhysicsDirectBodyState3D?): Unit {
+  public open fun _integrateForces(state: PhysicsDirectBodyState3D?) {
     throw NotImplementedError("RigidBody3D::_integrateForces is not implemented.")
   }
 
-  public final fun setMass(mass: Float): Unit {
+  public final fun setMass(mass: Float) {
     TransferContext.writeArguments(DOUBLE to mass.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMassPtr, NIL)
   }
@@ -698,7 +602,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setInertia(inertia: Vector3): Unit {
+  public final fun setInertia(inertia: Vector3) {
     TransferContext.writeArguments(VECTOR3 to inertia)
     TransferContext.callMethod(ptr, MethodBindings.setInertiaPtr, NIL)
   }
@@ -709,7 +613,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setCenterOfMassMode(mode: CenterOfMassMode): Unit {
+  public final fun setCenterOfMassMode(mode: CenterOfMassMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setCenterOfMassModePtr, NIL)
   }
@@ -720,7 +624,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return CenterOfMassMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCenterOfMass(centerOfMass: Vector3): Unit {
+  public final fun setCenterOfMass(centerOfMass: Vector3) {
     TransferContext.writeArguments(VECTOR3 to centerOfMass)
     TransferContext.callMethod(ptr, MethodBindings.setCenterOfMassPtr, NIL)
   }
@@ -731,7 +635,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?): Unit {
+  public final fun setPhysicsMaterialOverride(physicsMaterialOverride: PhysicsMaterial?) {
     TransferContext.writeArguments(OBJECT to physicsMaterialOverride)
     TransferContext.callMethod(ptr, MethodBindings.setPhysicsMaterialOverridePtr, NIL)
   }
@@ -742,7 +646,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(OBJECT) as PhysicsMaterial?)
   }
 
-  public final fun setLinearVelocity(linearVelocity: Vector3): Unit {
+  public final fun setLinearVelocity(linearVelocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to linearVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setLinearVelocityPtr, NIL)
   }
@@ -753,7 +657,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setAngularVelocity(angularVelocity: Vector3): Unit {
+  public final fun setAngularVelocity(angularVelocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to angularVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setAngularVelocityPtr, NIL)
   }
@@ -765,8 +669,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration
-   * resulting from a torque applied to the [RigidBody3D].
+   * Returns the inverse inertia tensor basis. This is used to calculate the angular acceleration resulting from a torque applied to the [RigidBody3D].
    */
   public final fun getInverseInertiaTensor(): Basis {
     TransferContext.writeArguments()
@@ -774,7 +677,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BASIS) as Basis)
   }
 
-  public final fun setGravityScale(gravityScale: Float): Unit {
+  public final fun setGravityScale(gravityScale: Float) {
     TransferContext.writeArguments(DOUBLE to gravityScale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGravityScalePtr, NIL)
   }
@@ -785,7 +688,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setLinearDampMode(linearDampMode: DampMode): Unit {
+  public final fun setLinearDampMode(linearDampMode: DampMode) {
     TransferContext.writeArguments(LONG to linearDampMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampModePtr, NIL)
   }
@@ -796,7 +699,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAngularDampMode(angularDampMode: DampMode): Unit {
+  public final fun setAngularDampMode(angularDampMode: DampMode) {
     TransferContext.writeArguments(LONG to angularDampMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampModePtr, NIL)
   }
@@ -807,7 +710,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return DampMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setLinearDamp(linearDamp: Float): Unit {
+  public final fun setLinearDamp(linearDamp: Float) {
     TransferContext.writeArguments(DOUBLE to linearDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLinearDampPtr, NIL)
   }
@@ -818,7 +721,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAngularDamp(angularDamp: Float): Unit {
+  public final fun setAngularDamp(angularDamp: Float) {
     TransferContext.writeArguments(DOUBLE to angularDamp.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAngularDampPtr, NIL)
   }
@@ -829,7 +732,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMaxContactsReported(amount: Int): Unit {
+  public final fun setMaxContactsReported(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxContactsReportedPtr, NIL)
   }
@@ -841,8 +744,7 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns the number of contacts this body has with other bodies. By default, this returns 0
-   * unless bodies are configured to monitor contacts (see [contactMonitor]).
+   * Returns the number of contacts this body has with other bodies. By default, this returns 0 unless bodies are configured to monitor contacts (see [contactMonitor]).
    *
    * **Note:** To retrieve the colliding bodies, use [getCollidingBodies].
    */
@@ -852,7 +754,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setUseCustomIntegrator(enable: Boolean): Unit {
+  public final fun setUseCustomIntegrator(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseCustomIntegratorPtr, NIL)
   }
@@ -863,7 +765,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setContactMonitor(enabled: Boolean): Unit {
+  public final fun setContactMonitor(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setContactMonitorPtr, NIL)
   }
@@ -874,7 +776,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setUseContinuousCollisionDetection(enable: Boolean): Unit {
+  public final fun setUseContinuousCollisionDetection(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseContinuousCollisionDetectionPtr, NIL)
   }
@@ -886,10 +788,9 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector
-   * length. This is useful for jumping behavior.
+   * Sets an axis velocity. The velocity in the given vector axis will be set as the given vector length. This is useful for jumping behavior.
    */
-  public final fun setAxisVelocity(axisVelocity: Vector3): Unit {
+  public final fun setAxisVelocity(axisVelocity: Vector3) {
     TransferContext.writeArguments(VECTOR3 to axisVelocity)
     TransferContext.callMethod(ptr, MethodBindings.setAxisVelocityPtr, NIL)
   }
@@ -897,13 +798,11 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Applies a directional impulse without affecting rotation.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * This is equivalent to using [applyImpulse] at the body's center of mass.
    */
-  public final fun applyCentralImpulse(impulse: Vector3): Unit {
+  public final fun applyCentralImpulse(impulse: Vector3) {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
   }
@@ -911,14 +810,12 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Applies a positioned impulse to the body.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
+  public final fun applyImpulse(impulse: Vector3, position: Vector3 = Vector3(0, 0, 0)) {
     TransferContext.writeArguments(VECTOR3 to impulse, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
   }
@@ -926,86 +823,76 @@ public open class RigidBody3D : PhysicsBody3D() {
   /**
    * Applies a rotational impulse to the body without affecting the position.
    *
-   * An impulse is time-independent! Applying an impulse every frame would result in a
-   * framerate-dependent force. For this reason, it should only be used when simulating one-time
-   * impacts (use the "_force" functions otherwise).
+   * An impulse is time-independent! Applying an impulse every frame would result in a framerate-dependent force. For this reason, it should only be used when simulating one-time impacts (use the "_force" functions otherwise).
    *
-   * **Note:** [inertia] is required for this to work. To have [inertia], an active
-   * [CollisionShape3D] must be a child of the node, or you can manually set [inertia].
+   * **Note:** [inertia] is required for this to work. To have [inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [inertia].
    */
-  public final fun applyTorqueImpulse(impulse: Vector3): Unit {
+  public final fun applyTorqueImpulse(impulse: Vector3) {
     TransferContext.writeArguments(VECTOR3 to impulse)
     TransferContext.callMethod(ptr, MethodBindings.applyTorqueImpulsePtr, NIL)
   }
 
   /**
-   * Applies a directional force without affecting rotation. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a directional force without affecting rotation. A force is time dependent and meant to be applied every physics update.
    *
    * This is equivalent to using [applyForce] at the body's center of mass.
    */
-  public final fun applyCentralForce(force: Vector3): Unit {
+  public final fun applyCentralForce(force: Vector3) {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.applyCentralForcePtr, NIL)
   }
 
   /**
-   * Applies a positioned force to the body. A force is time dependent and meant to be applied every
-   * physics update.
+   * Applies a positioned force to the body. A force is time dependent and meant to be applied every physics update.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
+  public final fun applyForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)) {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.applyForcePtr, NIL)
   }
 
   /**
-   * Applies a rotational force without affecting position. A force is time dependent and meant to
-   * be applied every physics update.
+   * Applies a rotational force without affecting position. A force is time dependent and meant to be applied every physics update.
    *
-   * **Note:** [inertia] is required for this to work. To have [inertia], an active
-   * [CollisionShape3D] must be a child of the node, or you can manually set [inertia].
+   * **Note:** [inertia] is required for this to work. To have [inertia], an active [CollisionShape3D] must be a child of the node, or you can manually set [inertia].
    */
-  public final fun applyTorque(torque: Vector3): Unit {
+  public final fun applyTorque(torque: Vector3) {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.applyTorquePtr, NIL)
   }
 
   /**
-   * Adds a constant directional force without affecting rotation that keeps being applied over time
-   * until cleared with `constant_force = Vector3(0, 0, 0)`.
+   * Adds a constant directional force without affecting rotation that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.
    *
    * This is equivalent to using [addConstantForce] at the body's center of mass.
    */
-  public final fun addConstantCentralForce(force: Vector3): Unit {
+  public final fun addConstantCentralForce(force: Vector3) {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.addConstantCentralForcePtr, NIL)
   }
 
   /**
-   * Adds a constant positioned force to the body that keeps being applied over time until cleared
-   * with `constant_force = Vector3(0, 0, 0)`.
+   * Adds a constant positioned force to the body that keeps being applied over time until cleared with `constant_force = Vector3(0, 0, 0)`.
    *
    * [position] is the offset from the body origin in global coordinates.
    */
   @JvmOverloads
-  public final fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)): Unit {
+  public final fun addConstantForce(force: Vector3, position: Vector3 = Vector3(0, 0, 0)) {
     TransferContext.writeArguments(VECTOR3 to force, VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.addConstantForcePtr, NIL)
   }
 
   /**
-   * Adds a constant rotational force without affecting position that keeps being applied over time
-   * until cleared with `constant_torque = Vector3(0, 0, 0)`.
+   * Adds a constant rotational force without affecting position that keeps being applied over time until cleared with `constant_torque = Vector3(0, 0, 0)`.
    */
-  public final fun addConstantTorque(torque: Vector3): Unit {
+  public final fun addConstantTorque(torque: Vector3) {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.addConstantTorquePtr, NIL)
   }
 
-  public final fun setConstantForce(force: Vector3): Unit {
+  public final fun setConstantForce(force: Vector3) {
     TransferContext.writeArguments(VECTOR3 to force)
     TransferContext.callMethod(ptr, MethodBindings.setConstantForcePtr, NIL)
   }
@@ -1016,7 +903,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setConstantTorque(torque: Vector3): Unit {
+  public final fun setConstantTorque(torque: Vector3) {
     TransferContext.writeArguments(VECTOR3 to torque)
     TransferContext.callMethod(ptr, MethodBindings.setConstantTorquePtr, NIL)
   }
@@ -1027,7 +914,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setSleeping(sleeping: Boolean): Unit {
+  public final fun setSleeping(sleeping: Boolean) {
     TransferContext.writeArguments(BOOL to sleeping)
     TransferContext.callMethod(ptr, MethodBindings.setSleepingPtr, NIL)
   }
@@ -1038,7 +925,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCanSleep(ableToSleep: Boolean): Unit {
+  public final fun setCanSleep(ableToSleep: Boolean) {
     TransferContext.writeArguments(BOOL to ableToSleep)
     TransferContext.callMethod(ptr, MethodBindings.setCanSleepPtr, NIL)
   }
@@ -1049,7 +936,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLockRotationEnabled(lockRotation: Boolean): Unit {
+  public final fun setLockRotationEnabled(lockRotation: Boolean) {
     TransferContext.writeArguments(BOOL to lockRotation)
     TransferContext.callMethod(ptr, MethodBindings.setLockRotationEnabledPtr, NIL)
   }
@@ -1060,7 +947,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFreezeEnabled(freezeMode: Boolean): Unit {
+  public final fun setFreezeEnabled(freezeMode: Boolean) {
     TransferContext.writeArguments(BOOL to freezeMode)
     TransferContext.callMethod(ptr, MethodBindings.setFreezeEnabledPtr, NIL)
   }
@@ -1071,7 +958,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFreezeMode(freezeMode: FreezeMode): Unit {
+  public final fun setFreezeMode(freezeMode: FreezeMode) {
     TransferContext.writeArguments(LONG to freezeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setFreezeModePtr, NIL)
   }
@@ -1083,12 +970,9 @@ public open class RigidBody3D : PhysicsBody3D() {
   }
 
   /**
-   * Returns a list of the bodies colliding with this one. Requires [contactMonitor] to be set to
-   * `true` and [maxContactsReported] to be set high enough to detect all the collisions.
+   * Returns a list of the bodies colliding with this one. Requires [contactMonitor] to be set to `true` and [maxContactsReported] to be set high enough to detect all the collisions.
    *
-   * **Note:** The result of this test is not immediate after moving objects. For performance, list
-   * of collisions is updated once per frame and before the physics step. Consider using signals
-   * instead.
+   * **Note:** The result of this test is not immediate after moving objects. For performance, list of collisions is updated once per frame and before the physics step. Consider using signals instead.
    */
   public final fun getCollidingBodies(): VariantArray<Node3D> {
     TransferContext.writeArguments()
@@ -1100,13 +984,11 @@ public open class RigidBody3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * Static body freeze mode (default). The body is not affected by gravity and forces. It can be
-     * only moved by user code and doesn't collide with other bodies along its path.
+     * Static body freeze mode (default). The body is not affected by gravity and forces. It can be only moved by user code and doesn't collide with other bodies along its path.
      */
     STATIC(0),
     /**
-     * Kinematic body freeze mode. Similar to [FREEZE_MODE_STATIC], but collides with other bodies
-     * along its path when moved. Useful for a frozen body that needs to be animated.
+     * Kinematic body freeze mode. Similar to [FREEZE_MODE_STATIC], but collides with other bodies along its path when moved. Useful for a frozen body that needs to be animated.
      */
     KINEMATIC(1),
     ;
@@ -1125,13 +1007,11 @@ public open class RigidBody3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's center of mass is calculated automatically based on its shapes. This
-     * assumes that the shapes' origins are also their center of mass.
+     * In this mode, the body's center of mass is calculated automatically based on its shapes. This assumes that the shapes' origins are also their center of mass.
      */
     AUTO(0),
     /**
-     * In this mode, the body's center of mass is set through [centerOfMass]. Defaults to the body's
-     * origin position.
+     * In this mode, the body's center of mass is set through [centerOfMass]. Defaults to the body's origin position.
      */
     CUSTOM(1),
     ;
@@ -1150,8 +1030,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     id: Long,
   ) {
     /**
-     * In this mode, the body's damping value is added to any value set in areas or the default
-     * value.
+     * In this mode, the body's damping value is added to any value set in areas or the default value.
      */
     COMBINE(0),
     /**
@@ -1174,180 +1053,180 @@ public open class RigidBody3D : PhysicsBody3D() {
 
   public object MethodBindings {
     internal val setMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_mass", 373806689)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_mass", 373_806_689)
 
     internal val getMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_mass", 1740695150)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_mass", 1_740_695_150)
 
     internal val setInertiaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_inertia", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_inertia", 3_460_891_852)
 
     internal val getInertiaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_inertia", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_inertia", 3_360_562_783)
 
     internal val setCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass_mode", 3625866032)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass_mode", 3_625_866_032)
 
     internal val getCenterOfMassModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass_mode", 237405040)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass_mode", 237_405_040)
 
     internal val setCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_center_of_mass", 3_460_891_852)
 
     internal val getCenterOfMassPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_center_of_mass", 3_360_562_783)
 
     internal val setPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_physics_material_override", 1784508650)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_physics_material_override", 1_784_508_650)
 
     internal val getPhysicsMaterialOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_physics_material_override", 2521850424)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_physics_material_override", 2_521_850_424)
 
     internal val setLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_velocity", 3_460_891_852)
 
     internal val getLinearVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_velocity", 3_360_562_783)
 
     internal val setAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_velocity", 3_460_891_852)
 
     internal val getAngularVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_velocity", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_velocity", 3_360_562_783)
 
     internal val getInverseInertiaTensorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_inverse_inertia_tensor", 2716978435)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_inverse_inertia_tensor", 2_716_978_435)
 
     internal val setGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_gravity_scale", 373806689)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_gravity_scale", 373_806_689)
 
     internal val getGravityScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_gravity_scale", 1740695150)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_gravity_scale", 1_740_695_150)
 
     internal val setLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp_mode", 1802035050)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp_mode", 1_802_035_050)
 
     internal val getLinearDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp_mode", 1366206940)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp_mode", 1_366_206_940)
 
     internal val setAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp_mode", 1802035050)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp_mode", 1_802_035_050)
 
     internal val getAngularDampModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp_mode", 1366206940)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp_mode", 1_366_206_940)
 
     internal val setLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp", 373806689)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_linear_damp", 373_806_689)
 
     internal val getLinearDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp", 1740695150)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_linear_damp", 1_740_695_150)
 
     internal val setAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp", 373806689)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_angular_damp", 373_806_689)
 
     internal val getAngularDampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp", 1740695150)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_angular_damp", 1_740_695_150)
 
     internal val setMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_max_contacts_reported", 1286410249)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_max_contacts_reported", 1_286_410_249)
 
     internal val getMaxContactsReportedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_max_contacts_reported", 3905245786)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_max_contacts_reported", 3_905_245_786)
 
     internal val getContactCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_contact_count", 3905245786)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_contact_count", 3_905_245_786)
 
     internal val setUseCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_custom_integrator", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_custom_integrator", 2_586_408_642)
 
     internal val isUsingCustomIntegratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_custom_integrator", 2240911060)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_custom_integrator", 2_240_911_060)
 
     internal val setContactMonitorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_contact_monitor", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_contact_monitor", 2_586_408_642)
 
     internal val isContactMonitorEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_contact_monitor_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_contact_monitor_enabled", 36_873_697)
 
     internal val setUseContinuousCollisionDetectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_continuous_collision_detection", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_use_continuous_collision_detection", 2_586_408_642)
 
     internal val isUsingContinuousCollisionDetectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_continuous_collision_detection", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_using_continuous_collision_detection", 36_873_697)
 
     internal val setAxisVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_axis_velocity", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_axis_velocity", 3_460_891_852)
 
     internal val applyCentralImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_impulse", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_impulse", 3_460_891_852)
 
     internal val applyImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_impulse", 2754756483)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_impulse", 2_754_756_483)
 
     internal val applyTorqueImpulsePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque_impulse", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque_impulse", 3_460_891_852)
 
     internal val applyCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_force", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_central_force", 3_460_891_852)
 
     internal val applyForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_force", 2754756483)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_force", 2_754_756_483)
 
     internal val applyTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "apply_torque", 3_460_891_852)
 
     internal val addConstantCentralForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_central_force", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_central_force", 3_460_891_852)
 
     internal val addConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_force", 2754756483)
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_force", 2_754_756_483)
 
     internal val addConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_torque", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "add_constant_torque", 3_460_891_852)
 
     internal val setConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_force", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_force", 3_460_891_852)
 
     internal val getConstantForcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_force", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_force", 3_360_562_783)
 
     internal val setConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_torque", 3460891852)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_constant_torque", 3_460_891_852)
 
     internal val getConstantTorquePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_torque", 3360562783)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_constant_torque", 3_360_562_783)
 
     internal val setSleepingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_sleeping", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_sleeping", 2_586_408_642)
 
     internal val isSleepingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_sleeping", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_sleeping", 36_873_697)
 
     internal val setCanSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_can_sleep", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_can_sleep", 2_586_408_642)
 
     internal val isAbleToSleepPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_able_to_sleep", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_able_to_sleep", 36_873_697)
 
     internal val setLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_lock_rotation_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_lock_rotation_enabled", 2_586_408_642)
 
     internal val isLockRotationEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_lock_rotation_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_lock_rotation_enabled", 36_873_697)
 
     internal val setFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_enabled", 2_586_408_642)
 
     internal val isFreezeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "is_freeze_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RigidBody3D", "is_freeze_enabled", 36_873_697)
 
     internal val setFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_mode", 1319914653)
+        TypeManager.getMethodBindPtr("RigidBody3D", "set_freeze_mode", 1_319_914_653)
 
     internal val getFreezeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_freeze_mode", 2008423905)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_freeze_mode", 2_008_423_905)
 
     internal val getCollidingBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RigidBody3D", "get_colliding_bodies", 3995934104)
+        TypeManager.getMethodBindPtr("RigidBody3D", "get_colliding_bodies", 3_995_934_104)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,16 +27,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These
- * positions can be on the same [NavigationRegion3D] or on two different ones. Links are useful to
- * express navigation methods other than traveling along the surface of the navigation mesh, such as
- * ziplines, teleporters, or gaps that can be jumped across.
+ * A link between two positions on [NavigationRegion3D]s that agents can be routed through. These positions can be on the same [NavigationRegion3D] or on two different ones. Links are useful to express navigation methods other than traveling along the surface of the navigation mesh, such as ziplines, teleporters, or gaps that can be jumped across.
  */
 @GodotBaseType
 public open class NavigationLink3D : Node3D() {
   /**
-   * Whether this link is currently active. If `false`, [NavigationServer3D.mapGetPath] will ignore
-   * this link.
+   * Whether this link is currently active. If `false`, [NavigationServer3D.mapGetPath] will ignore this link.
    */
   public final inline var enabled: Boolean
     @JvmName("enabledProperty")
@@ -50,8 +43,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * Whether this link can be traveled in both directions or only from [startPosition] to
-   * [endPosition].
+   * Whether this link can be traveled in both directions or only from [startPosition] to [endPosition].
    */
   public final inline var bidirectional: Boolean
     @JvmName("bidirectionalProperty")
@@ -62,8 +54,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * A bitfield determining all navigation layers the link belongs to. These navigation layers will
-   * be checked when requesting a path with [NavigationServer3D.mapGetPath].
+   * A bitfield determining all navigation layers the link belongs to. These navigation layers will be checked when requesting a path with [NavigationServer3D.mapGetPath].
    */
   public final inline var navigationLayers: Long
     @JvmName("navigationLayersProperty")
@@ -78,15 +69,11 @@ public open class NavigationLink3D : Node3D() {
    *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
    *
-   * The distance the link will search is controlled by
-   * [NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by [NavigationServer3D.mapSetLinkConnectionRadius].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var startPosition: Vector3
@@ -102,15 +89,11 @@ public open class NavigationLink3D : Node3D() {
    *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
    *
-   * The distance the link will search is controlled by
-   * [NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by [NavigationServer3D.mapSetLinkConnectionRadius].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var endPosition: Vector3
@@ -122,8 +105,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding enters this link from another regions navigation mesh the [enterCost] value is
-   * added to the path distance for determining the shortest path.
+   * When pathfinding enters this link from another regions navigation mesh the [enterCost] value is added to the path distance for determining the shortest path.
    */
   public final inline var enterCost: Float
     @JvmName("enterCostProperty")
@@ -134,8 +116,7 @@ public open class NavigationLink3D : Node3D() {
     }
 
   /**
-   * When pathfinding moves along the link the traveled distance is multiplied with [travelCost] for
-   * determining the shortest path.
+   * When pathfinding moves along the link the traveled distance is multiplied with [travelCost] for determining the shortest path.
    */
   public final inline var travelCost: Float
     @JvmName("travelCostProperty")
@@ -145,7 +126,7 @@ public open class NavigationLink3D : Node3D() {
       setTravelCost(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(377, scriptIndex)
   }
 
@@ -164,8 +145,7 @@ public open class NavigationLink3D : Node3D() {
    *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
    *
-   * The distance the link will search is controlled by
-   * [NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by [NavigationServer3D.mapSetLinkConnectionRadius].
    */
   @CoreTypeHelper
   public final fun startPositionMutate(block: Vector3.() -> Unit): Vector3 = startPosition.apply {
@@ -188,8 +168,7 @@ public open class NavigationLink3D : Node3D() {
    *
    * This position will search out the nearest polygon in the navigation mesh to attach to.
    *
-   * The distance the link will search is controlled by
-   * [NavigationServer3D.mapSetLinkConnectionRadius].
+   * The distance the link will search is controlled by [NavigationServer3D.mapSetLinkConnectionRadius].
    */
   @CoreTypeHelper
   public final fun endPositionMutate(block: Vector3.() -> Unit): Vector3 = endPosition.apply {
@@ -206,7 +185,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -218,11 +197,9 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Sets the [RID] of the navigation map this link should use. By default the link will
-   * automatically join the [World3D] default navigation map so this function is only required to
-   * override the default map.
+   * Sets the [RID] of the navigation map this link should use. By default the link will automatically join the [World3D] default navigation map so this function is only required to override the default map.
    */
-  public final fun setNavigationMap(navigationMap: RID): Unit {
+  public final fun setNavigationMap(navigationMap: RID) {
     TransferContext.writeArguments(_RID to navigationMap)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationMapPtr, NIL)
   }
@@ -236,7 +213,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setBidirectional(bidirectional: Boolean): Unit {
+  public final fun setBidirectional(bidirectional: Boolean) {
     TransferContext.writeArguments(BOOL to bidirectional)
     TransferContext.callMethod(ptr, MethodBindings.setBidirectionalPtr, NIL)
   }
@@ -247,7 +224,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNavigationLayers(navigationLayers: Long): Unit {
+  public final fun setNavigationLayers(navigationLayers: Long) {
     TransferContext.writeArguments(LONG to navigationLayers)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
   }
@@ -259,17 +236,15 @@ public open class NavigationLink3D : Node3D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask,
-   * given a [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [navigationLayers] bitmask, given a [layerNumber] between 1 and 32.
    */
-  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setNavigationLayerValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayerValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given
-   * a [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [navigationLayers] bitmask is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getNavigationLayerValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -277,7 +252,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setStartPosition(position: Vector3): Unit {
+  public final fun setStartPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setStartPositionPtr, NIL)
   }
@@ -288,7 +263,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEndPosition(position: Vector3): Unit {
+  public final fun setEndPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setEndPositionPtr, NIL)
   }
@@ -302,7 +277,7 @@ public open class NavigationLink3D : Node3D() {
   /**
    * Sets the [startPosition] that is relative to the link from a global [position].
    */
-  public final fun setGlobalStartPosition(position: Vector3): Unit {
+  public final fun setGlobalStartPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalStartPositionPtr, NIL)
   }
@@ -319,7 +294,7 @@ public open class NavigationLink3D : Node3D() {
   /**
    * Sets the [endPosition] that is relative to the link from a global [position].
    */
-  public final fun setGlobalEndPosition(position: Vector3): Unit {
+  public final fun setGlobalEndPosition(position: Vector3) {
     TransferContext.writeArguments(VECTOR3 to position)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalEndPositionPtr, NIL)
   }
@@ -333,7 +308,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setEnterCost(enterCost: Float): Unit {
+  public final fun setEnterCost(enterCost: Float) {
     TransferContext.writeArguments(DOUBLE to enterCost.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnterCostPtr, NIL)
   }
@@ -344,7 +319,7 @@ public open class NavigationLink3D : Node3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTravelCost(travelCost: Float): Unit {
+  public final fun setTravelCost(travelCost: Float) {
     TransferContext.writeArguments(DOUBLE to travelCost.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTravelCostPtr, NIL)
   }
@@ -359,72 +334,72 @@ public open class NavigationLink3D : Node3D() {
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_rid", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_rid", 2_944_877_500)
 
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enabled", 2_586_408_642)
 
     internal val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "is_enabled", 36873697)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "is_enabled", 36_873_697)
 
     internal val setNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_map", 2722037293)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_map", 2_722_037_293)
 
     internal val getNavigationMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_map", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_map", 2_944_877_500)
 
     internal val setBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_bidirectional", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_bidirectional", 2_586_408_642)
 
     internal val isBidirectionalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "is_bidirectional", 36873697)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "is_bidirectional", 36_873_697)
 
     internal val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layers", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layers", 1_286_410_249)
 
     internal val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layers", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layers", 3_905_245_786)
 
     internal val setNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layer_value", 300928843)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_navigation_layer_value", 300_928_843)
 
     internal val getNavigationLayerValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layer_value", 1116898809)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_navigation_layer_value", 1_116_898_809)
 
     internal val setStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_start_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_start_position", 3_460_891_852)
 
     internal val getStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_start_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_start_position", 3_360_562_783)
 
     internal val setEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_end_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_end_position", 3_460_891_852)
 
     internal val getEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_end_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_end_position", 3_360_562_783)
 
     internal val setGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_start_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_start_position", 3_460_891_852)
 
     internal val getGlobalStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_start_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_start_position", 3_360_562_783)
 
     internal val setGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_end_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_global_end_position", 3_460_891_852)
 
     internal val getGlobalEndPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_end_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_global_end_position", 3_360_562_783)
 
     internal val setEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enter_cost", 373806689)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_enter_cost", 373_806_689)
 
     internal val getEnterCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_enter_cost", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_enter_cost", 1_740_695_150)
 
     internal val setTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "set_travel_cost", 373806689)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "set_travel_cost", 373_806_689)
 
     internal val getTravelCostPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationLink3D", "get_travel_cost", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationLink3D", "get_travel_cost", 1_740_695_150)
   }
 }

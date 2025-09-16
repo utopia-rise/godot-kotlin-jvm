@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,25 +22,20 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest
- * pose and acts as a single point of access to its bones.
+ * [Skeleton2D] parents a hierarchy of [Bone2D] nodes. It holds a reference to each [Bone2D]'s rest pose and acts as a single point of access to its bones.
  *
- * To set up different types of inverse kinematics for the given Skeleton2D, a
- * [SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing
- * [SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
+ * To set up different types of inverse kinematics for the given Skeleton2D, a [SkeletonModificationStack2D] should be created. The inverse kinematics be applied by increasing [SkeletonModificationStack2D.modificationCount] and creating the desired number of modifications.
  */
 @GodotBaseType
 public open class Skeleton2D : Node2D() {
   /**
-   * Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used
-   * internally within the skeleton.
+   * Emitted when the [Bone2D] setup attached to this skeletons changes. This is primarily used internally within the skeleton.
    */
   public val boneSetupChanged: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(593, scriptIndex)
   }
 
@@ -57,9 +49,7 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is
-   * identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to
-   * bottom, adding the children of each branch before moving to the next sibling.
+   * Returns a [Bone2D] from the node hierarchy parented by Skeleton2D. The object to return is identified by the parameter [idx]. Bones are indexed by descending the node hierarchy from top to bottom, adding the children of each branch before moving to the next sibling.
    */
   public final fun getBone(idx: Int): Bone2D? {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -79,7 +69,7 @@ public open class Skeleton2D : Node2D() {
   /**
    * Sets the [SkeletonModificationStack2D] attached to this skeleton.
    */
-  public final fun setModificationStack(modificationStack: SkeletonModificationStack2D?): Unit {
+  public final fun setModificationStack(modificationStack: SkeletonModificationStack2D?) {
     TransferContext.writeArguments(OBJECT to modificationStack)
     TransferContext.callMethod(ptr, MethodBindings.setModificationStackPtr, NIL)
   }
@@ -94,10 +84,9 @@ public open class Skeleton2D : Node2D() {
   }
 
   /**
-   * Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one
-   * assigned.
+   * Executes all the modifications on the [SkeletonModificationStack2D], if the Skeleton2D has one assigned.
    */
-  public final fun executeModifications(delta: Float, executionMode: Int): Unit {
+  public final fun executeModifications(delta: Float, executionMode: Int) {
     TransferContext.writeArguments(DOUBLE to delta.toDouble(), LONG to executionMode.toLong())
     TransferContext.callMethod(ptr, MethodBindings.executeModificationsPtr, NIL)
   }
@@ -105,18 +94,16 @@ public open class Skeleton2D : Node2D() {
   /**
    * Sets the local pose transform, [overridePose], for the bone at [boneIdx].
    *
-   * [strength] is the interpolation strength that will be used when applying the pose, and
-   * [persistent] determines if the applied pose will remain.
+   * [strength] is the interpolation strength that will be used when applying the pose, and [persistent] determines if the applied pose will remain.
    *
-   * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at
-   * [boneIdx]!
+   * **Note:** The pose transform needs to be a local transform relative to the [Bone2D] node at [boneIdx]!
    */
   public final fun setBoneLocalPoseOverride(
     boneIdx: Int,
     overridePose: Transform2D,
     strength: Float,
     persistent: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), TRANSFORM2D to overridePose, DOUBLE to strength.toDouble(), BOOL to persistent)
     TransferContext.callMethod(ptr, MethodBindings.setBoneLocalPoseOverridePtr, NIL)
   }
@@ -134,27 +121,27 @@ public open class Skeleton2D : Node2D() {
 
   public object MethodBindings {
     internal val getBoneCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_count", 3905245786)
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_count", 3_905_245_786)
 
     internal val getBonePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone", 2556267111)
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone", 2_556_267_111)
 
     internal val getSkeletonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "get_skeleton", 2944877500)
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_skeleton", 2_944_877_500)
 
     internal val setModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "set_modification_stack", 3907307132)
+        TypeManager.getMethodBindPtr("Skeleton2D", "set_modification_stack", 3_907_307_132)
 
     internal val getModificationStackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "get_modification_stack", 2107508396)
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_modification_stack", 2_107_508_396)
 
     internal val executeModificationsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "execute_modifications", 1005356550)
+        TypeManager.getMethodBindPtr("Skeleton2D", "execute_modifications", 1_005_356_550)
 
     internal val setBoneLocalPoseOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "set_bone_local_pose_override", 555457532)
+        TypeManager.getMethodBindPtr("Skeleton2D", "set_bone_local_pose_override", 555_457_532)
 
     internal val getBoneLocalPoseOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_local_pose_override", 2995540667)
+        TypeManager.getMethodBindPtr("Skeleton2D", "get_bone_local_pose_override", 2_995_540_667)
   }
 }

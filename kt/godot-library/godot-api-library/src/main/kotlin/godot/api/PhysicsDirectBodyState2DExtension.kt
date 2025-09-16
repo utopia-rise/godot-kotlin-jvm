@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,96 +12,80 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * This class extends [PhysicsDirectBodyState2D] by providing additional virtual methods that can be
- * overridden. When these methods are overridden, they will be called instead of the internal methods
- * of the physics server.
+ * This class extends [PhysicsDirectBodyState2D] by providing additional virtual methods that can be overridden. When these methods are overridden, they will be called instead of the internal methods of the physics server.
  *
  * Intended for use with GDExtension to create custom implementations of [PhysicsDirectBodyState2D].
  */
 @GodotBaseType
 public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(462, scriptIndex)
   }
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalGravity] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalGravity] and its respective getter.
    */
   public abstract fun _getTotalGravity(): Vector2
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalLinearDamp] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalLinearDamp] and its respective getter.
    */
   public abstract fun _getTotalLinearDamp(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalAngularDamp] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.totalAngularDamp] and its respective getter.
    */
   public abstract fun _getTotalAngularDamp(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.centerOfMass] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.centerOfMass] and its respective getter.
    */
   public abstract fun _getCenterOfMass(): Vector2
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.centerOfMassLocal] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.centerOfMassLocal] and its respective getter.
    */
   public abstract fun _getCenterOfMassLocal(): Vector2
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.inverseMass] and its respective
-   * getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.inverseMass] and its respective getter.
    */
   public abstract fun _getInverseMass(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.inverseInertia] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.inverseInertia] and its respective getter.
    */
   public abstract fun _getInverseInertia(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.linearVelocity] and its
-   * respective setter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.linearVelocity] and its respective setter.
    */
-  public abstract fun _setLinearVelocity(velocity: Vector2): Unit
+  public abstract fun _setLinearVelocity(velocity: Vector2)
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.linearVelocity] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.linearVelocity] and its respective getter.
    */
   public abstract fun _getLinearVelocity(): Vector2
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.angularVelocity] and its
-   * respective setter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.angularVelocity] and its respective setter.
    */
-  public abstract fun _setAngularVelocity(velocity: Float): Unit
+  public abstract fun _setAngularVelocity(velocity: Float)
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.angularVelocity] and its
-   * respective getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.angularVelocity] and its respective getter.
    */
   public abstract fun _getAngularVelocity(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.transform] and its respective
-   * setter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.transform] and its respective setter.
    */
-  public abstract fun _setTransform(transform: Transform2D): Unit
+  public abstract fun _setTransform(transform: Transform2D)
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.transform] and its respective
-   * getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.transform] and its respective getter.
    */
   public abstract fun _getTransform(): Transform2D
 
@@ -116,52 +97,52 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyCentralImpulse].
    */
-  public abstract fun _applyCentralImpulse(impulse: Vector2): Unit
+  public abstract fun _applyCentralImpulse(impulse: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyImpulse].
    */
-  public abstract fun _applyImpulse(impulse: Vector2, position: Vector2): Unit
+  public abstract fun _applyImpulse(impulse: Vector2, position: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyTorqueImpulse].
    */
-  public abstract fun _applyTorqueImpulse(impulse: Float): Unit
+  public abstract fun _applyTorqueImpulse(impulse: Float)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyCentralForce].
    */
-  public abstract fun _applyCentralForce(force: Vector2): Unit
+  public abstract fun _applyCentralForce(force: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyForce].
    */
-  public abstract fun _applyForce(force: Vector2, position: Vector2): Unit
+  public abstract fun _applyForce(force: Vector2, position: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.applyTorque].
    */
-  public abstract fun _applyTorque(torque: Float): Unit
+  public abstract fun _applyTorque(torque: Float)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantCentralForce].
    */
-  public abstract fun _addConstantCentralForce(force: Vector2): Unit
+  public abstract fun _addConstantCentralForce(force: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantForce].
    */
-  public abstract fun _addConstantForce(force: Vector2, position: Vector2): Unit
+  public abstract fun _addConstantForce(force: Vector2, position: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.addConstantTorque].
    */
-  public abstract fun _addConstantTorque(torque: Float): Unit
+  public abstract fun _addConstantTorque(torque: Float)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.setConstantForce].
    */
-  public abstract fun _setConstantForce(force: Vector2): Unit
+  public abstract fun _setConstantForce(force: Vector2)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getConstantForce].
@@ -171,7 +152,7 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   /**
    * Overridable version of [PhysicsDirectBodyState2D.setConstantTorque].
    */
-  public abstract fun _setConstantTorque(torque: Float): Unit
+  public abstract fun _setConstantTorque(torque: Float)
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getConstantTorque].
@@ -179,14 +160,12 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   public abstract fun _getConstantTorque(): Float
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.sleeping] and its respective
-   * setter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.sleeping] and its respective setter.
    */
-  public abstract fun _setSleepState(enabled: Boolean): Unit
+  public abstract fun _setSleepState(enabled: Boolean)
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.sleeping] and its respective
-   * getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.sleeping] and its respective getter.
    */
   public abstract fun _isSleeping(): Boolean
 
@@ -251,15 +230,14 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
   public abstract fun _getContactImpulse(contactIdx: Int): Vector2
 
   /**
-   * Implement to override the behavior of [PhysicsDirectBodyState2D.step] and its respective
-   * getter.
+   * Implement to override the behavior of [PhysicsDirectBodyState2D.step] and its respective getter.
    */
   public abstract fun _getStep(): Float
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.integrateForces].
    */
-  public abstract fun _integrateForces(): Unit
+  public abstract fun _integrateForces()
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getSpaceState].

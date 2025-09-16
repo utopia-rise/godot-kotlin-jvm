@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,12 +15,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned
- * [mesh]. It will emit from the mesh's surfaces, either all or only the specified one.
+ * [VisualShaderNodeParticleEmitter] that makes the particles emitted in a shape of the assigned [mesh]. It will emit from the mesh's surfaces, either all or only the specified one.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticleEmitter() {
@@ -50,8 +45,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     }
 
   /**
-   * Index of the surface that emits particles. [useAllSurfaces] must be `false` for this to take
-   * effect.
+   * Index of the surface that emits particles. [useAllSurfaces] must be `false` for this to take effect.
    */
   public final inline var surfaceIndex: Int
     @JvmName("surfaceIndexProperty")
@@ -61,11 +55,11 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
       setSurfaceIndex(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(777, scriptIndex)
   }
 
-  public final fun setMesh(mesh: Mesh?): Unit {
+  public final fun setMesh(mesh: Mesh?) {
     TransferContext.writeArguments(OBJECT to mesh)
     TransferContext.callMethod(ptr, MethodBindings.setMeshPtr, NIL)
   }
@@ -76,7 +70,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public final fun setUseAllSurfaces(enabled: Boolean): Unit {
+  public final fun setUseAllSurfaces(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setUseAllSurfacesPtr, NIL)
   }
@@ -87,7 +81,7 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSurfaceIndex(surfaceIndex: Int): Unit {
+  public final fun setSurfaceIndex(surfaceIndex: Int) {
     TransferContext.writeArguments(LONG to surfaceIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSurfaceIndexPtr, NIL)
   }
@@ -102,21 +96,21 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
 
   public object MethodBindings {
     internal val setMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194775623)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_mesh", 194_775_623)
 
     internal val getMeshPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1808005922)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_mesh", 1_808_005_922)
 
     internal val setUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_use_all_surfaces", 2_586_408_642)
 
     internal val isUseAllSurfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "is_use_all_surfaces", 36_873_697)
 
     internal val setSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1286410249)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "set_surface_index", 1_286_410_249)
 
     internal val getSurfaceIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3905245786)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleMeshEmitter", "get_surface_index", 3_905_245_786)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,9 +23,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements
- * can be selected, resized, and repositioned, but they cannot be connected. For a graph element that
- * allows for connections see [GraphNode].
+ * [GraphElement] allows to create custom elements for a [GraphEdit] graph. By default such elements can be selected, resized, and repositioned, but they cannot be connected. For a graph element that allows for connections see [GraphNode].
  */
 @GodotBaseType
 public open class GraphElement : Container() {
@@ -43,8 +38,7 @@ public open class GraphElement : Container() {
   public val nodeDeselected: Signal0 by Signal0
 
   /**
-   * Emitted when displaying the GraphElement over other ones is requested. Happens on focusing
-   * (clicking into) the GraphElement.
+   * Emitted when displaying the GraphElement over other ones is requested. Happens on focusing (clicking into) the GraphElement.
    */
   public val raiseRequest: Signal0 by Signal0
 
@@ -54,8 +48,7 @@ public open class GraphElement : Container() {
   public val deleteRequest: Signal0 by Signal0
 
   /**
-   * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle
-   * (see [resizable]).
+   * Emitted when resizing the GraphElement is requested. Happens on dragging the resizer handle (see [resizable]).
    */
   public val resizeRequest: Signal1<Vector2> by Signal1
 
@@ -78,11 +71,8 @@ public open class GraphElement : Container() {
    * The offset of the GraphElement, relative to the scroll offset of the [GraphEdit].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var positionOffset: Vector2
@@ -96,8 +86,7 @@ public open class GraphElement : Container() {
   /**
    * If `true`, the user can resize the GraphElement.
    *
-   * **Note:** Dragging the handle will only emit the [signal resize_request] and [signal
-   * resize_end] signals, the GraphElement needs to be resized manually.
+   * **Note:** Dragging the handle will only emit the [signal resize_request] and [signal resize_end] signals, the GraphElement needs to be resized manually.
    */
   public final inline var resizable: Boolean
     @JvmName("resizableProperty")
@@ -140,7 +129,7 @@ public open class GraphElement : Container() {
       setSelected(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(263, scriptIndex)
   }
 
@@ -163,7 +152,7 @@ public open class GraphElement : Container() {
      positionOffset = this
   }
 
-  public final fun setResizable(resizable: Boolean): Unit {
+  public final fun setResizable(resizable: Boolean) {
     TransferContext.writeArguments(BOOL to resizable)
     TransferContext.callMethod(ptr, MethodBindings.setResizablePtr, NIL)
   }
@@ -174,7 +163,7 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDraggable(draggable: Boolean): Unit {
+  public final fun setDraggable(draggable: Boolean) {
     TransferContext.writeArguments(BOOL to draggable)
     TransferContext.callMethod(ptr, MethodBindings.setDraggablePtr, NIL)
   }
@@ -185,7 +174,7 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSelectable(selectable: Boolean): Unit {
+  public final fun setSelectable(selectable: Boolean) {
     TransferContext.writeArguments(BOOL to selectable)
     TransferContext.callMethod(ptr, MethodBindings.setSelectablePtr, NIL)
   }
@@ -196,7 +185,7 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSelected(selected: Boolean): Unit {
+  public final fun setSelected(selected: Boolean) {
     TransferContext.writeArguments(BOOL to selected)
     TransferContext.callMethod(ptr, MethodBindings.setSelectedPtr, NIL)
   }
@@ -207,7 +196,7 @@ public open class GraphElement : Container() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPositionOffset(offset: Vector2): Unit {
+  public final fun setPositionOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setPositionOffsetPtr, NIL)
   }
@@ -222,33 +211,33 @@ public open class GraphElement : Container() {
 
   public object MethodBindings {
     internal val setResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_resizable", 2586408642)
+        TypeManager.getMethodBindPtr("GraphElement", "set_resizable", 2_586_408_642)
 
     internal val isResizablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_resizable", 36873697)
+        TypeManager.getMethodBindPtr("GraphElement", "is_resizable", 36_873_697)
 
     internal val setDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_draggable", 2586408642)
+        TypeManager.getMethodBindPtr("GraphElement", "set_draggable", 2_586_408_642)
 
     internal val isDraggablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_draggable", 2240911060)
+        TypeManager.getMethodBindPtr("GraphElement", "is_draggable", 2_240_911_060)
 
     internal val setSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selectable", 2586408642)
+        TypeManager.getMethodBindPtr("GraphElement", "set_selectable", 2_586_408_642)
 
     internal val isSelectablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_selectable", 2240911060)
+        TypeManager.getMethodBindPtr("GraphElement", "is_selectable", 2_240_911_060)
 
     internal val setSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_selected", 2586408642)
+        TypeManager.getMethodBindPtr("GraphElement", "set_selected", 2_586_408_642)
 
     internal val isSelectedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "is_selected", 2240911060)
+        TypeManager.getMethodBindPtr("GraphElement", "is_selected", 2_240_911_060)
 
     internal val setPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset", 743155724)
+        TypeManager.getMethodBindPtr("GraphElement", "set_position_offset", 743_155_724)
 
     internal val getPositionOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset", 3341600327)
+        TypeManager.getMethodBindPtr("GraphElement", "get_position_offset", 3_341_600_327)
   }
 }

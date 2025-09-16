@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,19 +19,13 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * Provides a low-level interface for creating parsers for
- * [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom
- * XML parsers.
+ * Provides a low-level interface for creating parsers for [url=https://en.wikipedia.org/wiki/XML]XML[/url] files. This class can serve as base to make custom XML parsers.
  *
- * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer]
- * method. Then, the [read] method must be called to parse the next nodes. Most of the methods take
- * into consideration the currently parsed node.
+ * To parse XML, you must open a file with the [open] method or a buffer with the [openBuffer] method. Then, the [read] method must be called to parse the next nodes. Most of the methods take into consideration the currently parsed node.
  *
- * Here is an example of using [XMLParser] to parse an SVG file (which is based on XML), printing
- * each element and its attributes as a dictionary:
+ * Here is an example of using [XMLParser] to parse an SVG file (which is based on XML), printing each element and its attributes as a dictionary:
  *
  * ```gdscript
  * //gdscript
@@ -70,7 +61,7 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class XMLParser : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(857, scriptIndex)
   }
 
@@ -93,11 +84,9 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the name of a node. This method will raise an error if the currently parsed node is a
-   * text node.
+   * Returns the name of a node. This method will raise an error if the currently parsed node is a text node.
    *
-   * **Note:** The content of a [NODE_CDATA] node and the comment string of a [NODE_COMMENT] node
-   * are also considered names.
+   * **Note:** The content of a [NODE_CDATA] node and the comment string of a [NODE_COMMENT] node are also considered names.
    */
   public final fun getNodeName(): String {
     TransferContext.writeArguments()
@@ -106,8 +95,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the contents of a text node. This method will raise an error if the current parsed node
-   * is of any other type.
+   * Returns the contents of a text node. This method will raise an error if the current parsed node is of any other type.
    */
   public final fun getNodeData(): String {
     TransferContext.writeArguments()
@@ -116,8 +104,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the byte offset of the currently parsed node since the beginning of the file or buffer.
-   * This is usually equivalent to the number of characters before the read position.
+   * Returns the byte offset of the currently parsed node since the beginning of the file or buffer. This is usually equivalent to the number of characters before the read position.
    */
   public final fun getNodeOffset(): Long {
     TransferContext.writeArguments()
@@ -128,8 +115,7 @@ public open class XMLParser : RefCounted() {
   /**
    * Returns the number of attributes in the currently parsed element.
    *
-   * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or
-   * [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
+   * **Note:** If this method is used while the currently parsed node is not [NODE_ELEMENT] or [NODE_ELEMENT_END], this count will not be updated and will still reflect the last element.
    */
   public final fun getAttributeCount(): Int {
     TransferContext.writeArguments()
@@ -147,8 +133,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by the [idx]
-   * index.
+   * Returns the value of an attribute of the currently parsed element, specified by the [idx] index.
    */
   public final fun getAttributeValue(idx: Int): String {
     TransferContext.writeArguments(LONG to idx.toLong())
@@ -166,8 +151,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [name].
-   * This method will raise an error if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name]. This method will raise an error if the element has no such attribute.
    */
   public final fun getNamedAttributeValue(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -176,8 +160,7 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Returns the value of an attribute of the currently parsed element, specified by its [name].
-   * This method will return an empty string if the element has no such attribute.
+   * Returns the value of an attribute of the currently parsed element, specified by its [name]. This method will return an empty string if the element has no such attribute.
    */
   public final fun getNamedAttributeValueSafe(name: String): String {
     TransferContext.writeArguments(STRING to name)
@@ -204,17 +187,15 @@ public open class XMLParser : RefCounted() {
   }
 
   /**
-   * Skips the current section. If the currently parsed node contains more inner nodes, they will be
-   * ignored and the cursor will go to the closing of the current element.
+   * Skips the current section. If the currently parsed node contains more inner nodes, they will be ignored and the cursor will go to the closing of the current element.
    */
-  public final fun skipSection(): Unit {
+  public final fun skipSection() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.skipSectionPtr, NIL)
   }
 
   /**
-   * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node
-   * there. This method returns an error code.
+   * Moves the buffer cursor to a certain offset (since the beginning) and reads the next node there. This method returns an error code.
    */
   public final fun seek(position: Long): Error {
     TransferContext.writeArguments(LONG to position)
@@ -286,52 +267,52 @@ public open class XMLParser : RefCounted() {
   public companion object
 
   public object MethodBindings {
-    internal val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read", 166280745)
+    internal val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read", 166_280_745)
 
     internal val getNodeTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_type", 2984359541)
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_type", 2_984_359_541)
 
     internal val getNodeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_name", 201670096)
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_name", 201_670_096)
 
     internal val getNodeDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_data", 201670096)
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_data", 201_670_096)
 
     internal val getNodeOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_node_offset", 3905245786)
+        TypeManager.getMethodBindPtr("XMLParser", "get_node_offset", 3_905_245_786)
 
     internal val getAttributeCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_count", 3905245786)
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_count", 3_905_245_786)
 
     internal val getAttributeNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_name", 844755477)
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_name", 844_755_477)
 
     internal val getAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_value", 844755477)
+        TypeManager.getMethodBindPtr("XMLParser", "get_attribute_value", 844_755_477)
 
     internal val hasAttributePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "has_attribute", 3927539163)
+        TypeManager.getMethodBindPtr("XMLParser", "has_attribute", 3_927_539_163)
 
     internal val getNamedAttributeValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value", 3135753539)
+        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value", 3_135_753_539)
 
     internal val getNamedAttributeValueSafePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe", 3135753539)
+        TypeManager.getMethodBindPtr("XMLParser", "get_named_attribute_value_safe", 3_135_753_539)
 
     internal val isEmptyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "is_empty", 36873697)
+        TypeManager.getMethodBindPtr("XMLParser", "is_empty", 36_873_697)
 
     internal val getCurrentLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "get_current_line", 3905245786)
+        TypeManager.getMethodBindPtr("XMLParser", "get_current_line", 3_905_245_786)
 
     internal val skipSectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "skip_section", 3218959716)
+        TypeManager.getMethodBindPtr("XMLParser", "skip_section", 3_218_959_716)
 
-    internal val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "seek", 844576869)
+    internal val seekPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "seek", 844_576_869)
 
-    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open", 166001499)
+    internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "open", 166_001_499)
 
     internal val openBufferPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XMLParser", "open_buffer", 680677267)
+        TypeManager.getMethodBindPtr("XMLParser", "open_buffer", 680_677_267)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,20 +18,14 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial]
- * functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of
- * a [Cubemap].
+ * A resource referenced in a [Sky] that is used to draw a background. [PanoramaSkyMaterial] functions similar to skyboxes in other engines, except it uses an equirectangular sky map instead of a [Cubemap].
  *
- * Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot
- * supports the Radiance HDR (`.hdr`) and OpenEXR (`.exr`) image formats for this purpose.
+ * Using an HDR panorama is strongly recommended for accurate, high-quality reflections. Godot supports the Radiance HDR (`.hdr`) and OpenEXR (`.exr`) image formats for this purpose.
  *
- * You can use
- * [url=https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html]this
- * tool[/url] to convert a cubemap to an equirectangular sky map.
+ * You can use [url=https://danilw.github.io/GLSL-howto/cubemap_to_panorama_js/cubemap_to_panorama.html]this tool[/url] to convert a cubemap to an equirectangular sky map.
  */
 @GodotBaseType
 public open class PanoramaSkyMaterial : Material() {
@@ -71,11 +62,11 @@ public open class PanoramaSkyMaterial : Material() {
       setEnergyMultiplier(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(445, scriptIndex)
   }
 
-  public final fun setPanorama(texture: Texture2D?): Unit {
+  public final fun setPanorama(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setPanoramaPtr, NIL)
   }
@@ -86,7 +77,7 @@ public open class PanoramaSkyMaterial : Material() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setFilteringEnabled(enabled: Boolean): Unit {
+  public final fun setFilteringEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFilteringEnabledPtr, NIL)
   }
@@ -97,7 +88,7 @@ public open class PanoramaSkyMaterial : Material() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnergyMultiplier(multiplier: Float): Unit {
+  public final fun setEnergyMultiplier(multiplier: Float) {
     TransferContext.writeArguments(DOUBLE to multiplier.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setEnergyMultiplierPtr, NIL)
   }
@@ -111,14 +102,14 @@ public open class PanoramaSkyMaterial : Material() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderRid(): RID {
+  override fun _getShaderRid(): RID {
     throw NotImplementedError("PanoramaSkyMaterial::_getShaderRid can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getShaderMode(): Shader.Mode {
+  override fun _getShaderMode(): Shader.Mode {
     throw NotImplementedError("PanoramaSkyMaterial::_getShaderMode can't be called from the JVM.")
   }
 
@@ -126,21 +117,21 @@ public open class PanoramaSkyMaterial : Material() {
 
   public object MethodBindings {
     internal val setPanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_panorama", 4051416890)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_panorama", 4_051_416_890)
 
     internal val getPanoramaPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_panorama", 3635182373)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_panorama", 3_635_182_373)
 
     internal val setFilteringEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_filtering_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_filtering_enabled", 2_586_408_642)
 
     internal val isFilteringEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "is_filtering_enabled", 36_873_697)
 
     internal val setEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "set_energy_multiplier", 373_806_689)
 
     internal val getEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("PanoramaSkyMaterial", "get_energy_multiplier", 1_740_695_150)
   }
 }

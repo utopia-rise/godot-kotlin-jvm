@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,30 +16,25 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or
- * vertical axis. Sliders are [Range]-based controls.
+ * Abstract base class for sliders, used to adjust a value by moving a grabber along a horizontal or vertical axis. Sliders are [Range]-based controls.
  */
 @GodotBaseType
 public open class Slider internal constructor() : Range() {
   /**
-   * Emitted when the grabber starts being dragged. This is emitted before the corresponding [signal
-   * Range.value_changed] signal.
+   * Emitted when the grabber starts being dragged. This is emitted before the corresponding [signal Range.value_changed] signal.
    */
   public val dragStarted: Signal0 by Signal0
 
   /**
-   * Emitted when the grabber stops being dragged. If [valueChanged] is `true`, [Range.value] is
-   * different from the value when the dragging was started.
+   * Emitted when the grabber stops being dragged. If [valueChanged] is `true`, [Range.value] is different from the value when the dragging was started.
    */
   public val dragEnded: Signal1<Boolean> by Signal1
 
   /**
-   * If `true`, the slider can be interacted with. If `false`, the value can be changed only by
-   * code.
+   * If `true`, the slider can be interacted with. If `false`, the value can be changed only by code.
    */
   public final inline var editable: Boolean
     @JvmName("editableProperty")
@@ -64,8 +56,7 @@ public open class Slider internal constructor() : Range() {
     }
 
   /**
-   * Number of ticks displayed on the slider, including border ticks. Ticks are
-   * uniformly-distributed value markers.
+   * Number of ticks displayed on the slider, including border ticks. Ticks are uniformly-distributed value markers.
    */
   public final inline var tickCount: Int
     @JvmName("tickCountProperty")
@@ -86,11 +77,11 @@ public open class Slider internal constructor() : Range() {
       setTicksOnBorders(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(611, scriptIndex)
   }
 
-  public final fun setTicks(count: Int): Unit {
+  public final fun setTicks(count: Int) {
     TransferContext.writeArguments(LONG to count.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTicksPtr, NIL)
   }
@@ -107,12 +98,12 @@ public open class Slider internal constructor() : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTicksOnBorders(ticksOnBorder: Boolean): Unit {
+  public final fun setTicksOnBorders(ticksOnBorder: Boolean) {
     TransferContext.writeArguments(BOOL to ticksOnBorder)
     TransferContext.callMethod(ptr, MethodBindings.setTicksOnBordersPtr, NIL)
   }
 
-  public final fun setEditable(editable: Boolean): Unit {
+  public final fun setEditable(editable: Boolean) {
     TransferContext.writeArguments(BOOL to editable)
     TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
   }
@@ -123,7 +114,7 @@ public open class Slider internal constructor() : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setScrollable(scrollable: Boolean): Unit {
+  public final fun setScrollable(scrollable: Boolean) {
     TransferContext.writeArguments(BOOL to scrollable)
     TransferContext.callMethod(ptr, MethodBindings.setScrollablePtr, NIL)
   }
@@ -138,27 +129,27 @@ public open class Slider internal constructor() : Range() {
 
   public object MethodBindings {
     internal val setTicksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_ticks", 1286410249)
+        TypeManager.getMethodBindPtr("Slider", "set_ticks", 1_286_410_249)
 
     internal val getTicksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "get_ticks", 3905245786)
+        TypeManager.getMethodBindPtr("Slider", "get_ticks", 3_905_245_786)
 
     internal val getTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "get_ticks_on_borders", 36873697)
+        TypeManager.getMethodBindPtr("Slider", "get_ticks_on_borders", 36_873_697)
 
     internal val setTicksOnBordersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders", 2586408642)
+        TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders", 2_586_408_642)
 
     internal val setEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_editable", 2586408642)
+        TypeManager.getMethodBindPtr("Slider", "set_editable", 2_586_408_642)
 
     internal val isEditablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "is_editable", 36873697)
+        TypeManager.getMethodBindPtr("Slider", "is_editable", 36_873_697)
 
     internal val setScrollablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "set_scrollable", 2586408642)
+        TypeManager.getMethodBindPtr("Slider", "set_scrollable", 2_586_408_642)
 
     internal val isScrollablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Slider", "is_scrollable", 36873697)
+        TypeManager.getMethodBindPtr("Slider", "is_scrollable", 36_873_697)
   }
 }

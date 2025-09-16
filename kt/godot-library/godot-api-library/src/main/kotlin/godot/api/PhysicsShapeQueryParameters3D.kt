@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -35,16 +32,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * By changing various properties of this object, such as the shape, you can configure the
- * parameters for [PhysicsDirectSpaceState3D.intersectShape].
+ * By changing various properties of this object, such as the shape, you can configure the parameters for [PhysicsDirectSpaceState3D.intersectShape].
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters3D : RefCounted() {
   /**
-   * The physics layers the query will detect (as a bitmask). By default, all collision layers are
-   * detected. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The physics layers the query will detect (as a bitmask). By default, all collision layers are detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -55,12 +48,9 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid]
-   * to get the [RID] associated with a [CollisionObject3D]-derived node.
+   * The list of object [RID]s that will be excluded from collisions. Use [CollisionObject3D.getRid] to get the [RID] associated with a [CollisionObject3D]-derived node.
    *
-   * **Note:** The returned array is copied and any changes to it will not update the original
-   * property value. To update the value you need to modify the returned array, and then assign it to
-   * the property again.
+   * **Note:** The returned array is copied and any changes to it will not update the original property value. To update the value you need to modify the returned array, and then assign it to the property again.
    */
   public final inline var exclude: VariantArray<RID>
     @JvmName("excludeProperty")
@@ -85,11 +75,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * The motion of the shape being queried for.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector3
@@ -101,9 +88,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The [Shape3D] that will be used for collision/intersection queries. This stores the actual
-   * reference which avoids the shape to be released while being used for queries, so always prefer
-   * using this over [shapeRid].
+   * The [Shape3D] that will be used for collision/intersection queries. This stores the actual reference which avoids the shape to be released while being used for queries, so always prefer using this over [shapeRid].
    */
   public final inline var shape: Resource?
     @JvmName("shapeProperty")
@@ -114,8 +99,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   /**
-   * The queried shape's [RID] that will be used for collision/intersection queries. Use this over
-   * [shape] if you want to optimize for performance using the Servers API:
+   * The queried shape's [RID] that will be used for collision/intersection queries. Use this over [shape] if you want to optimize for performance using the Servers API:
    *
    * ```gdscript
    * //gdscript
@@ -159,11 +143,8 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    * The queried shape's transform matrix.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var transform: Transform3D
@@ -196,7 +177,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
       setCollideWithAreas(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(480, scriptIndex)
   }
 
@@ -238,7 +219,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
      transform = this
   }
 
-  public final fun setShape(shape: Resource?): Unit {
+  public final fun setShape(shape: Resource?) {
     TransferContext.writeArguments(OBJECT to shape)
     TransferContext.callMethod(ptr, MethodBindings.setShapePtr, NIL)
   }
@@ -249,7 +230,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
   }
 
-  public final fun setShapeRid(shape: RID): Unit {
+  public final fun setShapeRid(shape: RID) {
     TransferContext.writeArguments(_RID to shape)
     TransferContext.callMethod(ptr, MethodBindings.setShapeRidPtr, NIL)
   }
@@ -260,7 +241,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setTransform(transform: Transform3D): Unit {
+  public final fun setTransform(transform: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setTransformPtr, NIL)
   }
@@ -271,7 +252,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setMotion(motion: Vector3): Unit {
+  public final fun setMotion(motion: Vector3) {
     TransferContext.writeArguments(VECTOR3 to motion)
     TransferContext.callMethod(ptr, MethodBindings.setMotionPtr, NIL)
   }
@@ -282,7 +263,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
   }
@@ -293,7 +274,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCollisionMask(collisionMask: Long): Unit {
+  public final fun setCollisionMask(collisionMask: Long) {
     TransferContext.writeArguments(LONG to collisionMask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -304,7 +285,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setExclude(exclude: VariantArray<RID>): Unit {
+  public final fun setExclude(exclude: VariantArray<RID>) {
     TransferContext.writeArguments(ARRAY to exclude)
     TransferContext.callMethod(ptr, MethodBindings.setExcludePtr, NIL)
   }
@@ -315,7 +296,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public final fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
@@ -326,7 +307,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
@@ -341,57 +322,57 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
 
   public object MethodBindings {
     internal val setShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape", 968641751)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape", 968_641_751)
 
     internal val getShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape", 121922552)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape", 121_922_552)
 
     internal val setShapeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape_rid", 2722037293)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_shape_rid", 2_722_037_293)
 
     internal val getShapeRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape_rid", 2944877500)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_shape_rid", 2_944_877_500)
 
     internal val setTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_transform", 2952846383)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_transform", 2_952_846_383)
 
     internal val getTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_transform", 3229777777)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_transform", 3_229_777_777)
 
     internal val setMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_motion", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_motion", 3_460_891_852)
 
     internal val getMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_motion", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_motion", 3_360_562_783)
 
     internal val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_margin", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_margin", 373_806_689)
 
     internal val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_margin", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_margin", 1_740_695_150)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_collision_mask", 3_905_245_786)
 
     internal val setExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_exclude", 381264803)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_exclude", 381_264_803)
 
     internal val getExcludePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_exclude", 3995934104)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "get_exclude", 3_995_934_104)
 
     internal val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_bodies", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_bodies", 2_586_408_642)
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_bodies_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_bodies_enabled", 36_873_697)
 
     internal val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_areas", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "set_collide_with_areas", 2_586_408_642)
 
     internal val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_areas_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsShapeQueryParameters3D", "is_collide_with_areas_enabled", 36_873_697)
   }
 }

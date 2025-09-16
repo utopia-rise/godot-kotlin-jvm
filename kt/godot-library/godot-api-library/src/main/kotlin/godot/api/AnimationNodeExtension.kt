@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,38 +16,25 @@ import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmStatic
 
 /**
- * [AnimationNodeExtension] exposes the APIs of [AnimationRootNode] to allow users to extend it from
- * GDScript, C#, or C++. This class is not meant to be used directly, but to be extended by other
- * classes. It is used to create custom nodes for the [AnimationTree] system.
+ * [AnimationNodeExtension] exposes the APIs of [AnimationRootNode] to allow users to extend it from GDScript, C#, or C++. This class is not meant to be used directly, but to be extended by other classes. It is used to create custom nodes for the [AnimationTree] system.
  */
 @GodotBaseType
 public abstract class AnimationNodeExtension : AnimationNode() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(24, scriptIndex)
   }
 
   /**
-   * A version of the [AnimationNode.Process] method that is meant to be overridden by custom nodes.
-   * It returns a [PackedFloat32Array] with the processed animation data.
+   * A version of the [AnimationNode.Process] method that is meant to be overridden by custom nodes. It returns a [PackedFloat32Array] with the processed animation data.
    *
-   * The [PackedFloat64Array] parameter contains the playback information, containing the following
-   * values encoded as floating point numbers (in order): playback time and delta, start and end times,
-   * whether a seek was requested (encoded as a float greater than `0`), whether the seek request was
-   * externally requested (encoded as a float greater than `0`), the current [Animation.LoopedFlag]
-   * (encoded as a float), and the current blend weight.
+   * The [PackedFloat64Array] parameter contains the playback information, containing the following values encoded as floating point numbers (in order): playback time and delta, start and end times, whether a seek was requested (encoded as a float greater than `0`), whether the seek request was externally requested (encoded as a float greater than `0`), the current [Animation.LoopedFlag] (encoded as a float), and the current blend weight.
    *
-   * The function must return a [PackedFloat32Array] of the node's time info, containing the
-   * following values (in order): animation length, time position, delta, [Animation.LoopMode] (encoded
-   * as a float), whether the animation is about to end (encoded as a float greater than `0`) and
-   * whether the animation is infinite (encoded as a float greater than `0`). All values must be
-   * included in the returned array.
+   * The function must return a [PackedFloat32Array] of the node's time info, containing the following values (in order): animation length, time position, delta, [Animation.LoopMode] (encoded as a float), whether the animation is about to end (encoded as a float greater than `0`) and whether the animation is infinite (encoded as a float greater than `0`). All values must be included in the returned array.
    */
-  public abstract fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean):
-      PackedFloat32Array
+  public abstract fun _processAnimationNode(playbackInfo: PackedFloat64Array, testOnly: Boolean): PackedFloat32Array
 
   public companion object {
     /**
@@ -64,9 +48,7 @@ public abstract class AnimationNodeExtension : AnimationNode() {
     }
 
     /**
-     * Returns the animation's remaining time for the given node info. For looping animations, it
-     * will only return the remaining time if [breakLoop] is `true`, a large integer value will be
-     * returned otherwise.
+     * Returns the animation's remaining time for the given node info. For looping animations, it will only return the remaining time if [breakLoop] is `true`, a large integer value will be returned otherwise.
      */
     @JvmStatic
     public final fun getRemainingTime(nodeInfo: PackedFloat32Array, breakLoop: Boolean): Double {
@@ -78,9 +60,9 @@ public abstract class AnimationNodeExtension : AnimationNode() {
 
   public object MethodBindings {
     internal val isLoopingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeExtension", "is_looping", 2035584311)
+        TypeManager.getMethodBindPtr("AnimationNodeExtension", "is_looping", 2_035_584_311)
 
     internal val getRemainingTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeExtension", "get_remaining_time", 2851904656)
+        TypeManager.getMethodBindPtr("AnimationNodeExtension", "get_remaining_time", 2_851_904_656)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,11 +18,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 3D box shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape3D].
+ * A 3D box shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape3D].
  *
- * **Performance:** [BoxShape3D] is fast to check collisions against. It is faster than
- * [CapsuleShape3D] and [CylinderShape3D], but slower than [SphereShape3D].
+ * **Performance:** [BoxShape3D] is fast to check collisions against. It is faster than [CapsuleShape3D] and [CylinderShape3D], but slower than [SphereShape3D].
  */
 @GodotBaseType
 public open class BoxShape3D : Shape3D() {
@@ -33,11 +28,8 @@ public open class BoxShape3D : Shape3D() {
    * The box's width, height and depth.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -48,7 +40,7 @@ public open class BoxShape3D : Shape3D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(112, scriptIndex)
   }
 
@@ -71,7 +63,7 @@ public open class BoxShape3D : Shape3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -86,9 +78,9 @@ public open class BoxShape3D : Shape3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxShape3D", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("BoxShape3D", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("BoxShape3D", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("BoxShape3D", "get_size", 3_360_562_783)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,23 +18,19 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
- * known as hotkeys).
+ * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also known as hotkeys).
  *
- * One shortcut can contain multiple [InputEvent]s, allowing the possibility of triggering one
- * action with multiple different inputs.
+ * One shortcut can contain multiple [InputEvent]s, allowing the possibility of triggering one action with multiple different inputs.
  */
 @GodotBaseType
 public open class Shortcut : Resource() {
   /**
    * The shortcut's [InputEvent] array.
    *
-   * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent],
-   * including an [InputEventAction].
+   * Generally the [InputEvent] used is an [InputEventKey], though it can be any [InputEvent], including an [InputEventAction].
    */
   public final inline var events: VariantArray<Any?>
     @JvmName("eventsProperty")
@@ -47,11 +40,11 @@ public open class Shortcut : Resource() {
       setEvents(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(592, scriptIndex)
   }
 
-  public final fun setEvents(events: VariantArray<Any?>): Unit {
+  public final fun setEvents(events: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to events)
     TransferContext.callMethod(ptr, MethodBindings.setEventsPtr, NIL)
   }
@@ -72,8 +65,7 @@ public open class Shortcut : Resource() {
   }
 
   /**
-   * Returns whether any [InputEvent] in [events] equals [event]. This uses [InputEvent.isMatch] to
-   * compare events.
+   * Returns whether any [InputEvent] in [events] equals [event]. This uses [InputEvent.isMatch] to compare events.
    */
   public final fun matchesEvent(event: InputEvent?): Boolean {
     TransferContext.writeArguments(OBJECT to event)
@@ -94,18 +86,18 @@ public open class Shortcut : Resource() {
 
   public object MethodBindings {
     internal val setEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "set_events", 381264803)
+        TypeManager.getMethodBindPtr("Shortcut", "set_events", 381_264_803)
 
     internal val getEventsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "get_events", 3995934104)
+        TypeManager.getMethodBindPtr("Shortcut", "get_events", 3_995_934_104)
 
     internal val hasValidEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event", 36873697)
+        TypeManager.getMethodBindPtr("Shortcut", "has_valid_event", 36_873_697)
 
     internal val matchesEventPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "matches_event", 3738334489)
+        TypeManager.getMethodBindPtr("Shortcut", "matches_event", 3_738_334_489)
 
     internal val getAsTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Shortcut", "get_as_text", 201670096)
+        TypeManager.getMethodBindPtr("Shortcut", "get_as_text", 201_670_096)
   }
 }

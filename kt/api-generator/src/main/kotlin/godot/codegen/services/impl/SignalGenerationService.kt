@@ -290,6 +290,7 @@ object SignalGenerationService : ISignalGenerationService {
                             .addMember("\"create\"")
                             .build()
                     )
+                    .returns(genericClassNameInfo.genericClassName)
                     .build()
             )
             .build()
@@ -314,6 +315,7 @@ object SignalGenerationService : ISignalGenerationService {
                     .addMember("\"FUNCTION_NAME\"")
                     .build()
             )
+            .returns(genericClassNameInfo.genericClassName)
             .build()
     }
 
@@ -331,6 +333,7 @@ object SignalGenerationService : ISignalGenerationService {
                     CodeBlock.of("return·%T.$DELEGATE_PROPERTY_NAME·as·%T", genericClassNameInfo.className, genericReadOnlyPropertyClassName)
                 }
             )
+            .returns(genericReadOnlyPropertyClassName)
             .apply {
                 if (argCount != 0) {
                     addAnnotation(

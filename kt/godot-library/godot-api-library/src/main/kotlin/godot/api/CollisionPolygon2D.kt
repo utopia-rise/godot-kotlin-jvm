@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,12 +26,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The
- * polygon can be concave or convex. This can give a detection shape to an [Area2D], turn
- * [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
+ * A node that provides a polygon shape to a [CollisionObject2D] parent and allows to edit it. The polygon can be concave or convex. This can give a detection shape to an [Area2D], turn [PhysicsBody2D] into a solid object, or give a hollow shape to a [StaticBody2D].
  *
- * **Warning:** A non-uniformly scaled [CollisionPolygon2D] will likely not behave as expected. Make
- * sure to keep its scale the same on all axes and adjust its polygon instead.
+ * **Warning:** A non-uniformly scaled [CollisionPolygon2D] will likely not behave as expected. Make sure to keep its scale the same on all axes and adjust its polygon instead.
  */
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {
@@ -50,18 +44,13 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   /**
-   * The polygon's list of vertices. Each point will be connected to the next, and the final point
-   * will be connected to the first.
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.
    *
-   * **Note:** The returned vertices are in the local coordinate space of the given
-   * [CollisionPolygon2D].
+   * **Note:** The returned vertices are in the local coordinate space of the given [CollisionPolygon2D].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
@@ -84,11 +73,9 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   /**
-   * If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide
-   * with other objects.
+   * If `true`, only edges that face up, relative to [CollisionPolygon2D]'s rotation, will collide with other objects.
    *
-   * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D]
-   * node.
+   * **Note:** This property has no effect if this [CollisionPolygon2D] is a child of an [Area2D] node.
    */
   public final inline var oneWayCollision: Boolean
     @JvmName("oneWayCollisionProperty")
@@ -99,8 +86,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   /**
-   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker,
-   * and work better for colliders that enter the polygon at a high velocity.
+   * The margin used for one-way collision (in pixels). Higher values will make the shape thicker, and work better for colliders that enter the polygon at a high velocity.
    */
   public final inline var oneWayCollisionMargin: Float
     @JvmName("oneWayCollisionMarginProperty")
@@ -110,7 +96,7 @@ public open class CollisionPolygon2D : Node2D() {
       setOneWayCollisionMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(156, scriptIndex)
   }
 
@@ -125,33 +111,26 @@ public open class CollisionPolygon2D : Node2D() {
    * collisionpolygon2d.polygon = myCoreType
    * ``````
    *
-   * The polygon's list of vertices. Each point will be connected to the next, and the final point
-   * will be connected to the first.
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.
    *
-   * **Note:** The returned vertices are in the local coordinate space of the given
-   * [CollisionPolygon2D].
+   * **Note:** The returned vertices are in the local coordinate space of the given [CollisionPolygon2D].
    */
   @CoreTypeHelper
-  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      polygon.apply {
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = polygon.apply {
      block(this)
      polygon = this
   }
 
   /**
    * This is a helper function for [polygon] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The polygon's list of vertices. Each point will be connected to the next, and the final point
-   * will be connected to the first.
+   * The polygon's list of vertices. Each point will be connected to the next, and the final point will be connected to the first.
    *
-   * **Note:** The returned vertices are in the local coordinate space of the given
-   * [CollisionPolygon2D].
+   * **Note:** The returned vertices are in the local coordinate space of the given [CollisionPolygon2D].
    */
   @CoreTypeHelper
-  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = polygon.apply {
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = polygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -159,7 +138,7 @@ public open class CollisionPolygon2D : Node2D() {
      polygon = this
   }
 
-  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
@@ -170,7 +149,7 @@ public open class CollisionPolygon2D : Node2D() {
     return (TransferContext.readReturnValue(PACKED_VECTOR2_ARRAY) as PackedVector2Array)
   }
 
-  public final fun setBuildMode(buildMode: BuildMode): Unit {
+  public final fun setBuildMode(buildMode: BuildMode) {
     TransferContext.writeArguments(LONG to buildMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBuildModePtr, NIL)
   }
@@ -181,7 +160,7 @@ public open class CollisionPolygon2D : Node2D() {
     return BuildMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setDisabled(disabled: Boolean): Unit {
+  public final fun setDisabled(disabled: Boolean) {
     TransferContext.writeArguments(BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setDisabledPtr, NIL)
   }
@@ -192,7 +171,7 @@ public open class CollisionPolygon2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOneWayCollision(enabled: Boolean): Unit {
+  public final fun setOneWayCollision(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionPtr, NIL)
   }
@@ -203,7 +182,7 @@ public open class CollisionPolygon2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setOneWayCollisionMargin(margin: Float): Unit {
+  public final fun setOneWayCollisionMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOneWayCollisionMarginPtr, NIL)
   }
@@ -218,16 +197,11 @@ public open class CollisionPolygon2D : Node2D() {
     id: Long,
   ) {
     /**
-     * Collisions will include the polygon and its contained area. In this mode the node has the
-     * same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex
-     * decomposition of the polygon (but without the overhead of multiple nodes).
+     * Collisions will include the polygon and its contained area. In this mode the node has the same effect as several [ConvexPolygonShape2D] nodes, one for each convex shape in the convex decomposition of the polygon (but without the overhead of multiple nodes).
      */
     SOLIDS(0),
     /**
-     * Collisions will only include the polygon edges. In this mode the node has the same effect as
-     * a single [ConcavePolygonShape2D] made of segments, with the restriction that each segment (after
-     * the first one) starts where the previous one ends, and the last one ends where the first one
-     * starts (forming a closed but hollow polygon).
+     * Collisions will only include the polygon edges. In this mode the node has the same effect as a single [ConcavePolygonShape2D] made of segments, with the restriction that each segment (after the first one) starts where the previous one ends, and the last one ends where the first one starts (forming a closed but hollow polygon).
      */
     SEGMENTS(1),
     ;
@@ -246,33 +220,33 @@ public open class CollisionPolygon2D : Node2D() {
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_polygon", 1_509_147_220)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_polygon", 2_961_356_807)
 
     internal val setBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2780803135)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_build_mode", 2_780_803_135)
 
     internal val getBuildModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3044948800)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_build_mode", 3_044_948_800)
 
     internal val setDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_disabled", 2_586_408_642)
 
     internal val isDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36873697)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_disabled", 36_873_697)
 
     internal val setOneWayCollisionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2586408642)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision", 2_586_408_642)
 
     internal val isOneWayCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36873697)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "is_one_way_collision_enabled", 36_873_697)
 
     internal val setOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373806689)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "set_one_way_collision_margin", 373_806_689)
 
     internal val getOneWayCollisionMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1740695150)
+        TypeManager.getMethodBindPtr("CollisionPolygon2D", "get_one_way_collision_margin", 1_740_695_150)
   }
 }

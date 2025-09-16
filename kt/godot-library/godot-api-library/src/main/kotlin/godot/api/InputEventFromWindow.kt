@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * InputEventFromWindow represents events specifically received by windows. This includes mouse
- * events, keyboard events in focused windows or touch screen actions.
+ * InputEventFromWindow represents events specifically received by windows. This includes mouse events, keyboard events in focused windows or touch screen actions.
  */
 @GodotBaseType
 public open class InputEventFromWindow internal constructor() : InputEvent() {
@@ -35,11 +30,11 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
       setWindowId(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(294, scriptIndex)
   }
 
-  public final fun setWindowId(id: Long): Unit {
+  public final fun setWindowId(id: Long) {
     TransferContext.writeArguments(LONG to id)
     TransferContext.callMethod(ptr, MethodBindings.setWindowIdPtr, NIL)
   }
@@ -54,9 +49,9 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
 
   public object MethodBindings {
     internal val setWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "set_window_id", 1_286_410_249)
 
     internal val getWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventFromWindow", "get_window_id", 3_905_245_786)
   }
 }

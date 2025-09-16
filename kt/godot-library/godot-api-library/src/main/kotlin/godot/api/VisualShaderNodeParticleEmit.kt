@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,13 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node internally calls `emit_subparticle` shader method. It will emit a particle from the
- * configured sub-emitter and also allows to customize how its emitted. Requires a sub-emitter assigned
- * to the particles node with this shader.
+ * This node internally calls `emit_subparticle` shader method. It will emit a particle from the configured sub-emitter and also allows to customize how its emitted. Requires a sub-emitter assigned to the particles node with this shader.
  */
 @GodotBaseType
 public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
@@ -36,11 +30,11 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
       setFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(775, scriptIndex)
   }
 
-  public final fun setFlags(flags: EmitFlags): Unit {
+  public final fun setFlags(flags: EmitFlags) {
     TransferContext.writeArguments(LONG to flags.id)
     TransferContext.callMethod(ptr, MethodBindings.setFlagsPtr, NIL)
   }
@@ -90,9 +84,9 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3960756792)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "set_flags", 3_960_756_792)
 
     internal val getFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171277835)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParticleEmit", "get_flags", 171_277_835)
   }
 }

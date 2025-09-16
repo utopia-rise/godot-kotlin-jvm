@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,19 +25,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
- * [CollisionObject2D] along its path, if it intersects any.
+ * A raycast represents a ray from its origin to its [targetPosition] that finds the closest [CollisionObject2D] along its path, if it intersects any.
  *
- * [RayCast2D] can ignore some objects by adding them to an exception list, by making its detection
- * reporting ignore [Area2D]s ([collideWithAreas]) or [PhysicsBody2D]s ([collideWithBodies]), or by
- * configuring physics layers.
+ * [RayCast2D] can ignore some objects by adding them to an exception list, by making its detection reporting ignore [Area2D]s ([collideWithAreas]) or [PhysicsBody2D]s ([collideWithBodies]), or by configuring physics layers.
  *
- * [RayCast2D] calculates intersection every physics frame, and it holds the result until the next
- * physics frame. For an immediate raycast, or if you want to configure a [RayCast2D] multiple times
- * within the same physics frame, use [forceRaycastUpdate].
+ * [RayCast2D] calculates intersection every physics frame, and it holds the result until the next physics frame. For an immediate raycast, or if you want to configure a [RayCast2D] multiple times within the same physics frame, use [forceRaycastUpdate].
  *
- * To sweep over a region of 2D space, you can approximate the region with multiple [RayCast2D]s or
- * use [ShapeCast2D].
+ * To sweep over a region of 2D space, you can approximate the region with multiple [RayCast2D]s or use [ShapeCast2D].
  */
 @GodotBaseType
 public open class RayCast2D : Node2D() {
@@ -70,11 +61,8 @@ public open class RayCast2D : Node2D() {
    * The ray's destination point, relative to the RayCast's `position`.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector2
@@ -86,10 +74,7 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will
-   * be detected. See
-   * [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision
-   * layers and masks[/url] in the documentation for more information.
+   * The ray's collision mask. Only objects in at least one collision layer enabled in the mask will be detected. See [url=$DOCS_URL/tutorials/physics/physics_introduction.html#collision-layers-and-masks]Collision layers and masks[/url] in the documentation for more information.
    */
   public final inline var collisionMask: Long
     @JvmName("collisionMaskProperty")
@@ -100,8 +85,7 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision
-   * normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
+   * If `true`, the ray will detect a hit when starting inside shapes. In this case the collision normal will be `Vector2(0, 0)`. Does not affect concave polygon shapes.
    */
   public final inline var hitFromInside: Boolean
     @JvmName("hitFromInsideProperty")
@@ -133,7 +117,7 @@ public open class RayCast2D : Node2D() {
       setCollideWithBodies(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(531, scriptIndex)
   }
 
@@ -156,7 +140,7 @@ public open class RayCast2D : Node2D() {
      targetPosition = this
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -167,7 +151,7 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setTargetPosition(localPoint: Vector2): Unit {
+  public final fun setTargetPosition(localPoint: Vector2) {
     TransferContext.writeArguments(VECTOR2 to localPoint)
     TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
@@ -179,8 +163,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns whether any object is intersecting with the ray's vector (considering the vector
-   * length).
+   * Returns whether any object is intersecting with the ray's vector (considering the vector length).
    */
   public final fun isColliding(): Boolean {
     TransferContext.writeArguments()
@@ -189,20 +172,17 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Updates the collision information for the ray immediately, without waiting for the next
-   * `_physics_process` call. Use this method, for example, when the ray or its parent has changed
-   * state.
+   * Updates the collision information for the ray immediately, without waiting for the next `_physics_process` call. Use this method, for example, when the ray or its parent has changed state.
    *
    * **Note:** [enabled] does not need to be `true` for this to work.
    */
-  public final fun forceRaycastUpdate(): Unit {
+  public final fun forceRaycastUpdate() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceRaycastUpdatePtr, NIL)
   }
 
   /**
-   * Returns the first object that the ray intersects, or `null` if no object is intersecting the
-   * ray (i.e. [isColliding] returns `false`).
+   * Returns the first object that the ray intersects, or `null` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()
@@ -211,8 +191,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object
-   * is intersecting the ray (i.e. [isColliding] returns `false`).
+   * Returns the [RID] of the first object that the ray intersects, or an empty [RID] if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    */
   public final fun getColliderRid(): RID {
     TransferContext.writeArguments()
@@ -221,8 +200,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the shape ID of the first object that the ray intersects, or `0` if no object is
-   * intersecting the ray (i.e. [isColliding] returns `false`).
+   * Returns the shape ID of the first object that the ray intersects, or `0` if no object is intersecting the ray (i.e. [isColliding] returns `false`).
    *
    * To get the intersected shape node, for a [CollisionObject2D] target, use:
    *
@@ -249,12 +227,9 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the collision point at which the ray intersects the closest object, in the global
-   * coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape,
-   * this function will return the origin point of the ray.
+   * Returns the collision point at which the ray intersects the closest object, in the global coordinate system. If [hitFromInside] is `true` and the ray starts inside of a collision shape, this function will return the origin point of the ray.
    *
-   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
-   * returned point is valid and up-to-date.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the returned point is valid and up-to-date.
    */
   public final fun getCollisionPoint(): Vector2 {
     TransferContext.writeArguments()
@@ -263,11 +238,9 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0,
-   * 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
+   * Returns the normal of the intersecting object's shape at the collision point, or `Vector2(0, 0)` if the ray starts inside the shape and [hitFromInside] is `true`.
    *
-   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the
-   * returned normal is valid and up-to-date.
+   * **Note:** Check that [isColliding] returns `true` before calling this method to ensure the returned normal is valid and up-to-date.
    */
   public final fun getCollisionNormal(): Vector2 {
     TransferContext.writeArguments()
@@ -278,16 +251,15 @@ public open class RayCast2D : Node2D() {
   /**
    * Adds a collision exception so the ray does not report collisions with the specified [RID].
    */
-  public final fun addExceptionRid(rid: RID): Unit {
+  public final fun addExceptionRid(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionRidPtr, NIL)
   }
 
   /**
-   * Adds a collision exception so the ray does not report collisions with the specified
-   * [CollisionObject2D] node.
+   * Adds a collision exception so the ray does not report collisions with the specified [CollisionObject2D] node.
    */
-  public final fun addException(node: CollisionObject2D?): Unit {
+  public final fun addException(node: CollisionObject2D?) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.addExceptionPtr, NIL)
   }
@@ -295,16 +267,15 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes a collision exception so the ray does report collisions with the specified [RID].
    */
-  public final fun removeExceptionRid(rid: RID): Unit {
+  public final fun removeExceptionRid(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionRidPtr, NIL)
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified
-   * [CollisionObject2D] node.
+   * Removes a collision exception so the ray does report collisions with the specified [CollisionObject2D] node.
    */
-  public final fun removeException(node: CollisionObject2D?): Unit {
+  public final fun removeException(node: CollisionObject2D?) {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.removeExceptionPtr, NIL)
   }
@@ -312,12 +283,12 @@ public open class RayCast2D : Node2D() {
   /**
    * Removes all collision exceptions for this ray.
    */
-  public final fun clearExceptions(): Unit {
+  public final fun clearExceptions() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearExceptionsPtr, NIL)
   }
 
-  public final fun setCollisionMask(mask: Long): Unit {
+  public final fun setCollisionMask(mask: Long) {
     TransferContext.writeArguments(LONG to mask)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
   }
@@ -329,17 +300,15 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [collisionMask], given a
-   * [layerNumber] between 1 and 32.
+   * Based on [value], enables or disables the specified layer in the [collisionMask], given a [layerNumber] between 1 and 32.
    */
-  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setCollisionMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskValuePtr, NIL)
   }
 
   /**
-   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a
-   * [layerNumber] between 1 and 32.
+   * Returns whether or not the specified layer of the [collisionMask] is enabled, given a [layerNumber] between 1 and 32.
    */
   public final fun getCollisionMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -347,7 +316,7 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setExcludeParentBody(mask: Boolean): Unit {
+  public final fun setExcludeParentBody(mask: Boolean) {
     TransferContext.writeArguments(BOOL to mask)
     TransferContext.callMethod(ptr, MethodBindings.setExcludeParentBodyPtr, NIL)
   }
@@ -358,7 +327,7 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithAreas(enable: Boolean): Unit {
+  public final fun setCollideWithAreas(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithAreasPtr, NIL)
   }
@@ -369,7 +338,7 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideWithBodies(enable: Boolean): Unit {
+  public final fun setCollideWithBodies(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setCollideWithBodiesPtr, NIL)
   }
@@ -380,7 +349,7 @@ public open class RayCast2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setHitFromInside(enable: Boolean): Unit {
+  public final fun setHitFromInside(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setHitFromInsidePtr, NIL)
   }
@@ -395,87 +364,87 @@ public open class RayCast2D : Node2D() {
 
   public object MethodBindings {
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_enabled", 2_586_408_642)
 
     internal val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "is_enabled", 36_873_697)
 
     internal val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_target_position", 743155724)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_target_position", 743_155_724)
 
     internal val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_target_position", 3341600327)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_target_position", 3_341_600_327)
 
     internal val isCollidingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_colliding", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "is_colliding", 36_873_697)
 
     internal val forceRaycastUpdatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "force_raycast_update", 3218959716)
+        TypeManager.getMethodBindPtr("RayCast2D", "force_raycast_update", 3_218_959_716)
 
     internal val getColliderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider", 1981248198)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collider", 1_981_248_198)
 
     internal val getColliderRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_rid", 2944877500)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_rid", 2_944_877_500)
 
     internal val getColliderShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_shape", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collider_shape", 3_905_245_786)
 
     internal val getCollisionPointPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_point", 3341600327)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_point", 3_341_600_327)
 
     internal val getCollisionNormalPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_normal", 3341600327)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_normal", 3_341_600_327)
 
     internal val addExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "add_exception_rid", 2722037293)
+        TypeManager.getMethodBindPtr("RayCast2D", "add_exception_rid", 2_722_037_293)
 
     internal val addExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "add_exception", 3090941106)
+        TypeManager.getMethodBindPtr("RayCast2D", "add_exception", 3_090_941_106)
 
     internal val removeExceptionRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception_rid", 2722037293)
+        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception_rid", 2_722_037_293)
 
     internal val removeExceptionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception", 3090941106)
+        TypeManager.getMethodBindPtr("RayCast2D", "remove_exception", 3_090_941_106)
 
     internal val clearExceptionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "clear_exceptions", 3218959716)
+        TypeManager.getMethodBindPtr("RayCast2D", "clear_exceptions", 3_218_959_716)
 
     internal val setCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask", 1286410249)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask", 1_286_410_249)
 
     internal val getCollisionMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask", 3905245786)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask", 3_905_245_786)
 
     internal val setCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_collision_mask_value", 300_928_843)
 
     internal val getCollisionMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_collision_mask_value", 1_116_898_809)
 
     internal val setExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_exclude_parent_body", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_exclude_parent_body", 2_586_408_642)
 
     internal val getExcludeParentBodyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "get_exclude_parent_body", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "get_exclude_parent_body", 36_873_697)
 
     internal val setCollideWithAreasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_areas", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_areas", 2_586_408_642)
 
     internal val isCollideWithAreasEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_areas_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_areas_enabled", 36_873_697)
 
     internal val setCollideWithBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_bodies", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_collide_with_bodies", 2_586_408_642)
 
     internal val isCollideWithBodiesEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_bodies_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "is_collide_with_bodies_enabled", 36_873_697)
 
     internal val setHitFromInsidePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "set_hit_from_inside", 2586408642)
+        TypeManager.getMethodBindPtr("RayCast2D", "set_hit_from_inside", 2_586_408_642)
 
     internal val isHitFromInsideEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RayCast2D", "is_hit_from_inside_enabled", 36873697)
+        TypeManager.getMethodBindPtr("RayCast2D", "is_hit_from_inside_enabled", 36_873_697)
   }
 }

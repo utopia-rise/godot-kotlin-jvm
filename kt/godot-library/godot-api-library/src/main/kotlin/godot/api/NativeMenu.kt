@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -34,18 +31,15 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
  * [NativeMenu] handles low-level access to the OS native global menu bar and popup menus.
  *
- * **Note:** This is low-level API, consider using [MenuBar] with [MenuBar.preferGlobalMenu] set to
- * `true`, and [PopupMenu] with [PopupMenu.preferNativeMenu] set to `true`.
+ * **Note:** This is low-level API, consider using [MenuBar] with [MenuBar.preferGlobalMenu] set to `true`, and [PopupMenu] with [PopupMenu.preferNativeMenu] set to `true`.
  *
- * To create a menu, use [createMenu], add menu items using `add_*_item` methods. To remove a menu,
- * use [freeMenu].
+ * To create a menu, use [createMenu], add menu items using `add_*_item` methods. To remove a menu, use [freeMenu].
  *
  * ```
  * var menu
@@ -77,13 +71,12 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NativeMenu : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(15)
   }
 
   /**
-   * Returns `true` if the specified [feature] is supported by the current [NativeMenu], `false`
-   * otherwise.
+   * Returns `true` if the specified [feature] is supported by the current [NativeMenu], `false` otherwise.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -160,7 +153,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun freeMenu(rid: RID): Unit {
+  public final fun freeMenu(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.freeMenuPtr, NIL)
   }
@@ -183,7 +176,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun popup(rid: RID, position: Vector2i): Unit {
+  public final fun popup(rid: RID, position: Vector2i) {
     TransferContext.writeArguments(_RID to rid, VECTOR2I to position)
     TransferContext.callMethod(ptr, MethodBindings.popupPtr, NIL)
   }
@@ -194,7 +187,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun setInterfaceDirection(rid: RID, isRtl: Boolean): Unit {
+  public final fun setInterfaceDirection(rid: RID, isRtl: Boolean) {
     TransferContext.writeArguments(_RID to rid, BOOL to isRtl)
     TransferContext.callMethod(ptr, MethodBindings.setInterfaceDirectionPtr, NIL)
   }
@@ -205,7 +198,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
-  public final fun setPopupOpenCallback(rid: RID, callback: Callable): Unit {
+  public final fun setPopupOpenCallback(rid: RID, callback: Callable) {
     TransferContext.writeArguments(_RID to rid, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.setPopupOpenCallbackPtr, NIL)
   }
@@ -225,14 +218,12 @@ public object NativeMenu : Object() {
   /**
    * Registers callable to emit when the menu is about to show.
    *
-   * **Note:** The OS can simulate menu opening to track menu item changes and global shortcuts, in
-   * which case the corresponding close callback is not triggered. Use [isOpened] to check if the menu
-   * is currently opened.
+   * **Note:** The OS can simulate menu opening to track menu item changes and global shortcuts, in which case the corresponding close callback is not triggered. Use [isOpened] to check if the menu is currently opened.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun setPopupCloseCallback(rid: RID, callback: Callable): Unit {
+  public final fun setPopupCloseCallback(rid: RID, callback: Callable) {
     TransferContext.writeArguments(_RID to rid, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.setPopupCloseCallbackPtr, NIL)
   }
@@ -255,7 +246,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented only on macOS.
    */
   @JvmStatic
-  public final fun setMinimumWidth(rid: RID, width: Float): Unit {
+  public final fun setMinimumWidth(rid: RID, width: Float) {
     TransferContext.writeArguments(_RID to rid, DOUBLE to width.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinimumWidthPtr, NIL)
   }
@@ -285,8 +276,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Adds an item that will act as a submenu of the global menu [rid]. The [submenuRid] argument is
-   * the RID of the global menu that will be shown when the item is clicked.
+   * Adds an item that will act as a submenu of the global menu [rid]. The [submenuRid] argument is the RID of the global menu that will be shown when the item is clicked.
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
@@ -311,13 +301,9 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -344,13 +330,9 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -377,13 +359,9 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -411,13 +389,9 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -445,17 +419,11 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -482,17 +450,11 @@ public object NativeMenu : Object() {
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking
-   * behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to
-   * control it.
+   * **Note:** Radio-checkable items just display a checkmark, but don't have any built-in checking behavior and must be checked/unchecked manually. See [setItemChecked] for more info on how to control it.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -518,22 +480,15 @@ public object NativeMenu : Object() {
   /**
    * Adds a new item with text [label] to the global menu [rid].
    *
-   * Contrarily to normal binary items, multistate items can have more than two states, as defined
-   * by [maxStates]. Each press or activate of the item will increase the state by one. The default
-   * value is defined by [defaultState].
+   * Contrarily to normal binary items, multistate items can have more than two states, as defined by [maxStates]. Each press or activate of the item will increase the state by one. The default value is defined by [defaultState].
    *
    * Returns index of the inserted item, it's not guaranteed to be the same as [index] value.
    *
-   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to
-   * trigger the menu button even if it's not currently open. The [accelerator] is generally a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * An [accelerator] can optionally be defined, which is a keyboard shortcut that can be pressed to trigger the menu button even if it's not currently open. The [accelerator] is generally a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
-   * **Note:** By default, there's no indication of the current item state, it should be changed
-   * manually.
+   * **Note:** By default, there's no indication of the current item state, it should be changed manually.
    *
-   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant
-   * parameter, the parameter passed to the Callables will be the value passed to [tag].
+   * **Note:** The [callback] and [keyCallback] Callables need to accept exactly one Variant parameter, the parameter passed to the Callables will be the value passed to [tag].
    *
    * **Note:** This method is implemented on macOS and Windows.
    *
@@ -573,8 +528,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [text]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * Returns the index of the item with the specified [text]. Indices are automatically assigned to each item by the engine, and cannot be set manually.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -586,8 +540,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the index of the item with the specified [tag]. Indices are automatically assigned to
-   * each item by the engine, and cannot be set manually.
+   * Returns the index of the item with the specified [tag]. Indices are automatically assigned to each item by the engine, and cannot be set manually.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -599,8 +552,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the index of the item with the submenu specified by [submenuRid]. Indices are
-   * automatically assigned to each item by the engine, and cannot be set manually.
+   * Returns the index of the item with the submenu specified by [submenuRid]. Indices are automatically assigned to each item by the engine, and cannot be set manually.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -624,8 +576,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox
-   * or radio button.
+   * Returns `true` if the item at index [idx] is checkable in some way, i.e. if it has a checkbox or radio button.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -639,8 +590,7 @@ public object NativeMenu : Object() {
   /**
    * Returns `true` if the item at index [idx] has radio button-style checkability.
    *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
-   * radio groups.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -676,8 +626,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the metadata of the specified item, which might be of any type. You can set it with
-   * [setItemTag], which provides a simple way of assigning context data to items.
+   * Returns the metadata of the specified item, which might be of any type. You can set it with [setItemTag], which provides a simple way of assigning context data to items.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -701,8 +650,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the submenu ID of the item at index [idx]. See [addSubmenuItem] for more info on how to
-   * add a submenu.
+   * Returns the submenu ID of the item at index [idx]. See [addSubmenuItem] for more info on how to add a submenu.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -714,8 +662,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of
-   * keys that activate the item, no matter which control is focused.
+   * Returns the accelerator of the item at index [idx]. Accelerators are special combinations of keys that activate the item, no matter which control is focused.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -727,8 +674,7 @@ public object NativeMenu : Object() {
   }
 
   /**
-   * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be
-   * selected, or its action invoked.
+   * Returns `true` if the item at index [idx] is disabled. When it is disabled it can't be selected, or its action invoked.
    *
    * See [setItemDisabled] for more info on how to disable an item.
    *
@@ -825,14 +771,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     checked: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), BOOL to checked)
     TransferContext.callMethod(ptr, MethodBindings.setItemCheckedPtr, NIL)
   }
 
   /**
-   * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to
-   * plain text.
+   * Sets whether the item at index [idx] has a checkbox. If `false`, sets the type of the item to plain text.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -841,17 +786,15 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     checkable: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), BOOL to checkable)
     TransferContext.callMethod(ptr, MethodBindings.setItemCheckablePtr, NIL)
   }
 
   /**
-   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the
-   * type of the item to plain text.
+   * Sets the type of the item at the specified index [idx] to radio button. If `false`, sets the type of the item to plain text.
    *
-   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in
-   * radio groups.
+   * **Note:** This is purely cosmetic; you must add the logic for checking/unchecking items in radio groups.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -860,7 +803,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     checkable: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), BOOL to checkable)
     TransferContext.callMethod(ptr, MethodBindings.setItemRadioCheckablePtr, NIL)
   }
@@ -868,9 +811,7 @@ public object NativeMenu : Object() {
   /**
    * Sets the callback of the item at index [idx]. Callback is emitted when an item is pressed.
    *
-   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
-   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
-   * created.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -879,7 +820,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     callback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.setItemCallbackPtr, NIL)
   }
@@ -887,9 +828,7 @@ public object NativeMenu : Object() {
   /**
    * Sets the callback of the item at index [idx]. The callback is emitted when an item is hovered.
    *
-   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter
-   * passed to the Callable will be the value passed to the `tag` parameter when the menu item was
-   * created.
+   * **Note:** The [callback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -898,18 +837,15 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     callback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.setItemHoverCallbacksPtr, NIL)
   }
 
   /**
-   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is
-   * activated.
+   * Sets the callback of the item at index [idx]. Callback is emitted when its accelerator is activated.
    *
-   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the
-   * parameter passed to the Callable will be the value passed to the `tag` parameter when the menu
-   * item was created.
+   * **Note:** The [keyCallback] Callable needs to accept exactly one Variant parameter, the parameter passed to the Callable will be the value passed to the `tag` parameter when the menu item was created.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -918,14 +854,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     keyCallback: Callable,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), CALLABLE to keyCallback)
     TransferContext.callMethod(ptr, MethodBindings.setItemKeyCallbackPtr, NIL)
   }
 
   /**
-   * Sets the metadata of an item, which may be of any type. You can later get it with [getItemTag],
-   * which provides a simple way of assigning context data to items.
+   * Sets the metadata of an item, which may be of any type. You can later get it with [getItemTag], which provides a simple way of assigning context data to items.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -934,7 +869,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     tag: Any?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), ANY to tag)
     TransferContext.callMethod(ptr, MethodBindings.setItemTagPtr, NIL)
   }
@@ -949,14 +884,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     text: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextPtr, NIL)
   }
 
   /**
-   * Sets the submenu RID of the item at index [idx]. The submenu is a global menu that would be
-   * shown when the item is clicked.
+   * Sets the submenu RID of the item at index [idx]. The submenu is a global menu that would be shown when the item is clicked.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -965,15 +899,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     submenuRid: RID,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), _RID to submenuRid)
     TransferContext.callMethod(ptr, MethodBindings.setItemSubmenuPtr, NIL)
   }
 
   /**
-   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a
-   * combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A`
-   * ([kbd]Ctrl + A[/kbd]).
+   * Sets the accelerator of the item at index [idx]. [keycode] can be a single [Key], or a combination of [KeyModifierMask]s and [Key]s using bitwise OR such as `KEY_MASK_CTRL | KEY_A` ([kbd]Ctrl + A[/kbd]).
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -982,14 +914,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     keycode: Key,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to keycode.id)
     TransferContext.callMethod(ptr, MethodBindings.setItemAcceleratorPtr, NIL)
   }
 
   /**
-   * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its
-   * action can't be invoked.
+   * Enables/disables the item at index [idx]. When it is disabled, it can't be selected and its action can't be invoked.
    *
    * **Note:** This method is implemented on macOS and Windows.
    */
@@ -998,14 +929,13 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     disabled: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), BOOL to disabled)
     TransferContext.callMethod(ptr, MethodBindings.setItemDisabledPtr, NIL)
   }
 
   /**
-   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and
-   * its action cannot be invoked.
+   * Hides/shows the item at index [idx]. When it is hidden, an item does not appear in a menu and its action cannot be invoked.
    *
    * **Note:** This method is implemented only on macOS.
    */
@@ -1014,7 +944,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     hidden: Boolean,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), BOOL to hidden)
     TransferContext.callMethod(ptr, MethodBindings.setItemHiddenPtr, NIL)
   }
@@ -1029,7 +959,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     tooltip: String,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), STRING to tooltip)
     TransferContext.callMethod(ptr, MethodBindings.setItemTooltipPtr, NIL)
   }
@@ -1044,7 +974,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     state: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to state.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemStatePtr, NIL)
   }
@@ -1059,7 +989,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     maxStates: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to maxStates.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemMaxStatesPtr, NIL)
   }
@@ -1076,7 +1006,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     icon: Texture2D?,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), OBJECT to icon)
     TransferContext.callMethod(ptr, MethodBindings.setItemIconPtr, NIL)
   }
@@ -1091,7 +1021,7 @@ public object NativeMenu : Object() {
     rid: RID,
     idx: Int,
     level: Int,
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong(), LONG to level.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setItemIndentationLevelPtr, NIL)
   }
@@ -1128,7 +1058,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun removeItem(rid: RID, idx: Int): Unit {
+  public final fun removeItem(rid: RID, idx: Int) {
     TransferContext.writeArguments(_RID to rid, LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeItemPtr, NIL)
   }
@@ -1139,7 +1069,7 @@ public object NativeMenu : Object() {
    * **Note:** This method is implemented on macOS and Windows.
    */
   @JvmStatic
-  public final fun clear(rid: RID): Unit {
+  public final fun clear(rid: RID) {
     TransferContext.writeArguments(_RID to rid)
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
@@ -1195,8 +1125,7 @@ public object NativeMenu : Object() {
      */
     APPLICATION_MENU_ID(2),
     /**
-     * "Window" menu ID (on macOS this menu includes standard window control items and a list of
-     * open windows).
+     * "Window" menu ID (on macOS this menu includes standard window control items and a list of open windows).
      */
     WINDOW_MENU_ID(3),
     /**
@@ -1204,8 +1133,7 @@ public object NativeMenu : Object() {
      */
     HELP_MENU_ID(4),
     /**
-     * Dock icon right-click menu ID (on macOS this menu include standard application control items
-     * and a list of open windows).
+     * Dock icon right-click menu ID (on macOS this menu include standard application control items and a list of open windows).
      */
     DOCK_MENU_ID(5),
     ;
@@ -1222,199 +1150,201 @@ public object NativeMenu : Object() {
 
   public object MethodBindings {
     internal val hasFeaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "has_feature", 1708975490)
+        TypeManager.getMethodBindPtr("NativeMenu", "has_feature", 1_708_975_490)
 
     internal val hasSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "has_system_menu", 718213027)
+        TypeManager.getMethodBindPtr("NativeMenu", "has_system_menu", 718_213_027)
 
     internal val getSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu", 469707506)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu", 469_707_506)
 
     internal val getSystemMenuNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_name", 1281499290)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_system_menu_name", 1_281_499_290)
 
     internal val createMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "create_menu", 529393457)
+        TypeManager.getMethodBindPtr("NativeMenu", "create_menu", 529_393_457)
 
     internal val hasMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "has_menu", 4155700596)
+        TypeManager.getMethodBindPtr("NativeMenu", "has_menu", 4_155_700_596)
 
     internal val freeMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "free_menu", 2722037293)
+        TypeManager.getMethodBindPtr("NativeMenu", "free_menu", 2_722_037_293)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_size", 2440833711)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_size", 2_440_833_711)
 
-    internal val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "popup", 2450610377)
+    internal val popupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "popup", 2_450_610_377)
 
     internal val setInterfaceDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_interface_direction", 1265174801)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_interface_direction", 1_265_174_801)
 
     internal val setPopupOpenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_open_callback", 3379118538)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_open_callback", 3_379_118_538)
 
     internal val getPopupOpenCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_open_callback", 3170603026)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_open_callback", 3_170_603_026)
 
     internal val setPopupCloseCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_close_callback", 3379118538)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_popup_close_callback", 3_379_118_538)
 
     internal val getPopupCloseCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_close_callback", 3170603026)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_popup_close_callback", 3_170_603_026)
 
     internal val setMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_minimum_width", 1794382983)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_minimum_width", 1_794_382_983)
 
     internal val getMinimumWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_minimum_width", 866169185)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_minimum_width", 866_169_185)
 
     internal val isOpenedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_opened", 4155700596)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_opened", 4_155_700_596)
 
     internal val addSubmenuItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_submenu_item", 1002030223)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_submenu_item", 1_002_030_223)
 
     internal val addItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_item", 980552939)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_item", 980_552_939)
 
     internal val addCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item", 980552939)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_check_item", 980_552_939)
 
     internal val addIconItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item", 1372188274)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_item", 1_372_188_274)
 
     internal val addIconCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item", 1372188274)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_check_item", 1_372_188_274)
 
     internal val addRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item", 980552939)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_radio_check_item", 980_552_939)
 
     internal val addIconRadioCheckItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item", 1372188274)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_icon_radio_check_item", 1_372_188_274)
 
     internal val addMultistateItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item", 2674635658)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_multistate_item", 2_674_635_658)
 
     internal val addSeparatorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "add_separator", 448810126)
+        TypeManager.getMethodBindPtr("NativeMenu", "add_separator", 448_810_126)
 
     internal val findItemIndexWithTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_text", 1362438794)
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_text", 1_362_438_794)
 
     internal val findItemIndexWithTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_tag", 1260085030)
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_tag", 1_260_085_030)
 
     internal val findItemIndexWithSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_submenu", 893635918)
+        TypeManager.getMethodBindPtr("NativeMenu", "find_item_index_with_submenu", 893_635_918)
 
     internal val isItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checked", 3120086654)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checked", 3_120_086_654)
 
     internal val isItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checkable", 3120086654)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_checkable", 3_120_086_654)
 
     internal val isItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_radio_checkable", 3120086654)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_radio_checkable", 3_120_086_654)
 
     internal val getItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_callback", 1639989698)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_callback", 1_639_989_698)
 
     internal val getItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_key_callback", 1639989698)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_key_callback", 1_639_989_698)
 
     internal val getItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tag", 4069510997)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tag", 4_069_510_997)
 
     internal val getItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_text", 1464764419)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_text", 1_464_764_419)
 
     internal val getItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_submenu", 1066463050)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_submenu", 1_066_463_050)
 
     internal val getItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_accelerator", 316800700)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_accelerator", 316_800_700)
 
     internal val isItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_disabled", 3120086654)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_disabled", 3_120_086_654)
 
     internal val isItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_item_hidden", 3120086654)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_item_hidden", 3_120_086_654)
 
     internal val getItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tooltip", 1464764419)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_tooltip", 1_464_764_419)
 
     internal val getItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_state", 1120910005)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_state", 1_120_910_005)
 
     internal val getItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_max_states", 1120910005)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_max_states", 1_120_910_005)
 
     internal val getItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_icon", 3391850701)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_icon", 3_391_850_701)
 
     internal val getItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_indentation_level", 1120910005)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_indentation_level", 1_120_910_005)
 
     internal val setItemCheckedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checked", 2658558584)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checked", 2_658_558_584)
 
     internal val setItemCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checkable", 2658558584)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_checkable", 2_658_558_584)
 
     internal val setItemRadioCheckablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_radio_checkable", 2658558584)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_radio_checkable", 2_658_558_584)
 
     internal val setItemCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_callback", 2779810226)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_callback", 2_779_810_226)
 
     internal val setItemHoverCallbacksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hover_callbacks", 2779810226)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hover_callbacks", 2_779_810_226)
 
     internal val setItemKeyCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_key_callback", 2779810226)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_key_callback", 2_779_810_226)
 
     internal val setItemTagPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tag", 2706844827)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tag", 2_706_844_827)
 
     internal val setItemTextPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_text", 4153150897)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_text", 4_153_150_897)
 
     internal val setItemSubmenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_submenu", 2310537182)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_submenu", 2_310_537_182)
 
     internal val setItemAcceleratorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_accelerator", 786300043)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_accelerator", 786_300_043)
 
     internal val setItemDisabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_disabled", 2658558584)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_disabled", 2_658_558_584)
 
     internal val setItemHiddenPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hidden", 2658558584)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_hidden", 2_658_558_584)
 
     internal val setItemTooltipPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tooltip", 4153150897)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_tooltip", 4_153_150_897)
 
     internal val setItemStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_state", 4288446313)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_state", 4_288_446_313)
 
     internal val setItemMaxStatesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_max_states", 4288446313)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_max_states", 4_288_446_313)
 
     internal val setItemIconPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_icon", 1388763257)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_icon", 1_388_763_257)
 
     internal val setItemIndentationLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "set_item_indentation_level", 4288446313)
+        TypeManager.getMethodBindPtr("NativeMenu", "set_item_indentation_level", 4_288_446_313)
 
     internal val getItemCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "get_item_count", 2198884583)
+        TypeManager.getMethodBindPtr("NativeMenu", "get_item_count", 2_198_884_583)
 
     internal val isSystemMenuPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "is_system_menu", 4155700596)
+        TypeManager.getMethodBindPtr("NativeMenu", "is_system_menu", 4_155_700_596)
 
     internal val removeItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NativeMenu", "remove_item", 3411492887)
+        TypeManager.getMethodBindPtr("NativeMenu", "remove_item", 3_411_492_887)
 
-    internal val clearPtr: VoidPtr = TypeManager.getMethodBindPtr("NativeMenu", "clear", 2722037293)
+    internal val clearPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NativeMenu", "clear", 2_722_037_293)
   }
 }

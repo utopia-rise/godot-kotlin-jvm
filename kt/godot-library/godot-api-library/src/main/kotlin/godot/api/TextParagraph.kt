@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -41,7 +38,6 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -62,8 +58,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Custom punctuation character list, used for word breaking. If set to empty string, server
-   * defaults are used.
+   * Custom punctuation character list, used for word breaking. If set to empty string, server defaults are used.
    */
   public final inline var customPunctuation: String
     @JvmName("customPunctuationProperty")
@@ -140,8 +135,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the paragraph's set width. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the paragraph's set width. See [TextServer.OverrunBehavior] for a description of all modes.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -185,8 +179,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This
-   * value can be negative.
+   * Additional vertical spacing between lines (in pixels), spacing is added to line descent. This value can be negative.
    */
   public final inline var lineSpacing: Float
     @JvmName("lineSpacingProperty")
@@ -196,19 +189,19 @@ public open class TextParagraph : RefCounted() {
       setLineSpacing(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(658, scriptIndex)
   }
 
   /**
    * Clears text paragraph (removes text and inline objects).
    */
-  public final fun clear(): Unit {
+  public final fun clear() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearPtr, NIL)
   }
 
-  public final fun setDirection(direction: TextServer.Direction): Unit {
+  public final fun setDirection(direction: TextServer.Direction) {
     TransferContext.writeArguments(LONG to direction.id)
     TransferContext.callMethod(ptr, MethodBindings.setDirectionPtr, NIL)
   }
@@ -219,7 +212,7 @@ public open class TextParagraph : RefCounted() {
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCustomPunctuation(customPunctuation: String): Unit {
+  public final fun setCustomPunctuation(customPunctuation: String) {
     TransferContext.writeArguments(STRING to customPunctuation)
     TransferContext.callMethod(ptr, MethodBindings.setCustomPunctuationPtr, NIL)
   }
@@ -230,7 +223,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setOrientation(orientation: TextServer.Orientation): Unit {
+  public final fun setOrientation(orientation: TextServer.Orientation) {
     TransferContext.writeArguments(LONG to orientation.id)
     TransferContext.callMethod(ptr, MethodBindings.setOrientationPtr, NIL)
   }
@@ -241,7 +234,7 @@ public open class TextParagraph : RefCounted() {
     return TextServer.Orientation.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPreserveInvalid(enabled: Boolean): Unit {
+  public final fun setPreserveInvalid(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPreserveInvalidPtr, NIL)
   }
@@ -252,7 +245,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPreserveControl(enabled: Boolean): Unit {
+  public final fun setPreserveControl(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPreserveControlPtr, NIL)
   }
@@ -266,17 +259,15 @@ public open class TextParagraph : RefCounted() {
   /**
    * Overrides BiDi for the structured text.
    *
-   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on
-   * each range separately.
+   * Override ranges should cover full source text without overlaps. BiDi algorithm will be used on each range separately.
    */
-  public final fun setBidiOverride(`override`: VariantArray<Any?>): Unit {
+  public final fun setBidiOverride(`override`: VariantArray<Any?>) {
     TransferContext.writeArguments(ARRAY to override)
     TransferContext.callMethod(ptr, MethodBindings.setBidiOverridePtr, NIL)
   }
 
   /**
-   * Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative
-   * element at the beginning of a paragraph that is larger than the rest of the text.
+   * Sets drop cap, overrides previously set drop cap. Drop cap (dropped capital) is a decorative element at the beginning of a paragraph that is larger than the rest of the text.
    */
   @JvmOverloads
   public final fun setDropcap(
@@ -294,7 +285,7 @@ public open class TextParagraph : RefCounted() {
   /**
    * Removes dropcap.
    */
-  public final fun clearDropcap(): Unit {
+  public final fun clearDropcap() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearDropcapPtr, NIL)
   }
@@ -316,8 +307,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
-   * as [length] object replacement characters.
+   * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented as [length] object replacement characters.
    */
   @JvmOverloads
   public final fun addObject(
@@ -347,7 +337,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAlignment(alignment: HorizontalAlignment): Unit {
+  public final fun setAlignment(alignment: HorizontalAlignment) {
     TransferContext.writeArguments(LONG to alignment.id)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
@@ -361,12 +351,12 @@ public open class TextParagraph : RefCounted() {
   /**
    * Aligns paragraph to the given tab-stops.
    */
-  public final fun tabAlign(tabStops: PackedFloat32Array): Unit {
+  public final fun tabAlign(tabStops: PackedFloat32Array) {
     TransferContext.writeArguments(PACKED_FLOAT_32_ARRAY to tabStops)
     TransferContext.callMethod(ptr, MethodBindings.tabAlignPtr, NIL)
   }
 
-  public final fun setBreakFlags(flags: TextServer.LineBreakFlag): Unit {
+  public final fun setBreakFlags(flags: TextServer.LineBreakFlag) {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setBreakFlagsPtr, NIL)
   }
@@ -377,7 +367,7 @@ public open class TextParagraph : RefCounted() {
     return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setJustificationFlags(flags: TextServer.JustificationFlag): Unit {
+  public final fun setJustificationFlags(flags: TextServer.JustificationFlag) {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
   }
@@ -388,7 +378,7 @@ public open class TextParagraph : RefCounted() {
     return TextServer.JustificationFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
+  public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior) {
     TransferContext.writeArguments(LONG to overrunBehavior.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
@@ -399,7 +389,7 @@ public open class TextParagraph : RefCounted() {
     return TextServer.OverrunBehavior.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEllipsisChar(char: String): Unit {
+  public final fun setEllipsisChar(char: String) {
     TransferContext.writeArguments(STRING to char)
     TransferContext.callMethod(ptr, MethodBindings.setEllipsisCharPtr, NIL)
   }
@@ -410,7 +400,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setWidth(width: Float): Unit {
+  public final fun setWidth(width: Float) {
     TransferContext.writeArguments(DOUBLE to width.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setWidthPtr, NIL)
   }
@@ -475,7 +465,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMaxLinesVisible(maxLinesVisible: Int): Unit {
+  public final fun setMaxLinesVisible(maxLinesVisible: Int) {
     TransferContext.writeArguments(LONG to maxLinesVisible.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxLinesVisiblePtr, NIL)
   }
@@ -486,7 +476,7 @@ public open class TextParagraph : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLineSpacing(lineSpacing: Float): Unit {
+  public final fun setLineSpacing(lineSpacing: Float) {
     TransferContext.writeArguments(DOUBLE to lineSpacing.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setLineSpacingPtr, NIL)
   }
@@ -534,8 +524,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns the text line ascent (number of pixels above the baseline for horizontal layout or to
-   * the left of baseline for vertical).
+   * Returns the text line ascent (number of pixels above the baseline for horizontal layout or to the left of baseline for vertical).
    */
   public final fun getLineAscent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -544,8 +533,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Returns the text line descent (number of pixels below the baseline for horizontal layout or to
-   * the right of baseline for vertical).
+   * Returns the text line descent (number of pixels below the baseline for horizontal layout or to the right of baseline for vertical).
    */
   public final fun getLineDescent(line: Int): Float {
     TransferContext.writeArguments(LONG to line.toLong())
@@ -599,8 +587,7 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
-   * Draw all lines of the text and drop cap into a canvas item at a given position, with [color].
-   * [pos] specifies the top left corner of the bounding box.
+   * Draw all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun draw(
@@ -608,14 +595,13 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
     dcColor: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor)
     TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
-   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position,
-   * with [color]. [pos] specifies the top left corner of the bounding box.
+   * Draw outlines of all lines of the text and drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun drawOutline(
@@ -624,14 +610,13 @@ public open class TextParagraph : RefCounted() {
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
     dcColor: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, COLOR to dcColor)
     TransferContext.callMethod(ptr, MethodBindings.drawOutlinePtr, NIL)
   }
 
   /**
-   * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies
-   * the top left corner of the bounding box.
+   * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun drawLine(
@@ -639,14 +624,13 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     line: Int,
     color: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.drawLinePtr, NIL)
   }
 
   /**
-   * Draw outline of the single line of text into a canvas item at a given position, with [color].
-   * [pos] specifies the top left corner of the bounding box.
+   * Draw outline of the single line of text into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun drawLineOutline(
@@ -655,28 +639,26 @@ public open class TextParagraph : RefCounted() {
     line: Int,
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), LONG to outlineSize.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.drawLineOutlinePtr, NIL)
   }
 
   /**
-   * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top
-   * left corner of the bounding box.
+   * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun drawDropcap(
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.drawDropcapPtr, NIL)
   }
 
   /**
-   * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the
-   * top left corner of the bounding box.
+   * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the top left corner of the bounding box.
    */
   @JvmOverloads
   public final fun drawDropcapOutline(
@@ -684,14 +666,13 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
-  ): Unit {
+  ) {
     TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.drawDropcapOutlinePtr, NIL)
   }
 
   /**
-   * Returns caret character offset at the specified coordinates. This function always returns a
-   * valid position.
+   * Returns caret character offset at the specified coordinates. This function always returns a valid position.
    */
   public final fun hitTest(coords: Vector2): Int {
     TransferContext.writeArguments(VECTOR2 to coords)
@@ -703,177 +684,177 @@ public open class TextParagraph : RefCounted() {
 
   public object MethodBindings {
     internal val clearPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "clear", 3218959716)
+        TypeManager.getMethodBindPtr("TextParagraph", "clear", 3_218_959_716)
 
     internal val setDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_direction", 1418190634)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_direction", 1_418_190_634)
 
     internal val getDirectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_direction", 2516697328)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_direction", 2_516_697_328)
 
     internal val setCustomPunctuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_custom_punctuation", 83702148)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_custom_punctuation", 83_702_148)
 
     internal val getCustomPunctuationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_custom_punctuation", 201670096)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_custom_punctuation", 201_670_096)
 
     internal val setOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_orientation", 42823726)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_orientation", 42_823_726)
 
     internal val getOrientationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_orientation", 175768116)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_orientation", 175_768_116)
 
     internal val setPreserveInvalidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_preserve_invalid", 2586408642)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_preserve_invalid", 2_586_408_642)
 
     internal val getPreserveInvalidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_preserve_invalid", 36873697)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_preserve_invalid", 36_873_697)
 
     internal val setPreserveControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_preserve_control", 2586408642)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_preserve_control", 2_586_408_642)
 
     internal val getPreserveControlPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_preserve_control", 36873697)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_preserve_control", 36_873_697)
 
     internal val setBidiOverridePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_bidi_override", 381264803)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_bidi_override", 381_264_803)
 
     internal val setDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_dropcap", 2498990330)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_dropcap", 2_498_990_330)
 
     internal val clearDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "clear_dropcap", 3218959716)
+        TypeManager.getMethodBindPtr("TextParagraph", "clear_dropcap", 3_218_959_716)
 
     internal val addStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "add_string", 621426851)
+        TypeManager.getMethodBindPtr("TextParagraph", "add_string", 621_426_851)
 
     internal val addObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "add_object", 1316529304)
+        TypeManager.getMethodBindPtr("TextParagraph", "add_object", 1_316_529_304)
 
     internal val resizeObjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "resize_object", 2095776372)
+        TypeManager.getMethodBindPtr("TextParagraph", "resize_object", 2_095_776_372)
 
     internal val setAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_alignment", 2312603777)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_alignment", 2_312_603_777)
 
     internal val getAlignmentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_alignment", 341400642)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_alignment", 341_400_642)
 
     internal val tabAlignPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "tab_align", 2899603908)
+        TypeManager.getMethodBindPtr("TextParagraph", "tab_align", 2_899_603_908)
 
     internal val setBreakFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_break_flags", 2809697122)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_break_flags", 2_809_697_122)
 
     internal val getBreakFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_break_flags", 2340632602)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_break_flags", 2_340_632_602)
 
     internal val setJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_justification_flags", 2877345813)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_justification_flags", 2_877_345_813)
 
     internal val getJustificationFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_justification_flags", 1583363614)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_justification_flags", 1_583_363_614)
 
     internal val setTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_text_overrun_behavior", 1008890932)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_text_overrun_behavior", 1_008_890_932)
 
     internal val getTextOverrunBehaviorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_text_overrun_behavior", 3779142101)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_text_overrun_behavior", 3_779_142_101)
 
     internal val setEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_ellipsis_char", 83702148)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_ellipsis_char", 83_702_148)
 
     internal val getEllipsisCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_ellipsis_char", 201670096)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_ellipsis_char", 201_670_096)
 
     internal val setWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_width", 373806689)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_width", 373_806_689)
 
     internal val getWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_width", 1740695150)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_width", 1_740_695_150)
 
     internal val getNonWrappedSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_non_wrapped_size", 3341600327)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_non_wrapped_size", 3_341_600_327)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_size", 3_341_600_327)
 
     internal val getRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_rid", 2944877500)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_rid", 2_944_877_500)
 
     internal val getLineRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_rid", 495598643)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_rid", 495_598_643)
 
     internal val getDropcapRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_rid", 2944877500)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_rid", 2_944_877_500)
 
     internal val getLineCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_count", 3905245786)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_count", 3_905_245_786)
 
     internal val setMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_max_lines_visible", 1286410249)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_max_lines_visible", 1_286_410_249)
 
     internal val getMaxLinesVisiblePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_max_lines_visible", 3905245786)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_max_lines_visible", 3_905_245_786)
 
     internal val setLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "set_line_spacing", 373806689)
+        TypeManager.getMethodBindPtr("TextParagraph", "set_line_spacing", 373_806_689)
 
     internal val getLineSpacingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_spacing", 1740695150)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_spacing", 1_740_695_150)
 
     internal val getLineObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_objects", 663333327)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_objects", 663_333_327)
 
     internal val getLineObjectRectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_object_rect", 204315017)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_object_rect", 204_315_017)
 
     internal val getLineSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_size", 2299179447)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_size", 2_299_179_447)
 
     internal val getLineRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_range", 880721226)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_range", 880_721_226)
 
     internal val getLineAscentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_ascent", 2339986948)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_ascent", 2_339_986_948)
 
     internal val getLineDescentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_descent", 2339986948)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_descent", 2_339_986_948)
 
     internal val getLineWidthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_width", 2339986948)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_width", 2_339_986_948)
 
     internal val getLineUnderlinePositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_underline_position", 2339986948)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_underline_position", 2_339_986_948)
 
     internal val getLineUnderlineThicknessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_line_underline_thickness", 2339986948)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_line_underline_thickness", 2_339_986_948)
 
     internal val getDropcapSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_size", 3341600327)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_size", 3_341_600_327)
 
     internal val getDropcapLinesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_lines", 3905245786)
+        TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_lines", 3_905_245_786)
 
     internal val drawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw", 1567802413)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw", 1_567_802_413)
 
     internal val drawOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_outline", 1893131224)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_outline", 1_893_131_224)
 
     internal val drawLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_line", 1242169894)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_line", 1_242_169_894)
 
     internal val drawLineOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_line_outline", 2664926980)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_line_outline", 2_664_926_980)
 
     internal val drawDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap", 856975658)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap", 856_975_658)
 
     internal val drawDropcapOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap_outline", 1343401456)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap_outline", 1_343_401_456)
 
     internal val hitTestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "hit_test", 3820158470)
+        TypeManager.getMethodBindPtr("TextParagraph", "hit_test", 3_820_158_470)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -20,17 +17,12 @@ import kotlin.Double
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a
- * sub-animation and return once it finishes. Blend times for fading in and out can be customized, as
- * well as filters.
+ * A resource to add to an [AnimationNodeBlendTree]. This animation node will execute a sub-animation and return once it finishes. Blend times for fading in and out can be customized, as well as filters.
  *
- * After setting the request and changing the animation playback, the one-shot node automatically
- * clears the request on the next process frame by setting its `request` value to
- * [ONE_SHOT_REQUEST_NONE].
+ * After setting the request and changing the animation playback, the one-shot node automatically clears the request on the next process frame by setting its `request` value to [ONE_SHOT_REQUEST_NONE].
  *
  * ```gdscript
  * //gdscript
@@ -69,8 +61,7 @@ import kotlin.jvm.JvmName
  * animationTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.Abort);
  *
  * // Abort child animation with fading out connected to "shot" port.
- * animationTree.Set("parameters/OneShot/request",
- * (int)AnimationNodeOneShot.OneShotRequest.FadeOut);
+ * animationTree.Set("parameters/OneShot/request", (int)AnimationNodeOneShot.OneShotRequest.FadeOut);
  *
  * // Get current state (read-only).
  * animationTree.Get("parameters/OneShot/active");
@@ -93,14 +84,9 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will
-   * produce a cross-fade that starts at 0 second and ends at 1 second during the animation.
+   * The fade-in duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 0 second and ends at 1 second during the animation.
    *
-   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
-   * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeinTime] is scaled
-   * depending on the downstream delta. For example, if this value is set to `1.0` and a
-   * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
-   * will be 0.5 second.
+   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading. When [AnimationNodeOutput] is considered as the most upstream, so the [fadeinTime] is scaled depending on the downstream delta. For example, if this value is set to `1.0` and a [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time will be 0.5 second.
    */
   public final inline var fadeinTime: Double
     @JvmName("fadeinTimeProperty")
@@ -111,8 +97,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear. Should be a unit [Curve].
+   * Determines how cross-fading between animations is eased. If empty, the transition will be linear. Should be a unit [Curve].
    */
   public final inline var fadeinCurve: Curve?
     @JvmName("fadeinCurveProperty")
@@ -123,14 +108,9 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will
-   * produce a cross-fade that starts at 4 second and ends at 5 second during the animation.
+   * The fade-out duration. For example, setting this to `1.0` for a 5 second length animation will produce a cross-fade that starts at 4 second and ends at 5 second during the animation.
    *
-   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading.
-   * When [AnimationNodeOutput] is considered as the most upstream, so the [fadeoutTime] is scaled
-   * depending on the downstream delta. For example, if this value is set to `1.0` and an
-   * [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time
-   * will be 0.5 second.
+   * **Note:** [AnimationNodeOneShot] transitions the current state after the end of the fading. When [AnimationNodeOutput] is considered as the most upstream, so the [fadeoutTime] is scaled depending on the downstream delta. For example, if this value is set to `1.0` and an [AnimationNodeTimeScale] with a value of `2.0` is chained downstream, the actual processing time will be 0.5 second.
    */
   public final inline var fadeoutTime: Double
     @JvmName("fadeoutTimeProperty")
@@ -141,8 +121,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * Determines how cross-fading between animations is eased. If empty, the transition will be
-   * linear. Should be a unit [Curve].
+   * Determines how cross-fading between animations is eased. If empty, the transition will be linear. Should be a unit [Curve].
    */
   public final inline var fadeoutCurve: Curve?
     @JvmName("fadeoutCurveProperty")
@@ -153,8 +132,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation
-   * is looping.
+   * If `true`, breaks the loop at the end of the loop cycle for transition, even if the animation is looping.
    */
   public final inline var breakLoopAtEnd: Boolean
     @JvmName("breakLoopAtEndProperty")
@@ -167,10 +145,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
   /**
    * If `true`, the sub-animation will restart automatically after finishing.
    *
-   * In other words, to start auto restarting, the animation must be played once with the
-   * [ONE_SHOT_REQUEST_FIRE] request. The [ONE_SHOT_REQUEST_ABORT] request stops the auto restarting,
-   * but it does not disable the [autorestart] itself. So, the [ONE_SHOT_REQUEST_FIRE] request will
-   * start auto restarting again.
+   * In other words, to start auto restarting, the animation must be played once with the [ONE_SHOT_REQUEST_FIRE] request. The [ONE_SHOT_REQUEST_ABORT] request stops the auto restarting, but it does not disable the [autorestart] itself. So, the [ONE_SHOT_REQUEST_FIRE] request will start auto restarting again.
    */
   public final inline var autorestart: Boolean
     @JvmName("autorestartProperty")
@@ -192,8 +167,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   /**
-   * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value
-   * will be added to [autorestartDelay].
+   * If [autorestart] is `true`, a random additional delay (in seconds) between 0 and this value will be added to [autorestartDelay].
    */
   public final inline var autorestartRandomDelay: Double
     @JvmName("autorestartRandomDelayProperty")
@@ -203,11 +177,11 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
       setAutorestartRandomDelay(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(25, scriptIndex)
   }
 
-  public final fun setFadeinTime(time: Double): Unit {
+  public final fun setFadeinTime(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setFadeinTimePtr, NIL)
   }
@@ -218,7 +192,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setFadeinCurve(curve: Curve?): Unit {
+  public final fun setFadeinCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setFadeinCurvePtr, NIL)
   }
@@ -229,7 +203,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setFadeoutTime(time: Double): Unit {
+  public final fun setFadeoutTime(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setFadeoutTimePtr, NIL)
   }
@@ -240,7 +214,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setFadeoutCurve(curve: Curve?): Unit {
+  public final fun setFadeoutCurve(curve: Curve?) {
     TransferContext.writeArguments(OBJECT to curve)
     TransferContext.callMethod(ptr, MethodBindings.setFadeoutCurvePtr, NIL)
   }
@@ -251,7 +225,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(OBJECT) as Curve?)
   }
 
-  public final fun setBreakLoopAtEnd(enable: Boolean): Unit {
+  public final fun setBreakLoopAtEnd(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setBreakLoopAtEndPtr, NIL)
   }
@@ -262,7 +236,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutorestart(active: Boolean): Unit {
+  public final fun setAutorestart(active: Boolean) {
     TransferContext.writeArguments(BOOL to active)
     TransferContext.callMethod(ptr, MethodBindings.setAutorestartPtr, NIL)
   }
@@ -273,7 +247,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAutorestartDelay(time: Double): Unit {
+  public final fun setAutorestartDelay(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setAutorestartDelayPtr, NIL)
   }
@@ -284,7 +258,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setAutorestartRandomDelay(time: Double): Unit {
+  public final fun setAutorestartRandomDelay(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setAutorestartRandomDelayPtr, NIL)
   }
@@ -295,7 +269,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     return (TransferContext.readReturnValue(DOUBLE) as Double)
   }
 
-  public final fun setMixMode(mode: MixMode): Unit {
+  public final fun setMixMode(mode: MixMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setMixModePtr, NIL)
   }
@@ -364,57 +338,57 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
 
   public object MethodBindings {
     internal val setFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_time", 373_806_689)
 
     internal val getFadeinTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_time", 1_740_695_150)
 
     internal val setFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270443179)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadein_curve", 270_443_179)
 
     internal val getFadeinCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2460114913)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadein_curve", 2_460_114_913)
 
     internal val setFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_time", 373_806_689)
 
     internal val getFadeoutTimePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_time", 1_740_695_150)
 
     internal val setFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270443179)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_fadeout_curve", 270_443_179)
 
     internal val getFadeoutCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2460114913)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_fadeout_curve", 2_460_114_913)
 
     internal val setBreakLoopAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_break_loop_at_end", 2_586_408_642)
 
     internal val isLoopBrokenAtEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "is_loop_broken_at_end", 36_873_697)
 
     internal val setAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart", 2_586_408_642)
 
     internal val hasAutorestartPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "has_autorestart", 36_873_697)
 
     internal val setAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_delay", 373_806_689)
 
     internal val getAutorestartDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_delay", 1_740_695_150)
 
     internal val setAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373806689)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_autorestart_random_delay", 373_806_689)
 
     internal val getAutorestartRandomDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1740695150)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_autorestart_random_delay", 1_740_695_150)
 
     internal val setMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1018899799)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "set_mix_mode", 1_018_899_799)
 
     internal val getMixModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3076550526)
+        TypeManager.getMethodBindPtr("AnimationNodeOneShot", "get_mix_mode", 3_076_550_526)
   }
 }

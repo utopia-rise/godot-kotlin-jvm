@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,12 +12,10 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * An animation node used to combine, mix, or blend two or more animations together while keeping
- * them synchronized within an [AnimationTree].
+ * An animation node used to combine, mix, or blend two or more animations together while keeping them synchronized within an [AnimationTree].
  */
 @GodotBaseType
 public open class AnimationNodeSync : AnimationNode() {
@@ -37,11 +32,11 @@ public open class AnimationNodeSync : AnimationNode() {
       setUseSync(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(31, scriptIndex)
   }
 
-  public final fun setUseSync(enable: Boolean): Unit {
+  public final fun setUseSync(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setUseSyncPtr, NIL)
   }
@@ -56,9 +51,9 @@ public open class AnimationNodeSync : AnimationNode() {
 
   public object MethodBindings {
     internal val setUseSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeSync", "set_use_sync", 2586408642)
+        TypeManager.getMethodBindPtr("AnimationNodeSync", "set_use_sync", 2_586_408_642)
 
     internal val isUsingSyncPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("AnimationNodeSync", "is_using_sync", 36873697)
+        TypeManager.getMethodBindPtr("AnimationNodeSync", "is_using_sync", 36_873_697)
   }
 }

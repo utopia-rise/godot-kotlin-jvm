@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,20 +16,16 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other
- * [Resource].
+ * The CryptoKey class represents a cryptographic key. Keys can be loaded and saved like any other [Resource].
  *
- * They can be used to generate a self-signed [X509Certificate] via
- * [Crypto.generateSelfSignedCertificate] and as private key in [StreamPeerTLS.acceptStream] along with
- * the appropriate certificate.
+ * They can be used to generate a self-signed [X509Certificate] via [Crypto.generateSelfSignedCertificate] and as private key in [StreamPeerTLS.acceptStream] along with the appropriate certificate.
  */
 @GodotBaseType
 public open class CryptoKey : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(182, scriptIndex)
   }
 
@@ -70,8 +63,7 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public
-   * key will be included.
+   * Returns a string containing the key in PEM format. If [publicOnly] is `true`, only the public key will be included.
    */
   @JvmOverloads
   public final fun saveToString(publicOnly: Boolean = false): String {
@@ -81,8 +73,7 @@ public open class CryptoKey : Resource() {
   }
 
   /**
-   * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be
-   * loaded.
+   * Loads a key from the given [stringKey]. If [publicOnly] is `true`, only the public key will be loaded.
    */
   @JvmOverloads
   public final fun loadFromString(stringKey: String, publicOnly: Boolean = false): Error {
@@ -94,17 +85,17 @@ public open class CryptoKey : Resource() {
   public companion object
 
   public object MethodBindings {
-    internal val savePtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "save", 885841341)
+    internal val savePtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "save", 885_841_341)
 
-    internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "load", 885841341)
+    internal val loadPtr: VoidPtr = TypeManager.getMethodBindPtr("CryptoKey", "load", 885_841_341)
 
     internal val isPublicOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "is_public_only", 36873697)
+        TypeManager.getMethodBindPtr("CryptoKey", "is_public_only", 36_873_697)
 
     internal val saveToStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "save_to_string", 32795936)
+        TypeManager.getMethodBindPtr("CryptoKey", "save_to_string", 32_795_936)
 
     internal val loadFromStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CryptoKey", "load_from_string", 885841341)
+        TypeManager.getMethodBindPtr("CryptoKey", "load_from_string", 885_841_341)
   }
 }

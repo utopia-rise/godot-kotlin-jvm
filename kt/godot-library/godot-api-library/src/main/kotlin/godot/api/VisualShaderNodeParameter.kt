@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,13 +14,10 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A parameter represents a variable in the shader which is set externally, i.e. from the
- * [ShaderMaterial]. Parameters are exposed as properties in the [ShaderMaterial] and can be assigned
- * from the Inspector or from a script.
+ * A parameter represents a variable in the shader which is set externally, i.e. from the [ShaderMaterial]. Parameters are exposed as properties in the [ShaderMaterial] and can be assigned from the Inspector or from a script.
  */
 @GodotBaseType
 public open class VisualShaderNodeParameter internal constructor() : VisualShaderNode() {
@@ -49,11 +43,11 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
       setQualifier(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(770, scriptIndex)
   }
 
-  public final fun setParameterName(name: String): Unit {
+  public final fun setParameterName(name: String) {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.setParameterNamePtr, NIL)
   }
@@ -64,7 +58,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setQualifier(qualifier: Qualifier): Unit {
+  public final fun setQualifier(qualifier: Qualifier) {
     TransferContext.writeArguments(LONG to qualifier.id)
     TransferContext.callMethod(ptr, MethodBindings.setQualifierPtr, NIL)
   }
@@ -110,15 +104,15 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
 
   public object MethodBindings {
     internal val setParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83702148)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_parameter_name", 83_702_148)
 
     internal val getParameterNamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201670096)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_parameter_name", 201_670_096)
 
     internal val setQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1276489447)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "set_qualifier", 1_276_489_447)
 
     internal val getQualifierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3558406205)
+        TypeManager.getMethodBindPtr("VisualShaderNodeParameter", "get_qualifier", 3_558_406_205)
   }
 }

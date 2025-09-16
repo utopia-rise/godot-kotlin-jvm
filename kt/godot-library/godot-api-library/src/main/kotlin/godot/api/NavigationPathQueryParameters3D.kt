@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,18 +27,14 @@ import kotlin.Unit
 import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
-public infix fun Long.or(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long =
-    this.or(other.flag)
+public infix fun Long.or(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long = this.or(other.flag)
 
-public infix fun Long.xor(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long =
-    this.xor(other.flag)
+public infix fun Long.xor(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long = this.xor(other.flag)
 
-public infix fun Long.and(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long =
-    this.and(other.flag)
+public infix fun Long.and(other: NavigationPathQueryParameters3D.PathMetadataFlags): Long = this.and(other.flag)
 
 /**
- * By changing various properties of this object, such as the start and target position, you can
- * configure path queries to the [NavigationServer3D].
+ * By changing various properties of this object, such as the start and target position, you can configure path queries to the [NavigationServer3D].
  */
 @GodotBaseType
 public open class NavigationPathQueryParameters3D : RefCounted() {
@@ -60,11 +53,8 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
    * The pathfinding start position in global coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var startPosition: Vector3
@@ -79,11 +69,8 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
    * The pathfinding target position in global coordinates.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var targetPosition: Vector3
@@ -139,13 +126,9 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     }
 
   /**
-   * If `true` a simplified version of the path will be returned with less critical path points
-   * removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a
-   * variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
+   * If `true` a simplified version of the path will be returned with less critical path points removed. The simplification amount is controlled by [simplifyEpsilon]. The simplification uses a variant of Ramer-Douglas-Peucker algorithm for curve point decimation.
    *
-   * Path simplification can be helpful to mitigate various path following issues that can arise
-   * with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open
-   * fields".
+   * Path simplification can be helpful to mitigate various path following issues that can arise with certain agent types and script behaviors. E.g. "steering" agents or avoidance in "open fields".
    */
   public final inline var simplifyPath: Boolean
     @JvmName("simplifyPathProperty")
@@ -166,7 +149,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       setSimplifyEpsilon(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(385, scriptIndex)
   }
 
@@ -208,7 +191,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
      targetPosition = this
   }
 
-  public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm): Unit {
+  public final fun setPathfindingAlgorithm(pathfindingAlgorithm: PathfindingAlgorithm) {
     TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
@@ -219,7 +202,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return PathfindingAlgorithm.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing): Unit {
+  public final fun setPathPostprocessing(pathPostprocessing: PathPostProcessing) {
     TransferContext.writeArguments(LONG to pathPostprocessing.id)
     TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
@@ -230,7 +213,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return PathPostProcessing.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMap(map: RID): Unit {
+  public final fun setMap(map: RID) {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(ptr, MethodBindings.setMapPtr, NIL)
   }
@@ -241,7 +224,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun setStartPosition(startPosition: Vector3): Unit {
+  public final fun setStartPosition(startPosition: Vector3) {
     TransferContext.writeArguments(VECTOR3 to startPosition)
     TransferContext.callMethod(ptr, MethodBindings.setStartPositionPtr, NIL)
   }
@@ -252,7 +235,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setTargetPosition(targetPosition: Vector3): Unit {
+  public final fun setTargetPosition(targetPosition: Vector3) {
     TransferContext.writeArguments(VECTOR3 to targetPosition)
     TransferContext.callMethod(ptr, MethodBindings.setTargetPositionPtr, NIL)
   }
@@ -263,7 +246,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setNavigationLayers(navigationLayers: Long): Unit {
+  public final fun setNavigationLayers(navigationLayers: Long) {
     TransferContext.writeArguments(LONG to navigationLayers)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationLayersPtr, NIL)
   }
@@ -274,7 +257,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setMetadataFlags(flags: PathMetadataFlags): Unit {
+  public final fun setMetadataFlags(flags: PathMetadataFlags) {
     TransferContext.writeArguments(LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setMetadataFlagsPtr, NIL)
   }
@@ -285,7 +268,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return PathMetadataFlags(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSimplifyPath(enabled: Boolean): Unit {
+  public final fun setSimplifyPath(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSimplifyPathPtr, NIL)
   }
@@ -296,7 +279,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSimplifyEpsilon(epsilon: Float): Unit {
+  public final fun setSimplifyEpsilon(epsilon: Float) {
     TransferContext.writeArguments(DOUBLE to epsilon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSimplifyEpsilonPtr, NIL)
   }
@@ -330,22 +313,15 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
     id: Long,
   ) {
     /**
-     * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This
-     * will result in the shortest path possible inside the path corridor. This postprocessing very
-     * much depends on the navigation mesh polygon layout and the created corridor. Especially tile- or
-     * gridbased layouts can face artificial corners with diagonal movement due to a jagged path
-     * corridor imposed by the cell shapes.
+     * Applies a funnel algorithm to the raw path corridor found by the pathfinding algorithm. This will result in the shortest path possible inside the path corridor. This postprocessing very much depends on the navigation mesh polygon layout and the created corridor. Especially tile- or gridbased layouts can face artificial corners with diagonal movement due to a jagged path corridor imposed by the cell shapes.
      */
     POSTPROCESSING_CORRIDORFUNNEL(0),
     /**
-     * Centers every path position in the middle of the traveled navigation mesh polygon edge. This
-     * creates better paths for tile- or gridbased layouts that restrict the movement to the cells
-     * center.
+     * Centers every path position in the middle of the traveled navigation mesh polygon edge. This creates better paths for tile- or gridbased layouts that restrict the movement to the cells center.
      */
     POSTPROCESSING_EDGECENTERED(1),
     /**
-     * Applies no postprocessing and returns the raw path corridor as found by the pathfinding
-     * algorithm.
+     * Applies no postprocessing and returns the raw path corridor as found by the pathfinding algorithm.
      */
     POSTPROCESSING_NONE(2),
     ;
@@ -363,18 +339,15 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   public class PathMetadataFlags(
     public val flag: Long,
   ) {
-    public infix fun or(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.or(other.flag))
+    public infix fun or(other: PathMetadataFlags): PathMetadataFlags = PathMetadataFlags(flag.or(other.flag))
 
     public infix fun or(other: Long): PathMetadataFlags = PathMetadataFlags(flag.or(other))
 
-    public infix fun xor(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.xor(other.flag))
+    public infix fun xor(other: PathMetadataFlags): PathMetadataFlags = PathMetadataFlags(flag.xor(other.flag))
 
     public infix fun xor(other: Long): PathMetadataFlags = PathMetadataFlags(flag.xor(other))
 
-    public infix fun and(other: PathMetadataFlags): PathMetadataFlags =
-        PathMetadataFlags(flag.and(other.flag))
+    public infix fun and(other: PathMetadataFlags): PathMetadataFlags = PathMetadataFlags(flag.and(other.flag))
 
     public infix fun and(other: Long): PathMetadataFlags = PathMetadataFlags(flag.and(other))
 
@@ -398,8 +371,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       public val INCLUDE_NONE: PathMetadataFlags = PathMetadataFlags(0)
 
       /**
-       * Include the type of navigation primitive (region or link) that each point of the path goes
-       * through.
+       * Include the type of navigation primitive (region or link) that each point of the path goes through.
        */
       @JvmField
       public val INCLUDE_TYPES: PathMetadataFlags = PathMetadataFlags(1)
@@ -411,8 +383,7 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       public val INCLUDE_RIDS: PathMetadataFlags = PathMetadataFlags(2)
 
       /**
-       * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of
-       * the path goes through.
+       * Include the `ObjectID`s of the [Object]s which manage the regions and links each point of the path goes through.
        */
       @JvmField
       public val INCLUDE_OWNERS: PathMetadataFlags = PathMetadataFlags(4)
@@ -429,57 +400,57 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
 
   public object MethodBindings {
     internal val setPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_pathfinding_algorithm", 394560454)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_pathfinding_algorithm", 394_560_454)
 
     internal val getPathfindingAlgorithmPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_pathfinding_algorithm", 3398491350)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_pathfinding_algorithm", 3_398_491_350)
 
     internal val setPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_postprocessing", 2267362344)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_postprocessing", 2_267_362_344)
 
     internal val getPathPostprocessingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_postprocessing", 3883858360)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_postprocessing", 3_883_858_360)
 
     internal val setMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_map", 2722037293)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_map", 2_722_037_293)
 
     internal val getMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_map", 2944877500)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_map", 2_944_877_500)
 
     internal val setStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_start_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_start_position", 3_460_891_852)
 
     internal val getStartPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_start_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_start_position", 3_360_562_783)
 
     internal val setTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_target_position", 3460891852)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_target_position", 3_460_891_852)
 
     internal val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_target_position", 3360562783)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_target_position", 3_360_562_783)
 
     internal val setNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_navigation_layers", 1286410249)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_navigation_layers", 1_286_410_249)
 
     internal val getNavigationLayersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_navigation_layers", 3905245786)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_navigation_layers", 3_905_245_786)
 
     internal val setMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_metadata_flags", 2713846708)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_metadata_flags", 2_713_846_708)
 
     internal val getMetadataFlagsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_metadata_flags", 1582332802)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_metadata_flags", 1_582_332_802)
 
     internal val setSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_path", 2586408642)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_path", 2_586_408_642)
 
     internal val getSimplifyPathPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_path", 36873697)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_path", 36_873_697)
 
     internal val setSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_epsilon", 373806689)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_simplify_epsilon", 373_806_689)
 
     internal val getSimplifyEpsilonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_epsilon", 1740695150)
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_epsilon", 1_740_695_150)
   }
 }

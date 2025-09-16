@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,23 +16,22 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public abstract class ScriptLanguageExtension : ScriptLanguage() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(575, scriptIndex)
   }
 
   public abstract fun _getName(): String
 
-  public abstract fun _init(): Unit
+  public abstract fun _init()
 
   public abstract fun _getType(): String
 
   public abstract fun _getExtension(): String
 
-  public abstract fun _finish(): Unit
+  public abstract fun _finish()
 
   public abstract fun _getReservedWords(): PackedStringArray
 
@@ -55,8 +51,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     baseClassName: String,
   ): Script?
 
-  public abstract fun _getBuiltInTemplates(`object`: StringName):
-      VariantArray<Dictionary<Any?, Any?>>
+  public abstract fun _getBuiltInTemplates(`object`: StringName): VariantArray<Dictionary<Any?, Any?>>
 
   public abstract fun _isUsingTemplates(): Boolean
 
@@ -82,8 +77,7 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public abstract fun _canInheritFromFile(): Boolean
 
   /**
-   * Returns the line where the function is defined in the code, or `-1` if the function is not
-   * present.
+   * Returns the line where the function is defined in the code, or `-1` if the function is not present.
    */
   public abstract fun _findFunction(function: String, code: String): Int
 
@@ -126,15 +120,15 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     toLine: Int,
   ): String
 
-  public abstract fun _addGlobalConstant(name: StringName, `value`: Any?): Unit
+  public abstract fun _addGlobalConstant(name: StringName, `value`: Any?)
 
-  public abstract fun _addNamedGlobalConstant(name: StringName, `value`: Any?): Unit
+  public abstract fun _addNamedGlobalConstant(name: StringName, `value`: Any?)
 
-  public abstract fun _removeNamedGlobalConstant(name: StringName): Unit
+  public abstract fun _removeNamedGlobalConstant(name: StringName)
 
-  public abstract fun _threadEnter(): Unit
+  public abstract fun _threadEnter()
 
-  public abstract fun _threadExit(): Unit
+  public abstract fun _threadExit()
 
   public abstract fun _debugGetError(): String
 
@@ -172,11 +166,11 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public abstract fun _debugGetCurrentStackInfo(): VariantArray<Dictionary<Any?, Any?>>
 
-  public abstract fun _reloadAllScripts(): Unit
+  public abstract fun _reloadAllScripts()
 
-  public abstract fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean): Unit
+  public abstract fun _reloadScripts(scripts: VariantArray<Any?>, softReload: Boolean)
 
-  public abstract fun _reloadToolScript(script: Script?, softReload: Boolean): Unit
+  public abstract fun _reloadToolScript(script: Script?, softReload: Boolean)
 
   public abstract fun _getRecognizedExtensions(): PackedStringArray
 
@@ -186,13 +180,13 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
 
   public abstract fun _getPublicAnnotations(): VariantArray<Dictionary<Any?, Any?>>
 
-  public abstract fun _profilingStart(): Unit
+  public abstract fun _profilingStart()
 
-  public abstract fun _profilingStop(): Unit
+  public abstract fun _profilingStop()
 
-  public abstract fun _profilingSetSaveNativeCalls(enable: Boolean): Unit
+  public abstract fun _profilingSetSaveNativeCalls(enable: Boolean)
 
-  public abstract fun _frame(): Unit
+  public abstract fun _frame()
 
   public abstract fun _handlesGlobalClassType(type: String): Boolean
 
@@ -229,28 +223,21 @@ public abstract class ScriptLanguageExtension : ScriptLanguage() {
     id: Long,
   ) {
     /**
-     * The option is local to the location of the code completion query - e.g. a local variable.
-     * Subsequent value of location represent options from the outer class, the exact value represent
-     * how far they are (in terms of inner classes).
+     * The option is local to the location of the code completion query - e.g. a local variable. Subsequent value of location represent options from the outer class, the exact value represent how far they are (in terms of inner classes).
      */
     LOCATION_LOCAL(0),
     /**
-     * The option is from the containing class or a parent class, relative to the location of the
-     * code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class,
-     * `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class
-     * or a parent class.
+     * The option is from the containing class or a parent class, relative to the location of the code completion query. Perform a bitwise OR with the class depth (e.g. `0` for the local class, `1` for the parent, `2` for the grandparent, etc.) to store the depth of an option in the class or a parent class.
      */
     LOCATION_PARENT_MASK(256),
     /**
-     * The option is from user code which is not local and not in a derived class (e.g. Autoload
-     * Singletons).
+     * The option is from user code which is not local and not in a derived class (e.g. Autoload Singletons).
      */
     LOCATION_OTHER_USER_CODE(512),
     /**
-     * The option is from other engine code, not covered by the other enum constants - e.g. built-in
-     * classes.
+     * The option is from other engine code, not covered by the other enum constants - e.g. built-in classes.
      */
-    LOCATION_OTHER(1024),
+    LOCATION_OTHER(1_024),
     ;
 
     public val id: Long

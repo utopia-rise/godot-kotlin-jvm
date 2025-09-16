@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,20 +12,17 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 
 /**
- * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for
- * more usage information.
+ * [CallbackTweener] is used to call a method in a tweening sequence. See [Tween.tweenCallback] for more usage information.
  *
  * The tweener will finish automatically if the callback's target object is freed.
  *
- * **Note:** [Tween.tweenCallback] is the only correct way to create [CallbackTweener]. Any
- * [CallbackTweener] created manually will not function correctly.
+ * **Note:** [Tween.tweenCallback] is the only correct way to create [CallbackTweener]. Any [CallbackTweener] created manually will not function correctly.
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(126, scriptIndex)
   }
 
@@ -52,6 +46,6 @@ public open class CallbackTweener : Tweener() {
 
   public object MethodBindings {
     internal val setDelayPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CallbackTweener", "set_delay", 3008182292)
+        TypeManager.getMethodBindPtr("CallbackTweener", "set_delay", 3_008_182_292)
   }
 }

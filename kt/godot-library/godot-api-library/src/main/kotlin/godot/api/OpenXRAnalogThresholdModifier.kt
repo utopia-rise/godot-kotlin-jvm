@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -17,22 +14,17 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * The analog threshold binding modifier can modify a float input to a boolean input with specified
- * thresholds.
+ * The analog threshold binding modifier can modify a float input to a boolean input with specified thresholds.
  *
- * See
- * [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_VALVE_analog_threshold]XR_VALVE_analog_threshold[/url]
- * for in-depth details.
+ * See [url=https://registry.khronos.org/OpenXR/specs/1.1/html/xrspec.html#XR_VALVE_analog_threshold]XR_VALVE_analog_threshold[/url] for in-depth details.
  */
 @GodotBaseType
 public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() {
   /**
-   * When our input value is equal or larger than this value, our output becomes true. It stays true
-   * until it falls under the [offThreshold] value.
+   * When our input value is equal or larger than this value, our output becomes true. It stays true until it falls under the [offThreshold] value.
    */
   public final inline var onThreshold: Float
     @JvmName("onThresholdProperty")
@@ -75,11 +67,11 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
       setOffHaptic(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(415, scriptIndex)
   }
 
-  public final fun setOnThreshold(onThreshold: Float): Unit {
+  public final fun setOnThreshold(onThreshold: Float) {
     TransferContext.writeArguments(DOUBLE to onThreshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOnThresholdPtr, NIL)
   }
@@ -90,7 +82,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOffThreshold(offThreshold: Float): Unit {
+  public final fun setOffThreshold(offThreshold: Float) {
     TransferContext.writeArguments(DOUBLE to offThreshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOffThresholdPtr, NIL)
   }
@@ -101,7 +93,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOnHaptic(haptic: OpenXRHapticBase?): Unit {
+  public final fun setOnHaptic(haptic: OpenXRHapticBase?) {
     TransferContext.writeArguments(OBJECT to haptic)
     TransferContext.callMethod(ptr, MethodBindings.setOnHapticPtr, NIL)
   }
@@ -112,7 +104,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     return (TransferContext.readReturnValue(OBJECT) as OpenXRHapticBase?)
   }
 
-  public final fun setOffHaptic(haptic: OpenXRHapticBase?): Unit {
+  public final fun setOffHaptic(haptic: OpenXRHapticBase?) {
     TransferContext.writeArguments(OBJECT to haptic)
     TransferContext.callMethod(ptr, MethodBindings.setOffHapticPtr, NIL)
   }
@@ -127,27 +119,27 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
 
   public object MethodBindings {
     internal val setOnThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_on_threshold", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_on_threshold", 373_806_689)
 
     internal val getOnThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_on_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_on_threshold", 1_740_695_150)
 
     internal val setOffThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_off_threshold", 373806689)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_off_threshold", 373_806_689)
 
     internal val getOffThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_off_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_off_threshold", 1_740_695_150)
 
     internal val setOnHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_on_haptic", 2998020150)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_on_haptic", 2_998_020_150)
 
     internal val getOnHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_on_haptic", 922310751)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_on_haptic", 922_310_751)
 
     internal val setOffHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_off_haptic", 2998020150)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "set_off_haptic", 2_998_020_150)
 
     internal val getOffHapticPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_off_haptic", 922310751)
+        TypeManager.getMethodBindPtr("OpenXRAnalogThresholdModifier", "get_off_haptic", 922_310_751)
   }
 }

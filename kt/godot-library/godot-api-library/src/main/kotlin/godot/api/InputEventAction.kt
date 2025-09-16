@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,14 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Contains a generic action which can be targeted from several types of inputs. Actions and their
- * events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap]
- * class.
+ * Contains a generic action which can be targeted from several types of inputs. Actions and their events can be set in the **Input Map** tab in **Project > Project Settings**, or with the [InputMap] class.
  *
- * **Note:** Unlike the other [InputEvent] subclasses which map to unique physical events, this
- * virtual one is not emitted by the engine. This class is useful to emit actions manually with
- * [Input.parseInputEvent], which are then received in [Node.Input]. To check if a physical event
- * matches an action from the Input Map, use [InputEvent.isAction] and [InputEvent.isActionPressed].
+ * **Note:** Unlike the other [InputEvent] subclasses which map to unique physical events, this virtual one is not emitted by the engine. This class is useful to emit actions manually with [Input.parseInputEvent], which are then received in [Node.Input]. To check if a physical event matches an action from the Input Map, use [InputEvent.isAction] and [InputEvent.isActionPressed].
  */
 @GodotBaseType
 public open class InputEventAction : InputEvent() {
@@ -62,9 +54,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   /**
-   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is
-   * `false`. The event strength allows faking analog joypad motion events, by specifying how strongly
-   * the joypad axis is bent or pressed.
+   * The action's strength between 0 and 1. This value is considered as equal to 0 if pressed is `false`. The event strength allows faking analog joypad motion events, by specifying how strongly the joypad axis is bent or pressed.
    */
   public final inline var strength: Float
     @JvmName("strengthProperty")
@@ -75,9 +65,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   /**
-   * The real event index in action this event corresponds to (from events defined for this action
-   * in the [InputMap]). If `-1`, a unique ID will be used and actions pressed with this ID will need
-   * to be released with another [InputEventAction].
+   * The real event index in action this event corresponds to (from events defined for this action in the [InputMap]). If `-1`, a unique ID will be used and actions pressed with this ID will need to be released with another [InputEventAction].
    */
   public final inline var eventIndex: Int
     @JvmName("eventIndexProperty")
@@ -87,11 +75,11 @@ public open class InputEventAction : InputEvent() {
       setEventIndex(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(293, scriptIndex)
   }
 
-  public final fun setAction(action: StringName): Unit {
+  public final fun setAction(action: StringName) {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(ptr, MethodBindings.setActionPtr, NIL)
   }
@@ -102,12 +90,12 @@ public open class InputEventAction : InputEvent() {
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
   }
 
-  public final fun setPressed(pressed: Boolean): Unit {
+  public final fun setPressed(pressed: Boolean) {
     TransferContext.writeArguments(BOOL to pressed)
     TransferContext.callMethod(ptr, MethodBindings.setPressedPtr, NIL)
   }
 
-  public final fun setStrength(strength: Float): Unit {
+  public final fun setStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setStrengthPtr, NIL)
   }
@@ -118,7 +106,7 @@ public open class InputEventAction : InputEvent() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEventIndex(index: Int): Unit {
+  public final fun setEventIndex(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setEventIndexPtr, NIL)
   }
@@ -129,30 +117,30 @@ public open class InputEventAction : InputEvent() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAction(action: String) = setAction(action.asCachedStringName())
+  public final fun setAction(action: String): Unit = setAction(action.asCachedStringName())
 
   public companion object
 
   public object MethodBindings {
     internal val setActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_action", 3304788590)
+        TypeManager.getMethodBindPtr("InputEventAction", "set_action", 3_304_788_590)
 
     internal val getActionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_action", 2002593661)
+        TypeManager.getMethodBindPtr("InputEventAction", "get_action", 2_002_593_661)
 
     internal val setPressedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_pressed", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventAction", "set_pressed", 2_586_408_642)
 
     internal val setStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_strength", 373806689)
+        TypeManager.getMethodBindPtr("InputEventAction", "set_strength", 373_806_689)
 
     internal val getStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_strength", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventAction", "get_strength", 1_740_695_150)
 
     internal val setEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventAction", "set_event_index", 1_286_410_249)
 
     internal val getEventIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventAction", "get_event_index", 3_905_245_786)
   }
 }

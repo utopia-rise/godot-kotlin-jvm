@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -44,16 +41,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
-   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
-   * for both axes.
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var tilt: Vector2
@@ -90,11 +82,8 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * The drag position in the viewport the node is in, using the coordinate system of this viewport.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -108,17 +97,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag position relative to the previous position (position at the last frame).
    *
-   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
-   * this, use [screenRelative] instead.
+   * **Note:** [relative] is automatically scaled according to the content scale factor, which is defined by the project's stretch mode settings. This means touch sensitivity will appear different depending on resolution when using [relative] in a script that handles touch aiming. To avoid this, use [screenRelative] instead.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var relative: Vector2
@@ -130,17 +113,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
-   * The unscaled drag position relative to the previous position in screen coordinates (position at
-   * the last frame). This position is *not* scaled according to the content scale factor or calls to
-   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
-   * the project's stretch mode.
+   * The unscaled drag position relative to the previous position in screen coordinates (position at the last frame). This position is *not* scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of the project's stretch mode.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenRelative: Vector2
@@ -154,17 +131,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
   /**
    * The drag velocity.
    *
-   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
-   * this, use [screenVelocity] instead.
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is defined by the project's stretch mode settings. This means touch sensitivity will appear different depending on resolution when using [velocity] in a script that handles touch aiming. To avoid this, use [screenVelocity] instead.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var velocity: Vector2
@@ -176,16 +147,11 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     }
 
   /**
-   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
+   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not* scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be preferred over [velocity] for touch aiming regardless of the project's stretch mode.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var screenVelocity: Vector2
@@ -196,7 +162,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
       setScreenVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(305, scriptIndex)
   }
 
@@ -211,9 +177,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * inputeventscreendrag.tilt = myCoreType
    * ``````
    *
-   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the
-   * right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0`
-   * for both axes.
+   * Represents the angles of tilt of the pen. Positive X-coordinate value indicates a tilt to the right. Positive Y-coordinate value indicates a tilt toward the user. Ranges from `-1.0` to `1.0` for both axes.
    */
   @CoreTypeHelper
   public final fun tiltMutate(block: Vector2.() -> Unit): Vector2 = tilt.apply {
@@ -253,10 +217,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    *
    * The drag position relative to the previous position (position at the last frame).
    *
-   * **Note:** [relative] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [relative] in a script that handles touch aiming. To avoid
-   * this, use [screenRelative] instead.
+   * **Note:** [relative] is automatically scaled according to the content scale factor, which is defined by the project's stretch mode settings. This means touch sensitivity will appear different depending on resolution when using [relative] in a script that handles touch aiming. To avoid this, use [screenRelative] instead.
    */
   @CoreTypeHelper
   public final fun relativeMutate(block: Vector2.() -> Unit): Vector2 = relative.apply {
@@ -275,10 +236,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * inputeventscreendrag.screenRelative = myCoreType
    * ``````
    *
-   * The unscaled drag position relative to the previous position in screen coordinates (position at
-   * the last frame). This position is *not* scaled according to the content scale factor or calls to
-   * [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of
-   * the project's stretch mode.
+   * The unscaled drag position relative to the previous position in screen coordinates (position at the last frame). This position is *not* scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be preferred over [relative] for touch aiming regardless of the project's stretch mode.
    */
   @CoreTypeHelper
   public final fun screenRelativeMutate(block: Vector2.() -> Unit): Vector2 = screenRelative.apply {
@@ -299,10 +257,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    *
    * The drag velocity.
    *
-   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means touch sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles touch aiming. To avoid
-   * this, use [screenVelocity] instead.
+   * **Note:** [velocity] is automatically scaled according to the content scale factor, which is defined by the project's stretch mode settings. This means touch sensitivity will appear different depending on resolution when using [velocity] in a script that handles touch aiming. To avoid this, use [screenVelocity] instead.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -321,9 +276,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
    * inputeventscreendrag.screenVelocity = myCoreType
    * ``````
    *
-   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for touch aiming regardless of the project's stretch mode.
+   * The unscaled drag velocity in pixels per second in screen coordinates. This velocity is *not* scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be preferred over [velocity] for touch aiming regardless of the project's stretch mode.
    */
   @CoreTypeHelper
   public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply {
@@ -331,7 +284,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
      screenVelocity = this
   }
 
-  public final fun setIndex(index: Int): Unit {
+  public final fun setIndex(index: Int) {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setIndexPtr, NIL)
   }
@@ -342,7 +295,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setTilt(tilt: Vector2): Unit {
+  public final fun setTilt(tilt: Vector2) {
     TransferContext.writeArguments(VECTOR2 to tilt)
     TransferContext.callMethod(ptr, MethodBindings.setTiltPtr, NIL)
   }
@@ -353,7 +306,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setPressure(pressure: Float): Unit {
+  public final fun setPressure(pressure: Float) {
     TransferContext.writeArguments(DOUBLE to pressure.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPressurePtr, NIL)
   }
@@ -364,7 +317,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPenInverted(penInverted: Boolean): Unit {
+  public final fun setPenInverted(penInverted: Boolean) {
     TransferContext.writeArguments(BOOL to penInverted)
     TransferContext.callMethod(ptr, MethodBindings.setPenInvertedPtr, NIL)
   }
@@ -375,7 +328,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -386,7 +339,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setRelative(relative: Vector2): Unit {
+  public final fun setRelative(relative: Vector2) {
     TransferContext.writeArguments(VECTOR2 to relative)
     TransferContext.callMethod(ptr, MethodBindings.setRelativePtr, NIL)
   }
@@ -397,7 +350,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScreenRelative(relative: Vector2): Unit {
+  public final fun setScreenRelative(relative: Vector2) {
     TransferContext.writeArguments(VECTOR2 to relative)
     TransferContext.callMethod(ptr, MethodBindings.setScreenRelativePtr, NIL)
   }
@@ -408,7 +361,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setVelocity(velocity: Vector2): Unit {
+  public final fun setVelocity(velocity: Vector2) {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setVelocityPtr, NIL)
   }
@@ -419,7 +372,7 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setScreenVelocity(velocity: Vector2): Unit {
+  public final fun setScreenVelocity(velocity: Vector2) {
     TransferContext.writeArguments(VECTOR2 to velocity)
     TransferContext.callMethod(ptr, MethodBindings.setScreenVelocityPtr, NIL)
   }
@@ -434,57 +387,57 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
 
   public object MethodBindings {
     internal val setIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index", 1286410249)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_index", 1_286_410_249)
 
     internal val getIndexPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index", 3905245786)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_index", 3_905_245_786)
 
     internal val setTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_tilt", 743_155_724)
 
     internal val getTiltPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_tilt", 3_341_600_327)
 
     internal val setPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure", 373806689)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pressure", 373_806_689)
 
     internal val getPressurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure", 1740695150)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pressure", 1_740_695_150)
 
     internal val setPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted", 2586408642)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_pen_inverted", 2_586_408_642)
 
     internal val getPenInvertedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted", 36873697)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_pen_inverted", 36_873_697)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_position", 743_155_724)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_position", 3_341_600_327)
 
     internal val setRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_relative", 743_155_724)
 
     internal val getRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_relative", 3_341_600_327)
 
     internal val setScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_relative", 743_155_724)
 
     internal val getScreenRelativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_relative", 3_341_600_327)
 
     internal val setVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_velocity", 743_155_724)
 
     internal val getVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_velocity", 3_341_600_327)
 
     internal val setScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity", 743155724)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "set_screen_velocity", 743_155_724)
 
     internal val getScreenVelocityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventScreenDrag", "get_screen_velocity", 3_341_600_327)
   }
 }

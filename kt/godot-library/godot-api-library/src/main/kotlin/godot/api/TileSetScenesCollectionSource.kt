@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,20 +15,14 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
- * instantiate an associated scene at the cell's position in the TileMap.
+ * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically instantiate an associated scene at the cell's position in the TileMap.
  *
- * Scenes are instantiated as children of the [TileMap] when it enters the tree. If you add/remove a
- * scene tile in the [TileMap] that is already inside the tree, the [TileMap] will automatically
- * instantiate/free the scene accordingly.
+ * Scenes are instantiated as children of the [TileMap] when it enters the tree. If you add/remove a scene tile in the [TileMap] that is already inside the tree, the [TileMap] will automatically instantiate/free the scene accordingly.
  *
- * **Note:** Scene tiles all occupy one tile slot and instead use alternate tile ID to identify
- * scene index. [TileSetSource.getTilesCount] will always return `1`. Use [getSceneTilesCount] to get a
- * number of scenes in a [TileSetScenesCollectionSource].
+ * **Note:** Scene tiles all occupy one tile slot and instead use alternate tile ID to identify scene index. [TileSetSource.getTilesCount] will always return `1`. Use [getSceneTilesCount] to get a number of scenes in a [TileSetScenesCollectionSource].
  *
  * Use this code if you want to find the scene path at a given tile in [TileMapLayer]:
  *
@@ -63,7 +54,7 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(687, scriptIndex)
   }
 
@@ -107,19 +98,17 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with
-   * an ID equal to [newId].
+   * Changes a scene tile's ID from [id] to [newId]. This will fail if there is already a tile with an ID equal to [newId].
    */
-  public final fun setSceneTileId(id: Int, newId: Int): Unit {
+  public final fun setSceneTileId(id: Int, newId: Int) {
     TransferContext.writeArguments(LONG to id.toLong(), LONG to newId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSceneTileIdPtr, NIL)
   }
 
   /**
-   * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
-   * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
+   * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
    */
-  public final fun setSceneTileScene(id: Int, packedScene: PackedScene?): Unit {
+  public final fun setSceneTileScene(id: Int, packedScene: PackedScene?) {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)
     TransferContext.callMethod(ptr, MethodBindings.setSceneTileScenePtr, NIL)
   }
@@ -134,10 +123,9 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   }
 
   /**
-   * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This
-   * might be useful for scenes that are not visible.
+   * Sets whether or not the scene tile with [id] should display a placeholder in the editor. This might be useful for scenes that are not visible.
    */
-  public final fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean): Unit {
+  public final fun setSceneTileDisplayPlaceholder(id: Int, displayPlaceholder: Boolean) {
     TransferContext.writeArguments(LONG to id.toLong(), BOOL to displayPlaceholder)
     TransferContext.callMethod(ptr, MethodBindings.setSceneTileDisplayPlaceholderPtr, NIL)
   }
@@ -154,7 +142,7 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
   /**
    * Remove the scene tile with [id].
    */
-  public final fun removeSceneTile(id: Int): Unit {
+  public final fun removeSceneTile(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeSceneTilePtr, NIL)
   }
@@ -172,36 +160,36 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   public object MethodBindings {
     internal val getSceneTilesCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2455072627)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tiles_count", 2_455_072_627)
 
     internal val getSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3744713108)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_id", 3_744_713_108)
 
     internal val hasSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3067735520)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "has_scene_tile_id", 3_067_735_520)
 
     internal val createSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1117465415)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "create_scene_tile", 1_117_465_415)
 
     internal val setSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3937882851)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_id", 3_937_882_851)
 
     internal val setSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3435852839)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_scene", 3_435_852_839)
 
     internal val getSceneTileScenePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511017218)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_scene", 511_017_218)
 
     internal val setSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300928843)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "set_scene_tile_display_placeholder", 300_928_843)
 
     internal val getSceneTileDisplayPlaceholderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1116898809)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_scene_tile_display_placeholder", 1_116_898_809)
 
     internal val removeSceneTilePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1286410249)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "remove_scene_tile", 1_286_410_249)
 
     internal val getNextSceneTileIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3905245786)
+        TypeManager.getMethodBindPtr("TileSetScenesCollectionSource", "get_next_scene_tile_id", 3_905_245_786)
   }
 }

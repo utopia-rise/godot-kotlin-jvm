@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -21,11 +18,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a
- * [CollisionShape2D].
+ * A 2D rectangle shape, intended for use in physics. Usually used to provide a shape for a [CollisionShape2D].
  *
- * **Performance:** [RectangleShape2D] is fast to check collisions against. It is faster than
- * [CapsuleShape2D], but slower than [CircleShape2D].
+ * **Performance:** [RectangleShape2D] is fast to check collisions against. It is faster than [CapsuleShape2D], but slower than [CircleShape2D].
  */
 @GodotBaseType
 public open class RectangleShape2D : Shape2D() {
@@ -33,11 +28,8 @@ public open class RectangleShape2D : Shape2D() {
    * The rectangle's width and height.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector2
@@ -48,7 +40,7 @@ public open class RectangleShape2D : Shape2D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(533, scriptIndex)
   }
 
@@ -71,7 +63,7 @@ public open class RectangleShape2D : Shape2D() {
      size = this
   }
 
-  public final fun setSize(size: Vector2): Unit {
+  public final fun setSize(size: Vector2) {
     TransferContext.writeArguments(VECTOR2 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -86,9 +78,9 @@ public open class RectangleShape2D : Shape2D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RectangleShape2D", "set_size", 743155724)
+        TypeManager.getMethodBindPtr("RectangleShape2D", "set_size", 743_155_724)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RectangleShape2D", "get_size", 3341600327)
+        TypeManager.getMethodBindPtr("RectangleShape2D", "get_size", 3_341_600_327)
   }
 }

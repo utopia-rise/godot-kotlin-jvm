@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,15 +13,12 @@ import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also
- * [SceneTree.createTimer].
+ * A one-shot timer managed by the scene tree, which emits [signal timeout] on completion. See also [SceneTree.createTimer].
  *
- * As opposed to [Timer], it does not require the instantiation of a node. Commonly used to create a
- * one-shot delay timer as in the following example:
+ * As opposed to [Timer], it does not require the instantiation of a node. Commonly used to create a one-shot delay timer as in the following example:
  *
  * ```gdscript
  * //gdscript
@@ -44,12 +38,9 @@ import kotlin.jvm.JvmName
  * }
  * ```
  *
- * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a
- * reference to it. See [RefCounted].
+ * The timer will be dereferenced after its time elapses. To preserve the timer, you can keep a reference to it. See [RefCounted].
  *
- * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's
- * [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if
- * `process_in_physics` in [SceneTree.createTimer] has been set to `true`).
+ * **Note:** The timer is processed after all of the nodes in the current frame, i.e. node's [Node.Process] method would be called before the timer (or [Node.PhysicsProcess] if `process_in_physics` in [SceneTree.createTimer] has been set to `true`).
  */
 @GodotBaseType
 public open class SceneTreeTimer internal constructor() : RefCounted() {
@@ -69,11 +60,11 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
       setTimeLeft(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(571, scriptIndex)
   }
 
-  public final fun setTimeLeft(time: Double): Unit {
+  public final fun setTimeLeft(time: Double) {
     TransferContext.writeArguments(DOUBLE to time)
     TransferContext.callMethod(ptr, MethodBindings.setTimeLeftPtr, NIL)
   }
@@ -88,9 +79,9 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
 
   public object MethodBindings {
     internal val setTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373806689)
+        TypeManager.getMethodBindPtr("SceneTreeTimer", "set_time_left", 373_806_689)
 
     internal val getTimeLeftPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1740695150)
+        TypeManager.getMethodBindPtr("SceneTreeTimer", "get_time_left", 1_740_695_150)
   }
 }

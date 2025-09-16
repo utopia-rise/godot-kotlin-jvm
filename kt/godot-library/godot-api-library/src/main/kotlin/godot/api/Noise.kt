@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -25,22 +22,18 @@ import kotlin.Double
 import kotlin.Float
 import kotlin.Int
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
  * This class defines the interface for noise generation libraries to inherit from.
  *
- * A default [getSeamlessImage] implementation is provided for libraries that do not provide
- * seamless noise. This function requests a larger image from the [getImage] method, reverses the
- * quadrants of the image, then uses the strips of extra width to blend over the seams.
+ * A default [getSeamlessImage] implementation is provided for libraries that do not provide seamless noise. This function requests a larger image from the [getImage] method, reverses the quadrants of the image, then uses the strips of extra width to blend over the seams.
  *
- * Inheriting noise classes can optionally override this function to provide a more optimal
- * algorithm.
+ * Inheriting noise classes can optionally override this function to provide a more optimal algorithm.
  */
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(398, scriptIndex)
   }
 
@@ -96,8 +89,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns an [Image] containing 2D noise values.
    *
-   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
-   * generator to return values in the range `-1.0` to `1.0`.
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
   public final fun getImage(
@@ -115,8 +107,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns an [Image] containing seamless 2D noise values.
    *
-   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
-   * generator to return values in the range `-1.0` to `1.0`.
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
   public final fun getSeamlessImage(
@@ -135,8 +126,7 @@ public open class Noise internal constructor() : Resource() {
   /**
    * Returns an [Array] of [Image]s containing 3D noise values for use with [ImageTexture3D.create].
    *
-   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
-   * generator to return values in the range `-1.0` to `1.0`.
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
   public final fun getImage3d(
@@ -152,11 +142,9 @@ public open class Noise internal constructor() : Resource() {
   }
 
   /**
-   * Returns an [Array] of [Image]s containing seamless 3D noise values for use with
-   * [ImageTexture3D.create].
+   * Returns an [Array] of [Image]s containing seamless 3D noise values for use with [ImageTexture3D.create].
    *
-   * **Note:** With [normalize] set to `false`, the default implementation expects the noise
-   * generator to return values in the range `-1.0` to `1.0`.
+   * **Note:** With [normalize] set to `false`, the default implementation expects the noise generator to return values in the range `-1.0` to `1.0`.
    */
   @JvmOverloads
   public final fun getSeamlessImage3d(
@@ -176,30 +164,30 @@ public open class Noise internal constructor() : Resource() {
 
   public object MethodBindings {
     internal val getNoise1dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_noise_1d", 3919130443)
+        TypeManager.getMethodBindPtr("Noise", "get_noise_1d", 3_919_130_443)
 
     internal val getNoise2dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_noise_2d", 2753205203)
+        TypeManager.getMethodBindPtr("Noise", "get_noise_2d", 2_753_205_203)
 
     internal val getNoise2dvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_noise_2dv", 2276447920)
+        TypeManager.getMethodBindPtr("Noise", "get_noise_2dv", 2_276_447_920)
 
     internal val getNoise3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_noise_3d", 973811851)
+        TypeManager.getMethodBindPtr("Noise", "get_noise_3d", 973_811_851)
 
     internal val getNoise3dvPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_noise_3dv", 1109078154)
+        TypeManager.getMethodBindPtr("Noise", "get_noise_3dv", 1_109_078_154)
 
     internal val getImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_image", 3180683109)
+        TypeManager.getMethodBindPtr("Noise", "get_image", 3_180_683_109)
 
     internal val getSeamlessImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_seamless_image", 2770743602)
+        TypeManager.getMethodBindPtr("Noise", "get_seamless_image", 2_770_743_602)
 
     internal val getImage3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_image_3d", 3977814329)
+        TypeManager.getMethodBindPtr("Noise", "get_image_3d", 3_977_814_329)
 
     internal val getSeamlessImage3dPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Noise", "get_seamless_image_3d", 451006340)
+        TypeManager.getMethodBindPtr("Noise", "get_seamless_image_3d", 451_006_340)
   }
 }

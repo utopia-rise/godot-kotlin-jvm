@@ -55,8 +55,7 @@ public data class SignalArguments2<P0, P1>(
     public val p1: P1,
 )
 
-public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): SignalArguments2<P0, P1>
-        = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1> Signal2<P0, P1>.await(): SignalArguments2<P0, P1> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments2<P0, P1>> ->
     connectThreadSafe( {
         p0: P0, p1: P1 ->
@@ -73,8 +72,7 @@ public data class SignalArguments3<P0, P1, P2>(
     public val p2: P2,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.await():
-        SignalArguments3<P0, P1, P2> = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.await(): SignalArguments3<P0, P1, P2> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments3<P0, P1, P2>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2 ->
@@ -92,9 +90,7 @@ public data class SignalArguments4<P0, P1, P2, P3>(
     public val p3: P3,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3>
-        Signal4<P0, P1, P2, P3>.await(): SignalArguments4<P0, P1, P2, P3> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3> Signal4<P0, P1, P2, P3>.await(): SignalArguments4<P0, P1, P2, P3> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments4<P0, P1, P2, P3>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3 ->
@@ -113,9 +109,7 @@ public data class SignalArguments5<P0, P1, P2, P3, P4>(
     public val p4: P4,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
-        Signal5<P0, P1, P2, P3, P4>.await(): SignalArguments5<P0, P1, P2, P3, P4> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4> Signal5<P0, P1, P2, P3, P4>.await(): SignalArguments5<P0, P1, P2, P3, P4> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments5<P0, P1, P2, P3, P4>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4 ->
@@ -135,9 +129,7 @@ public data class SignalArguments6<P0, P1, P2, P3, P4, P5>(
     public val p5: P5,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
-        Signal6<P0, P1, P2, P3, P4, P5>.await(): SignalArguments6<P0, P1, P2, P3, P4, P5> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5> Signal6<P0, P1, P2, P3, P4, P5>.await(): SignalArguments6<P0, P1, P2, P3, P4, P5> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments6<P0, P1, P2, P3, P4, P5>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5 ->
@@ -158,9 +150,7 @@ public data class SignalArguments7<P0, P1, P2, P3, P4, P5, P6>(
     public val p6: P6,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.await():
-        SignalArguments7<P0, P1, P2, P3, P4, P5, P6> = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.await(): SignalArguments7<P0, P1, P2, P3, P4, P5, P6> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments7<P0, P1, P2, P3, P4, P5, P6>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6 ->
@@ -182,9 +172,7 @@ public data class SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>(
     public val p7: P7,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.await():
-        SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7> = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.await(): SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments8<P0, P1, P2, P3, P4, P5, P6, P7>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7 ->
@@ -207,9 +195,7 @@ public data class SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     public val p8: P8,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.await():
-        SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.await(): SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments9<P0, P1, P2, P3, P4, P5, P6, P7, P8>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8 ->
@@ -233,10 +219,7 @@ public data class SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
     public val p9: P9,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9>
-        Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.await():
-        SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9> Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.await(): SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9 ->
@@ -261,11 +244,7 @@ public data class SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
     public val p10: P10,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10>
-        Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.await():
-        SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10> Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.await(): SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10 ->
@@ -291,11 +270,7 @@ public data class SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
     public val p11: P11,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10, reified P11>
-        Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.await():
-        SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11> Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.await(): SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11 ->
@@ -322,11 +297,7 @@ public data class SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
     public val p12: P12,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12>
-        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.await():
-        SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12> Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.await(): SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12 ->
@@ -354,11 +325,7 @@ public data class SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
     public val p13: P13,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-        reified P13> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.await():
-        SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.await(): SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13 ->
@@ -369,8 +336,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
 
-public data class SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13,
-        P14>(
+public data class SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(
     public val p0: P0,
     public val p1: P1,
     public val p2: P2,
@@ -388,12 +354,7 @@ public data class SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
     public val p14: P14,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-        reified P13, reified P14>
-        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.await():
-        SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13, reified P14> Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.await(): SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14 ->
@@ -404,8 +365,7 @@ public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reifi
     }
     , Object.ConnectFlags.ONE_SHOT.id.toInt())}
 
-public data class SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14,
-        P15>(
+public data class SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(
     public val p0: P0,
     public val p1: P1,
     public val p2: P2,
@@ -424,12 +384,7 @@ public data class SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10,
     public val p15: P15,
 )
 
-public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5,
-        reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12,
-        reified P13, reified P14, reified P15>
-        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.await():
-        SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
-        suspendCancellableCoroutine {
+public suspend inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13, reified P14, reified P15> Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.await(): SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> = suspendCancellableCoroutine {
     cont: CancellableContinuation<SignalArguments16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>> ->
     connectThreadSafe( {
         p0: P0, p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6, p7: P7, p8: P8, p9: P9, p10: P10, p11: P11, p12: P12, p13: P13, p14: P14, p15: P15 ->

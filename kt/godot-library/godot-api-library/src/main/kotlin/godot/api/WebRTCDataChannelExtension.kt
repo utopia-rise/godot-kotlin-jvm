@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -12,11 +9,10 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 
 @GodotBaseType
 public abstract class WebRTCDataChannelExtension : WebRTCDataChannel() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(842, scriptIndex)
   }
 
@@ -26,9 +22,9 @@ public abstract class WebRTCDataChannelExtension : WebRTCDataChannel() {
 
   public abstract fun _poll(): Error
 
-  public abstract fun _close(): Unit
+  public abstract fun _close()
 
-  public abstract fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode): Unit
+  public abstract fun _setWriteMode(pWriteMode: WebRTCDataChannel.WriteMode)
 
   public abstract fun _getWriteMode(): WebRTCDataChannel.WriteMode
 

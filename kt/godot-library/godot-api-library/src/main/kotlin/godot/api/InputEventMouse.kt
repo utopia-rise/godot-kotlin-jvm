@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,8 +26,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventMouse internal constructor() : InputEventWithModifiers() {
   /**
-   * The mouse button mask identifier, one of or a bitwise combination of the [MouseButton] button
-   * masks.
+   * The mouse button mask identifier, one of or a bitwise combination of the [MouseButton] button masks.
    */
   public final inline var buttonMask: MouseButtonMask
     @JvmName("buttonMaskProperty")
@@ -41,18 +37,13 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   /**
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the [Viewport] this [Node] is in using the coordinate system of this [Viewport].
    *
-   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
-   * local coordinate system of the [Control].
+   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the local coordinate system of the [Control].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var position: Vector2
@@ -64,18 +55,13 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   /**
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * root [Viewport] using the coordinate system of the root [Viewport].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the root [Viewport] using the coordinate system of the root [Viewport].
    *
-   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
-   * [Control] is in using the coordinate system of the [CanvasLayer].
+   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the [Control] is in using the coordinate system of the [CanvasLayer].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var globalPosition: Vector2
@@ -86,7 +72,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
       setGlobalPosition(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(301, scriptIndex)
   }
 
@@ -101,11 +87,9 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * inputeventmouse.position = myCoreType
    * ``````
    *
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * [Viewport] this [Node] is in using the coordinate system of this [Viewport].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the [Viewport] this [Node] is in using the coordinate system of this [Viewport].
    *
-   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the
-   * local coordinate system of the [Control].
+   * When received in [Control.GuiInput], returns the mouse's position in the [Control] using the local coordinate system of the [Control].
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector2.() -> Unit): Vector2 = position.apply {
@@ -124,11 +108,9 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
    * inputeventmouse.globalPosition = myCoreType
    * ``````
    *
-   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the
-   * root [Viewport] using the coordinate system of the root [Viewport].
+   * When received in [Node.Input] or [Node.UnhandledInput], returns the mouse's position in the root [Viewport] using the coordinate system of the root [Viewport].
    *
-   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the
-   * [Control] is in using the coordinate system of the [CanvasLayer].
+   * When received in [Control.GuiInput], returns the mouse's position in the [CanvasLayer] that the [Control] is in using the coordinate system of the [CanvasLayer].
    */
   @CoreTypeHelper
   public final fun globalPositionMutate(block: Vector2.() -> Unit): Vector2 = globalPosition.apply {
@@ -136,7 +118,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
      globalPosition = this
   }
 
-  public final fun setButtonMask(buttonMask: MouseButtonMask): Unit {
+  public final fun setButtonMask(buttonMask: MouseButtonMask) {
     TransferContext.writeArguments(LONG to buttonMask.flag)
     TransferContext.callMethod(ptr, MethodBindings.setButtonMaskPtr, NIL)
   }
@@ -147,7 +129,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     return MouseButtonMask(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setPosition(position: Vector2): Unit {
+  public final fun setPosition(position: Vector2) {
     TransferContext.writeArguments(VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
@@ -158,7 +140,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setGlobalPosition(globalPosition: Vector2): Unit {
+  public final fun setGlobalPosition(globalPosition: Vector2) {
     TransferContext.writeArguments(VECTOR2 to globalPosition)
     TransferContext.callMethod(ptr, MethodBindings.setGlobalPositionPtr, NIL)
   }
@@ -173,21 +155,21 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
 
   public object MethodBindings {
     internal val setButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_button_mask", 3950145251)
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_button_mask", 3_950_145_251)
 
     internal val getButtonMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_button_mask", 2512161324)
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_button_mask", 2_512_161_324)
 
     internal val setPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_position", 743155724)
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_position", 743_155_724)
 
     internal val getPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_position", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_position", 3_341_600_327)
 
     internal val setGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "set_global_position", 743155724)
+        TypeManager.getMethodBindPtr("InputEventMouse", "set_global_position", 743_155_724)
 
     internal val getGlobalPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("InputEventMouse", "get_global_position", 3341600327)
+        TypeManager.getMethodBindPtr("InputEventMouse", "get_global_position", 3_341_600_327)
   }
 }

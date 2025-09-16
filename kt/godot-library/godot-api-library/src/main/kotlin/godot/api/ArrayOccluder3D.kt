@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,8 +21,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion
- * culling system. This is analogous to [ArrayMesh], but for occluders.
+ * [ArrayOccluder3D] stores an arbitrary 3D polygon shape that can be used by the engine's occlusion culling system. This is analogous to [ArrayMesh], but for occluders.
  *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
@@ -34,16 +30,11 @@ public open class ArrayOccluder3D : Occluder3D() {
   /**
    * The occluder's vertex positions in local 3D coordinates.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var vertices: PackedVector3Array
@@ -55,19 +46,13 @@ public open class ArrayOccluder3D : Occluder3D() {
     }
 
   /**
-   * The occluder's index position. Indices determine which points from the [vertices] array should
-   * be drawn, and in which order.
+   * The occluder's index position. Indices determine which points from the [vertices] array should be drawn, and in which order.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var indices: PackedInt32Array
@@ -78,7 +63,7 @@ public open class ArrayOccluder3D : Occluder3D() {
       setIndices(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(41, scriptIndex)
   }
 
@@ -95,31 +80,24 @@ public open class ArrayOccluder3D : Occluder3D() {
    *
    * The occluder's vertex positions in local 3D coordinates.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    */
   @CoreTypeHelper
-  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array =
-      vertices.apply {
+  public final fun verticesMutate(block: PackedVector3Array.() -> Unit): PackedVector3Array = vertices.apply {
      block(this)
      vertices = this
   }
 
   /**
    * This is a helper function for [vertices] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
    * The occluder's vertex positions in local 3D coordinates.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    */
   @CoreTypeHelper
-  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit):
-      PackedVector3Array = vertices.apply {
+  public final fun verticesMutateEach(block: (index: Int, `value`: Vector3) -> Unit): PackedVector3Array = vertices.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -138,35 +116,26 @@ public open class ArrayOccluder3D : Occluder3D() {
    * arrayoccluder3d.indices = myCoreType
    * ``````
    *
-   * The occluder's index position. Indices determine which points from the [vertices] array should
-   * be drawn, and in which order.
+   * The occluder's index position. Indices determine which points from the [vertices] array should be drawn, and in which order.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    */
   @CoreTypeHelper
-  public final fun indicesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array =
-      indices.apply {
+  public final fun indicesMutate(block: PackedInt32Array.() -> Unit): PackedInt32Array = indices.apply {
      block(this)
      indices = this
   }
 
   /**
    * This is a helper function for [indices] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The occluder's index position. Indices determine which points from the [vertices] array should
-   * be drawn, and in which order.
+   * The occluder's index position. Indices determine which points from the [vertices] array should be drawn, and in which order.
    *
-   * **Note:** The occluder is always updated after setting this value. If creating occluders
-   * procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's
-   * created.
+   * **Note:** The occluder is always updated after setting this value. If creating occluders procedurally, consider using [setArrays] instead to avoid updating the occluder twice when it's created.
    */
   @CoreTypeHelper
-  public final fun indicesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array =
-      indices.apply {
+  public final fun indicesMutateEach(block: (index: Int, `value`: Int) -> Unit): PackedInt32Array = indices.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -175,20 +144,19 @@ public open class ArrayOccluder3D : Occluder3D() {
   }
 
   /**
-   * Sets [indices] and [vertices], while updating the final occluder only once after both values
-   * are set.
+   * Sets [indices] and [vertices], while updating the final occluder only once after both values are set.
    */
-  public final fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array): Unit {
+  public final fun setArrays(vertices: PackedVector3Array, indices: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices, PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(ptr, MethodBindings.setArraysPtr, NIL)
   }
 
-  public final fun setVertices(vertices: PackedVector3Array): Unit {
+  public final fun setVertices(vertices: PackedVector3Array) {
     TransferContext.writeArguments(PACKED_VECTOR3_ARRAY to vertices)
     TransferContext.callMethod(ptr, MethodBindings.setVerticesPtr, NIL)
   }
 
-  public final fun setIndices(indices: PackedInt32Array): Unit {
+  public final fun setIndices(indices: PackedInt32Array) {
     TransferContext.writeArguments(PACKED_INT_32_ARRAY to indices)
     TransferContext.callMethod(ptr, MethodBindings.setIndicesPtr, NIL)
   }
@@ -197,12 +165,12 @@ public open class ArrayOccluder3D : Occluder3D() {
 
   public object MethodBindings {
     internal val setArraysPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_arrays", 3233972621)
+        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_arrays", 3_233_972_621)
 
     internal val setVerticesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_vertices", 334873810)
+        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_vertices", 334_873_810)
 
     internal val setIndicesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_indices", 3614634198)
+        TypeManager.getMethodBindPtr("ArrayOccluder3D", "set_indices", 3_614_634_198)
   }
 }

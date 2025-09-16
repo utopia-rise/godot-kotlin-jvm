@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -26,37 +23,28 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
  * A singleton used to load resource files from the filesystem.
  *
- * It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from
- * a plugin) to load files into memory and convert them to a format that can be used by the engine.
+ * It uses the many [ResourceFormatLoader] classes registered in the engine (either built-in or from a plugin) to load files into memory and convert them to a format that can be used by the engine.
  *
- * **Note:** You have to import the files into the engine first to load them using [load]. If you
- * want to load [Image]s at run-time, you may use [Image.load]. If you want to import audio files, you
- * can use the snippet described in [AudioStreamMP3.data].
+ * **Note:** You have to import the files into the engine first to load them using [load]. If you want to load [Image]s at run-time, you may use [Image.load]. If you want to import audio files, you can use the snippet described in [AudioStreamMP3.data].
  *
- * **Note:** Non-resource files such as plain text files cannot be read using [ResourceLoader]. Use
- * [FileAccess] for those files instead, and be aware that non-resource files are not exported by
- * default (see notes in the [FileAccess] class description for instructions on exporting them).
+ * **Note:** Non-resource files such as plain text files cannot be read using [ResourceLoader]. Use [FileAccess] for those files instead, and be aware that non-resource files are not exported by default (see notes in the [FileAccess] class description for instructions on exporting them).
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(27)
   }
 
   /**
-   * Loads the resource using threads. If [useSubThreads] is `true`, multiple threads will be used
-   * to load the resource, which makes loading faster, but may affect the main thread (and thus cause
-   * game slowdowns).
+   * Loads the resource using threads. If [useSubThreads] is `true`, multiple threads will be used to load the resource, which makes loading faster, but may affect the main thread (and thus cause game slowdowns).
    *
-   * The [cacheMode] property defines whether and how the cache should be used or updated when
-   * loading the resource. See [CacheMode] for details.
+   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [CacheMode] for details.
    */
   @JvmOverloads
   @JvmStatic
@@ -72,19 +60,15 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the
-   * resource at [path]. See [ThreadLoadStatus] for possible return values.
+   * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the resource at [path]. See [ThreadLoadStatus] for possible return values.
    *
-   * An array variable can optionally be passed via [progress], and will return a one-element array
-   * containing the ratio of completion of the threaded loading (between `0.0` and `1.0`).
+   * An array variable can optionally be passed via [progress], and will return a one-element array containing the ratio of completion of the threaded loading (between `0.0` and `1.0`).
    *
-   * **Note:** The recommended way of using this method is to call it during different frames (e.g.,
-   * in [Node.Process], instead of a loop).
+   * **Note:** The recommended way of using this method is to call it during different frames (e.g., in [Node.Process], instead of a loop).
    */
   @JvmOverloads
   @JvmStatic
-  public final fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> =
-      godot.core.variantArrayOf()): ThreadLoadStatus {
+  public final fun loadThreadedGetStatus(path: String, progress: VariantArray<Any?> = godot.core.variantArrayOf()): ThreadLoadStatus {
     TransferContext.writeArguments(STRING to path, ARRAY to progress)
     TransferContext.callMethod(ptr, MethodBindings.loadThreadedGetStatusPtr, LONG)
     return ThreadLoadStatus.from(TransferContext.readReturnValue(LONG) as Long)
@@ -93,10 +77,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the resource loaded by [loadThreadedRequest].
    *
-   * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not
-   * [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading.
-   * However, it's recommended to use [loadThreadedGetStatus] to known when the load has actually
-   * completed.
+   * If this is called before the loading thread is done (i.e. [loadThreadedGetStatus] is not [THREAD_LOAD_LOADED]), the calling thread will be blocked until the resource has finished loading. However, it's recommended to use [loadThreadedGetStatus] to known when the load has actually completed.
    */
   @JvmStatic
   public final fun loadThreadedGet(path: String): Resource? {
@@ -108,30 +89,19 @@ public object ResourceLoader : Object() {
   /**
    * Loads a resource at the given [path], caching the result for further access.
    *
-   * The registered [ResourceFormatLoader]s are queried sequentially to find the first one which can
-   * handle the file's extension, and then attempt loading. If loading fails, the remaining
-   * ResourceFormatLoaders are also attempted.
+   * The registered [ResourceFormatLoader]s are queried sequentially to find the first one which can handle the file's extension, and then attempt loading. If loading fails, the remaining ResourceFormatLoaders are also attempted.
    *
-   * An optional [typeHint] can be used to further specify the [Resource] type that should be
-   * handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a
-   * type hint, for example [Image].
+   * An optional [typeHint] can be used to further specify the [Resource] type that should be handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a type hint, for example [Image].
    *
-   * The [cacheMode] property defines whether and how the cache should be used or updated when
-   * loading the resource. See [CacheMode] for details.
+   * The [cacheMode] property defines whether and how the cache should be used or updated when loading the resource. See [CacheMode] for details.
    *
-   * Returns an empty resource if no [ResourceFormatLoader] could handle the file, and prints an
-   * error if no file is found at the specified path.
+   * Returns an empty resource if no [ResourceFormatLoader] could handle the file, and prints an error if no file is found at the specified path.
    *
-   * GDScript has a simplified [@GDScript.load] built-in method which can be used in most
-   * situations, leaving the use of [ResourceLoader] for more advanced scenarios.
+   * GDScript has a simplified [@GDScript.load] built-in method which can be used in most situations, leaving the use of [ResourceLoader] for more advanced scenarios.
    *
-   * **Note:** If [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`,
-   * [@GDScript.load] will not be able to read converted files in an exported project. If you rely on
-   * run-time loading of files present within the PCK, set
-   * [ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
+   * **Note:** If [ProjectSettings.editor/export/convertTextResourcesToBinary] is `true`, [@GDScript.load] will not be able to read converted files in an exported project. If you rely on run-time loading of files present within the PCK, set [ProjectSettings.editor/export/convertTextResourcesToBinary] to `false`.
    *
-   * **Note:** Relative paths will be prefixed with `"res://"` before loading, to avoid unexpected
-   * results make sure your paths are absolute.
+   * **Note:** Relative paths will be prefixed with `"res://"` before loading, to avoid unexpected results make sure your paths are absolute.
    */
   @JvmOverloads
   @JvmStatic
@@ -151,22 +121,18 @@ public object ResourceLoader : Object() {
   @JvmStatic
   public final fun getRecognizedExtensionsForType(type: String): PackedStringArray {
     TransferContext.writeArguments(STRING to type)
-    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsForTypePtr,
-        PACKED_STRING_ARRAY)
+    TransferContext.callMethod(ptr, MethodBindings.getRecognizedExtensionsForTypePtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
-   * Registers a new [ResourceFormatLoader]. The ResourceLoader will use the ResourceFormatLoader as
-   * described in [load].
+   * Registers a new [ResourceFormatLoader]. The ResourceLoader will use the ResourceFormatLoader as described in [load].
    *
-   * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see
-   * [ResourceFormatLoader] for more information).
+   * This method is performed implicitly for ResourceFormatLoaders written in GDScript (see [ResourceFormatLoader] for more information).
    */
   @JvmOverloads
   @JvmStatic
-  public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean =
-      false): Unit {
+  public final fun addResourceFormatLoader(formatLoader: ResourceFormatLoader?, atFront: Boolean = false) {
     TransferContext.writeArguments(OBJECT to formatLoader, BOOL to atFront)
     TransferContext.callMethod(ptr, MethodBindings.addResourceFormatLoaderPtr, NIL)
   }
@@ -175,7 +141,7 @@ public object ResourceLoader : Object() {
    * Unregisters the given [ResourceFormatLoader].
    */
   @JvmStatic
-  public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?): Unit {
+  public final fun removeResourceFormatLoader(formatLoader: ResourceFormatLoader?) {
     TransferContext.writeArguments(OBJECT to formatLoader)
     TransferContext.callMethod(ptr, MethodBindings.removeResourceFormatLoaderPtr, NIL)
   }
@@ -184,7 +150,7 @@ public object ResourceLoader : Object() {
    * Changes the behavior on missing sub-resources. The default behavior is to abort loading.
    */
   @JvmStatic
-  public final fun setAbortOnMissingResources(abort: Boolean): Unit {
+  public final fun setAbortOnMissingResources(abort: Boolean) {
     TransferContext.writeArguments(BOOL to abort)
     TransferContext.callMethod(ptr, MethodBindings.setAbortOnMissingResourcesPtr, NIL)
   }
@@ -192,8 +158,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns the dependencies for the resource at the given [path].
    *
-   * **Note:** The dependencies are returned with slices separated by `::`. You can use
-   * [String.getSlice] to get their components.
+   * **Note:** The dependencies are returned with slices separated by `::`. You can use [String.getSlice] to get their components.
    *
    * ```
    * for dependency in ResourceLoader.get_dependencies(path):
@@ -211,9 +176,7 @@ public object ResourceLoader : Object() {
   /**
    * Returns whether a cached resource is available for the given [path].
    *
-   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and
-   * future calls to the [load] method will use the cached version. The cached resource can be
-   * overridden by using [Resource.takeOverPath] on a new resource for that same path.
+   * Once a resource has been loaded by the engine, it is cached in memory for faster access, and future calls to the [load] method will use the cached version. The cached resource can be overridden by using [Resource.takeOverPath] on a new resource for that same path.
    */
   @JvmStatic
   public final fun hasCached(path: String): Boolean {
@@ -237,12 +200,9 @@ public object ResourceLoader : Object() {
   /**
    * Returns whether a recognized resource exists for the given [path].
    *
-   * An optional [typeHint] can be used to further specify the [Resource] type that should be
-   * handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a
-   * type hint, for example [Image].
+   * An optional [typeHint] can be used to further specify the [Resource] type that should be handled by the [ResourceFormatLoader]. Anything that inherits from [Resource] can be used as a type hint, for example [Image].
    *
-   * **Note:** If you use [Resource.takeOverPath], this method will return `true` for the taken path
-   * even if the resource wasn't saved (i.e. exists only in resource cache).
+   * **Note:** If you use [Resource.takeOverPath], this method will return `true` for the taken path even if the resource wasn't saved (i.e. exists only in resource cache).
    */
   @JvmOverloads
   @JvmStatic
@@ -263,8 +223,7 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Lists a directory (as example: "res://assets/enemies"), returning all resources contained
-   * within. The resource files are the original file names as visible in the editor before exporting.
+   * Lists a directory (as example: "res://assets/enemies"), returning all resources contained within. The resource files are the original file names as visible in the editor before exporting.
    */
   @JvmStatic
   public final fun listDirectory(directoryPath: String): PackedStringArray {
@@ -308,33 +267,23 @@ public object ResourceLoader : Object() {
     id: Long,
   ) {
     /**
-     * Neither the main resource (the one requested to be loaded) nor any of its subresources are
-     * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
-     * [CACHE_MODE_REUSE].
+     * Neither the main resource (the one requested to be loaded) nor any of its subresources are retrieved from cache nor stored into it. Dependencies (external resources) are loaded with [CACHE_MODE_REUSE].
      */
     IGNORE(0),
     /**
-     * The main resource (the one requested to be loaded), its subresources, and its dependencies
-     * (external resources) are retrieved from cache if present, instead of loaded. Those not cached
-     * are loaded and then stored into the cache. The same rules are propagated recursively down the
-     * tree of dependencies (external resources).
+     * The main resource (the one requested to be loaded), its subresources, and its dependencies (external resources) are retrieved from cache if present, instead of loaded. Those not cached are loaded and then stored into the cache. The same rules are propagated recursively down the tree of dependencies (external resources).
      */
     REUSE(1),
     /**
-     * Like [CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to
-     * be loaded) as well as for each of its subresources. Those already in the cache, as long as the
-     * loaded and cached types match, have their data refreshed from storage into the already existing
-     * instances. Otherwise, they are recreated as completely new objects.
+     * Like [CACHE_MODE_REUSE], but the cache is checked for the main resource (the one requested to be loaded) as well as for each of its subresources. Those already in the cache, as long as the loaded and cached types match, have their data refreshed from storage into the already existing instances. Otherwise, they are recreated as completely new objects.
      */
     REPLACE(2),
     /**
-     * Like [CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external
-     * resources).
+     * Like [CACHE_MODE_IGNORE], but propagated recursively down the tree of dependencies (external resources).
      */
     IGNORE_DEEP(3),
     /**
-     * Like [CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external
-     * resources).
+     * Like [CACHE_MODE_REPLACE], but propagated recursively down the tree of dependencies (external resources).
      */
     REPLACE_DEEP(4),
     ;
@@ -351,45 +300,45 @@ public object ResourceLoader : Object() {
 
   public object MethodBindings {
     internal val loadThreadedRequestPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3614384323)
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_request", 3_614_384_323)
 
     internal val loadThreadedGetStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4137685479)
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get_status", 4_137_685_479)
 
     internal val loadThreadedGetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1748875256)
+        TypeManager.getMethodBindPtr("ResourceLoader", "load_threaded_get", 1_748_875_256)
 
     internal val loadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "load", 3358495409)
+        TypeManager.getMethodBindPtr("ResourceLoader", "load", 3_358_495_409)
 
     internal val getRecognizedExtensionsForTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3538744774)
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_recognized_extensions_for_type", 3_538_744_774)
 
     internal val addResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2896595483)
+        TypeManager.getMethodBindPtr("ResourceLoader", "add_resource_format_loader", 2_896_595_483)
 
     internal val removeResourceFormatLoaderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405397102)
+        TypeManager.getMethodBindPtr("ResourceLoader", "remove_resource_format_loader", 405_397_102)
 
     internal val setAbortOnMissingResourcesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2586408642)
+        TypeManager.getMethodBindPtr("ResourceLoader", "set_abort_on_missing_resources", 2_586_408_642)
 
     internal val getDependenciesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_dependencies", 3538744774)
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_dependencies", 3_538_744_774)
 
     internal val hasCachedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "has_cached", 2323990056)
+        TypeManager.getMethodBindPtr("ResourceLoader", "has_cached", 2_323_990_056)
 
     internal val getCachedRefPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_cached_ref", 1748875256)
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_cached_ref", 1_748_875_256)
 
     internal val existsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "exists", 4185558881)
+        TypeManager.getMethodBindPtr("ResourceLoader", "exists", 4_185_558_881)
 
     internal val getResourceUidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1597066294)
+        TypeManager.getMethodBindPtr("ResourceLoader", "get_resource_uid", 1_597_066_294)
 
     internal val listDirectoryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("ResourceLoader", "list_directory", 3538744774)
+        TypeManager.getMethodBindPtr("ResourceLoader", "list_directory", 3_538_744_774)
   }
 }

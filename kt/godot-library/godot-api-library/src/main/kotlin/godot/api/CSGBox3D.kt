@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -24,10 +21,7 @@ import kotlin.jvm.JvmName
 /**
  * This node allows you to create a box for use with the CSG system.
  *
- * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a
- * significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG
- * node within another CSG node also has a significant CPU cost, so it should be avoided during
- * gameplay.
+ * **Note:** CSG nodes are intended to be used for level prototyping. Creating CSG nodes has a significant CPU cost compared to creating a [MeshInstance3D] with a [PrimitiveMesh]. Moving a CSG node within another CSG node also has a significant CPU cost, so it should be avoided during gameplay.
  */
 @GodotBaseType
 public open class CSGBox3D : CSGPrimitive3D() {
@@ -35,11 +29,8 @@ public open class CSGBox3D : CSGPrimitive3D() {
    * The box's width, height and depth.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -61,7 +52,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(117, scriptIndex)
   }
 
@@ -84,7 +75,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
      size = this
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -95,7 +86,7 @@ public open class CSGBox3D : CSGPrimitive3D() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setMaterial(material: Material?): Unit {
+  public final fun setMaterial(material: Material?) {
     TransferContext.writeArguments(OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.setMaterialPtr, NIL)
   }
@@ -110,15 +101,15 @@ public open class CSGBox3D : CSGPrimitive3D() {
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGBox3D", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("CSGBox3D", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGBox3D", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("CSGBox3D", "get_size", 3_360_562_783)
 
     internal val setMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGBox3D", "set_material", 2757459619)
+        TypeManager.getMethodBindPtr("CSGBox3D", "set_material", 2_757_459_619)
 
     internal val getMaterialPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGBox3D", "get_material", 5934680)
+        TypeManager.getMethodBindPtr("CSGBox3D", "get_material", 5_934_680)
   }
 }

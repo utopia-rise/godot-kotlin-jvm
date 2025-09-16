@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,30 +19,20 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling
- * system. When an [OccluderInstance3D] with a [PolygonOccluder3D] is selected in the editor, an editor
- * will appear at the top of the 3D viewport so you can add/remove points. All points must be placed on
- * the same 2D plane, which means it is not possible to create arbitrary 3D shapes with a single
- * [PolygonOccluder3D]. To use arbitrary 3D shapes as occluders, use [ArrayOccluder3D] or
- * [OccluderInstance3D]'s baking feature instead.
+ * [PolygonOccluder3D] stores a polygon shape that can be used by the engine's occlusion culling system. When an [OccluderInstance3D] with a [PolygonOccluder3D] is selected in the editor, an editor will appear at the top of the 3D viewport so you can add/remove points. All points must be placed on the same 2D plane, which means it is not possible to create arbitrary 3D shapes with a single [PolygonOccluder3D]. To use arbitrary 3D shapes as occluders, use [ArrayOccluder3D] or [OccluderInstance3D]'s baking feature instead.
  *
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
 public open class PolygonOccluder3D : Occluder3D() {
   /**
-   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
-   * have as few points as possible to maximize performance.
+   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should have as few points as possible to maximize performance.
    *
-   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
-   * error message printed).
+   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an error message printed).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var polygon: PackedVector2Array
@@ -56,7 +43,7 @@ public open class PolygonOccluder3D : Occluder3D() {
       setPolygon(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(499, scriptIndex)
   }
 
@@ -71,33 +58,26 @@ public open class PolygonOccluder3D : Occluder3D() {
    * polygonoccluder3d.polygon = myCoreType
    * ``````
    *
-   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
-   * have as few points as possible to maximize performance.
+   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should have as few points as possible to maximize performance.
    *
-   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
-   * error message printed).
+   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an error message printed).
    */
   @CoreTypeHelper
-  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array =
-      polygon.apply {
+  public final fun polygonMutate(block: PackedVector2Array.() -> Unit): PackedVector2Array = polygon.apply {
      block(this)
      polygon = this
   }
 
   /**
    * This is a helper function for [polygon] to make dealing with local copies easier.
-   * Allow to directly modify each element of the local copy of the property and assign it back to
-   * the Object.
+   * Allow to directly modify each element of the local copy of the property and assign it back to the Object.
    *
-   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should
-   * have as few points as possible to maximize performance.
+   * The polygon to use for occlusion culling. The polygon can be convex or concave, but it should have as few points as possible to maximize performance.
    *
-   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an
-   * error message printed).
+   * The polygon must *not* have intersecting lines. Otherwise, triangulation will fail (with an error message printed).
    */
   @CoreTypeHelper
-  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit):
-      PackedVector2Array = polygon.apply {
+  public final fun polygonMutateEach(block: (index: Int, `value`: Vector2) -> Unit): PackedVector2Array = polygon.apply {
      this.forEachIndexed { index, value ->
          block(index, value)
          this[index] = value
@@ -105,7 +85,7 @@ public open class PolygonOccluder3D : Occluder3D() {
      polygon = this
   }
 
-  public final fun setPolygon(polygon: PackedVector2Array): Unit {
+  public final fun setPolygon(polygon: PackedVector2Array) {
     TransferContext.writeArguments(PACKED_VECTOR2_ARRAY to polygon)
     TransferContext.callMethod(ptr, MethodBindings.setPolygonPtr, NIL)
   }
@@ -120,9 +100,9 @@ public open class PolygonOccluder3D : Occluder3D() {
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonOccluder3D", "set_polygon", 1509147220)
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "set_polygon", 1_509_147_220)
 
     internal val getPolygonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PolygonOccluder3D", "get_polygon", 2961356807)
+        TypeManager.getMethodBindPtr("PolygonOccluder3D", "get_polygon", 2_961_356_807)
   }
 }

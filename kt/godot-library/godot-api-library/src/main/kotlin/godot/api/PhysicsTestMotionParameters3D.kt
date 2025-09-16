@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -33,21 +30,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * By changing various properties of this object, such as the motion, you can configure the
- * parameters for [PhysicsServer3D.bodyTestMotion].
+ * By changing various properties of this object, such as the motion, you can configure the parameters for [PhysicsServer3D.bodyTestMotion].
  */
 @GodotBaseType
 public open class PhysicsTestMotionParameters3D : RefCounted() {
   /**
-   * Transform in global space where the motion should start. Usually set to
-   * [Node3D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to [Node3D.globalTransform] for the current body's transform.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var from: Transform3D
@@ -62,11 +54,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * Motion vector to define the length and direction of the motion to test.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var motion: Vector3
@@ -89,8 +78,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest
-   * detected collisions.
+   * Maximum number of returned collisions, between `1` and `32`. Always returns the deepest detected collisions.
    */
   public final inline var maxCollisions: Int
     @JvmName("maxCollisionsProperty")
@@ -101,11 +89,9 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * If set to `true`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect
-   * collisions and can stop the motion. Can be useful when snapping to the ground.
+   * If set to `true`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are used to detect collisions and can stop the motion. Can be useful when snapping to the ground.
    *
-   * If set to `false`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for
-   * separation when overlapping with other bodies. That's the main use for separation ray shapes.
+   * If set to `false`, shapes of type [PhysicsServer3D.SHAPE_SEPARATION_RAY] are only used for separation when overlapping with other bodies. That's the main use for separation ray shapes.
    */
   public final inline var collideSeparationRay: Boolean
     @JvmName("collideSeparationRayProperty")
@@ -116,8 +102,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Optional array of body [RID] to exclude from collision. Use [CollisionObject3D.getRid] to get
-   * the [RID] associated with a [CollisionObject3D]-derived node.
+   * Optional array of body [RID] to exclude from collision. Use [CollisionObject3D.getRid] to get the [RID] associated with a [CollisionObject3D]-derived node.
    */
   public final inline var excludeBodies: VariantArray<RID>
     @JvmName("excludeBodiesProperty")
@@ -128,8 +113,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * Optional array of object unique instance ID to exclude from collision. See
-   * [Object.getInstanceId].
+   * Optional array of object unique instance ID to exclude from collision. See [Object.getInstanceId].
    */
   public final inline var excludeObjects: VariantArray<Long>
     @JvmName("excludeObjectsProperty")
@@ -140,11 +124,9 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     }
 
   /**
-   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is
-   * used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.
+   * If set to `true`, any depenetration from the recovery phase is reported as a collision; this is used e.g. by [CharacterBody3D] for improving floor detection during floor snapping.
    *
-   * If set to `false`, only collisions resulting from the motion are reported, which is generally
-   * the desired behavior.
+   * If set to `false`, only collisions resulting from the motion are reported, which is generally the desired behavior.
    */
   public final inline var recoveryAsCollision: Boolean
     @JvmName("recoveryAsCollisionProperty")
@@ -154,7 +136,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
       setRecoveryAsCollisionEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(482, scriptIndex)
   }
 
@@ -169,8 +151,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
    * physicstestmotionparameters3d.from = myCoreType
    * ``````
    *
-   * Transform in global space where the motion should start. Usually set to
-   * [Node3D.globalTransform] for the current body's transform.
+   * Transform in global space where the motion should start. Usually set to [Node3D.globalTransform] for the current body's transform.
    */
   @CoreTypeHelper
   public final fun fromMutate(block: Transform3D.() -> Unit): Transform3D = from.apply {
@@ -203,7 +184,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public final fun setFrom(from: Transform3D): Unit {
+  public final fun setFrom(from: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to from)
     TransferContext.callMethod(ptr, MethodBindings.setFromPtr, NIL)
   }
@@ -214,7 +195,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setMotion(motion: Vector3): Unit {
+  public final fun setMotion(motion: Vector3) {
     TransferContext.writeArguments(VECTOR3 to motion)
     TransferContext.callMethod(ptr, MethodBindings.setMotionPtr, NIL)
   }
@@ -225,7 +206,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setMargin(margin: Float): Unit {
+  public final fun setMargin(margin: Float) {
     TransferContext.writeArguments(DOUBLE to margin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMarginPtr, NIL)
   }
@@ -236,7 +217,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setMaxCollisions(maxCollisions: Int): Unit {
+  public final fun setMaxCollisions(maxCollisions: Int) {
     TransferContext.writeArguments(LONG to maxCollisions.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setMaxCollisionsPtr, NIL)
   }
@@ -247,7 +228,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCollideSeparationRayEnabled(enabled: Boolean): Unit {
+  public final fun setCollideSeparationRayEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCollideSeparationRayEnabledPtr, NIL)
   }
@@ -258,7 +239,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
   }
 
-  public final fun setExcludeBodies(excludeList: VariantArray<RID>): Unit {
+  public final fun setExcludeBodies(excludeList: VariantArray<RID>) {
     TransferContext.writeArguments(ARRAY to excludeList)
     TransferContext.callMethod(ptr, MethodBindings.setExcludeBodiesPtr, NIL)
   }
@@ -269,7 +250,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
   }
 
-  public final fun setExcludeObjects(excludeList: VariantArray<Long>): Unit {
+  public final fun setExcludeObjects(excludeList: VariantArray<Long>) {
     TransferContext.writeArguments(ARRAY to excludeList)
     TransferContext.callMethod(ptr, MethodBindings.setExcludeObjectsPtr, NIL)
   }
@@ -280,7 +261,7 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRecoveryAsCollisionEnabled(enabled: Boolean): Unit {
+  public final fun setRecoveryAsCollisionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRecoveryAsCollisionEnabledPtr, NIL)
   }
@@ -289,51 +270,51 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
 
   public object MethodBindings {
     internal val getFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from", 3229777777)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_from", 3_229_777_777)
 
     internal val setFromPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from", 2952846383)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_from", 2_952_846_383)
 
     internal val getMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion", 3360562783)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_motion", 3_360_562_783)
 
     internal val setMotionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion", 3460891852)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_motion", 3_460_891_852)
 
     internal val getMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin", 1740695150)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_margin", 1_740_695_150)
 
     internal val setMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin", 373806689)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_margin", 373_806_689)
 
     internal val getMaxCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions", 3905245786)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_max_collisions", 3_905_245_786)
 
     internal val setMaxCollisionsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions", 1286410249)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_max_collisions", 1_286_410_249)
 
     internal val isCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_collide_separation_ray_enabled", 36_873_697)
 
     internal val setCollideSeparationRayEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_collide_separation_ray_enabled", 2_586_408_642)
 
     internal val getExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies", 3995934104)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_bodies", 3_995_934_104)
 
     internal val setExcludeBodiesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies", 381264803)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_bodies", 381_264_803)
 
     internal val getExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects", 3995934104)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "get_exclude_objects", 3_995_934_104)
 
     internal val setExcludeObjectsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects", 381264803)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_exclude_objects", 381_264_803)
 
     internal val isRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled", 36873697)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "is_recovery_as_collision_enabled", 36_873_697)
 
     internal val setRecoveryAsCollisionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("PhysicsTestMotionParameters3D", "set_recovery_as_collision_enabled", 2_586_408_642)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,24 +26,16 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Light3D is the *abstract* base class for light nodes. As it can't be instantiated, it shouldn't
- * be used directly. Other types of light nodes inherit from it. Light3D contains the common variables
- * and parameters used for lighting.
+ * Light3D is the *abstract* base class for light nodes. As it can't be instantiated, it shouldn't be used directly. Other types of light nodes inherit from it. Light3D contains the common variables and parameters used for lighting.
  */
 @GodotBaseType
 public open class Light3D internal constructor() : VisualInstance3D() {
   /**
-   * Used by positional lights ([OmniLight3D] and [SpotLight3D]) when
-   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity
-   * of the light source measured in Lumens. Lumens are a measure of luminous flux, which is the total
-   * amount of visible light emitted by a light source per unit of time.
+   * Used by positional lights ([OmniLight3D] and [SpotLight3D]) when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity of the light source measured in Lumens. Lumens are a measure of luminous flux, which is the total amount of visible light emitted by a light source per unit of time.
    *
-   * For [SpotLight3D]s, we assume that the area outside the visible cone is surrounded by a perfect
-   * light absorbing material. Accordingly, the apparent brightness of the cone area does not change as
-   * the cone increases and decreases in size.
+   * For [SpotLight3D]s, we assume that the area outside the visible cone is surrounded by a perfect light absorbing material. Accordingly, the apparent brightness of the cone area does not change as the cone increases and decreases in size.
    *
-   * A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is
-   * about 13 lumens, while a streetlight can be approximately 60,000 lumens.
+   * A typical household lightbulb can range from around 600 lumens to 1,200 lumens, a candle is about 13 lumens, while a streetlight can be approximately 60,000 lumens.
    */
   public final inline var lightIntensityLumens: Float
     @JvmName("lightIntensityLumensProperty")
@@ -57,14 +46,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Used by [DirectionalLight3D]s when
-   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity
-   * of the light source measured in Lux. Lux is a measure of luminous flux per unit area, it is equal
-   * to one lumen per square meter. Lux is the measure of how much light hits a surface at a given
-   * time.
+   * Used by [DirectionalLight3D]s when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity of the light source measured in Lux. Lux is a measure of luminous flux per unit area, it is equal to one lumen per square meter. Lux is the measure of how much light hits a surface at a given time.
    *
-   * On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical
-   * room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.
+   * On a clear sunny day a surface in direct sunlight may be approximately 100,000 lux, a typical room in a home may be approximately 50 lux, while the moonlit ground may be approximately 0.1 lux.
    */
   public final inline var lightIntensityLux: Float
     @JvmName("lightIntensityLuxProperty")
@@ -75,11 +59,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a
-   * correlated color temperature which tints the [lightColor].
+   * Sets the color temperature of the light source, measured in Kelvin. This is used to calculate a correlated color temperature which tints the [lightColor].
    *
-   * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000
-   * Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
+   * The sun on a cloudy day is approximately 6500 Kelvin, on a clear day it is between 5500 to 6000 Kelvin, and on a clear day at sunrise or sunset it ranges to around 1850 Kelvin.
    */
   public final inline var lightTemperature: Float
     @JvmName("lightTemperatureProperty")
@@ -90,15 +72,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's color. An *overbright* color can be used to achieve a result equivalent to
-   * increasing the light's [lightEnergy].
+   * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var lightColor: Color
@@ -110,9 +88,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's strength multiplier (this is not a physical unit). For [OmniLight3D] and
-   * [SpotLight3D], changing this value will only change the light color's intensity, not the light's
-   * radius.
+   * The light's strength multiplier (this is not a physical unit). For [OmniLight3D] and [SpotLight3D], changing this value will only change the light color's intensity, not the light's radius.
    */
   public final inline var lightEnergy: Float
     @JvmName("lightEnergyProperty")
@@ -123,11 +99,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Secondary multiplier used with indirect light (light bounces). Used with [VoxelGI] and SDFGI
-   * (see [Environment.sdfgiEnabled]).
+   * Secondary multiplier used with indirect light (light bounces). Used with [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
    *
-   * **Note:** This property is ignored if [lightEnergy] is equal to `0.0`, as the light won't be
-   * present at all in the GI shader.
+   * **Note:** This property is ignored if [lightEnergy] is equal to `0.0`, as the light won't be present at all in the GI shader.
    */
   public final inline var lightIndirectEnergy: Float
     @JvmName("lightIndirectEnergyProperty")
@@ -138,14 +112,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Secondary multiplier multiplied with [lightEnergy] then used with the [Environment]'s
-   * volumetric fog (if enabled). If set to `0.0`, computing volumetric fog will be skipped for this
-   * light, which can improve performance for large amounts of lights when volumetric fog is enabled.
+   * Secondary multiplier multiplied with [lightEnergy] then used with the [Environment]'s volumetric fog (if enabled). If set to `0.0`, computing volumetric fog will be skipped for this light, which can improve performance for large amounts of lights when volumetric fog is enabled.
    *
-   * **Note:** To prevent short-lived dynamic light effects from poorly interacting with volumetric
-   * fog, lights used in those effects should have [lightVolumetricFogEnergy] set to `0.0` unless
-   * [Environment.volumetricFogTemporalReprojectionEnabled] is disabled (or unless the reprojection
-   * amount is significantly lowered).
+   * **Note:** To prevent short-lived dynamic light effects from poorly interacting with volumetric fog, lights used in those effects should have [lightVolumetricFogEnergy] set to `0.0` unless [Environment.volumetricFogTemporalReprojectionEnabled] is disabled (or unless the reprojection amount is significantly lowered).
    */
   public final inline var lightVolumetricFogEnergy: Float
     @JvmName("lightVolumetricFogEnergyProperty")
@@ -156,16 +125,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * [Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light
-   * projectors make the light appear as if it is shining through a colored but transparent object,
-   * almost like light shining through stained-glass.
+   * [Texture2D] projected by light. [shadowEnabled] must be on for the projector to work. Light projectors make the light appear as if it is shining through a colored but transparent object, almost like light shining through stained-glass.
    *
-   * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis,
-   * the filter mode for light projector textures is set globally with
-   * [ProjectSettings.rendering/textures/lightProjectors/filter].
+   * **Note:** Unlike [BaseMaterial3D] whose filter mode can be adjusted on a per-material basis, the filter mode for light projector textures is set globally with [ProjectSettings.rendering/textures/lightProjectors/filter].
    *
-   * **Note:** Light projector textures are only supported in the Forward+ and Mobile rendering
-   * methods, not Compatibility.
+   * **Note:** Light projector textures are only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public final inline var lightProjector: Texture2D?
     @JvmName("lightProjectorProperty")
@@ -176,17 +140,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The size of the light in Godot units. Only available for [OmniLight3D]s and [SpotLight3D]s.
-   * Increasing this value will make the light fade out slower and shadows appear blurrier (also called
-   * percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent.
-   * Increasing this value above `0.0` for lights with shadows enabled will have a noticeable
-   * performance cost due to PCSS.
+   * The size of the light in Godot units. Only available for [OmniLight3D]s and [SpotLight3D]s. Increasing this value will make the light fade out slower and shadows appear blurrier (also called percentage-closer soft shadows, or PCSS). This can be used to simulate area lights to an extent. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.
    *
-   * **Note:** [lightSize] is not affected by [Node3D.scale] (the light's scale or its parent's
-   * scale).
+   * **Note:** [lightSize] is not affected by [Node3D.scale] (the light's scale or its parent's scale).
    *
-   * **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering
-   * methods, not Compatibility.
+   * **Note:** PCSS for positional lights is only supported in the Forward+ and Mobile rendering methods, not Compatibility.
    */
   public final inline var lightSize: Float
     @JvmName("lightSizeProperty")
@@ -197,17 +155,11 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's angular size in degrees. Increasing this will make shadows softer at greater
-   * distances (also called percentage-closer soft shadows, or PCSS). Only available for
-   * [DirectionalLight3D]s. For reference, the Sun from the Earth is approximately `0.5`. Increasing
-   * this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due
-   * to PCSS.
+   * The light's angular size in degrees. Increasing this will make shadows softer at greater distances (also called percentage-closer soft shadows, or PCSS). Only available for [DirectionalLight3D]s. For reference, the Sun from the Earth is approximately `0.5`. Increasing this value above `0.0` for lights with shadows enabled will have a noticeable performance cost due to PCSS.
    *
-   * **Note:** [lightAngularDistance] is not affected by [Node3D.scale] (the light's scale or its
-   * parent's scale).
+   * **Note:** [lightAngularDistance] is not affected by [Node3D.scale] (the light's scale or its parent's scale).
    *
-   * **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not
-   * Mobile or Compatibility.
+   * **Note:** PCSS for directional lights is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var lightAngularDistance: Float
     @JvmName("lightAngularDistanceProperty")
@@ -229,9 +181,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The intensity of the specular blob in objects affected by the light. At `0`, the light becomes
-   * a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections
-   * when placing lights above an emissive surface.
+   * The intensity of the specular blob in objects affected by the light. At `0`, the light becomes a pure diffuse light. When not baking emission, this can be used to avoid unrealistic reflections when placing lights above an emissive surface.
    */
   public final inline var lightSpecular: Float
     @JvmName("lightSpecularProperty")
@@ -242,11 +192,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's bake mode. This will affect the global illumination techniques that have an effect
-   * on the light's rendering. See [BakeMode].
+   * The light's bake mode. This will affect the global illumination techniques that have an effect on the light's rendering. See [BakeMode].
    *
-   * **Note:** Meshes' global illumination mode will also affect the global illumination rendering.
-   * See [GeometryInstance3D.giMode].
+   * **Note:** Meshes' global illumination mode will also affect the global illumination rendering. See [GeometryInstance3D.giMode].
    */
   public final inline var lightBakeMode: BakeMode
     @JvmName("lightBakeModeProperty")
@@ -268,9 +216,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * If `true`, the light will cast real-time shadows. This has a significant performance cost. Only
-   * enable shadow rendering when it makes a noticeable difference in the scene's appearance, and
-   * consider using [distanceFadeEnabled] to hide the light when far away from the [Camera3D].
+   * If `true`, the light will cast real-time shadows. This has a significant performance cost. Only enable shadow rendering when it makes a noticeable difference in the scene's appearance, and consider using [distanceFadeEnabled] to hide the light when far away from the [Camera3D].
    */
   public final inline var shadowEnabled: Boolean
     @JvmName("shadowEnabledProperty")
@@ -281,9 +227,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Used to adjust shadow appearance. Too small a value results in self-shadowing ("shadow acne"),
-   * while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as
-   * needed.
+   * Used to adjust shadow appearance. Too small a value results in self-shadowing ("shadow acne"), while too large a value causes shadows to separate from casters ("peter-panning"). Adjust as needed.
    */
   public final inline var shadowBias: Float
     @JvmName("shadowBiasProperty")
@@ -294,9 +238,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Offsets the lookup into the shadow map by the object's normal. This can be used to reduce
-   * self-shadowing artifacts without using [shadowBias]. In practice, this value should be tweaked
-   * along with [shadowBias] to reduce artifacts as much as possible.
+   * Offsets the lookup into the shadow map by the object's normal. This can be used to reduce self-shadowing artifacts without using [shadowBias]. In practice, this value should be tweaked along with [shadowBias] to reduce artifacts as much as possible.
    */
   public final inline var shadowNormalBias: Float
     @JvmName("shadowNormalBiasProperty")
@@ -307,9 +249,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat
-   * mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the
-   * mesh to use double-sided shadows with [GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
+   * If `true`, reverses the backface culling of the mesh. This can be useful when you have a flat mesh that has a light behind it. If you need to cast a shadow on both sides of the mesh, set the mesh to use double-sided shadows with [GeometryInstance3D.SHADOW_CASTING_SETTING_DOUBLE_SIDED].
    */
   public final inline var shadowReverseCullFace: Boolean
     @JvmName("shadowReverseCullFaceProperty")
@@ -328,9 +268,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The opacity to use when rendering the light's shadow map. Values lower than `1.0` make the
-   * light appear through shadows. This can be used to fake global illumination at a low performance
-   * cost.
+   * The opacity to use when rendering the light's shadow map. Values lower than `1.0` make the light appear through shadows. This can be used to fake global illumination at a low performance cost.
    */
   public final inline var shadowOpacity: Float
     @JvmName("shadowOpacityProperty")
@@ -341,9 +279,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low-resolution shadow
-   * maps. A high value can impact performance, make shadows appear grainy and can cause other unwanted
-   * artifacts. Try to keep as near default as possible.
+   * Blurs the edges of the shadow. Can be used to hide pixel artifacts in low-resolution shadow maps. A high value can impact performance, make shadows appear grainy and can cause other unwanted artifacts. Try to keep as near default as possible.
    */
   public final inline var shadowBlur: Float
     @JvmName("shadowBlurProperty")
@@ -365,11 +301,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * If `true`, the light will smoothly fade away when far from the active [Camera3D] starting at
-   * [distanceFadeBegin]. This acts as a form of level of detail (LOD). The light will fade out over
-   * [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the
-   * shader at all. Use this to reduce the number of active lights in a scene and thus improve
-   * performance.
+   * If `true`, the light will smoothly fade away when far from the active [Camera3D] starting at [distanceFadeBegin]. This acts as a form of level of detail (LOD). The light will fade out over [distanceFadeBegin] + [distanceFadeLength], after which it will be culled and not sent to the shader at all. Use this to reduce the number of active lights in a scene and thus improve performance.
    *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
@@ -395,12 +327,9 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The distance from the camera at which the light's shadow cuts off (in 3D units). Set this to a
-   * value lower than [distanceFadeBegin] + [distanceFadeLength] to further improve performance, as
-   * shadow rendering is often more expensive than light rendering itself.
+   * The distance from the camera at which the light's shadow cuts off (in 3D units). Set this to a value lower than [distanceFadeBegin] + [distanceFadeLength] to further improve performance, as shadow rendering is often more expensive than light rendering itself.
    *
-   * **Note:** Only effective for [OmniLight3D] and [SpotLight3D], and only when [shadowEnabled] is
-   * `true`.
+   * **Note:** Only effective for [OmniLight3D] and [SpotLight3D], and only when [shadowEnabled] is `true`.
    */
   public final inline var distanceFadeShadow: Float
     @JvmName("distanceFadeShadowProperty")
@@ -411,8 +340,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * Distance over which the light and its shadow fades. The light's energy and shadow's opacity is
-   * progressively reduced over this distance and is completely invisible at the end.
+   * Distance over which the light and its shadow fades. The light's energy and shadow's opacity is progressively reduced over this distance and is completely invisible at the end.
    *
    * **Note:** Only effective for [OmniLight3D] and [SpotLight3D].
    */
@@ -425,8 +353,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * If `true`, the light only appears in the editor and will not be visible at runtime. If `true`,
-   * the light will never be baked in [LightmapGI] regardless of its [lightBakeMode].
+   * If `true`, the light only appears in the editor and will not be visible at runtime. If `true`, the light will never be baked in [LightmapGI] regardless of its [lightBakeMode].
    */
   public final inline var editorOnly: Boolean
     @JvmName("editorOnlyProperty")
@@ -436,7 +363,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       setEditorOnly(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(332, scriptIndex)
   }
 
@@ -451,8 +378,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * light3d.lightColor = myCoreType
    * ``````
    *
-   * The light's color. An *overbright* color can be used to achieve a result equivalent to
-   * increasing the light's [lightEnergy].
+   * The light's color. An *overbright* color can be used to achieve a result equivalent to increasing the light's [lightEnergy].
    */
   @CoreTypeHelper
   public final fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply {
@@ -460,7 +386,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      lightColor = this
   }
 
-  public final fun setEditorOnly(editorOnly: Boolean): Unit {
+  public final fun setEditorOnly(editorOnly: Boolean) {
     TransferContext.writeArguments(BOOL to editorOnly)
     TransferContext.callMethod(ptr, MethodBindings.setEditorOnlyPtr, NIL)
   }
@@ -474,7 +400,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   /**
    * Sets the value of the specified [Light3D.Param] parameter.
    */
-  public final fun setParam(`param`: Param, `value`: Float): Unit {
+  public final fun setParam(`param`: Param, `value`: Float) {
     TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
@@ -488,7 +414,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setShadow(enabled: Boolean): Unit {
+  public final fun setShadow(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShadowPtr, NIL)
   }
@@ -499,7 +425,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setNegative(enabled: Boolean): Unit {
+  public final fun setNegative(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setNegativePtr, NIL)
   }
@@ -510,7 +436,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setCullMask(cullMask: Long): Unit {
+  public final fun setCullMask(cullMask: Long) {
     TransferContext.writeArguments(LONG to cullMask)
     TransferContext.callMethod(ptr, MethodBindings.setCullMaskPtr, NIL)
   }
@@ -521,7 +447,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEnableDistanceFade(enable: Boolean): Unit {
+  public final fun setEnableDistanceFade(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setEnableDistanceFadePtr, NIL)
   }
@@ -532,7 +458,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDistanceFadeBegin(distance: Float): Unit {
+  public final fun setDistanceFadeBegin(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeBeginPtr, NIL)
   }
@@ -543,7 +469,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDistanceFadeShadow(distance: Float): Unit {
+  public final fun setDistanceFadeShadow(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeShadowPtr, NIL)
   }
@@ -554,7 +480,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDistanceFadeLength(distance: Float): Unit {
+  public final fun setDistanceFadeLength(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDistanceFadeLengthPtr, NIL)
   }
@@ -565,7 +491,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -576,7 +502,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setShadowReverseCullFace(enable: Boolean): Unit {
+  public final fun setShadowReverseCullFace(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setShadowReverseCullFacePtr, NIL)
   }
@@ -587,7 +513,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setShadowCasterMask(casterMask: Long): Unit {
+  public final fun setShadowCasterMask(casterMask: Long) {
     TransferContext.writeArguments(LONG to casterMask)
     TransferContext.callMethod(ptr, MethodBindings.setShadowCasterMaskPtr, NIL)
   }
@@ -598,7 +524,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setBakeMode(bakeMode: BakeMode): Unit {
+  public final fun setBakeMode(bakeMode: BakeMode) {
     TransferContext.writeArguments(LONG to bakeMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBakeModePtr, NIL)
   }
@@ -609,7 +535,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return BakeMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setProjector(projector: Texture2D?): Unit {
+  public final fun setProjector(projector: Texture2D?) {
     TransferContext.writeArguments(OBJECT to projector)
     TransferContext.callMethod(ptr, MethodBindings.setProjectorPtr, NIL)
   }
@@ -620,7 +546,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setTemperature(temperature: Float): Unit {
+  public final fun setTemperature(temperature: Float) {
     TransferContext.writeArguments(DOUBLE to temperature.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTemperaturePtr, NIL)
   }
@@ -632,9 +558,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
   }
 
   /**
-   * Returns the [Color] of an idealized blackbody at the given [lightTemperature]. This value is
-   * calculated internally based on the [lightTemperature]. This [Color] is multiplied by [lightColor]
-   * before being sent to the [RenderingServer].
+   * Returns the [Color] of an idealized blackbody at the given [lightTemperature]. This value is calculated internally based on the [lightTemperature]. This [Color] is multiplied by [lightColor] before being sent to the [RenderingServer].
    */
   public final fun getCorrelatedColor(): Color {
     TransferContext.writeArguments()
@@ -726,8 +650,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
      */
     TRANSMITTANCE_BIAS(19),
     /**
-     * Constant for accessing [lightIntensityLumens] and [lightIntensityLux]. Only used when
-     * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
+     * Constant for accessing [lightIntensityLumens] and [lightIntensityLux]. Only used when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`.
      */
     INTENSITY(20),
     /**
@@ -750,30 +673,19 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     id: Long,
   ) {
     /**
-     * Light is ignored when baking. This is the fastest mode, but the light will be taken into
-     * account when baking global illumination. This mode should generally be used for dynamic lights
-     * that change quickly, as the effect of global illumination is less noticeable on those lights.
+     * Light is ignored when baking. This is the fastest mode, but the light will be taken into account when baking global illumination. This mode should generally be used for dynamic lights that change quickly, as the effect of global illumination is less noticeable on those lights.
      *
-     * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still
-     * affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
+     * **Note:** Hiding a light does *not* affect baking [LightmapGI]. Hiding a light will still affect baking [VoxelGI] and SDFGI (see [Environment.sdfgiEnabled]).
      */
     DISABLED(0),
     /**
-     * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI
-     * ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global
-     * illumination will not update in real-time. This is suitable for subtle changes (such as
-     * flickering torches), but generally not large changes such as toggling a light on and off.
+     * Light is taken into account in static baking ([VoxelGI], [LightmapGI], SDFGI ([Environment.sdfgiEnabled])). The light can be moved around or modified, but its global illumination will not update in real-time. This is suitable for subtle changes (such as flickering torches), but generally not large changes such as toggling a light on and off.
      *
      * **Note:** The light is not baked in [LightmapGI] if [editorOnly] is `true`.
      */
     STATIC(1),
     /**
-     * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI
-     * ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global
-     * illumination updating in real-time. The light's global illumination appearance will be slightly
-     * different compared to [BAKE_STATIC]. This has a greater performance cost compared to
-     * [BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by
-     * [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
+     * Light is taken into account in dynamic baking ([VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) only). The light can be moved around or modified with global illumination updating in real-time. The light's global illumination appearance will be slightly different compared to [BAKE_STATIC]. This has a greater performance cost compared to [BAKE_STATIC]. When using SDFGI, the update speed of dynamic lights is affected by [ProjectSettings.rendering/globalIllumination/sdfgi/framesToUpdateLights].
      */
     DYNAMIC(2),
     ;
@@ -792,96 +704,96 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   public object MethodBindings {
     internal val setEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_editor_only", 2586408642)
+        TypeManager.getMethodBindPtr("Light3D", "set_editor_only", 2_586_408_642)
 
     internal val isEditorOnlyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_editor_only", 36873697)
+        TypeManager.getMethodBindPtr("Light3D", "is_editor_only", 36_873_697)
 
     internal val setParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_param", 1722734213)
+        TypeManager.getMethodBindPtr("Light3D", "set_param", 1_722_734_213)
 
     internal val getParamPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_param", 1844084987)
+        TypeManager.getMethodBindPtr("Light3D", "get_param", 1_844_084_987)
 
     internal val setShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow", 2586408642)
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow", 2_586_408_642)
 
     internal val hasShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "has_shadow", 36873697)
+        TypeManager.getMethodBindPtr("Light3D", "has_shadow", 36_873_697)
 
     internal val setNegativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_negative", 2586408642)
+        TypeManager.getMethodBindPtr("Light3D", "set_negative", 2_586_408_642)
 
     internal val isNegativePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_negative", 36873697)
+        TypeManager.getMethodBindPtr("Light3D", "is_negative", 36_873_697)
 
     internal val setCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_cull_mask", 1286410249)
+        TypeManager.getMethodBindPtr("Light3D", "set_cull_mask", 1_286_410_249)
 
     internal val getCullMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_cull_mask", 3905245786)
+        TypeManager.getMethodBindPtr("Light3D", "get_cull_mask", 3_905_245_786)
 
     internal val setEnableDistanceFadePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_enable_distance_fade", 2586408642)
+        TypeManager.getMethodBindPtr("Light3D", "set_enable_distance_fade", 2_586_408_642)
 
     internal val isDistanceFadeEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "is_distance_fade_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Light3D", "is_distance_fade_enabled", 36_873_697)
 
     internal val setDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_begin", 373806689)
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_begin", 373_806_689)
 
     internal val getDistanceFadeBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_begin", 1740695150)
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_begin", 1_740_695_150)
 
     internal val setDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_shadow", 373806689)
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_shadow", 373_806_689)
 
     internal val getDistanceFadeShadowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_shadow", 1740695150)
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_shadow", 1_740_695_150)
 
     internal val setDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_length", 373806689)
+        TypeManager.getMethodBindPtr("Light3D", "set_distance_fade_length", 373_806_689)
 
     internal val getDistanceFadeLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_length", 1740695150)
+        TypeManager.getMethodBindPtr("Light3D", "get_distance_fade_length", 1_740_695_150)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("Light3D", "set_color", 2_920_490_490)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_color", 3444240500)
+        TypeManager.getMethodBindPtr("Light3D", "get_color", 3_444_240_500)
 
     internal val setShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face", 2586408642)
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow_reverse_cull_face", 2_586_408_642)
 
     internal val getShadowReverseCullFacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36873697)
+        TypeManager.getMethodBindPtr("Light3D", "get_shadow_reverse_cull_face", 36_873_697)
 
     internal val setShadowCasterMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_shadow_caster_mask", 1286410249)
+        TypeManager.getMethodBindPtr("Light3D", "set_shadow_caster_mask", 1_286_410_249)
 
     internal val getShadowCasterMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_shadow_caster_mask", 3905245786)
+        TypeManager.getMethodBindPtr("Light3D", "get_shadow_caster_mask", 3_905_245_786)
 
     internal val setBakeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_bake_mode", 37739303)
+        TypeManager.getMethodBindPtr("Light3D", "set_bake_mode", 37_739_303)
 
     internal val getBakeModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_bake_mode", 371737608)
+        TypeManager.getMethodBindPtr("Light3D", "get_bake_mode", 371_737_608)
 
     internal val setProjectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_projector", 4051416890)
+        TypeManager.getMethodBindPtr("Light3D", "set_projector", 4_051_416_890)
 
     internal val getProjectorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_projector", 3635182373)
+        TypeManager.getMethodBindPtr("Light3D", "get_projector", 3_635_182_373)
 
     internal val setTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "set_temperature", 373806689)
+        TypeManager.getMethodBindPtr("Light3D", "set_temperature", 373_806_689)
 
     internal val getTemperaturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_temperature", 1740695150)
+        TypeManager.getMethodBindPtr("Light3D", "get_temperature", 1_740_695_150)
 
     internal val getCorrelatedColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Light3D", "get_correlated_color", 3444240500)
+        TypeManager.getMethodBindPtr("Light3D", "get_correlated_color", 3_444_240_500)
   }
 }

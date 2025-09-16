@@ -21,15 +21,22 @@ fun Project.createIOSStaticLibraryTask(
         doFirst {
             val iosLibDir = project.layout.buildDirectory.asFile.get().resolve("libs").resolve("ios")
 
+            val userCodePath = iosLibDir
+                .listFiles()
+                ?.filter { file -> file.isDirectory && file.name.startsWith("SVM-") }
+                ?.maxByOrNull { file -> file.lastModified() }
+                ?.resolve("usercode.o")
+                ?.absolutePath
+
+            requireNotNull(userCodePath) {
+                "usercode.o was not generated. Make sure that this task runs after `createIOSGraalNativeImage`"
+            }
+
             commandLine(
                 "ar",
                 "-r",
                 "${iosLibDir.absolutePath}/usercode.a",
-                iosLibDir.listFiles()
-                    ?.filter { file -> file.isDirectory && file.name.startsWith("SVM-") }
-                    ?.maxByOrNull { file -> file.lastModified() }
-                    ?.resolve("usercode.o")
-                    ?.absolutePath,
+                userCodePath,
             )
 
             logger.quiet(commandLine.joinToString(" "))

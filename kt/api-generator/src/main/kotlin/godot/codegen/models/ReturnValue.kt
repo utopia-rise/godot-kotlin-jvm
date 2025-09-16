@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ReturnValue @JsonCreator constructor(
-    @JsonProperty("type") val type: String,
-    @JsonProperty("meta") val meta: String?,
+    @param:JsonProperty("type") val type: String,
+    @param:JsonProperty("meta") val meta: String?,
 )

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -28,14 +25,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [CanvasTexture] is an alternative to [ImageTexture] for 2D rendering. It allows using normal maps
- * and specular maps in any node that inherits from [CanvasItem]. [CanvasTexture] also allows
- * overriding the texture's filter and repeat mode independently of the node's properties (or the
- * project settings).
+ * [CanvasTexture] is an alternative to [ImageTexture] for 2D rendering. It allows using normal maps and specular maps in any node that inherits from [CanvasItem]. [CanvasTexture] also allows overriding the texture's filter and repeat mode independently of the node's properties (or the project settings).
  *
- * **Note:** [CanvasTexture] cannot be used in 3D. It will not display correctly when applied to any
- * [VisualInstance3D], such as [Sprite3D] or [Decal]. For physically-based materials in 3D, use
- * [BaseMaterial3D] instead.
+ * **Note:** [CanvasTexture] cannot be used in 3D. It will not display correctly when applied to any [VisualInstance3D], such as [Sprite3D] or [Decal]. For physically-based materials in 3D, use [BaseMaterial3D] instead.
  */
 @GodotBaseType
 public open class CanvasTexture : Texture2D() {
@@ -51,12 +43,9 @@ public open class CanvasTexture : Texture2D() {
     }
 
   /**
-   * The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this
-   * [CanvasTexture].
+   * The normal map texture to use. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].
    *
-   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See
-   * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
-   * page[/url] for a comparison of normal map coordinates expected by popular engines.
+   * **Note:** Godot expects the normal map to use X+, Y+, and Z+ coordinates. See [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this page[/url] for a comparison of normal map coordinates expected by popular engines.
    */
   public final inline var normalTexture: Texture2D?
     @JvmName("normalTextureProperty")
@@ -67,10 +56,7 @@ public open class CanvasTexture : Texture2D() {
     }
 
   /**
-   * The specular map to use for [Light2D] specular reflections. This should be a grayscale or
-   * colored texture, with brighter areas resulting in a higher [specularShininess] value. Using a
-   * colored [specularTexture] allows controlling specular shininess on a per-channel basis. Only has a
-   * visible effect if [Light2D]s are affecting this [CanvasTexture].
+   * The specular map to use for [Light2D] specular reflections. This should be a grayscale or colored texture, with brighter areas resulting in a higher [specularShininess] value. Using a colored [specularTexture] allows controlling specular shininess on a per-channel basis. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].
    */
   public final inline var specularTexture: Texture2D?
     @JvmName("specularTextureProperty")
@@ -81,16 +67,11 @@ public open class CanvasTexture : Texture2D() {
     }
 
   /**
-   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account
-   * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
-   * [CanvasTexture].
+   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var specularColor: Color
@@ -102,10 +83,7 @@ public open class CanvasTexture : Texture2D() {
     }
 
   /**
-   * The specular exponent for [Light2D] specular reflections. Higher values result in a more
-   * glossy/"wet" look, with reflections becoming more localized and less visible overall. The default
-   * value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are
-   * affecting this [CanvasTexture].
+   * The specular exponent for [Light2D] specular reflections. Higher values result in a more glossy/"wet" look, with reflections becoming more localized and less visible overall. The default value of `1.0` disables specular reflections entirely. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].
    */
   public final inline var specularShininess: Float
     @JvmName("specularShininessProperty")
@@ -137,7 +115,7 @@ public open class CanvasTexture : Texture2D() {
       setTextureRepeat(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(140, scriptIndex)
   }
 
@@ -152,9 +130,7 @@ public open class CanvasTexture : Texture2D() {
    * canvastexture.specularColor = myCoreType
    * ``````
    *
-   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account
-   * when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this
-   * [CanvasTexture].
+   * The multiplier for specular reflection colors. The [Light2D]'s color is also taken into account when determining the reflection color. Only has a visible effect if [Light2D]s are affecting this [CanvasTexture].
    */
   @CoreTypeHelper
   public final fun specularColorMutate(block: Color.() -> Unit): Color = specularColor.apply {
@@ -162,7 +138,7 @@ public open class CanvasTexture : Texture2D() {
      specularColor = this
   }
 
-  public final fun setDiffuseTexture(texture: Texture2D?): Unit {
+  public final fun setDiffuseTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setDiffuseTexturePtr, NIL)
   }
@@ -173,7 +149,7 @@ public open class CanvasTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setNormalTexture(texture: Texture2D?): Unit {
+  public final fun setNormalTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setNormalTexturePtr, NIL)
   }
@@ -184,7 +160,7 @@ public open class CanvasTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setSpecularTexture(texture: Texture2D?): Unit {
+  public final fun setSpecularTexture(texture: Texture2D?) {
     TransferContext.writeArguments(OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setSpecularTexturePtr, NIL)
   }
@@ -195,7 +171,7 @@ public open class CanvasTexture : Texture2D() {
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
 
-  public final fun setSpecularColor(color: Color): Unit {
+  public final fun setSpecularColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setSpecularColorPtr, NIL)
   }
@@ -206,7 +182,7 @@ public open class CanvasTexture : Texture2D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setSpecularShininess(shininess: Float): Unit {
+  public final fun setSpecularShininess(shininess: Float) {
     TransferContext.writeArguments(DOUBLE to shininess.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSpecularShininessPtr, NIL)
   }
@@ -217,7 +193,7 @@ public open class CanvasTexture : Texture2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTextureFilter(filter: CanvasItem.TextureFilter): Unit {
+  public final fun setTextureFilter(filter: CanvasItem.TextureFilter) {
     TransferContext.writeArguments(LONG to filter.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
@@ -228,7 +204,7 @@ public open class CanvasTexture : Texture2D() {
     return CanvasItem.TextureFilter.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTextureRepeat(repeat: CanvasItem.TextureRepeat): Unit {
+  public final fun setTextureRepeat(repeat: CanvasItem.TextureRepeat) {
     TransferContext.writeArguments(LONG to repeat.id)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRepeatPtr, NIL)
   }
@@ -242,14 +218,14 @@ public open class CanvasTexture : Texture2D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("CanvasTexture::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("CanvasTexture::_getHeight can't be called from the JVM.")
   }
 
@@ -257,45 +233,45 @@ public open class CanvasTexture : Texture2D() {
 
   public object MethodBindings {
     internal val setDiffuseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_diffuse_texture", 4051416890)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_diffuse_texture", 4_051_416_890)
 
     internal val getDiffuseTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_diffuse_texture", 3635182373)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_diffuse_texture", 3_635_182_373)
 
     internal val setNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_normal_texture", 4051416890)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_normal_texture", 4_051_416_890)
 
     internal val getNormalTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_normal_texture", 3635182373)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_normal_texture", 3_635_182_373)
 
     internal val setSpecularTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_texture", 4051416890)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_texture", 4_051_416_890)
 
     internal val getSpecularTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_texture", 3635182373)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_texture", 3_635_182_373)
 
     internal val setSpecularColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_color", 2920490490)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_color", 2_920_490_490)
 
     internal val getSpecularColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_color", 3444240500)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_color", 3_444_240_500)
 
     internal val setSpecularShininessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_shininess", 373806689)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_specular_shininess", 373_806_689)
 
     internal val getSpecularShininessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_shininess", 1740695150)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_specular_shininess", 1_740_695_150)
 
     internal val setTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_filter", 1037999706)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_filter", 1_037_999_706)
 
     internal val getTextureFilterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_filter", 121960042)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_filter", 121_960_042)
 
     internal val setTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_repeat", 1716472974)
+        TypeManager.getMethodBindPtr("CanvasTexture", "set_texture_repeat", 1_716_472_974)
 
     internal val getTextureRepeatPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_repeat", 2667158319)
+        TypeManager.getMethodBindPtr("CanvasTexture", "get_texture_repeat", 2_667_158_319)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
       setSource(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(791, scriptIndex)
   }
 
-  public final fun setSource(`value`: Source): Unit {
+  public final fun setSource(`value`: Source) {
     TransferContext.writeArguments(LONG to value.id)
     TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
@@ -80,9 +76,9 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
 
   public object MethodBindings {
     internal val setSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3315130991)
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "set_source", 3_315_130_991)
 
     internal val getSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1079494121)
+        TypeManager.getMethodBindPtr("VisualShaderNodeSample3D", "get_source", 1_079_494_121)
   }
 }

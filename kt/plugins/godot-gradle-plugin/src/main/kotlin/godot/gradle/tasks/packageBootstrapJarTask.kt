@@ -12,7 +12,6 @@ fun Project.packageBootstrapJarTask(): TaskProvider<out Task> {
             description = "Creates a fat jar containing everything needed to load and run the main.jar"
 
             archiveBaseName.set("godot-bootstrap")
-            configurations.clear()
             configurations.add(this@packageBootstrapJarTask.configurations.getByName("bootstrap"))
             archiveVersion.set("") // otherwise the version is appended to the name and our export plugin cannot find it anymore
         }

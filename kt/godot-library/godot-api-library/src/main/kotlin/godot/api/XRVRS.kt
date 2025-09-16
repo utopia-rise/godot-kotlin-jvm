@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,14 +27,12 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This class is used by various XR interfaces to generate VRS textures that can be used to speed up
- * rendering.
+ * This class is used by various XR interfaces to generate VRS textures that can be used to speed up rendering.
  */
 @GodotBaseType
 public open class XRVRS : Object() {
   /**
-   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a
-   * percentage of screen size.
+   * The minimum radius around the focal point where full quality is guaranteed if VRS is used as a percentage of screen size.
    */
   public final inline var vrsMinRadius: Float
     @JvmName("vrsMinRadiusProperty")
@@ -48,8 +43,7 @@ public open class XRVRS : Object() {
     }
 
   /**
-   * The strength used to calculate the VRS density map. The greater this value, the more noticeable
-   * VRS is.
+   * The strength used to calculate the VRS density map. The greater this value, the more noticeable VRS is.
    */
   public final inline var vrsStrength: Float
     @JvmName("vrsStrengthProperty")
@@ -63,11 +57,8 @@ public open class XRVRS : Object() {
    * The render region that the VRS texture will be scaled to when generated.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var vrsRenderRegion: Rect2i
@@ -78,7 +69,7 @@ public open class XRVRS : Object() {
       setVrsRenderRegion(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(876, scriptIndex)
   }
 
@@ -107,7 +98,7 @@ public open class XRVRS : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVrsMinRadius(radius: Float): Unit {
+  public final fun setVrsMinRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVrsMinRadiusPtr, NIL)
   }
@@ -118,7 +109,7 @@ public open class XRVRS : Object() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVrsStrength(strength: Float): Unit {
+  public final fun setVrsStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVrsStrengthPtr, NIL)
   }
@@ -129,17 +120,15 @@ public open class XRVRS : Object() {
     return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
-  public final fun setVrsRenderRegion(renderRegion: Rect2i): Unit {
+  public final fun setVrsRenderRegion(renderRegion: Rect2i) {
     TransferContext.writeArguments(RECT2I to renderRegion)
     TransferContext.callMethod(ptr, MethodBindings.setVrsRenderRegionPtr, NIL)
   }
 
   /**
-   * Generates the VRS texture based on a render [targetSize] adjusted by our VRS tile size. For
-   * each eyes focal point passed in [eyeFoci] a layer is created. Focal point should be in NDC.
+   * Generates the VRS texture based on a render [targetSize] adjusted by our VRS tile size. For each eyes focal point passed in [eyeFoci] a layer is created. Focal point should be in NDC.
    *
-   * The result will be cached, requesting a VRS texture with unchanged parameters and settings will
-   * return the cached RID.
+   * The result will be cached, requesting a VRS texture with unchanged parameters and settings will return the cached RID.
    */
   public final fun makeVrsTexture(targetSize: Vector2, eyeFoci: PackedVector2Array): RID {
     TransferContext.writeArguments(VECTOR2 to targetSize, PACKED_VECTOR2_ARRAY to eyeFoci)
@@ -151,24 +140,24 @@ public open class XRVRS : Object() {
 
   public object MethodBindings {
     internal val getVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_min_radius", 1740695150)
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_min_radius", 1_740_695_150)
 
     internal val setVrsMinRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_min_radius", 373806689)
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_min_radius", 373_806_689)
 
     internal val getVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_strength", 1740695150)
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_strength", 1_740_695_150)
 
     internal val setVrsStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength", 373806689)
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_strength", 373_806_689)
 
     internal val getVrsRenderRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_render_region", 410525958)
+        TypeManager.getMethodBindPtr("XRVRS", "get_vrs_render_region", 410_525_958)
 
     internal val setVrsRenderRegionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_render_region", 1763793166)
+        TypeManager.getMethodBindPtr("XRVRS", "set_vrs_render_region", 1_763_793_166)
 
     internal val makeVrsTexturePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture", 3647044786)
+        TypeManager.getMethodBindPtr("XRVRS", "make_vrs_texture", 3_647_044_786)
   }
 }

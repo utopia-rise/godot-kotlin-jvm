@@ -40,8 +40,7 @@ public fun <T : Object> Signal0.connectThreadSafe(
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun Signal0.connectThreadSafe(flags: Int = 0, noinline method: () -> Unit): Any? =
-        connectThreadSafe(method.asCallable(), flags)
+public inline fun Signal0.connectThreadSafe(flags: Int = 0, noinline method: () -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
 public fun <P0, T : Object> Signal1<P0>.connectThreadSafe(
     target: T,
@@ -49,8 +48,7 @@ public fun <P0, T : Object> Signal1<P0>.connectThreadSafe(
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0> Signal1<P0>.connectThreadSafe(flags: Int = 0, noinline
-        method: (p0: P0) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
+public inline fun <reified P0> Signal1<P0>.connectThreadSafe(flags: Int = 0, noinline method: (p0: P0) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
 public fun <P0, P1, T : Object> Signal2<P0, P1>.connectThreadSafe(
     target: T,
@@ -58,9 +56,7 @@ public fun <P0, P1, T : Object> Signal2<P0, P1>.connectThreadSafe(
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1> Signal2<P0, P1>.connectThreadSafe(flags: Int = 0,
-        noinline method: (p0: P0, p1: P1) -> Unit): Any? =
-        connectThreadSafe(method.asCallable(), flags)
+public inline fun <reified P0, reified P1> Signal2<P0, P1>.connectThreadSafe(flags: Int = 0, noinline method: (p0: P0, p1: P1) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
 public fun <P0, P1, P2, T : Object> Signal3<P0, P1, P2>.connectThreadSafe(
     target: T,
@@ -72,8 +68,7 @@ public fun <P0, P1, P2, T : Object> Signal3<P0, P1, P2>.connectThreadSafe(
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2>
-        Signal3<P0, P1, P2>.connectThreadSafe(flags: Int = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2> Signal3<P0, P1, P2>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -90,8 +85,7 @@ public fun <P0, P1, P2, P3, T : Object> Signal4<P0, P1, P2, P3>.connectThreadSaf
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3>
-        Signal4<P0, P1, P2, P3>.connectThreadSafe(flags: Int = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3> Signal4<P0, P1, P2, P3>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -110,8 +104,7 @@ public fun <P0, P1, P2, P3, P4, T : Object> Signal5<P0, P1, P2, P3, P4>.connectT
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4>
-        Signal5<P0, P1, P2, P3, P4>.connectThreadSafe(flags: Int = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4> Signal5<P0, P1, P2, P3, P4>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -132,8 +125,7 @@ public fun <P0, P1, P2, P3, P4, P5, T : Object> Signal6<P0, P1, P2, P3, P4, P5>.
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5>
-        Signal6<P0, P1, P2, P3, P4, P5>.connectThreadSafe(flags: Int = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5> Signal6<P0, P1, P2, P3, P4, P5>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -142,8 +134,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p5: P5,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, T : Object>
-        Signal7<P0, P1, P2, P3, P4, P5, P6>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, T : Object> Signal7<P0, P1, P2, P3, P4, P5, P6>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -157,8 +148,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.connectThreadSafe(flags: Int = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6> Signal7<P0, P1, P2, P3, P4, P5, P6>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -168,8 +158,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p6: P6,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, T : Object>
-        Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, T : Object> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -184,9 +173,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connectThreadSafe(flags: Int = 0,
-        noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7> Signal8<P0, P1, P2, P3, P4, P5, P6, P7>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -197,8 +184,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p7: P7,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, T : Object>
-        Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, T : Object> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -214,10 +200,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8>
-        Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connectThreadSafe(flags: Int = 0, noinline
-        method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8> Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -229,8 +212,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p8: P8,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, T : Object>
-        Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, T : Object> Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -247,10 +229,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9>
-        Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.connectThreadSafe(flags: Int = 0, noinline
-        method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9> Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -263,8 +242,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p9: P9,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, T : Object>
-        Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, T : Object> Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -282,10 +260,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10>
-        Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.connectThreadSafe(flags: Int = 0,
-        noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10> Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -299,8 +274,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p10: P10,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, T : Object>
-        Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, T : Object> Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -319,10 +293,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10, reified P11>
-        Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.connectThreadSafe(flags: Int = 0,
-        noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11> Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -337,8 +308,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p11: P11,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, T : Object>
-        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, T : Object> Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -358,10 +328,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, T : Object>
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12>
-        Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.connectThreadSafe(flags: Int
-        = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12> Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -377,8 +344,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p12: P12,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, T : Object>
-        Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, T : Object> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -399,10 +365,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, T : Obje
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13>
-        Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.connectThreadSafe(flags: Int
-        = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13> Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -419,8 +382,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p13: P13,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, T : Object>
-        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, T : Object> Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -442,11 +404,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, T :
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
-        reified P14>
-        Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.connectThreadSafe(flags: Int
-        = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13, reified P14> Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,
@@ -464,8 +422,7 @@ public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, r
     p14: P14,
 ) -> Unit): Any? = connectThreadSafe(method.asCallable(), flags)
 
-public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, T : Object>
-        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.connectThreadSafe(
+public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15, T : Object> Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.connectThreadSafe(
     target: T,
     method: T.(
         p0: P0,
@@ -488,11 +445,7 @@ public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15
     flags: Int = 0,
 ): Any? = connectThreadSafe(Callable(target, (method as KCallable<*>).name.toGodotName()), flags)
 
-public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified
-        P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13,
-        reified P14, reified P15>
-        Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.connectThreadSafe(flags: Int
-        = 0, noinline method: (
+public inline fun <reified P0, reified P1, reified P2, reified P3, reified P4, reified P5, reified P6, reified P7, reified P8, reified P9, reified P10, reified P11, reified P12, reified P13, reified P14, reified P15> Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>.connectThreadSafe(flags: Int = 0, noinline method: (
     p0: P0,
     p1: P1,
     p2: P2,

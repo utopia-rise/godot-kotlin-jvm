@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -30,36 +27,22 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node.
- * This makes it easier (and faster) to program scrollable scenes than manually changing the position
- * of [CanvasItem]-based nodes.
+ * Camera node for 2D scenes. It forces the screen (current layer) to scroll following this node. This makes it easier (and faster) to program scrollable scenes than manually changing the position of [CanvasItem]-based nodes.
  *
- * Cameras register themselves in the nearest [Viewport] node (when ascending the tree). Only one
- * camera can be active per viewport. If no viewport is available ascending the tree, the camera will
- * register in the global viewport.
+ * Cameras register themselves in the nearest [Viewport] node (when ascending the tree). Only one camera can be active per viewport. If no viewport is available ascending the tree, the camera will register in the global viewport.
  *
- * This node is intended to be a simple helper to get things going quickly, but more functionality
- * may be desired to change how the camera works. To make your own custom camera node, inherit it from
- * [Node2D] and change the transform of the canvas by setting [Viewport.canvasTransform] in [Viewport]
- * (you can obtain the current [Viewport] by using [Node.getViewport]).
+ * This node is intended to be a simple helper to get things going quickly, but more functionality may be desired to change how the camera works. To make your own custom camera node, inherit it from [Node2D] and change the transform of the canvas by setting [Viewport.canvasTransform] in [Viewport] (you can obtain the current [Viewport] by using [Node.getViewport]).
  *
- * Note that the [Camera2D] node's `position` doesn't represent the actual position of the screen,
- * which may differ due to applied smoothing or limits. You can use [getScreenCenterPosition] to get
- * the real position.
+ * Note that the [Camera2D] node's `position` doesn't represent the actual position of the screen, which may differ due to applied smoothing or limits. You can use [getScreenCenterPosition] to get the real position.
  */
 @GodotBaseType
 public open class Camera2D : Node2D() {
   /**
-   * The camera's relative offset. Useful for looking around or camera shake animations. The
-   * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
-   * [limitRight].
+   * The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and [limitRight].
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var offset: Vector2
@@ -82,8 +65,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera's rendered view is not affected by its [Node2D.rotation] and
-   * [Node2D.globalRotation].
+   * If `true`, the camera's rendered view is not affected by its [Node2D.rotation] and [Node2D.globalRotation].
    */
   public final inline var ignoreRotation: Boolean
     @JvmName("ignoreRotationProperty")
@@ -94,12 +76,9 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Controls whether the camera can be active or not. If `true`, the [Camera2D] will become the
-   * main camera when it enters the scene tree and there is no active camera currently (see
-   * [Viewport.getCamera2d]).
+   * Controls whether the camera can be active or not. If `true`, the [Camera2D] will become the main camera when it enters the scene tree and there is no active camera currently (see [Viewport.getCamera2d]).
    *
-   * When the camera is currently active and [enabled] is set to `false`, the next enabled
-   * [Camera2D] in the scene tree will become active.
+   * When the camera is currently active and [enabled] is set to `false`, the next enabled [Camera2D] in the scene tree will become active.
    */
   public final inline var enabled: Boolean
     @JvmName("enabledProperty")
@@ -110,24 +89,13 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
-   * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.
    *
-   * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
-   * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
-   * pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure
-   * text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling
-   * [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default
-   * project font only), or enabling **Multichannel Signed Distance Field** in the import options of a
-   * DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be
-   * enabled in the inspector.
+   * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var zoom: Vector2
@@ -139,8 +107,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The custom [Viewport] node attached to the [Camera2D]. If `null` or not a [Viewport], uses the
-   * default viewport instead.
+   * The custom [Viewport] node attached to the [Camera2D]. If `null` or not a [Viewport], uses the default viewport instead.
    */
   public final inline var customViewport: Node?
     @JvmName("customViewportProperty")
@@ -162,8 +129,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Left scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can
-   * push the view past the limit.
+   * Left scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
    */
   public final inline var limitLeft: Int
     @JvmName("limitLeftProperty")
@@ -174,8 +140,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Top scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can
-   * push the view past the limit.
+   * Top scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
    */
   public final inline var limitTop: Int
     @JvmName("limitTopProperty")
@@ -186,8 +151,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Right scroll limit in pixels. The camera stops moving when reaching this value, but [offset]
-   * can push the view past the limit.
+   * Right scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
    */
   public final inline var limitRight: Int
     @JvmName("limitRightProperty")
@@ -198,8 +162,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Bottom scroll limit in pixels. The camera stops moving when reaching this value, but [offset]
-   * can push the view past the limit.
+   * Bottom scroll limit in pixels. The camera stops moving when reaching this value, but [offset] can push the view past the limit.
    */
   public final inline var limitBottom: Int
     @JvmName("limitBottomProperty")
@@ -214,8 +177,7 @@ public open class Camera2D : Node2D() {
    *
    * This property has no effect if [positionSmoothingEnabled] is `false`.
    *
-   * **Note:** To immediately update the camera's position to be within limits without smoothing,
-   * even with this setting enabled, invoke [resetSmoothing].
+   * **Note:** To immediately update the camera's position to be within limits without smoothing, even with this setting enabled, invoke [resetSmoothing].
    */
   public final inline var limitSmoothed: Boolean
     @JvmName("limitSmoothedProperty")
@@ -226,8 +188,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera's view smoothly moves towards its target position at
-   * [positionSmoothingSpeed].
+   * If `true`, the camera's view smoothly moves towards its target position at [positionSmoothingSpeed].
    */
   public final inline var positionSmoothingEnabled: Boolean
     @JvmName("positionSmoothingEnabledProperty")
@@ -238,8 +199,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Speed in pixels per second of the camera's smoothing effect when [positionSmoothingEnabled] is
-   * `true`.
+   * Speed in pixels per second of the camera's smoothing effect when [positionSmoothingEnabled] is `true`.
    */
   public final inline var positionSmoothingSpeed: Float
     @JvmName("positionSmoothingSpeedProperty")
@@ -250,8 +210,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its
-   * target rotation at [rotationSmoothingSpeed].
+   * If `true`, the camera's view smoothly rotates, via asymptotic smoothing, to align with its target rotation at [rotationSmoothingSpeed].
    *
    * **Note:** This property has no effect if [ignoreRotation] is `true`.
    */
@@ -264,8 +223,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The angular, asymptotic speed of the camera's rotation smoothing effect when
-   * [rotationSmoothingEnabled] is `true`.
+   * The angular, asymptotic speed of the camera's rotation smoothing effect when [rotationSmoothingEnabled] is `true`.
    */
   public final inline var rotationSmoothingSpeed: Float
     @JvmName("rotationSmoothingSpeedProperty")
@@ -276,8 +234,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera only moves when reaching the horizontal (left and right) drag margins. If
-   * `false`, the camera moves horizontally regardless of margins.
+   * If `true`, the camera only moves when reaching the horizontal (left and right) drag margins. If `false`, the camera moves horizontally regardless of margins.
    */
   public final inline var dragHorizontalEnabled: Boolean
     @JvmName("dragHorizontalEnabledProperty")
@@ -288,8 +245,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * If `true`, the camera only moves when reaching the vertical (top and bottom) drag margins. If
-   * `false`, the camera moves vertically regardless of the drag margins.
+   * If `true`, the camera only moves when reaching the vertical (top and bottom) drag margins. If `false`, the camera moves vertically regardless of the drag margins.
    */
   public final inline var dragVerticalEnabled: Boolean
     @JvmName("dragVerticalEnabledProperty")
@@ -300,12 +256,9 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The relative horizontal drag offset of the camera between the right (`-1`) and left (`1`) drag
-   * margins.
+   * The relative horizontal drag offset of the camera between the right (`-1`) and left (`1`) drag margins.
    *
-   * **Note:** Used to set the initial horizontal drag offset; determine the current offset; or
-   * force the current offset. It's not automatically updated when [dragHorizontalEnabled] is `true` or
-   * the drag margins are changed.
+   * **Note:** Used to set the initial horizontal drag offset; determine the current offset; or force the current offset. It's not automatically updated when [dragHorizontalEnabled] is `true` or the drag margins are changed.
    */
   public final inline var dragHorizontalOffset: Float
     @JvmName("dragHorizontalOffsetProperty")
@@ -316,12 +269,9 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The relative vertical drag offset of the camera between the bottom (`-1`) and top (`1`) drag
-   * margins.
+   * The relative vertical drag offset of the camera between the bottom (`-1`) and top (`1`) drag margins.
    *
-   * **Note:** Used to set the initial vertical drag offset; determine the current offset; or force
-   * the current offset. It's not automatically updated when [dragVerticalEnabled] is `true` or the
-   * drag margins are changed.
+   * **Note:** Used to set the initial vertical drag offset; determine the current offset; or force the current offset. It's not automatically updated when [dragVerticalEnabled] is `true` or the drag margins are changed.
    */
   public final inline var dragVerticalOffset: Float
     @JvmName("dragVerticalOffsetProperty")
@@ -332,8 +282,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Left margin needed to drag the camera. A value of `1` makes the camera move only when reaching
-   * the left edge of the screen.
+   * Left margin needed to drag the camera. A value of `1` makes the camera move only when reaching the left edge of the screen.
    */
   public final inline var dragLeftMargin: Float
     @JvmName("dragLeftMarginProperty")
@@ -344,8 +293,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Top margin needed to drag the camera. A value of `1` makes the camera move only when reaching
-   * the top edge of the screen.
+   * Top margin needed to drag the camera. A value of `1` makes the camera move only when reaching the top edge of the screen.
    */
   public final inline var dragTopMargin: Float
     @JvmName("dragTopMarginProperty")
@@ -356,8 +304,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Right margin needed to drag the camera. A value of `1` makes the camera move only when reaching
-   * the right edge of the screen.
+   * Right margin needed to drag the camera. A value of `1` makes the camera move only when reaching the right edge of the screen.
    */
   public final inline var dragRightMargin: Float
     @JvmName("dragRightMarginProperty")
@@ -368,8 +315,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * Bottom margin needed to drag the camera. A value of `1` makes the camera move only when
-   * reaching the bottom edge of the screen.
+   * Bottom margin needed to drag the camera. A value of `1` makes the camera move only when reaching the bottom edge of the screen.
    */
   public final inline var dragBottomMargin: Float
     @JvmName("dragBottomMarginProperty")
@@ -412,7 +358,7 @@ public open class Camera2D : Node2D() {
       setMarginDrawingEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(127, scriptIndex)
   }
 
@@ -427,9 +373,7 @@ public open class Camera2D : Node2D() {
    * camera2d.offset = myCoreType
    * ``````
    *
-   * The camera's relative offset. Useful for looking around or camera shake animations. The
-   * offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and
-   * [limitRight].
+   * The camera's relative offset. Useful for looking around or camera shake animations. The offsetted camera can go past the limits defined in [limitTop], [limitBottom], [limitLeft] and [limitRight].
    */
   @CoreTypeHelper
   public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
@@ -448,17 +392,9 @@ public open class Camera2D : Node2D() {
    * camera2d.zoom = myCoreType
    * ``````
    *
-   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
-   * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of `Vector(0.5, 0.5)` halves the size seen in the viewport.
    *
-   * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
-   * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
-   * pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure
-   * text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling
-   * [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default
-   * project font only), or enabling **Multichannel Signed Distance Field** in the import options of a
-   * DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be
-   * enabled in the inspector.
+   * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or pixelated unless the font is part of a [CanvasLayer] that makes it ignore camera zoom. To ensure text remains crisp regardless of zoom, you can enable MSDF font rendering by enabling [ProjectSettings.gui/theme/defaultFontMultichannelSignedDistanceField] (applies to the default project font only), or enabling **Multichannel Signed Distance Field** in the import options of a DynamicFont for custom fonts. On system fonts, [SystemFont.multichannelSignedDistanceField] can be enabled in the inspector.
    */
   @CoreTypeHelper
   public final fun zoomMutate(block: Vector2.() -> Unit): Vector2 = zoom.apply {
@@ -466,7 +402,7 @@ public open class Camera2D : Node2D() {
      zoom = this
   }
 
-  public final fun setOffset(offset: Vector2): Unit {
+  public final fun setOffset(offset: Vector2) {
     TransferContext.writeArguments(VECTOR2 to offset)
     TransferContext.callMethod(ptr, MethodBindings.setOffsetPtr, NIL)
   }
@@ -477,7 +413,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setAnchorMode(anchorMode: AnchorMode): Unit {
+  public final fun setAnchorMode(anchorMode: AnchorMode) {
     TransferContext.writeArguments(LONG to anchorMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setAnchorModePtr, NIL)
   }
@@ -488,7 +424,7 @@ public open class Camera2D : Node2D() {
     return AnchorMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setIgnoreRotation(ignore: Boolean): Unit {
+  public final fun setIgnoreRotation(ignore: Boolean) {
     TransferContext.writeArguments(BOOL to ignore)
     TransferContext.callMethod(ptr, MethodBindings.setIgnoreRotationPtr, NIL)
   }
@@ -499,7 +435,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setProcessCallback(mode: Camera2DProcessCallback): Unit {
+  public final fun setProcessCallback(mode: Camera2DProcessCallback) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setProcessCallbackPtr, NIL)
   }
@@ -510,7 +446,7 @@ public open class Camera2D : Node2D() {
     return Camera2DProcessCallback.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEnabled(enabled: Boolean): Unit {
+  public final fun setEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
@@ -524,7 +460,7 @@ public open class Camera2D : Node2D() {
   /**
    * Forces this [Camera2D] to become the current active one. [enabled] must be `true`.
    */
-  public final fun makeCurrent(): Unit {
+  public final fun makeCurrent() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.makeCurrentPtr, NIL)
   }
@@ -539,17 +475,15 @@ public open class Camera2D : Node2D() {
   }
 
   /**
-   * Sets the camera limit for the specified [Side]. See also [limitBottom], [limitTop],
-   * [limitLeft], and [limitRight].
+   * Sets the camera limit for the specified [Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
    */
-  public final fun setLimit(margin: Side, limit: Int): Unit {
+  public final fun setLimit(margin: Side, limit: Int) {
     TransferContext.writeArguments(LONG to margin.id, LONG to limit.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setLimitPtr, NIL)
   }
 
   /**
-   * Returns the camera limit for the specified [Side]. See also [limitBottom], [limitTop],
-   * [limitLeft], and [limitRight].
+   * Returns the camera limit for the specified [Side]. See also [limitBottom], [limitTop], [limitLeft], and [limitRight].
    */
   public final fun getLimit(margin: Side): Int {
     TransferContext.writeArguments(LONG to margin.id)
@@ -557,7 +491,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setLimitSmoothingEnabled(limitSmoothingEnabled: Boolean): Unit {
+  public final fun setLimitSmoothingEnabled(limitSmoothingEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to limitSmoothingEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setLimitSmoothingEnabledPtr, NIL)
   }
@@ -568,7 +502,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDragVerticalEnabled(enabled: Boolean): Unit {
+  public final fun setDragVerticalEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDragVerticalEnabledPtr, NIL)
   }
@@ -579,7 +513,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDragHorizontalEnabled(enabled: Boolean): Unit {
+  public final fun setDragHorizontalEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDragHorizontalEnabledPtr, NIL)
   }
@@ -590,7 +524,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDragVerticalOffset(offset: Float): Unit {
+  public final fun setDragVerticalOffset(offset: Float) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDragVerticalOffsetPtr, NIL)
   }
@@ -601,7 +535,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setDragHorizontalOffset(offset: Float): Unit {
+  public final fun setDragHorizontalOffset(offset: Float) {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDragHorizontalOffsetPtr, NIL)
   }
@@ -613,17 +547,15 @@ public open class Camera2D : Node2D() {
   }
 
   /**
-   * Sets the specified [Side]'s margin. See also [dragBottomMargin], [dragTopMargin],
-   * [dragLeftMargin], and [dragRightMargin].
+   * Sets the specified [Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
    */
-  public final fun setDragMargin(margin: Side, dragMargin: Float): Unit {
+  public final fun setDragMargin(margin: Side, dragMargin: Float) {
     TransferContext.writeArguments(LONG to margin.id, DOUBLE to dragMargin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setDragMarginPtr, NIL)
   }
 
   /**
-   * Returns the specified [Side]'s margin. See also [dragBottomMargin], [dragTopMargin],
-   * [dragLeftMargin], and [dragRightMargin].
+   * Returns the specified [Side]'s margin. See also [dragBottomMargin], [dragTopMargin], [dragLeftMargin], and [dragRightMargin].
    */
   public final fun getDragMargin(margin: Side): Float {
     TransferContext.writeArguments(LONG to margin.id)
@@ -634,9 +566,7 @@ public open class Camera2D : Node2D() {
   /**
    * Returns this camera's target position, in global coordinates.
    *
-   * **Note:** The returned value is not the same as [Node2D.globalPosition], as it is affected by
-   * the drag properties. It is also not the same as the current position if [positionSmoothingEnabled]
-   * is `true` (see [getScreenCenterPosition]).
+   * **Note:** The returned value is not the same as [Node2D.globalPosition], as it is affected by the drag properties. It is also not the same as the current position if [positionSmoothingEnabled] is `true` (see [getScreenCenterPosition]).
    */
   public final fun getTargetPosition(): Vector2 {
     TransferContext.writeArguments()
@@ -655,7 +585,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setZoom(zoom: Vector2): Unit {
+  public final fun setZoom(zoom: Vector2) {
     TransferContext.writeArguments(VECTOR2 to zoom)
     TransferContext.callMethod(ptr, MethodBindings.setZoomPtr, NIL)
   }
@@ -666,7 +596,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
-  public final fun setCustomViewport(viewport: Node?): Unit {
+  public final fun setCustomViewport(viewport: Node?) {
     TransferContext.writeArguments(OBJECT to viewport)
     TransferContext.callMethod(ptr, MethodBindings.setCustomViewportPtr, NIL)
   }
@@ -677,7 +607,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(OBJECT) as Node?)
   }
 
-  public final fun setPositionSmoothingSpeed(positionSmoothingSpeed: Float): Unit {
+  public final fun setPositionSmoothingSpeed(positionSmoothingSpeed: Float) {
     TransferContext.writeArguments(DOUBLE to positionSmoothingSpeed.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPositionSmoothingSpeedPtr, NIL)
   }
@@ -688,7 +618,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPositionSmoothingEnabled(positionSmoothingSpeed: Boolean): Unit {
+  public final fun setPositionSmoothingEnabled(positionSmoothingSpeed: Boolean) {
     TransferContext.writeArguments(BOOL to positionSmoothingSpeed)
     TransferContext.callMethod(ptr, MethodBindings.setPositionSmoothingEnabledPtr, NIL)
   }
@@ -699,7 +629,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRotationSmoothingEnabled(enabled: Boolean): Unit {
+  public final fun setRotationSmoothingEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setRotationSmoothingEnabledPtr, NIL)
   }
@@ -710,7 +640,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setRotationSmoothingSpeed(speed: Float): Unit {
+  public final fun setRotationSmoothingSpeed(speed: Float) {
     TransferContext.writeArguments(DOUBLE to speed.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRotationSmoothingSpeedPtr, NIL)
   }
@@ -724,7 +654,7 @@ public open class Camera2D : Node2D() {
   /**
    * Forces the camera to update scroll immediately.
    */
-  public final fun forceUpdateScroll(): Unit {
+  public final fun forceUpdateScroll() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.forceUpdateScrollPtr, NIL)
   }
@@ -734,7 +664,7 @@ public open class Camera2D : Node2D() {
    *
    * This method has no effect if [positionSmoothingEnabled] is `false`.
    */
-  public final fun resetSmoothing(): Unit {
+  public final fun resetSmoothing() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.resetSmoothingPtr, NIL)
   }
@@ -742,12 +672,12 @@ public open class Camera2D : Node2D() {
   /**
    * Aligns the camera to the tracked node.
    */
-  public final fun align(): Unit {
+  public final fun align() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.alignPtr, NIL)
   }
 
-  public final fun setScreenDrawingEnabled(screenDrawingEnabled: Boolean): Unit {
+  public final fun setScreenDrawingEnabled(screenDrawingEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to screenDrawingEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setScreenDrawingEnabledPtr, NIL)
   }
@@ -758,7 +688,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setLimitDrawingEnabled(limitDrawingEnabled: Boolean): Unit {
+  public final fun setLimitDrawingEnabled(limitDrawingEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to limitDrawingEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setLimitDrawingEnabledPtr, NIL)
   }
@@ -769,7 +699,7 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMarginDrawingEnabled(marginDrawingEnabled: Boolean): Unit {
+  public final fun setMarginDrawingEnabled(marginDrawingEnabled: Boolean) {
     TransferContext.writeArguments(BOOL to marginDrawingEnabled)
     TransferContext.callMethod(ptr, MethodBindings.setMarginDrawingEnabledPtr, NIL)
   }
@@ -830,149 +760,150 @@ public open class Camera2D : Node2D() {
 
   public object MethodBindings {
     internal val setOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_offset", 743155724)
+        TypeManager.getMethodBindPtr("Camera2D", "set_offset", 743_155_724)
 
     internal val getOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_offset", 3341600327)
+        TypeManager.getMethodBindPtr("Camera2D", "get_offset", 3_341_600_327)
 
     internal val setAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_anchor_mode", 2050398218)
+        TypeManager.getMethodBindPtr("Camera2D", "set_anchor_mode", 2_050_398_218)
 
     internal val getAnchorModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_anchor_mode", 155978067)
+        TypeManager.getMethodBindPtr("Camera2D", "get_anchor_mode", 155_978_067)
 
     internal val setIgnoreRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_ignore_rotation", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_ignore_rotation", 2_586_408_642)
 
     internal val isIgnoringRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_ignoring_rotation", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_ignoring_rotation", 36_873_697)
 
     internal val setProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_process_callback", 4201947462)
+        TypeManager.getMethodBindPtr("Camera2D", "set_process_callback", 4_201_947_462)
 
     internal val getProcessCallbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_process_callback", 2325344499)
+        TypeManager.getMethodBindPtr("Camera2D", "get_process_callback", 2_325_344_499)
 
     internal val setEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_enabled", 2_586_408_642)
 
     internal val isEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_enabled", 36_873_697)
 
     internal val makeCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "make_current", 3218959716)
+        TypeManager.getMethodBindPtr("Camera2D", "make_current", 3_218_959_716)
 
     internal val isCurrentPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_current", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_current", 36_873_697)
 
     internal val setLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit", 437707142)
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit", 437_707_142)
 
     internal val getLimitPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_limit", 1983885014)
+        TypeManager.getMethodBindPtr("Camera2D", "get_limit", 1_983_885_014)
 
     internal val setLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit_smoothing_enabled", 2_586_408_642)
 
     internal val isLimitSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_limit_smoothing_enabled", 36_873_697)
 
     internal val setDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_enabled", 2_586_408_642)
 
     internal val isDragVerticalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_drag_vertical_enabled", 36_873_697)
 
     internal val setDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_enabled", 2_586_408_642)
 
     internal val isDragHorizontalEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_drag_horizontal_enabled", 36_873_697)
 
     internal val setDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_offset", 373806689)
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_vertical_offset", 373_806_689)
 
     internal val getDragVerticalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_vertical_offset", 1740695150)
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_vertical_offset", 1_740_695_150)
 
     internal val setDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset", 373806689)
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_horizontal_offset", 373_806_689)
 
     internal val getDragHorizontalOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset", 1740695150)
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_horizontal_offset", 1_740_695_150)
 
     internal val setDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_drag_margin", 4290182280)
+        TypeManager.getMethodBindPtr("Camera2D", "set_drag_margin", 4_290_182_280)
 
     internal val getDragMarginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_drag_margin", 2869120046)
+        TypeManager.getMethodBindPtr("Camera2D", "get_drag_margin", 2_869_120_046)
 
     internal val getTargetPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_target_position", 3341600327)
+        TypeManager.getMethodBindPtr("Camera2D", "get_target_position", 3_341_600_327)
 
     internal val getScreenCenterPositionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position", 3341600327)
+        TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position", 3_341_600_327)
 
     internal val setZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_zoom", 743155724)
+        TypeManager.getMethodBindPtr("Camera2D", "set_zoom", 743_155_724)
 
     internal val getZoomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_zoom", 3341600327)
+        TypeManager.getMethodBindPtr("Camera2D", "get_zoom", 3_341_600_327)
 
     internal val setCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_custom_viewport", 1078189570)
+        TypeManager.getMethodBindPtr("Camera2D", "set_custom_viewport", 1_078_189_570)
 
     internal val getCustomViewportPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_custom_viewport", 3160264692)
+        TypeManager.getMethodBindPtr("Camera2D", "get_custom_viewport", 3_160_264_692)
 
     internal val setPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_speed", 373806689)
+        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_speed", 373_806_689)
 
     internal val getPositionSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_position_smoothing_speed", 1740695150)
+        TypeManager.getMethodBindPtr("Camera2D", "get_position_smoothing_speed", 1_740_695_150)
 
     internal val setPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_position_smoothing_enabled", 2_586_408_642)
 
     internal val isPositionSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_position_smoothing_enabled", 36_873_697)
 
     internal val setRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_enabled", 2_586_408_642)
 
     internal val isRotationSmoothingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_rotation_smoothing_enabled", 36_873_697)
 
     internal val setRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed", 373806689)
+        TypeManager.getMethodBindPtr("Camera2D", "set_rotation_smoothing_speed", 373_806_689)
 
     internal val getRotationSmoothingSpeedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed", 1740695150)
+        TypeManager.getMethodBindPtr("Camera2D", "get_rotation_smoothing_speed", 1_740_695_150)
 
     internal val forceUpdateScrollPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "force_update_scroll", 3218959716)
+        TypeManager.getMethodBindPtr("Camera2D", "force_update_scroll", 3_218_959_716)
 
     internal val resetSmoothingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "reset_smoothing", 3218959716)
+        TypeManager.getMethodBindPtr("Camera2D", "reset_smoothing", 3_218_959_716)
 
-    internal val alignPtr: VoidPtr = TypeManager.getMethodBindPtr("Camera2D", "align", 3218959716)
+    internal val alignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "align", 3_218_959_716)
 
     internal val setScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_screen_drawing_enabled", 2_586_408_642)
 
     internal val isScreenDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_screen_drawing_enabled", 36_873_697)
 
     internal val setLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit_drawing_enabled", 2_586_408_642)
 
     internal val isLimitDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_limit_drawing_enabled", 36_873_697)
 
     internal val setMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Camera2D", "set_margin_drawing_enabled", 2_586_408_642)
 
     internal val isMarginDrawingEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Camera2D", "is_margin_drawing_enabled", 36_873_697)
   }
 }

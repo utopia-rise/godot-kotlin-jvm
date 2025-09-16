@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -29,11 +26,8 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
    * A [Vector3] constant which represents the state of this node.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var constant: Vector3
@@ -44,7 +38,7 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
       setConstant(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(825, scriptIndex)
   }
 
@@ -67,7 +61,7 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
      constant = this
   }
 
-  public final fun setConstant(constant: Vector3): Unit {
+  public final fun setConstant(constant: Vector3) {
     TransferContext.writeArguments(VECTOR3 to constant)
     TransferContext.callMethod(ptr, MethodBindings.setConstantPtr, NIL)
   }
@@ -82,9 +76,9 @@ public open class VisualShaderNodeVec3Constant : VisualShaderNodeConstant() {
 
   public object MethodBindings {
     internal val setConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "set_constant", 3460891852)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "set_constant", 3_460_891_852)
 
     internal val getConstantPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "get_constant", 3360562783)
+        TypeManager.getMethodBindPtr("VisualShaderNodeVec3Constant", "get_constant", 3_360_562_783)
   }
 }

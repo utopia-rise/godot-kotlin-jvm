@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -23,20 +20,16 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different
- * classes (see [StreamPeerTCP] and [TCPServer]). IP provides DNS hostname resolution support, both
- * blocking and threaded.
+ * IP contains support functions for the Internet Protocol (IP). TCP/IP support is in different classes (see [StreamPeerTCP] and [TCPServer]). IP provides DNS hostname resolution support, both blocking and threaded.
  */
 @GodotBaseType
 public object IP : Object() {
   /**
-   * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if
-   * exceeded.
+   * Maximum number of concurrent DNS resolver queries allowed, [RESOLVER_INVALID_ID] is returned if exceeded.
    */
   public final const val RESOLVER_MAX_QUERIES: Long = 256
 
@@ -45,13 +38,12 @@ public object IP : Object() {
    */
   public final const val RESOLVER_INVALID_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(9)
   }
 
   /**
-   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The
-   * address type returned depends on the [Type] constant given as [ipType].
+   * Returns a given hostname's IPv4 or IPv6 address when resolved (blocking-type method). The address type returned depends on the [Type] constant given as [ipType].
    */
   @JvmOverloads
   @JvmStatic
@@ -62,21 +54,18 @@ public object IP : Object() {
   }
 
   /**
-   * Resolves a given hostname in a blocking way. Addresses are returned as an [Array] of IPv4 or
-   * IPv6 addresses depending on [ipType].
+   * Resolves a given hostname in a blocking way. Addresses are returned as an [Array] of IPv4 or IPv6 addresses depending on [ipType].
    */
   @JvmOverloads
   @JvmStatic
-  public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.ANY):
-      PackedStringArray {
+  public final fun resolveHostnameAddresses(host: String, ipType: Type = IP.Type.ANY): PackedStringArray {
     TransferContext.writeArguments(STRING to host, LONG to ipType.id)
     TransferContext.callMethod(ptr, MethodBindings.resolveHostnameAddressesPtr, PACKED_STRING_ARRAY)
     return (TransferContext.readReturnValue(PACKED_STRING_ARRAY) as PackedStringArray)
   }
 
   /**
-   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [Type]
-   * constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
+   * Creates a queue item to resolve a hostname to an IPv4 or IPv6 address depending on the [Type] constant given as [ipType]. Returns the queue ID if successful, or [RESOLVER_INVALID_ID] on error.
    */
   @JvmOverloads
   @JvmStatic
@@ -97,8 +86,7 @@ public object IP : Object() {
   }
 
   /**
-   * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error
-   * or if resolution hasn't happened yet (see [getResolveItemStatus]).
+   * Returns a queued hostname's IP address, given its queue [id]. Returns an empty string on error or if resolution hasn't happened yet (see [getResolveItemStatus]).
    */
   @JvmStatic
   public final fun getResolveItemAddress(id: Int): String {
@@ -108,8 +96,7 @@ public object IP : Object() {
   }
 
   /**
-   * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen
-   * yet (see [getResolveItemStatus]).
+   * Returns resolved addresses, or an empty array if an error happened or resolution didn't happen yet (see [getResolveItemStatus]).
    */
   @JvmStatic
   public final fun getResolveItemAddresses(id: Int): VariantArray<Any?> {
@@ -119,11 +106,10 @@ public object IP : Object() {
   }
 
   /**
-   * Removes a given item [id] from the queue. This should be used to free a queue after it has
-   * completed to enable more queries to happen.
+   * Removes a given item [id] from the queue. This should be used to free a queue after it has completed to enable more queries to happen.
    */
   @JvmStatic
-  public final fun eraseResolveItem(id: Int): Unit {
+  public final fun eraseResolveItem(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.eraseResolveItemPtr, NIL)
   }
@@ -160,12 +146,11 @@ public object IP : Object() {
   }
 
   /**
-   * Removes all of a [hostname]'s cached references. If no [hostname] is given, all cached IP
-   * addresses are removed.
+   * Removes all of a [hostname]'s cached references. If no [hostname] is given, all cached IP addresses are removed.
    */
   @JvmOverloads
   @JvmStatic
-  public final fun clearCache(hostname: String = ""): Unit {
+  public final fun clearCache(hostname: String = "") {
     TransferContext.writeArguments(STRING to hostname)
     TransferContext.callMethod(ptr, MethodBindings.clearCachePtr, NIL)
   }
@@ -234,33 +219,33 @@ public object IP : Object() {
 
   public object MethodBindings {
     internal val resolveHostnamePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname", 4283295457)
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname", 4_283_295_457)
 
     internal val resolveHostnameAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_addresses", 773767525)
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname_addresses", 773_767_525)
 
     internal val resolveHostnameQueueItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1749894742)
+        TypeManager.getMethodBindPtr("IP", "resolve_hostname_queue_item", 1_749_894_742)
 
     internal val getResolveItemStatusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_status", 3812250196)
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_status", 3_812_250_196)
 
     internal val getResolveItemAddressPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_address", 844755477)
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_address", 844_755_477)
 
     internal val getResolveItemAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_resolve_item_addresses", 663333327)
+        TypeManager.getMethodBindPtr("IP", "get_resolve_item_addresses", 663_333_327)
 
     internal val eraseResolveItemPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "erase_resolve_item", 1286410249)
+        TypeManager.getMethodBindPtr("IP", "erase_resolve_item", 1_286_410_249)
 
     internal val getLocalAddressesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_addresses", 1139954409)
+        TypeManager.getMethodBindPtr("IP", "get_local_addresses", 1_139_954_409)
 
     internal val getLocalInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "get_local_interfaces", 3995934104)
+        TypeManager.getMethodBindPtr("IP", "get_local_interfaces", 3_995_934_104)
 
     internal val clearCachePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("IP", "clear_cache", 3005725572)
+        TypeManager.getMethodBindPtr("IP", "clear_cache", 3_005_725_572)
   }
 }

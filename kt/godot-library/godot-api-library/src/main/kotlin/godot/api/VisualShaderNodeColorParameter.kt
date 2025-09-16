@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,11 +39,8 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
    * A default value to be assigned within the shader.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var defaultValue: Color
@@ -57,7 +51,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(735, scriptIndex)
   }
 
@@ -80,7 +74,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
      defaultValue = this
   }
 
-  public final fun setDefaultValueEnabled(enabled: Boolean): Unit {
+  public final fun setDefaultValueEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValueEnabledPtr, NIL)
   }
@@ -91,7 +85,7 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setDefaultValue(`value`: Color): Unit {
+  public final fun setDefaultValue(`value`: Color) {
     TransferContext.writeArguments(COLOR to value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultValuePtr, NIL)
   }
@@ -106,15 +100,15 @@ public open class VisualShaderNodeColorParameter : VisualShaderNodeParameter() {
 
   public object MethodBindings {
     internal val setDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value_enabled", 2_586_408_642)
 
     internal val isDefaultValueEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "is_default_value_enabled", 36873697)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "is_default_value_enabled", 36_873_697)
 
     internal val setDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value", 2920490490)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "set_default_value", 2_920_490_490)
 
     internal val getDefaultValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "get_default_value", 3444240500)
+        TypeManager.getMethodBindPtr("VisualShaderNodeColorParameter", "get_default_value", 3_444_240_500)
   }
 }

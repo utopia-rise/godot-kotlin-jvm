@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -19,33 +16,28 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * This class is intended to be overridden by video decoder extensions with custom implementations
- * of [VideoStream].
+ * This class is intended to be overridden by video decoder extensions with custom implementations of [VideoStream].
  */
 @GodotBaseType
 public abstract class VideoStreamPlayback : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(716, scriptIndex)
   }
 
   /**
-   * Stops playback. May be called multiple times before [_play], or in response to
-   * [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
+   * Stops playback. May be called multiple times before [_play], or in response to [VideoStreamPlayer.stop]. [_isPlaying] should return `false` once stopped.
    */
-  public open fun _stop(): Unit {
+  public open fun _stop() {
     throw NotImplementedError("VideoStreamPlayback::_stop is not implemented.")
   }
 
   /**
-   * Called in response to [VideoStreamPlayer.autoplay] or [VideoStreamPlayer.play]. Note that
-   * manual playback may also invoke [_stop] multiple times before this method is called. [_isPlaying]
-   * should return `true` once playing.
+   * Called in response to [VideoStreamPlayer.autoplay] or [VideoStreamPlayer.play]. Note that manual playback may also invoke [_stop] multiple times before this method is called. [_isPlaying] should return `true` once playing.
    */
-  public open fun _play(): Unit {
+  public open fun _play() {
     throw NotImplementedError("VideoStreamPlayback::_play is not implemented.")
   }
 
@@ -57,10 +49,9 @@ public abstract class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Set the paused status of video playback. [_isPaused] must return [paused]. Called in response
-   * to the [VideoStreamPlayer.paused] setter.
+   * Set the paused status of video playback. [_isPaused] must return [paused]. Called in response to the [VideoStreamPlayer.paused] setter.
    */
-  public open fun _setPaused(paused: Boolean): Unit {
+  public open fun _setPaused(paused: Boolean) {
     throw NotImplementedError("VideoStreamPlayback::_setPaused is not implemented.")
   }
 
@@ -79,8 +70,7 @@ public abstract class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Return the current playback timestamp. Called in response to the
-   * [VideoStreamPlayer.streamPosition] getter.
+   * Return the current playback timestamp. Called in response to the [VideoStreamPlayer.streamPosition] getter.
    */
   public open fun _getPlaybackPosition(): Double {
     throw NotImplementedError("VideoStreamPlayback::_getPlaybackPosition is not implemented.")
@@ -89,15 +79,14 @@ public abstract class VideoStreamPlayback : Resource() {
   /**
    * Seeks to [time] seconds. Called in response to the [VideoStreamPlayer.streamPosition] setter.
    */
-  public open fun _seek(time: Double): Unit {
+  public open fun _seek(time: Double) {
     throw NotImplementedError("VideoStreamPlayback::_seek is not implemented.")
   }
 
   /**
-   * Select the audio track [idx]. Called when playback starts, and in response to the
-   * [VideoStreamPlayer.audioTrack] setter.
+   * Select the audio track [idx]. Called when playback starts, and in response to the [VideoStreamPlayer.audioTrack] setter.
    */
-  public open fun _setAudioTrack(idx: Int): Unit {
+  public open fun _setAudioTrack(idx: Int) {
     throw NotImplementedError("VideoStreamPlayback::_setAudioTrack is not implemented.")
   }
 
@@ -109,10 +98,9 @@ public abstract class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Ticks video playback for [delta] seconds. Called every frame as long as both [_isPaused] and
-   * [_isPlaying] return `true`.
+   * Ticks video playback for [delta] seconds. Called every frame as long as both [_isPaused] and [_isPlaying] return `true`.
    */
-  public abstract fun _update(delta: Double): Unit
+  public abstract fun _update(delta: Double)
 
   /**
    * Returns the number of audio channels.
@@ -129,8 +117,7 @@ public abstract class VideoStreamPlayback : Resource() {
   }
 
   /**
-   * Render [numFrames] audio frames (of [_getChannels] floats each) from [buffer], starting from
-   * index [offset] in the array. Returns the number of audio frames rendered, or -1 on error.
+   * Render [numFrames] audio frames (of [_getChannels] floats each) from [buffer], starting from index [offset] in the array. Returns the number of audio frames rendered, or -1 on error.
    */
   @JvmOverloads
   public final fun mixAudio(
@@ -147,6 +134,6 @@ public abstract class VideoStreamPlayback : Resource() {
 
   public object MethodBindings {
     internal val mixAudioPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93876830)
+        TypeManager.getMethodBindPtr("VideoStreamPlayback", "mix_audio", 93_876_830)
   }
 }

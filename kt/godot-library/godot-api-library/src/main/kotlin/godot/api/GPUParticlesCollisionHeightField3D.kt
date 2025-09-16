@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -27,32 +24,22 @@ import kotlin.jvm.JvmName
 /**
  * A real-time heightmap-shaped 3D particle collision shape affecting [GPUParticles3D] nodes.
  *
- * Heightmap shapes allow for efficiently representing collisions for convex and concave objects
- * with a single "floor" (such as terrain). This is less flexible than [GPUParticlesCollisionSDF3D],
- * but it doesn't require a baking step.
+ * Heightmap shapes allow for efficiently representing collisions for convex and concave objects with a single "floor" (such as terrain). This is less flexible than [GPUParticlesCollisionSDF3D], but it doesn't require a baking step.
  *
- * [GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when
- * the camera moves, or even continuously. This makes [GPUParticlesCollisionHeightField3D] a good
- * choice for weather effects such as rain and snow and games with highly dynamic geometry. However,
- * this class is limited since heightmaps cannot represent overhangs (e.g. indoors or caves).
+ * [GPUParticlesCollisionHeightField3D] can also be regenerated in real-time when it is moved, when the camera moves, or even continuously. This makes [GPUParticlesCollisionHeightField3D] a good choice for weather effects such as rain and snow and games with highly dynamic geometry. However, this class is limited since heightmaps cannot represent overhangs (e.g. indoors or caves).
  *
- * **Note:** [ParticleProcessMaterial.collisionMode] must be `true` on the [GPUParticles3D]'s
- * process material for collision to work.
+ * **Note:** [ParticleProcessMaterial.collisionMode] must be `true` on the [GPUParticles3D]'s process material for collision to work.
  *
  * **Note:** Particle collision only affects [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
 public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D() {
   /**
-   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
-   * as small as possible while covering the parts of the scene you need.
+   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set as small as possible while covering the parts of the scene you need.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var size: Vector3
@@ -64,9 +51,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   /**
-   * Higher resolutions can represent small details more accurately in large scenes, at the cost of
-   * lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution
-   * possible.
+   * Higher resolutions can represent small details more accurately in large scenes, at the cost of lower performance. If [updateMode] is [UPDATE_MODE_ALWAYS], consider using the lowest resolution possible.
    */
   public final inline var resolution: Resolution
     @JvmName("resolutionProperty")
@@ -88,13 +73,9 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   /**
-   * If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global
-   * space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node
-   * for this to work.
+   * If `true`, the [GPUParticlesCollisionHeightField3D] will follow the current camera in global space. The [GPUParticlesCollisionHeightField3D] does not need to be a child of the [Camera3D] node for this to work.
    *
-   * Following the camera has a performance cost, as it will force the heightmap to update whenever
-   * the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled]
-   * is `true`.
+   * Following the camera has a performance cost, as it will force the heightmap to update whenever the camera moves. Consider lowering [resolution] to improve performance if [followCameraEnabled] is `true`.
    */
   public final inline var followCameraEnabled: Boolean
     @JvmName("followCameraEnabledProperty")
@@ -105,18 +86,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     }
 
   /**
-   * The visual layers to account for when updating the heightmap. Only [MeshInstance3D]s whose
-   * [VisualInstance3D.layers] match with this [heightfieldMask] will be included in the heightmap
-   * collision update. By default, all 20 user-visible layers are taken into account for updating the
-   * heightmap collision.
+   * The visual layers to account for when updating the heightmap. Only [MeshInstance3D]s whose [VisualInstance3D.layers] match with this [heightfieldMask] will be included in the heightmap collision update. By default, all 20 user-visible layers are taken into account for updating the heightmap collision.
    *
-   * **Note:** Since the [heightfieldMask] allows for 32 layers to be stored in total, there are an
-   * additional 12 layers that are only used internally by the engine and aren't exposed in the editor.
-   * Setting [heightfieldMask] using a script allows you to toggle those reserved layers, which can be
-   * useful for editor plugins.
+   * **Note:** Since the [heightfieldMask] allows for 32 layers to be stored in total, there are an additional 12 layers that are only used internally by the engine and aren't exposed in the editor. Setting [heightfieldMask] using a script allows you to toggle those reserved layers, which can be useful for editor plugins.
    *
-   * To adjust [heightfieldMask] more easily using a script, use [getHeightfieldMaskValue] and
-   * [setHeightfieldMaskValue].
+   * To adjust [heightfieldMask] more easily using a script, use [getHeightfieldMaskValue] and [setHeightfieldMaskValue].
    */
   public final inline var heightfieldMask: Long
     @JvmName("heightfieldMaskProperty")
@@ -126,7 +100,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       setHeightfieldMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(251, scriptIndex)
   }
 
@@ -141,8 +115,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
    * gpuparticlescollisionheightfield3d.size = myCoreType
    * ``````
    *
-   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set
-   * as small as possible while covering the parts of the scene you need.
+   * The collision heightmap's size in 3D units. To improve heightmap quality, [size] should be set as small as possible while covering the parts of the scene you need.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {
@@ -150,7 +123,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
      size = this
   }
 
-  public final fun setSize(size: Vector3): Unit {
+  public final fun setSize(size: Vector3) {
     TransferContext.writeArguments(VECTOR3 to size)
     TransferContext.callMethod(ptr, MethodBindings.setSizePtr, NIL)
   }
@@ -161,7 +134,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setResolution(resolution: Resolution): Unit {
+  public final fun setResolution(resolution: Resolution) {
     TransferContext.writeArguments(LONG to resolution.id)
     TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
   }
@@ -172,7 +145,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     return Resolution.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setUpdateMode(updateMode: UpdateMode): Unit {
+  public final fun setUpdateMode(updateMode: UpdateMode) {
     TransferContext.writeArguments(LONG to updateMode.id)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
@@ -183,7 +156,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     return UpdateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setHeightfieldMask(heightfieldMask: Long): Unit {
+  public final fun setHeightfieldMask(heightfieldMask: Long) {
     TransferContext.writeArguments(LONG to heightfieldMask)
     TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskPtr, NIL)
   }
@@ -195,17 +168,15 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   /**
-   * Based on [value], enables or disables the specified layer in the [heightfieldMask], given a
-   * [layerNumber] between `1` and `20`, inclusive.
+   * Based on [value], enables or disables the specified layer in the [heightfieldMask], given a [layerNumber] between `1` and `20`, inclusive.
    */
-  public final fun setHeightfieldMaskValue(layerNumber: Int, `value`: Boolean): Unit {
+  public final fun setHeightfieldMaskValue(layerNumber: Int, `value`: Boolean) {
     TransferContext.writeArguments(LONG to layerNumber.toLong(), BOOL to value)
     TransferContext.callMethod(ptr, MethodBindings.setHeightfieldMaskValuePtr, NIL)
   }
 
   /**
-   * Returns `true` if the specified layer of the [heightfieldMask] is enabled, given a
-   * [layerNumber] between `1` and `20`, inclusive.
+   * Returns `true` if the specified layer of the [heightfieldMask] is enabled, given a [layerNumber] between `1` and `20`, inclusive.
    */
   public final fun getHeightfieldMaskValue(layerNumber: Int): Boolean {
     TransferContext.writeArguments(LONG to layerNumber.toLong())
@@ -213,7 +184,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFollowCameraEnabled(enabled: Boolean): Unit {
+  public final fun setFollowCameraEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFollowCameraEnabledPtr, NIL)
   }
@@ -228,13 +199,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long,
   ) {
     /**
-     * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no
-     * distant particles.
+     * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no distant particles.
      */
     RESOLUTION_256(0),
     /**
-     * Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no
-     * distant particles.
+     * Generate a 512×512 heightmap. Intended for medium-scale scenes, or larger scenes with no distant particles.
      */
     RESOLUTION_512(1),
     /**
@@ -273,16 +242,11 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     id: Long,
   ) {
     /**
-     * Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or
-     * when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly
-     * moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling
-     * [RenderingServer.particlesCollisionHeightFieldUpdate].
+     * Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly moving the [GPUParticlesCollisionHeightField3D] in any direction, or by calling [RenderingServer.particlesCollisionHeightFieldUpdate].
      */
     WHEN_MOVED(0),
     /**
-     * Update the heightmap every frame. This has a significant performance cost. This update should
-     * only be used when geometry that particles can collide with changes significantly during
-     * gameplay.
+     * Update the heightmap every frame. This has a significant performance cost. This update should only be used when geometry that particles can collide with changes significantly during gameplay.
      */
     ALWAYS(1),
     ;
@@ -301,39 +265,39 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3460891852)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_size", 3_460_891_852)
 
     internal val getSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3360562783)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_size", 3_360_562_783)
 
     internal val setResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1009996517)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_resolution", 1_009_996_517)
 
     internal val getResolutionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1156065644)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_resolution", 1_156_065_644)
 
     internal val setUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673680859)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_update_mode", 673_680_859)
 
     internal val getUpdateModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1998141380)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_update_mode", 1_998_141_380)
 
     internal val setHeightfieldMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask", 1286410249)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask", 1_286_410_249)
 
     internal val getHeightfieldMaskPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask", 3905245786)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask", 3_905_245_786)
 
     internal val setHeightfieldMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask_value", 300928843)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_heightfield_mask_value", 300_928_843)
 
     internal val getHeightfieldMaskValuePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask_value", 1116898809)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "get_heightfield_mask_value", 1_116_898_809)
 
     internal val setFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "set_follow_camera_enabled", 2_586_408_642)
 
     internal val isFollowCameraEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36873697)
+        TypeManager.getMethodBindPtr("GPUParticlesCollisionHeightField3D", "is_follow_camera_enabled", 36_873_697)
   }
 }

@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -18,15 +15,12 @@ import kotlin.Boolean
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * A simplified interface to a scene file. Provides access to operations and checks that can be
- * performed on the scene resource itself.
+ * A simplified interface to a scene file. Provides access to operations and checks that can be performed on the scene resource itself.
  *
- * Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get
- * saved (see [Node.owner] property).
+ * Can be used to save a node to a file. When saving, the node as well as all the nodes it owns get saved (see [Node.owner] property).
  *
  * **Note:** The node doesn't need to own itself.
  *
@@ -48,10 +42,7 @@ import kotlin.jvm.JvmOverloads
  * AddChild(scene);
  * ```
  *
- * **Example:** Save a node with different owners. The following example creates 3 objects: [Node2D]
- * (`node`), [RigidBody2D] (`body`) and [CollisionObject2D] (`collision`). `collision` is a child of
- * `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore only
- * save those two nodes, but not `collision`.
+ * **Example:** Save a node with different owners. The following example creates 3 objects: [Node2D] (`node`), [RigidBody2D] (`body`) and [CollisionObject2D] (`collision`). `collision` is a child of `body` which is a child of `node`. Only `body` is owned by `node` and [pack] will therefore only save those two nodes, but not `collision`.
  *
  * ```gdscript
  * //gdscript
@@ -105,13 +96,12 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(437, scriptIndex)
   }
 
   /**
-   * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will
-   * be cleared. See [Node.owner].
+   * Packs the [path] node, and all owned sub-nodes, into this [PackedScene]. Any existing data will be cleared. See [Node.owner].
    */
   public final fun pack(path: Node?): Error {
     TransferContext.writeArguments(OBJECT to path)
@@ -120,8 +110,7 @@ public open class PackedScene : Resource() {
   }
 
   /**
-   * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a
-   * [Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
+   * Instantiates the scene's node hierarchy. Triggers child scene instantiation(s). Triggers a [Node.NOTIFICATION_SCENE_INSTANTIATED] notification on the root node.
    */
   @JvmOverloads
   public final fun instantiate(editState: GenEditState = PackedScene.GenEditState.DISABLED): Node? {
@@ -162,15 +151,13 @@ public open class PackedScene : Resource() {
      */
     INSTANCE(1),
     /**
-     * If passed to [instantiate], provides local scene resources to the local scene. Only the main
-     * scene should receive the main edit state.
+     * If passed to [instantiate], provides local scene resources to the local scene. Only the main scene should receive the main edit state.
      *
      * **Note:** Only available in editor builds.
      */
     MAIN(2),
     /**
-     * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated
-     * to be the base of another one.
+     * It's similar to [GEN_EDIT_STATE_MAIN], but for the case where the scene is being instantiated to be the base of another one.
      *
      * **Note:** Only available in editor builds.
      */
@@ -190,15 +177,16 @@ public open class PackedScene : Resource() {
   public companion object
 
   public object MethodBindings {
-    internal val packPtr: VoidPtr = TypeManager.getMethodBindPtr("PackedScene", "pack", 2584678054)
+    internal val packPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PackedScene", "pack", 2_584_678_054)
 
     internal val instantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "instantiate", 2628778455)
+        TypeManager.getMethodBindPtr("PackedScene", "instantiate", 2_628_778_455)
 
     internal val canInstantiatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "can_instantiate", 36873697)
+        TypeManager.getMethodBindPtr("PackedScene", "can_instantiate", 36_873_697)
 
     internal val getStatePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("PackedScene", "get_state", 3479783971)
+        TypeManager.getMethodBindPtr("PackedScene", "get_state", 3_479_783_971)
   }
 }

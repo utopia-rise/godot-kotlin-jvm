@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -16,12 +13,10 @@ import godot.core.VariantParser._RID
 import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a
- * texture for materials, meshes, etc.
+ * This texture class allows you to use a 2D texture created directly on the [RenderingDevice] as a texture for materials, meshes, etc.
  */
 @GodotBaseType
 public open class Texture2DRD : Texture2D() {
@@ -36,11 +31,11 @@ public open class Texture2DRD : Texture2D() {
       setTextureRdRid(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(668, scriptIndex)
   }
 
-  public final fun setTextureRdRid(textureRdRid: RID): Unit {
+  public final fun setTextureRdRid(textureRdRid: RID) {
     TransferContext.writeArguments(_RID to textureRdRid)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRdRidPtr, NIL)
   }
@@ -54,14 +49,14 @@ public open class Texture2DRD : Texture2D() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getWidth(): Int {
+  override fun _getWidth(): Int {
     throw NotImplementedError("Texture2DRD::_getWidth can't be called from the JVM.")
   }
 
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
-  public override fun _getHeight(): Int {
+  override fun _getHeight(): Int {
     throw NotImplementedError("Texture2DRD::_getHeight can't be called from the JVM.")
   }
 
@@ -69,9 +64,9 @@ public open class Texture2DRD : Texture2D() {
 
   public object MethodBindings {
     internal val setTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid", 2722037293)
+        TypeManager.getMethodBindPtr("Texture2DRD", "set_texture_rd_rid", 2_722_037_293)
 
     internal val getTextureRdRidPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid", 2944877500)
+        TypeManager.getMethodBindPtr("Texture2DRD", "get_texture_rd_rid", 2_944_877_500)
   }
 }

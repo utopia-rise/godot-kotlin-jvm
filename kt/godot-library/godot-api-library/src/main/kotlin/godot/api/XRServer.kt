@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -42,8 +39,7 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
 
 /**
- * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the
- * processing.
+ * The AR/VR server is the heart of our Advanced and Virtual Reality solution and handles all the processing.
  */
 @GodotBaseType
 public object XRServer : Object() {
@@ -66,32 +62,25 @@ public object XRServer : Object() {
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
   /**
-   * Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if
-   * you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the
-   * appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker.
+   * Emitted when a new tracker has been added. If you don't use a fixed number of controllers or if you're using [XRAnchor3D]s for an AR solution, it is important to react to this signal to add the appropriate [XRController3D] or [XRAnchor3D] nodes related to this new tracker.
    */
   @JvmStatic
   public val trackerAdded: Signal2<StringName, Long> by Signal2
 
   /**
-   * Emitted when an existing tracker has been updated. This can happen if the user switches
-   * controllers.
+   * Emitted when an existing tracker has been updated. This can happen if the user switches controllers.
    */
   @JvmStatic
   public val trackerUpdated: Signal2<StringName, Long> by Signal2
 
   /**
-   * Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D]
-   * points if applicable. This is not mandatory, the nodes simply become inactive and will be made
-   * active again when a new tracker becomes available (i.e. a new controller is switched on that takes
-   * the place of the previous one).
+   * Emitted when a tracker is removed. You should remove any [XRController3D] or [XRAnchor3D] points if applicable. This is not mandatory, the nodes simply become inactive and will be made active again when a new tracker becomes available (i.e. a new controller is switched on that takes the place of the previous one).
    */
   @JvmStatic
   public val trackerRemoved: Signal2<StringName, Long> by Signal2
 
   /**
-   * The scale of the game world compared to the real world. By default, most AR/VR platforms assume
-   * that 1 game unit corresponds to 1 real world meter.
+   * The scale of the game world compared to the real world. By default, most AR/VR platforms assume that 1 game unit corresponds to 1 real world meter.
    */
   @JvmStatic
   public final inline var worldScale: Double
@@ -103,18 +92,13 @@ public object XRServer : Object() {
     }
 
   /**
-   * The current origin of our tracking space in the virtual world. This is used by the renderer to
-   * properly position the camera with new tracking data.
+   * The current origin of our tracking space in the virtual world. This is used by the renderer to properly position the camera with new tracking data.
    *
-   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
-   * from GDExtensions.
+   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access from GDExtensions.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   @JvmStatic
@@ -129,8 +113,7 @@ public object XRServer : Object() {
   /**
    * If set to `true`, the scene will be rendered as if the camera is locked to the [XROrigin3D].
    *
-   * **Note:** This doesn't provide a very comfortable experience for users. This setting exists for
-   * doing benchmarking or automated testing, where you want to control what is rendered via code.
+   * **Note:** This doesn't provide a very comfortable experience for users. This setting exists for doing benchmarking or automated testing, where you want to control what is rendered via code.
    */
   @JvmStatic
   public final inline var cameraLockedToOrigin: Boolean
@@ -153,7 +136,7 @@ public object XRServer : Object() {
       setPrimaryInterface(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     getSingleton(35)
   }
 
@@ -168,15 +151,12 @@ public object XRServer : Object() {
    * xrserver.worldOrigin = myCoreType
    * ``````
    *
-   * The current origin of our tracking space in the virtual world. This is used by the renderer to
-   * properly position the camera with new tracking data.
+   * The current origin of our tracking space in the virtual world. This is used by the renderer to properly position the camera with new tracking data.
    *
-   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access
-   * from GDExtensions.
+   * **Note:** This property is managed by the current [XROrigin3D] node. It is exposed for access from GDExtensions.
    */
   @CoreTypeHelper
-  public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D =
-      worldOrigin.apply {
+  public final fun worldOriginMutate(block: Transform3D.() -> Unit): Transform3D = worldOrigin.apply {
      block(this)
      worldOrigin = this
   }
@@ -189,7 +169,7 @@ public object XRServer : Object() {
   }
 
   @JvmStatic
-  public final fun setWorldScale(scale: Double): Unit {
+  public final fun setWorldScale(scale: Double) {
     TransferContext.writeArguments(DOUBLE to scale)
     TransferContext.callMethod(ptr, MethodBindings.setWorldScalePtr, NIL)
   }
@@ -202,14 +182,13 @@ public object XRServer : Object() {
   }
 
   @JvmStatic
-  public final fun setWorldOrigin(worldOrigin: Transform3D): Unit {
+  public final fun setWorldOrigin(worldOrigin: Transform3D) {
     TransferContext.writeArguments(TRANSFORM3D to worldOrigin)
     TransferContext.callMethod(ptr, MethodBindings.setWorldOriginPtr, NIL)
   }
 
   /**
-   * Returns the reference frame transform. Mostly used internally and exposed for GDExtension build
-   * interfaces.
+   * Returns the reference frame transform. Mostly used internally and exposed for GDExtension build interfaces.
    */
   @JvmStatic
   public final fun getReferenceFrame(): Transform3D {
@@ -222,35 +201,26 @@ public object XRServer : Object() {
    * Clears the reference frame that was set by previous calls to [centerOnHmd].
    */
   @JvmStatic
-  public final fun clearReferenceFrame(): Unit {
+  public final fun clearReferenceFrame() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.clearReferenceFramePtr, NIL)
   }
 
   /**
-   * This is an important function to understand correctly. AR and VR platforms all handle
-   * positioning slightly differently.
+   * This is an important function to understand correctly. AR and VR platforms all handle positioning slightly differently.
    *
-   * For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of
-   * our HMD, but you have little control over the direction the player is facing in the real world.
+   * For platforms that do not offer spatial tracking, our origin point (0, 0, 0) is the location of our HMD, but you have little control over the direction the player is facing in the real world.
    *
-   * For platforms that do offer spatial tracking, our origin point depends very much on the system.
-   * For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other
-   * platforms, it's often the location of the tracking camera.
+   * For platforms that do offer spatial tracking, our origin point depends very much on the system. For OpenVR, our origin point is usually the center of the tracking space, on the ground. For other platforms, it's often the location of the tracking camera.
    *
-   * This method allows you to center your tracker on the location of the HMD. It will take the
-   * current location of the HMD and use that to adjust all your tracking data; in essence, realigning
-   * the real world to your player's current position in the game world.
+   * This method allows you to center your tracker on the location of the HMD. It will take the current location of the HMD and use that to adjust all your tracking data; in essence, realigning the real world to your player's current position in the game world.
    *
-   * For this method to produce usable results, tracking information must be available. This often
-   * takes a few frames after starting your game.
+   * For this method to produce usable results, tracking information must be available. This often takes a few frames after starting your game.
    *
-   * You should call this method after a few seconds have passed. For example, when the user
-   * requests a realignment of the display holding a designated button on a controller for a short
-   * period of time, or when implementing a teleport mechanism.
+   * You should call this method after a few seconds have passed. For example, when the user requests a realignment of the display holding a designated button on a controller for a short period of time, or when implementing a teleport mechanism.
    */
   @JvmStatic
-  public final fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean): Unit {
+  public final fun centerOnHmd(rotationMode: RotationMode, keepHeight: Boolean) {
     TransferContext.writeArguments(LONG to rotationMode.id, BOOL to keepHeight)
     TransferContext.callMethod(ptr, MethodBindings.centerOnHmdPtr, NIL)
   }
@@ -266,7 +236,7 @@ public object XRServer : Object() {
   }
 
   @JvmStatic
-  public final fun setCameraLockedToOrigin(enabled: Boolean): Unit {
+  public final fun setCameraLockedToOrigin(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCameraLockedToOriginPtr, NIL)
   }
@@ -282,16 +252,13 @@ public object XRServer : Object() {
    * Registers an [XRInterface] object.
    */
   @JvmStatic
-  public final fun addInterface(`interface`: XRInterface?): Unit {
+  public final fun addInterface(`interface`: XRInterface?) {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(ptr, MethodBindings.addInterfacePtr, NIL)
   }
 
   /**
-   * Returns the number of interfaces currently registered with the AR/VR server. If your project
-   * supports multiple AR/VR platforms, you can look through the available interface, and either
-   * present the user with a selection or simply try to initialize each interface and use the first one
-   * that returns `true`.
+   * Returns the number of interfaces currently registered with the AR/VR server. If your project supports multiple AR/VR platforms, you can look through the available interface, and either present the user with a selection or simply try to initialize each interface and use the first one that returns `true`.
    */
   @JvmStatic
   public final fun getInterfaceCount(): Int {
@@ -304,7 +271,7 @@ public object XRServer : Object() {
    * Removes this [interface].
    */
   @JvmStatic
-  public final fun removeInterface(`interface`: XRInterface?): Unit {
+  public final fun removeInterface(`interface`: XRInterface?) {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(ptr, MethodBindings.removeInterfacePtr, NIL)
   }
@@ -330,8 +297,7 @@ public object XRServer : Object() {
   }
 
   /**
-   * Finds an interface by its [name]. For example, if your project uses capabilities of an AR/VR
-   * platform, you can find the interface for that platform by name and initialize it.
+   * Finds an interface by its [name]. For example, if your project uses capabilities of an AR/VR platform, you can find the interface for that platform by name and initialize it.
    */
   @JvmStatic
   public final fun findInterface(name: String): XRInterface? {
@@ -344,7 +310,7 @@ public object XRServer : Object() {
    * Registers a new [XRTracker] that tracks a physical object.
    */
   @JvmStatic
-  public final fun addTracker(tracker: XRTracker?): Unit {
+  public final fun addTracker(tracker: XRTracker?) {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(ptr, MethodBindings.addTrackerPtr, NIL)
   }
@@ -353,7 +319,7 @@ public object XRServer : Object() {
    * Removes this [tracker].
    */
   @JvmStatic
-  public final fun removeTracker(tracker: XRTracker?): Unit {
+  public final fun removeTracker(tracker: XRTracker?) {
     TransferContext.writeArguments(OBJECT to tracker)
     TransferContext.callMethod(ptr, MethodBindings.removeTrackerPtr, NIL)
   }
@@ -386,7 +352,7 @@ public object XRServer : Object() {
   }
 
   @JvmStatic
-  public final fun setPrimaryInterface(`interface`: XRInterface?): Unit {
+  public final fun setPrimaryInterface(`interface`: XRInterface?) {
     TransferContext.writeArguments(OBJECT to `interface`)
     TransferContext.callMethod(ptr, MethodBindings.setPrimaryInterfacePtr, NIL)
   }
@@ -395,16 +361,13 @@ public object XRServer : Object() {
    * Returns the positional tracker with the given [trackerName].
    */
   @JvmStatic
-  public final fun getTracker(trackerName: String): XRTracker? =
-      getTracker(trackerName.asCachedStringName())
+  public final fun getTracker(trackerName: String): XRTracker? = getTracker(trackerName.asCachedStringName())
 
   public enum class TrackerType(
     id: Long,
   ) {
     /**
-     * The tracker tracks the location of the players head. This is usually a location centered
-     * between the players eyes. Note that for handheld AR devices this can be the current location of
-     * the device.
+     * The tracker tracks the location of the players head. This is usually a location centered between the players eyes. Note that for handheld AR devices this can be the current location of the device.
      */
     HEAD(1),
     /**
@@ -459,13 +422,11 @@ public object XRServer : Object() {
     id: Long,
   ) {
     /**
-     * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to
-     * in the real world. The user will look dead ahead in the virtual world.
+     * Fully reset the orientation of the HMD. Regardless of what direction the user is looking to in the real world. The user will look dead ahead in the virtual world.
      */
     RESET_FULL_ROTATION(0),
     /**
-     * Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep
-     * looking down but heading will be reset.
+     * Resets the orientation but keeps the tilt of the device. So if we're looking down, we keep looking down but heading will be reset.
      */
     RESET_BUT_KEEP_TILT(1),
     /**
@@ -486,69 +447,69 @@ public object XRServer : Object() {
 
   public object MethodBindings {
     internal val getWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_world_scale", 1740695150)
+        TypeManager.getMethodBindPtr("XRServer", "get_world_scale", 1_740_695_150)
 
     internal val setWorldScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_world_scale", 373806689)
+        TypeManager.getMethodBindPtr("XRServer", "set_world_scale", 373_806_689)
 
     internal val getWorldOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_world_origin", 3229777777)
+        TypeManager.getMethodBindPtr("XRServer", "get_world_origin", 3_229_777_777)
 
     internal val setWorldOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_world_origin", 2952846383)
+        TypeManager.getMethodBindPtr("XRServer", "set_world_origin", 2_952_846_383)
 
     internal val getReferenceFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_reference_frame", 3229777777)
+        TypeManager.getMethodBindPtr("XRServer", "get_reference_frame", 3_229_777_777)
 
     internal val clearReferenceFramePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "clear_reference_frame", 3218959716)
+        TypeManager.getMethodBindPtr("XRServer", "clear_reference_frame", 3_218_959_716)
 
     internal val centerOnHmdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "center_on_hmd", 1450904707)
+        TypeManager.getMethodBindPtr("XRServer", "center_on_hmd", 1_450_904_707)
 
     internal val getHmdTransformPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform", 4183770049)
+        TypeManager.getMethodBindPtr("XRServer", "get_hmd_transform", 4_183_770_049)
 
     internal val setCameraLockedToOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_camera_locked_to_origin", 2586408642)
+        TypeManager.getMethodBindPtr("XRServer", "set_camera_locked_to_origin", 2_586_408_642)
 
     internal val isCameraLockedToOriginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "is_camera_locked_to_origin", 36873697)
+        TypeManager.getMethodBindPtr("XRServer", "is_camera_locked_to_origin", 36_873_697)
 
     internal val addInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "add_interface", 1898711491)
+        TypeManager.getMethodBindPtr("XRServer", "add_interface", 1_898_711_491)
 
     internal val getInterfaceCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_interface_count", 3905245786)
+        TypeManager.getMethodBindPtr("XRServer", "get_interface_count", 3_905_245_786)
 
     internal val removeInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "remove_interface", 1898711491)
+        TypeManager.getMethodBindPtr("XRServer", "remove_interface", 1_898_711_491)
 
     internal val getInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_interface", 4237347919)
+        TypeManager.getMethodBindPtr("XRServer", "get_interface", 4_237_347_919)
 
     internal val getInterfacesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_interfaces", 3995934104)
+        TypeManager.getMethodBindPtr("XRServer", "get_interfaces", 3_995_934_104)
 
     internal val findInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "find_interface", 1395192955)
+        TypeManager.getMethodBindPtr("XRServer", "find_interface", 1_395_192_955)
 
     internal val addTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "add_tracker", 684804553)
+        TypeManager.getMethodBindPtr("XRServer", "add_tracker", 684_804_553)
 
     internal val removeTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "remove_tracker", 684804553)
+        TypeManager.getMethodBindPtr("XRServer", "remove_tracker", 684_804_553)
 
     internal val getTrackersPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_trackers", 3554694381)
+        TypeManager.getMethodBindPtr("XRServer", "get_trackers", 3_554_694_381)
 
     internal val getTrackerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_tracker", 147382240)
+        TypeManager.getMethodBindPtr("XRServer", "get_tracker", 147_382_240)
 
     internal val getPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "get_primary_interface", 2143545064)
+        TypeManager.getMethodBindPtr("XRServer", "get_primary_interface", 2_143_545_064)
 
     internal val setPrimaryInterfacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("XRServer", "set_primary_interface", 1898711491)
+        TypeManager.getMethodBindPtr("XRServer", "set_primary_interface", 1_898_711_491)
   }
 }

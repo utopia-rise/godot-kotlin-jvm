@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -22,18 +19,15 @@ import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is
- * being performed when rendering using [RenderingDevice].
+ * [RDPipelineMultisampleState] is used to control how multisample or supersample antialiasing is being performed when rendering using [RenderingDevice].
  */
 @GodotBaseType
 public open class RDPipelineMultisampleState : RefCounted() {
   /**
-   * The number of MSAA samples (or SSAA samples if [enableSampleShading] is `true`) to perform.
-   * Higher values result in better antialiasing, at the cost of performance.
+   * The number of MSAA samples (or SSAA samples if [enableSampleShading] is `true`) to perform. Higher values result in better antialiasing, at the cost of performance.
    */
   public final inline var sampleCount: RenderingDevice.TextureSamples
     @JvmName("sampleCountProperty")
@@ -44,11 +38,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality
-   * antialiasing that works with transparent (alpha scissor) edges. This has a very high performance
-   * cost. See also [minSampleShading]. See the
-   * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading]per-sample
-   * shading Vulkan documentation[/url] for more details.
+   * If `true`, enables per-sample shading which replaces MSAA by SSAA. This provides higher quality antialiasing that works with transparent (alpha scissor) edges. This has a very high performance cost. See also [minSampleShading]. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#primsrast-sampleshading]per-sample shading Vulkan documentation[/url] for more details.
    */
   public final inline var enableSampleShading: Boolean
     @JvmName("enableSampleShadingProperty")
@@ -59,10 +49,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * The multiplier of [sampleCount] that determines how many samples are performed for each
-   * fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [enableSampleShading] is
-   * `true`. If [minSampleShading] is `1.0`, fragment invocation must only read from the coverage index
-   * sample. Tile image access must not be used if [enableSampleShading] is *not* `1.0`.
+   * The multiplier of [sampleCount] that determines how many samples are performed for each fragment. Must be between `0.0` and `1.0` (inclusive). Only effective if [enableSampleShading] is `true`. If [minSampleShading] is `1.0`, fragment invocation must only read from the coverage index sample. Tile image access must not be used if [enableSampleShading] is *not* `1.0`.
    */
   public final inline var minSampleShading: Float
     @JvmName("minSampleShadingProperty")
@@ -73,9 +60,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the
-   * alpha component of the fragment's first color output. This allows alpha transparency to make use
-   * of multisample antialiasing.
+   * If `true`, alpha to coverage is enabled. This generates a temporary coverage value based on the alpha component of the fragment's first color output. This allows alpha transparency to make use of multisample antialiasing.
    */
   public final inline var enableAlphaToCoverage: Boolean
     @JvmName("enableAlphaToCoverageProperty")
@@ -86,8 +71,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * If `true`, alpha is forced to either `0.0` or `1.0`. This allows hardening the edges of
-   * antialiased alpha transparencies. Only relevant if [enableAlphaToCoverage] is `true`.
+   * If `true`, alpha is forced to either `0.0` or `1.0`. This allows hardening the edges of antialiased alpha transparencies. Only relevant if [enableAlphaToCoverage] is `true`.
    */
   public final inline var enableAlphaToOne: Boolean
     @JvmName("enableAlphaToOneProperty")
@@ -98,9 +82,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     }
 
   /**
-   * The sample mask array. See the
-   * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask]sample
-   * mask Vulkan documentation[/url] for more details.
+   * The sample mask array. See the [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#fragops-samplemask]sample mask Vulkan documentation[/url] for more details.
    */
   public final inline var sampleMasks: VariantArray<Long>
     @JvmName("sampleMasksProperty")
@@ -110,11 +92,11 @@ public open class RDPipelineMultisampleState : RefCounted() {
       setSampleMasks(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(518, scriptIndex)
   }
 
-  public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {
+  public final fun setSampleCount(pMember: RenderingDevice.TextureSamples) {
     TransferContext.writeArguments(LONG to pMember.id)
     TransferContext.callMethod(ptr, MethodBindings.setSampleCountPtr, NIL)
   }
@@ -125,7 +107,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     return RenderingDevice.TextureSamples.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setEnableSampleShading(pMember: Boolean): Unit {
+  public final fun setEnableSampleShading(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableSampleShadingPtr, NIL)
   }
@@ -136,7 +118,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setMinSampleShading(pMember: Float): Unit {
+  public final fun setMinSampleShading(pMember: Float) {
     TransferContext.writeArguments(DOUBLE to pMember.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setMinSampleShadingPtr, NIL)
   }
@@ -147,7 +129,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setEnableAlphaToCoverage(pMember: Boolean): Unit {
+  public final fun setEnableAlphaToCoverage(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableAlphaToCoveragePtr, NIL)
   }
@@ -158,7 +140,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setEnableAlphaToOne(pMember: Boolean): Unit {
+  public final fun setEnableAlphaToOne(pMember: Boolean) {
     TransferContext.writeArguments(BOOL to pMember)
     TransferContext.callMethod(ptr, MethodBindings.setEnableAlphaToOnePtr, NIL)
   }
@@ -169,7 +151,7 @@ public open class RDPipelineMultisampleState : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSampleMasks(masks: VariantArray<Long>): Unit {
+  public final fun setSampleMasks(masks: VariantArray<Long>) {
     TransferContext.writeArguments(ARRAY to masks)
     TransferContext.callMethod(ptr, MethodBindings.setSampleMasksPtr, NIL)
   }
@@ -184,39 +166,39 @@ public open class RDPipelineMultisampleState : RefCounted() {
 
   public object MethodBindings {
     internal val setSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count", 3774171498)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_count", 3_774_171_498)
 
     internal val getSampleCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count", 407791724)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_count", 407_791_724)
 
     internal val setEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_sample_shading", 2_586_408_642)
 
     internal val getEnableSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_sample_shading", 36_873_697)
 
     internal val setMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading", 373806689)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_min_sample_shading", 373_806_689)
 
     internal val getMinSampleShadingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading", 1740695150)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_min_sample_shading", 1_740_695_150)
 
     internal val setEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_coverage", 2_586_408_642)
 
     internal val getEnableAlphaToCoveragePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_coverage", 36_873_697)
 
     internal val setEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one", 2586408642)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_enable_alpha_to_one", 2_586_408_642)
 
     internal val getEnableAlphaToOnePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one", 36873697)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_enable_alpha_to_one", 36_873_697)
 
     internal val setSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks", 381264803)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "set_sample_masks", 381_264_803)
 
     internal val getSampleMasksPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks", 3995934104)
+        TypeManager.getMethodBindPtr("RDPipelineMultisampleState", "get_sample_masks", 3_995_934_104)
   }
 }

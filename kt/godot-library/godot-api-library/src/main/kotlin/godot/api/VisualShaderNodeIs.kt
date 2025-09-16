@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -15,7 +12,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
-import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
@@ -34,11 +30,11 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
       setFunction(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(764, scriptIndex)
   }
 
-  public final fun setFunction(func: Function): Unit {
+  public final fun setFunction(func: Function) {
     TransferContext.writeArguments(LONG to func.id)
     TransferContext.callMethod(ptr, MethodBindings.setFunctionPtr, NIL)
   }
@@ -57,8 +53,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
      */
     IS_INF(0),
     /**
-     * Comparison with `NaN` (Not a Number; indicates invalid numeric results, such as division by
-     * zero).
+     * Comparison with `NaN` (Not a Number; indicates invalid numeric results, such as division by zero).
      */
     IS_NAN(1),
     /**
@@ -81,9 +76,9 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
 
   public object MethodBindings {
     internal val setFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIs", "set_function", 1438374690)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIs", "set_function", 1_438_374_690)
 
     internal val getFunctionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShaderNodeIs", "get_function", 580678557)
+        TypeManager.getMethodBindPtr("VisualShaderNodeIs", "get_function", 580_678_557)
   }
 }

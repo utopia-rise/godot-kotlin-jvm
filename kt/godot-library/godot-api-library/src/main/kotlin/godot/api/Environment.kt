@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -31,9 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment
- * operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These
- * parameters affect the final render of the scene. The order of these operations is:
+ * Resource for environment nodes (like [WorldEnvironment]) that define multiple environment operations (such as background [Sky] or [Color], ambient light, fog, depth-of-field...). These parameters affect the final render of the scene. The order of these operations is:
  *
  * - Depth of Field Blur
  *
@@ -57,15 +52,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
-   * background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var backgroundColor: Color
@@ -77,8 +68,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Multiplier for background energy. Increase to make background brighter, decrease to make
-   * background dimmer.
+   * Multiplier for background energy. Increase to make background brighter, decrease to make background dimmer.
    */
   public final inline var backgroundEnergyMultiplier: Float
     @JvmName("backgroundEnergyMultiplierProperty")
@@ -89,9 +79,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Luminance of background measured in nits (candela per square meter). Only used when
-   * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value
-   * is roughly equivalent to the sky at midday.
+   * Luminance of background measured in nits (candela per square meter). Only used when [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is enabled. The default value is roughly equivalent to the sky at midday.
    */
   public final inline var backgroundIntensity: Float
     @JvmName("backgroundIntensityProperty")
@@ -135,8 +123,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If
-   * set to `0.0`, the same FOV as the current [Camera3D] is used for sky rendering.
+   * If set to a value greater than `0.0`, overrides the field of view to use for sky rendering. If set to `0.0`, the same FOV as the current [Camera3D] is used for sky rendering.
    */
   public final inline var skyCustomFov: Float
     @JvmName("skyCustomFovProperty")
@@ -150,11 +137,8 @@ public open class Environment : Resource() {
    * The rotation to use for sky rendering.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var skyRotation: Vector3
@@ -177,15 +161,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
-   * `1.0` (exclusive).
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var ambientLightColor: Color
@@ -197,14 +177,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the
-   * sky's light emission has no effect on the scene illumination, thus all ambient illumination is
-   * provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that
-   * affects the scene is provided by the sky, thus the ambient light parameter has no effect on the
-   * scene.
+   * Defines the amount of light that the sky brings on the scene. A value of `0.0` means that the sky's light emission has no effect on the scene illumination, thus all ambient illumination is provided by the ambient light. On the contrary, a value of `1.0` means that *all* the light that affects the scene is provided by the sky, thus the ambient light parameter has no effect on the scene.
    *
-   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0`
-   * (inclusive).
+   * **Note:** [ambientLightSkyContribution] is internally clamped between `0.0` and `1.0` (inclusive).
    */
   public final inline var ambientLightSkyContribution: Float
     @JvmName("ambientLightSkyContributionProperty")
@@ -215,8 +190,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The ambient light's energy. The higher the value, the stronger the light. Only effective if
-   * [ambientLightSkyContribution] is lower than `1.0` (exclusive).
+   * The ambient light's energy. The higher the value, the stronger the light. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
   public final inline var ambientLightEnergy: Float
     @JvmName("ambientLightEnergyProperty")
@@ -238,8 +212,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be
-   * suitable for rendering on an LDR display. (Godot doesn't support rendering on HDR displays yet.)
+   * The tonemapping mode to use. Tonemapping is the process that "converts" HDR values to be suitable for rendering on an LDR display. (Godot doesn't support rendering on HDR displays yet.)
    */
   public final inline var tonemapMode: ToneMapper
     @JvmName("tonemapModeProperty")
@@ -250,12 +223,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Adjusts the brightness of values before they are provided to the tonemapper. Higher
-   * [tonemapExposure] values result in a brighter image. See also [tonemapWhite].
+   * Adjusts the brightness of values before they are provided to the tonemapper. Higher [tonemapExposure] values result in a brighter image. See also [tonemapWhite].
    *
-   * **Note:** Values provided to the tonemapper will also be multiplied by `2.0` and `1.8` for
-   * [TONE_MAPPER_FILMIC] and [TONE_MAPPER_ACES] respectively to produce a similar apparent brightness
-   * as [TONE_MAPPER_LINEAR].
+   * **Note:** Values provided to the tonemapper will also be multiplied by `2.0` and `1.8` for [TONE_MAPPER_FILMIC] and [TONE_MAPPER_ACES] respectively to produce a similar apparent brightness as [TONE_MAPPER_LINEAR].
    */
   public final inline var tonemapExposure: Float
     @JvmName("tonemapExposureProperty")
@@ -266,10 +236,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The white reference value for tonemapping, which indicates where bright white is located in the
-   * scale of values provided to the tonemapper. For photorealistic lighting, recommended values are
-   * between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene
-   * appear lower contrast. See also [tonemapExposure].
+   * The white reference value for tonemapping, which indicates where bright white is located in the scale of values provided to the tonemapper. For photorealistic lighting, recommended values are between `6.0` and `8.0`. Higher values result in less blown out highlights, but may make the scene appear lower contrast. See also [tonemapExposure].
    *
    * **Note:** [tonemapWhite] is ignored when using [TONE_MAPPER_LINEAR] or [TONE_MAPPER_AGX].
    */
@@ -282,9 +249,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate
-   * than reflections from [VoxelGI]s or [ReflectionProbe]s, but are slower and can't reflect surfaces
-   * occluded by others.
+   * If `true`, screen-space reflections are enabled. Screen-space reflections are more accurate than reflections from [VoxelGI]s or [ReflectionProbe]s, but are slower and can't reflect surfaces occluded by others.
    *
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
@@ -308,9 +273,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fade-in distance for screen-space reflections. Affects the area from the reflected material
-   * to the screen-space reflection. Only positive values are valid (negative values will be clamped to
-   * `0.0`).
+   * The fade-in distance for screen-space reflections. Affects the area from the reflected material to the screen-space reflection. Only positive values are valid (negative values will be clamped to `0.0`).
    */
   public final inline var ssrFadeIn: Float
     @JvmName("ssrFadeInProperty")
@@ -321,9 +284,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fade-out distance for screen-space reflections. Affects the area from the screen-space
-   * reflection to the "global" reflection. Only positive values are valid (negative values will be
-   * clamped to `0.0`).
+   * The fade-out distance for screen-space reflections. Affects the area from the screen-space reflection to the "global" reflection. Only positive values are valid (negative values will be clamped to `0.0`).
    */
   public final inline var ssrFadeOut: Float
     @JvmName("ssrFadeOutProperty")
@@ -345,11 +306,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the screen-space ambient occlusion effect is enabled. This darkens objects' corners
-   * and cavities to simulate ambient light not reaching the entire object as in real life. This works
-   * well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better
-   * job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called
-   * Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
+   * If `true`, the screen-space ambient occlusion effect is enabled. This darkens objects' corners and cavities to simulate ambient light not reaching the entire object as in real life. This works well for small, dynamic objects, but baked lighting or ambient occlusion textures will do a better job at displaying ambient occlusion on large static objects. Godot uses a form of SSAO called Adaptive Screen Space Ambient Occlusion which is itself a form of Horizon Based Ambient Occlusion.
    *
    * **Note:** SSAO is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
@@ -362,9 +319,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance at which objects can occlude each other when calculating screen-space ambient
-   * occlusion. Higher values will result in occlusion over a greater distance at the cost of
-   * performance and quality.
+   * The distance at which objects can occlude each other when calculating screen-space ambient occlusion. Higher values will result in occlusion over a greater distance at the cost of performance and quality.
    */
   public final inline var ssaoRadius: Float
     @JvmName("ssaoRadiusProperty")
@@ -375,8 +330,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space
-   * ambient occlusion effect. A higher value results in darker occlusion.
+   * The primary screen-space ambient occlusion intensity. Acts as a multiplier for the screen-space ambient occlusion effect. A higher value results in darker occlusion.
    */
   public final inline var ssaoIntensity: Float
     @JvmName("ssaoIntensityProperty")
@@ -387,8 +341,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distribution of occlusion. A higher value results in darker occlusion, similar to
-   * [ssaoIntensity], but with a sharper falloff.
+   * The distribution of occlusion. A higher value results in darker occlusion, similar to [ssaoIntensity], but with a sharper falloff.
    */
   public final inline var ssaoPower: Float
     @JvmName("ssaoPowerProperty")
@@ -399,9 +352,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Sets the strength of the additional level of detail for the screen-space ambient occlusion
-   * effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in
-   * your final image.
+   * Sets the strength of the additional level of detail for the screen-space ambient occlusion effect. A high value makes the detail pass more prominent, but it may contribute to aliasing in your final image.
    */
   public final inline var ssaoDetail: Float
     @JvmName("ssaoDetailProperty")
@@ -412,9 +363,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The threshold for considering whether a given point on a surface is occluded or not represented
-   * as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no
-   * occlusion.
+   * The threshold for considering whether a given point on a surface is occluded or not represented as an angle from the horizon mapped into the `0.0-1.0` range. A value of `1.0` results in no occlusion.
    */
   public final inline var ssaoHorizon: Float
     @JvmName("ssaoHorizonProperty")
@@ -425,9 +374,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount that the screen-space ambient occlusion effect is allowed to blur over the edges of
-   * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
-   * will make object edges appear blurry.
+   * The amount that the screen-space ambient occlusion effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
    */
   public final inline var ssaoSharpness: Float
     @JvmName("ssaoSharpnessProperty")
@@ -438,9 +385,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The screen-space ambient occlusion intensity in direct light. In real life, ambient occlusion
-   * only applies to indirect light, which means its effects can't be seen in direct light. Values
-   * higher than `0` will make the SSAO effect visible in direct light.
+   * The screen-space ambient occlusion intensity in direct light. In real life, ambient occlusion only applies to indirect light, which means its effects can't be seen in direct light. Values higher than `0` will make the SSAO effect visible in direct light.
    */
   public final inline var ssaoLightAffect: Float
     @JvmName("ssaoLightAffectProperty")
@@ -451,8 +396,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The screen-space ambient occlusion intensity on materials that have an AO texture defined.
-   * Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
+   * The screen-space ambient occlusion intensity on materials that have an AO texture defined. Values higher than `0` will make the SSAO effect visible in areas darkened by AO textures.
    */
   public final inline var ssaoAoChannelAffect: Float
     @JvmName("ssaoAoChannelAffectProperty")
@@ -463,12 +407,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the screen-space indirect lighting effect is enabled. Screen space indirect lighting
-   * is a form of indirect lighting that allows diffuse light to bounce between nearby objects.
-   * Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it
-   * only affects a limited range. It is intended to be used along with a form of proper global
-   * illumination like SDFGI or [VoxelGI]. Screen-space indirect lighting is not affected by individual
-   * light's [Light3D.lightIndirectEnergy].
+   * If `true`, the screen-space indirect lighting effect is enabled. Screen space indirect lighting is a form of indirect lighting that allows diffuse light to bounce between nearby objects. Screen-space indirect lighting works very similarly to screen-space ambient occlusion, in that it only affects a limited range. It is intended to be used along with a form of proper global illumination like SDFGI or [VoxelGI]. Screen-space indirect lighting is not affected by individual light's [Light3D.lightIndirectEnergy].
    *
    * **Note:** SSIL is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
@@ -481,9 +420,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance that bounced lighting can travel when using the screen space indirect lighting
-   * effect. A larger value will result in light bouncing further in a scene, but may result in
-   * under-sampling artifacts which look like long spikes surrounding light sources.
+   * The distance that bounced lighting can travel when using the screen space indirect lighting effect. A larger value will result in light bouncing further in a scene, but may result in under-sampling artifacts which look like long spikes surrounding light sources.
    */
   public final inline var ssilRadius: Float
     @JvmName("ssilRadiusProperty")
@@ -494,8 +431,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The brightness multiplier for the screen-space indirect lighting effect. A higher value will
-   * result in brighter light.
+   * The brightness multiplier for the screen-space indirect lighting effect. A higher value will result in brighter light.
    */
   public final inline var ssilIntensity: Float
     @JvmName("ssilIntensityProperty")
@@ -506,9 +442,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount that the screen-space indirect lighting effect is allowed to blur over the edges of
-   * objects. Setting too high will result in aliasing around the edges of objects. Setting too low
-   * will make object edges appear blurry.
+   * The amount that the screen-space indirect lighting effect is allowed to blur over the edges of objects. Setting too high will result in aliasing around the edges of objects. Setting too low will make object edges appear blurry.
    */
   public final inline var ssilSharpness: Float
     @JvmName("ssilSharpnessProperty")
@@ -519,12 +453,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Amount of normal rejection used when calculating screen-space indirect lighting. Normal
-   * rejection uses the normal of a given sample point to reject samples that are facing away from the
-   * current pixel. Normal rejection is necessary to avoid light leaking when only one side of an
-   * object is illuminated. However, normal rejection can be disabled if light leaking is desirable,
-   * such as when the scene mostly contains emissive objects that emit light from faces that cannot be
-   * seen from the camera.
+   * Amount of normal rejection used when calculating screen-space indirect lighting. Normal rejection uses the normal of a given sample point to reject samples that are facing away from the current pixel. Normal rejection is necessary to avoid light leaking when only one side of an object is illuminated. However, normal rejection can be disabled if light leaking is desirable, such as when the scene mostly contains emissive objects that emit light from faces that cannot be seen from the camera.
    */
   public final inline var ssilNormalRejection: Float
     @JvmName("ssilNormalRejectionProperty")
@@ -535,23 +464,13 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, enables signed distance field global illumination for meshes that have their
-   * [GeometryInstance3D.giMode] set to [GeometryInstance3D.GI_MODE_STATIC]. SDFGI is a real-time
-   * global illumination technique that works well with procedurally generated and user-built levels,
-   * including in situations where geometry is created during gameplay. The signed distance field is
-   * automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic
-   * occluders and emissive surfaces are not.
+   * If `true`, enables signed distance field global illumination for meshes that have their [GeometryInstance3D.giMode] set to [GeometryInstance3D.GI_MODE_STATIC]. SDFGI is a real-time global illumination technique that works well with procedurally generated and user-built levels, including in situations where geometry is created during gameplay. The signed distance field is automatically generated around the camera as it moves. Dynamic lights are supported, but dynamic occluders and emissive surfaces are not.
    *
-   * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or
-   * Compatibility.
+   * **Note:** SDFGI is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    *
-   * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware
-   * such as integrated graphics (consider [LightmapGI] instead). To improve SDFGI performance, enable
-   * [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
+   * **Performance:** SDFGI is relatively demanding on the GPU and is not suited to low-end hardware such as integrated graphics (consider [LightmapGI] instead). To improve SDFGI performance, enable [ProjectSettings.rendering/globalIllumination/gi/useHalfResolution] in the Project Settings.
    *
-   * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided
-   * walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge
-   * the loops to close the mesh.
+   * **Note:** Meshes should have sufficiently thick walls to avoid light leaks (avoid one-sided walls). For interior levels, enclose your level geometry in a sufficiently large box and bridge the loops to close the mesh.
    */
   public final inline var sdfgiEnabled: Boolean
     @JvmName("sdfgiEnabledProperty")
@@ -562,9 +481,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, SDFGI uses an occlusion detection approach to reduce light leaking. Occlusion may
-   * however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes.
-   * [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
+   * If `true`, SDFGI uses an occlusion detection approach to reduce light leaking. Occlusion may however introduce dark blotches in certain spots, which may be undesired in mostly outdoor scenes. [sdfgiUseOcclusion] has a performance impact and should only be enabled when needed.
    */
   public final inline var sdfgiUseOcclusion: Boolean
     @JvmName("sdfgiUseOcclusionProperty")
@@ -575,8 +492,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for
-   * interior scenes.
+   * If `true`, SDFGI takes the environment lighting into account. This should be set to `false` for interior scenes.
    */
   public final inline var sdfgiReadSkyLight: Boolean
     @JvmName("sdfgiReadSkyLightProperty")
@@ -587,16 +503,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The energy multiplier applied to light every time it bounces from a surface when using SDFGI.
-   * Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic
-   * appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also
-   * [sdfgiEnergy].
+   * The energy multiplier applied to light every time it bounces from a surface when using SDFGI. Values greater than `0.0` will simulate multiple bounces, resulting in a more realistic appearance. Increasing [sdfgiBounceFeedback] generally has no performance impact. See also [sdfgiEnergy].
    *
-   * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in
-   * scenes with bright materials.
+   * **Note:** Values greater than `0.5` can cause infinite feedback loops and should be avoided in scenes with bright materials.
    *
-   * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in
-   * reflections as light will only bounce one time.
+   * **Note:** If [sdfgiBounceFeedback] is `0.0`, indirect lighting will not be represented in reflections as light will only bounce one time.
    */
   public final inline var sdfgiBounceFeedback: Float
     @JvmName("sdfgiBounceFeedbackProperty")
@@ -607,10 +518,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The number of cascades to use for SDFGI (between 1 and 8). A higher number of cascades allows
-   * displaying SDFGI further away while preserving detail up close, at the cost of performance. When
-   * using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to
-   * improve performance.
+   * The number of cascades to use for SDFGI (between 1 and 8). A higher number of cascades allows displaying SDFGI further away while preserving detail up close, at the cost of performance. When using SDFGI on small-scale levels, [sdfgiCascades] can often be decreased between `1` and `4` to improve performance.
    */
   public final inline var sdfgiCascades: Int
     @JvmName("sdfgiCascadesProperty")
@@ -621,13 +529,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The cell size to use for the closest SDFGI cascade (in 3D units). Lower values allow SDFGI to
-   * be more precise up close, at the cost of making SDFGI updates more demanding. This can cause
-   * stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also
-   * reducing the performance impact of SDFGI updates.
+   * The cell size to use for the closest SDFGI cascade (in 3D units). Lower values allow SDFGI to be more precise up close, at the cost of making SDFGI updates more demanding. This can cause stuttering when the camera moves fast. Higher values allow SDFGI to cover more ground, while also reducing the performance impact of SDFGI updates.
    *
-   * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing
-   * its value will automatically change those properties as well.
+   * **Note:** This property is linked to [sdfgiMaxDistance] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
    */
   public final inline var sdfgiMinCellSize: Float
     @JvmName("sdfgiMinCellSizeProperty")
@@ -638,8 +542,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its
-   * value will automatically change those properties as well.
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiMaxDistance]. Changing its value will automatically change those properties as well.
    */
   public final inline var sdfgiCascade0Distance: Float
     @JvmName("sdfgiCascade0DistanceProperty")
@@ -650,11 +553,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or
-   * other sources of GI such as [ReflectionProbe] will be used as a fallback.
+   * The maximum distance at which SDFGI is visible. Beyond this distance, environment lighting or other sources of GI such as [ReflectionProbe] will be used as a fallback.
    *
-   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing
-   * its value will automatically change those properties as well.
+   * **Note:** This property is linked to [sdfgiMinCellSize] and [sdfgiCascade0Distance]. Changing its value will automatically change those properties as well.
    */
   public final inline var sdfgiMaxDistance: Float
     @JvmName("sdfgiMaxDistanceProperty")
@@ -665,10 +566,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed
-   * together more closely on the Y axis. This is used to balance between quality and covering a lot of
-   * vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast
-   * your camera may move on the Y axis).
+   * The Y scale to use for SDFGI cells. Lower values will result in SDFGI cells being packed together more closely on the Y axis. This is used to balance between quality and covering a lot of vertical ground. [sdfgiYScale] should be set depending on how vertical your scene is (and how fast your camera may move on the Y axis).
    */
   public final inline var sdfgiYScale: SDFGIYScale
     @JvmName("sdfgiYScaleProperty")
@@ -679,8 +577,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting
-   * and reflections. See also [sdfgiBounceFeedback].
+   * The energy multiplier to use for SDFGI. Higher values will result in brighter indirect lighting and reflections. See also [sdfgiBounceFeedback].
    */
   public final inline var sdfgiEnergy: Float
     @JvmName("sdfgiEnergyProperty")
@@ -691,8 +588,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking
-   * artifacts on sloped surfaces, at the cost of increased light leaking.
+   * The normal bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public final inline var sdfgiNormalBias: Float
     @JvmName("sdfgiNormalBiasProperty")
@@ -703,8 +599,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking
-   * artifacts on sloped surfaces, at the cost of increased light leaking.
+   * The constant bias to use for SDFGI probes. Increasing this value can reduce visible streaking artifacts on sloped surfaces, at the cost of increased light leaking.
    */
   public final inline var sdfgiProbeBias: Float
     @JvmName("sdfgiProbeBiasProperty")
@@ -715,16 +610,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where
-   * bright pixels bleed onto surrounding pixels.
+   * If `true`, the glow effect is enabled. This simulates real world eye/camera behavior where bright pixels bleed onto surrounding pixels.
    *
-   * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic
-   * range available in the Mobile rendering method.
+   * **Note:** When using the Mobile rendering method, glow looks different due to the lower dynamic range available in the Mobile rendering method.
    *
-   * **Note:** When using the Compatibility rendering method, glow uses a different implementation
-   * with some properties being unavailable and hidden from the inspector: `glow_levels&#47;*`,
-   * [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength].
-   * This implementation is optimized to run on low-end devices and is less flexible as a result.
+   * **Note:** When using the Compatibility rendering method, glow uses a different implementation with some properties being unavailable and hidden from the inspector: `glow_levels&#47;*`, [glowNormalized], [glowStrength], [glowBlendMode], [glowMix], [glowMap], and [glowMapStrength]. This implementation is optimized to run on low-end devices and is less flexible as a result.
    */
   public final inline var glowEnabled: Boolean
     @JvmName("glowEnabledProperty")
@@ -735,11 +625,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, glow levels will be normalized so that summed together their intensities equal
-   * `1.0`.
+   * If `true`, glow levels will be normalized so that summed together their intensities equal `1.0`.
    *
-   * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to
-   * this rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowNormalized] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowNormalized: Boolean
     @JvmName("glowNormalizedProperty")
@@ -750,9 +638,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The overall brightness multiplier of the glow effect. When using the Mobile rendering method
-   * (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to
-   * compensate.
+   * The overall brightness multiplier of the glow effect. When using the Mobile rendering method (which only supports a lower dynamic range up to `2.0`), this should be increased to `1.5` to compensate.
    */
   public final inline var glowIntensity: Float
     @JvmName("glowIntensityProperty")
@@ -763,12 +649,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The strength of the glow effect. This applies as the glow is blurred across the screen and
-   * increases the distance and intensity of the blur. When using the Mobile rendering method, this
-   * should be increased to compensate for the lower dynamic range.
+   * The strength of the glow effect. This applies as the glow is blurred across the screen and increases the distance and intensity of the blur. When using the Mobile rendering method, this should be increased to compensate for the lower dynamic range.
    *
-   * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to
-   * this rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowStrength] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowStrength: Float
     @JvmName("glowStrengthProperty")
@@ -779,12 +662,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image
-   * is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value
-   * of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
+   * When using the [GLOW_BLEND_MODE_MIX] [glowBlendMode], this controls how much the source image is blended with the glow layer. A value of `0.0` makes the glow rendering invisible, while a value of `1.0` is equivalent to [GLOW_BLEND_MODE_REPLACE].
    *
-   * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this
-   * rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowMix] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowMix: Float
     @JvmName("glowMixProperty")
@@ -795,8 +675,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas
-   * darker than the [glowHdrThreshold].
+   * The bloom's intensity. If set to a value higher than `0`, this will make glow visible in areas darker than the [glowHdrThreshold].
    */
   public final inline var glowBloom: Float
     @JvmName("glowBloomProperty")
@@ -809,8 +688,7 @@ public open class Environment : Resource() {
   /**
    * The glow blending mode.
    *
-   * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to
-   * this rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowBlendMode] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowBlendMode: GlowBlendMode
     @JvmName("glowBlendModeProperty")
@@ -821,10 +699,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The lower threshold of the HDR glow. When using the Mobile rendering method (which only
-   * supports a lower dynamic range up to `2.0`), this may need to be below `1.0` for glow to be
-   * visible. A value of `0.9` works well in this case. This value also needs to be decreased below
-   * `1.0` when using glow in 2D, as 2D rendering is performed in SDR.
+   * The lower threshold of the HDR glow. When using the Mobile rendering method (which only supports a lower dynamic range up to `2.0`), this may need to be below `1.0` for glow to be visible. A value of `0.9` works well in this case. This value also needs to be decreased below `1.0` when using glow in 2D, as 2D rendering is performed in SDR.
    */
   public final inline var glowHdrThreshold: Float
     @JvmName("glowHdrThresholdProperty")
@@ -846,8 +721,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for
-   * the purposes of the glow effect.
+   * The higher threshold of the HDR glow. Areas brighter than this threshold will be clamped for the purposes of the glow effect.
    */
   public final inline var glowHdrLuminanceCap: Float
     @JvmName("glowHdrLuminanceCapProperty")
@@ -858,15 +732,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * How strong of an influence the [glowMap] should have on the overall glow effect. A strength of
-   * `0.0` means the glow map has no influence, while a strength of `1.0` means the glow map has full
-   * influence.
+   * How strong of an influence the [glowMap] should have on the overall glow effect. A strength of `0.0` means the glow map has no influence, while a strength of `1.0` means the glow map has full influence.
    *
-   * **Note:** If the glow map has black areas, a value of `1.0` can also turn off the glow effect
-   * entirely in specific areas of the screen.
+   * **Note:** If the glow map has black areas, a value of `1.0` can also turn off the glow effect entirely in specific areas of the screen.
    *
-   * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to
-   * this rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowMapStrength] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowMapStrength: Float
     @JvmName("glowMapStrengthProperty")
@@ -877,15 +747,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The texture that should be used as a glow map to *multiply* the resulting glow color according
-   * to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color
-   * channels are used for modulation, but the alpha channel is ignored.
+   * The texture that should be used as a glow map to *multiply* the resulting glow color according to [glowMapStrength]. This can be used to create a "lens dirt" effect. The texture's RGB color channels are used for modulation, but the alpha channel is ignored.
    *
-   * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a
-   * texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
+   * **Note:** The texture will be stretched to fit the screen. Therefore, it's recommended to use a texture with an aspect ratio that matches your project's base aspect ratio (typically 16:9).
    *
-   * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this
-   * rendering method using a simpler glow implementation optimized for low-end devices.
+   * **Note:** [glowMap] has no effect when using the Compatibility rendering method, due to this rendering method using a simpler glow implementation optimized for low-end devices.
    */
   public final inline var glowMap: Texture?
     @JvmName("glowMapProperty")
@@ -921,11 +787,8 @@ public open class Environment : Resource() {
    * The fog's color.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var fogLightColor: Color
@@ -948,8 +811,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the
-   * view angle. This can be used to give the impression that the sun is "piercing" through the fog.
+   * If set above `0.0`, renders the scene's directional light(s) in the fog color depending on the view angle. This can be used to give the impression that the sun is "piercing" through the fog.
    */
   public final inline var fogSunScatter: Float
     @JvmName("fogSunScatterProperty")
@@ -960,15 +822,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fog density to be used. This is demonstrated in different ways depending on the [fogMode]
-   * mode chosen:
+   * The fog density to be used. This is demonstrated in different ways depending on the [fogMode] mode chosen:
    *
-   * **Exponential Fog Mode:** Higher values result in denser fog. The fog rendering is exponential
-   * like in real life.
+   * **Exponential Fog Mode:** Higher values result in denser fog. The fog rendering is exponential like in real life.
    *
-   * **Depth Fog mode:** The maximum intensity of the deep fog, effect will appear in the distance
-   * (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not
-   * be visible.
+   * **Depth Fog mode:** The maximum intensity of the deep fog, effect will appear in the distance (relative to the camera). At `1.0` the fog will fully obscure the scene, at `0.0` the fog will not be visible.
    */
   public final inline var fogDensity: Float
     @JvmName("fogDensityProperty")
@@ -979,20 +837,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If set above `0.0` (exclusive), blends between the fog's color and the color of the background
-   * [Sky], as read from the radiance cubemap. This has a small performance cost when set above `0.0`.
-   * Must have [backgroundMode] set to [BG_SKY].
+   * If set above `0.0` (exclusive), blends between the fog's color and the color of the background [Sky], as read from the radiance cubemap. This has a small performance cost when set above `0.0`. Must have [backgroundMode] set to [BG_SKY].
    *
-   * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial
-   * perspective[/url] in large scenes with low density fog. However, it is not very useful for
-   * high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely
-   * from the [Sky]. If set to `0.0`, aerial perspective is disabled.
+   * This is useful to simulate [url=https://en.wikipedia.org/wiki/Aerial_perspective]aerial perspective[/url] in large scenes with low density fog. However, it is not very useful for high-density fog, as the sky will shine through. When set to `1.0`, the fog color comes completely from the [Sky]. If set to `0.0`, aerial perspective is disabled.
    *
-   * Notice that this does not sample the [Sky] directly, but rather the radiance cubemap. The
-   * cubemap is sampled at a mipmap level depending on the depth of the rendered pixel; the farther
-   * away, the higher the resolution of the sampled mipmap. This results in the actual color being a
-   * blurred version of the sky, with more blur closer to the camera. The highest mipmap resolution is
-   * used at a depth of [Camera3D.far].
+   * Notice that this does not sample the [Sky] directly, but rather the radiance cubemap. The cubemap is sampled at a mipmap level depending on the depth of the rendered pixel; the farther away, the higher the resolution of the sampled mipmap. This results in the actual color being a blurred version of the sky, with more blur closer to the camera. The highest mipmap resolution is used at a depth of [Camera3D.far].
    */
   public final inline var fogAerialPerspective: Float
     @JvmName("fogAerialPerspectiveProperty")
@@ -1003,9 +852,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can
-   * fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not
-   * affecting sky rendering at all.
+   * The factor to use when affecting the sky with non-volumetric fog. `1.0` means that fog can fully obscure the sky. Lower values reduce the impact of fog on sky rendering, with `0.0` not affecting sky rendering at all.
    *
    * **Note:** [fogSkyAffect] has no visual effect if [fogAerialPerspective] is `1.0`.
    */
@@ -1029,8 +876,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The density used to increase fog as height decreases. To make fog increase as height increases,
-   * use a negative value.
+   * The density used to increase fog as height decreases. To make fog increase as height increases, use a negative value.
    */
   public final inline var fogHeightDensity: Float
     @JvmName("fogHeightDensityProperty")
@@ -1041,8 +887,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fog depth's intensity curve. A number of presets are available in the Inspector by
-   * right-clicking the curve. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
+   * The fog depth's intensity curve. A number of presets are available in the Inspector by right-clicking the curve. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
    */
   public final inline var fogDepthCurve: Float
     @JvmName("fogDepthCurveProperty")
@@ -1053,8 +898,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fog's depth starting distance from the camera. Only available when [fogMode] is set to
-   * [FOG_MODE_DEPTH].
+   * The fog's depth starting distance from the camera. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
    */
   public final inline var fogDepthBegin: Float
     @JvmName("fogDepthBeginProperty")
@@ -1065,9 +909,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fog's depth end distance from the camera. If this value is set to `0`, it will be equal to
-   * the current camera's [Camera3D.far] value. Only available when [fogMode] is set to
-   * [FOG_MODE_DEPTH].
+   * The fog's depth end distance from the camera. If this value is set to `0`, it will be equal to the current camera's [Camera3D.far] value. Only available when [fogMode] is set to [FOG_MODE_DEPTH].
    */
   public final inline var fogDepthEnd: Float
     @JvmName("fogDepthEndProperty")
@@ -1078,14 +920,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to
-   * calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts
-   * with [FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR
-   * single-scattering model based on extinction, scattering, and emission which it exposes to users as
-   * density, albedo, and emission.
+   * Enables the volumetric fog effect. Volumetric fog uses a screen-aligned froxel buffer to calculate accurate volumetric scattering in the short to medium range. Volumetric fog interacts with [FogVolume]s and lights to calculate localized and global fog. Volumetric fog uses a PBR single-scattering model based on extinction, scattering, and emission which it exposes to users as density, albedo, and emission.
    *
-   * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or
-   * Compatibility.
+   * **Note:** Volumetric fog is only supported in the Forward+ rendering method, not Mobile or Compatibility.
    */
   public final inline var volumetricFogEnabled: Boolean
     @JvmName("volumetricFogEnabledProperty")
@@ -1096,16 +933,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The base *exponential* density of the volumetric fog. Set this to the lowest density you want
-   * to have globally. [FogVolume]s can be used to add to or subtract from this density in specific
-   * areas. Fog rendering is exponential as in real life.
+   * The base *exponential* density of the volumetric fog. Set this to the lowest density you want to have globally. [FogVolume]s can be used to add to or subtract from this density in specific areas. Fog rendering is exponential as in real life.
    *
-   * A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display
-   * volumetric fog in specific areas.
+   * A value of `0.0` disables global volumetric fog while allowing [FogVolume]s to display volumetric fog in specific areas.
    *
-   * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to
-   * the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to
-   * values between `10000` and `100000` to compensate for the very low density.
+   * To make volumetric fog work as a volumetric *lighting* solution, set [volumetricFogDensity] to the lowest non-zero value (`0.0001`) then increase lights' [Light3D.lightVolumetricFogEnergy] to values between `10000` and `100000` to compensate for the very low density.
    */
   public final inline var volumetricFogDensity: Float
     @JvmName("volumetricFogDensityProperty")
@@ -1116,15 +948,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
-   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogAlbedo: Color
@@ -1136,17 +964,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
-   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
-   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
-   * shadows.
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var volumetricFogEmission: Color
@@ -1169,16 +991,11 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value
-   * of `0.0` means that Global Illumination will not impact the volumetric fog.
-   * [volumetricFogGiInject] has a small performance cost when set above `0.0`.
+   * Scales the strength of Global Illumination used in the volumetric fog's albedo color. A value of `0.0` means that Global Illumination will not impact the volumetric fog. [volumetricFogGiInject] has a small performance cost when set above `0.0`.
    *
-   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
-   * [volumetricFogAlbedo] is a fully black color.
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
    *
-   * **Note:** Only [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) are taken into account when
-   * using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL
-   * (see [ssilEnabled]) will be ignored by volumetric fog.
+   * **Note:** Only [VoxelGI] and SDFGI ([Environment.sdfgiEnabled]) are taken into account when using [volumetricFogGiInject]. Global illumination from [LightmapGI], [ReflectionProbe] and SSIL (see [ssilEnabled]) will be ignored by volumetric fog.
    */
   public final inline var volumetricFogGiInject: Float
     @JvmName("volumetricFogGiInjectProperty")
@@ -1189,10 +1006,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The direction of scattered light as it goes through the volumetric fog. A value close to `1.0`
-   * means almost all light is scattered forward. A value close to `0.0` means light is scattered
-   * equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog
-   * and mist scatter light slightly forward, while smoke scatters light equally in all directions.
+   * The direction of scattered light as it goes through the volumetric fog. A value close to `1.0` means almost all light is scattered forward. A value close to `0.0` means light is scattered equally in all directions. A value close to `-1.0` means light is scattered mostly backward. Fog and mist scatter light slightly forward, while smoke scatters light equally in all directions.
    */
   public final inline var volumetricFogAnisotropy: Float
     @JvmName("volumetricFogAnisotropyProperty")
@@ -1203,10 +1017,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater
-   * range, decrease to add more detail when a long range is not needed. For best quality fog, keep
-   * this as low as possible. See also
-   * [ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
+   * The distance over which the volumetric fog is computed. Increase to compute fog over a greater range, decrease to add more detail when a long range is not needed. For best quality fog, keep this as low as possible. See also [ProjectSettings.rendering/environment/volumetricFog/volumeDepth].
    */
   public final inline var volumetricFogLength: Float
     @JvmName("volumetricFogLengthProperty")
@@ -1217,8 +1028,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The distribution of size down the length of the froxel buffer. A higher value compresses the
-   * froxels closer to the camera and places more detail closer to the camera.
+   * The distribution of size down the length of the froxel buffer. A higher value compresses the froxels closer to the camera and places more detail closer to the camera.
    */
   public final inline var volumetricFogDetailSpread: Float
     @JvmName("volumetricFogDetailSpreadProperty")
@@ -1229,12 +1039,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that
-   * ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small
-   * performance cost when set above `0.0`.
+   * Scales the strength of ambient light used in the volumetric fog. A value of `0.0` means that ambient light will not impact the volumetric fog. [volumetricFogAmbientInject] has a small performance cost when set above `0.0`.
    *
-   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if
-   * [volumetricFogAlbedo] is a fully black color.
+   * **Note:** This has no visible effect if [volumetricFogDensity] is `0.0` or if [volumetricFogAlbedo] is a fully black color.
    */
   public final inline var volumetricFogAmbientInject: Float
     @JvmName("volumetricFogAmbientInjectProperty")
@@ -1245,13 +1052,9 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog
-   * can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with
-   * `0.0` not affecting sky rendering at all.
+   * The factor to use when affecting the sky with volumetric fog. `1.0` means that volumetric fog can fully obscure the sky. Lower values reduce the impact of volumetric fog on sky rendering, with `0.0` not affecting sky rendering at all.
    *
-   * **Note:** [volumetricFogSkyAffect] also affects [FogVolume]s, even if [volumetricFogDensity] is
-   * `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set
-   * [volumetricFogSkyAffect] to `1.0`.
+   * **Note:** [volumetricFogSkyAffect] also affects [FogVolume]s, even if [volumetricFogDensity] is `0.0`. If you notice [FogVolume]s are disappearing when looking towards the sky, set [volumetricFogSkyAffect] to `1.0`.
    */
   public final inline var volumetricFogSkyAffect: Float
     @JvmName("volumetricFogSkyAffectProperty")
@@ -1262,12 +1065,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current
-   * frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The
-   * performance cost is minimal; however, it leads to moving [FogVolume]s and [Light3D]s "ghosting"
-   * and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving
-   * [FogVolume]s or [Light3D]s too fast. Short-lived dynamic lighting effects should have
-   * [Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
+   * Enables temporal reprojection in the volumetric fog. Temporal reprojection blends the current frame's volumetric fog with the last frame's volumetric fog to smooth out jagged edges. The performance cost is minimal; however, it leads to moving [FogVolume]s and [Light3D]s "ghosting" and leaving a trail behind them. When temporal reprojection is enabled, try to avoid moving [FogVolume]s or [Light3D]s too fast. Short-lived dynamic lighting effects should have [Light3D.lightVolumetricFogEnergy] set to `0.0` to avoid ghosting.
    */
   public final inline var volumetricFogTemporalReprojectionEnabled: Boolean
     @JvmName("volumetricFogTemporalReprojectionEnabledProperty")
@@ -1278,9 +1076,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The amount by which to blend the last frame with the current frame. A higher number results in
-   * smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can
-   * result in the per-frame temporal jitter becoming visible.
+   * The amount by which to blend the last frame with the current frame. A higher number results in smoother volumetric fog, but makes "ghosting" much worse. A lower value reduces ghosting but can result in the per-frame temporal jitter becoming visible.
    */
   public final inline var volumetricFogTemporalReprojectionAmount: Float
     @JvmName("volumetricFogTemporalReprojectionAmountProperty")
@@ -1291,8 +1087,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`,
-   * modifications to the `adjustment_*` properties will have no effect on the rendered scene.
+   * If `true`, enables the `adjustment_*` properties provided by this resource. If `false`, modifications to the `adjustment_*` properties will have no effect on the rendered scene.
    */
   public final inline var adjustmentEnabled: Boolean
     @JvmName("adjustmentEnabledProperty")
@@ -1303,8 +1098,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is
-   * `true`.
+   * The global brightness value of the rendered scene. Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentBrightness: Float
     @JvmName("adjustmentBrightnessProperty")
@@ -1315,8 +1109,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global contrast value of the rendered scene (default value is 1). Effective only if
-   * [adjustmentEnabled] is `true`.
+   * The global contrast value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentContrast: Float
     @JvmName("adjustmentContrastProperty")
@@ -1327,8 +1120,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The global color saturation value of the rendered scene (default value is 1). Effective only if
-   * [adjustmentEnabled] is `true`.
+   * The global color saturation value of the rendered scene (default value is 1). Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentSaturation: Float
     @JvmName("adjustmentSaturationProperty")
@@ -1339,9 +1131,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color
-   * grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more
-   * complex LUT. Effective only if [adjustmentEnabled] is `true`.
+   * The [Texture2D] or [Texture3D] lookup table (LUT) to use for the built-in post-process color grading. Can use a [GradientTexture1D] for a 1-dimensional LUT, or a [Texture3D] for a more complex LUT. Effective only if [adjustmentEnabled] is `true`.
    */
   public final inline var adjustmentColorCorrection: Texture?
     @JvmName("adjustmentColorCorrectionProperty")
@@ -1351,7 +1141,7 @@ public open class Environment : Resource() {
       setAdjustmentColorCorrection(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(206, scriptIndex)
   }
 
@@ -1366,8 +1156,7 @@ public open class Environment : Resource() {
    * environment.backgroundColor = myCoreType
    * ``````
    *
-   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR]
-   * background mode.
+   * The [Color] displayed for clear areas of the scene. Only effective when using the [BG_COLOR] background mode.
    */
   @CoreTypeHelper
   public final fun backgroundColorMutate(block: Color.() -> Unit): Color = backgroundColor.apply {
@@ -1405,12 +1194,10 @@ public open class Environment : Resource() {
    * environment.ambientLightColor = myCoreType
    * ``````
    *
-   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than
-   * `1.0` (exclusive).
+   * The ambient light's [Color]. Only effective if [ambientLightSkyContribution] is lower than `1.0` (exclusive).
    */
   @CoreTypeHelper
-  public final fun ambientLightColorMutate(block: Color.() -> Unit): Color =
-      ambientLightColor.apply {
+  public final fun ambientLightColorMutate(block: Color.() -> Unit): Color = ambientLightColor.apply {
      block(this)
      ambientLightColor = this
   }
@@ -1445,12 +1232,10 @@ public open class Environment : Resource() {
    * environment.volumetricFogAlbedo = myCoreType
    * ``````
    *
-   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo
-   * close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
+   * The [Color] of the volumetric fog when interacting with lights. Mist and fog have an albedo close to `Color(1, 1, 1, 1)` while smoke has a darker albedo.
    */
   @CoreTypeHelper
-  public final fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color =
-      volumetricFogAlbedo.apply {
+  public final fun volumetricFogAlbedoMutate(block: Color.() -> Unit): Color = volumetricFogAlbedo.apply {
      block(this)
      volumetricFogAlbedo = this
   }
@@ -1466,19 +1251,15 @@ public open class Environment : Resource() {
    * environment.volumetricFogEmission = myCoreType
    * ``````
    *
-   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast
-   * light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog
-   * effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh
-   * shadows.
+   * The emitted light from the volumetric fog. Even with emission, volumetric fog will not cast light onto other surfaces. Emission is useful to establish an ambient color. As the volumetric fog effect uses single-scattering only, fog tends to need a little bit of emission to soften the harsh shadows.
    */
   @CoreTypeHelper
-  public final fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color =
-      volumetricFogEmission.apply {
+  public final fun volumetricFogEmissionMutate(block: Color.() -> Unit): Color = volumetricFogEmission.apply {
      block(this)
      volumetricFogEmission = this
   }
 
-  public final fun setBackground(mode: BGMode): Unit {
+  public final fun setBackground(mode: BGMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setBackgroundPtr, NIL)
   }
@@ -1489,7 +1270,7 @@ public open class Environment : Resource() {
     return BGMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSky(sky: Sky?): Unit {
+  public final fun setSky(sky: Sky?) {
     TransferContext.writeArguments(OBJECT to sky)
     TransferContext.callMethod(ptr, MethodBindings.setSkyPtr, NIL)
   }
@@ -1500,7 +1281,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Sky?)
   }
 
-  public final fun setSkyCustomFov(scale: Float): Unit {
+  public final fun setSkyCustomFov(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSkyCustomFovPtr, NIL)
   }
@@ -1511,7 +1292,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSkyRotation(eulerRadians: Vector3): Unit {
+  public final fun setSkyRotation(eulerRadians: Vector3) {
     TransferContext.writeArguments(VECTOR3 to eulerRadians)
     TransferContext.callMethod(ptr, MethodBindings.setSkyRotationPtr, NIL)
   }
@@ -1522,7 +1303,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public final fun setBgColor(color: Color): Unit {
+  public final fun setBgColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setBgColorPtr, NIL)
   }
@@ -1533,7 +1314,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setBgEnergyMultiplier(energy: Float): Unit {
+  public final fun setBgEnergyMultiplier(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBgEnergyMultiplierPtr, NIL)
   }
@@ -1544,7 +1325,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setBgIntensity(energy: Float): Unit {
+  public final fun setBgIntensity(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBgIntensityPtr, NIL)
   }
@@ -1555,7 +1336,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setCanvasMaxLayer(layer: Int): Unit {
+  public final fun setCanvasMaxLayer(layer: Int) {
     TransferContext.writeArguments(LONG to layer.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCanvasMaxLayerPtr, NIL)
   }
@@ -1566,7 +1347,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setCameraFeedId(id: Int): Unit {
+  public final fun setCameraFeedId(id: Int) {
     TransferContext.writeArguments(LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCameraFeedIdPtr, NIL)
   }
@@ -1577,7 +1358,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setAmbientLightColor(color: Color): Unit {
+  public final fun setAmbientLightColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setAmbientLightColorPtr, NIL)
   }
@@ -1588,7 +1369,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setAmbientSource(source: AmbientSource): Unit {
+  public final fun setAmbientSource(source: AmbientSource) {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.setAmbientSourcePtr, NIL)
   }
@@ -1599,7 +1380,7 @@ public open class Environment : Resource() {
     return AmbientSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setAmbientLightEnergy(energy: Float): Unit {
+  public final fun setAmbientLightEnergy(energy: Float) {
     TransferContext.writeArguments(DOUBLE to energy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAmbientLightEnergyPtr, NIL)
   }
@@ -1610,7 +1391,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAmbientLightSkyContribution(ratio: Float): Unit {
+  public final fun setAmbientLightSkyContribution(ratio: Float) {
     TransferContext.writeArguments(DOUBLE to ratio.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAmbientLightSkyContributionPtr, NIL)
   }
@@ -1621,7 +1402,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setReflectionSource(source: ReflectionSource): Unit {
+  public final fun setReflectionSource(source: ReflectionSource) {
     TransferContext.writeArguments(LONG to source.id)
     TransferContext.callMethod(ptr, MethodBindings.setReflectionSourcePtr, NIL)
   }
@@ -1632,7 +1413,7 @@ public open class Environment : Resource() {
     return ReflectionSource.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTonemapper(mode: ToneMapper): Unit {
+  public final fun setTonemapper(mode: ToneMapper) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setTonemapperPtr, NIL)
   }
@@ -1643,7 +1424,7 @@ public open class Environment : Resource() {
     return ToneMapper.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setTonemapExposure(exposure: Float): Unit {
+  public final fun setTonemapExposure(exposure: Float) {
     TransferContext.writeArguments(DOUBLE to exposure.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTonemapExposurePtr, NIL)
   }
@@ -1654,7 +1435,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setTonemapWhite(white: Float): Unit {
+  public final fun setTonemapWhite(white: Float) {
     TransferContext.writeArguments(DOUBLE to white.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setTonemapWhitePtr, NIL)
   }
@@ -1665,7 +1446,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsrEnabled(enabled: Boolean): Unit {
+  public final fun setSsrEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSsrEnabledPtr, NIL)
   }
@@ -1676,7 +1457,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSsrMaxSteps(maxSteps: Int): Unit {
+  public final fun setSsrMaxSteps(maxSteps: Int) {
     TransferContext.writeArguments(LONG to maxSteps.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSsrMaxStepsPtr, NIL)
   }
@@ -1687,7 +1468,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSsrFadeIn(fadeIn: Float): Unit {
+  public final fun setSsrFadeIn(fadeIn: Float) {
     TransferContext.writeArguments(DOUBLE to fadeIn.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsrFadeInPtr, NIL)
   }
@@ -1698,7 +1479,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsrFadeOut(fadeOut: Float): Unit {
+  public final fun setSsrFadeOut(fadeOut: Float) {
     TransferContext.writeArguments(DOUBLE to fadeOut.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsrFadeOutPtr, NIL)
   }
@@ -1709,7 +1490,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsrDepthTolerance(depthTolerance: Float): Unit {
+  public final fun setSsrDepthTolerance(depthTolerance: Float) {
     TransferContext.writeArguments(DOUBLE to depthTolerance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsrDepthTolerancePtr, NIL)
   }
@@ -1720,7 +1501,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoEnabled(enabled: Boolean): Unit {
+  public final fun setSsaoEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSsaoEnabledPtr, NIL)
   }
@@ -1731,7 +1512,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSsaoRadius(radius: Float): Unit {
+  public final fun setSsaoRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoRadiusPtr, NIL)
   }
@@ -1742,7 +1523,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoIntensity(intensity: Float): Unit {
+  public final fun setSsaoIntensity(intensity: Float) {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoIntensityPtr, NIL)
   }
@@ -1753,7 +1534,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoPower(power: Float): Unit {
+  public final fun setSsaoPower(power: Float) {
     TransferContext.writeArguments(DOUBLE to power.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoPowerPtr, NIL)
   }
@@ -1764,7 +1545,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoDetail(detail: Float): Unit {
+  public final fun setSsaoDetail(detail: Float) {
     TransferContext.writeArguments(DOUBLE to detail.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoDetailPtr, NIL)
   }
@@ -1775,7 +1556,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoHorizon(horizon: Float): Unit {
+  public final fun setSsaoHorizon(horizon: Float) {
     TransferContext.writeArguments(DOUBLE to horizon.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoHorizonPtr, NIL)
   }
@@ -1786,7 +1567,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoSharpness(sharpness: Float): Unit {
+  public final fun setSsaoSharpness(sharpness: Float) {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoSharpnessPtr, NIL)
   }
@@ -1797,7 +1578,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoDirectLightAffect(amount: Float): Unit {
+  public final fun setSsaoDirectLightAffect(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoDirectLightAffectPtr, NIL)
   }
@@ -1808,7 +1589,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsaoAoChannelAffect(amount: Float): Unit {
+  public final fun setSsaoAoChannelAffect(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsaoAoChannelAffectPtr, NIL)
   }
@@ -1819,7 +1600,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsilEnabled(enabled: Boolean): Unit {
+  public final fun setSsilEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSsilEnabledPtr, NIL)
   }
@@ -1830,7 +1611,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSsilRadius(radius: Float): Unit {
+  public final fun setSsilRadius(radius: Float) {
     TransferContext.writeArguments(DOUBLE to radius.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsilRadiusPtr, NIL)
   }
@@ -1841,7 +1622,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsilIntensity(intensity: Float): Unit {
+  public final fun setSsilIntensity(intensity: Float) {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsilIntensityPtr, NIL)
   }
@@ -1852,7 +1633,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsilSharpness(sharpness: Float): Unit {
+  public final fun setSsilSharpness(sharpness: Float) {
     TransferContext.writeArguments(DOUBLE to sharpness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsilSharpnessPtr, NIL)
   }
@@ -1863,7 +1644,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSsilNormalRejection(normalRejection: Float): Unit {
+  public final fun setSsilNormalRejection(normalRejection: Float) {
     TransferContext.writeArguments(DOUBLE to normalRejection.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSsilNormalRejectionPtr, NIL)
   }
@@ -1874,7 +1655,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiEnabled(enabled: Boolean): Unit {
+  public final fun setSdfgiEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiEnabledPtr, NIL)
   }
@@ -1885,7 +1666,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSdfgiCascades(amount: Int): Unit {
+  public final fun setSdfgiCascades(amount: Int) {
     TransferContext.writeArguments(LONG to amount.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiCascadesPtr, NIL)
   }
@@ -1896,7 +1677,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public final fun setSdfgiMinCellSize(size: Float): Unit {
+  public final fun setSdfgiMinCellSize(size: Float) {
     TransferContext.writeArguments(DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiMinCellSizePtr, NIL)
   }
@@ -1907,7 +1688,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiMaxDistance(distance: Float): Unit {
+  public final fun setSdfgiMaxDistance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiMaxDistancePtr, NIL)
   }
@@ -1918,7 +1699,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiCascade0Distance(distance: Float): Unit {
+  public final fun setSdfgiCascade0Distance(distance: Float) {
     TransferContext.writeArguments(DOUBLE to distance.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiCascade0DistancePtr, NIL)
   }
@@ -1929,7 +1710,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiYScale(scale: SDFGIYScale): Unit {
+  public final fun setSdfgiYScale(scale: SDFGIYScale) {
     TransferContext.writeArguments(LONG to scale.id)
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiYScalePtr, NIL)
   }
@@ -1940,7 +1721,7 @@ public open class Environment : Resource() {
     return SDFGIYScale.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSdfgiUseOcclusion(enable: Boolean): Unit {
+  public final fun setSdfgiUseOcclusion(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiUseOcclusionPtr, NIL)
   }
@@ -1951,7 +1732,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSdfgiBounceFeedback(amount: Float): Unit {
+  public final fun setSdfgiBounceFeedback(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiBounceFeedbackPtr, NIL)
   }
@@ -1962,7 +1743,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiReadSkyLight(enable: Boolean): Unit {
+  public final fun setSdfgiReadSkyLight(enable: Boolean) {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiReadSkyLightPtr, NIL)
   }
@@ -1973,7 +1754,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSdfgiEnergy(amount: Float): Unit {
+  public final fun setSdfgiEnergy(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiEnergyPtr, NIL)
   }
@@ -1984,7 +1765,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiNormalBias(bias: Float): Unit {
+  public final fun setSdfgiNormalBias(bias: Float) {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiNormalBiasPtr, NIL)
   }
@@ -1995,7 +1776,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setSdfgiProbeBias(bias: Float): Unit {
+  public final fun setSdfgiProbeBias(bias: Float) {
     TransferContext.writeArguments(DOUBLE to bias.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setSdfgiProbeBiasPtr, NIL)
   }
@@ -2006,7 +1787,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowEnabled(enabled: Boolean): Unit {
+  public final fun setGlowEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setGlowEnabledPtr, NIL)
   }
@@ -2018,11 +1799,9 @@ public open class Environment : Resource() {
   }
 
   /**
-   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level
-   * relies on the previous level. This means that enabling higher glow levels will slow down the glow
-   * effect rendering, even if previous levels aren't enabled.
+   * Sets the intensity of the glow level [idx]. A value above `0.0` enables the level. Each level relies on the previous level. This means that enabling higher glow levels will slow down the glow effect rendering, even if previous levels aren't enabled.
    */
-  public final fun setGlowLevel(idx: Int, intensity: Float): Unit {
+  public final fun setGlowLevel(idx: Int, intensity: Float) {
     TransferContext.writeArguments(LONG to idx.toLong(), DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowLevelPtr, NIL)
   }
@@ -2036,7 +1815,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowNormalized(normalize: Boolean): Unit {
+  public final fun setGlowNormalized(normalize: Boolean) {
     TransferContext.writeArguments(BOOL to normalize)
     TransferContext.callMethod(ptr, MethodBindings.setGlowNormalizedPtr, NIL)
   }
@@ -2047,7 +1826,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGlowIntensity(intensity: Float): Unit {
+  public final fun setGlowIntensity(intensity: Float) {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowIntensityPtr, NIL)
   }
@@ -2058,7 +1837,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowStrength(strength: Float): Unit {
+  public final fun setGlowStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowStrengthPtr, NIL)
   }
@@ -2069,7 +1848,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowMix(mix: Float): Unit {
+  public final fun setGlowMix(mix: Float) {
     TransferContext.writeArguments(DOUBLE to mix.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowMixPtr, NIL)
   }
@@ -2080,7 +1859,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowBloom(amount: Float): Unit {
+  public final fun setGlowBloom(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowBloomPtr, NIL)
   }
@@ -2091,7 +1870,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowBlendMode(mode: GlowBlendMode): Unit {
+  public final fun setGlowBlendMode(mode: GlowBlendMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setGlowBlendModePtr, NIL)
   }
@@ -2102,7 +1881,7 @@ public open class Environment : Resource() {
     return GlowBlendMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setGlowHdrBleedThreshold(threshold: Float): Unit {
+  public final fun setGlowHdrBleedThreshold(threshold: Float) {
     TransferContext.writeArguments(DOUBLE to threshold.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowHdrBleedThresholdPtr, NIL)
   }
@@ -2113,7 +1892,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowHdrBleedScale(scale: Float): Unit {
+  public final fun setGlowHdrBleedScale(scale: Float) {
     TransferContext.writeArguments(DOUBLE to scale.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowHdrBleedScalePtr, NIL)
   }
@@ -2124,7 +1903,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowHdrLuminanceCap(amount: Float): Unit {
+  public final fun setGlowHdrLuminanceCap(amount: Float) {
     TransferContext.writeArguments(DOUBLE to amount.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowHdrLuminanceCapPtr, NIL)
   }
@@ -2135,7 +1914,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowMapStrength(strength: Float): Unit {
+  public final fun setGlowMapStrength(strength: Float) {
     TransferContext.writeArguments(DOUBLE to strength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setGlowMapStrengthPtr, NIL)
   }
@@ -2146,7 +1925,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setGlowMap(mode: Texture?): Unit {
+  public final fun setGlowMap(mode: Texture?) {
     TransferContext.writeArguments(OBJECT to mode)
     TransferContext.callMethod(ptr, MethodBindings.setGlowMapPtr, NIL)
   }
@@ -2157,7 +1936,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(OBJECT) as Texture?)
   }
 
-  public final fun setFogEnabled(enabled: Boolean): Unit {
+  public final fun setFogEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setFogEnabledPtr, NIL)
   }
@@ -2168,7 +1947,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setFogMode(mode: FogMode): Unit {
+  public final fun setFogMode(mode: FogMode) {
     TransferContext.writeArguments(LONG to mode.id)
     TransferContext.callMethod(ptr, MethodBindings.setFogModePtr, NIL)
   }
@@ -2179,7 +1958,7 @@ public open class Environment : Resource() {
     return FogMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setFogLightColor(lightColor: Color): Unit {
+  public final fun setFogLightColor(lightColor: Color) {
     TransferContext.writeArguments(COLOR to lightColor)
     TransferContext.callMethod(ptr, MethodBindings.setFogLightColorPtr, NIL)
   }
@@ -2190,7 +1969,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setFogLightEnergy(lightEnergy: Float): Unit {
+  public final fun setFogLightEnergy(lightEnergy: Float) {
     TransferContext.writeArguments(DOUBLE to lightEnergy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogLightEnergyPtr, NIL)
   }
@@ -2201,7 +1980,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogSunScatter(sunScatter: Float): Unit {
+  public final fun setFogSunScatter(sunScatter: Float) {
     TransferContext.writeArguments(DOUBLE to sunScatter.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogSunScatterPtr, NIL)
   }
@@ -2212,7 +1991,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogDensity(density: Float): Unit {
+  public final fun setFogDensity(density: Float) {
     TransferContext.writeArguments(DOUBLE to density.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogDensityPtr, NIL)
   }
@@ -2223,7 +2002,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogHeight(height: Float): Unit {
+  public final fun setFogHeight(height: Float) {
     TransferContext.writeArguments(DOUBLE to height.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogHeightPtr, NIL)
   }
@@ -2234,7 +2013,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogHeightDensity(heightDensity: Float): Unit {
+  public final fun setFogHeightDensity(heightDensity: Float) {
     TransferContext.writeArguments(DOUBLE to heightDensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogHeightDensityPtr, NIL)
   }
@@ -2245,7 +2024,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogAerialPerspective(aerialPerspective: Float): Unit {
+  public final fun setFogAerialPerspective(aerialPerspective: Float) {
     TransferContext.writeArguments(DOUBLE to aerialPerspective.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogAerialPerspectivePtr, NIL)
   }
@@ -2256,7 +2035,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogSkyAffect(skyAffect: Float): Unit {
+  public final fun setFogSkyAffect(skyAffect: Float) {
     TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogSkyAffectPtr, NIL)
   }
@@ -2267,7 +2046,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogDepthCurve(curve: Float): Unit {
+  public final fun setFogDepthCurve(curve: Float) {
     TransferContext.writeArguments(DOUBLE to curve.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogDepthCurvePtr, NIL)
   }
@@ -2278,7 +2057,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogDepthBegin(begin: Float): Unit {
+  public final fun setFogDepthBegin(begin: Float) {
     TransferContext.writeArguments(DOUBLE to begin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogDepthBeginPtr, NIL)
   }
@@ -2289,7 +2068,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setFogDepthEnd(end: Float): Unit {
+  public final fun setFogDepthEnd(end: Float) {
     TransferContext.writeArguments(DOUBLE to end.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setFogDepthEndPtr, NIL)
   }
@@ -2300,7 +2079,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogEnabled(enabled: Boolean): Unit {
+  public final fun setVolumetricFogEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogEnabledPtr, NIL)
   }
@@ -2311,7 +2090,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVolumetricFogEmission(color: Color): Unit {
+  public final fun setVolumetricFogEmission(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogEmissionPtr, NIL)
   }
@@ -2322,7 +2101,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setVolumetricFogAlbedo(color: Color): Unit {
+  public final fun setVolumetricFogAlbedo(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogAlbedoPtr, NIL)
   }
@@ -2333,7 +2112,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setVolumetricFogDensity(density: Float): Unit {
+  public final fun setVolumetricFogDensity(density: Float) {
     TransferContext.writeArguments(DOUBLE to density.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogDensityPtr, NIL)
   }
@@ -2344,7 +2123,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogEmissionEnergy(begin: Float): Unit {
+  public final fun setVolumetricFogEmissionEnergy(begin: Float) {
     TransferContext.writeArguments(DOUBLE to begin.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogEmissionEnergyPtr, NIL)
   }
@@ -2355,7 +2134,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogAnisotropy(anisotropy: Float): Unit {
+  public final fun setVolumetricFogAnisotropy(anisotropy: Float) {
     TransferContext.writeArguments(DOUBLE to anisotropy.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogAnisotropyPtr, NIL)
   }
@@ -2366,7 +2145,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogLength(length: Float): Unit {
+  public final fun setVolumetricFogLength(length: Float) {
     TransferContext.writeArguments(DOUBLE to length.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogLengthPtr, NIL)
   }
@@ -2377,7 +2156,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogDetailSpread(detailSpread: Float): Unit {
+  public final fun setVolumetricFogDetailSpread(detailSpread: Float) {
     TransferContext.writeArguments(DOUBLE to detailSpread.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogDetailSpreadPtr, NIL)
   }
@@ -2388,7 +2167,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogGiInject(giInject: Float): Unit {
+  public final fun setVolumetricFogGiInject(giInject: Float) {
     TransferContext.writeArguments(DOUBLE to giInject.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogGiInjectPtr, NIL)
   }
@@ -2399,7 +2178,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogAmbientInject(enabled: Float): Unit {
+  public final fun setVolumetricFogAmbientInject(enabled: Float) {
     TransferContext.writeArguments(DOUBLE to enabled.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogAmbientInjectPtr, NIL)
   }
@@ -2410,7 +2189,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogSkyAffect(skyAffect: Float): Unit {
+  public final fun setVolumetricFogSkyAffect(skyAffect: Float) {
     TransferContext.writeArguments(DOUBLE to skyAffect.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogSkyAffectPtr, NIL)
   }
@@ -2421,34 +2200,29 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean): Unit {
+  public final fun setVolumetricFogTemporalReprojectionEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
-    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionEnabledPtr, NIL)
   }
 
   public final fun isVolumetricFogTemporalReprojectionEnabled(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr,
-        BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isVolumetricFogTemporalReprojectionEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float):
-      Unit {
+  public final fun setVolumetricFogTemporalReprojectionAmount(temporalReprojectionAmount: Float) {
     TransferContext.writeArguments(DOUBLE to temporalReprojectionAmount.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr,
-        NIL)
+    TransferContext.callMethod(ptr, MethodBindings.setVolumetricFogTemporalReprojectionAmountPtr, NIL)
   }
 
   public final fun getVolumetricFogTemporalReprojectionAmount(): Float {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr,
-        DOUBLE)
+    TransferContext.callMethod(ptr, MethodBindings.getVolumetricFogTemporalReprojectionAmountPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAdjustmentEnabled(enabled: Boolean): Unit {
+  public final fun setAdjustmentEnabled(enabled: Boolean) {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setAdjustmentEnabledPtr, NIL)
   }
@@ -2459,7 +2233,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setAdjustmentBrightness(brightness: Float): Unit {
+  public final fun setAdjustmentBrightness(brightness: Float) {
     TransferContext.writeArguments(DOUBLE to brightness.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAdjustmentBrightnessPtr, NIL)
   }
@@ -2470,7 +2244,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAdjustmentContrast(contrast: Float): Unit {
+  public final fun setAdjustmentContrast(contrast: Float) {
     TransferContext.writeArguments(DOUBLE to contrast.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAdjustmentContrastPtr, NIL)
   }
@@ -2481,7 +2255,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAdjustmentSaturation(saturation: Float): Unit {
+  public final fun setAdjustmentSaturation(saturation: Float) {
     TransferContext.writeArguments(DOUBLE to saturation.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setAdjustmentSaturationPtr, NIL)
   }
@@ -2492,7 +2266,7 @@ public open class Environment : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAdjustmentColorCorrection(colorCorrection: Texture?): Unit {
+  public final fun setAdjustmentColorCorrection(colorCorrection: Texture?) {
     TransferContext.writeArguments(OBJECT to colorCorrection)
     TransferContext.callMethod(ptr, MethodBindings.setAdjustmentColorCorrectionPtr, NIL)
   }
@@ -2507,8 +2281,7 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Clears the background using the clear color defined in
-     * [ProjectSettings.rendering/environment/defaults/defaultClearColor].
+     * Clears the background using the clear color defined in [ProjectSettings.rendering/environment/defaults/defaultClearColor].
      */
     CLEAR_COLOR(0),
     /**
@@ -2524,10 +2297,7 @@ public open class Environment : Resource() {
      */
     CANVAS(3),
     /**
-     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but
-     * it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If
-     * enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when
-     * moving the camera.
+     * Keeps on screen every pixel drawn in the background. This is the fastest background mode, but it can only be safely used in fully-interior scenes (no visible sky or sky reflections). If enabled in a scene where the background is visible, "ghost trail" artifacts will be visible when moving the camera.
      */
     KEEP(4),
     /**
@@ -2562,8 +2332,7 @@ public open class Environment : Resource() {
      */
     DISABLED(1),
     /**
-     * Specify a specific [Color] for ambient light. This provides a slight performance boost over
-     * [AMBIENT_SOURCE_SKY].
+     * Specify a specific [Color] for ambient light. This provides a slight performance boost over [AMBIENT_SOURCE_SKY].
      */
     COLOR(2),
     /**
@@ -2613,37 +2382,29 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips
-     * bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
+     * Does not modify color data, resulting in a linear tonemapping curve which unnaturally clips bright values, causing bright lighting to look blown out. The simplest and fastest tonemapper.
      */
     LINEAR(0),
     /**
-     * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in
-     * an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
+     * A simple tonemapping curve that rolls off bright values to prevent clipping. This results in an image that can appear dull and low contrast. Slower than [TONE_MAPPER_LINEAR].
      *
-     * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT]
-     * produces an identical image to [TONE_MAPPER_LINEAR].
+     * **Note:** When [tonemapWhite] is left at the default value of `1.0`, [TONE_MAPPER_REINHARDT] produces an identical image to [TONE_MAPPER_LINEAR].
      */
     REINHARDT(1),
     /**
-     * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better
-     * contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
+     * Uses a film-like tonemapping curve to prevent clipping of bright values and provide better contrast than [TONE_MAPPER_REINHARDT]. Slightly slower than [TONE_MAPPER_REINHARDT].
      */
     FILMIC(2),
     /**
-     * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more
-     * realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
+     * Uses a high-contrast film-like tonemapping curve and desaturates bright values for a more realistic appearance. Slightly slower than [TONE_MAPPER_FILMIC].
      *
      * **Note:** This tonemapping operator is called "ACES Fitted" in Godot 3.x.
      */
     ACES(3),
     /**
-     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic
-     * appearance. Better than other tonemappers at maintaining the hue of colors as they become
-     * brighter. The slowest tonemapping option.
+     * Uses a film-like tonemapping curve and desaturates bright values for a more realistic appearance. Better than other tonemappers at maintaining the hue of colors as they become brighter. The slowest tonemapping option.
      *
-     * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX]
-     * unsuitable for use with the Mobile rendering method.
+     * **Note:** [tonemapWhite] is fixed at a value of `16.29`, which makes [TONE_MAPPER_AGX] unsuitable for use with the Mobile rendering method.
      */
     AGX(4),
     ;
@@ -2662,8 +2423,7 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright
-     * sources.
+     * Additive glow blending mode. Mostly used for particles, glows (bloom), lens flare, bright sources.
      */
     ADDITIVE(0),
     /**
@@ -2671,19 +2431,15 @@ public open class Environment : Resource() {
      */
     SCREEN(1),
     /**
-     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid
-     * bloom).
+     * Soft light glow blending mode. Modifies contrast, exposes shadows and highlights (vivid bloom).
      */
     SOFTLIGHT(2),
     /**
-     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to
-     * simulate a full-screen blur effect by tweaking the glow parameters to match the original image's
-     * brightness.
+     * Replace glow blending mode. Replaces all pixels' color by the glow value. This can be used to simulate a full-screen blur effect by tweaking the glow parameters to match the original image's brightness.
      */
     REPLACE(3),
     /**
-     * Mixes the glow with the underlying color to avoid increasing brightness as much while still
-     * maintaining a glow effect.
+     * Mixes the glow with the underlying color to avoid increasing brightness as much while still maintaining a glow effect.
      */
     MIX(4),
     ;
@@ -2706,8 +2462,7 @@ public open class Environment : Resource() {
      */
     EXPONENTIAL(0),
     /**
-     * Use a simple fog model defined by start and end positions and a custom curve. While not
-     * physically accurate, this model can be useful when you need more artistic control.
+     * Use a simple fog model defined by start and end positions and a custom curve. While not physically accurate, this model can be useful when you need more artistic control.
      */
     DEPTH(1),
     ;
@@ -2726,21 +2481,15 @@ public open class Environment : Resource() {
     id: Long,
   ) {
     /**
-     * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as
-     * they are wide. This allows providing increased GI detail and reduced light leaking with thin
-     * floors and ceilings. This is usually the best choice for scenes that don't feature much
-     * verticality.
+     * Use 50&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be twice as short as they are wide. This allows providing increased GI detail and reduced light leaking with thin floors and ceilings. This is usually the best choice for scenes that don't feature much verticality.
      */
     Y_SCALE_50_PERCENT(0),
     /**
-     * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37;
-     * and 100&#37; SDFGI Y scales.
+     * Use 75&#37; scale for SDFGI on the Y (vertical) axis. This is a balance between the 50&#37; and 100&#37; SDFGI Y scales.
      */
     Y_SCALE_75_PERCENT(1),
     /**
-     * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they
-     * are wide. This is usually the best choice for highly vertical scenes. The downside is that light
-     * leaking may become more noticeable with thin floors and ceilings.
+     * Use 100&#37; scale for SDFGI on the Y (vertical) axis. SDFGI cells will be as tall as they are wide. This is usually the best choice for highly vertical scenes. The downside is that light leaking may become more noticeable with thin floors and ceilings.
      */
     Y_SCALE_100_PERCENT(2),
     ;
@@ -2759,555 +2508,555 @@ public open class Environment : Resource() {
 
   public object MethodBindings {
     internal val setBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_background", 4071623990)
+        TypeManager.getMethodBindPtr("Environment", "set_background", 4_071_623_990)
 
     internal val getBackgroundPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_background", 1843210413)
+        TypeManager.getMethodBindPtr("Environment", "get_background", 1_843_210_413)
 
     internal val setSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky", 3336722921)
+        TypeManager.getMethodBindPtr("Environment", "set_sky", 3_336_722_921)
 
     internal val getSkyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky", 1177136966)
+        TypeManager.getMethodBindPtr("Environment", "get_sky", 1_177_136_966)
 
     internal val setSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sky_custom_fov", 373_806_689)
 
     internal val getSkyCustomFovPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sky_custom_fov", 1_740_695_150)
 
     internal val setSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation", 3460891852)
+        TypeManager.getMethodBindPtr("Environment", "set_sky_rotation", 3_460_891_852)
 
     internal val getSkyRotationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation", 3360562783)
+        TypeManager.getMethodBindPtr("Environment", "get_sky_rotation", 3_360_562_783)
 
     internal val setBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_color", 2920490490)
+        TypeManager.getMethodBindPtr("Environment", "set_bg_color", 2_920_490_490)
 
     internal val getBgColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_color", 3444240500)
+        TypeManager.getMethodBindPtr("Environment", "get_bg_color", 3_444_240_500)
 
     internal val setBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_bg_energy_multiplier", 373_806_689)
 
     internal val getBgEnergyMultiplierPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_bg_energy_multiplier", 1_740_695_150)
 
     internal val setBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_bg_intensity", 373_806_689)
 
     internal val getBgIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_bg_intensity", 1_740_695_150)
 
     internal val setCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer", 1286410249)
+        TypeManager.getMethodBindPtr("Environment", "set_canvas_max_layer", 1_286_410_249)
 
     internal val getCanvasMaxLayerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer", 3905245786)
+        TypeManager.getMethodBindPtr("Environment", "get_canvas_max_layer", 3_905_245_786)
 
     internal val setCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id", 1286410249)
+        TypeManager.getMethodBindPtr("Environment", "set_camera_feed_id", 1_286_410_249)
 
     internal val getCameraFeedIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id", 3905245786)
+        TypeManager.getMethodBindPtr("Environment", "get_camera_feed_id", 3_905_245_786)
 
     internal val setAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color", 2920490490)
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_color", 2_920_490_490)
 
     internal val getAmbientLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color", 3444240500)
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_color", 3_444_240_500)
 
     internal val setAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_source", 2607780160)
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_source", 2_607_780_160)
 
     internal val getAmbientSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_source", 67453933)
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_source", 67_453_933)
 
     internal val setAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_energy", 373_806_689)
 
     internal val getAmbientLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_energy", 1_740_695_150)
 
     internal val setAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ambient_light_sky_contribution", 373_806_689)
 
     internal val getAmbientLightSkyContributionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ambient_light_sky_contribution", 1_740_695_150)
 
     internal val setReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_reflection_source", 299673197)
+        TypeManager.getMethodBindPtr("Environment", "set_reflection_source", 299_673_197)
 
     internal val getReflectionSourcePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_reflection_source", 777700713)
+        TypeManager.getMethodBindPtr("Environment", "get_reflection_source", 777_700_713)
 
     internal val setTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemapper", 1509116664)
+        TypeManager.getMethodBindPtr("Environment", "set_tonemapper", 1_509_116_664)
 
     internal val getTonemapperPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemapper", 2908408137)
+        TypeManager.getMethodBindPtr("Environment", "get_tonemapper", 2_908_408_137)
 
     internal val setTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_exposure", 373_806_689)
 
     internal val getTonemapExposurePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_exposure", 1_740_695_150)
 
     internal val setTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_tonemap_white", 373_806_689)
 
     internal val getTonemapWhitePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_tonemap_white", 1_740_695_150)
 
     internal val setSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_enabled", 2_586_408_642)
 
     internal val isSsrEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_ssr_enabled", 36_873_697)
 
     internal val setSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps", 1286410249)
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_max_steps", 1_286_410_249)
 
     internal val getSsrMaxStepsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps", 3905245786)
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_max_steps", 3_905_245_786)
 
     internal val setSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_in", 373_806_689)
 
     internal val getSsrFadeInPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_in", 1_740_695_150)
 
     internal val setSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_fade_out", 373_806_689)
 
     internal val getSsrFadeOutPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_fade_out", 1_740_695_150)
 
     internal val setSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssr_depth_tolerance", 373_806_689)
 
     internal val getSsrDepthTolerancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssr_depth_tolerance", 1_740_695_150)
 
     internal val setSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_enabled", 2_586_408_642)
 
     internal val isSsaoEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_ssao_enabled", 36_873_697)
 
     internal val setSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_radius", 373_806_689)
 
     internal val getSsaoRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_radius", 1_740_695_150)
 
     internal val setSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_intensity", 373_806_689)
 
     internal val getSsaoIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_intensity", 1_740_695_150)
 
     internal val setSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_power", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_power", 373_806_689)
 
     internal val getSsaoPowerPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_power", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_power", 1_740_695_150)
 
     internal val setSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_detail", 373_806_689)
 
     internal val getSsaoDetailPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_detail", 1_740_695_150)
 
     internal val setSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_horizon", 373_806_689)
 
     internal val getSsaoHorizonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_horizon", 1_740_695_150)
 
     internal val setSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_sharpness", 373_806_689)
 
     internal val getSsaoSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_sharpness", 1_740_695_150)
 
     internal val setSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_direct_light_affect", 373_806_689)
 
     internal val getSsaoDirectLightAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_direct_light_affect", 1_740_695_150)
 
     internal val setSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssao_ao_channel_affect", 373_806_689)
 
     internal val getSsaoAoChannelAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssao_ao_channel_affect", 1_740_695_150)
 
     internal val setSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_enabled", 2_586_408_642)
 
     internal val isSsilEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_ssil_enabled", 36_873_697)
 
     internal val setSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_radius", 373_806_689)
 
     internal val getSsilRadiusPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_radius", 1_740_695_150)
 
     internal val setSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_intensity", 373_806_689)
 
     internal val getSsilIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_intensity", 1_740_695_150)
 
     internal val setSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_sharpness", 373_806_689)
 
     internal val getSsilSharpnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_sharpness", 1_740_695_150)
 
     internal val setSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_ssil_normal_rejection", 373_806_689)
 
     internal val getSsilNormalRejectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_ssil_normal_rejection", 1_740_695_150)
 
     internal val setSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_enabled", 2_586_408_642)
 
     internal val isSdfgiEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_enabled", 36_873_697)
 
     internal val setSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1286410249)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascades", 1_286_410_249)
 
     internal val getSdfgiCascadesPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3905245786)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascades", 3_905_245_786)
 
     internal val setSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_min_cell_size", 373_806_689)
 
     internal val getSdfgiMinCellSizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_min_cell_size", 1_740_695_150)
 
     internal val setSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_max_distance", 373_806_689)
 
     internal val getSdfgiMaxDistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_max_distance", 1_740_695_150)
 
     internal val setSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_cascade0_distance", 373_806_689)
 
     internal val getSdfgiCascade0DistancePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_cascade0_distance", 1_740_695_150)
 
     internal val setSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3608608372)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_y_scale", 3_608_608_372)
 
     internal val getSdfgiYScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2568002245)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_y_scale", 2_568_002_245)
 
     internal val setSdfgiUseOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_use_occlusion", 2_586_408_642)
 
     internal val isSdfgiUsingOcclusionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_using_occlusion", 36_873_697)
 
     internal val setSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_bounce_feedback", 373_806_689)
 
     internal val getSdfgiBounceFeedbackPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_bounce_feedback", 1_740_695_150)
 
     internal val setSdfgiReadSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_read_sky_light", 2_586_408_642)
 
     internal val isSdfgiReadingSkyLightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_sdfgi_reading_sky_light", 36_873_697)
 
     internal val setSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_energy", 373_806_689)
 
     internal val getSdfgiEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_energy", 1_740_695_150)
 
     internal val setSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_normal_bias", 373_806_689)
 
     internal val getSdfgiNormalBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_normal_bias", 1_740_695_150)
 
     internal val setSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_sdfgi_probe_bias", 373_806_689)
 
     internal val getSdfgiProbeBiasPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_sdfgi_probe_bias", 1_740_695_150)
 
     internal val setGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_enabled", 2_586_408_642)
 
     internal val isGlowEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_glow_enabled", 36_873_697)
 
     internal val setGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_level", 1602489585)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_level", 1_602_489_585)
 
     internal val getGlowLevelPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_level", 2339986948)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_level", 2_339_986_948)
 
     internal val setGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_normalized", 2_586_408_642)
 
     internal val isGlowNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_glow_normalized", 36_873_697)
 
     internal val setGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_intensity", 373_806_689)
 
     internal val getGlowIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_intensity", 1_740_695_150)
 
     internal val setGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_strength", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_strength", 373_806_689)
 
     internal val getGlowStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_strength", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_strength", 1_740_695_150)
 
     internal val setGlowMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_mix", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_mix", 373_806_689)
 
     internal val getGlowMixPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_mix", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_mix", 1_740_695_150)
 
     internal val setGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_bloom", 373_806_689)
 
     internal val getGlowBloomPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_bloom", 1_740_695_150)
 
     internal val setGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode", 2561587761)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_blend_mode", 2_561_587_761)
 
     internal val getGlowBlendModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode", 1529667332)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_blend_mode", 1_529_667_332)
 
     internal val setGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_threshold", 373_806_689)
 
     internal val getGlowHdrBleedThresholdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_threshold", 1_740_695_150)
 
     internal val setGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_bleed_scale", 373_806_689)
 
     internal val getGlowHdrBleedScalePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_bleed_scale", 1_740_695_150)
 
     internal val setGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_hdr_luminance_cap", 373_806_689)
 
     internal val getGlowHdrLuminanceCapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_hdr_luminance_cap", 1_740_695_150)
 
     internal val setGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_map_strength", 373_806_689)
 
     internal val getGlowMapStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_map_strength", 1_740_695_150)
 
     internal val setGlowMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_glow_map", 1790811099)
+        TypeManager.getMethodBindPtr("Environment", "set_glow_map", 1_790_811_099)
 
     internal val getGlowMapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_glow_map", 4037048985)
+        TypeManager.getMethodBindPtr("Environment", "get_glow_map", 4_037_048_985)
 
     internal val setFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_enabled", 2_586_408_642)
 
     internal val isFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_fog_enabled", 36_873_697)
 
     internal val setFogModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_mode", 3059806579)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_mode", 3_059_806_579)
 
     internal val getFogModePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_mode", 2456062483)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_mode", 2_456_062_483)
 
     internal val setFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color", 2920490490)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_color", 2_920_490_490)
 
     internal val getFogLightColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color", 3444240500)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_color", 3_444_240_500)
 
     internal val setFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_light_energy", 373_806_689)
 
     internal val getFogLightEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_light_energy", 1_740_695_150)
 
     internal val setFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sun_scatter", 373_806_689)
 
     internal val getFogSunScatterPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sun_scatter", 1_740_695_150)
 
     internal val setFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_density", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_density", 373_806_689)
 
     internal val getFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_density", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_density", 1_740_695_150)
 
     internal val setFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height", 373_806_689)
 
     internal val getFogHeightPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height", 1_740_695_150)
 
     internal val setFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_height_density", 373_806_689)
 
     internal val getFogHeightDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_height_density", 1_740_695_150)
 
     internal val setFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_aerial_perspective", 373_806_689)
 
     internal val getFogAerialPerspectivePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_aerial_perspective", 1_740_695_150)
 
     internal val setFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_sky_affect", 373_806_689)
 
     internal val getFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_sky_affect", 1_740_695_150)
 
     internal val setFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_curve", 373_806_689)
 
     internal val getFogDepthCurvePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_curve", 1_740_695_150)
 
     internal val setFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_begin", 373_806_689)
 
     internal val getFogDepthBeginPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_begin", 1_740_695_150)
 
     internal val setFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_fog_depth_end", 373_806_689)
 
     internal val getFogDepthEndPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_fog_depth_end", 1_740_695_150)
 
     internal val setVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_enabled", 2_586_408_642)
 
     internal val isVolumetricFogEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_enabled", 36_873_697)
 
     internal val setVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2920490490)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission", 2_920_490_490)
 
     internal val getVolumetricFogEmissionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3444240500)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission", 3_444_240_500)
 
     internal val setVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2920490490)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_albedo", 2_920_490_490)
 
     internal val getVolumetricFogAlbedoPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3444240500)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_albedo", 3_444_240_500)
 
     internal val setVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_density", 373_806_689)
 
     internal val getVolumetricFogDensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_density", 1_740_695_150)
 
     internal val setVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_emission_energy", 373_806_689)
 
     internal val getVolumetricFogEmissionEnergyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_emission_energy", 1_740_695_150)
 
     internal val setVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_anisotropy", 373_806_689)
 
     internal val getVolumetricFogAnisotropyPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_anisotropy", 1_740_695_150)
 
     internal val setVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_length", 373_806_689)
 
     internal val getVolumetricFogLengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_length", 1_740_695_150)
 
     internal val setVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_detail_spread", 373_806_689)
 
     internal val getVolumetricFogDetailSpreadPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_detail_spread", 1_740_695_150)
 
     internal val setVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_gi_inject", 373_806_689)
 
     internal val getVolumetricFogGiInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_gi_inject", 1_740_695_150)
 
     internal val setVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_ambient_inject", 373_806_689)
 
     internal val getVolumetricFogAmbientInjectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_ambient_inject", 1_740_695_150)
 
     internal val setVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_sky_affect", 373_806_689)
 
     internal val getVolumetricFogSkyAffectPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_sky_affect", 1_740_695_150)
 
     internal val setVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_enabled", 2_586_408_642)
 
     internal val isVolumetricFogTemporalReprojectionEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_volumetric_fog_temporal_reprojection_enabled", 36_873_697)
 
     internal val setVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_volumetric_fog_temporal_reprojection_amount", 373_806_689)
 
     internal val getVolumetricFogTemporalReprojectionAmountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_volumetric_fog_temporal_reprojection_amount", 1_740_695_150)
 
     internal val setAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled", 2586408642)
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_enabled", 2_586_408_642)
 
     internal val isAdjustmentEnabledPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled", 36873697)
+        TypeManager.getMethodBindPtr("Environment", "is_adjustment_enabled", 36_873_697)
 
     internal val setAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_brightness", 373_806_689)
 
     internal val getAdjustmentBrightnessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_brightness", 1_740_695_150)
 
     internal val setAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_contrast", 373_806_689)
 
     internal val getAdjustmentContrastPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_contrast", 1_740_695_150)
 
     internal val setAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation", 373806689)
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_saturation", 373_806_689)
 
     internal val getAdjustmentSaturationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation", 1740695150)
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_saturation", 1_740_695_150)
 
     internal val setAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1790811099)
+        TypeManager.getMethodBindPtr("Environment", "set_adjustment_color_correction", 1_790_811_099)
 
     internal val getAdjustmentColorCorrectionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4037048985)
+        TypeManager.getMethodBindPtr("Environment", "get_adjustment_color_correction", 4_037_048_985)
   }
 }

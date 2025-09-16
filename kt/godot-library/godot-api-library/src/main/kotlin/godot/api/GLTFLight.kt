@@ -1,8 +1,5 @@
 // THIS FILE IS GENERATED! DO NOT EDIT IT MANUALLY!
-@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier",
-    "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST",
-    "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT",
-    "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
+@file:Suppress("PackageDirectoryMismatch", "unused", "FunctionName", "RedundantModalityModifier", "UNCHECKED_CAST", "JoinDeclarationAndAssignment", "USELESS_CAST", "RemoveRedundantQualifierName", "NOTHING_TO_INLINE", "NON_FINAL_MEMBER_IN_OBJECT", "RedundantVisibilityModifier", "RedundantUnitReturnType", "MemberVisibilityCanBePrivate")
 
 package godot.api
 
@@ -43,11 +40,8 @@ public open class GLTFLight : Resource() {
    * The [Color] of the light. Defaults to white. A black color causes the light to have no effect.
    *
    * **Warning:**
-   * Be careful when trying to modify a local
-   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
-   * getter.
-   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
-   * afterward.
+   * Be careful when trying to modify a local [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again afterward.
    */
   @CoreTypeLocalCopy
   public final inline var color: Color
@@ -59,9 +53,7 @@ public open class GLTFLight : Resource() {
     }
 
   /**
-   * The intensity of the light. This is expressed in candelas (lumens per steradian) for point and
-   * spot lights, and lux (lumens per m²) for directional lights. When creating a Godot light, this
-   * value is converted to a unitless multiplier.
+   * The intensity of the light. This is expressed in candelas (lumens per steradian) for point and spot lights, and lux (lumens per m²) for directional lights. When creating a Godot light, this value is converted to a unitless multiplier.
    */
   public final inline var intensity: Float
     @JvmName("intensityProperty")
@@ -72,8 +64,7 @@ public open class GLTFLight : Resource() {
     }
 
   /**
-   * The type of the light. The values accepted by Godot are "point", "spot", and "directional",
-   * which correspond to Godot's [OmniLight3D], [SpotLight3D], and [DirectionalLight3D] respectively.
+   * The type of the light. The values accepted by Godot are "point", "spot", and "directional", which correspond to Godot's [OmniLight3D], [SpotLight3D], and [DirectionalLight3D] respectively.
    */
   public final inline var lightType: String
     @JvmName("lightTypeProperty")
@@ -84,9 +75,7 @@ public open class GLTFLight : Resource() {
     }
 
   /**
-   * The range of the light, beyond which the light has no effect. glTF lights with no range defined
-   * behave like physical lights (which have infinite range). When creating a Godot light, the range is
-   * clamped to 4096.
+   * The range of the light, beyond which the light has no effect. glTF lights with no range defined behave like physical lights (which have infinite range). When creating a Godot light, the range is clamped to 4096.
    */
   public final inline var range: Float
     @JvmName("rangeProperty")
@@ -99,10 +88,7 @@ public open class GLTFLight : Resource() {
   /**
    * The inner angle of the cone in a spotlight. Must be less than or equal to the outer cone angle.
    *
-   * Within this angle, the light is at full brightness. Between the inner and outer cone angles,
-   * there is a transition from full brightness to zero brightness. When creating a Godot
-   * [SpotLight3D], the ratio between the inner and outer cone angles is used to calculate the
-   * attenuation of the light.
+   * Within this angle, the light is at full brightness. Between the inner and outer cone angles, there is a transition from full brightness to zero brightness. When creating a Godot [SpotLight3D], the ratio between the inner and outer cone angles is used to calculate the attenuation of the light.
    */
   public final inline var innerConeAngle: Float
     @JvmName("innerConeAngleProperty")
@@ -115,10 +101,7 @@ public open class GLTFLight : Resource() {
   /**
    * The outer angle of the cone in a spotlight. Must be greater than or equal to the inner angle.
    *
-   * At this angle, the light drops off to zero brightness. Between the inner and outer cone angles,
-   * there is a transition from full brightness to zero brightness. If this angle is a half turn, then
-   * the spotlight emits in all directions. When creating a Godot [SpotLight3D], the outer cone angle
-   * is used as the angle of the spotlight.
+   * At this angle, the light drops off to zero brightness. Between the inner and outer cone angles, there is a transition from full brightness to zero brightness. If this angle is a half turn, then the spotlight emits in all directions. When creating a Godot [SpotLight3D], the outer cone angle is used as the angle of the spotlight.
    */
   public final inline var outerConeAngle: Float
     @JvmName("outerConeAngleProperty")
@@ -128,7 +111,7 @@ public open class GLTFLight : Resource() {
       setOuterConeAngle(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  override fun new(scriptIndex: Int) {
     createNativeObject(231, scriptIndex)
   }
 
@@ -175,7 +158,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public final fun setColor(color: Color): Unit {
+  public final fun setColor(color: Color) {
     TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.setColorPtr, NIL)
   }
@@ -186,7 +169,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setIntensity(intensity: Float): Unit {
+  public final fun setIntensity(intensity: Float) {
     TransferContext.writeArguments(DOUBLE to intensity.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setIntensityPtr, NIL)
   }
@@ -197,7 +180,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public final fun setLightType(lightType: String): Unit {
+  public final fun setLightType(lightType: String) {
     TransferContext.writeArguments(STRING to lightType)
     TransferContext.callMethod(ptr, MethodBindings.setLightTypePtr, NIL)
   }
@@ -208,7 +191,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setRange(range: Float): Unit {
+  public final fun setRange(range: Float) {
     TransferContext.writeArguments(DOUBLE to range.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setRangePtr, NIL)
   }
@@ -219,7 +202,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setInnerConeAngle(innerConeAngle: Float): Unit {
+  public final fun setInnerConeAngle(innerConeAngle: Float) {
     TransferContext.writeArguments(DOUBLE to innerConeAngle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setInnerConeAnglePtr, NIL)
   }
@@ -230,7 +213,7 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setOuterConeAngle(outerConeAngle: Float): Unit {
+  public final fun setOuterConeAngle(outerConeAngle: Float) {
     TransferContext.writeArguments(DOUBLE to outerConeAngle.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setOuterConeAnglePtr, NIL)
   }
@@ -241,16 +224,14 @@ public open class GLTFLight : Resource() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?): Unit {
+  public final fun setAdditionalData(extensionName: StringName, additionalData: Any?) {
     TransferContext.writeArguments(STRING_NAME to extensionName, ANY to additionalData)
     TransferContext.callMethod(ptr, MethodBindings.setAdditionalDataPtr, NIL)
   }
 
-  public final fun getAdditionalData(extensionName: String): Any? =
-      getAdditionalData(extensionName.asCachedStringName())
+  public final fun getAdditionalData(extensionName: String): Any? = getAdditionalData(extensionName.asCachedStringName())
 
-  public final fun setAdditionalData(extensionName: String, additionalData: Any?) =
-      setAdditionalData(extensionName.asCachedStringName(), additionalData)
+  public final fun setAdditionalData(extensionName: String, additionalData: Any?): Unit = setAdditionalData(extensionName.asCachedStringName(), additionalData)
 
   public companion object {
     /**
@@ -276,57 +257,57 @@ public open class GLTFLight : Resource() {
 
   public object MethodBindings {
     internal val fromNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3907677874)
+        TypeManager.getMethodBindPtr("GLTFLight", "from_node", 3_907_677_874)
 
     internal val toNodePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2040811672)
+        TypeManager.getMethodBindPtr("GLTFLight", "to_node", 2_040_811_672)
 
     internal val fromDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4057087208)
+        TypeManager.getMethodBindPtr("GLTFLight", "from_dictionary", 4_057_087_208)
 
     internal val toDictionaryPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3102165223)
+        TypeManager.getMethodBindPtr("GLTFLight", "to_dictionary", 3_102_165_223)
 
     internal val getColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_color", 3200896285)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_color", 3_200_896_285)
 
     internal val setColorPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_color", 2920490490)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_color", 2_920_490_490)
 
     internal val getIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_intensity", 191475506)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_intensity", 191_475_506)
 
     internal val setIntensityPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_intensity", 373806689)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_intensity", 373_806_689)
 
     internal val getLightTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_light_type", 2841200299)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_light_type", 2_841_200_299)
 
     internal val setLightTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_light_type", 83702148)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_light_type", 83_702_148)
 
     internal val getRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_range", 191475506)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_range", 191_475_506)
 
     internal val setRangePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_range", 373806689)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_range", 373_806_689)
 
     internal val getInnerConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_inner_cone_angle", 191475506)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_inner_cone_angle", 191_475_506)
 
     internal val setInnerConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_inner_cone_angle", 373806689)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_inner_cone_angle", 373_806_689)
 
     internal val getOuterConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_outer_cone_angle", 191475506)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_outer_cone_angle", 191_475_506)
 
     internal val setOuterConeAnglePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_outer_cone_angle", 373806689)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_outer_cone_angle", 373_806_689)
 
     internal val getAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "get_additional_data", 2138907829)
+        TypeManager.getMethodBindPtr("GLTFLight", "get_additional_data", 2_138_907_829)
 
     internal val setAdditionalDataPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3776071444)
+        TypeManager.getMethodBindPtr("GLTFLight", "set_additional_data", 3_776_071_444)
   }
 }
