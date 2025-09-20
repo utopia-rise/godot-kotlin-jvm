@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -73,7 +76,19 @@ public open class TCPServer : SocketServer() {
     return (TransferContext.readReturnValue(OBJECT) as StreamPeerTCP?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val listenName: MethodStringName2<TCPServer, Error, Int, String> =
+        MethodStringName2<TCPServer, Error, Int, String>("listen")
+
+    @JvmField
+    public val getLocalPortName: MethodStringName0<TCPServer, Int> =
+        MethodStringName0<TCPServer, Int>("get_local_port")
+
+    @JvmField
+    public val takeConnectionName: MethodStringName0<TCPServer, StreamPeerTCP?> =
+        MethodStringName0<TCPServer, StreamPeerTCP?>("take_connection")
+  }
 
   public object MethodBindings {
     internal val listenPtr: VoidPtr =

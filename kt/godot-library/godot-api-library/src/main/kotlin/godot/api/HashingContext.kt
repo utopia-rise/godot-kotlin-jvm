@@ -12,12 +12,15 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * The HashingContext class provides an interface for computing cryptographic hashes over multiple
@@ -139,7 +142,19 @@ public open class HashingContext : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val startName: MethodStringName1<HashingContext, Error, HashType> =
+        MethodStringName1<HashingContext, Error, HashType>("start")
+
+    @JvmField
+    public val updateName: MethodStringName1<HashingContext, Error, PackedByteArray> =
+        MethodStringName1<HashingContext, Error, PackedByteArray>("update")
+
+    @JvmField
+    public val finishName: MethodStringName0<HashingContext, PackedByteArray> =
+        MethodStringName0<HashingContext, PackedByteArray>("finish")
+  }
 
   public object MethodBindings {
     internal val startPtr: VoidPtr =

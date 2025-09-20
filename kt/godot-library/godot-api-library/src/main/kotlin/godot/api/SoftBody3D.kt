@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.RID
 import godot.core.VariantArray
@@ -33,6 +37,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -532,7 +537,164 @@ public open class SoftBody3D : MeshInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getPhysicsRidName: MethodStringName0<SoftBody3D, RID> =
+        MethodStringName0<SoftBody3D, RID>("get_physics_rid")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<SoftBody3D, Unit, Long> =
+        MethodStringName1<SoftBody3D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<SoftBody3D, Long> =
+        MethodStringName0<SoftBody3D, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<SoftBody3D, Unit, Long> =
+        MethodStringName1<SoftBody3D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<SoftBody3D, Long> =
+        MethodStringName0<SoftBody3D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<SoftBody3D, Unit, Int, Boolean> =
+        MethodStringName2<SoftBody3D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<SoftBody3D, Boolean, Int> =
+        MethodStringName1<SoftBody3D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setCollisionLayerValueName: MethodStringName2<SoftBody3D, Unit, Int, Boolean> =
+        MethodStringName2<SoftBody3D, Unit, Int, Boolean>("set_collision_layer_value")
+
+    @JvmField
+    public val getCollisionLayerValueName: MethodStringName1<SoftBody3D, Boolean, Int> =
+        MethodStringName1<SoftBody3D, Boolean, Int>("get_collision_layer_value")
+
+    @JvmField
+    public val setParentCollisionIgnoreName: MethodStringName1<SoftBody3D, Unit, NodePath> =
+        MethodStringName1<SoftBody3D, Unit, NodePath>("set_parent_collision_ignore")
+
+    @JvmField
+    public val getParentCollisionIgnoreName: MethodStringName0<SoftBody3D, NodePath> =
+        MethodStringName0<SoftBody3D, NodePath>("get_parent_collision_ignore")
+
+    @JvmField
+    public val setDisableModeName: MethodStringName1<SoftBody3D, Unit, DisableMode> =
+        MethodStringName1<SoftBody3D, Unit, DisableMode>("set_disable_mode")
+
+    @JvmField
+    public val getDisableModeName: MethodStringName0<SoftBody3D, DisableMode> =
+        MethodStringName0<SoftBody3D, DisableMode>("get_disable_mode")
+
+    @JvmField
+    public val getCollisionExceptionsName:
+        MethodStringName0<SoftBody3D, VariantArray<PhysicsBody3D>> =
+        MethodStringName0<SoftBody3D, VariantArray<PhysicsBody3D>>("get_collision_exceptions")
+
+    @JvmField
+    public val addCollisionExceptionWithName: MethodStringName1<SoftBody3D, Unit, Node> =
+        MethodStringName1<SoftBody3D, Unit, Node>("add_collision_exception_with")
+
+    @JvmField
+    public val removeCollisionExceptionWithName: MethodStringName1<SoftBody3D, Unit, Node> =
+        MethodStringName1<SoftBody3D, Unit, Node>("remove_collision_exception_with")
+
+    @JvmField
+    public val setSimulationPrecisionName: MethodStringName1<SoftBody3D, Unit, Int> =
+        MethodStringName1<SoftBody3D, Unit, Int>("set_simulation_precision")
+
+    @JvmField
+    public val getSimulationPrecisionName: MethodStringName0<SoftBody3D, Int> =
+        MethodStringName0<SoftBody3D, Int>("get_simulation_precision")
+
+    @JvmField
+    public val setTotalMassName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_total_mass")
+
+    @JvmField
+    public val getTotalMassName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_total_mass")
+
+    @JvmField
+    public val setLinearStiffnessName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_linear_stiffness")
+
+    @JvmField
+    public val getLinearStiffnessName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_linear_stiffness")
+
+    @JvmField
+    public val setShrinkingFactorName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_shrinking_factor")
+
+    @JvmField
+    public val getShrinkingFactorName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_shrinking_factor")
+
+    @JvmField
+    public val setPressureCoefficientName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_pressure_coefficient")
+
+    @JvmField
+    public val getPressureCoefficientName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_pressure_coefficient")
+
+    @JvmField
+    public val setDampingCoefficientName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_damping_coefficient")
+
+    @JvmField
+    public val getDampingCoefficientName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_damping_coefficient")
+
+    @JvmField
+    public val setDragCoefficientName: MethodStringName1<SoftBody3D, Unit, Float> =
+        MethodStringName1<SoftBody3D, Unit, Float>("set_drag_coefficient")
+
+    @JvmField
+    public val getDragCoefficientName: MethodStringName0<SoftBody3D, Float> =
+        MethodStringName0<SoftBody3D, Float>("get_drag_coefficient")
+
+    @JvmField
+    public val getPointTransformName: MethodStringName1<SoftBody3D, Vector3, Int> =
+        MethodStringName1<SoftBody3D, Vector3, Int>("get_point_transform")
+
+    @JvmField
+    public val applyImpulseName: MethodStringName2<SoftBody3D, Unit, Int, Vector3> =
+        MethodStringName2<SoftBody3D, Unit, Int, Vector3>("apply_impulse")
+
+    @JvmField
+    public val applyForceName: MethodStringName2<SoftBody3D, Unit, Int, Vector3> =
+        MethodStringName2<SoftBody3D, Unit, Int, Vector3>("apply_force")
+
+    @JvmField
+    public val applyCentralImpulseName: MethodStringName1<SoftBody3D, Unit, Vector3> =
+        MethodStringName1<SoftBody3D, Unit, Vector3>("apply_central_impulse")
+
+    @JvmField
+    public val applyCentralForceName: MethodStringName1<SoftBody3D, Unit, Vector3> =
+        MethodStringName1<SoftBody3D, Unit, Vector3>("apply_central_force")
+
+    @JvmField
+    public val setPointPinnedName: MethodStringName4<SoftBody3D, Unit, Int, Boolean, NodePath, Int>
+        = MethodStringName4<SoftBody3D, Unit, Int, Boolean, NodePath, Int>("set_point_pinned")
+
+    @JvmField
+    public val isPointPinnedName: MethodStringName1<SoftBody3D, Boolean, Int> =
+        MethodStringName1<SoftBody3D, Boolean, Int>("is_point_pinned")
+
+    @JvmField
+    public val setRayPickableName: MethodStringName1<SoftBody3D, Unit, Boolean> =
+        MethodStringName1<SoftBody3D, Unit, Boolean>("set_ray_pickable")
+
+    @JvmField
+    public val isRayPickableName: MethodStringName0<SoftBody3D, Boolean> =
+        MethodStringName0<SoftBody3D, Boolean>("is_ray_pickable")
+  }
 
   public object MethodBindings {
     internal val getPhysicsRidPtr: VoidPtr =

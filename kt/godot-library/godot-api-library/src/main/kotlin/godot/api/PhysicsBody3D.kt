@@ -263,12 +263,12 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
         MethodStringName0<PhysicsBody3D, VariantArray<PhysicsBody3D>>("get_collision_exceptions")
 
     @JvmField
-    public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
-        MethodStringName1<PhysicsBody3D, Unit, Node?>("add_collision_exception_with")
+    public val addCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node> =
+        MethodStringName1<PhysicsBody3D, Unit, Node>("add_collision_exception_with")
 
     @JvmField
-    public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node?> =
-        MethodStringName1<PhysicsBody3D, Unit, Node?>("remove_collision_exception_with")
+    public val removeCollisionExceptionWithName: MethodStringName1<PhysicsBody3D, Unit, Node> =
+        MethodStringName1<PhysicsBody3D, Unit, Node>("remove_collision_exception_with")
   }
 
   public object MethodBindings {

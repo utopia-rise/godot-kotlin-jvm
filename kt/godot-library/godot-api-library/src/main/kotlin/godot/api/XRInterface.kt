@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
+import godot.core.MethodStringName6
 import godot.core.PackedVector3Array
 import godot.core.Projection
 import godot.core.Signal1
@@ -40,6 +45,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -630,7 +636,124 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getNameName: MethodStringName0<XRInterface, StringName> =
+        MethodStringName0<XRInterface, StringName>("get_name")
+
+    @JvmField
+    public val getCapabilitiesName: MethodStringName0<XRInterface, Long> =
+        MethodStringName0<XRInterface, Long>("get_capabilities")
+
+    @JvmField
+    public val isPrimaryName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("is_primary")
+
+    @JvmField
+    public val setPrimaryName: MethodStringName1<XRInterface, Unit, Boolean> =
+        MethodStringName1<XRInterface, Unit, Boolean>("set_primary")
+
+    @JvmField
+    public val isInitializedName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("is_initialized")
+
+    @JvmField
+    public val initializeName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("initialize")
+
+    @JvmField
+    public val uninitializeName: MethodStringName0<XRInterface, Unit> =
+        MethodStringName0<XRInterface, Unit>("uninitialize")
+
+    @JvmField
+    public val getSystemInfoName: MethodStringName0<XRInterface, Dictionary<Any?, Any?>> =
+        MethodStringName0<XRInterface, Dictionary<Any?, Any?>>("get_system_info")
+
+    @JvmField
+    public val getTrackingStatusName: MethodStringName0<XRInterface, TrackingStatus> =
+        MethodStringName0<XRInterface, TrackingStatus>("get_tracking_status")
+
+    @JvmField
+    public val getRenderTargetSizeName: MethodStringName0<XRInterface, Vector2> =
+        MethodStringName0<XRInterface, Vector2>("get_render_target_size")
+
+    @JvmField
+    public val getViewCountName: MethodStringName0<XRInterface, Long> =
+        MethodStringName0<XRInterface, Long>("get_view_count")
+
+    @JvmField
+    public val triggerHapticPulseName:
+        MethodStringName6<XRInterface, Unit, String, StringName, Double, Double, Double, Double> =
+        MethodStringName6<XRInterface, Unit, String, StringName, Double, Double, Double, Double>("trigger_haptic_pulse")
+
+    @JvmField
+    public val supportsPlayAreaModeName: MethodStringName1<XRInterface, Boolean, PlayAreaMode> =
+        MethodStringName1<XRInterface, Boolean, PlayAreaMode>("supports_play_area_mode")
+
+    @JvmField
+    public val getPlayAreaModeName: MethodStringName0<XRInterface, PlayAreaMode> =
+        MethodStringName0<XRInterface, PlayAreaMode>("get_play_area_mode")
+
+    @JvmField
+    public val setPlayAreaModeName: MethodStringName1<XRInterface, Boolean, PlayAreaMode> =
+        MethodStringName1<XRInterface, Boolean, PlayAreaMode>("set_play_area_mode")
+
+    @JvmField
+    public val getPlayAreaName: MethodStringName0<XRInterface, PackedVector3Array> =
+        MethodStringName0<XRInterface, PackedVector3Array>("get_play_area")
+
+    @JvmField
+    public val getAnchorDetectionIsEnabledName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("get_anchor_detection_is_enabled")
+
+    @JvmField
+    public val setAnchorDetectionIsEnabledName: MethodStringName1<XRInterface, Unit, Boolean> =
+        MethodStringName1<XRInterface, Unit, Boolean>("set_anchor_detection_is_enabled")
+
+    @JvmField
+    public val getCameraFeedIdName: MethodStringName0<XRInterface, Int> =
+        MethodStringName0<XRInterface, Int>("get_camera_feed_id")
+
+    @JvmField
+    public val isPassthroughSupportedName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("is_passthrough_supported")
+
+    @JvmField
+    public val isPassthroughEnabledName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("is_passthrough_enabled")
+
+    @JvmField
+    public val startPassthroughName: MethodStringName0<XRInterface, Boolean> =
+        MethodStringName0<XRInterface, Boolean>("start_passthrough")
+
+    @JvmField
+    public val stopPassthroughName: MethodStringName0<XRInterface, Unit> =
+        MethodStringName0<XRInterface, Unit>("stop_passthrough")
+
+    @JvmField
+    public val getTransformForViewName:
+        MethodStringName2<XRInterface, Transform3D, Long, Transform3D> =
+        MethodStringName2<XRInterface, Transform3D, Long, Transform3D>("get_transform_for_view")
+
+    @JvmField
+    public val getProjectionForViewName:
+        MethodStringName4<XRInterface, Projection, Long, Double, Double, Double> =
+        MethodStringName4<XRInterface, Projection, Long, Double, Double, Double>("get_projection_for_view")
+
+    @JvmField
+    public val getSupportedEnvironmentBlendModesName:
+        MethodStringName0<XRInterface, VariantArray<Any?>> =
+        MethodStringName0<XRInterface, VariantArray<Any?>>("get_supported_environment_blend_modes")
+
+    @JvmField
+    public val setEnvironmentBlendModeName:
+        MethodStringName1<XRInterface, Boolean, EnvironmentBlendMode> =
+        MethodStringName1<XRInterface, Boolean, EnvironmentBlendMode>("set_environment_blend_mode")
+
+    @JvmField
+    public val getEnvironmentBlendModeName: MethodStringName0<XRInterface, EnvironmentBlendMode> =
+        MethodStringName0<XRInterface, EnvironmentBlendMode>("get_environment_blend_mode")
+  }
 
   public object MethodBindings {
     internal val getNamePtr: VoidPtr =

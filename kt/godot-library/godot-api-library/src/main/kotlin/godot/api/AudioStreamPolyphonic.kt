@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -64,7 +67,15 @@ public open class AudioStreamPolyphonic : AudioStream() {
     throw NotImplementedError("AudioStreamPolyphonic::_instantiatePlayback can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPolyphonyName: MethodStringName1<AudioStreamPolyphonic, Unit, Int> =
+        MethodStringName1<AudioStreamPolyphonic, Unit, Int>("set_polyphony")
+
+    @JvmField
+    public val getPolyphonyName: MethodStringName0<AudioStreamPolyphonic, Int> =
+        MethodStringName0<AudioStreamPolyphonic, Int>("get_polyphony")
+  }
 
   public object MethodBindings {
     internal val setPolyphonyPtr: VoidPtr =

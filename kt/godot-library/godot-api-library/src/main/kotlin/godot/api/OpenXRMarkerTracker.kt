@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +23,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -148,7 +151,41 @@ public open class OpenXRMarkerTracker : OpenXRSpatialEntityTracker() {
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBoundsSizeName: MethodStringName1<OpenXRMarkerTracker, Unit, Vector2> =
+        MethodStringName1<OpenXRMarkerTracker, Unit, Vector2>("set_bounds_size")
+
+    @JvmField
+    public val getBoundsSizeName: MethodStringName0<OpenXRMarkerTracker, Vector2> =
+        MethodStringName0<OpenXRMarkerTracker, Vector2>("get_bounds_size")
+
+    @JvmField
+    public val setMarkerTypeName:
+        MethodStringName1<OpenXRMarkerTracker, Unit, OpenXRSpatialComponentMarkerList.MarkerType> =
+        MethodStringName1<OpenXRMarkerTracker, Unit, OpenXRSpatialComponentMarkerList.MarkerType>("set_marker_type")
+
+    @JvmField
+    public val getMarkerTypeName:
+        MethodStringName0<OpenXRMarkerTracker, OpenXRSpatialComponentMarkerList.MarkerType> =
+        MethodStringName0<OpenXRMarkerTracker, OpenXRSpatialComponentMarkerList.MarkerType>("get_marker_type")
+
+    @JvmField
+    public val setMarkerIdName: MethodStringName1<OpenXRMarkerTracker, Unit, Long> =
+        MethodStringName1<OpenXRMarkerTracker, Unit, Long>("set_marker_id")
+
+    @JvmField
+    public val getMarkerIdName: MethodStringName0<OpenXRMarkerTracker, Long> =
+        MethodStringName0<OpenXRMarkerTracker, Long>("get_marker_id")
+
+    @JvmField
+    public val setMarkerDataName: MethodStringName1<OpenXRMarkerTracker, Unit, Any?> =
+        MethodStringName1<OpenXRMarkerTracker, Unit, Any?>("set_marker_data")
+
+    @JvmField
+    public val getMarkerDataName: MethodStringName0<OpenXRMarkerTracker, Any?> =
+        MethodStringName0<OpenXRMarkerTracker, Any?>("get_marker_data")
+  }
 
   public object MethodBindings {
     internal val setBoundsSizePtr: VoidPtr =

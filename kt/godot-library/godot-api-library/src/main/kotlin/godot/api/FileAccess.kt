@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantCaster.ANY
@@ -918,6 +923,288 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   public companion object {
+    @JvmField
+    public val openName: MethodStringName2<FileAccess, FileAccess?, String, ModeFlags> =
+        MethodStringName2<FileAccess, FileAccess?, String, ModeFlags>("open")
+
+    @JvmField
+    public val openEncryptedName:
+        MethodStringName4<FileAccess, FileAccess?, String, ModeFlags, PackedByteArray, PackedByteArray>
+        =
+        MethodStringName4<FileAccess, FileAccess?, String, ModeFlags, PackedByteArray, PackedByteArray>("open_encrypted")
+
+    @JvmField
+    public val openEncryptedWithPassName:
+        MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, String> =
+        MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, String>("open_encrypted_with_pass")
+
+    @JvmField
+    public val openCompressedName:
+        MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, CompressionMode> =
+        MethodStringName3<FileAccess, FileAccess?, String, ModeFlags, CompressionMode>("open_compressed")
+
+    @JvmField
+    public val getOpenErrorName: MethodStringName0<FileAccess, Error> =
+        MethodStringName0<FileAccess, Error>("get_open_error")
+
+    @JvmField
+    public val createTempName:
+        MethodStringName4<FileAccess, FileAccess?, ModeFlags, String, String, Boolean> =
+        MethodStringName4<FileAccess, FileAccess?, ModeFlags, String, String, Boolean>("create_temp")
+
+    @JvmField
+    public val getFileAsBytesName: MethodStringName1<FileAccess, PackedByteArray, String> =
+        MethodStringName1<FileAccess, PackedByteArray, String>("get_file_as_bytes")
+
+    @JvmField
+    public val getFileAsStringName: MethodStringName1<FileAccess, String, String> =
+        MethodStringName1<FileAccess, String, String>("get_file_as_string")
+
+    @JvmField
+    public val resizeName: MethodStringName1<FileAccess, Error, Long> =
+        MethodStringName1<FileAccess, Error, Long>("resize")
+
+    @JvmField
+    public val flushName: MethodStringName0<FileAccess, Unit> =
+        MethodStringName0<FileAccess, Unit>("flush")
+
+    @JvmField
+    public val getPathName: MethodStringName0<FileAccess, String> =
+        MethodStringName0<FileAccess, String>("get_path")
+
+    @JvmField
+    public val getPathAbsoluteName: MethodStringName0<FileAccess, String> =
+        MethodStringName0<FileAccess, String>("get_path_absolute")
+
+    @JvmField
+    public val isOpenName: MethodStringName0<FileAccess, Boolean> =
+        MethodStringName0<FileAccess, Boolean>("is_open")
+
+    @JvmField
+    public val seekName: MethodStringName1<FileAccess, Unit, Long> =
+        MethodStringName1<FileAccess, Unit, Long>("seek")
+
+    @JvmField
+    public val seekEndName: MethodStringName1<FileAccess, Unit, Long> =
+        MethodStringName1<FileAccess, Unit, Long>("seek_end")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<FileAccess, Long> =
+        MethodStringName0<FileAccess, Long>("get_position")
+
+    @JvmField
+    public val getLengthName: MethodStringName0<FileAccess, Long> =
+        MethodStringName0<FileAccess, Long>("get_length")
+
+    @JvmField
+    public val eofReachedName: MethodStringName0<FileAccess, Boolean> =
+        MethodStringName0<FileAccess, Boolean>("eof_reached")
+
+    @JvmField
+    public val get8Name: MethodStringName0<FileAccess, Int> =
+        MethodStringName0<FileAccess, Int>("get_8")
+
+    @JvmField
+    public val get16Name: MethodStringName0<FileAccess, Int> =
+        MethodStringName0<FileAccess, Int>("get_16")
+
+    @JvmField
+    public val get32Name: MethodStringName0<FileAccess, Long> =
+        MethodStringName0<FileAccess, Long>("get_32")
+
+    @JvmField
+    public val get64Name: MethodStringName0<FileAccess, Long> =
+        MethodStringName0<FileAccess, Long>("get_64")
+
+    @JvmField
+    public val getHalfName: MethodStringName0<FileAccess, Float> =
+        MethodStringName0<FileAccess, Float>("get_half")
+
+    @JvmField
+    public val getFloatName: MethodStringName0<FileAccess, Float> =
+        MethodStringName0<FileAccess, Float>("get_float")
+
+    @JvmField
+    public val getDoubleName: MethodStringName0<FileAccess, Double> =
+        MethodStringName0<FileAccess, Double>("get_double")
+
+    @JvmField
+    public val getRealName: MethodStringName0<FileAccess, Float> =
+        MethodStringName0<FileAccess, Float>("get_real")
+
+    @JvmField
+    public val getBufferName: MethodStringName1<FileAccess, PackedByteArray, Long> =
+        MethodStringName1<FileAccess, PackedByteArray, Long>("get_buffer")
+
+    @JvmField
+    public val getLineName: MethodStringName0<FileAccess, String> =
+        MethodStringName0<FileAccess, String>("get_line")
+
+    @JvmField
+    public val getCsvLineName: MethodStringName1<FileAccess, PackedStringArray, String> =
+        MethodStringName1<FileAccess, PackedStringArray, String>("get_csv_line")
+
+    @JvmField
+    public val getAsTextName: MethodStringName0<FileAccess, String> =
+        MethodStringName0<FileAccess, String>("get_as_text")
+
+    @JvmField
+    public val getMd5Name: MethodStringName1<FileAccess, String, String> =
+        MethodStringName1<FileAccess, String, String>("get_md5")
+
+    @JvmField
+    public val getSha256Name: MethodStringName1<FileAccess, String, String> =
+        MethodStringName1<FileAccess, String, String>("get_sha256")
+
+    @JvmField
+    public val isBigEndianName: MethodStringName0<FileAccess, Boolean> =
+        MethodStringName0<FileAccess, Boolean>("is_big_endian")
+
+    @JvmField
+    public val setBigEndianName: MethodStringName1<FileAccess, Unit, Boolean> =
+        MethodStringName1<FileAccess, Unit, Boolean>("set_big_endian")
+
+    @JvmField
+    public val getErrorName: MethodStringName0<FileAccess, Error> =
+        MethodStringName0<FileAccess, Error>("get_error")
+
+    @JvmField
+    public val getVarName: MethodStringName1<FileAccess, Any?, Boolean> =
+        MethodStringName1<FileAccess, Any?, Boolean>("get_var")
+
+    @JvmField
+    public val store8Name: MethodStringName1<FileAccess, Boolean, Int> =
+        MethodStringName1<FileAccess, Boolean, Int>("store_8")
+
+    @JvmField
+    public val store16Name: MethodStringName1<FileAccess, Boolean, Int> =
+        MethodStringName1<FileAccess, Boolean, Int>("store_16")
+
+    @JvmField
+    public val store32Name: MethodStringName1<FileAccess, Boolean, Long> =
+        MethodStringName1<FileAccess, Boolean, Long>("store_32")
+
+    @JvmField
+    public val store64Name: MethodStringName1<FileAccess, Boolean, Long> =
+        MethodStringName1<FileAccess, Boolean, Long>("store_64")
+
+    @JvmField
+    public val storeHalfName: MethodStringName1<FileAccess, Boolean, Float> =
+        MethodStringName1<FileAccess, Boolean, Float>("store_half")
+
+    @JvmField
+    public val storeFloatName: MethodStringName1<FileAccess, Boolean, Float> =
+        MethodStringName1<FileAccess, Boolean, Float>("store_float")
+
+    @JvmField
+    public val storeDoubleName: MethodStringName1<FileAccess, Boolean, Double> =
+        MethodStringName1<FileAccess, Boolean, Double>("store_double")
+
+    @JvmField
+    public val storeRealName: MethodStringName1<FileAccess, Boolean, Float> =
+        MethodStringName1<FileAccess, Boolean, Float>("store_real")
+
+    @JvmField
+    public val storeBufferName: MethodStringName1<FileAccess, Boolean, PackedByteArray> =
+        MethodStringName1<FileAccess, Boolean, PackedByteArray>("store_buffer")
+
+    @JvmField
+    public val storeLineName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("store_line")
+
+    @JvmField
+    public val storeCsvLineName: MethodStringName2<FileAccess, Boolean, PackedStringArray, String> =
+        MethodStringName2<FileAccess, Boolean, PackedStringArray, String>("store_csv_line")
+
+    @JvmField
+    public val storeStringName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("store_string")
+
+    @JvmField
+    public val storeVarName: MethodStringName2<FileAccess, Boolean, Any?, Boolean> =
+        MethodStringName2<FileAccess, Boolean, Any?, Boolean>("store_var")
+
+    @JvmField
+    public val storePascalStringName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("store_pascal_string")
+
+    @JvmField
+    public val getPascalStringName: MethodStringName0<FileAccess, String> =
+        MethodStringName0<FileAccess, String>("get_pascal_string")
+
+    @JvmField
+    public val closeName: MethodStringName0<FileAccess, Unit> =
+        MethodStringName0<FileAccess, Unit>("close")
+
+    @JvmField
+    public val fileExistsName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("file_exists")
+
+    @JvmField
+    public val getModifiedTimeName: MethodStringName1<FileAccess, Long, String> =
+        MethodStringName1<FileAccess, Long, String>("get_modified_time")
+
+    @JvmField
+    public val getAccessTimeName: MethodStringName1<FileAccess, Long, String> =
+        MethodStringName1<FileAccess, Long, String>("get_access_time")
+
+    @JvmField
+    public val getSizeName: MethodStringName1<FileAccess, Long, String> =
+        MethodStringName1<FileAccess, Long, String>("get_size")
+
+    @JvmField
+    public val getUnixPermissionsName: MethodStringName1<FileAccess, UnixPermissionFlags, String> =
+        MethodStringName1<FileAccess, UnixPermissionFlags, String>("get_unix_permissions")
+
+    @JvmField
+    public val setUnixPermissionsName:
+        MethodStringName2<FileAccess, Error, String, UnixPermissionFlags> =
+        MethodStringName2<FileAccess, Error, String, UnixPermissionFlags>("set_unix_permissions")
+
+    @JvmField
+    public val getHiddenAttributeName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("get_hidden_attribute")
+
+    @JvmField
+    public val setHiddenAttributeName: MethodStringName2<FileAccess, Error, String, Boolean> =
+        MethodStringName2<FileAccess, Error, String, Boolean>("set_hidden_attribute")
+
+    @JvmField
+    public val setReadOnlyAttributeName: MethodStringName2<FileAccess, Error, String, Boolean> =
+        MethodStringName2<FileAccess, Error, String, Boolean>("set_read_only_attribute")
+
+    @JvmField
+    public val getReadOnlyAttributeName: MethodStringName1<FileAccess, Boolean, String> =
+        MethodStringName1<FileAccess, Boolean, String>("get_read_only_attribute")
+
+    @JvmField
+    public val getExtendedAttributeName:
+        MethodStringName2<FileAccess, PackedByteArray, String, String> =
+        MethodStringName2<FileAccess, PackedByteArray, String, String>("get_extended_attribute")
+
+    @JvmField
+    public val getExtendedAttributeStringName: MethodStringName2<FileAccess, String, String, String>
+        = MethodStringName2<FileAccess, String, String, String>("get_extended_attribute_string")
+
+    @JvmField
+    public val setExtendedAttributeName:
+        MethodStringName3<FileAccess, Error, String, String, PackedByteArray> =
+        MethodStringName3<FileAccess, Error, String, String, PackedByteArray>("set_extended_attribute")
+
+    @JvmField
+    public val setExtendedAttributeStringName:
+        MethodStringName3<FileAccess, Error, String, String, String> =
+        MethodStringName3<FileAccess, Error, String, String, String>("set_extended_attribute_string")
+
+    @JvmField
+    public val removeExtendedAttributeName: MethodStringName2<FileAccess, Error, String, String> =
+        MethodStringName2<FileAccess, Error, String, String>("remove_extended_attribute")
+
+    @JvmField
+    public val getExtendedAttributesListName:
+        MethodStringName1<FileAccess, PackedStringArray, String> =
+        MethodStringName1<FileAccess, PackedStringArray, String>("get_extended_attributes_list")
+
     /**
      * Creates a new [FileAccess] object and opens the file for writing or reading, depending on the
      * flags.

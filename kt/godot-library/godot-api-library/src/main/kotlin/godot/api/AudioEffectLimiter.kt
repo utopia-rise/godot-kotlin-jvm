@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -126,7 +129,39 @@ public open class AudioEffectLimiter : AudioEffect() {
     throw NotImplementedError("AudioEffectLimiter::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCeilingDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_ceiling_db")
+
+    @JvmField
+    public val getCeilingDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_ceiling_db")
+
+    @JvmField
+    public val setThresholdDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_threshold_db")
+
+    @JvmField
+    public val getThresholdDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_threshold_db")
+
+    @JvmField
+    public val setSoftClipDbName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_db")
+
+    @JvmField
+    public val getSoftClipDbName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_db")
+
+    @JvmField
+    public val setSoftClipRatioName: MethodStringName1<AudioEffectLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectLimiter, Unit, Float>("set_soft_clip_ratio")
+
+    @JvmField
+    public val getSoftClipRatioName: MethodStringName0<AudioEffectLimiter, Float> =
+        MethodStringName0<AudioEffectLimiter, Float>("get_soft_clip_ratio")
+  }
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =

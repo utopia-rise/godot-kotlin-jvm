@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -84,7 +87,23 @@ public open class AudioEffectAmplify : AudioEffect() {
     throw NotImplementedError("AudioEffectAmplify::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setVolumeDbName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
+        MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_db")
+
+    @JvmField
+    public val getVolumeDbName: MethodStringName0<AudioEffectAmplify, Float> =
+        MethodStringName0<AudioEffectAmplify, Float>("get_volume_db")
+
+    @JvmField
+    public val setVolumeLinearName: MethodStringName1<AudioEffectAmplify, Unit, Float> =
+        MethodStringName1<AudioEffectAmplify, Unit, Float>("set_volume_linear")
+
+    @JvmField
+    public val getVolumeLinearName: MethodStringName0<AudioEffectAmplify, Float> =
+        MethodStringName0<AudioEffectAmplify, Float>("get_volume_linear")
+  }
 
   public object MethodBindings {
     internal val setVolumeDbPtr: VoidPtr =

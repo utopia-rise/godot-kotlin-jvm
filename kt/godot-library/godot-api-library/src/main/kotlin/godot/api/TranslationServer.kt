@@ -98,6 +98,10 @@ public object TranslationServer : Object() {
       MethodStringName1<TranslationServer, String, String>("get_locale_name")
 
   @JvmField
+  public val getPluralRulesName: MethodStringName1<TranslationServer, String, String> =
+      MethodStringName1<TranslationServer, String, String>("get_plural_rules")
+
+  @JvmField
   public val translateName: MethodStringName2<TranslationServer, StringName, StringName, StringName>
       = MethodStringName2<TranslationServer, StringName, StringName, StringName>("translate")
 
@@ -119,6 +123,24 @@ public object TranslationServer : Object() {
       MethodStringName1<TranslationServer, Translation?, String>("get_translation_object")
 
   @JvmField
+  public val getTranslationsName: MethodStringName0<TranslationServer, VariantArray<Translation>> =
+      MethodStringName0<TranslationServer, VariantArray<Translation>>("get_translations")
+
+  @JvmField
+  public val findTranslationsName:
+      MethodStringName2<TranslationServer, VariantArray<Translation>, String, Boolean> =
+      MethodStringName2<TranslationServer, VariantArray<Translation>, String, Boolean>("find_translations")
+
+  @JvmField
+  public val hasTranslationForLocaleName:
+      MethodStringName2<TranslationServer, Boolean, String, Boolean> =
+      MethodStringName2<TranslationServer, Boolean, String, Boolean>("has_translation_for_locale")
+
+  @JvmField
+  public val hasTranslationName: MethodStringName1<TranslationServer, Boolean, Translation?> =
+      MethodStringName1<TranslationServer, Boolean, Translation?>("has_translation")
+
+  @JvmField
   public val hasDomainName: MethodStringName1<TranslationServer, Boolean, StringName> =
       MethodStringName1<TranslationServer, Boolean, StringName>("has_domain")
 
@@ -138,6 +160,18 @@ public object TranslationServer : Object() {
   @JvmField
   public val getLoadedLocalesName: MethodStringName0<TranslationServer, PackedStringArray> =
       MethodStringName0<TranslationServer, PackedStringArray>("get_loaded_locales")
+
+  @JvmField
+  public val formatNumberName: MethodStringName2<TranslationServer, String, String, String> =
+      MethodStringName2<TranslationServer, String, String, String>("format_number")
+
+  @JvmField
+  public val getPercentSignName: MethodStringName1<TranslationServer, String, String> =
+      MethodStringName1<TranslationServer, String, String>("get_percent_sign")
+
+  @JvmField
+  public val parseNumberName: MethodStringName2<TranslationServer, String, String, String> =
+      MethodStringName2<TranslationServer, String, String, String>("parse_number")
 
   @JvmField
   public val isPseudolocalizationEnabledName: MethodStringName0<TranslationServer, Boolean> =

@@ -327,6 +327,14 @@ public open class Translation : Resource() {
     @JvmField
     public val getMessageCountName: MethodStringName0<Translation, Int> =
         MethodStringName0<Translation, Int>("get_message_count")
+
+    @JvmField
+    public val setPluralRulesOverrideName: MethodStringName1<Translation, Unit, String> =
+        MethodStringName1<Translation, Unit, String>("set_plural_rules_override")
+
+    @JvmField
+    public val getPluralRulesOverrideName: MethodStringName0<Translation, String> =
+        MethodStringName0<Translation, String>("get_plural_rules_override")
   }
 
   public object MethodBindings {

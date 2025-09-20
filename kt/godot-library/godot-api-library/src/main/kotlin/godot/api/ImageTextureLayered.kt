@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Base class for [Texture2DArray], [Cubemap] and [CubemapArray]. Cannot be used directly, but
@@ -145,7 +148,16 @@ public open class ImageTextureLayered internal constructor() : TextureLayered() 
     throw NotImplementedError("ImageTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val createFromImagesName:
+        MethodStringName1<ImageTextureLayered, Error, VariantArray<Image>> =
+        MethodStringName1<ImageTextureLayered, Error, VariantArray<Image>>("create_from_images")
+
+    @JvmField
+    public val updateLayerName: MethodStringName2<ImageTextureLayered, Unit, Image?, Int> =
+        MethodStringName2<ImageTextureLayered, Unit, Image?, Int>("update_layer")
+  }
 
   public object MethodBindings {
     internal val createFromImagesPtr: VoidPtr =

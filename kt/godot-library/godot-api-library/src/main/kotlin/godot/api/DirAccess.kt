@@ -632,8 +632,16 @@ public open class DirAccess internal constructor() : RefCounted() {
         MethodStringName0<DirAccess, Boolean>("get_include_hidden")
 
     @JvmField
+    public val getFilesystemTypeName: MethodStringName0<DirAccess, String> =
+        MethodStringName0<DirAccess, String>("get_filesystem_type")
+
+    @JvmField
     public val isCaseSensitiveName: MethodStringName1<DirAccess, Boolean, String> =
         MethodStringName1<DirAccess, Boolean, String>("is_case_sensitive")
+
+    @JvmField
+    public val isEquivalentName: MethodStringName2<DirAccess, Boolean, String, String> =
+        MethodStringName2<DirAccess, Boolean, String, String>("is_equivalent")
 
     /**
      * Creates a new [DirAccess] object and opens an existing directory of the filesystem. The

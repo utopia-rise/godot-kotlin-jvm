@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Dictionary
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.NIL
@@ -23,6 +24,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -182,7 +184,11 @@ public open class PlaceholderMesh : Mesh() {
     throw NotImplementedError("PlaceholderMesh::_getAabb can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAabbName: MethodStringName1<PlaceholderMesh, Unit, AABB> =
+        MethodStringName1<PlaceholderMesh, Unit, AABB>("set_aabb")
+  }
 
   public object MethodBindings {
     internal val setAabbPtr: VoidPtr =

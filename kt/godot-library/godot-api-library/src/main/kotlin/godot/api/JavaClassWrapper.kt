@@ -14,7 +14,6 @@ import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -51,7 +50,7 @@ public object JavaClassWrapper : Object() {
   public val getExceptionName: MethodStringName0<JavaClassWrapper, JavaObject?> =
       MethodStringName0<JavaClassWrapper, JavaObject?>("get_exception")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(12)
   }
 

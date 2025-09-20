@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -124,7 +127,23 @@ public open class OpenXRRenderModelManager : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTrackerName: MethodStringName0<OpenXRRenderModelManager, RenderModelTracker> =
+        MethodStringName0<OpenXRRenderModelManager, RenderModelTracker>("get_tracker")
+
+    @JvmField
+    public val setTrackerName: MethodStringName1<OpenXRRenderModelManager, Unit, RenderModelTracker>
+        = MethodStringName1<OpenXRRenderModelManager, Unit, RenderModelTracker>("set_tracker")
+
+    @JvmField
+    public val getMakeLocalToPoseName: MethodStringName0<OpenXRRenderModelManager, String> =
+        MethodStringName0<OpenXRRenderModelManager, String>("get_make_local_to_pose")
+
+    @JvmField
+    public val setMakeLocalToPoseName: MethodStringName1<OpenXRRenderModelManager, Unit, String> =
+        MethodStringName1<OpenXRRenderModelManager, Unit, String>("set_make_local_to_pose")
+  }
 
   public object MethodBindings {
     internal val getTrackerPtr: VoidPtr =

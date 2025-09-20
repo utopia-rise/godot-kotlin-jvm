@@ -10,10 +10,12 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Configuration header for QR code markers. Pass this to
@@ -38,7 +40,12 @@ public open class OpenXRSpatialCapabilityConfigurationMicroQrCode :
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getEnabledComponentsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationMicroQrCode, PackedInt64Array> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationMicroQrCode, PackedInt64Array>("get_enabled_components")
+  }
 
   public object MethodBindings {
     internal val getEnabledComponentsPtr: VoidPtr =

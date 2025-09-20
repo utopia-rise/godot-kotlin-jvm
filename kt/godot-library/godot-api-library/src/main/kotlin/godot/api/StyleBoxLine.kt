@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
@@ -28,6 +30,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -186,7 +189,47 @@ public open class StyleBoxLine : StyleBox() {
     throw NotImplementedError("StyleBoxLine::_draw can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setColorName: MethodStringName1<StyleBoxLine, Unit, Color> =
+        MethodStringName1<StyleBoxLine, Unit, Color>("set_color")
+
+    @JvmField
+    public val getColorName: MethodStringName0<StyleBoxLine, Color> =
+        MethodStringName0<StyleBoxLine, Color>("get_color")
+
+    @JvmField
+    public val setThicknessName: MethodStringName1<StyleBoxLine, Unit, Int> =
+        MethodStringName1<StyleBoxLine, Unit, Int>("set_thickness")
+
+    @JvmField
+    public val getThicknessName: MethodStringName0<StyleBoxLine, Int> =
+        MethodStringName0<StyleBoxLine, Int>("get_thickness")
+
+    @JvmField
+    public val setGrowBeginName: MethodStringName1<StyleBoxLine, Unit, Float> =
+        MethodStringName1<StyleBoxLine, Unit, Float>("set_grow_begin")
+
+    @JvmField
+    public val getGrowBeginName: MethodStringName0<StyleBoxLine, Float> =
+        MethodStringName0<StyleBoxLine, Float>("get_grow_begin")
+
+    @JvmField
+    public val setGrowEndName: MethodStringName1<StyleBoxLine, Unit, Float> =
+        MethodStringName1<StyleBoxLine, Unit, Float>("set_grow_end")
+
+    @JvmField
+    public val getGrowEndName: MethodStringName0<StyleBoxLine, Float> =
+        MethodStringName0<StyleBoxLine, Float>("get_grow_end")
+
+    @JvmField
+    public val setVerticalName: MethodStringName1<StyleBoxLine, Unit, Boolean> =
+        MethodStringName1<StyleBoxLine, Unit, Boolean>("set_vertical")
+
+    @JvmField
+    public val isVerticalName: MethodStringName0<StyleBoxLine, Boolean> =
+        MethodStringName0<StyleBoxLine, Boolean>("is_vertical")
+  }
 
   public object MethodBindings {
     internal val setColorPtr: VoidPtr =

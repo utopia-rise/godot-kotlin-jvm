@@ -148,6 +148,14 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
         MethodStringName0<VisibleOnScreenNotifier2D, Rect2>("get_rect")
 
     @JvmField
+    public val setShowRectName: MethodStringName1<VisibleOnScreenNotifier2D, Unit, Boolean> =
+        MethodStringName1<VisibleOnScreenNotifier2D, Unit, Boolean>("set_show_rect")
+
+    @JvmField
+    public val isShowingRectName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
+        MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_showing_rect")
+
+    @JvmField
     public val isOnScreenName: MethodStringName0<VisibleOnScreenNotifier2D, Boolean> =
         MethodStringName0<VisibleOnScreenNotifier2D, Boolean>("is_on_screen")
   }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -17,6 +18,7 @@ import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries 3d mesh result data when calling
@@ -46,7 +48,16 @@ public open class OpenXRSpatialComponentMesh3DList : OpenXRSpatialComponentData(
     return (TransferContext.readReturnValue(OBJECT) as Mesh?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getTransformName:
+        MethodStringName1<OpenXRSpatialComponentMesh3DList, Transform3D, Long> =
+        MethodStringName1<OpenXRSpatialComponentMesh3DList, Transform3D, Long>("get_transform")
+
+    @JvmField
+    public val getMeshName: MethodStringName1<OpenXRSpatialComponentMesh3DList, Mesh?, Long> =
+        MethodStringName1<OpenXRSpatialComponentMesh3DList, Mesh?, Long>("get_mesh")
+  }
 
   public object MethodBindings {
     internal val getTransformPtr: VoidPtr =

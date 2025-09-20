@@ -140,7 +140,7 @@ public object EngineDebugger : Object() {
   public val clearBreakpointsName: MethodStringName0<EngineDebugger, Unit> =
       MethodStringName0<EngineDebugger, Unit>("clear_breakpoints")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(5)
   }
 

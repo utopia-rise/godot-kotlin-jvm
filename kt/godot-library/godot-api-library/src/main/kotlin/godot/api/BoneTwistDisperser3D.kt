@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Quaternion
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -27,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -415,7 +420,146 @@ public open class BoneTwistDisperser3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSettingCountName: MethodStringName1<BoneTwistDisperser3D, Unit, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Unit, Int>("set_setting_count")
+
+    @JvmField
+    public val getSettingCountName: MethodStringName0<BoneTwistDisperser3D, Int> =
+        MethodStringName0<BoneTwistDisperser3D, Int>("get_setting_count")
+
+    @JvmField
+    public val clearSettingsName: MethodStringName0<BoneTwistDisperser3D, Unit> =
+        MethodStringName0<BoneTwistDisperser3D, Unit>("clear_settings")
+
+    @JvmField
+    public val setMutableBoneAxesName: MethodStringName1<BoneTwistDisperser3D, Unit, Boolean> =
+        MethodStringName1<BoneTwistDisperser3D, Unit, Boolean>("set_mutable_bone_axes")
+
+    @JvmField
+    public val areBoneAxesMutableName: MethodStringName0<BoneTwistDisperser3D, Boolean> =
+        MethodStringName0<BoneTwistDisperser3D, Boolean>("are_bone_axes_mutable")
+
+    @JvmField
+    public val setRootBoneNameName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, String> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, String>("set_root_bone_name")
+
+    @JvmField
+    public val getRootBoneNameName: MethodStringName1<BoneTwistDisperser3D, String, Int> =
+        MethodStringName1<BoneTwistDisperser3D, String, Int>("get_root_bone_name")
+
+    @JvmField
+    public val setRootBoneName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Int> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Int>("set_root_bone")
+
+    @JvmField
+    public val getRootBoneName: MethodStringName1<BoneTwistDisperser3D, Int, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Int, Int>("get_root_bone")
+
+    @JvmField
+    public val setEndBoneNameName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, String> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, String>("set_end_bone_name")
+
+    @JvmField
+    public val getEndBoneNameName: MethodStringName1<BoneTwistDisperser3D, String, Int> =
+        MethodStringName1<BoneTwistDisperser3D, String, Int>("get_end_bone_name")
+
+    @JvmField
+    public val setEndBoneName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Int> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Int>("set_end_bone")
+
+    @JvmField
+    public val getEndBoneName: MethodStringName1<BoneTwistDisperser3D, Int, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Int, Int>("get_end_bone")
+
+    @JvmField
+    public val getReferenceBoneNameName: MethodStringName1<BoneTwistDisperser3D, String, Int> =
+        MethodStringName1<BoneTwistDisperser3D, String, Int>("get_reference_bone_name")
+
+    @JvmField
+    public val getReferenceBoneName: MethodStringName1<BoneTwistDisperser3D, Int, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Int, Int>("get_reference_bone")
+
+    @JvmField
+    public val setExtendEndBoneName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Boolean> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Boolean>("set_extend_end_bone")
+
+    @JvmField
+    public val isEndBoneExtendedName: MethodStringName1<BoneTwistDisperser3D, Boolean, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Boolean, Int>("is_end_bone_extended")
+
+    @JvmField
+    public val setEndBoneDirectionName:
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, SkeletonModifier3D.BoneDirection> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, SkeletonModifier3D.BoneDirection>("set_end_bone_direction")
+
+    @JvmField
+    public val getEndBoneDirectionName:
+        MethodStringName1<BoneTwistDisperser3D, SkeletonModifier3D.BoneDirection, Int> =
+        MethodStringName1<BoneTwistDisperser3D, SkeletonModifier3D.BoneDirection, Int>("get_end_bone_direction")
+
+    @JvmField
+    public val setTwistFromRestName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Boolean> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Boolean>("set_twist_from_rest")
+
+    @JvmField
+    public val isTwistFromRestName: MethodStringName1<BoneTwistDisperser3D, Boolean, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Boolean, Int>("is_twist_from_rest")
+
+    @JvmField
+    public val setTwistFromName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Quaternion> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Quaternion>("set_twist_from")
+
+    @JvmField
+    public val getTwistFromName: MethodStringName1<BoneTwistDisperser3D, Quaternion, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Quaternion, Int>("get_twist_from")
+
+    @JvmField
+    public val setDisperseModeName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, DisperseMode>
+        = MethodStringName2<BoneTwistDisperser3D, Unit, Int, DisperseMode>("set_disperse_mode")
+
+    @JvmField
+    public val getDisperseModeName: MethodStringName1<BoneTwistDisperser3D, DisperseMode, Int> =
+        MethodStringName1<BoneTwistDisperser3D, DisperseMode, Int>("get_disperse_mode")
+
+    @JvmField
+    public val setWeightPositionName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Float> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Float>("set_weight_position")
+
+    @JvmField
+    public val getWeightPositionName: MethodStringName1<BoneTwistDisperser3D, Float, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Float, Int>("get_weight_position")
+
+    @JvmField
+    public val setDampingCurveName: MethodStringName2<BoneTwistDisperser3D, Unit, Int, Curve?> =
+        MethodStringName2<BoneTwistDisperser3D, Unit, Int, Curve?>("set_damping_curve")
+
+    @JvmField
+    public val getDampingCurveName: MethodStringName1<BoneTwistDisperser3D, Curve?, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Curve?, Int>("get_damping_curve")
+
+    @JvmField
+    public val getJointBoneNameName: MethodStringName2<BoneTwistDisperser3D, String, Int, Int> =
+        MethodStringName2<BoneTwistDisperser3D, String, Int, Int>("get_joint_bone_name")
+
+    @JvmField
+    public val getJointBoneName: MethodStringName2<BoneTwistDisperser3D, Int, Int, Int> =
+        MethodStringName2<BoneTwistDisperser3D, Int, Int, Int>("get_joint_bone")
+
+    @JvmField
+    public val getJointTwistAmountName: MethodStringName2<BoneTwistDisperser3D, Float, Int, Int> =
+        MethodStringName2<BoneTwistDisperser3D, Float, Int, Int>("get_joint_twist_amount")
+
+    @JvmField
+    public val setJointTwistAmountName:
+        MethodStringName3<BoneTwistDisperser3D, Unit, Int, Int, Float> =
+        MethodStringName3<BoneTwistDisperser3D, Unit, Int, Int, Float>("set_joint_twist_amount")
+
+    @JvmField
+    public val getJointCountName: MethodStringName1<BoneTwistDisperser3D, Int, Int> =
+        MethodStringName1<BoneTwistDisperser3D, Int, Int>("get_joint_count")
+  }
 
   public object MethodBindings {
     internal val setSettingCountPtr: VoidPtr =

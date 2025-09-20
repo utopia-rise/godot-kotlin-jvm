@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -24,6 +26,7 @@ import kotlin.Boolean
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Represents a class from the Java Native Interface. It is returned from [JavaClassWrapper.wrap].
@@ -81,7 +84,24 @@ public open class JavaClass : RefCounted() {
   public final fun hasJavaMethod(method: String): Boolean =
       hasJavaMethod(method.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getJavaClassNameName: MethodStringName0<JavaClass, String> =
+        MethodStringName0<JavaClass, String>("get_java_class_name")
+
+    @JvmField
+    public val getJavaMethodListName:
+        MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>> =
+        MethodStringName0<JavaClass, VariantArray<Dictionary<Any?, Any?>>>("get_java_method_list")
+
+    @JvmField
+    public val getJavaParentClassName: MethodStringName0<JavaClass, JavaClass?> =
+        MethodStringName0<JavaClass, JavaClass?>("get_java_parent_class")
+
+    @JvmField
+    public val hasJavaMethodName: MethodStringName1<JavaClass, Boolean, StringName> =
+        MethodStringName1<JavaClass, Boolean, StringName>("has_java_method")
+  }
 
   public object MethodBindings {
     internal val getJavaClassNamePtr: VoidPtr =

@@ -293,6 +293,10 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
         = MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Int>("disconnect_node")
 
     @JvmField
+    public val getNodeListName: MethodStringName0<AnimationNodeBlendTree, VariantArray<StringName>>
+        = MethodStringName0<AnimationNodeBlendTree, VariantArray<StringName>>("get_node_list")
+
+    @JvmField
     public val setNodePositionName:
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2> =
         MethodStringName2<AnimationNodeBlendTree, Unit, StringName, Vector2>("set_node_position")

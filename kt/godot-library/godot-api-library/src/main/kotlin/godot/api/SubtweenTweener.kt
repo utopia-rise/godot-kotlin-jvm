@@ -43,8 +43,8 @@ public open class SubtweenTweener : Tweener() {
 
   public companion object {
     @JvmField
-    public val setDelayName: MethodStringName1<SubtweenTweener, SubtweenTweener?, Double> =
-        MethodStringName1<SubtweenTweener, SubtweenTweener?, Double>("set_delay")
+    public val setDelayName: MethodStringName1<SubtweenTweener, SubtweenTweener, Double> =
+        MethodStringName1<SubtweenTweener, SubtweenTweener, Double>("set_delay")
   }
 
   public object MethodBindings {

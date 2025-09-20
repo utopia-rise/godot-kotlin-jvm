@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -22,6 +24,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -173,7 +176,39 @@ public open class ColorPickerButton : Button() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPickColorName: MethodStringName1<ColorPickerButton, Unit, Color> =
+        MethodStringName1<ColorPickerButton, Unit, Color>("set_pick_color")
+
+    @JvmField
+    public val getPickColorName: MethodStringName0<ColorPickerButton, Color> =
+        MethodStringName0<ColorPickerButton, Color>("get_pick_color")
+
+    @JvmField
+    public val getPickerName: MethodStringName0<ColorPickerButton, ColorPicker?> =
+        MethodStringName0<ColorPickerButton, ColorPicker?>("get_picker")
+
+    @JvmField
+    public val getPopupName: MethodStringName0<ColorPickerButton, PopupPanel?> =
+        MethodStringName0<ColorPickerButton, PopupPanel?>("get_popup")
+
+    @JvmField
+    public val setEditAlphaName: MethodStringName1<ColorPickerButton, Unit, Boolean> =
+        MethodStringName1<ColorPickerButton, Unit, Boolean>("set_edit_alpha")
+
+    @JvmField
+    public val isEditingAlphaName: MethodStringName0<ColorPickerButton, Boolean> =
+        MethodStringName0<ColorPickerButton, Boolean>("is_editing_alpha")
+
+    @JvmField
+    public val setEditIntensityName: MethodStringName1<ColorPickerButton, Unit, Boolean> =
+        MethodStringName1<ColorPickerButton, Unit, Boolean>("set_edit_intensity")
+
+    @JvmField
+    public val isEditingIntensityName: MethodStringName0<ColorPickerButton, Boolean> =
+        MethodStringName0<ColorPickerButton, Boolean>("is_editing_intensity")
+  }
 
   public object MethodBindings {
     internal val setPickColorPtr: VoidPtr =

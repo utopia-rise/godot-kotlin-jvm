@@ -51,8 +51,8 @@ public open class CallbackTweener : Tweener() {
 
   public companion object {
     @JvmField
-    public val setDelayName: MethodStringName1<CallbackTweener, CallbackTweener?, Double> =
-        MethodStringName1<CallbackTweener, CallbackTweener?, Double>("set_delay")
+    public val setDelayName: MethodStringName1<CallbackTweener, CallbackTweener, Double> =
+        MethodStringName1<CallbackTweener, CallbackTweener, Double>("set_delay")
   }
 
   public object MethodBindings {

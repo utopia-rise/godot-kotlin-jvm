@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -151,7 +154,40 @@ public open class AnimationTree : AnimationMixer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTreeRootName: MethodStringName1<AnimationTree, Unit, AnimationRootNode?> =
+        MethodStringName1<AnimationTree, Unit, AnimationRootNode?>("set_tree_root")
+
+    @JvmField
+    public val getTreeRootName: MethodStringName0<AnimationTree, AnimationRootNode?> =
+        MethodStringName0<AnimationTree, AnimationRootNode?>("get_tree_root")
+
+    @JvmField
+    public val setAdvanceExpressionBaseNodeName: MethodStringName1<AnimationTree, Unit, NodePath> =
+        MethodStringName1<AnimationTree, Unit, NodePath>("set_advance_expression_base_node")
+
+    @JvmField
+    public val getAdvanceExpressionBaseNodeName: MethodStringName0<AnimationTree, NodePath> =
+        MethodStringName0<AnimationTree, NodePath>("get_advance_expression_base_node")
+
+    @JvmField
+    public val setAnimationPlayerName: MethodStringName1<AnimationTree, Unit, NodePath> =
+        MethodStringName1<AnimationTree, Unit, NodePath>("set_animation_player")
+
+    @JvmField
+    public val getAnimationPlayerName: MethodStringName0<AnimationTree, NodePath> =
+        MethodStringName0<AnimationTree, NodePath>("get_animation_player")
+
+    @JvmField
+    public val setProcessCallbackName:
+        MethodStringName1<AnimationTree, Unit, AnimationProcessCallback> =
+        MethodStringName1<AnimationTree, Unit, AnimationProcessCallback>("set_process_callback")
+
+    @JvmField
+    public val getProcessCallbackName: MethodStringName0<AnimationTree, AnimationProcessCallback> =
+        MethodStringName0<AnimationTree, AnimationProcessCallback>("get_process_callback")
+  }
 
   public object MethodBindings {
     internal val setTreeRootPtr: VoidPtr =

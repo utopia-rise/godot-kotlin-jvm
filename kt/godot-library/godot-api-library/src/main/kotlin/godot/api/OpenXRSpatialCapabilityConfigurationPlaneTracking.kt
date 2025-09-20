@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Configuration header for plane tracking. Pass this to
@@ -71,7 +73,27 @@ public open class OpenXRSpatialCapabilityConfigurationPlaneTracking :
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val supportsMesh2dName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean>("supports_mesh_2d")
+
+    @JvmField
+    public val supportsPolygonsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean>("supports_polygons")
+
+    @JvmField
+    public val supportsLabelsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, Boolean>("supports_labels")
+
+    @JvmField
+    public val getEnabledComponentsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, PackedInt64Array> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationPlaneTracking, PackedInt64Array>("get_enabled_components")
+  }
 
   public object MethodBindings {
     internal val supportsMesh2dPtr: VoidPtr =

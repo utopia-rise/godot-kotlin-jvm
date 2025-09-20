@@ -182,6 +182,11 @@ public object Engine : Object() {
       MethodStringName1<Engine, ScriptLanguage?, Int>("get_script_language")
 
   @JvmField
+  public val captureScriptBacktracesName:
+      MethodStringName1<Engine, VariantArray<ScriptBacktrace>, Boolean> =
+      MethodStringName1<Engine, VariantArray<ScriptBacktrace>, Boolean>("capture_script_backtraces")
+
+  @JvmField
   public val isEditorHintName: MethodStringName0<Engine, Boolean> =
       MethodStringName0<Engine, Boolean>("is_editor_hint")
 

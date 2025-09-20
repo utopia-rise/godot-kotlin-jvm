@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Signal0
@@ -33,6 +36,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -521,7 +525,148 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getRidName: MethodStringName0<CollisionObject2D, RID> =
+        MethodStringName0<CollisionObject2D, RID>("get_rid")
+
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<CollisionObject2D, Unit, Long> =
+        MethodStringName1<CollisionObject2D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<CollisionObject2D, Long> =
+        MethodStringName0<CollisionObject2D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<CollisionObject2D, Unit, Long> =
+        MethodStringName1<CollisionObject2D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<CollisionObject2D, Long> =
+        MethodStringName0<CollisionObject2D, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionLayerValueName: MethodStringName2<CollisionObject2D, Unit, Int, Boolean>
+        = MethodStringName2<CollisionObject2D, Unit, Int, Boolean>("set_collision_layer_value")
+
+    @JvmField
+    public val getCollisionLayerValueName: MethodStringName1<CollisionObject2D, Boolean, Int> =
+        MethodStringName1<CollisionObject2D, Boolean, Int>("get_collision_layer_value")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<CollisionObject2D, Unit, Int, Boolean> =
+        MethodStringName2<CollisionObject2D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<CollisionObject2D, Boolean, Int> =
+        MethodStringName1<CollisionObject2D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setCollisionPriorityName: MethodStringName1<CollisionObject2D, Unit, Float> =
+        MethodStringName1<CollisionObject2D, Unit, Float>("set_collision_priority")
+
+    @JvmField
+    public val getCollisionPriorityName: MethodStringName0<CollisionObject2D, Float> =
+        MethodStringName0<CollisionObject2D, Float>("get_collision_priority")
+
+    @JvmField
+    public val setDisableModeName: MethodStringName1<CollisionObject2D, Unit, DisableMode> =
+        MethodStringName1<CollisionObject2D, Unit, DisableMode>("set_disable_mode")
+
+    @JvmField
+    public val getDisableModeName: MethodStringName0<CollisionObject2D, DisableMode> =
+        MethodStringName0<CollisionObject2D, DisableMode>("get_disable_mode")
+
+    @JvmField
+    public val setPickableName: MethodStringName1<CollisionObject2D, Unit, Boolean> =
+        MethodStringName1<CollisionObject2D, Unit, Boolean>("set_pickable")
+
+    @JvmField
+    public val isPickableName: MethodStringName0<CollisionObject2D, Boolean> =
+        MethodStringName0<CollisionObject2D, Boolean>("is_pickable")
+
+    @JvmField
+    public val createShapeOwnerName: MethodStringName1<CollisionObject2D, Long, Object?> =
+        MethodStringName1<CollisionObject2D, Long, Object?>("create_shape_owner")
+
+    @JvmField
+    public val removeShapeOwnerName: MethodStringName1<CollisionObject2D, Unit, Long> =
+        MethodStringName1<CollisionObject2D, Unit, Long>("remove_shape_owner")
+
+    @JvmField
+    public val getShapeOwnersName: MethodStringName0<CollisionObject2D, PackedInt32Array> =
+        MethodStringName0<CollisionObject2D, PackedInt32Array>("get_shape_owners")
+
+    @JvmField
+    public val shapeOwnerSetTransformName:
+        MethodStringName2<CollisionObject2D, Unit, Long, Transform2D> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Transform2D>("shape_owner_set_transform")
+
+    @JvmField
+    public val shapeOwnerGetTransformName: MethodStringName1<CollisionObject2D, Transform2D, Long> =
+        MethodStringName1<CollisionObject2D, Transform2D, Long>("shape_owner_get_transform")
+
+    @JvmField
+    public val shapeOwnerGetOwnerName: MethodStringName1<CollisionObject2D, Object?, Long> =
+        MethodStringName1<CollisionObject2D, Object?, Long>("shape_owner_get_owner")
+
+    @JvmField
+    public val shapeOwnerSetDisabledName: MethodStringName2<CollisionObject2D, Unit, Long, Boolean>
+        = MethodStringName2<CollisionObject2D, Unit, Long, Boolean>("shape_owner_set_disabled")
+
+    @JvmField
+    public val isShapeOwnerDisabledName: MethodStringName1<CollisionObject2D, Boolean, Long> =
+        MethodStringName1<CollisionObject2D, Boolean, Long>("is_shape_owner_disabled")
+
+    @JvmField
+    public val shapeOwnerSetOneWayCollisionName:
+        MethodStringName2<CollisionObject2D, Unit, Long, Boolean> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Boolean>("shape_owner_set_one_way_collision")
+
+    @JvmField
+    public val isShapeOwnerOneWayCollisionEnabledName:
+        MethodStringName1<CollisionObject2D, Boolean, Long> =
+        MethodStringName1<CollisionObject2D, Boolean, Long>("is_shape_owner_one_way_collision_enabled")
+
+    @JvmField
+    public val shapeOwnerSetOneWayCollisionMarginName:
+        MethodStringName2<CollisionObject2D, Unit, Long, Float> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Float>("shape_owner_set_one_way_collision_margin")
+
+    @JvmField
+    public val getShapeOwnerOneWayCollisionMarginName:
+        MethodStringName1<CollisionObject2D, Float, Long> =
+        MethodStringName1<CollisionObject2D, Float, Long>("get_shape_owner_one_way_collision_margin")
+
+    @JvmField
+    public val shapeOwnerAddShapeName: MethodStringName2<CollisionObject2D, Unit, Long, Shape2D> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Shape2D>("shape_owner_add_shape")
+
+    @JvmField
+    public val shapeOwnerGetShapeCountName: MethodStringName1<CollisionObject2D, Int, Long> =
+        MethodStringName1<CollisionObject2D, Int, Long>("shape_owner_get_shape_count")
+
+    @JvmField
+    public val shapeOwnerGetShapeName: MethodStringName2<CollisionObject2D, Shape2D?, Long, Int> =
+        MethodStringName2<CollisionObject2D, Shape2D?, Long, Int>("shape_owner_get_shape")
+
+    @JvmField
+    public val shapeOwnerGetShapeIndexName: MethodStringName2<CollisionObject2D, Int, Long, Int> =
+        MethodStringName2<CollisionObject2D, Int, Long, Int>("shape_owner_get_shape_index")
+
+    @JvmField
+    public val shapeOwnerRemoveShapeName: MethodStringName2<CollisionObject2D, Unit, Long, Int> =
+        MethodStringName2<CollisionObject2D, Unit, Long, Int>("shape_owner_remove_shape")
+
+    @JvmField
+    public val shapeOwnerClearShapesName: MethodStringName1<CollisionObject2D, Unit, Long> =
+        MethodStringName1<CollisionObject2D, Unit, Long>("shape_owner_clear_shapes")
+
+    @JvmField
+    public val shapeFindOwnerName: MethodStringName1<CollisionObject2D, Long, Int> =
+        MethodStringName1<CollisionObject2D, Long, Int>("shape_find_owner")
+  }
 
   public object MethodBindings {
     internal val getRidPtr: VoidPtr =

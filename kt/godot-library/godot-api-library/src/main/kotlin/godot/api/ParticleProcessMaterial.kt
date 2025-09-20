@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -34,6 +37,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -2993,7 +2997,408 @@ public open class ParticleProcessMaterial : Material() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDirectionName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_direction")
+
+    @JvmField
+    public val getDirectionName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_direction")
+
+    @JvmField
+    public val setInheritVelocityRatioName: MethodStringName1<ParticleProcessMaterial, Unit, Double>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Double>("set_inherit_velocity_ratio")
+
+    @JvmField
+    public val getInheritVelocityRatioName: MethodStringName0<ParticleProcessMaterial, Double> =
+        MethodStringName0<ParticleProcessMaterial, Double>("get_inherit_velocity_ratio")
+
+    @JvmField
+    public val setSpreadName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_spread")
+
+    @JvmField
+    public val getSpreadName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_spread")
+
+    @JvmField
+    public val setFlatnessName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_flatness")
+
+    @JvmField
+    public val getFlatnessName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_flatness")
+
+    @JvmField
+    public val setParamName: MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Vector2> =
+        MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Vector2>("set_param")
+
+    @JvmField
+    public val getParamName: MethodStringName1<ParticleProcessMaterial, Vector2, Parameter> =
+        MethodStringName1<ParticleProcessMaterial, Vector2, Parameter>("get_param")
+
+    @JvmField
+    public val setParamMinName: MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Float> =
+        MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Float>("set_param_min")
+
+    @JvmField
+    public val getParamMinName: MethodStringName1<ParticleProcessMaterial, Float, Parameter> =
+        MethodStringName1<ParticleProcessMaterial, Float, Parameter>("get_param_min")
+
+    @JvmField
+    public val setParamMaxName: MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Float> =
+        MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Float>("set_param_max")
+
+    @JvmField
+    public val getParamMaxName: MethodStringName1<ParticleProcessMaterial, Float, Parameter> =
+        MethodStringName1<ParticleProcessMaterial, Float, Parameter>("get_param_max")
+
+    @JvmField
+    public val setParamTextureName:
+        MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Texture2D?> =
+        MethodStringName2<ParticleProcessMaterial, Unit, Parameter, Texture2D?>("set_param_texture")
+
+    @JvmField
+    public val getParamTextureName:
+        MethodStringName1<ParticleProcessMaterial, Texture2D?, Parameter> =
+        MethodStringName1<ParticleProcessMaterial, Texture2D?, Parameter>("get_param_texture")
+
+    @JvmField
+    public val setColorName: MethodStringName1<ParticleProcessMaterial, Unit, Color> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Color>("set_color")
+
+    @JvmField
+    public val getColorName: MethodStringName0<ParticleProcessMaterial, Color> =
+        MethodStringName0<ParticleProcessMaterial, Color>("get_color")
+
+    @JvmField
+    public val setColorRampName: MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_color_ramp")
+
+    @JvmField
+    public val getColorRampName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_color_ramp")
+
+    @JvmField
+    public val setAlphaCurveName: MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_alpha_curve")
+
+    @JvmField
+    public val getAlphaCurveName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_alpha_curve")
+
+    @JvmField
+    public val setEmissionCurveName: MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_emission_curve")
+
+    @JvmField
+    public val getEmissionCurveName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_emission_curve")
+
+    @JvmField
+    public val setColorInitialRampName: MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_color_initial_ramp")
+
+    @JvmField
+    public val getColorInitialRampName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_color_initial_ramp")
+
+    @JvmField
+    public val setVelocityLimitCurveName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_velocity_limit_curve")
+
+    @JvmField
+    public val getVelocityLimitCurveName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_velocity_limit_curve")
+
+    @JvmField
+    public val setParticleFlagName:
+        MethodStringName2<ParticleProcessMaterial, Unit, ParticleFlags, Boolean> =
+        MethodStringName2<ParticleProcessMaterial, Unit, ParticleFlags, Boolean>("set_particle_flag")
+
+    @JvmField
+    public val getParticleFlagName:
+        MethodStringName1<ParticleProcessMaterial, Boolean, ParticleFlags> =
+        MethodStringName1<ParticleProcessMaterial, Boolean, ParticleFlags>("get_particle_flag")
+
+    @JvmField
+    public val setVelocityPivotName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_velocity_pivot")
+
+    @JvmField
+    public val getVelocityPivotName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_velocity_pivot")
+
+    @JvmField
+    public val setEmissionShapeName: MethodStringName1<ParticleProcessMaterial, Unit, EmissionShape>
+        = MethodStringName1<ParticleProcessMaterial, Unit, EmissionShape>("set_emission_shape")
+
+    @JvmField
+    public val getEmissionShapeName: MethodStringName0<ParticleProcessMaterial, EmissionShape> =
+        MethodStringName0<ParticleProcessMaterial, EmissionShape>("get_emission_shape")
+
+    @JvmField
+    public val setEmissionSphereRadiusName: MethodStringName1<ParticleProcessMaterial, Unit, Float>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_emission_sphere_radius")
+
+    @JvmField
+    public val getEmissionSphereRadiusName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_emission_sphere_radius")
+
+    @JvmField
+    public val setEmissionBoxExtentsName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_emission_box_extents")
+
+    @JvmField
+    public val getEmissionBoxExtentsName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_emission_box_extents")
+
+    @JvmField
+    public val setEmissionPointTextureName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_emission_point_texture")
+
+    @JvmField
+    public val getEmissionPointTextureName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_emission_point_texture")
+
+    @JvmField
+    public val setEmissionNormalTextureName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_emission_normal_texture")
+
+    @JvmField
+    public val getEmissionNormalTextureName: MethodStringName0<ParticleProcessMaterial, Texture2D?>
+        = MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_emission_normal_texture")
+
+    @JvmField
+    public val setEmissionColorTextureName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Texture2D?>("set_emission_color_texture")
+
+    @JvmField
+    public val getEmissionColorTextureName: MethodStringName0<ParticleProcessMaterial, Texture2D?> =
+        MethodStringName0<ParticleProcessMaterial, Texture2D?>("get_emission_color_texture")
+
+    @JvmField
+    public val setEmissionPointCountName: MethodStringName1<ParticleProcessMaterial, Unit, Int> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Int>("set_emission_point_count")
+
+    @JvmField
+    public val getEmissionPointCountName: MethodStringName0<ParticleProcessMaterial, Int> =
+        MethodStringName0<ParticleProcessMaterial, Int>("get_emission_point_count")
+
+    @JvmField
+    public val setEmissionRingAxisName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_emission_ring_axis")
+
+    @JvmField
+    public val getEmissionRingAxisName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_emission_ring_axis")
+
+    @JvmField
+    public val setEmissionRingHeightName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_emission_ring_height")
+
+    @JvmField
+    public val getEmissionRingHeightName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_emission_ring_height")
+
+    @JvmField
+    public val setEmissionRingRadiusName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_emission_ring_radius")
+
+    @JvmField
+    public val getEmissionRingRadiusName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_emission_ring_radius")
+
+    @JvmField
+    public val setEmissionRingInnerRadiusName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_emission_ring_inner_radius")
+
+    @JvmField
+    public val getEmissionRingInnerRadiusName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_emission_ring_inner_radius")
+
+    @JvmField
+    public val setEmissionRingConeAngleName: MethodStringName1<ParticleProcessMaterial, Unit, Float>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_emission_ring_cone_angle")
+
+    @JvmField
+    public val getEmissionRingConeAngleName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_emission_ring_cone_angle")
+
+    @JvmField
+    public val setEmissionShapeOffsetName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_emission_shape_offset")
+
+    @JvmField
+    public val getEmissionShapeOffsetName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_emission_shape_offset")
+
+    @JvmField
+    public val setEmissionShapeScaleName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_emission_shape_scale")
+
+    @JvmField
+    public val getEmissionShapeScaleName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_emission_shape_scale")
+
+    @JvmField
+    public val getTurbulenceEnabledName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("get_turbulence_enabled")
+
+    @JvmField
+    public val setTurbulenceEnabledName: MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_turbulence_enabled")
+
+    @JvmField
+    public val getTurbulenceNoiseStrengthName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_turbulence_noise_strength")
+
+    @JvmField
+    public val setTurbulenceNoiseStrengthName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_turbulence_noise_strength")
+
+    @JvmField
+    public val getTurbulenceNoiseScaleName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_turbulence_noise_scale")
+
+    @JvmField
+    public val setTurbulenceNoiseScaleName: MethodStringName1<ParticleProcessMaterial, Unit, Float>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_turbulence_noise_scale")
+
+    @JvmField
+    public val getTurbulenceNoiseSpeedRandomName: MethodStringName0<ParticleProcessMaterial, Float>
+        = MethodStringName0<ParticleProcessMaterial, Float>("get_turbulence_noise_speed_random")
+
+    @JvmField
+    public val setTurbulenceNoiseSpeedRandomName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_turbulence_noise_speed_random")
+
+    @JvmField
+    public val getTurbulenceNoiseSpeedName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_turbulence_noise_speed")
+
+    @JvmField
+    public val setTurbulenceNoiseSpeedName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_turbulence_noise_speed")
+
+    @JvmField
+    public val getGravityName: MethodStringName0<ParticleProcessMaterial, Vector3> =
+        MethodStringName0<ParticleProcessMaterial, Vector3>("get_gravity")
+
+    @JvmField
+    public val setGravityName: MethodStringName1<ParticleProcessMaterial, Unit, Vector3> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Vector3>("set_gravity")
+
+    @JvmField
+    public val setLifetimeRandomnessName: MethodStringName1<ParticleProcessMaterial, Unit, Double> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Double>("set_lifetime_randomness")
+
+    @JvmField
+    public val getLifetimeRandomnessName: MethodStringName0<ParticleProcessMaterial, Double> =
+        MethodStringName0<ParticleProcessMaterial, Double>("get_lifetime_randomness")
+
+    @JvmField
+    public val getSubEmitterModeName: MethodStringName0<ParticleProcessMaterial, SubEmitterMode> =
+        MethodStringName0<ParticleProcessMaterial, SubEmitterMode>("get_sub_emitter_mode")
+
+    @JvmField
+    public val setSubEmitterModeName:
+        MethodStringName1<ParticleProcessMaterial, Unit, SubEmitterMode> =
+        MethodStringName1<ParticleProcessMaterial, Unit, SubEmitterMode>("set_sub_emitter_mode")
+
+    @JvmField
+    public val getSubEmitterFrequencyName: MethodStringName0<ParticleProcessMaterial, Double> =
+        MethodStringName0<ParticleProcessMaterial, Double>("get_sub_emitter_frequency")
+
+    @JvmField
+    public val setSubEmitterFrequencyName: MethodStringName1<ParticleProcessMaterial, Unit, Double>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Double>("set_sub_emitter_frequency")
+
+    @JvmField
+    public val getSubEmitterAmountAtEndName: MethodStringName0<ParticleProcessMaterial, Int> =
+        MethodStringName0<ParticleProcessMaterial, Int>("get_sub_emitter_amount_at_end")
+
+    @JvmField
+    public val setSubEmitterAmountAtEndName: MethodStringName1<ParticleProcessMaterial, Unit, Int> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Int>("set_sub_emitter_amount_at_end")
+
+    @JvmField
+    public val getSubEmitterAmountAtCollisionName: MethodStringName0<ParticleProcessMaterial, Int> =
+        MethodStringName0<ParticleProcessMaterial, Int>("get_sub_emitter_amount_at_collision")
+
+    @JvmField
+    public val setSubEmitterAmountAtCollisionName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Int> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Int>("set_sub_emitter_amount_at_collision")
+
+    @JvmField
+    public val getSubEmitterAmountAtStartName: MethodStringName0<ParticleProcessMaterial, Int> =
+        MethodStringName0<ParticleProcessMaterial, Int>("get_sub_emitter_amount_at_start")
+
+    @JvmField
+    public val setSubEmitterAmountAtStartName: MethodStringName1<ParticleProcessMaterial, Unit, Int>
+        = MethodStringName1<ParticleProcessMaterial, Unit, Int>("set_sub_emitter_amount_at_start")
+
+    @JvmField
+    public val getSubEmitterKeepVelocityName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("get_sub_emitter_keep_velocity")
+
+    @JvmField
+    public val setSubEmitterKeepVelocityName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_sub_emitter_keep_velocity")
+
+    @JvmField
+    public val setAttractorInteractionEnabledName:
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_attractor_interaction_enabled")
+
+    @JvmField
+    public val isAttractorInteractionEnabledName:
+        MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("is_attractor_interaction_enabled")
+
+    @JvmField
+    public val setCollisionModeName: MethodStringName1<ParticleProcessMaterial, Unit, CollisionMode>
+        = MethodStringName1<ParticleProcessMaterial, Unit, CollisionMode>("set_collision_mode")
+
+    @JvmField
+    public val getCollisionModeName: MethodStringName0<ParticleProcessMaterial, CollisionMode> =
+        MethodStringName0<ParticleProcessMaterial, CollisionMode>("get_collision_mode")
+
+    @JvmField
+    public val setCollisionUseScaleName: MethodStringName1<ParticleProcessMaterial, Unit, Boolean> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Boolean>("set_collision_use_scale")
+
+    @JvmField
+    public val isCollisionUsingScaleName: MethodStringName0<ParticleProcessMaterial, Boolean> =
+        MethodStringName0<ParticleProcessMaterial, Boolean>("is_collision_using_scale")
+
+    @JvmField
+    public val setCollisionFrictionName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_collision_friction")
+
+    @JvmField
+    public val getCollisionFrictionName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_collision_friction")
+
+    @JvmField
+    public val setCollisionBounceName: MethodStringName1<ParticleProcessMaterial, Unit, Float> =
+        MethodStringName1<ParticleProcessMaterial, Unit, Float>("set_collision_bounce")
+
+    @JvmField
+    public val getCollisionBounceName: MethodStringName0<ParticleProcessMaterial, Float> =
+        MethodStringName0<ParticleProcessMaterial, Float>("get_collision_bounce")
+  }
 
   public object MethodBindings {
     internal val setDirectionPtr: VoidPtr =

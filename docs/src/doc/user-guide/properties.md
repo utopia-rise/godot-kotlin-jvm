@@ -1,9 +1,10 @@
 Any property of a registered class can be registered as long as it is public, mutable and can be converted to a `Variant`.
 To register a property annotate it with `@RegisterProperty`.
 
+/// tab | Kotlin
 ```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class RotatingCube : Node3D() {
     @RegisterProperty
     var someString: String = "Hello there :-)"
 
@@ -11,11 +12,38 @@ class RotatingCube: Node3D() {
     var propertyWithDefaultValue: Float = 2f
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterClass
+public class RotatingCube extends Node3D {
+    @RegisterProperty
+    public String someString = "Hello there :-)";
+
+    @RegisterProperty
+    public float propertyWithDefaultValue = 2f;
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class RotatingCube extends Node3D {
+  @RegisterProperty
+  var someString: String = "Hello there :-)"
+
+  @RegisterProperty
+  var propertyWithDefaultValue: Float = 2f
+}
+```
+///
 
 ## Naming
 
-Property names should follow Kotlin's style which is `camelCase`. For consistency with Godot's style,
-your properties are actually registered as `snake_case`. So a property `someFlag` in Kotlin is usable in GDScript as `some_flag`.
+Property names should follow the usual style of the language you use. For consistency with Godot's style,
+your properties are actually registered as `snake_case`. So a property `someFlag` is usable in GDScript as `some_flag`.
 
 ## Core type specifics
 
@@ -26,14 +54,38 @@ Godot core type always need to have a value. Hence you cannot register propertie
 A registered property can be exported (a.k.a make it visible in the Godot editor) by annotating it with `@Export`.
 A property can be exported if it is a core type, a primitive or inherits from `godot.RefCounted`.
 
+/// tab | Kotlin
 ```kotlin
 @RegisterClass
-class RotatingCube: Node3D() {
+class RotatingCube : Node3D() {
     @Export
     @RegisterProperty
     var speed: Float = 2f
 }
 ```
+///
+
+/// tab | Java
+```java
+@RegisterClass
+public class RotatingCube extends Node3D {
+    @Export
+    @RegisterProperty
+    public float speed = 2f;
+}
+```
+///
+
+/// tab | Scala
+```scala
+@RegisterClass
+class RotatingCube extends Node3D {
+  @Export
+  @RegisterProperty
+  var speed: Float = 2f
+}
+```
+///
 
 Exported properties can have default values (`2f` in the example above) which will be used as a default value by the `inspector`.
 A default value can **only** contain compile time constants and only references to compile time constants.

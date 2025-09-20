@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Configuration header for spatial persistence. Pass this to
@@ -45,7 +47,17 @@ public open class OpenXRSpatialContextPersistenceConfig : OpenXRStructureBase() 
     TransferContext.callMethod(ptr, MethodBindings.removePersistenceContextPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addPersistenceContextName:
+        MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID> =
+        MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID>("add_persistence_context")
+
+    @JvmField
+    public val removePersistenceContextName:
+        MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID> =
+        MethodStringName1<OpenXRSpatialContextPersistenceConfig, Unit, RID>("remove_persistence_context")
+  }
 
   public object MethodBindings {
     internal val addPersistenceContextPtr: VoidPtr =

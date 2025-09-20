@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.NodePath
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -148,7 +151,39 @@ public open class SplineIK3D : ChainIK3D() {
   public final fun setPath3d(index: Int, path3d: String) =
       setPath3d(index, path3d.asCachedNodePath())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPath3dName: MethodStringName2<SplineIK3D, Unit, Int, NodePath> =
+        MethodStringName2<SplineIK3D, Unit, Int, NodePath>("set_path_3d")
+
+    @JvmField
+    public val getPath3dName: MethodStringName1<SplineIK3D, NodePath, Int> =
+        MethodStringName1<SplineIK3D, NodePath, Int>("get_path_3d")
+
+    @JvmField
+    public val setTiltEnabledName: MethodStringName2<SplineIK3D, Unit, Int, Boolean> =
+        MethodStringName2<SplineIK3D, Unit, Int, Boolean>("set_tilt_enabled")
+
+    @JvmField
+    public val isTiltEnabledName: MethodStringName1<SplineIK3D, Boolean, Int> =
+        MethodStringName1<SplineIK3D, Boolean, Int>("is_tilt_enabled")
+
+    @JvmField
+    public val setTiltFadeInName: MethodStringName2<SplineIK3D, Unit, Int, Int> =
+        MethodStringName2<SplineIK3D, Unit, Int, Int>("set_tilt_fade_in")
+
+    @JvmField
+    public val getTiltFadeInName: MethodStringName1<SplineIK3D, Int, Int> =
+        MethodStringName1<SplineIK3D, Int, Int>("get_tilt_fade_in")
+
+    @JvmField
+    public val setTiltFadeOutName: MethodStringName2<SplineIK3D, Unit, Int, Int> =
+        MethodStringName2<SplineIK3D, Unit, Int, Int>("set_tilt_fade_out")
+
+    @JvmField
+    public val getTiltFadeOutName: MethodStringName1<SplineIK3D, Int, Int> =
+        MethodStringName1<SplineIK3D, Int, Int>("get_tilt_fade_out")
+  }
 
   public object MethodBindings {
     internal val setPath3dPtr: VoidPtr =

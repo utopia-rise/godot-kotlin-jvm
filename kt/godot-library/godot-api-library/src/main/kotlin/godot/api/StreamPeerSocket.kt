@@ -12,11 +12,13 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * StreamPeerSocket is an abstract base class that defines common behavior for socket-based streams.
@@ -84,7 +86,19 @@ public open class StreamPeerSocket internal constructor() : StreamPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val pollName: MethodStringName0<StreamPeerSocket, Error> =
+        MethodStringName0<StreamPeerSocket, Error>("poll")
+
+    @JvmField
+    public val getStatusName: MethodStringName0<StreamPeerSocket, Status> =
+        MethodStringName0<StreamPeerSocket, Status>("get_status")
+
+    @JvmField
+    public val disconnectFromHostName: MethodStringName0<StreamPeerSocket, Unit> =
+        MethodStringName0<StreamPeerSocket, Unit>("disconnect_from_host")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

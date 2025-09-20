@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import kotlin.Boolean
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Wrapper base class for OpenXR Spatial Capability Configuration headers. This class needs to be
@@ -55,7 +57,12 @@ public open class OpenXRSpatialCapabilityConfigurationBaseHeader : RefCounted() 
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val hasValidConfigurationName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Boolean> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationBaseHeader, Boolean>("has_valid_configuration")
+  }
 
   public object MethodBindings {
     internal val hasValidConfigurationPtr: VoidPtr =

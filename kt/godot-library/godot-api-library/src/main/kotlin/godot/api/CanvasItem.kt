@@ -17,10 +17,10 @@ import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.MethodStringName10
 import godot.core.MethodStringName11
 import godot.core.MethodStringName12
 import godot.core.MethodStringName13
+import godot.core.MethodStringName14
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName4
@@ -28,6 +28,7 @@ import godot.core.MethodStringName5
 import godot.core.MethodStringName6
 import godot.core.MethodStringName7
 import godot.core.MethodStringName8
+import godot.core.MethodStringName9
 import godot.core.PackedColorArray
 import godot.core.PackedVector2Array
 import godot.core.RID
@@ -1950,6 +1951,12 @@ public open class CanvasItem internal constructor() : Node() {
         MethodStringName4<CanvasItem, Unit, PackedVector2Array, PackedColorArray, Float, Boolean>("draw_polyline_colors")
 
     @JvmField
+    public val drawEllipseArcName:
+        MethodStringName9<CanvasItem, Unit, Vector2, Float, Float, Float, Float, Int, Color, Float, Boolean>
+        =
+        MethodStringName9<CanvasItem, Unit, Vector2, Float, Float, Float, Float, Int, Color, Float, Boolean>("draw_ellipse_arc")
+
+    @JvmField
     public val drawArcName:
         MethodStringName8<CanvasItem, Unit, Vector2, Float, Float, Float, Int, Color, Float, Boolean>
         =
@@ -1976,33 +1983,38 @@ public open class CanvasItem internal constructor() : Node() {
         MethodStringName6<CanvasItem, Unit, Vector2, Float, Color, Boolean, Float, Boolean>("draw_circle")
 
     @JvmField
-    public val drawTextureName: MethodStringName3<CanvasItem, Unit, Texture2D?, Vector2, Color> =
-        MethodStringName3<CanvasItem, Unit, Texture2D?, Vector2, Color>("draw_texture")
+    public val drawEllipseName:
+        MethodStringName7<CanvasItem, Unit, Vector2, Float, Float, Color, Boolean, Float, Boolean> =
+        MethodStringName7<CanvasItem, Unit, Vector2, Float, Float, Color, Boolean, Float, Boolean>("draw_ellipse")
+
+    @JvmField
+    public val drawTextureName: MethodStringName3<CanvasItem, Unit, Texture2D, Vector2, Color> =
+        MethodStringName3<CanvasItem, Unit, Texture2D, Vector2, Color>("draw_texture")
 
     @JvmField
     public val drawTextureRectName:
-        MethodStringName5<CanvasItem, Unit, Texture2D?, Rect2, Boolean, Color, Boolean> =
-        MethodStringName5<CanvasItem, Unit, Texture2D?, Rect2, Boolean, Color, Boolean>("draw_texture_rect")
+        MethodStringName5<CanvasItem, Unit, Texture2D, Rect2, Boolean, Color, Boolean> =
+        MethodStringName5<CanvasItem, Unit, Texture2D, Rect2, Boolean, Color, Boolean>("draw_texture_rect")
 
     @JvmField
     public val drawTextureRectRegionName:
-        MethodStringName6<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Boolean, Boolean> =
-        MethodStringName6<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Boolean, Boolean>("draw_texture_rect_region")
+        MethodStringName6<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color, Boolean, Boolean> =
+        MethodStringName6<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color, Boolean, Boolean>("draw_texture_rect_region")
 
     @JvmField
     public val drawMsdfTextureRectRegionName:
-        MethodStringName7<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Double, Double, Double>
+        MethodStringName7<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color, Double, Double, Double>
         =
-        MethodStringName7<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color, Double, Double, Double>("draw_msdf_texture_rect_region")
+        MethodStringName7<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color, Double, Double, Double>("draw_msdf_texture_rect_region")
 
     @JvmField
     public val drawLcdTextureRectRegionName:
-        MethodStringName4<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color> =
-        MethodStringName4<CanvasItem, Unit, Texture2D?, Rect2, Rect2, Color>("draw_lcd_texture_rect_region")
+        MethodStringName4<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color> =
+        MethodStringName4<CanvasItem, Unit, Texture2D, Rect2, Rect2, Color>("draw_lcd_texture_rect_region")
 
     @JvmField
-    public val drawStyleBoxName: MethodStringName2<CanvasItem, Unit, StyleBox?, Rect2> =
-        MethodStringName2<CanvasItem, Unit, StyleBox?, Rect2>("draw_style_box")
+    public val drawStyleBoxName: MethodStringName2<CanvasItem, Unit, StyleBox, Rect2> =
+        MethodStringName2<CanvasItem, Unit, StyleBox, Rect2>("draw_style_box")
 
     @JvmField
     public val drawPrimitiveName:
@@ -2024,45 +2036,46 @@ public open class CanvasItem internal constructor() : Node() {
 
     @JvmField
     public val drawStringName:
-        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName11<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string")
+        MethodStringName11<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string")
 
     @JvmField
     public val drawMultilineStringName:
-        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName13<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string")
+        MethodStringName13<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string")
 
     @JvmField
     public val drawStringOutlineName:
-        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName12<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string_outline")
+        MethodStringName12<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string_outline")
 
     @JvmField
     public val drawMultilineStringOutlineName:
-        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName14<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string_outline")
+        MethodStringName14<CanvasItem, Unit, Font, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string_outline")
 
     @JvmField
-    public val drawCharName: MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>
-        = MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>("draw_char")
+    public val drawCharName:
+        MethodStringName6<CanvasItem, Unit, Font, Vector2, String, Int, Color, Float> =
+        MethodStringName6<CanvasItem, Unit, Font, Vector2, String, Int, Color, Float>("draw_char")
 
     @JvmField
     public val drawCharOutlineName:
-        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color> =
-        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color>("draw_char_outline")
+        MethodStringName7<CanvasItem, Unit, Font, Vector2, String, Int, Int, Color, Float> =
+        MethodStringName7<CanvasItem, Unit, Font, Vector2, String, Int, Int, Color, Float>("draw_char_outline")
 
     @JvmField
     public val drawMeshName:
-        MethodStringName4<CanvasItem, Unit, Mesh?, Texture2D?, Transform2D, Color> =
-        MethodStringName4<CanvasItem, Unit, Mesh?, Texture2D?, Transform2D, Color>("draw_mesh")
+        MethodStringName4<CanvasItem, Unit, Mesh, Texture2D?, Transform2D, Color> =
+        MethodStringName4<CanvasItem, Unit, Mesh, Texture2D?, Transform2D, Color>("draw_mesh")
 
     @JvmField
-    public val drawMultimeshName: MethodStringName2<CanvasItem, Unit, MultiMesh?, Texture2D?> =
-        MethodStringName2<CanvasItem, Unit, MultiMesh?, Texture2D?>("draw_multimesh")
+    public val drawMultimeshName: MethodStringName2<CanvasItem, Unit, MultiMesh, Texture2D?> =
+        MethodStringName2<CanvasItem, Unit, MultiMesh, Texture2D?>("draw_multimesh")
 
     @JvmField
     public val drawSetTransformName: MethodStringName3<CanvasItem, Unit, Vector2, Float, Vector2> =
@@ -2178,8 +2191,8 @@ public open class CanvasItem internal constructor() : Node() {
         MethodStringName1<CanvasItem, Vector2, Vector2>("make_canvas_position_local")
 
     @JvmField
-    public val makeInputLocalName: MethodStringName1<CanvasItem, InputEvent?, InputEvent?> =
-        MethodStringName1<CanvasItem, InputEvent?, InputEvent?>("make_input_local")
+    public val makeInputLocalName: MethodStringName1<CanvasItem, InputEvent, InputEvent> =
+        MethodStringName1<CanvasItem, InputEvent, InputEvent>("make_input_local")
 
     @JvmField
     public val setVisibilityLayerName: MethodStringName1<CanvasItem, Unit, Long> =

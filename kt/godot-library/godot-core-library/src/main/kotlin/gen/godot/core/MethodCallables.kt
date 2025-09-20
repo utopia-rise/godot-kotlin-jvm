@@ -12,7 +12,9 @@ import kotlin.Array
 import kotlin.PublishedApi
 import kotlin.String
 import kotlin.Suppress
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmStatic
+import kotlin.jvm.JvmSynthetic
 import kotlin.reflect.KCallable
 
 public class MethodStringName0<T : Object, R> private constructor(
@@ -30,16 +32,19 @@ public class MethodCallable0<R> @PublishedApi internal constructor(
 ) : MethodCallable(target, methodName, boundArgs), Callable0<R> {
   public companion object {
     @JvmStatic
-    public fun <R> createUnsafe(godotObject: Object, methodName: String): MethodCallable0<R> =
+    @JvmName("createUnsafe")
+    public fun <R> _createUnsafeJava(godotObject: Object, methodName: String): MethodCallable0<R> =
         MethodCallable0<R>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R> create(godotObject: T, methodName: MethodStringName0<T, R>):
+    @JvmName("create")
+    public fun <T : Object, R> _createJava(godotObject: T, methodName: MethodStringName0<T, R>):
         MethodCallable0<R> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R> callable0(target: T, callable: T.() -> R) =
+@JvmSynthetic
+public fun <T : Object, R> methodCallable0(target: T, callable: T.() -> R) =
     MethodCallable0<R>(target, (callable as KCallable<R>).name.toGodotName())
 
 public class MethodStringName1<T : Object, R, P0> private constructor(
@@ -60,16 +65,20 @@ public class MethodCallable1<R, P0> @PublishedApi internal constructor(
 
   public companion object {
     @JvmStatic
-    public fun <R, P0> createUnsafe(godotObject: Object, methodName: String): MethodCallable1<R, P0>
-        = MethodCallable1<R, P0>(godotObject, methodName.toGodotName())
+    @JvmName("createUnsafe")
+    public fun <R, P0> _createUnsafeJava(godotObject: Object, methodName: String):
+        MethodCallable1<R, P0> = MethodCallable1<R, P0>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0> create(godotObject: T, methodName: MethodStringName1<T, R, P0>):
-        MethodCallable1<R, P0> = methodName.toCallable(godotObject)
+    @JvmName("create")
+    public fun <T : Object, R, P0> _createJava(godotObject: T,
+        methodName: MethodStringName1<T, R, P0>): MethodCallable1<R, P0> =
+        methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0> callable1(target: T, callable: T.(p0: P0) -> R) =
+@JvmSynthetic
+public fun <T : Object, R, P0> methodCallable1(target: T, callable: T.(p0: P0) -> R) =
     MethodCallable1<R, P0>(target, (callable as KCallable<R>).name.toGodotName())
 
 public class MethodStringName2<T : Object, R, P0, P1> private constructor(
@@ -93,18 +102,21 @@ public class MethodCallable2<R, P0, P1> @PublishedApi internal constructor(
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1> createUnsafe(godotObject: Object, methodName: String):
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1> _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable2<R, P0, P1> =
         MethodCallable2<R, P0, P1>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1> _createJava(godotObject: T,
         methodName: MethodStringName2<T, R, P0, P1>): MethodCallable2<R, P0, P1> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1> callable2(target: T, callable: T.(p0: P0, p1: P1) -> R) =
+@JvmSynthetic
+public fun <T : Object, R, P0, P1> methodCallable2(target: T, callable: T.(p0: P0, p1: P1) -> R) =
     MethodCallable2<R, P0, P1>(target, (callable as KCallable<R>).name.toGodotName())
 
 public class MethodStringName3<T : Object, R, P0, P1, P2> private constructor(
@@ -134,18 +146,21 @@ public class MethodCallable3<R, P0, P1, P2> @PublishedApi internal constructor(
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2> createUnsafe(godotObject: Object, methodName: String):
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2> _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable3<R, P0, P1, P2> =
         MethodCallable3<R, P0, P1, P2>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2> _createJava(godotObject: T,
         methodName: MethodStringName3<T, R, P0, P1, P2>): MethodCallable3<R, P0, P1, P2> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2> callable3(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2> methodCallable3(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -186,18 +201,21 @@ public class MethodCallable4<R, P0, P1, P2, P3> @PublishedApi internal construct
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3> createUnsafe(godotObject: Object, methodName: String):
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3> _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable4<R, P0, P1, P2, P3> =
         MethodCallable4<R, P0, P1, P2, P3>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3> _createJava(godotObject: T,
         methodName: MethodStringName4<T, R, P0, P1, P2, P3>): MethodCallable4<R, P0, P1, P2, P3> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3> callable4(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3> methodCallable4(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -247,18 +265,21 @@ public class MethodCallable5<R, P0, P1, P2, P3, P4> @PublishedApi internal const
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4> createUnsafe(godotObject: Object, methodName: String):
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4> _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable5<R, P0, P1, P2, P3, P4> =
         MethodCallable5<R, P0, P1, P2, P3, P4>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4> _createJava(godotObject: T,
         methodName: MethodStringName5<T, R, P0, P1, P2, P3, P4>):
         MethodCallable5<R, P0, P1, P2, P3, P4> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4> callable5(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4> methodCallable5(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -319,18 +340,21 @@ public class MethodCallable6<R, P0, P1, P2, P3, P4, P5> @PublishedApi internal c
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5> createUnsafe(godotObject: Object, methodName: String):
-        MethodCallable6<R, P0, P1, P2, P3, P4, P5> =
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5> _createUnsafeJava(godotObject: Object,
+        methodName: String): MethodCallable6<R, P0, P1, P2, P3, P4, P5> =
         MethodCallable6<R, P0, P1, P2, P3, P4, P5>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5> _createJava(godotObject: T,
         methodName: MethodStringName6<T, R, P0, P1, P2, P3, P4, P5>):
         MethodCallable6<R, P0, P1, P2, P3, P4, P5> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5> callable6(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5> methodCallable6(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -402,18 +426,21 @@ public class MethodCallable7<R, P0, P1, P2, P3, P4, P5, P6> @PublishedApi intern
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5, P6> createUnsafe(godotObject: Object,
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6> _createUnsafeJava(godotObject: Object,
         methodName: String): MethodCallable7<R, P0, P1, P2, P3, P4, P5, P6> =
         MethodCallable7<R, P0, P1, P2, P3, P4, P5, P6>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6> _createJava(godotObject: T,
         methodName: MethodStringName7<T, R, P0, P1, P2, P3, P4, P5, P6>):
         MethodCallable7<R, P0, P1, P2, P3, P4, P5, P6> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6> callable7(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6> methodCallable7(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -503,18 +530,21 @@ public class MethodCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi in
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7> createUnsafe(godotObject: Object,
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7> _createUnsafeJava(godotObject: Object,
         methodName: String): MethodCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> =
         MethodCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7> _createJava(godotObject: T,
         methodName: MethodStringName8<T, R, P0, P1, P2, P3, P4, P5, P6, P7>):
         MethodCallable8<R, P0, P1, P2, P3, P4, P5, P6, P7> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7> callable8(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7> methodCallable8(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -621,18 +651,22 @@ public class MethodCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedAp
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8> createUnsafe(godotObject: Object,
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8> _createUnsafeJava(godotObject: Object,
         methodName: String): MethodCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> =
         MethodCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8> _createJava(godotObject: T,
         methodName: MethodStringName9<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8>):
         MethodCallable9<R, P0, P1, P2, P3, P4, P5, P6, P7, P8> = methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8> callable9(target: T, callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8> methodCallable9(target: T,
+    callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -755,19 +789,22 @@ public class MethodCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @Publis
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> createUnsafe(godotObject: Object,
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> _createUnsafeJava(godotObject: Object,
         methodName: String): MethodCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
         MethodCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> _createJava(godotObject: T,
         methodName: MethodStringName10<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>):
         MethodCallable10<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> callable10(target: T,
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> methodCallable10(target: T,
     callable: T.(
   p0: P0,
   p1: P1,
@@ -908,19 +945,24 @@ public class MethodCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @P
 
   public companion object {
     @JvmStatic
-    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> createUnsafe(godotObject: Object,
-        methodName: String): MethodCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
+    @JvmName("createUnsafe")
+    public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+        _createUnsafeJava(godotObject: Object, methodName: String):
+        MethodCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
         MethodCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>(godotObject, methodName.toGodotName())
 
     @JvmStatic
-    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> create(godotObject: T,
+    @JvmName("create")
+    public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>
+        _createJava(godotObject: T,
         methodName: MethodStringName11<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10>):
         MethodCallable11<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> callable11(target: T,
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> methodCallable11(target: T,
     callable: T.(
   p0: P0,
   p1: P1,
@@ -1078,22 +1120,25 @@ public class MethodCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
 
   public companion object {
     @JvmStatic
+    @JvmName("createUnsafe")
     public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-        createUnsafe(godotObject: Object, methodName: String):
+        _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
         MethodCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>(godotObject, methodName.toGodotName())
 
     @JvmStatic
+    @JvmName("create")
     public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
-        create(godotObject: T,
+        _createJava(godotObject: T,
         methodName: MethodStringName12<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>):
         MethodCallable12<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
         methodName.toCallable(godotObject)
   }
 }
 
-public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> callable12(target: T,
-    callable: T.(
+@JvmSynthetic
+public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+    methodCallable12(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1269,22 +1314,25 @@ public class MethodCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
 
   public companion object {
     @JvmStatic
+    @JvmName("createUnsafe")
     public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-        createUnsafe(godotObject: Object, methodName: String):
+        _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
         MethodCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>(godotObject, methodName.toGodotName())
 
     @JvmStatic
+    @JvmName("create")
     public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-        create(godotObject: T,
+        _createJava(godotObject: T,
         methodName: MethodStringName13<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>):
         MethodCallable13<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
         methodName.toCallable(godotObject)
   }
 }
 
+@JvmSynthetic
 public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-    callable13(target: T, callable: T.(
+    methodCallable13(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1479,22 +1527,25 @@ public class MethodCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
 
   public companion object {
     @JvmStatic
+    @JvmName("createUnsafe")
     public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-        createUnsafe(godotObject: Object, methodName: String):
+        _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
         MethodCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>(godotObject, methodName.toGodotName())
 
     @JvmStatic
+    @JvmName("create")
     public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-        create(godotObject: T,
+        _createJava(godotObject: T,
         methodName: MethodStringName14<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>):
         MethodCallable14<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
         methodName.toCallable(godotObject)
   }
 }
 
+@JvmSynthetic
 public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-    callable14(target: T, callable: T.(
+    methodCallable14(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1709,22 +1760,25 @@ public class MethodCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
 
   public companion object {
     @JvmStatic
+    @JvmName("createUnsafe")
     public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-        createUnsafe(godotObject: Object, methodName: String):
+        _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
         MethodCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>(godotObject, methodName.toGodotName())
 
     @JvmStatic
+    @JvmName("create")
     public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-        create(godotObject: T,
+        _createJava(godotObject: T,
         methodName: MethodStringName15<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>):
         MethodCallable15<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
         methodName.toCallable(godotObject)
   }
 }
 
+@JvmSynthetic
 public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-    callable15(target: T, callable: T.(
+    methodCallable15(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,
@@ -1961,22 +2015,25 @@ public class MethodCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P1
 
   public companion object {
     @JvmStatic
+    @JvmName("createUnsafe")
     public fun <R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        createUnsafe(godotObject: Object, methodName: String):
+        _createUnsafeJava(godotObject: Object, methodName: String):
         MethodCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
         MethodCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>(godotObject, methodName.toGodotName())
 
     @JvmStatic
+    @JvmName("create")
     public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-        create(godotObject: T,
+        _createJava(godotObject: T,
         methodName: MethodStringName16<T, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>):
         MethodCallable16<R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
         methodName.toCallable(godotObject)
   }
 }
 
+@JvmSynthetic
 public fun <T : Object, R, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-    callable16(target: T, callable: T.(
+    methodCallable16(target: T, callable: T.(
   p0: P0,
   p1: P1,
   p2: P2,

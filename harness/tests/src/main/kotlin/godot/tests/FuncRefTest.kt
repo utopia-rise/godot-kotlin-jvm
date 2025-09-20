@@ -6,8 +6,8 @@ import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.annotation.RegisterSignal
 import godot.annotation.Rpc
-import godot.core.callable0
-import godot.core.callable1
+import godot.core.lambdaCallable0
+import godot.core.lambdaCallable1
 import godot.core.signal0
 import godot.extension.connectMethod
 
@@ -52,12 +52,12 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     fun testCallWithoutParam() {
-        callable0(this::withoutParamCallback).call()
+        lambdaCallable0(this::withoutParamCallback).call()
     }
 
     @RegisterFunction
     fun testCallDeferredWithoutParam() {
-        callable0(this::withoutParamCallback).callDeferred()
+        lambdaCallable0(this::withoutParamCallback).callDeferred()
     }
 
     @RegisterFunction
@@ -67,11 +67,11 @@ class FuncRefTest : Node() {
 
     @RegisterFunction
     fun testCallWithParam() {
-        callable1(this::withParamCallback).call(true)
+        lambdaCallable1(this::withParamCallback).call(true)
     }
 
     @RegisterFunction
     fun testCallDeferredWithParam() {
-        callable1(this::withParamCallback).callDeferred(true)
+        lambdaCallable1(this::withParamCallback).callDeferred(true)
     }
 }

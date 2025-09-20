@@ -191,39 +191,39 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
   public companion object {
     @JvmField
     public val intersectPointName:
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters3D?, Int>
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters3D, Int>
         =
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters3D?, Int>("intersect_point")
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsPointQueryParameters3D, Int>("intersect_point")
 
     @JvmField
     public val intersectRayName:
-        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters3D?>
+        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters3D>
         =
-        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters3D?>("intersect_ray")
+        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsRayQueryParameters3D>("intersect_ray")
 
     @JvmField
     public val intersectShapeName:
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters3D?, Int>
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters3D, Int>
         =
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters3D?, Int>("intersect_shape")
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Dictionary<Any?, Any?>>, PhysicsShapeQueryParameters3D, Int>("intersect_shape")
 
     @JvmField
     public val castMotionName:
-        MethodStringName1<PhysicsDirectSpaceState3D, PackedFloat32Array, PhysicsShapeQueryParameters3D?>
+        MethodStringName1<PhysicsDirectSpaceState3D, PackedFloat32Array, PhysicsShapeQueryParameters3D>
         =
-        MethodStringName1<PhysicsDirectSpaceState3D, PackedFloat32Array, PhysicsShapeQueryParameters3D?>("cast_motion")
+        MethodStringName1<PhysicsDirectSpaceState3D, PackedFloat32Array, PhysicsShapeQueryParameters3D>("cast_motion")
 
     @JvmField
     public val collideShapeName:
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Vector3>, PhysicsShapeQueryParameters3D?, Int>
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Vector3>, PhysicsShapeQueryParameters3D, Int>
         =
-        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Vector3>, PhysicsShapeQueryParameters3D?, Int>("collide_shape")
+        MethodStringName2<PhysicsDirectSpaceState3D, VariantArray<Vector3>, PhysicsShapeQueryParameters3D, Int>("collide_shape")
 
     @JvmField
     public val getRestInfoName:
-        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters3D?>
+        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters3D>
         =
-        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters3D?>("get_rest_info")
+        MethodStringName1<PhysicsDirectSpaceState3D, Dictionary<Any?, Any?>, PhysicsShapeQueryParameters3D>("get_rest_info")
   }
 
   public object MethodBindings {

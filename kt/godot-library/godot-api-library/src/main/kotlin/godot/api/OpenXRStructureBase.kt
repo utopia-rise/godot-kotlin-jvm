@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -65,7 +68,19 @@ public open class OpenXRStructureBase : RefCounted() {
     return (TransferContext.readReturnValue(OBJECT) as OpenXRStructureBase?)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getStructureTypeName: MethodStringName0<OpenXRStructureBase, Long> =
+        MethodStringName0<OpenXRStructureBase, Long>("get_structure_type")
+
+    @JvmField
+    public val setNextName: MethodStringName1<OpenXRStructureBase, Unit, OpenXRStructureBase?> =
+        MethodStringName1<OpenXRStructureBase, Unit, OpenXRStructureBase?>("set_next")
+
+    @JvmField
+    public val getNextName: MethodStringName0<OpenXRStructureBase, OpenXRStructureBase?> =
+        MethodStringName0<OpenXRStructureBase, OpenXRStructureBase?>("get_next")
+  }
 
   public object MethodBindings {
     internal val getStructureTypePtr: VoidPtr =

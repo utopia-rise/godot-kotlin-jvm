@@ -15,6 +15,9 @@ import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedColorArray
 import godot.core.PackedVector3Array
 import godot.core.Signal0
@@ -35,6 +38,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -1944,7 +1948,367 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setEmittingName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_emitting")
+
+    @JvmField
+    public val setAmountName: MethodStringName1<CPUParticles3D, Unit, Int> =
+        MethodStringName1<CPUParticles3D, Unit, Int>("set_amount")
+
+    @JvmField
+    public val setLifetimeName: MethodStringName1<CPUParticles3D, Unit, Double> =
+        MethodStringName1<CPUParticles3D, Unit, Double>("set_lifetime")
+
+    @JvmField
+    public val setOneShotName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_one_shot")
+
+    @JvmField
+    public val setPreProcessTimeName: MethodStringName1<CPUParticles3D, Unit, Double> =
+        MethodStringName1<CPUParticles3D, Unit, Double>("set_pre_process_time")
+
+    @JvmField
+    public val setExplosivenessRatioName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_explosiveness_ratio")
+
+    @JvmField
+    public val setRandomnessRatioName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_randomness_ratio")
+
+    @JvmField
+    public val setVisibilityAabbName: MethodStringName1<CPUParticles3D, Unit, AABB> =
+        MethodStringName1<CPUParticles3D, Unit, AABB>("set_visibility_aabb")
+
+    @JvmField
+    public val setLifetimeRandomnessName: MethodStringName1<CPUParticles3D, Unit, Double> =
+        MethodStringName1<CPUParticles3D, Unit, Double>("set_lifetime_randomness")
+
+    @JvmField
+    public val setUseLocalCoordinatesName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_use_local_coordinates")
+
+    @JvmField
+    public val setFixedFpsName: MethodStringName1<CPUParticles3D, Unit, Int> =
+        MethodStringName1<CPUParticles3D, Unit, Int>("set_fixed_fps")
+
+    @JvmField
+    public val setFractionalDeltaName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_fractional_delta")
+
+    @JvmField
+    public val setSpeedScaleName: MethodStringName1<CPUParticles3D, Unit, Double> =
+        MethodStringName1<CPUParticles3D, Unit, Double>("set_speed_scale")
+
+    @JvmField
+    public val isEmittingName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("is_emitting")
+
+    @JvmField
+    public val getAmountName: MethodStringName0<CPUParticles3D, Int> =
+        MethodStringName0<CPUParticles3D, Int>("get_amount")
+
+    @JvmField
+    public val getLifetimeName: MethodStringName0<CPUParticles3D, Double> =
+        MethodStringName0<CPUParticles3D, Double>("get_lifetime")
+
+    @JvmField
+    public val getOneShotName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("get_one_shot")
+
+    @JvmField
+    public val getPreProcessTimeName: MethodStringName0<CPUParticles3D, Double> =
+        MethodStringName0<CPUParticles3D, Double>("get_pre_process_time")
+
+    @JvmField
+    public val getExplosivenessRatioName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_explosiveness_ratio")
+
+    @JvmField
+    public val getRandomnessRatioName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_randomness_ratio")
+
+    @JvmField
+    public val getVisibilityAabbName: MethodStringName0<CPUParticles3D, AABB> =
+        MethodStringName0<CPUParticles3D, AABB>("get_visibility_aabb")
+
+    @JvmField
+    public val getLifetimeRandomnessName: MethodStringName0<CPUParticles3D, Double> =
+        MethodStringName0<CPUParticles3D, Double>("get_lifetime_randomness")
+
+    @JvmField
+    public val getUseLocalCoordinatesName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("get_use_local_coordinates")
+
+    @JvmField
+    public val getFixedFpsName: MethodStringName0<CPUParticles3D, Int> =
+        MethodStringName0<CPUParticles3D, Int>("get_fixed_fps")
+
+    @JvmField
+    public val getFractionalDeltaName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("get_fractional_delta")
+
+    @JvmField
+    public val getSpeedScaleName: MethodStringName0<CPUParticles3D, Double> =
+        MethodStringName0<CPUParticles3D, Double>("get_speed_scale")
+
+    @JvmField
+    public val setDrawOrderName: MethodStringName1<CPUParticles3D, Unit, DrawOrder> =
+        MethodStringName1<CPUParticles3D, Unit, DrawOrder>("set_draw_order")
+
+    @JvmField
+    public val getDrawOrderName: MethodStringName0<CPUParticles3D, DrawOrder> =
+        MethodStringName0<CPUParticles3D, DrawOrder>("get_draw_order")
+
+    @JvmField
+    public val setMeshName: MethodStringName1<CPUParticles3D, Unit, Mesh?> =
+        MethodStringName1<CPUParticles3D, Unit, Mesh?>("set_mesh")
+
+    @JvmField
+    public val getMeshName: MethodStringName0<CPUParticles3D, Mesh?> =
+        MethodStringName0<CPUParticles3D, Mesh?>("get_mesh")
+
+    @JvmField
+    public val setUseFixedSeedName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_use_fixed_seed")
+
+    @JvmField
+    public val getUseFixedSeedName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("get_use_fixed_seed")
+
+    @JvmField
+    public val setSeedName: MethodStringName1<CPUParticles3D, Unit, Long> =
+        MethodStringName1<CPUParticles3D, Unit, Long>("set_seed")
+
+    @JvmField
+    public val getSeedName: MethodStringName0<CPUParticles3D, Long> =
+        MethodStringName0<CPUParticles3D, Long>("get_seed")
+
+    @JvmField
+    public val restartName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("restart")
+
+    @JvmField
+    public val requestParticlesProcessName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("request_particles_process")
+
+    @JvmField
+    public val captureAabbName: MethodStringName0<CPUParticles3D, AABB> =
+        MethodStringName0<CPUParticles3D, AABB>("capture_aabb")
+
+    @JvmField
+    public val setDirectionName: MethodStringName1<CPUParticles3D, Unit, Vector3> =
+        MethodStringName1<CPUParticles3D, Unit, Vector3>("set_direction")
+
+    @JvmField
+    public val getDirectionName: MethodStringName0<CPUParticles3D, Vector3> =
+        MethodStringName0<CPUParticles3D, Vector3>("get_direction")
+
+    @JvmField
+    public val setSpreadName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_spread")
+
+    @JvmField
+    public val getSpreadName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_spread")
+
+    @JvmField
+    public val setFlatnessName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_flatness")
+
+    @JvmField
+    public val getFlatnessName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_flatness")
+
+    @JvmField
+    public val setParamMinName: MethodStringName2<CPUParticles3D, Unit, Parameter, Float> =
+        MethodStringName2<CPUParticles3D, Unit, Parameter, Float>("set_param_min")
+
+    @JvmField
+    public val getParamMinName: MethodStringName1<CPUParticles3D, Float, Parameter> =
+        MethodStringName1<CPUParticles3D, Float, Parameter>("get_param_min")
+
+    @JvmField
+    public val setParamMaxName: MethodStringName2<CPUParticles3D, Unit, Parameter, Float> =
+        MethodStringName2<CPUParticles3D, Unit, Parameter, Float>("set_param_max")
+
+    @JvmField
+    public val getParamMaxName: MethodStringName1<CPUParticles3D, Float, Parameter> =
+        MethodStringName1<CPUParticles3D, Float, Parameter>("get_param_max")
+
+    @JvmField
+    public val setParamCurveName: MethodStringName2<CPUParticles3D, Unit, Parameter, Curve?> =
+        MethodStringName2<CPUParticles3D, Unit, Parameter, Curve?>("set_param_curve")
+
+    @JvmField
+    public val getParamCurveName: MethodStringName1<CPUParticles3D, Curve?, Parameter> =
+        MethodStringName1<CPUParticles3D, Curve?, Parameter>("get_param_curve")
+
+    @JvmField
+    public val setColorName: MethodStringName1<CPUParticles3D, Unit, Color> =
+        MethodStringName1<CPUParticles3D, Unit, Color>("set_color")
+
+    @JvmField
+    public val getColorName: MethodStringName0<CPUParticles3D, Color> =
+        MethodStringName0<CPUParticles3D, Color>("get_color")
+
+    @JvmField
+    public val setColorRampName: MethodStringName1<CPUParticles3D, Unit, Gradient?> =
+        MethodStringName1<CPUParticles3D, Unit, Gradient?>("set_color_ramp")
+
+    @JvmField
+    public val getColorRampName: MethodStringName0<CPUParticles3D, Gradient?> =
+        MethodStringName0<CPUParticles3D, Gradient?>("get_color_ramp")
+
+    @JvmField
+    public val setColorInitialRampName: MethodStringName1<CPUParticles3D, Unit, Gradient?> =
+        MethodStringName1<CPUParticles3D, Unit, Gradient?>("set_color_initial_ramp")
+
+    @JvmField
+    public val getColorInitialRampName: MethodStringName0<CPUParticles3D, Gradient?> =
+        MethodStringName0<CPUParticles3D, Gradient?>("get_color_initial_ramp")
+
+    @JvmField
+    public val setParticleFlagName: MethodStringName2<CPUParticles3D, Unit, ParticleFlags, Boolean>
+        = MethodStringName2<CPUParticles3D, Unit, ParticleFlags, Boolean>("set_particle_flag")
+
+    @JvmField
+    public val getParticleFlagName: MethodStringName1<CPUParticles3D, Boolean, ParticleFlags> =
+        MethodStringName1<CPUParticles3D, Boolean, ParticleFlags>("get_particle_flag")
+
+    @JvmField
+    public val setEmissionShapeName: MethodStringName1<CPUParticles3D, Unit, EmissionShape> =
+        MethodStringName1<CPUParticles3D, Unit, EmissionShape>("set_emission_shape")
+
+    @JvmField
+    public val getEmissionShapeName: MethodStringName0<CPUParticles3D, EmissionShape> =
+        MethodStringName0<CPUParticles3D, EmissionShape>("get_emission_shape")
+
+    @JvmField
+    public val setEmissionSphereRadiusName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_emission_sphere_radius")
+
+    @JvmField
+    public val getEmissionSphereRadiusName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_emission_sphere_radius")
+
+    @JvmField
+    public val setEmissionBoxExtentsName: MethodStringName1<CPUParticles3D, Unit, Vector3> =
+        MethodStringName1<CPUParticles3D, Unit, Vector3>("set_emission_box_extents")
+
+    @JvmField
+    public val getEmissionBoxExtentsName: MethodStringName0<CPUParticles3D, Vector3> =
+        MethodStringName0<CPUParticles3D, Vector3>("get_emission_box_extents")
+
+    @JvmField
+    public val setEmissionPointsName: MethodStringName1<CPUParticles3D, Unit, PackedVector3Array> =
+        MethodStringName1<CPUParticles3D, Unit, PackedVector3Array>("set_emission_points")
+
+    @JvmField
+    public val getEmissionPointsName: MethodStringName0<CPUParticles3D, PackedVector3Array> =
+        MethodStringName0<CPUParticles3D, PackedVector3Array>("get_emission_points")
+
+    @JvmField
+    public val setEmissionNormalsName: MethodStringName1<CPUParticles3D, Unit, PackedVector3Array> =
+        MethodStringName1<CPUParticles3D, Unit, PackedVector3Array>("set_emission_normals")
+
+    @JvmField
+    public val getEmissionNormalsName: MethodStringName0<CPUParticles3D, PackedVector3Array> =
+        MethodStringName0<CPUParticles3D, PackedVector3Array>("get_emission_normals")
+
+    @JvmField
+    public val setEmissionColorsName: MethodStringName1<CPUParticles3D, Unit, PackedColorArray> =
+        MethodStringName1<CPUParticles3D, Unit, PackedColorArray>("set_emission_colors")
+
+    @JvmField
+    public val getEmissionColorsName: MethodStringName0<CPUParticles3D, PackedColorArray> =
+        MethodStringName0<CPUParticles3D, PackedColorArray>("get_emission_colors")
+
+    @JvmField
+    public val setEmissionRingAxisName: MethodStringName1<CPUParticles3D, Unit, Vector3> =
+        MethodStringName1<CPUParticles3D, Unit, Vector3>("set_emission_ring_axis")
+
+    @JvmField
+    public val getEmissionRingAxisName: MethodStringName0<CPUParticles3D, Vector3> =
+        MethodStringName0<CPUParticles3D, Vector3>("get_emission_ring_axis")
+
+    @JvmField
+    public val setEmissionRingHeightName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_emission_ring_height")
+
+    @JvmField
+    public val getEmissionRingHeightName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_emission_ring_height")
+
+    @JvmField
+    public val setEmissionRingRadiusName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_emission_ring_radius")
+
+    @JvmField
+    public val getEmissionRingRadiusName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_emission_ring_radius")
+
+    @JvmField
+    public val setEmissionRingInnerRadiusName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_emission_ring_inner_radius")
+
+    @JvmField
+    public val getEmissionRingInnerRadiusName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_emission_ring_inner_radius")
+
+    @JvmField
+    public val setEmissionRingConeAngleName: MethodStringName1<CPUParticles3D, Unit, Float> =
+        MethodStringName1<CPUParticles3D, Unit, Float>("set_emission_ring_cone_angle")
+
+    @JvmField
+    public val getEmissionRingConeAngleName: MethodStringName0<CPUParticles3D, Float> =
+        MethodStringName0<CPUParticles3D, Float>("get_emission_ring_cone_angle")
+
+    @JvmField
+    public val getGravityName: MethodStringName0<CPUParticles3D, Vector3> =
+        MethodStringName0<CPUParticles3D, Vector3>("get_gravity")
+
+    @JvmField
+    public val setGravityName: MethodStringName1<CPUParticles3D, Unit, Vector3> =
+        MethodStringName1<CPUParticles3D, Unit, Vector3>("set_gravity")
+
+    @JvmField
+    public val getSplitScaleName: MethodStringName0<CPUParticles3D, Boolean> =
+        MethodStringName0<CPUParticles3D, Boolean>("get_split_scale")
+
+    @JvmField
+    public val setSplitScaleName: MethodStringName1<CPUParticles3D, Unit, Boolean> =
+        MethodStringName1<CPUParticles3D, Unit, Boolean>("set_split_scale")
+
+    @JvmField
+    public val getScaleCurveXName: MethodStringName0<CPUParticles3D, Curve?> =
+        MethodStringName0<CPUParticles3D, Curve?>("get_scale_curve_x")
+
+    @JvmField
+    public val setScaleCurveXName: MethodStringName1<CPUParticles3D, Unit, Curve?> =
+        MethodStringName1<CPUParticles3D, Unit, Curve?>("set_scale_curve_x")
+
+    @JvmField
+    public val getScaleCurveYName: MethodStringName0<CPUParticles3D, Curve?> =
+        MethodStringName0<CPUParticles3D, Curve?>("get_scale_curve_y")
+
+    @JvmField
+    public val setScaleCurveYName: MethodStringName1<CPUParticles3D, Unit, Curve?> =
+        MethodStringName1<CPUParticles3D, Unit, Curve?>("set_scale_curve_y")
+
+    @JvmField
+    public val getScaleCurveZName: MethodStringName0<CPUParticles3D, Curve?> =
+        MethodStringName0<CPUParticles3D, Curve?>("get_scale_curve_z")
+
+    @JvmField
+    public val setScaleCurveZName: MethodStringName1<CPUParticles3D, Unit, Curve?> =
+        MethodStringName1<CPUParticles3D, Unit, Curve?>("set_scale_curve_z")
+
+    @JvmField
+    public val convertFromParticlesName: MethodStringName1<CPUParticles3D, Unit, Node?> =
+        MethodStringName1<CPUParticles3D, Unit, Node?>("convert_from_particles")
+  }
 
   public object MethodBindings {
     internal val setEmittingPtr: VoidPtr =

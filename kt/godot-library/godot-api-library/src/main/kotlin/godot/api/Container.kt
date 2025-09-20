@@ -92,8 +92,8 @@ public open class Container : Control() {
         MethodStringName0<Container, Unit>("queue_sort")
 
     @JvmField
-    public val fitChildInRectName: MethodStringName2<Container, Unit, Control?, Rect2> =
-        MethodStringName2<Container, Unit, Control?, Rect2>("fit_child_in_rect")
+    public val fitChildInRectName: MethodStringName2<Container, Unit, Control, Rect2> =
+        MethodStringName2<Container, Unit, Control, Rect2>("fit_child_in_rect")
 
     /**
      * Notification just before children are going to be sorted, in case there's something to

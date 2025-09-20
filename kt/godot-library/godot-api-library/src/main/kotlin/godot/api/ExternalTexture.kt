@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -120,7 +123,19 @@ public open class ExternalTexture : Texture2D() {
     throw NotImplementedError("ExternalTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<ExternalTexture, Unit, Vector2> =
+        MethodStringName1<ExternalTexture, Unit, Vector2>("set_size")
+
+    @JvmField
+    public val getExternalTextureIdName: MethodStringName0<ExternalTexture, Long> =
+        MethodStringName0<ExternalTexture, Long>("get_external_texture_id")
+
+    @JvmField
+    public val setExternalBufferIdName: MethodStringName1<ExternalTexture, Unit, Long> =
+        MethodStringName1<ExternalTexture, Unit, Long>("set_external_buffer_id")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

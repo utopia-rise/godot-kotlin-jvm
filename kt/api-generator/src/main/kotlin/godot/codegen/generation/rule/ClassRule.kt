@@ -39,7 +39,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         }
 
         for (method in clazz.methods) {
-            if(!canGenerateMethod(context, method)) continue
+            if(!canGenerateMethod(method)) continue
 
             if (method.isStatic) {
                 task.enrichedStaticMethods.add(EnrichedMethodTask(method, clazz))
@@ -86,22 +86,14 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
 
         val parent = task.clazz.parent?: return@configure
         for (method in parent.methods.filter { it.isAbstract }) {
-            if(!canGenerateMethod(context, method)) continue
+            if(!canGenerateMethod(method)) continue
             val overrideMethod = method.override()
             task.enrichedMethods.add(EnrichedMethodTask(overrideMethod, clazz))
         }
     }
 
-    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
-        if (context.isNativeStructure(method.type.identifier)) {
-            return false
-        }
-        for (argument in method.arguments) {
-            if (context.isNativeStructure(argument.type.identifier)) {
-                return false
-            }
-        }
-        return true
+    private fun canGenerateMethod(method: EnrichedMethod): Boolean {
+        return method.isJvmCompatible
     }
 
     private fun TypeSpec.Builder.generateClassConstructor(
@@ -145,22 +137,14 @@ class AbstractClassDummyRule : GodotApiRule<AbstractClassDummyTask>() {
 
         clazz.methods
             .filter { it.isAbstract }
-            .filter { canGenerateMethod(context, it) }
+            .filter { canGenerateMethod(it) }
             .forEach { method ->
                 addFunction(method.toDummyOverride(clazz))
             }
     }
 
-    private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
-        if (context.isNativeStructure(method.type.identifier)) {
-            return false
-        }
-        for (argument in method.arguments) {
-            if (context.isNativeStructure(argument.type.identifier)) {
-                return false
-            }
-        }
-        return true
+    private fun canGenerateMethod(method: EnrichedMethod): Boolean {
+        return method.isJvmCompatible
     }
 
     private fun EnrichedMethod.toDummyOverride(clazz: EnrichedClass): FunSpec {
@@ -221,8 +205,7 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
-                if (it.isVararg) return@onEach
-                if(!it.canGenerate)  return@onEach
+                if (it.isVararg || !it.isJvmCompatible) return@onEach
 
                 val argCount = it.arguments.size
                 val methodStringClassName = ClassName(
@@ -236,7 +219,7 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
                     PropertySpec
                         .builder("${it.name}Name", methodStringClassName)
                         .initializer(
-                            "%T(\"${it.godotName}\")",
+                            "%T(\"${it.originalName}\")",
                             methodStringClassName
                         )
                         .addAnnotation(JvmField::class)

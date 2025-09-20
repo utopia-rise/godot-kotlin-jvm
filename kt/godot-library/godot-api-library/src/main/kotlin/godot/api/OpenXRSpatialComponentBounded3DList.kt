@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.TRANSFORM3D
@@ -18,6 +19,7 @@ import godot.core.Vector3
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries 3d bounding box result data when calling
@@ -47,7 +49,16 @@ public open class OpenXRSpatialComponentBounded3DList : OpenXRSpatialComponentDa
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getCenterPoseName:
+        MethodStringName1<OpenXRSpatialComponentBounded3DList, Transform3D, Long> =
+        MethodStringName1<OpenXRSpatialComponentBounded3DList, Transform3D, Long>("get_center_pose")
+
+    @JvmField
+    public val getSizeName: MethodStringName1<OpenXRSpatialComponentBounded3DList, Vector3, Long> =
+        MethodStringName1<OpenXRSpatialComponentBounded3DList, Vector3, Long>("get_size")
+  }
 
   public object MethodBindings {
     internal val getCenterPosePtr: VoidPtr =

@@ -492,6 +492,24 @@ public open class TranslationDomain : RefCounted() {
         MethodStringName0<TranslationDomain, Unit>("clear")
 
     @JvmField
+    public val getTranslationsName: MethodStringName0<TranslationDomain, VariantArray<Translation>>
+        = MethodStringName0<TranslationDomain, VariantArray<Translation>>("get_translations")
+
+    @JvmField
+    public val hasTranslationForLocaleName:
+        MethodStringName2<TranslationDomain, Boolean, String, Boolean> =
+        MethodStringName2<TranslationDomain, Boolean, String, Boolean>("has_translation_for_locale")
+
+    @JvmField
+    public val hasTranslationName: MethodStringName1<TranslationDomain, Boolean, Translation?> =
+        MethodStringName1<TranslationDomain, Boolean, Translation?>("has_translation")
+
+    @JvmField
+    public val findTranslationsName:
+        MethodStringName2<TranslationDomain, VariantArray<Translation>, String, Boolean> =
+        MethodStringName2<TranslationDomain, VariantArray<Translation>, String, Boolean>("find_translations")
+
+    @JvmField
     public val translateName:
         MethodStringName2<TranslationDomain, StringName, StringName, StringName> =
         MethodStringName2<TranslationDomain, StringName, StringName, StringName>("translate")
@@ -500,6 +518,22 @@ public open class TranslationDomain : RefCounted() {
     public val translatePluralName:
         MethodStringName4<TranslationDomain, StringName, StringName, StringName, Int, StringName> =
         MethodStringName4<TranslationDomain, StringName, StringName, StringName, Int, StringName>("translate_plural")
+
+    @JvmField
+    public val getLocaleOverrideName: MethodStringName0<TranslationDomain, String> =
+        MethodStringName0<TranslationDomain, String>("get_locale_override")
+
+    @JvmField
+    public val setLocaleOverrideName: MethodStringName1<TranslationDomain, Unit, String> =
+        MethodStringName1<TranslationDomain, Unit, String>("set_locale_override")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<TranslationDomain, Boolean> =
+        MethodStringName0<TranslationDomain, Boolean>("is_enabled")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<TranslationDomain, Unit, Boolean> =
+        MethodStringName1<TranslationDomain, Unit, Boolean>("set_enabled")
 
     @JvmField
     public val isPseudolocalizationEnabledName: MethodStringName0<TranslationDomain, Boolean> =

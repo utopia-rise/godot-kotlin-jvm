@@ -195,24 +195,24 @@ public open class Shape2D internal constructor() : Resource() {
         MethodStringName0<Shape2D, Float>("get_custom_solver_bias")
 
     @JvmField
-    public val collideName: MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>
-        = MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D?, Transform2D>("collide")
+    public val collideName: MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D, Transform2D> =
+        MethodStringName3<Shape2D, Boolean, Transform2D, Shape2D, Transform2D>("collide")
 
     @JvmField
     public val collideWithMotionName:
-        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2> =
-        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion")
+        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D, Transform2D, Vector2> =
+        MethodStringName5<Shape2D, Boolean, Transform2D, Vector2, Shape2D, Transform2D, Vector2>("collide_with_motion")
 
     @JvmField
     public val collideAndGetContactsName:
-        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D> =
-        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D?, Transform2D>("collide_and_get_contacts")
+        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D, Transform2D> =
+        MethodStringName3<Shape2D, PackedVector2Array, Transform2D, Shape2D, Transform2D>("collide_and_get_contacts")
 
     @JvmField
     public val collideWithMotionAndGetContactsName:
-        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>
+        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D, Transform2D, Vector2>
         =
-        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D?, Transform2D, Vector2>("collide_with_motion_and_get_contacts")
+        MethodStringName5<Shape2D, PackedVector2Array, Transform2D, Vector2, Shape2D, Transform2D, Vector2>("collide_with_motion_and_get_contacts")
 
     @JvmField
     public val drawName: MethodStringName2<Shape2D, Unit, RID, Color> =

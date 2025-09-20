@@ -363,8 +363,8 @@ public open class InputEvent internal constructor() : Resource() {
         MethodStringName1<InputEvent, Boolean, InputEvent?>("accumulate")
 
     @JvmField
-    public val xformedByName: MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2> =
-        MethodStringName2<InputEvent, InputEvent?, Transform2D, Vector2>("xformed_by")
+    public val xformedByName: MethodStringName2<InputEvent, InputEvent, Transform2D, Vector2> =
+        MethodStringName2<InputEvent, InputEvent, Transform2D, Vector2>("xformed_by")
 
     /**
      * Device ID used for emulated mouse input from a touchscreen, or for emulated touch input from

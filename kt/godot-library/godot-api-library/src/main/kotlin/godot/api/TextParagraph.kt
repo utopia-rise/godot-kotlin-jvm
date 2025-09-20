@@ -16,9 +16,9 @@ import godot.core.InlineAlignment
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName2
-import godot.core.MethodStringName3
 import godot.core.MethodStringName4
 import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.PackedFloat32Array
 import godot.core.RID
 import godot.core.Rect2
@@ -760,12 +760,20 @@ public open class TextParagraph : RefCounted() {
         MethodStringName0<TextParagraph, Unit>("clear")
 
     @JvmField
+    public val duplicateName: MethodStringName0<TextParagraph, TextParagraph?> =
+        MethodStringName0<TextParagraph, TextParagraph?>("duplicate")
+
+    @JvmField
     public val setDirectionName: MethodStringName1<TextParagraph, Unit, TextServer.Direction> =
         MethodStringName1<TextParagraph, Unit, TextServer.Direction>("set_direction")
 
     @JvmField
     public val getDirectionName: MethodStringName0<TextParagraph, TextServer.Direction> =
         MethodStringName0<TextParagraph, TextServer.Direction>("get_direction")
+
+    @JvmField
+    public val getInferredDirectionName: MethodStringName0<TextParagraph, TextServer.Direction> =
+        MethodStringName0<TextParagraph, TextServer.Direction>("get_inferred_direction")
 
     @JvmField
     public val setCustomPunctuationName: MethodStringName1<TextParagraph, Unit, String> =
@@ -826,6 +834,10 @@ public open class TextParagraph : RefCounted() {
     public val resizeObjectName:
         MethodStringName4<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Float> =
         MethodStringName4<TextParagraph, Boolean, Any?, Vector2, InlineAlignment, Float>("resize_object")
+
+    @JvmField
+    public val hasObjectName: MethodStringName1<TextParagraph, Boolean, Any?> =
+        MethodStringName1<TextParagraph, Boolean, Any?>("has_object")
 
     @JvmField
     public val setAlignmentName: MethodStringName1<TextParagraph, Unit, HorizontalAlignment> =
@@ -904,6 +916,10 @@ public open class TextParagraph : RefCounted() {
         MethodStringName0<TextParagraph, RID>("get_dropcap_rid")
 
     @JvmField
+    public val getRangeName: MethodStringName0<TextParagraph, Vector2i> =
+        MethodStringName0<TextParagraph, Vector2i>("get_range")
+
+    @JvmField
     public val getLineCountName: MethodStringName0<TextParagraph, Int> =
         MethodStringName0<TextParagraph, Int>("get_line_count")
 
@@ -968,31 +984,31 @@ public open class TextParagraph : RefCounted() {
         MethodStringName0<TextParagraph, Int>("get_dropcap_lines")
 
     @JvmField
-    public val drawName: MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Color> =
-        MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Color>("draw")
+    public val drawName: MethodStringName5<TextParagraph, Unit, RID, Vector2, Color, Color, Float> =
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Color, Color, Float>("draw")
 
     @JvmField
     public val drawOutlineName:
-        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Color> =
-        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Color>("draw_outline")
+        MethodStringName6<TextParagraph, Unit, RID, Vector2, Int, Color, Color, Float> =
+        MethodStringName6<TextParagraph, Unit, RID, Vector2, Int, Color, Color, Float>("draw_outline")
 
     @JvmField
-    public val drawLineName: MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color> =
-        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color>("draw_line")
+    public val drawLineName: MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Float>
+        = MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Float>("draw_line")
 
     @JvmField
     public val drawLineOutlineName:
-        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Int, Color> =
-        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Int, Color>("draw_line_outline")
+        MethodStringName6<TextParagraph, Unit, RID, Vector2, Int, Int, Color, Float> =
+        MethodStringName6<TextParagraph, Unit, RID, Vector2, Int, Int, Color, Float>("draw_line_outline")
 
     @JvmField
-    public val drawDropcapName: MethodStringName3<TextParagraph, Unit, RID, Vector2, Color> =
-        MethodStringName3<TextParagraph, Unit, RID, Vector2, Color>("draw_dropcap")
+    public val drawDropcapName: MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Float> =
+        MethodStringName4<TextParagraph, Unit, RID, Vector2, Color, Float>("draw_dropcap")
 
     @JvmField
     public val drawDropcapOutlineName:
-        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color> =
-        MethodStringName4<TextParagraph, Unit, RID, Vector2, Int, Color>("draw_dropcap_outline")
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Float> =
+        MethodStringName5<TextParagraph, Unit, RID, Vector2, Int, Color, Float>("draw_dropcap_outline")
 
     @JvmField
     public val hitTestName: MethodStringName1<TextParagraph, Int, Vector2> =

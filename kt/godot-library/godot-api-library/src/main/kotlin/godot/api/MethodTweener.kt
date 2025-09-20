@@ -67,16 +67,16 @@ public open class MethodTweener : Tweener() {
 
   public companion object {
     @JvmField
-    public val setDelayName: MethodStringName1<MethodTweener, MethodTweener?, Double> =
-        MethodStringName1<MethodTweener, MethodTweener?, Double>("set_delay")
+    public val setDelayName: MethodStringName1<MethodTweener, MethodTweener, Double> =
+        MethodStringName1<MethodTweener, MethodTweener, Double>("set_delay")
 
     @JvmField
-    public val setTransName: MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>
-        = MethodStringName1<MethodTweener, MethodTweener?, Tween.TransitionType>("set_trans")
+    public val setTransName: MethodStringName1<MethodTweener, MethodTweener, Tween.TransitionType> =
+        MethodStringName1<MethodTweener, MethodTweener, Tween.TransitionType>("set_trans")
 
     @JvmField
-    public val setEaseName: MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType> =
-        MethodStringName1<MethodTweener, MethodTweener?, Tween.EaseType>("set_ease")
+    public val setEaseName: MethodStringName1<MethodTweener, MethodTweener, Tween.EaseType> =
+        MethodStringName1<MethodTweener, MethodTweener, Tween.EaseType>("set_ease")
   }
 
   public object MethodBindings {

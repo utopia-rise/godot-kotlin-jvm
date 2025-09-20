@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedInt64Array
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -146,7 +149,22 @@ public open class OpenXRSpatialCapabilityConfigurationAruco :
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getEnabledComponentsName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAruco, PackedInt64Array> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAruco, PackedInt64Array>("get_enabled_components")
+
+    @JvmField
+    public val setArucoDictName:
+        MethodStringName1<OpenXRSpatialCapabilityConfigurationAruco, Unit, ArucoDict> =
+        MethodStringName1<OpenXRSpatialCapabilityConfigurationAruco, Unit, ArucoDict>("set_aruco_dict")
+
+    @JvmField
+    public val getArucoDictName:
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAruco, ArucoDict> =
+        MethodStringName0<OpenXRSpatialCapabilityConfigurationAruco, ArucoDict>("get_aruco_dict")
+  }
 
   public object MethodBindings {
     internal val getEnabledComponentsPtr: VoidPtr =

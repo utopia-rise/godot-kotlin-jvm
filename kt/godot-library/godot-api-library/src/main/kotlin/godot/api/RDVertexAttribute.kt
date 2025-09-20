@@ -169,6 +169,14 @@ public open class RDVertexAttribute : RefCounted() {
 
   public companion object {
     @JvmField
+    public val setBindingName: MethodStringName1<RDVertexAttribute, Unit, Long> =
+        MethodStringName1<RDVertexAttribute, Unit, Long>("set_binding")
+
+    @JvmField
+    public val getBindingName: MethodStringName0<RDVertexAttribute, Long> =
+        MethodStringName0<RDVertexAttribute, Long>("get_binding")
+
+    @JvmField
     public val setLocationName: MethodStringName1<RDVertexAttribute, Unit, Long> =
         MethodStringName1<RDVertexAttribute, Unit, Long>("set_location")
 

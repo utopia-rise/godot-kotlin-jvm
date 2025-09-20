@@ -12,6 +12,12 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName7
+import godot.core.MethodStringName8
+import godot.core.MethodStringName9
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal2
@@ -39,6 +45,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -459,7 +466,81 @@ public open class AnimationNode : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addInputName: MethodStringName1<AnimationNode, Boolean, String> =
+        MethodStringName1<AnimationNode, Boolean, String>("add_input")
+
+    @JvmField
+    public val removeInputName: MethodStringName1<AnimationNode, Unit, Int> =
+        MethodStringName1<AnimationNode, Unit, Int>("remove_input")
+
+    @JvmField
+    public val setInputNameName: MethodStringName2<AnimationNode, Boolean, Int, String> =
+        MethodStringName2<AnimationNode, Boolean, Int, String>("set_input_name")
+
+    @JvmField
+    public val getInputNameName: MethodStringName1<AnimationNode, String, Int> =
+        MethodStringName1<AnimationNode, String, Int>("get_input_name")
+
+    @JvmField
+    public val getInputCountName: MethodStringName0<AnimationNode, Int> =
+        MethodStringName0<AnimationNode, Int>("get_input_count")
+
+    @JvmField
+    public val findInputName: MethodStringName1<AnimationNode, Int, String> =
+        MethodStringName1<AnimationNode, Int, String>("find_input")
+
+    @JvmField
+    public val setFilterPathName: MethodStringName2<AnimationNode, Unit, NodePath, Boolean> =
+        MethodStringName2<AnimationNode, Unit, NodePath, Boolean>("set_filter_path")
+
+    @JvmField
+    public val isPathFilteredName: MethodStringName1<AnimationNode, Boolean, NodePath> =
+        MethodStringName1<AnimationNode, Boolean, NodePath>("is_path_filtered")
+
+    @JvmField
+    public val setFilterEnabledName: MethodStringName1<AnimationNode, Unit, Boolean> =
+        MethodStringName1<AnimationNode, Unit, Boolean>("set_filter_enabled")
+
+    @JvmField
+    public val isFilterEnabledName: MethodStringName0<AnimationNode, Boolean> =
+        MethodStringName0<AnimationNode, Boolean>("is_filter_enabled")
+
+    @JvmField
+    public val getProcessingAnimationTreeInstanceIdName: MethodStringName0<AnimationNode, Long> =
+        MethodStringName0<AnimationNode, Long>("get_processing_animation_tree_instance_id")
+
+    @JvmField
+    public val isProcessTestingName: MethodStringName0<AnimationNode, Boolean> =
+        MethodStringName0<AnimationNode, Boolean>("is_process_testing")
+
+    @JvmField
+    public val blendAnimationName:
+        MethodStringName7<AnimationNode, Unit, StringName, Double, Double, Boolean, Boolean, Float, Animation.LoopedFlag>
+        =
+        MethodStringName7<AnimationNode, Unit, StringName, Double, Double, Boolean, Boolean, Float, Animation.LoopedFlag>("blend_animation")
+
+    @JvmField
+    public val blendNodeName:
+        MethodStringName9<AnimationNode, Double, StringName, AnimationNode?, Double, Boolean, Boolean, Float, FilterAction, Boolean, Boolean>
+        =
+        MethodStringName9<AnimationNode, Double, StringName, AnimationNode?, Double, Boolean, Boolean, Float, FilterAction, Boolean, Boolean>("blend_node")
+
+    @JvmField
+    public val blendInputName:
+        MethodStringName8<AnimationNode, Double, Int, Double, Boolean, Boolean, Float, FilterAction, Boolean, Boolean>
+        =
+        MethodStringName8<AnimationNode, Double, Int, Double, Boolean, Boolean, Float, FilterAction, Boolean, Boolean>("blend_input")
+
+    @JvmField
+    public val setParameterName: MethodStringName2<AnimationNode, Unit, StringName, Any?> =
+        MethodStringName2<AnimationNode, Unit, StringName, Any?>("set_parameter")
+
+    @JvmField
+    public val getParameterName: MethodStringName1<AnimationNode, Any?, StringName> =
+        MethodStringName1<AnimationNode, Any?, StringName>("get_parameter")
+  }
 
   public object MethodBindings {
     internal val addInputPtr: VoidPtr =

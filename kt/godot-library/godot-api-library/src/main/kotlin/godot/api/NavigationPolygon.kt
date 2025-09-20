@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector2Array
 import godot.core.Rect2
@@ -37,6 +40,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -701,7 +705,165 @@ public open class NavigationPolygon : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setVerticesName: MethodStringName1<NavigationPolygon, Unit, PackedVector2Array> =
+        MethodStringName1<NavigationPolygon, Unit, PackedVector2Array>("set_vertices")
+
+    @JvmField
+    public val getVerticesName: MethodStringName0<NavigationPolygon, PackedVector2Array> =
+        MethodStringName0<NavigationPolygon, PackedVector2Array>("get_vertices")
+
+    @JvmField
+    public val addPolygonName: MethodStringName1<NavigationPolygon, Unit, PackedInt32Array> =
+        MethodStringName1<NavigationPolygon, Unit, PackedInt32Array>("add_polygon")
+
+    @JvmField
+    public val getPolygonCountName: MethodStringName0<NavigationPolygon, Int> =
+        MethodStringName0<NavigationPolygon, Int>("get_polygon_count")
+
+    @JvmField
+    public val getPolygonName: MethodStringName1<NavigationPolygon, PackedInt32Array, Int> =
+        MethodStringName1<NavigationPolygon, PackedInt32Array, Int>("get_polygon")
+
+    @JvmField
+    public val clearPolygonsName: MethodStringName0<NavigationPolygon, Unit> =
+        MethodStringName0<NavigationPolygon, Unit>("clear_polygons")
+
+    @JvmField
+    public val getNavigationMeshName: MethodStringName0<NavigationPolygon, NavigationMesh?> =
+        MethodStringName0<NavigationPolygon, NavigationMesh?>("get_navigation_mesh")
+
+    @JvmField
+    public val addOutlineName: MethodStringName1<NavigationPolygon, Unit, PackedVector2Array> =
+        MethodStringName1<NavigationPolygon, Unit, PackedVector2Array>("add_outline")
+
+    @JvmField
+    public val addOutlineAtIndexName:
+        MethodStringName2<NavigationPolygon, Unit, PackedVector2Array, Int> =
+        MethodStringName2<NavigationPolygon, Unit, PackedVector2Array, Int>("add_outline_at_index")
+
+    @JvmField
+    public val getOutlineCountName: MethodStringName0<NavigationPolygon, Int> =
+        MethodStringName0<NavigationPolygon, Int>("get_outline_count")
+
+    @JvmField
+    public val setOutlineName: MethodStringName2<NavigationPolygon, Unit, Int, PackedVector2Array> =
+        MethodStringName2<NavigationPolygon, Unit, Int, PackedVector2Array>("set_outline")
+
+    @JvmField
+    public val getOutlineName: MethodStringName1<NavigationPolygon, PackedVector2Array, Int> =
+        MethodStringName1<NavigationPolygon, PackedVector2Array, Int>("get_outline")
+
+    @JvmField
+    public val removeOutlineName: MethodStringName1<NavigationPolygon, Unit, Int> =
+        MethodStringName1<NavigationPolygon, Unit, Int>("remove_outline")
+
+    @JvmField
+    public val clearOutlinesName: MethodStringName0<NavigationPolygon, Unit> =
+        MethodStringName0<NavigationPolygon, Unit>("clear_outlines")
+
+    @JvmField
+    public val makePolygonsFromOutlinesName: MethodStringName0<NavigationPolygon, Unit> =
+        MethodStringName0<NavigationPolygon, Unit>("make_polygons_from_outlines")
+
+    @JvmField
+    public val setCellSizeName: MethodStringName1<NavigationPolygon, Unit, Float> =
+        MethodStringName1<NavigationPolygon, Unit, Float>("set_cell_size")
+
+    @JvmField
+    public val getCellSizeName: MethodStringName0<NavigationPolygon, Float> =
+        MethodStringName0<NavigationPolygon, Float>("get_cell_size")
+
+    @JvmField
+    public val setBorderSizeName: MethodStringName1<NavigationPolygon, Unit, Float> =
+        MethodStringName1<NavigationPolygon, Unit, Float>("set_border_size")
+
+    @JvmField
+    public val getBorderSizeName: MethodStringName0<NavigationPolygon, Float> =
+        MethodStringName0<NavigationPolygon, Float>("get_border_size")
+
+    @JvmField
+    public val setSamplePartitionTypeName:
+        MethodStringName1<NavigationPolygon, Unit, SamplePartitionType> =
+        MethodStringName1<NavigationPolygon, Unit, SamplePartitionType>("set_sample_partition_type")
+
+    @JvmField
+    public val getSamplePartitionTypeName: MethodStringName0<NavigationPolygon, SamplePartitionType>
+        = MethodStringName0<NavigationPolygon, SamplePartitionType>("get_sample_partition_type")
+
+    @JvmField
+    public val setParsedGeometryTypeName:
+        MethodStringName1<NavigationPolygon, Unit, ParsedGeometryType> =
+        MethodStringName1<NavigationPolygon, Unit, ParsedGeometryType>("set_parsed_geometry_type")
+
+    @JvmField
+    public val getParsedGeometryTypeName: MethodStringName0<NavigationPolygon, ParsedGeometryType> =
+        MethodStringName0<NavigationPolygon, ParsedGeometryType>("get_parsed_geometry_type")
+
+    @JvmField
+    public val setParsedCollisionMaskName: MethodStringName1<NavigationPolygon, Unit, Long> =
+        MethodStringName1<NavigationPolygon, Unit, Long>("set_parsed_collision_mask")
+
+    @JvmField
+    public val getParsedCollisionMaskName: MethodStringName0<NavigationPolygon, Long> =
+        MethodStringName0<NavigationPolygon, Long>("get_parsed_collision_mask")
+
+    @JvmField
+    public val setParsedCollisionMaskValueName:
+        MethodStringName2<NavigationPolygon, Unit, Int, Boolean> =
+        MethodStringName2<NavigationPolygon, Unit, Int, Boolean>("set_parsed_collision_mask_value")
+
+    @JvmField
+    public val getParsedCollisionMaskValueName: MethodStringName1<NavigationPolygon, Boolean, Int> =
+        MethodStringName1<NavigationPolygon, Boolean, Int>("get_parsed_collision_mask_value")
+
+    @JvmField
+    public val setSourceGeometryModeName:
+        MethodStringName1<NavigationPolygon, Unit, SourceGeometryMode> =
+        MethodStringName1<NavigationPolygon, Unit, SourceGeometryMode>("set_source_geometry_mode")
+
+    @JvmField
+    public val getSourceGeometryModeName: MethodStringName0<NavigationPolygon, SourceGeometryMode> =
+        MethodStringName0<NavigationPolygon, SourceGeometryMode>("get_source_geometry_mode")
+
+    @JvmField
+    public val setSourceGeometryGroupNameName:
+        MethodStringName1<NavigationPolygon, Unit, StringName> =
+        MethodStringName1<NavigationPolygon, Unit, StringName>("set_source_geometry_group_name")
+
+    @JvmField
+    public val getSourceGeometryGroupNameName: MethodStringName0<NavigationPolygon, StringName> =
+        MethodStringName0<NavigationPolygon, StringName>("get_source_geometry_group_name")
+
+    @JvmField
+    public val setAgentRadiusName: MethodStringName1<NavigationPolygon, Unit, Float> =
+        MethodStringName1<NavigationPolygon, Unit, Float>("set_agent_radius")
+
+    @JvmField
+    public val getAgentRadiusName: MethodStringName0<NavigationPolygon, Float> =
+        MethodStringName0<NavigationPolygon, Float>("get_agent_radius")
+
+    @JvmField
+    public val setBakingRectName: MethodStringName1<NavigationPolygon, Unit, Rect2> =
+        MethodStringName1<NavigationPolygon, Unit, Rect2>("set_baking_rect")
+
+    @JvmField
+    public val getBakingRectName: MethodStringName0<NavigationPolygon, Rect2> =
+        MethodStringName0<NavigationPolygon, Rect2>("get_baking_rect")
+
+    @JvmField
+    public val setBakingRectOffsetName: MethodStringName1<NavigationPolygon, Unit, Vector2> =
+        MethodStringName1<NavigationPolygon, Unit, Vector2>("set_baking_rect_offset")
+
+    @JvmField
+    public val getBakingRectOffsetName: MethodStringName0<NavigationPolygon, Vector2> =
+        MethodStringName0<NavigationPolygon, Vector2>("get_baking_rect_offset")
+
+    @JvmField
+    public val clearName: MethodStringName0<NavigationPolygon, Unit> =
+        MethodStringName0<NavigationPolygon, Unit>("clear")
+  }
 
   public object MethodBindings {
     internal val setVerticesPtr: VoidPtr =

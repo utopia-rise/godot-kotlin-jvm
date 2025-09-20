@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -193,7 +197,35 @@ public open class ZIPPacker : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val openName: MethodStringName2<ZIPPacker, Error, String, ZipAppend> =
+        MethodStringName2<ZIPPacker, Error, String, ZipAppend>("open")
+
+    @JvmField
+    public val setCompressionLevelName: MethodStringName1<ZIPPacker, Unit, Int> =
+        MethodStringName1<ZIPPacker, Unit, Int>("set_compression_level")
+
+    @JvmField
+    public val getCompressionLevelName: MethodStringName0<ZIPPacker, Int> =
+        MethodStringName0<ZIPPacker, Int>("get_compression_level")
+
+    @JvmField
+    public val startFileName: MethodStringName1<ZIPPacker, Error, String> =
+        MethodStringName1<ZIPPacker, Error, String>("start_file")
+
+    @JvmField
+    public val writeFileName: MethodStringName1<ZIPPacker, Error, PackedByteArray> =
+        MethodStringName1<ZIPPacker, Error, PackedByteArray>("write_file")
+
+    @JvmField
+    public val closeFileName: MethodStringName0<ZIPPacker, Error> =
+        MethodStringName0<ZIPPacker, Error>("close_file")
+
+    @JvmField
+    public val closeName: MethodStringName0<ZIPPacker, Error> =
+        MethodStringName0<ZIPPacker, Error>("close")
+  }
 
   public object MethodBindings {
     internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open", 1936816515)

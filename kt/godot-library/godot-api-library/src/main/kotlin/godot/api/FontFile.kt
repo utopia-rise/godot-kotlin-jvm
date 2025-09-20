@@ -1477,6 +1477,14 @@ public open class FontFile : Font() {
         MethodStringName0<FontFile, Boolean>("is_force_autohinter")
 
     @JvmField
+    public val setModulateColorGlyphsName: MethodStringName1<FontFile, Unit, Boolean> =
+        MethodStringName1<FontFile, Unit, Boolean>("set_modulate_color_glyphs")
+
+    @JvmField
+    public val isModulateColorGlyphsName: MethodStringName0<FontFile, Boolean> =
+        MethodStringName0<FontFile, Boolean>("is_modulate_color_glyphs")
+
+    @JvmField
     public val setHintingName: MethodStringName1<FontFile, Unit, TextServer.Hinting> =
         MethodStringName1<FontFile, Unit, TextServer.Hinting>("set_hinting")
 

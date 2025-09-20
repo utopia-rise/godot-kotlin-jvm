@@ -15,6 +15,11 @@ import godot.common.interop.VoidPtr
 import godot.core.Basis
 import godot.core.EulerOrder
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Quaternion
 import godot.core.Signal0
@@ -40,6 +45,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -1365,6 +1371,290 @@ public open class Node3D : Node() {
   }
 
   public companion object {
+    @JvmField
+    public val setTransformName: MethodStringName1<Node3D, Unit, Transform3D> =
+        MethodStringName1<Node3D, Unit, Transform3D>("set_transform")
+
+    @JvmField
+    public val getTransformName: MethodStringName0<Node3D, Transform3D> =
+        MethodStringName0<Node3D, Transform3D>("get_transform")
+
+    @JvmField
+    public val setPositionName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_position")
+
+    @JvmField
+    public val getPositionName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_position")
+
+    @JvmField
+    public val setRotationName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_rotation")
+
+    @JvmField
+    public val getRotationName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_rotation")
+
+    @JvmField
+    public val setRotationDegreesName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_rotation_degrees")
+
+    @JvmField
+    public val getRotationDegreesName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_rotation_degrees")
+
+    @JvmField
+    public val setRotationOrderName: MethodStringName1<Node3D, Unit, EulerOrder> =
+        MethodStringName1<Node3D, Unit, EulerOrder>("set_rotation_order")
+
+    @JvmField
+    public val getRotationOrderName: MethodStringName0<Node3D, EulerOrder> =
+        MethodStringName0<Node3D, EulerOrder>("get_rotation_order")
+
+    @JvmField
+    public val setRotationEditModeName: MethodStringName1<Node3D, Unit, RotationEditMode> =
+        MethodStringName1<Node3D, Unit, RotationEditMode>("set_rotation_edit_mode")
+
+    @JvmField
+    public val getRotationEditModeName: MethodStringName0<Node3D, RotationEditMode> =
+        MethodStringName0<Node3D, RotationEditMode>("get_rotation_edit_mode")
+
+    @JvmField
+    public val setScaleName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_scale")
+
+    @JvmField
+    public val getScaleName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_scale")
+
+    @JvmField
+    public val setQuaternionName: MethodStringName1<Node3D, Unit, Quaternion> =
+        MethodStringName1<Node3D, Unit, Quaternion>("set_quaternion")
+
+    @JvmField
+    public val getQuaternionName: MethodStringName0<Node3D, Quaternion> =
+        MethodStringName0<Node3D, Quaternion>("get_quaternion")
+
+    @JvmField
+    public val setBasisName: MethodStringName1<Node3D, Unit, Basis> =
+        MethodStringName1<Node3D, Unit, Basis>("set_basis")
+
+    @JvmField
+    public val getBasisName: MethodStringName0<Node3D, Basis> =
+        MethodStringName0<Node3D, Basis>("get_basis")
+
+    @JvmField
+    public val setGlobalTransformName: MethodStringName1<Node3D, Unit, Transform3D> =
+        MethodStringName1<Node3D, Unit, Transform3D>("set_global_transform")
+
+    @JvmField
+    public val getGlobalTransformName: MethodStringName0<Node3D, Transform3D> =
+        MethodStringName0<Node3D, Transform3D>("get_global_transform")
+
+    @JvmField
+    public val getGlobalTransformInterpolatedName: MethodStringName0<Node3D, Transform3D> =
+        MethodStringName0<Node3D, Transform3D>("get_global_transform_interpolated")
+
+    @JvmField
+    public val setGlobalPositionName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_global_position")
+
+    @JvmField
+    public val getGlobalPositionName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_global_position")
+
+    @JvmField
+    public val setGlobalBasisName: MethodStringName1<Node3D, Unit, Basis> =
+        MethodStringName1<Node3D, Unit, Basis>("set_global_basis")
+
+    @JvmField
+    public val getGlobalBasisName: MethodStringName0<Node3D, Basis> =
+        MethodStringName0<Node3D, Basis>("get_global_basis")
+
+    @JvmField
+    public val setGlobalRotationName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_global_rotation")
+
+    @JvmField
+    public val getGlobalRotationName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_global_rotation")
+
+    @JvmField
+    public val setGlobalRotationDegreesName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("set_global_rotation_degrees")
+
+    @JvmField
+    public val getGlobalRotationDegreesName: MethodStringName0<Node3D, Vector3> =
+        MethodStringName0<Node3D, Vector3>("get_global_rotation_degrees")
+
+    @JvmField
+    public val getParentNode3dName: MethodStringName0<Node3D, Node3D?> =
+        MethodStringName0<Node3D, Node3D?>("get_parent_node_3d")
+
+    @JvmField
+    public val setIgnoreTransformNotificationName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_ignore_transform_notification")
+
+    @JvmField
+    public val setAsTopLevelName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_as_top_level")
+
+    @JvmField
+    public val isSetAsTopLevelName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_set_as_top_level")
+
+    @JvmField
+    public val setDisableScaleName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_disable_scale")
+
+    @JvmField
+    public val isScaleDisabledName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_scale_disabled")
+
+    @JvmField
+    public val getWorld3dName: MethodStringName0<Node3D, World3D?> =
+        MethodStringName0<Node3D, World3D?>("get_world_3d")
+
+    @JvmField
+    public val forceUpdateTransformName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("force_update_transform")
+
+    @JvmField
+    public val setVisibilityParentName: MethodStringName1<Node3D, Unit, NodePath> =
+        MethodStringName1<Node3D, Unit, NodePath>("set_visibility_parent")
+
+    @JvmField
+    public val getVisibilityParentName: MethodStringName0<Node3D, NodePath> =
+        MethodStringName0<Node3D, NodePath>("get_visibility_parent")
+
+    @JvmField
+    public val updateGizmosName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("update_gizmos")
+
+    @JvmField
+    public val addGizmoName: MethodStringName1<Node3D, Unit, Node3DGizmo?> =
+        MethodStringName1<Node3D, Unit, Node3DGizmo?>("add_gizmo")
+
+    @JvmField
+    public val getGizmosName: MethodStringName0<Node3D, VariantArray<Node3DGizmo>> =
+        MethodStringName0<Node3D, VariantArray<Node3DGizmo>>("get_gizmos")
+
+    @JvmField
+    public val clearGizmosName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("clear_gizmos")
+
+    @JvmField
+    public val setSubgizmoSelectionName:
+        MethodStringName3<Node3D, Unit, Node3DGizmo?, Int, Transform3D> =
+        MethodStringName3<Node3D, Unit, Node3DGizmo?, Int, Transform3D>("set_subgizmo_selection")
+
+    @JvmField
+    public val clearSubgizmoSelectionName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("clear_subgizmo_selection")
+
+    @JvmField
+    public val setVisibleName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_visible")
+
+    @JvmField
+    public val isVisibleName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_visible")
+
+    @JvmField
+    public val isVisibleInTreeName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_visible_in_tree")
+
+    @JvmField
+    public val showName: MethodStringName0<Node3D, Unit> = MethodStringName0<Node3D, Unit>("show")
+
+    @JvmField
+    public val hideName: MethodStringName0<Node3D, Unit> = MethodStringName0<Node3D, Unit>("hide")
+
+    @JvmField
+    public val setNotifyLocalTransformName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_notify_local_transform")
+
+    @JvmField
+    public val isLocalTransformNotificationEnabledName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_local_transform_notification_enabled")
+
+    @JvmField
+    public val setNotifyTransformName: MethodStringName1<Node3D, Unit, Boolean> =
+        MethodStringName1<Node3D, Unit, Boolean>("set_notify_transform")
+
+    @JvmField
+    public val isTransformNotificationEnabledName: MethodStringName0<Node3D, Boolean> =
+        MethodStringName0<Node3D, Boolean>("is_transform_notification_enabled")
+
+    @JvmField
+    public val rotateName: MethodStringName2<Node3D, Unit, Vector3, Float> =
+        MethodStringName2<Node3D, Unit, Vector3, Float>("rotate")
+
+    @JvmField
+    public val globalRotateName: MethodStringName2<Node3D, Unit, Vector3, Float> =
+        MethodStringName2<Node3D, Unit, Vector3, Float>("global_rotate")
+
+    @JvmField
+    public val globalScaleName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("global_scale")
+
+    @JvmField
+    public val globalTranslateName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("global_translate")
+
+    @JvmField
+    public val rotateObjectLocalName: MethodStringName2<Node3D, Unit, Vector3, Float> =
+        MethodStringName2<Node3D, Unit, Vector3, Float>("rotate_object_local")
+
+    @JvmField
+    public val scaleObjectLocalName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("scale_object_local")
+
+    @JvmField
+    public val translateObjectLocalName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("translate_object_local")
+
+    @JvmField
+    public val rotateXName: MethodStringName1<Node3D, Unit, Float> =
+        MethodStringName1<Node3D, Unit, Float>("rotate_x")
+
+    @JvmField
+    public val rotateYName: MethodStringName1<Node3D, Unit, Float> =
+        MethodStringName1<Node3D, Unit, Float>("rotate_y")
+
+    @JvmField
+    public val rotateZName: MethodStringName1<Node3D, Unit, Float> =
+        MethodStringName1<Node3D, Unit, Float>("rotate_z")
+
+    @JvmField
+    public val translateName: MethodStringName1<Node3D, Unit, Vector3> =
+        MethodStringName1<Node3D, Unit, Vector3>("translate")
+
+    @JvmField
+    public val orthonormalizeName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("orthonormalize")
+
+    @JvmField
+    public val setIdentityName: MethodStringName0<Node3D, Unit> =
+        MethodStringName0<Node3D, Unit>("set_identity")
+
+    @JvmField
+    public val lookAtName: MethodStringName3<Node3D, Unit, Vector3, Vector3, Boolean> =
+        MethodStringName3<Node3D, Unit, Vector3, Vector3, Boolean>("look_at")
+
+    @JvmField
+    public val lookAtFromPositionName:
+        MethodStringName4<Node3D, Unit, Vector3, Vector3, Vector3, Boolean> =
+        MethodStringName4<Node3D, Unit, Vector3, Vector3, Vector3, Boolean>("look_at_from_position")
+
+    @JvmField
+    public val toLocalName: MethodStringName1<Node3D, Vector3, Vector3> =
+        MethodStringName1<Node3D, Vector3, Vector3>("to_local")
+
+    @JvmField
+    public val toGlobalName: MethodStringName1<Node3D, Vector3, Vector3> =
+        MethodStringName1<Node3D, Vector3, Vector3>("to_global")
+
     /**
      * Notification received when this node's [globalTransform] changes, if
      * [isTransformNotificationEnabled] is `true`. See also [setNotifyTransform].

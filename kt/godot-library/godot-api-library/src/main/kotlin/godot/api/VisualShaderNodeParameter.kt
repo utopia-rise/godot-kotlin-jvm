@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -135,7 +138,31 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setParameterNameName: MethodStringName1<VisualShaderNodeParameter, Unit, String> =
+        MethodStringName1<VisualShaderNodeParameter, Unit, String>("set_parameter_name")
+
+    @JvmField
+    public val getParameterNameName: MethodStringName0<VisualShaderNodeParameter, String> =
+        MethodStringName0<VisualShaderNodeParameter, String>("get_parameter_name")
+
+    @JvmField
+    public val setQualifierName: MethodStringName1<VisualShaderNodeParameter, Unit, Qualifier> =
+        MethodStringName1<VisualShaderNodeParameter, Unit, Qualifier>("set_qualifier")
+
+    @JvmField
+    public val getQualifierName: MethodStringName0<VisualShaderNodeParameter, Qualifier> =
+        MethodStringName0<VisualShaderNodeParameter, Qualifier>("get_qualifier")
+
+    @JvmField
+    public val setInstanceIndexName: MethodStringName1<VisualShaderNodeParameter, Unit, Int> =
+        MethodStringName1<VisualShaderNodeParameter, Unit, Int>("set_instance_index")
+
+    @JvmField
+    public val getInstanceIndexName: MethodStringName0<VisualShaderNodeParameter, Int> =
+        MethodStringName0<VisualShaderNodeParameter, Int>("get_instance_index")
+  }
 
   public object MethodBindings {
     internal val setParameterNamePtr: VoidPtr =

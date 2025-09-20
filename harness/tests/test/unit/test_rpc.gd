@@ -16,5 +16,3 @@ func test_nullables_are_correctly_set_from_function_lika_a_ready_call():
 	
 	get_tree().get_multiplayer().multiplayer_peer = null
 	node3d.free()
-
-

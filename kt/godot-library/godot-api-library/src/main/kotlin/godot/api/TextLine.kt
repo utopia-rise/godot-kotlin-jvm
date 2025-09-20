@@ -15,7 +15,6 @@ import godot.core.HorizontalAlignment
 import godot.core.InlineAlignment
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.MethodStringName3
 import godot.core.MethodStringName4
 import godot.core.MethodStringName5
 import godot.core.PackedFloat32Array
@@ -490,12 +489,20 @@ public open class TextLine : RefCounted() {
         MethodStringName0<TextLine, Unit>("clear")
 
     @JvmField
+    public val duplicateName: MethodStringName0<TextLine, TextLine?> =
+        MethodStringName0<TextLine, TextLine?>("duplicate")
+
+    @JvmField
     public val setDirectionName: MethodStringName1<TextLine, Unit, TextServer.Direction> =
         MethodStringName1<TextLine, Unit, TextServer.Direction>("set_direction")
 
     @JvmField
     public val getDirectionName: MethodStringName0<TextLine, TextServer.Direction> =
         MethodStringName0<TextLine, TextServer.Direction>("get_direction")
+
+    @JvmField
+    public val getInferredDirectionName: MethodStringName0<TextLine, TextServer.Direction> =
+        MethodStringName0<TextLine, TextServer.Direction>("get_inferred_direction")
 
     @JvmField
     public val setOrientationName: MethodStringName1<TextLine, Unit, TextServer.Orientation> =
@@ -538,6 +545,10 @@ public open class TextLine : RefCounted() {
     public val resizeObjectName:
         MethodStringName4<TextLine, Boolean, Any?, Vector2, InlineAlignment, Float> =
         MethodStringName4<TextLine, Boolean, Any?, Vector2, InlineAlignment, Float>("resize_object")
+
+    @JvmField
+    public val hasObjectName: MethodStringName1<TextLine, Boolean, Any?> =
+        MethodStringName1<TextLine, Boolean, Any?>("has_object")
 
     @JvmField
     public val setWidthName: MethodStringName1<TextLine, Unit, Float> =
@@ -621,12 +632,12 @@ public open class TextLine : RefCounted() {
         MethodStringName0<TextLine, Float>("get_line_underline_thickness")
 
     @JvmField
-    public val drawName: MethodStringName3<TextLine, Unit, RID, Vector2, Color> =
-        MethodStringName3<TextLine, Unit, RID, Vector2, Color>("draw")
+    public val drawName: MethodStringName4<TextLine, Unit, RID, Vector2, Color, Float> =
+        MethodStringName4<TextLine, Unit, RID, Vector2, Color, Float>("draw")
 
     @JvmField
-    public val drawOutlineName: MethodStringName4<TextLine, Unit, RID, Vector2, Int, Color> =
-        MethodStringName4<TextLine, Unit, RID, Vector2, Int, Color>("draw_outline")
+    public val drawOutlineName: MethodStringName5<TextLine, Unit, RID, Vector2, Int, Color, Float> =
+        MethodStringName5<TextLine, Unit, RID, Vector2, Int, Color, Float>("draw_outline")
 
     @JvmField
     public val hitTestName: MethodStringName1<TextLine, Int, Float> =

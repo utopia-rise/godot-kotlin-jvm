@@ -10,11 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * GodotInstance represents a running Godot instance that is controlled from an outside codebase,
@@ -86,7 +88,35 @@ public open class GodotInstance internal constructor() : Object() {
     TransferContext.callMethod(ptr, MethodBindings.resumePtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val startName: MethodStringName0<GodotInstance, Boolean> =
+        MethodStringName0<GodotInstance, Boolean>("start")
+
+    @JvmField
+    public val isStartedName: MethodStringName0<GodotInstance, Boolean> =
+        MethodStringName0<GodotInstance, Boolean>("is_started")
+
+    @JvmField
+    public val iterationName: MethodStringName0<GodotInstance, Boolean> =
+        MethodStringName0<GodotInstance, Boolean>("iteration")
+
+    @JvmField
+    public val focusInName: MethodStringName0<GodotInstance, Unit> =
+        MethodStringName0<GodotInstance, Unit>("focus_in")
+
+    @JvmField
+    public val focusOutName: MethodStringName0<GodotInstance, Unit> =
+        MethodStringName0<GodotInstance, Unit>("focus_out")
+
+    @JvmField
+    public val pauseName: MethodStringName0<GodotInstance, Unit> =
+        MethodStringName0<GodotInstance, Unit>("pause")
+
+    @JvmField
+    public val resumeName: MethodStringName0<GodotInstance, Unit> =
+        MethodStringName0<GodotInstance, Unit>("resume")
+  }
 
   public object MethodBindings {
     internal val startPtr: VoidPtr =

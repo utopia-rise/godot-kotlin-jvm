@@ -10,6 +10,10 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantArray
@@ -27,6 +31,7 @@ import kotlin.Float
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -37,6 +42,63 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object InputMap : Object() {
+  @JvmField
+  public val hasActionName: MethodStringName1<InputMap, Boolean, StringName> =
+      MethodStringName1<InputMap, Boolean, StringName>("has_action")
+
+  @JvmField
+  public val getActionsName: MethodStringName0<InputMap, VariantArray<StringName>> =
+      MethodStringName0<InputMap, VariantArray<StringName>>("get_actions")
+
+  @JvmField
+  public val addActionName: MethodStringName2<InputMap, Unit, StringName, Float> =
+      MethodStringName2<InputMap, Unit, StringName, Float>("add_action")
+
+  @JvmField
+  public val eraseActionName: MethodStringName1<InputMap, Unit, StringName> =
+      MethodStringName1<InputMap, Unit, StringName>("erase_action")
+
+  @JvmField
+  public val getActionDescriptionName: MethodStringName1<InputMap, String, StringName> =
+      MethodStringName1<InputMap, String, StringName>("get_action_description")
+
+  @JvmField
+  public val actionSetDeadzoneName: MethodStringName2<InputMap, Unit, StringName, Float> =
+      MethodStringName2<InputMap, Unit, StringName, Float>("action_set_deadzone")
+
+  @JvmField
+  public val actionGetDeadzoneName: MethodStringName1<InputMap, Float, StringName> =
+      MethodStringName1<InputMap, Float, StringName>("action_get_deadzone")
+
+  @JvmField
+  public val actionAddEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent> =
+      MethodStringName2<InputMap, Unit, StringName, InputEvent>("action_add_event")
+
+  @JvmField
+  public val actionHasEventName: MethodStringName2<InputMap, Boolean, StringName, InputEvent> =
+      MethodStringName2<InputMap, Boolean, StringName, InputEvent>("action_has_event")
+
+  @JvmField
+  public val actionEraseEventName: MethodStringName2<InputMap, Unit, StringName, InputEvent> =
+      MethodStringName2<InputMap, Unit, StringName, InputEvent>("action_erase_event")
+
+  @JvmField
+  public val actionEraseEventsName: MethodStringName1<InputMap, Unit, StringName> =
+      MethodStringName1<InputMap, Unit, StringName>("action_erase_events")
+
+  @JvmField
+  public val actionGetEventsName: MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>
+      = MethodStringName1<InputMap, VariantArray<InputEvent>, StringName>("action_get_events")
+
+  @JvmField
+  public val eventIsActionName:
+      MethodStringName3<InputMap, Boolean, InputEvent, StringName, Boolean> =
+      MethodStringName3<InputMap, Boolean, InputEvent, StringName, Boolean>("event_is_action")
+
+  @JvmField
+  public val loadFromProjectSettingsName: MethodStringName0<InputMap, Unit> =
+      MethodStringName0<InputMap, Unit>("load_from_project_settings")
+
   /**
    * Emitted when the [ProjectSettings] [InputMap] has been loaded.
    */

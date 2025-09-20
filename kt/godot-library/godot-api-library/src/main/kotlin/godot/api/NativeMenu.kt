@@ -105,6 +105,14 @@ public object NativeMenu : Object() {
       MethodStringName1<NativeMenu, String, SystemMenus>("get_system_menu_name")
 
   @JvmField
+  public val getSystemMenuTextName: MethodStringName1<NativeMenu, String, SystemMenus> =
+      MethodStringName1<NativeMenu, String, SystemMenus>("get_system_menu_text")
+
+  @JvmField
+  public val setSystemMenuTextName: MethodStringName2<NativeMenu, Unit, SystemMenus, String> =
+      MethodStringName2<NativeMenu, Unit, SystemMenus, String>("set_system_menu_text")
+
+  @JvmField
   public val createMenuName: MethodStringName0<NativeMenu, RID> =
       MethodStringName0<NativeMenu, RID>("create_menu")
 
@@ -363,7 +371,7 @@ public object NativeMenu : Object() {
   public val clearName: MethodStringName1<NativeMenu, Unit, RID> =
       MethodStringName1<NativeMenu, Unit, RID>("clear")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(15)
   }
 

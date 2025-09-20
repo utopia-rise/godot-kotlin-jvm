@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -26,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -551,7 +555,167 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLineSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
+        MethodStringName1<LabelSettings, Unit, Float>("set_line_spacing")
+
+    @JvmField
+    public val getLineSpacingName: MethodStringName0<LabelSettings, Float> =
+        MethodStringName0<LabelSettings, Float>("get_line_spacing")
+
+    @JvmField
+    public val setParagraphSpacingName: MethodStringName1<LabelSettings, Unit, Float> =
+        MethodStringName1<LabelSettings, Unit, Float>("set_paragraph_spacing")
+
+    @JvmField
+    public val getParagraphSpacingName: MethodStringName0<LabelSettings, Float> =
+        MethodStringName0<LabelSettings, Float>("get_paragraph_spacing")
+
+    @JvmField
+    public val setFontName: MethodStringName1<LabelSettings, Unit, Font?> =
+        MethodStringName1<LabelSettings, Unit, Font?>("set_font")
+
+    @JvmField
+    public val getFontName: MethodStringName0<LabelSettings, Font?> =
+        MethodStringName0<LabelSettings, Font?>("get_font")
+
+    @JvmField
+    public val setFontSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_font_size")
+
+    @JvmField
+    public val getFontSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_font_size")
+
+    @JvmField
+    public val setFontColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_font_color")
+
+    @JvmField
+    public val getFontColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_font_color")
+
+    @JvmField
+    public val setOutlineSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_outline_size")
+
+    @JvmField
+    public val getOutlineSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_outline_size")
+
+    @JvmField
+    public val setOutlineColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_outline_color")
+
+    @JvmField
+    public val getOutlineColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_outline_color")
+
+    @JvmField
+    public val setShadowSizeName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_shadow_size")
+
+    @JvmField
+    public val getShadowSizeName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_shadow_size")
+
+    @JvmField
+    public val setShadowColorName: MethodStringName1<LabelSettings, Unit, Color> =
+        MethodStringName1<LabelSettings, Unit, Color>("set_shadow_color")
+
+    @JvmField
+    public val getShadowColorName: MethodStringName0<LabelSettings, Color> =
+        MethodStringName0<LabelSettings, Color>("get_shadow_color")
+
+    @JvmField
+    public val setShadowOffsetName: MethodStringName1<LabelSettings, Unit, Vector2> =
+        MethodStringName1<LabelSettings, Unit, Vector2>("set_shadow_offset")
+
+    @JvmField
+    public val getShadowOffsetName: MethodStringName0<LabelSettings, Vector2> =
+        MethodStringName0<LabelSettings, Vector2>("get_shadow_offset")
+
+    @JvmField
+    public val getStackedOutlineCountName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_stacked_outline_count")
+
+    @JvmField
+    public val setStackedOutlineCountName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_stacked_outline_count")
+
+    @JvmField
+    public val addStackedOutlineName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("add_stacked_outline")
+
+    @JvmField
+    public val moveStackedOutlineName: MethodStringName2<LabelSettings, Unit, Int, Int> =
+        MethodStringName2<LabelSettings, Unit, Int, Int>("move_stacked_outline")
+
+    @JvmField
+    public val removeStackedOutlineName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("remove_stacked_outline")
+
+    @JvmField
+    public val setStackedOutlineSizeName: MethodStringName2<LabelSettings, Unit, Int, Int> =
+        MethodStringName2<LabelSettings, Unit, Int, Int>("set_stacked_outline_size")
+
+    @JvmField
+    public val getStackedOutlineSizeName: MethodStringName1<LabelSettings, Int, Int> =
+        MethodStringName1<LabelSettings, Int, Int>("get_stacked_outline_size")
+
+    @JvmField
+    public val setStackedOutlineColorName: MethodStringName2<LabelSettings, Unit, Int, Color> =
+        MethodStringName2<LabelSettings, Unit, Int, Color>("set_stacked_outline_color")
+
+    @JvmField
+    public val getStackedOutlineColorName: MethodStringName1<LabelSettings, Color, Int> =
+        MethodStringName1<LabelSettings, Color, Int>("get_stacked_outline_color")
+
+    @JvmField
+    public val getStackedShadowCountName: MethodStringName0<LabelSettings, Int> =
+        MethodStringName0<LabelSettings, Int>("get_stacked_shadow_count")
+
+    @JvmField
+    public val setStackedShadowCountName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("set_stacked_shadow_count")
+
+    @JvmField
+    public val addStackedShadowName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("add_stacked_shadow")
+
+    @JvmField
+    public val moveStackedShadowName: MethodStringName2<LabelSettings, Unit, Int, Int> =
+        MethodStringName2<LabelSettings, Unit, Int, Int>("move_stacked_shadow")
+
+    @JvmField
+    public val removeStackedShadowName: MethodStringName1<LabelSettings, Unit, Int> =
+        MethodStringName1<LabelSettings, Unit, Int>("remove_stacked_shadow")
+
+    @JvmField
+    public val setStackedShadowOffsetName: MethodStringName2<LabelSettings, Unit, Int, Vector2> =
+        MethodStringName2<LabelSettings, Unit, Int, Vector2>("set_stacked_shadow_offset")
+
+    @JvmField
+    public val getStackedShadowOffsetName: MethodStringName1<LabelSettings, Vector2, Int> =
+        MethodStringName1<LabelSettings, Vector2, Int>("get_stacked_shadow_offset")
+
+    @JvmField
+    public val setStackedShadowColorName: MethodStringName2<LabelSettings, Unit, Int, Color> =
+        MethodStringName2<LabelSettings, Unit, Int, Color>("set_stacked_shadow_color")
+
+    @JvmField
+    public val getStackedShadowColorName: MethodStringName1<LabelSettings, Color, Int> =
+        MethodStringName1<LabelSettings, Color, Int>("get_stacked_shadow_color")
+
+    @JvmField
+    public val setStackedShadowOutlineSizeName: MethodStringName2<LabelSettings, Unit, Int, Int> =
+        MethodStringName2<LabelSettings, Unit, Int, Int>("set_stacked_shadow_outline_size")
+
+    @JvmField
+    public val getStackedShadowOutlineSizeName: MethodStringName1<LabelSettings, Int, Int> =
+        MethodStringName1<LabelSettings, Int, Int>("get_stacked_shadow_outline_size")
+  }
 
   public object MethodBindings {
     internal val setLineSpacingPtr: VoidPtr =

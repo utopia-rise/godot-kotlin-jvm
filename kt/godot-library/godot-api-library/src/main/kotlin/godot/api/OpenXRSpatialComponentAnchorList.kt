@@ -10,12 +10,14 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the queries anchor result data when calling
@@ -36,7 +38,12 @@ public open class OpenXRSpatialComponentAnchorList : OpenXRSpatialComponentData(
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getEntityPoseName:
+        MethodStringName1<OpenXRSpatialComponentAnchorList, Transform3D, Long> =
+        MethodStringName1<OpenXRSpatialComponentAnchorList, Transform3D, Long>("get_entity_pose")
+  }
 
   public object MethodBindings {
     internal val getEntityPosePtr: VoidPtr =

@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
@@ -19,6 +21,7 @@ import kotlin.Any
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Result object tracking the asynchronous result of an OpenXR Future object, you can use this
@@ -110,7 +113,27 @@ public open class OpenXRFutureResult internal constructor() : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getStatusName: MethodStringName0<OpenXRFutureResult, ResultStatus> =
+        MethodStringName0<OpenXRFutureResult, ResultStatus>("get_status")
+
+    @JvmField
+    public val getFutureName: MethodStringName0<OpenXRFutureResult, Long> =
+        MethodStringName0<OpenXRFutureResult, Long>("get_future")
+
+    @JvmField
+    public val cancelFutureName: MethodStringName0<OpenXRFutureResult, Unit> =
+        MethodStringName0<OpenXRFutureResult, Unit>("cancel_future")
+
+    @JvmField
+    public val setResultValueName: MethodStringName1<OpenXRFutureResult, Unit, Any?> =
+        MethodStringName1<OpenXRFutureResult, Unit, Any?>("set_result_value")
+
+    @JvmField
+    public val getResultValueName: MethodStringName0<OpenXRFutureResult, Any?> =
+        MethodStringName0<OpenXRFutureResult, Any?>("get_result_value")
+  }
 
   public object MethodBindings {
     internal val getStatusPtr: VoidPtr =

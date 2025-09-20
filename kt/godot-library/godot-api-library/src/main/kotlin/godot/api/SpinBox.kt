@@ -325,6 +325,14 @@ public open class SpinBox : Range() {
         MethodStringName0<SpinBox, Double>("get_custom_arrow_step")
 
     @JvmField
+    public val setCustomArrowRoundName: MethodStringName1<SpinBox, Unit, Boolean> =
+        MethodStringName1<SpinBox, Unit, Boolean>("set_custom_arrow_round")
+
+    @JvmField
+    public val isCustomArrowRoundingName: MethodStringName0<SpinBox, Boolean> =
+        MethodStringName0<SpinBox, Boolean>("is_custom_arrow_rounding")
+
+    @JvmField
     public val isEditableName: MethodStringName0<SpinBox, Boolean> =
         MethodStringName0<SpinBox, Boolean>("is_editable")
 

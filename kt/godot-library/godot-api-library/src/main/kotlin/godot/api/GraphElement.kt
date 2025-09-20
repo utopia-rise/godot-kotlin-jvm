@@ -277,6 +277,14 @@ public open class GraphElement : Container() {
         MethodStringName0<GraphElement, Boolean>("is_selected")
 
     @JvmField
+    public val setScalingMenusName: MethodStringName1<GraphElement, Unit, Boolean> =
+        MethodStringName1<GraphElement, Unit, Boolean>("set_scaling_menus")
+
+    @JvmField
+    public val isScalingMenusName: MethodStringName0<GraphElement, Boolean> =
+        MethodStringName0<GraphElement, Boolean>("is_scaling_menus")
+
+    @JvmField
     public val setPositionOffsetName: MethodStringName1<GraphElement, Unit, Vector2> =
         MethodStringName1<GraphElement, Unit, Vector2>("set_position_offset")
 

@@ -10,7 +10,7 @@ import godot.internal.memory.TransferContext
 import godot.internal.reflection.TypeManager
 import kotlin.contracts.ExperimentalContracts
 
-class GodotNotification @PublishedApi internal constructor(val block: NotificationFunction<*>)
+class GodotNotification(val block: NotificationFunction<out KtObject>)
 
 fun interface NotificationFunction<T : KtObject> {
     fun invoke(obj: T, notification: Int)

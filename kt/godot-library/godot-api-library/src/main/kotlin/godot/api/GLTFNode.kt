@@ -715,6 +715,14 @@ public open class GLTFNode : Resource() {
         MethodStringName1<GLTFNode, Unit, Int>("set_light")
 
     @JvmField
+    public val getVisibleName: MethodStringName0<GLTFNode, Boolean> =
+        MethodStringName0<GLTFNode, Boolean>("get_visible")
+
+    @JvmField
+    public val setVisibleName: MethodStringName1<GLTFNode, Unit, Boolean> =
+        MethodStringName1<GLTFNode, Unit, Boolean>("set_visible")
+
+    @JvmField
     public val getAdditionalDataName: MethodStringName1<GLTFNode, Any?, StringName> =
         MethodStringName1<GLTFNode, Any?, StringName>("get_additional_data")
 

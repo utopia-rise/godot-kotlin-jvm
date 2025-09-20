@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +22,7 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -188,7 +192,24 @@ public open class AESContext : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val startName:
+        MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray> =
+        MethodStringName3<AESContext, Error, Mode, PackedByteArray, PackedByteArray>("start")
+
+    @JvmField
+    public val updateName: MethodStringName1<AESContext, PackedByteArray, PackedByteArray> =
+        MethodStringName1<AESContext, PackedByteArray, PackedByteArray>("update")
+
+    @JvmField
+    public val getIvStateName: MethodStringName0<AESContext, PackedByteArray> =
+        MethodStringName0<AESContext, PackedByteArray>("get_iv_state")
+
+    @JvmField
+    public val finishName: MethodStringName0<AESContext, Unit> =
+        MethodStringName0<AESContext, Unit>("finish")
+  }
 
   public object MethodBindings {
     internal val startPtr: VoidPtr = TypeManager.getMethodBindPtr("AESContext", "start", 3122411423)

@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -24,6 +27,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -719,7 +723,23 @@ public open class XRFaceTracker : XRTracker() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getBlendShapeName: MethodStringName1<XRFaceTracker, Float, BlendShapeEntry> =
+        MethodStringName1<XRFaceTracker, Float, BlendShapeEntry>("get_blend_shape")
+
+    @JvmField
+    public val setBlendShapeName: MethodStringName2<XRFaceTracker, Unit, BlendShapeEntry, Float> =
+        MethodStringName2<XRFaceTracker, Unit, BlendShapeEntry, Float>("set_blend_shape")
+
+    @JvmField
+    public val getBlendShapesName: MethodStringName0<XRFaceTracker, PackedFloat32Array> =
+        MethodStringName0<XRFaceTracker, PackedFloat32Array>("get_blend_shapes")
+
+    @JvmField
+    public val setBlendShapesName: MethodStringName1<XRFaceTracker, Unit, PackedFloat32Array> =
+        MethodStringName1<XRFaceTracker, Unit, PackedFloat32Array>("set_blend_shapes")
+  }
 
   public object MethodBindings {
     internal val getBlendShapePtr: VoidPtr =

@@ -10,10 +10,13 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Object for storing the main query result data when calling
@@ -52,7 +55,21 @@ public open class OpenXRSpatialQueryResultData : OpenXRSpatialComponentData() {
     return OpenXRSpatialEntityTracker.EntityTrackingState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getCapacityName: MethodStringName0<OpenXRSpatialQueryResultData, Long> =
+        MethodStringName0<OpenXRSpatialQueryResultData, Long>("get_capacity")
+
+    @JvmField
+    public val getEntityIdName: MethodStringName1<OpenXRSpatialQueryResultData, Long, Long> =
+        MethodStringName1<OpenXRSpatialQueryResultData, Long, Long>("get_entity_id")
+
+    @JvmField
+    public val getEntityStateName:
+        MethodStringName1<OpenXRSpatialQueryResultData, OpenXRSpatialEntityTracker.EntityTrackingState, Long>
+        =
+        MethodStringName1<OpenXRSpatialQueryResultData, OpenXRSpatialEntityTracker.EntityTrackingState, Long>("get_entity_state")
+  }
 
   public object MethodBindings {
     internal val getCapacityPtr: VoidPtr =

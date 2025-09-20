@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
@@ -22,6 +24,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -157,7 +160,19 @@ public open class PlaceholderTextureLayered internal constructor() : TextureLaye
     throw NotImplementedError("PlaceholderTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSizeName: MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i> =
+        MethodStringName1<PlaceholderTextureLayered, Unit, Vector2i>("set_size")
+
+    @JvmField
+    public val getSizeName: MethodStringName0<PlaceholderTextureLayered, Vector2i> =
+        MethodStringName0<PlaceholderTextureLayered, Vector2i>("get_size")
+
+    @JvmField
+    public val setLayersName: MethodStringName1<PlaceholderTextureLayered, Unit, Int> =
+        MethodStringName1<PlaceholderTextureLayered, Unit, Int>("set_layers")
+  }
 
   public object MethodBindings {
     internal val setSizePtr: VoidPtr =

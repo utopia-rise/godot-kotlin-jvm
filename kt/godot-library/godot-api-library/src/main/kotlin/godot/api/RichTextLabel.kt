@@ -19,8 +19,7 @@ import godot.core.HorizontalAlignment
 import godot.core.InlineAlignment
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.MethodStringName10
-import godot.core.MethodStringName11
+import godot.core.MethodStringName12
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName4
@@ -2056,16 +2055,22 @@ public open class RichTextLabel : Control() {
         MethodStringName1<RichTextLabel, Unit, String>("set_text")
 
     @JvmField
-    public val addImageName:
-        MethodStringName10<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean>
+    public val addHrName:
+        MethodStringName6<RichTextLabel, Unit, Int, Int, Color, HorizontalAlignment, Boolean, Boolean>
         =
-        MethodStringName10<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean>("add_image")
+        MethodStringName6<RichTextLabel, Unit, Int, Int, Color, HorizontalAlignment, Boolean, Boolean>("add_hr")
+
+    @JvmField
+    public val addImageName:
+        MethodStringName12<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean, Boolean, String>
+        =
+        MethodStringName12<RichTextLabel, Unit, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Any?, Boolean, String, Boolean, Boolean, String>("add_image")
 
     @JvmField
     public val updateImageName:
-        MethodStringName11<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean>
+        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean, Boolean>
         =
-        MethodStringName11<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean>("update_image")
+        MethodStringName12<RichTextLabel, Unit, Any?, ImageUpdateMask, Texture2D?, Int, Int, Color, InlineAlignment, Rect2, Boolean, String, Boolean, Boolean>("update_image")
 
     @JvmField
     public val newlineName: MethodStringName0<RichTextLabel, Unit> =
@@ -2146,16 +2151,17 @@ public open class RichTextLabel : Control() {
         MethodStringName1<RichTextLabel, Unit, String>("push_language")
 
     @JvmField
-    public val pushUnderlineName: MethodStringName0<RichTextLabel, Unit> =
-        MethodStringName0<RichTextLabel, Unit>("push_underline")
+    public val pushUnderlineName: MethodStringName1<RichTextLabel, Unit, Color> =
+        MethodStringName1<RichTextLabel, Unit, Color>("push_underline")
 
     @JvmField
-    public val pushStrikethroughName: MethodStringName0<RichTextLabel, Unit> =
-        MethodStringName0<RichTextLabel, Unit>("push_strikethrough")
+    public val pushStrikethroughName: MethodStringName1<RichTextLabel, Unit, Color> =
+        MethodStringName1<RichTextLabel, Unit, Color>("push_strikethrough")
 
     @JvmField
-    public val pushTableName: MethodStringName3<RichTextLabel, Unit, Int, InlineAlignment, Int> =
-        MethodStringName3<RichTextLabel, Unit, Int, InlineAlignment, Int>("push_table")
+    public val pushTableName:
+        MethodStringName4<RichTextLabel, Unit, Int, InlineAlignment, Int, String> =
+        MethodStringName4<RichTextLabel, Unit, Int, InlineAlignment, Int, String>("push_table")
 
     @JvmField
     public val pushDropcapName:
@@ -2166,6 +2172,10 @@ public open class RichTextLabel : Control() {
     public val setTableColumnExpandName:
         MethodStringName4<RichTextLabel, Unit, Int, Boolean, Int, Boolean> =
         MethodStringName4<RichTextLabel, Unit, Int, Boolean, Int, Boolean>("set_table_column_expand")
+
+    @JvmField
+    public val setTableColumnNameName: MethodStringName2<RichTextLabel, Unit, Int, String> =
+        MethodStringName2<RichTextLabel, Unit, Int, String>("set_table_column_name")
 
     @JvmField
     public val setCellRowBackgroundColorName: MethodStringName2<RichTextLabel, Unit, Color, Color> =
@@ -2300,6 +2310,15 @@ public open class RichTextLabel : Control() {
         MethodStringName0<RichTextLabel, TextServer.AutowrapMode>("get_autowrap_mode")
 
     @JvmField
+    public val setAutowrapTrimFlagsName:
+        MethodStringName1<RichTextLabel, Unit, TextServer.LineBreakFlag> =
+        MethodStringName1<RichTextLabel, Unit, TextServer.LineBreakFlag>("set_autowrap_trim_flags")
+
+    @JvmField
+    public val getAutowrapTrimFlagsName: MethodStringName0<RichTextLabel, TextServer.LineBreakFlag>
+        = MethodStringName0<RichTextLabel, TextServer.LineBreakFlag>("get_autowrap_trim_flags")
+
+    @JvmField
     public val setMetaUnderlineName: MethodStringName1<RichTextLabel, Unit, Boolean> =
         MethodStringName1<RichTextLabel, Unit, Boolean>("set_meta_underline")
 
@@ -2322,6 +2341,14 @@ public open class RichTextLabel : Control() {
     @JvmField
     public val isScrollActiveName: MethodStringName0<RichTextLabel, Boolean> =
         MethodStringName0<RichTextLabel, Boolean>("is_scroll_active")
+
+    @JvmField
+    public val setScrollFollowVisibleCharactersName: MethodStringName1<RichTextLabel, Unit, Boolean>
+        = MethodStringName1<RichTextLabel, Unit, Boolean>("set_scroll_follow_visible_characters")
+
+    @JvmField
+    public val isScrollFollowingVisibleCharactersName: MethodStringName0<RichTextLabel, Boolean> =
+        MethodStringName0<RichTextLabel, Boolean>("is_scroll_following_visible_characters")
 
     @JvmField
     public val setScrollFollowName: MethodStringName1<RichTextLabel, Unit, Boolean> =
@@ -2538,6 +2565,18 @@ public open class RichTextLabel : Control() {
         MethodStringName0<RichTextLabel, Int>("get_content_width")
 
     @JvmField
+    public val getLineHeightName: MethodStringName1<RichTextLabel, Int, Int> =
+        MethodStringName1<RichTextLabel, Int, Int>("get_line_height")
+
+    @JvmField
+    public val getLineWidthName: MethodStringName1<RichTextLabel, Int, Int> =
+        MethodStringName1<RichTextLabel, Int, Int>("get_line_width")
+
+    @JvmField
+    public val getVisibleContentRectName: MethodStringName0<RichTextLabel, Rect2i> =
+        MethodStringName0<RichTextLabel, Rect2i>("get_visible_content_rect")
+
+    @JvmField
     public val getLineOffsetName: MethodStringName1<RichTextLabel, Float, Int> =
         MethodStringName1<RichTextLabel, Float, Int>("get_line_offset")
 
@@ -2561,6 +2600,10 @@ public open class RichTextLabel : Control() {
     @JvmField
     public val installEffectName: MethodStringName1<RichTextLabel, Unit, Any?> =
         MethodStringName1<RichTextLabel, Unit, Any?>("install_effect")
+
+    @JvmField
+    public val reloadEffectsName: MethodStringName0<RichTextLabel, Unit> =
+        MethodStringName0<RichTextLabel, Unit>("reload_effects")
 
     @JvmField
     public val getMenuName: MethodStringName0<RichTextLabel, PopupMenu?> =

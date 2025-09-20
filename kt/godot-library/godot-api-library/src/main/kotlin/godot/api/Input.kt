@@ -104,6 +104,16 @@ public object Input : Object() {
       MethodStringName2<Input, Boolean, StringName, Boolean>("is_action_just_released")
 
   @JvmField
+  public val isActionJustPressedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean>("is_action_just_pressed_by_event")
+
+  @JvmField
+  public val isActionJustReleasedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent, Boolean>("is_action_just_released_by_event")
+
+  @JvmField
   public val getActionStrengthName: MethodStringName2<Input, Float, StringName, Boolean> =
       MethodStringName2<Input, Float, StringName, Boolean>("get_action_strength")
 
@@ -209,6 +219,14 @@ public object Input : Object() {
       MethodStringName1<Input, Unit, Vector3>("set_gyroscope")
 
   @JvmField
+  public val setJoyLightName: MethodStringName2<Input, Unit, Int, Color> =
+      MethodStringName2<Input, Unit, Int, Color>("set_joy_light")
+
+  @JvmField
+  public val hasJoyLightName: MethodStringName1<Input, Boolean, Int> =
+      MethodStringName1<Input, Boolean, Int>("has_joy_light")
+
+  @JvmField
   public val getLastMouseVelocityName: MethodStringName0<Input, Vector2> =
       MethodStringName0<Input, Vector2>("get_last_mouse_velocity")
 
@@ -254,8 +272,8 @@ public object Input : Object() {
       MethodStringName3<Input, Unit, Resource?, CursorShape, Vector2>("set_custom_mouse_cursor")
 
   @JvmField
-  public val parseInputEventName: MethodStringName1<Input, Unit, InputEvent?> =
-      MethodStringName1<Input, Unit, InputEvent?>("parse_input_event")
+  public val parseInputEventName: MethodStringName1<Input, Unit, InputEvent> =
+      MethodStringName1<Input, Unit, InputEvent>("parse_input_event")
 
   @JvmField
   public val setUseAccumulatedInputName: MethodStringName1<Input, Unit, Boolean> =

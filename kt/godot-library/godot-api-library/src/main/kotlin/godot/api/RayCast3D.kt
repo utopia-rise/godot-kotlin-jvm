@@ -573,16 +573,16 @@ public open class RayCast3D : Node3D() {
         MethodStringName1<RayCast3D, Unit, RID>("add_exception_rid")
 
     @JvmField
-    public val addExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D?> =
-        MethodStringName1<RayCast3D, Unit, CollisionObject3D?>("add_exception")
+    public val addExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D> =
+        MethodStringName1<RayCast3D, Unit, CollisionObject3D>("add_exception")
 
     @JvmField
     public val removeExceptionRidName: MethodStringName1<RayCast3D, Unit, RID> =
         MethodStringName1<RayCast3D, Unit, RID>("remove_exception_rid")
 
     @JvmField
-    public val removeExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D?> =
-        MethodStringName1<RayCast3D, Unit, CollisionObject3D?>("remove_exception")
+    public val removeExceptionName: MethodStringName1<RayCast3D, Unit, CollisionObject3D> =
+        MethodStringName1<RayCast3D, Unit, CollisionObject3D>("remove_exception")
 
     @JvmField
     public val clearExceptionsName: MethodStringName0<RayCast3D, Unit> =

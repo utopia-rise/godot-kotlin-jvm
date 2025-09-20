@@ -12,6 +12,11 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
@@ -33,6 +38,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -370,6 +376,106 @@ public open class GLTFDocument : Resource() {
   }
 
   public companion object {
+    @JvmField
+    public val setImageFormatName: MethodStringName1<GLTFDocument, Unit, String> =
+        MethodStringName1<GLTFDocument, Unit, String>("set_image_format")
+
+    @JvmField
+    public val getImageFormatName: MethodStringName0<GLTFDocument, String> =
+        MethodStringName0<GLTFDocument, String>("get_image_format")
+
+    @JvmField
+    public val setLossyQualityName: MethodStringName1<GLTFDocument, Unit, Float> =
+        MethodStringName1<GLTFDocument, Unit, Float>("set_lossy_quality")
+
+    @JvmField
+    public val getLossyQualityName: MethodStringName0<GLTFDocument, Float> =
+        MethodStringName0<GLTFDocument, Float>("get_lossy_quality")
+
+    @JvmField
+    public val setFallbackImageFormatName: MethodStringName1<GLTFDocument, Unit, String> =
+        MethodStringName1<GLTFDocument, Unit, String>("set_fallback_image_format")
+
+    @JvmField
+    public val getFallbackImageFormatName: MethodStringName0<GLTFDocument, String> =
+        MethodStringName0<GLTFDocument, String>("get_fallback_image_format")
+
+    @JvmField
+    public val setFallbackImageQualityName: MethodStringName1<GLTFDocument, Unit, Float> =
+        MethodStringName1<GLTFDocument, Unit, Float>("set_fallback_image_quality")
+
+    @JvmField
+    public val getFallbackImageQualityName: MethodStringName0<GLTFDocument, Float> =
+        MethodStringName0<GLTFDocument, Float>("get_fallback_image_quality")
+
+    @JvmField
+    public val setRootNodeModeName: MethodStringName1<GLTFDocument, Unit, RootNodeMode> =
+        MethodStringName1<GLTFDocument, Unit, RootNodeMode>("set_root_node_mode")
+
+    @JvmField
+    public val getRootNodeModeName: MethodStringName0<GLTFDocument, RootNodeMode> =
+        MethodStringName0<GLTFDocument, RootNodeMode>("get_root_node_mode")
+
+    @JvmField
+    public val setVisibilityModeName: MethodStringName1<GLTFDocument, Unit, VisibilityMode> =
+        MethodStringName1<GLTFDocument, Unit, VisibilityMode>("set_visibility_mode")
+
+    @JvmField
+    public val getVisibilityModeName: MethodStringName0<GLTFDocument, VisibilityMode> =
+        MethodStringName0<GLTFDocument, VisibilityMode>("get_visibility_mode")
+
+    @JvmField
+    public val appendFromFileName:
+        MethodStringName4<GLTFDocument, Error, String, GLTFState?, Long, String> =
+        MethodStringName4<GLTFDocument, Error, String, GLTFState?, Long, String>("append_from_file")
+
+    @JvmField
+    public val appendFromBufferName:
+        MethodStringName4<GLTFDocument, Error, PackedByteArray, String, GLTFState?, Long> =
+        MethodStringName4<GLTFDocument, Error, PackedByteArray, String, GLTFState?, Long>("append_from_buffer")
+
+    @JvmField
+    public val appendFromSceneName: MethodStringName3<GLTFDocument, Error, Node?, GLTFState?, Long>
+        = MethodStringName3<GLTFDocument, Error, Node?, GLTFState?, Long>("append_from_scene")
+
+    @JvmField
+    public val generateSceneName:
+        MethodStringName4<GLTFDocument, Node?, GLTFState?, Float, Boolean, Boolean> =
+        MethodStringName4<GLTFDocument, Node?, GLTFState?, Float, Boolean, Boolean>("generate_scene")
+
+    @JvmField
+    public val generateBufferName: MethodStringName1<GLTFDocument, PackedByteArray, GLTFState?> =
+        MethodStringName1<GLTFDocument, PackedByteArray, GLTFState?>("generate_buffer")
+
+    @JvmField
+    public val writeToFilesystemName: MethodStringName2<GLTFDocument, Error, GLTFState?, String> =
+        MethodStringName2<GLTFDocument, Error, GLTFState?, String>("write_to_filesystem")
+
+    @JvmField
+    public val importObjectModelPropertyName:
+        MethodStringName2<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, String> =
+        MethodStringName2<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, String>("import_object_model_property")
+
+    @JvmField
+    public val exportObjectModelPropertyName:
+        MethodStringName4<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, NodePath, Node?, Int>
+        =
+        MethodStringName4<GLTFDocument, GLTFObjectModelProperty?, GLTFState?, NodePath, Node?, Int>("export_object_model_property")
+
+    @JvmField
+    public val registerGltfDocumentExtensionName:
+        MethodStringName2<GLTFDocument, Unit, GLTFDocumentExtension?, Boolean> =
+        MethodStringName2<GLTFDocument, Unit, GLTFDocumentExtension?, Boolean>("register_gltf_document_extension")
+
+    @JvmField
+    public val unregisterGltfDocumentExtensionName:
+        MethodStringName1<GLTFDocument, Unit, GLTFDocumentExtension?> =
+        MethodStringName1<GLTFDocument, Unit, GLTFDocumentExtension?>("unregister_gltf_document_extension")
+
+    @JvmField
+    public val getSupportedGltfExtensionsName: MethodStringName0<GLTFDocument, PackedStringArray> =
+        MethodStringName0<GLTFDocument, PackedStringArray>("get_supported_gltf_extensions")
+
     /**
      * Determines a mapping between the given glTF Object Model [jsonPointer] and the corresponding
      * Godot node path(s) in the generated Godot scene. The details of this mapping are returned in a

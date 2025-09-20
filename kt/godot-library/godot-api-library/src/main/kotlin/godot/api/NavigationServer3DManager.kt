@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.MethodStringName2
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +20,7 @@ import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 /**
@@ -30,6 +32,15 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationServer3DManager : Object() {
+  @JvmField
+  public val registerServerName:
+      MethodStringName2<NavigationServer3DManager, Unit, String, Callable> =
+      MethodStringName2<NavigationServer3DManager, Unit, String, Callable>("register_server")
+
+  @JvmField
+  public val setDefaultServerName: MethodStringName2<NavigationServer3DManager, Unit, String, Int> =
+      MethodStringName2<NavigationServer3DManager, Unit, String, Int>("set_default_server")
+
   public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(20)
   }

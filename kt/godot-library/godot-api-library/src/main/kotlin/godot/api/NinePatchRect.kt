@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Rect2
 import godot.core.Side
 import godot.core.Signal0
@@ -26,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -287,7 +291,55 @@ public open class NinePatchRect : Control() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextureName: MethodStringName1<NinePatchRect, Unit, Texture2D?> =
+        MethodStringName1<NinePatchRect, Unit, Texture2D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<NinePatchRect, Texture2D?> =
+        MethodStringName0<NinePatchRect, Texture2D?>("get_texture")
+
+    @JvmField
+    public val setPatchMarginName: MethodStringName2<NinePatchRect, Unit, Side, Int> =
+        MethodStringName2<NinePatchRect, Unit, Side, Int>("set_patch_margin")
+
+    @JvmField
+    public val getPatchMarginName: MethodStringName1<NinePatchRect, Int, Side> =
+        MethodStringName1<NinePatchRect, Int, Side>("get_patch_margin")
+
+    @JvmField
+    public val setRegionRectName: MethodStringName1<NinePatchRect, Unit, Rect2> =
+        MethodStringName1<NinePatchRect, Unit, Rect2>("set_region_rect")
+
+    @JvmField
+    public val getRegionRectName: MethodStringName0<NinePatchRect, Rect2> =
+        MethodStringName0<NinePatchRect, Rect2>("get_region_rect")
+
+    @JvmField
+    public val setDrawCenterName: MethodStringName1<NinePatchRect, Unit, Boolean> =
+        MethodStringName1<NinePatchRect, Unit, Boolean>("set_draw_center")
+
+    @JvmField
+    public val isDrawCenterEnabledName: MethodStringName0<NinePatchRect, Boolean> =
+        MethodStringName0<NinePatchRect, Boolean>("is_draw_center_enabled")
+
+    @JvmField
+    public val setHAxisStretchModeName: MethodStringName1<NinePatchRect, Unit, AxisStretchMode> =
+        MethodStringName1<NinePatchRect, Unit, AxisStretchMode>("set_h_axis_stretch_mode")
+
+    @JvmField
+    public val getHAxisStretchModeName: MethodStringName0<NinePatchRect, AxisStretchMode> =
+        MethodStringName0<NinePatchRect, AxisStretchMode>("get_h_axis_stretch_mode")
+
+    @JvmField
+    public val setVAxisStretchModeName: MethodStringName1<NinePatchRect, Unit, AxisStretchMode> =
+        MethodStringName1<NinePatchRect, Unit, AxisStretchMode>("set_v_axis_stretch_mode")
+
+    @JvmField
+    public val getVAxisStretchModeName: MethodStringName0<NinePatchRect, AxisStretchMode> =
+        MethodStringName0<NinePatchRect, AxisStretchMode>("get_v_axis_stretch_mode")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

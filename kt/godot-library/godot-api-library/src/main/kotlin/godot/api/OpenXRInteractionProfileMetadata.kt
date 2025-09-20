@@ -121,6 +121,11 @@ public open class OpenXRInteractionProfileMetadata : Object() {
         MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String>("register_profile_rename")
 
     @JvmField
+    public val registerPathRenameName:
+        MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String> =
+        MethodStringName2<OpenXRInteractionProfileMetadata, Unit, String, String>("register_path_rename")
+
+    @JvmField
     public val registerTopLevelPathName:
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String> =
         MethodStringName3<OpenXRInteractionProfileMetadata, Unit, String, String, String>("register_top_level_path")

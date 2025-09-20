@@ -12,6 +12,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Rect2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
@@ -22,6 +24,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -208,7 +211,39 @@ public open class AtlasTexture : Texture2D() {
     throw NotImplementedError("AtlasTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAtlasName: MethodStringName1<AtlasTexture, Unit, Texture2D?> =
+        MethodStringName1<AtlasTexture, Unit, Texture2D?>("set_atlas")
+
+    @JvmField
+    public val getAtlasName: MethodStringName0<AtlasTexture, Texture2D?> =
+        MethodStringName0<AtlasTexture, Texture2D?>("get_atlas")
+
+    @JvmField
+    public val setRegionName: MethodStringName1<AtlasTexture, Unit, Rect2> =
+        MethodStringName1<AtlasTexture, Unit, Rect2>("set_region")
+
+    @JvmField
+    public val getRegionName: MethodStringName0<AtlasTexture, Rect2> =
+        MethodStringName0<AtlasTexture, Rect2>("get_region")
+
+    @JvmField
+    public val setMarginName: MethodStringName1<AtlasTexture, Unit, Rect2> =
+        MethodStringName1<AtlasTexture, Unit, Rect2>("set_margin")
+
+    @JvmField
+    public val getMarginName: MethodStringName0<AtlasTexture, Rect2> =
+        MethodStringName0<AtlasTexture, Rect2>("get_margin")
+
+    @JvmField
+    public val setFilterClipName: MethodStringName1<AtlasTexture, Unit, Boolean> =
+        MethodStringName1<AtlasTexture, Unit, Boolean>("set_filter_clip")
+
+    @JvmField
+    public val hasFilterClipName: MethodStringName0<AtlasTexture, Boolean> =
+        MethodStringName0<AtlasTexture, Boolean>("has_filter_clip")
+  }
 
   public object MethodBindings {
     internal val setAtlasPtr: VoidPtr =
