@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -256,7 +259,55 @@ public open class FogMaterial : Material() {
     throw NotImplementedError("FogMaterial::_getShaderMode can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDensityName: MethodStringName1<FogMaterial, Unit, Float> =
+        MethodStringName1<FogMaterial, Unit, Float>("set_density")
+
+    @JvmField
+    public val getDensityName: MethodStringName0<FogMaterial, Float> =
+        MethodStringName0<FogMaterial, Float>("get_density")
+
+    @JvmField
+    public val setAlbedoName: MethodStringName1<FogMaterial, Unit, Color> =
+        MethodStringName1<FogMaterial, Unit, Color>("set_albedo")
+
+    @JvmField
+    public val getAlbedoName: MethodStringName0<FogMaterial, Color> =
+        MethodStringName0<FogMaterial, Color>("get_albedo")
+
+    @JvmField
+    public val setEmissionName: MethodStringName1<FogMaterial, Unit, Color> =
+        MethodStringName1<FogMaterial, Unit, Color>("set_emission")
+
+    @JvmField
+    public val getEmissionName: MethodStringName0<FogMaterial, Color> =
+        MethodStringName0<FogMaterial, Color>("get_emission")
+
+    @JvmField
+    public val setHeightFalloffName: MethodStringName1<FogMaterial, Unit, Float> =
+        MethodStringName1<FogMaterial, Unit, Float>("set_height_falloff")
+
+    @JvmField
+    public val getHeightFalloffName: MethodStringName0<FogMaterial, Float> =
+        MethodStringName0<FogMaterial, Float>("get_height_falloff")
+
+    @JvmField
+    public val setEdgeFadeName: MethodStringName1<FogMaterial, Unit, Float> =
+        MethodStringName1<FogMaterial, Unit, Float>("set_edge_fade")
+
+    @JvmField
+    public val getEdgeFadeName: MethodStringName0<FogMaterial, Float> =
+        MethodStringName0<FogMaterial, Float>("get_edge_fade")
+
+    @JvmField
+    public val setDensityTextureName: MethodStringName1<FogMaterial, Unit, Texture3D?> =
+        MethodStringName1<FogMaterial, Unit, Texture3D?>("set_density_texture")
+
+    @JvmField
+    public val getDensityTextureName: MethodStringName0<FogMaterial, Texture3D?> =
+        MethodStringName0<FogMaterial, Texture3D?>("get_density_texture")
+  }
 
   public object MethodBindings {
     internal val setDensityPtr: VoidPtr =

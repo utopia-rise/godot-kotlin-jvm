@@ -855,7 +855,6 @@ public open class Object : KtObject() {
     flags: ConnectFlags = Object.ConnectFlags.DEFAULT,
   ): Error {
     TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.value)
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.id)
     TransferContext.callMethod(ptr, MethodBindings.connectPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1534,10 +1533,6 @@ public open class Object : KtObject() {
   public enum class ConnectFlags(
     `value`: Long,
   ) : GodotEnum {
-    /**
-     * Default connections that are immediately emitted
-     */
-    DEFAULT(0),
     /**
      * Default connections that are immediately emitted
      */

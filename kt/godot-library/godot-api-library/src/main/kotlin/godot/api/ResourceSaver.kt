@@ -51,6 +51,10 @@ public object ResourceSaver : Object() {
       MethodStringName3<ResourceSaver, Error, Resource?, String, SaverFlags>("save")
 
   @JvmField
+  public val setUidName: MethodStringName2<ResourceSaver, Error, String, Long> =
+      MethodStringName2<ResourceSaver, Error, String, Long>("set_uid")
+
+  @JvmField
   public val getRecognizedExtensionsName:
       MethodStringName1<ResourceSaver, PackedStringArray, Resource?> =
       MethodStringName1<ResourceSaver, PackedStringArray, Resource?>("get_recognized_extensions")
@@ -69,7 +73,7 @@ public object ResourceSaver : Object() {
   public val getResourceIdForPathName: MethodStringName2<ResourceSaver, Long, String, Boolean> =
       MethodStringName2<ResourceSaver, Long, String, Boolean>("get_resource_id_for_path")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(28)
   }
 

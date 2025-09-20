@@ -1590,6 +1590,14 @@ public open class LineEdit : Control() {
         MethodStringName0<LineEdit, Int>("get_caret_column")
 
     @JvmField
+    public val getNextCompositeCharacterColumnName: MethodStringName1<LineEdit, Int, Int> =
+        MethodStringName1<LineEdit, Int, Int>("get_next_composite_character_column")
+
+    @JvmField
+    public val getPreviousCompositeCharacterColumnName: MethodStringName1<LineEdit, Int, Int> =
+        MethodStringName1<LineEdit, Int, Int>("get_previous_composite_character_column")
+
+    @JvmField
     public val getScrollOffsetName: MethodStringName0<LineEdit, Float> =
         MethodStringName0<LineEdit, Float>("get_scroll_offset")
 
@@ -1706,12 +1714,29 @@ public open class LineEdit : Control() {
         MethodStringName0<LineEdit, Boolean>("is_emoji_menu_enabled")
 
     @JvmField
+    public val setBackspaceDeletesCompositeCharacterEnabledName:
+        MethodStringName1<LineEdit, Unit, Boolean> =
+        MethodStringName1<LineEdit, Unit, Boolean>("set_backspace_deletes_composite_character_enabled")
+
+    @JvmField
+    public val isBackspaceDeletesCompositeCharacterEnabledName: MethodStringName0<LineEdit, Boolean>
+        = MethodStringName0<LineEdit, Boolean>("is_backspace_deletes_composite_character_enabled")
+
+    @JvmField
     public val setVirtualKeyboardEnabledName: MethodStringName1<LineEdit, Unit, Boolean> =
         MethodStringName1<LineEdit, Unit, Boolean>("set_virtual_keyboard_enabled")
 
     @JvmField
     public val isVirtualKeyboardEnabledName: MethodStringName0<LineEdit, Boolean> =
         MethodStringName0<LineEdit, Boolean>("is_virtual_keyboard_enabled")
+
+    @JvmField
+    public val setVirtualKeyboardShowOnFocusName: MethodStringName1<LineEdit, Unit, Boolean> =
+        MethodStringName1<LineEdit, Unit, Boolean>("set_virtual_keyboard_show_on_focus")
+
+    @JvmField
+    public val getVirtualKeyboardShowOnFocusName: MethodStringName0<LineEdit, Boolean> =
+        MethodStringName0<LineEdit, Boolean>("get_virtual_keyboard_show_on_focus")
 
     @JvmField
     public val setVirtualKeyboardTypeName: MethodStringName1<LineEdit, Unit, VirtualKeyboardType> =

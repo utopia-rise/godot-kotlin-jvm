@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -24,6 +26,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Provides a low-level interface for creating parsers for
@@ -284,7 +287,75 @@ public open class XMLParser : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val readName: MethodStringName0<XMLParser, Error> =
+        MethodStringName0<XMLParser, Error>("read")
+
+    @JvmField
+    public val getNodeTypeName: MethodStringName0<XMLParser, NodeType> =
+        MethodStringName0<XMLParser, NodeType>("get_node_type")
+
+    @JvmField
+    public val getNodeNameName: MethodStringName0<XMLParser, String> =
+        MethodStringName0<XMLParser, String>("get_node_name")
+
+    @JvmField
+    public val getNodeDataName: MethodStringName0<XMLParser, String> =
+        MethodStringName0<XMLParser, String>("get_node_data")
+
+    @JvmField
+    public val getNodeOffsetName: MethodStringName0<XMLParser, Long> =
+        MethodStringName0<XMLParser, Long>("get_node_offset")
+
+    @JvmField
+    public val getAttributeCountName: MethodStringName0<XMLParser, Int> =
+        MethodStringName0<XMLParser, Int>("get_attribute_count")
+
+    @JvmField
+    public val getAttributeNameName: MethodStringName1<XMLParser, String, Int> =
+        MethodStringName1<XMLParser, String, Int>("get_attribute_name")
+
+    @JvmField
+    public val getAttributeValueName: MethodStringName1<XMLParser, String, Int> =
+        MethodStringName1<XMLParser, String, Int>("get_attribute_value")
+
+    @JvmField
+    public val hasAttributeName: MethodStringName1<XMLParser, Boolean, String> =
+        MethodStringName1<XMLParser, Boolean, String>("has_attribute")
+
+    @JvmField
+    public val getNamedAttributeValueName: MethodStringName1<XMLParser, String, String> =
+        MethodStringName1<XMLParser, String, String>("get_named_attribute_value")
+
+    @JvmField
+    public val getNamedAttributeValueSafeName: MethodStringName1<XMLParser, String, String> =
+        MethodStringName1<XMLParser, String, String>("get_named_attribute_value_safe")
+
+    @JvmField
+    public val isEmptyName: MethodStringName0<XMLParser, Boolean> =
+        MethodStringName0<XMLParser, Boolean>("is_empty")
+
+    @JvmField
+    public val getCurrentLineName: MethodStringName0<XMLParser, Int> =
+        MethodStringName0<XMLParser, Int>("get_current_line")
+
+    @JvmField
+    public val skipSectionName: MethodStringName0<XMLParser, Unit> =
+        MethodStringName0<XMLParser, Unit>("skip_section")
+
+    @JvmField
+    public val seekName: MethodStringName1<XMLParser, Error, Long> =
+        MethodStringName1<XMLParser, Error, Long>("seek")
+
+    @JvmField
+    public val openName: MethodStringName1<XMLParser, Error, String> =
+        MethodStringName1<XMLParser, Error, String>("open")
+
+    @JvmField
+    public val openBufferName: MethodStringName1<XMLParser, Error, PackedByteArray> =
+        MethodStringName1<XMLParser, Error, PackedByteArray>("open_buffer")
+  }
 
   public object MethodBindings {
     internal val readPtr: VoidPtr = TypeManager.getMethodBindPtr("XMLParser", "read", 166280745)

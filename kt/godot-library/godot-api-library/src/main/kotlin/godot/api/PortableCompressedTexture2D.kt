@@ -13,6 +13,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName4
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -27,6 +31,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
@@ -214,6 +219,54 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   public companion object {
+    @JvmField
+    public val createFromImageName:
+        MethodStringName4<PortableCompressedTexture2D, Unit, Image?, CompressionMode, Boolean, Float>
+        =
+        MethodStringName4<PortableCompressedTexture2D, Unit, Image?, CompressionMode, Boolean, Float>("create_from_image")
+
+    @JvmField
+    public val getFormatName: MethodStringName0<PortableCompressedTexture2D, Image.Format> =
+        MethodStringName0<PortableCompressedTexture2D, Image.Format>("get_format")
+
+    @JvmField
+    public val getCompressionModeName:
+        MethodStringName0<PortableCompressedTexture2D, CompressionMode> =
+        MethodStringName0<PortableCompressedTexture2D, CompressionMode>("get_compression_mode")
+
+    @JvmField
+    public val setSizeOverrideName: MethodStringName1<PortableCompressedTexture2D, Unit, Vector2> =
+        MethodStringName1<PortableCompressedTexture2D, Unit, Vector2>("set_size_override")
+
+    @JvmField
+    public val getSizeOverrideName: MethodStringName0<PortableCompressedTexture2D, Vector2> =
+        MethodStringName0<PortableCompressedTexture2D, Vector2>("get_size_override")
+
+    @JvmField
+    public val setKeepCompressedBufferName:
+        MethodStringName1<PortableCompressedTexture2D, Unit, Boolean> =
+        MethodStringName1<PortableCompressedTexture2D, Unit, Boolean>("set_keep_compressed_buffer")
+
+    @JvmField
+    public val isKeepingCompressedBufferName:
+        MethodStringName0<PortableCompressedTexture2D, Boolean> =
+        MethodStringName0<PortableCompressedTexture2D, Boolean>("is_keeping_compressed_buffer")
+
+    @JvmField
+    public val setBasisuCompressorParamsName:
+        MethodStringName2<PortableCompressedTexture2D, Unit, Int, Float> =
+        MethodStringName2<PortableCompressedTexture2D, Unit, Int, Float>("set_basisu_compressor_params")
+
+    @JvmField
+    public val setKeepAllCompressedBuffersName:
+        MethodStringName1<PortableCompressedTexture2D, Unit, Boolean> =
+        MethodStringName1<PortableCompressedTexture2D, Unit, Boolean>("set_keep_all_compressed_buffers")
+
+    @JvmField
+    public val isKeepingAllCompressedBuffersName:
+        MethodStringName0<PortableCompressedTexture2D, Boolean> =
+        MethodStringName0<PortableCompressedTexture2D, Boolean>("is_keeping_all_compressed_buffers")
+
     /**
      * Overrides the flag globally for all textures of this type. This is used primarily by the
      * editor.

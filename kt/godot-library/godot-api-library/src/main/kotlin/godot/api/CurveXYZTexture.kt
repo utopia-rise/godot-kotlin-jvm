@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -17,6 +19,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -131,7 +134,35 @@ public open class CurveXYZTexture : Texture2D() {
     throw NotImplementedError("CurveXYZTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setWidthName: MethodStringName1<CurveXYZTexture, Unit, Int> =
+        MethodStringName1<CurveXYZTexture, Unit, Int>("set_width")
+
+    @JvmField
+    public val setCurveXName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_x")
+
+    @JvmField
+    public val getCurveXName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_x")
+
+    @JvmField
+    public val setCurveYName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_y")
+
+    @JvmField
+    public val getCurveYName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_y")
+
+    @JvmField
+    public val setCurveZName: MethodStringName1<CurveXYZTexture, Unit, Curve?> =
+        MethodStringName1<CurveXYZTexture, Unit, Curve?>("set_curve_z")
+
+    @JvmField
+    public val getCurveZName: MethodStringName0<CurveXYZTexture, Curve?> =
+        MethodStringName0<CurveXYZTexture, Curve?>("get_curve_z")
+  }
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName3
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2
@@ -19,6 +20,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -75,7 +77,13 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getMagnitudeForFrequencyRangeName:
+        MethodStringName3<AudioEffectSpectrumAnalyzerInstance, Vector2, Float, Float, MagnitudeMode>
+        =
+        MethodStringName3<AudioEffectSpectrumAnalyzerInstance, Vector2, Float, Float, MagnitudeMode>("get_magnitude_for_frequency_range")
+  }
 
   public object MethodBindings {
     internal val getMagnitudeForFrequencyRangePtr: VoidPtr =

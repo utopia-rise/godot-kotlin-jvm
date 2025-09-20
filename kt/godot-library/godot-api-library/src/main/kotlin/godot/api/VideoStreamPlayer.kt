@@ -434,6 +434,14 @@ public open class VideoStreamPlayer : Control() {
         MethodStringName0<VideoStreamPlayer, Float>("get_volume_db")
 
     @JvmField
+    public val setSpeedScaleName: MethodStringName1<VideoStreamPlayer, Unit, Float> =
+        MethodStringName1<VideoStreamPlayer, Unit, Float>("set_speed_scale")
+
+    @JvmField
+    public val getSpeedScaleName: MethodStringName0<VideoStreamPlayer, Float> =
+        MethodStringName0<VideoStreamPlayer, Float>("get_speed_scale")
+
+    @JvmField
     public val setAudioTrackName: MethodStringName1<VideoStreamPlayer, Unit, Int> =
         MethodStringName1<VideoStreamPlayer, Unit, Int>("set_audio_track")
 

@@ -18,6 +18,7 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GODOT_METHOD_CALLABLE
 import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
 import godot.tools.common.constants.GODOT_OBJECT
+import godot.tools.common.constants.GodotFunctions
 import godot.tools.common.constants.GodotKotlinJvmTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotApiPackage
@@ -27,26 +28,21 @@ import java.io.File
 import kotlin.reflect.KCallable
 
 object ConnectorGenerationService : IConnectorGenerationService {
-    private const val LAMBDA_CONTAINER_NAME = "LambdaContainer"
-    private const val SIGNAL_CLASS_NAME = "Signal"
-    private const val CONNECT_METHOD_METHOD_NAME = "connectMethod"
-    private const val CONNECT_LAMBDA_METHOD_NAME = "connectLambda"
-    private const val PROMISE_METHOD_NAME = "promise"
     private const val METHOD_PARAMETER_NAME = "method"
     private const val CANCEL_PARAMETER_NAME = "cancel"
     private const val FLAGS_PARAMETER_NAME = "flags"
     private const val TARGET_PARAMETER_NAME = "target"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
-    private val connectFlagClassName = ClassName(godotApiPackage, "Object.ConnectFlags")
+    private val connectFlagClassName = ClassName(godotApiPackage, OBJECT_CONNECT_FLAGS_CLASS_NAME)
     private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
-    private val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
-    private val asCallableMember= MemberName(godotCorePackage, "asCallable")
+    private val variantConverterMember = MemberName(godotCorePackage, METHOD_NAME_GET_VARIANT_CONVERTER)
+    private val asCallableMember= MemberName(godotCorePackage, GodotFunctions.asCallable)
 
     override fun generate(output: File) {
-        val connectorFileSpec = FileSpec.builder(godotExtensionPackage, "SignalConnectors")
+        val connectorFileSpec = FileSpec.builder(godotExtensionPackage, SIGNAL_CONNECTORS_FILE_NAME)
 
         for (argCount in 0..Constraints.MAX_FUNCTION_ARG_COUNT) {
-            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_NAME$argCount")
+            val signalClassName = ClassName(godotCorePackage, "$SIGNAL_CLASS_BASENAME$argCount")
             val genericClassNameInfo = GenericClassNameInfo(signalClassName, argCount)
             val genericParameters = genericClassNameInfo.genericTypes
 
@@ -57,7 +53,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toReifiedExtensionFunSpecBuilder(CONNECT_LAMBDA_METHOD_NAME)
+                    .toReifiedExtensionFunSpecBuilder(METHOD_NAME_CONNECT_LAMBDA)
                     .addParameters(
                         listOf(
                             flagsParameter,
@@ -98,7 +94,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
 
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toExtensionFunSpecBuilder(CONNECT_METHOD_METHOD_NAME, listOf(godotObjectBoundTypeVariable))
+                    .toExtensionFunSpecBuilder(METHOD_NAME_CONNECT_METHOD, listOf(godotObjectBoundTypeVariable))
                     .addParameters(
                         listOf(
                             ParameterSpec
@@ -131,11 +127,11 @@ object ConnectorGenerationService : IConnectorGenerationService {
                     .build()
             )
 
-            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_NAME$argCount")
+            val lambdaContainerClassName = ClassName(godotCorePackage, "$LAMBDA_CONTAINER_CLASS_BASENAME$argCount")
             val containerInfo = GenericClassNameInfo(lambdaContainerClassName, argCount)
             connectorFileSpec.addFunction(
                 genericClassNameInfo
-                    .toReifiedExtensionFunSpecBuilder(PROMISE_METHOD_NAME)
+                    .toReifiedExtensionFunSpecBuilder(METHOD_NAME_PROMISE)
                     .addParameters(
                         listOf(
                             ParameterSpec
@@ -165,7 +161,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                                 append("%T(%T.NIL,·arrayOf(")
                                 genericParameters.forEachIndexed { index, _ ->
                                     if (index != 0) append(",·")
-                                    append("%M[%T::class]!!")
+                                    append("%M(%T::class)!!")
                                 }
                                 append("),·$METHOD_PARAMETER_NAME).setAsCancellable(this,·$CANCEL_PARAMETER_NAME)")
                             },
@@ -173,7 +169,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
                             variantConverterClassName,
                             *genericParameters
                                 .flatMap {
-                                    listOf(variantMapperMember, it)
+                                    listOf(variantConverterMember, it)
                                 }
                                 .toTypedArray()
                         )

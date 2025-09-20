@@ -399,6 +399,14 @@ public open class Button : BaseButton() {
         MethodStringName0<Button, TextServer.AutowrapMode>("get_autowrap_mode")
 
     @JvmField
+    public val setAutowrapTrimFlagsName: MethodStringName1<Button, Unit, TextServer.LineBreakFlag> =
+        MethodStringName1<Button, Unit, TextServer.LineBreakFlag>("set_autowrap_trim_flags")
+
+    @JvmField
+    public val getAutowrapTrimFlagsName: MethodStringName0<Button, TextServer.LineBreakFlag> =
+        MethodStringName0<Button, TextServer.LineBreakFlag>("get_autowrap_trim_flags")
+
+    @JvmField
     public val setTextDirectionName: MethodStringName1<Button, Unit, Control.TextDirection> =
         MethodStringName1<Button, Unit, Control.TextDirection>("set_text_direction")
 

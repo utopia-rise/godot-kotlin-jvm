@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.Transform3D
@@ -29,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -423,7 +427,123 @@ public open class SkeletonProfile : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRootBoneName: MethodStringName1<SkeletonProfile, Unit, StringName> =
+        MethodStringName1<SkeletonProfile, Unit, StringName>("set_root_bone")
+
+    @JvmField
+    public val getRootBoneName: MethodStringName0<SkeletonProfile, StringName> =
+        MethodStringName0<SkeletonProfile, StringName>("get_root_bone")
+
+    @JvmField
+    public val setScaleBaseBoneName: MethodStringName1<SkeletonProfile, Unit, StringName> =
+        MethodStringName1<SkeletonProfile, Unit, StringName>("set_scale_base_bone")
+
+    @JvmField
+    public val getScaleBaseBoneName: MethodStringName0<SkeletonProfile, StringName> =
+        MethodStringName0<SkeletonProfile, StringName>("get_scale_base_bone")
+
+    @JvmField
+    public val setGroupSizeName: MethodStringName1<SkeletonProfile, Unit, Int> =
+        MethodStringName1<SkeletonProfile, Unit, Int>("set_group_size")
+
+    @JvmField
+    public val getGroupSizeName: MethodStringName0<SkeletonProfile, Int> =
+        MethodStringName0<SkeletonProfile, Int>("get_group_size")
+
+    @JvmField
+    public val getGroupNameName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_group_name")
+
+    @JvmField
+    public val setGroupNameName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_group_name")
+
+    @JvmField
+    public val getTextureName: MethodStringName1<SkeletonProfile, Texture2D?, Int> =
+        MethodStringName1<SkeletonProfile, Texture2D?, Int>("get_texture")
+
+    @JvmField
+    public val setTextureName: MethodStringName2<SkeletonProfile, Unit, Int, Texture2D?> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Texture2D?>("set_texture")
+
+    @JvmField
+    public val setBoneSizeName: MethodStringName1<SkeletonProfile, Unit, Int> =
+        MethodStringName1<SkeletonProfile, Unit, Int>("set_bone_size")
+
+    @JvmField
+    public val getBoneSizeName: MethodStringName0<SkeletonProfile, Int> =
+        MethodStringName0<SkeletonProfile, Int>("get_bone_size")
+
+    @JvmField
+    public val findBoneName: MethodStringName1<SkeletonProfile, Int, StringName> =
+        MethodStringName1<SkeletonProfile, Int, StringName>("find_bone")
+
+    @JvmField
+    public val getBoneNameName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_name")
+
+    @JvmField
+    public val setBoneNameName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_name")
+
+    @JvmField
+    public val getBoneParentName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_parent")
+
+    @JvmField
+    public val setBoneParentName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_parent")
+
+    @JvmField
+    public val getTailDirectionName: MethodStringName1<SkeletonProfile, TailDirection, Int> =
+        MethodStringName1<SkeletonProfile, TailDirection, Int>("get_tail_direction")
+
+    @JvmField
+    public val setTailDirectionName: MethodStringName2<SkeletonProfile, Unit, Int, TailDirection> =
+        MethodStringName2<SkeletonProfile, Unit, Int, TailDirection>("set_tail_direction")
+
+    @JvmField
+    public val getBoneTailName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_bone_tail")
+
+    @JvmField
+    public val setBoneTailName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_bone_tail")
+
+    @JvmField
+    public val getReferencePoseName: MethodStringName1<SkeletonProfile, Transform3D, Int> =
+        MethodStringName1<SkeletonProfile, Transform3D, Int>("get_reference_pose")
+
+    @JvmField
+    public val setReferencePoseName: MethodStringName2<SkeletonProfile, Unit, Int, Transform3D> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Transform3D>("set_reference_pose")
+
+    @JvmField
+    public val getHandleOffsetName: MethodStringName1<SkeletonProfile, Vector2, Int> =
+        MethodStringName1<SkeletonProfile, Vector2, Int>("get_handle_offset")
+
+    @JvmField
+    public val setHandleOffsetName: MethodStringName2<SkeletonProfile, Unit, Int, Vector2> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Vector2>("set_handle_offset")
+
+    @JvmField
+    public val getGroupName: MethodStringName1<SkeletonProfile, StringName, Int> =
+        MethodStringName1<SkeletonProfile, StringName, Int>("get_group")
+
+    @JvmField
+    public val setGroupName: MethodStringName2<SkeletonProfile, Unit, Int, StringName> =
+        MethodStringName2<SkeletonProfile, Unit, Int, StringName>("set_group")
+
+    @JvmField
+    public val isRequiredName: MethodStringName1<SkeletonProfile, Boolean, Int> =
+        MethodStringName1<SkeletonProfile, Boolean, Int>("is_required")
+
+    @JvmField
+    public val setRequiredName: MethodStringName2<SkeletonProfile, Unit, Int, Boolean> =
+        MethodStringName2<SkeletonProfile, Unit, Int, Boolean>("set_required")
+  }
 
   public object MethodBindings {
     internal val setRootBonePtr: VoidPtr =

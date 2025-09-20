@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName3
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -120,7 +123,24 @@ public open class PacketPeerDTLS : PacketPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val pollName: MethodStringName0<PacketPeerDTLS, Unit> =
+        MethodStringName0<PacketPeerDTLS, Unit>("poll")
+
+    @JvmField
+    public val connectToPeerName:
+        MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?> =
+        MethodStringName3<PacketPeerDTLS, Error, PacketPeerUDP?, String, TLSOptions?>("connect_to_peer")
+
+    @JvmField
+    public val getStatusName: MethodStringName0<PacketPeerDTLS, Status> =
+        MethodStringName0<PacketPeerDTLS, Status>("get_status")
+
+    @JvmField
+    public val disconnectFromPeerName: MethodStringName0<PacketPeerDTLS, Unit> =
+        MethodStringName0<PacketPeerDTLS, Unit>("disconnect_from_peer")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

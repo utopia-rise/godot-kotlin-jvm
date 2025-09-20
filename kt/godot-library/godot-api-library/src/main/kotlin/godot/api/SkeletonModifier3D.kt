@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -181,7 +184,27 @@ public open class SkeletonModifier3D : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getSkeletonName: MethodStringName0<SkeletonModifier3D, Skeleton3D?> =
+        MethodStringName0<SkeletonModifier3D, Skeleton3D?>("get_skeleton")
+
+    @JvmField
+    public val setActiveName: MethodStringName1<SkeletonModifier3D, Unit, Boolean> =
+        MethodStringName1<SkeletonModifier3D, Unit, Boolean>("set_active")
+
+    @JvmField
+    public val isActiveName: MethodStringName0<SkeletonModifier3D, Boolean> =
+        MethodStringName0<SkeletonModifier3D, Boolean>("is_active")
+
+    @JvmField
+    public val setInfluenceName: MethodStringName1<SkeletonModifier3D, Unit, Float> =
+        MethodStringName1<SkeletonModifier3D, Unit, Float>("set_influence")
+
+    @JvmField
+    public val getInfluenceName: MethodStringName0<SkeletonModifier3D, Float> =
+        MethodStringName0<SkeletonModifier3D, Float>("get_influence")
+  }
 
   public object MethodBindings {
     internal val getSkeletonPtr: VoidPtr =

@@ -47,6 +47,10 @@ public object ResourceUID : Object() {
       MethodStringName0<ResourceUID, Long>("create_id")
 
   @JvmField
+  public val createIdForPathName: MethodStringName1<ResourceUID, Long, String> =
+      MethodStringName1<ResourceUID, Long, String>("create_id_for_path")
+
+  @JvmField
   public val hasIdName: MethodStringName1<ResourceUID, Boolean, Long> =
       MethodStringName1<ResourceUID, Boolean, Long>("has_id")
 
@@ -65,6 +69,18 @@ public object ResourceUID : Object() {
   @JvmField
   public val removeIdName: MethodStringName1<ResourceUID, Unit, Long> =
       MethodStringName1<ResourceUID, Unit, Long>("remove_id")
+
+  @JvmField
+  public val uidToPathName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("uid_to_path")
+
+  @JvmField
+  public val pathToUidName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("path_to_uid")
+
+  @JvmField
+  public val ensurePathName: MethodStringName1<ResourceUID, String, String> =
+      MethodStringName1<ResourceUID, String, String>("ensure_path")
 
   /**
    * The value to use for an invalid UID, for example if the resource could not be loaded.

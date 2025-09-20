@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -27,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -244,7 +247,47 @@ public open class CollisionPolygon2D : Node2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPolygonName: MethodStringName1<CollisionPolygon2D, Unit, PackedVector2Array> =
+        MethodStringName1<CollisionPolygon2D, Unit, PackedVector2Array>("set_polygon")
+
+    @JvmField
+    public val getPolygonName: MethodStringName0<CollisionPolygon2D, PackedVector2Array> =
+        MethodStringName0<CollisionPolygon2D, PackedVector2Array>("get_polygon")
+
+    @JvmField
+    public val setBuildModeName: MethodStringName1<CollisionPolygon2D, Unit, BuildMode> =
+        MethodStringName1<CollisionPolygon2D, Unit, BuildMode>("set_build_mode")
+
+    @JvmField
+    public val getBuildModeName: MethodStringName0<CollisionPolygon2D, BuildMode> =
+        MethodStringName0<CollisionPolygon2D, BuildMode>("get_build_mode")
+
+    @JvmField
+    public val setDisabledName: MethodStringName1<CollisionPolygon2D, Unit, Boolean> =
+        MethodStringName1<CollisionPolygon2D, Unit, Boolean>("set_disabled")
+
+    @JvmField
+    public val isDisabledName: MethodStringName0<CollisionPolygon2D, Boolean> =
+        MethodStringName0<CollisionPolygon2D, Boolean>("is_disabled")
+
+    @JvmField
+    public val setOneWayCollisionName: MethodStringName1<CollisionPolygon2D, Unit, Boolean> =
+        MethodStringName1<CollisionPolygon2D, Unit, Boolean>("set_one_way_collision")
+
+    @JvmField
+    public val isOneWayCollisionEnabledName: MethodStringName0<CollisionPolygon2D, Boolean> =
+        MethodStringName0<CollisionPolygon2D, Boolean>("is_one_way_collision_enabled")
+
+    @JvmField
+    public val setOneWayCollisionMarginName: MethodStringName1<CollisionPolygon2D, Unit, Float> =
+        MethodStringName1<CollisionPolygon2D, Unit, Float>("set_one_way_collision_margin")
+
+    @JvmField
+    public val getOneWayCollisionMarginName: MethodStringName0<CollisionPolygon2D, Float> =
+        MethodStringName0<CollisionPolygon2D, Float>("get_one_way_collision_margin")
+  }
 
   public object MethodBindings {
     internal val setPolygonPtr: VoidPtr =

@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -218,7 +223,69 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addStreamName:
+        MethodStringName3<AudioStreamRandomizer, Unit, Int, AudioStream?, Float> =
+        MethodStringName3<AudioStreamRandomizer, Unit, Int, AudioStream?, Float>("add_stream")
+
+    @JvmField
+    public val moveStreamName: MethodStringName2<AudioStreamRandomizer, Unit, Int, Int> =
+        MethodStringName2<AudioStreamRandomizer, Unit, Int, Int>("move_stream")
+
+    @JvmField
+    public val removeStreamName: MethodStringName1<AudioStreamRandomizer, Unit, Int> =
+        MethodStringName1<AudioStreamRandomizer, Unit, Int>("remove_stream")
+
+    @JvmField
+    public val setStreamName: MethodStringName2<AudioStreamRandomizer, Unit, Int, AudioStream?> =
+        MethodStringName2<AudioStreamRandomizer, Unit, Int, AudioStream?>("set_stream")
+
+    @JvmField
+    public val getStreamName: MethodStringName1<AudioStreamRandomizer, AudioStream?, Int> =
+        MethodStringName1<AudioStreamRandomizer, AudioStream?, Int>("get_stream")
+
+    @JvmField
+    public val setStreamProbabilityWeightName:
+        MethodStringName2<AudioStreamRandomizer, Unit, Int, Float> =
+        MethodStringName2<AudioStreamRandomizer, Unit, Int, Float>("set_stream_probability_weight")
+
+    @JvmField
+    public val getStreamProbabilityWeightName: MethodStringName1<AudioStreamRandomizer, Float, Int>
+        = MethodStringName1<AudioStreamRandomizer, Float, Int>("get_stream_probability_weight")
+
+    @JvmField
+    public val setStreamsCountName: MethodStringName1<AudioStreamRandomizer, Unit, Int> =
+        MethodStringName1<AudioStreamRandomizer, Unit, Int>("set_streams_count")
+
+    @JvmField
+    public val getStreamsCountName: MethodStringName0<AudioStreamRandomizer, Int> =
+        MethodStringName0<AudioStreamRandomizer, Int>("get_streams_count")
+
+    @JvmField
+    public val setRandomPitchName: MethodStringName1<AudioStreamRandomizer, Unit, Float> =
+        MethodStringName1<AudioStreamRandomizer, Unit, Float>("set_random_pitch")
+
+    @JvmField
+    public val getRandomPitchName: MethodStringName0<AudioStreamRandomizer, Float> =
+        MethodStringName0<AudioStreamRandomizer, Float>("get_random_pitch")
+
+    @JvmField
+    public val setRandomVolumeOffsetDbName: MethodStringName1<AudioStreamRandomizer, Unit, Float> =
+        MethodStringName1<AudioStreamRandomizer, Unit, Float>("set_random_volume_offset_db")
+
+    @JvmField
+    public val getRandomVolumeOffsetDbName: MethodStringName0<AudioStreamRandomizer, Float> =
+        MethodStringName0<AudioStreamRandomizer, Float>("get_random_volume_offset_db")
+
+    @JvmField
+    public val setPlaybackModeName: MethodStringName1<AudioStreamRandomizer, Unit, PlaybackMode> =
+        MethodStringName1<AudioStreamRandomizer, Unit, PlaybackMode>("set_playback_mode")
+
+    @JvmField
+    public val getPlaybackModeName: MethodStringName0<AudioStreamRandomizer, PlaybackMode> =
+        MethodStringName0<AudioStreamRandomizer, PlaybackMode>("get_playback_mode")
+  }
 
   public object MethodBindings {
     internal val addStreamPtr: VoidPtr =

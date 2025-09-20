@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -22,6 +25,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -159,7 +163,43 @@ public open class StreamPeerTCP : StreamPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val bindName: MethodStringName2<StreamPeerTCP, Error, Int, String> =
+        MethodStringName2<StreamPeerTCP, Error, Int, String>("bind")
+
+    @JvmField
+    public val connectToHostName: MethodStringName2<StreamPeerTCP, Error, String, Int> =
+        MethodStringName2<StreamPeerTCP, Error, String, Int>("connect_to_host")
+
+    @JvmField
+    public val pollName: MethodStringName0<StreamPeerTCP, Error> =
+        MethodStringName0<StreamPeerTCP, Error>("poll")
+
+    @JvmField
+    public val getStatusName: MethodStringName0<StreamPeerTCP, Status> =
+        MethodStringName0<StreamPeerTCP, Status>("get_status")
+
+    @JvmField
+    public val getConnectedHostName: MethodStringName0<StreamPeerTCP, String> =
+        MethodStringName0<StreamPeerTCP, String>("get_connected_host")
+
+    @JvmField
+    public val getConnectedPortName: MethodStringName0<StreamPeerTCP, Int> =
+        MethodStringName0<StreamPeerTCP, Int>("get_connected_port")
+
+    @JvmField
+    public val getLocalPortName: MethodStringName0<StreamPeerTCP, Int> =
+        MethodStringName0<StreamPeerTCP, Int>("get_local_port")
+
+    @JvmField
+    public val disconnectFromHostName: MethodStringName0<StreamPeerTCP, Unit> =
+        MethodStringName0<StreamPeerTCP, Unit>("disconnect_from_host")
+
+    @JvmField
+    public val setNoDelayName: MethodStringName1<StreamPeerTCP, Unit, Boolean> =
+        MethodStringName1<StreamPeerTCP, Unit, Boolean>("set_no_delay")
+  }
 
   public object MethodBindings {
     internal val bindPtr: VoidPtr =

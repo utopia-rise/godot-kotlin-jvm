@@ -755,6 +755,22 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
         MethodStringName0<PhysicsDirectBodyState2D, Boolean>("is_sleeping")
 
     @JvmField
+    public val setCollisionLayerName: MethodStringName1<PhysicsDirectBodyState2D, Unit, Long> =
+        MethodStringName1<PhysicsDirectBodyState2D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<PhysicsDirectBodyState2D, Long> =
+        MethodStringName0<PhysicsDirectBodyState2D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<PhysicsDirectBodyState2D, Unit, Long> =
+        MethodStringName1<PhysicsDirectBodyState2D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<PhysicsDirectBodyState2D, Long> =
+        MethodStringName0<PhysicsDirectBodyState2D, Long>("get_collision_mask")
+
+    @JvmField
     public val getContactCountName: MethodStringName0<PhysicsDirectBodyState2D, Int> =
         MethodStringName0<PhysicsDirectBodyState2D, Int>("get_contact_count")
 

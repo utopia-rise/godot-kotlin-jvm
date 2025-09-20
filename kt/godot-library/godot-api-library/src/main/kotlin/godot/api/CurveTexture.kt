@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -136,7 +139,27 @@ public open class CurveTexture : Texture2D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setWidthName: MethodStringName1<CurveTexture, Unit, Int> =
+        MethodStringName1<CurveTexture, Unit, Int>("set_width")
+
+    @JvmField
+    public val setCurveName: MethodStringName1<CurveTexture, Unit, Curve?> =
+        MethodStringName1<CurveTexture, Unit, Curve?>("set_curve")
+
+    @JvmField
+    public val getCurveName: MethodStringName0<CurveTexture, Curve?> =
+        MethodStringName0<CurveTexture, Curve?>("get_curve")
+
+    @JvmField
+    public val setTextureModeName: MethodStringName1<CurveTexture, Unit, TextureMode> =
+        MethodStringName1<CurveTexture, Unit, TextureMode>("set_texture_mode")
+
+    @JvmField
+    public val getTextureModeName: MethodStringName0<CurveTexture, TextureMode> =
+        MethodStringName0<CurveTexture, TextureMode>("get_texture_mode")
+  }
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =

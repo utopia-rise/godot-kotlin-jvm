@@ -13,6 +13,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -29,6 +32,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -691,7 +695,155 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val applyCentralImpulseName: MethodStringName1<PhysicalBone3D, Unit, Vector3> =
+        MethodStringName1<PhysicalBone3D, Unit, Vector3>("apply_central_impulse")
+
+    @JvmField
+    public val applyImpulseName: MethodStringName2<PhysicalBone3D, Unit, Vector3, Vector3> =
+        MethodStringName2<PhysicalBone3D, Unit, Vector3, Vector3>("apply_impulse")
+
+    @JvmField
+    public val setJointTypeName: MethodStringName1<PhysicalBone3D, Unit, JointType> =
+        MethodStringName1<PhysicalBone3D, Unit, JointType>("set_joint_type")
+
+    @JvmField
+    public val getJointTypeName: MethodStringName0<PhysicalBone3D, JointType> =
+        MethodStringName0<PhysicalBone3D, JointType>("get_joint_type")
+
+    @JvmField
+    public val setJointOffsetName: MethodStringName1<PhysicalBone3D, Unit, Transform3D> =
+        MethodStringName1<PhysicalBone3D, Unit, Transform3D>("set_joint_offset")
+
+    @JvmField
+    public val getJointOffsetName: MethodStringName0<PhysicalBone3D, Transform3D> =
+        MethodStringName0<PhysicalBone3D, Transform3D>("get_joint_offset")
+
+    @JvmField
+    public val setJointRotationName: MethodStringName1<PhysicalBone3D, Unit, Vector3> =
+        MethodStringName1<PhysicalBone3D, Unit, Vector3>("set_joint_rotation")
+
+    @JvmField
+    public val getJointRotationName: MethodStringName0<PhysicalBone3D, Vector3> =
+        MethodStringName0<PhysicalBone3D, Vector3>("get_joint_rotation")
+
+    @JvmField
+    public val setBodyOffsetName: MethodStringName1<PhysicalBone3D, Unit, Transform3D> =
+        MethodStringName1<PhysicalBone3D, Unit, Transform3D>("set_body_offset")
+
+    @JvmField
+    public val getBodyOffsetName: MethodStringName0<PhysicalBone3D, Transform3D> =
+        MethodStringName0<PhysicalBone3D, Transform3D>("get_body_offset")
+
+    @JvmField
+    public val getSimulatePhysicsName: MethodStringName0<PhysicalBone3D, Boolean> =
+        MethodStringName0<PhysicalBone3D, Boolean>("get_simulate_physics")
+
+    @JvmField
+    public val isSimulatingPhysicsName: MethodStringName0<PhysicalBone3D, Boolean> =
+        MethodStringName0<PhysicalBone3D, Boolean>("is_simulating_physics")
+
+    @JvmField
+    public val getBoneIdName: MethodStringName0<PhysicalBone3D, Int> =
+        MethodStringName0<PhysicalBone3D, Int>("get_bone_id")
+
+    @JvmField
+    public val setMassName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_mass")
+
+    @JvmField
+    public val getMassName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_mass")
+
+    @JvmField
+    public val setFrictionName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_friction")
+
+    @JvmField
+    public val getFrictionName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_friction")
+
+    @JvmField
+    public val setBounceName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_bounce")
+
+    @JvmField
+    public val getBounceName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_bounce")
+
+    @JvmField
+    public val setGravityScaleName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_gravity_scale")
+
+    @JvmField
+    public val getGravityScaleName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_gravity_scale")
+
+    @JvmField
+    public val setLinearDampModeName: MethodStringName1<PhysicalBone3D, Unit, DampMode> =
+        MethodStringName1<PhysicalBone3D, Unit, DampMode>("set_linear_damp_mode")
+
+    @JvmField
+    public val getLinearDampModeName: MethodStringName0<PhysicalBone3D, DampMode> =
+        MethodStringName0<PhysicalBone3D, DampMode>("get_linear_damp_mode")
+
+    @JvmField
+    public val setAngularDampModeName: MethodStringName1<PhysicalBone3D, Unit, DampMode> =
+        MethodStringName1<PhysicalBone3D, Unit, DampMode>("set_angular_damp_mode")
+
+    @JvmField
+    public val getAngularDampModeName: MethodStringName0<PhysicalBone3D, DampMode> =
+        MethodStringName0<PhysicalBone3D, DampMode>("get_angular_damp_mode")
+
+    @JvmField
+    public val setLinearDampName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_linear_damp")
+
+    @JvmField
+    public val getLinearDampName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_linear_damp")
+
+    @JvmField
+    public val setAngularDampName: MethodStringName1<PhysicalBone3D, Unit, Float> =
+        MethodStringName1<PhysicalBone3D, Unit, Float>("set_angular_damp")
+
+    @JvmField
+    public val getAngularDampName: MethodStringName0<PhysicalBone3D, Float> =
+        MethodStringName0<PhysicalBone3D, Float>("get_angular_damp")
+
+    @JvmField
+    public val setLinearVelocityName: MethodStringName1<PhysicalBone3D, Unit, Vector3> =
+        MethodStringName1<PhysicalBone3D, Unit, Vector3>("set_linear_velocity")
+
+    @JvmField
+    public val getLinearVelocityName: MethodStringName0<PhysicalBone3D, Vector3> =
+        MethodStringName0<PhysicalBone3D, Vector3>("get_linear_velocity")
+
+    @JvmField
+    public val setAngularVelocityName: MethodStringName1<PhysicalBone3D, Unit, Vector3> =
+        MethodStringName1<PhysicalBone3D, Unit, Vector3>("set_angular_velocity")
+
+    @JvmField
+    public val getAngularVelocityName: MethodStringName0<PhysicalBone3D, Vector3> =
+        MethodStringName0<PhysicalBone3D, Vector3>("get_angular_velocity")
+
+    @JvmField
+    public val setUseCustomIntegratorName: MethodStringName1<PhysicalBone3D, Unit, Boolean> =
+        MethodStringName1<PhysicalBone3D, Unit, Boolean>("set_use_custom_integrator")
+
+    @JvmField
+    public val isUsingCustomIntegratorName: MethodStringName0<PhysicalBone3D, Boolean> =
+        MethodStringName0<PhysicalBone3D, Boolean>("is_using_custom_integrator")
+
+    @JvmField
+    public val setCanSleepName: MethodStringName1<PhysicalBone3D, Unit, Boolean> =
+        MethodStringName1<PhysicalBone3D, Unit, Boolean>("set_can_sleep")
+
+    @JvmField
+    public val isAbleToSleepName: MethodStringName0<PhysicalBone3D, Boolean> =
+        MethodStringName0<PhysicalBone3D, Boolean>("is_able_to_sleep")
+  }
 
   public object MethodBindings {
     internal val applyCentralImpulsePtr: VoidPtr =

@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Rect2
 import godot.core.Signal1
 import godot.core.VariantCaster.ANY
@@ -29,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -742,7 +746,240 @@ public open class TabBar : Control() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTabCountName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_tab_count")
+
+    @JvmField
+    public val getTabCountName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tab_count")
+
+    @JvmField
+    public val setCurrentTabName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_current_tab")
+
+    @JvmField
+    public val getCurrentTabName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_current_tab")
+
+    @JvmField
+    public val getPreviousTabName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_previous_tab")
+
+    @JvmField
+    public val selectPreviousAvailableName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("select_previous_available")
+
+    @JvmField
+    public val selectNextAvailableName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("select_next_available")
+
+    @JvmField
+    public val setTabTitleName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_title")
+
+    @JvmField
+    public val getTabTitleName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_title")
+
+    @JvmField
+    public val setTabTooltipName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_tooltip")
+
+    @JvmField
+    public val getTabTooltipName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_tooltip")
+
+    @JvmField
+    public val setTabTextDirectionName: MethodStringName2<TabBar, Unit, Int, Control.TextDirection>
+        = MethodStringName2<TabBar, Unit, Int, Control.TextDirection>("set_tab_text_direction")
+
+    @JvmField
+    public val getTabTextDirectionName: MethodStringName1<TabBar, Control.TextDirection, Int> =
+        MethodStringName1<TabBar, Control.TextDirection, Int>("get_tab_text_direction")
+
+    @JvmField
+    public val setTabLanguageName: MethodStringName2<TabBar, Unit, Int, String> =
+        MethodStringName2<TabBar, Unit, Int, String>("set_tab_language")
+
+    @JvmField
+    public val getTabLanguageName: MethodStringName1<TabBar, String, Int> =
+        MethodStringName1<TabBar, String, Int>("get_tab_language")
+
+    @JvmField
+    public val setTabIconName: MethodStringName2<TabBar, Unit, Int, Texture2D?> =
+        MethodStringName2<TabBar, Unit, Int, Texture2D?>("set_tab_icon")
+
+    @JvmField
+    public val getTabIconName: MethodStringName1<TabBar, Texture2D?, Int> =
+        MethodStringName1<TabBar, Texture2D?, Int>("get_tab_icon")
+
+    @JvmField
+    public val setTabIconMaxWidthName: MethodStringName2<TabBar, Unit, Int, Int> =
+        MethodStringName2<TabBar, Unit, Int, Int>("set_tab_icon_max_width")
+
+    @JvmField
+    public val getTabIconMaxWidthName: MethodStringName1<TabBar, Int, Int> =
+        MethodStringName1<TabBar, Int, Int>("get_tab_icon_max_width")
+
+    @JvmField
+    public val setTabButtonIconName: MethodStringName2<TabBar, Unit, Int, Texture2D?> =
+        MethodStringName2<TabBar, Unit, Int, Texture2D?>("set_tab_button_icon")
+
+    @JvmField
+    public val getTabButtonIconName: MethodStringName1<TabBar, Texture2D?, Int> =
+        MethodStringName1<TabBar, Texture2D?, Int>("get_tab_button_icon")
+
+    @JvmField
+    public val setTabDisabledName: MethodStringName2<TabBar, Unit, Int, Boolean> =
+        MethodStringName2<TabBar, Unit, Int, Boolean>("set_tab_disabled")
+
+    @JvmField
+    public val isTabDisabledName: MethodStringName1<TabBar, Boolean, Int> =
+        MethodStringName1<TabBar, Boolean, Int>("is_tab_disabled")
+
+    @JvmField
+    public val setTabHiddenName: MethodStringName2<TabBar, Unit, Int, Boolean> =
+        MethodStringName2<TabBar, Unit, Int, Boolean>("set_tab_hidden")
+
+    @JvmField
+    public val isTabHiddenName: MethodStringName1<TabBar, Boolean, Int> =
+        MethodStringName1<TabBar, Boolean, Int>("is_tab_hidden")
+
+    @JvmField
+    public val setTabMetadataName: MethodStringName2<TabBar, Unit, Int, Any?> =
+        MethodStringName2<TabBar, Unit, Int, Any?>("set_tab_metadata")
+
+    @JvmField
+    public val getTabMetadataName: MethodStringName1<TabBar, Any?, Int> =
+        MethodStringName1<TabBar, Any?, Int>("get_tab_metadata")
+
+    @JvmField
+    public val removeTabName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("remove_tab")
+
+    @JvmField
+    public val addTabName: MethodStringName2<TabBar, Unit, String, Texture2D?> =
+        MethodStringName2<TabBar, Unit, String, Texture2D?>("add_tab")
+
+    @JvmField
+    public val getTabIdxAtPointName: MethodStringName1<TabBar, Int, Vector2> =
+        MethodStringName1<TabBar, Int, Vector2>("get_tab_idx_at_point")
+
+    @JvmField
+    public val setTabAlignmentName: MethodStringName1<TabBar, Unit, AlignmentMode> =
+        MethodStringName1<TabBar, Unit, AlignmentMode>("set_tab_alignment")
+
+    @JvmField
+    public val getTabAlignmentName: MethodStringName0<TabBar, AlignmentMode> =
+        MethodStringName0<TabBar, AlignmentMode>("get_tab_alignment")
+
+    @JvmField
+    public val setClipTabsName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_clip_tabs")
+
+    @JvmField
+    public val getClipTabsName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_clip_tabs")
+
+    @JvmField
+    public val getTabOffsetName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tab_offset")
+
+    @JvmField
+    public val getOffsetButtonsVisibleName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_offset_buttons_visible")
+
+    @JvmField
+    public val ensureTabVisibleName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("ensure_tab_visible")
+
+    @JvmField
+    public val getTabRectName: MethodStringName1<TabBar, Rect2, Int> =
+        MethodStringName1<TabBar, Rect2, Int>("get_tab_rect")
+
+    @JvmField
+    public val moveTabName: MethodStringName2<TabBar, Unit, Int, Int> =
+        MethodStringName2<TabBar, Unit, Int, Int>("move_tab")
+
+    @JvmField
+    public val setCloseWithMiddleMouseName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_close_with_middle_mouse")
+
+    @JvmField
+    public val getCloseWithMiddleMouseName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_close_with_middle_mouse")
+
+    @JvmField
+    public val setTabCloseDisplayPolicyName:
+        MethodStringName1<TabBar, Unit, CloseButtonDisplayPolicy> =
+        MethodStringName1<TabBar, Unit, CloseButtonDisplayPolicy>("set_tab_close_display_policy")
+
+    @JvmField
+    public val getTabCloseDisplayPolicyName: MethodStringName0<TabBar, CloseButtonDisplayPolicy> =
+        MethodStringName0<TabBar, CloseButtonDisplayPolicy>("get_tab_close_display_policy")
+
+    @JvmField
+    public val setMaxTabWidthName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_max_tab_width")
+
+    @JvmField
+    public val getMaxTabWidthName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_max_tab_width")
+
+    @JvmField
+    public val setScrollingEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_scrolling_enabled")
+
+    @JvmField
+    public val getScrollingEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_scrolling_enabled")
+
+    @JvmField
+    public val setDragToRearrangeEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_drag_to_rearrange_enabled")
+
+    @JvmField
+    public val getDragToRearrangeEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_drag_to_rearrange_enabled")
+
+    @JvmField
+    public val setTabsRearrangeGroupName: MethodStringName1<TabBar, Unit, Int> =
+        MethodStringName1<TabBar, Unit, Int>("set_tabs_rearrange_group")
+
+    @JvmField
+    public val getTabsRearrangeGroupName: MethodStringName0<TabBar, Int> =
+        MethodStringName0<TabBar, Int>("get_tabs_rearrange_group")
+
+    @JvmField
+    public val setScrollToSelectedName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_scroll_to_selected")
+
+    @JvmField
+    public val getScrollToSelectedName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_scroll_to_selected")
+
+    @JvmField
+    public val setSelectWithRmbName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_select_with_rmb")
+
+    @JvmField
+    public val getSelectWithRmbName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_select_with_rmb")
+
+    @JvmField
+    public val setDeselectEnabledName: MethodStringName1<TabBar, Unit, Boolean> =
+        MethodStringName1<TabBar, Unit, Boolean>("set_deselect_enabled")
+
+    @JvmField
+    public val getDeselectEnabledName: MethodStringName0<TabBar, Boolean> =
+        MethodStringName0<TabBar, Boolean>("get_deselect_enabled")
+
+    @JvmField
+    public val clearTabsName: MethodStringName0<TabBar, Unit> =
+        MethodStringName0<TabBar, Unit>("clear_tabs")
+  }
 
   public object MethodBindings {
     internal val setTabCountPtr: VoidPtr =

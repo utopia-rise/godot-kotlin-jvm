@@ -27,7 +27,6 @@ import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -57,6 +56,10 @@ public object InputMap : Object() {
   @JvmField
   public val eraseActionName: MethodStringName1<InputMap, Unit, StringName> =
       MethodStringName1<InputMap, Unit, StringName>("erase_action")
+
+  @JvmField
+  public val getActionDescriptionName: MethodStringName1<InputMap, String, StringName> =
+      MethodStringName1<InputMap, String, StringName>("get_action_description")
 
   @JvmField
   public val actionSetDeadzoneName: MethodStringName2<InputMap, Unit, StringName, Float> =
@@ -95,7 +98,7 @@ public object InputMap : Object() {
   public val loadFromProjectSettingsName: MethodStringName0<InputMap, Unit> =
       MethodStringName0<InputMap, Unit>("load_from_project_settings")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(11)
   }
 

@@ -1249,6 +1249,11 @@ public open class PopupMenu : Popup() {
         MethodStringName2<PopupMenu, Unit, Int, String>("set_item_language")
 
     @JvmField
+    public val setItemAutoTranslateModeName:
+        MethodStringName2<PopupMenu, Unit, Int, Node.AutoTranslateMode> =
+        MethodStringName2<PopupMenu, Unit, Int, Node.AutoTranslateMode>("set_item_auto_translate_mode")
+
+    @JvmField
     public val setItemIconName: MethodStringName2<PopupMenu, Unit, Int, Texture2D?> =
         MethodStringName2<PopupMenu, Unit, Int, Texture2D?>("set_item_icon")
 
@@ -1343,6 +1348,11 @@ public open class PopupMenu : Popup() {
     @JvmField
     public val getItemLanguageName: MethodStringName1<PopupMenu, String, Int> =
         MethodStringName1<PopupMenu, String, Int>("get_item_language")
+
+    @JvmField
+    public val getItemAutoTranslateModeName:
+        MethodStringName1<PopupMenu, Node.AutoTranslateMode, Int> =
+        MethodStringName1<PopupMenu, Node.AutoTranslateMode, Int>("get_item_auto_translate_mode")
 
     @JvmField
     public val getItemIconName: MethodStringName1<PopupMenu, Texture2D?, Int> =

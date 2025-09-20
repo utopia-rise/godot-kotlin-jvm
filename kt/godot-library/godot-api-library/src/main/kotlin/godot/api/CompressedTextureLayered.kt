@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
@@ -20,6 +22,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -104,7 +107,15 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     throw NotImplementedError("CompressedTextureLayered::_getLayerData can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val loadName: MethodStringName1<CompressedTextureLayered, Error, String> =
+        MethodStringName1<CompressedTextureLayered, Error, String>("load")
+
+    @JvmField
+    public val getLoadPathName: MethodStringName0<CompressedTextureLayered, String> =
+        MethodStringName0<CompressedTextureLayered, String>("get_load_path")
+  }
 
   public object MethodBindings {
     internal val loadPtr: VoidPtr =

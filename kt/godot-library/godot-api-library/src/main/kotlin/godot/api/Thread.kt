@@ -13,6 +13,9 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -25,6 +28,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -142,6 +146,30 @@ public open class Thread : RefCounted() {
   }
 
   public companion object {
+    @JvmField
+    public val startName: MethodStringName2<Thread, Error, Callable, Priority> =
+        MethodStringName2<Thread, Error, Callable, Priority>("start")
+
+    @JvmField
+    public val getIdName: MethodStringName0<Thread, String> =
+        MethodStringName0<Thread, String>("get_id")
+
+    @JvmField
+    public val isStartedName: MethodStringName0<Thread, Boolean> =
+        MethodStringName0<Thread, Boolean>("is_started")
+
+    @JvmField
+    public val isAliveName: MethodStringName0<Thread, Boolean> =
+        MethodStringName0<Thread, Boolean>("is_alive")
+
+    @JvmField
+    public val waitToFinishName: MethodStringName0<Thread, Any?> =
+        MethodStringName0<Thread, Any?>("wait_to_finish")
+
+    @JvmField
+    public val setThreadSafetyChecksEnabledName: MethodStringName1<Thread, Unit, Boolean> =
+        MethodStringName1<Thread, Unit, Boolean>("set_thread_safety_checks_enabled")
+
     /**
      * Sets whether the thread safety checks the engine normally performs in methods of certain
      * classes (e.g., [Node]) should happen **on the current thread**.

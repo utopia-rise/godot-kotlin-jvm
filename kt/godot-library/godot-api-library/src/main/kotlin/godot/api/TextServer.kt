@@ -22,6 +22,7 @@ import godot.core.MethodStringName4
 import godot.core.MethodStringName5
 import godot.core.MethodStringName6
 import godot.core.MethodStringName7
+import godot.core.MethodStringName8
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -3843,12 +3844,24 @@ public open class TextServer internal constructor() : RefCounted() {
         MethodStringName1<TextServer, Boolean, RID>("font_is_allow_system_fallback")
 
     @JvmField
+    public val fontClearSystemFallbackCacheName: MethodStringName0<TextServer, Unit> =
+        MethodStringName0<TextServer, Unit>("font_clear_system_fallback_cache")
+
+    @JvmField
     public val fontSetForceAutohinterName: MethodStringName2<TextServer, Unit, RID, Boolean> =
         MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_force_autohinter")
 
     @JvmField
     public val fontIsForceAutohinterName: MethodStringName1<TextServer, Boolean, RID> =
         MethodStringName1<TextServer, Boolean, RID>("font_is_force_autohinter")
+
+    @JvmField
+    public val fontSetModulateColorGlyphsName: MethodStringName2<TextServer, Unit, RID, Boolean> =
+        MethodStringName2<TextServer, Unit, RID, Boolean>("font_set_modulate_color_glyphs")
+
+    @JvmField
+    public val fontIsModulateColorGlyphsName: MethodStringName1<TextServer, Boolean, RID> =
+        MethodStringName1<TextServer, Boolean, RID>("font_is_modulate_color_glyphs")
 
     @JvmField
     public val fontSetHintingName: MethodStringName2<TextServer, Unit, RID, Hinting> =
@@ -3937,6 +3950,11 @@ public open class TextServer internal constructor() : RefCounted() {
     @JvmField
     public val fontRemoveSizeCacheName: MethodStringName2<TextServer, Unit, RID, Vector2i> =
         MethodStringName2<TextServer, Unit, RID, Vector2i>("font_remove_size_cache")
+
+    @JvmField
+    public val fontGetSizeCacheInfoName:
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID> =
+        MethodStringName1<TextServer, VariantArray<Dictionary<Any?, Any?>>, RID>("font_get_size_cache_info")
 
     @JvmField
     public val fontSetAscentName: MethodStringName3<TextServer, Unit, RID, Long, Double> =
@@ -4131,13 +4149,13 @@ public open class TextServer internal constructor() : RefCounted() {
 
     @JvmField
     public val fontDrawGlyphName:
-        MethodStringName6<TextServer, Unit, RID, RID, Long, Vector2, Long, Color> =
-        MethodStringName6<TextServer, Unit, RID, RID, Long, Vector2, Long, Color>("font_draw_glyph")
+        MethodStringName7<TextServer, Unit, RID, RID, Long, Vector2, Long, Color, Float> =
+        MethodStringName7<TextServer, Unit, RID, RID, Long, Vector2, Long, Color, Float>("font_draw_glyph")
 
     @JvmField
     public val fontDrawGlyphOutlineName:
-        MethodStringName7<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color> =
-        MethodStringName7<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color>("font_draw_glyph_outline")
+        MethodStringName8<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color, Float> =
+        MethodStringName8<TextServer, Unit, RID, RID, Long, Long, Vector2, Long, Color, Float>("font_draw_glyph_outline")
 
     @JvmField
     public val fontIsLanguageSupportedName: MethodStringName2<TextServer, Boolean, RID, String> =
@@ -4312,6 +4330,10 @@ public open class TextServer internal constructor() : RefCounted() {
         MethodStringName5<TextServer, Boolean, RID, Any?, Vector2, InlineAlignment, Double>("shaped_text_resize_object")
 
     @JvmField
+    public val shapedGetTextName: MethodStringName1<TextServer, String, RID> =
+        MethodStringName1<TextServer, String, RID>("shaped_get_text")
+
+    @JvmField
     public val shapedGetSpanCountName: MethodStringName1<TextServer, Long, RID> =
         MethodStringName1<TextServer, Long, RID>("shaped_get_span_count")
 
@@ -4324,10 +4346,50 @@ public open class TextServer internal constructor() : RefCounted() {
         MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_span_embedded_object")
 
     @JvmField
+    public val shapedGetSpanTextName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_span_text")
+
+    @JvmField
+    public val shapedGetSpanObjectName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_span_object")
+
+    @JvmField
     public val shapedSetSpanUpdateFontName:
         MethodStringName5<TextServer, Unit, RID, Long, VariantArray<RID>, Long, Dictionary<Any?, Any?>>
         =
         MethodStringName5<TextServer, Unit, RID, Long, VariantArray<RID>, Long, Dictionary<Any?, Any?>>("shaped_set_span_update_font")
+
+    @JvmField
+    public val shapedGetRunCountName: MethodStringName1<TextServer, Long, RID> =
+        MethodStringName1<TextServer, Long, RID>("shaped_get_run_count")
+
+    @JvmField
+    public val shapedGetRunTextName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_run_text")
+
+    @JvmField
+    public val shapedGetRunRangeName: MethodStringName2<TextServer, Vector2i, RID, Long> =
+        MethodStringName2<TextServer, Vector2i, RID, Long>("shaped_get_run_range")
+
+    @JvmField
+    public val shapedGetRunFontRidName: MethodStringName2<TextServer, RID, RID, Long> =
+        MethodStringName2<TextServer, RID, RID, Long>("shaped_get_run_font_rid")
+
+    @JvmField
+    public val shapedGetRunFontSizeName: MethodStringName2<TextServer, Int, RID, Long> =
+        MethodStringName2<TextServer, Int, RID, Long>("shaped_get_run_font_size")
+
+    @JvmField
+    public val shapedGetRunLanguageName: MethodStringName2<TextServer, String, RID, Long> =
+        MethodStringName2<TextServer, String, RID, Long>("shaped_get_run_language")
+
+    @JvmField
+    public val shapedGetRunDirectionName: MethodStringName2<TextServer, Direction, RID, Long> =
+        MethodStringName2<TextServer, Direction, RID, Long>("shaped_get_run_direction")
+
+    @JvmField
+    public val shapedGetRunObjectName: MethodStringName2<TextServer, Any?, RID, Long> =
+        MethodStringName2<TextServer, Any?, RID, Long>("shaped_get_run_object")
 
     @JvmField
     public val shapedTextSubstrName: MethodStringName3<TextServer, RID, RID, Long, Long> =
@@ -4504,13 +4566,13 @@ public open class TextServer internal constructor() : RefCounted() {
 
     @JvmField
     public val shapedTextDrawName:
-        MethodStringName6<TextServer, Unit, RID, RID, Vector2, Double, Double, Color> =
-        MethodStringName6<TextServer, Unit, RID, RID, Vector2, Double, Double, Color>("shaped_text_draw")
+        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Color, Float> =
+        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Color, Float>("shaped_text_draw")
 
     @JvmField
     public val shapedTextDrawOutlineName:
-        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color> =
-        MethodStringName7<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color>("shaped_text_draw_outline")
+        MethodStringName8<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color, Float> =
+        MethodStringName8<TextServer, Unit, RID, RID, Vector2, Double, Double, Long, Color, Float>("shaped_text_draw_outline")
 
     @JvmField
     public val shapedTextGetDominantDirectionInRangeName:

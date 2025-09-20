@@ -11,12 +11,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -197,7 +200,31 @@ public open class Sky : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRadianceSizeName: MethodStringName1<Sky, Unit, RadianceSize> =
+        MethodStringName1<Sky, Unit, RadianceSize>("set_radiance_size")
+
+    @JvmField
+    public val getRadianceSizeName: MethodStringName0<Sky, RadianceSize> =
+        MethodStringName0<Sky, RadianceSize>("get_radiance_size")
+
+    @JvmField
+    public val setProcessModeName: MethodStringName1<Sky, Unit, ProcessMode> =
+        MethodStringName1<Sky, Unit, ProcessMode>("set_process_mode")
+
+    @JvmField
+    public val getProcessModeName: MethodStringName0<Sky, ProcessMode> =
+        MethodStringName0<Sky, ProcessMode>("get_process_mode")
+
+    @JvmField
+    public val setMaterialName: MethodStringName1<Sky, Unit, Material?> =
+        MethodStringName1<Sky, Unit, Material?>("set_material")
+
+    @JvmField
+    public val getMaterialName: MethodStringName0<Sky, Material?> =
+        MethodStringName0<Sky, Material?>("get_material")
+  }
 
   public object MethodBindings {
     internal val setRadianceSizePtr: VoidPtr =

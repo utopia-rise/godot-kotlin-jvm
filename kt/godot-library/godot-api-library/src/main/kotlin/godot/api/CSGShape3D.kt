@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -26,6 +29,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -348,7 +352,95 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val isRootShapeName: MethodStringName0<CSGShape3D, Boolean> =
+        MethodStringName0<CSGShape3D, Boolean>("is_root_shape")
+
+    @JvmField
+    public val setOperationName: MethodStringName1<CSGShape3D, Unit, Operation> =
+        MethodStringName1<CSGShape3D, Unit, Operation>("set_operation")
+
+    @JvmField
+    public val getOperationName: MethodStringName0<CSGShape3D, Operation> =
+        MethodStringName0<CSGShape3D, Operation>("get_operation")
+
+    @JvmField
+    public val setSnapName: MethodStringName1<CSGShape3D, Unit, Float> =
+        MethodStringName1<CSGShape3D, Unit, Float>("set_snap")
+
+    @JvmField
+    public val getSnapName: MethodStringName0<CSGShape3D, Float> =
+        MethodStringName0<CSGShape3D, Float>("get_snap")
+
+    @JvmField
+    public val setUseCollisionName: MethodStringName1<CSGShape3D, Unit, Boolean> =
+        MethodStringName1<CSGShape3D, Unit, Boolean>("set_use_collision")
+
+    @JvmField
+    public val isUsingCollisionName: MethodStringName0<CSGShape3D, Boolean> =
+        MethodStringName0<CSGShape3D, Boolean>("is_using_collision")
+
+    @JvmField
+    public val setCollisionLayerName: MethodStringName1<CSGShape3D, Unit, Long> =
+        MethodStringName1<CSGShape3D, Unit, Long>("set_collision_layer")
+
+    @JvmField
+    public val getCollisionLayerName: MethodStringName0<CSGShape3D, Long> =
+        MethodStringName0<CSGShape3D, Long>("get_collision_layer")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<CSGShape3D, Unit, Long> =
+        MethodStringName1<CSGShape3D, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<CSGShape3D, Long> =
+        MethodStringName0<CSGShape3D, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<CSGShape3D, Unit, Int, Boolean> =
+        MethodStringName2<CSGShape3D, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<CSGShape3D, Boolean, Int> =
+        MethodStringName1<CSGShape3D, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setCollisionLayerValueName: MethodStringName2<CSGShape3D, Unit, Int, Boolean> =
+        MethodStringName2<CSGShape3D, Unit, Int, Boolean>("set_collision_layer_value")
+
+    @JvmField
+    public val getCollisionLayerValueName: MethodStringName1<CSGShape3D, Boolean, Int> =
+        MethodStringName1<CSGShape3D, Boolean, Int>("get_collision_layer_value")
+
+    @JvmField
+    public val setCollisionPriorityName: MethodStringName1<CSGShape3D, Unit, Float> =
+        MethodStringName1<CSGShape3D, Unit, Float>("set_collision_priority")
+
+    @JvmField
+    public val getCollisionPriorityName: MethodStringName0<CSGShape3D, Float> =
+        MethodStringName0<CSGShape3D, Float>("get_collision_priority")
+
+    @JvmField
+    public val bakeCollisionShapeName: MethodStringName0<CSGShape3D, ConcavePolygonShape3D?> =
+        MethodStringName0<CSGShape3D, ConcavePolygonShape3D?>("bake_collision_shape")
+
+    @JvmField
+    public val setCalculateTangentsName: MethodStringName1<CSGShape3D, Unit, Boolean> =
+        MethodStringName1<CSGShape3D, Unit, Boolean>("set_calculate_tangents")
+
+    @JvmField
+    public val isCalculatingTangentsName: MethodStringName0<CSGShape3D, Boolean> =
+        MethodStringName0<CSGShape3D, Boolean>("is_calculating_tangents")
+
+    @JvmField
+    public val getMeshesName: MethodStringName0<CSGShape3D, VariantArray<Any?>> =
+        MethodStringName0<CSGShape3D, VariantArray<Any?>>("get_meshes")
+
+    @JvmField
+    public val bakeStaticMeshName: MethodStringName0<CSGShape3D, ArrayMesh?> =
+        MethodStringName0<CSGShape3D, ArrayMesh?>("bake_static_mesh")
+  }
 
   public object MethodBindings {
     internal val isRootShapePtr: VoidPtr =

@@ -91,15 +91,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
     }
 
     private fun canGenerateMethod(context: GenerationContext, method: EnrichedMethod): Boolean {
-        if (context.isNativeStructure(method.type.identifier)) {
-            return false
-        }
-        for (argument in method.arguments) {
-            if (context.isNativeStructure(argument.type.identifier)) {
-                return false
-            }
-        }
-        return true
+        return method.isJvmCompatible
     }
 
     private fun TypeSpec.Builder.generateClassConstructor(
@@ -165,8 +157,7 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
         clazz.methods
             .filter { !it.isVirtual }
             .onEach {
-                if (it.isVararg) return@onEach
-                if(!it.canGenerate)  return@onEach
+                if (it.isVararg || !it.isJvmCompatible) return@onEach
 
                 val argCount = it.arguments.size
                 val methodStringClassName = ClassName(
@@ -180,7 +171,7 @@ class MethodNameRule : GodotApiRule<EnrichedClassTask>() {
                     PropertySpec
                         .builder("${it.name}Name", methodStringClassName)
                         .initializer(
-                            "%T(\"${it.godotName}\")",
+                            "%T(\"${it.originalName}\")",
                             methodStringClassName
                         )
                         .addAnnotation(JvmField::class)

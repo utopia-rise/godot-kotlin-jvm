@@ -208,28 +208,28 @@ public open class GLTFBufferView : Resource() {
         MethodStringName1<GLTFBufferView, Unit, Int>("set_buffer")
 
     @JvmField
-    public val getByteOffsetName: MethodStringName0<GLTFBufferView, Int> =
-        MethodStringName0<GLTFBufferView, Int>("get_byte_offset")
+    public val getByteOffsetName: MethodStringName0<GLTFBufferView, Long> =
+        MethodStringName0<GLTFBufferView, Long>("get_byte_offset")
 
     @JvmField
-    public val setByteOffsetName: MethodStringName1<GLTFBufferView, Unit, Int> =
-        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_offset")
+    public val setByteOffsetName: MethodStringName1<GLTFBufferView, Unit, Long> =
+        MethodStringName1<GLTFBufferView, Unit, Long>("set_byte_offset")
 
     @JvmField
-    public val getByteLengthName: MethodStringName0<GLTFBufferView, Int> =
-        MethodStringName0<GLTFBufferView, Int>("get_byte_length")
+    public val getByteLengthName: MethodStringName0<GLTFBufferView, Long> =
+        MethodStringName0<GLTFBufferView, Long>("get_byte_length")
 
     @JvmField
-    public val setByteLengthName: MethodStringName1<GLTFBufferView, Unit, Int> =
-        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_length")
+    public val setByteLengthName: MethodStringName1<GLTFBufferView, Unit, Long> =
+        MethodStringName1<GLTFBufferView, Unit, Long>("set_byte_length")
 
     @JvmField
-    public val getByteStrideName: MethodStringName0<GLTFBufferView, Int> =
-        MethodStringName0<GLTFBufferView, Int>("get_byte_stride")
+    public val getByteStrideName: MethodStringName0<GLTFBufferView, Long> =
+        MethodStringName0<GLTFBufferView, Long>("get_byte_stride")
 
     @JvmField
-    public val setByteStrideName: MethodStringName1<GLTFBufferView, Unit, Int> =
-        MethodStringName1<GLTFBufferView, Unit, Int>("set_byte_stride")
+    public val setByteStrideName: MethodStringName1<GLTFBufferView, Unit, Long> =
+        MethodStringName1<GLTFBufferView, Unit, Long>("set_byte_stride")
 
     @JvmField
     public val getIndicesName: MethodStringName0<GLTFBufferView, Boolean> =

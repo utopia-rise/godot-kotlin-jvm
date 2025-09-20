@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -21,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -212,7 +216,71 @@ public open class ScriptBacktrace : RefCounted() {
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getLanguageNameName: MethodStringName0<ScriptBacktrace, String> =
+        MethodStringName0<ScriptBacktrace, String>("get_language_name")
+
+    @JvmField
+    public val isEmptyName: MethodStringName0<ScriptBacktrace, Boolean> =
+        MethodStringName0<ScriptBacktrace, Boolean>("is_empty")
+
+    @JvmField
+    public val getFrameCountName: MethodStringName0<ScriptBacktrace, Int> =
+        MethodStringName0<ScriptBacktrace, Int>("get_frame_count")
+
+    @JvmField
+    public val getFrameFunctionName: MethodStringName1<ScriptBacktrace, String, Int> =
+        MethodStringName1<ScriptBacktrace, String, Int>("get_frame_function")
+
+    @JvmField
+    public val getFrameFileName: MethodStringName1<ScriptBacktrace, String, Int> =
+        MethodStringName1<ScriptBacktrace, String, Int>("get_frame_file")
+
+    @JvmField
+    public val getFrameLineName: MethodStringName1<ScriptBacktrace, Int, Int> =
+        MethodStringName1<ScriptBacktrace, Int, Int>("get_frame_line")
+
+    @JvmField
+    public val getGlobalVariableCountName: MethodStringName0<ScriptBacktrace, Int> =
+        MethodStringName0<ScriptBacktrace, Int>("get_global_variable_count")
+
+    @JvmField
+    public val getGlobalVariableNameName: MethodStringName1<ScriptBacktrace, String, Int> =
+        MethodStringName1<ScriptBacktrace, String, Int>("get_global_variable_name")
+
+    @JvmField
+    public val getGlobalVariableValueName: MethodStringName1<ScriptBacktrace, Any?, Int> =
+        MethodStringName1<ScriptBacktrace, Any?, Int>("get_global_variable_value")
+
+    @JvmField
+    public val getLocalVariableCountName: MethodStringName1<ScriptBacktrace, Int, Int> =
+        MethodStringName1<ScriptBacktrace, Int, Int>("get_local_variable_count")
+
+    @JvmField
+    public val getLocalVariableNameName: MethodStringName2<ScriptBacktrace, String, Int, Int> =
+        MethodStringName2<ScriptBacktrace, String, Int, Int>("get_local_variable_name")
+
+    @JvmField
+    public val getLocalVariableValueName: MethodStringName2<ScriptBacktrace, Any?, Int, Int> =
+        MethodStringName2<ScriptBacktrace, Any?, Int, Int>("get_local_variable_value")
+
+    @JvmField
+    public val getMemberVariableCountName: MethodStringName1<ScriptBacktrace, Int, Int> =
+        MethodStringName1<ScriptBacktrace, Int, Int>("get_member_variable_count")
+
+    @JvmField
+    public val getMemberVariableNameName: MethodStringName2<ScriptBacktrace, String, Int, Int> =
+        MethodStringName2<ScriptBacktrace, String, Int, Int>("get_member_variable_name")
+
+    @JvmField
+    public val getMemberVariableValueName: MethodStringName2<ScriptBacktrace, Any?, Int, Int> =
+        MethodStringName2<ScriptBacktrace, Any?, Int, Int>("get_member_variable_value")
+
+    @JvmField
+    public val formatName: MethodStringName2<ScriptBacktrace, String, Int, Int> =
+        MethodStringName2<ScriptBacktrace, String, Int, Int>("format")
+  }
 
   public object MethodBindings {
     internal val getLanguageNamePtr: VoidPtr =

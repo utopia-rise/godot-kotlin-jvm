@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -57,7 +60,15 @@ public open class AudioEffectPanner : AudioEffect() {
     throw NotImplementedError("AudioEffectPanner::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPanName: MethodStringName1<AudioEffectPanner, Unit, Float> =
+        MethodStringName1<AudioEffectPanner, Unit, Float>("set_pan")
+
+    @JvmField
+    public val getPanName: MethodStringName0<AudioEffectPanner, Float> =
+        MethodStringName0<AudioEffectPanner, Float>("get_pan")
+  }
 
   public object MethodBindings {
     internal val setPanPtr: VoidPtr =

@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -231,7 +234,47 @@ public open class TextureRect : Control() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextureName: MethodStringName1<TextureRect, Unit, Texture2D?> =
+        MethodStringName1<TextureRect, Unit, Texture2D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<TextureRect, Texture2D?> =
+        MethodStringName0<TextureRect, Texture2D?>("get_texture")
+
+    @JvmField
+    public val setExpandModeName: MethodStringName1<TextureRect, Unit, ExpandMode> =
+        MethodStringName1<TextureRect, Unit, ExpandMode>("set_expand_mode")
+
+    @JvmField
+    public val getExpandModeName: MethodStringName0<TextureRect, ExpandMode> =
+        MethodStringName0<TextureRect, ExpandMode>("get_expand_mode")
+
+    @JvmField
+    public val setFlipHName: MethodStringName1<TextureRect, Unit, Boolean> =
+        MethodStringName1<TextureRect, Unit, Boolean>("set_flip_h")
+
+    @JvmField
+    public val isFlippedHName: MethodStringName0<TextureRect, Boolean> =
+        MethodStringName0<TextureRect, Boolean>("is_flipped_h")
+
+    @JvmField
+    public val setFlipVName: MethodStringName1<TextureRect, Unit, Boolean> =
+        MethodStringName1<TextureRect, Unit, Boolean>("set_flip_v")
+
+    @JvmField
+    public val isFlippedVName: MethodStringName0<TextureRect, Boolean> =
+        MethodStringName0<TextureRect, Boolean>("is_flipped_v")
+
+    @JvmField
+    public val setStretchModeName: MethodStringName1<TextureRect, Unit, StretchMode> =
+        MethodStringName1<TextureRect, Unit, StretchMode>("set_stretch_mode")
+
+    @JvmField
+    public val getStretchModeName: MethodStringName0<TextureRect, StretchMode> =
+        MethodStringName0<TextureRect, StretchMode>("get_stretch_mode")
+  }
 
   public object MethodBindings {
     internal val setTexturePtr: VoidPtr =

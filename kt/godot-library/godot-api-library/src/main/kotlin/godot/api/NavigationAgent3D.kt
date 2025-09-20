@@ -1452,6 +1452,42 @@ public open class NavigationAgent3D : Node() {
         MethodStringName0<NavigationAgent3D, Float>("get_simplify_epsilon")
 
     @JvmField
+    public val setPathReturnMaxLengthName: MethodStringName1<NavigationAgent3D, Unit, Float> =
+        MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_return_max_length")
+
+    @JvmField
+    public val getPathReturnMaxLengthName: MethodStringName0<NavigationAgent3D, Float> =
+        MethodStringName0<NavigationAgent3D, Float>("get_path_return_max_length")
+
+    @JvmField
+    public val setPathReturnMaxRadiusName: MethodStringName1<NavigationAgent3D, Unit, Float> =
+        MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_return_max_radius")
+
+    @JvmField
+    public val getPathReturnMaxRadiusName: MethodStringName0<NavigationAgent3D, Float> =
+        MethodStringName0<NavigationAgent3D, Float>("get_path_return_max_radius")
+
+    @JvmField
+    public val setPathSearchMaxPolygonsName: MethodStringName1<NavigationAgent3D, Unit, Int> =
+        MethodStringName1<NavigationAgent3D, Unit, Int>("set_path_search_max_polygons")
+
+    @JvmField
+    public val getPathSearchMaxPolygonsName: MethodStringName0<NavigationAgent3D, Int> =
+        MethodStringName0<NavigationAgent3D, Int>("get_path_search_max_polygons")
+
+    @JvmField
+    public val setPathSearchMaxDistanceName: MethodStringName1<NavigationAgent3D, Unit, Float> =
+        MethodStringName1<NavigationAgent3D, Unit, Float>("set_path_search_max_distance")
+
+    @JvmField
+    public val getPathSearchMaxDistanceName: MethodStringName0<NavigationAgent3D, Float> =
+        MethodStringName0<NavigationAgent3D, Float>("get_path_search_max_distance")
+
+    @JvmField
+    public val getPathLengthName: MethodStringName0<NavigationAgent3D, Float> =
+        MethodStringName0<NavigationAgent3D, Float>("get_path_length")
+
+    @JvmField
     public val getNextPathPositionName: MethodStringName0<NavigationAgent3D, Vector3> =
         MethodStringName0<NavigationAgent3D, Vector3>("get_next_path_position")
 

@@ -19,9 +19,11 @@ import godot.core.HorizontalAlignment
 import godot.core.Key
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
+import godot.core.MethodStringName10
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName4
+import godot.core.MethodStringName5
 import godot.core.MethodStringName6
 import godot.core.MethodStringName7
 import godot.core.MethodStringName8
@@ -711,6 +713,359 @@ public object DisplayServer : Object() {
       MethodStringName2<DisplayServer, Unit, WindowResizeEdge, Int>("window_start_resize")
 
   @JvmField
+  public val accessibilityShouldIncreaseContrastName: MethodStringName0<DisplayServer, Int> =
+      MethodStringName0<DisplayServer, Int>("accessibility_should_increase_contrast")
+
+  @JvmField
+  public val accessibilityShouldReduceAnimationName: MethodStringName0<DisplayServer, Int> =
+      MethodStringName0<DisplayServer, Int>("accessibility_should_reduce_animation")
+
+  @JvmField
+  public val accessibilityShouldReduceTransparencyName: MethodStringName0<DisplayServer, Int> =
+      MethodStringName0<DisplayServer, Int>("accessibility_should_reduce_transparency")
+
+  @JvmField
+  public val accessibilityScreenReaderActiveName: MethodStringName0<DisplayServer, Int> =
+      MethodStringName0<DisplayServer, Int>("accessibility_screen_reader_active")
+
+  @JvmField
+  public val accessibilityCreateElementName:
+      MethodStringName2<DisplayServer, RID, Int, AccessibilityRole> =
+      MethodStringName2<DisplayServer, RID, Int, AccessibilityRole>("accessibility_create_element")
+
+  @JvmField
+  public val accessibilityCreateSubElementName:
+      MethodStringName3<DisplayServer, RID, RID, AccessibilityRole, Int> =
+      MethodStringName3<DisplayServer, RID, RID, AccessibilityRole, Int>("accessibility_create_sub_element")
+
+  @JvmField
+  public val accessibilityCreateSubTextEditElementsName:
+      MethodStringName4<DisplayServer, RID, RID, RID, Float, Int> =
+      MethodStringName4<DisplayServer, RID, RID, RID, Float, Int>("accessibility_create_sub_text_edit_elements")
+
+  @JvmField
+  public val accessibilityHasElementName: MethodStringName1<DisplayServer, Boolean, RID> =
+      MethodStringName1<DisplayServer, Boolean, RID>("accessibility_has_element")
+
+  @JvmField
+  public val accessibilityFreeElementName: MethodStringName1<DisplayServer, Unit, RID> =
+      MethodStringName1<DisplayServer, Unit, RID>("accessibility_free_element")
+
+  @JvmField
+  public val accessibilityElementSetMetaName: MethodStringName2<DisplayServer, Unit, RID, Any?> =
+      MethodStringName2<DisplayServer, Unit, RID, Any?>("accessibility_element_set_meta")
+
+  @JvmField
+  public val accessibilityElementGetMetaName: MethodStringName1<DisplayServer, Any?, RID> =
+      MethodStringName1<DisplayServer, Any?, RID>("accessibility_element_get_meta")
+
+  @JvmField
+  public val accessibilitySetWindowRectName:
+      MethodStringName3<DisplayServer, Unit, Int, Rect2, Rect2> =
+      MethodStringName3<DisplayServer, Unit, Int, Rect2, Rect2>("accessibility_set_window_rect")
+
+  @JvmField
+  public val accessibilitySetWindowFocusedName: MethodStringName2<DisplayServer, Unit, Int, Boolean>
+      = MethodStringName2<DisplayServer, Unit, Int, Boolean>("accessibility_set_window_focused")
+
+  @JvmField
+  public val accessibilityUpdateSetFocusName: MethodStringName1<DisplayServer, Unit, RID> =
+      MethodStringName1<DisplayServer, Unit, RID>("accessibility_update_set_focus")
+
+  @JvmField
+  public val accessibilityGetWindowRootName: MethodStringName1<DisplayServer, RID, Int> =
+      MethodStringName1<DisplayServer, RID, Int>("accessibility_get_window_root")
+
+  @JvmField
+  public val accessibilityUpdateSetRoleName:
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityRole> =
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityRole>("accessibility_update_set_role")
+
+  @JvmField
+  public val accessibilityUpdateSetNameName: MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_name")
+
+  @JvmField
+  public val accessibilityUpdateSetExtraInfoName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_extra_info")
+
+  @JvmField
+  public val accessibilityUpdateSetDescriptionName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_description")
+
+  @JvmField
+  public val accessibilityUpdateSetValueName: MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_value")
+
+  @JvmField
+  public val accessibilityUpdateSetTooltipName: MethodStringName2<DisplayServer, Unit, RID, String>
+      = MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_tooltip")
+
+  @JvmField
+  public val accessibilityUpdateSetBoundsName: MethodStringName2<DisplayServer, Unit, RID, Rect2> =
+      MethodStringName2<DisplayServer, Unit, RID, Rect2>("accessibility_update_set_bounds")
+
+  @JvmField
+  public val accessibilityUpdateSetTransformName:
+      MethodStringName2<DisplayServer, Unit, RID, Transform2D> =
+      MethodStringName2<DisplayServer, Unit, RID, Transform2D>("accessibility_update_set_transform")
+
+  @JvmField
+  public val accessibilityUpdateAddChildName: MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_child")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedControlsName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_controls")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedDetailsName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_details")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedDescribedByName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_described_by")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedFlowToName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_flow_to")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedLabeledByName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_labeled_by")
+
+  @JvmField
+  public val accessibilityUpdateAddRelatedRadioGroupName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_add_related_radio_group")
+
+  @JvmField
+  public val accessibilityUpdateSetActiveDescendantName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_active_descendant")
+
+  @JvmField
+  public val accessibilityUpdateSetNextOnLineName: MethodStringName2<DisplayServer, Unit, RID, RID>
+      = MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_next_on_line")
+
+  @JvmField
+  public val accessibilityUpdateSetPreviousOnLineName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_previous_on_line")
+
+  @JvmField
+  public val accessibilityUpdateSetMemberOfName: MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_member_of")
+
+  @JvmField
+  public val accessibilityUpdateSetInPageLinkTargetName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_in_page_link_target")
+
+  @JvmField
+  public val accessibilityUpdateSetErrorMessageName:
+      MethodStringName2<DisplayServer, Unit, RID, RID> =
+      MethodStringName2<DisplayServer, Unit, RID, RID>("accessibility_update_set_error_message")
+
+  @JvmField
+  public val accessibilityUpdateSetLiveName:
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityLiveMode> =
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityLiveMode>("accessibility_update_set_live")
+
+  @JvmField
+  public val accessibilityUpdateAddActionName:
+      MethodStringName3<DisplayServer, Unit, RID, AccessibilityAction, Callable> =
+      MethodStringName3<DisplayServer, Unit, RID, AccessibilityAction, Callable>("accessibility_update_add_action")
+
+  @JvmField
+  public val accessibilityUpdateAddCustomActionName:
+      MethodStringName3<DisplayServer, Unit, RID, Int, String> =
+      MethodStringName3<DisplayServer, Unit, RID, Int, String>("accessibility_update_add_custom_action")
+
+  @JvmField
+  public val accessibilityUpdateSetTableRowCountName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_table_row_count")
+
+  @JvmField
+  public val accessibilityUpdateSetTableColumnCountName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_table_column_count")
+
+  @JvmField
+  public val accessibilityUpdateSetTableRowIndexName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_table_row_index")
+
+  @JvmField
+  public val accessibilityUpdateSetTableColumnIndexName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_table_column_index")
+
+  @JvmField
+  public val accessibilityUpdateSetTableCellPositionName:
+      MethodStringName3<DisplayServer, Unit, RID, Int, Int> =
+      MethodStringName3<DisplayServer, Unit, RID, Int, Int>("accessibility_update_set_table_cell_position")
+
+  @JvmField
+  public val accessibilityUpdateSetTableCellSpanName:
+      MethodStringName3<DisplayServer, Unit, RID, Int, Int> =
+      MethodStringName3<DisplayServer, Unit, RID, Int, Int>("accessibility_update_set_table_cell_span")
+
+  @JvmField
+  public val accessibilityUpdateSetListItemCountName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_list_item_count")
+
+  @JvmField
+  public val accessibilityUpdateSetListItemIndexName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_list_item_index")
+
+  @JvmField
+  public val accessibilityUpdateSetListItemLevelName:
+      MethodStringName2<DisplayServer, Unit, RID, Int> =
+      MethodStringName2<DisplayServer, Unit, RID, Int>("accessibility_update_set_list_item_level")
+
+  @JvmField
+  public val accessibilityUpdateSetListItemSelectedName:
+      MethodStringName2<DisplayServer, Unit, RID, Boolean> =
+      MethodStringName2<DisplayServer, Unit, RID, Boolean>("accessibility_update_set_list_item_selected")
+
+  @JvmField
+  public val accessibilityUpdateSetListItemExpandedName:
+      MethodStringName2<DisplayServer, Unit, RID, Boolean> =
+      MethodStringName2<DisplayServer, Unit, RID, Boolean>("accessibility_update_set_list_item_expanded")
+
+  @JvmField
+  public val accessibilityUpdateSetPopupTypeName:
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityPopupType> =
+      MethodStringName2<DisplayServer, Unit, RID, AccessibilityPopupType>("accessibility_update_set_popup_type")
+
+  @JvmField
+  public val accessibilityUpdateSetCheckedName: MethodStringName2<DisplayServer, Unit, RID, Boolean>
+      = MethodStringName2<DisplayServer, Unit, RID, Boolean>("accessibility_update_set_checked")
+
+  @JvmField
+  public val accessibilityUpdateSetNumValueName: MethodStringName2<DisplayServer, Unit, RID, Double>
+      = MethodStringName2<DisplayServer, Unit, RID, Double>("accessibility_update_set_num_value")
+
+  @JvmField
+  public val accessibilityUpdateSetNumRangeName:
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double> =
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double>("accessibility_update_set_num_range")
+
+  @JvmField
+  public val accessibilityUpdateSetNumStepName: MethodStringName2<DisplayServer, Unit, RID, Double>
+      = MethodStringName2<DisplayServer, Unit, RID, Double>("accessibility_update_set_num_step")
+
+  @JvmField
+  public val accessibilityUpdateSetNumJumpName: MethodStringName2<DisplayServer, Unit, RID, Double>
+      = MethodStringName2<DisplayServer, Unit, RID, Double>("accessibility_update_set_num_jump")
+
+  @JvmField
+  public val accessibilityUpdateSetScrollXName: MethodStringName2<DisplayServer, Unit, RID, Double>
+      = MethodStringName2<DisplayServer, Unit, RID, Double>("accessibility_update_set_scroll_x")
+
+  @JvmField
+  public val accessibilityUpdateSetScrollXRangeName:
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double> =
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double>("accessibility_update_set_scroll_x_range")
+
+  @JvmField
+  public val accessibilityUpdateSetScrollYName: MethodStringName2<DisplayServer, Unit, RID, Double>
+      = MethodStringName2<DisplayServer, Unit, RID, Double>("accessibility_update_set_scroll_y")
+
+  @JvmField
+  public val accessibilityUpdateSetScrollYRangeName:
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double> =
+      MethodStringName3<DisplayServer, Unit, RID, Double, Double>("accessibility_update_set_scroll_y_range")
+
+  @JvmField
+  public val accessibilityUpdateSetTextDecorationsName:
+      MethodStringName4<DisplayServer, Unit, RID, Boolean, Boolean, Boolean> =
+      MethodStringName4<DisplayServer, Unit, RID, Boolean, Boolean, Boolean>("accessibility_update_set_text_decorations")
+
+  @JvmField
+  public val accessibilityUpdateSetTextAlignName:
+      MethodStringName2<DisplayServer, Unit, RID, HorizontalAlignment> =
+      MethodStringName2<DisplayServer, Unit, RID, HorizontalAlignment>("accessibility_update_set_text_align")
+
+  @JvmField
+  public val accessibilityUpdateSetTextSelectionName:
+      MethodStringName5<DisplayServer, Unit, RID, RID, Int, RID, Int> =
+      MethodStringName5<DisplayServer, Unit, RID, RID, Int, RID, Int>("accessibility_update_set_text_selection")
+
+  @JvmField
+  public val accessibilityUpdateSetFlagName:
+      MethodStringName3<DisplayServer, Unit, RID, AccessibilityFlags, Boolean> =
+      MethodStringName3<DisplayServer, Unit, RID, AccessibilityFlags, Boolean>("accessibility_update_set_flag")
+
+  @JvmField
+  public val accessibilityUpdateSetClassnameName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_classname")
+
+  @JvmField
+  public val accessibilityUpdateSetPlaceholderName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_placeholder")
+
+  @JvmField
+  public val accessibilityUpdateSetLanguageName: MethodStringName2<DisplayServer, Unit, RID, String>
+      = MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_language")
+
+  @JvmField
+  public val accessibilityUpdateSetTextOrientationName:
+      MethodStringName2<DisplayServer, Unit, RID, Boolean> =
+      MethodStringName2<DisplayServer, Unit, RID, Boolean>("accessibility_update_set_text_orientation")
+
+  @JvmField
+  public val accessibilityUpdateSetListOrientationName:
+      MethodStringName2<DisplayServer, Unit, RID, Boolean> =
+      MethodStringName2<DisplayServer, Unit, RID, Boolean>("accessibility_update_set_list_orientation")
+
+  @JvmField
+  public val accessibilityUpdateSetShortcutName: MethodStringName2<DisplayServer, Unit, RID, String>
+      = MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_shortcut")
+
+  @JvmField
+  public val accessibilityUpdateSetUrlName: MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_url")
+
+  @JvmField
+  public val accessibilityUpdateSetRoleDescriptionName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_role_description")
+
+  @JvmField
+  public val accessibilityUpdateSetStateDescriptionName:
+      MethodStringName2<DisplayServer, Unit, RID, String> =
+      MethodStringName2<DisplayServer, Unit, RID, String>("accessibility_update_set_state_description")
+
+  @JvmField
+  public val accessibilityUpdateSetColorValueName:
+      MethodStringName2<DisplayServer, Unit, RID, Color> =
+      MethodStringName2<DisplayServer, Unit, RID, Color>("accessibility_update_set_color_value")
+
+  @JvmField
+  public val accessibilityUpdateSetBackgroundColorName:
+      MethodStringName2<DisplayServer, Unit, RID, Color> =
+      MethodStringName2<DisplayServer, Unit, RID, Color>("accessibility_update_set_background_color")
+
+  @JvmField
+  public val accessibilityUpdateSetForegroundColorName:
+      MethodStringName2<DisplayServer, Unit, RID, Color> =
+      MethodStringName2<DisplayServer, Unit, RID, Color>("accessibility_update_set_foreground_color")
+
+  @JvmField
   public val imeGetSelectionName: MethodStringName0<DisplayServer, Vector2i> =
       MethodStringName0<DisplayServer, Vector2i>("ime_get_selection")
 
@@ -734,6 +1089,11 @@ public object DisplayServer : Object() {
   @JvmField
   public val hasHardwareKeyboardName: MethodStringName0<DisplayServer, Boolean> =
       MethodStringName0<DisplayServer, Boolean>("has_hardware_keyboard")
+
+  @JvmField
+  public val setHardwareKeyboardConnectionChangeCallbackName:
+      MethodStringName1<DisplayServer, Unit, Callable> =
+      MethodStringName1<DisplayServer, Unit, Callable>("set_hardware_keyboard_connection_change_callback")
 
   @JvmField
   public val cursorSetShapeName: MethodStringName1<DisplayServer, Unit, CursorShape> =
@@ -768,15 +1128,15 @@ public object DisplayServer : Object() {
 
   @JvmField
   public val fileDialogShowName:
-      MethodStringName7<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable>
+      MethodStringName8<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable, Int>
       =
-      MethodStringName7<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable>("file_dialog_show")
+      MethodStringName8<DisplayServer, Error, String, String, String, Boolean, FileDialogMode, PackedStringArray, Callable, Int>("file_dialog_show")
 
   @JvmField
   public val fileDialogWithOptionsShowName:
-      MethodStringName9<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable>
+      MethodStringName10<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable, Int>
       =
-      MethodStringName9<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable>("file_dialog_with_options_show")
+      MethodStringName10<DisplayServer, Error, String, String, String, String, Boolean, FileDialogMode, PackedStringArray, VariantArray<Dictionary<Any?, Any?>>, Callable, Int>("file_dialog_with_options_show")
 
   @JvmField
   public val beepName: MethodStringName0<DisplayServer, Unit> =
@@ -813,6 +1173,10 @@ public object DisplayServer : Object() {
   @JvmField
   public val showEmojiAndSymbolPickerName: MethodStringName0<DisplayServer, Unit> =
       MethodStringName0<DisplayServer, Unit>("show_emoji_and_symbol_picker")
+
+  @JvmField
+  public val colorPickerName: MethodStringName1<DisplayServer, Boolean, Callable> =
+      MethodStringName1<DisplayServer, Boolean, Callable>("color_picker")
 
   @JvmField
   public val processEventsName: MethodStringName0<DisplayServer, Unit> =

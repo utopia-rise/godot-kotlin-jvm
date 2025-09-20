@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -114,7 +117,23 @@ public open class XRHandModifier3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHandTrackerName: MethodStringName1<XRHandModifier3D, Unit, StringName> =
+        MethodStringName1<XRHandModifier3D, Unit, StringName>("set_hand_tracker")
+
+    @JvmField
+    public val getHandTrackerName: MethodStringName0<XRHandModifier3D, StringName> =
+        MethodStringName0<XRHandModifier3D, StringName>("get_hand_tracker")
+
+    @JvmField
+    public val setBoneUpdateName: MethodStringName1<XRHandModifier3D, Unit, BoneUpdate> =
+        MethodStringName1<XRHandModifier3D, Unit, BoneUpdate>("set_bone_update")
+
+    @JvmField
+    public val getBoneUpdateName: MethodStringName0<XRHandModifier3D, BoneUpdate> =
+        MethodStringName0<XRHandModifier3D, BoneUpdate>("get_bone_update")
+  }
 
   public object MethodBindings {
     internal val setHandTrackerPtr: VoidPtr =

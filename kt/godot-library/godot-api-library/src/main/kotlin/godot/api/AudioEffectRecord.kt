@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -96,7 +99,27 @@ public open class AudioEffectRecord : AudioEffect() {
     throw NotImplementedError("AudioEffectRecord::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRecordingActiveName: MethodStringName1<AudioEffectRecord, Unit, Boolean> =
+        MethodStringName1<AudioEffectRecord, Unit, Boolean>("set_recording_active")
+
+    @JvmField
+    public val isRecordingActiveName: MethodStringName0<AudioEffectRecord, Boolean> =
+        MethodStringName0<AudioEffectRecord, Boolean>("is_recording_active")
+
+    @JvmField
+    public val setFormatName: MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format> =
+        MethodStringName1<AudioEffectRecord, Unit, AudioStreamWAV.Format>("set_format")
+
+    @JvmField
+    public val getFormatName: MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format> =
+        MethodStringName0<AudioEffectRecord, AudioStreamWAV.Format>("get_format")
+
+    @JvmField
+    public val getRecordingName: MethodStringName0<AudioEffectRecord, AudioStreamWAV?> =
+        MethodStringName0<AudioEffectRecord, AudioStreamWAV?>("get_recording")
+  }
 
   public object MethodBindings {
     internal val setRecordingActivePtr: VoidPtr =

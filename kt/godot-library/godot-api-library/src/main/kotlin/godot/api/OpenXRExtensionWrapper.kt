@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.MethodStringName0
 import godot.core.PackedStringArray
 import godot.core.RID
 import godot.core.VariantArray
@@ -22,6 +23,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * [OpenXRExtensionWrapper] allows implementing OpenXR extensions with GDExtension. The extension
@@ -276,7 +278,15 @@ public open class OpenXRExtensionWrapper : Object() {
     TransferContext.callMethod(ptr, MethodBindings.registerExtensionWrapperPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getOpenxrApiName: MethodStringName0<OpenXRExtensionWrapper, OpenXRAPIExtension?> =
+        MethodStringName0<OpenXRExtensionWrapper, OpenXRAPIExtension?>("get_openxr_api")
+
+    @JvmField
+    public val registerExtensionWrapperName: MethodStringName0<OpenXRExtensionWrapper, Unit> =
+        MethodStringName0<OpenXRExtensionWrapper, Unit>("register_extension_wrapper")
+  }
 
   public object MethodBindings {
     internal val getOpenxrApiPtr: VoidPtr =

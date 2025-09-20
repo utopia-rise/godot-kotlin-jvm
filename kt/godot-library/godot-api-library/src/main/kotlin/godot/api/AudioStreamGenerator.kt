@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Float
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -214,7 +217,33 @@ public open class AudioStreamGenerator : AudioStream() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMixRateName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
+        MethodStringName1<AudioStreamGenerator, Unit, Float>("set_mix_rate")
+
+    @JvmField
+    public val getMixRateName: MethodStringName0<AudioStreamGenerator, Float> =
+        MethodStringName0<AudioStreamGenerator, Float>("get_mix_rate")
+
+    @JvmField
+    public val setMixRateModeName:
+        MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate> =
+        MethodStringName1<AudioStreamGenerator, Unit, AudioStreamGeneratorMixRate>("set_mix_rate_mode")
+
+    @JvmField
+    public val getMixRateModeName:
+        MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate> =
+        MethodStringName0<AudioStreamGenerator, AudioStreamGeneratorMixRate>("get_mix_rate_mode")
+
+    @JvmField
+    public val setBufferLengthName: MethodStringName1<AudioStreamGenerator, Unit, Float> =
+        MethodStringName1<AudioStreamGenerator, Unit, Float>("set_buffer_length")
+
+    @JvmField
+    public val getBufferLengthName: MethodStringName0<AudioStreamGenerator, Float> =
+        MethodStringName0<AudioStreamGenerator, Float>("get_buffer_length")
+  }
 
   public object MethodBindings {
     internal val setMixRatePtr: VoidPtr =

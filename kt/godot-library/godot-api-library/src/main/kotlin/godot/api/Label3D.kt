@@ -1099,6 +1099,14 @@ public open class Label3D : GeometryInstance3D() {
         MethodStringName0<Label3D, TextServer.AutowrapMode>("get_autowrap_mode")
 
     @JvmField
+    public val setAutowrapTrimFlagsName: MethodStringName1<Label3D, Unit, TextServer.LineBreakFlag>
+        = MethodStringName1<Label3D, Unit, TextServer.LineBreakFlag>("set_autowrap_trim_flags")
+
+    @JvmField
+    public val getAutowrapTrimFlagsName: MethodStringName0<Label3D, TextServer.LineBreakFlag> =
+        MethodStringName0<Label3D, TextServer.LineBreakFlag>("get_autowrap_trim_flags")
+
+    @JvmField
     public val setJustificationFlagsName:
         MethodStringName1<Label3D, Unit, TextServer.JustificationFlag> =
         MethodStringName1<Label3D, Unit, TextServer.JustificationFlag>("set_justification_flags")

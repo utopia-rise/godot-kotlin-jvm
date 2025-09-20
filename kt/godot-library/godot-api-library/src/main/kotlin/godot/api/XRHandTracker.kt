@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -408,7 +411,67 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setHasTrackingDataName: MethodStringName1<XRHandTracker, Unit, Boolean> =
+        MethodStringName1<XRHandTracker, Unit, Boolean>("set_has_tracking_data")
+
+    @JvmField
+    public val getHasTrackingDataName: MethodStringName0<XRHandTracker, Boolean> =
+        MethodStringName0<XRHandTracker, Boolean>("get_has_tracking_data")
+
+    @JvmField
+    public val setHandTrackingSourceName: MethodStringName1<XRHandTracker, Unit, HandTrackingSource>
+        = MethodStringName1<XRHandTracker, Unit, HandTrackingSource>("set_hand_tracking_source")
+
+    @JvmField
+    public val getHandTrackingSourceName: MethodStringName0<XRHandTracker, HandTrackingSource> =
+        MethodStringName0<XRHandTracker, HandTrackingSource>("get_hand_tracking_source")
+
+    @JvmField
+    public val setHandJointFlagsName:
+        MethodStringName2<XRHandTracker, Unit, HandJoint, HandJointFlags> =
+        MethodStringName2<XRHandTracker, Unit, HandJoint, HandJointFlags>("set_hand_joint_flags")
+
+    @JvmField
+    public val getHandJointFlagsName: MethodStringName1<XRHandTracker, HandJointFlags, HandJoint> =
+        MethodStringName1<XRHandTracker, HandJointFlags, HandJoint>("get_hand_joint_flags")
+
+    @JvmField
+    public val setHandJointTransformName:
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Transform3D> =
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Transform3D>("set_hand_joint_transform")
+
+    @JvmField
+    public val getHandJointTransformName: MethodStringName1<XRHandTracker, Transform3D, HandJoint> =
+        MethodStringName1<XRHandTracker, Transform3D, HandJoint>("get_hand_joint_transform")
+
+    @JvmField
+    public val setHandJointRadiusName: MethodStringName2<XRHandTracker, Unit, HandJoint, Float> =
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Float>("set_hand_joint_radius")
+
+    @JvmField
+    public val getHandJointRadiusName: MethodStringName1<XRHandTracker, Float, HandJoint> =
+        MethodStringName1<XRHandTracker, Float, HandJoint>("get_hand_joint_radius")
+
+    @JvmField
+    public val setHandJointLinearVelocityName:
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3> =
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3>("set_hand_joint_linear_velocity")
+
+    @JvmField
+    public val getHandJointLinearVelocityName: MethodStringName1<XRHandTracker, Vector3, HandJoint>
+        = MethodStringName1<XRHandTracker, Vector3, HandJoint>("get_hand_joint_linear_velocity")
+
+    @JvmField
+    public val setHandJointAngularVelocityName:
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3> =
+        MethodStringName2<XRHandTracker, Unit, HandJoint, Vector3>("set_hand_joint_angular_velocity")
+
+    @JvmField
+    public val getHandJointAngularVelocityName: MethodStringName1<XRHandTracker, Vector3, HandJoint>
+        = MethodStringName1<XRHandTracker, Vector3, HandJoint>("get_hand_joint_angular_velocity")
+  }
 
   public object MethodBindings {
     internal val setHasTrackingDataPtr: VoidPtr =

@@ -11,12 +11,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -181,7 +184,31 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSourceName: MethodStringName1<VisualShaderNodeTexture, Unit, Source> =
+        MethodStringName1<VisualShaderNodeTexture, Unit, Source>("set_source")
+
+    @JvmField
+    public val getSourceName: MethodStringName0<VisualShaderNodeTexture, Source> =
+        MethodStringName0<VisualShaderNodeTexture, Source>("get_source")
+
+    @JvmField
+    public val setTextureName: MethodStringName1<VisualShaderNodeTexture, Unit, Texture2D?> =
+        MethodStringName1<VisualShaderNodeTexture, Unit, Texture2D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<VisualShaderNodeTexture, Texture2D?> =
+        MethodStringName0<VisualShaderNodeTexture, Texture2D?>("get_texture")
+
+    @JvmField
+    public val setTextureTypeName: MethodStringName1<VisualShaderNodeTexture, Unit, TextureType> =
+        MethodStringName1<VisualShaderNodeTexture, Unit, TextureType>("set_texture_type")
+
+    @JvmField
+    public val getTextureTypeName: MethodStringName0<VisualShaderNodeTexture, TextureType> =
+        MethodStringName0<VisualShaderNodeTexture, TextureType>("get_texture_type")
+  }
 
   public object MethodBindings {
     internal val setSourcePtr: VoidPtr =

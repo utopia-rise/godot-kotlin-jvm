@@ -13,12 +13,15 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -119,7 +122,23 @@ public open class Path3D : Node3D() {
     return (TransferContext.readReturnValue(COLOR) as Color)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCurveName: MethodStringName1<Path3D, Unit, Curve3D?> =
+        MethodStringName1<Path3D, Unit, Curve3D?>("set_curve")
+
+    @JvmField
+    public val getCurveName: MethodStringName0<Path3D, Curve3D?> =
+        MethodStringName0<Path3D, Curve3D?>("get_curve")
+
+    @JvmField
+    public val setDebugCustomColorName: MethodStringName1<Path3D, Unit, Color> =
+        MethodStringName1<Path3D, Unit, Color>("set_debug_custom_color")
+
+    @JvmField
+    public val getDebugCustomColorName: MethodStringName0<Path3D, Color> =
+        MethodStringName0<Path3D, Color>("get_debug_custom_color")
+  }
 
   public object MethodBindings {
     internal val setCurvePtr: VoidPtr =

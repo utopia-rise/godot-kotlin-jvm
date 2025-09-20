@@ -19,7 +19,6 @@ import godot.core.VariantCallable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmField
@@ -83,7 +82,7 @@ public object NavigationMeshGenerator : Object() {
       =
       MethodStringName3<NavigationMeshGenerator, Unit, NavigationMesh?, NavigationMeshSourceGeometryData3D?, Callable>("bake_from_source_geometry_data")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(16)
   }
 

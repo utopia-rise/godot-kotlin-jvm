@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -108,7 +111,31 @@ public open class AudioEffectHardLimiter : AudioEffect() {
     throw NotImplementedError("AudioEffectHardLimiter::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCeilingDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_ceiling_db")
+
+    @JvmField
+    public val getCeilingDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_ceiling_db")
+
+    @JvmField
+    public val setPreGainDbName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_pre_gain_db")
+
+    @JvmField
+    public val getPreGainDbName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_pre_gain_db")
+
+    @JvmField
+    public val setReleaseName: MethodStringName1<AudioEffectHardLimiter, Unit, Float> =
+        MethodStringName1<AudioEffectHardLimiter, Unit, Float>("set_release")
+
+    @JvmField
+    public val getReleaseName: MethodStringName0<AudioEffectHardLimiter, Float> =
+        MethodStringName0<AudioEffectHardLimiter, Float>("get_release")
+  }
 
   public object MethodBindings {
     internal val setCeilingDbPtr: VoidPtr =

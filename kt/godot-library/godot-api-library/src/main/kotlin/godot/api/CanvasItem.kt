@@ -17,10 +17,10 @@ import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.MethodStringName0
 import godot.core.MethodStringName1
-import godot.core.MethodStringName10
 import godot.core.MethodStringName11
 import godot.core.MethodStringName12
 import godot.core.MethodStringName13
+import godot.core.MethodStringName14
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName4
@@ -1909,36 +1909,37 @@ public open class CanvasItem internal constructor() : Node() {
 
     @JvmField
     public val drawStringName:
-        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName10<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string")
+        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string")
 
     @JvmField
     public val drawMultilineStringName:
-        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string")
+        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string")
 
     @JvmField
     public val drawStringOutlineName:
-        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName11<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_string_outline")
+        MethodStringName12<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Color, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_string_outline")
 
     @JvmField
     public val drawMultilineStringOutlineName:
-        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>
+        MethodStringName14<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>
         =
-        MethodStringName13<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation>("draw_multiline_string_outline")
+        MethodStringName14<CanvasItem, Unit, Font?, Vector2, String, HorizontalAlignment, Float, Int, Int, Int, Color, TextServer.LineBreakFlag, TextServer.JustificationFlag, TextServer.Direction, TextServer.Orientation, Float>("draw_multiline_string_outline")
 
     @JvmField
-    public val drawCharName: MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>
-        = MethodStringName5<CanvasItem, Unit, Font?, Vector2, String, Int, Color>("draw_char")
+    public val drawCharName:
+        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Color, Float> =
+        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Color, Float>("draw_char")
 
     @JvmField
     public val drawCharOutlineName:
-        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color> =
-        MethodStringName6<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color>("draw_char_outline")
+        MethodStringName7<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color, Float> =
+        MethodStringName7<CanvasItem, Unit, Font?, Vector2, String, Int, Int, Color, Float>("draw_char_outline")
 
     @JvmField
     public val drawMeshName:

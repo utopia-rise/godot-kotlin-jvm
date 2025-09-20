@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -155,7 +158,31 @@ public open class AudioEffectSpectrumAnalyzer : AudioEffect() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBufferLengthName: MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float> =
+        MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float>("set_buffer_length")
+
+    @JvmField
+    public val getBufferLengthName: MethodStringName0<AudioEffectSpectrumAnalyzer, Float> =
+        MethodStringName0<AudioEffectSpectrumAnalyzer, Float>("get_buffer_length")
+
+    @JvmField
+    public val setTapBackPosName: MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float> =
+        MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, Float>("set_tap_back_pos")
+
+    @JvmField
+    public val getTapBackPosName: MethodStringName0<AudioEffectSpectrumAnalyzer, Float> =
+        MethodStringName0<AudioEffectSpectrumAnalyzer, Float>("get_tap_back_pos")
+
+    @JvmField
+    public val setFftSizeName: MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, FFTSize> =
+        MethodStringName1<AudioEffectSpectrumAnalyzer, Unit, FFTSize>("set_fft_size")
+
+    @JvmField
+    public val getFftSizeName: MethodStringName0<AudioEffectSpectrumAnalyzer, FFTSize> =
+        MethodStringName0<AudioEffectSpectrumAnalyzer, FFTSize>("get_fft_size")
+  }
 
   public object MethodBindings {
     internal val setBufferLengthPtr: VoidPtr =

@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -33,6 +36,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -702,7 +706,156 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLayerViewportName: MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, SubViewport?>("set_layer_viewport")
+
+    @JvmField
+    public val getLayerViewportName: MethodStringName0<OpenXRCompositionLayer, SubViewport?> =
+        MethodStringName0<OpenXRCompositionLayer, SubViewport?>("get_layer_viewport")
+
+    @JvmField
+    public val setUseAndroidSurfaceName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_use_android_surface")
+
+    @JvmField
+    public val getUseAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_use_android_surface")
+
+    @JvmField
+    public val setAndroidSurfaceSizeName: MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>
+        = MethodStringName1<OpenXRCompositionLayer, Unit, Vector2i>("set_android_surface_size")
+
+    @JvmField
+    public val getAndroidSurfaceSizeName: MethodStringName0<OpenXRCompositionLayer, Vector2i> =
+        MethodStringName0<OpenXRCompositionLayer, Vector2i>("get_android_surface_size")
+
+    @JvmField
+    public val setEnableHolePunchName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_enable_hole_punch")
+
+    @JvmField
+    public val getEnableHolePunchName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_enable_hole_punch")
+
+    @JvmField
+    public val setSortOrderName: MethodStringName1<OpenXRCompositionLayer, Unit, Int> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Int>("set_sort_order")
+
+    @JvmField
+    public val getSortOrderName: MethodStringName0<OpenXRCompositionLayer, Int> =
+        MethodStringName0<OpenXRCompositionLayer, Int>("get_sort_order")
+
+    @JvmField
+    public val setAlphaBlendName: MethodStringName1<OpenXRCompositionLayer, Unit, Boolean> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Boolean>("set_alpha_blend")
+
+    @JvmField
+    public val getAlphaBlendName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("get_alpha_blend")
+
+    @JvmField
+    public val getAndroidSurfaceName: MethodStringName0<OpenXRCompositionLayer, JavaObject?> =
+        MethodStringName0<OpenXRCompositionLayer, JavaObject?>("get_android_surface")
+
+    @JvmField
+    public val isNativelySupportedName: MethodStringName0<OpenXRCompositionLayer, Boolean> =
+        MethodStringName0<OpenXRCompositionLayer, Boolean>("is_natively_supported")
+
+    @JvmField
+    public val setMinFilterName: MethodStringName1<OpenXRCompositionLayer, Unit, Filter> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Filter>("set_min_filter")
+
+    @JvmField
+    public val getMinFilterName: MethodStringName0<OpenXRCompositionLayer, Filter> =
+        MethodStringName0<OpenXRCompositionLayer, Filter>("get_min_filter")
+
+    @JvmField
+    public val setMagFilterName: MethodStringName1<OpenXRCompositionLayer, Unit, Filter> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Filter>("set_mag_filter")
+
+    @JvmField
+    public val getMagFilterName: MethodStringName0<OpenXRCompositionLayer, Filter> =
+        MethodStringName0<OpenXRCompositionLayer, Filter>("get_mag_filter")
+
+    @JvmField
+    public val setMipmapModeName: MethodStringName1<OpenXRCompositionLayer, Unit, MipmapMode> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, MipmapMode>("set_mipmap_mode")
+
+    @JvmField
+    public val getMipmapModeName: MethodStringName0<OpenXRCompositionLayer, MipmapMode> =
+        MethodStringName0<OpenXRCompositionLayer, MipmapMode>("get_mipmap_mode")
+
+    @JvmField
+    public val setHorizontalWrapName: MethodStringName1<OpenXRCompositionLayer, Unit, Wrap> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Wrap>("set_horizontal_wrap")
+
+    @JvmField
+    public val getHorizontalWrapName: MethodStringName0<OpenXRCompositionLayer, Wrap> =
+        MethodStringName0<OpenXRCompositionLayer, Wrap>("get_horizontal_wrap")
+
+    @JvmField
+    public val setVerticalWrapName: MethodStringName1<OpenXRCompositionLayer, Unit, Wrap> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Wrap>("set_vertical_wrap")
+
+    @JvmField
+    public val getVerticalWrapName: MethodStringName0<OpenXRCompositionLayer, Wrap> =
+        MethodStringName0<OpenXRCompositionLayer, Wrap>("get_vertical_wrap")
+
+    @JvmField
+    public val setRedSwizzleName: MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle>("set_red_swizzle")
+
+    @JvmField
+    public val getRedSwizzleName: MethodStringName0<OpenXRCompositionLayer, Swizzle> =
+        MethodStringName0<OpenXRCompositionLayer, Swizzle>("get_red_swizzle")
+
+    @JvmField
+    public val setGreenSwizzleName: MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle>("set_green_swizzle")
+
+    @JvmField
+    public val getGreenSwizzleName: MethodStringName0<OpenXRCompositionLayer, Swizzle> =
+        MethodStringName0<OpenXRCompositionLayer, Swizzle>("get_green_swizzle")
+
+    @JvmField
+    public val setBlueSwizzleName: MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle>("set_blue_swizzle")
+
+    @JvmField
+    public val getBlueSwizzleName: MethodStringName0<OpenXRCompositionLayer, Swizzle> =
+        MethodStringName0<OpenXRCompositionLayer, Swizzle>("get_blue_swizzle")
+
+    @JvmField
+    public val setAlphaSwizzleName: MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Swizzle>("set_alpha_swizzle")
+
+    @JvmField
+    public val getAlphaSwizzleName: MethodStringName0<OpenXRCompositionLayer, Swizzle> =
+        MethodStringName0<OpenXRCompositionLayer, Swizzle>("get_alpha_swizzle")
+
+    @JvmField
+    public val setMaxAnisotropyName: MethodStringName1<OpenXRCompositionLayer, Unit, Float> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Float>("set_max_anisotropy")
+
+    @JvmField
+    public val getMaxAnisotropyName: MethodStringName0<OpenXRCompositionLayer, Float> =
+        MethodStringName0<OpenXRCompositionLayer, Float>("get_max_anisotropy")
+
+    @JvmField
+    public val setBorderColorName: MethodStringName1<OpenXRCompositionLayer, Unit, Color> =
+        MethodStringName1<OpenXRCompositionLayer, Unit, Color>("set_border_color")
+
+    @JvmField
+    public val getBorderColorName: MethodStringName0<OpenXRCompositionLayer, Color> =
+        MethodStringName0<OpenXRCompositionLayer, Color>("get_border_color")
+
+    @JvmField
+    public val intersectsRayName:
+        MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3> =
+        MethodStringName2<OpenXRCompositionLayer, Vector2, Vector3, Vector3>("intersects_ray")
+  }
 
   public object MethodBindings {
     internal val setLayerViewportPtr: VoidPtr =

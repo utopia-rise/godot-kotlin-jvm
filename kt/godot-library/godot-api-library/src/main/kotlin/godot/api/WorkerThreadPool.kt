@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.MethodStringName0
 import godot.core.MethodStringName1
 import godot.core.MethodStringName3
 import godot.core.MethodStringName5
@@ -97,6 +98,10 @@ public object WorkerThreadPool : Object() {
       MethodStringName1<WorkerThreadPool, Error, Long>("wait_for_task_completion")
 
   @JvmField
+  public val getCallerTaskIdName: MethodStringName0<WorkerThreadPool, Long> =
+      MethodStringName0<WorkerThreadPool, Long>("get_caller_task_id")
+
+  @JvmField
   public val addGroupTaskName:
       MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String> =
       MethodStringName5<WorkerThreadPool, Long, Callable, Int, Int, Boolean, String>("add_group_task")
@@ -113,7 +118,11 @@ public object WorkerThreadPool : Object() {
   public val waitForGroupTaskCompletionName: MethodStringName1<WorkerThreadPool, Unit, Long> =
       MethodStringName1<WorkerThreadPool, Unit, Long>("wait_for_group_task_completion")
 
-  public override fun new(scriptIndex: Int): Unit {
+  @JvmField
+  public val getCallerGroupIdName: MethodStringName0<WorkerThreadPool, Long> =
+      MethodStringName0<WorkerThreadPool, Long>("get_caller_group_id")
+
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(34)
   }
 

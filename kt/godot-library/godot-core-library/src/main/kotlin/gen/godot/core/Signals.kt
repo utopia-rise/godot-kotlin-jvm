@@ -13,6 +13,7 @@ import kotlin.PublishedApi
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 import kotlin.properties.ReadOnlyProperty
@@ -45,7 +46,8 @@ public class Signal0 @PublishedApi internal constructor(
                 Signal0(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun create(godotObject: Object, signalName: String): Signal0 =
+        @JvmName("create")
+        public fun _createJava(godotObject: Object, signalName: String): Signal0 =
                 Signal0(godotObject, signalName.toGodotName())
     }
 }
@@ -82,7 +84,8 @@ public class Signal1<P0> @PublishedApi internal constructor(
                 Signal1<P0> = Signal1(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0> create(godotObject: Object, signalName: String): Signal1<P0> =
+        @JvmName("create")
+        public fun <P0> _createJava(godotObject: Object, signalName: String): Signal1<P0> =
                 Signal1(godotObject, signalName.toGodotName())
     }
 }
@@ -121,7 +124,8 @@ public class Signal2<P0, P1> @PublishedApi internal constructor(
                 Signal2<P0, P1> = Signal2(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1> create(godotObject: Object, signalName: String): Signal2<P0, P1> =
+        @JvmName("create")
+        public fun <P0, P1> _createJava(godotObject: Object, signalName: String): Signal2<P0, P1> =
                 Signal2(godotObject, signalName.toGodotName())
     }
 }
@@ -165,8 +169,9 @@ public class Signal3<P0, P1, P2> @PublishedApi internal constructor(
                 Signal3<P0, P1, P2> = Signal3(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2> create(godotObject: Object, signalName: String): Signal3<P0, P1, P2>
-                = Signal3(godotObject, signalName.toGodotName())
+        @JvmName("create")
+        public fun <P0, P1, P2> _createJava(godotObject: Object, signalName: String):
+                Signal3<P0, P1, P2> = Signal3(godotObject, signalName.toGodotName())
     }
 }
 
@@ -211,7 +216,8 @@ public class Signal4<P0, P1, P2, P3> @PublishedApi internal constructor(
                 Signal4(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3> create(godotObject: Object, signalName: String):
+        @JvmName("create")
+        public fun <P0, P1, P2, P3> _createJava(godotObject: Object, signalName: String):
                 Signal4<P0, P1, P2, P3> = Signal4(godotObject, signalName.toGodotName())
     }
 }
@@ -258,7 +264,8 @@ public class Signal5<P0, P1, P2, P3, P4> @PublishedApi internal constructor(
                 Signal5(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4> create(godotObject: Object, signalName: String):
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4> _createJava(godotObject: Object, signalName: String):
                 Signal5<P0, P1, P2, P3, P4> = Signal5(godotObject, signalName.toGodotName())
     }
 }
@@ -306,7 +313,8 @@ public class Signal6<P0, P1, P2, P3, P4, P5> @PublishedApi internal constructor(
                 Signal6(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5> create(godotObject: Object, signalName: String):
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5> _createJava(godotObject: Object, signalName: String):
                 Signal6<P0, P1, P2, P3, P4, P5> = Signal6(godotObject, signalName.toGodotName())
     }
 }
@@ -356,8 +364,10 @@ public class Signal7<P0, P1, P2, P3, P4, P5, P6> @PublishedApi internal construc
                 Signal7(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6> create(godotObject: Object, signalName: String):
-                Signal7<P0, P1, P2, P3, P4, P5, P6> = Signal7(godotObject, signalName.toGodotName())
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6> _createJava(godotObject: Object,
+                signalName: String): Signal7<P0, P1, P2, P3, P4, P5, P6> =
+                Signal7(godotObject, signalName.toGodotName())
     }
 }
 
@@ -407,8 +417,9 @@ public class Signal8<P0, P1, P2, P3, P4, P5, P6, P7> @PublishedApi internal cons
                 Signal8(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7> create(godotObject: Object, signalName: String):
-                Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7> _createJava(godotObject: Object,
+                signalName: String): Signal8<P0, P1, P2, P3, P4, P5, P6, P7> =
                 Signal8(godotObject, signalName.toGodotName())
     }
 }
@@ -460,7 +471,8 @@ public class Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> @PublishedApi internal 
                 Signal9(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> create(godotObject: Object,
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8> _createJava(godotObject: Object,
                 signalName: String): Signal9<P0, P1, P2, P3, P4, P5, P6, P7, P8> =
                 Signal9(godotObject, signalName.toGodotName())
     }
@@ -515,7 +527,8 @@ public class Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> @PublishedApi inte
                 Signal10(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> create(godotObject: Object,
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> _createJava(godotObject: Object,
                 signalName: String): Signal10<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9> =
                 Signal10(godotObject, signalName.toGodotName())
     }
@@ -573,7 +586,8 @@ public class Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> @PublishedApi
                 Signal11(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> create(godotObject: Object,
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> _createJava(godotObject: Object,
                 signalName: String): Signal11<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10> =
                 Signal11(godotObject, signalName.toGodotName())
     }
@@ -633,8 +647,10 @@ public class Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> @Publish
                 Signal12(thisRef, property.toGodotName())
 
         @JvmStatic
-        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> create(godotObject: Object,
-                signalName: String): Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
+        @JvmName("create")
+        public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11>
+                _createJava(godotObject: Object, signalName: String):
+                Signal12<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11> =
                 Signal12(godotObject, signalName.toGodotName())
     }
 }
@@ -696,8 +712,9 @@ public class Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> @Pu
                 Signal13(thisRef, property.toGodotName())
 
         @JvmStatic
+        @JvmName("create")
         public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12>
-                create(godotObject: Object, signalName: String):
+                _createJava(godotObject: Object, signalName: String):
                 Signal13<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12> =
                 Signal13(godotObject, signalName.toGodotName())
     }
@@ -761,8 +778,9 @@ public class Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 Signal14(thisRef, property.toGodotName())
 
         @JvmStatic
+        @JvmName("create")
         public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13>
-                create(godotObject: Object, signalName: String):
+                _createJava(godotObject: Object, signalName: String):
                 Signal14<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13> =
                 Signal14(godotObject, signalName.toGodotName())
     }
@@ -827,8 +845,9 @@ public class Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 Signal15(thisRef, property.toGodotName())
 
         @JvmStatic
+        @JvmName("create")
         public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14>
-                create(godotObject: Object, signalName: String):
+                _createJava(godotObject: Object, signalName: String):
                 Signal15<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14> =
                 Signal15(godotObject, signalName.toGodotName())
     }
@@ -895,8 +914,9 @@ public class Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13
                 Signal16(thisRef, property.toGodotName())
 
         @JvmStatic
+        @JvmName("create")
         public fun <P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15>
-                create(godotObject: Object, signalName: String):
+                _createJava(godotObject: Object, signalName: String):
                 Signal16<P0, P1, P2, P3, P4, P5, P6, P7, P8, P9, P10, P11, P12, P13, P14, P15> =
                 Signal16(godotObject, signalName.toGodotName())
     }

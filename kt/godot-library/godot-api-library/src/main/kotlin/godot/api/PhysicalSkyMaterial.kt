@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -25,6 +27,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -397,7 +400,95 @@ public open class PhysicalSkyMaterial : Material() {
     throw NotImplementedError("PhysicalSkyMaterial::_getShaderMode can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setRayleighCoefficientName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_rayleigh_coefficient")
+
+    @JvmField
+    public val getRayleighCoefficientName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_rayleigh_coefficient")
+
+    @JvmField
+    public val setRayleighColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_rayleigh_color")
+
+    @JvmField
+    public val getRayleighColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
+        MethodStringName0<PhysicalSkyMaterial, Color>("get_rayleigh_color")
+
+    @JvmField
+    public val setMieCoefficientName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_mie_coefficient")
+
+    @JvmField
+    public val getMieCoefficientName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_mie_coefficient")
+
+    @JvmField
+    public val setMieEccentricityName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_mie_eccentricity")
+
+    @JvmField
+    public val getMieEccentricityName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_mie_eccentricity")
+
+    @JvmField
+    public val setMieColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_mie_color")
+
+    @JvmField
+    public val getMieColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
+        MethodStringName0<PhysicalSkyMaterial, Color>("get_mie_color")
+
+    @JvmField
+    public val setTurbidityName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_turbidity")
+
+    @JvmField
+    public val getTurbidityName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_turbidity")
+
+    @JvmField
+    public val setSunDiskScaleName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_sun_disk_scale")
+
+    @JvmField
+    public val getSunDiskScaleName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_sun_disk_scale")
+
+    @JvmField
+    public val setGroundColorName: MethodStringName1<PhysicalSkyMaterial, Unit, Color> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Color>("set_ground_color")
+
+    @JvmField
+    public val getGroundColorName: MethodStringName0<PhysicalSkyMaterial, Color> =
+        MethodStringName0<PhysicalSkyMaterial, Color>("get_ground_color")
+
+    @JvmField
+    public val setEnergyMultiplierName: MethodStringName1<PhysicalSkyMaterial, Unit, Float> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Float>("set_energy_multiplier")
+
+    @JvmField
+    public val getEnergyMultiplierName: MethodStringName0<PhysicalSkyMaterial, Float> =
+        MethodStringName0<PhysicalSkyMaterial, Float>("get_energy_multiplier")
+
+    @JvmField
+    public val setUseDebandingName: MethodStringName1<PhysicalSkyMaterial, Unit, Boolean> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Boolean>("set_use_debanding")
+
+    @JvmField
+    public val getUseDebandingName: MethodStringName0<PhysicalSkyMaterial, Boolean> =
+        MethodStringName0<PhysicalSkyMaterial, Boolean>("get_use_debanding")
+
+    @JvmField
+    public val setNightSkyName: MethodStringName1<PhysicalSkyMaterial, Unit, Texture2D?> =
+        MethodStringName1<PhysicalSkyMaterial, Unit, Texture2D?>("set_night_sky")
+
+    @JvmField
+    public val getNightSkyName: MethodStringName0<PhysicalSkyMaterial, Texture2D?> =
+        MethodStringName0<PhysicalSkyMaterial, Texture2D?>("get_night_sky")
+  }
 
   public object MethodBindings {
     internal val setRayleighCoefficientPtr: VoidPtr =

@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.Side
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -30,6 +33,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -596,7 +600,111 @@ public open class TextureProgressBar : Range() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setUnderTextureName: MethodStringName1<TextureProgressBar, Unit, Texture2D?> =
+        MethodStringName1<TextureProgressBar, Unit, Texture2D?>("set_under_texture")
+
+    @JvmField
+    public val getUnderTextureName: MethodStringName0<TextureProgressBar, Texture2D?> =
+        MethodStringName0<TextureProgressBar, Texture2D?>("get_under_texture")
+
+    @JvmField
+    public val setProgressTextureName: MethodStringName1<TextureProgressBar, Unit, Texture2D?> =
+        MethodStringName1<TextureProgressBar, Unit, Texture2D?>("set_progress_texture")
+
+    @JvmField
+    public val getProgressTextureName: MethodStringName0<TextureProgressBar, Texture2D?> =
+        MethodStringName0<TextureProgressBar, Texture2D?>("get_progress_texture")
+
+    @JvmField
+    public val setOverTextureName: MethodStringName1<TextureProgressBar, Unit, Texture2D?> =
+        MethodStringName1<TextureProgressBar, Unit, Texture2D?>("set_over_texture")
+
+    @JvmField
+    public val getOverTextureName: MethodStringName0<TextureProgressBar, Texture2D?> =
+        MethodStringName0<TextureProgressBar, Texture2D?>("get_over_texture")
+
+    @JvmField
+    public val setFillModeName: MethodStringName1<TextureProgressBar, Unit, Int> =
+        MethodStringName1<TextureProgressBar, Unit, Int>("set_fill_mode")
+
+    @JvmField
+    public val getFillModeName: MethodStringName0<TextureProgressBar, Int> =
+        MethodStringName0<TextureProgressBar, Int>("get_fill_mode")
+
+    @JvmField
+    public val setTintUnderName: MethodStringName1<TextureProgressBar, Unit, Color> =
+        MethodStringName1<TextureProgressBar, Unit, Color>("set_tint_under")
+
+    @JvmField
+    public val getTintUnderName: MethodStringName0<TextureProgressBar, Color> =
+        MethodStringName0<TextureProgressBar, Color>("get_tint_under")
+
+    @JvmField
+    public val setTintProgressName: MethodStringName1<TextureProgressBar, Unit, Color> =
+        MethodStringName1<TextureProgressBar, Unit, Color>("set_tint_progress")
+
+    @JvmField
+    public val getTintProgressName: MethodStringName0<TextureProgressBar, Color> =
+        MethodStringName0<TextureProgressBar, Color>("get_tint_progress")
+
+    @JvmField
+    public val setTintOverName: MethodStringName1<TextureProgressBar, Unit, Color> =
+        MethodStringName1<TextureProgressBar, Unit, Color>("set_tint_over")
+
+    @JvmField
+    public val getTintOverName: MethodStringName0<TextureProgressBar, Color> =
+        MethodStringName0<TextureProgressBar, Color>("get_tint_over")
+
+    @JvmField
+    public val setTextureProgressOffsetName: MethodStringName1<TextureProgressBar, Unit, Vector2> =
+        MethodStringName1<TextureProgressBar, Unit, Vector2>("set_texture_progress_offset")
+
+    @JvmField
+    public val getTextureProgressOffsetName: MethodStringName0<TextureProgressBar, Vector2> =
+        MethodStringName0<TextureProgressBar, Vector2>("get_texture_progress_offset")
+
+    @JvmField
+    public val setRadialInitialAngleName: MethodStringName1<TextureProgressBar, Unit, Float> =
+        MethodStringName1<TextureProgressBar, Unit, Float>("set_radial_initial_angle")
+
+    @JvmField
+    public val getRadialInitialAngleName: MethodStringName0<TextureProgressBar, Float> =
+        MethodStringName0<TextureProgressBar, Float>("get_radial_initial_angle")
+
+    @JvmField
+    public val setRadialCenterOffsetName: MethodStringName1<TextureProgressBar, Unit, Vector2> =
+        MethodStringName1<TextureProgressBar, Unit, Vector2>("set_radial_center_offset")
+
+    @JvmField
+    public val getRadialCenterOffsetName: MethodStringName0<TextureProgressBar, Vector2> =
+        MethodStringName0<TextureProgressBar, Vector2>("get_radial_center_offset")
+
+    @JvmField
+    public val setFillDegreesName: MethodStringName1<TextureProgressBar, Unit, Float> =
+        MethodStringName1<TextureProgressBar, Unit, Float>("set_fill_degrees")
+
+    @JvmField
+    public val getFillDegreesName: MethodStringName0<TextureProgressBar, Float> =
+        MethodStringName0<TextureProgressBar, Float>("get_fill_degrees")
+
+    @JvmField
+    public val setStretchMarginName: MethodStringName2<TextureProgressBar, Unit, Side, Int> =
+        MethodStringName2<TextureProgressBar, Unit, Side, Int>("set_stretch_margin")
+
+    @JvmField
+    public val getStretchMarginName: MethodStringName1<TextureProgressBar, Int, Side> =
+        MethodStringName1<TextureProgressBar, Int, Side>("get_stretch_margin")
+
+    @JvmField
+    public val setNinePatchStretchName: MethodStringName1<TextureProgressBar, Unit, Boolean> =
+        MethodStringName1<TextureProgressBar, Unit, Boolean>("set_nine_patch_stretch")
+
+    @JvmField
+    public val getNinePatchStretchName: MethodStringName0<TextureProgressBar, Boolean> =
+        MethodStringName0<TextureProgressBar, Boolean>("get_nine_patch_stretch")
+  }
 
   public object MethodBindings {
     internal val setUnderTexturePtr: VoidPtr =

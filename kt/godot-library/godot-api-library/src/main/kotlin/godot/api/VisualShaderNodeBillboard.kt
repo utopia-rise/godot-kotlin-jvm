@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -18,6 +20,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -110,7 +113,24 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBillboardTypeName:
+        MethodStringName1<VisualShaderNodeBillboard, Unit, BillboardType> =
+        MethodStringName1<VisualShaderNodeBillboard, Unit, BillboardType>("set_billboard_type")
+
+    @JvmField
+    public val getBillboardTypeName: MethodStringName0<VisualShaderNodeBillboard, BillboardType> =
+        MethodStringName0<VisualShaderNodeBillboard, BillboardType>("get_billboard_type")
+
+    @JvmField
+    public val setKeepScaleEnabledName: MethodStringName1<VisualShaderNodeBillboard, Unit, Boolean>
+        = MethodStringName1<VisualShaderNodeBillboard, Unit, Boolean>("set_keep_scale_enabled")
+
+    @JvmField
+    public val isKeepScaleEnabledName: MethodStringName0<VisualShaderNodeBillboard, Boolean> =
+        MethodStringName0<VisualShaderNodeBillboard, Boolean>("is_keep_scale_enabled")
+  }
 
   public object MethodBindings {
     internal val setBillboardTypePtr: VoidPtr =

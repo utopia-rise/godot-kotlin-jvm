@@ -102,6 +102,16 @@ public object Input : Object() {
       MethodStringName2<Input, Boolean, StringName, Boolean>("is_action_just_released")
 
   @JvmField
+  public val isActionJustPressedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent?, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent?, Boolean>("is_action_just_pressed_by_event")
+
+  @JvmField
+  public val isActionJustReleasedByEventName:
+      MethodStringName3<Input, Boolean, StringName, InputEvent?, Boolean> =
+      MethodStringName3<Input, Boolean, StringName, InputEvent?, Boolean>("is_action_just_released_by_event")
+
+  @JvmField
   public val getActionStrengthName: MethodStringName2<Input, Float, StringName, Boolean> =
       MethodStringName2<Input, Float, StringName, Boolean>("get_action_strength")
 

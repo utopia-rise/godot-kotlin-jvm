@@ -15,6 +15,9 @@ import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Dictionary
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedVector3Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -730,7 +733,65 @@ public abstract class Mesh : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLightmapSizeHintName: MethodStringName1<Mesh, Unit, Vector2i> =
+        MethodStringName1<Mesh, Unit, Vector2i>("set_lightmap_size_hint")
+
+    @JvmField
+    public val getLightmapSizeHintName: MethodStringName0<Mesh, Vector2i> =
+        MethodStringName0<Mesh, Vector2i>("get_lightmap_size_hint")
+
+    @JvmField
+    public val getAabbName: MethodStringName0<Mesh, AABB> =
+        MethodStringName0<Mesh, AABB>("get_aabb")
+
+    @JvmField
+    public val getFacesName: MethodStringName0<Mesh, PackedVector3Array> =
+        MethodStringName0<Mesh, PackedVector3Array>("get_faces")
+
+    @JvmField
+    public val getSurfaceCountName: MethodStringName0<Mesh, Int> =
+        MethodStringName0<Mesh, Int>("get_surface_count")
+
+    @JvmField
+    public val surfaceGetArraysName: MethodStringName1<Mesh, VariantArray<Any?>, Int> =
+        MethodStringName1<Mesh, VariantArray<Any?>, Int>("surface_get_arrays")
+
+    @JvmField
+    public val surfaceGetBlendShapeArraysName:
+        MethodStringName1<Mesh, VariantArray<VariantArray<Any?>>, Int> =
+        MethodStringName1<Mesh, VariantArray<VariantArray<Any?>>, Int>("surface_get_blend_shape_arrays")
+
+    @JvmField
+    public val surfaceSetMaterialName: MethodStringName2<Mesh, Unit, Int, Material?> =
+        MethodStringName2<Mesh, Unit, Int, Material?>("surface_set_material")
+
+    @JvmField
+    public val surfaceGetMaterialName: MethodStringName1<Mesh, Material?, Int> =
+        MethodStringName1<Mesh, Material?, Int>("surface_get_material")
+
+    @JvmField
+    public val createPlaceholderName: MethodStringName0<Mesh, Resource?> =
+        MethodStringName0<Mesh, Resource?>("create_placeholder")
+
+    @JvmField
+    public val createTrimeshShapeName: MethodStringName0<Mesh, ConcavePolygonShape3D?> =
+        MethodStringName0<Mesh, ConcavePolygonShape3D?>("create_trimesh_shape")
+
+    @JvmField
+    public val createConvexShapeName:
+        MethodStringName2<Mesh, ConvexPolygonShape3D?, Boolean, Boolean> =
+        MethodStringName2<Mesh, ConvexPolygonShape3D?, Boolean, Boolean>("create_convex_shape")
+
+    @JvmField
+    public val createOutlineName: MethodStringName1<Mesh, Mesh?, Float> =
+        MethodStringName1<Mesh, Mesh?, Float>("create_outline")
+
+    @JvmField
+    public val generateTriangleMeshName: MethodStringName0<Mesh, TriangleMesh?> =
+        MethodStringName0<Mesh, TriangleMesh?>("generate_triangle_mesh")
+  }
 
   public object MethodBindings {
     internal val setLightmapSizeHintPtr: VoidPtr =

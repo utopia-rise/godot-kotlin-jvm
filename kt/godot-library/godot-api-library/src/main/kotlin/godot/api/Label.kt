@@ -722,6 +722,14 @@ public open class Label : Control() {
         MethodStringName0<Label, TextServer.AutowrapMode>("get_autowrap_mode")
 
     @JvmField
+    public val setAutowrapTrimFlagsName: MethodStringName1<Label, Unit, TextServer.LineBreakFlag> =
+        MethodStringName1<Label, Unit, TextServer.LineBreakFlag>("set_autowrap_trim_flags")
+
+    @JvmField
+    public val getAutowrapTrimFlagsName: MethodStringName0<Label, TextServer.LineBreakFlag> =
+        MethodStringName0<Label, TextServer.LineBreakFlag>("get_autowrap_trim_flags")
+
+    @JvmField
     public val setJustificationFlagsName:
         MethodStringName1<Label, Unit, TextServer.JustificationFlag> =
         MethodStringName1<Label, Unit, TextServer.JustificationFlag>("set_justification_flags")

@@ -172,6 +172,10 @@ public object OS : Object() {
       MethodStringName1<OS, Int, PackedStringArray>("create_instance")
 
   @JvmField
+  public val openWithProgramName: MethodStringName2<OS, Error, String, PackedStringArray> =
+      MethodStringName2<OS, Error, String, PackedStringArray>("open_with_program")
+
+  @JvmField
   public val killName: MethodStringName1<OS, Error, Int> = MethodStringName1<OS, Error, Int>("kill")
 
   @JvmField
@@ -376,6 +380,14 @@ public object OS : Object() {
   @JvmField
   public val revokeGrantedPermissionsName: MethodStringName0<OS, Unit> =
       MethodStringName0<OS, Unit>("revoke_granted_permissions")
+
+  @JvmField
+  public val addLoggerName: MethodStringName1<OS, Unit, Logger?> =
+      MethodStringName1<OS, Unit, Logger?>("add_logger")
+
+  @JvmField
+  public val removeLoggerName: MethodStringName1<OS, Unit, Logger?> =
+      MethodStringName1<OS, Unit, Logger?>("remove_logger")
 
   /**
    * If `true`, the engine optimizes for low processor usage by only refreshing the screen if

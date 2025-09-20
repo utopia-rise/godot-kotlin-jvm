@@ -13,6 +13,10 @@ import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.Signal3
@@ -30,6 +34,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
@@ -370,6 +375,60 @@ public open class WebRTCPeerConnection : RefCounted() {
   }
 
   public companion object {
+    @JvmField
+    public val setDefaultExtensionName: MethodStringName1<WebRTCPeerConnection, Unit, StringName> =
+        MethodStringName1<WebRTCPeerConnection, Unit, StringName>("set_default_extension")
+
+    @JvmField
+    public val initializeName:
+        MethodStringName1<WebRTCPeerConnection, Error, Dictionary<Any?, Any?>> =
+        MethodStringName1<WebRTCPeerConnection, Error, Dictionary<Any?, Any?>>("initialize")
+
+    @JvmField
+    public val createDataChannelName:
+        MethodStringName2<WebRTCPeerConnection, WebRTCDataChannel?, String, Dictionary<Any?, Any?>>
+        =
+        MethodStringName2<WebRTCPeerConnection, WebRTCDataChannel?, String, Dictionary<Any?, Any?>>("create_data_channel")
+
+    @JvmField
+    public val createOfferName: MethodStringName0<WebRTCPeerConnection, Error> =
+        MethodStringName0<WebRTCPeerConnection, Error>("create_offer")
+
+    @JvmField
+    public val setLocalDescriptionName:
+        MethodStringName2<WebRTCPeerConnection, Error, String, String> =
+        MethodStringName2<WebRTCPeerConnection, Error, String, String>("set_local_description")
+
+    @JvmField
+    public val setRemoteDescriptionName:
+        MethodStringName2<WebRTCPeerConnection, Error, String, String> =
+        MethodStringName2<WebRTCPeerConnection, Error, String, String>("set_remote_description")
+
+    @JvmField
+    public val addIceCandidateName:
+        MethodStringName3<WebRTCPeerConnection, Error, String, Int, String> =
+        MethodStringName3<WebRTCPeerConnection, Error, String, Int, String>("add_ice_candidate")
+
+    @JvmField
+    public val pollName: MethodStringName0<WebRTCPeerConnection, Error> =
+        MethodStringName0<WebRTCPeerConnection, Error>("poll")
+
+    @JvmField
+    public val closeName: MethodStringName0<WebRTCPeerConnection, Unit> =
+        MethodStringName0<WebRTCPeerConnection, Unit>("close")
+
+    @JvmField
+    public val getConnectionStateName: MethodStringName0<WebRTCPeerConnection, ConnectionState> =
+        MethodStringName0<WebRTCPeerConnection, ConnectionState>("get_connection_state")
+
+    @JvmField
+    public val getGatheringStateName: MethodStringName0<WebRTCPeerConnection, GatheringState> =
+        MethodStringName0<WebRTCPeerConnection, GatheringState>("get_gathering_state")
+
+    @JvmField
+    public val getSignalingStateName: MethodStringName0<WebRTCPeerConnection, SignalingState> =
+        MethodStringName0<WebRTCPeerConnection, SignalingState>("get_signaling_state")
+
     /**
      * Sets the [extensionClass] as the default [WebRTCPeerConnectionExtension] returned when
      * creating a new [WebRTCPeerConnection].

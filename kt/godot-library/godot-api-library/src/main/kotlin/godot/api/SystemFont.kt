@@ -516,6 +516,14 @@ public open class SystemFont : Font() {
         MethodStringName0<SystemFont, Boolean>("is_force_autohinter")
 
     @JvmField
+    public val setModulateColorGlyphsName: MethodStringName1<SystemFont, Unit, Boolean> =
+        MethodStringName1<SystemFont, Unit, Boolean>("set_modulate_color_glyphs")
+
+    @JvmField
+    public val isModulateColorGlyphsName: MethodStringName0<SystemFont, Boolean> =
+        MethodStringName0<SystemFont, Boolean>("is_modulate_color_glyphs")
+
+    @JvmField
     public val setHintingName: MethodStringName1<SystemFont, Unit, TextServer.Hinting> =
         MethodStringName1<SystemFont, Unit, TextServer.Hinting>("set_hinting")
 

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -451,7 +453,120 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCopyFlagsName:
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, TransformFlag> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, TransformFlag>("set_copy_flags")
+
+    @JvmField
+    public val getCopyFlagsName: MethodStringName1<CopyTransformModifier3D, TransformFlag, Int> =
+        MethodStringName1<CopyTransformModifier3D, TransformFlag, Int>("get_copy_flags")
+
+    @JvmField
+    public val setAxisFlagsName: MethodStringName2<CopyTransformModifier3D, Unit, Int, AxisFlag> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, AxisFlag>("set_axis_flags")
+
+    @JvmField
+    public val getAxisFlagsName: MethodStringName1<CopyTransformModifier3D, AxisFlag, Int> =
+        MethodStringName1<CopyTransformModifier3D, AxisFlag, Int>("get_axis_flags")
+
+    @JvmField
+    public val setInvertFlagsName: MethodStringName2<CopyTransformModifier3D, Unit, Int, AxisFlag> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, AxisFlag>("set_invert_flags")
+
+    @JvmField
+    public val getInvertFlagsName: MethodStringName1<CopyTransformModifier3D, AxisFlag, Int> =
+        MethodStringName1<CopyTransformModifier3D, AxisFlag, Int>("get_invert_flags")
+
+    @JvmField
+    public val setCopyPositionName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_copy_position")
+
+    @JvmField
+    public val isPositionCopyingName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_position_copying")
+
+    @JvmField
+    public val setCopyRotationName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_copy_rotation")
+
+    @JvmField
+    public val isRotationCopyingName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_rotation_copying")
+
+    @JvmField
+    public val setCopyScaleName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_copy_scale")
+
+    @JvmField
+    public val isScaleCopyingName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_scale_copying")
+
+    @JvmField
+    public val setAxisXEnabledName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_x_enabled")
+
+    @JvmField
+    public val isAxisXEnabledName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_x_enabled")
+
+    @JvmField
+    public val setAxisYEnabledName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_y_enabled")
+
+    @JvmField
+    public val isAxisYEnabledName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_y_enabled")
+
+    @JvmField
+    public val setAxisZEnabledName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_z_enabled")
+
+    @JvmField
+    public val isAxisZEnabledName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_z_enabled")
+
+    @JvmField
+    public val setAxisXInvertedName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>
+        = MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_x_inverted")
+
+    @JvmField
+    public val isAxisXInvertedName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_x_inverted")
+
+    @JvmField
+    public val setAxisYInvertedName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>
+        = MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_y_inverted")
+
+    @JvmField
+    public val isAxisYInvertedName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_y_inverted")
+
+    @JvmField
+    public val setAxisZInvertedName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>
+        = MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_axis_z_inverted")
+
+    @JvmField
+    public val isAxisZInvertedName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_axis_z_inverted")
+
+    @JvmField
+    public val setRelativeName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_relative")
+
+    @JvmField
+    public val isRelativeName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_relative")
+
+    @JvmField
+    public val setAdditiveName: MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<CopyTransformModifier3D, Unit, Int, Boolean>("set_additive")
+
+    @JvmField
+    public val isAdditiveName: MethodStringName1<CopyTransformModifier3D, Boolean, Int> =
+        MethodStringName1<CopyTransformModifier3D, Boolean, Int>("is_additive")
+  }
 
   public object MethodBindings {
     internal val setCopyFlagsPtr: VoidPtr =

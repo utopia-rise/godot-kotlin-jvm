@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -25,6 +27,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -517,7 +520,119 @@ public open class ProceduralSkyMaterial : Material() {
     throw NotImplementedError("ProceduralSkyMaterial::_getShaderMode can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSkyTopColorName: MethodStringName1<ProceduralSkyMaterial, Unit, Color> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Color>("set_sky_top_color")
+
+    @JvmField
+    public val getSkyTopColorName: MethodStringName0<ProceduralSkyMaterial, Color> =
+        MethodStringName0<ProceduralSkyMaterial, Color>("get_sky_top_color")
+
+    @JvmField
+    public val setSkyHorizonColorName: MethodStringName1<ProceduralSkyMaterial, Unit, Color> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Color>("set_sky_horizon_color")
+
+    @JvmField
+    public val getSkyHorizonColorName: MethodStringName0<ProceduralSkyMaterial, Color> =
+        MethodStringName0<ProceduralSkyMaterial, Color>("get_sky_horizon_color")
+
+    @JvmField
+    public val setSkyCurveName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_sky_curve")
+
+    @JvmField
+    public val getSkyCurveName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_sky_curve")
+
+    @JvmField
+    public val setSkyEnergyMultiplierName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_sky_energy_multiplier")
+
+    @JvmField
+    public val getSkyEnergyMultiplierName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_sky_energy_multiplier")
+
+    @JvmField
+    public val setSkyCoverName: MethodStringName1<ProceduralSkyMaterial, Unit, Texture2D?> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Texture2D?>("set_sky_cover")
+
+    @JvmField
+    public val getSkyCoverName: MethodStringName0<ProceduralSkyMaterial, Texture2D?> =
+        MethodStringName0<ProceduralSkyMaterial, Texture2D?>("get_sky_cover")
+
+    @JvmField
+    public val setSkyCoverModulateName: MethodStringName1<ProceduralSkyMaterial, Unit, Color> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Color>("set_sky_cover_modulate")
+
+    @JvmField
+    public val getSkyCoverModulateName: MethodStringName0<ProceduralSkyMaterial, Color> =
+        MethodStringName0<ProceduralSkyMaterial, Color>("get_sky_cover_modulate")
+
+    @JvmField
+    public val setGroundBottomColorName: MethodStringName1<ProceduralSkyMaterial, Unit, Color> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Color>("set_ground_bottom_color")
+
+    @JvmField
+    public val getGroundBottomColorName: MethodStringName0<ProceduralSkyMaterial, Color> =
+        MethodStringName0<ProceduralSkyMaterial, Color>("get_ground_bottom_color")
+
+    @JvmField
+    public val setGroundHorizonColorName: MethodStringName1<ProceduralSkyMaterial, Unit, Color> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Color>("set_ground_horizon_color")
+
+    @JvmField
+    public val getGroundHorizonColorName: MethodStringName0<ProceduralSkyMaterial, Color> =
+        MethodStringName0<ProceduralSkyMaterial, Color>("get_ground_horizon_color")
+
+    @JvmField
+    public val setGroundCurveName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_ground_curve")
+
+    @JvmField
+    public val getGroundCurveName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_ground_curve")
+
+    @JvmField
+    public val setGroundEnergyMultiplierName: MethodStringName1<ProceduralSkyMaterial, Unit, Float>
+        = MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_ground_energy_multiplier")
+
+    @JvmField
+    public val getGroundEnergyMultiplierName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_ground_energy_multiplier")
+
+    @JvmField
+    public val setSunAngleMaxName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_sun_angle_max")
+
+    @JvmField
+    public val getSunAngleMaxName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_sun_angle_max")
+
+    @JvmField
+    public val setSunCurveName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_sun_curve")
+
+    @JvmField
+    public val getSunCurveName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_sun_curve")
+
+    @JvmField
+    public val setUseDebandingName: MethodStringName1<ProceduralSkyMaterial, Unit, Boolean> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Boolean>("set_use_debanding")
+
+    @JvmField
+    public val getUseDebandingName: MethodStringName0<ProceduralSkyMaterial, Boolean> =
+        MethodStringName0<ProceduralSkyMaterial, Boolean>("get_use_debanding")
+
+    @JvmField
+    public val setEnergyMultiplierName: MethodStringName1<ProceduralSkyMaterial, Unit, Float> =
+        MethodStringName1<ProceduralSkyMaterial, Unit, Float>("set_energy_multiplier")
+
+    @JvmField
+    public val getEnergyMultiplierName: MethodStringName0<ProceduralSkyMaterial, Float> =
+        MethodStringName0<ProceduralSkyMaterial, Float>("get_energy_multiplier")
+  }
 
   public object MethodBindings {
     internal val setSkyTopColorPtr: VoidPtr =

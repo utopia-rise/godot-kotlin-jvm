@@ -20,6 +20,7 @@ import godot.core.MethodStringName1
 import godot.core.MethodStringName2
 import godot.core.MethodStringName3
 import godot.core.MethodStringName5
+import godot.core.MethodStringName6
 import godot.core.Rect2
 import godot.core.StringName
 import godot.core.VariantArray
@@ -1359,6 +1360,14 @@ public open class TreeItem internal constructor() : Object() {
         MethodStringName1<TreeItem, String, Int>("get_text")
 
     @JvmField
+    public val setDescriptionName: MethodStringName2<TreeItem, Unit, Int, String> =
+        MethodStringName2<TreeItem, Unit, Int, String>("set_description")
+
+    @JvmField
+    public val getDescriptionName: MethodStringName1<TreeItem, String, Int> =
+        MethodStringName1<TreeItem, String, Int>("get_description")
+
+    @JvmField
     public val setTextDirectionName: MethodStringName2<TreeItem, Unit, Int, Control.TextDirection> =
         MethodStringName2<TreeItem, Unit, Int, Control.TextDirection>("set_text_direction")
 
@@ -1619,8 +1628,8 @@ public open class TreeItem internal constructor() : Object() {
 
     @JvmField
     public val addButtonName:
-        MethodStringName5<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String> =
-        MethodStringName5<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String>("add_button")
+        MethodStringName6<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String, String> =
+        MethodStringName6<TreeItem, Unit, Int, Texture2D?, Int, Boolean, String, String>("add_button")
 
     @JvmField
     public val getButtonCountName: MethodStringName1<TreeItem, Int, Int> =
@@ -1657,6 +1666,10 @@ public open class TreeItem internal constructor() : Object() {
     @JvmField
     public val eraseButtonName: MethodStringName2<TreeItem, Unit, Int, Int> =
         MethodStringName2<TreeItem, Unit, Int, Int>("erase_button")
+
+    @JvmField
+    public val setButtonDescriptionName: MethodStringName3<TreeItem, Unit, Int, Int, String> =
+        MethodStringName3<TreeItem, Unit, Int, Int, String>("set_button_description")
 
     @JvmField
     public val setButtonDisabledName: MethodStringName3<TreeItem, Unit, Int, Int, Boolean> =

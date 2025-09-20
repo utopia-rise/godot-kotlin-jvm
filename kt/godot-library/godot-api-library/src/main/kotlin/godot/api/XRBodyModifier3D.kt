@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.StringName
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -192,7 +194,31 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBodyTrackerName: MethodStringName1<XRBodyModifier3D, Unit, StringName> =
+        MethodStringName1<XRBodyModifier3D, Unit, StringName>("set_body_tracker")
+
+    @JvmField
+    public val getBodyTrackerName: MethodStringName0<XRBodyModifier3D, StringName> =
+        MethodStringName0<XRBodyModifier3D, StringName>("get_body_tracker")
+
+    @JvmField
+    public val setBodyUpdateName: MethodStringName1<XRBodyModifier3D, Unit, BodyUpdate> =
+        MethodStringName1<XRBodyModifier3D, Unit, BodyUpdate>("set_body_update")
+
+    @JvmField
+    public val getBodyUpdateName: MethodStringName0<XRBodyModifier3D, BodyUpdate> =
+        MethodStringName0<XRBodyModifier3D, BodyUpdate>("get_body_update")
+
+    @JvmField
+    public val setBoneUpdateName: MethodStringName1<XRBodyModifier3D, Unit, BoneUpdate> =
+        MethodStringName1<XRBodyModifier3D, Unit, BoneUpdate>("set_bone_update")
+
+    @JvmField
+    public val getBoneUpdateName: MethodStringName0<XRBodyModifier3D, BoneUpdate> =
+        MethodStringName0<XRBodyModifier3D, BoneUpdate>("get_bone_update")
+  }
 
   public object MethodBindings {
     internal val setBodyTrackerPtr: VoidPtr =

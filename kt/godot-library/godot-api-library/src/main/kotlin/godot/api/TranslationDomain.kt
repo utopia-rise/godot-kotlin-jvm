@@ -460,6 +460,22 @@ public open class TranslationDomain : RefCounted() {
         MethodStringName4<TranslationDomain, StringName, StringName, StringName, Int, StringName>("translate_plural")
 
     @JvmField
+    public val getLocaleOverrideName: MethodStringName0<TranslationDomain, String> =
+        MethodStringName0<TranslationDomain, String>("get_locale_override")
+
+    @JvmField
+    public val setLocaleOverrideName: MethodStringName1<TranslationDomain, Unit, String> =
+        MethodStringName1<TranslationDomain, Unit, String>("set_locale_override")
+
+    @JvmField
+    public val isEnabledName: MethodStringName0<TranslationDomain, Boolean> =
+        MethodStringName0<TranslationDomain, Boolean>("is_enabled")
+
+    @JvmField
+    public val setEnabledName: MethodStringName1<TranslationDomain, Unit, Boolean> =
+        MethodStringName1<TranslationDomain, Unit, Boolean>("set_enabled")
+
+    @JvmField
     public val isPseudolocalizationEnabledName: MethodStringName0<TranslationDomain, Boolean> =
         MethodStringName0<TranslationDomain, Boolean>("is_pseudolocalization_enabled")
 

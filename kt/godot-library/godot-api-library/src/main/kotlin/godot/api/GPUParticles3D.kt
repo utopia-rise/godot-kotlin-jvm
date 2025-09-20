@@ -15,6 +15,10 @@ import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName5
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Transform3D
@@ -37,6 +41,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -958,6 +963,243 @@ public open class GPUParticles3D : GeometryInstance3D() {
   }
 
   public companion object {
+    @JvmField
+    public val setEmittingName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_emitting")
+
+    @JvmField
+    public val setAmountName: MethodStringName1<GPUParticles3D, Unit, Int> =
+        MethodStringName1<GPUParticles3D, Unit, Int>("set_amount")
+
+    @JvmField
+    public val setLifetimeName: MethodStringName1<GPUParticles3D, Unit, Double> =
+        MethodStringName1<GPUParticles3D, Unit, Double>("set_lifetime")
+
+    @JvmField
+    public val setOneShotName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_one_shot")
+
+    @JvmField
+    public val setPreProcessTimeName: MethodStringName1<GPUParticles3D, Unit, Double> =
+        MethodStringName1<GPUParticles3D, Unit, Double>("set_pre_process_time")
+
+    @JvmField
+    public val setExplosivenessRatioName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("set_explosiveness_ratio")
+
+    @JvmField
+    public val setRandomnessRatioName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("set_randomness_ratio")
+
+    @JvmField
+    public val setVisibilityAabbName: MethodStringName1<GPUParticles3D, Unit, AABB> =
+        MethodStringName1<GPUParticles3D, Unit, AABB>("set_visibility_aabb")
+
+    @JvmField
+    public val setUseLocalCoordinatesName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_use_local_coordinates")
+
+    @JvmField
+    public val setFixedFpsName: MethodStringName1<GPUParticles3D, Unit, Int> =
+        MethodStringName1<GPUParticles3D, Unit, Int>("set_fixed_fps")
+
+    @JvmField
+    public val setFractionalDeltaName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_fractional_delta")
+
+    @JvmField
+    public val setInterpolateName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_interpolate")
+
+    @JvmField
+    public val setProcessMaterialName: MethodStringName1<GPUParticles3D, Unit, Material?> =
+        MethodStringName1<GPUParticles3D, Unit, Material?>("set_process_material")
+
+    @JvmField
+    public val setSpeedScaleName: MethodStringName1<GPUParticles3D, Unit, Double> =
+        MethodStringName1<GPUParticles3D, Unit, Double>("set_speed_scale")
+
+    @JvmField
+    public val setCollisionBaseSizeName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("set_collision_base_size")
+
+    @JvmField
+    public val setInterpToEndName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("set_interp_to_end")
+
+    @JvmField
+    public val isEmittingName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("is_emitting")
+
+    @JvmField
+    public val getAmountName: MethodStringName0<GPUParticles3D, Int> =
+        MethodStringName0<GPUParticles3D, Int>("get_amount")
+
+    @JvmField
+    public val getLifetimeName: MethodStringName0<GPUParticles3D, Double> =
+        MethodStringName0<GPUParticles3D, Double>("get_lifetime")
+
+    @JvmField
+    public val getOneShotName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("get_one_shot")
+
+    @JvmField
+    public val getPreProcessTimeName: MethodStringName0<GPUParticles3D, Double> =
+        MethodStringName0<GPUParticles3D, Double>("get_pre_process_time")
+
+    @JvmField
+    public val getExplosivenessRatioName: MethodStringName0<GPUParticles3D, Float> =
+        MethodStringName0<GPUParticles3D, Float>("get_explosiveness_ratio")
+
+    @JvmField
+    public val getRandomnessRatioName: MethodStringName0<GPUParticles3D, Float> =
+        MethodStringName0<GPUParticles3D, Float>("get_randomness_ratio")
+
+    @JvmField
+    public val getVisibilityAabbName: MethodStringName0<GPUParticles3D, AABB> =
+        MethodStringName0<GPUParticles3D, AABB>("get_visibility_aabb")
+
+    @JvmField
+    public val getUseLocalCoordinatesName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("get_use_local_coordinates")
+
+    @JvmField
+    public val getFixedFpsName: MethodStringName0<GPUParticles3D, Int> =
+        MethodStringName0<GPUParticles3D, Int>("get_fixed_fps")
+
+    @JvmField
+    public val getFractionalDeltaName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("get_fractional_delta")
+
+    @JvmField
+    public val getInterpolateName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("get_interpolate")
+
+    @JvmField
+    public val getProcessMaterialName: MethodStringName0<GPUParticles3D, Material?> =
+        MethodStringName0<GPUParticles3D, Material?>("get_process_material")
+
+    @JvmField
+    public val getSpeedScaleName: MethodStringName0<GPUParticles3D, Double> =
+        MethodStringName0<GPUParticles3D, Double>("get_speed_scale")
+
+    @JvmField
+    public val getCollisionBaseSizeName: MethodStringName0<GPUParticles3D, Float> =
+        MethodStringName0<GPUParticles3D, Float>("get_collision_base_size")
+
+    @JvmField
+    public val getInterpToEndName: MethodStringName0<GPUParticles3D, Float> =
+        MethodStringName0<GPUParticles3D, Float>("get_interp_to_end")
+
+    @JvmField
+    public val setUseFixedSeedName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_use_fixed_seed")
+
+    @JvmField
+    public val getUseFixedSeedName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("get_use_fixed_seed")
+
+    @JvmField
+    public val setSeedName: MethodStringName1<GPUParticles3D, Unit, Long> =
+        MethodStringName1<GPUParticles3D, Unit, Long>("set_seed")
+
+    @JvmField
+    public val getSeedName: MethodStringName0<GPUParticles3D, Long> =
+        MethodStringName0<GPUParticles3D, Long>("get_seed")
+
+    @JvmField
+    public val setDrawOrderName: MethodStringName1<GPUParticles3D, Unit, DrawOrder> =
+        MethodStringName1<GPUParticles3D, Unit, DrawOrder>("set_draw_order")
+
+    @JvmField
+    public val getDrawOrderName: MethodStringName0<GPUParticles3D, DrawOrder> =
+        MethodStringName0<GPUParticles3D, DrawOrder>("get_draw_order")
+
+    @JvmField
+    public val setDrawPassesName: MethodStringName1<GPUParticles3D, Unit, Int> =
+        MethodStringName1<GPUParticles3D, Unit, Int>("set_draw_passes")
+
+    @JvmField
+    public val setDrawPassMeshName: MethodStringName2<GPUParticles3D, Unit, Int, Mesh?> =
+        MethodStringName2<GPUParticles3D, Unit, Int, Mesh?>("set_draw_pass_mesh")
+
+    @JvmField
+    public val getDrawPassesName: MethodStringName0<GPUParticles3D, Int> =
+        MethodStringName0<GPUParticles3D, Int>("get_draw_passes")
+
+    @JvmField
+    public val getDrawPassMeshName: MethodStringName1<GPUParticles3D, Mesh?, Int> =
+        MethodStringName1<GPUParticles3D, Mesh?, Int>("get_draw_pass_mesh")
+
+    @JvmField
+    public val setSkinName: MethodStringName1<GPUParticles3D, Unit, Skin?> =
+        MethodStringName1<GPUParticles3D, Unit, Skin?>("set_skin")
+
+    @JvmField
+    public val getSkinName: MethodStringName0<GPUParticles3D, Skin?> =
+        MethodStringName0<GPUParticles3D, Skin?>("get_skin")
+
+    @JvmField
+    public val restartName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("restart")
+
+    @JvmField
+    public val captureAabbName: MethodStringName0<GPUParticles3D, AABB> =
+        MethodStringName0<GPUParticles3D, AABB>("capture_aabb")
+
+    @JvmField
+    public val setSubEmitterName: MethodStringName1<GPUParticles3D, Unit, NodePath> =
+        MethodStringName1<GPUParticles3D, Unit, NodePath>("set_sub_emitter")
+
+    @JvmField
+    public val getSubEmitterName: MethodStringName0<GPUParticles3D, NodePath> =
+        MethodStringName0<GPUParticles3D, NodePath>("get_sub_emitter")
+
+    @JvmField
+    public val emitParticleName:
+        MethodStringName5<GPUParticles3D, Unit, Transform3D, Vector3, Color, Color, Long> =
+        MethodStringName5<GPUParticles3D, Unit, Transform3D, Vector3, Color, Color, Long>("emit_particle")
+
+    @JvmField
+    public val setTrailEnabledName: MethodStringName1<GPUParticles3D, Unit, Boolean> =
+        MethodStringName1<GPUParticles3D, Unit, Boolean>("set_trail_enabled")
+
+    @JvmField
+    public val setTrailLifetimeName: MethodStringName1<GPUParticles3D, Unit, Double> =
+        MethodStringName1<GPUParticles3D, Unit, Double>("set_trail_lifetime")
+
+    @JvmField
+    public val isTrailEnabledName: MethodStringName0<GPUParticles3D, Boolean> =
+        MethodStringName0<GPUParticles3D, Boolean>("is_trail_enabled")
+
+    @JvmField
+    public val getTrailLifetimeName: MethodStringName0<GPUParticles3D, Double> =
+        MethodStringName0<GPUParticles3D, Double>("get_trail_lifetime")
+
+    @JvmField
+    public val setTransformAlignName: MethodStringName1<GPUParticles3D, Unit, TransformAlign> =
+        MethodStringName1<GPUParticles3D, Unit, TransformAlign>("set_transform_align")
+
+    @JvmField
+    public val getTransformAlignName: MethodStringName0<GPUParticles3D, TransformAlign> =
+        MethodStringName0<GPUParticles3D, TransformAlign>("get_transform_align")
+
+    @JvmField
+    public val convertFromParticlesName: MethodStringName1<GPUParticles3D, Unit, Node?> =
+        MethodStringName1<GPUParticles3D, Unit, Node?>("convert_from_particles")
+
+    @JvmField
+    public val setAmountRatioName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("set_amount_ratio")
+
+    @JvmField
+    public val getAmountRatioName: MethodStringName0<GPUParticles3D, Float> =
+        MethodStringName0<GPUParticles3D, Float>("get_amount_ratio")
+
+    @JvmField
+    public val requestParticlesProcessName: MethodStringName1<GPUParticles3D, Unit, Float> =
+        MethodStringName1<GPUParticles3D, Unit, Float>("request_particles_process")
+
     /**
      * Maximum number of draw passes supported.
      */

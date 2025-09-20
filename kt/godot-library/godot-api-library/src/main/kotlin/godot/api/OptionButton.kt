@@ -463,6 +463,11 @@ public open class OptionButton : Button() {
         MethodStringName2<OptionButton, Unit, Int, String>("set_item_tooltip")
 
     @JvmField
+    public val setItemAutoTranslateModeName:
+        MethodStringName2<OptionButton, Unit, Int, Node.AutoTranslateMode> =
+        MethodStringName2<OptionButton, Unit, Int, Node.AutoTranslateMode>("set_item_auto_translate_mode")
+
+    @JvmField
     public val getItemTextName: MethodStringName1<OptionButton, String, Int> =
         MethodStringName1<OptionButton, String, Int>("get_item_text")
 
@@ -485,6 +490,11 @@ public open class OptionButton : Button() {
     @JvmField
     public val getItemTooltipName: MethodStringName1<OptionButton, String, Int> =
         MethodStringName1<OptionButton, String, Int>("get_item_tooltip")
+
+    @JvmField
+    public val getItemAutoTranslateModeName:
+        MethodStringName1<OptionButton, Node.AutoTranslateMode, Int> =
+        MethodStringName1<OptionButton, Node.AutoTranslateMode, Int>("get_item_auto_translate_mode")
 
     @JvmField
     public val isItemDisabledName: MethodStringName1<OptionButton, Boolean, Int> =

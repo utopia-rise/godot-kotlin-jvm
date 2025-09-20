@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName3
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -26,6 +29,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -372,6 +376,70 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   public companion object {
+    @JvmField
+    public val peerDisconnectName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect")
+
+    @JvmField
+    public val peerDisconnectLaterName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_later")
+
+    @JvmField
+    public val peerDisconnectNowName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("peer_disconnect_now")
+
+    @JvmField
+    public val pingName: MethodStringName0<ENetPacketPeer, Unit> =
+        MethodStringName0<ENetPacketPeer, Unit>("ping")
+
+    @JvmField
+    public val pingIntervalName: MethodStringName1<ENetPacketPeer, Unit, Int> =
+        MethodStringName1<ENetPacketPeer, Unit, Int>("ping_interval")
+
+    @JvmField
+    public val resetName: MethodStringName0<ENetPacketPeer, Unit> =
+        MethodStringName0<ENetPacketPeer, Unit>("reset")
+
+    @JvmField
+    public val sendName: MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int> =
+        MethodStringName3<ENetPacketPeer, Error, Int, PackedByteArray, Int>("send")
+
+    @JvmField
+    public val throttleConfigureName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
+        MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("throttle_configure")
+
+    @JvmField
+    public val setTimeoutName: MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int> =
+        MethodStringName3<ENetPacketPeer, Unit, Int, Int, Int>("set_timeout")
+
+    @JvmField
+    public val getPacketFlagsName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_packet_flags")
+
+    @JvmField
+    public val getRemoteAddressName: MethodStringName0<ENetPacketPeer, String> =
+        MethodStringName0<ENetPacketPeer, String>("get_remote_address")
+
+    @JvmField
+    public val getRemotePortName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_remote_port")
+
+    @JvmField
+    public val getStatisticName: MethodStringName1<ENetPacketPeer, Double, PeerStatistic> =
+        MethodStringName1<ENetPacketPeer, Double, PeerStatistic>("get_statistic")
+
+    @JvmField
+    public val getStateName: MethodStringName0<ENetPacketPeer, PeerState> =
+        MethodStringName0<ENetPacketPeer, PeerState>("get_state")
+
+    @JvmField
+    public val getChannelsName: MethodStringName0<ENetPacketPeer, Int> =
+        MethodStringName0<ENetPacketPeer, Int>("get_channels")
+
+    @JvmField
+    public val isActiveName: MethodStringName0<ENetPacketPeer, Boolean> =
+        MethodStringName0<ENetPacketPeer, Boolean>("is_active")
+
     /**
      * The reference scale for packet loss. See [getStatistic] and [PEER_PACKET_LOSS].
      */

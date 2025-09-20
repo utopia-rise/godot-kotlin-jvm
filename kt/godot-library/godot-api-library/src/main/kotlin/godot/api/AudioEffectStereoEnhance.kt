@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
@@ -17,6 +19,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -104,7 +107,31 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     throw NotImplementedError("AudioEffectStereoEnhance::_instantiate can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPanPulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_pan_pullout")
+
+    @JvmField
+    public val getPanPulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_pan_pullout")
+
+    @JvmField
+    public val setTimePulloutName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_time_pullout")
+
+    @JvmField
+    public val getTimePulloutName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_time_pullout")
+
+    @JvmField
+    public val setSurroundName: MethodStringName1<AudioEffectStereoEnhance, Unit, Float> =
+        MethodStringName1<AudioEffectStereoEnhance, Unit, Float>("set_surround")
+
+    @JvmField
+    public val getSurroundName: MethodStringName0<AudioEffectStereoEnhance, Float> =
+        MethodStringName0<AudioEffectStereoEnhance, Float>("get_surround")
+  }
 
   public object MethodBindings {
     internal val setPanPulloutPtr: VoidPtr =

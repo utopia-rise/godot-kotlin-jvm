@@ -90,12 +90,12 @@ public open class World2D : Resource() {
         MethodStringName0<World2D, RID>("get_canvas")
 
     @JvmField
-    public val getSpaceName: MethodStringName0<World2D, RID> =
-        MethodStringName0<World2D, RID>("get_space")
-
-    @JvmField
     public val getNavigationMapName: MethodStringName0<World2D, RID> =
         MethodStringName0<World2D, RID>("get_navigation_map")
+
+    @JvmField
+    public val getSpaceName: MethodStringName0<World2D, RID> =
+        MethodStringName0<World2D, RID>("get_space")
 
     @JvmField
     public val getDirectSpaceStateName: MethodStringName0<World2D, PhysicsDirectSpaceState2D?> =

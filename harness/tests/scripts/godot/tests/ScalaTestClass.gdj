@@ -12,8 +12,8 @@ supertypes = [
 	godot.common.interop.NativePointer
 ]
 signals = [
-    test_signal,
-	test_signal2
+    lambda_signal_no_param,
+	lambda_signal_with_params
 ]
 properties = [
     exported_int,
@@ -25,12 +25,19 @@ properties = [
 	exported_byte,
 	exported_button,
 	signal_emitted,
+	has_signal_no_param_been_triggered,
+	signal_string,
+	signal_long,
+	signal_node,
+	scala_callable,
+	scala_callable_string,
 	variant_array,
 	dictionary
 ]
 functions = [
     greeting,
 	_ready,
-	connect_and_trigger_signal,
-	signal_callback
+	signal_callback,
+	emit_lambda_signal_no_param,
+	emit_lambda_signal_with_param
 ]

@@ -11,6 +11,9 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName4
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -28,6 +31,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -227,7 +231,59 @@ public open class LightmapGIData : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setLightmapTexturesName:
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_lightmap_textures")
+
+    @JvmField
+    public val getLightmapTexturesName:
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_lightmap_textures")
+
+    @JvmField
+    public val setShadowmaskTexturesName:
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>> =
+        MethodStringName1<LightmapGIData, Unit, VariantArray<TextureLayered>>("set_shadowmask_textures")
+
+    @JvmField
+    public val getShadowmaskTexturesName:
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>> =
+        MethodStringName0<LightmapGIData, VariantArray<TextureLayered>>("get_shadowmask_textures")
+
+    @JvmField
+    public val setUsesSphericalHarmonicsName: MethodStringName1<LightmapGIData, Unit, Boolean> =
+        MethodStringName1<LightmapGIData, Unit, Boolean>("set_uses_spherical_harmonics")
+
+    @JvmField
+    public val isUsingSphericalHarmonicsName: MethodStringName0<LightmapGIData, Boolean> =
+        MethodStringName0<LightmapGIData, Boolean>("is_using_spherical_harmonics")
+
+    @JvmField
+    public val addUserName: MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int> =
+        MethodStringName4<LightmapGIData, Unit, NodePath, Rect2, Int, Int>("add_user")
+
+    @JvmField
+    public val getUserCountName: MethodStringName0<LightmapGIData, Int> =
+        MethodStringName0<LightmapGIData, Int>("get_user_count")
+
+    @JvmField
+    public val getUserPathName: MethodStringName1<LightmapGIData, NodePath, Int> =
+        MethodStringName1<LightmapGIData, NodePath, Int>("get_user_path")
+
+    @JvmField
+    public val clearUsersName: MethodStringName0<LightmapGIData, Unit> =
+        MethodStringName0<LightmapGIData, Unit>("clear_users")
+
+    @JvmField
+    public val setLightTextureName: MethodStringName1<LightmapGIData, Unit, TextureLayered?> =
+        MethodStringName1<LightmapGIData, Unit, TextureLayered?>("set_light_texture")
+
+    @JvmField
+    public val getLightTextureName: MethodStringName0<LightmapGIData, TextureLayered?> =
+        MethodStringName0<LightmapGIData, TextureLayered?>("get_light_texture")
+  }
 
   public object MethodBindings {
     internal val setLightmapTexturesPtr: VoidPtr =

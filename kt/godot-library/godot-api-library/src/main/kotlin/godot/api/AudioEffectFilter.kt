@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -20,6 +22,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -158,7 +161,39 @@ public open class AudioEffectFilter : AudioEffect() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setCutoffName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_cutoff")
+
+    @JvmField
+    public val getCutoffName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_cutoff")
+
+    @JvmField
+    public val setResonanceName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_resonance")
+
+    @JvmField
+    public val getResonanceName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_resonance")
+
+    @JvmField
+    public val setGainName: MethodStringName1<AudioEffectFilter, Unit, Float> =
+        MethodStringName1<AudioEffectFilter, Unit, Float>("set_gain")
+
+    @JvmField
+    public val getGainName: MethodStringName0<AudioEffectFilter, Float> =
+        MethodStringName0<AudioEffectFilter, Float>("get_gain")
+
+    @JvmField
+    public val setDbName: MethodStringName1<AudioEffectFilter, Unit, FilterDB> =
+        MethodStringName1<AudioEffectFilter, Unit, FilterDB>("set_db")
+
+    @JvmField
+    public val getDbName: MethodStringName0<AudioEffectFilter, FilterDB> =
+        MethodStringName0<AudioEffectFilter, FilterDB>("get_db")
+  }
 
   public object MethodBindings {
     internal val setCutoffPtr: VoidPtr =

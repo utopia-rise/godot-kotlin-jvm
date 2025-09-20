@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -20,6 +22,7 @@ import kotlin.Boolean
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -132,7 +135,31 @@ public open class AudioListener3D : Node3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val makeCurrentName: MethodStringName0<AudioListener3D, Unit> =
+        MethodStringName0<AudioListener3D, Unit>("make_current")
+
+    @JvmField
+    public val clearCurrentName: MethodStringName0<AudioListener3D, Unit> =
+        MethodStringName0<AudioListener3D, Unit>("clear_current")
+
+    @JvmField
+    public val isCurrentName: MethodStringName0<AudioListener3D, Boolean> =
+        MethodStringName0<AudioListener3D, Boolean>("is_current")
+
+    @JvmField
+    public val getListenerTransformName: MethodStringName0<AudioListener3D, Transform3D> =
+        MethodStringName0<AudioListener3D, Transform3D>("get_listener_transform")
+
+    @JvmField
+    public val setDopplerTrackingName: MethodStringName1<AudioListener3D, Unit, DopplerTracking> =
+        MethodStringName1<AudioListener3D, Unit, DopplerTracking>("set_doppler_tracking")
+
+    @JvmField
+    public val getDopplerTrackingName: MethodStringName0<AudioListener3D, DopplerTracking> =
+        MethodStringName0<AudioListener3D, DopplerTracking>("get_doppler_tracking")
+  }
 
   public object MethodBindings {
     internal val makeCurrentPtr: VoidPtr =

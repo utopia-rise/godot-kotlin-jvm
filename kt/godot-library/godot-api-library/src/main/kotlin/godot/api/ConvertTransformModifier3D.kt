@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -273,7 +276,96 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setApplyTransformModeName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, TransformMode> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, TransformMode>("set_apply_transform_mode")
+
+    @JvmField
+    public val getApplyTransformModeName:
+        MethodStringName1<ConvertTransformModifier3D, TransformMode, Int> =
+        MethodStringName1<ConvertTransformModifier3D, TransformMode, Int>("get_apply_transform_mode")
+
+    @JvmField
+    public val setApplyAxisName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Vector3.Axis> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Vector3.Axis>("set_apply_axis")
+
+    @JvmField
+    public val getApplyAxisName: MethodStringName1<ConvertTransformModifier3D, Vector3.Axis, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Vector3.Axis, Int>("get_apply_axis")
+
+    @JvmField
+    public val setApplyRangeMinName: MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>
+        = MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>("set_apply_range_min")
+
+    @JvmField
+    public val getApplyRangeMinName: MethodStringName1<ConvertTransformModifier3D, Float, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Float, Int>("get_apply_range_min")
+
+    @JvmField
+    public val setApplyRangeMaxName: MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>
+        = MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>("set_apply_range_max")
+
+    @JvmField
+    public val getApplyRangeMaxName: MethodStringName1<ConvertTransformModifier3D, Float, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Float, Int>("get_apply_range_max")
+
+    @JvmField
+    public val setReferenceTransformModeName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, TransformMode> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, TransformMode>("set_reference_transform_mode")
+
+    @JvmField
+    public val getReferenceTransformModeName:
+        MethodStringName1<ConvertTransformModifier3D, TransformMode, Int> =
+        MethodStringName1<ConvertTransformModifier3D, TransformMode, Int>("get_reference_transform_mode")
+
+    @JvmField
+    public val setReferenceAxisName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Vector3.Axis> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Vector3.Axis>("set_reference_axis")
+
+    @JvmField
+    public val getReferenceAxisName:
+        MethodStringName1<ConvertTransformModifier3D, Vector3.Axis, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Vector3.Axis, Int>("get_reference_axis")
+
+    @JvmField
+    public val setReferenceRangeMinName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>("set_reference_range_min")
+
+    @JvmField
+    public val getReferenceRangeMinName: MethodStringName1<ConvertTransformModifier3D, Float, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Float, Int>("get_reference_range_min")
+
+    @JvmField
+    public val setReferenceRangeMaxName:
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Float>("set_reference_range_max")
+
+    @JvmField
+    public val getReferenceRangeMaxName: MethodStringName1<ConvertTransformModifier3D, Float, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Float, Int>("get_reference_range_max")
+
+    @JvmField
+    public val setRelativeName: MethodStringName2<ConvertTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Boolean>("set_relative")
+
+    @JvmField
+    public val isRelativeName: MethodStringName1<ConvertTransformModifier3D, Boolean, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Boolean, Int>("is_relative")
+
+    @JvmField
+    public val setAdditiveName: MethodStringName2<ConvertTransformModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<ConvertTransformModifier3D, Unit, Int, Boolean>("set_additive")
+
+    @JvmField
+    public val isAdditiveName: MethodStringName1<ConvertTransformModifier3D, Boolean, Int> =
+        MethodStringName1<ConvertTransformModifier3D, Boolean, Int>("is_additive")
+  }
 
   public object MethodBindings {
     internal val setApplyTransformModePtr: VoidPtr =

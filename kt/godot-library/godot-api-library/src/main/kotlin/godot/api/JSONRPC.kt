@@ -13,6 +13,9 @@ import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.GodotEnum
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -27,6 +30,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -185,7 +189,38 @@ public open class JSONRPC : Object() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setMethodName: MethodStringName2<JSONRPC, Unit, String, Callable> =
+        MethodStringName2<JSONRPC, Unit, String, Callable>("set_method")
+
+    @JvmField
+    public val processActionName: MethodStringName2<JSONRPC, Any?, Any?, Boolean> =
+        MethodStringName2<JSONRPC, Any?, Any?, Boolean>("process_action")
+
+    @JvmField
+    public val processStringName: MethodStringName1<JSONRPC, String, String> =
+        MethodStringName1<JSONRPC, String, String>("process_string")
+
+    @JvmField
+    public val makeRequestName:
+        MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, String, Any?, Any?> =
+        MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, String, Any?, Any?>("make_request")
+
+    @JvmField
+    public val makeResponseName: MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, Any?, Any?> =
+        MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, Any?, Any?>("make_response")
+
+    @JvmField
+    public val makeNotificationName:
+        MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, String, Any?> =
+        MethodStringName2<JSONRPC, Dictionary<Any?, Any?>, String, Any?>("make_notification")
+
+    @JvmField
+    public val makeResponseErrorName:
+        MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, Int, String, Any?> =
+        MethodStringName3<JSONRPC, Dictionary<Any?, Any?>, Int, String, Any?>("make_response_error")
+  }
 
   public object MethodBindings {
     internal val setMethodPtr: VoidPtr =

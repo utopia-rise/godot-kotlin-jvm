@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.RID
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -22,6 +25,7 @@ import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -125,7 +129,23 @@ public open class ShaderMaterial : Material() {
   public final fun getShaderParameter(`param`: String): Any? =
       getShaderParameter(param.asCachedStringName())
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setShaderName: MethodStringName1<ShaderMaterial, Unit, Shader?> =
+        MethodStringName1<ShaderMaterial, Unit, Shader?>("set_shader")
+
+    @JvmField
+    public val getShaderName: MethodStringName0<ShaderMaterial, Shader?> =
+        MethodStringName0<ShaderMaterial, Shader?>("get_shader")
+
+    @JvmField
+    public val setShaderParameterName: MethodStringName2<ShaderMaterial, Unit, StringName, Any?> =
+        MethodStringName2<ShaderMaterial, Unit, StringName, Any?>("set_shader_parameter")
+
+    @JvmField
+    public val getShaderParameterName: MethodStringName1<ShaderMaterial, Any?, StringName> =
+        MethodStringName1<ShaderMaterial, Any?, StringName>("get_shader_parameter")
+  }
 
   public object MethodBindings {
     internal val setShaderPtr: VoidPtr =

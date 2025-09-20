@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.PackedVector2Array
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -24,6 +26,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -174,7 +177,31 @@ public open class OccluderPolygon2D : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setClosedName: MethodStringName1<OccluderPolygon2D, Unit, Boolean> =
+        MethodStringName1<OccluderPolygon2D, Unit, Boolean>("set_closed")
+
+    @JvmField
+    public val isClosedName: MethodStringName0<OccluderPolygon2D, Boolean> =
+        MethodStringName0<OccluderPolygon2D, Boolean>("is_closed")
+
+    @JvmField
+    public val setCullModeName: MethodStringName1<OccluderPolygon2D, Unit, CullMode> =
+        MethodStringName1<OccluderPolygon2D, Unit, CullMode>("set_cull_mode")
+
+    @JvmField
+    public val getCullModeName: MethodStringName0<OccluderPolygon2D, CullMode> =
+        MethodStringName0<OccluderPolygon2D, CullMode>("get_cull_mode")
+
+    @JvmField
+    public val setPolygonName: MethodStringName1<OccluderPolygon2D, Unit, PackedVector2Array> =
+        MethodStringName1<OccluderPolygon2D, Unit, PackedVector2Array>("set_polygon")
+
+    @JvmField
+    public val getPolygonName: MethodStringName0<OccluderPolygon2D, PackedVector2Array> =
+        MethodStringName0<OccluderPolygon2D, PackedVector2Array>("get_polygon")
+  }
 
   public object MethodBindings {
     internal val setClosedPtr: VoidPtr =

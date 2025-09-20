@@ -11,6 +11,10 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -28,6 +32,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -195,7 +200,36 @@ public open class Shader : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getModeName: MethodStringName0<Shader, Mode> =
+        MethodStringName0<Shader, Mode>("get_mode")
+
+    @JvmField
+    public val setCodeName: MethodStringName1<Shader, Unit, String> =
+        MethodStringName1<Shader, Unit, String>("set_code")
+
+    @JvmField
+    public val getCodeName: MethodStringName0<Shader, String> =
+        MethodStringName0<Shader, String>("get_code")
+
+    @JvmField
+    public val setDefaultTextureParameterName:
+        MethodStringName3<Shader, Unit, StringName, Texture?, Int> =
+        MethodStringName3<Shader, Unit, StringName, Texture?, Int>("set_default_texture_parameter")
+
+    @JvmField
+    public val getDefaultTextureParameterName: MethodStringName2<Shader, Texture?, StringName, Int>
+        = MethodStringName2<Shader, Texture?, StringName, Int>("get_default_texture_parameter")
+
+    @JvmField
+    public val getShaderUniformListName: MethodStringName1<Shader, VariantArray<Any?>, Boolean> =
+        MethodStringName1<Shader, VariantArray<Any?>, Boolean>("get_shader_uniform_list")
+
+    @JvmField
+    public val inspectNativeShaderCodeName: MethodStringName0<Shader, Unit> =
+        MethodStringName0<Shader, Unit>("inspect_native_shader_code")
+  }
 
   public object MethodBindings {
     internal val getModePtr: VoidPtr =

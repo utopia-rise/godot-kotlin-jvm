@@ -13,6 +13,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -25,6 +27,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -253,7 +256,65 @@ public open class CanvasTexture : Texture2D() {
     throw NotImplementedError("CanvasTexture::_getHeight can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setDiffuseTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
+        MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_diffuse_texture")
+
+    @JvmField
+    public val getDiffuseTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
+        MethodStringName0<CanvasTexture, Texture2D?>("get_diffuse_texture")
+
+    @JvmField
+    public val setNormalTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
+        MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_normal_texture")
+
+    @JvmField
+    public val getNormalTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
+        MethodStringName0<CanvasTexture, Texture2D?>("get_normal_texture")
+
+    @JvmField
+    public val setSpecularTextureName: MethodStringName1<CanvasTexture, Unit, Texture2D?> =
+        MethodStringName1<CanvasTexture, Unit, Texture2D?>("set_specular_texture")
+
+    @JvmField
+    public val getSpecularTextureName: MethodStringName0<CanvasTexture, Texture2D?> =
+        MethodStringName0<CanvasTexture, Texture2D?>("get_specular_texture")
+
+    @JvmField
+    public val setSpecularColorName: MethodStringName1<CanvasTexture, Unit, Color> =
+        MethodStringName1<CanvasTexture, Unit, Color>("set_specular_color")
+
+    @JvmField
+    public val getSpecularColorName: MethodStringName0<CanvasTexture, Color> =
+        MethodStringName0<CanvasTexture, Color>("get_specular_color")
+
+    @JvmField
+    public val setSpecularShininessName: MethodStringName1<CanvasTexture, Unit, Float> =
+        MethodStringName1<CanvasTexture, Unit, Float>("set_specular_shininess")
+
+    @JvmField
+    public val getSpecularShininessName: MethodStringName0<CanvasTexture, Float> =
+        MethodStringName0<CanvasTexture, Float>("get_specular_shininess")
+
+    @JvmField
+    public val setTextureFilterName:
+        MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureFilter> =
+        MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureFilter>("set_texture_filter")
+
+    @JvmField
+    public val getTextureFilterName: MethodStringName0<CanvasTexture, CanvasItem.TextureFilter> =
+        MethodStringName0<CanvasTexture, CanvasItem.TextureFilter>("get_texture_filter")
+
+    @JvmField
+    public val setTextureRepeatName:
+        MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureRepeat> =
+        MethodStringName1<CanvasTexture, Unit, CanvasItem.TextureRepeat>("set_texture_repeat")
+
+    @JvmField
+    public val getTextureRepeatName: MethodStringName0<CanvasTexture, CanvasItem.TextureRepeat> =
+        MethodStringName0<CanvasTexture, CanvasItem.TextureRepeat>("get_texture_repeat")
+  }
 
   public object MethodBindings {
     internal val setDiffuseTexturePtr: VoidPtr =

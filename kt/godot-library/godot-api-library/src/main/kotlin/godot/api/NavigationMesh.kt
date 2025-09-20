@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
@@ -36,6 +39,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -916,7 +920,242 @@ public open class NavigationMesh : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setSamplePartitionTypeName:
+        MethodStringName1<NavigationMesh, Unit, SamplePartitionType> =
+        MethodStringName1<NavigationMesh, Unit, SamplePartitionType>("set_sample_partition_type")
+
+    @JvmField
+    public val getSamplePartitionTypeName: MethodStringName0<NavigationMesh, SamplePartitionType> =
+        MethodStringName0<NavigationMesh, SamplePartitionType>("get_sample_partition_type")
+
+    @JvmField
+    public val setParsedGeometryTypeName:
+        MethodStringName1<NavigationMesh, Unit, ParsedGeometryType> =
+        MethodStringName1<NavigationMesh, Unit, ParsedGeometryType>("set_parsed_geometry_type")
+
+    @JvmField
+    public val getParsedGeometryTypeName: MethodStringName0<NavigationMesh, ParsedGeometryType> =
+        MethodStringName0<NavigationMesh, ParsedGeometryType>("get_parsed_geometry_type")
+
+    @JvmField
+    public val setCollisionMaskName: MethodStringName1<NavigationMesh, Unit, Long> =
+        MethodStringName1<NavigationMesh, Unit, Long>("set_collision_mask")
+
+    @JvmField
+    public val getCollisionMaskName: MethodStringName0<NavigationMesh, Long> =
+        MethodStringName0<NavigationMesh, Long>("get_collision_mask")
+
+    @JvmField
+    public val setCollisionMaskValueName: MethodStringName2<NavigationMesh, Unit, Int, Boolean> =
+        MethodStringName2<NavigationMesh, Unit, Int, Boolean>("set_collision_mask_value")
+
+    @JvmField
+    public val getCollisionMaskValueName: MethodStringName1<NavigationMesh, Boolean, Int> =
+        MethodStringName1<NavigationMesh, Boolean, Int>("get_collision_mask_value")
+
+    @JvmField
+    public val setSourceGeometryModeName:
+        MethodStringName1<NavigationMesh, Unit, SourceGeometryMode> =
+        MethodStringName1<NavigationMesh, Unit, SourceGeometryMode>("set_source_geometry_mode")
+
+    @JvmField
+    public val getSourceGeometryModeName: MethodStringName0<NavigationMesh, SourceGeometryMode> =
+        MethodStringName0<NavigationMesh, SourceGeometryMode>("get_source_geometry_mode")
+
+    @JvmField
+    public val setSourceGroupNameName: MethodStringName1<NavigationMesh, Unit, StringName> =
+        MethodStringName1<NavigationMesh, Unit, StringName>("set_source_group_name")
+
+    @JvmField
+    public val getSourceGroupNameName: MethodStringName0<NavigationMesh, StringName> =
+        MethodStringName0<NavigationMesh, StringName>("get_source_group_name")
+
+    @JvmField
+    public val setCellSizeName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_cell_size")
+
+    @JvmField
+    public val getCellSizeName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_cell_size")
+
+    @JvmField
+    public val setCellHeightName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_cell_height")
+
+    @JvmField
+    public val getCellHeightName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_cell_height")
+
+    @JvmField
+    public val setBorderSizeName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_border_size")
+
+    @JvmField
+    public val getBorderSizeName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_border_size")
+
+    @JvmField
+    public val setAgentHeightName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_agent_height")
+
+    @JvmField
+    public val getAgentHeightName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_agent_height")
+
+    @JvmField
+    public val setAgentRadiusName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_agent_radius")
+
+    @JvmField
+    public val getAgentRadiusName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_agent_radius")
+
+    @JvmField
+    public val setAgentMaxClimbName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_agent_max_climb")
+
+    @JvmField
+    public val getAgentMaxClimbName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_agent_max_climb")
+
+    @JvmField
+    public val setAgentMaxSlopeName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_agent_max_slope")
+
+    @JvmField
+    public val getAgentMaxSlopeName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_agent_max_slope")
+
+    @JvmField
+    public val setRegionMinSizeName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_region_min_size")
+
+    @JvmField
+    public val getRegionMinSizeName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_region_min_size")
+
+    @JvmField
+    public val setRegionMergeSizeName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_region_merge_size")
+
+    @JvmField
+    public val getRegionMergeSizeName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_region_merge_size")
+
+    @JvmField
+    public val setEdgeMaxLengthName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_edge_max_length")
+
+    @JvmField
+    public val getEdgeMaxLengthName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_edge_max_length")
+
+    @JvmField
+    public val setEdgeMaxErrorName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_edge_max_error")
+
+    @JvmField
+    public val getEdgeMaxErrorName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_edge_max_error")
+
+    @JvmField
+    public val setVerticesPerPolygonName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_vertices_per_polygon")
+
+    @JvmField
+    public val getVerticesPerPolygonName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_vertices_per_polygon")
+
+    @JvmField
+    public val setDetailSampleDistanceName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_detail_sample_distance")
+
+    @JvmField
+    public val getDetailSampleDistanceName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_detail_sample_distance")
+
+    @JvmField
+    public val setDetailSampleMaxErrorName: MethodStringName1<NavigationMesh, Unit, Float> =
+        MethodStringName1<NavigationMesh, Unit, Float>("set_detail_sample_max_error")
+
+    @JvmField
+    public val getDetailSampleMaxErrorName: MethodStringName0<NavigationMesh, Float> =
+        MethodStringName0<NavigationMesh, Float>("get_detail_sample_max_error")
+
+    @JvmField
+    public val setFilterLowHangingObstaclesName: MethodStringName1<NavigationMesh, Unit, Boolean> =
+        MethodStringName1<NavigationMesh, Unit, Boolean>("set_filter_low_hanging_obstacles")
+
+    @JvmField
+    public val getFilterLowHangingObstaclesName: MethodStringName0<NavigationMesh, Boolean> =
+        MethodStringName0<NavigationMesh, Boolean>("get_filter_low_hanging_obstacles")
+
+    @JvmField
+    public val setFilterLedgeSpansName: MethodStringName1<NavigationMesh, Unit, Boolean> =
+        MethodStringName1<NavigationMesh, Unit, Boolean>("set_filter_ledge_spans")
+
+    @JvmField
+    public val getFilterLedgeSpansName: MethodStringName0<NavigationMesh, Boolean> =
+        MethodStringName0<NavigationMesh, Boolean>("get_filter_ledge_spans")
+
+    @JvmField
+    public val setFilterWalkableLowHeightSpansName: MethodStringName1<NavigationMesh, Unit, Boolean>
+        = MethodStringName1<NavigationMesh, Unit, Boolean>("set_filter_walkable_low_height_spans")
+
+    @JvmField
+    public val getFilterWalkableLowHeightSpansName: MethodStringName0<NavigationMesh, Boolean> =
+        MethodStringName0<NavigationMesh, Boolean>("get_filter_walkable_low_height_spans")
+
+    @JvmField
+    public val setFilterBakingAabbName: MethodStringName1<NavigationMesh, Unit, AABB> =
+        MethodStringName1<NavigationMesh, Unit, AABB>("set_filter_baking_aabb")
+
+    @JvmField
+    public val getFilterBakingAabbName: MethodStringName0<NavigationMesh, AABB> =
+        MethodStringName0<NavigationMesh, AABB>("get_filter_baking_aabb")
+
+    @JvmField
+    public val setFilterBakingAabbOffsetName: MethodStringName1<NavigationMesh, Unit, Vector3> =
+        MethodStringName1<NavigationMesh, Unit, Vector3>("set_filter_baking_aabb_offset")
+
+    @JvmField
+    public val getFilterBakingAabbOffsetName: MethodStringName0<NavigationMesh, Vector3> =
+        MethodStringName0<NavigationMesh, Vector3>("get_filter_baking_aabb_offset")
+
+    @JvmField
+    public val setVerticesName: MethodStringName1<NavigationMesh, Unit, PackedVector3Array> =
+        MethodStringName1<NavigationMesh, Unit, PackedVector3Array>("set_vertices")
+
+    @JvmField
+    public val getVerticesName: MethodStringName0<NavigationMesh, PackedVector3Array> =
+        MethodStringName0<NavigationMesh, PackedVector3Array>("get_vertices")
+
+    @JvmField
+    public val addPolygonName: MethodStringName1<NavigationMesh, Unit, PackedInt32Array> =
+        MethodStringName1<NavigationMesh, Unit, PackedInt32Array>("add_polygon")
+
+    @JvmField
+    public val getPolygonCountName: MethodStringName0<NavigationMesh, Int> =
+        MethodStringName0<NavigationMesh, Int>("get_polygon_count")
+
+    @JvmField
+    public val getPolygonName: MethodStringName1<NavigationMesh, PackedInt32Array, Int> =
+        MethodStringName1<NavigationMesh, PackedInt32Array, Int>("get_polygon")
+
+    @JvmField
+    public val clearPolygonsName: MethodStringName0<NavigationMesh, Unit> =
+        MethodStringName0<NavigationMesh, Unit>("clear_polygons")
+
+    @JvmField
+    public val createFromMeshName: MethodStringName1<NavigationMesh, Unit, Mesh?> =
+        MethodStringName1<NavigationMesh, Unit, Mesh?>("create_from_mesh")
+
+    @JvmField
+    public val clearName: MethodStringName0<NavigationMesh, Unit> =
+        MethodStringName0<NavigationMesh, Unit>("clear")
+  }
 
   public object MethodBindings {
     internal val setSamplePartitionTypePtr: VoidPtr =

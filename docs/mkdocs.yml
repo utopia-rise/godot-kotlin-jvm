@@ -96,6 +96,7 @@ nav:
     - Knowledge base:
         - Artifact differentiation: contribution/knowledge-base/artifact-differentiation.md
         - Entry generation: contribution/knowledge-base/entry-generation.md
+        - Signal and callable generation: contribution/knowledge-base/signals-and-callables-generation.md
         - Shared buffer: contribution/knowledge-base/shared-buffer.md
         - Memory management: contribution/knowledge-base/memory-management.md
         - Update iOS JDK: contribution/knowledge-base/update-ios-jdk.md

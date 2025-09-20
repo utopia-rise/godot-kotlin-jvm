@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -23,6 +25,7 @@ import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -285,7 +288,67 @@ public open class NoiseTexture3D : Texture3D() {
     throw NotImplementedError("NoiseTexture3D::_getData can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setWidthName: MethodStringName1<NoiseTexture3D, Unit, Int> =
+        MethodStringName1<NoiseTexture3D, Unit, Int>("set_width")
+
+    @JvmField
+    public val setHeightName: MethodStringName1<NoiseTexture3D, Unit, Int> =
+        MethodStringName1<NoiseTexture3D, Unit, Int>("set_height")
+
+    @JvmField
+    public val setDepthName: MethodStringName1<NoiseTexture3D, Unit, Int> =
+        MethodStringName1<NoiseTexture3D, Unit, Int>("set_depth")
+
+    @JvmField
+    public val setNoiseName: MethodStringName1<NoiseTexture3D, Unit, Noise?> =
+        MethodStringName1<NoiseTexture3D, Unit, Noise?>("set_noise")
+
+    @JvmField
+    public val getNoiseName: MethodStringName0<NoiseTexture3D, Noise?> =
+        MethodStringName0<NoiseTexture3D, Noise?>("get_noise")
+
+    @JvmField
+    public val setColorRampName: MethodStringName1<NoiseTexture3D, Unit, Gradient?> =
+        MethodStringName1<NoiseTexture3D, Unit, Gradient?>("set_color_ramp")
+
+    @JvmField
+    public val getColorRampName: MethodStringName0<NoiseTexture3D, Gradient?> =
+        MethodStringName0<NoiseTexture3D, Gradient?>("get_color_ramp")
+
+    @JvmField
+    public val setSeamlessName: MethodStringName1<NoiseTexture3D, Unit, Boolean> =
+        MethodStringName1<NoiseTexture3D, Unit, Boolean>("set_seamless")
+
+    @JvmField
+    public val getSeamlessName: MethodStringName0<NoiseTexture3D, Boolean> =
+        MethodStringName0<NoiseTexture3D, Boolean>("get_seamless")
+
+    @JvmField
+    public val setInvertName: MethodStringName1<NoiseTexture3D, Unit, Boolean> =
+        MethodStringName1<NoiseTexture3D, Unit, Boolean>("set_invert")
+
+    @JvmField
+    public val getInvertName: MethodStringName0<NoiseTexture3D, Boolean> =
+        MethodStringName0<NoiseTexture3D, Boolean>("get_invert")
+
+    @JvmField
+    public val setNormalizeName: MethodStringName1<NoiseTexture3D, Unit, Boolean> =
+        MethodStringName1<NoiseTexture3D, Unit, Boolean>("set_normalize")
+
+    @JvmField
+    public val isNormalizedName: MethodStringName0<NoiseTexture3D, Boolean> =
+        MethodStringName0<NoiseTexture3D, Boolean>("is_normalized")
+
+    @JvmField
+    public val setSeamlessBlendSkirtName: MethodStringName1<NoiseTexture3D, Unit, Float> =
+        MethodStringName1<NoiseTexture3D, Unit, Float>("set_seamless_blend_skirt")
+
+    @JvmField
+    public val getSeamlessBlendSkirtName: MethodStringName0<NoiseTexture3D, Float> =
+        MethodStringName0<NoiseTexture3D, Float>("get_seamless_blend_skirt")
+  }
 
   public object MethodBindings {
     internal val setWidthPtr: VoidPtr =

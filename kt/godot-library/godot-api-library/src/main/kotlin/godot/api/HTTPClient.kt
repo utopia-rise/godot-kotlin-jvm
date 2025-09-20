@@ -13,6 +13,11 @@ import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -30,6 +35,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -895,7 +901,99 @@ public open class HTTPClient : RefCounted() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val connectToHostName: MethodStringName3<HTTPClient, Error, String, Int, TLSOptions?> =
+        MethodStringName3<HTTPClient, Error, String, Int, TLSOptions?>("connect_to_host")
+
+    @JvmField
+    public val setConnectionName: MethodStringName1<HTTPClient, Unit, StreamPeer?> =
+        MethodStringName1<HTTPClient, Unit, StreamPeer?>("set_connection")
+
+    @JvmField
+    public val getConnectionName: MethodStringName0<HTTPClient, StreamPeer?> =
+        MethodStringName0<HTTPClient, StreamPeer?>("get_connection")
+
+    @JvmField
+    public val requestRawName:
+        MethodStringName4<HTTPClient, Error, Method, String, PackedStringArray, PackedByteArray> =
+        MethodStringName4<HTTPClient, Error, Method, String, PackedStringArray, PackedByteArray>("request_raw")
+
+    @JvmField
+    public val requestName:
+        MethodStringName4<HTTPClient, Error, Method, String, PackedStringArray, String> =
+        MethodStringName4<HTTPClient, Error, Method, String, PackedStringArray, String>("request")
+
+    @JvmField
+    public val closeName: MethodStringName0<HTTPClient, Unit> =
+        MethodStringName0<HTTPClient, Unit>("close")
+
+    @JvmField
+    public val hasResponseName: MethodStringName0<HTTPClient, Boolean> =
+        MethodStringName0<HTTPClient, Boolean>("has_response")
+
+    @JvmField
+    public val isResponseChunkedName: MethodStringName0<HTTPClient, Boolean> =
+        MethodStringName0<HTTPClient, Boolean>("is_response_chunked")
+
+    @JvmField
+    public val getResponseCodeName: MethodStringName0<HTTPClient, Int> =
+        MethodStringName0<HTTPClient, Int>("get_response_code")
+
+    @JvmField
+    public val getResponseHeadersName: MethodStringName0<HTTPClient, PackedStringArray> =
+        MethodStringName0<HTTPClient, PackedStringArray>("get_response_headers")
+
+    @JvmField
+    public val getResponseHeadersAsDictionaryName:
+        MethodStringName0<HTTPClient, Dictionary<Any?, Any?>> =
+        MethodStringName0<HTTPClient, Dictionary<Any?, Any?>>("get_response_headers_as_dictionary")
+
+    @JvmField
+    public val getResponseBodyLengthName: MethodStringName0<HTTPClient, Long> =
+        MethodStringName0<HTTPClient, Long>("get_response_body_length")
+
+    @JvmField
+    public val readResponseBodyChunkName: MethodStringName0<HTTPClient, PackedByteArray> =
+        MethodStringName0<HTTPClient, PackedByteArray>("read_response_body_chunk")
+
+    @JvmField
+    public val setReadChunkSizeName: MethodStringName1<HTTPClient, Unit, Int> =
+        MethodStringName1<HTTPClient, Unit, Int>("set_read_chunk_size")
+
+    @JvmField
+    public val getReadChunkSizeName: MethodStringName0<HTTPClient, Int> =
+        MethodStringName0<HTTPClient, Int>("get_read_chunk_size")
+
+    @JvmField
+    public val setBlockingModeName: MethodStringName1<HTTPClient, Unit, Boolean> =
+        MethodStringName1<HTTPClient, Unit, Boolean>("set_blocking_mode")
+
+    @JvmField
+    public val isBlockingModeEnabledName: MethodStringName0<HTTPClient, Boolean> =
+        MethodStringName0<HTTPClient, Boolean>("is_blocking_mode_enabled")
+
+    @JvmField
+    public val getStatusName: MethodStringName0<HTTPClient, Status> =
+        MethodStringName0<HTTPClient, Status>("get_status")
+
+    @JvmField
+    public val pollName: MethodStringName0<HTTPClient, Error> =
+        MethodStringName0<HTTPClient, Error>("poll")
+
+    @JvmField
+    public val setHttpProxyName: MethodStringName2<HTTPClient, Unit, String, Int> =
+        MethodStringName2<HTTPClient, Unit, String, Int>("set_http_proxy")
+
+    @JvmField
+    public val setHttpsProxyName: MethodStringName2<HTTPClient, Unit, String, Int> =
+        MethodStringName2<HTTPClient, Unit, String, Int>("set_https_proxy")
+
+    @JvmField
+    public val queryStringFromDictName:
+        MethodStringName1<HTTPClient, String, Dictionary<Any?, Any?>> =
+        MethodStringName1<HTTPClient, String, Dictionary<Any?, Any?>>("query_string_from_dict")
+  }
 
   public object MethodBindings {
     internal val connectToHostPtr: VoidPtr =

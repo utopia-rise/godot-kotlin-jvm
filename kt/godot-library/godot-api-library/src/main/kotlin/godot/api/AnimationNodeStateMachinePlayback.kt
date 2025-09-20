@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
 import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantArray
@@ -25,6 +27,7 @@ import kotlin.Float
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -192,7 +195,52 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public final fun start(node: String, reset: Boolean = true) =
       start(node.asCachedStringName(), reset)
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val travelName:
+        MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean> =
+        MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean>("travel")
+
+    @JvmField
+    public val startName:
+        MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean> =
+        MethodStringName2<AnimationNodeStateMachinePlayback, Unit, StringName, Boolean>("start")
+
+    @JvmField
+    public val nextName: MethodStringName0<AnimationNodeStateMachinePlayback, Unit> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, Unit>("next")
+
+    @JvmField
+    public val stopName: MethodStringName0<AnimationNodeStateMachinePlayback, Unit> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, Unit>("stop")
+
+    @JvmField
+    public val isPlayingName: MethodStringName0<AnimationNodeStateMachinePlayback, Boolean> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, Boolean>("is_playing")
+
+    @JvmField
+    public val getCurrentNodeName: MethodStringName0<AnimationNodeStateMachinePlayback, StringName>
+        = MethodStringName0<AnimationNodeStateMachinePlayback, StringName>("get_current_node")
+
+    @JvmField
+    public val getCurrentPlayPositionName:
+        MethodStringName0<AnimationNodeStateMachinePlayback, Float> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, Float>("get_current_play_position")
+
+    @JvmField
+    public val getCurrentLengthName: MethodStringName0<AnimationNodeStateMachinePlayback, Float> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, Float>("get_current_length")
+
+    @JvmField
+    public val getFadingFromNodeName:
+        MethodStringName0<AnimationNodeStateMachinePlayback, StringName> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, StringName>("get_fading_from_node")
+
+    @JvmField
+    public val getTravelPathName:
+        MethodStringName0<AnimationNodeStateMachinePlayback, VariantArray<StringName>> =
+        MethodStringName0<AnimationNodeStateMachinePlayback, VariantArray<StringName>>("get_travel_path")
+  }
 
   public object MethodBindings {
     internal val travelPtr: VoidPtr =

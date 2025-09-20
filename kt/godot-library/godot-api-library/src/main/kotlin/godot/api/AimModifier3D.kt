@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -19,6 +21,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -118,7 +121,41 @@ public open class AimModifier3D : BoneConstraint3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setForwardAxisName:
+        MethodStringName2<AimModifier3D, Unit, Int, SkeletonModifier3D.BoneAxis> =
+        MethodStringName2<AimModifier3D, Unit, Int, SkeletonModifier3D.BoneAxis>("set_forward_axis")
+
+    @JvmField
+    public val getForwardAxisName:
+        MethodStringName1<AimModifier3D, SkeletonModifier3D.BoneAxis, Int> =
+        MethodStringName1<AimModifier3D, SkeletonModifier3D.BoneAxis, Int>("get_forward_axis")
+
+    @JvmField
+    public val setUseEulerName: MethodStringName2<AimModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<AimModifier3D, Unit, Int, Boolean>("set_use_euler")
+
+    @JvmField
+    public val isUsingEulerName: MethodStringName1<AimModifier3D, Boolean, Int> =
+        MethodStringName1<AimModifier3D, Boolean, Int>("is_using_euler")
+
+    @JvmField
+    public val setPrimaryRotationAxisName: MethodStringName2<AimModifier3D, Unit, Int, Vector3.Axis>
+        = MethodStringName2<AimModifier3D, Unit, Int, Vector3.Axis>("set_primary_rotation_axis")
+
+    @JvmField
+    public val getPrimaryRotationAxisName: MethodStringName1<AimModifier3D, Vector3.Axis, Int> =
+        MethodStringName1<AimModifier3D, Vector3.Axis, Int>("get_primary_rotation_axis")
+
+    @JvmField
+    public val setUseSecondaryRotationName: MethodStringName2<AimModifier3D, Unit, Int, Boolean> =
+        MethodStringName2<AimModifier3D, Unit, Int, Boolean>("set_use_secondary_rotation")
+
+    @JvmField
+    public val isUsingSecondaryRotationName: MethodStringName1<AimModifier3D, Boolean, Int> =
+        MethodStringName1<AimModifier3D, Boolean, Int>("is_using_secondary_rotation")
+  }
 
   public object MethodBindings {
     internal val setForwardAxisPtr: VoidPtr =

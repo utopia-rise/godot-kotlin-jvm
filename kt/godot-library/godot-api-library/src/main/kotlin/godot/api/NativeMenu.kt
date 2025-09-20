@@ -363,7 +363,7 @@ public object NativeMenu : Object() {
   public val clearName: MethodStringName1<NativeMenu, Unit, RID> =
       MethodStringName1<NativeMenu, Unit, RID>("clear")
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(15)
   }
 

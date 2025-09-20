@@ -14,6 +14,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -29,6 +32,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -2759,7 +2763,746 @@ public open class Environment : Resource() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setBackgroundName: MethodStringName1<Environment, Unit, BGMode> =
+        MethodStringName1<Environment, Unit, BGMode>("set_background")
+
+    @JvmField
+    public val getBackgroundName: MethodStringName0<Environment, BGMode> =
+        MethodStringName0<Environment, BGMode>("get_background")
+
+    @JvmField
+    public val setSkyName: MethodStringName1<Environment, Unit, Sky?> =
+        MethodStringName1<Environment, Unit, Sky?>("set_sky")
+
+    @JvmField
+    public val getSkyName: MethodStringName0<Environment, Sky?> =
+        MethodStringName0<Environment, Sky?>("get_sky")
+
+    @JvmField
+    public val setSkyCustomFovName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sky_custom_fov")
+
+    @JvmField
+    public val getSkyCustomFovName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sky_custom_fov")
+
+    @JvmField
+    public val setSkyRotationName: MethodStringName1<Environment, Unit, Vector3> =
+        MethodStringName1<Environment, Unit, Vector3>("set_sky_rotation")
+
+    @JvmField
+    public val getSkyRotationName: MethodStringName0<Environment, Vector3> =
+        MethodStringName0<Environment, Vector3>("get_sky_rotation")
+
+    @JvmField
+    public val setBgColorName: MethodStringName1<Environment, Unit, Color> =
+        MethodStringName1<Environment, Unit, Color>("set_bg_color")
+
+    @JvmField
+    public val getBgColorName: MethodStringName0<Environment, Color> =
+        MethodStringName0<Environment, Color>("get_bg_color")
+
+    @JvmField
+    public val setBgEnergyMultiplierName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_bg_energy_multiplier")
+
+    @JvmField
+    public val getBgEnergyMultiplierName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_bg_energy_multiplier")
+
+    @JvmField
+    public val setBgIntensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_bg_intensity")
+
+    @JvmField
+    public val getBgIntensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_bg_intensity")
+
+    @JvmField
+    public val setCanvasMaxLayerName: MethodStringName1<Environment, Unit, Int> =
+        MethodStringName1<Environment, Unit, Int>("set_canvas_max_layer")
+
+    @JvmField
+    public val getCanvasMaxLayerName: MethodStringName0<Environment, Int> =
+        MethodStringName0<Environment, Int>("get_canvas_max_layer")
+
+    @JvmField
+    public val setCameraFeedIdName: MethodStringName1<Environment, Unit, Int> =
+        MethodStringName1<Environment, Unit, Int>("set_camera_feed_id")
+
+    @JvmField
+    public val getCameraFeedIdName: MethodStringName0<Environment, Int> =
+        MethodStringName0<Environment, Int>("get_camera_feed_id")
+
+    @JvmField
+    public val setAmbientLightColorName: MethodStringName1<Environment, Unit, Color> =
+        MethodStringName1<Environment, Unit, Color>("set_ambient_light_color")
+
+    @JvmField
+    public val getAmbientLightColorName: MethodStringName0<Environment, Color> =
+        MethodStringName0<Environment, Color>("get_ambient_light_color")
+
+    @JvmField
+    public val setAmbientSourceName: MethodStringName1<Environment, Unit, AmbientSource> =
+        MethodStringName1<Environment, Unit, AmbientSource>("set_ambient_source")
+
+    @JvmField
+    public val getAmbientSourceName: MethodStringName0<Environment, AmbientSource> =
+        MethodStringName0<Environment, AmbientSource>("get_ambient_source")
+
+    @JvmField
+    public val setAmbientLightEnergyName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ambient_light_energy")
+
+    @JvmField
+    public val getAmbientLightEnergyName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ambient_light_energy")
+
+    @JvmField
+    public val setAmbientLightSkyContributionName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ambient_light_sky_contribution")
+
+    @JvmField
+    public val getAmbientLightSkyContributionName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ambient_light_sky_contribution")
+
+    @JvmField
+    public val setReflectionSourceName: MethodStringName1<Environment, Unit, ReflectionSource> =
+        MethodStringName1<Environment, Unit, ReflectionSource>("set_reflection_source")
+
+    @JvmField
+    public val getReflectionSourceName: MethodStringName0<Environment, ReflectionSource> =
+        MethodStringName0<Environment, ReflectionSource>("get_reflection_source")
+
+    @JvmField
+    public val setTonemapperName: MethodStringName1<Environment, Unit, ToneMapper> =
+        MethodStringName1<Environment, Unit, ToneMapper>("set_tonemapper")
+
+    @JvmField
+    public val getTonemapperName: MethodStringName0<Environment, ToneMapper> =
+        MethodStringName0<Environment, ToneMapper>("get_tonemapper")
+
+    @JvmField
+    public val setTonemapExposureName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_tonemap_exposure")
+
+    @JvmField
+    public val getTonemapExposureName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_tonemap_exposure")
+
+    @JvmField
+    public val setTonemapWhiteName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_tonemap_white")
+
+    @JvmField
+    public val getTonemapWhiteName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_tonemap_white")
+
+    @JvmField
+    public val setSsrEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_ssr_enabled")
+
+    @JvmField
+    public val isSsrEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_ssr_enabled")
+
+    @JvmField
+    public val setSsrMaxStepsName: MethodStringName1<Environment, Unit, Int> =
+        MethodStringName1<Environment, Unit, Int>("set_ssr_max_steps")
+
+    @JvmField
+    public val getSsrMaxStepsName: MethodStringName0<Environment, Int> =
+        MethodStringName0<Environment, Int>("get_ssr_max_steps")
+
+    @JvmField
+    public val setSsrFadeInName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssr_fade_in")
+
+    @JvmField
+    public val getSsrFadeInName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssr_fade_in")
+
+    @JvmField
+    public val setSsrFadeOutName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssr_fade_out")
+
+    @JvmField
+    public val getSsrFadeOutName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssr_fade_out")
+
+    @JvmField
+    public val setSsrDepthToleranceName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssr_depth_tolerance")
+
+    @JvmField
+    public val getSsrDepthToleranceName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssr_depth_tolerance")
+
+    @JvmField
+    public val setSsaoEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_ssao_enabled")
+
+    @JvmField
+    public val isSsaoEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_ssao_enabled")
+
+    @JvmField
+    public val setSsaoRadiusName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_radius")
+
+    @JvmField
+    public val getSsaoRadiusName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_radius")
+
+    @JvmField
+    public val setSsaoIntensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_intensity")
+
+    @JvmField
+    public val getSsaoIntensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_intensity")
+
+    @JvmField
+    public val setSsaoPowerName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_power")
+
+    @JvmField
+    public val getSsaoPowerName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_power")
+
+    @JvmField
+    public val setSsaoDetailName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_detail")
+
+    @JvmField
+    public val getSsaoDetailName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_detail")
+
+    @JvmField
+    public val setSsaoHorizonName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_horizon")
+
+    @JvmField
+    public val getSsaoHorizonName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_horizon")
+
+    @JvmField
+    public val setSsaoSharpnessName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_sharpness")
+
+    @JvmField
+    public val getSsaoSharpnessName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_sharpness")
+
+    @JvmField
+    public val setSsaoDirectLightAffectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_direct_light_affect")
+
+    @JvmField
+    public val getSsaoDirectLightAffectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_direct_light_affect")
+
+    @JvmField
+    public val setSsaoAoChannelAffectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssao_ao_channel_affect")
+
+    @JvmField
+    public val getSsaoAoChannelAffectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssao_ao_channel_affect")
+
+    @JvmField
+    public val setSsilEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_ssil_enabled")
+
+    @JvmField
+    public val isSsilEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_ssil_enabled")
+
+    @JvmField
+    public val setSsilRadiusName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssil_radius")
+
+    @JvmField
+    public val getSsilRadiusName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssil_radius")
+
+    @JvmField
+    public val setSsilIntensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssil_intensity")
+
+    @JvmField
+    public val getSsilIntensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssil_intensity")
+
+    @JvmField
+    public val setSsilSharpnessName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssil_sharpness")
+
+    @JvmField
+    public val getSsilSharpnessName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssil_sharpness")
+
+    @JvmField
+    public val setSsilNormalRejectionName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_ssil_normal_rejection")
+
+    @JvmField
+    public val getSsilNormalRejectionName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_ssil_normal_rejection")
+
+    @JvmField
+    public val setSdfgiEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_sdfgi_enabled")
+
+    @JvmField
+    public val isSdfgiEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_sdfgi_enabled")
+
+    @JvmField
+    public val setSdfgiCascadesName: MethodStringName1<Environment, Unit, Int> =
+        MethodStringName1<Environment, Unit, Int>("set_sdfgi_cascades")
+
+    @JvmField
+    public val getSdfgiCascadesName: MethodStringName0<Environment, Int> =
+        MethodStringName0<Environment, Int>("get_sdfgi_cascades")
+
+    @JvmField
+    public val setSdfgiMinCellSizeName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_min_cell_size")
+
+    @JvmField
+    public val getSdfgiMinCellSizeName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_min_cell_size")
+
+    @JvmField
+    public val setSdfgiMaxDistanceName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_max_distance")
+
+    @JvmField
+    public val getSdfgiMaxDistanceName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_max_distance")
+
+    @JvmField
+    public val setSdfgiCascade0DistanceName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_cascade0_distance")
+
+    @JvmField
+    public val getSdfgiCascade0DistanceName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_cascade0_distance")
+
+    @JvmField
+    public val setSdfgiYScaleName: MethodStringName1<Environment, Unit, SDFGIYScale> =
+        MethodStringName1<Environment, Unit, SDFGIYScale>("set_sdfgi_y_scale")
+
+    @JvmField
+    public val getSdfgiYScaleName: MethodStringName0<Environment, SDFGIYScale> =
+        MethodStringName0<Environment, SDFGIYScale>("get_sdfgi_y_scale")
+
+    @JvmField
+    public val setSdfgiUseOcclusionName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_sdfgi_use_occlusion")
+
+    @JvmField
+    public val isSdfgiUsingOcclusionName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_sdfgi_using_occlusion")
+
+    @JvmField
+    public val setSdfgiBounceFeedbackName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_bounce_feedback")
+
+    @JvmField
+    public val getSdfgiBounceFeedbackName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_bounce_feedback")
+
+    @JvmField
+    public val setSdfgiReadSkyLightName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_sdfgi_read_sky_light")
+
+    @JvmField
+    public val isSdfgiReadingSkyLightName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_sdfgi_reading_sky_light")
+
+    @JvmField
+    public val setSdfgiEnergyName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_energy")
+
+    @JvmField
+    public val getSdfgiEnergyName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_energy")
+
+    @JvmField
+    public val setSdfgiNormalBiasName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_normal_bias")
+
+    @JvmField
+    public val getSdfgiNormalBiasName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_normal_bias")
+
+    @JvmField
+    public val setSdfgiProbeBiasName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_sdfgi_probe_bias")
+
+    @JvmField
+    public val getSdfgiProbeBiasName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_sdfgi_probe_bias")
+
+    @JvmField
+    public val setGlowEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_glow_enabled")
+
+    @JvmField
+    public val isGlowEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_glow_enabled")
+
+    @JvmField
+    public val setGlowLevelName: MethodStringName2<Environment, Unit, Int, Float> =
+        MethodStringName2<Environment, Unit, Int, Float>("set_glow_level")
+
+    @JvmField
+    public val getGlowLevelName: MethodStringName1<Environment, Float, Int> =
+        MethodStringName1<Environment, Float, Int>("get_glow_level")
+
+    @JvmField
+    public val setGlowNormalizedName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_glow_normalized")
+
+    @JvmField
+    public val isGlowNormalizedName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_glow_normalized")
+
+    @JvmField
+    public val setGlowIntensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_intensity")
+
+    @JvmField
+    public val getGlowIntensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_intensity")
+
+    @JvmField
+    public val setGlowStrengthName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_strength")
+
+    @JvmField
+    public val getGlowStrengthName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_strength")
+
+    @JvmField
+    public val setGlowMixName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_mix")
+
+    @JvmField
+    public val getGlowMixName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_mix")
+
+    @JvmField
+    public val setGlowBloomName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_bloom")
+
+    @JvmField
+    public val getGlowBloomName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_bloom")
+
+    @JvmField
+    public val setGlowBlendModeName: MethodStringName1<Environment, Unit, GlowBlendMode> =
+        MethodStringName1<Environment, Unit, GlowBlendMode>("set_glow_blend_mode")
+
+    @JvmField
+    public val getGlowBlendModeName: MethodStringName0<Environment, GlowBlendMode> =
+        MethodStringName0<Environment, GlowBlendMode>("get_glow_blend_mode")
+
+    @JvmField
+    public val setGlowHdrBleedThresholdName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_hdr_bleed_threshold")
+
+    @JvmField
+    public val getGlowHdrBleedThresholdName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_hdr_bleed_threshold")
+
+    @JvmField
+    public val setGlowHdrBleedScaleName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_hdr_bleed_scale")
+
+    @JvmField
+    public val getGlowHdrBleedScaleName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_hdr_bleed_scale")
+
+    @JvmField
+    public val setGlowHdrLuminanceCapName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_hdr_luminance_cap")
+
+    @JvmField
+    public val getGlowHdrLuminanceCapName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_hdr_luminance_cap")
+
+    @JvmField
+    public val setGlowMapStrengthName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_glow_map_strength")
+
+    @JvmField
+    public val getGlowMapStrengthName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_glow_map_strength")
+
+    @JvmField
+    public val setGlowMapName: MethodStringName1<Environment, Unit, Texture?> =
+        MethodStringName1<Environment, Unit, Texture?>("set_glow_map")
+
+    @JvmField
+    public val getGlowMapName: MethodStringName0<Environment, Texture?> =
+        MethodStringName0<Environment, Texture?>("get_glow_map")
+
+    @JvmField
+    public val setFogEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_fog_enabled")
+
+    @JvmField
+    public val isFogEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_fog_enabled")
+
+    @JvmField
+    public val setFogModeName: MethodStringName1<Environment, Unit, FogMode> =
+        MethodStringName1<Environment, Unit, FogMode>("set_fog_mode")
+
+    @JvmField
+    public val getFogModeName: MethodStringName0<Environment, FogMode> =
+        MethodStringName0<Environment, FogMode>("get_fog_mode")
+
+    @JvmField
+    public val setFogLightColorName: MethodStringName1<Environment, Unit, Color> =
+        MethodStringName1<Environment, Unit, Color>("set_fog_light_color")
+
+    @JvmField
+    public val getFogLightColorName: MethodStringName0<Environment, Color> =
+        MethodStringName0<Environment, Color>("get_fog_light_color")
+
+    @JvmField
+    public val setFogLightEnergyName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_light_energy")
+
+    @JvmField
+    public val getFogLightEnergyName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_light_energy")
+
+    @JvmField
+    public val setFogSunScatterName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_sun_scatter")
+
+    @JvmField
+    public val getFogSunScatterName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_sun_scatter")
+
+    @JvmField
+    public val setFogDensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_density")
+
+    @JvmField
+    public val getFogDensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_density")
+
+    @JvmField
+    public val setFogHeightName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_height")
+
+    @JvmField
+    public val getFogHeightName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_height")
+
+    @JvmField
+    public val setFogHeightDensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_height_density")
+
+    @JvmField
+    public val getFogHeightDensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_height_density")
+
+    @JvmField
+    public val setFogAerialPerspectiveName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_aerial_perspective")
+
+    @JvmField
+    public val getFogAerialPerspectiveName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_aerial_perspective")
+
+    @JvmField
+    public val setFogSkyAffectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_sky_affect")
+
+    @JvmField
+    public val getFogSkyAffectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_sky_affect")
+
+    @JvmField
+    public val setFogDepthCurveName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_depth_curve")
+
+    @JvmField
+    public val getFogDepthCurveName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_depth_curve")
+
+    @JvmField
+    public val setFogDepthBeginName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_depth_begin")
+
+    @JvmField
+    public val getFogDepthBeginName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_depth_begin")
+
+    @JvmField
+    public val setFogDepthEndName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_fog_depth_end")
+
+    @JvmField
+    public val getFogDepthEndName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_fog_depth_end")
+
+    @JvmField
+    public val setVolumetricFogEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_volumetric_fog_enabled")
+
+    @JvmField
+    public val isVolumetricFogEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_volumetric_fog_enabled")
+
+    @JvmField
+    public val setVolumetricFogEmissionName: MethodStringName1<Environment, Unit, Color> =
+        MethodStringName1<Environment, Unit, Color>("set_volumetric_fog_emission")
+
+    @JvmField
+    public val getVolumetricFogEmissionName: MethodStringName0<Environment, Color> =
+        MethodStringName0<Environment, Color>("get_volumetric_fog_emission")
+
+    @JvmField
+    public val setVolumetricFogAlbedoName: MethodStringName1<Environment, Unit, Color> =
+        MethodStringName1<Environment, Unit, Color>("set_volumetric_fog_albedo")
+
+    @JvmField
+    public val getVolumetricFogAlbedoName: MethodStringName0<Environment, Color> =
+        MethodStringName0<Environment, Color>("get_volumetric_fog_albedo")
+
+    @JvmField
+    public val setVolumetricFogDensityName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_density")
+
+    @JvmField
+    public val getVolumetricFogDensityName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_density")
+
+    @JvmField
+    public val setVolumetricFogEmissionEnergyName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_emission_energy")
+
+    @JvmField
+    public val getVolumetricFogEmissionEnergyName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_emission_energy")
+
+    @JvmField
+    public val setVolumetricFogAnisotropyName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_anisotropy")
+
+    @JvmField
+    public val getVolumetricFogAnisotropyName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_anisotropy")
+
+    @JvmField
+    public val setVolumetricFogLengthName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_length")
+
+    @JvmField
+    public val getVolumetricFogLengthName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_length")
+
+    @JvmField
+    public val setVolumetricFogDetailSpreadName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_detail_spread")
+
+    @JvmField
+    public val getVolumetricFogDetailSpreadName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_detail_spread")
+
+    @JvmField
+    public val setVolumetricFogGiInjectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_gi_inject")
+
+    @JvmField
+    public val getVolumetricFogGiInjectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_gi_inject")
+
+    @JvmField
+    public val setVolumetricFogAmbientInjectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_ambient_inject")
+
+    @JvmField
+    public val getVolumetricFogAmbientInjectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_ambient_inject")
+
+    @JvmField
+    public val setVolumetricFogSkyAffectName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_sky_affect")
+
+    @JvmField
+    public val getVolumetricFogSkyAffectName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_volumetric_fog_sky_affect")
+
+    @JvmField
+    public val setVolumetricFogTemporalReprojectionEnabledName:
+        MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_volumetric_fog_temporal_reprojection_enabled")
+
+    @JvmField
+    public val isVolumetricFogTemporalReprojectionEnabledName:
+        MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_volumetric_fog_temporal_reprojection_enabled")
+
+    @JvmField
+    public val setVolumetricFogTemporalReprojectionAmountName:
+        MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_volumetric_fog_temporal_reprojection_amount")
+
+    @JvmField
+    public val getVolumetricFogTemporalReprojectionAmountName: MethodStringName0<Environment, Float>
+        = MethodStringName0<Environment, Float>("get_volumetric_fog_temporal_reprojection_amount")
+
+    @JvmField
+    public val setAdjustmentEnabledName: MethodStringName1<Environment, Unit, Boolean> =
+        MethodStringName1<Environment, Unit, Boolean>("set_adjustment_enabled")
+
+    @JvmField
+    public val isAdjustmentEnabledName: MethodStringName0<Environment, Boolean> =
+        MethodStringName0<Environment, Boolean>("is_adjustment_enabled")
+
+    @JvmField
+    public val setAdjustmentBrightnessName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_adjustment_brightness")
+
+    @JvmField
+    public val getAdjustmentBrightnessName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_adjustment_brightness")
+
+    @JvmField
+    public val setAdjustmentContrastName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_adjustment_contrast")
+
+    @JvmField
+    public val getAdjustmentContrastName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_adjustment_contrast")
+
+    @JvmField
+    public val setAdjustmentSaturationName: MethodStringName1<Environment, Unit, Float> =
+        MethodStringName1<Environment, Unit, Float>("set_adjustment_saturation")
+
+    @JvmField
+    public val getAdjustmentSaturationName: MethodStringName0<Environment, Float> =
+        MethodStringName0<Environment, Float>("get_adjustment_saturation")
+
+    @JvmField
+    public val setAdjustmentColorCorrectionName: MethodStringName1<Environment, Unit, Texture?> =
+        MethodStringName1<Environment, Unit, Texture?>("set_adjustment_color_correction")
+
+    @JvmField
+    public val getAdjustmentColorCorrectionName: MethodStringName0<Environment, Texture?> =
+        MethodStringName0<Environment, Texture?>("get_adjustment_color_correction")
+  }
 
   public object MethodBindings {
     internal val setBackgroundPtr: VoidPtr =

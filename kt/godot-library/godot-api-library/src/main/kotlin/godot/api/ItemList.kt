@@ -14,6 +14,10 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal1
@@ -42,6 +46,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -1007,7 +1012,331 @@ public open class ItemList : Control() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val addItemName: MethodStringName3<ItemList, Int, String, Texture2D?, Boolean> =
+        MethodStringName3<ItemList, Int, String, Texture2D?, Boolean>("add_item")
+
+    @JvmField
+    public val addIconItemName: MethodStringName2<ItemList, Int, Texture2D?, Boolean> =
+        MethodStringName2<ItemList, Int, Texture2D?, Boolean>("add_icon_item")
+
+    @JvmField
+    public val setItemTextName: MethodStringName2<ItemList, Unit, Int, String> =
+        MethodStringName2<ItemList, Unit, Int, String>("set_item_text")
+
+    @JvmField
+    public val getItemTextName: MethodStringName1<ItemList, String, Int> =
+        MethodStringName1<ItemList, String, Int>("get_item_text")
+
+    @JvmField
+    public val setItemIconName: MethodStringName2<ItemList, Unit, Int, Texture2D?> =
+        MethodStringName2<ItemList, Unit, Int, Texture2D?>("set_item_icon")
+
+    @JvmField
+    public val getItemIconName: MethodStringName1<ItemList, Texture2D?, Int> =
+        MethodStringName1<ItemList, Texture2D?, Int>("get_item_icon")
+
+    @JvmField
+    public val setItemTextDirectionName:
+        MethodStringName2<ItemList, Unit, Int, Control.TextDirection> =
+        MethodStringName2<ItemList, Unit, Int, Control.TextDirection>("set_item_text_direction")
+
+    @JvmField
+    public val getItemTextDirectionName: MethodStringName1<ItemList, Control.TextDirection, Int> =
+        MethodStringName1<ItemList, Control.TextDirection, Int>("get_item_text_direction")
+
+    @JvmField
+    public val setItemLanguageName: MethodStringName2<ItemList, Unit, Int, String> =
+        MethodStringName2<ItemList, Unit, Int, String>("set_item_language")
+
+    @JvmField
+    public val getItemLanguageName: MethodStringName1<ItemList, String, Int> =
+        MethodStringName1<ItemList, String, Int>("get_item_language")
+
+    @JvmField
+    public val setItemAutoTranslateModeName:
+        MethodStringName2<ItemList, Unit, Int, Node.AutoTranslateMode> =
+        MethodStringName2<ItemList, Unit, Int, Node.AutoTranslateMode>("set_item_auto_translate_mode")
+
+    @JvmField
+    public val getItemAutoTranslateModeName:
+        MethodStringName1<ItemList, Node.AutoTranslateMode, Int> =
+        MethodStringName1<ItemList, Node.AutoTranslateMode, Int>("get_item_auto_translate_mode")
+
+    @JvmField
+    public val setItemIconTransposedName: MethodStringName2<ItemList, Unit, Int, Boolean> =
+        MethodStringName2<ItemList, Unit, Int, Boolean>("set_item_icon_transposed")
+
+    @JvmField
+    public val isItemIconTransposedName: MethodStringName1<ItemList, Boolean, Int> =
+        MethodStringName1<ItemList, Boolean, Int>("is_item_icon_transposed")
+
+    @JvmField
+    public val setItemIconRegionName: MethodStringName2<ItemList, Unit, Int, Rect2> =
+        MethodStringName2<ItemList, Unit, Int, Rect2>("set_item_icon_region")
+
+    @JvmField
+    public val getItemIconRegionName: MethodStringName1<ItemList, Rect2, Int> =
+        MethodStringName1<ItemList, Rect2, Int>("get_item_icon_region")
+
+    @JvmField
+    public val setItemIconModulateName: MethodStringName2<ItemList, Unit, Int, Color> =
+        MethodStringName2<ItemList, Unit, Int, Color>("set_item_icon_modulate")
+
+    @JvmField
+    public val getItemIconModulateName: MethodStringName1<ItemList, Color, Int> =
+        MethodStringName1<ItemList, Color, Int>("get_item_icon_modulate")
+
+    @JvmField
+    public val setItemSelectableName: MethodStringName2<ItemList, Unit, Int, Boolean> =
+        MethodStringName2<ItemList, Unit, Int, Boolean>("set_item_selectable")
+
+    @JvmField
+    public val isItemSelectableName: MethodStringName1<ItemList, Boolean, Int> =
+        MethodStringName1<ItemList, Boolean, Int>("is_item_selectable")
+
+    @JvmField
+    public val setItemDisabledName: MethodStringName2<ItemList, Unit, Int, Boolean> =
+        MethodStringName2<ItemList, Unit, Int, Boolean>("set_item_disabled")
+
+    @JvmField
+    public val isItemDisabledName: MethodStringName1<ItemList, Boolean, Int> =
+        MethodStringName1<ItemList, Boolean, Int>("is_item_disabled")
+
+    @JvmField
+    public val setItemMetadataName: MethodStringName2<ItemList, Unit, Int, Any?> =
+        MethodStringName2<ItemList, Unit, Int, Any?>("set_item_metadata")
+
+    @JvmField
+    public val getItemMetadataName: MethodStringName1<ItemList, Any?, Int> =
+        MethodStringName1<ItemList, Any?, Int>("get_item_metadata")
+
+    @JvmField
+    public val setItemCustomBgColorName: MethodStringName2<ItemList, Unit, Int, Color> =
+        MethodStringName2<ItemList, Unit, Int, Color>("set_item_custom_bg_color")
+
+    @JvmField
+    public val getItemCustomBgColorName: MethodStringName1<ItemList, Color, Int> =
+        MethodStringName1<ItemList, Color, Int>("get_item_custom_bg_color")
+
+    @JvmField
+    public val setItemCustomFgColorName: MethodStringName2<ItemList, Unit, Int, Color> =
+        MethodStringName2<ItemList, Unit, Int, Color>("set_item_custom_fg_color")
+
+    @JvmField
+    public val getItemCustomFgColorName: MethodStringName1<ItemList, Color, Int> =
+        MethodStringName1<ItemList, Color, Int>("get_item_custom_fg_color")
+
+    @JvmField
+    public val getItemRectName: MethodStringName2<ItemList, Rect2, Int, Boolean> =
+        MethodStringName2<ItemList, Rect2, Int, Boolean>("get_item_rect")
+
+    @JvmField
+    public val setItemTooltipEnabledName: MethodStringName2<ItemList, Unit, Int, Boolean> =
+        MethodStringName2<ItemList, Unit, Int, Boolean>("set_item_tooltip_enabled")
+
+    @JvmField
+    public val isItemTooltipEnabledName: MethodStringName1<ItemList, Boolean, Int> =
+        MethodStringName1<ItemList, Boolean, Int>("is_item_tooltip_enabled")
+
+    @JvmField
+    public val setItemTooltipName: MethodStringName2<ItemList, Unit, Int, String> =
+        MethodStringName2<ItemList, Unit, Int, String>("set_item_tooltip")
+
+    @JvmField
+    public val getItemTooltipName: MethodStringName1<ItemList, String, Int> =
+        MethodStringName1<ItemList, String, Int>("get_item_tooltip")
+
+    @JvmField
+    public val selectName: MethodStringName2<ItemList, Unit, Int, Boolean> =
+        MethodStringName2<ItemList, Unit, Int, Boolean>("select")
+
+    @JvmField
+    public val deselectName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("deselect")
+
+    @JvmField
+    public val deselectAllName: MethodStringName0<ItemList, Unit> =
+        MethodStringName0<ItemList, Unit>("deselect_all")
+
+    @JvmField
+    public val isSelectedName: MethodStringName1<ItemList, Boolean, Int> =
+        MethodStringName1<ItemList, Boolean, Int>("is_selected")
+
+    @JvmField
+    public val getSelectedItemsName: MethodStringName0<ItemList, PackedInt32Array> =
+        MethodStringName0<ItemList, PackedInt32Array>("get_selected_items")
+
+    @JvmField
+    public val moveItemName: MethodStringName2<ItemList, Unit, Int, Int> =
+        MethodStringName2<ItemList, Unit, Int, Int>("move_item")
+
+    @JvmField
+    public val setItemCountName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("set_item_count")
+
+    @JvmField
+    public val getItemCountName: MethodStringName0<ItemList, Int> =
+        MethodStringName0<ItemList, Int>("get_item_count")
+
+    @JvmField
+    public val removeItemName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("remove_item")
+
+    @JvmField
+    public val clearName: MethodStringName0<ItemList, Unit> =
+        MethodStringName0<ItemList, Unit>("clear")
+
+    @JvmField
+    public val sortItemsByTextName: MethodStringName0<ItemList, Unit> =
+        MethodStringName0<ItemList, Unit>("sort_items_by_text")
+
+    @JvmField
+    public val setFixedColumnWidthName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("set_fixed_column_width")
+
+    @JvmField
+    public val getFixedColumnWidthName: MethodStringName0<ItemList, Int> =
+        MethodStringName0<ItemList, Int>("get_fixed_column_width")
+
+    @JvmField
+    public val setSameColumnWidthName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_same_column_width")
+
+    @JvmField
+    public val isSameColumnWidthName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("is_same_column_width")
+
+    @JvmField
+    public val setMaxTextLinesName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("set_max_text_lines")
+
+    @JvmField
+    public val getMaxTextLinesName: MethodStringName0<ItemList, Int> =
+        MethodStringName0<ItemList, Int>("get_max_text_lines")
+
+    @JvmField
+    public val setMaxColumnsName: MethodStringName1<ItemList, Unit, Int> =
+        MethodStringName1<ItemList, Unit, Int>("set_max_columns")
+
+    @JvmField
+    public val getMaxColumnsName: MethodStringName0<ItemList, Int> =
+        MethodStringName0<ItemList, Int>("get_max_columns")
+
+    @JvmField
+    public val setSelectModeName: MethodStringName1<ItemList, Unit, SelectMode> =
+        MethodStringName1<ItemList, Unit, SelectMode>("set_select_mode")
+
+    @JvmField
+    public val getSelectModeName: MethodStringName0<ItemList, SelectMode> =
+        MethodStringName0<ItemList, SelectMode>("get_select_mode")
+
+    @JvmField
+    public val setIconModeName: MethodStringName1<ItemList, Unit, IconMode> =
+        MethodStringName1<ItemList, Unit, IconMode>("set_icon_mode")
+
+    @JvmField
+    public val getIconModeName: MethodStringName0<ItemList, IconMode> =
+        MethodStringName0<ItemList, IconMode>("get_icon_mode")
+
+    @JvmField
+    public val setFixedIconSizeName: MethodStringName1<ItemList, Unit, Vector2i> =
+        MethodStringName1<ItemList, Unit, Vector2i>("set_fixed_icon_size")
+
+    @JvmField
+    public val getFixedIconSizeName: MethodStringName0<ItemList, Vector2i> =
+        MethodStringName0<ItemList, Vector2i>("get_fixed_icon_size")
+
+    @JvmField
+    public val setIconScaleName: MethodStringName1<ItemList, Unit, Float> =
+        MethodStringName1<ItemList, Unit, Float>("set_icon_scale")
+
+    @JvmField
+    public val getIconScaleName: MethodStringName0<ItemList, Float> =
+        MethodStringName0<ItemList, Float>("get_icon_scale")
+
+    @JvmField
+    public val setAllowRmbSelectName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_allow_rmb_select")
+
+    @JvmField
+    public val getAllowRmbSelectName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("get_allow_rmb_select")
+
+    @JvmField
+    public val setAllowReselectName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_allow_reselect")
+
+    @JvmField
+    public val getAllowReselectName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("get_allow_reselect")
+
+    @JvmField
+    public val setAllowSearchName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_allow_search")
+
+    @JvmField
+    public val getAllowSearchName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("get_allow_search")
+
+    @JvmField
+    public val setAutoWidthName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_auto_width")
+
+    @JvmField
+    public val hasAutoWidthName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("has_auto_width")
+
+    @JvmField
+    public val setAutoHeightName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_auto_height")
+
+    @JvmField
+    public val hasAutoHeightName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("has_auto_height")
+
+    @JvmField
+    public val isAnythingSelectedName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("is_anything_selected")
+
+    @JvmField
+    public val getItemAtPositionName: MethodStringName2<ItemList, Int, Vector2, Boolean> =
+        MethodStringName2<ItemList, Int, Vector2, Boolean>("get_item_at_position")
+
+    @JvmField
+    public val ensureCurrentIsVisibleName: MethodStringName0<ItemList, Unit> =
+        MethodStringName0<ItemList, Unit>("ensure_current_is_visible")
+
+    @JvmField
+    public val getVScrollBarName: MethodStringName0<ItemList, VScrollBar?> =
+        MethodStringName0<ItemList, VScrollBar?>("get_v_scroll_bar")
+
+    @JvmField
+    public val getHScrollBarName: MethodStringName0<ItemList, HScrollBar?> =
+        MethodStringName0<ItemList, HScrollBar?>("get_h_scroll_bar")
+
+    @JvmField
+    public val setTextOverrunBehaviorName:
+        MethodStringName1<ItemList, Unit, TextServer.OverrunBehavior> =
+        MethodStringName1<ItemList, Unit, TextServer.OverrunBehavior>("set_text_overrun_behavior")
+
+    @JvmField
+    public val getTextOverrunBehaviorName: MethodStringName0<ItemList, TextServer.OverrunBehavior> =
+        MethodStringName0<ItemList, TextServer.OverrunBehavior>("get_text_overrun_behavior")
+
+    @JvmField
+    public val setWraparoundItemsName: MethodStringName1<ItemList, Unit, Boolean> =
+        MethodStringName1<ItemList, Unit, Boolean>("set_wraparound_items")
+
+    @JvmField
+    public val hasWraparoundItemsName: MethodStringName0<ItemList, Boolean> =
+        MethodStringName0<ItemList, Boolean>("has_wraparound_items")
+
+    @JvmField
+    public val forceUpdateListSizeName: MethodStringName0<ItemList, Unit> =
+        MethodStringName0<ItemList, Unit>("force_update_list_size")
+  }
 
   public object MethodBindings {
     internal val addItemPtr: VoidPtr =

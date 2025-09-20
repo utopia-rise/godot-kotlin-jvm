@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -21,6 +23,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -188,7 +191,47 @@ public open class Slider internal constructor() : Range() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTicksName: MethodStringName1<Slider, Unit, Int> =
+        MethodStringName1<Slider, Unit, Int>("set_ticks")
+
+    @JvmField
+    public val getTicksName: MethodStringName0<Slider, Int> =
+        MethodStringName0<Slider, Int>("get_ticks")
+
+    @JvmField
+    public val getTicksOnBordersName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("get_ticks_on_borders")
+
+    @JvmField
+    public val setTicksOnBordersName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_ticks_on_borders")
+
+    @JvmField
+    public val getTicksPositionName: MethodStringName0<Slider, TickPosition> =
+        MethodStringName0<Slider, TickPosition>("get_ticks_position")
+
+    @JvmField
+    public val setTicksPositionName: MethodStringName1<Slider, Unit, TickPosition> =
+        MethodStringName1<Slider, Unit, TickPosition>("set_ticks_position")
+
+    @JvmField
+    public val setEditableName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_editable")
+
+    @JvmField
+    public val isEditableName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("is_editable")
+
+    @JvmField
+    public val setScrollableName: MethodStringName1<Slider, Unit, Boolean> =
+        MethodStringName1<Slider, Unit, Boolean>("set_scrollable")
+
+    @JvmField
+    public val isScrollableName: MethodStringName0<Slider, Boolean> =
+        MethodStringName0<Slider, Boolean>("is_scrollable")
+  }
 
   public object MethodBindings {
     internal val setTicksPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.Signal1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -19,6 +21,7 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -77,7 +80,23 @@ public open class FoldableGroup : Resource() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val getExpandedContainerName: MethodStringName0<FoldableGroup, FoldableContainer?> =
+        MethodStringName0<FoldableGroup, FoldableContainer?>("get_expanded_container")
+
+    @JvmField
+    public val getContainersName: MethodStringName0<FoldableGroup, VariantArray<FoldableContainer>>
+        = MethodStringName0<FoldableGroup, VariantArray<FoldableContainer>>("get_containers")
+
+    @JvmField
+    public val setAllowFoldingAllName: MethodStringName1<FoldableGroup, Unit, Boolean> =
+        MethodStringName1<FoldableGroup, Unit, Boolean>("set_allow_folding_all")
+
+    @JvmField
+    public val isAllowFoldingAllName: MethodStringName0<FoldableGroup, Boolean> =
+        MethodStringName0<FoldableGroup, Boolean>("is_allow_folding_all")
+  }
 
   public object MethodBindings {
     internal val getExpandedContainerPtr: VoidPtr =

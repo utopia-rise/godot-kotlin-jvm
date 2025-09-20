@@ -11,6 +11,8 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
@@ -21,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -235,7 +238,67 @@ public open class LinkButton : BaseButton() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setTextName: MethodStringName1<LinkButton, Unit, String> =
+        MethodStringName1<LinkButton, Unit, String>("set_text")
+
+    @JvmField
+    public val getTextName: MethodStringName0<LinkButton, String> =
+        MethodStringName0<LinkButton, String>("get_text")
+
+    @JvmField
+    public val setTextDirectionName: MethodStringName1<LinkButton, Unit, Control.TextDirection> =
+        MethodStringName1<LinkButton, Unit, Control.TextDirection>("set_text_direction")
+
+    @JvmField
+    public val getTextDirectionName: MethodStringName0<LinkButton, Control.TextDirection> =
+        MethodStringName0<LinkButton, Control.TextDirection>("get_text_direction")
+
+    @JvmField
+    public val setLanguageName: MethodStringName1<LinkButton, Unit, String> =
+        MethodStringName1<LinkButton, Unit, String>("set_language")
+
+    @JvmField
+    public val getLanguageName: MethodStringName0<LinkButton, String> =
+        MethodStringName0<LinkButton, String>("get_language")
+
+    @JvmField
+    public val setUriName: MethodStringName1<LinkButton, Unit, String> =
+        MethodStringName1<LinkButton, Unit, String>("set_uri")
+
+    @JvmField
+    public val getUriName: MethodStringName0<LinkButton, String> =
+        MethodStringName0<LinkButton, String>("get_uri")
+
+    @JvmField
+    public val setUnderlineModeName: MethodStringName1<LinkButton, Unit, UnderlineMode> =
+        MethodStringName1<LinkButton, Unit, UnderlineMode>("set_underline_mode")
+
+    @JvmField
+    public val getUnderlineModeName: MethodStringName0<LinkButton, UnderlineMode> =
+        MethodStringName0<LinkButton, UnderlineMode>("get_underline_mode")
+
+    @JvmField
+    public val setStructuredTextBidiOverrideName:
+        MethodStringName1<LinkButton, Unit, TextServer.StructuredTextParser> =
+        MethodStringName1<LinkButton, Unit, TextServer.StructuredTextParser>("set_structured_text_bidi_override")
+
+    @JvmField
+    public val getStructuredTextBidiOverrideName:
+        MethodStringName0<LinkButton, TextServer.StructuredTextParser> =
+        MethodStringName0<LinkButton, TextServer.StructuredTextParser>("get_structured_text_bidi_override")
+
+    @JvmField
+    public val setStructuredTextBidiOverrideOptionsName:
+        MethodStringName1<LinkButton, Unit, VariantArray<Any?>> =
+        MethodStringName1<LinkButton, Unit, VariantArray<Any?>>("set_structured_text_bidi_override_options")
+
+    @JvmField
+    public val getStructuredTextBidiOverrideOptionsName:
+        MethodStringName0<LinkButton, VariantArray<Any?>> =
+        MethodStringName0<LinkButton, VariantArray<Any?>>("get_structured_text_bidi_override_options")
+  }
 
   public object MethodBindings {
     internal val setTextPtr: VoidPtr =

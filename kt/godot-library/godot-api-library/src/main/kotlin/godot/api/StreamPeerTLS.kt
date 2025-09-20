@@ -12,6 +12,9 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -20,6 +23,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -133,7 +137,32 @@ public open class StreamPeerTLS : StreamPeer() {
     }
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val pollName: MethodStringName0<StreamPeerTLS, Unit> =
+        MethodStringName0<StreamPeerTLS, Unit>("poll")
+
+    @JvmField
+    public val acceptStreamName: MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?> =
+        MethodStringName2<StreamPeerTLS, Error, StreamPeer?, TLSOptions?>("accept_stream")
+
+    @JvmField
+    public val connectToStreamName:
+        MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?> =
+        MethodStringName3<StreamPeerTLS, Error, StreamPeer?, String, TLSOptions?>("connect_to_stream")
+
+    @JvmField
+    public val getStatusName: MethodStringName0<StreamPeerTLS, Status> =
+        MethodStringName0<StreamPeerTLS, Status>("get_status")
+
+    @JvmField
+    public val getStreamName: MethodStringName0<StreamPeerTLS, StreamPeer?> =
+        MethodStringName0<StreamPeerTLS, StreamPeer?>("get_stream")
+
+    @JvmField
+    public val disconnectFromStreamName: MethodStringName0<StreamPeerTLS, Unit> =
+        MethodStringName0<StreamPeerTLS, Unit>("disconnect_from_stream")
+  }
 
   public object MethodBindings {
     internal val pollPtr: VoidPtr =

@@ -13,6 +13,12 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
+import godot.core.MethodStringName3
+import godot.core.MethodStringName4
+import godot.core.MethodStringName6
 import godot.core.PackedVector2Array
 import godot.core.Rect2i
 import godot.core.VariantParser.BOOL
@@ -31,6 +37,7 @@ import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
@@ -622,6 +629,188 @@ public open class TileSetAtlasSource : TileSetSource() {
   }
 
   public companion object {
+    @JvmField
+    public val setTextureName: MethodStringName1<TileSetAtlasSource, Unit, Texture2D?> =
+        MethodStringName1<TileSetAtlasSource, Unit, Texture2D?>("set_texture")
+
+    @JvmField
+    public val getTextureName: MethodStringName0<TileSetAtlasSource, Texture2D?> =
+        MethodStringName0<TileSetAtlasSource, Texture2D?>("get_texture")
+
+    @JvmField
+    public val setMarginsName: MethodStringName1<TileSetAtlasSource, Unit, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Unit, Vector2i>("set_margins")
+
+    @JvmField
+    public val getMarginsName: MethodStringName0<TileSetAtlasSource, Vector2i> =
+        MethodStringName0<TileSetAtlasSource, Vector2i>("get_margins")
+
+    @JvmField
+    public val setSeparationName: MethodStringName1<TileSetAtlasSource, Unit, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Unit, Vector2i>("set_separation")
+
+    @JvmField
+    public val getSeparationName: MethodStringName0<TileSetAtlasSource, Vector2i> =
+        MethodStringName0<TileSetAtlasSource, Vector2i>("get_separation")
+
+    @JvmField
+    public val setTextureRegionSizeName: MethodStringName1<TileSetAtlasSource, Unit, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Unit, Vector2i>("set_texture_region_size")
+
+    @JvmField
+    public val getTextureRegionSizeName: MethodStringName0<TileSetAtlasSource, Vector2i> =
+        MethodStringName0<TileSetAtlasSource, Vector2i>("get_texture_region_size")
+
+    @JvmField
+    public val setUseTexturePaddingName: MethodStringName1<TileSetAtlasSource, Unit, Boolean> =
+        MethodStringName1<TileSetAtlasSource, Unit, Boolean>("set_use_texture_padding")
+
+    @JvmField
+    public val getUseTexturePaddingName: MethodStringName0<TileSetAtlasSource, Boolean> =
+        MethodStringName0<TileSetAtlasSource, Boolean>("get_use_texture_padding")
+
+    @JvmField
+    public val createTileName: MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Vector2i> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Vector2i>("create_tile")
+
+    @JvmField
+    public val removeTileName: MethodStringName1<TileSetAtlasSource, Unit, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Unit, Vector2i>("remove_tile")
+
+    @JvmField
+    public val moveTileInAtlasName:
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Vector2i, Vector2i> =
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Vector2i, Vector2i>("move_tile_in_atlas")
+
+    @JvmField
+    public val getTileSizeInAtlasName: MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i>("get_tile_size_in_atlas")
+
+    @JvmField
+    public val hasRoomForTileName:
+        MethodStringName6<TileSetAtlasSource, Boolean, Vector2i, Vector2i, Int, Vector2i, Int, Vector2i>
+        =
+        MethodStringName6<TileSetAtlasSource, Boolean, Vector2i, Vector2i, Int, Vector2i, Int, Vector2i>("has_room_for_tile")
+
+    @JvmField
+    public val getTilesToBeRemovedOnChangeName:
+        MethodStringName4<TileSetAtlasSource, PackedVector2Array, Texture2D?, Vector2i, Vector2i, Vector2i>
+        =
+        MethodStringName4<TileSetAtlasSource, PackedVector2Array, Texture2D?, Vector2i, Vector2i, Vector2i>("get_tiles_to_be_removed_on_change")
+
+    @JvmField
+    public val getTileAtCoordsName: MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i>("get_tile_at_coords")
+
+    @JvmField
+    public val hasTilesOutsideTextureName: MethodStringName0<TileSetAtlasSource, Boolean> =
+        MethodStringName0<TileSetAtlasSource, Boolean>("has_tiles_outside_texture")
+
+    @JvmField
+    public val clearTilesOutsideTextureName: MethodStringName0<TileSetAtlasSource, Unit> =
+        MethodStringName0<TileSetAtlasSource, Unit>("clear_tiles_outside_texture")
+
+    @JvmField
+    public val setTileAnimationColumnsName:
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int>("set_tile_animation_columns")
+
+    @JvmField
+    public val getTileAnimationColumnsName: MethodStringName1<TileSetAtlasSource, Int, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Int, Vector2i>("get_tile_animation_columns")
+
+    @JvmField
+    public val setTileAnimationSeparationName:
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Vector2i> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Vector2i>("set_tile_animation_separation")
+
+    @JvmField
+    public val getTileAnimationSeparationName:
+        MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Vector2i, Vector2i>("get_tile_animation_separation")
+
+    @JvmField
+    public val setTileAnimationSpeedName:
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Float> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Float>("set_tile_animation_speed")
+
+    @JvmField
+    public val getTileAnimationSpeedName: MethodStringName1<TileSetAtlasSource, Float, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Float, Vector2i>("get_tile_animation_speed")
+
+    @JvmField
+    public val setTileAnimationModeName:
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, TileAnimationMode> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, TileAnimationMode>("set_tile_animation_mode")
+
+    @JvmField
+    public val getTileAnimationModeName:
+        MethodStringName1<TileSetAtlasSource, TileAnimationMode, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, TileAnimationMode, Vector2i>("get_tile_animation_mode")
+
+    @JvmField
+    public val setTileAnimationFramesCountName:
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int>("set_tile_animation_frames_count")
+
+    @JvmField
+    public val getTileAnimationFramesCountName: MethodStringName1<TileSetAtlasSource, Int, Vector2i>
+        = MethodStringName1<TileSetAtlasSource, Int, Vector2i>("get_tile_animation_frames_count")
+
+    @JvmField
+    public val setTileAnimationFrameDurationName:
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Int, Float> =
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Int, Float>("set_tile_animation_frame_duration")
+
+    @JvmField
+    public val getTileAnimationFrameDurationName:
+        MethodStringName2<TileSetAtlasSource, Float, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, Float, Vector2i, Int>("get_tile_animation_frame_duration")
+
+    @JvmField
+    public val getTileAnimationTotalDurationName:
+        MethodStringName1<TileSetAtlasSource, Float, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Float, Vector2i>("get_tile_animation_total_duration")
+
+    @JvmField
+    public val createAlternativeTileName: MethodStringName2<TileSetAtlasSource, Int, Vector2i, Int>
+        = MethodStringName2<TileSetAtlasSource, Int, Vector2i, Int>("create_alternative_tile")
+
+    @JvmField
+    public val removeAlternativeTileName: MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int>
+        = MethodStringName2<TileSetAtlasSource, Unit, Vector2i, Int>("remove_alternative_tile")
+
+    @JvmField
+    public val setAlternativeTileIdName:
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Int, Int> =
+        MethodStringName3<TileSetAtlasSource, Unit, Vector2i, Int, Int>("set_alternative_tile_id")
+
+    @JvmField
+    public val getNextAlternativeTileIdName: MethodStringName1<TileSetAtlasSource, Int, Vector2i> =
+        MethodStringName1<TileSetAtlasSource, Int, Vector2i>("get_next_alternative_tile_id")
+
+    @JvmField
+    public val getTileDataName: MethodStringName2<TileSetAtlasSource, TileData?, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, TileData?, Vector2i, Int>("get_tile_data")
+
+    @JvmField
+    public val getAtlasGridSizeName: MethodStringName0<TileSetAtlasSource, Vector2i> =
+        MethodStringName0<TileSetAtlasSource, Vector2i>("get_atlas_grid_size")
+
+    @JvmField
+    public val getTileTextureRegionName:
+        MethodStringName2<TileSetAtlasSource, Rect2i, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, Rect2i, Vector2i, Int>("get_tile_texture_region")
+
+    @JvmField
+    public val getRuntimeTextureName: MethodStringName0<TileSetAtlasSource, Texture2D?> =
+        MethodStringName0<TileSetAtlasSource, Texture2D?>("get_runtime_texture")
+
+    @JvmField
+    public val getRuntimeTileTextureRegionName:
+        MethodStringName2<TileSetAtlasSource, Rect2i, Vector2i, Int> =
+        MethodStringName2<TileSetAtlasSource, Rect2i, Vector2i, Int>("get_runtime_tile_texture_region")
+
     /**
      * Represents cell's horizontal flip flag. Should be used directly with [TileMapLayer] to flip
      * placed tiles by altering their alternative IDs.

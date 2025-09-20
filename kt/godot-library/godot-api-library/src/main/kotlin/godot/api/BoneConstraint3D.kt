@@ -10,6 +10,9 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
+import godot.core.MethodStringName2
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -21,6 +24,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 
 /**
  * Base class of [SkeletonModifier3D] that modifies the bone set in [setApplyBone] based on the
@@ -150,7 +154,59 @@ public open class BoneConstraint3D : SkeletonModifier3D() {
     TransferContext.callMethod(ptr, MethodBindings.clearSettingPtr, NIL)
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setAmountName: MethodStringName2<BoneConstraint3D, Unit, Int, Float> =
+        MethodStringName2<BoneConstraint3D, Unit, Int, Float>("set_amount")
+
+    @JvmField
+    public val getAmountName: MethodStringName1<BoneConstraint3D, Float, Int> =
+        MethodStringName1<BoneConstraint3D, Float, Int>("get_amount")
+
+    @JvmField
+    public val setApplyBoneNameName: MethodStringName2<BoneConstraint3D, Unit, Int, String> =
+        MethodStringName2<BoneConstraint3D, Unit, Int, String>("set_apply_bone_name")
+
+    @JvmField
+    public val getApplyBoneNameName: MethodStringName1<BoneConstraint3D, String, Int> =
+        MethodStringName1<BoneConstraint3D, String, Int>("get_apply_bone_name")
+
+    @JvmField
+    public val setApplyBoneName: MethodStringName2<BoneConstraint3D, Unit, Int, Int> =
+        MethodStringName2<BoneConstraint3D, Unit, Int, Int>("set_apply_bone")
+
+    @JvmField
+    public val getApplyBoneName: MethodStringName1<BoneConstraint3D, Int, Int> =
+        MethodStringName1<BoneConstraint3D, Int, Int>("get_apply_bone")
+
+    @JvmField
+    public val setReferenceBoneNameName: MethodStringName2<BoneConstraint3D, Unit, Int, String> =
+        MethodStringName2<BoneConstraint3D, Unit, Int, String>("set_reference_bone_name")
+
+    @JvmField
+    public val getReferenceBoneNameName: MethodStringName1<BoneConstraint3D, String, Int> =
+        MethodStringName1<BoneConstraint3D, String, Int>("get_reference_bone_name")
+
+    @JvmField
+    public val setReferenceBoneName: MethodStringName2<BoneConstraint3D, Unit, Int, Int> =
+        MethodStringName2<BoneConstraint3D, Unit, Int, Int>("set_reference_bone")
+
+    @JvmField
+    public val getReferenceBoneName: MethodStringName1<BoneConstraint3D, Int, Int> =
+        MethodStringName1<BoneConstraint3D, Int, Int>("get_reference_bone")
+
+    @JvmField
+    public val setSettingCountName: MethodStringName1<BoneConstraint3D, Unit, Int> =
+        MethodStringName1<BoneConstraint3D, Unit, Int>("set_setting_count")
+
+    @JvmField
+    public val getSettingCountName: MethodStringName0<BoneConstraint3D, Int> =
+        MethodStringName0<BoneConstraint3D, Int>("get_setting_count")
+
+    @JvmField
+    public val clearSettingName: MethodStringName0<BoneConstraint3D, Unit> =
+        MethodStringName0<BoneConstraint3D, Unit>("clear_setting")
+  }
 
   public object MethodBindings {
     internal val setAmountPtr: VoidPtr =

@@ -10,6 +10,8 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.MethodStringName0
+import godot.core.MethodStringName1
 import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -21,6 +23,7 @@ import kotlin.Float
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmField
 import kotlin.jvm.JvmName
 
 /**
@@ -121,7 +124,31 @@ public open class PanoramaSkyMaterial : Material() {
     throw NotImplementedError("PanoramaSkyMaterial::_getShaderMode can't be called from the JVM.")
   }
 
-  public companion object
+  public companion object {
+    @JvmField
+    public val setPanoramaName: MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Texture2D?>("set_panorama")
+
+    @JvmField
+    public val getPanoramaName: MethodStringName0<PanoramaSkyMaterial, Texture2D?> =
+        MethodStringName0<PanoramaSkyMaterial, Texture2D?>("get_panorama")
+
+    @JvmField
+    public val setFilteringEnabledName: MethodStringName1<PanoramaSkyMaterial, Unit, Boolean> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Boolean>("set_filtering_enabled")
+
+    @JvmField
+    public val isFilteringEnabledName: MethodStringName0<PanoramaSkyMaterial, Boolean> =
+        MethodStringName0<PanoramaSkyMaterial, Boolean>("is_filtering_enabled")
+
+    @JvmField
+    public val setEnergyMultiplierName: MethodStringName1<PanoramaSkyMaterial, Unit, Float> =
+        MethodStringName1<PanoramaSkyMaterial, Unit, Float>("set_energy_multiplier")
+
+    @JvmField
+    public val getEnergyMultiplierName: MethodStringName0<PanoramaSkyMaterial, Float> =
+        MethodStringName0<PanoramaSkyMaterial, Float>("get_energy_multiplier")
+  }
 
   public object MethodBindings {
     internal val setPanoramaPtr: VoidPtr =
