@@ -28,7 +28,7 @@ class ClassInheritanceChild : ClassInheritanceParent() {
     }
 
     @RegisterFunction
-    override fun _notification() = godotNotification {
+    override fun _notification() = godotNotification { it ->
         GD.print("Called ClassInheritanceChild::_notification on $this with $it")
         notificationCallBitFlag += notificationCallBitFlag or 2
     }

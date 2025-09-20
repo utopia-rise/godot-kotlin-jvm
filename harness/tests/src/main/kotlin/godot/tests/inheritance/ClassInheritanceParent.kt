@@ -49,7 +49,7 @@ open class ClassInheritanceParent : Node() {
     var notificationCallBitFlag = 0
 
     @RegisterFunction
-    override fun _notification(): GodotNotification = godotNotification {
+    override fun _notification() = godotNotification { it ->
         GD.print("Called ClassInheritanceParent::_notification on $this with $it")
         notificationCallBitFlag = notificationCallBitFlag or 1
         GD.print(notificationCallBitFlag)

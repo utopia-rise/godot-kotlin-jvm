@@ -6,19 +6,20 @@ import godot.api.Node;
 import godot.api.RenderingServer;
 import godot.annotation.*;
 import godot.core.*;
+import kotlin.Unit;
 import org.jetbrains.annotations.NotNull;
 
 @RegisterClass
 public class JavaTestClass extends Node {
-    //@RegisterSignal
-    //public Signal0 testSignal = Signal0.create(this, "test_signal");
-//
-    //@RegisterSignal(parameters = {"param1", "param2"})
-    //public Signal2<String, String> testSignal2 = Signal2.create(this, "test_signal_2");
+    @RegisterSignal
+    public Signal0 testSignal = Signal0.create(this, "test_signal");
+
+    @RegisterSignal(parameters = {"param1"})
+    public Signal1<String> testSignal1 = Signal1.create(this, "test_signal_2");
 
     // The following should NOT work as we cannot extract parameter names. The compiler checks should catch that and throw a build error
-//    @RegisterSignal
-//    public Signal testSignal3 = new Signal2<>(this, "name");
+    //@RegisterSignal
+    //public Signal testSignal3 = new Signal2<>(this, "name");
 
     @Export
     @RegisterProperty
@@ -96,22 +97,16 @@ public class JavaTestClass extends Node {
 
     @RegisterFunction
     public void connectAndTriggerSignal() {
-        //connect(
-        //        StringNames.asStringName("test_signal"),
-        //        new NativeCallable(this, StringNames.asStringName("signal_callback")),
-        //        (int) ConnectFlags.ONE_SHOT.getId()
-        //);
-        //emitSignal(StringNames.asStringName("test_signal"));
+        Callable1<Unit, String> callable = MethodCallable1.createUnsafe(this,  Node.setNameName);
+        testSignal1.connect(callable, ConnectFlags.ONE_SHOT);
+        testSignal1.emit("test");
     }
 
     @NotNull
     @Override
     public GodotNotification _notification() {
         return godotNotification(
-                this, (myself, notification) -> {
-                    System.out.println(notification);
-                    return null;
-                }
+                (JavaTestClass myself, int notification) -> System.out.println(notification)
         );
     }
 

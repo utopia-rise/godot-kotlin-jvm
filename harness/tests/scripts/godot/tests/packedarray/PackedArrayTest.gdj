@@ -25,9 +25,15 @@ functions = [
 	convert_long_array,
 	convert_float_array,
 	convert_double_array,
+	convert_vector2_array,
+	convert_vector3_array,
+	convert_vector4_array,
 	get_byte_array_value,
 	get_int_array_value,
 	get_long_array_value,
 	get_float_array_value,
-	get_double_array_value
+	get_double_array_value,
+	get_vector2_array_value,
+	get_vector3_array_value,
+	get_vector4_array_value
 ]

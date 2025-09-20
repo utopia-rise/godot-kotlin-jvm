@@ -14,8 +14,7 @@ supertypes = [
 	kotlin.Any
 ]
 signals = [
-    test_signal,
-	test_signal2
+    
 ]
 properties = [
     java_enum,
