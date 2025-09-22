@@ -287,7 +287,7 @@ class StringOnlyRule : GodotApiRule<EnrichedClassTask>(), BaseMethodeRule {
                     append(".asCachedNodePath()")
                 }
             }
-            if (method.isVararg && isNotEmpty()) append(",·")
+            if (method.isVararg && isNotEmpty()) append(",·*args")
         }
 
         addStatement("return·${method.name}($arguments)")
