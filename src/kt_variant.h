@@ -56,15 +56,14 @@ class VariantToBuffer {
         String str {src};
         const CharString& char_string {str.utf8()};
         set_variant_type(des, Variant::Type::STRING);
-        int size = char_string.size();
-        if (unlikely(size > LongStringQueue::max_string_size)) {
+        if (int size = char_string.size(); unlikely(size > LongStringQueue::max_string_size)) {
             des->increment_position(encode_uint32(true, des->get_cursor()));
             jni::Env env = jni::Jvm::current_env();
             LongStringQueue::get_instance().send_string_to_jvm(env, str);
         } else {
             des->increment_position(encode_uint32(false, des->get_cursor()));
             des->increment_position(encode_uint32(char_string.size(), des->get_cursor()));
-            if (likely(size > 0)) { des->increment_position(encode_cstring(char_string, des->get_cursor())); }
+            if (likely(size > 0)) { des->increment_position(encode_cstring(char_string.get_data(), des->get_cursor())); }
         }
     }
 

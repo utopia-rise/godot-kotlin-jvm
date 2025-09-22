@@ -183,7 +183,7 @@ void JvmScript::get_script_exported_property_list(List<PropertyInfo>* p_list) co
 }
 
 // Variant is of type Dictionary
-Variant JvmScript::get_rpc_config() const {
+const Variant JvmScript::get_rpc_config() const {
     if (is_valid()) { kotlin_class->get_rpc_config(); }
     return Dictionary();
 }

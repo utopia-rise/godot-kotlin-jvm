@@ -47,7 +47,7 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
-    Variant get_rpc_config() const override;
+    const Variant get_rpc_config() const override;
 
     _FORCE_INLINE_ static String get_script_file_name(const String& path) {
         return path.get_file().trim_suffix(path.get_extension()).trim_suffix(".");
@@ -82,6 +82,7 @@ protected:
 };
 
 class PathScript : public JvmScript {
+    GDSOFTCLASS(PathScript, JvmScript);
 public:
     PathScript() = default;
     ~PathScript() override = default;
@@ -89,6 +90,7 @@ public:
 };
 
 class NamedScript : public JvmScript {
+    GDSOFTCLASS(NamedScript, JvmScript);
 public:
     NamedScript() = default;
     ~NamedScript() override;
