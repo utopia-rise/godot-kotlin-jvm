@@ -15,10 +15,14 @@ bool TypeManager::java_engine_type_constructor_for_type_exists(const StringName&
 }
 
 const StringName& TypeManager::get_engine_type_for_index(int p_index) const {
+    static const StringName empty_name;
+    ERR_FAIL_INDEX_V(p_index, engine_type_names.size(), empty_name);
     return engine_type_names[p_index];
 }
 
 const String& TypeManager::get_engine_singleton_name_for_index(int p_index) const {
+    static const String empty_string;
+    ERR_FAIL_INDEX_V(p_index, engine_singleton_names.size(), empty_string);
     return engine_singleton_names[p_index];
 }
 
