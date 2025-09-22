@@ -47,6 +47,8 @@ public:
     void get_script_method_list(List<MethodInfo>* p_list) const override;
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
     void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
+    void get_constants(HashMap<StringName, Variant> *p_constants) override;
+    void get_members(HashSet<StringName> *p_members) override;
     const Variant get_rpc_config() const override;
 
     _FORCE_INLINE_ static String get_script_file_name(const String& path) {

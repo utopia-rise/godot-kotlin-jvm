@@ -182,6 +182,20 @@ void JvmScript::get_script_exported_property_list(List<PropertyInfo>* p_list) co
     }
 }
 
+void JvmScript::get_constants(HashMap<StringName, Variant> *p_constants) {}
+
+void JvmScript::get_members(HashSet<StringName> *p_members){
+#ifdef DEBUG_ENABLED
+    List<PropertyInfo> exported_properties;
+    get_script_exported_property_list(&exported_properties);
+    if (p_members) {
+        for (const PropertyInfo &E : exported_properties) {
+            p_members->insert(E.name);
+        }
+    }
+#endif // DEBUG_ENABLED
+}
+
 // Variant is of type Dictionary
 const Variant JvmScript::get_rpc_config() const {
     if (is_valid()) { kotlin_class->get_rpc_config(); }
