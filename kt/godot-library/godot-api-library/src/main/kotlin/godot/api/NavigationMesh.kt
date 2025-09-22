@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.StringName
@@ -460,7 +461,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun setSamplePartitionType(samplePartitionType: SamplePartitionType): Unit {
-    TransferContext.writeArguments(LONG to samplePartitionType.id)
+    TransferContext.writeArguments(LONG to samplePartitionType.value)
     TransferContext.callMethod(ptr, MethodBindings.setSamplePartitionTypePtr, NIL)
   }
 
@@ -471,7 +472,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun setParsedGeometryType(geometryType: ParsedGeometryType): Unit {
-    TransferContext.writeArguments(LONG to geometryType.id)
+    TransferContext.writeArguments(LONG to geometryType.value)
     TransferContext.callMethod(ptr, MethodBindings.setParsedGeometryTypePtr, NIL)
   }
 
@@ -512,7 +513,7 @@ public open class NavigationMesh : Resource() {
   }
 
   public final fun setSourceGeometryMode(mask: SourceGeometryMode): Unit {
-    TransferContext.writeArguments(LONG to mask.id)
+    TransferContext.writeArguments(LONG to mask.value)
     TransferContext.callMethod(ptr, MethodBindings.setSourceGeometryModePtr, NIL)
   }
 
@@ -815,8 +816,8 @@ public open class NavigationMesh : Resource() {
   public final fun setSourceGroupName(mask: String) = setSourceGroupName(mask.asCachedStringName())
 
   public enum class SamplePartitionType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Watershed partitioning. Generally the best choice if you precompute the navigation mesh, use
      * this if you have large open areas.
@@ -837,19 +838,19 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SamplePartitionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SamplePartitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParsedGeometryType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Parses mesh instances as geometry. This includes [MeshInstance3D], [CSGShape3D], and
      * [GridMap] nodes.
@@ -870,19 +871,19 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParsedGeometryType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParsedGeometryType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SourceGeometryMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Scans the child nodes of the root node recursively for geometry.
      */
@@ -902,13 +903,13 @@ public open class NavigationMesh : Resource() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SourceGeometryMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SourceGeometryMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
@@ -60,7 +61,7 @@ public open class Thread : RefCounted() {
    */
   @JvmOverloads
   public final fun start(callable: Callable, priority: Priority = Thread.Priority.NORMAL): Error {
-    TransferContext.writeArguments(CALLABLE to callable, LONG to priority.id)
+    TransferContext.writeArguments(CALLABLE to callable, LONG to priority.value)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -115,8 +116,8 @@ public open class Thread : RefCounted() {
   }
 
   public enum class Priority(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * A thread running with lower priority than normally.
      */
@@ -131,13 +132,13 @@ public open class Thread : RefCounted() {
     HIGH(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Priority = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Priority = entries.single { it.`value` == `value` }
     }
   }
 

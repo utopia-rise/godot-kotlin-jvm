@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.VariantParser.COLOR
@@ -249,7 +250,7 @@ public open class Gradient : Resource() {
   }
 
   public final fun setInterpolationMode(interpolationMode: InterpolationMode): Unit {
-    TransferContext.writeArguments(LONG to interpolationMode.id)
+    TransferContext.writeArguments(LONG to interpolationMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setInterpolationModePtr, NIL)
   }
 
@@ -260,7 +261,7 @@ public open class Gradient : Resource() {
   }
 
   public final fun setInterpolationColorSpace(interpolationColorSpace: ColorSpace): Unit {
-    TransferContext.writeArguments(LONG to interpolationColorSpace.id)
+    TransferContext.writeArguments(LONG to interpolationColorSpace.value)
     TransferContext.callMethod(ptr, MethodBindings.setInterpolationColorSpacePtr, NIL)
   }
 
@@ -271,8 +272,8 @@ public open class Gradient : Resource() {
   }
 
   public enum class InterpolationMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Linear interpolation.
      */
@@ -288,19 +289,19 @@ public open class Gradient : Resource() {
     GRADIENT_INTERPOLATE_CUBIC(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InterpolationMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InterpolationMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ColorSpace(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * sRGB color space.
      */
@@ -316,13 +317,13 @@ public open class Gradient : Resource() {
     GRADIENT_OKLAB(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ColorSpace = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ColorSpace = entries.single { it.`value` == `value` }
     }
   }
 

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -86,7 +87,7 @@ public open class CurveTexture : Texture2D() {
   }
 
   public final fun setTextureMode(textureMode: TextureMode): Unit {
-    TransferContext.writeArguments(LONG to textureMode.id)
+    TransferContext.writeArguments(LONG to textureMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureModePtr, NIL)
   }
 
@@ -111,8 +112,8 @@ public open class CurveTexture : Texture2D() {
   }
 
   public enum class TextureMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Store the curve equally across the red, green and blue channels. This uses more video memory,
      * but is more compatible with shaders that only read the green and blue values.
@@ -125,13 +126,13 @@ public open class CurveTexture : Texture2D() {
     RED(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureMode = entries.single { it.`value` == `value` }
     }
   }
 

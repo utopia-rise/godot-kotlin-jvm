@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.Rect2
 import godot.core.Signal0
@@ -908,7 +909,7 @@ public open class GraphEdit : Control() {
   }
 
   public final fun setPanningScheme(scheme: PanningScheme): Unit {
-    TransferContext.writeArguments(LONG to scheme.id)
+    TransferContext.writeArguments(LONG to scheme.value)
     TransferContext.callMethod(ptr, MethodBindings.setPanningSchemePtr, NIL)
   }
 
@@ -974,7 +975,7 @@ public open class GraphEdit : Control() {
   }
 
   public final fun setGridPattern(pattern: GridPattern): Unit {
-    TransferContext.writeArguments(LONG to pattern.id)
+    TransferContext.writeArguments(LONG to pattern.value)
     TransferContext.callMethod(ptr, MethodBindings.setGridPatternPtr, NIL)
   }
 
@@ -1265,8 +1266,8 @@ public open class GraphEdit : Control() {
       getAttachedNodesOfFrame(frame.asCachedStringName())
 
   public enum class PanningScheme(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * [kbd]Mouse Wheel[/kbd] will zoom, [kbd]Ctrl + Mouse Wheel[/kbd] will move the view.
      */
@@ -1277,19 +1278,19 @@ public open class GraphEdit : Control() {
     SCROLL_PANS(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PanningScheme = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PanningScheme = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class GridPattern(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Draw the grid using solid lines.
      */
@@ -1300,13 +1301,13 @@ public open class GraphEdit : Control() {
     DOTS(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): GridPattern = entries.single { it.id == `value` }
+      public fun from(`value`: Long): GridPattern = entries.single { it.`value` == `value` }
     }
   }
 

@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Signal0
 import godot.core.Signal1
@@ -575,7 +576,7 @@ public open class Tween : RefCounted() {
    * Default value is [TWEEN_PROCESS_IDLE].
    */
   public final fun setProcessMode(mode: TweenProcessMode): Tween? {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProcessModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -587,7 +588,7 @@ public open class Tween : RefCounted() {
    * Default value is [TWEEN_PAUSE_BOUND].
    */
   public final fun setPauseMode(mode: TweenPauseMode): Tween? {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setPauseModePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -678,7 +679,7 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun setTrans(trans: TransitionType): Tween? {
-    TransferContext.writeArguments(LONG to trans.id)
+    TransferContext.writeArguments(LONG to trans.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -697,7 +698,7 @@ public open class Tween : RefCounted() {
    * ```
    */
   public final fun setEase(ease: EaseType): Tween? {
-    TransferContext.writeArguments(LONG to ease.id)
+    TransferContext.writeArguments(LONG to ease.value)
     TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Tween?)
   }
@@ -812,8 +813,8 @@ public open class Tween : RefCounted() {
   ): PropertyTweener? = tweenProperty(`object`, property.asCachedNodePath(), finalVal, duration)
 
   public enum class TweenProcessMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The [Tween] updates after each physics frame (see [Node.PhysicsProcess]).
      */
@@ -824,19 +825,19 @@ public open class Tween : RefCounted() {
     IDLE(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TweenProcessMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TweenProcessMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TweenPauseMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If the [Tween] has a bound node, it will process when that node can process (see
      * [Node.processMode]). Otherwise it's the same as [TWEEN_PAUSE_STOP].
@@ -852,19 +853,19 @@ public open class Tween : RefCounted() {
     PROCESS(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TweenPauseMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TweenPauseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TransitionType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The animation is interpolated linearly.
      */
@@ -915,19 +916,19 @@ public open class Tween : RefCounted() {
     SPRING(11),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TransitionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TransitionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EaseType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The interpolation starts slowly and speeds up towards the end.
      */
@@ -946,13 +947,13 @@ public open class Tween : RefCounted() {
     OUT_IN(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EaseType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EaseType = entries.single { it.`value` == `value` }
     }
   }
 
@@ -986,7 +987,7 @@ public open class Tween : RefCounted() {
       transType: TransitionType,
       easeType: EaseType,
     ): Any? {
-      TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+      TransferContext.writeArguments(ANY to initialValue, ANY to deltaValue, DOUBLE to elapsedTime, DOUBLE to duration, LONG to transType.value, LONG to easeType.value)
       TransferContext.callMethod(0, MethodBindings.interpolateValuePtr, ANY)
       return (TransferContext.readReturnValue(ANY) as Any?)
     }

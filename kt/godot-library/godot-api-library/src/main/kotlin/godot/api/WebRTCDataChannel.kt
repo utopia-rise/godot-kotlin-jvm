@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -67,7 +68,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   public final fun setWriteMode(writeMode: WriteMode): Unit {
-    TransferContext.writeArguments(LONG to writeMode.id)
+    TransferContext.writeArguments(LONG to writeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setWriteModePtr, NIL)
   }
 
@@ -167,8 +168,8 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   public enum class WriteMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Tells the channel to send data over this channel as text. An external peer (non-Godot) would
      * receive this as a string.
@@ -181,19 +182,19 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     BINARY(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WriteMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WriteMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ChannelState(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The channel was created, but it's still trying to connect.
      */
@@ -213,13 +214,13 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     STATE_CLOSED(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ChannelState = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ChannelState = entries.single { it.`value` == `value` }
     }
   }
 

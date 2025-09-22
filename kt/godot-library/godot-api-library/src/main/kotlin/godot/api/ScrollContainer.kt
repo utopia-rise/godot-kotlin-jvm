@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -223,7 +224,7 @@ public open class ScrollContainer : Container() {
   }
 
   public final fun setHorizontalScrollMode(enable: ScrollMode): Unit {
-    TransferContext.writeArguments(LONG to enable.id)
+    TransferContext.writeArguments(LONG to enable.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalScrollModePtr, NIL)
   }
 
@@ -234,7 +235,7 @@ public open class ScrollContainer : Container() {
   }
 
   public final fun setVerticalScrollMode(enable: ScrollMode): Unit {
-    TransferContext.writeArguments(LONG to enable.id)
+    TransferContext.writeArguments(LONG to enable.value)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalScrollModePtr, NIL)
   }
 
@@ -321,8 +322,8 @@ public open class ScrollContainer : Container() {
   }
 
   public enum class ScrollMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Scrolling disabled, scrollbar will be invisible.
      */
@@ -348,13 +349,13 @@ public open class ScrollContainer : Container() {
     RESERVE(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ScrollMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScrollMode = entries.single { it.`value` == `value` }
     }
   }
 

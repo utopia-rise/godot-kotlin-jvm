@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Transform2D
 import godot.core.VariantArray
@@ -183,7 +184,7 @@ public open class CameraFeed : RefCounted() {
    * Sets the position of this camera.
    */
   public final fun setPosition(position: FeedPosition): Unit {
-    TransferContext.writeArguments(LONG to position.id)
+    TransferContext.writeArguments(LONG to position.value)
     TransferContext.callMethod(ptr, MethodBindings.setPositionPtr, NIL)
   }
 
@@ -227,7 +228,7 @@ public open class CameraFeed : RefCounted() {
    * texture to write data).
    */
   public final fun getTextureTexId(feedImageType: CameraServer.FeedImage): Long {
-    TransferContext.writeArguments(LONG to feedImageType.id)
+    TransferContext.writeArguments(LONG to feedImageType.value)
     TransferContext.callMethod(ptr, MethodBindings.getTextureTexIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -265,8 +266,8 @@ public open class CameraFeed : RefCounted() {
   }
 
   public enum class FeedDataType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No image set for the feed.
      */
@@ -289,19 +290,19 @@ public open class CameraFeed : RefCounted() {
     EXTERNAL(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FeedDataType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedDataType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FeedPosition(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Unspecified position.
      */
@@ -316,13 +317,13 @@ public open class CameraFeed : RefCounted() {
     BACK(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FeedPosition = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FeedPosition = entries.single { it.`value` == `value` }
     }
   }
 

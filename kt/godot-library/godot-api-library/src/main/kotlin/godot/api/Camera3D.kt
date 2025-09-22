@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Plane
 import godot.core.Projection
 import godot.core.RID
@@ -522,7 +523,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setProjection(mode: ProjectionType): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setProjectionPtr, NIL)
   }
 
@@ -593,7 +594,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setKeepAspectMode(mode: KeepAspect): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setKeepAspectModePtr, NIL)
   }
 
@@ -604,7 +605,7 @@ public open class Camera3D : Node3D() {
   }
 
   public final fun setDopplerTracking(mode: DopplerTracking): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDopplerTrackingPtr, NIL)
   }
 
@@ -675,8 +676,8 @@ public open class Camera3D : Node3D() {
   }
 
   public enum class ProjectionType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Perspective projection. Objects on the screen becomes smaller when they are far away.
      */
@@ -693,19 +694,19 @@ public open class Camera3D : Node3D() {
     FRUSTUM(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ProjectionType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ProjectionType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class KeepAspect(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Preserves the horizontal aspect ratio; also known as Vert- scaling. This is usually the best
      * option for projects running in portrait mode, as taller aspect ratios will benefit from a wider
@@ -720,19 +721,19 @@ public open class Camera3D : Node3D() {
     HEIGHT(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): KeepAspect = entries.single { it.id == `value` }
+      public fun from(`value`: Long): KeepAspect = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class DopplerTracking(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
      * (default).
@@ -754,13 +755,13 @@ public open class Camera3D : Node3D() {
     PHYSICS_STEP(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DopplerTracking = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }
     }
   }
 

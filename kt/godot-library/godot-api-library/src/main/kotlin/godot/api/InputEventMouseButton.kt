@@ -108,7 +108,7 @@ public open class InputEventMouseButton : InputEventMouse() {
   }
 
   public final fun setButtonIndex(buttonIndex: MouseButton): Unit {
-    TransferContext.writeArguments(LONG to buttonIndex.id)
+    TransferContext.writeArguments(LONG to buttonIndex.value)
     TransferContext.callMethod(ptr, MethodBindings.setButtonIndexPtr, NIL)
   }
 

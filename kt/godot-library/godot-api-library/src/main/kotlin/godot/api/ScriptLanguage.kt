@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.core.GodotEnum
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -19,21 +20,21 @@ public open class ScriptLanguage internal constructor() : Object() {
   }
 
   public enum class ScriptNameCasing(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     AUTO(0),
     PASCAL_CASE(1),
     SNAKE_CASE(2),
     KEBAB_CASE(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ScriptNameCasing = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScriptNameCasing = entries.single { it.`value` == `value` }
     }
   }
 

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.Signal0
 import godot.core.Signal3
@@ -668,8 +669,8 @@ public object AudioServer : Object() {
       setBusSend(busIdx, send.asCachedStringName())
 
   public enum class SpeakerMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Two or fewer speakers were detected.
      */
@@ -688,19 +689,19 @@ public object AudioServer : Object() {
     SURROUND_71(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpeakerMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpeakerMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class PlaybackType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The playback will be considered of the type declared at
      * [ProjectSettings.audio/general/defaultPlaybackType].
@@ -725,13 +726,13 @@ public object AudioServer : Object() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): PlaybackType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): PlaybackType = entries.single { it.`value` == `value` }
     }
   }
 

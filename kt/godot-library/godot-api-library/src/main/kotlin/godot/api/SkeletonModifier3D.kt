@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
@@ -115,8 +116,8 @@ public open class SkeletonModifier3D : Node3D() {
   }
 
   public enum class BoneAxis(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Enumerated value for the +X axis.
      */
@@ -143,13 +144,13 @@ public open class SkeletonModifier3D : Node3D() {
     MINUS_Z(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BoneAxis = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BoneAxis = entries.single { it.`value` == `value` }
     }
   }
 

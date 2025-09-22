@@ -194,7 +194,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun setCullMode(pMember: RenderingDevice.PolygonCullMode): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
   }
 
@@ -205,7 +205,7 @@ public open class RDPipelineRasterizationState : RefCounted() {
   }
 
   public final fun setFrontFace(pMember: RenderingDevice.PolygonFrontFace): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setFrontFacePtr, NIL)
   }
 

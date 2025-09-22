@@ -75,7 +75,7 @@ public open class RenderSceneBuffersRD : RenderSceneBuffers() {
     unique: Boolean,
     discardable: Boolean,
   ): RID {
-    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.id, LONG to usageBits, LONG to textureSamples.id, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique, BOOL to discardable)
+    TransferContext.writeArguments(STRING_NAME to context, STRING_NAME to name, LONG to dataFormat.value, LONG to usageBits, LONG to textureSamples.value, VECTOR2I to size, LONG to layers, LONG to mipmaps, BOOL to unique, BOOL to discardable)
     TransferContext.callMethod(ptr, MethodBindings.createTexturePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }

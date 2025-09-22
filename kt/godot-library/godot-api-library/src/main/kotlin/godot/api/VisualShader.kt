@@ -14,6 +14,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.StringName
 import godot.core.VariantArray
@@ -91,7 +92,7 @@ public open class VisualShader : Shader() {
    * Sets the mode of this shader.
    */
   public final fun setMode(mode: Shader.Mode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setModePtr, NIL)
   }
 
@@ -104,7 +105,7 @@ public open class VisualShader : Shader() {
     position: Vector2,
     id: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
+    TransferContext.writeArguments(LONG to type.value, OBJECT to node, VECTOR2 to position, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addNodePtr, NIL)
   }
 
@@ -112,7 +113,7 @@ public open class VisualShader : Shader() {
    * Returns the shader node instance with specified [type] and [id].
    */
   public final fun getNode(type: Type, id: Int): VisualShaderNode? {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getNodePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as VisualShaderNode?)
   }
@@ -125,7 +126,7 @@ public open class VisualShader : Shader() {
     id: Int,
     position: Vector2,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), VECTOR2 to position)
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), VECTOR2 to position)
     TransferContext.callMethod(ptr, MethodBindings.setNodePositionPtr, NIL)
   }
 
@@ -133,7 +134,7 @@ public open class VisualShader : Shader() {
    * Returns the position of the specified node within the shader graph.
    */
   public final fun getNodePosition(type: Type, id: Int): Vector2 {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getNodePositionPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -142,7 +143,7 @@ public open class VisualShader : Shader() {
    * Returns the list of all nodes in the shader with the specified type.
    */
   public final fun getNodeList(type: Type): PackedInt32Array {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getNodeListPtr, PACKED_INT_32_ARRAY)
     return (TransferContext.readReturnValue(PACKED_INT_32_ARRAY) as PackedInt32Array)
   }
@@ -151,7 +152,7 @@ public open class VisualShader : Shader() {
    * Returns next valid node ID that can be added to the shader graph.
    */
   public final fun getValidNodeId(type: Type): Int {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getValidNodeIdPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -160,7 +161,7 @@ public open class VisualShader : Shader() {
    * Removes the specified node from the shader.
    */
   public final fun removeNode(type: Type, id: Int): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.removeNodePtr, NIL)
   }
 
@@ -172,7 +173,7 @@ public open class VisualShader : Shader() {
     id: Int,
     newClass: StringName,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), STRING_NAME to newClass)
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), STRING_NAME to newClass)
     TransferContext.callMethod(ptr, MethodBindings.replaceNodePtr, NIL)
   }
 
@@ -186,7 +187,7 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.isNodeConnectionPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -201,7 +202,7 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Boolean {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.canConnectNodesPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -216,7 +217,7 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Error {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.connectNodesPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -231,7 +232,7 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.disconnectNodesPtr, NIL)
   }
 
@@ -246,7 +247,7 @@ public open class VisualShader : Shader() {
     toNode: Int,
     toPort: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to fromNode.toLong(), LONG to fromPort.toLong(), LONG to toNode.toLong(), LONG to toPort.toLong())
     TransferContext.callMethod(ptr, MethodBindings.connectNodesForcedPtr, NIL)
   }
 
@@ -254,7 +255,7 @@ public open class VisualShader : Shader() {
    * Returns the list of connected nodes with the specified type.
    */
   public final fun getNodeConnections(type: Type): VariantArray<Dictionary<Any?, Any?>> {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.getNodeConnectionsPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
@@ -278,7 +279,7 @@ public open class VisualShader : Shader() {
     id: Int,
     frame: Int,
   ): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong(), LONG to frame.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong(), LONG to frame.toLong())
     TransferContext.callMethod(ptr, MethodBindings.attachNodeToFramePtr, NIL)
   }
 
@@ -286,7 +287,7 @@ public open class VisualShader : Shader() {
    * Detaches the given node from the frame it is attached to.
    */
   public final fun detachNodeFromFrame(type: Type, id: Int): Unit {
-    TransferContext.writeArguments(LONG to type.id, LONG to id.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to id.toLong())
     TransferContext.callMethod(ptr, MethodBindings.detachNodeFromFramePtr, NIL)
   }
 
@@ -298,7 +299,7 @@ public open class VisualShader : Shader() {
     mode: VaryingMode,
     type: VaryingType,
   ): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to mode.id, LONG to type.id)
+    TransferContext.writeArguments(STRING to name, LONG to mode.value, LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.addVaryingPtr, NIL)
   }
 
@@ -330,8 +331,8 @@ public open class VisualShader : Shader() {
   ) = replaceNode(type, id, newClass.asCachedStringName())
 
   public enum class Type(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * A vertex shader, operating on vertices.
      */
@@ -378,19 +379,19 @@ public open class VisualShader : Shader() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Type = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Type = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VaryingMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Varying is passed from `Vertex` function to `Fragment` and `Light` functions.
      */
@@ -405,19 +406,19 @@ public open class VisualShader : Shader() {
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VaryingMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VaryingMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VaryingType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Varying is of type [float].
      */
@@ -456,13 +457,13 @@ public open class VisualShader : Shader() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VaryingType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VaryingType = entries.single { it.`value` == `value` }
     }
   }
 

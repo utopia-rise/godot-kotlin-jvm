@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -162,7 +163,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun setResolution(resolution: Resolution): Unit {
-    TransferContext.writeArguments(LONG to resolution.id)
+    TransferContext.writeArguments(LONG to resolution.value)
     TransferContext.callMethod(ptr, MethodBindings.setResolutionPtr, NIL)
   }
 
@@ -173,7 +174,7 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public final fun setUpdateMode(updateMode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to updateMode.id)
+    TransferContext.writeArguments(LONG to updateMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
@@ -225,8 +226,8 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
   }
 
   public enum class Resolution(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Generate a 256×256 heightmap. Intended for small-scale scenes, or larger scenes with no
      * distant particles.
@@ -259,19 +260,19 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     MAX(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Resolution = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Resolution = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Only update the heightmap when the [GPUParticlesCollisionHeightField3D] node is moved, or
      * when the camera moves if [followCameraEnabled] is `true`. An update can be forced by slightly
@@ -287,13 +288,13 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
     ALWAYS(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 

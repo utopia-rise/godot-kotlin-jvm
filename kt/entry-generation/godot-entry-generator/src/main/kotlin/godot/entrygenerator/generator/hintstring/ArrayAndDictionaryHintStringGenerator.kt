@@ -107,7 +107,7 @@ class ArrayAndDictionaryHintStringGenerator(
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
-                            "/${PropertyHint.NODE_TYPE.id}:$className"
+                            "/${PropertyHint.NODE_TYPE.value}:$className"
                         } else {
                             ""
                         }
@@ -123,7 +123,7 @@ class ArrayAndDictionaryHintStringGenerator(
                             ?: currentElementType.baseGodotType()?.fqName?.substringAfterLast(".")
 
                         val subTypeString = if (className != null) {
-                            "/${PropertyHint.RESOURCE_TYPE.id}:$className"
+                            "/${PropertyHint.RESOURCE_TYPE.value}:$className"
                         } else {
                             ""
                         }

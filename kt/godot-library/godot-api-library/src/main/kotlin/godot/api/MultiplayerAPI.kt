@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Signal0
 import godot.core.Signal1
@@ -247,8 +248,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
   ): Error = rpc(peer, `object`, method.asCachedStringName(), arguments)
 
   public enum class RPCMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Used with [Node.rpcConfig] to disable a method or property for all RPC calls, making it
      * unavailable. Default for all methods.
@@ -268,13 +269,13 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     AUTHORITY(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): RPCMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): RPCMode = entries.single { it.`value` == `value` }
     }
   }
 

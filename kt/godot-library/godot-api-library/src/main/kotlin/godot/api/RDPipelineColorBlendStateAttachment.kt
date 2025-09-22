@@ -250,7 +250,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setSrcColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setSrcColorBlendFactorPtr, NIL)
   }
 
@@ -261,7 +261,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setDstColorBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setDstColorBlendFactorPtr, NIL)
   }
 
@@ -272,7 +272,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setColorBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setColorBlendOpPtr, NIL)
   }
 
@@ -283,7 +283,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setSrcAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setSrcAlphaBlendFactorPtr, NIL)
   }
 
@@ -294,7 +294,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setDstAlphaBlendFactor(pMember: RenderingDevice.BlendFactor): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setDstAlphaBlendFactorPtr, NIL)
   }
 
@@ -305,7 +305,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
   }
 
   public final fun setAlphaBlendOp(pMember: RenderingDevice.BlendOperation): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaBlendOpPtr, NIL)
   }
 

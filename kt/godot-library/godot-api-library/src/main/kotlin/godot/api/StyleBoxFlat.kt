@@ -548,7 +548,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Sets the specified [Side]'s border width to [width] pixels.
    */
   public final fun setBorderWidth(margin: Side, width: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to width.toLong())
+    TransferContext.writeArguments(LONG to margin.value, LONG to width.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setBorderWidthPtr, NIL)
   }
 
@@ -556,7 +556,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Returns the specified [Side]'s border width.
    */
   public final fun getBorderWidth(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getBorderWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -585,7 +585,7 @@ public open class StyleBoxFlat : StyleBox() {
    * values.
    */
   public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
-    TransferContext.writeArguments(LONG to corner.id, LONG to radius.toLong())
+    TransferContext.writeArguments(LONG to corner.value, LONG to radius.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setCornerRadiusPtr, NIL)
   }
 
@@ -593,7 +593,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Returns the given [corner]'s radius. See [Corner] for possible values.
    */
   public final fun getCornerRadius(corner: Corner): Int {
-    TransferContext.writeArguments(LONG to corner.id)
+    TransferContext.writeArguments(LONG to corner.value)
     TransferContext.callMethod(ptr, MethodBindings.getCornerRadiusPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -602,7 +602,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Sets the expand margin to [size] pixels for the specified [Side].
    */
   public final fun setExpandMargin(margin: Side, size: Float): Unit {
-    TransferContext.writeArguments(LONG to margin.id, DOUBLE to size.toDouble())
+    TransferContext.writeArguments(LONG to margin.value, DOUBLE to size.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setExpandMarginPtr, NIL)
   }
 
@@ -618,7 +618,7 @@ public open class StyleBoxFlat : StyleBox() {
    * Returns the size of the specified [Side]'s expand margin.
    */
   public final fun getExpandMargin(margin: Side): Float {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getExpandMarginPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }

@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import kotlin.Boolean
@@ -53,8 +54,8 @@ public open class GDExtension : Resource() {
   }
 
   public enum class InitializationLevel(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The library is initialized at the same time as the core features of the engine.
      */
@@ -75,13 +76,13 @@ public open class GDExtension : Resource() {
     EDITOR(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InitializationLevel = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InitializationLevel = entries.single { it.`value` == `value` }
     }
   }
 

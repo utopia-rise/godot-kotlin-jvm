@@ -61,7 +61,7 @@ abstract class KtFunction<T : KtObject, R : Any?>(
 class KtFunction0<T : KtObject, R : Any?>(
     functionInfo: KtFunctionInfo,
     private val function: (T) -> R,
-    variantType: VariantConverter
+    variantType: VariantConverter,
 ) : KtFunction<T, R>(functionInfo, 0, variantType) {
     override fun invokeKt(instance: T) = function(instance)
 }

@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.DOUBLE
@@ -376,7 +377,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun setAmbientMode(ambient: AmbientMode): Unit {
-    TransferContext.writeArguments(LONG to ambient.id)
+    TransferContext.writeArguments(LONG to ambient.value)
     TransferContext.callMethod(ptr, MethodBindings.setAmbientModePtr, NIL)
   }
 
@@ -508,7 +509,7 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public final fun setUpdateMode(mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setUpdateModePtr, NIL)
   }
 
@@ -519,8 +520,8 @@ public open class ReflectionProbe : VisualInstance3D() {
   }
 
   public enum class UpdateMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Update the probe once on the next frame (recommended for most objects). The corresponding
      * radiance map will be generated over the following six frames. This takes more time to update
@@ -539,19 +540,19 @@ public open class ReflectionProbe : VisualInstance3D() {
     ALWAYS(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AmbientMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Do not apply any ambient lighting inside the [ReflectionProbe]'s box defined by its [size].
      */
@@ -568,13 +569,13 @@ public open class ReflectionProbe : VisualInstance3D() {
     COLOR(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AmbientMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AmbientMode = entries.single { it.`value` == `value` }
     }
   }
 

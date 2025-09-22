@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.JoyAxis
 import godot.core.JoyButton
 import godot.core.Key
@@ -154,7 +155,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isKeyPressed(keycode: Key): Boolean {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.isKeyPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -175,7 +176,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isPhysicalKeyPressed(keycode: Key): Boolean {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.isPhysicalKeyPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -186,7 +187,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isKeyLabelPressed(keycode: Key): Boolean {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.isKeyLabelPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -196,7 +197,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isMouseButtonPressed(button: MouseButton): Boolean {
-    TransferContext.writeArguments(LONG to button.id)
+    TransferContext.writeArguments(LONG to button.value)
     TransferContext.callMethod(ptr, MethodBindings.isMouseButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -206,7 +207,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
-    TransferContext.writeArguments(LONG to device.toLong(), LONG to button.id)
+    TransferContext.writeArguments(LONG to device.toLong(), LONG to button.value)
     TransferContext.callMethod(ptr, MethodBindings.isJoyButtonPressedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -390,7 +391,7 @@ public object Input : Object() {
    */
   @JvmStatic
   public final fun getJoyAxis(device: Int, axis: JoyAxis): Float {
-    TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.id)
+    TransferContext.writeArguments(LONG to device.toLong(), LONG to axis.value)
     TransferContext.callMethod(ptr, MethodBindings.getJoyAxisPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -721,7 +722,7 @@ public object Input : Object() {
 
   @JvmStatic
   public final fun setMouseMode(mode: MouseMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setMouseModePtr, NIL)
   }
 
@@ -785,7 +786,7 @@ public object Input : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun setDefaultCursorShape(shape: CursorShape = Input.CursorShape.ARROW): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setDefaultCursorShapePtr, NIL)
   }
 
@@ -827,7 +828,7 @@ public object Input : Object() {
     shape: CursorShape = Input.CursorShape.ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to shape.id, VECTOR2 to hotspot)
+    TransferContext.writeArguments(OBJECT to image, LONG to shape.value, VECTOR2 to hotspot)
     TransferContext.callMethod(ptr, MethodBindings.setCustomMouseCursorPtr, NIL)
   }
 
@@ -1056,8 +1057,8 @@ public object Input : Object() {
   public final fun actionRelease(action: String) = actionRelease(action.asCachedStringName())
 
   public enum class MouseMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
@@ -1088,19 +1089,19 @@ public object Input : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MouseMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CursorShape(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Arrow cursor. Standard, default pointing cursor.
      */
@@ -1187,13 +1188,13 @@ public object Input : Object() {
     HELP(16),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }
     }
   }
 

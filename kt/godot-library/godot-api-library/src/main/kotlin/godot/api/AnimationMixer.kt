@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -387,7 +388,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun setCallbackModeProcess(mode: AnimationCallbackModeProcess): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCallbackModeProcessPtr, NIL)
   }
 
@@ -398,7 +399,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun setCallbackModeMethod(mode: AnimationCallbackModeMethod): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCallbackModeMethodPtr, NIL)
   }
 
@@ -409,7 +410,7 @@ public open class AnimationMixer internal constructor() : Node() {
   }
 
   public final fun setCallbackModeDiscrete(mode: AnimationCallbackModeDiscrete): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCallbackModeDiscretePtr, NIL)
   }
 
@@ -709,7 +710,7 @@ public open class AnimationMixer internal constructor() : Node() {
     transType: Tween.TransitionType = Tween.TransitionType.LINEAR,
     easeType: Tween.EaseType = Tween.EaseType.IN,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.id, LONG to easeType.id)
+    TransferContext.writeArguments(STRING_NAME to name, DOUBLE to duration, LONG to transType.value, LONG to easeType.value)
     TransferContext.callMethod(ptr, MethodBindings.capturePtr, NIL)
   }
 
@@ -821,8 +822,8 @@ public open class AnimationMixer internal constructor() : Node() {
   ) = capture(name.asCachedStringName(), duration, transType, easeType)
 
   public enum class AnimationCallbackModeProcess(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Process animation during physics frames (see [Node.NOTIFICATION_INTERNAL_PHYSICS_PROCESS]).
      * This is especially useful when animating physics bodies.
@@ -838,20 +839,20 @@ public open class AnimationMixer internal constructor() : Node() {
     MANUAL(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeProcess =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AnimationCallbackModeMethod(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Batch method calls during the animation process, then do the calls after events are
      * processed. This avoids bugs involving deleting nodes or modifying the AnimationPlayer while
@@ -864,20 +865,20 @@ public open class AnimationMixer internal constructor() : Node() {
     IMMEDIATE(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeMethod =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AnimationCallbackModeDiscrete(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * An [Animation.UPDATE_DISCRETE] track value takes precedence when blending
      * [Animation.UPDATE_CONTINUOUS] or [Animation.UPDATE_CAPTURE] track values and
@@ -930,14 +931,14 @@ public open class AnimationMixer internal constructor() : Node() {
     FORCE_CONTINUOUS(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): AnimationCallbackModeDiscrete =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 

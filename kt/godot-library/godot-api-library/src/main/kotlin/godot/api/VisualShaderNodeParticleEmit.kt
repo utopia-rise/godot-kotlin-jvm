@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -41,7 +42,7 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public final fun setFlags(flags: EmitFlags): Unit {
-    TransferContext.writeArguments(LONG to flags.id)
+    TransferContext.writeArguments(LONG to flags.value)
     TransferContext.callMethod(ptr, MethodBindings.setFlagsPtr, NIL)
   }
 
@@ -52,8 +53,8 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
   }
 
   public enum class EmitFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If enabled, the particle starts with the position defined by this node.
      */
@@ -76,13 +77,13 @@ public open class VisualShaderNodeParticleEmit : VisualShaderNode() {
     CUSTOM(16),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EmitFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmitFlags = entries.single { it.`value` == `value` }
     }
   }
 

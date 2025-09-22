@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.RID
 import godot.core.Signal0
@@ -297,7 +298,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   public final fun setDisableMode(mode: DisableMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setDisableModePtr, NIL)
   }
 
@@ -487,8 +488,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
   }
 
   public enum class DisableMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * When [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED], remove from the physics
      * simulation to stop all physics interactions with this [CollisionObject2D].
@@ -511,13 +512,13 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     KEEP_ACTIVE(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DisableMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DisableMode = entries.single { it.`value` == `value` }
     }
   }
 

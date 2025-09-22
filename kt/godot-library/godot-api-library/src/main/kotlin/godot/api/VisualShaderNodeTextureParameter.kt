@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -85,7 +86,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public final fun setTextureType(type: TextureType): Unit {
-    TransferContext.writeArguments(LONG to type.id)
+    TransferContext.writeArguments(LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureTypePtr, NIL)
   }
 
@@ -96,7 +97,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public final fun setColorDefault(color: ColorDefault): Unit {
-    TransferContext.writeArguments(LONG to color.id)
+    TransferContext.writeArguments(LONG to color.value)
     TransferContext.callMethod(ptr, MethodBindings.setColorDefaultPtr, NIL)
   }
 
@@ -107,7 +108,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public final fun setTextureFilter(filter: TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to filter.id)
+    TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
@@ -118,7 +119,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public final fun setTextureRepeat(repeat: TextureRepeat): Unit {
-    TransferContext.writeArguments(LONG to repeat.id)
+    TransferContext.writeArguments(LONG to repeat.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureRepeatPtr, NIL)
   }
 
@@ -129,7 +130,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public final fun setTextureSource(source: TextureSource): Unit {
-    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.writeArguments(LONG to source.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureSourcePtr, NIL)
   }
 
@@ -140,8 +141,8 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
   }
 
   public enum class TextureType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No hints are added to the uniform declaration.
      */
@@ -165,19 +166,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     TYPE_MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ColorDefault(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Defaults to fully opaque white color.
      */
@@ -196,19 +197,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ColorDefault = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ColorDefault = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureFilter(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Sample the texture using the filter determined by the node this shader is attached to.
      */
@@ -277,19 +278,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     FILTER_MAX(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureFilter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureFilter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureRepeat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Sample the texture using the repeat mode determined by the node this shader is attached to.
      */
@@ -308,19 +309,19 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     REPEAT_MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureRepeat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureRepeat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TextureSource(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The texture source is not specified in the shader.
      */
@@ -343,13 +344,13 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     SOURCE_MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TextureSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TextureSource = entries.single { it.`value` == `value` }
     }
   }
 

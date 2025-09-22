@@ -232,7 +232,7 @@ public open class InputEventMIDI : InputEvent() {
   }
 
   public final fun setMessage(message: MIDIMessage): Unit {
-    TransferContext.writeArguments(LONG to message.id)
+    TransferContext.writeArguments(LONG to message.value)
     TransferContext.callMethod(ptr, MethodBindings.setMessagePtr, NIL)
   }
 

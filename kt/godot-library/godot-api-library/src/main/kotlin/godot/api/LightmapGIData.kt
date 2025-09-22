@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.Rect2
 import godot.core.VariantArray
@@ -187,8 +188,8 @@ public open class LightmapGIData : Resource() {
   ) = addUser(path.asCachedNodePath(), uvScale, sliceIndex, subInstance)
 
   public enum class ShadowmaskMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Shadowmasking is disabled. No shadowmask texture will be created when baking lightmaps.
      * Existing shadowmask textures will be removed during baking.
@@ -216,13 +217,13 @@ public open class LightmapGIData : Resource() {
     OVERLAY(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ShadowmaskMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ShadowmaskMode = entries.single { it.`value` == `value` }
     }
   }
 

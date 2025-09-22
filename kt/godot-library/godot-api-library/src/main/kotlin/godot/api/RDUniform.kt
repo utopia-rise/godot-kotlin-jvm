@@ -54,7 +54,7 @@ public open class RDUniform : RefCounted() {
   }
 
   public final fun setUniformType(pMember: RenderingDevice.UniformType): Unit {
-    TransferContext.writeArguments(LONG to pMember.id)
+    TransferContext.writeArguments(LONG to pMember.value)
     TransferContext.callMethod(ptr, MethodBindings.setUniformTypePtr, NIL)
   }
 

@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.HorizontalAlignment
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -508,7 +509,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setHorizontalAlignmentPtr, NIL)
   }
 
@@ -519,7 +520,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setVerticalAlignment(alignment: VerticalAlignment): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setVerticalAlignmentPtr, NIL)
   }
 
@@ -563,7 +564,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setTextDirection(direction: TextServer.Direction): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextDirectionPtr, NIL)
   }
 
@@ -585,7 +586,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setStructuredTextBidiOverride(parser: TextServer.StructuredTextParser): Unit {
-    TransferContext.writeArguments(LONG to parser.id)
+    TransferContext.writeArguments(LONG to parser.value)
     TransferContext.callMethod(ptr, MethodBindings.setStructuredTextBidiOverridePtr, NIL)
   }
 
@@ -684,7 +685,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setAutowrapMode(autowrapMode: TextServer.AutowrapMode): Unit {
-    TransferContext.writeArguments(LONG to autowrapMode.id)
+    TransferContext.writeArguments(LONG to autowrapMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAutowrapModePtr, NIL)
   }
 
@@ -742,7 +743,7 @@ public open class Label3D : GeometryInstance3D() {
    * If `true`, the specified flag will be enabled. See [Label3D.DrawFlags] for a list of flags.
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled)
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setDrawFlagPtr, NIL)
   }
 
@@ -750,13 +751,13 @@ public open class Label3D : GeometryInstance3D() {
    * Returns the value of the specified flag.
    */
   public final fun getDrawFlag(flag: DrawFlags): Boolean {
-    TransferContext.writeArguments(LONG to flag.id)
+    TransferContext.writeArguments(LONG to flag.value)
     TransferContext.callMethod(ptr, MethodBindings.getDrawFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setBillboardMode(mode: BaseMaterial3D.BillboardMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBillboardModePtr, NIL)
   }
 
@@ -767,7 +768,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setAlphaCutMode(mode: AlphaCutMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaCutModePtr, NIL)
   }
 
@@ -800,7 +801,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setAlphaAntialiasing(alphaAa: BaseMaterial3D.AlphaAntiAliasing): Unit {
-    TransferContext.writeArguments(LONG to alphaAa.id)
+    TransferContext.writeArguments(LONG to alphaAa.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlphaAntialiasingPtr, NIL)
   }
 
@@ -822,7 +823,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public final fun setTextureFilter(mode: BaseMaterial3D.TextureFilter): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextureFilterPtr, NIL)
   }
 
@@ -843,8 +844,8 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   public enum class DrawFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * If set, lights in the environment affect the label.
      */
@@ -869,19 +870,19 @@ public open class Label3D : GeometryInstance3D() {
     FLAG_MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DrawFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DrawFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaCutMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * This mode performs standard alpha blending. It can display translucent areas, but
      * transparency sorting issues may be visible when multiple transparent materials are overlapping.
@@ -918,13 +919,13 @@ public open class Label3D : GeometryInstance3D() {
     HASH(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlphaCutMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlphaCutMode = entries.single { it.`value` == `value` }
     }
   }
 

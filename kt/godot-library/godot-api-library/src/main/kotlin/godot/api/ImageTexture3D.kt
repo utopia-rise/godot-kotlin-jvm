@@ -49,7 +49,7 @@ public open class ImageTexture3D : Texture3D() {
     useMipmaps: Boolean,
     `data`: VariantArray<Image>,
   ): Error {
-    TransferContext.writeArguments(LONG to format.id, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
+    TransferContext.writeArguments(LONG to format.value, LONG to width.toLong(), LONG to height.toLong(), LONG to depth.toLong(), BOOL to useMipmaps, ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.createPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

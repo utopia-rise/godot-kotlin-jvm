@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -400,7 +401,7 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public final fun setBlendMode(mode: BlendMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setBlendModePtr, NIL)
   }
 
@@ -422,8 +423,8 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
   }
 
   public enum class BlendMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The interpolation between animations is linear.
      */
@@ -440,13 +441,13 @@ public open class AnimationNodeBlendSpace2D : AnimationRootNode() {
     DISCRETE_CARRY(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): BlendMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): BlendMode = entries.single { it.`value` == `value` }
     }
   }
 

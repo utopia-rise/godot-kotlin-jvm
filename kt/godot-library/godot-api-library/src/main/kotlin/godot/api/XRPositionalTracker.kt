@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal1
 import godot.core.Signal2
 import godot.core.StringName
@@ -130,7 +131,7 @@ public open class XRPositionalTracker : XRTracker() {
   }
 
   public final fun setTrackerHand(hand: TrackerHand): Unit {
-    TransferContext.writeArguments(LONG to hand.id)
+    TransferContext.writeArguments(LONG to hand.value)
     TransferContext.callMethod(ptr, MethodBindings.setTrackerHandPtr, NIL)
   }
 
@@ -173,7 +174,7 @@ public open class XRPositionalTracker : XRTracker() {
     angularVelocity: Vector3,
     trackingConfidence: XRPose.TrackingConfidence,
   ): Unit {
-    TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.id)
+    TransferContext.writeArguments(STRING_NAME to name, TRANSFORM3D to transform, VECTOR3 to linearVelocity, VECTOR3 to angularVelocity, LONG to trackingConfidence.value)
     TransferContext.callMethod(ptr, MethodBindings.setPosePtr, NIL)
   }
 
@@ -240,8 +241,8 @@ public open class XRPositionalTracker : XRTracker() {
       setInput(name.asCachedStringName(), value)
 
   public enum class TrackerHand(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The hand this tracker is held in is unknown or not applicable.
      */
@@ -260,13 +261,13 @@ public open class XRPositionalTracker : XRTracker() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TrackerHand = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackerHand = entries.single { it.`value` == `value` }
     }
   }
 

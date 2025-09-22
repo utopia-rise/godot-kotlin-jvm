@@ -578,7 +578,7 @@ public open class TileData : Object() {
    * valid, use [isValidTerrainPeeringBit].
    */
   public final fun setTerrainPeeringBit(peeringBit: TileSet.CellNeighbor, terrain: Int): Unit {
-    TransferContext.writeArguments(LONG to peeringBit.id, LONG to terrain.toLong())
+    TransferContext.writeArguments(LONG to peeringBit.value, LONG to terrain.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setTerrainPeeringBitPtr, NIL)
   }
 
@@ -587,7 +587,7 @@ public open class TileData : Object() {
    * is valid, use [isValidTerrainPeeringBit].
    */
   public final fun getTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Int {
-    TransferContext.writeArguments(LONG to peeringBit.id)
+    TransferContext.writeArguments(LONG to peeringBit.value)
     TransferContext.callMethod(ptr, MethodBindings.getTerrainPeeringBitPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -596,7 +596,7 @@ public open class TileData : Object() {
    * Returns whether the given [peeringBit] direction is valid for this tile.
    */
   public final fun isValidTerrainPeeringBit(peeringBit: TileSet.CellNeighbor): Boolean {
-    TransferContext.writeArguments(LONG to peeringBit.id)
+    TransferContext.writeArguments(LONG to peeringBit.value)
     TransferContext.callMethod(ptr, MethodBindings.isValidTerrainPeeringBitPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }

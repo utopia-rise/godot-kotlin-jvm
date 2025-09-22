@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
+import godot.core.GodotEnum
 import godot.core.InlineAlignment
 import godot.core.PackedByteArray
 import godot.core.PackedFloat32Array
@@ -115,7 +116,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns `true` if the server supports a feature.
    */
   public final fun hasFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -399,7 +400,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets font anti-aliasing mode.
    */
   public final fun fontSetAntialiasing(fontRid: RID, antialiasing: FontAntialiasing): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to antialiasing.id)
+    TransferContext.writeArguments(_RID to fontRid, LONG to antialiasing.value)
     TransferContext.callMethod(ptr, MethodBindings.fontSetAntialiasingPtr, NIL)
   }
 
@@ -536,7 +537,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public final fun fontSetFixedSizeScaleMode(fontRid: RID, fixedSizeScaleMode: FixedSizeScaleMode):
       Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to fixedSizeScaleMode.id)
+    TransferContext.writeArguments(_RID to fontRid, LONG to fixedSizeScaleMode.value)
     TransferContext.callMethod(ptr, MethodBindings.fontSetFixedSizeScaleModePtr, NIL)
   }
 
@@ -588,7 +589,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Sets font hinting mode. Used by dynamic fonts only.
    */
   public final fun fontSetHinting(fontRid: RID, hinting: Hinting): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to hinting.id)
+    TransferContext.writeArguments(_RID to fontRid, LONG to hinting.value)
     TransferContext.callMethod(ptr, MethodBindings.fontSetHintingPtr, NIL)
   }
 
@@ -606,7 +607,7 @@ public open class TextServer internal constructor() : RefCounted() {
    */
   public final fun fontSetSubpixelPositioning(fontRid: RID,
       subpixelPositioning: SubpixelPositioning): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.id)
+    TransferContext.writeArguments(_RID to fontRid, LONG to subpixelPositioning.value)
     TransferContext.callMethod(ptr, MethodBindings.fontSetSubpixelPositioningPtr, NIL)
   }
 
@@ -668,7 +669,7 @@ public open class TextServer internal constructor() : RefCounted() {
     spacing: SpacingType,
     `value`: Long,
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id, LONG to value)
+    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.value, LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.fontSetSpacingPtr, NIL)
   }
 
@@ -677,7 +678,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * font size).
    */
   public final fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
-    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.id)
+    TransferContext.writeArguments(_RID to fontRid, LONG to spacing.value)
     TransferContext.callMethod(ptr, MethodBindings.fontGetSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1583,7 +1584,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public final fun createShapedText(direction: Direction = TextServer.Direction.AUTO,
       orientation: Orientation = TextServer.Orientation.HORIZONTAL): RID {
-    TransferContext.writeArguments(LONG to direction.id, LONG to orientation.id)
+    TransferContext.writeArguments(LONG to direction.value, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.createShapedTextPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -1606,7 +1607,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public final fun shapedTextSetDirection(shaped: RID, direction: Direction =
       TextServer.Direction.AUTO): Unit {
-    TransferContext.writeArguments(_RID to shaped, LONG to direction.id)
+    TransferContext.writeArguments(_RID to shaped, LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextSetDirectionPtr, NIL)
   }
 
@@ -1684,7 +1685,7 @@ public open class TextServer internal constructor() : RefCounted() {
   @JvmOverloads
   public final fun shapedTextSetOrientation(shaped: RID, orientation: Orientation =
       TextServer.Orientation.HORIZONTAL): Unit {
-    TransferContext.writeArguments(_RID to shaped, LONG to orientation.id)
+    TransferContext.writeArguments(_RID to shaped, LONG to orientation.value)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextSetOrientationPtr, NIL)
   }
 
@@ -1743,7 +1744,7 @@ public open class TextServer internal constructor() : RefCounted() {
     spacing: SpacingType,
     `value`: Long,
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, LONG to spacing.id, LONG to value)
+    TransferContext.writeArguments(_RID to shaped, LONG to spacing.value, LONG to value)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextSetSpacingPtr, NIL)
   }
 
@@ -1751,7 +1752,7 @@ public open class TextServer internal constructor() : RefCounted() {
    * Returns extra spacing added between glyphs or lines in pixels.
    */
   public final fun shapedTextGetSpacing(shaped: RID, spacing: SpacingType): Long {
-    TransferContext.writeArguments(_RID to shaped, LONG to spacing.id)
+    TransferContext.writeArguments(_RID to shaped, LONG to spacing.value)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextGetSpacingPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1787,7 +1788,7 @@ public open class TextServer internal constructor() : RefCounted() {
     length: Long = 1,
     baseline: Double = 0.0,
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, LONG to length, DOUBLE to baseline)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.value, LONG to length, DOUBLE to baseline)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextAddObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -1803,7 +1804,7 @@ public open class TextServer internal constructor() : RefCounted() {
     inlineAlign: InlineAlignment = InlineAlignment.CENTER,
     baseline: Double = 0.0,
   ): Boolean {
-    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.id, DOUBLE to baseline)
+    TransferContext.writeArguments(_RID to shaped, ANY to key, VECTOR2 to size, LONG to inlineAlign.value, DOUBLE to baseline)
     TransferContext.callMethod(ptr, MethodBindings.shapedTextResizeObjectPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2517,14 +2518,14 @@ public open class TextServer internal constructor() : RefCounted() {
     args: VariantArray<Any?>,
     text: String,
   ): VariantArray<Vector3i> {
-    TransferContext.writeArguments(LONG to parserType.id, ARRAY to args, STRING to text)
+    TransferContext.writeArguments(LONG to parserType.value, ARRAY to args, STRING to text)
     TransferContext.callMethod(ptr, MethodBindings.parseStructuredTextPtr, ARRAY)
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Vector3i>)
   }
 
   public enum class FontAntialiasing(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Font glyphs are rasterized as 1-bit bitmaps.
      */
@@ -2545,19 +2546,19 @@ public open class TextServer internal constructor() : RefCounted() {
     LCD(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FontAntialiasing = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FontAntialiasing = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FontLCDSubpixelLayout(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Unknown or unsupported subpixel layout, LCD subpixel antialiasing is disabled.
      */
@@ -2584,19 +2585,20 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FontLCDSubpixelLayout = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FontLCDSubpixelLayout =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Direction(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Text direction is determined based on contents and current locale.
      */
@@ -2616,19 +2618,19 @@ public open class TextServer internal constructor() : RefCounted() {
     INHERITED(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Direction = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Direction = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Orientation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Text is written horizontally.
      */
@@ -2641,13 +2643,13 @@ public open class TextServer internal constructor() : RefCounted() {
     VERTICAL(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Orientation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Orientation = entries.single { it.`value` == `value` }
     }
   }
 
@@ -2742,8 +2744,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class AutowrapMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Autowrap is disabled.
      */
@@ -2764,13 +2766,13 @@ public open class TextServer internal constructor() : RefCounted() {
     WORD_SMART(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AutowrapMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AutowrapMode = entries.single { it.`value` == `value` }
     }
   }
 
@@ -2848,8 +2850,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class VisibleCharactersBehavior(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Trims text before the shaping. e.g, increasing [Label.visibleCharacters] or
      * [RichTextLabel.visibleCharacters] value is visually identical to typing the text.
@@ -2879,20 +2881,20 @@ public open class TextServer internal constructor() : RefCounted() {
     VC_GLYPHS_RTL(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
       public fun from(`value`: Long): VisibleCharactersBehavior =
-          entries.single { it.id == `value` }
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class OverrunBehavior(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No text trimming is performed.
      */
@@ -2915,13 +2917,13 @@ public open class TextServer internal constructor() : RefCounted() {
     TRIM_WORD_ELLIPSIS(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): OverrunBehavior = entries.single { it.id == `value` }
+      public fun from(`value`: Long): OverrunBehavior = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3111,8 +3113,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class Hinting(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disables font hinting (smoother but less crisp).
      */
@@ -3130,19 +3132,19 @@ public open class TextServer internal constructor() : RefCounted() {
     NORMAL(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Hinting = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Hinting = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SubpixelPositioning(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Glyph horizontal position is rounded to the whole pixel size, each glyph is rasterized once.
      */
@@ -3181,19 +3183,19 @@ public open class TextServer internal constructor() : RefCounted() {
     ONE_QUARTER_MAX_SIZE(16),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SubpixelPositioning = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SubpixelPositioning = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Feature(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * TextServer supports simple text layouts.
      */
@@ -3258,19 +3260,19 @@ public open class TextServer internal constructor() : RefCounted() {
     UNICODE_SECURITY(16384),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ContourPointTag(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Contour point is on the curve.
      */
@@ -3286,19 +3288,19 @@ public open class TextServer internal constructor() : RefCounted() {
     CURVE_TAG_OFF_CUBIC(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ContourPointTag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ContourPointTag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SpacingType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Spacing for each glyph.
      */
@@ -3321,13 +3323,13 @@ public open class TextServer internal constructor() : RefCounted() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SpacingType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SpacingType = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3380,8 +3382,8 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   public enum class StructuredTextParser(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Use default Unicode BiDi algorithm.
      */
@@ -3412,19 +3414,20 @@ public open class TextServer internal constructor() : RefCounted() {
     CUSTOM(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StructuredTextParser = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StructuredTextParser =
+          entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FixedSizeScaleMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Bitmap font is not scaled.
      */
@@ -3441,13 +3444,13 @@ public open class TextServer internal constructor() : RefCounted() {
     ENABLED(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FixedSizeScaleMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FixedSizeScaleMode = entries.single { it.`value` == `value` }
     }
   }
 

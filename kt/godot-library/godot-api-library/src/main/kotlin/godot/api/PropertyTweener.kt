@@ -112,7 +112,7 @@ public open class PropertyTweener : Tweener() {
    * transition is used from the [Tween] that contains this Tweener.
    */
   public final fun setTrans(trans: Tween.TransitionType): PropertyTweener? {
-    TransferContext.writeArguments(LONG to trans.id)
+    TransferContext.writeArguments(LONG to trans.value)
     TransferContext.callMethod(ptr, MethodBindings.setTransPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }
@@ -122,7 +122,7 @@ public open class PropertyTweener : Tweener() {
    * the [Tween] that contains this Tweener.
    */
   public final fun setEase(ease: Tween.EaseType): PropertyTweener? {
-    TransferContext.writeArguments(LONG to ease.id)
+    TransferContext.writeArguments(LONG to ease.value)
     TransferContext.callMethod(ptr, MethodBindings.setEasePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as PropertyTweener?)
   }

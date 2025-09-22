@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -89,7 +90,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun setStretchMode(stretchMode: StretchMode): Unit {
-    TransferContext.writeArguments(LONG to stretchMode.id)
+    TransferContext.writeArguments(LONG to stretchMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setStretchModePtr, NIL)
   }
 
@@ -100,7 +101,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun setAlignmentHorizontal(alignmentHorizontal: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignmentHorizontal.id)
+    TransferContext.writeArguments(LONG to alignmentHorizontal.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentHorizontalPtr, NIL)
   }
 
@@ -111,7 +112,7 @@ public open class AspectRatioContainer : Container() {
   }
 
   public final fun setAlignmentVertical(alignmentVertical: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignmentVertical.id)
+    TransferContext.writeArguments(LONG to alignmentVertical.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentVerticalPtr, NIL)
   }
 
@@ -122,8 +123,8 @@ public open class AspectRatioContainer : Container() {
   }
 
   public enum class StretchMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The height of child controls is automatically adjusted based on the width of the container.
      */
@@ -148,19 +149,19 @@ public open class AspectRatioContainer : Container() {
     COVER(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): StretchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): StretchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlignmentMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Aligns child controls with the beginning (left or top) of the container.
      */
@@ -175,13 +176,13 @@ public open class AspectRatioContainer : Container() {
     END(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 

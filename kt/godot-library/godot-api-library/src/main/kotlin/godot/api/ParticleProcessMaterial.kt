@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
@@ -2222,7 +2223,7 @@ public open class ParticleProcessMaterial : Material() {
    * corresponds to maximum.
    */
   public final fun setParam(`param`: Parameter, `value`: Vector2): Unit {
-    TransferContext.writeArguments(LONG to param.id, VECTOR2 to value)
+    TransferContext.writeArguments(LONG to param.value, VECTOR2 to value)
     TransferContext.callMethod(ptr, MethodBindings.setParamPtr, NIL)
   }
 
@@ -2233,7 +2234,7 @@ public open class ParticleProcessMaterial : Material() {
    * corresponds to maximum.
    */
   public final fun getParam(`param`: Parameter): Vector2 {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
@@ -2242,7 +2243,7 @@ public open class ParticleProcessMaterial : Material() {
    * Sets the minimum value range for the given parameter.
    */
   public final fun setParamMin(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMinPtr, NIL)
   }
 
@@ -2250,7 +2251,7 @@ public open class ParticleProcessMaterial : Material() {
    * Returns the minimum value range for the given parameter.
    */
   public final fun getParamMin(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamMinPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2259,7 +2260,7 @@ public open class ParticleProcessMaterial : Material() {
    * Sets the maximum value range for the given parameter.
    */
   public final fun setParamMax(`param`: Parameter, `value`: Float): Unit {
-    TransferContext.writeArguments(LONG to param.id, DOUBLE to value.toDouble())
+    TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setParamMaxPtr, NIL)
   }
 
@@ -2267,7 +2268,7 @@ public open class ParticleProcessMaterial : Material() {
    * Returns the maximum value range for the given parameter.
    */
   public final fun getParamMax(`param`: Parameter): Float {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamMaxPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -2276,7 +2277,7 @@ public open class ParticleProcessMaterial : Material() {
    * Sets the [Texture2D] for the specified [Parameter].
    */
   public final fun setParamTexture(`param`: Parameter, texture: Texture2D?): Unit {
-    TransferContext.writeArguments(LONG to param.id, OBJECT to texture)
+    TransferContext.writeArguments(LONG to param.value, OBJECT to texture)
     TransferContext.callMethod(ptr, MethodBindings.setParamTexturePtr, NIL)
   }
 
@@ -2284,7 +2285,7 @@ public open class ParticleProcessMaterial : Material() {
    * Returns the [Texture2D] used by the specified parameter.
    */
   public final fun getParamTexture(`param`: Parameter): Texture2D? {
-    TransferContext.writeArguments(LONG to param.id)
+    TransferContext.writeArguments(LONG to param.value)
     TransferContext.callMethod(ptr, MethodBindings.getParamTexturePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Texture2D?)
   }
@@ -2359,7 +2360,7 @@ public open class ParticleProcessMaterial : Material() {
    * If `true`, enables the specified particle flag. See [ParticleFlags] for options.
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
-    TransferContext.writeArguments(LONG to particleFlag.id, BOOL to enable)
+    TransferContext.writeArguments(LONG to particleFlag.value, BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setParticleFlagPtr, NIL)
   }
 
@@ -2367,7 +2368,7 @@ public open class ParticleProcessMaterial : Material() {
    * Returns `true` if the specified particle flag is enabled. See [ParticleFlags] for options.
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
-    TransferContext.writeArguments(LONG to particleFlag.id)
+    TransferContext.writeArguments(LONG to particleFlag.value)
     TransferContext.callMethod(ptr, MethodBindings.getParticleFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2384,7 +2385,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public final fun setEmissionShape(shape: EmissionShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.setEmissionShapePtr, NIL)
   }
 
@@ -2621,7 +2622,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public final fun setSubEmitterMode(mode: SubEmitterMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSubEmitterModePtr, NIL)
   }
 
@@ -2692,7 +2693,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public final fun setCollisionMode(mode: CollisionMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionModePtr, NIL)
   }
 
@@ -2750,8 +2751,8 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   public enum class Parameter(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Use with [setParamMin], [setParamMax], and [setParamTexture] to set initial velocity
      * properties.
@@ -2843,19 +2844,19 @@ public open class ParticleProcessMaterial : Material() {
     TURB_INFLUENCE_OVER_LIFE(12),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Parameter = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Parameter = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ParticleFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Use with [setParticleFlag] to set [particleFlagAlignY].
      */
@@ -2875,19 +2876,19 @@ public open class ParticleProcessMaterial : Material() {
     MAX(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ParticleFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ParticleFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class EmissionShape(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * All particles will be emitted from a single point.
      */
@@ -2925,19 +2926,19 @@ public open class ParticleProcessMaterial : Material() {
     MAX(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): EmissionShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): EmissionShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SubEmitterMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     DISABLED(0),
     CONSTANT(1),
     AT_END(2),
@@ -2949,19 +2950,19 @@ public open class ParticleProcessMaterial : Material() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SubEmitterMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SubEmitterMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CollisionMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No collision for particles. Particles will go through [GPUParticlesCollision3D] nodes.
      */
@@ -2982,13 +2983,13 @@ public open class ParticleProcessMaterial : Material() {
     MAX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CollisionMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CollisionMode = entries.single { it.`value` == `value` }
     }
   }
 

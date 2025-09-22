@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -100,7 +101,7 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public final fun setCopyMode(copyMode: CopyMode): Unit {
-    TransferContext.writeArguments(LONG to copyMode.id)
+    TransferContext.writeArguments(LONG to copyMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCopyModePtr, NIL)
   }
 
@@ -111,8 +112,8 @@ public open class BackBufferCopy : Node2D() {
   }
 
   public enum class CopyMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Disables the buffering mode. This means the [BackBufferCopy] node will directly use the
      * portion of screen it covers.
@@ -128,13 +129,13 @@ public open class BackBufferCopy : Node2D() {
     VIEWPORT(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CopyMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CopyMode = entries.single { it.`value` == `value` }
     }
   }
 

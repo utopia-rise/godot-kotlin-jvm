@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.AABB
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedColorArray
 import godot.core.PackedFloat32Array
 import godot.core.PackedInt32Array
@@ -102,7 +103,7 @@ public open class SurfaceTool : RefCounted() {
    * **Note:** This function takes an enum, not the exact number of weights.
    */
   public final fun setSkinWeightCount(count: SkinWeightCount): Unit {
-    TransferContext.writeArguments(LONG to count.id)
+    TransferContext.writeArguments(LONG to count.value)
     TransferContext.callMethod(ptr, MethodBindings.setSkinWeightCountPtr, NIL)
   }
 
@@ -125,7 +126,7 @@ public open class SurfaceTool : RefCounted() {
    * Must be invoked after [begin] and should be set before [commit] or [commitToArrays].
    */
   public final fun setCustomFormat(channelIndex: Int, format: CustomFormat): Unit {
-    TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.id)
+    TransferContext.writeArguments(LONG to channelIndex.toLong(), LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.setCustomFormatPtr, NIL)
   }
 
@@ -144,7 +145,7 @@ public open class SurfaceTool : RefCounted() {
    * [Mesh.PRIMITIVE_TRIANGLES]).
    */
   public final fun begin(primitive: Mesh.PrimitiveType): Unit {
-    TransferContext.writeArguments(LONG to primitive.id)
+    TransferContext.writeArguments(LONG to primitive.value)
     TransferContext.callMethod(ptr, MethodBindings.beginPtr, NIL)
   }
 
@@ -395,7 +396,7 @@ public open class SurfaceTool : RefCounted() {
   @JvmOverloads
   public final fun createFromArrays(arrays: VariantArray<Any?>, primitiveType: Mesh.PrimitiveType =
       Mesh.PrimitiveType.TRIANGLES): Unit {
-    TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.id)
+    TransferContext.writeArguments(ARRAY to arrays, LONG to primitiveType.value)
     TransferContext.callMethod(ptr, MethodBindings.createFromArraysPtr, NIL)
   }
 
@@ -451,8 +452,8 @@ public open class SurfaceTool : RefCounted() {
   }
 
   public enum class CustomFormat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Limits range of data passed to [setCustom] to unsigned normalized 0 to 1 stored in 8 bits per
      * channel. See [Mesh.ARRAY_CUSTOM_RGBA8_UNORM].
@@ -499,19 +500,19 @@ public open class SurfaceTool : RefCounted() {
     MAX(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CustomFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CustomFormat = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SkinWeightCount(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Each individual vertex can be influenced by only 4 bone weights.
      */
@@ -522,13 +523,13 @@ public open class SurfaceTool : RefCounted() {
     SKIN_8_WEIGHTS(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SkinWeightCount = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SkinWeightCount = entries.single { it.`value` == `value` }
     }
   }
 

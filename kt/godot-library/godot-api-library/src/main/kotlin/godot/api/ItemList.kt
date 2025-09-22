@@ -13,6 +13,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.PackedInt32Array
 import godot.core.Rect2
 import godot.core.Signal1
@@ -399,7 +400,7 @@ public open class ItemList : Control() {
    * Sets item's text base writing direction.
    */
   public final fun setItemTextDirection(idx: Int, direction: Control.TextDirection): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to direction.id)
+    TransferContext.writeArguments(LONG to idx.toLong(), LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemTextDirectionPtr, NIL)
   }
 
@@ -437,7 +438,7 @@ public open class ItemList : Control() {
    * mode as the [ItemList] itself.
    */
   public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode): Unit {
-    TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
   }
 
@@ -770,7 +771,7 @@ public open class ItemList : Control() {
   }
 
   public final fun setSelectMode(mode: SelectMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSelectModePtr, NIL)
   }
 
@@ -781,7 +782,7 @@ public open class ItemList : Control() {
   }
 
   public final fun setIconMode(mode: IconMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setIconModePtr, NIL)
   }
 
@@ -926,7 +927,7 @@ public open class ItemList : Control() {
   }
 
   public final fun setTextOverrunBehavior(overrunBehavior: TextServer.OverrunBehavior): Unit {
-    TransferContext.writeArguments(LONG to overrunBehavior.id)
+    TransferContext.writeArguments(LONG to overrunBehavior.value)
     TransferContext.callMethod(ptr, MethodBindings.setTextOverrunBehaviorPtr, NIL)
   }
 
@@ -958,8 +959,8 @@ public open class ItemList : Control() {
   }
 
   public enum class IconMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Icon is drawn above the text.
      */
@@ -970,19 +971,19 @@ public open class ItemList : Control() {
     LEFT(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): IconMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): IconMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class SelectMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Only allow selecting a single item.
      */
@@ -997,13 +998,13 @@ public open class ItemList : Control() {
     TOGGLE(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SelectMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SelectMode = entries.single { it.`value` == `value` }
     }
   }
 

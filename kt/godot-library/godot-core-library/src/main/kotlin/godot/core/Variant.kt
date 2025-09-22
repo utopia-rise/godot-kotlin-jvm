@@ -7,6 +7,7 @@ import godot.common.interop.nullptr
 import godot.common.util.toRealT
 import godot.internal.memory.LongStringQueue
 import java.nio.ByteBuffer
+import kotlin.enums.EnumEntries
 
 private var ByteBuffer.bool: Boolean
     get() = int == 1
@@ -522,6 +523,15 @@ sealed class VariantCaster(val coreVariant: VariantParser) : VariantConverter {
     data object INT : VariantSimpleCaster(VariantParser.LONG) {
         override fun toKotlinCast(any: Any?) = (any as Long).toInt()
         override fun toGodotCast(any: Any?) = (any as Int).toLong()
+    }
+
+    class ENUM<ENUM_TYPE: Enum<ENUM_TYPE>>(private val entries: Array<ENUM_TYPE>) : VariantSimpleCaster(VariantParser.LONG) {
+        private val entryMap: Map<Long, ENUM_TYPE> = entries.associateBy { it.godotOrdinal }
+
+        override fun toKotlinCast(any: Any?) = requireNotNull(entryMap[any as Long]) {
+            "No enum entry with godotOrdinal $any found in entries: [${entries.joinToString()}]"
+        }
+        override fun toGodotCast(any: Any?) = (any as ENUM_TYPE).godotOrdinal
     }
 
     data object FLOAT : VariantSimpleCaster(VariantParser.DOUBLE) {

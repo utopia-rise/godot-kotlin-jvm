@@ -159,7 +159,7 @@ public open class ImporterMeshInstance3D : Node3D() {
   public final
       fun setCastShadowsSetting(shadowCastingSetting: GeometryInstance3D.ShadowCastingSetting):
       Unit {
-    TransferContext.writeArguments(LONG to shadowCastingSetting.id)
+    TransferContext.writeArguments(LONG to shadowCastingSetting.value)
     TransferContext.callMethod(ptr, MethodBindings.setCastShadowsSettingPtr, NIL)
   }
 
@@ -215,7 +215,7 @@ public open class ImporterMeshInstance3D : Node3D() {
 
   public final fun setVisibilityRangeFadeMode(mode: GeometryInstance3D.VisibilityRangeFadeMode):
       Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVisibilityRangeFadeModePtr, NIL)
   }
 

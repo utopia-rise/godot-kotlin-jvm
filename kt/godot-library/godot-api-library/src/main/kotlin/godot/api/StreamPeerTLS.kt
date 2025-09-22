@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -98,8 +99,8 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   public enum class Status(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * A status representing a [StreamPeerTLS] that is disconnected.
      */
@@ -123,13 +124,13 @@ public open class StreamPeerTLS : StreamPeer() {
     ERROR_HOSTNAME_MISMATCH(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Status = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
     }
   }
 

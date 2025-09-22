@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.PackedStringArray
 import godot.core.VariantParser.BOOL
@@ -164,7 +165,7 @@ public open class HTTPClient : RefCounted() {
     headers: PackedStringArray,
     body: PackedByteArray,
   ): Error {
-    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
+    TransferContext.writeArguments(LONG to method.value, STRING to url, PACKED_STRING_ARRAY to headers, PACKED_BYTE_ARRAY to body)
     TransferContext.callMethod(ptr, MethodBindings.requestRawPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -213,7 +214,7 @@ public open class HTTPClient : RefCounted() {
     headers: PackedStringArray,
     body: String = "",
   ): Error {
-    TransferContext.writeArguments(LONG to method.id, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
+    TransferContext.writeArguments(LONG to method.value, STRING to url, PACKED_STRING_ARRAY to headers, STRING to body)
     TransferContext.callMethod(ptr, MethodBindings.requestPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -411,8 +412,8 @@ public open class HTTPClient : RefCounted() {
   }
 
   public enum class Method(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * HTTP GET method. The GET method requests a representation of the specified resource. Requests
      * using GET should only retrieve data.
@@ -465,19 +466,19 @@ public open class HTTPClient : RefCounted() {
     MAX(9),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Method = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Method = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Status(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Status: Disconnected from the server.
      */
@@ -520,19 +521,19 @@ public open class HTTPClient : RefCounted() {
     TLS_HANDSHAKE_ERROR(9),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Status = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Status = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ResponseCode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * HTTP status code `100 Continue`. Interim response that indicates everything so far is OK and
      * that the client should continue with the request (or ignore this status if already finished).
@@ -884,13 +885,13 @@ public open class HTTPClient : RefCounted() {
     NETWORK_AUTH_REQUIRED(511),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ResponseCode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ResponseCode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -15,6 +15,7 @@ object GodotKotlinJvmTypes {
     const val callable = "Callable"
     const val callableBase = "Callable"
     const val dictionary = "Dictionary"
+    const val godotEnum = "GodotEnum"
     const val error = "Error"
     const val nodePath = "NodePath"
     const val variant = "Any"
@@ -281,6 +282,7 @@ val VARIANT_CASTER_BYTE = ClassName(variantCasterPackage, "BYTE")
 val VARIANT_CASTER_INT = ClassName(variantCasterPackage, "INT")
 val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
 val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
+val VARIANT_CASTER_ENUM = ClassName(variantCasterPackage, "ENUM")
 
 val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
 val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)

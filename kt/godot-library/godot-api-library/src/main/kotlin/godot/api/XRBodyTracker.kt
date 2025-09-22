@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
@@ -96,7 +97,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * Sets flags about the validity of the tracking data for the given body joint.
    */
   public final fun setJointFlags(joint: Joint, flags: JointFlags): Unit {
-    TransferContext.writeArguments(LONG to joint.id, LONG to flags.flag)
+    TransferContext.writeArguments(LONG to joint.value, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJointFlagsPtr, NIL)
   }
 
@@ -105,7 +106,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * [XRBodyTracker.JointFlags]).
    */
   public final fun getJointFlags(joint: Joint): JointFlags {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getJointFlagsPtr, LONG)
     return JointFlags(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -114,7 +115,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * Sets the transform for the given body joint.
    */
   public final fun setJointTransform(joint: Joint, transform: Transform3D): Unit {
-    TransferContext.writeArguments(LONG to joint.id, TRANSFORM3D to transform)
+    TransferContext.writeArguments(LONG to joint.value, TRANSFORM3D to transform)
     TransferContext.callMethod(ptr, MethodBindings.setJointTransformPtr, NIL)
   }
 
@@ -122,7 +123,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
    * Returns the transform for the given body joint.
    */
   public final fun getJointTransform(joint: Joint): Transform3D {
-    TransferContext.writeArguments(LONG to joint.id)
+    TransferContext.writeArguments(LONG to joint.value)
     TransferContext.callMethod(ptr, MethodBindings.getJointTransformPtr, TRANSFORM3D)
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
@@ -176,8 +177,8 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   public enum class Joint(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Root joint.
      */
@@ -488,13 +489,13 @@ public open class XRBodyTracker : XRPositionalTracker() {
     MAX(76),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Joint = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Joint = entries.single { it.`value` == `value` }
     }
   }
 

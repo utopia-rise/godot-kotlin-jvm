@@ -14,6 +14,7 @@ import godot.core.Callable
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.Key
 import godot.core.MouseButtonMask
 import godot.core.PackedInt32Array
@@ -125,7 +126,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun hasFeature(feature: Feature): Boolean {
-    TransferContext.writeArguments(LONG to feature.id)
+    TransferContext.writeArguments(LONG to feature.value)
     TransferContext.callMethod(ptr, MethodBindings.hasFeaturePtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -258,7 +259,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -305,7 +306,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -353,7 +354,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddIconItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -402,7 +403,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddIconCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -453,7 +454,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddRadioCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -506,7 +507,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, OBJECT to icon, STRING to label, CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddIconRadioCheckItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -562,7 +563,7 @@ public object DisplayServer : Object() {
     accelerator: Key = Key.NONE,
     index: Int = -1,
   ): Int {
-    TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.id, LONG to index.toLong())
+    TransferContext.writeArguments(STRING to menuRoot, STRING to label, LONG to maxStates.toLong(), LONG to defaultState.toLong(), CALLABLE to callback, CALLABLE to keyCallback, ANY to tag, LONG to accelerator.value, LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.globalMenuAddMultistateItemPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -997,7 +998,7 @@ public object DisplayServer : Object() {
     idx: Int,
     keycode: Key,
   ): Unit {
-    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to keycode.id)
+    TransferContext.writeArguments(STRING to menuRoot, LONG to idx.toLong(), LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.globalMenuSetItemAcceleratorPtr, NIL)
   }
 
@@ -1353,7 +1354,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
-    TransferContext.writeArguments(LONG to event.id, CALLABLE to callable)
+    TransferContext.writeArguments(LONG to event.value, CALLABLE to callable)
     TransferContext.callMethod(ptr, MethodBindings.ttsSetUtteranceCallbackPtr, NIL)
   }
 
@@ -1423,7 +1424,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun mouseSetMode(mouseMode: MouseMode): Unit {
-    TransferContext.writeArguments(LONG to mouseMode.id)
+    TransferContext.writeArguments(LONG to mouseMode.value)
     TransferContext.callMethod(ptr, MethodBindings.mouseSetModePtr, NIL)
   }
 
@@ -1846,7 +1847,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun screenSetOrientation(orientation: ScreenOrientation, screen: Int = -1): Unit {
-    TransferContext.writeArguments(LONG to orientation.id, LONG to screen.toLong())
+    TransferContext.writeArguments(LONG to orientation.value, LONG to screen.toLong())
     TransferContext.callMethod(ptr, MethodBindings.screenSetOrientationPtr, NIL)
   }
 
@@ -1933,7 +1934,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetNativeHandle(handleType: HandleType, windowId: Int = 0): Long {
-    TransferContext.writeArguments(LONG to handleType.id, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to handleType.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowGetNativeHandlePtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2327,7 +2328,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetMode(mode: WindowMode, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to mode.id, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to mode.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetModePtr, NIL)
   }
 
@@ -2342,7 +2343,7 @@ public object DisplayServer : Object() {
     enabled: Boolean,
     windowId: Int = 0,
   ): Unit {
-    TransferContext.writeArguments(LONG to flag.id, BOOL to enabled, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetFlagPtr, NIL)
   }
 
@@ -2352,7 +2353,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowGetFlag(flag: WindowFlags, windowId: Int = 0): Boolean {
-    TransferContext.writeArguments(LONG to flag.id, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to flag.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowGetFlagPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
@@ -2498,7 +2499,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowSetVsyncMode(vsyncMode: VSyncMode, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to vsyncMode.id, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to vsyncMode.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowSetVsyncModePtr, NIL)
   }
 
@@ -2573,7 +2574,7 @@ public object DisplayServer : Object() {
   @JvmOverloads
   @JvmStatic
   public final fun windowStartResize(edge: WindowResizeEdge, windowId: Int = 0): Unit {
-    TransferContext.writeArguments(LONG to edge.id, LONG to windowId.toLong())
+    TransferContext.writeArguments(LONG to edge.value, LONG to windowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.windowStartResizePtr, NIL)
   }
 
@@ -2633,7 +2634,7 @@ public object DisplayServer : Object() {
     cursorStart: Int = -1,
     cursorEnd: Int = -1,
   ): Unit {
-    TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.id, LONG to maxLength.toLong(), LONG to cursorStart.toLong(), LONG to cursorEnd.toLong())
+    TransferContext.writeArguments(STRING to existingText, RECT2 to position, LONG to type.value, LONG to maxLength.toLong(), LONG to cursorStart.toLong(), LONG to cursorEnd.toLong())
     TransferContext.callMethod(ptr, MethodBindings.virtualKeyboardShowPtr, NIL)
   }
 
@@ -2676,7 +2677,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun cursorSetShape(shape: CursorShape): Unit {
-    TransferContext.writeArguments(LONG to shape.id)
+    TransferContext.writeArguments(LONG to shape.value)
     TransferContext.callMethod(ptr, MethodBindings.cursorSetShapePtr, NIL)
   }
 
@@ -2706,7 +2707,7 @@ public object DisplayServer : Object() {
     shape: CursorShape = DisplayServer.CursorShape.ARROW,
     hotspot: Vector2 = Vector2(0, 0),
   ): Unit {
-    TransferContext.writeArguments(OBJECT to cursor, LONG to shape.id, VECTOR2 to hotspot)
+    TransferContext.writeArguments(OBJECT to cursor, LONG to shape.value, VECTOR2 to hotspot)
     TransferContext.callMethod(ptr, MethodBindings.cursorSetCustomImagePtr, NIL)
   }
 
@@ -2813,7 +2814,7 @@ public object DisplayServer : Object() {
     filters: PackedStringArray,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.fileDialogShowPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2867,7 +2868,7 @@ public object DisplayServer : Object() {
     options: VariantArray<Dictionary<Any?, Any?>>,
     callback: Callable,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.id, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
     TransferContext.callMethod(ptr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2951,7 +2952,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetKeycodeFromPhysical(keycode: Key): Key {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.keyboardGetKeycodeFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2964,7 +2965,7 @@ public object DisplayServer : Object() {
    */
   @JvmStatic
   public final fun keyboardGetLabelFromPhysical(keycode: Key): Key {
-    TransferContext.writeArguments(LONG to keycode.id)
+    TransferContext.writeArguments(LONG to keycode.value)
     TransferContext.callMethod(ptr, MethodBindings.keyboardGetLabelFromPhysicalPtr, LONG)
     return Key.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -3224,8 +3225,8 @@ public object DisplayServer : Object() {
   }
 
   public enum class Feature(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Display server supports global menu. This allows the application to display its menu items in
      * the operating system's top bar. **macOS**
@@ -3378,19 +3379,19 @@ public object DisplayServer : Object() {
     EMOJI_AND_SYMBOL_PICKER(31),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Feature = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class MouseMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Makes the mouse cursor visible if it is hidden.
      */
@@ -3421,19 +3422,19 @@ public object DisplayServer : Object() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MouseMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MouseMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ScreenOrientation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Default landscape orientation.
      */
@@ -3464,19 +3465,19 @@ public object DisplayServer : Object() {
     SENSOR(6),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ScreenOrientation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ScreenOrientation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VirtualKeyboardType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Default text virtual keyboard.
      */
@@ -3515,19 +3516,19 @@ public object DisplayServer : Object() {
     KEYBOARD_TYPE_URL(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VirtualKeyboardType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CursorShape(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Arrow cursor shape. This is the default when not pointing anything that overrides the mouse
      * cursor, such as a [LineEdit] or [TextEdit].
@@ -3625,19 +3626,19 @@ public object DisplayServer : Object() {
     MAX(17),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CursorShape = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CursorShape = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FileDialogMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The native file dialog allows selecting one, and only one file.
      */
@@ -3661,19 +3662,19 @@ public object DisplayServer : Object() {
     SAVE_FILE(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FileDialogMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FileDialogMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Windowed mode, i.e. [Window] doesn't occupy the whole screen (unless set to the size of the
      * screen).
@@ -3737,19 +3738,19 @@ public object DisplayServer : Object() {
     EXCLUSIVE_FULLSCREEN(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WindowMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowFlags(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The window can't be resized by dragging its resize grip. It's still possible to resize the
      * window using [windowSetSize]. This flag is ignored for full screen windows.
@@ -3824,19 +3825,19 @@ public object DisplayServer : Object() {
     MAX(10),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WindowFlags = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowFlags = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowEvent(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Sent when the mouse pointer enters the window.
      */
@@ -3878,19 +3879,19 @@ public object DisplayServer : Object() {
     TITLEBAR_CHANGE(7),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WindowEvent = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowEvent = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class WindowResizeEdge(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Top-left edge of a window.
      */
@@ -3929,19 +3930,19 @@ public object DisplayServer : Object() {
     EDGE_MAX(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): WindowResizeEdge = entries.single { it.id == `value` }
+      public fun from(`value`: Long): WindowResizeEdge = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class VSyncMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No vertical synchronization, which means the engine will display frames as fast as possible
      * (tearing may be visible). Framerate is unlimited (regardless of [Engine.maxFps]).
@@ -3973,19 +3974,19 @@ public object DisplayServer : Object() {
     VSYNC_MAILBOX(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): VSyncMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): VSyncMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class HandleType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Display handle:
      *
@@ -4055,19 +4056,19 @@ public object DisplayServer : Object() {
     EGL_CONFIG(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): HandleType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): HandleType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class TTSUtteranceEvent(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Utterance has begun to be spoken.
      */
@@ -4086,13 +4087,13 @@ public object DisplayServer : Object() {
     BOUNDARY(3),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TTSUtteranceEvent = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TTSUtteranceEvent = entries.single { it.`value` == `value` }
     }
   }
 

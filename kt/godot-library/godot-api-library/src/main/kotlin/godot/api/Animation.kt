@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
 import godot.core.Quaternion
@@ -140,7 +141,7 @@ public open class Animation : Resource() {
    */
   @JvmOverloads
   public final fun addTrack(type: TrackType, atPosition: Int = -1): Int {
-    TransferContext.writeArguments(LONG to type.id, LONG to atPosition.toLong())
+    TransferContext.writeArguments(LONG to type.value, LONG to atPosition.toLong())
     TransferContext.callMethod(ptr, MethodBindings.addTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -196,7 +197,7 @@ public open class Animation : Resource() {
    * Returns the index of the specified track. If the track is not found, return -1.
    */
   public final fun findTrack(path: NodePath, type: TrackType): Int {
-    TransferContext.writeArguments(NODE_PATH to path, LONG to type.id)
+    TransferContext.writeArguments(NODE_PATH to path, LONG to type.value)
     TransferContext.callMethod(ptr, MethodBindings.findTrackPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -505,7 +506,7 @@ public open class Animation : Resource() {
     limit: Boolean = false,
     backward: Boolean = false,
   ): Int {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, LONG to findMode.id, BOOL to limit, BOOL to backward)
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), DOUBLE to time, LONG to findMode.value, BOOL to limit, BOOL to backward)
     TransferContext.callMethod(ptr, MethodBindings.trackFindKeyPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -515,7 +516,7 @@ public open class Animation : Resource() {
    */
   public final fun trackSetInterpolationType(trackIdx: Int, interpolation: InterpolationType):
       Unit {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to interpolation.id)
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to interpolation.value)
     TransferContext.callMethod(ptr, MethodBindings.trackSetInterpolationTypePtr, NIL)
   }
 
@@ -559,7 +560,7 @@ public open class Animation : Resource() {
    * Sets the update mode (see [UpdateMode]) of a value track.
    */
   public final fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
-    TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.id)
+    TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.valueTrackSetUpdateModePtr, NIL)
   }
 
@@ -961,7 +962,7 @@ public open class Animation : Resource() {
   }
 
   public final fun setLoopMode(loopMode: LoopMode): Unit {
-    TransferContext.writeArguments(LONG to loopMode.id)
+    TransferContext.writeArguments(LONG to loopMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setLoopModePtr, NIL)
   }
 
@@ -1107,8 +1108,8 @@ public open class Animation : Resource() {
       setMarkerColor(name.asCachedStringName(), color)
 
   public enum class TrackType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Value tracks set values in node properties, but only those which can be interpolated. For 3D
      * position/rotation/scale, using the dedicated [TYPE_POSITION_3D], [TYPE_ROTATION_3D] and
@@ -1151,19 +1152,19 @@ public open class Animation : Resource() {
     TYPE_ANIMATION(8),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): TrackType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): TrackType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class InterpolationType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * No interpolation (nearest value).
      */
@@ -1192,19 +1193,19 @@ public open class Animation : Resource() {
     CUBIC_ANGLE(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): InterpolationType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): InterpolationType = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UpdateMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Update between keyframes and hold the value.
      */
@@ -1221,19 +1222,19 @@ public open class Animation : Resource() {
     CAPTURE(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UpdateMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UpdateMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * At both ends of the animation, the animation will stop playing.
      */
@@ -1249,19 +1250,19 @@ public open class Animation : Resource() {
     PINGPONG(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LoopMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoopMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class LoopedFlag(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * This flag indicates that the animation proceeds without any looping.
      */
@@ -1278,19 +1279,19 @@ public open class Animation : Resource() {
     START(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LoopedFlag = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LoopedFlag = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class FindMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Finds the nearest time key.
      */
@@ -1305,13 +1306,13 @@ public open class Animation : Resource() {
     EXACT(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): FindMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): FindMode = entries.single { it.`value` == `value` }
     }
   }
 

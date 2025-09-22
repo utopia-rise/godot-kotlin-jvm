@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Rect2
 import godot.core.Side
 import godot.core.Signal0
@@ -199,7 +200,7 @@ public open class NinePatchRect : Control() {
    * Sets the size of the margin on the specified [Side] to [value] pixels.
    */
   public final fun setPatchMargin(margin: Side, `value`: Int): Unit {
-    TransferContext.writeArguments(LONG to margin.id, LONG to value.toLong())
+    TransferContext.writeArguments(LONG to margin.value, LONG to value.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setPatchMarginPtr, NIL)
   }
 
@@ -207,7 +208,7 @@ public open class NinePatchRect : Control() {
    * Returns the size of the margin on the specified [Side].
    */
   public final fun getPatchMargin(margin: Side): Int {
-    TransferContext.writeArguments(LONG to margin.id)
+    TransferContext.writeArguments(LONG to margin.value)
     TransferContext.callMethod(ptr, MethodBindings.getPatchMarginPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
@@ -235,7 +236,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun setHAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setHAxisStretchModePtr, NIL)
   }
 
@@ -246,7 +247,7 @@ public open class NinePatchRect : Control() {
   }
 
   public final fun setVAxisStretchMode(mode: AxisStretchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setVAxisStretchModePtr, NIL)
   }
 
@@ -257,8 +258,8 @@ public open class NinePatchRect : Control() {
   }
 
   public enum class AxisStretchMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Stretches the center texture across the NinePatchRect. This may cause the texture to be
      * distorted.
@@ -278,13 +279,13 @@ public open class NinePatchRect : Control() {
     TILE_FIT(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AxisStretchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AxisStretchMode = entries.single { it.`value` == `value` }
     }
   }
 

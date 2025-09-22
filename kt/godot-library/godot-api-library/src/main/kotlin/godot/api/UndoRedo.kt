@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantCaster.ANY
@@ -178,7 +179,7 @@ public open class UndoRedo : Object() {
     mergeMode: MergeMode = UndoRedo.MergeMode.DISABLE,
     backwardUndoOps: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(STRING to name, LONG to mergeMode.id, BOOL to backwardUndoOps)
+    TransferContext.writeArguments(STRING to name, LONG to mergeMode.value, BOOL to backwardUndoOps)
     TransferContext.callMethod(ptr, MethodBindings.createActionPtr, NIL)
   }
 
@@ -428,8 +429,8 @@ public open class UndoRedo : Object() {
   ) = addUndoProperty(`object`, property.asCachedStringName(), value)
 
   public enum class MergeMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Makes "do"/"undo" operations stay in separate actions.
      */
@@ -446,13 +447,13 @@ public open class UndoRedo : Object() {
     ALL(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): MergeMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): MergeMode = entries.single { it.`value` == `value` }
     }
   }
 

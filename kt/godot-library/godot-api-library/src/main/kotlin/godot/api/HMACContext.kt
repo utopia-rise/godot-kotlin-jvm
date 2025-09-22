@@ -80,7 +80,7 @@ public open class HMACContext : RefCounted() {
    * [finish] has been called.
    */
   public final fun start(hashType: HashingContext.HashType, key: PackedByteArray): Error {
-    TransferContext.writeArguments(LONG to hashType.id, PACKED_BYTE_ARRAY to key)
+    TransferContext.writeArguments(LONG to hashType.value, PACKED_BYTE_ARRAY to key)
     TransferContext.callMethod(ptr, MethodBindings.startPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

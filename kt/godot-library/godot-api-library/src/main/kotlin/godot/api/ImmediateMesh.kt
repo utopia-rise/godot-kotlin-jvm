@@ -72,7 +72,7 @@ public open class ImmediateMesh : Mesh() {
    */
   @JvmOverloads
   public final fun surfaceBegin(primitive: Mesh.PrimitiveType, material: Material? = null): Unit {
-    TransferContext.writeArguments(LONG to primitive.id, OBJECT to material)
+    TransferContext.writeArguments(LONG to primitive.value, OBJECT to material)
     TransferContext.callMethod(ptr, MethodBindings.surfaceBeginPtr, NIL)
   }
 

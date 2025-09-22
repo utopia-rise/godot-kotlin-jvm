@@ -12,6 +12,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.RID
 import godot.core.Rect2i
@@ -642,7 +643,7 @@ public open class TileMapLayer : Node2D() {
    * direction. This method takes into account the different layouts a TileMap can take.
    */
   public final fun getNeighborCell(coords: Vector2i, neighbor: TileSet.CellNeighbor): Vector2i {
-    TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.id)
+    TransferContext.writeArguments(VECTOR2I to coords, LONG to neighbor.value)
     TransferContext.callMethod(ptr, MethodBindings.getNeighborCellPtr, VECTOR2I)
     return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
   }
@@ -760,7 +761,7 @@ public open class TileMapLayer : Node2D() {
   }
 
   public final fun setCollisionVisibilityMode(visibilityMode: DebugVisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to visibilityMode.id)
+    TransferContext.writeArguments(LONG to visibilityMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCollisionVisibilityModePtr, NIL)
   }
 
@@ -814,7 +815,7 @@ public open class TileMapLayer : Node2D() {
   }
 
   public final fun setNavigationVisibilityMode(showNavigation: DebugVisibilityMode): Unit {
-    TransferContext.writeArguments(LONG to showNavigation.id)
+    TransferContext.writeArguments(LONG to showNavigation.value)
     TransferContext.callMethod(ptr, MethodBindings.setNavigationVisibilityModePtr, NIL)
   }
 
@@ -825,8 +826,8 @@ public open class TileMapLayer : Node2D() {
   }
 
   public enum class DebugVisibilityMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Hide the collisions or navigation debug shapes in the editor, and use the debug settings to
      * determine their visibility in game (i.e. [SceneTree.debugCollisionsHint] or
@@ -843,13 +844,13 @@ public open class TileMapLayer : Node2D() {
     FORCE_SHOW(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): DebugVisibilityMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): DebugVisibilityMode = entries.single { it.`value` == `value` }
     }
   }
 

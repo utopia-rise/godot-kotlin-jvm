@@ -14,6 +14,7 @@ import godot.core.ClockDirection
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.Rect2i
 import godot.core.VariantParser.BOOL
@@ -123,7 +124,7 @@ public open class Image : Resource() {
    * Converts the image's format. See [Format] constants.
    */
   public final fun convert(format: Format): Unit {
-    TransferContext.writeArguments(LONG to format.id)
+    TransferContext.writeArguments(LONG to format.value)
     TransferContext.callMethod(ptr, MethodBindings.convertPtr, NIL)
   }
 
@@ -156,7 +157,7 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun resizeToPo2(square: Boolean = false, interpolation: Interpolation =
       Image.Interpolation.INTERPOLATE_BILINEAR): Unit {
-    TransferContext.writeArguments(BOOL to square, LONG to interpolation.id)
+    TransferContext.writeArguments(BOOL to square, LONG to interpolation.value)
     TransferContext.callMethod(ptr, MethodBindings.resizeToPo2Ptr, NIL)
   }
 
@@ -170,7 +171,7 @@ public open class Image : Resource() {
     height: Int,
     interpolation: Interpolation = Image.Interpolation.INTERPOLATE_BILINEAR,
   ): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to interpolation.id)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), LONG to interpolation.value)
     TransferContext.callMethod(ptr, MethodBindings.resizePtr, NIL)
   }
 
@@ -244,7 +245,7 @@ public open class Image : Resource() {
     format: Format,
     `data`: PackedByteArray,
   ): Unit {
-    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.value, PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.setDataPtr, NIL)
   }
 
@@ -417,7 +418,7 @@ public open class Image : Resource() {
   @JvmOverloads
   public final fun detectUsedChannels(source: CompressSource = Image.CompressSource.GENERIC):
       UsedChannels {
-    TransferContext.writeArguments(LONG to source.id)
+    TransferContext.writeArguments(LONG to source.value)
     TransferContext.callMethod(ptr, MethodBindings.detectUsedChannelsPtr, LONG)
     return UsedChannels.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -437,7 +438,7 @@ public open class Image : Resource() {
     source: CompressSource = Image.CompressSource.GENERIC,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, LONG to source.id, LONG to astcFormat.id)
+    TransferContext.writeArguments(LONG to mode.value, LONG to source.value, LONG to astcFormat.value)
     TransferContext.callMethod(ptr, MethodBindings.compressPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -458,7 +459,7 @@ public open class Image : Resource() {
     channels: UsedChannels,
     astcFormat: ASTCFormat = Image.ASTCFormat.ASTC_FORMAT_4x4,
   ): Error {
-    TransferContext.writeArguments(LONG to mode.id, LONG to channels.id, LONG to astcFormat.id)
+    TransferContext.writeArguments(LONG to mode.value, LONG to channels.value, LONG to astcFormat.value)
     TransferContext.callMethod(ptr, MethodBindings.compressFromChannelsPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -490,7 +491,7 @@ public open class Image : Resource() {
    * image must be greater than `1`. If the width and height are not equal, the image will be resized.
    */
   public final fun rotate90(direction: ClockDirection): Unit {
-    TransferContext.writeArguments(LONG to direction.id)
+    TransferContext.writeArguments(LONG to direction.value)
     TransferContext.callMethod(ptr, MethodBindings.rotate90Ptr, NIL)
   }
 
@@ -892,8 +893,8 @@ public open class Image : Resource() {
   }
 
   public enum class Format(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Texture format with a single 8-bit depth representing luminance.
      */
@@ -1131,19 +1132,19 @@ public open class Image : Resource() {
     MAX(39),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Format = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Format = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class Interpolation(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Performs nearest-neighbor interpolation. If the image is resized, it will be pixelated.
      */
@@ -1183,19 +1184,19 @@ public open class Image : Resource() {
     INTERPOLATE_LANCZOS(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Interpolation = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Interpolation = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AlphaMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Image does not have alpha.
      */
@@ -1210,19 +1211,19 @@ public open class Image : Resource() {
     BLEND(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlphaMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlphaMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Use S3TC compression.
      */
@@ -1249,19 +1250,19 @@ public open class Image : Resource() {
     MAX(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompressMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class UsedChannels(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The image only uses one channel for luminance (grayscale).
      */
@@ -1288,19 +1289,19 @@ public open class Image : Resource() {
     RGBA(5),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): UsedChannels = entries.single { it.id == `value` }
+      public fun from(`value`: Long): UsedChannels = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class CompressSource(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Source texture (before compression) is a regular texture. Default for all textures.
      */
@@ -1316,19 +1317,19 @@ public open class Image : Resource() {
     NORMAL(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CompressSource = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CompressSource = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class ASTCFormat(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Hint to indicate that the high quality 4×4 ASTC compression format should be used.
      */
@@ -1339,13 +1340,13 @@ public open class Image : Resource() {
     ASTC_FORMAT_8x8(1),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): ASTCFormat = entries.single { it.id == `value` }
+      public fun from(`value`: Long): ASTCFormat = entries.single { it.`value` == `value` }
     }
   }
 
@@ -1371,7 +1372,7 @@ public open class Image : Resource() {
       useMipmaps: Boolean,
       format: Format,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.value)
       TransferContext.callMethod(0, MethodBindings.createPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
@@ -1387,7 +1388,7 @@ public open class Image : Resource() {
       useMipmaps: Boolean,
       format: Format,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id)
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.value)
       TransferContext.callMethod(0, MethodBindings.createEmptyPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as Image?)
     }
@@ -1405,7 +1406,7 @@ public open class Image : Resource() {
       format: Format,
       `data`: PackedByteArray,
     ): Image? {
-      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.id, PACKED_BYTE_ARRAY to data)
+      TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), BOOL to useMipmaps, LONG to format.value, PACKED_BYTE_ARRAY to data)
       TransferContext.callMethod(0, MethodBindings.createFromDataPtr, OBJECT)
       return (TransferContext.readReturnValue(OBJECT) as Image?)
     }

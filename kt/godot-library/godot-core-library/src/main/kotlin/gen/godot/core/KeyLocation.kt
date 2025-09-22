@@ -10,8 +10,8 @@ import kotlin.Long
 import kotlin.Suppress
 
 public enum class KeyLocation(
-  id: Long,
-) {
+  `value`: Long,
+) : GodotEnum {
   /**
    * Used for keys which only appear once, or when a comparison doesn't need to differentiate the
    * `LEFT` and `RIGHT` versions.
@@ -30,12 +30,12 @@ public enum class KeyLocation(
   RIGHT(2),
   ;
 
-  public val id: Long
+  public override val `value`: Long
   init {
-    this.id = id
+    this.`value` = `value`
   }
 
   public companion object {
-    public fun from(`value`: Long): KeyLocation = entries.single { it.id == `value` }
+    public fun from(`value`: Long): KeyLocation = entries.single { it.`value` == `value` }
   }
 }

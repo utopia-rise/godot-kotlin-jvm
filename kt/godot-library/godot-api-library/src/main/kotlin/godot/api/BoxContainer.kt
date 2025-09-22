@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -67,7 +68,7 @@ public open class BoxContainer : Container() {
   }
 
   public final fun setAlignment(alignment: AlignmentMode): Unit {
-    TransferContext.writeArguments(LONG to alignment.id)
+    TransferContext.writeArguments(LONG to alignment.value)
     TransferContext.callMethod(ptr, MethodBindings.setAlignmentPtr, NIL)
   }
 
@@ -89,8 +90,8 @@ public open class BoxContainer : Container() {
   }
 
   public enum class AlignmentMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * The child controls will be arranged at the beginning of the container, i.e. top if
      * orientation is vertical, left if orientation is horizontal (right for RTL layout).
@@ -107,13 +108,13 @@ public open class BoxContainer : Container() {
     END(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AlignmentMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AlignmentMode = entries.single { it.`value` == `value` }
     }
   }
 

@@ -802,7 +802,7 @@ public open class NavigationAgent3D : Node() {
   public final
       fun setPathfindingAlgorithm(pathfindingAlgorithm: NavigationPathQueryParameters3D.PathfindingAlgorithm):
       Unit {
-    TransferContext.writeArguments(LONG to pathfindingAlgorithm.id)
+    TransferContext.writeArguments(LONG to pathfindingAlgorithm.value)
     TransferContext.callMethod(ptr, MethodBindings.setPathfindingAlgorithmPtr, NIL)
   }
 
@@ -815,7 +815,7 @@ public open class NavigationAgent3D : Node() {
   public final
       fun setPathPostprocessing(pathPostprocessing: NavigationPathQueryParameters3D.PathPostProcessing):
       Unit {
-    TransferContext.writeArguments(LONG to pathPostprocessing.id)
+    TransferContext.writeArguments(LONG to pathPostprocessing.value)
     TransferContext.callMethod(ptr, MethodBindings.setPathPostprocessingPtr, NIL)
   }
 

@@ -78,7 +78,7 @@ public open class CameraTexture : Texture2D() {
   }
 
   public final fun setWhichFeed(whichFeed: CameraServer.FeedImage): Unit {
-    TransferContext.writeArguments(LONG to whichFeed.id)
+    TransferContext.writeArguments(LONG to whichFeed.value)
     TransferContext.callMethod(ptr, MethodBindings.setWhichFeedPtr, NIL)
   }
 

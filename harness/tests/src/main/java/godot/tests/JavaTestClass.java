@@ -99,7 +99,7 @@ public class JavaTestClass extends Node {
         connect(
                 StringNames.asStringName("test_signal"),
                 new NativeCallable(this, StringNames.asStringName("signal_callback")),
-                (int) ConnectFlags.ONE_SHOT.getId()
+                (int) ConnectFlags.ONE_SHOT.getValue()
         );
         emitSignal(StringNames.asStringName("test_signal"));
     }

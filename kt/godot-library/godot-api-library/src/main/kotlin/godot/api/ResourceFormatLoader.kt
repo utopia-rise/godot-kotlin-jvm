@@ -9,6 +9,7 @@ package godot.api
 import godot.`annotation`.GodotBaseType
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.GodotEnum
 import godot.core.PackedStringArray
 import godot.core.StringName
 import kotlin.Any
@@ -145,8 +146,8 @@ public open class ResourceFormatLoader : RefCounted() {
   }
 
   public enum class CacheMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Neither the main resource (the one requested to be loaded) nor any of its subresources are
      * retrieved from cache nor stored into it. Dependencies (external resources) are loaded with
@@ -179,13 +180,13 @@ public open class ResourceFormatLoader : RefCounted() {
     REPLACE_DEEP(4),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): CacheMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): CacheMode = entries.single { it.`value` == `value` }
     }
   }
 

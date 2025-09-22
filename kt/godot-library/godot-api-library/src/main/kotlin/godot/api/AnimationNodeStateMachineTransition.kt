@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantParser.BOOL
@@ -174,7 +175,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setSwitchModePtr, NIL)
   }
 
@@ -185,7 +186,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
   }
 
   public final fun setAdvanceMode(mode: AdvanceMode): Unit {
-    TransferContext.writeArguments(LONG to mode.id)
+    TransferContext.writeArguments(LONG to mode.value)
     TransferContext.callMethod(ptr, MethodBindings.setAdvanceModePtr, NIL)
   }
 
@@ -276,8 +277,8 @@ public open class AnimationNodeStateMachineTransition : Resource() {
       setAdvanceCondition(name.asCachedStringName())
 
   public enum class SwitchMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Switch to the next state immediately. The current state will end and blend into the beginning
      * of the new one.
@@ -295,19 +296,19 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     AT_END(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): SwitchMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): SwitchMode = entries.single { it.`value` == `value` }
     }
   }
 
   public enum class AdvanceMode(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Don't use this transition.
      */
@@ -323,13 +324,13 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     AUTO(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): AdvanceMode = entries.single { it.id == `value` }
+      public fun from(`value`: Long): AdvanceMode = entries.single { it.`value` == `value` }
     }
   }
 

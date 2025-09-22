@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Int
@@ -39,7 +40,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public final fun setSource(`value`: Source): Unit {
-    TransferContext.writeArguments(LONG to value.id)
+    TransferContext.writeArguments(LONG to value.value)
     TransferContext.callMethod(ptr, MethodBindings.setSourcePtr, NIL)
   }
 
@@ -50,8 +51,8 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
   }
 
   public enum class Source(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Creates internal uniform and provides a way to assign it within node.
      */
@@ -66,13 +67,13 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     MAX(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): Source = entries.single { it.id == `value` }
+      public fun from(`value`: Long): Source = entries.single { it.`value` == `value` }
     }
   }
 

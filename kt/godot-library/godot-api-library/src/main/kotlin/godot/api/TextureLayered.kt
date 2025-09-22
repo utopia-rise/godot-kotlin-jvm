@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
@@ -138,8 +139,8 @@ public abstract class TextureLayered : Texture() {
   }
 
   public enum class LayeredType(
-    id: Long,
-  ) {
+    `value`: Long,
+  ) : GodotEnum {
     /**
      * Texture is a generic [Texture2DArray].
      */
@@ -154,13 +155,13 @@ public abstract class TextureLayered : Texture() {
     CUBEMAP_ARRAY(2),
     ;
 
-    public val id: Long
+    public override val `value`: Long
     init {
-      this.id = id
+      this.`value` = `value`
     }
 
     public companion object {
-      public fun from(`value`: Long): LayeredType = entries.single { it.id == `value` }
+      public fun from(`value`: Long): LayeredType = entries.single { it.`value` == `value` }
     }
   }
 
