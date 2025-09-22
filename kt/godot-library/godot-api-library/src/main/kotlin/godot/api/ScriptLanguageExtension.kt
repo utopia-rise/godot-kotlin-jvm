@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptLanguageExtension : ScriptLanguage() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(575, scriptIndex)
+    createNativeObject(591, scriptIndex)
   }
 
   public abstract fun _getName(): String

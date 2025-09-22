@@ -87,7 +87,7 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(301, scriptIndex)
+    createNativeObject(308, scriptIndex)
   }
 
   /**

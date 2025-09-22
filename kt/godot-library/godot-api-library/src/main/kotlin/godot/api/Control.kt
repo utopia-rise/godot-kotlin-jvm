@@ -23,6 +23,7 @@ import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.COLOR
@@ -135,8 +136,8 @@ public open class Control : CanvasItem() {
    *
    * ```
    * func _on_mouse_exited():
-   *     if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
-   *         # Not hovering over area.
+   * if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
+   * # Not hovering over area.
    * ```
    */
   public val mouseExited: Signal0 by Signal0
@@ -387,7 +388,7 @@ public open class Control : CanvasItem() {
 
   /**
    * The node's scale, relative to its [size]. Change this property to scale the node around its
-   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   * [pivotOffset]. The Control's tooltip will also scale according to this value.
    *
    * **Note:** This property is mainly intended to be used for animation purposes. To support
    * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
@@ -658,8 +659,10 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * The focus access mode for the control (None, Click or All). Only one Control can be focused at
-   * the same time, and it will receive keyboard, gamepad, and mouse signals.
+   * Determines which controls can be focused. Only one control can be focused at a time, and the
+   * focused control will receive keyboard, gamepad, and mouse events in [_guiInput]. Use
+   * [getFocusModeWithOverride] to determine if a control can grab focus, since
+   * [focusBehaviorRecursive] also affects it. See also [grabFocus].
    */
   public final inline var focusMode: FocusMode
     @JvmName("focusModeProperty")
@@ -670,10 +673,24 @@ public open class Control : CanvasItem() {
     }
 
   /**
-   * Controls whether the control will be able to receive mouse button input events through
-   * [_guiInput] and how these events should be handled. Also controls whether the control can receive
-   * the [signal mouse_entered], and [signal mouse_exited] signals. See the constants to learn what
-   * each does.
+   * Determines which controls can be focused together with [focusMode]. See
+   * [getFocusModeWithOverride]. Since the default behavior is [FOCUS_BEHAVIOR_INHERITED], this can be
+   * used to prevent all children controls from getting focused.
+   */
+  public final inline var focusBehaviorRecursive: FocusBehaviorRecursive
+    @JvmName("focusBehaviorRecursiveProperty")
+    get() = getFocusBehaviorRecursive()
+    @JvmName("focusBehaviorRecursiveProperty")
+    set(`value`) {
+      setFocusBehaviorRecursive(value)
+    }
+
+  /**
+   * Determines which controls will be able to receive mouse button input events through [_guiInput]
+   * and the [signal mouse_entered], and [signal mouse_exited] signals. Also determines how these
+   * events should be propagated. See the constants to learn what each does. Use
+   * [getMouseFilterWithOverride] to determine if a control can receive mouse input, since
+   * [mouseBehaviorRecursive] also affects it.
    */
   public final inline var mouseFilter: MouseFilter
     @JvmName("mouseFilterProperty")
@@ -681,6 +698,19 @@ public open class Control : CanvasItem() {
     @JvmName("mouseFilterProperty")
     set(`value`) {
       setMouseFilter(value)
+    }
+
+  /**
+   * Determines which controls can receive mouse input together with [mouseFilter]. See
+   * [getMouseFilterWithOverride]. Since the default behavior is [MOUSE_BEHAVIOR_INHERITED], this can
+   * be used to prevent all children controls from receiving mouse input.
+   */
+  public final inline var mouseBehaviorRecursive: MouseBehaviorRecursive
+    @JvmName("mouseBehaviorRecursiveProperty")
+    get() = getMouseBehaviorRecursive()
+    @JvmName("mouseBehaviorRecursiveProperty")
+    set(`value`) {
+      setMouseBehaviorRecursive(value)
     }
 
   /**
@@ -729,6 +759,84 @@ public open class Control : CanvasItem() {
     }
 
   /**
+   * The human-readable node name that is reported to assistive apps.
+   */
+  public final inline var accessibilityName: String
+    @JvmName("accessibilityNameProperty")
+    get() = getAccessibilityName()
+    @JvmName("accessibilityNameProperty")
+    set(`value`) {
+      setAccessibilityName(value)
+    }
+
+  /**
+   * The human-readable node description that is reported to assistive apps.
+   */
+  public final inline var accessibilityDescription: String
+    @JvmName("accessibilityDescriptionProperty")
+    get() = getAccessibilityDescription()
+    @JvmName("accessibilityDescriptionProperty")
+    set(`value`) {
+      setAccessibilityDescription(value)
+    }
+
+  /**
+   * The mode with which a live region updates. A live region is a [Node] that is updated as a
+   * result of an external event when the user's focus may be elsewhere.
+   */
+  public final inline var accessibilityLive: DisplayServer.AccessibilityLiveMode
+    @JvmName("accessibilityLiveProperty")
+    get() = getAccessibilityLive()
+    @JvmName("accessibilityLiveProperty")
+    set(`value`) {
+      setAccessibilityLive(value)
+    }
+
+  /**
+   * The paths to the nodes which are controlled by this node.
+   */
+  public final inline var accessibilityControlsNodes: VariantArray<NodePath>
+    @JvmName("accessibilityControlsNodesProperty")
+    get() = getAccessibilityControlsNodes()
+    @JvmName("accessibilityControlsNodesProperty")
+    set(`value`) {
+      setAccessibilityControlsNodes(value)
+    }
+
+  /**
+   * The paths to the nodes which are describing this node.
+   */
+  public final inline var accessibilityDescribedByNodes: VariantArray<NodePath>
+    @JvmName("accessibilityDescribedByNodesProperty")
+    get() = getAccessibilityDescribedByNodes()
+    @JvmName("accessibilityDescribedByNodesProperty")
+    set(`value`) {
+      setAccessibilityDescribedByNodes(value)
+    }
+
+  /**
+   * The paths to the nodes which label this node.
+   */
+  public final inline var accessibilityLabeledByNodes: VariantArray<NodePath>
+    @JvmName("accessibilityLabeledByNodesProperty")
+    get() = getAccessibilityLabeledByNodes()
+    @JvmName("accessibilityLabeledByNodesProperty")
+    set(`value`) {
+      setAccessibilityLabeledByNodes(value)
+    }
+
+  /**
+   * The paths to the nodes which this node flows into.
+   */
+  public final inline var accessibilityFlowToNodes: VariantArray<NodePath>
+    @JvmName("accessibilityFlowToNodesProperty")
+    get() = getAccessibilityFlowToNodes()
+    @JvmName("accessibilityFlowToNodesProperty")
+    set(`value`) {
+      setAccessibilityFlowToNodes(value)
+    }
+
+  /**
    * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
    * has its own [Theme] resource set, theme items are merged with child's definitions having higher
    * priority.
@@ -769,7 +877,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(178, scriptIndex)
+    createNativeObject(180, scriptIndex)
   }
 
   /**
@@ -808,7 +916,7 @@ public open class Control : CanvasItem() {
    * ``````
    *
    * The node's scale, relative to its [size]. Change this property to scale the node around its
-   * [pivotOffset]. The Control's [tooltipText] will also scale according to this value.
+   * [pivotOffset]. The Control's tooltip will also scale according to this value.
    *
    * **Note:** This property is mainly intended to be used for animation purposes. To support
    * multiple resolutions in your project, use an appropriate viewport stretch mode as described in the
@@ -915,23 +1023,27 @@ public open class Control : CanvasItem() {
    * A preview that will follow the mouse that should represent the data can be set with
    * [setDragPreview]. A good time to set the preview is in this method.
    *
+   * **Note:** If the drag was initiated by a keyboard shortcut or [accessibilityDrag], [atPosition]
+   * is set to [Vector2.INF], and the currently selected item/text position should be used as the drag
+   * position.
+   *
    * ```gdscript
    * //gdscript
    * func _get_drag_data(position):
-   *     var mydata = make_data() # This is your custom method generating the drag data.
-   *     set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview
-   * of the drag data.
-   *     return mydata
+   * var mydata = make_data() # This is your custom method generating the drag data.
+   * set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview of
+   * the drag data.
+   * return mydata
    * ```
    *
    * ```csharp
    * //csharp
    * public override Variant _GetDragData(Vector2 atPosition)
    * {
-   *     var myData = MakeData(); // This is your custom method generating the drag data.
-   *     SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview
-   * of the drag data.
-   *     return myData;
+   * var myData = MakeData(); // This is your custom method generating the drag data.
+   * SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview of
+   * the drag data.
+   * return myData;
    * }
    * ```
    */
@@ -945,21 +1057,25 @@ public open class Control : CanvasItem() {
    *
    * This method should only be used to test the data. Process the data in [_dropData].
    *
+   * **Note:** If the drag was initiated by a keyboard shortcut or [accessibilityDrag], [atPosition]
+   * is set to [Vector2.INF], and the currently selected item/text position should be used as the drop
+   * position.
+   *
    * ```gdscript
    * //gdscript
    * func _can_drop_data(position, data):
-   *     # Check position if it is relevant to you
-   *     # Otherwise, just check data
-   *     return typeof(data) == TYPE_DICTIONARY and data.has("expected")
+   * # Check position if it is relevant to you
+   * # Otherwise, just check data
+   * return typeof(data) == TYPE_DICTIONARY and data.has("expected")
    * ```
    *
    * ```csharp
    * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
-   *     // Check position if it is relevant to you
-   *     // Otherwise, just check data
-   *     return data.VariantType == Variant.Type.Dictionary &&
+   * // Check position if it is relevant to you
+   * // Otherwise, just check data
+   * return data.VariantType == Variant.Type.Dictionary &&
    * data.AsGodotDictionary().ContainsKey("expected");
    * }
    * ```
@@ -973,26 +1089,30 @@ public open class Control : CanvasItem() {
    * first calls [_canDropData] to test if [data] is allowed to drop at [atPosition] where [atPosition]
    * is local to this control.
    *
+   * **Note:** If the drag was initiated by a keyboard shortcut or [accessibilityDrag], [atPosition]
+   * is set to [Vector2.INF], and the currently selected item/text position should be used as the drop
+   * position.
+   *
    * ```gdscript
    * //gdscript
    * func _can_drop_data(position, data):
-   *     return typeof(data) == TYPE_DICTIONARY and data.has("color")
+   * return typeof(data) == TYPE_DICTIONARY and data.has("color")
    *
    * func _drop_data(position, data):
-   *     var color = data["color"]
+   * var color = data["color"]
    * ```
    *
    * ```csharp
    * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
-   *     return data.VariantType == Variant.Type.Dictionary &&
+   * return data.VariantType == Variant.Type.Dictionary &&
    * data.AsGodotDictionary().ContainsKey("color");
    * }
    *
    * public override void _DropData(Vector2 atPosition, Variant data)
    * {
-   *     Color color = data.AsGodotDictionary()["color"].AsColor();
+   * Color color = data.AsGodotDictionary()["color"].AsColor();
    * }
    * ```
    */
@@ -1030,18 +1150,18 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _make_custom_tooltip(for_text):
-   *     var label = Label.new()
-   *     label.text = for_text
-   *     return label
+   * var label = Label.new()
+   * label.text = for_text
+   * return label
    * ```
    *
    * ```csharp
    * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
-   *     var label = new Label();
-   *     label.Text = forText;
-   *     return label;
+   * var label = new Label();
+   * label.Text = forText;
+   * return label;
    * }
    * ```
    *
@@ -1050,24 +1170,38 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _make_custom_tooltip(for_text):
-   *     var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
-   *     tooltip.get_node("Label").text = for_text
-   *     return tooltip
+   * var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
+   * tooltip.get_node("Label").text = for_text
+   * return tooltip
    * ```
    *
    * ```csharp
    * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
-   *     Node tooltip =
-   * ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
-   *     tooltip.GetNode<Label>("Label").Text = forText;
-   *     return tooltip;
+   * Node tooltip = ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
+   * tooltip.GetNode<Label>("Label").Text = forText;
+   * return tooltip;
    * }
    * ```
    */
   public open fun _makeCustomTooltip(forText: String): Object? {
     throw NotImplementedError("Control::_makeCustomTooltip is not implemented.")
+  }
+
+  /**
+   * Return the description of the keyboard shortcuts and other contextual help for this control.
+   */
+  public open fun _accessibilityGetContextualInfo(): String {
+    throw NotImplementedError("Control::_accessibilityGetContextualInfo is not implemented.")
+  }
+
+  /**
+   * Override this method to return a human-readable description of the position of the child [node]
+   * in the custom container, added to the [accessibilityName].
+   */
+  public open fun _getAccessibilityContainerName(node: Node?): String {
+    throw NotImplementedError("Control::_getAccessibilityContainerName is not implemented.")
   }
 
   /**
@@ -1079,22 +1213,22 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _gui_input(event):
-   *     if event is InputEventMouseButton:
-   *         if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-   *             print("I've been clicked D:")
+   * if event is InputEventMouseButton:
+   * if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+   * print("I've been clicked D:")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _GuiInput(InputEvent @event)
    * {
-   *     if (@event is InputEventMouseButton mb)
-   *     {
-   *         if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
-   *         {
-   *             GD.Print("I've been clicked D:");
-   *         }
-   *     }
+   * if (@event is InputEventMouseButton mb)
+   * {
+   * if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
+   * {
+   * GD.Print("I've been clicked D:");
+   * }
+   * }
    * }
    * ```
    *
@@ -1479,6 +1613,29 @@ public open class Control : CanvasItem() {
   }
 
   /**
+   * Returns the [focusMode], but takes the [focusBehaviorRecursive] into account. If
+   * [focusBehaviorRecursive] is set to [FOCUS_BEHAVIOR_DISABLED], or it is set to
+   * [FOCUS_BEHAVIOR_INHERITED] and its ancestor is set to [FOCUS_BEHAVIOR_DISABLED], then this returns
+   * [FOCUS_NONE].
+   */
+  public final fun getFocusModeWithOverride(): FocusMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFocusModeWithOverridePtr, LONG)
+    return FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setFocusBehaviorRecursive(focusBehaviorRecursive: FocusBehaviorRecursive): Unit {
+    TransferContext.writeArguments(LONG to focusBehaviorRecursive.value)
+    TransferContext.callMethod(ptr, MethodBindings.setFocusBehaviorRecursivePtr, NIL)
+  }
+
+  public final fun getFocusBehaviorRecursive(): FocusBehaviorRecursive {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFocusBehaviorRecursivePtr, LONG)
+    return FocusBehaviorRecursive.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns `true` if this is the current focused control. See [focusMode].
    */
   public final fun hasFocus(): Boolean {
@@ -1853,20 +2010,20 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     # Get the font color defined for the current Control's class, if it exists.
-   *     modulate = get_theme_color("font_color")
-   *     # Get the font color defined for the Button class.
-   *     modulate = get_theme_color("font_color", "Button")
+   * # Get the font color defined for the current Control's class, if it exists.
+   * modulate = get_theme_color("font_color")
+   * # Get the font color defined for the Button class.
+   * modulate = get_theme_color("font_color", "Button")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     // Get the font color defined for the current Control's class, if it exists.
-   *     Modulate = GetThemeColor("font_color");
-   *     // Get the font color defined for the Button class.
-   *     Modulate = GetThemeColor("font_color", "Button");
+   * // Get the font color defined for the current Control's class, if it exists.
+   * Modulate = GetThemeColor("font_color");
+   * // Get the font color defined for the Button class.
+   * Modulate = GetThemeColor("font_color", "Button");
    * }
    * ```
    */
@@ -2154,7 +2311,9 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns the mouse cursor shape the control displays on mouse hover. See [CursorShape].
+   * Returns the mouse cursor shape for this control when hovered over [position] in local
+   * coordinates. For most controls, this is the same as [mouseDefaultCursorShape], but some built-in
+   * controls implement more complex logic.
    */
   @JvmOverloads
   public final fun getCursorShape(position: Vector2 = Vector2(0, 0)): CursorShape {
@@ -2220,6 +2379,99 @@ public open class Control : CanvasItem() {
     TransferContext.callMethod(ptr, MethodBindings.forceDragPtr, NIL)
   }
 
+  /**
+   * Starts drag-and-drop operation without using a mouse.
+   */
+  public final fun accessibilityDrag(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityDragPtr, NIL)
+  }
+
+  /**
+   * Ends drag-and-drop operation without using a mouse.
+   */
+  public final fun accessibilityDrop(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityDropPtr, NIL)
+  }
+
+  public final fun setAccessibilityName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityNamePtr, NIL)
+  }
+
+  public final fun getAccessibilityName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setAccessibilityDescription(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityDescriptionPtr, NIL)
+  }
+
+  public final fun getAccessibilityDescription(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setAccessibilityLive(mode: DisplayServer.AccessibilityLiveMode): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityLivePtr, NIL)
+  }
+
+  public final fun getAccessibilityLive(): DisplayServer.AccessibilityLiveMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityLivePtr, LONG)
+    return DisplayServer.AccessibilityLiveMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAccessibilityControlsNodes(nodePath: VariantArray<NodePath>): Unit {
+    TransferContext.writeArguments(ARRAY to nodePath)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityControlsNodesPtr, NIL)
+  }
+
+  public final fun getAccessibilityControlsNodes(): VariantArray<NodePath> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityControlsNodesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
+  }
+
+  public final fun setAccessibilityDescribedByNodes(nodePath: VariantArray<NodePath>): Unit {
+    TransferContext.writeArguments(ARRAY to nodePath)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityDescribedByNodesPtr, NIL)
+  }
+
+  public final fun getAccessibilityDescribedByNodes(): VariantArray<NodePath> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityDescribedByNodesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
+  }
+
+  public final fun setAccessibilityLabeledByNodes(nodePath: VariantArray<NodePath>): Unit {
+    TransferContext.writeArguments(ARRAY to nodePath)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityLabeledByNodesPtr, NIL)
+  }
+
+  public final fun getAccessibilityLabeledByNodes(): VariantArray<NodePath> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityLabeledByNodesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
+  }
+
+  public final fun setAccessibilityFlowToNodes(nodePath: VariantArray<NodePath>): Unit {
+    TransferContext.writeArguments(ARRAY to nodePath)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityFlowToNodesPtr, NIL)
+  }
+
+  public final fun getAccessibilityFlowToNodes(): VariantArray<NodePath> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityFlowToNodesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<NodePath>)
+  }
+
   public final fun setMouseFilter(filter: MouseFilter): Unit {
     TransferContext.writeArguments(LONG to filter.value)
     TransferContext.callMethod(ptr, MethodBindings.setMouseFilterPtr, NIL)
@@ -2229,6 +2481,29 @@ public open class Control : CanvasItem() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getMouseFilterPtr, LONG)
     return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the [mouseFilter], but takes the [mouseBehaviorRecursive] into account. If
+   * [mouseBehaviorRecursive] is set to [MOUSE_BEHAVIOR_DISABLED], or it is set to
+   * [MOUSE_BEHAVIOR_INHERITED] and its ancestor is set to [MOUSE_BEHAVIOR_DISABLED], then this returns
+   * [MOUSE_FILTER_IGNORE].
+   */
+  public final fun getMouseFilterWithOverride(): MouseFilter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMouseFilterWithOverridePtr, LONG)
+    return MouseFilter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMouseBehaviorRecursive(mouseBehaviorRecursive: MouseBehaviorRecursive): Unit {
+    TransferContext.writeArguments(LONG to mouseBehaviorRecursive.value)
+    TransferContext.callMethod(ptr, MethodBindings.setMouseBehaviorRecursivePtr, NIL)
+  }
+
+  public final fun getMouseBehaviorRecursive(): MouseBehaviorRecursive {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMouseBehaviorRecursivePtr, LONG)
+    return MouseBehaviorRecursive.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setForcePassScrollEvents(forcePassScrollEvents: Boolean): Unit {
@@ -2260,14 +2535,14 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _process(delta):
-   *     grab_click_focus() # When clicking another Control node, this node will be clicked instead.
+   * grab_click_focus() # When clicking another Control node, this node will be clicked instead.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Process(double delta)
    * {
-   *     GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
+   * GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
    * }
    * ```
    */
@@ -2309,12 +2584,12 @@ public open class Control : CanvasItem() {
    * @export var color = Color(1, 0, 0, 1)
    *
    * func _get_drag_data(position):
-   *     # Use a control that is not in the tree
-   *     var cpb = ColorPickerButton.new()
-   *     cpb.color = color
-   *     cpb.size = Vector2(50, 50)
-   *     set_drag_preview(cpb)
-   *     return color
+   * # Use a control that is not in the tree
+   * var cpb = ColorPickerButton.new()
+   * cpb.color = color
+   * cpb.size = Vector2(50, 50)
+   * set_drag_preview(cpb)
+   * return color
    * ```
    *
    * ```csharp
@@ -2324,12 +2599,12 @@ public open class Control : CanvasItem() {
    *
    * public override Variant _GetDragData(Vector2 atPosition)
    * {
-   *     // Use a control that is not in the tree
-   *     var cpb = new ColorPickerButton();
-   *     cpb.Color = _color;
-   *     cpb.Size = new Vector2(50, 50);
-   *     SetDragPreview(cpb);
-   *     return _color;
+   * // Use a control that is not in the tree
+   * var cpb = new ColorPickerButton();
+   * cpb.Color = _color;
+   * cpb.Size = new Vector2(50, 50);
+   * SetDragPreview(cpb);
+   * return _color;
    * }
    * ```
    */
@@ -2394,7 +2669,7 @@ public open class Control : CanvasItem() {
   }
 
   /**
-   * Returns `true` if layout is right-to-left. See also [layoutDirection].
+   * Returns `true` if the layout is right-to-left. See also [layoutDirection].
    */
   public final fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
@@ -2634,20 +2909,20 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     # Get the font color defined for the current Control's class, if it exists.
-   *     modulate = get_theme_color("font_color")
-   *     # Get the font color defined for the Button class.
-   *     modulate = get_theme_color("font_color", "Button")
+   * # Get the font color defined for the current Control's class, if it exists.
+   * modulate = get_theme_color("font_color")
+   * # Get the font color defined for the Button class.
+   * modulate = get_theme_color("font_color", "Button")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     // Get the font color defined for the current Control's class, if it exists.
-   *     Modulate = GetThemeColor("font_color");
-   *     // Get the font color defined for the Button class.
-   *     Modulate = GetThemeColor("font_color", "Button");
+   * // Get the font color defined for the current Control's class, if it exists.
+   * Modulate = GetThemeColor("font_color");
+   * // Get the font color defined for the Button class.
+   * Modulate = GetThemeColor("font_color", "Button");
    * }
    * ```
    */
@@ -2800,6 +3075,10 @@ public open class Control : CanvasItem() {
      * using the D-pad buttons on a gamepad. Use with [focusMode].
      */
     ALL(2),
+    /**
+     * The node can grab focus only when screen reader is active. Use with [focusMode].
+     */
+    ACCESSIBILITY(3),
     ;
 
     public override val `value`: Long
@@ -2809,6 +3088,69 @@ public open class Control : CanvasItem() {
 
     public companion object {
       public fun from(`value`: Long): FocusMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class FocusBehaviorRecursive(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Inherits the [focusBehaviorRecursive] from the parent control. If there is no parent control,
+     * this is the same as [FOCUS_BEHAVIOR_ENABLED].
+     */
+    INHERITED(0),
+    /**
+     * Prevents the control from getting focused. [getFocusModeWithOverride] will return
+     * [FOCUS_NONE].
+     */
+    DISABLED(1),
+    /**
+     * Allows the control to be focused, depending on the [focusMode]. This can be used to ignore
+     * the parent's [focusBehaviorRecursive]. [getFocusModeWithOverride] will return the [focusMode].
+     */
+    ENABLED(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): FocusBehaviorRecursive =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class MouseBehaviorRecursive(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Inherits the [mouseBehaviorRecursive] from the parent control. If there is no parent control,
+     * this is the same as [MOUSE_BEHAVIOR_ENABLED].
+     */
+    INHERITED(0),
+    /**
+     * Prevents the control from receiving mouse input. [getMouseFilterWithOverride] will return
+     * [MOUSE_FILTER_IGNORE].
+     */
+    DISABLED(1),
+    /**
+     * Allows the control to be receive mouse input, depending on the [mouseFilter]. This can be
+     * used to ignore the parent's [mouseBehaviorRecursive]. [getMouseFilterWithOverride] will return
+     * the [mouseFilter].
+     */
+    ENABLED(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): MouseBehaviorRecursive =
+          entries.single { it.`value` == `value` }
     }
   }
 
@@ -3257,8 +3599,8 @@ public open class Control : CanvasItem() {
     /**
      * Automatic layout direction, determined from the system locale. Right-to-left layout direction
      * is automatically used for languages that require it such as Arabic and Hebrew, but only if a
-     * valid translation file is loaded for the given language.. For all other languages (or if no
-     * valid translation file is found by Godot), left-to-right layout direction is used. If using
+     * valid translation file is loaded for the given language. For all other languages (or if no valid
+     * translation file is found by Godot), left-to-right layout direction is used. If using
      * [TextServerFallback] ([ProjectSettings.internationalization/rendering/textDriver]),
      * left-to-right layout direction is always used regardless of the language.
      */
@@ -3394,10 +3736,10 @@ public open class Control : CanvasItem() {
      *
      * ```
      * func _notification(what):
-     *     if what == NOTIFICATION_THEME_CHANGED:
-     *         if not is_node_ready():
-     *             await ready # Wait until ready signal.
-     *         $Label.add_theme_color_override("font_color", Color.YELLOW)
+     * if what == NOTIFICATION_THEME_CHANGED:
+     * if not is_node_ready():
+     * await ready # Wait until ready signal.
+     * $Label.add_theme_color_override("font_color", Color.YELLOW)
      * ```
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45
@@ -3543,6 +3885,15 @@ public open class Control : CanvasItem() {
 
     internal val getFocusModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_focus_mode", 2132829277)
+
+    internal val getFocusModeWithOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_focus_mode_with_override", 2132829277)
+
+    internal val setFocusBehaviorRecursivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_focus_behavior_recursive", 4256832521)
+
+    internal val getFocusBehaviorRecursivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_focus_behavior_recursive", 2435707181)
 
     internal val hasFocusPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "has_focus", 36873697)
@@ -3757,11 +4108,68 @@ public open class Control : CanvasItem() {
     internal val forceDragPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "force_drag", 3191844692)
 
+    internal val accessibilityDragPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "accessibility_drag", 3218959716)
+
+    internal val accessibilityDropPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "accessibility_drop", 3218959716)
+
+    internal val setAccessibilityNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_name", 83702148)
+
+    internal val getAccessibilityNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_name", 201670096)
+
+    internal val setAccessibilityDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_description", 83702148)
+
+    internal val getAccessibilityDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_description", 201670096)
+
+    internal val setAccessibilityLivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_live", 1720261470)
+
+    internal val getAccessibilityLivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_live", 3311037003)
+
+    internal val setAccessibilityControlsNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_controls_nodes", 381264803)
+
+    internal val getAccessibilityControlsNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_controls_nodes", 3995934104)
+
+    internal val setAccessibilityDescribedByNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_described_by_nodes", 381264803)
+
+    internal val getAccessibilityDescribedByNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_described_by_nodes", 3995934104)
+
+    internal val setAccessibilityLabeledByNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_labeled_by_nodes", 381264803)
+
+    internal val getAccessibilityLabeledByNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_labeled_by_nodes", 3995934104)
+
+    internal val setAccessibilityFlowToNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_accessibility_flow_to_nodes", 381264803)
+
+    internal val getAccessibilityFlowToNodesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_accessibility_flow_to_nodes", 3995934104)
+
     internal val setMouseFilterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_mouse_filter", 3891156122)
 
     internal val getMouseFilterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "get_mouse_filter", 1572545674)
+
+    internal val getMouseFilterWithOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_mouse_filter_with_override", 1572545674)
+
+    internal val setMouseBehaviorRecursivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "set_mouse_behavior_recursive", 849284636)
+
+    internal val getMouseBehaviorRecursivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Control", "get_mouse_behavior_recursive", 3779367402)
 
     internal val setForcePassScrollEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Control", "set_force_pass_scroll_events", 2586408642)

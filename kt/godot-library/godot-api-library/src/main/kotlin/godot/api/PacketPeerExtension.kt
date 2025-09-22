@@ -14,7 +14,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PacketPeerExtension : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(440, scriptIndex)
+    createNativeObject(455, scriptIndex)
   }
 
   public abstract fun _getAvailablePacketCount(): Int

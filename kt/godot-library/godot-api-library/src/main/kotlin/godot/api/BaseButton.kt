@@ -58,6 +58,8 @@ public open class BaseButton : Control() {
 
   /**
    * If `true`, the button is in disabled state and can't be clicked or toggled.
+   *
+   * **Note:** If the button is disabled while held down, [signal button_up] will be emitted.
    */
   public final inline var disabled: Boolean
     @JvmName("disabledProperty")
@@ -95,7 +97,7 @@ public open class BaseButton : Control() {
     }
 
   /**
-   * Determines when the button is considered clicked, one of the [ActionMode] constants.
+   * Determines when the button is considered clicked.
    */
   public final inline var actionMode: ActionMode
     @JvmName("actionModeProperty")
@@ -185,7 +187,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(103, scriptIndex)
+    createNativeObject(104, scriptIndex)
   }
 
   /**

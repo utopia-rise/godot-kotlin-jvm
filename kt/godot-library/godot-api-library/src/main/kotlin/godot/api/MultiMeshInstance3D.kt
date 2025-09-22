@@ -39,7 +39,7 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(365, scriptIndex)
+    createNativeObject(374, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

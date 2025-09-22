@@ -31,8 +31,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() {
   /**
-   * When our input value is equal or larger than this value, our output becomes true. It stays true
-   * until it falls under the [offThreshold] value.
+   * When our input value is equal or larger than this value, our output becomes `true`. It stays
+   * `true` until it falls under the [offThreshold] value.
    */
   public final inline var onThreshold: Float
     @JvmName("onThresholdProperty")
@@ -43,7 +43,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     }
 
   /**
-   * When our input value falls below this, our output becomes false.
+   * When our input value falls below this, our output becomes `false`.
    */
   public final inline var offThreshold: Float
     @JvmName("offThresholdProperty")
@@ -76,7 +76,7 @@ public open class OpenXRAnalogThresholdModifier : OpenXRActionBindingModifier() 
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(415, scriptIndex)
+    createNativeObject(424, scriptIndex)
   }
 
   public final fun setOnThreshold(onThreshold: Float): Unit {

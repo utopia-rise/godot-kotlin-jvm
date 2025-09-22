@@ -25,13 +25,17 @@ import kotlin.jvm.JvmName
 /**
  * A directional light is a type of [Light3D] node that models an infinite number of parallel rays
  * covering the entire scene. It is used for lights with strong intensity that are located far away
- * from the scene to model sunlight or moonlight. The worldspace location of the DirectionalLight3D
- * transform (origin) is ignored. Only the basis is used to determine light direction.
+ * from the scene to model sunlight or moonlight.
+ *
+ * Light is emitted in the -Z direction of the node's global basis. For an unrotated light, this
+ * means that the light is emitted forwards, illuminating the front side of a 3D model (see
+ * [Vector3.FORWARD] and [Vector3.MODEL_FRONT]). The position of the node is ignored; only the basis is
+ * used to determine light direction.
  */
 @GodotBaseType
 public open class DirectionalLight3D : Light3D() {
   /**
-   * The light's shadow rendering algorithm. See [ShadowMode].
+   * The light's shadow rendering algorithm.
    */
   public final inline var directionalShadowMode: ShadowMode
     @JvmName("directionalShadowModeProperty")
@@ -136,8 +140,8 @@ public open class DirectionalLight3D : Light3D() {
     }
 
   /**
-   * Set whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky
-   * and in the scene. See [SkyMode] for options.
+   * Whether this [DirectionalLight3D] is visible in the sky, in the scene, or both in the sky and
+   * in the scene.
    */
   public final inline var skyMode: SkyMode
     @JvmName("skyModeProperty")
@@ -148,7 +152,7 @@ public open class DirectionalLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(197, scriptIndex)
+    createNativeObject(202, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

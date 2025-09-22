@@ -129,7 +129,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   * Line fill alignment rules.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -140,8 +140,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the paragraph's set width. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * The clipping behavior when the text exceeds the paragraph's set width.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -197,7 +196,7 @@ public open class TextParagraph : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(658, scriptIndex)
+    createNativeObject(674, scriptIndex)
   }
 
   /**
@@ -216,6 +215,15 @@ public open class TextParagraph : RefCounted() {
   public final fun getDirection(): TextServer.Direction {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, LONG)
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the text writing direction inferred by the BiDi algorithm.
+   */
+  public final fun getInferredDirection(): TextServer.Direction {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInferredDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -467,6 +475,15 @@ public open class TextParagraph : RefCounted() {
   }
 
   /**
+   * Returns the character range of the paragraph.
+   */
+  public final fun getRange(): Vector2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+  }
+
+  /**
    * Returns number of lines in the paragraph.
    */
   public final fun getLineCount(): Int {
@@ -600,7 +617,8 @@ public open class TextParagraph : RefCounted() {
 
   /**
    * Draw all lines of the text and drop cap into a canvas item at a given position, with [color].
-   * [pos] specifies the top left corner of the bounding box.
+   * [pos] specifies the top left corner of the bounding box. If [oversampling] is greater than zero,
+   * it is used as font oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun draw(
@@ -608,14 +626,17 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
     dcColor: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, COLOR to dcColor, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
    * Draw outlines of all lines of the text and drop cap into a canvas item at a given position,
-   * with [color]. [pos] specifies the top left corner of the bounding box.
+   * with [color]. [pos] specifies the top left corner of the bounding box. If [oversampling] is
+   * greater than zero, it is used as font oversampling factor, otherwise viewport oversampling
+   * settings are used.
    */
   @JvmOverloads
   public final fun drawOutline(
@@ -624,14 +645,16 @@ public open class TextParagraph : RefCounted() {
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
     dcColor: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, COLOR to dcColor)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, COLOR to dcColor, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawOutlinePtr, NIL)
   }
 
   /**
    * Draw single line of text into a canvas item at a given position, with [color]. [pos] specifies
-   * the top left corner of the bounding box.
+   * the top left corner of the bounding box. If [oversampling] is greater than zero, it is used as
+   * font oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawLine(
@@ -639,14 +662,16 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     line: Int,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawLinePtr, NIL)
   }
 
   /**
    * Draw outline of the single line of text into a canvas item at a given position, with [color].
-   * [pos] specifies the top left corner of the bounding box.
+   * [pos] specifies the top left corner of the bounding box. If [oversampling] is greater than zero,
+   * it is used as font oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawLineOutline(
@@ -655,28 +680,32 @@ public open class TextParagraph : RefCounted() {
     line: Int,
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), LONG to outlineSize.toLong(), COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to line.toLong(), LONG to outlineSize.toLong(), COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawLineOutlinePtr, NIL)
   }
 
   /**
    * Draw drop cap into a canvas item at a given position, with [color]. [pos] specifies the top
-   * left corner of the bounding box.
+   * left corner of the bounding box. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawDropcap(
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawDropcapPtr, NIL)
   }
 
   /**
    * Draw drop cap outline into a canvas item at a given position, with [color]. [pos] specifies the
-   * top left corner of the bounding box.
+   * top left corner of the bounding box. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawDropcapOutline(
@@ -684,8 +713,9 @@ public open class TextParagraph : RefCounted() {
     pos: Vector2,
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawDropcapOutlinePtr, NIL)
   }
 
@@ -710,6 +740,9 @@ public open class TextParagraph : RefCounted() {
 
     internal val getDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_direction", 2516697328)
+
+    internal val getInferredDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "get_inferred_direction", 2516697328)
 
     internal val setCustomPunctuationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "set_custom_punctuation", 83702148)
@@ -807,6 +840,9 @@ public open class TextParagraph : RefCounted() {
     internal val getDropcapRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_rid", 2944877500)
 
+    internal val getRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextParagraph", "get_range", 3690982128)
+
     internal val getLineCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "get_line_count", 3905245786)
 
@@ -856,22 +892,22 @@ public open class TextParagraph : RefCounted() {
         TypeManager.getMethodBindPtr("TextParagraph", "get_dropcap_lines", 3905245786)
 
     internal val drawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw", 1567802413)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw", 1492808103)
 
     internal val drawOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_outline", 1893131224)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_outline", 3820500590)
 
     internal val drawLinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_line", 1242169894)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_line", 828033758)
 
     internal val drawLineOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_line_outline", 2664926980)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_line_outline", 2822696703)
 
     internal val drawDropcapPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap", 856975658)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap", 3625105422)
 
     internal val drawDropcapOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap_outline", 1343401456)
+        TypeManager.getMethodBindPtr("TextParagraph", "draw_dropcap_outline", 2592177763)
 
     internal val hitTestPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextParagraph", "hit_test", 3820158470)

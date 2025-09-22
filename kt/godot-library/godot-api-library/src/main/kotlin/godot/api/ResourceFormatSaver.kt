@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(554, scriptIndex)
+    createNativeObject(569, scriptIndex)
   }
 
   /**

@@ -28,8 +28,8 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A raycast represents a ray from its origin to its [targetPosition] that finds the closest
- * [CollisionObject2D] along its path, if it intersects any.
+ * A raycast represents a ray from its origin to its [targetPosition] that finds the closest object
+ * along its path, if it intersects any.
  *
  * [RayCast2D] can ignore some objects by adding them to an exception list, by making its detection
  * reporting ignore [Area2D]s ([collideWithAreas]) or [PhysicsBody2D]s ([collideWithBodies]), or by
@@ -56,7 +56,9 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * If `true`, the parent node will be excluded from collision detection.
+   * If `true`, this raycast will not report collisions with its parent node. This property only has
+   * an effect if the parent node is a [CollisionObject2D]. See also [Node.getParent] and
+   * [addException].
    */
   public final inline var excludeParent: Boolean
     @JvmName("excludeParentProperty")
@@ -67,7 +69,7 @@ public open class RayCast2D : Node2D() {
     }
 
   /**
-   * The ray's destination point, relative to the RayCast's `position`.
+   * The ray's destination point, relative to this raycast's [Node2D.position].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -134,7 +136,7 @@ public open class RayCast2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(531, scriptIndex)
+    createNativeObject(546, scriptIndex)
   }
 
   /**
@@ -148,7 +150,7 @@ public open class RayCast2D : Node2D() {
    * raycast2d.targetPosition = myCoreType
    * ``````
    *
-   * The ray's destination point, relative to the RayCast's `position`.
+   * The ray's destination point, relative to this raycast's [Node2D.position].
    */
   @CoreTypeHelper
   public final fun targetPositionMutate(block: Vector2.() -> Unit): Vector2 = targetPosition.apply {
@@ -203,6 +205,9 @@ public open class RayCast2D : Node2D() {
   /**
    * Returns the first object that the ray intersects, or `null` if no object is intersecting the
    * ray (i.e. [isColliding] returns `false`).
+   *
+   * **Note:** This object is not guaranteed to be a [CollisionObject2D]. For example, if the ray
+   * intersects a [TileMapLayer], the method will return a [TileMapLayer] instance.
    */
   public final fun getCollider(): Object? {
     TransferContext.writeArguments()
@@ -284,8 +289,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Adds a collision exception so the ray does not report collisions with the specified
-   * [CollisionObject2D] node.
+   * Adds a collision exception so the ray does not report collisions with the specified [node].
    */
   public final fun addException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -293,7 +297,7 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified [RID].
+   * Removes a collision exception so the ray can report collisions with the specified [RID].
    */
   public final fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -301,8 +305,8 @@ public open class RayCast2D : Node2D() {
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified
-   * [CollisionObject2D] node.
+   * Removes a collision exception so the ray can report collisions with the specified specified
+   * [node].
    */
   public final fun removeException(node: CollisionObject2D?): Unit {
     TransferContext.writeArguments(OBJECT to node)

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsTestMotionResult3D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(484, scriptIndex)
+    createNativeObject(499, scriptIndex)
   }
 
   /**

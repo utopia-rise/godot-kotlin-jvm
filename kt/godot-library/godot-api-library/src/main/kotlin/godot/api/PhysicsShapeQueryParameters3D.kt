@@ -36,7 +36,7 @@ import kotlin.jvm.JvmName
 
 /**
  * By changing various properties of this object, such as the shape, you can configure the
- * parameters for [PhysicsDirectSpaceState3D.intersectShape].
+ * parameters for [PhysicsDirectSpaceState3D]'s methods.
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters3D : RefCounted() {
@@ -119,7 +119,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    *
    * ```gdscript
    * //gdscript
-   * var shape_rid = PhysicsServer3D.shape_create(PhysicsServer3D.SHAPE_SPHERE)
+   * var shape_rid = PhysicsServer3D.sphere_shape_create()
    * var radius = 2.0
    * PhysicsServer3D.shape_set_data(shape_rid, radius)
    *
@@ -134,7 +134,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
    *
    * ```csharp
    * //csharp
-   * RID shapeRid = PhysicsServer3D.ShapeCreate(PhysicsServer3D.ShapeType.Sphere);
+   * RID shapeRid = PhysicsServer3D.SphereShapeCreate();
    * float radius = 2.0f;
    * PhysicsServer3D.ShapeSetData(shapeRid, radius);
    *
@@ -197,7 +197,7 @@ public open class PhysicsShapeQueryParameters3D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(480, scriptIndex)
+    createNativeObject(495, scriptIndex)
   }
 
   /**

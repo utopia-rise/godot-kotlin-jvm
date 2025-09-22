@@ -102,7 +102,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class Crypto : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(181, scriptIndex)
+    createNativeObject(185, scriptIndex)
   }
 
   /**

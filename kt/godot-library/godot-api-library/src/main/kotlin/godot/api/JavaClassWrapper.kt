@@ -52,6 +52,13 @@ public object JavaClassWrapper : Object() {
    * `JavaClassWrapper.wrap("android.view.WindowManager$LayoutParams")` wraps the
    * **WindowManager.LayoutParams** class.
    *
+   * **Note:** To invoke a constructor, call a method with the same name as the class. For example:
+   *
+   * ```
+   * var Intent = JavaClassWrapper.wrap("android.content.Intent")
+   * var intent = Intent.Intent()
+   * ```
+   *
    * **Note:** This method only works on Android. On every other platform, this method does nothing
    * and returns an empty [JavaClass].
    */

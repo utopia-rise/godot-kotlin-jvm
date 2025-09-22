@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(284, scriptIndex)
+    createNativeObject(291, scriptIndex)
   }
 
   /**

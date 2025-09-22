@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
   /**
-   * The function to be performed. See [Function] for options.
+   * The function to be performed.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeVectorFunc : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(833, scriptIndex)
+    createNativeObject(849, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

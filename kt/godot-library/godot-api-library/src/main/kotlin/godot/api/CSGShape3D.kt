@@ -32,9 +32,8 @@ import kotlin.jvm.JvmName
  * This is the CSG base class that provides CSG operation support to the various CSG nodes in Godot.
  *
  * **Performance:** CSG nodes are only intended for prototyping as they have a significant CPU
- * performance cost.
- *
- * Consider baking final CSG operation results into static geometry that replaces the CSG nodes.
+ * performance cost. Consider baking final CSG operation results into static geometry that replaces the
+ * CSG nodes.
  *
  * Individual CSG root node results can be baked to nodes with static resources with the editor menu
  * that appears when a CSG root node is selected.
@@ -42,8 +41,8 @@ import kotlin.jvm.JvmName
  * Individual CSG root nodes can also be baked to static resources with scripts by calling
  * [bakeStaticMesh] for the visual mesh or [bakeCollisionShape] for the physics collision.
  *
- * Entire scenes of CSG nodes can be baked to static geometry and exported with the editor gltf
- * scene exporter.
+ * Entire scenes of CSG nodes can be baked to static geometry and exported with the editor glTF
+ * scene exporter: **Scene > Export As... > glTF 2.0 Scene...**
  */
 @GodotBaseType
 public open class CSGShape3D internal constructor() : GeometryInstance3D() {
@@ -71,8 +70,9 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * Calculate tangents for the CSG shape which allows the use of normal maps. This is only applied
-   * on the root shape, this setting is ignored on any child.
+   * Calculate tangents for the CSG shape which allows the use of normal and height maps. This is
+   * only applied on the root shape, this setting is ignored on any child. Setting this to `false` can
+   * speed up shape generation slightly.
    */
   public final inline var calculateTangents: Boolean
     @JvmName("calculateTangentsProperty")
@@ -144,7 +144,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(123, scriptIndex)
+    createNativeObject(125, scriptIndex)
   }
 
   /**
@@ -260,6 +260,25 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  /**
+   * Returns a baked physics [ConcavePolygonShape3D] of this node's CSG operation result. Returns an
+   * empty shape if the node is not a CSG root node or has no valid geometry.
+   *
+   * **Performance:** If the CSG operation results in a very detailed geometry with many faces
+   * physics performance will be very slow. Concave shapes should in general only be used for static
+   * level geometry and not with dynamic objects that are moving.
+   *
+   * **Note:** CSG mesh data updates are deferred, which means they are updated with a delay of one
+   * rendered frame. To avoid getting an empty shape or outdated mesh data, make sure to call `await
+   * get_tree().process_frame` before using [bakeCollisionShape] in [Node.Ready] or after changing
+   * properties on the [CSGShape3D].
+   */
+  public final fun bakeCollisionShape(): ConcavePolygonShape3D? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.bakeCollisionShapePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
+  }
+
   public final fun setCalculateTangents(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setCalculateTangentsPtr, NIL)
@@ -274,6 +293,11 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
   /**
    * Returns an [Array] with two elements, the first is the [Transform3D] of this node and the
    * second is the root [Mesh] of this node. Only works when this node is the root shape.
+   *
+   * **Note:** CSG mesh data updates are deferred, which means they are updated with a delay of one
+   * rendered frame. To avoid getting an empty shape or outdated mesh data, make sure to call `await
+   * get_tree().process_frame` before using [getMeshes] in [Node.Ready] or after changing properties on
+   * the [CSGShape3D].
    */
   public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -285,25 +309,16 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
    * Returns a baked static [ArrayMesh] of this node's CSG operation result. Materials from involved
    * CSG nodes are added as extra mesh surfaces. Returns an empty mesh if the node is not a CSG root
    * node or has no valid geometry.
+   *
+   * **Note:** CSG mesh data updates are deferred, which means they are updated with a delay of one
+   * rendered frame. To avoid getting an empty mesh or outdated mesh data, make sure to call `await
+   * get_tree().process_frame` before using [bakeStaticMesh] in [Node.Ready] or after changing
+   * properties on the [CSGShape3D].
    */
   public final fun bakeStaticMesh(): ArrayMesh? {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.bakeStaticMeshPtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as ArrayMesh?)
-  }
-
-  /**
-   * Returns a baked physics [ConcavePolygonShape3D] of this node's CSG operation result. Returns an
-   * empty shape if the node is not a CSG root node or has no valid geometry.
-   *
-   * **Performance:** If the CSG operation results in a very detailed geometry with many faces
-   * physics performance will be very slow. Concave shapes should in general only be used for static
-   * level geometry and not with dynamic objects that are moving.
-   */
-  public final fun bakeCollisionShape(): ConcavePolygonShape3D? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.bakeCollisionShapePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as ConcavePolygonShape3D?)
   }
 
   public enum class Operation(
@@ -387,6 +402,9 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     internal val getCollisionPriorityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGShape3D", "get_collision_priority", 1740695150)
 
+    internal val bakeCollisionShapePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CSGShape3D", "bake_collision_shape", 36102322)
+
     internal val setCalculateTangentsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGShape3D", "set_calculate_tangents", 2586408642)
 
@@ -398,8 +416,5 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
 
     internal val bakeStaticMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CSGShape3D", "bake_static_mesh", 1605880883)
-
-    internal val bakeCollisionShapePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CSGShape3D", "bake_collision_shape", 36102322)
   }
 }

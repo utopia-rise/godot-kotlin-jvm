@@ -9,5 +9,6 @@ data class Header @JsonCreator constructor(
     @JsonProperty("version_patch") val versionPatch: Int,
     @JsonProperty("version_status") val versionStatus: String,
     @JsonProperty("version_build") val versionBuild: String,
-    @JsonProperty("version_full_name") val versionFullName: String
+    @JsonProperty("version_full_name") val versionFullName: String,
+    @JsonProperty("precision") val precision: String
 )

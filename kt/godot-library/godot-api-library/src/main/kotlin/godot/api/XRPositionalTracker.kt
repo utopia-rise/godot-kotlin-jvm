@@ -110,7 +110,7 @@ public open class XRPositionalTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(873, scriptIndex)
+    createNativeObject(889, scriptIndex)
   }
 
   public final fun getTrackerProfile(): String {
@@ -165,7 +165,7 @@ public open class XRPositionalTracker : XRTracker() {
 
   /**
    * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
-   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
+   * pose. This method is called by an [XRInterface] implementation and should not be used directly.
    */
   public final fun setPose(
     name: StringName,
@@ -189,7 +189,7 @@ public open class XRPositionalTracker : XRTracker() {
   }
 
   /**
-   * Changes the value for the given input. This method is called by a [XRInterface] implementation
+   * Changes the value for the given input. This method is called by an [XRInterface] implementation
    * and should not be used directly.
    */
   public final fun setInput(name: StringName, `value`: Any?): Unit {
@@ -216,7 +216,7 @@ public open class XRPositionalTracker : XRTracker() {
 
   /**
    * Sets the transform, linear velocity, angular velocity and tracking confidence for the given
-   * pose. This method is called by a [XRInterface] implementation and should not be used directly.
+   * pose. This method is called by an [XRInterface] implementation and should not be used directly.
    */
   public final fun setPose(
     name: String,
@@ -234,7 +234,7 @@ public open class XRPositionalTracker : XRTracker() {
   public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
 
   /**
-   * Changes the value for the given input. This method is called by a [XRInterface] implementation
+   * Changes the value for the given input. This method is called by an [XRInterface] implementation
    * and should not be used directly.
    */
   public final fun setInput(name: String, `value`: Any?) =

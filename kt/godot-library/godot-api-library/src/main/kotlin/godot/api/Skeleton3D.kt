@@ -88,6 +88,10 @@ public open class Skeleton3D : Node3D() {
    */
   public val boneEnabledChanged: Signal1<Long> by Signal1
 
+  /**
+   * Emitted when the list of bones changes, such as when calling [addBone], [setBoneParent],
+   * [unparentBoneAndRest], or [clearBones].
+   */
   public val boneListChanged: Signal0 by Signal0
 
   /**
@@ -150,7 +154,7 @@ public open class Skeleton3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(594, scriptIndex)
+    createNativeObject(610, scriptIndex)
   }
 
   /**
@@ -194,7 +198,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns bone metadata for [boneIdx] with [key].
+   * Returns the metadata for the bone at index [boneIdx] with [key].
    */
   public final fun getBoneMeta(boneIdx: Int, key: StringName): Any? {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
@@ -203,7 +207,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns a list of all metadata keys for [boneIdx].
+   * Returns the list of all metadata keys for the bone at index [boneIdx].
    */
   public final fun getBoneMetaList(boneIdx: Int): VariantArray<StringName> {
     TransferContext.writeArguments(LONG to boneIdx.toLong())
@@ -212,7 +216,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns whether there exists any bone metadata for [boneIdx] with key [key].
+   * Returns `true` if the bone at index [boneIdx] has metadata with the key [key].
    */
   public final fun hasBoneMeta(boneIdx: Int, key: StringName): Boolean {
     TransferContext.writeArguments(LONG to boneIdx.toLong(), STRING_NAME to key)
@@ -221,7 +225,7 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Sets bone metadata for [boneIdx], will set the [key] meta to [value].
+   * Sets the metadata for the bone at index [boneIdx], setting the [key] meta to [value].
    */
   public final fun setBoneMeta(
     boneIdx: Int,
@@ -563,6 +567,17 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
+   * Manually advance the child [SkeletonModifier3D]s by the specified time (in seconds).
+   *
+   * **Note:** The [delta] is temporarily accumulated in the [Skeleton3D], and the deferred process
+   * uses the accumulated value to process the modification.
+   */
+  public final fun advance(delta: Double): Unit {
+    TransferContext.writeArguments(DOUBLE to delta)
+    TransferContext.callMethod(ptr, MethodBindings.advancePtr, NIL)
+  }
+
+  /**
    * Removes the global pose override on all bones in the skeleton.
    */
   public final fun clearBonesGlobalPoseOverride(): Unit {
@@ -665,19 +680,19 @@ public open class Skeleton3D : Node3D() {
   }
 
   /**
-   * Returns bone metadata for [boneIdx] with [key].
+   * Returns the metadata for the bone at index [boneIdx] with [key].
    */
   public final fun getBoneMeta(boneIdx: Int, key: String): Any? =
       getBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
-   * Returns whether there exists any bone metadata for [boneIdx] with key [key].
+   * Returns `true` if the bone at index [boneIdx] has metadata with the key [key].
    */
   public final fun hasBoneMeta(boneIdx: Int, key: String): Boolean =
       hasBoneMeta(boneIdx, key.asCachedStringName())
 
   /**
-   * Sets bone metadata for [boneIdx], will set the [key] meta to [value].
+   * Sets the metadata for the bone at index [boneIdx], setting the [key] meta to [value].
    */
   public final fun setBoneMeta(
     boneIdx: Int,
@@ -698,6 +713,10 @@ public open class Skeleton3D : Node3D() {
      * [Node.NOTIFICATION_INTERNAL_PROCESS]).
      */
     IDLE(1),
+    /**
+     * Do not process modification. Use [advance] to process the modification manually.
+     */
+    MANUAL(2),
     ;
 
     public override val `value`: Long
@@ -854,6 +873,9 @@ public open class Skeleton3D : Node3D() {
 
     internal val getModifierCallbackModeProcessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Skeleton3D", "get_modifier_callback_mode_process", 997182536)
+
+    internal val advancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Skeleton3D", "advance", 373806689)
 
     internal val clearBonesGlobalPoseOverridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Skeleton3D", "clear_bones_global_pose_override", 3218959716)

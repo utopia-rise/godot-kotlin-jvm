@@ -25,11 +25,64 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Shortcuts are commonly used for interacting with a [Control] element from an [InputEvent] (also
- * known as hotkeys).
+ * Shortcuts (also known as hotkeys) are containers of [InputEvent] resources. They are commonly
+ * used to interact with a [Control] element from an [InputEvent].
  *
- * One shortcut can contain multiple [InputEvent]s, allowing the possibility of triggering one
+ * One shortcut can contain multiple [InputEvent] resources, making it possible to trigger one
  * action with multiple different inputs.
+ *
+ * **Example:** Capture the [kbd]Ctrl + S[/kbd] shortcut using a [Shortcut] resource:
+ *
+ * ```gdscript
+ * //gdscript
+ * extends Node
+ *
+ * var save_shortcut = Shortcut.new()
+ * func _ready():
+ * var key_event = InputEventKey.new()
+ * key_event.keycode = KEY_S
+ * key_event.ctrl_pressed = true
+ * key_event.command_or_control_autoremap = true # Swaps Ctrl for Command on Mac.
+ * save_shortcut.events = [key_event]
+ *
+ * func _input(event):
+ * if save_shortcut.matches_event(event) and event.is_pressed() and not event.is_echo():
+ * print("Save shortcut pressed!")
+ * get_viewport().set_input_as_handled()
+ * ```
+ *
+ * ```csharp
+ * //csharp
+ * using Godot;
+ *
+ * public partial class MyNode : Node
+ * {
+ * private readonly Shortcut _saveShortcut = new Shortcut();
+ *
+ * public override void _Ready()
+ * {
+ * InputEventKey keyEvent = new InputEventKey
+ * {
+ * Keycode = Key.S,
+ * CtrlPressed = true,
+ * CommandOrControlAutoremap = true, // Swaps Ctrl for Command on Mac.
+ * };
+ *
+ * _saveShortcut.Events = [keyEvent];
+ * }
+ *
+ * public override void _Input(InputEvent @event)
+ * {
+ * if (@event is InputEventKey keyEvent &&
+ * _saveShortcut.MatchesEvent(@event) &&
+ * keyEvent.Pressed && !keyEvent.Echo)
+ * {
+ * GD.Print("Save shortcut pressed!");
+ * GetViewport().SetInputAsHandled();
+ * }
+ * }
+ * }
+ * ```
  */
 @GodotBaseType
 public open class Shortcut : Resource() {
@@ -48,7 +101,7 @@ public open class Shortcut : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(592, scriptIndex)
+    createNativeObject(608, scriptIndex)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {

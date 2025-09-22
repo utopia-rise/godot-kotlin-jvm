@@ -61,7 +61,7 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(249, scriptIndex)
+    createNativeObject(256, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

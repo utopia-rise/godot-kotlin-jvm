@@ -203,7 +203,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(9, scriptIndex)
+    createNativeObject(10, scriptIndex)
   }
 
   /**
@@ -384,7 +384,7 @@ public open class AnimatedSprite2D : Node2D() {
   }
 
   /**
-   * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does
+   * Sets [frame] and [frameProgress] to the given values. Unlike setting [frame], this method does
    * not reset the [frameProgress] to `0.0` implicitly.
    *
    * **Example:** Change the animation while keeping the same [frame] and [frameProgress]:

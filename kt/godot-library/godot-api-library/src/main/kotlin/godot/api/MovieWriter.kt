@@ -29,11 +29,17 @@ import kotlin.jvm.JvmStatic
  * long it actually took to render the frame. This can be used to record high-quality videos with
  * perfect frame pacing regardless of your hardware's capabilities.
  *
- * Godot has 2 built-in [MovieWriter]s:
+ * Godot has 3 built-in [MovieWriter]s:
+ *
+ * - OGV container with Theora for video and Vorbis for audio (`.ogv` file extension). Lossy
+ * compression, medium file sizes, fast encoding. The lossy compression quality can be adjusted by
+ * changing [ProjectSettings.editor/movieWriter/videoQuality] and
+ * [ProjectSettings.editor/movieWriter/ogv/audioQuality]. The resulting file can be viewed in Godot
+ * with [VideoStreamPlayer] and most video players, but not web browsers as they don't support Theora.
  *
  * - AVI container with MJPEG for video and uncompressed audio (`.avi` file extension). Lossy
  * compression, medium file sizes, fast encoding. The lossy compression quality can be adjusted by
- * changing [ProjectSettings.editor/movieWriter/mjpegQuality]. The resulting file can be viewed in most
+ * changing [ProjectSettings.editor/movieWriter/videoQuality]. The resulting file can be viewed in most
  * video players, but it must be converted to another format for viewing on the web or by Godot with
  * [VideoStreamPlayer]. MJPEG does not support transparency. AVI output is currently limited to a file
  * of 4 GB in size at most.
@@ -60,11 +66,17 @@ import kotlin.jvm.JvmStatic
  * *not* designed for use by end users to record videos while playing. Players wishing to record
  * gameplay videos should install tools such as [url=https://obsproject.com/]OBS Studio[/url] or
  * [url=https://www.maartenbaert.be/simplescreenrecorder/]SimpleScreenRecorder[/url] instead.
+ *
+ * **Note:** MJPEG support (`.avi` file extension) depends on the `jpg` module being enabled at
+ * compile time (default behavior).
+ *
+ * **Note:** OGV support (`.ogv` file extension) depends on the `theora` module being enabled at
+ * compile time (default behavior). Theora compression is only available in editor binaries.
  */
 @GodotBaseType
 public abstract class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(362, scriptIndex)
+    createNativeObject(371, scriptIndex)
   }
 
   /**
@@ -89,9 +101,9 @@ public abstract class MovieWriter : Object() {
    *
    * ```
    * func _handles_file(path):
-   *     # Allows specifying an output file with a `.mkv` file extension (case-insensitive),
-   *     # either in the Project Settings or with the `--write-movie <path>` command line argument.
-   *     return path.get_extension().to_lower() == "mkv"
+   * # Allows specifying an output file with a `.mkv` file extension (case-insensitive),
+   * # either in the Project Settings or with the `--write-movie <path>` command line argument.
+   * return path.get_extension().to_lower() == "mkv"
    * ```
    */
   public abstract fun _handlesFile(path: String): Boolean

@@ -26,7 +26,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeUVFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the texture coordinates. See [Function] for options.
+   * A function to be applied to the texture coordinates.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -37,7 +37,7 @@ public open class VisualShaderNodeUVFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(818, scriptIndex)
+    createNativeObject(834, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

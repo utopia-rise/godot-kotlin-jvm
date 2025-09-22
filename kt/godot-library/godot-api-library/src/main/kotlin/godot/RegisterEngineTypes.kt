@@ -6,6 +6,7 @@ import godot.api.AStar2D
 import godot.api.AStar3D
 import godot.api.AStarGrid2D
 import godot.api.AcceptDialog
+import godot.api.AimModifier3D
 import godot.api.AnimatableBody2D
 import godot.api.AnimatableBody3D
 import godot.api.AnimatedSprite2D
@@ -107,6 +108,7 @@ import godot.api.BaseMaterial3D
 import godot.api.BitMap
 import godot.api.Bone2D
 import godot.api.BoneAttachment3D
+import godot.api.BoneConstraint3D
 import godot.api.BoneMap
 import godot.api.BoxContainer
 import godot.api.BoxMesh
@@ -178,8 +180,10 @@ import godot.api.ConfigFile
 import godot.api.ConfirmationDialog
 import godot.api.Container
 import godot.api.Control
+import godot.api.ConvertTransformModifier3D
 import godot.api.ConvexPolygonShape2D
 import godot.api.ConvexPolygonShape3D
+import godot.api.CopyTransformModifier3D
 import godot.api.Crypto
 import godot.api.CryptoKey
 import godot.api.Cubemap
@@ -191,6 +195,7 @@ import godot.api.CurveTexture
 import godot.api.CurveXYZTexture
 import godot.api.CylinderMesh
 import godot.api.CylinderShape3D
+import godot.api.DPITexture
 import godot.api.DTLSServer
 import godot.api.DampedSpringJoint2D
 import godot.api.Decal
@@ -216,6 +221,8 @@ import godot.api.FileDialog
 import godot.api.FlowContainer
 import godot.api.FogMaterial
 import godot.api.FogVolume
+import godot.api.FoldableContainer
+import godot.api.FoldableGroup
 import godot.api.Font
 import godot.api.FontFile
 import godot.api.FontVariation
@@ -341,6 +348,7 @@ import godot.api.LightmapperRD
 import godot.api.Line2D
 import godot.api.LineEdit
 import godot.api.LinkButton
+import godot.api.Logger
 import godot.api.LookAtModifier3D
 import godot.api.MainLoop
 import godot.api.MarginContainer
@@ -361,6 +369,7 @@ import godot.api.MethodTweener
 import godot.api.MissingNode
 import godot.api.MissingResource
 import godot.api.MobileVRInterface
+import godot.api.ModifierBoneTarget3D
 import godot.api.MovieWriter
 import godot.api.MultiMesh
 import godot.api.MultiMeshInstance2D
@@ -422,7 +431,10 @@ import godot.api.OpenXRCompositionLayerCylinder
 import godot.api.OpenXRCompositionLayerEquirect
 import godot.api.OpenXRCompositionLayerQuad
 import godot.api.OpenXRDpadBindingModifier
+import godot.api.OpenXRExtensionWrapper
 import godot.api.OpenXRExtensionWrapperExtension
+import godot.api.OpenXRFutureExtension
+import godot.api.OpenXRFutureResult
 import godot.api.OpenXRHand
 import godot.api.OpenXRHapticBase
 import godot.api.OpenXRHapticVibration
@@ -431,6 +443,9 @@ import godot.api.OpenXRIPBindingModifier
 import godot.api.OpenXRInteractionProfile
 import godot.api.OpenXRInteractionProfileMetadata
 import godot.api.OpenXRInterface
+import godot.api.OpenXRRenderModel
+import godot.api.OpenXRRenderModelExtension
+import godot.api.OpenXRRenderModelManager
 import godot.api.OpenXRVisibilityMask
 import godot.api.OptimizedTranslation
 import godot.api.OptionButton
@@ -574,6 +589,7 @@ import godot.api.SceneState
 import godot.api.SceneTree
 import godot.api.SceneTreeTimer
 import godot.api.Script
+import godot.api.ScriptBacktrace
 import godot.api.ScriptExtension
 import godot.api.ScriptLanguage
 import godot.api.ScriptLanguageExtension
@@ -892,6 +908,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[AStar3D::class] = OBJECT
   variantMapper[AStarGrid2D::class] = OBJECT
   variantMapper[AcceptDialog::class] = OBJECT
+  variantMapper[AimModifier3D::class] = OBJECT
   variantMapper[AnimatableBody2D::class] = OBJECT
   variantMapper[AnimatableBody3D::class] = OBJECT
   variantMapper[AnimatedSprite2D::class] = OBJECT
@@ -993,6 +1010,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[BitMap::class] = OBJECT
   variantMapper[Bone2D::class] = OBJECT
   variantMapper[BoneAttachment3D::class] = OBJECT
+  variantMapper[BoneConstraint3D::class] = OBJECT
   variantMapper[BoneMap::class] = OBJECT
   variantMapper[BoxContainer::class] = OBJECT
   variantMapper[BoxMesh::class] = OBJECT
@@ -1064,8 +1082,10 @@ public fun registerVariantMapping(): Unit {
   variantMapper[ConfirmationDialog::class] = OBJECT
   variantMapper[Container::class] = OBJECT
   variantMapper[Control::class] = OBJECT
+  variantMapper[ConvertTransformModifier3D::class] = OBJECT
   variantMapper[ConvexPolygonShape2D::class] = OBJECT
   variantMapper[ConvexPolygonShape3D::class] = OBJECT
+  variantMapper[CopyTransformModifier3D::class] = OBJECT
   variantMapper[Crypto::class] = OBJECT
   variantMapper[CryptoKey::class] = OBJECT
   variantMapper[Cubemap::class] = OBJECT
@@ -1077,6 +1097,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[CurveXYZTexture::class] = OBJECT
   variantMapper[CylinderMesh::class] = OBJECT
   variantMapper[CylinderShape3D::class] = OBJECT
+  variantMapper[DPITexture::class] = OBJECT
   variantMapper[DTLSServer::class] = OBJECT
   variantMapper[DampedSpringJoint2D::class] = OBJECT
   variantMapper[Decal::class] = OBJECT
@@ -1102,6 +1123,8 @@ public fun registerVariantMapping(): Unit {
   variantMapper[FlowContainer::class] = OBJECT
   variantMapper[FogMaterial::class] = OBJECT
   variantMapper[FogVolume::class] = OBJECT
+  variantMapper[FoldableContainer::class] = OBJECT
+  variantMapper[FoldableGroup::class] = OBJECT
   variantMapper[Font::class] = OBJECT
   variantMapper[FontFile::class] = OBJECT
   variantMapper[FontVariation::class] = OBJECT
@@ -1227,6 +1250,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[Line2D::class] = OBJECT
   variantMapper[LineEdit::class] = OBJECT
   variantMapper[LinkButton::class] = OBJECT
+  variantMapper[Logger::class] = OBJECT
   variantMapper[LookAtModifier3D::class] = OBJECT
   variantMapper[MainLoop::class] = OBJECT
   variantMapper[MarginContainer::class] = OBJECT
@@ -1247,6 +1271,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[MissingNode::class] = OBJECT
   variantMapper[MissingResource::class] = OBJECT
   variantMapper[MobileVRInterface::class] = OBJECT
+  variantMapper[ModifierBoneTarget3D::class] = OBJECT
   variantMapper[MovieWriter::class] = OBJECT
   variantMapper[MultiMesh::class] = OBJECT
   variantMapper[MultiMeshInstance2D::class] = OBJECT
@@ -1307,7 +1332,10 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRCompositionLayerEquirect::class] = OBJECT
   variantMapper[OpenXRCompositionLayerQuad::class] = OBJECT
   variantMapper[OpenXRDpadBindingModifier::class] = OBJECT
+  variantMapper[OpenXRExtensionWrapper::class] = OBJECT
   variantMapper[OpenXRExtensionWrapperExtension::class] = OBJECT
+  variantMapper[OpenXRFutureExtension::class] = OBJECT
+  variantMapper[OpenXRFutureResult::class] = OBJECT
   variantMapper[OpenXRHand::class] = OBJECT
   variantMapper[OpenXRHapticBase::class] = OBJECT
   variantMapper[OpenXRHapticVibration::class] = OBJECT
@@ -1316,6 +1344,9 @@ public fun registerVariantMapping(): Unit {
   variantMapper[OpenXRInteractionProfile::class] = OBJECT
   variantMapper[OpenXRInteractionProfileMetadata::class] = OBJECT
   variantMapper[OpenXRInterface::class] = OBJECT
+  variantMapper[OpenXRRenderModel::class] = OBJECT
+  variantMapper[OpenXRRenderModelExtension::class] = OBJECT
+  variantMapper[OpenXRRenderModelManager::class] = OBJECT
   variantMapper[OpenXRVisibilityMask::class] = OBJECT
   variantMapper[OptimizedTranslation::class] = OBJECT
   variantMapper[OptionButton::class] = OBJECT
@@ -1458,6 +1489,7 @@ public fun registerVariantMapping(): Unit {
   variantMapper[SceneTree::class] = OBJECT
   variantMapper[SceneTreeTimer::class] = OBJECT
   variantMapper[Script::class] = OBJECT
+  variantMapper[ScriptBacktrace::class] = OBJECT
   variantMapper[ScriptExtension::class] = OBJECT
   variantMapper[ScriptLanguage::class] = OBJECT
   variantMapper[ScriptLanguageExtension::class] = OBJECT
@@ -1774,6 +1806,7 @@ public fun registerEngineTypeMethods(): Unit {
   AStar3D.MethodBindings
   AStarGrid2D.MethodBindings
   AcceptDialog.MethodBindings
+  AimModifier3D.MethodBindings
   AnimatableBody2D.MethodBindings
   AnimatableBody3D.MethodBindings
   AnimatedSprite2D.MethodBindings
@@ -1875,6 +1908,7 @@ public fun registerEngineTypeMethods(): Unit {
   BitMap.MethodBindings
   Bone2D.MethodBindings
   BoneAttachment3D.MethodBindings
+  BoneConstraint3D.MethodBindings
   BoneMap.MethodBindings
   BoxContainer.MethodBindings
   BoxMesh.MethodBindings
@@ -1946,8 +1980,10 @@ public fun registerEngineTypeMethods(): Unit {
   ConfirmationDialog.MethodBindings
   Container.MethodBindings
   Control.MethodBindings
+  ConvertTransformModifier3D.MethodBindings
   ConvexPolygonShape2D.MethodBindings
   ConvexPolygonShape3D.MethodBindings
+  CopyTransformModifier3D.MethodBindings
   Crypto.MethodBindings
   CryptoKey.MethodBindings
   Cubemap.MethodBindings
@@ -1959,6 +1995,7 @@ public fun registerEngineTypeMethods(): Unit {
   CurveXYZTexture.MethodBindings
   CylinderMesh.MethodBindings
   CylinderShape3D.MethodBindings
+  DPITexture.MethodBindings
   DTLSServer.MethodBindings
   DampedSpringJoint2D.MethodBindings
   Decal.MethodBindings
@@ -1984,6 +2021,8 @@ public fun registerEngineTypeMethods(): Unit {
   FlowContainer.MethodBindings
   FogMaterial.MethodBindings
   FogVolume.MethodBindings
+  FoldableContainer.MethodBindings
+  FoldableGroup.MethodBindings
   Font.MethodBindings
   FontFile.MethodBindings
   FontVariation.MethodBindings
@@ -2109,6 +2148,7 @@ public fun registerEngineTypeMethods(): Unit {
   Line2D.MethodBindings
   LineEdit.MethodBindings
   LinkButton.MethodBindings
+  Logger.MethodBindings
   LookAtModifier3D.MethodBindings
   MainLoop.MethodBindings
   MarginContainer.MethodBindings
@@ -2129,6 +2169,7 @@ public fun registerEngineTypeMethods(): Unit {
   MissingNode.MethodBindings
   MissingResource.MethodBindings
   MobileVRInterface.MethodBindings
+  ModifierBoneTarget3D.MethodBindings
   MovieWriter.MethodBindings
   MultiMesh.MethodBindings
   MultiMeshInstance2D.MethodBindings
@@ -2189,7 +2230,10 @@ public fun registerEngineTypeMethods(): Unit {
   OpenXRCompositionLayerEquirect.MethodBindings
   OpenXRCompositionLayerQuad.MethodBindings
   OpenXRDpadBindingModifier.MethodBindings
+  OpenXRExtensionWrapper.MethodBindings
   OpenXRExtensionWrapperExtension.MethodBindings
+  OpenXRFutureExtension.MethodBindings
+  OpenXRFutureResult.MethodBindings
   OpenXRHand.MethodBindings
   OpenXRHapticBase.MethodBindings
   OpenXRHapticVibration.MethodBindings
@@ -2198,6 +2242,9 @@ public fun registerEngineTypeMethods(): Unit {
   OpenXRInteractionProfile.MethodBindings
   OpenXRInteractionProfileMetadata.MethodBindings
   OpenXRInterface.MethodBindings
+  OpenXRRenderModel.MethodBindings
+  OpenXRRenderModelExtension.MethodBindings
+  OpenXRRenderModelManager.MethodBindings
   OpenXRVisibilityMask.MethodBindings
   OptimizedTranslation.MethodBindings
   OptionButton.MethodBindings
@@ -2340,6 +2387,7 @@ public fun registerEngineTypeMethods(): Unit {
   SceneTree.MethodBindings
   SceneTreeTimer.MethodBindings
   Script.MethodBindings
+  ScriptBacktrace.MethodBindings
   ScriptExtension.MethodBindings
   ScriptLanguage.MethodBindings
   ScriptLanguageExtension.MethodBindings
@@ -2656,6 +2704,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("AStar3D", AStar3D::class, ::AStar3D)
   TypeManager.registerEngineType("AStarGrid2D", AStarGrid2D::class, ::AStarGrid2D)
   TypeManager.registerEngineType("AcceptDialog", AcceptDialog::class, ::AcceptDialog)
+  TypeManager.registerEngineType("AimModifier3D", AimModifier3D::class, ::AimModifier3D)
   TypeManager.registerEngineType("AnimatableBody2D", AnimatableBody2D::class, ::AnimatableBody2D)
   TypeManager.registerEngineType("AnimatableBody3D", AnimatableBody3D::class, ::AnimatableBody3D)
   TypeManager.registerEngineType("AnimatedSprite2D", AnimatedSprite2D::class, ::AnimatedSprite2D)
@@ -2758,6 +2807,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("BitMap", BitMap::class, ::BitMap)
   TypeManager.registerEngineType("Bone2D", Bone2D::class, ::Bone2D)
   TypeManager.registerEngineType("BoneAttachment3D", BoneAttachment3D::class, ::BoneAttachment3D)
+  TypeManager.registerEngineType("BoneConstraint3D", BoneConstraint3D::class, ::BoneConstraint3D)
   TypeManager.registerEngineType("BoneMap", BoneMap::class, ::BoneMap)
   TypeManager.registerEngineType("BoxContainer", BoxContainer::class, ::BoxContainer)
   TypeManager.registerEngineType("BoxMesh", BoxMesh::class, ::BoxMesh)
@@ -2831,8 +2881,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("ConfirmationDialog", ConfirmationDialog::class, ::ConfirmationDialog)
   TypeManager.registerEngineType("Container", Container::class, ::Container)
   TypeManager.registerEngineType("Control", Control::class, ::Control)
+  TypeManager.registerEngineType("ConvertTransformModifier3D", ConvertTransformModifier3D::class, ::ConvertTransformModifier3D)
   TypeManager.registerEngineType("ConvexPolygonShape2D", ConvexPolygonShape2D::class, ::ConvexPolygonShape2D)
   TypeManager.registerEngineType("ConvexPolygonShape3D", ConvexPolygonShape3D::class, ::ConvexPolygonShape3D)
+  TypeManager.registerEngineType("CopyTransformModifier3D", CopyTransformModifier3D::class, ::CopyTransformModifier3D)
   TypeManager.registerEngineType("Crypto", Crypto::class, ::Crypto)
   TypeManager.registerEngineType("CryptoKey", CryptoKey::class, ::CryptoKey)
   TypeManager.registerEngineType("Cubemap", Cubemap::class, ::Cubemap)
@@ -2844,6 +2896,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("CurveXYZTexture", CurveXYZTexture::class, ::CurveXYZTexture)
   TypeManager.registerEngineType("CylinderMesh", CylinderMesh::class, ::CylinderMesh)
   TypeManager.registerEngineType("CylinderShape3D", CylinderShape3D::class, ::CylinderShape3D)
+  TypeManager.registerEngineType("DPITexture", DPITexture::class, ::DPITexture)
   TypeManager.registerEngineType("DTLSServer", DTLSServer::class, ::DTLSServer)
   TypeManager.registerEngineType("DampedSpringJoint2D", DampedSpringJoint2D::class, ::DampedSpringJoint2D)
   TypeManager.registerEngineType("Decal", Decal::class, ::Decal)
@@ -2872,6 +2925,8 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("FlowContainer", FlowContainer::class, ::FlowContainer)
   TypeManager.registerEngineType("FogMaterial", FogMaterial::class, ::FogMaterial)
   TypeManager.registerEngineType("FogVolume", FogVolume::class, ::FogVolume)
+  TypeManager.registerEngineType("FoldableContainer", FoldableContainer::class, ::FoldableContainer)
+  TypeManager.registerEngineType("FoldableGroup", FoldableGroup::class, ::FoldableGroup)
   TypeManager.registerEngineType("Font", Font::class, ::Font)
   TypeManager.registerEngineType("FontFile", FontFile::class, ::FontFile)
   TypeManager.registerEngineType("FontVariation", FontVariation::class, ::FontVariation)
@@ -3005,6 +3060,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Line2D", Line2D::class, ::Line2D)
   TypeManager.registerEngineType("LineEdit", LineEdit::class, ::LineEdit)
   TypeManager.registerEngineType("LinkButton", LinkButton::class, ::LinkButton)
+  TypeManager.registerEngineType("Logger", Logger::class, ::Logger)
   TypeManager.registerEngineType("LookAtModifier3D", LookAtModifier3D::class, ::LookAtModifier3D)
   TypeManager.registerEngineType("MainLoop", MainLoop::class, ::MainLoop)
   TypeManager.registerEngineType("MarginContainer", MarginContainer::class, ::MarginContainer)
@@ -3026,6 +3082,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("MissingNode", MissingNode::class, ::MissingNode)
   TypeManager.registerEngineType("MissingResource", MissingResource::class, ::MissingResource)
   TypeManager.registerEngineType("MobileVRInterface", MobileVRInterface::class, ::MobileVRInterface)
+  TypeManager.registerEngineType("ModifierBoneTarget3D", ModifierBoneTarget3D::class, ::ModifierBoneTarget3D)
   TypeManager.registerEngineType("MovieWriter", MovieWriter::class, null)
   TypeManager.registerEngineType("MultiMesh", MultiMesh::class, ::MultiMesh)
   TypeManager.registerEngineType("MultiMeshInstance2D", MultiMeshInstance2D::class, ::MultiMeshInstance2D)
@@ -3091,7 +3148,10 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRCompositionLayerEquirect", OpenXRCompositionLayerEquirect::class, ::OpenXRCompositionLayerEquirect)
   TypeManager.registerEngineType("OpenXRCompositionLayerQuad", OpenXRCompositionLayerQuad::class, ::OpenXRCompositionLayerQuad)
   TypeManager.registerEngineType("OpenXRDpadBindingModifier", OpenXRDpadBindingModifier::class, ::OpenXRDpadBindingModifier)
+  TypeManager.registerEngineType("OpenXRExtensionWrapper", OpenXRExtensionWrapper::class, ::OpenXRExtensionWrapper)
   TypeManager.registerEngineType("OpenXRExtensionWrapperExtension", OpenXRExtensionWrapperExtension::class, ::OpenXRExtensionWrapperExtension)
+  TypeManager.registerEngineType("OpenXRFutureExtension", OpenXRFutureExtension::class, ::OpenXRFutureExtension)
+  TypeManager.registerEngineType("OpenXRFutureResult", OpenXRFutureResult::class, ::OpenXRFutureResult)
   TypeManager.registerEngineType("OpenXRHand", OpenXRHand::class, ::OpenXRHand)
   TypeManager.registerEngineType("OpenXRHapticBase", OpenXRHapticBase::class, ::OpenXRHapticBase)
   TypeManager.registerEngineType("OpenXRHapticVibration", OpenXRHapticVibration::class, ::OpenXRHapticVibration)
@@ -3100,6 +3160,9 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("OpenXRInteractionProfile", OpenXRInteractionProfile::class, ::OpenXRInteractionProfile)
   TypeManager.registerEngineType("OpenXRInteractionProfileMetadata", OpenXRInteractionProfileMetadata::class, ::OpenXRInteractionProfileMetadata)
   TypeManager.registerEngineType("OpenXRInterface", OpenXRInterface::class, ::OpenXRInterface)
+  TypeManager.registerEngineType("OpenXRRenderModel", OpenXRRenderModel::class, ::OpenXRRenderModel)
+  TypeManager.registerEngineType("OpenXRRenderModelExtension", OpenXRRenderModelExtension::class, ::OpenXRRenderModelExtension)
+  TypeManager.registerEngineType("OpenXRRenderModelManager", OpenXRRenderModelManager::class, ::OpenXRRenderModelManager)
   TypeManager.registerEngineType("OpenXRVisibilityMask", OpenXRVisibilityMask::class, ::OpenXRVisibilityMask)
   TypeManager.registerEngineType("OptimizedTranslation", OptimizedTranslation::class, ::OptimizedTranslation)
   TypeManager.registerEngineType("OptionButton", OptionButton::class, ::OptionButton)
@@ -3252,6 +3315,7 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("SceneTree", SceneTree::class, ::SceneTree)
   TypeManager.registerEngineType("SceneTreeTimer", SceneTreeTimer::class, ::SceneTreeTimer)
   TypeManager.registerEngineType("Script", Script::class, ::Script)
+  TypeManager.registerEngineType("ScriptBacktrace", ScriptBacktrace::class, ::ScriptBacktrace)
   TypeManager.registerEngineType("ScriptExtension", ScriptExtension::class, null)
   TypeManager.registerEngineType("ScriptLanguage", ScriptLanguage::class, ::ScriptLanguage)
   TypeManager.registerEngineType("ScriptLanguageExtension", ScriptLanguageExtension::class, null)

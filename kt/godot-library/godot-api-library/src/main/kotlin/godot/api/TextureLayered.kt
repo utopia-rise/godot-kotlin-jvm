@@ -36,7 +36,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class TextureLayered : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(674, scriptIndex)
+    createNativeObject(690, scriptIndex)
   }
 
   /**
@@ -75,7 +75,7 @@ public abstract class TextureLayered : Texture() {
   public abstract fun _getLayerData(layerIndex: Int): Image?
 
   /**
-   * Returns the current format being used by this texture. See [Image.Format] for details.
+   * Returns the current format being used by this texture.
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()

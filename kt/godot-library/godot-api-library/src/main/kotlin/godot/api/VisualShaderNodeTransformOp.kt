@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeTransformOp : VisualShaderNode() {
   /**
-   * The type of the operation to be performed on the transforms. See [Operator] for options.
+   * The type of the operation to be performed on the transforms.
    */
   public final inline var `operator`: Operator
     @JvmName("operatorProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeTransformOp : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(811, scriptIndex)
+    createNativeObject(827, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

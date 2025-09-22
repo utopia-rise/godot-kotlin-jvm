@@ -58,7 +58,7 @@ public open class VisualShaderNodeVec3Parameter : VisualShaderNodeParameter() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(826, scriptIndex)
+    createNativeObject(842, scriptIndex)
   }
 
   /**

@@ -30,6 +30,10 @@ import kotlin.jvm.JvmName
 public open class CapsuleShape2D : Shape2D() {
   /**
    * The capsule's radius.
+   *
+   * **Note:** The [radius] of a capsule cannot be greater than half of its [height]. Otherwise, the
+   * capsule becomes a circle. If the [radius] is greater than half of the [height], the properties
+   * adjust to a valid value.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -40,7 +44,11 @@ public open class CapsuleShape2D : Shape2D() {
     }
 
   /**
-   * The capsule's height.
+   * The capsule's full height, including the semicircles.
+   *
+   * **Note:** The [height] of a capsule must be at least twice its [radius]. Otherwise, the capsule
+   * becomes a circle. If the [height] is less than twice the [radius], the properties adjust to a
+   * valid value.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -50,8 +58,21 @@ public open class CapsuleShape2D : Shape2D() {
       setHeight(value)
     }
 
+  /**
+   * The capsule's height, excluding the semicircles. This is the height of the central rectangular
+   * part in the middle of the capsule, and is the distance between the centers of the two semicircles.
+   * This is a wrapper for [height].
+   */
+  public final inline var midHeight: Float
+    @JvmName("midHeightProperty")
+    get() = getMidHeight()
+    @JvmName("midHeightProperty")
+    set(`value`) {
+      setMidHeight(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(142, scriptIndex)
+    createNativeObject(144, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
@@ -76,6 +97,17 @@ public open class CapsuleShape2D : Shape2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setMidHeight(midHeight: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to midHeight.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setMidHeightPtr, NIL)
+  }
+
+  public final fun getMidHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMidHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -90,5 +122,11 @@ public open class CapsuleShape2D : Shape2D() {
 
     internal val getHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CapsuleShape2D", "get_height", 1740695150)
+
+    internal val setMidHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "set_mid_height", 373806689)
+
+    internal val getMidHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("CapsuleShape2D", "get_mid_height", 1740695150)
   }
 }

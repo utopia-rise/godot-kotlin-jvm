@@ -87,7 +87,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * The Light2D's blend mode. See [BlendMode] constants for values.
+   * The Light2D's blend mode.
    */
   public final inline var blendMode: BlendMode
     @JvmName("blendModeProperty")
@@ -187,7 +187,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   /**
-   * Shadow filter type. See [ShadowFilter] for possible values.
+   * Shadow filter type.
    */
   public final inline var shadowFilter: ShadowFilter
     @JvmName("shadowFilterProperty")
@@ -224,7 +224,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(331, scriptIndex)
+    createNativeObject(338, scriptIndex)
   }
 
   /**

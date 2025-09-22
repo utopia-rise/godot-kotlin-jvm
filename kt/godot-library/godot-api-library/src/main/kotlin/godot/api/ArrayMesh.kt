@@ -69,9 +69,9 @@ import kotlin.jvm.JvmOverloads
  * //csharp
  * Vector3[] vertices =
  * [
- *     new Vector3(0, 1, 0),
- *     new Vector3(1, 0, 0),
- *     new Vector3(0, 0, 1),
+ * new Vector3(0, 1, 0),
+ * new Vector3(1, 0, 0),
+ * new Vector3(0, 0, 1),
  * ];
  *
  * // Initialize the ArrayMesh.
@@ -96,7 +96,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ArrayMesh : Mesh() {
   /**
-   * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
+   * The blend shape mode.
    */
   public final inline var blendShapeMode: Mesh.BlendShapeMode
     @JvmName("blendShapeModeProperty")
@@ -144,7 +144,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(40, scriptIndex)
+    createNativeObject(41, scriptIndex)
   }
 
   /**

@@ -12,7 +12,11 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Color
+import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.COLOR
+import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
@@ -23,6 +27,8 @@ import godot.core.Vector2
 import godot.core.Vector2i
 import godot.core.Vector3
 import kotlin.Boolean
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -130,8 +136,170 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
       setEnableHolePunch(value)
     }
 
+  /**
+   * The minification filter of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateMinFilter: Filter
+    @JvmName("swapchainStateMinFilterProperty")
+    get() = getMinFilter()
+    @JvmName("swapchainStateMinFilterProperty")
+    set(`value`) {
+      setMinFilter(value)
+    }
+
+  /**
+   * The magnification filter of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateMagFilter: Filter
+    @JvmName("swapchainStateMagFilterProperty")
+    get() = getMagFilter()
+    @JvmName("swapchainStateMagFilterProperty")
+    set(`value`) {
+      setMagFilter(value)
+    }
+
+  /**
+   * The mipmap mode of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateMipmapMode: MipmapMode
+    @JvmName("swapchainStateMipmapModeProperty")
+    get() = getMipmapMode()
+    @JvmName("swapchainStateMipmapModeProperty")
+    set(`value`) {
+      setMipmapMode(value)
+    }
+
+  /**
+   * The horizontal wrap mode of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateHorizontalWrap: Wrap
+    @JvmName("swapchainStateHorizontalWrapProperty")
+    get() = getHorizontalWrap()
+    @JvmName("swapchainStateHorizontalWrapProperty")
+    set(`value`) {
+      setHorizontalWrap(value)
+    }
+
+  /**
+   * The vertical wrap mode of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateVerticalWrap: Wrap
+    @JvmName("swapchainStateVerticalWrapProperty")
+    get() = getVerticalWrap()
+    @JvmName("swapchainStateVerticalWrapProperty")
+    set(`value`) {
+      setVerticalWrap(value)
+    }
+
+  /**
+   * The swizzle value for the red channel of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateRedSwizzle: Swizzle
+    @JvmName("swapchainStateRedSwizzleProperty")
+    get() = getRedSwizzle()
+    @JvmName("swapchainStateRedSwizzleProperty")
+    set(`value`) {
+      setRedSwizzle(value)
+    }
+
+  /**
+   * The swizzle value for the green channel of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateGreenSwizzle: Swizzle
+    @JvmName("swapchainStateGreenSwizzleProperty")
+    get() = getGreenSwizzle()
+    @JvmName("swapchainStateGreenSwizzleProperty")
+    set(`value`) {
+      setGreenSwizzle(value)
+    }
+
+  /**
+   * The swizzle value for the blue channel of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateBlueSwizzle: Swizzle
+    @JvmName("swapchainStateBlueSwizzleProperty")
+    get() = getBlueSwizzle()
+    @JvmName("swapchainStateBlueSwizzleProperty")
+    set(`value`) {
+      setBlueSwizzle(value)
+    }
+
+  /**
+   * The swizzle value for the alpha channel of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateAlphaSwizzle: Swizzle
+    @JvmName("swapchainStateAlphaSwizzleProperty")
+    get() = getAlphaSwizzle()
+    @JvmName("swapchainStateAlphaSwizzleProperty")
+    set(`value`) {
+      setAlphaSwizzle(value)
+    }
+
+  /**
+   * The max anisotropy of the swapchain state.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  public final inline var swapchainStateMaxAnisotropy: Float
+    @JvmName("swapchainStateMaxAnisotropyProperty")
+    get() = getMaxAnisotropy()
+    @JvmName("swapchainStateMaxAnisotropyProperty")
+    set(`value`) {
+      setMaxAnisotropy(value)
+    }
+
+  /**
+   * The border color of the swapchain state that is used when the wrap mode clamps to the border.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var swapchainStateBorderColor: Color
+    @JvmName("swapchainStateBorderColorProperty")
+    get() = getBorderColor()
+    @JvmName("swapchainStateBorderColorProperty")
+    set(`value`) {
+      setBorderColor(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(417, scriptIndex)
+    createNativeObject(426, scriptIndex)
   }
 
   /**
@@ -152,6 +320,30 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
       androidSurfaceSize.apply {
      block(this)
      androidSurfaceSize = this
+  }
+
+  /**
+   * This is a helper function for [swapchainStateBorderColor] to make dealing with local copies
+   * easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = openxrcompositionlayer.swapchainStateBorderColor
+   * //Your changes
+   * openxrcompositionlayer.swapchainStateBorderColor = myCoreType
+   * ``````
+   *
+   * The border color of the swapchain state that is used when the wrap mode clamps to the border.
+   *
+   * **Note:** This property only has an effect on devices that support the OpenXR
+   * XR_FB_swapchain_update_state OpenGLES/Vulkan extensions.
+   */
+  @CoreTypeHelper
+  public final fun swapchainStateBorderColorMutate(block: Color.() -> Unit): Color =
+      swapchainStateBorderColor.apply {
+     block(this)
+     swapchainStateBorderColor = this
   }
 
   public final fun setLayerViewport(viewport: SubViewport?): Unit {
@@ -245,6 +437,127 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setMinFilter(mode: Filter): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setMinFilterPtr, NIL)
+  }
+
+  public final fun getMinFilter(): Filter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMinFilterPtr, LONG)
+    return Filter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMagFilter(mode: Filter): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setMagFilterPtr, NIL)
+  }
+
+  public final fun getMagFilter(): Filter {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMagFilterPtr, LONG)
+    return Filter.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMipmapMode(mode: MipmapMode): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setMipmapModePtr, NIL)
+  }
+
+  public final fun getMipmapMode(): MipmapMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMipmapModePtr, LONG)
+    return MipmapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setHorizontalWrap(mode: Wrap): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setHorizontalWrapPtr, NIL)
+  }
+
+  public final fun getHorizontalWrap(): Wrap {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getHorizontalWrapPtr, LONG)
+    return Wrap.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVerticalWrap(mode: Wrap): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setVerticalWrapPtr, NIL)
+  }
+
+  public final fun getVerticalWrap(): Wrap {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVerticalWrapPtr, LONG)
+    return Wrap.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setRedSwizzle(mode: Swizzle): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setRedSwizzlePtr, NIL)
+  }
+
+  public final fun getRedSwizzle(): Swizzle {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getRedSwizzlePtr, LONG)
+    return Swizzle.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setGreenSwizzle(mode: Swizzle): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setGreenSwizzlePtr, NIL)
+  }
+
+  public final fun getGreenSwizzle(): Swizzle {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getGreenSwizzlePtr, LONG)
+    return Swizzle.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setBlueSwizzle(mode: Swizzle): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setBlueSwizzlePtr, NIL)
+  }
+
+  public final fun getBlueSwizzle(): Swizzle {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBlueSwizzlePtr, LONG)
+    return Swizzle.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAlphaSwizzle(mode: Swizzle): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setAlphaSwizzlePtr, NIL)
+  }
+
+  public final fun getAlphaSwizzle(): Swizzle {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAlphaSwizzlePtr, LONG)
+    return Swizzle.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setMaxAnisotropy(`value`: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to value.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setMaxAnisotropyPtr, NIL)
+  }
+
+  public final fun getMaxAnisotropy(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMaxAnisotropyPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setBorderColor(color: Color): Unit {
+    TransferContext.writeArguments(COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setBorderColorPtr, NIL)
+  }
+
+  public final fun getBorderColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBorderColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
   /**
    * Returns UV coordinates where the given ray intersects with the composition layer. [origin] and
    * [direction] must be in global space.
@@ -255,6 +568,138 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     TransferContext.writeArguments(VECTOR3 to origin, VECTOR3 to direction)
     TransferContext.callMethod(ptr, MethodBindings.intersectsRayPtr, VECTOR2)
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  public enum class Filter(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Perform nearest-neighbor filtering when sampling the texture.
+     */
+    NEAREST(0),
+    /**
+     * Perform linear filtering when sampling the texture.
+     */
+    LINEAR(1),
+    /**
+     * Perform cubic filtering when sampling the texture.
+     */
+    CUBIC(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): Filter = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class MipmapMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Disable mipmapping.
+     *
+     * **Note:** Mipmapping can only be disabled in the Compatibility renderer.
+     */
+    DISABLED(0),
+    /**
+     * Use the mipmap of the nearest resolution.
+     */
+    NEAREST(1),
+    /**
+     * Use linear interpolation of the two mipmaps of the nearest resolution.
+     */
+    LINEAR(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): MipmapMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class Wrap(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Clamp the texture to its specified border color.
+     */
+    CLAMP_TO_BORDER(0),
+    /**
+     * Clamp the texture to its edge color.
+     */
+    CLAMP_TO_EDGE(1),
+    /**
+     * Repeat the texture infinitely.
+     */
+    REPEAT(2),
+    /**
+     * Repeat the texture infinitely, mirroring it on each repeat.
+     */
+    MIRRORED_REPEAT(3),
+    /**
+     * Mirror the texture once and then clamp the texture to its edge color.
+     *
+     * **Note:** This wrap mode is not available in the Compatibility renderer.
+     */
+    MIRROR_CLAMP_TO_EDGE(4),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): Wrap = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class Swizzle(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Maps a color channel to the value of the red channel.
+     */
+    RED(0),
+    /**
+     * Maps a color channel to the value of the green channel.
+     */
+    GREEN(1),
+    /**
+     * Maps a color channel to the value of the blue channel.
+     */
+    BLUE(2),
+    /**
+     * Maps a color channel to the value of the alpha channel.
+     */
+    ALPHA(3),
+    /**
+     * Maps a color channel to the value of zero.
+     */
+    ZERO(4),
+    /**
+     * Maps a color channel to the value of one.
+     */
+    ONE(5),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): Swizzle = entries.single { it.`value` == `value` }
+    }
   }
 
   public companion object
@@ -301,6 +746,72 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
 
     internal val isNativelySupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "is_natively_supported", 36873697)
+
+    internal val setMinFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_min_filter", 3653437593)
+
+    internal val getMinFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_min_filter", 845677307)
+
+    internal val setMagFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_mag_filter", 3653437593)
+
+    internal val getMagFilterPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_mag_filter", 845677307)
+
+    internal val setMipmapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_mipmap_mode", 3271133183)
+
+    internal val getMipmapModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_mipmap_mode", 3962697095)
+
+    internal val setHorizontalWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_horizontal_wrap", 15634990)
+
+    internal val getHorizontalWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_horizontal_wrap", 2798816834)
+
+    internal val setVerticalWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_vertical_wrap", 15634990)
+
+    internal val getVerticalWrapPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_vertical_wrap", 2798816834)
+
+    internal val setRedSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_red_swizzle", 741598951)
+
+    internal val getRedSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_red_swizzle", 2334776767)
+
+    internal val setGreenSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_green_swizzle", 741598951)
+
+    internal val getGreenSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_green_swizzle", 2334776767)
+
+    internal val setBlueSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_blue_swizzle", 741598951)
+
+    internal val getBlueSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_blue_swizzle", 2334776767)
+
+    internal val setAlphaSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_alpha_swizzle", 741598951)
+
+    internal val getAlphaSwizzlePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_alpha_swizzle", 2334776767)
+
+    internal val setMaxAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_max_anisotropy", 373806689)
+
+    internal val getMaxAnisotropyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_max_anisotropy", 1740695150)
+
+    internal val setBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "set_border_color", 2920490490)
+
+    internal val getBorderColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "get_border_color", 3444240500)
 
     internal val intersectsRayPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRCompositionLayer", "intersects_ray", 1091262597)

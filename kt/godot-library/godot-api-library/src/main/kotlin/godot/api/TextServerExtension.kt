@@ -25,6 +25,7 @@ import godot.core.Vector3i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -38,47 +39,35 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class TextServerExtension : TextServer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(662, scriptIndex)
+    createNativeObject(678, scriptIndex)
   }
 
   /**
-   * **Required.**
-   *
    * Returns `true` if the server supports a feature.
    */
   public abstract fun _hasFeature(feature: TextServer.Feature): Boolean
 
   /**
-   * **Required.**
-   *
    * Returns the name of the server interface.
    */
   public abstract fun _getName(): String
 
   /**
-   * **Required.**
-   *
    * Returns text server features, see [TextServer.Feature].
    */
   public abstract fun _getFeatures(): Long
 
   /**
-   * **Required.**
-   *
    * Frees an object created by this [TextServer].
    */
   public abstract fun _freeRid(rid: RID): Unit
 
   /**
-   * **Required.**
-   *
    * Returns `true` if [rid] is valid resource owned by this text server.
    */
   public abstract fun _has(rid: RID): Boolean
 
   /**
-   * **Optional.**
-   *
    * Loads optional TextServer database (e.g. ICU break iterators and dictionaries).
    */
   public open fun _loadSupportData(filename: String): Boolean {
@@ -86,8 +75,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries) filename.
    */
   public open fun _getSupportDataFilename(): String {
@@ -95,8 +82,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns TextServer database (e.g. ICU break iterators and dictionaries) description.
    */
   public open fun _getSupportDataInfo(): String {
@@ -104,8 +89,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Saves optional TextServer database (e.g. ICU break iterators and dictionaries) to the file.
    */
   public open fun _saveSupportData(filename: String): Boolean {
@@ -113,8 +96,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns default TextServer database (e.g. ICU break iterators and dictionaries).
    */
   public open fun _getSupportData(): PackedByteArray {
@@ -122,8 +103,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns `true` if locale is right-to-left.
    */
   public open fun _isLocaleRightToLeft(locale: String): Boolean {
@@ -131,8 +110,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Converts readable feature, variation, script, or language name to OpenType tag.
    */
   public open fun _nameToTag(name: String): Long {
@@ -140,8 +117,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Converts OpenType tag to readable feature, variation, script, or language name.
    */
   public open fun _tagToName(tag: Long): String {
@@ -149,8 +124,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Creates a new, empty font cache entry resource.
    */
   public abstract fun _createFont(): RID
@@ -165,8 +138,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets font source data, e.g contents of the dynamic font source file.
    */
   public open fun _fontSetData(fontRid: RID, `data`: PackedByteArray): Unit {
@@ -174,8 +145,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets an active face index in the TrueType / OpenType collection.
    */
   public open fun _fontSetFaceIndex(fontRid: RID, faceIndex: Long): Unit {
@@ -183,8 +152,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns an active face index in the TrueType / OpenType collection.
    */
   public open fun _fontGetFaceIndex(fontRid: RID): Long {
@@ -192,8 +159,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns number of faces in the TrueType / OpenType collection.
    */
   public open fun _fontGetFaceCount(fontRid: RID): Long {
@@ -201,26 +166,20 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
-   * Sets the font style flags, see [TextServer.FontStyle].
+   * Sets the font style flags.
    */
   public open fun _fontSetStyle(fontRid: RID, style: TextServer.FontStyle): Unit {
     throw NotImplementedError("TextServerExtension::_fontSetStyle is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
-   * Returns font style flags, see [TextServer.FontStyle].
+   * Returns font style flags.
    */
   public open fun _fontGetStyle(fontRid: RID): TextServer.FontStyle {
     throw NotImplementedError("TextServerExtension::_fontGetStyle is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
    * Sets the font family name.
    */
   public open fun _fontSetName(fontRid: RID, name: String): Unit {
@@ -228,8 +187,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font family name.
    */
   public open fun _fontGetName(fontRid: RID): String {
@@ -237,8 +194,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns [Dictionary] with OpenType font name strings (localized font names, version,
    * description, license information, sample text, etc.).
    */
@@ -247,8 +202,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets the font style name.
    */
   public open fun _fontSetStyleName(fontRid: RID, nameStyle: String): Unit {
@@ -256,8 +209,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font style name.
    */
   public open fun _fontGetStyleName(fontRid: RID): String {
@@ -265,8 +216,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
@@ -275,8 +224,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns weight (boldness) of the font. A value in the `100...999` range, normal font weight is
    * `400`, bold font weight is `700`.
    */
@@ -285,8 +232,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets font stretch amount, compared to a normal width. A percentage value between `50&#37;` and
    * `200&#37;`.
    */
@@ -295,8 +240,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font stretch amount, compared to a normal width. A percentage value between `50&#37;`
    * and `200&#37;`.
    */
@@ -305,8 +248,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets font anti-aliasing mode.
    */
   public open fun _fontSetAntialiasing(fontRid: RID, antialiasing: TextServer.FontAntialiasing):
@@ -315,8 +256,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font anti-aliasing mode.
    */
   public open fun _fontGetAntialiasing(fontRid: RID): TextServer.FontAntialiasing {
@@ -324,8 +263,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * If set to `true`, embedded font bitmap loading is disabled.
    */
   public open fun _fontSetDisableEmbeddedBitmaps(fontRid: RID, disableEmbeddedBitmaps: Boolean):
@@ -334,8 +271,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns whether the font's embedded bitmap loading is disabled.
    */
   public open fun _fontGetDisableEmbeddedBitmaps(fontRid: RID): Boolean {
@@ -343,8 +278,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * If set to `true` font texture mipmap generation is enabled.
    */
   public open fun _fontSetGenerateMipmaps(fontRid: RID, generateMipmaps: Boolean): Unit {
@@ -352,8 +285,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if font texture mipmap generation is enabled.
    */
   public open fun _fontGetGenerateMipmaps(fontRid: RID): Boolean {
@@ -361,8 +292,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * If set to `true`, glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data. MSDF rendering allows displaying the font at
    * any scaling factor without blurriness, and without incurring a CPU cost when the font size changes
@@ -375,8 +304,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if glyphs of all sizes are rendered using single multichannel signed distance
    * field generated from the dynamic font vector data.
    */
@@ -385,8 +312,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
@@ -395,8 +320,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the width of the range around the shape between the minimum and maximum representable
    * signed distance.
    */
@@ -405,8 +328,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets source font size used to generate MSDF textures.
    */
   public open fun _fontSetMsdfSize(fontRid: RID, msdfSize: Long): Unit {
@@ -414,8 +335,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns source font size used to generate MSDF textures.
    */
   public open fun _fontGetMsdfSize(fontRid: RID): Long {
@@ -423,38 +342,28 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Sets bitmap font fixed size. If set to value greater than zero, same cache entry will be used
    * for all font sizes.
    */
   public abstract fun _fontSetFixedSize(fontRid: RID, fixedSize: Long): Unit
 
   /**
-   * **Required.**
-   *
    * Returns bitmap font fixed size.
    */
   public abstract fun _fontGetFixedSize(fontRid: RID): Long
 
   /**
-   * **Required.**
-   *
    * Sets bitmap font scaling mode. This property is used only if `fixed_size` is greater than zero.
    */
   public abstract fun _fontSetFixedSizeScaleMode(fontRid: RID,
       fixedSizeScaleMode: TextServer.FixedSizeScaleMode): Unit
 
   /**
-   * **Required.**
-   *
    * Returns bitmap font scaling mode.
    */
   public abstract fun _fontGetFixedSizeScaleMode(fontRid: RID): TextServer.FixedSizeScaleMode
 
   /**
-   * **Optional.**
-   *
    * If set to `true`, system fonts can be automatically used as fallbacks.
    */
   public open fun _fontSetAllowSystemFallback(fontRid: RID, allowSystemFallback: Boolean): Unit {
@@ -462,8 +371,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if system fonts can be automatically used as fallbacks.
    */
   public open fun _fontIsAllowSystemFallback(fontRid: RID): Boolean {
@@ -471,8 +378,13 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
+   * Frees all automatically loaded system fonts.
+   */
+  public open fun _fontClearSystemFallbackCache(): Unit {
+    throw NotImplementedError("TextServerExtension::_fontClearSystemFallbackCache is not implemented.")
+  }
+
+  /**
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
   public open fun _fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
@@ -480,8 +392,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if auto-hinting is supported and preferred over font built-in hinting.
    */
   public open fun _fontIsForceAutohinter(fontRid: RID): Boolean {
@@ -489,8 +399,21 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
+   * If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's
+   * applied to the monochrome glyphs only.
+   */
+  public open fun _fontSetModulateColorGlyphs(fontRid: RID, modulate: Boolean): Unit {
+    throw NotImplementedError("TextServerExtension::_fontSetModulateColorGlyphs is not implemented.")
+  }
+
+  /**
+   * Returns `true`, if color modulation is applied when drawing colored glyphs.
+   */
+  public open fun _fontIsModulateColorGlyphs(fontRid: RID): Boolean {
+    throw NotImplementedError("TextServerExtension::_fontIsModulateColorGlyphs is not implemented.")
+  }
+
+  /**
    * Sets font hinting mode. Used by dynamic fonts only.
    */
   public open fun _fontSetHinting(fontRid: RID, hinting: TextServer.Hinting): Unit {
@@ -498,8 +421,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the font hinting mode. Used by dynamic fonts only.
    */
   public open fun _fontGetHinting(fontRid: RID): TextServer.Hinting {
@@ -507,8 +428,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets font subpixel glyph positioning mode.
    */
   public open fun _fontSetSubpixelPositioning(fontRid: RID,
@@ -517,8 +436,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font subpixel glyph positioning mode.
    */
   public open fun _fontGetSubpixelPositioning(fontRid: RID): TextServer.SubpixelPositioning {
@@ -526,8 +443,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
    * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
    * setting has no effect if subpixel positioning is enabled.
@@ -538,8 +453,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns glyph position rounding behavior. If set to `true`, when aligning glyphs to the pixel
    * boundaries rounding remainders are accumulated to ensure more uniform glyph distribution. This
    * setting has no effect if subpixel positioning is enabled.
@@ -557,8 +470,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font embolden strength.
    */
   public open fun _fontGetEmbolden(fontRid: RID): Double {
@@ -566,10 +477,7 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] to [value] in pixels (not relative to the font size).
    */
   public open fun _fontSetSpacing(
     fontRid: RID,
@@ -580,18 +488,13 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
-   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
-   * font size).
+   * Returns the spacing for [spacing] in pixels (not relative to the font size).
    */
   public open fun _fontGetSpacing(fontRid: RID, spacing: TextServer.SpacingType): Long {
     throw NotImplementedError("TextServerExtension::_fontGetSpacing is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
    * Sets extra baseline offset (as a fraction of font height).
    */
   public open fun _fontSetBaselineOffset(fontRid: RID, baselineOffset: Double): Unit {
@@ -599,8 +502,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns extra baseline offset (as a fraction of font height).
    */
   public open fun _fontGetBaselineOffset(fontRid: RID): Double {
@@ -608,8 +509,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets 2D transform, applied to the font outlines, can be used for slanting, flipping, and
    * rotating glyphs.
    */
@@ -618,8 +517,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns 2D transform applied to the font outlines.
    */
   public open fun _fontGetTransform(fontRid: RID): Transform2D {
@@ -627,8 +524,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets variation coordinates for the specified font cache entry.
    */
   public open fun _fontSetVariationCoordinates(fontRid: RID,
@@ -637,8 +532,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns variation coordinates for the specified font cache entry.
    */
   public open fun _fontGetVariationCoordinates(fontRid: RID): Dictionary<Any?, Any?> {
@@ -646,50 +539,52 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
-   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
-   * by dynamic fonts only.
+   * If set to a positive value, overrides the oversampling factor of the viewport this font is used
+   * in. See [Viewport.oversampling]. This value doesn't override the [code
+   * skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code] methods. Used by dynamic
+   * fonts only.
    */
   public open fun _fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
     throw NotImplementedError("TextServerExtension::_fontSetOversampling is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
-   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
-   * Used by dynamic fonts only.
+   * Returns oversampling factor override. If set to a positive value, overrides the oversampling
+   * factor of the viewport this font is used in. See [Viewport.oversampling]. This value doesn't
+   * override the [code skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code]
+   * methods. Used by dynamic fonts only.
    */
   public open fun _fontGetOversampling(fontRid: RID): Double {
     throw NotImplementedError("TextServerExtension::_fontGetOversampling is not implemented.")
   }
 
   /**
-   * **Required.**
-   *
    * Returns list of the font sizes in the cache. Each size is [Vector2i] with font size and outline
    * size.
    */
   public abstract fun _fontGetSizeCacheList(fontRid: RID): VariantArray<Vector2i>
 
   /**
-   * **Required.**
-   *
    * Removes all font sizes from the cache entry.
    */
   public abstract fun _fontClearSizeCache(fontRid: RID): Unit
 
   /**
-   * **Required.**
-   *
    * Removes specified font size from the cache entry.
    */
   public abstract fun _fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit
 
   /**
-   * **Required.**
-   *
+   * Returns font cache information, each entry contains the following fields: `Vector2i size_px` -
+   * font size in pixels, `float viewport_oversampling` - viewport oversampling factor, `int glyphs` -
+   * number of rendered glyphs, `int textures` - number of used textures, `int textures_size` - size of
+   * texture data in bytes.
+   */
+  public open fun _fontGetSizeCacheInfo(fontRid: RID): VariantArray<Dictionary<Any?, Any?>> {
+    throw NotImplementedError("TextServerExtension::_fontGetSizeCacheInfo is not implemented.")
+  }
+
+  /**
    * Sets the font ascent (number of pixels above the baseline).
    */
   public abstract fun _fontSetAscent(
@@ -699,15 +594,11 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns the font ascent (number of pixels above the baseline).
    */
   public abstract fun _fontGetAscent(fontRid: RID, size: Long): Double
 
   /**
-   * **Required.**
-   *
    * Sets the font descent (number of pixels below the baseline).
    */
   public abstract fun _fontSetDescent(
@@ -717,15 +608,11 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns the font descent (number of pixels below the baseline).
    */
   public abstract fun _fontGetDescent(fontRid: RID, size: Long): Double
 
   /**
-   * **Required.**
-   *
    * Sets pixel offset of the underline below the baseline.
    */
   public abstract fun _fontSetUnderlinePosition(
@@ -735,15 +622,11 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns pixel offset of the underline below the baseline.
    */
   public abstract fun _fontGetUnderlinePosition(fontRid: RID, size: Long): Double
 
   /**
-   * **Required.**
-   *
    * Sets thickness of the underline in pixels.
    */
   public abstract fun _fontSetUnderlineThickness(
@@ -753,15 +636,11 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns thickness of the underline in pixels.
    */
   public abstract fun _fontGetUnderlineThickness(fontRid: RID, size: Long): Double
 
   /**
-   * **Required.**
-   *
    * Sets scaling factor of the color bitmap font.
    */
   public abstract fun _fontSetScale(
@@ -771,29 +650,21 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns scaling factor of the color bitmap font.
    */
   public abstract fun _fontGetScale(fontRid: RID, size: Long): Double
 
   /**
-   * **Required.**
-   *
    * Returns number of textures used by font cache entry.
    */
   public abstract fun _fontGetTextureCount(fontRid: RID, size: Vector2i): Long
 
   /**
-   * **Required.**
-   *
    * Removes all textures from font cache entry.
    */
   public abstract fun _fontClearTextures(fontRid: RID, size: Vector2i): Unit
 
   /**
-   * **Required.**
-   *
    * Removes specified texture from the cache entry.
    */
   public abstract fun _fontRemoveTexture(
@@ -803,8 +674,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Sets font cache texture image data.
    */
   public abstract fun _fontSetTextureImage(
@@ -815,8 +684,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns font cache texture image data.
    */
   public abstract fun _fontGetTextureImage(
@@ -826,8 +693,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Image?
 
   /**
-   * **Optional.**
-   *
    * Sets array containing glyph packing data.
    */
   public open fun _fontSetTextureOffsets(
@@ -840,8 +705,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns array containing glyph packing data.
    */
   public open fun _fontGetTextureOffsets(
@@ -853,22 +716,16 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns list of rendered glyphs in the cache entry.
    */
   public abstract fun _fontGetGlyphList(fontRid: RID, size: Vector2i): PackedInt32Array
 
   /**
-   * **Required.**
-   *
    * Removes all rendered glyph information from the cache entry.
    */
   public abstract fun _fontClearGlyphs(fontRid: RID, size: Vector2i): Unit
 
   /**
-   * **Required.**
-   *
    * Removes specified rendered glyph information from the cache entry.
    */
   public abstract fun _fontRemoveGlyph(
@@ -878,8 +735,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns glyph advance (offset of the next glyph).
    */
   public abstract fun _fontGetGlyphAdvance(
@@ -889,8 +744,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Vector2
 
   /**
-   * **Required.**
-   *
    * Sets glyph advance (offset of the next glyph).
    */
   public abstract fun _fontSetGlyphAdvance(
@@ -901,8 +754,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns glyph offset from the baseline.
    */
   public abstract fun _fontGetGlyphOffset(
@@ -912,8 +763,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Vector2
 
   /**
-   * **Required.**
-   *
    * Sets glyph offset from the baseline.
    */
   public abstract fun _fontSetGlyphOffset(
@@ -924,8 +773,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns size of the glyph.
    */
   public abstract fun _fontGetGlyphSize(
@@ -935,8 +782,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Vector2
 
   /**
-   * **Required.**
-   *
    * Sets size of the glyph.
    */
   public abstract fun _fontSetGlyphSize(
@@ -947,8 +792,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns rectangle in the cache texture containing the glyph.
    */
   public abstract fun _fontGetGlyphUvRect(
@@ -958,8 +801,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Rect2
 
   /**
-   * **Required.**
-   *
    * Sets rectangle in the cache texture containing the glyph.
    */
   public abstract fun _fontSetGlyphUvRect(
@@ -970,8 +811,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns index of the cache texture containing the glyph.
    */
   public abstract fun _fontGetGlyphTextureIdx(
@@ -981,8 +820,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Long
 
   /**
-   * **Required.**
-   *
    * Sets index of the cache texture containing the glyph.
    */
   public abstract fun _fontSetGlyphTextureIdx(
@@ -993,8 +830,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Returns resource ID of the cache texture containing the glyph.
    */
   public abstract fun _fontGetGlyphTextureRid(
@@ -1004,8 +839,6 @@ public abstract class TextServerExtension : TextServer() {
   ): RID
 
   /**
-   * **Required.**
-   *
    * Returns size of the cache texture containing the glyph.
    */
   public abstract fun _fontGetGlyphTextureSize(
@@ -1015,8 +848,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Vector2
 
   /**
-   * **Optional.**
-   *
    * Returns outline contours of the glyph.
    */
   public open fun _fontGetGlyphContours(
@@ -1028,8 +859,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns list of the kerning overrides.
    */
   public open fun _fontGetKerningList(fontRid: RID, size: Long): VariantArray<Vector2i> {
@@ -1037,8 +866,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Removes all kerning overrides.
    */
   public open fun _fontClearKerningMap(fontRid: RID, size: Long): Unit {
@@ -1046,8 +873,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Removes kerning override for the pair of glyphs.
    */
   public open fun _fontRemoveKerning(
@@ -1059,8 +884,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets kerning for the pair of glyphs.
    */
   public open fun _fontSetKerning(
@@ -1073,8 +896,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns kerning for the pair of glyphs.
    */
   public open fun _fontGetKerning(
@@ -1086,8 +907,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns the glyph index of a [char], optionally modified by the [variationSelector].
    */
   public abstract fun _fontGetGlyphIndex(
@@ -1098,8 +917,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Long
 
   /**
-   * **Required.**
-   *
    * Returns character code associated with [glyphIndex], or `0` if [glyphIndex] is invalid.
    */
   public abstract fun _fontGetCharFromGlyphIndex(
@@ -1109,29 +926,21 @@ public abstract class TextServerExtension : TextServer() {
   ): Long
 
   /**
-   * **Required.**
-   *
    * Returns `true` if a Unicode [char] is available in the font.
    */
   public abstract fun _fontHasChar(fontRid: RID, char: Long): Boolean
 
   /**
-   * **Required.**
-   *
    * Returns a string containing all the characters available in the font.
    */
   public abstract fun _fontGetSupportedChars(fontRid: RID): String
 
   /**
-   * **Required.**
-   *
    * Returns an array containing all glyph indices in the font.
    */
   public abstract fun _fontGetSupportedGlyphs(fontRid: RID): PackedInt32Array
 
   /**
-   * **Optional.**
-   *
    * Renders the range of characters to the font cache texture.
    */
   public open fun _fontRenderRange(
@@ -1144,8 +953,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Renders specified glyph to the font cache texture.
    */
   public open fun _fontRenderGlyph(
@@ -1157,9 +964,9 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
-   * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size].
+   * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size]. If
+   * [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    */
   public abstract fun _fontDrawGlyph(
     fontRid: RID,
@@ -1168,13 +975,13 @@ public abstract class TextServerExtension : TextServer() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit
 
   /**
-   * **Required.**
-   *
    * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
-   * [fontRid] at the size [size].
+   * [fontRid] at the size [size]. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   public abstract fun _fontDrawGlyphOutline(
     fontRid: RID,
@@ -1184,11 +991,10 @@ public abstract class TextServerExtension : TextServer() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit
 
   /**
-   * **Optional.**
-   *
    * Returns `true`, if font supports given language
    * ([url=https://en.wikipedia.org/wiki/ISO_639-1]ISO 639[/url] code).
    */
@@ -1197,8 +1003,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Adds override for [_fontIsLanguageSupported].
    */
   public open fun _fontSetLanguageSupportOverride(
@@ -1210,8 +1014,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if support override is enabled for the [language].
    */
   public open fun _fontGetLanguageSupportOverride(fontRid: RID, language: String): Boolean {
@@ -1219,8 +1021,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Remove language support override.
    */
   public open fun _fontRemoveLanguageSupportOverride(fontRid: RID, language: String): Unit {
@@ -1228,8 +1028,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns list of language support overrides.
    */
   public open fun _fontGetLanguageSupportOverrides(fontRid: RID): PackedStringArray {
@@ -1237,8 +1035,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true`, if font supports given script (ISO 15924 code).
    */
   public open fun _fontIsScriptSupported(fontRid: RID, script: String): Boolean {
@@ -1246,8 +1042,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Adds override for [_fontIsScriptSupported].
    */
   public open fun _fontSetScriptSupportOverride(
@@ -1259,8 +1053,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if support override is enabled for the [script].
    */
   public open fun _fontGetScriptSupportOverride(fontRid: RID, script: String): Boolean {
@@ -1268,8 +1060,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Removes script support override.
    */
   public open fun _fontRemoveScriptSupportOverride(fontRid: RID, script: String): Unit {
@@ -1277,8 +1067,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns list of script support overrides.
    */
   public open fun _fontGetScriptSupportOverrides(fontRid: RID): PackedStringArray {
@@ -1286,8 +1074,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets font OpenType feature set override.
    */
   public open fun _fontSetOpentypeFeatureOverrides(fontRid: RID, overrides: Dictionary<Any?, Any?>):
@@ -1296,8 +1082,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns font OpenType feature set override.
    */
   public open fun _fontGetOpentypeFeatureOverrides(fontRid: RID): Dictionary<Any?, Any?> {
@@ -1305,8 +1089,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the dictionary of the supported OpenType features.
    */
   public open fun _fontSupportedFeatureList(fontRid: RID): Dictionary<Any?, Any?> {
@@ -1314,8 +1096,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the dictionary of the supported OpenType variation coordinates.
    */
   public open fun _fontSupportedVariationList(fontRid: RID): Dictionary<Any?, Any?> {
@@ -1323,8 +1103,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the font oversampling factor, shared by all fonts in the TextServer.
    */
   public open fun _fontGetGlobalOversampling(): Double {
@@ -1332,8 +1110,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets oversampling factor, shared by all font in the TextServer.
    */
   public open fun _fontSetGlobalOversampling(oversampling: Double): Unit {
@@ -1341,8 +1117,23 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
+   * Increases the reference count of the specified oversampling level. This method is called by
+   * [Viewport], and should not be used directly.
+   */
+  public open fun _referenceOversamplingLevel(oversampling: Double): Unit {
+    throw NotImplementedError("TextServerExtension::_referenceOversamplingLevel is not implemented.")
+  }
+
+  /**
+   * Decreases the reference count of the specified oversampling level, and frees the font cache for
+   * oversampling level when the reference count reaches zero. This method is called by [Viewport], and
+   * should not be used directly.
+   */
+  public open fun _unreferenceOversamplingLevel(oversampling: Double): Unit {
+    throw NotImplementedError("TextServerExtension::_unreferenceOversamplingLevel is not implemented.")
+  }
+
+  /**
    * Returns size of the replacement character (box with character hexadecimal code that is drawn in
    * place of invalid characters).
    */
@@ -1351,8 +1142,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Draws box displaying character hexadecimal code.
    */
   public open fun _drawHexCodeBox(
@@ -1366,23 +1155,17 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Creates a new buffer for complex text layout, with the given [direction] and [orientation].
    */
   public abstract fun _createShapedText(direction: TextServer.Direction,
       orientation: TextServer.Orientation): RID
 
   /**
-   * **Required.**
-   *
    * Clears text buffer (removes text and inline objects).
    */
   public abstract fun _shapedTextClear(shaped: RID): Unit
 
   /**
-   * **Optional.**
-   *
    * Sets desired text direction. If set to [TextServer.DIRECTION_AUTO], direction will be detected
    * based on the buffer contents and current locale.
    */
@@ -1391,8 +1174,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns direction of the text.
    */
   public open fun _shapedTextGetDirection(shaped: RID): TextServer.Direction {
@@ -1400,8 +1181,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns direction of the text, inferred by the BiDi algorithm.
    */
   public open fun _shapedTextGetInferredDirection(shaped: RID): TextServer.Direction {
@@ -1409,8 +1188,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Overrides BiDi for the structured text.
    */
   public open fun _shapedTextSetBidiOverride(shaped: RID, `override`: VariantArray<Any?>): Unit {
@@ -1418,8 +1195,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets custom punctuation character list, used for word breaking. If set to empty string, server
    * defaults are used.
    */
@@ -1428,8 +1203,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns custom punctuation character list, used for word breaking. If set to empty string,
    * server defaults are used.
    */
@@ -1438,8 +1211,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets ellipsis character used for text clipping.
    */
   public open fun _shapedTextSetCustomEllipsis(shaped: RID, char: Long): Unit {
@@ -1447,8 +1218,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns ellipsis character used for text clipping.
    */
   public open fun _shapedTextGetCustomEllipsis(shaped: RID): Long {
@@ -1456,8 +1225,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets desired text orientation.
    */
   public open fun _shapedTextSetOrientation(shaped: RID, orientation: TextServer.Orientation):
@@ -1466,8 +1233,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns text orientation.
    */
   public open fun _shapedTextGetOrientation(shaped: RID): TextServer.Orientation {
@@ -1475,8 +1240,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * If set to `true` text buffer will display invalid characters as hexadecimal codes, otherwise
    * nothing is displayed.
    */
@@ -1485,8 +1248,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if text buffer is configured to display hexadecimal codes in place of invalid
    * characters.
    */
@@ -1495,8 +1256,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * If set to `true` text buffer will display control characters.
    */
   public open fun _shapedTextSetPreserveControl(shaped: RID, enabled: Boolean): Unit {
@@ -1504,8 +1263,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if text buffer is configured to display control characters.
    */
   public open fun _shapedTextGetPreserveControl(shaped: RID): Boolean {
@@ -1513,8 +1270,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Sets extra spacing added between glyphs or lines in pixels.
    */
   public open fun _shapedTextSetSpacing(
@@ -1526,8 +1281,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns extra spacing added between glyphs or lines in pixels.
    */
   public open fun _shapedTextGetSpacing(shaped: RID, spacing: TextServer.SpacingType): Long {
@@ -1535,8 +1288,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Adds text span and font to draw it to the text buffer.
    */
   public abstract fun _shapedTextAddString(
@@ -1550,8 +1301,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Boolean
 
   /**
-   * **Required.**
-   *
    * Adds inline object to the text buffer, [key] must be unique. In the text, object is represented
    * as [length] object replacement characters.
    */
@@ -1565,8 +1314,6 @@ public abstract class TextServerExtension : TextServer() {
   ): Boolean
 
   /**
-   * **Required.**
-   *
    * Sets new size and alignment of embedded object.
    */
   public abstract fun _shapedTextResizeObject(
@@ -1578,29 +1325,36 @@ public abstract class TextServerExtension : TextServer() {
   ): Boolean
 
   /**
-   * **Required.**
-   *
+   * Returns the text buffer source text, including object replacement characters.
+   */
+  public abstract fun _shapedGetText(shaped: RID): String
+
+  /**
    * Returns number of text spans added using [_shapedTextAddString] or [_shapedTextAddObject].
    */
   public abstract fun _shapedGetSpanCount(shaped: RID): Long
 
   /**
-   * **Required.**
-   *
    * Returns text span metadata.
    */
   public abstract fun _shapedGetSpanMeta(shaped: RID, index: Long): Any?
 
   /**
-   * **Required.**
-   *
    * Returns text embedded object key.
    */
   public abstract fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any?
 
   /**
-   * **Required.**
-   *
+   * Returns the text span source text.
+   */
+  public abstract fun _shapedGetSpanText(shaped: RID, index: Long): String
+
+  /**
+   * Returns the text span embedded object key.
+   */
+  public abstract fun _shapedGetSpanObject(shaped: RID, index: Long): Any?
+
+  /**
    * Changes text span font, font size, and OpenType features, without changing the text.
    */
   public abstract fun _shapedSetSpanUpdateFont(
@@ -1612,8 +1366,62 @@ public abstract class TextServerExtension : TextServer() {
   ): Unit
 
   /**
-   * **Required.**
-   *
+   * Returns the number of uniform text runs in the buffer.
+   */
+  public open fun _shapedGetRunCount(shaped: RID): Long {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunCount is not implemented.")
+  }
+
+  /**
+   * Returns the source text of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunText(shaped: RID, index: Long): String {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunText is not implemented.")
+  }
+
+  /**
+   * Returns the source text range of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunRange(shaped: RID, index: Long): Vector2i {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunRange is not implemented.")
+  }
+
+  /**
+   * Returns the font RID of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunFontRid(shaped: RID, index: Long): RID {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunFontRid is not implemented.")
+  }
+
+  /**
+   * Returns the font size of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunFontSize(shaped: RID, index: Long): Int {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunFontSize is not implemented.")
+  }
+
+  /**
+   * Returns the language of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunLanguage(shaped: RID, index: Long): String {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunLanguage is not implemented.")
+  }
+
+  /**
+   * Returns the direction of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunDirection(shaped: RID, index: Long): TextServer.Direction {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunDirection is not implemented.")
+  }
+
+  /**
+   * Returns the embedded object of the [index] text run (in visual order).
+   */
+  public open fun _shapedGetRunObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerExtension::_shapedGetRunObject is not implemented.")
+  }
+
+  /**
    * Returns text buffer for the substring of the text in the [shaped] text buffer (including inline
    * objects).
    */
@@ -1624,15 +1432,11 @@ public abstract class TextServerExtension : TextServer() {
   ): RID
 
   /**
-   * **Required.**
-   *
    * Returns the parent buffer from which the substring originates.
    */
   public abstract fun _shapedTextGetParent(shaped: RID): RID
 
   /**
-   * **Optional.**
-   *
    * Adjusts text width to fit to specified width, returns new text width.
    */
   public open fun _shapedTextFitToWidth(
@@ -1644,8 +1448,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Aligns shaped text to the given tab-stops.
    */
   public open fun _shapedTextTabAlign(shaped: RID, tabStops: PackedFloat32Array): Double {
@@ -1653,15 +1455,11 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Shapes buffer if it's not shaped. Returns `true` if the string is shaped successfully.
    */
   public abstract fun _shapedTextShape(shaped: RID): Boolean
 
   /**
-   * **Optional.**
-   *
    * Updates break points in the shaped text. This method is called by default implementation of
    * text breaking functions.
    */
@@ -1670,8 +1468,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Updates justification points in the shaped text. This method is called by default
    * implementation of text justification functions.
    */
@@ -1680,29 +1476,21 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns `true` if buffer is successfully shaped.
    */
   public abstract fun _shapedTextIsReady(shaped: RID): Boolean
 
   /**
-   * **Required.**
-   *
    * Returns number of glyphs in the buffer.
    */
   public abstract fun _shapedTextGetGlyphCount(shaped: RID): Long
 
   /**
-   * **Required.**
-   *
    * Returns substring buffer character range in the parent buffer.
    */
   public abstract fun _shapedTextGetRange(shaped: RID): Vector2i
 
   /**
-   * **Optional.**
-   *
    * Breaks text to the lines and columns. Returns character ranges for each segment.
    */
   public open fun _shapedTextGetLineBreaksAdv(
@@ -1716,8 +1504,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Breaks text to the lines and returns character ranges for each line.
    */
   public open fun _shapedTextGetLineBreaks(
@@ -1730,10 +1516,8 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
-   * characters are used for breaking (see [TextServer.GraphemeFlag]).
+   * characters are used for breaking.
    */
   public open fun _shapedTextGetWordBreaks(
     shaped: RID,
@@ -1744,29 +1528,21 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns the position of the overrun trim.
    */
   public abstract fun _shapedTextGetTrimPos(shaped: RID): Long
 
   /**
-   * **Required.**
-   *
    * Returns position of the ellipsis.
    */
   public abstract fun _shapedTextGetEllipsisPos(shaped: RID): Long
 
   /**
-   * **Required.**
-   *
    * Returns number of glyphs in the ellipsis.
    */
   public abstract fun _shapedTextGetEllipsisGlyphCount(shaped: RID): Long
 
   /**
-   * **Optional.**
-   *
    * Trims text if it exceeds the given width.
    */
   public open fun _shapedTextOverrunTrimToWidth(
@@ -1778,80 +1554,58 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Required.**
-   *
    * Returns array of inline objects.
    */
   public abstract fun _shapedTextGetObjects(shaped: RID): VariantArray<Any?>
 
   /**
-   * **Required.**
-   *
    * Returns bounding rectangle of the inline object.
    */
   public abstract fun _shapedTextGetObjectRect(shaped: RID, key: Any?): Rect2
 
   /**
-   * **Required.**
-   *
    * Returns the character range of the inline object.
    */
   public abstract fun _shapedTextGetObjectRange(shaped: RID, key: Any?): Vector2i
 
   /**
-   * **Required.**
-   *
    * Returns the glyph index of the inline object.
    */
   public abstract fun _shapedTextGetObjectGlyph(shaped: RID, key: Any?): Long
 
   /**
-   * **Required.**
-   *
    * Returns size of the text.
    */
   public abstract fun _shapedTextGetSize(shaped: RID): Vector2
 
   /**
-   * **Required.**
-   *
    * Returns the text ascent (number of pixels above the baseline for horizontal layout or to the
    * left of baseline for vertical).
    */
   public abstract fun _shapedTextGetAscent(shaped: RID): Double
 
   /**
-   * **Required.**
-   *
    * Returns the text descent (number of pixels below the baseline for horizontal layout or to the
    * right of baseline for vertical).
    */
   public abstract fun _shapedTextGetDescent(shaped: RID): Double
 
   /**
-   * **Required.**
-   *
    * Returns width (for horizontal layout) or height (for vertical) of the text.
    */
   public abstract fun _shapedTextGetWidth(shaped: RID): Double
 
   /**
-   * **Required.**
-   *
    * Returns pixel offset of the underline below the baseline.
    */
   public abstract fun _shapedTextGetUnderlinePosition(shaped: RID): Double
 
   /**
-   * **Required.**
-   *
    * Returns thickness of the underline.
    */
   public abstract fun _shapedTextGetUnderlineThickness(shaped: RID): Double
 
   /**
-   * **Optional.**
-   *
    * Returns dominant direction of in the range of text.
    */
   public open fun _shapedTextGetDominantDirectionInRange(
@@ -1863,8 +1617,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns selection rectangles for the specified character range.
    */
   public open fun _shapedTextGetSelection(
@@ -1876,8 +1628,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns grapheme index at the specified pixel offset at the baseline, or `-1` if none is found.
    */
   public open fun _shapedTextHitTestGrapheme(shaped: RID, coord: Double): Long {
@@ -1885,8 +1635,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns caret character offset at the specified pixel offset at the baseline. This function
    * always returns a valid position.
    */
@@ -1895,11 +1643,10 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the
    * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
-   * vertical layout).
+   * vertical layout). If [oversampling] is greater than zero, it is used as font oversampling factor,
+   * otherwise viewport oversampling settings are used.
    */
   public open fun _shapedTextDraw(
     shaped: RID,
@@ -1908,16 +1655,16 @@ public abstract class TextServerExtension : TextServer() {
     clipL: Double,
     clipR: Double,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerExtension::_shapedTextDraw is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
    * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos]
    * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
-   * baseline (for vertical layout).
+   * baseline (for vertical layout). If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   public open fun _shapedTextDrawOutline(
     shaped: RID,
@@ -1927,13 +1674,12 @@ public abstract class TextServerExtension : TextServer() {
     clipR: Double,
     outlineSize: Long,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerExtension::_shapedTextDrawOutline is not implemented.")
   }
 
   /**
-   * **Optional.**
-   *
    * Returns composite character's bounds as offsets from the start of the line.
    */
   public open fun _shapedTextGetGraphemeBounds(shaped: RID, pos: Long): Vector2 {
@@ -1941,8 +1687,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns grapheme end position closest to the [pos].
    */
   public open fun _shapedTextNextGraphemePos(shaped: RID, pos: Long): Long {
@@ -1950,8 +1694,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns grapheme start position closest to the [pos].
    */
   public open fun _shapedTextPrevGraphemePos(shaped: RID, pos: Long): Long {
@@ -1959,8 +1701,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns array of the composite character boundaries.
    */
   public open fun _shapedTextGetCharacterBreaks(shaped: RID): PackedInt32Array {
@@ -1968,8 +1708,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns composite character end position closest to the [pos].
    */
   public open fun _shapedTextNextCharacterPos(shaped: RID, pos: Long): Long {
@@ -1977,8 +1715,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns composite character start position closest to the [pos].
    */
   public open fun _shapedTextPrevCharacterPos(shaped: RID, pos: Long): Long {
@@ -1986,8 +1722,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns composite character position closest to the [pos].
    */
   public open fun _shapedTextClosestCharacterPos(shaped: RID, pos: Long): Long {
@@ -1995,8 +1729,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Converts a number from the Western Arabic (0..9) to the numeral systems used in [language].
    */
   public open fun _formatNumber(number: String, language: String): String {
@@ -2004,8 +1736,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Converts [number] from the numeral systems used in [language] to Western Arabic (0..9).
    */
   public open fun _parseNumber(number: String, language: String): String {
@@ -2013,8 +1743,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns percent sign used in the [language].
    */
   public open fun _percentSign(language: String): String {
@@ -2022,8 +1750,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Strips diacritics from the string.
    */
   public open fun _stripDiacritics(string: String): String {
@@ -2031,8 +1757,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if [string] is a valid identifier.
    */
   public open fun _isValidIdentifier(string: String): Boolean {
@@ -2044,8 +1768,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns an array of the word break boundaries. Elements in the returned array are the offsets
    * of the start and end of words. Therefore the length of the array is always even.
    */
@@ -2058,8 +1780,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns array of the composite character boundaries.
    */
   public open fun _stringGetCharacterBreaks(string: String, language: String): PackedInt32Array {
@@ -2067,8 +1787,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns index of the first string in [dict] which is visually confusable with the [string], or
    * `-1` if none is found.
    */
@@ -2077,8 +1795,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns `true` if [string] is likely to be an attempt at confusing the reader.
    */
   public open fun _spoofCheck(string: String): Boolean {
@@ -2086,8 +1802,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the string converted to uppercase.
    */
   public open fun _stringToUpper(string: String, language: String): String {
@@ -2095,8 +1809,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the string converted to lowercase.
    */
   public open fun _stringToLower(string: String, language: String): String {
@@ -2104,8 +1816,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * Returns the string converted to title case.
    */
   public open fun _stringToTitle(string: String, language: String): String {
@@ -2113,10 +1823,7 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
-   * Default implementation of the BiDi algorithm override function. See
-   * [TextServer.StructuredTextParser] for more info.
+   * Default implementation of the BiDi algorithm override function.
    */
   public open fun _parseStructuredText(
     parserType: TextServer.StructuredTextParser,
@@ -2127,8 +1834,6 @@ public abstract class TextServerExtension : TextServer() {
   }
 
   /**
-   * **Optional.**
-   *
    * This method is called before text server is unregistered.
    */
   public open fun _cleanup(): Unit {

@@ -69,8 +69,8 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill (also known as
+   * justify).
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -81,8 +81,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
-   * of the [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom, and fill.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -95,7 +94,7 @@ public open class Label : Control() {
   /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
-   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * all the text.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -106,7 +105,19 @@ public open class Label : Control() {
     }
 
   /**
-   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   * Autowrap space trimming flags. See [TextServer.BREAK_TRIM_START_EDGE_SPACES] and
+   * [TextServer.BREAK_TRIM_END_EDGE_SPACES] for more info.
+   */
+  public final inline var autowrapTrimFlags: TextServer.LineBreakFlag
+    @JvmName("autowrapTrimFlagsProperty")
+    get() = getAutowrapTrimFlags()
+    @JvmName("autowrapTrimFlagsProperty")
+    set(`value`) {
+      setAutowrapTrimFlags(value)
+    }
+
+  /**
+   * Line fill alignment rules.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -141,8 +152,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * The clipping behavior when the text exceeds the node's bounding rectangle.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -220,6 +230,10 @@ public open class Label : Control() {
    * useful when animating the text appearing in a dialog box.
    *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
+   *
+   * **Note:** Characters are counted as Unicode codepoints. A single visible grapheme may contain
+   * multiple codepoints (e.g. certain emoji use three codepoints). A single codepoint may contain two
+   * UTF-16 characters, which are used in C# strings.
    */
   public final inline var visibleCharacters: Int
     @JvmName("visibleCharactersProperty")
@@ -230,8 +244,7 @@ public open class Label : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
-   * [TextServer.VisibleCharactersBehavior] for more info.
+   * The clipping behavior when [visibleCharacters] or [visibleRatio] is set.
    */
   public final inline var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     @JvmName("visibleCharactersBehaviorProperty")
@@ -303,7 +316,7 @@ public open class Label : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(328, scriptIndex)
+    createNativeObject(335, scriptIndex)
   }
 
   /**
@@ -429,6 +442,17 @@ public open class Label : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAutowrapTrimFlags(autowrapTrimFlags: TextServer.LineBreakFlag): Unit {
+    TransferContext.writeArguments(LONG to autowrapTrimFlags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapTrimFlagsPtr, NIL)
+  }
+
+  public final fun getAutowrapTrimFlags(): TextServer.LineBreakFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapTrimFlagsPtr, LONG)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
@@ -677,6 +701,12 @@ public open class Label : Control() {
 
     internal val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "get_autowrap_mode", 1549071663)
+
+    internal val setAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "set_autowrap_trim_flags", 2809697122)
+
+    internal val getAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label", "get_autowrap_trim_flags", 2340632602)
 
     internal val setJustificationFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label", "set_justification_flags", 2877345813)

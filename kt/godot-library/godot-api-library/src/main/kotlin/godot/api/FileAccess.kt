@@ -47,43 +47,48 @@ public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.an
  * This class can be used to permanently store data in the user device's file system and to read
  * from it. This is useful for storing game save data or player configuration files.
  *
- * Here's a sample on how to write and read from a file:
+ * **Example:** How to write and read from a file. The file named `"save_game.dat"` will be stored
+ * in the user data folder, as specified in the [url=$DOCS_URL/tutorials/io/data_paths.html]Data
+ * paths[/url] documentation:
  *
  * ```gdscript
  * //gdscript
  * func save_to_file(content):
- *     var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
- *     file.store_string(content)
+ * var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+ * file.store_string(content)
  *
  * func load_from_file():
- *     var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
- *     var content = file.get_as_text()
- *     return content
+ * var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+ * var content = file.get_as_text()
+ * return content
  * ```
  *
  * ```csharp
  * //csharp
  * public void SaveToFile(string content)
  * {
- *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Write);
- *     file.StoreString(content);
+ * using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Write);
+ * file.StoreString(content);
  * }
  *
  * public string LoadFromFile()
  * {
- *     using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Read);
- *     string content = file.GetAsText();
- *     return content;
+ * using var file = FileAccess.Open("user://save_game.dat", FileAccess.ModeFlags.Read);
+ * string content = file.GetAsText();
+ * return content;
  * }
  * ```
  *
- * In the example above, the file will be saved in the user data folder as specified in the
- * [url=$DOCS_URL/tutorials/io/data_paths.html]Data paths[/url] documentation.
+ * A [FileAccess] instance has its own file cursor, which is the position in bytes in the file where
+ * the next read/write operation will occur. Functions such as [get8], [get16], [store8], and [store16]
+ * will move the file cursor forward by the number of bytes read/written. The file cursor can be moved
+ * to a specific position using [seek] or [seekEnd], and its position can be retrieved using
+ * [getPosition].
  *
- * [FileAccess] will close when it's freed, which happens when it goes out of scope or when it gets
- * assigned with `null`. [close] can be used to close it before then explicitly. In C# the reference
- * must be disposed manually, which can be done with the `using` statement or by calling the `Dispose`
- * method directly.
+ * A [FileAccess] instance will close its file when the instance is freed. Since it inherits
+ * [RefCounted], this happens automatically when it is no longer in use. [close] can be called to close
+ * it earlier. In C#, the reference must be disposed manually, which can be done with the `using`
+ * statement or by calling the `Dispose` method directly.
  *
  * **Note:** To access project resources once exported, it is recommended to use [ResourceLoader]
  * instead of [FileAccess], as some files are converted to engine-specific formats and their original
@@ -93,9 +98,9 @@ public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.an
  * in the Export dialog to include the file's extension (e.g. `*.txt`).
  *
  * **Note:** Files are automatically closed only if the process exits "normally" (such as by
- * clicking the window manager's close button or pressing **Alt + F4**). If you stop the project
- * execution by pressing **F8** while the project is running, the file won't be closed as the game
- * process will be killed. You can work around this by calling [flush] at regular intervals.
+ * clicking the window manager's close button or pressing [kbd]Alt + F4[/kbd]). If you stop the project
+ * execution by pressing [kbd]F8[/kbd] while the project is running, the file won't be closed as the
+ * game process will be killed. You can work around this by calling [flush] at regular intervals.
  */
 @GodotBaseType
 public open class FileAccess internal constructor() : RefCounted() {
@@ -105,11 +110,9 @@ public open class FileAccess internal constructor() : RefCounted() {
    * little-endian endianness. If in doubt, leave this to `false` as most files are written with
    * little-endian endianness.
    *
-   * **Note:** [bigEndian] is only about the file format, not the CPU type. The CPU endianness
-   * doesn't affect the default endianness for files written.
-   *
-   * **Note:** This is always reset to `false` whenever you open the file. Therefore, you must set
-   * [bigEndian] *after* opening the file, not before.
+   * **Note:** This is always reset to system endianness, which is little-endian on all supported
+   * platforms, whenever you open the file. Therefore, you must set [bigEndian] *after* opening the
+   * file, not before.
    */
   public final inline var bigEndian: Boolean
     @JvmName("bigEndianProperty")
@@ -120,7 +123,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(212, scriptIndex)
+    createNativeObject(217, scriptIndex)
   }
 
   /**
@@ -177,7 +180,7 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Changes the file reading/writing cursor to the specified position (in bytes from the beginning
-   * of the file).
+   * of the file). This changes the value returned by [getPosition].
    */
   public final fun seek(position: Long): Unit {
     TransferContext.writeArguments(LONG to position)
@@ -186,10 +189,10 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Changes the file reading/writing cursor to the specified position (in bytes from the end of the
-   * file).
+   * file). This changes the value returned by [getPosition].
    *
-   * **Note:** This is an offset, so you should use negative numbers or the cursor will be at the
-   * end of the file.
+   * **Note:** This is an offset, so you should use negative numbers or the file cursor will be at
+   * the end of the file.
    */
   @JvmOverloads
   public final fun seekEnd(position: Long = 0): Unit {
@@ -198,7 +201,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the file cursor's position.
+   * Returns the file cursor's position in bytes from the beginning of the file. This is the file
+   * reading/writing cursor set by [seek] or [seekEnd] and advanced by read/write operations.
    */
   public final fun getPosition(): Long {
     TransferContext.writeArguments()
@@ -225,14 +229,14 @@ public open class FileAccess internal constructor() : RefCounted() {
    * ```gdscript
    * //gdscript
    * while file.get_position() < file.get_length():
-   *     # Read data
+   * # Read data
    * ```
    *
    * ```csharp
    * //csharp
    * while (file.GetPosition() < file.GetLength())
    * {
-   *     // Read data
+   * // Read data
    * }
    * ```
    */
@@ -243,8 +247,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 8 bits from the file as an integer. See [store8] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 8 bits from the file as an integer. This advances the file cursor by 1 byte.
+   * See [store8] for details on what values can be stored and retrieved this way.
    */
   public final fun get8(): Int {
     TransferContext.writeArguments()
@@ -253,8 +257,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 16 bits from the file as an integer. See [store16] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 16 bits from the file as an integer. This advances the file cursor by 2 bytes.
+   * See [store16] for details on what values can be stored and retrieved this way.
    */
   public final fun get16(): Int {
     TransferContext.writeArguments()
@@ -263,8 +267,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 32 bits from the file as an integer. See [store32] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 32 bits from the file as an integer. This advances the file cursor by 4 bytes.
+   * See [store32] for details on what values can be stored and retrieved this way.
    */
   public final fun get32(): Long {
     TransferContext.writeArguments()
@@ -273,8 +277,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 64 bits from the file as an integer. See [store64] for details on what values
-   * can be stored and retrieved this way.
+   * Returns the next 64 bits from the file as an integer. This advances the file cursor by 8 bytes.
+   * See [store64] for details on what values can be stored and retrieved this way.
    */
   public final fun get64(): Long {
     TransferContext.writeArguments()
@@ -283,7 +287,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 16 bits from the file as a half-precision floating-point number.
+   * Returns the next 16 bits from the file as a half-precision floating-point number. This advances
+   * the file cursor by 2 bytes.
    */
   public final fun getHalf(): Float {
     TransferContext.writeArguments()
@@ -292,7 +297,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 32 bits from the file as a floating-point number.
+   * Returns the next 32 bits from the file as a floating-point number. This advances the file
+   * cursor by 4 bytes.
    */
   public final fun getFloat(): Float {
     TransferContext.writeArguments()
@@ -301,7 +307,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next 64 bits from the file as a floating-point number.
+   * Returns the next 64 bits from the file as a floating-point number. This advances the file
+   * cursor by 8 bytes.
    */
   public final fun getDouble(): Double {
     TransferContext.writeArguments()
@@ -310,7 +317,12 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the next bits from the file as a floating-point number.
+   * Returns the next bits from the file as a floating-point number. This advances the file cursor
+   * by either 4 or 8 bytes, depending on the precision used by the Godot build that saved the file.
+   *
+   * If the file was saved by a Godot build compiled with the `precision=single` option (the
+   * default), the number of read bits for that file is 32. Otherwise, if compiled with the
+   * `precision=double` option, the number of read bits is 64.
    */
   public final fun getReal(): Float {
     TransferContext.writeArguments()
@@ -319,7 +331,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns next [length] bytes of the file as a [PackedByteArray].
+   * Returns next [length] bytes of the file as a [PackedByteArray]. This advances the file cursor
+   * by [length] bytes.
    */
   public final fun getBuffer(length: Long): PackedByteArray {
     TransferContext.writeArguments(LONG to length)
@@ -330,7 +343,7 @@ public open class FileAccess internal constructor() : RefCounted() {
   /**
    * Returns the next line of the file as a [String]. The returned string doesn't include newline
    * (`\n`) or carriage return (`\r`) characters, but does include any other leading or trailing
-   * whitespace.
+   * whitespace. This advances the file cursor to after the newline character at the end of the line.
    *
    * Text is interpreted as being UTF-8 encoded.
    */
@@ -347,7 +360,8 @@ public open class FileAccess internal constructor() : RefCounted() {
    *
    * Text is interpreted as being UTF-8 encoded. Text values must be enclosed in double quotes if
    * they include the delimiter character. Double quotes within a text value can be escaped by doubling
-   * their occurrence.
+   * their occurrence. This advances the file cursor to after the newline character at the end of the
+   * line.
    *
    * For example, the following CSV lines are valid and will be properly parsed as two strings each:
    *
@@ -374,7 +388,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded.
+   * Returns the whole file as a [String]. Text is interpreted as being UTF-8 encoded. This ignores
+   * the file cursor and does not affect it.
    *
    * If [skipCr] is `true`, carriage return characters (`\r`, CR) will be ignored when parsing the
    * UTF-8, so that only line feed characters (`\n`, LF) represent a new line (Unix convention).
@@ -409,9 +424,11 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Returns the next [Variant] value from the file. If [allowObjects] is `true`, decoding objects
-   * is allowed.
+   * is allowed. This advances the file cursor by the number of bytes read.
    *
-   * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method.
+   * Internally, this uses the same decoding mechanism as the [@GlobalScope.bytesToVar] method, as
+   * described in the [url=$DOCS_URL/tutorials/io/binary_serialization_api.html]Binary serialization
+   * API[/url] documentation.
    *
    * **Warning:** Deserialized objects can contain code which gets executed. Do not use this option
    * if the serialized object comes from untrusted sources to avoid potential security threats such as
@@ -425,7 +442,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores an integer as 8 bits in the file.
+   * Stores an integer as 8 bits in the file. This advances the file cursor by 1 byte. Returns
+   * `true` if the operation is successful.
    *
    * **Note:** The [value] should lie in the interval `[0, 255]`. Any other value will overflow and
    * wrap around.
@@ -443,7 +461,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores an integer as 16 bits in the file.
+   * Stores an integer as 16 bits in the file. This advances the file cursor by 2 bytes. Returns
+   * `true` if the operation is successful.
    *
    * **Note:** The [value] should lie in the interval `[0, 2^16 - 1]`. Any other value will overflow
    * and wrap around.
@@ -461,31 +480,31 @@ public open class FileAccess internal constructor() : RefCounted() {
    * const MAX_16B = 1 << 16
    *
    * func unsigned16_to_signed(unsigned):
-   *     return (unsigned + MAX_15B) &#37; MAX_16B - MAX_15B
+   * return (unsigned + MAX_15B) &#37; MAX_16B - MAX_15B
    *
    * func _ready():
-   *     var f = FileAccess.open("user://file.dat", FileAccess.WRITE_READ)
-   *     f.store_16(-42) # This wraps around and stores 65494 (2^16 - 42).
-   *     f.store_16(121) # In bounds, will store 121.
-   *     f.seek(0) # Go back to start to read the stored value.
-   *     var read1 = f.get_16() # 65494
-   *     var read2 = f.get_16() # 121
-   *     var converted1 = unsigned16_to_signed(read1) # -42
-   *     var converted2 = unsigned16_to_signed(read2) # 121
+   * var f = FileAccess.open("user://file.dat", FileAccess.WRITE_READ)
+   * f.store_16(-42) # This wraps around and stores 65494 (2^16 - 42).
+   * f.store_16(121) # In bounds, will store 121.
+   * f.seek(0) # Go back to start to read the stored value.
+   * var read1 = f.get_16() # 65494
+   * var read2 = f.get_16() # 121
+   * var converted1 = unsigned16_to_signed(read1) # -42
+   * var converted2 = unsigned16_to_signed(read2) # 121
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     using var f = FileAccess.Open("user://file.dat", FileAccess.ModeFlags.WriteRead);
-   *     f.Store16(unchecked((ushort)-42)); // This wraps around and stores 65494 (2^16 - 42).
-   *     f.Store16(121); // In bounds, will store 121.
-   *     f.Seek(0); // Go back to start to read the stored value.
-   *     ushort read1 = f.Get16(); // 65494
-   *     ushort read2 = f.Get16(); // 121
-   *     short converted1 = (short)read1; // -42
-   *     short converted2 = (short)read2; // 121
+   * using var f = FileAccess.Open("user://file.dat", FileAccess.ModeFlags.WriteRead);
+   * f.Store16(unchecked((ushort)-42)); // This wraps around and stores 65494 (2^16 - 42).
+   * f.Store16(121); // In bounds, will store 121.
+   * f.Seek(0); // Go back to start to read the stored value.
+   * ushort read1 = f.Get16(); // 65494
+   * ushort read2 = f.Get16(); // 121
+   * short converted1 = (short)read1; // -42
+   * short converted2 = (short)read2; // 121
    * }
    * ```
    */
@@ -496,7 +515,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores an integer as 32 bits in the file.
+   * Stores an integer as 32 bits in the file. This advances the file cursor by 4 bytes. Returns
+   * `true` if the operation is successful.
    *
    * **Note:** The [value] should lie in the interval `[0, 2^32 - 1]`. Any other value will overflow
    * and wrap around.
@@ -514,7 +534,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores an integer as 64 bits in the file.
+   * Stores an integer as 64 bits in the file. This advances the file cursor by 8 bytes. Returns
+   * `true` if the operation is successful.
    *
    * **Note:** The [value] must lie in the interval `[-2^63, 2^63 - 1]` (i.e. be a valid [int]
    * value).
@@ -529,7 +550,11 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores a half-precision floating-point number as 16 bits in the file.
+   * Stores a half-precision floating-point number as 16 bits in the file. This advances the file
+   * cursor by 2 bytes. Returns `true` if the operation is successful.
+   *
+   * **Note:** If an error occurs, the resulting value of the file position indicator is
+   * indeterminate.
    */
   public final fun storeHalf(`value`: Float): Boolean {
     TransferContext.writeArguments(DOUBLE to value.toDouble())
@@ -538,7 +563,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores a floating-point number as 32 bits in the file.
+   * Stores a floating-point number as 32 bits in the file. This advances the file cursor by 4
+   * bytes. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -550,7 +576,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores a floating-point number as 64 bits in the file.
+   * Stores a floating-point number as 64 bits in the file. This advances the file cursor by 8
+   * bytes. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -562,7 +589,12 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores a floating-point number in the file.
+   * Stores a floating-point number in the file. This advances the file cursor by either 4 or 8
+   * bytes, depending on the precision used by the current Godot build.
+   *
+   * If using a Godot build compiled with the `precision=single` option (the default), this method
+   * will save a 32-bit float. Otherwise, if compiled with the `precision=double` option, this will
+   * save a 64-bit float. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -574,7 +606,8 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Stores the given array of bytes in the file.
+   * Stores the given array of bytes in the file. This advances the file cursor by the number of
+   * bytes written. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -587,6 +620,9 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores [line] in the file followed by a newline character (`\n`), encoding the text as UTF-8.
+   * This advances the file cursor by the length of the line, after the newline character. The amount
+   * of bytes written depends on the UTF-8 encoded bytes, which may be different from [String.length]
+   * which counts the number of UTF-32 codepoints. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -602,7 +638,7 @@ public open class FileAccess internal constructor() : RefCounted() {
    * Values) format. You can pass a different delimiter [delim] to use other than the default `","`
    * (comma). This delimiter must be one-character long.
    *
-   * Text will be encoded as UTF-8.
+   * Text will be encoded as UTF-8. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -616,6 +652,9 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores [string] in the file without a newline character (`\n`), encoding the text as UTF-8.
+   * This advances the file cursor by the length of the string in UTF-8 encoded bytes, which may be
+   * different from [String.length] which counts the number of UTF-32 codepoints. Returns `true` if the
+   * operation is successful.
    *
    * **Note:** This method is intended to be used to write text files. The string is stored as a
    * UTF-8 encoded buffer without string length or terminating zero, which means that it can't be
@@ -634,9 +673,12 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores any Variant value in the file. If [fullObjects] is `true`, encoding objects is allowed
-   * (and can potentially include code).
+   * (and can potentially include code). This advances the file cursor by the number of bytes written.
+   * Returns `true` if the operation is successful.
    *
-   * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method.
+   * Internally, this uses the same encoding mechanism as the [@GlobalScope.varToBytes] method, as
+   * described in the [url=$DOCS_URL/tutorials/io/binary_serialization_api.html]Binary serialization
+   * API[/url] documentation.
    *
    * **Note:** Not all properties are included. Only properties that are configured with the
    * [PROPERTY_USAGE_STORAGE] flag set will be serialized. You can add a new usage flag to a property
@@ -656,9 +698,9 @@ public open class FileAccess internal constructor() : RefCounted() {
 
   /**
    * Stores the given [String] as a line in the file in Pascal format (i.e. also store the length of
-   * the string).
-   *
-   * Text will be encoded as UTF-8.
+   * the string). Text will be encoded as UTF-8. This advances the file cursor by the number of bytes
+   * written depending on the UTF-8 encoded bytes, which may be different from [String.length] which
+   * counts the number of UTF-32 codepoints. Returns `true` if the operation is successful.
    *
    * **Note:** If an error occurs, the resulting value of the file position indicator is
    * indeterminate.
@@ -670,7 +712,9 @@ public open class FileAccess internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns a [String] saved in Pascal format from the file.
+   * Returns a [String] saved in Pascal format from the file, meaning that the length of the string
+   * is explicitly stored at the start. See [storePascalString]. This may include newline characters.
+   * The file cursor is advanced after the bytes read.
    *
    * Text is interpreted as being UTF-8 encoded.
    */
@@ -698,7 +742,8 @@ public open class FileAccess internal constructor() : RefCounted() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Opens the file for read operations. The cursor is positioned at the beginning of the file.
+     * Opens the file for read operations. The file cursor is positioned at the beginning of the
+     * file.
      */
     READ(1),
     /**
@@ -710,13 +755,13 @@ public open class FileAccess internal constructor() : RefCounted() {
      */
     WRITE(2),
     /**
-     * Opens the file for read and write operations. Does not truncate the file. The cursor is
+     * Opens the file for read and write operations. Does not truncate the file. The file cursor is
      * positioned at the beginning of the file.
      */
     READ_WRITE(3),
     /**
      * Opens the file for read and write operations. The file is created if it does not exist, and
-     * truncated if it does. The cursor is positioned at the beginning of the file.
+     * truncated if it does. The file cursor is positioned at the beginning of the file.
      *
      * **Note:** When creating a file it must be in an already existing directory. To recursively
      * create directories for a file path, see [DirAccess.makeDirRecursive].
@@ -1064,6 +1109,27 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
     /**
+     * Returns the last time the [file] was accessed in Unix timestamp format, or `0` on error. This
+     * Unix timestamp can be converted to another format using the [Time] singleton.
+     */
+    @JvmStatic
+    public final fun getAccessTime(`file`: String): Long {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getAccessTimePtr, LONG)
+      return (TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
+     * Returns file size in bytes, or `-1` on error.
+     */
+    @JvmStatic
+    public final fun getSize(`file`: String): Long {
+      TransferContext.writeArguments(STRING to file)
+      TransferContext.callMethod(0, MethodBindings.getSizePtr, LONG)
+      return (TransferContext.readReturnValue(LONG) as Long)
+    }
+
+    /**
      * Returns file UNIX permissions.
      *
      * **Note:** This method is implemented on iOS, Linux/BSD, and macOS.
@@ -1293,6 +1359,12 @@ public open class FileAccess internal constructor() : RefCounted() {
 
     internal val getModifiedTimePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_modified_time", 1597066294)
+
+    internal val getAccessTimePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_access_time", 1597066294)
+
+    internal val getSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileAccess", "get_size", 1597066294)
 
     internal val getUnixPermissionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileAccess", "get_unix_permissions", 524341837)

@@ -559,8 +559,8 @@ public open class AStarGrid2D : RefCounted() {
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
    *
-   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * array and will print an error message.
+   * **Note:** This method is not thread-safe; it can only be used from a single [Thread] at a given
+   * time. Consider using [Mutex] to ensure exclusive access to one thread to avoid race conditions.
    *
    * Additionally, when [allowPartialPath] is `true` and [toId] is solid the search may take an
    * unusually long time to finish.

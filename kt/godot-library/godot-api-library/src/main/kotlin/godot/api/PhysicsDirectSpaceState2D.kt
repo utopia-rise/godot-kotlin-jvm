@@ -28,11 +28,14 @@ import kotlin.jvm.JvmOverloads
 /**
  * Provides direct access to a physics space in the [PhysicsServer2D]. It's used mainly to do
  * queries against objects and areas residing in a given space.
+ *
+ * **Note:** This class is not meant to be instantiated directly. Use [World2D.directSpaceState] to
+ * get the world's physics 2D space state.
  */
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(465, scriptIndex)
+    createNativeObject(480, scriptIndex)
   }
 
   /**
@@ -149,10 +152,7 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
 
   /**
    * Checks the intersections of a shape, given through a [PhysicsShapeQueryParameters2D] object,
-   * against the space. If it collides with more than one shape, the nearest one is selected. If the
-   * shape did not intersect anything, then an empty dictionary is returned instead.
-   *
-   * **Note:** This method does not take into account the `motion` property of the object. The
+   * against the space. If it collides with more than one shape, the nearest one is selected. The
    * returned object is a dictionary containing the following fields:
    *
    * `collider_id`: The colliding object's ID.
@@ -168,6 +168,8 @@ public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
    * `rid`: The intersecting object's [RID].
    *
    * `shape`: The shape index of the colliding shape.
+   *
+   * If the shape did not intersect anything, then an empty dictionary is returned instead.
    */
   public final fun getRestInfo(parameters: PhysicsShapeQueryParameters2D?): Dictionary<Any?, Any?> {
     TransferContext.writeArguments(OBJECT to parameters)

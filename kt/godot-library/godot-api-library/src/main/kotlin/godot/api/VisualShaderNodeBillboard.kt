@@ -28,7 +28,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeBillboard : VisualShaderNode() {
   /**
-   * Controls how the object faces the camera. See [BillboardType].
+   * Controls how the object faces the camera.
    */
   public final inline var billboardType: BillboardType
     @JvmName("billboardTypeProperty")
@@ -51,7 +51,7 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(728, scriptIndex)
+    createNativeObject(744, scriptIndex)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {

@@ -44,7 +44,26 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneState internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(569, scriptIndex)
+    createNativeObject(584, scriptIndex)
+  }
+
+  /**
+   * Returns the resource path to the represented [PackedScene].
+   */
+  public final fun getPath(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the [SceneState] of the scene that this scene inherits from, or `null` if it doesn't
+   * inherit from any scene.
+   */
+  public final fun getBaseSceneState(): SceneState? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getBaseSceneStatePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as SceneState?)
   }
 
   /**
@@ -297,6 +316,12 @@ public open class SceneState internal constructor() : RefCounted() {
   public companion object
 
   public object MethodBindings {
+    internal val getPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneState", "get_path", 201670096)
+
+    internal val getBaseSceneStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneState", "get_base_scene_state", 3479783971)
+
     internal val getNodeCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneState", "get_node_count", 3905245786)
 

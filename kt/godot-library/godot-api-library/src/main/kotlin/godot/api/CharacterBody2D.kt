@@ -45,8 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CharacterBody2D : PhysicsBody2D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
-   * for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide].
    */
   public final inline var motionMode: MotionMode
     @JvmName("motionModeProperty")
@@ -111,7 +110,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Maximum number of times the body can change direction before it stops when calling
-   * [moveAndSlide].
+   * [moveAndSlide]. Must be greater than zero.
    */
   public final inline var maxSlides: Int
     @JvmName("maxSlidesProperty")
@@ -122,7 +121,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
+   * Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The
    * default value equals 15 degrees. This property only affects movement when [motionMode] is
    * [MOTION_MODE_FLOATING].
    */
@@ -208,8 +207,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
-   * for available behavior.
+   * accurate, when you leave the last platform velocity is applied.
    */
   public final inline var platformOnLeave: PlatformOnLeave
     @JvmName("platformOnLeaveProperty")
@@ -266,7 +264,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(146, scriptIndex)
+    createNativeObject(148, scriptIndex)
   }
 
   /**
@@ -672,16 +670,16 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ```gdscript
    * //gdscript
    * for i in get_slide_collision_count():
-   *     var collision = get_slide_collision(i)
-   *     print("Collided with: ", collision.get_collider().name)
+   * var collision = get_slide_collision(i)
+   * print("Collided with: ", collision.get_collider().name)
    * ```
    *
    * ```csharp
    * //csharp
    * for (int i = 0; i < GetSlideCollisionCount(); i++)
    * {
-   *     KinematicCollision2D collision = GetSlideCollision(i);
-   *     GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
+   * KinematicCollision2D collision = GetSlideCollision(i);
+   * GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
    * }
    * ```
    */

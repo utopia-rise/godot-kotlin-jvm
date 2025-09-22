@@ -171,7 +171,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the type of shape (see [ShapeType] constants).
+   * Returns the type of shape.
    */
   @JvmStatic
   public final fun shapeGetType(shape: RID): ShapeType {
@@ -608,7 +608,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the body mode, from one of the [BodyMode] constants.
+   * Sets the body mode.
    */
   @JvmStatic
   public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
@@ -862,7 +862,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a body state (see [BodyState] constants).
+   * Sets a body state.
    */
   @JvmStatic
   public final fun bodySetState(
@@ -1349,7 +1349,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the given body state for the given body (see [BodyState] constants).
+   * Sets the given body state for the given body.
    *
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
@@ -1365,7 +1365,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the given soft body state (see [BodyState] constants).
+   * Returns the given soft body state.
    *
    * **Note:** Godot's default physics implementation does not support [BODY_STATE_LINEAR_VELOCITY],
    * [BODY_STATE_ANGULAR_VELOCITY], [BODY_STATE_SLEEPING], or [BODY_STATE_CAN_SLEEP].
@@ -1452,6 +1452,25 @@ public object PhysicsServer3D : Object() {
   public final fun softBodyGetLinearStiffness(body: RID): Float {
     TransferContext.writeArguments(_RID to body)
     TransferContext.callMethod(ptr, MethodBindings.softBodyGetLinearStiffnessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Sets the shrinking factor of the given soft body.
+   */
+  @JvmStatic
+  public final fun softBodySetShrinkingFactor(body: RID, shrinkingFactor: Float): Unit {
+    TransferContext.writeArguments(_RID to body, DOUBLE to shrinkingFactor.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.softBodySetShrinkingFactorPtr, NIL)
+  }
+
+  /**
+   * Returns the shrinking factor of the given soft body.
+   */
+  @JvmStatic
+  public final fun softBodyGetShrinkingFactor(body: RID): Float {
+    TransferContext.writeArguments(_RID to body)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyGetShrinkingFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -1575,6 +1594,60 @@ public object PhysicsServer3D : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  /**
+   * Applies an impulse to a point.
+   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
+   */
+  @JvmStatic
+  public final fun softBodyApplyPointImpulse(
+    body: RID,
+    pointIndex: Int,
+    impulse: Vector3,
+  ): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to impulse)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyPointImpulsePtr, NIL)
+  }
+
+  /**
+   * Applies a force to a point. A force is time dependent and meant to be applied every physics
+   * update.
+   */
+  @JvmStatic
+  public final fun softBodyApplyPointForce(
+    body: RID,
+    pointIndex: Int,
+    force: Vector3,
+  ): Unit {
+    TransferContext.writeArguments(_RID to body, LONG to pointIndex.toLong(), VECTOR3 to force)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyPointForcePtr, NIL)
+  }
+
+  /**
+   * Distributes and applies an impulse to all points.
+   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
+   */
+  @JvmStatic
+  public final fun softBodyApplyCentralImpulse(body: RID, impulse: Vector3): Unit {
+    TransferContext.writeArguments(_RID to body, VECTOR3 to impulse)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyCentralImpulsePtr, NIL)
+  }
+
+  /**
+   * Distributes and applies a force to all points. A force is time dependent and meant to be
+   * applied every physics update.
+   */
+  @JvmStatic
+  public final fun softBodyApplyCentralForce(body: RID, force: Vector3): Unit {
+    TransferContext.writeArguments(_RID to body, VECTOR3 to force)
+    TransferContext.callMethod(ptr, MethodBindings.softBodyApplyCentralForcePtr, NIL)
+  }
+
   @JvmStatic
   public final fun jointCreate(): RID {
     TransferContext.writeArguments()
@@ -1601,7 +1674,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a pin_joint parameter (see [PinJointParam] constants).
+   * Sets a pin joint parameter.
    */
   @JvmStatic
   public final fun pinJointSetParam(
@@ -1614,7 +1687,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a pin_joint parameter (see [PinJointParam] constants).
+   * Gets a pin joint parameter.
    */
   @JvmStatic
   public final fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
@@ -1674,7 +1747,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint parameter (see [HingeJointParam] constants).
+   * Sets a hinge joint parameter.
    */
   @JvmStatic
   public final fun hingeJointSetParam(
@@ -1687,7 +1760,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint parameter (see [HingeJointParam]).
+   * Gets a hinge joint parameter.
    */
   @JvmStatic
   public final fun hingeJointGetParam(joint: RID, `param`: HingeJointParam): Float {
@@ -1697,7 +1770,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a hinge_joint flag (see [HingeJointFlag] constants).
+   * Sets a hinge joint flag.
    */
   @JvmStatic
   public final fun hingeJointSetFlag(
@@ -1710,7 +1783,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a hinge_joint flag (see [HingeJointFlag] constants).
+   * Gets a hinge joint flag.
    */
   @JvmStatic
   public final fun hingeJointGetFlag(joint: RID, flag: HingeJointFlag): Boolean {
@@ -1732,7 +1805,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [SliderJointParam] constants).
+   * Gets a slider joint parameter.
    */
   @JvmStatic
   public final fun sliderJointSetParam(
@@ -1745,7 +1818,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a slider_joint parameter (see [SliderJointParam] constants).
+   * Gets a slider joint parameter.
    */
   @JvmStatic
   public final fun sliderJointGetParam(joint: RID, `param`: SliderJointParam): Float {
@@ -1767,7 +1840,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
+   * Sets a cone twist joint parameter.
    */
   @JvmStatic
   public final fun coneTwistJointSetParam(
@@ -1780,7 +1853,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Gets a cone_twist_joint parameter (see [ConeTwistJointParam] constants).
+   * Gets a cone twist joint parameter.
    */
   @JvmStatic
   public final fun coneTwistJointGetParam(joint: RID, `param`: ConeTwistJointParam): Float {
@@ -1854,8 +1927,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value of a given generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list
-   * of available parameters.
+   * Sets the value of a given generic 6DOF joint parameter.
    */
   @JvmStatic
   public final fun generic6dofJointSetParam(
@@ -1869,8 +1941,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the value of a generic 6DOF joint parameter. See [G6DOFJointAxisParam] for the list of
-   * available parameters.
+   * Returns the value of a generic 6DOF joint parameter.
    */
   @JvmStatic
   public final fun generic6dofJointGetParam(
@@ -1884,8 +1955,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Sets the value of a given generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
-   * available flags.
+   * Sets the value of a given generic 6DOF joint flag.
    */
   @JvmStatic
   public final fun generic6dofJointSetFlag(
@@ -1899,8 +1969,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns the value of a generic 6DOF joint flag. See [G6DOFJointAxisFlag] for the list of
-   * available flags.
+   * Returns the value of a generic 6DOF joint flag.
    */
   @JvmStatic
   public final fun generic6dofJointGetFlag(
@@ -1933,8 +2002,7 @@ public object PhysicsServer3D : Object() {
   }
 
   /**
-   * Returns information about the current state of the 3D physics engine. See [ProcessInfo] for a
-   * list of available states.
+   * Returns the value of a physics engine state specified by [processInfo].
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
@@ -3213,6 +3281,12 @@ public object PhysicsServer3D : Object() {
     internal val softBodyGetLinearStiffnessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_linear_stiffness", 866169185)
 
+    internal val softBodySetShrinkingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_shrinking_factor", 1794382983)
+
+    internal val softBodyGetShrinkingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_get_shrinking_factor", 866169185)
+
     internal val softBodySetPressureCoefficientPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_set_pressure_coefficient", 1794382983)
 
@@ -3245,6 +3319,18 @@ public object PhysicsServer3D : Object() {
 
     internal val softBodyIsPointPinnedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_is_point_pinned", 3120086654)
+
+    internal val softBodyApplyPointImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_apply_point_impulse", 831953689)
+
+    internal val softBodyApplyPointForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_apply_point_force", 831953689)
+
+    internal val softBodyApplyCentralImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_apply_central_impulse", 3227306858)
+
+    internal val softBodyApplyCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsServer3D", "soft_body_apply_central_force", 3227306858)
 
     internal val jointCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsServer3D", "joint_create", 529393457)

@@ -214,7 +214,7 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(219, scriptIndex)
+    createNativeObject(226, scriptIndex)
   }
 
   /**
@@ -302,8 +302,7 @@ public open class FontVariation : Font() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] to [value] in pixels (not relative to the font size).
    */
   public final fun setSpacing(spacing: TextServer.SpacingType, `value`: Int): Unit {
     TransferContext.writeArguments(LONG to spacing.value, LONG to value.toLong())

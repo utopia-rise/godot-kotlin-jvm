@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(73, scriptIndex)
+    createNativeObject(74, scriptIndex)
   }
 
   /**
@@ -40,7 +40,7 @@ public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : A
    * The `x` component of the return value represents the left stereo channel, and `y` represents the
    * right channel.
    *
-   * [mode] determines how the frequency range will be processed. See [MagnitudeMode].
+   * [mode] determines how the frequency range will be processed.
    */
   @JvmOverloads
   public final fun getMagnitudeForFrequencyRange(

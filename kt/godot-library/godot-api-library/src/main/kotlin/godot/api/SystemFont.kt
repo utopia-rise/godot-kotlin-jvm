@@ -154,6 +154,18 @@ public open class SystemFont : Font() {
     }
 
   /**
+   * If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's
+   * applied to the monochrome glyphs only.
+   */
+  public final inline var modulateColorGlyphs: Boolean
+    @JvmName("modulateColorGlyphsProperty")
+    get() = isModulateColorGlyphs()
+    @JvmName("modulateColorGlyphsProperty")
+    set(`value`) {
+      setModulateColorGlyphs(value)
+    }
+
+  /**
    * Font hinting mode.
    */
   public final inline var hinting: TextServer.Hinting
@@ -230,7 +242,9 @@ public open class SystemFont : Font() {
     }
 
   /**
-   * Font oversampling factor, if set to `0.0` global oversampling factor is used instead.
+   * If set to a positive value, overrides the oversampling factor of the viewport this font is used
+   * in. See [Viewport.oversampling]. This value doesn't override the [code
+   * skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code] methods.
    */
   public final inline var oversampling: Float
     @JvmName("oversamplingProperty")
@@ -241,7 +255,7 @@ public open class SystemFont : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(650, scriptIndex)
+    createNativeObject(666, scriptIndex)
   }
 
   /**
@@ -333,6 +347,17 @@ public open class SystemFont : Font() {
   public final fun isForceAutohinter(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isForceAutohinterPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setModulateColorGlyphs(modulate: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to modulate)
+    TransferContext.callMethod(ptr, MethodBindings.setModulateColorGlyphsPtr, NIL)
+  }
+
+  public final fun isModulateColorGlyphs(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isModulateColorGlyphsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -478,6 +503,12 @@ public open class SystemFont : Font() {
 
     internal val isForceAutohinterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "is_force_autohinter", 36873697)
+
+    internal val setModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "set_modulate_color_glyphs", 2586408642)
+
+    internal val isModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SystemFont", "is_modulate_color_glyphs", 36873697)
 
     internal val setHintingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SystemFont", "set_hinting", 1827459492)

@@ -54,7 +54,7 @@ public open class MissingResource : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(360, scriptIndex)
+    createNativeObject(368, scriptIndex)
   }
 
   public final fun setOriginalClass(name: String): Unit {

@@ -22,6 +22,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
@@ -371,8 +372,9 @@ public object OS : Object() {
    * need a single executable with full console support, use a custom build compiled with the
    * `windows_subsystem=console` flag.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun readStringFromStdin(bufferSize: Long): String {
+  public final fun readStringFromStdin(bufferSize: Long = 1024): String {
     TransferContext.writeArguments(LONG to bufferSize)
     TransferContext.callMethod(ptr, MethodBindings.readStringFromStdinPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
@@ -380,7 +382,7 @@ public object OS : Object() {
 
   /**
    * Reads a user input as raw data from the standard input. This operation can be *blocking*, which
-   * causes the window to freeze if [readStringFromStdin] is called on the main thread.
+   * causes the window to freeze if [readBufferFromStdin] is called on the main thread.
    *
    * - If standard input is console, this method will block until the program receives a line break
    * in standard input (usually by the user pressing [kbd]Enter[/kbd]).
@@ -399,15 +401,22 @@ public object OS : Object() {
    * need a single executable with full console support, use a custom build compiled with the
    * `windows_subsystem=console` flag.
    */
+  @JvmOverloads
   @JvmStatic
-  public final fun readBufferFromStdin(bufferSize: Long): PackedByteArray {
+  public final fun readBufferFromStdin(bufferSize: Long = 1024): PackedByteArray {
     TransferContext.writeArguments(LONG to bufferSize)
     TransferContext.callMethod(ptr, MethodBindings.readBufferFromStdinPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
   /**
-   * Returns type of the standard input device.
+   * Returns the type of the standard input device.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
+   *
+   * **Note:** On exported Windows builds, run the console wrapper executable to access the standard
+   * input. If you need a single executable with full console support, use a custom build compiled with
+   * the `windows_subsystem=console` flag.
    */
   @JvmStatic
   public final fun getStdinType(): StdHandleType {
@@ -417,7 +426,9 @@ public object OS : Object() {
   }
 
   /**
-   * Returns type of the standard output device.
+   * Returns the type of the standard output device.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
    */
   @JvmStatic
   public final fun getStdoutType(): StdHandleType {
@@ -427,7 +438,9 @@ public object OS : Object() {
   }
 
   /**
-   * Returns type of the standard error device.
+   * Returns the type of the standard error device.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
    */
   @JvmStatic
   public final fun getStderrType(): StdHandleType {
@@ -623,6 +636,23 @@ public object OS : Object() {
   }
 
   /**
+   * Opens one or more files/directories with the specified application. The [programPath] specifies
+   * the path to the application to use for opening the files, and [paths] contains an array of
+   * file/directory paths to open.
+   *
+   * **Note:** This method is mostly only relevant for macOS, where opening files using
+   * [createProcess] might fail. On other platforms, this falls back to using [createProcess].
+   *
+   * **Note:** On macOS, [programPath] should ideally be the path to a `.app` bundle.
+   */
+  @JvmStatic
+  public final fun openWithProgram(programPath: String, paths: PackedStringArray): Error {
+    TransferContext.writeArguments(STRING to programPath, PACKED_STRING_ARRAY to paths)
+    TransferContext.callMethod(ptr, MethodBindings.openWithProgramPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Kill (terminate) the process identified by the given process ID ([pid]), such as the ID
    * returned by [execute] in non-blocking mode. See also [crash].
    *
@@ -726,7 +756,7 @@ public object OS : Object() {
   /**
    * Returns the number used by the host machine to uniquely identify this application.
    *
-   * **Note:** This method is implemented on Android, iOS, Linux, macOS, and Windows.
+   * **Note:** On Web, this method always returns `0`.
    */
   @JvmStatic
   public final fun getProcessId(): Int {
@@ -820,46 +850,46 @@ public object OS : Object() {
    * ```gdscript
    * //gdscript
    * match OS.get_name():
-   *     "Windows":
-   *         print("Welcome to Windows!")
-   *     "macOS":
-   *         print("Welcome to macOS!")
-   *     "Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
-   *         print("Welcome to Linux/BSD!")
-   *     "Android":
-   *         print("Welcome to Android!")
-   *     "iOS":
-   *         print("Welcome to iOS!")
-   *     "Web":
-   *         print("Welcome to the Web!")
+   * "Windows":
+   * print("Welcome to Windows!")
+   * "macOS":
+   * print("Welcome to macOS!")
+   * "Linux", "FreeBSD", "NetBSD", "OpenBSD", "BSD":
+   * print("Welcome to Linux/BSD!")
+   * "Android":
+   * print("Welcome to Android!")
+   * "iOS":
+   * print("Welcome to iOS!")
+   * "Web":
+   * print("Welcome to the Web!")
    * ```
    *
    * ```csharp
    * //csharp
    * switch (OS.GetName())
    * {
-   *     case "Windows":
-   *         GD.Print("Welcome to Windows");
-   *         break;
-   *     case "macOS":
-   *         GD.Print("Welcome to macOS!");
-   *         break;
-   *     case "Linux":
-   *     case "FreeBSD":
-   *     case "NetBSD":
-   *     case "OpenBSD":
-   *     case "BSD":
-   *         GD.Print("Welcome to Linux/BSD!");
-   *         break;
-   *     case "Android":
-   *         GD.Print("Welcome to Android!");
-   *         break;
-   *     case "iOS":
-   *         GD.Print("Welcome to iOS!");
-   *         break;
-   *     case "Web":
-   *         GD.Print("Welcome to the Web!");
-   *         break;
+   * case "Windows":
+   * GD.Print("Welcome to Windows");
+   * break;
+   * case "macOS":
+   * GD.Print("Welcome to macOS!");
+   * break;
+   * case "Linux":
+   * case "FreeBSD":
+   * case "NetBSD":
+   * case "OpenBSD":
+   * case "BSD":
+   * GD.Print("Welcome to Linux/BSD!");
+   * break;
+   * case "Android":
+   * GD.Print("Welcome to Android!");
+   * break;
+   * case "iOS":
+   * GD.Print("Welcome to iOS!");
+   * break;
+   * case "Web":
+   * GD.Print("Welcome to the Web!");
+   * break;
    * }
    * ```
    *
@@ -897,8 +927,7 @@ public object OS : Object() {
    * operating systems, including minor versions, and insider and custom builds.
    *
    * - For Windows, the major and minor version are returned, as well as the build number. For
-   * example, the returned string may look like `10.0.9926` for a build of Windows 10, and it may look
-   * like `6.1.7601` for a build of Windows 7 SP1.
+   * example, the returned string may look like `10.0.9926` for a build of Windows 10.
    *
    * - For rolling distributions, such as Arch Linux, an empty string is returned.
    *
@@ -917,15 +946,17 @@ public object OS : Object() {
   }
 
   /**
-   * Returns the branded version used in marketing, followed by the build number (on Windows) or the
-   * version number (on macOS). Examples include `11 (build 22000)` and `Sequoia (15.0.0)`. This value
-   * can then be appended to [getName] to get a full, human-readable operating system name and version
-   * combination for the operating system. Windows feature updates such as 24H2 are not contained in
-   * the resulting string, but Windows Server is recognized as such (e.g. `2025 (build 26100)` for
-   * Windows Server 2025).
+   * Returns the branded version used in marketing, followed by the build number (on Windows), the
+   * version number (on macOS), or the SDK version and incremental build number (on Android). Examples
+   * include `11 (build 22000)`, `Sequoia (15.0.0)`, and `15 (SDK 35 build abc528-11988f)`.
    *
-   * **Note:** This method is only supported on Windows and macOS. On other operating systems, it
-   * returns the same value as [getVersion].
+   * This value can then be appended to [getName] to get a full, human-readable operating system
+   * name and version combination for the operating system. Windows feature updates such as 24H2 are
+   * not contained in the resulting string, but Windows Server is recognized as such (e.g. `2025 (build
+   * 26100)` for Windows Server 2025).
+   *
+   * **Note:** This method is only supported on Windows, macOS, and Android. On other operating
+   * systems, it returns the same value as [getVersion].
    */
   @JvmStatic
   public final fun getVersionAlias(): String {
@@ -953,13 +984,13 @@ public object OS : Object() {
    * //gdscript
    * var arguments = {}
    * for argument in OS.get_cmdline_args():
-   *     if argument.contains("="):
-   *         var key_value = argument.split("=")
-   *         arguments[key_value[0].trim_prefix("--")] = key_value[1]
-   *     else:
-   *         # Options without an argument will be present in the dictionary,
-   *         # with the value set to an empty string.
-   *         arguments[argument.trim_prefix("--")] = ""
+   * if argument.contains("="):
+   * var key_value = argument.split("=")
+   * arguments[key_value[0].trim_prefix("--")] = key_value[1]
+   * else:
+   * # Options without an argument will be present in the dictionary,
+   * # with the value set to an empty string.
+   * arguments[argument.trim_prefix("--")] = ""
    * ```
    *
    * ```csharp
@@ -967,17 +998,17 @@ public object OS : Object() {
    * var arguments = new Dictionary<string, string>();
    * foreach (var argument in OS.GetCmdlineArgs())
    * {
-   *     if (argument.Contains('='))
-   *     {
-   *         string[] keyValue = argument.Split("=");
-   *         arguments[keyValue[0].TrimPrefix("--")] = keyValue[1];
-   *     }
-   *     else
-   *     {
-   *         // Options without an argument will be present in the dictionary,
-   *         // with the value set to an empty string.
-   *         arguments[argument.TrimPrefix("--")] = "";
-   *     }
+   * if (argument.Contains('='))
+   * {
+   * string[] keyValue = argument.Split("=");
+   * arguments[keyValue[0].TrimPrefix("--")] = keyValue[1];
+   * }
+   * else
+   * {
+   * // Options without an argument will be present in the dictionary,
+   * // with the value set to an empty string.
+   * arguments[argument.TrimPrefix("--")] = "";
+   * }
    * }
    * ```
    *
@@ -1026,6 +1057,31 @@ public object OS : Object() {
    *
    * **Note:** This method is only supported on Linux/BSD and Windows when not running in headless
    * mode. On other platforms, it returns an empty array.
+   *
+   * **Note:** This method will run slowly the first time it is called in a session; it can take
+   * several seconds depending on the operating system and hardware. It is blocking if called on the
+   * main thread, so it's recommended to call it on a separate thread using [Thread]. This allows the
+   * engine to keep running while the information is being retrieved. However,
+   * [getVideoAdapterDriverInfo] is *not* thread-safe, so it should not be called from multiple threads
+   * at the same time.
+   *
+   * ```gdscript
+   * //gdscript
+   * var thread = Thread.new()
+   *
+   * func _ready():
+   * thread.start(
+   * func():
+   * var driver_info = OS.get_video_adapter_driver_info()
+   * if not driver_info.is_empty():
+   * print("Driver: &#37;s &#37;s" &#37; [driver_info[0], driver_info[1]])
+   * else:
+   * print("Driver: (unknown)")
+   * )
+   *
+   * func _exit_tree():
+   * thread.wait_to_finish()
+   * ```
    */
   @JvmStatic
   public final fun getVideoAdapterDriverInfo(): PackedStringArray {
@@ -1607,9 +1663,13 @@ public object OS : Object() {
    *
    * - `OS.request_permission("android.permission.POST_NOTIFICATIONS")`
    *
-   * **Note:** Permission must be checked during export.
+   * - `OS.request_permission("macos.permission.RECORD_SCREEN")`
    *
-   * **Note:** This method is only implemented on Android.
+   * - `OS.request_permission("appleembedded.permission.AUDIO_RECORD")`
+   *
+   * **Note:** On Android, permission must be checked during export.
+   *
+   * **Note:** This method is implemented on Android, macOS, and visionOS platforms.
    */
   @JvmStatic
   public final fun requestPermission(name: String): Boolean {
@@ -1637,8 +1697,11 @@ public object OS : Object() {
   /**
    * On Android devices: Returns the list of dangerous permissions that have been granted.
    *
-   * On macOS: Returns the list of user selected folders accessible to the application (sandboxed
-   * applications only). Use the native file dialog to request folder access permission.
+   * On macOS: Returns the list of granted permissions and user selected folders accessible to the
+   * application (sandboxed applications only). Use the native file dialog to request folder access
+   * permission.
+   *
+   * On iOS, visionOS: Returns the list of granted permissions.
    */
   @JvmStatic
   public final fun getGrantedPermissions(): PackedStringArray {
@@ -1655,6 +1718,24 @@ public object OS : Object() {
   public final fun revokeGrantedPermissions(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.revokeGrantedPermissionsPtr, NIL)
+  }
+
+  /**
+   * Add a custom logger to intercept the internal message stream.
+   */
+  @JvmStatic
+  public final fun addLogger(logger: Logger?): Unit {
+    TransferContext.writeArguments(OBJECT to logger)
+    TransferContext.callMethod(ptr, MethodBindings.addLoggerPtr, NIL)
+  }
+
+  /**
+   * Remove a custom logger added by [addLogger].
+   */
+  @JvmStatic
+  public final fun removeLogger(logger: Logger?): Unit {
+    TransferContext.writeArguments(OBJECT to logger)
+    TransferContext.callMethod(ptr, MethodBindings.removeLoggerPtr, NIL)
   }
 
   public enum class RenderingDriver(
@@ -1834,10 +1915,10 @@ public object OS : Object() {
         TypeManager.getMethodBindPtr("OS", "get_executable_path", 201670096)
 
     internal val readStringFromStdinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 990163283)
+        TypeManager.getMethodBindPtr("OS", "read_string_from_stdin", 723587915)
 
     internal val readBufferFromStdinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OS", "read_buffer_from_stdin", 47165747)
+        TypeManager.getMethodBindPtr("OS", "read_buffer_from_stdin", 3249455752)
 
     internal val getStdinTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "get_stdin_type", 1704816237)
@@ -1858,6 +1939,9 @@ public object OS : Object() {
 
     internal val createInstancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "create_instance", 1080601263)
+
+    internal val openWithProgramPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "open_with_program", 2848259907)
 
     internal val killPtr: VoidPtr = TypeManager.getMethodBindPtr("OS", "kill", 844576869)
 
@@ -2008,5 +2092,11 @@ public object OS : Object() {
 
     internal val revokeGrantedPermissionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OS", "revoke_granted_permissions", 3218959716)
+
+    internal val addLoggerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "add_logger", 4261188958)
+
+    internal val removeLoggerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OS", "remove_logger", 4261188958)
   }
 }

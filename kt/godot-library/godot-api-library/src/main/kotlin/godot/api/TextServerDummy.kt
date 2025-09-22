@@ -19,6 +19,7 @@ import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -36,12 +37,12 @@ import kotlin.Unit
  * ```
  * var dummy_text_server = TextServerManager.find_interface("Dummy")
  * if dummy_text_server != null:
- *     TextServerManager.set_primary_interface(dummy_text_server)
- *     # If the other text servers are unneeded, they can be removed:
- *     for i in TextServerManager.get_interface_count():
- *         var text_server = TextServerManager.get_interface(i)
- *         if text_server != dummy_text_server:
- *             TextServerManager.remove_interface(text_server)
+ * TextServerManager.set_primary_interface(dummy_text_server)
+ * # If the other text servers are unneeded, they can be removed:
+ * for i in TextServerManager.get_interface_count():
+ * var text_server = TextServerManager.get_interface(i)
+ * if text_server != dummy_text_server:
+ * TextServerManager.remove_interface(text_server)
  * ```
  *
  * The command line argument `--text-driver Dummy` (case-sensitive) can be used to force the "Dummy"
@@ -50,7 +51,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(661, scriptIndex)
+    createNativeObject(677, scriptIndex)
   }
 
   /**
@@ -499,6 +500,7 @@ public open class TextServerDummy : TextServerExtension() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerDummy::_fontDrawGlyph can't be called from the JVM.")
   }
@@ -514,6 +516,7 @@ public open class TextServerDummy : TextServerExtension() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerDummy::_fontDrawGlyphOutline can't be called from the JVM.")
   }
@@ -578,6 +581,13 @@ public open class TextServerDummy : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
+  public override fun _shapedGetText(shaped: RID): String {
+    throw NotImplementedError("TextServerDummy::_shapedGetText can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
   public override fun _shapedGetSpanCount(shaped: RID): Long {
     throw NotImplementedError("TextServerDummy::_shapedGetSpanCount can't be called from the JVM.")
   }
@@ -594,6 +604,20 @@ public open class TextServerDummy : TextServerExtension() {
    */
   public override fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
     throw NotImplementedError("TextServerDummy::_shapedGetSpanEmbeddedObject can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedGetSpanText(shaped: RID, index: Long): String {
+    throw NotImplementedError("TextServerDummy::_shapedGetSpanText can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedGetSpanObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerDummy::_shapedGetSpanObject can't be called from the JVM.")
   }
 
   /**

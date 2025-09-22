@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * [TileData] object represents a single tile in a [TileSet]. It is usually edited using the tileset
- * editor, but it can be modified at runtime using [TileMap.TileDataRuntimeUpdate].
+ * editor, but it can be modified at runtime using [TileMapLayer.TileDataRuntimeUpdate].
  */
 @GodotBaseType
 public open class TileData : Object() {
@@ -136,7 +136,7 @@ public open class TileData : Object() {
     }
 
   /**
-   * Ordering index of this tile, relative to [TileMap].
+   * Ordering index of this tile, relative to [TileMapLayer].
    */
   public final inline var zIndex: Int
     @JvmName("zIndexProperty")
@@ -191,7 +191,7 @@ public open class TileData : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(681, scriptIndex)
+    createNativeObject(697, scriptIndex)
   }
 
   /**

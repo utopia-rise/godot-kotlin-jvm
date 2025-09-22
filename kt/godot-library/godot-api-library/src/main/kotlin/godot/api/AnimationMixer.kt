@@ -73,6 +73,8 @@ public open class AnimationMixer internal constructor() : Node() {
 
   /**
    * Notifies when an animation starts playing.
+   *
+   * **Note:** This signal is not emitted if an animation is looping.
    */
   public val animationStarted: Signal1<StringName> by Signal1
 
@@ -247,7 +249,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(14, scriptIndex)
+    createNativeObject(15, scriptIndex)
   }
 
   /**
@@ -469,12 +471,12 @@ public open class AnimationMixer internal constructor() : Node() {
    * var current_rotation
    *
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         current_rotation = get_quaternion()
-   *         state_machine.travel("Animate")
-   *     var velocity = current_rotation * animation_tree.get_root_motion_position() / delta
-   *     set_velocity(velocity)
-   *     move_and_slide()
+   * if Input.is_action_just_pressed("animate"):
+   * current_rotation = get_quaternion()
+   * state_machine.travel("Animate")
+   * var velocity = current_rotation * animation_tree.get_root_motion_position() / delta
+   * set_velocity(velocity)
+   * move_and_slide()
    * ```
    *
    * By using this in combination with [getRootMotionRotationAccumulator], you can apply the root
@@ -483,16 +485,16 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```gdscript
    * //gdscript
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
-   *     var velocity = (animation_tree.get_root_motion_rotation_accumulator().inverse() *
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   * var velocity = (animation_tree.get_root_motion_rotation_accumulator().inverse() *
    * get_quaternion()) * animation_tree.get_root_motion_position() / delta
-   *     set_velocity(velocity)
-   *     move_and_slide()
+   * set_velocity(velocity)
+   * move_and_slide()
    * ```
    *
-   * If [rootMotionLocal] is `true`, return the pre-multiplied translation value with the inverted
+   * If [rootMotionLocal] is `true`, returns the pre-multiplied translation value with the inverted
    * rotation.
    *
    * In this case, the code can be written as follows:
@@ -500,12 +502,12 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```gdscript
    * //gdscript
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
-   *     var velocity = get_quaternion() * animation_tree.get_root_motion_position() / delta
-   *     set_velocity(velocity)
-   *     move_and_slide()
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   * var velocity = get_quaternion() * animation_tree.get_root_motion_position() / delta
+   * set_velocity(velocity)
+   * move_and_slide()
    * ```
    */
   public final fun getRootMotionPosition(): Vector3 {
@@ -528,9 +530,9 @@ public open class AnimationMixer internal constructor() : Node() {
    * ```gdscript
    * //gdscript
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * set_quaternion(get_quaternion() * animation_tree.get_root_motion_rotation())
    * ```
    */
   public final fun getRootMotionRotation(): Quaternion {
@@ -556,12 +558,12 @@ public open class AnimationMixer internal constructor() : Node() {
    * var scale_accum = Vector3(1, 1, 1)
    *
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         current_scale = get_scale()
-   *         scale_accum = Vector3(1, 1, 1)
-   *         state_machine.travel("Animate")
-   *     scale_accum += animation_tree.get_root_motion_scale()
-   *     set_scale(current_scale * scale_accum)
+   * if Input.is_action_just_pressed("animate"):
+   * current_scale = get_scale()
+   * scale_accum = Vector3(1, 1, 1)
+   * state_machine.travel("Animate")
+   * scale_accum += animation_tree.get_root_motion_scale()
+   * set_scale(current_scale * scale_accum)
    * ```
    */
   public final fun getRootMotionScale(): Vector3 {
@@ -585,14 +587,14 @@ public open class AnimationMixer internal constructor() : Node() {
    * var prev_root_motion_position_accumulator
    *
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     var current_root_motion_position_accumulator =
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * var current_root_motion_position_accumulator =
    * animation_tree.get_root_motion_position_accumulator()
-   *     var difference = current_root_motion_position_accumulator -
+   * var difference = current_root_motion_position_accumulator -
    * prev_root_motion_position_accumulator
-   *     prev_root_motion_position_accumulator = current_root_motion_position_accumulator
-   *     transform.origin += difference
+   * prev_root_motion_position_accumulator = current_root_motion_position_accumulator
+   * transform.origin += difference
    * ```
    *
    * However, if the animation loops, an unintended discrete change may occur, so this is only
@@ -623,14 +625,14 @@ public open class AnimationMixer internal constructor() : Node() {
    * var prev_root_motion_rotation_accumulator
    *
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     var current_root_motion_rotation_accumulator =
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * var current_root_motion_rotation_accumulator =
    * animation_tree.get_root_motion_rotation_accumulator()
-   *     var difference = prev_root_motion_rotation_accumulator.inverse() *
+   * var difference = prev_root_motion_rotation_accumulator.inverse() *
    * current_root_motion_rotation_accumulator
-   *     prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
-   *     transform.basis *=  Basis(difference)
+   * prev_root_motion_rotation_accumulator = current_root_motion_rotation_accumulator
+   * transform.basis *=  Basis(difference)
    * ```
    *
    * However, if the animation loops, an unintended discrete change may occur, so this is only
@@ -655,13 +657,12 @@ public open class AnimationMixer internal constructor() : Node() {
    * var prev_root_motion_scale_accumulator
    *
    * func _process(delta):
-   *     if Input.is_action_just_pressed("animate"):
-   *         state_machine.travel("Animate")
-   *     var current_root_motion_scale_accumulator =
-   * animation_tree.get_root_motion_scale_accumulator()
-   *     var difference = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
-   *     prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
-   *     transform.basis = transform.basis.scaled(difference)
+   * if Input.is_action_just_pressed("animate"):
+   * state_machine.travel("Animate")
+   * var current_root_motion_scale_accumulator = animation_tree.get_root_motion_scale_accumulator()
+   * var difference = current_root_motion_scale_accumulator - prev_root_motion_scale_accumulator
+   * prev_root_motion_scale_accumulator = current_root_motion_scale_accumulator
+   * transform.basis = transform.basis.scaled(difference)
    * ```
    *
    * However, if the animation loops, an unintended discrete change may occur, so this is only

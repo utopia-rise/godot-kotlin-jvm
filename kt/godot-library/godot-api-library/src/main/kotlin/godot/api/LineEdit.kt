@@ -46,6 +46,21 @@ import kotlin.jvm.JvmOverloads
  *
  * - Check [edit], [unedit], [isEditing], and [signal editing_toggled] for more information.
  *
+ * While entering text, it is possible to insert special characters using Unicode, OEM or Windows
+ * alt codes:
+ *
+ * - To enter Unicode codepoints, hold [kbd]Alt[/kbd] and type the codepoint on the numpad. For
+ * example, to enter the character `á` (U+00E1), hold [kbd]Alt[/kbd] and type [kbd]+E1[/kbd] on the
+ * numpad (the leading zeroes can be omitted).
+ *
+ * - To enter OEM codepoints, hold [kbd]Alt[/kbd] and type the code on the numpad. For example, to
+ * enter the character `á` (OEM 160), hold [kbd]Alt[/kbd] and type `160` on the numpad.
+ *
+ * - To enter Windows codepoints, hold [kbd]Alt[/kbd] and type the code on the numpad. For example,
+ * to enter the character `á` (Windows 0225), hold [kbd]Alt[/kbd] and type [kbd]0[/kbd], [kbd]2[/kbd],
+ * [kbd]2[/kbd], [kbd]5[/kbd] on the numpad. The leading zero here must **not** be omitted, as this is
+ * how Windows codepoints are distinguished from OEM codepoints.
+ *
  * **Important:**
  *
  * - Focusing the [LineEdit] with `ui_focus_next` (by default [kbd]Tab[/kbd]) or `ui_focus_prev` (by
@@ -169,7 +184,7 @@ public open class LineEdit : Control() {
    * [LineEdit], including pasting.
    *
    * If any input text is truncated, the [signal text_change_rejected] signal is emitted with the
-   * truncated substring as parameter:
+   * truncated substring as a parameter:
    *
    * ```gdscript
    * //gdscript
@@ -179,7 +194,7 @@ public open class LineEdit : Control() {
    * max_length = 10
    * text += " goodbye"
    * # `text` becomes "Hello good".
-   * # `text_change_rejected` is emitted with "bye" as parameter.
+   * # `text_change_rejected` is emitted with "bye" as a parameter.
    * ```
    *
    * ```csharp
@@ -190,7 +205,7 @@ public open class LineEdit : Control() {
    * MaxLength = 10;
    * Text += " goodbye";
    * // `Text` becomes "Hello good".
-   * // `text_change_rejected` is emitted with "bye" as parameter.
+   * // `text_change_rejected` is emitted with "bye" as a parameter.
    * ```
    */
   public final inline var maxLength: Int
@@ -259,7 +274,19 @@ public open class LineEdit : Control() {
     }
 
   /**
-   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
+   * If `true` and [caretMidGrapheme] is `false`, backspace deletes an entire composite character
+   * such as ❤️‍🩹, instead of deleting part of the composite character.
+   */
+  public final inline var backspaceDeletesCompositeCharacterEnabled: Boolean
+    @JvmName("backspaceDeletesCompositeCharacterEnabledProperty")
+    get() = isBackspaceDeletesCompositeCharacterEnabled()
+    @JvmName("backspaceDeletesCompositeCharacterEnabledProperty")
+    set(`value`) {
+      setBackspaceDeletesCompositeCharacterEnabled(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is enabled on platforms that support it.
    */
   public final inline var virtualKeyboardEnabled: Boolean
     @JvmName("virtualKeyboardEnabledProperty")
@@ -267,6 +294,17 @@ public open class LineEdit : Control() {
     @JvmName("virtualKeyboardEnabledProperty")
     set(`value`) {
       setVirtualKeyboardEnabled(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
+   */
+  public final inline var virtualKeyboardShowOnFocus: Boolean
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    get() = getVirtualKeyboardShowOnFocus()
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    set(`value`) {
+      setVirtualKeyboardShowOnFocus(value)
     }
 
   /**
@@ -523,7 +561,7 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(340, scriptIndex)
+    createNativeObject(347, scriptIndex)
   }
 
   /**
@@ -796,6 +834,36 @@ public open class LineEdit : Control() {
   }
 
   /**
+   * Returns the correct column at the end of a composite character like ❤️‍🩹 (mending heart;
+   * Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point,
+   * if the caret is at the start of the composite character. Also returns the correct column with the
+   * caret at mid grapheme and for non-composite characters.
+   *
+   * **Note:** To check at caret location use
+   * `get_next_composite_character_column(get_caret_column())`
+   */
+  public final fun getNextCompositeCharacterColumn(column: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getNextCompositeCharacterColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the correct column at the start of a composite character like ❤️‍🩹 (mending heart;
+   * Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point,
+   * if the caret is at the end of the composite character. Also returns the correct column with the
+   * caret at mid grapheme and for non-composite characters.
+   *
+   * **Note:** To check at caret location use
+   * `get_previous_composite_character_column(get_caret_column())`
+   */
+  public final fun getPreviousCompositeCharacterColumn(column: Int): Int {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getPreviousCompositeCharacterColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
    * Returns the scroll offset due to [caretColumn], as a number of characters.
    */
   public final fun getScrollOffset(): Float {
@@ -948,40 +1016,40 @@ public open class LineEdit : Control() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var menu = get_menu()
-   *     # Remove all items after "Redo".
-   *     menu.item_count = menu.get_item_index(MENU_REDO) + 1
-   *     # Add custom items.
-   *     menu.add_separator()
-   *     menu.add_item("Insert Date", MENU_MAX + 1)
-   *     # Connect callback.
-   *     menu.id_pressed.connect(_on_item_pressed)
+   * var menu = get_menu()
+   * # Remove all items after "Redo".
+   * menu.item_count = menu.get_item_index(MENU_REDO) + 1
+   * # Add custom items.
+   * menu.add_separator()
+   * menu.add_item("Insert Date", MENU_MAX + 1)
+   * # Connect callback.
+   * menu.id_pressed.connect(_on_item_pressed)
    *
    * func _on_item_pressed(id):
-   *     if id == MENU_MAX + 1:
-   *         insert_text_at_caret(Time.get_date_string_from_system())
+   * if id == MENU_MAX + 1:
+   * insert_text_at_caret(Time.get_date_string_from_system())
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     var menu = GetMenu();
-   *     // Remove all items after "Redo".
-   *     menu.ItemCount = menu.GetItemIndex(LineEdit.MenuItems.Redo) + 1;
-   *     // Add custom items.
-   *     menu.AddSeparator();
-   *     menu.AddItem("Insert Date", LineEdit.MenuItems.Max + 1);
-   *     // Add event handler.
-   *     menu.IdPressed += OnItemPressed;
+   * var menu = GetMenu();
+   * // Remove all items after "Redo".
+   * menu.ItemCount = menu.GetItemIndex(LineEdit.MenuItems.Redo) + 1;
+   * // Add custom items.
+   * menu.AddSeparator();
+   * menu.AddItem("Insert Date", LineEdit.MenuItems.Max + 1);
+   * // Add event handler.
+   * menu.IdPressed += OnItemPressed;
    * }
    *
    * public void OnItemPressed(int id)
    * {
-   *     if (id == LineEdit.MenuItems.Max + 1)
-   *     {
-   *         InsertTextAtCaret(Time.GetDateStringFromSystem());
-   *     }
+   * if (id == LineEdit.MenuItems.Max + 1)
+   * {
+   * InsertTextAtCaret(Time.GetDateStringFromSystem());
+   * }
    * }
    * ```
    *
@@ -1026,6 +1094,19 @@ public open class LineEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setBackspaceDeletesCompositeCharacterEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setBackspaceDeletesCompositeCharacterEnabledPtr,
+        NIL)
+  }
+
+  public final fun isBackspaceDeletesCompositeCharacterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isBackspaceDeletesCompositeCharacterEnabledPtr,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setVirtualKeyboardEnabled(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardEnabledPtr, NIL)
@@ -1034,6 +1115,17 @@ public open class LineEdit : Control() {
   public final fun isVirtualKeyboardEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setVirtualKeyboardShowOnFocus(showOnFocus: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to showOnFocus)
+    TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardShowOnFocusPtr, NIL)
+  }
+
+  public final fun getVirtualKeyboardShowOnFocus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVirtualKeyboardShowOnFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1451,6 +1543,12 @@ public open class LineEdit : Control() {
     internal val getCaretColumnPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "get_caret_column", 3905245786)
 
+    internal val getNextCompositeCharacterColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_next_composite_character_column", 923996154)
+
+    internal val getPreviousCompositeCharacterColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_previous_composite_character_column", 923996154)
+
     internal val getScrollOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "get_scroll_offset", 1740695150)
 
@@ -1538,11 +1636,23 @@ public open class LineEdit : Control() {
     internal val isEmojiMenuEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "is_emoji_menu_enabled", 36873697)
 
+    internal val setBackspaceDeletesCompositeCharacterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_backspace_deletes_composite_character_enabled", 2586408642)
+
+    internal val isBackspaceDeletesCompositeCharacterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "is_backspace_deletes_composite_character_enabled", 36873697)
+
     internal val setVirtualKeyboardEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_enabled", 2586408642)
 
     internal val isVirtualKeyboardEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "is_virtual_keyboard_enabled", 36873697)
+
+    internal val setVirtualKeyboardShowOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_show_on_focus", 2586408642)
+
+    internal val getVirtualKeyboardShowOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LineEdit", "get_virtual_keyboard_show_on_focus", 36873697)
 
     internal val setVirtualKeyboardTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("LineEdit", "set_virtual_keyboard_type", 2696893573)

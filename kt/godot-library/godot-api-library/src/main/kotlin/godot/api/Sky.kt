@@ -39,9 +39,9 @@ public open class Sky : Resource() {
     }
 
   /**
-   * Sets the method for generating the radiance map from the sky. The radiance map is a cubemap
-   * with increasingly blurry versions of the sky corresponding to different levels of roughness.
-   * Radiance maps can be expensive to calculate. See [ProcessMode] for options.
+   * The method for generating the radiance map from the sky. The radiance map is a cubemap with
+   * increasingly blurry versions of the sky corresponding to different levels of roughness. Radiance
+   * maps can be expensive to calculate.
    */
   public final inline var processMode: ProcessMode
     @JvmName("processModeProperty")
@@ -55,8 +55,6 @@ public open class Sky : Resource() {
    * The [Sky]'s radiance map size. The higher the radiance map size, the more detailed the lighting
    * from the [Sky] will be.
    *
-   * See [RadianceSize] constants for values.
-   *
    * **Note:** Some hardware will have trouble with higher radiance sizes, especially
    * [RADIANCE_SIZE_512] and above. Only use such high values on high-end hardware.
    */
@@ -69,7 +67,7 @@ public open class Sky : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(610, scriptIndex)
+    createNativeObject(626, scriptIndex)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {

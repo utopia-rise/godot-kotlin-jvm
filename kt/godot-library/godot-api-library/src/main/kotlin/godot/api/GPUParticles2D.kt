@@ -362,7 +362,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   /**
-   * Particle draw order. Uses [DrawOrder] values.
+   * Particle draw order.
    */
   public final inline var drawOrder: DrawOrder
     @JvmName("drawOrderProperty")
@@ -436,7 +436,7 @@ public open class GPUParticles2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(243, scriptIndex)
+    createNativeObject(250, scriptIndex)
   }
 
   /**

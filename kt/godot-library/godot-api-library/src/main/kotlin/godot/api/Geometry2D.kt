@@ -382,7 +382,7 @@ public object Geometry2D : Object() {
    * array if [delta] is negative and the absolute value of it approximately exceeds the minimum
    * bounding rectangle dimensions of the polygon.
    *
-   * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
+   * Each polygon's vertices will be rounded as determined by [joinType].
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
@@ -425,9 +425,9 @@ public object Geometry2D : Object() {
    * inflating/deflating may result in multiple discrete polygons. If [delta] is negative, returns an
    * empty array.
    *
-   * Each polygon's vertices will be rounded as determined by [joinType], see [PolyJoinType].
+   * Each polygon's vertices will be rounded as determined by [joinType].
    *
-   * Each polygon's endpoints will be rounded as determined by [endType], see [PolyEndType].
+   * Each polygon's endpoints will be rounded as determined by [endType].
    *
    * The operation may result in an outer polygon (boundary) and inner polygon (hole) produced which
    * could be distinguished by calling [isPolygonClockwise].
@@ -467,8 +467,8 @@ public object Geometry2D : Object() {
    *
    * ```
    * func _draw():
-   *     for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
-   *         draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
+   * for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
+   * draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
    * ```
    */
   @JvmStatic

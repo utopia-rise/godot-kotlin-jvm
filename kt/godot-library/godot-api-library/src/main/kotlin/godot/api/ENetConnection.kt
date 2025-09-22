@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(199, scriptIndex)
+    createNativeObject(204, scriptIndex)
   }
 
   /**
@@ -226,7 +226,7 @@ public open class ENetConnection : RefCounted() {
   }
 
   /**
-   * Returns and resets host statistics. See [HostStatistic] for more info.
+   * Returns and resets host statistics.
    */
   public final fun popStatistic(statistic: HostStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.value)

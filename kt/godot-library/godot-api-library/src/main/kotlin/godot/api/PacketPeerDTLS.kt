@@ -38,7 +38,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PacketPeerDTLS : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(439, scriptIndex)
+    createNativeObject(454, scriptIndex)
   }
 
   /**
@@ -68,7 +68,7 @@ public open class PacketPeerDTLS : PacketPeer() {
   }
 
   /**
-   * Returns the status of the connection. See [Status] for values.
+   * Returns the status of the connection.
    */
   public final fun getStatus(): Status {
     TransferContext.writeArguments()

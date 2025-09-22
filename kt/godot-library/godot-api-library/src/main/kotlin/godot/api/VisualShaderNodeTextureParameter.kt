@@ -26,7 +26,7 @@ import kotlin.jvm.JvmName
 public open class VisualShaderNodeTextureParameter internal constructor() :
     VisualShaderNodeParameter() {
   /**
-   * Defines the type of data provided by the source texture. See [TextureType] for options.
+   * Defines the type of data provided by the source texture.
    */
   public final inline var textureType: TextureType
     @JvmName("textureTypeProperty")
@@ -48,7 +48,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture filtering mode. See [TextureFilter] for options.
+   * Sets the texture filtering mode.
    */
   public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
@@ -59,7 +59,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   /**
-   * Sets the texture repeating mode. See [TextureRepeat] for options.
+   * Sets the texture repeating mode.
    */
   public final inline var textureRepeat: TextureRepeat
     @JvmName("textureRepeatProperty")
@@ -71,7 +71,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
 
   /**
    * Sets the texture source mode. Used for reading from the screen, depth, or normal_roughness
-   * texture. See [TextureSource] for options.
+   * texture.
    */
   public final inline var textureSource: TextureSource
     @JvmName("textureSourceProperty")
@@ -82,7 +82,7 @@ public open class VisualShaderNodeTextureParameter internal constructor() :
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(803, scriptIndex)
+    createNativeObject(819, scriptIndex)
   }
 
   public final fun setTextureType(type: TextureType): Unit {

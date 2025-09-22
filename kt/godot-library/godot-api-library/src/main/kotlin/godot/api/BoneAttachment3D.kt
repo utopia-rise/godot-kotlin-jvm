@@ -56,9 +56,9 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   /**
-   * Whether the BoneAttachment3D node will override the bone pose of the bone it is attached to.
-   * When set to `true`, the BoneAttachment3D node can change the pose of the bone. When set to
-   * `false`, the BoneAttachment3D will always be set to the bone's transform.
+   * Whether the [BoneAttachment3D] node will override the bone pose of the bone it is attached to.
+   * When set to `true`, the [BoneAttachment3D] node can change the pose of the bone. When set to
+   * `false`, the [BoneAttachment3D] will always be set to the bone's transform.
    *
    * **Note:** This override performs interruptively in the skeleton update process using signals
    * due to the old design. It may cause unintended behavior when used at the same time with
@@ -72,12 +72,36 @@ public open class BoneAttachment3D : Node3D() {
       setOverridePose(value)
     }
 
+  /**
+   * Whether the [BoneAttachment3D] node will use an external [Skeleton3D] node rather than
+   * attempting to use its parent node as the [Skeleton3D]. When set to `true`, the [BoneAttachment3D]
+   * node will use the external [Skeleton3D] node set in [externalSkeleton].
+   */
+  public final inline var useExternalSkeleton: Boolean
+    @JvmName("useExternalSkeletonProperty")
+    get() = getUseExternalSkeleton()
+    @JvmName("useExternalSkeletonProperty")
+    set(`value`) {
+      setUseExternalSkeleton(value)
+    }
+
+  /**
+   * The [NodePath] to the external [Skeleton3D] node.
+   */
+  public final inline var externalSkeleton: NodePath
+    @JvmName("externalSkeletonProperty")
+    get() = getExternalSkeleton()
+    @JvmName("externalSkeletonProperty")
+    set(`value`) {
+      setExternalSkeleton(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(107, scriptIndex)
+    createNativeObject(108, scriptIndex)
   }
 
   /**
-   * Get parent or external [Skeleton3D] node if found.
+   * Returns the parent or external [Skeleton3D] node if it exists, otherwise returns `null`.
    */
   public final fun getSkeleton(): Skeleton3D? {
     TransferContext.writeArguments()
@@ -128,48 +152,28 @@ public open class BoneAttachment3D : Node3D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  /**
-   * Sets whether the BoneAttachment3D node will use an external [Skeleton3D] node rather than
-   * attempting to use its parent node as the [Skeleton3D]. When set to `true`, the BoneAttachment3D
-   * node will use the external [Skeleton3D] node set in [setExternalSkeleton].
-   */
   public final fun setUseExternalSkeleton(useExternalSkeleton: Boolean): Unit {
     TransferContext.writeArguments(BOOL to useExternalSkeleton)
     TransferContext.callMethod(ptr, MethodBindings.setUseExternalSkeletonPtr, NIL)
   }
 
-  /**
-   * Returns whether the BoneAttachment3D node is using an external [Skeleton3D] rather than
-   * attempting to use its parent node as the [Skeleton3D].
-   */
   public final fun getUseExternalSkeleton(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseExternalSkeletonPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  /**
-   * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
-   * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
-   */
   public final fun setExternalSkeleton(externalSkeleton: NodePath): Unit {
     TransferContext.writeArguments(NODE_PATH to externalSkeleton)
     TransferContext.callMethod(ptr, MethodBindings.setExternalSkeletonPtr, NIL)
   }
 
-  /**
-   * Returns the [NodePath] to the external [Skeleton3D] node, if one has been set.
-   */
   public final fun getExternalSkeleton(): NodePath {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getExternalSkeletonPtr, NODE_PATH)
     return (TransferContext.readReturnValue(NODE_PATH) as NodePath)
   }
 
-  /**
-   * Sets the [NodePath] to the external skeleton that the BoneAttachment3D node should use. See
-   * [setUseExternalSkeleton] to enable the external [Skeleton3D] node.
-   */
   public final fun setExternalSkeleton(externalSkeleton: String) =
       setExternalSkeleton(externalSkeleton.asCachedNodePath())
 

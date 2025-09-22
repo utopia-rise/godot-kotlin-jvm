@@ -239,16 +239,16 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   /**
-   * If `true`, limits the degree of rotation. This helps prevent the character's neck from rotating
-   * 360 degrees.
+   * If `true`, limits the amount of rotation. For example, this helps to prevent a character's neck
+   * from rotating 360 degrees.
    *
    * **Note:** As with [AnimationTree] blending, interpolation is provided that favors
    * [Skeleton3D.getBoneRest]. This means that interpolation does not select the shortest path in some
    * cases.
    *
-   * **Note:** Some [transitionType] may exceed the limitations (e.g. `Back`, `Elastic`, and
-   * `Spring`). If interpolation occurs while overshooting the limitations, the result might possibly
-   * not respect the bone rest.
+   * **Note:** Some values for [transitionType] (such as [Tween.TRANS_BACK], [Tween.TRANS_ELASTIC],
+   * and [Tween.TRANS_SPRING]) may exceed the limitations. If interpolation occurs while overshooting
+   * the limitations, the result might not respect the bone rest.
    */
   public final inline var useAngleLimitation: Boolean
     @JvmName("useAngleLimitationProperty")
@@ -410,7 +410,7 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(342, scriptIndex)
+    createNativeObject(350, scriptIndex)
   }
 
   /**
@@ -764,8 +764,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
   }
 
   /**
-   * Returns whether the time-based interpolation is running or not. If `true`, it is equivalent to
-   * [getInterpolationRemaining] being `0`.
+   * Returns `true` if time-based interpolation is running. If `true`, it is equivalent to
+   * [getInterpolationRemaining] returning `0.0`.
    *
    * This is useful to determine whether a [LookAtModifier3D] can be removed safely.
    */

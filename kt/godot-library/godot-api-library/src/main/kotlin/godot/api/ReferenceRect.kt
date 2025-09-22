@@ -26,8 +26,9 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A rectangle box that displays only a colored border around its rectangle. It is used to visualize
- * the extents of a [Control].
+ * A rectangular box that displays only a colored border around its rectangle (see
+ * [Control.getRect]). It can be used to visualize the extents of a [Control] node, for testing
+ * purposes.
  */
 @GodotBaseType
 public open class ReferenceRect : Control() {
@@ -75,7 +76,7 @@ public open class ReferenceRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(534, scriptIndex)
+    createNativeObject(549, scriptIndex)
   }
 
   /**
