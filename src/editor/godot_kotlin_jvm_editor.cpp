@@ -141,6 +141,11 @@ void GodotKotlinJvmEditor::_notification(int notification) {
                 if (GradleTaskRunner::get_instance().is_task_terminated()) {
                     task_dialog->stop();
                     get_editor_interface()->get_resource_file_system()->scan_changes();
+
+                    // Explicitly check for bootstrap.jar after gradle task completion
+                    // This ensures bootstrap loading even if filesystem_changed signal doesn't fire reliably
+                    on_filesystem_change();
+
                     JVM_LOG_INFO("Gradle Task terminated");
                 }
             }
