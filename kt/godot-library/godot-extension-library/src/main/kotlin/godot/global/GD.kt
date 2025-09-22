@@ -1012,7 +1012,7 @@ object GD {
      *
      * When printing to standard output, the supported subset of BBCode is converted to ANSI escape codes for the terminal emulator to display. Support for ANSI escape codes varies across terminal emulators, especially for italic and strikethrough. In standard output, code is represented with faint text but without any font change. Unsupported tags are left as-is in standard output.
      *
-     * ```printRich("[color=green][b]Hello world![/b][/color]")`
+     * ```printRich("[color=green][b]Hello world![/b][/color]")```
      *
      * Note: Consider using [pushError] and [pushWarning] to print error and warning messages instead of print or print_rich. This distinguishes them from print messages used for debugging purposes, while also displaying a stack trace when an error or warning is printed.
      *
