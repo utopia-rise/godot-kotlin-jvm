@@ -71,7 +71,16 @@ void DictionaryBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instan
     TransferContext::get_instance().write_return_value(env, variant);
 }
 
-// TODO/4.0: modify naming in jvm code
+
+void DictionaryBridge::engine_call_duplicate_deep(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext::get_instance().read_args(env, args);
+    ResourceDeepDuplicateMode mode = args[0].operator ResourceDeepDuplicateMode();
+    Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->duplicate_deep(mode)};
+    TransferContext::get_instance().write_return_value(env, variant);
+}
+
 void DictionaryBridge::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant variant {from_uint_to_ptr<Dictionary>(p_raw_ptr)->is_empty()};

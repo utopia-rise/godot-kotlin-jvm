@@ -135,6 +135,16 @@ void VariantArrayBridge::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_inst
     transfer_context.write_return_value(env, variant);
 }
 
+void VariantArrayBridge::engine_call_duplicate_deep(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
+    jni::Env env {p_raw_env};
+    Variant args[1] = {};
+    TransferContext& transfer_context = TransferContext::get_instance();
+    transfer_context.read_args(env, args);
+    ResourceDeepDuplicateMode mode = args[0].operator ResourceDeepDuplicateMode();
+    Variant variant {from_uint_to_ptr<Array>(p_raw_ptr)->duplicate(mode)};
+    transfer_context.write_return_value(env, variant);
+}
+
 void VariantArrayBridge::engine_call_erase(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
     Variant args[1] = {};
