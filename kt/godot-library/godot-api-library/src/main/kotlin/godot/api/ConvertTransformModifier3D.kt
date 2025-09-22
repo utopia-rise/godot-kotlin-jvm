@@ -62,7 +62,7 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(181, scriptIndex)
+    createNativeObject(182, scriptIndex)
   }
 
   /**

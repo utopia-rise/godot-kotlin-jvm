@@ -903,6 +903,7 @@ import kotlin.Unit
 public fun registerVariantMapping(): Unit {
   variantMapper[Object::class] = OBJECT
   variantMapper[RefCounted::class] = OBJECT
+  variantMapper[Resource::class] = OBJECT
   variantMapper[AESContext::class] = OBJECT
   variantMapper[AStar2D::class] = OBJECT
   variantMapper[AStar3D::class] = OBJECT
@@ -1468,7 +1469,6 @@ public fun registerVariantMapping(): Unit {
   variantMapper[RenderSceneDataRD::class] = OBJECT
   variantMapper[RenderingDevice::class] = OBJECT
   variantMapper[RenderingServer::class] = OBJECT
-  variantMapper[Resource::class] = OBJECT
   variantMapper[ResourceFormatLoader::class] = OBJECT
   variantMapper[ResourceFormatSaver::class] = OBJECT
   variantMapper[ResourceImporter::class] = OBJECT
@@ -1801,6 +1801,7 @@ public fun registerVariantMapping(): Unit {
 public fun registerEngineTypeMethods(): Unit {
   Object.MethodBindings
   RefCounted.MethodBindings
+  Resource.MethodBindings
   AESContext.MethodBindings
   AStar2D.MethodBindings
   AStar3D.MethodBindings
@@ -2366,7 +2367,6 @@ public fun registerEngineTypeMethods(): Unit {
   RenderSceneDataRD.MethodBindings
   RenderingDevice.MethodBindings
   RenderingServer.MethodBindings
-  Resource.MethodBindings
   ResourceFormatLoader.MethodBindings
   ResourceFormatSaver.MethodBindings
   ResourceImporter.MethodBindings
@@ -2699,6 +2699,7 @@ public fun registerEngineTypeMethods(): Unit {
 public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("Object", Object::class, ::Object)
   TypeManager.registerEngineType("RefCounted", RefCounted::class, ::RefCounted)
+  TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
   TypeManager.registerEngineType("AESContext", AESContext::class, ::AESContext)
   TypeManager.registerEngineType("AStar2D", AStar2D::class, ::AStar2D)
   TypeManager.registerEngineType("AStar3D", AStar3D::class, ::AStar3D)
@@ -3291,7 +3292,6 @@ public fun registerEngineTypes(): Unit {
   TypeManager.registerEngineType("RenderingDevice", RenderingDevice::class, ::RenderingDevice)
   TypeManager.registerSingleton("RenderingServer") { RenderingServer }
   TypeManager.registerEngineType("RenderingServer", RenderingServer::class) { RenderingServer }
-  TypeManager.registerEngineType("Resource", Resource::class, ::Resource)
   TypeManager.registerEngineType("ResourceFormatLoader", ResourceFormatLoader::class, ::ResourceFormatLoader)
   TypeManager.registerEngineType("ResourceFormatSaver", ResourceFormatSaver::class, ::ResourceFormatSaver)
   TypeManager.registerEngineType("ResourceImporter", ResourceImporter::class, ::ResourceImporter)

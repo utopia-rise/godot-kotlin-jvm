@@ -128,7 +128,7 @@ public open class PathFollow2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(467, scriptIndex)
+    createNativeObject(468, scriptIndex)
   }
 
   public final fun setProgress(progress: Float): Unit {

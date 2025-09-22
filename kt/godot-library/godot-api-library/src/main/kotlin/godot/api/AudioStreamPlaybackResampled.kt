@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class AudioStreamPlaybackResampled : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(93, scriptIndex)
+    createNativeObject(94, scriptIndex)
   }
 
   public abstract fun _getStreamSamplingRate(): Float

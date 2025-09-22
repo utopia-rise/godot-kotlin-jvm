@@ -112,7 +112,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(520, scriptIndex)
+    createNativeObject(521, scriptIndex)
   }
 
   /**

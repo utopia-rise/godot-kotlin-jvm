@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRHapticBase internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(436, scriptIndex)
+    createNativeObject(437, scriptIndex)
   }
 
   public companion object

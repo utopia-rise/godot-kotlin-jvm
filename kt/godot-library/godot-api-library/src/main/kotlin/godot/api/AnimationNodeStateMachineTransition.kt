@@ -171,7 +171,7 @@ public open class AnimationNodeStateMachineTransition : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(30, scriptIndex)
+    createNativeObject(31, scriptIndex)
   }
 
   public final fun setSwitchMode(mode: SwitchMode): Unit {

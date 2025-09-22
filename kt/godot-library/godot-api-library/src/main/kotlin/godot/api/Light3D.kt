@@ -438,7 +438,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(339, scriptIndex)
+    createNativeObject(340, scriptIndex)
   }
 
   /**

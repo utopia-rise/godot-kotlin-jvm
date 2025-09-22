@@ -91,7 +91,7 @@ public open class JSON : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(321, scriptIndex)
+    createNativeObject(322, scriptIndex)
   }
 
   /**

@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ENetConnection : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(204, scriptIndex)
+    createNativeObject(205, scriptIndex)
   }
 
   /**

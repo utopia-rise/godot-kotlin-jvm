@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MethodTweener : Tweener() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(366, scriptIndex)
+    createNativeObject(367, scriptIndex)
   }
 
   /**

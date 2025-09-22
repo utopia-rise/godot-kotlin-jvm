@@ -51,7 +51,7 @@ public open class OpenXRRenderModel : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(443, scriptIndex)
+    createNativeObject(444, scriptIndex)
   }
 
   /**

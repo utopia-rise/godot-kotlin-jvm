@@ -877,7 +877,7 @@ public open class Control : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(180, scriptIndex)
+    createNativeObject(181, scriptIndex)
   }
 
   /**

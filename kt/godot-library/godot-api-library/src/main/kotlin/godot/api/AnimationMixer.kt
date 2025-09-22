@@ -249,7 +249,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(15, scriptIndex)
+    createNativeObject(16, scriptIndex)
   }
 
   /**

@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(412, scriptIndex)
+    createNativeObject(413, scriptIndex)
   }
 
   /**

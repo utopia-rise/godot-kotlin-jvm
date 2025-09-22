@@ -36,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public abstract class AudioStreamPlayback : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(88, scriptIndex)
+    createNativeObject(89, scriptIndex)
   }
 
   /**

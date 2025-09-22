@@ -40,7 +40,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CompressedCubemapArray : CompressedTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(169, scriptIndex)
+    createNativeObject(170, scriptIndex)
   }
 
   public companion object

@@ -290,7 +290,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(216, scriptIndex)
+    createNativeObject(217, scriptIndex)
   }
 
   /**

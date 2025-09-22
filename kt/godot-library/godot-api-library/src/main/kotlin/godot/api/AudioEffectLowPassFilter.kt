@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectLowPassFilter : AudioEffectFilter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(65, scriptIndex)
+    createNativeObject(66, scriptIndex)
   }
 
   public companion object

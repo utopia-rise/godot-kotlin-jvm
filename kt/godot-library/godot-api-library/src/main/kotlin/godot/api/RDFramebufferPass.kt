@@ -125,7 +125,7 @@ public open class RDFramebufferPass : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(529, scriptIndex)
+    createNativeObject(530, scriptIndex)
   }
 
   /**

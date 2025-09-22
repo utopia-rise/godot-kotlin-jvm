@@ -43,7 +43,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(124, scriptIndex)
+    createNativeObject(125, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

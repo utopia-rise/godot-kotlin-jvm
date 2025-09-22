@@ -89,7 +89,7 @@ interface TypeGenerationTrait {
     fun isTypedArray() = nature == Nature.TYPED_ARRAY
     fun isObjectSubClass() = nature == Nature.CLASS
     fun isVariant() = isCoreType() && identifier == GodotTypes.variant
-    fun isCoreClass() = identifier == GodotTypes.godotObject || identifier == GodotTypes.refCounted
+    fun isCoreClass() = identifier == GodotTypes.godotObject || identifier == GodotTypes.refCounted || identifier == GodotTypes.resource
 }
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {

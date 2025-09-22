@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicsDirectSpaceState2D internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(480, scriptIndex)
+    createNativeObject(481, scriptIndex)
   }
 
   /**

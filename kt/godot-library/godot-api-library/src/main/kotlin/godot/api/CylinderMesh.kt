@@ -121,7 +121,7 @@ public open class CylinderMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(194, scriptIndex)
+    createNativeObject(195, scriptIndex)
   }
 
   public final fun setTopRadius(radius: Float): Unit {

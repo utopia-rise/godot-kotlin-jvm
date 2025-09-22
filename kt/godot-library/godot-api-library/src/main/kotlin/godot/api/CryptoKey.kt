@@ -33,7 +33,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CryptoKey : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(186, scriptIndex)
+    createNativeObject(187, scriptIndex)
   }
 
   /**

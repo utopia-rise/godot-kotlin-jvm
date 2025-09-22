@@ -42,7 +42,7 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     get() = getHost()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(205, scriptIndex)
+    createNativeObject(206, scriptIndex)
   }
 
   /**

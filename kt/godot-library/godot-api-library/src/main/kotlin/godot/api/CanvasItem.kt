@@ -333,7 +333,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(139, scriptIndex)
   }
 
   /**

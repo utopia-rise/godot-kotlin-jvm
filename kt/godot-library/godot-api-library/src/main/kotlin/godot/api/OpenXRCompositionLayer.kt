@@ -299,7 +299,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(426, scriptIndex)
+    createNativeObject(427, scriptIndex)
   }
 
   /**

@@ -63,7 +63,7 @@ public open class CameraTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(136, scriptIndex)
+    createNativeObject(137, scriptIndex)
   }
 
   public final fun setCameraFeedId(feedId: Int): Unit {

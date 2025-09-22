@@ -44,7 +44,7 @@ public open class FoldableGroup : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(223, scriptIndex)
+    createNativeObject(224, scriptIndex)
   }
 
   /**

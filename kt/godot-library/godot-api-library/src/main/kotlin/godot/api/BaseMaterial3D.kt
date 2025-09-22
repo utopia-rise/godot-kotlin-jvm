@@ -1846,7 +1846,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+    createNativeObject(106, scriptIndex)
   }
 
   /**

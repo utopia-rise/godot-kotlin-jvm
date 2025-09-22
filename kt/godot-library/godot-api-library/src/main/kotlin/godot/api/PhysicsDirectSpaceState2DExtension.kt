@@ -29,7 +29,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(481, scriptIndex)
+    createNativeObject(482, scriptIndex)
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

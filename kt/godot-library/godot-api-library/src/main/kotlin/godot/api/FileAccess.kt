@@ -123,7 +123,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(217, scriptIndex)
+    createNativeObject(218, scriptIndex)
   }
 
   /**

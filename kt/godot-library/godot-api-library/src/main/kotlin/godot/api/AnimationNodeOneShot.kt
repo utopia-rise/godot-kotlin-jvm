@@ -197,7 +197,7 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(26, scriptIndex)
+    createNativeObject(27, scriptIndex)
   }
 
   public final fun setFadeinTime(time: Double): Unit {

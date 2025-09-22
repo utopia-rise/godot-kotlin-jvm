@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class OpenXRBindingModifier internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(425, scriptIndex)
+    createNativeObject(426, scriptIndex)
   }
 
   /**

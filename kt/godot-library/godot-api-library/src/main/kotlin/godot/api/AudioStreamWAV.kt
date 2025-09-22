@@ -167,7 +167,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(102, scriptIndex)
+    createNativeObject(103, scriptIndex)
   }
 
   /**

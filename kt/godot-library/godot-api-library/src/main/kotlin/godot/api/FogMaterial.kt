@@ -132,7 +132,7 @@ public open class FogMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(220, scriptIndex)
+    createNativeObject(221, scriptIndex)
   }
 
   /**

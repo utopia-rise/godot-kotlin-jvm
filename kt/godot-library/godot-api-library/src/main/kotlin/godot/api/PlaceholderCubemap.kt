@@ -25,7 +25,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PlaceholderCubemap : PlaceholderTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(502, scriptIndex)
+    createNativeObject(503, scriptIndex)
   }
 
   public companion object

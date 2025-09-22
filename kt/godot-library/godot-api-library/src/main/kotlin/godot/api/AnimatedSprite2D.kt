@@ -203,7 +203,7 @@ public open class AnimatedSprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(10, scriptIndex)
+    createNativeObject(11, scriptIndex)
   }
 
   /**

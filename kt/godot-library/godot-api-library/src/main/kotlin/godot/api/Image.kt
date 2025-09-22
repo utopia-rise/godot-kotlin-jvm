@@ -54,7 +54,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(289, scriptIndex)
+    createNativeObject(290, scriptIndex)
   }
 
   /**

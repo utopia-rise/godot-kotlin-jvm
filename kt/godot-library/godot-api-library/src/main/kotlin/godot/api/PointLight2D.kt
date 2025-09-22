@@ -83,7 +83,7 @@ public open class PointLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(511, scriptIndex)
+    createNativeObject(512, scriptIndex)
   }
 
   /**

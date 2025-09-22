@@ -214,7 +214,7 @@ public open class FontVariation : Font() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(226, scriptIndex)
+    createNativeObject(227, scriptIndex)
   }
 
   /**

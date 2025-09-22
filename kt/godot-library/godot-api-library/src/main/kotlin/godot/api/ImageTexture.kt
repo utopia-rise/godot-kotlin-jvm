@@ -65,7 +65,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(292, scriptIndex)
+    createNativeObject(293, scriptIndex)
   }
 
   /**

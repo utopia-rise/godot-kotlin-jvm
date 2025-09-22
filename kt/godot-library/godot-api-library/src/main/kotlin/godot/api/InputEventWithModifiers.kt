@@ -90,7 +90,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(315, scriptIndex)
+    createNativeObject(316, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

@@ -74,7 +74,7 @@ public open class AudioEffectFilter : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(59, scriptIndex)
+    createNativeObject(60, scriptIndex)
   }
 
   public final fun setCutoff(freq: Float): Unit {

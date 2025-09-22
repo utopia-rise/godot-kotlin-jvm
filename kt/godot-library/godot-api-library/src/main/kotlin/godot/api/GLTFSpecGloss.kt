@@ -102,7 +102,7 @@ public open class GLTFSpecGloss : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(246, scriptIndex)
+    createNativeObject(247, scriptIndex)
   }
 
   /**

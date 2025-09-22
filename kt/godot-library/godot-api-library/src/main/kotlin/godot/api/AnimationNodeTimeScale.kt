@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AnimationNodeTimeScale : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(33, scriptIndex)
+    createNativeObject(34, scriptIndex)
   }
 
   public companion object

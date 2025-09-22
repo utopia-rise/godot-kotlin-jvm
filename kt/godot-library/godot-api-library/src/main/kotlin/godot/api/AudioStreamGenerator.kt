@@ -147,7 +147,7 @@ public open class AudioStreamGenerator : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(82, scriptIndex)
+    createNativeObject(83, scriptIndex)
   }
 
   public final fun setMixRate(hz: Float): Unit {

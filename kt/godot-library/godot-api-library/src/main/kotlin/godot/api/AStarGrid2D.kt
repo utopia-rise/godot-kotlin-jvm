@@ -221,7 +221,7 @@ public open class AStarGrid2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(5, scriptIndex)
+    createNativeObject(6, scriptIndex)
   }
 
   /**

@@ -340,7 +340,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(154, scriptIndex)
+    createNativeObject(155, scriptIndex)
   }
 
   /**

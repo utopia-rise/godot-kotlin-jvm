@@ -144,7 +144,7 @@ public open class ArrayMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(41, scriptIndex)
+    createNativeObject(42, scriptIndex)
   }
 
   /**

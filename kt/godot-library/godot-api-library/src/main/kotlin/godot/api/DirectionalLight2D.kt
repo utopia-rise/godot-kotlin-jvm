@@ -61,7 +61,7 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(201, scriptIndex)
+    createNativeObject(202, scriptIndex)
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {

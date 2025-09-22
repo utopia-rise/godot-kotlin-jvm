@@ -72,7 +72,7 @@ public open class PanoramaSkyMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(460, scriptIndex)
+    createNativeObject(461, scriptIndex)
   }
 
   public final fun setPanorama(texture: Texture2D?): Unit {

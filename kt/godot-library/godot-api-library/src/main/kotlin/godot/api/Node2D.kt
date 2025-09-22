@@ -236,7 +236,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(404, scriptIndex)
+    createNativeObject(405, scriptIndex)
   }
 
   /**

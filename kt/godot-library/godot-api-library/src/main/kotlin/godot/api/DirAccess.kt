@@ -130,7 +130,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(200, scriptIndex)
+    createNativeObject(201, scriptIndex)
   }
 
   /**

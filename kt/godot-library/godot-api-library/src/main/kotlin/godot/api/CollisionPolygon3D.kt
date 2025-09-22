@@ -129,7 +129,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(159, scriptIndex)
+    createNativeObject(160, scriptIndex)
   }
 
   /**

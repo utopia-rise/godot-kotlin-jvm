@@ -45,7 +45,7 @@ public open class OpenXRCompositionLayerQuad : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(429, scriptIndex)
+    createNativeObject(430, scriptIndex)
   }
 
   /**

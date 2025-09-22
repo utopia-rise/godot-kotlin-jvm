@@ -138,7 +138,7 @@ public open class CanvasTexture : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(142, scriptIndex)
+    createNativeObject(143, scriptIndex)
   }
 
   /**

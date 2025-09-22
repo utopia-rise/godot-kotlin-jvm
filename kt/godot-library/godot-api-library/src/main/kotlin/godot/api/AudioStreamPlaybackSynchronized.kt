@@ -14,7 +14,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioStreamPlaybackSynchronized internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(94, scriptIndex)
+    createNativeObject(95, scriptIndex)
   }
 
   public companion object

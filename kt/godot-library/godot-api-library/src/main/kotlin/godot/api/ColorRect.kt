@@ -46,7 +46,7 @@ public open class ColorRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(165, scriptIndex)
+    createNativeObject(166, scriptIndex)
   }
 
   /**

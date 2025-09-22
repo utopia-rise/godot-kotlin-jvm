@@ -143,7 +143,7 @@ public open class GLTFDocument : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {

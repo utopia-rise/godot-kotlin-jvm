@@ -31,7 +31,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(433, scriptIndex)
+    createNativeObject(434, scriptIndex)
   }
 
   /**

@@ -97,7 +97,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(252, scriptIndex)
+    createNativeObject(253, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

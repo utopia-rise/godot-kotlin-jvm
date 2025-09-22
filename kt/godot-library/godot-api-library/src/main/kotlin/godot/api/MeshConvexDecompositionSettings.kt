@@ -175,7 +175,7 @@ public open class MeshConvexDecompositionSettings : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(360, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   public final fun setMaxConcavity(maxConcavity: Float): Unit {

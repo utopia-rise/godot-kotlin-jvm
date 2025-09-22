@@ -217,7 +217,7 @@ public open class InputEventMIDI : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(306, scriptIndex)
+    createNativeObject(307, scriptIndex)
   }
 
   public final fun setChannel(channel: Int): Unit {

@@ -102,7 +102,7 @@ public open class CameraAttributes : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(131, scriptIndex)
+    createNativeObject(132, scriptIndex)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {

@@ -85,7 +85,7 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(428, scriptIndex)
+    createNativeObject(429, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

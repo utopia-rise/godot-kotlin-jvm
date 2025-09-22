@@ -48,7 +48,7 @@ public open class ButtonGroup : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(116, scriptIndex)
+    createNativeObject(117, scriptIndex)
   }
 
   /**

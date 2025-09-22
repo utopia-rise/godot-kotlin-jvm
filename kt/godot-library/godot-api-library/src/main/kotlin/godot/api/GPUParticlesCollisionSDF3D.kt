@@ -128,7 +128,7 @@ public open class GPUParticlesCollisionSDF3D : GPUParticlesCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(259, scriptIndex)
+    createNativeObject(260, scriptIndex)
   }
 
   /**

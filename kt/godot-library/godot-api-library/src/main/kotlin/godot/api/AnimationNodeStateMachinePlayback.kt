@@ -63,7 +63,7 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
   public val stateFinished: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(29, scriptIndex)
+    createNativeObject(30, scriptIndex)
   }
 
   /**

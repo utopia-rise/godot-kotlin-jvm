@@ -54,7 +54,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(299, scriptIndex)
+    createNativeObject(300, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {

@@ -57,7 +57,7 @@ public open class PlaceholderMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(505, scriptIndex)
+    createNativeObject(506, scriptIndex)
   }
 
   /**

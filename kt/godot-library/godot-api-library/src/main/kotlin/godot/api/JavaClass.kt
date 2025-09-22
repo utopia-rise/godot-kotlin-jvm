@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class JavaClass : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(323, scriptIndex)
+    createNativeObject(324, scriptIndex)
   }
 
   /**

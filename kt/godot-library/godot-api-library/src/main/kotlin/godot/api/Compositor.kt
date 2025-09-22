@@ -36,7 +36,7 @@ public open class Compositor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(166, scriptIndex)
+    createNativeObject(167, scriptIndex)
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {

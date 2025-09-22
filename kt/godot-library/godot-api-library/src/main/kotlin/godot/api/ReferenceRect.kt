@@ -76,7 +76,7 @@ public open class ReferenceRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(549, scriptIndex)
+    createNativeObject(550, scriptIndex)
   }
 
   /**

@@ -184,7 +184,7 @@ public open class NavigationObstacle3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(392, scriptIndex)
+    createNativeObject(393, scriptIndex)
   }
 
   /**

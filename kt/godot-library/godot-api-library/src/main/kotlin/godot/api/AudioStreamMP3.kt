@@ -132,7 +132,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(85, scriptIndex)
+    createNativeObject(86, scriptIndex)
   }
 
   /**

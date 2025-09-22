@@ -101,7 +101,7 @@ public open class OptionButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(448, scriptIndex)
+    createNativeObject(449, scriptIndex)
   }
 
   /**

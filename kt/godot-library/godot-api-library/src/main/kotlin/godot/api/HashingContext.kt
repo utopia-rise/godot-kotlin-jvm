@@ -82,7 +82,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HashingContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(286, scriptIndex)
   }
 
   /**
