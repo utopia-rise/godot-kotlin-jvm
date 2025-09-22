@@ -38,8 +38,8 @@ Error read_all_file_utf8(const String& p_path, String& r_content) {
     Ref<FileAccess> file_access {FileAccess::open(p_path, FileAccess::READ, &err)};
     JVM_ERR_FAIL_COND_V_MSG(err != OK, err, "Cannot open file '" + p_path + "'.");
 
-    String source = file_access->get_as_utf8_string();
-    if (source.is_valid_string()) { ERR_FAIL_V(ERR_INVALID_DATA); }
+    const String source = file_access->get_as_utf8_string();
+    if (!source.is_valid_string()) { ERR_FAIL_V(ERR_INVALID_DATA); }
 
     r_content = source;
     return OK;
