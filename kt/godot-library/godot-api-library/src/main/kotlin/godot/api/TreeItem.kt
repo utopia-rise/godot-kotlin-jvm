@@ -1216,7 +1216,7 @@ public open class TreeItem internal constructor() : Object() {
    * comma separated list.
    */
   public final fun callRecursive(method: String, vararg args: Any?) =
-      callRecursive(method.asCachedStringName(), )
+      callRecursive(method.asCachedStringName(), *args)
 
   public enum class TreeCellMode(
     id: Long,

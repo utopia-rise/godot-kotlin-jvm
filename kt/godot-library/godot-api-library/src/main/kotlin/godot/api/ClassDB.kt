@@ -576,7 +576,7 @@ public object ClassDB : Object() {
     `class`: String,
     method: String,
     vararg args: Any?,
-  ): Any? = classCallStatic(`class`.asCachedStringName(), method.asCachedStringName(), )
+  ): Any? = classCallStatic(`class`.asCachedStringName(), method.asCachedStringName(), *args)
 
   /**
    * Returns an array with the names all the integer constants of [class] or its ancestry.

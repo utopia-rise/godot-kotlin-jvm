@@ -1399,7 +1399,7 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun emitSignal(signal: String, vararg args: Any?): Error =
-      emitSignal(signal.asCachedStringName(), )
+      emitSignal(signal.asCachedStringName(), *args)
 
   /**
    * Calls the [method] on the object and returns the result. This method supports a variable number
@@ -1422,7 +1422,7 @@ public open class Object : KtObject() {
    * each call.
    */
   public final fun call(method: String, vararg args: Any?): Any? =
-      call(method.asCachedStringName(), )
+      call(method.asCachedStringName(), *args)
 
   /**
    * Calls the [method] on the object during idle time. Always returns `null`, **not** the method's
@@ -1469,7 +1469,7 @@ public open class Object : KtObject() {
    * ```
    */
   public final fun callDeferred(method: String, vararg args: Any?): Any? =
-      callDeferred(method.asCachedStringName(), )
+      callDeferred(method.asCachedStringName(), *args)
 
   /**
    * Assigns [value] to the given [property], at the end of the current frame. This is equivalent to
