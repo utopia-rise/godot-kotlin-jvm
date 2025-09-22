@@ -221,24 +221,18 @@ class BufferToVariant {
         }
     }
 
-    static Variant read_object(SharedBuffer* byte_buffer) {
-        uint32_t constructor_id = decode_uint32(byte_buffer->get_cursor());
-        byte_buffer->increment_position(4);
+    static inline Object* to_godot_object(SharedBuffer* byte_buffer) {
         auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
-        uint64_t instance_id = decode_uint64(byte_buffer->get_cursor());
-        byte_buffer->increment_position(PTR_SIZE);
-        return Variant(reinterpret_cast<Object*>(ptr));
+        return reinterpret_cast<Object*>(ptr);
+    }
+
+    static Variant read_object(SharedBuffer* byte_buffer) {
+        return Variant(to_godot_object(byte_buffer));
     }
 
     static Variant read_signal(SharedBuffer* byte_buffer) {
-        uint32_t constructor_id = decode_uint32(byte_buffer->get_cursor());
-        byte_buffer->increment_position(4);
-        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
-        byte_buffer->increment_position(PTR_SIZE);
-        uint64_t instance_id = decode_uint64(byte_buffer->get_cursor());
-        byte_buffer->increment_position(PTR_SIZE);
-        const Object* object = reinterpret_cast<Object*>(ptr);
+        const Object* object {to_godot_object(byte_buffer)};
         const StringName name {*read_pointer<StringName>(byte_buffer)};
         return Variant(Signal(object, name));
     }
@@ -250,22 +244,6 @@ class BufferToVariant {
         if (is_custom) { return Callable(read_pointer<CallableCustom>(byte_buffer)); }
 
         return *read_pointer<Callable>(byte_buffer);
-    }
-
-    static Variant read_array(SharedBuffer* byte_buffer) {
-        Array* arr_ptr = read_pointer<Array>(byte_buffer);
-        uint64_t type = decode_uint64(byte_buffer->get_cursor());
-        byte_buffer->increment_position(PTR_SIZE);
-        return Variant(*arr_ptr);
-    }
-
-    static Variant read_dictionary(SharedBuffer* byte_buffer) {
-        Dictionary* dict_ptr = read_pointer<Dictionary>(byte_buffer);
-        uint64_t key_type = decode_uint64(byte_buffer->get_cursor());
-        byte_buffer->increment_position(PTR_SIZE);
-        uint64_t value_type = decode_uint64(byte_buffer->get_cursor());
-        byte_buffer->increment_position(PTR_SIZE);
-        return Variant(*dict_ptr);
     }
 
 public:
@@ -305,8 +283,8 @@ public:
           &BufferToVariant::read_object,
           &BufferToVariant::read_callable,
           &BufferToVariant::read_signal,
-          &BufferToVariant::read_dictionary,
-          &BufferToVariant::read_array,
+          &BufferToVariant::read_native_core_type<Dictionary>,
+          &BufferToVariant::read_native_core_type<Array>,
 
           // typed arrays
           &BufferToVariant::read_native_core_type<PackedByteArray>,
