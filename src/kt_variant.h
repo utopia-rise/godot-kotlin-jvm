@@ -246,6 +246,13 @@ class BufferToVariant {
         return *read_pointer<Callable>(byte_buffer);
     }
 
+    static Variant read_array(SharedBuffer* byte_buffer) {
+        Array* arr_ptr = read_pointer<Array>(byte_buffer);
+        uint64_t type = decode_uint64(byte_buffer->get_cursor());
+        byte_buffer->increment_position(PTR_SIZE);
+        return Variant(*arr_ptr);
+    }
+
 public:
 
     static void read_variant(SharedBuffer* byte_buffer, Variant& res) {
@@ -284,7 +291,7 @@ public:
           &BufferToVariant::read_callable,
           &BufferToVariant::read_signal,
           &BufferToVariant::read_native_core_type<Dictionary>,
-          &BufferToVariant::read_native_core_type<Array>,
+          &BufferToVariant::read_array,
 
           // typed arrays
           &BufferToVariant::read_native_core_type<PackedByteArray>,
