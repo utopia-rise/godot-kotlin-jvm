@@ -1,5 +1,6 @@
 package godot.tests.coretypes
 
+import godot.api.Button
 import godot.api.Node
 import godot.api.Node3D
 import godot.annotation.Export
@@ -7,6 +8,7 @@ import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
 import godot.core.Dictionary
+import godot.core.Signal
 import godot.core.VariantArray
 import godot.core.dictionaryOf
 import godot.core.variantArrayOf
@@ -30,6 +32,10 @@ class VariantArraySerializationTest : Node() {
     @RegisterProperty
     var testDictionary: Dictionary<String, Int> = dictionaryOf("one" to 1, "two" to 2)
 
+    @Export
+    @RegisterProperty
+    var buttonNode: Button? = null
+
     @RegisterFunction
     fun testArrayIntegrity(): Boolean {
         // This function tests that arrays maintain their integrity after serialization/deserialization
@@ -51,6 +57,17 @@ class VariantArraySerializationTest : Node() {
     }
 
     @RegisterFunction
+    fun testObjectSerialization(): Boolean {
+        // Test that object references are properly serialized/deserialized
+        if (buttonNode == null) {
+            buttonNode = Button()
+            buttonNode!!.text = "Test Button"
+            return true
+        }
+        return buttonNode!!.text == "Test Button"
+    }
+
+    @RegisterFunction
     fun addToArrays() {
         intArray.append(4)
         stringArray.append("test")
@@ -67,5 +84,6 @@ class VariantArraySerializationTest : Node() {
         stringArray.clear()
         nodeArray.clear()
         testDictionary.clear()
+        buttonNode = null
     }
 }

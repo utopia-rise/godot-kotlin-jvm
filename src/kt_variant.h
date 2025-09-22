@@ -221,18 +221,24 @@ class BufferToVariant {
         }
     }
 
-    static inline Object* to_godot_object(SharedBuffer* byte_buffer) {
+    static Variant read_object(SharedBuffer* byte_buffer) {
+        uint32_t constructor_id = decode_uint32(byte_buffer->get_cursor());
+        byte_buffer->increment_position(4);
         auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
-        return reinterpret_cast<Object*>(ptr);
-    }
-
-    static Variant read_object(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_object(byte_buffer));
+        uint64_t instance_id = decode_uint64(byte_buffer->get_cursor());
+        byte_buffer->increment_position(PTR_SIZE);
+        return Variant(reinterpret_cast<Object*>(ptr));
     }
 
     static Variant read_signal(SharedBuffer* byte_buffer) {
-        const Object* object {to_godot_object(byte_buffer)};
+        uint32_t constructor_id = decode_uint32(byte_buffer->get_cursor());
+        byte_buffer->increment_position(4);
+        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
+        byte_buffer->increment_position(PTR_SIZE);
+        uint64_t instance_id = decode_uint64(byte_buffer->get_cursor());
+        byte_buffer->increment_position(PTR_SIZE);
+        const Object* object = reinterpret_cast<Object*>(ptr);
         const StringName name {*read_pointer<StringName>(byte_buffer)};
         return Variant(Signal(object, name));
     }
