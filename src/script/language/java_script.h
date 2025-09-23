@@ -4,7 +4,7 @@
 #include "script/jvm_script.h"
 
 class JavaScript : public PathScript {
-    GDCLASS(JavaScript, JvmScript);
+    GDCLASS(JavaScript, PathScript);
 
 public:
     JavaScript() = default;
