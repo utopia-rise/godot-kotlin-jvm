@@ -28,7 +28,7 @@ import kotlin.jvm.JvmName
  * vertical axis. Sliders are [Range]-based controls.
  */
 @GodotBaseType
-public open class Slider internal constructor() : Range() {
+public abstract class Slider : Range() {
   /**
    * Emitted when the grabber starts being dragged. This is emitted before the corresponding [signal
    * Range.value_changed] signal.

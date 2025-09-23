@@ -38,7 +38,7 @@ import kotlin.jvm.JvmOverloads
  * Abstract base class of all types of input events. See [Node.Input].
  */
 @GodotBaseType
-public open class InputEvent internal constructor() : Resource() {
+public abstract class InputEvent : Resource() {
   /**
    * The event's device ID.
    *
@@ -54,7 +54,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(300, scriptIndex)
+    createNativeObject(299, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {

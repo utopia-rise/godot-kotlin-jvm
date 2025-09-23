@@ -79,7 +79,7 @@ public open class ArrayOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(43, scriptIndex)
+    createNativeObject(42, scriptIndex)
   }
 
   /**

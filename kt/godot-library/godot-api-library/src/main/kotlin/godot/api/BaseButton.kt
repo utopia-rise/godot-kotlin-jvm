@@ -187,7 +187,7 @@ public open class BaseButton : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+    createNativeObject(104, scriptIndex)
   }
 
   /**

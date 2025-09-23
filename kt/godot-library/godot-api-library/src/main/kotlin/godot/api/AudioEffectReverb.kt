@@ -120,7 +120,7 @@ public open class AudioEffectReverb : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(73, scriptIndex)
+    createNativeObject(72, scriptIndex)
   }
 
   public final fun setPredelayMsec(msec: Float): Unit {

@@ -197,7 +197,7 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(443, scriptIndex)
+    createNativeObject(442, scriptIndex)
   }
 
   /**

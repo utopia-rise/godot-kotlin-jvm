@@ -98,7 +98,7 @@ public open class CanvasGroup : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(137, scriptIndex)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {

@@ -53,7 +53,7 @@ import kotlin.jvm.JvmOverloads
  * processed by the [AnimationMixer].
  */
 @GodotBaseType
-public open class AnimationMixer internal constructor() : Node() {
+public abstract class AnimationMixer : Node() {
   /**
    * Notifies when an animation list is changed.
    */
@@ -249,7 +249,7 @@ public open class AnimationMixer internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(16, scriptIndex)
+    createNativeObject(15, scriptIndex)
   }
 
   /**

@@ -39,7 +39,7 @@ import kotlin.jvm.JvmName
  * other properties are defined.
  */
 @GodotBaseType
-public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
+public abstract class SpriteBase3D : GeometryInstance3D() {
   /**
    * If `true`, texture will be centered.
    */

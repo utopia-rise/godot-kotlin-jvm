@@ -52,7 +52,7 @@ public open class AStar2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(4, scriptIndex)
+    createNativeObject(3, scriptIndex)
   }
 
   /**

@@ -52,7 +52,7 @@ import kotlin.jvm.JvmName
  * `process_in_physics` in [SceneTree.createTimer] has been set to `true`).
  */
 @GodotBaseType
-public open class SceneTreeTimer internal constructor() : RefCounted() {
+public abstract class SceneTreeTimer : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */

@@ -30,7 +30,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public abstract class AnimationNodeExtension : AnimationNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(26, scriptIndex)
+    createNativeObject(25, scriptIndex)
   }
 
   /**

@@ -26,7 +26,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CheckBox : Button() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(151, scriptIndex)
+    createNativeObject(150, scriptIndex)
   }
 
   public companion object

@@ -123,7 +123,7 @@ public open class OccluderInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(414, scriptIndex)
+    createNativeObject(413, scriptIndex)
   }
 
   public final fun setBakeMask(mask: Long): Unit {

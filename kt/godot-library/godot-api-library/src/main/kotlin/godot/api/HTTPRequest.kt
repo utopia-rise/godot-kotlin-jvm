@@ -306,7 +306,7 @@ public open class HTTPRequest : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(284, scriptIndex)
   }
 
   /**

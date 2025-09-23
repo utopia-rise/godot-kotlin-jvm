@@ -461,7 +461,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(337, scriptIndex)
+    createNativeObject(336, scriptIndex)
   }
 
   /**

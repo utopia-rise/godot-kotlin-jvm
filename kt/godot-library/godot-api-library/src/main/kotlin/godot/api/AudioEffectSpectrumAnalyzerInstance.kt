@@ -29,10 +29,9 @@ import kotlin.jvm.JvmOverloads
  * An instance of this class can be obtained with [AudioServer.getBusEffectInstance].
  */
 @GodotBaseType
-public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
-    {
+public abstract class AudioEffectSpectrumAnalyzerInstance : AudioEffectInstance() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(75, scriptIndex)
+    createNativeObject(74, scriptIndex)
   }
 
   /**

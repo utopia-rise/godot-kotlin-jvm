@@ -95,7 +95,7 @@ public open class PrismMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(522, scriptIndex)
+    createNativeObject(521, scriptIndex)
   }
 
   /**

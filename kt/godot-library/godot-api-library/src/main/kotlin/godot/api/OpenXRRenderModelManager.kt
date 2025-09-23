@@ -69,7 +69,7 @@ public open class OpenXRRenderModelManager : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(446, scriptIndex)
+    createNativeObject(445, scriptIndex)
   }
 
   public final fun getTracker(): RenderModelTracker {

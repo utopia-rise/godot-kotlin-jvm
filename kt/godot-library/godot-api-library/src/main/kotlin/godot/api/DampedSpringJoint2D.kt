@@ -75,7 +75,7 @@ public open class DampedSpringJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(199, scriptIndex)
+    createNativeObject(198, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class BitMap : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(107, scriptIndex)
+    createNativeObject(106, scriptIndex)
   }
 
   /**

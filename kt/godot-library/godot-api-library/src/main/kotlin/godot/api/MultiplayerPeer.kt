@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class MultiplayerPeer internal constructor() : PacketPeer() {
+public abstract class MultiplayerPeer : PacketPeer() {
   /**
    * Emitted when a remote peer connects.
    */
@@ -90,7 +90,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(378, scriptIndex)
+    createNativeObject(377, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {

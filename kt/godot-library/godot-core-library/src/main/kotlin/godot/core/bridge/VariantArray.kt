@@ -3,13 +3,13 @@
 package godot.core
 
 import godot.annotation.CoreTypeHelper
-import godot.api.Resource
 import godot.common.interop.VariantConverter
 import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
 import godot.common.util.isNullable
+import godot.core.bridge.DeepDuplicateMode
 import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
 import kotlin.jvm.internal.Reflection
@@ -334,7 +334,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
      * Duplicates this array, deeply, like duplicate()(true), with extra control over how subresources are handled.
      * deepSubresourceMode must be one of the values from DeepDuplicateMode. By default, only internal resources will be duplicated (recursively).
     */
-    fun duplicateDeep(deepSubresourceMode: Resource.DeepDuplicateMode): VariantArray<T> {
+    fun duplicateDeep(deepSubresourceMode: DeepDuplicateMode): VariantArray<T> {
         TransferContext.writeArguments(VariantParser.LONG to deepSubresourceMode.value)
         Bridge.engine_call_duplicate_deep(ptr)
         return (TransferContext.readReturnValue(VariantParser.ARRAY) as VariantArray<T>).also {

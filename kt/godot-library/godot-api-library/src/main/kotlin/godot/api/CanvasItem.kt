@@ -78,7 +78,7 @@ import kotlin.jvm.JvmOverloads
  * chain. See also [topLevel].
  */
 @GodotBaseType
-public open class CanvasItem internal constructor() : Node() {
+public abstract class CanvasItem : Node() {
   /**
    * Emitted when the [CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW]
    * notification, and *before* [_draw] is called.
@@ -333,7 +333,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(139, scriptIndex)
+    createNativeObject(138, scriptIndex)
   }
 
   /**

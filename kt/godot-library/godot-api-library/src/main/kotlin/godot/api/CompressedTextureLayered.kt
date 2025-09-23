@@ -28,7 +28,7 @@ import kotlin.jvm.JvmName
  * [TextureLayered].
  */
 @GodotBaseType
-public open class CompressedTextureLayered internal constructor() : TextureLayered() {
+public abstract class CompressedTextureLayered : TextureLayered() {
   /**
    * The path the texture should be loaded from.
    */
@@ -37,7 +37,7 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     get() = getLoadPath()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(174, scriptIndex)
+    createNativeObject(173, scriptIndex)
   }
 
   /**

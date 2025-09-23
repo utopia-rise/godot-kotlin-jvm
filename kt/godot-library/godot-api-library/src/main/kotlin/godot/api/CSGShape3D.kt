@@ -45,7 +45,7 @@ import kotlin.jvm.JvmName
  * scene exporter: **Scene > Export As... > glTF 2.0 Scene...**
  */
 @GodotBaseType
-public open class CSGShape3D internal constructor() : GeometryInstance3D() {
+public abstract class CSGShape3D : GeometryInstance3D() {
   /**
    * The operation that is performed on this shape. This is ignored for the first CSG child node as
    * the operation is between this node and the previous child of this nodes parent.
@@ -144,7 +144,7 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(126, scriptIndex)
+    createNativeObject(125, scriptIndex)
   }
 
   /**

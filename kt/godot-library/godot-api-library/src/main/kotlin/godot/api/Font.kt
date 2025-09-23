@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  * introspection.
  */
 @GodotBaseType
-public open class Font internal constructor() : Resource() {
+public abstract class Font : Resource() {
   /**
    * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current
    * [Font].
@@ -62,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(225, scriptIndex)
+    createNativeObject(224, scriptIndex)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {

@@ -23,9 +23,9 @@ import kotlin.Unit
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
-public open class RenderData internal constructor() : Object() {
+public abstract class RenderData : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(556, scriptIndex)
+    createNativeObject(555, scriptIndex)
   }
 
   /**

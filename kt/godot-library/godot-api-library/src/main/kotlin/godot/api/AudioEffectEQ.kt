@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class AudioEffectEQ : AudioEffect() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(56, scriptIndex)
+    createNativeObject(55, scriptIndex)
   }
 
   /**

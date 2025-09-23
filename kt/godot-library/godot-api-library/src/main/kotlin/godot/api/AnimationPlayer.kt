@@ -216,7 +216,7 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(37, scriptIndex)
+    createNativeObject(36, scriptIndex)
   }
 
   /**

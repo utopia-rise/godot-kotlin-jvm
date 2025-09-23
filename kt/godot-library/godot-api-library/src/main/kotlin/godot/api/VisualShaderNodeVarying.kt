@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * shader to Fragment shader.
  */
 @GodotBaseType
-public open class VisualShaderNodeVarying internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeVarying : VisualShaderNode() {
   /**
    * Name of the variable. Must be unique.
    */

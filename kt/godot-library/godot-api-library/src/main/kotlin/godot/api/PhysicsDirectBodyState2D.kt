@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
  * intended for changing the direct state of that body. See [RigidBody2D.IntegrateForces].
  */
 @GodotBaseType
-public open class PhysicsDirectBodyState2D internal constructor() : Object() {
+public abstract class PhysicsDirectBodyState2D : Object() {
   /**
    * The timestep (delta) used for the simulation.
    */
@@ -180,7 +180,7 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(477, scriptIndex)
+    createNativeObject(476, scriptIndex)
   }
 
   /**

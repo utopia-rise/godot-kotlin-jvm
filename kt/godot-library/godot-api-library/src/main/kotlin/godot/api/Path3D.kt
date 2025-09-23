@@ -74,7 +74,7 @@ public open class Path3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(467, scriptIndex)
+    createNativeObject(466, scriptIndex)
   }
 
   /**

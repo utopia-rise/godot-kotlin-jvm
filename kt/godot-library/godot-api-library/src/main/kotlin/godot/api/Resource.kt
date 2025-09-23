@@ -137,7 +137,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(2, scriptIndex)
+    createNativeObject(567, scriptIndex)
   }
 
   /**

@@ -224,7 +224,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(116, scriptIndex)
+    createNativeObject(115, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

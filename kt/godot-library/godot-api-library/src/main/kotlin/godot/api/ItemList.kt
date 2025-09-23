@@ -309,7 +309,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(320, scriptIndex)
+    createNativeObject(319, scriptIndex)
   }
 
   /**

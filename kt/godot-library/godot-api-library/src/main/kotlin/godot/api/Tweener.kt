@@ -18,7 +18,7 @@ import kotlin.Unit
  * method from [Tween].
  */
 @GodotBaseType
-public open class Tweener internal constructor() : RefCounted() {
+public abstract class Tweener : RefCounted() {
   /**
    * Emitted when the [Tweener] has just finished its job or became invalid (e.g. due to a freed
    * object).

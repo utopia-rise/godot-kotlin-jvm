@@ -91,7 +91,7 @@ public open class AudioEffectDistortion : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(55, scriptIndex)
+    createNativeObject(54, scriptIndex)
   }
 
   public final fun setMode(mode: Mode): Unit {

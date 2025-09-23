@@ -199,7 +199,7 @@ public open class NoiseTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(409, scriptIndex)
+    createNativeObject(408, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {

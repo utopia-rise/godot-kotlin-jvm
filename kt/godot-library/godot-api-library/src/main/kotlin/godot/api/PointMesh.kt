@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PointMesh : PrimitiveMesh() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(513, scriptIndex)
+    createNativeObject(512, scriptIndex)
   }
 
   public companion object

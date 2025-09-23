@@ -93,7 +93,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(29, scriptIndex)
+    createNativeObject(28, scriptIndex)
   }
 
   /**

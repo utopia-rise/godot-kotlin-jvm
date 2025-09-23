@@ -24,9 +24,9 @@ import kotlin.Unit
  * See [OccluderInstance3D]'s documentation for instructions on setting up occlusion culling.
  */
 @GodotBaseType
-public open class Occluder3D internal constructor() : Resource() {
+public abstract class Occluder3D : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(413, scriptIndex)
+    createNativeObject(412, scriptIndex)
   }
 
   /**

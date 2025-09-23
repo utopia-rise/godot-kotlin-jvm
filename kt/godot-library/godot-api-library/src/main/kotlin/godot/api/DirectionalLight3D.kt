@@ -152,7 +152,7 @@ public open class DirectionalLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(203, scriptIndex)
+    createNativeObject(202, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

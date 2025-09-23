@@ -72,7 +72,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class HMACContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(279, scriptIndex)
+    createNativeObject(278, scriptIndex)
   }
 
   /**

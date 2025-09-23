@@ -1353,7 +1353,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(212, scriptIndex)
+    createNativeObject(211, scriptIndex)
   }
 
   /**

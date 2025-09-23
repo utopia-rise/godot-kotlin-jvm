@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GLTFDocumentExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(237, scriptIndex)
+    createNativeObject(236, scriptIndex)
   }
 
   /**

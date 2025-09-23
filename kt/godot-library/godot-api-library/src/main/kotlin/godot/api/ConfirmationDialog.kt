@@ -50,7 +50,7 @@ public open class ConfirmationDialog : AcceptDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(179, scriptIndex)
+    createNativeObject(178, scriptIndex)
   }
 
   /**

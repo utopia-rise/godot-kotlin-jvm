@@ -87,7 +87,7 @@ public open class OpenXRAction : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(421, scriptIndex)
+    createNativeObject(420, scriptIndex)
   }
 
   /**

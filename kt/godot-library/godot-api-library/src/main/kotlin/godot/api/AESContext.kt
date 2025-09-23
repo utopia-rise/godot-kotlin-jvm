@@ -102,7 +102,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AESContext : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(3, scriptIndex)
+    createNativeObject(2, scriptIndex)
   }
 
   /**

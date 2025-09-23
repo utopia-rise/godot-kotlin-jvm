@@ -334,7 +334,7 @@ public open class Area2D : CollisionObject2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(40, scriptIndex)
+    createNativeObject(39, scriptIndex)
   }
 
   /**

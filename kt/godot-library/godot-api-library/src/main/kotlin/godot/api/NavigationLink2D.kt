@@ -146,7 +146,7 @@ public open class NavigationLink2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(386, scriptIndex)
+    createNativeObject(385, scriptIndex)
   }
 
   /**

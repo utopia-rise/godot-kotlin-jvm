@@ -97,7 +97,7 @@ public open class BoneAttachment3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(109, scriptIndex)
+    createNativeObject(108, scriptIndex)
   }
 
   /**

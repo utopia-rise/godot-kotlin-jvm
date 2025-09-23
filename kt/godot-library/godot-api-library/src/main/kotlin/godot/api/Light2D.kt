@@ -33,7 +33,7 @@ import kotlin.jvm.JvmName
  * constants), and various other parameters (range and shadows-related).
  */
 @GodotBaseType
-public open class Light2D internal constructor() : Node2D() {
+public abstract class Light2D : Node2D() {
   /**
    * If `true`, Light2D will emit light.
    */
@@ -224,7 +224,7 @@ public open class Light2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(339, scriptIndex)
+    createNativeObject(338, scriptIndex)
   }
 
   /**

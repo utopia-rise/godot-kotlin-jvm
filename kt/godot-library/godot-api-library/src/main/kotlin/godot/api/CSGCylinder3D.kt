@@ -103,7 +103,7 @@ public open class CSGCylinder3D : CSGPrimitive3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(122, scriptIndex)
+    createNativeObject(121, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

@@ -1015,7 +1015,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+    createNativeObject(118, scriptIndex)
   }
 
   /**

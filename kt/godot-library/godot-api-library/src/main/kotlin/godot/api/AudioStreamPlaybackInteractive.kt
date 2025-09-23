@@ -26,9 +26,9 @@ import kotlin.Unit
  * clip.
  */
 @GodotBaseType
-public open class AudioStreamPlaybackInteractive internal constructor() : AudioStreamPlayback() {
+public abstract class AudioStreamPlaybackInteractive : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(90, scriptIndex)
+    createNativeObject(89, scriptIndex)
   }
 
   /**

@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
 @GodotBaseType
-public open class VisualShaderNodeVectorBase internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeVectorBase : VisualShaderNode() {
   /**
    * A vector type that this operation is performed on.
    */

@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class StreamPeer internal constructor() : RefCounted() {
+public abstract class StreamPeer : RefCounted() {
   /**
    * If `true`, this [StreamPeer] will using big-endian format for encoding and decoding.
    */

@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
  * This object is the base of all XR trackers.
  */
 @GodotBaseType
-public open class XRTracker internal constructor() : RefCounted() {
+public abstract class XRTracker : RefCounted() {
   /**
    * The type of tracker.
    */

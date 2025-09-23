@@ -145,7 +145,7 @@ import kotlin.jvm.JvmName
  * and input methods, or to allow more advanced interactions with more advanced devices.
  */
 @GodotBaseType
-public open class WebXRInterface internal constructor() : XRInterface() {
+public abstract class WebXRInterface : XRInterface() {
   /**
    * Emitted by [isSessionSupported] to indicate if the given [sessionMode] is supported or not.
    */

@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * can't be emulated using mouse, because they typically require multi-touch.
  */
 @GodotBaseType
-public open class InputEventGesture internal constructor() : InputEventWithModifiers() {
+public abstract class InputEventGesture : InputEventWithModifiers() {
   /**
    * The local gesture position relative to the [Viewport]. If used in [Control.GuiInput], the
    * position is relative to the current [Control] that received this gesture.
@@ -47,7 +47,7 @@ public open class InputEventGesture internal constructor() : InputEventWithModif
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(303, scriptIndex)
+    createNativeObject(302, scriptIndex)
   }
 
   /**

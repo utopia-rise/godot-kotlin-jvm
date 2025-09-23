@@ -55,7 +55,7 @@ public open class RDPipelineSpecializationConstant : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(536, scriptIndex)
+    createNativeObject(535, scriptIndex)
   }
 
   public final fun setValue(`value`: Any?): Unit {

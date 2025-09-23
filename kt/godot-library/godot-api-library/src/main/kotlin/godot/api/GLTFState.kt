@@ -347,7 +347,7 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(248, scriptIndex)
+    createNativeObject(247, scriptIndex)
   }
 
   /**

@@ -133,7 +133,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(14, scriptIndex)
+    createNativeObject(13, scriptIndex)
   }
 
   /**

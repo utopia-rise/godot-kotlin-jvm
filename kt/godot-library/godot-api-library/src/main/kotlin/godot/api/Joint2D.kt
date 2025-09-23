@@ -32,7 +32,7 @@ import kotlin.jvm.JvmName
  * ([nodeA] and [nodeB]) and apply a constraint.
  */
 @GodotBaseType
-public open class Joint2D internal constructor() : Node2D() {
+public abstract class Joint2D : Node2D() {
   /**
    * Path to the first body (A) attached to the joint. The node must inherit [PhysicsBody2D].
    */
@@ -83,7 +83,7 @@ public open class Joint2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(330, scriptIndex)
+    createNativeObject(329, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

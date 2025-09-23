@@ -31,7 +31,7 @@ import kotlin.jvm.JvmName
  * key is pressed on its own.
  */
 @GodotBaseType
-public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
+public abstract class InputEventWithModifiers : InputEventFromWindow() {
   /**
    * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other
    * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.
@@ -90,7 +90,7 @@ public open class InputEventWithModifiers internal constructor() : InputEventFro
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(316, scriptIndex)
+    createNativeObject(315, scriptIndex)
   }
 
   public final fun setCommandOrControlAutoremap(enable: Boolean): Unit {

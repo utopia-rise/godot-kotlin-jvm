@@ -103,7 +103,7 @@ public infix fun Long.and(other: FileAccess.UnixPermissionFlags): Long = this.an
  * game process will be killed. You can work around this by calling [flush] at regular intervals.
  */
 @GodotBaseType
-public open class FileAccess internal constructor() : RefCounted() {
+public abstract class FileAccess : RefCounted() {
   /**
    * If `true`, the file is read with big-endian
    * [url=https://en.wikipedia.org/wiki/Endianness]endianness[/url]. If `false`, the file is read with
@@ -123,7 +123,7 @@ public open class FileAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+    createNativeObject(217, scriptIndex)
   }
 
   /**

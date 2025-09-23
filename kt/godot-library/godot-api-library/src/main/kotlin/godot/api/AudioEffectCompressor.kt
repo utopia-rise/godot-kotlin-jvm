@@ -126,7 +126,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(53, scriptIndex)
+    createNativeObject(52, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {

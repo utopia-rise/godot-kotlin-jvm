@@ -31,7 +31,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class GDExtension : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(229, scriptIndex)
+    createNativeObject(228, scriptIndex)
   }
 
   /**

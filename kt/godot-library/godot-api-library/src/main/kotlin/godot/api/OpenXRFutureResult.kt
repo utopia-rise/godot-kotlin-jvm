@@ -26,14 +26,14 @@ import kotlin.Unit
  * object to track the result status.
  */
 @GodotBaseType
-public open class OpenXRFutureResult internal constructor() : RefCounted() {
+public abstract class OpenXRFutureResult : RefCounted() {
   /**
    * Emitted when the asynchronous function is finished or has been cancelled.
    */
   public val completed: Signal1<OpenXRFutureResult> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(435, scriptIndex)
+    createNativeObject(434, scriptIndex)
   }
 
   /**

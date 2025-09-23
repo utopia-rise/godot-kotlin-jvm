@@ -33,7 +33,7 @@ import kotlin.jvm.JvmName
  * **Note:** Particle attractors only affect [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
-public open class GPUParticlesAttractor3D internal constructor() : VisualInstance3D() {
+public abstract class GPUParticlesAttractor3D : VisualInstance3D() {
   /**
    * Adjusts the strength of the attractor. If [strength] is negative, particles will be pushed in
    * the opposite direction. Particles will be pushed *away* from the attractor's origin if
@@ -97,7 +97,7 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(253, scriptIndex)
+    createNativeObject(252, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

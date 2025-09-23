@@ -33,9 +33,9 @@ import kotlin.jvm.JvmOverloads
  * get the world's physics 3D space state.
  */
 @GodotBaseType
-public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
+public abstract class PhysicsDirectSpaceState3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(483, scriptIndex)
+    createNativeObject(482, scriptIndex)
   }
 
   /**

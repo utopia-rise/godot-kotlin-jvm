@@ -62,7 +62,7 @@ public open class AudioEffectChorus : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(52, scriptIndex)
+    createNativeObject(51, scriptIndex)
   }
 
   public final fun setVoiceCount(voices: Int): Unit {

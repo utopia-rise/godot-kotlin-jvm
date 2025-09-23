@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PhysicsTestMotionResult2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(499, scriptIndex)
+    createNativeObject(498, scriptIndex)
   }
 
   /**

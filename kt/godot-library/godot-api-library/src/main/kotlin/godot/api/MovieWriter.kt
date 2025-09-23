@@ -76,7 +76,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public abstract class MovieWriter : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(372, scriptIndex)
+    createNativeObject(371, scriptIndex)
   }
 
   /**

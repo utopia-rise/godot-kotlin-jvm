@@ -44,7 +44,7 @@ import kotlin.jvm.JvmName
  * can be generated with a [ViewportTexture], in order to emulate the composition layer.
  */
 @GodotBaseType
-public open class OpenXRCompositionLayer internal constructor() : Node3D() {
+public abstract class OpenXRCompositionLayer : Node3D() {
   /**
    * The [SubViewport] to render on the composition layer.
    */
@@ -299,7 +299,7 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(427, scriptIndex)
+    createNativeObject(426, scriptIndex)
   }
 
   /**

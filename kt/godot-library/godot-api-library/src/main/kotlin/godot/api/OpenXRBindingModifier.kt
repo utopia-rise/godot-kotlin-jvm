@@ -18,9 +18,9 @@ import kotlin.Unit
  * runtime processes inputs.
  */
 @GodotBaseType
-public abstract class OpenXRBindingModifier internal constructor() : Resource() {
+public abstract class OpenXRBindingModifier : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(426, scriptIndex)
+    createNativeObject(425, scriptIndex)
   }
 
   /**

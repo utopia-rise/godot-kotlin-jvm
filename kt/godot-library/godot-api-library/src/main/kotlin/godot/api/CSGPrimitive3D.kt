@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
  * gameplay.
  */
 @GodotBaseType
-public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
+public abstract class CSGPrimitive3D : CSGShape3D() {
   /**
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.
@@ -43,7 +43,7 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(125, scriptIndex)
+    createNativeObject(124, scriptIndex)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

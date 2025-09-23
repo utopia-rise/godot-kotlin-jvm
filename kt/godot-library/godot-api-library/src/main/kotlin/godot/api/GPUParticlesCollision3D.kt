@@ -37,7 +37,7 @@ import kotlin.jvm.JvmName
  * a value that matches or exceeds the target framerate.
  */
 @GodotBaseType
-public open class GPUParticlesCollision3D internal constructor() : VisualInstance3D() {
+public abstract class GPUParticlesCollision3D : VisualInstance3D() {
   /**
    * The particle rendering layers ([VisualInstance3D.layers]) that will be affected by the
    * collision shape. By default, all particles that have [ParticleProcessMaterial.collisionMode] set
@@ -61,7 +61,7 @@ public open class GPUParticlesCollision3D internal constructor() : VisualInstanc
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(257, scriptIndex)
+    createNativeObject(256, scriptIndex)
   }
 
   public final fun setCullMask(mask: Long): Unit {

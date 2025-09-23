@@ -47,7 +47,7 @@ public open class GLTFAnimation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(233, scriptIndex)
+    createNativeObject(232, scriptIndex)
   }
 
   public final fun getOriginalName(): String {

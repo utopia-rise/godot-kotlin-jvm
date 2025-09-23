@@ -105,7 +105,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(552, scriptIndex)
+    createNativeObject(551, scriptIndex)
   }
 
   /**

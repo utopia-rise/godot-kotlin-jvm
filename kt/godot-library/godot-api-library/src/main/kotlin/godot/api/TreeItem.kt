@@ -55,7 +55,7 @@ import kotlin.jvm.JvmOverloads
  * from `-2147483648` to `2147483647`.
  */
 @GodotBaseType
-public open class TreeItem internal constructor() : Object() {
+public abstract class TreeItem : Object() {
   /**
    * If `true`, the TreeItem is collapsed.
    */

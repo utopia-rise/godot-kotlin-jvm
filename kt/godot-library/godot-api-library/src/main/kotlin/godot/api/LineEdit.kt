@@ -561,7 +561,7 @@ public open class LineEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(348, scriptIndex)
+    createNativeObject(347, scriptIndex)
   }
 
   /**

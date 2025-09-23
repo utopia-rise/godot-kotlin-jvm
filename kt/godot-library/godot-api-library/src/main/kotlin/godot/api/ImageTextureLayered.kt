@@ -28,9 +28,9 @@ import kotlin.Unit
  * contains all the functions necessary for accessing the derived resource types. See also [Texture3D].
  */
 @GodotBaseType
-public open class ImageTextureLayered internal constructor() : TextureLayered() {
+public abstract class ImageTextureLayered : TextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(295, scriptIndex)
+    createNativeObject(294, scriptIndex)
   }
 
   /**

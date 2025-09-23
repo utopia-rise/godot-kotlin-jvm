@@ -639,7 +639,7 @@ public open class Node : Object() {
       arg8, arg9)
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(404, scriptIndex)
+    createNativeObject(403, scriptIndex)
   }
 
   /**

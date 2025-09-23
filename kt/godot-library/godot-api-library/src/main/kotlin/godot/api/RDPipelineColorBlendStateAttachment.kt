@@ -222,7 +222,7 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(532, scriptIndex)
+    createNativeObject(531, scriptIndex)
   }
 
   /**

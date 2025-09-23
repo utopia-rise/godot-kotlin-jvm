@@ -93,7 +93,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(362, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   /**

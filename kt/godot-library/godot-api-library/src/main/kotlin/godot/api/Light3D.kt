@@ -35,7 +35,7 @@ import kotlin.jvm.JvmName
  * and parameters used for lighting.
  */
 @GodotBaseType
-public open class Light3D internal constructor() : VisualInstance3D() {
+public abstract class Light3D : VisualInstance3D() {
   /**
    * Used by positional lights ([OmniLight3D] and [SpotLight3D]) when
    * [ProjectSettings.rendering/lightsAndShadows/usePhysicalLightUnits] is `true`. Sets the intensity
@@ -438,7 +438,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(340, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   /**

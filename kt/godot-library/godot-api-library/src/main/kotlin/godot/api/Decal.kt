@@ -308,7 +308,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(200, scriptIndex)
+    createNativeObject(199, scriptIndex)
   }
 
   /**

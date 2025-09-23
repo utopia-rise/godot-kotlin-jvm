@@ -79,7 +79,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(144, scriptIndex)
+    createNativeObject(143, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
