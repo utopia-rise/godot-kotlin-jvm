@@ -10,16 +10,15 @@ fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
             group = "godot-kotlin-jvm"
             description = "Generates .gdignore files to hide gradle files, kotlin build files and jre files from the godot editor."
 
+            // safety check: make sure that the target project has our plugin
+            val hasPlugin = provider { pluginManager.hasPlugin("com.utopia-rise.godot-kotlin-jvm") }
+            onlyIf { hasPlugin.get() }
+
+            val projectDir = layout.projectDirectory.asFile
+            val buildDirProvider = layout.buildDirectory.asFile
             doFirst {
 
-                // safety check: make sure that the target project has our plugin
-                if (!this.project.pluginManager.hasPlugin("com.utopia-rise.godot-kotlin-jvm")) {
-                    // the target project doesn't seem to have our plugin; skip.
-                    return@doFirst
-                }
-
-                val projectDir = this.project.projectDir
-                val buildDir = this.project.layout.buildDirectory.asFile.get()
+                val buildDir = buildDirProvider.get()
 
                 val targetDirSequence = sequenceOf(
                     buildDir,
