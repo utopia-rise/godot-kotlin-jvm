@@ -13,10 +13,10 @@ Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallE
     Object* obj = _object_create(p_args, p_arg_count);
     if (obj) {
         r_error.error = Callable::CallError::CALL_OK;
-        return {obj};
+        return Variant(obj);
     }
     r_error.error = Callable::CallError::CALL_ERROR_INVALID_ARGUMENT;
-    return {};
+    return Variant();
 }
 
 Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {

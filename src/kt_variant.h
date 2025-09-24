@@ -178,14 +178,14 @@ public:
 class BufferToVariant {
     template<class T>
     static Variant read_core_type(SharedBuffer* byte_buffer) {
-        auto result {reinterpret_cast<T*>(byte_buffer->get_cursor())};
+        T* result {reinterpret_cast<T*>(byte_buffer->get_cursor())};
         byte_buffer->increment_position(sizeof(T));
-        return Variant(*result);
+        return *result;
     }
 
     template<class T>
     static inline T* read_pointer(SharedBuffer* byte_buffer) {
-        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
+        uintptr_t ptr {decode_uint64(byte_buffer->get_cursor())};
         byte_buffer->increment_position(PTR_SIZE);
         return reinterpret_cast<T*>(ptr);
     }
@@ -195,14 +195,14 @@ class BufferToVariant {
         return *read_pointer<T>(byte_buffer);
     }
 
-    static Variant read_nil(SharedBuffer* byte_buffer) {
-        return Variant();
+    static Variant read_nil(SharedBuffer*) {
+        return {};
     }
 
     static Variant read_bool(SharedBuffer* byte_buffer) {
         bool b {static_cast<bool>(decode_uint32(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(BOOL_SIZE);
-        return Variant(b);
+        return b;
     }
 
     static Variant read_string(SharedBuffer* byte_buffer) {
@@ -210,13 +210,13 @@ class BufferToVariant {
         byte_buffer->increment_position(BOOL_SIZE);
         if (unlikely(is_long)) {
             String str = LongStringQueue::get_instance().poll_string();
-            return Variant(str);
+            return str;
         } else {
             uint32_t size {decode_uint32(byte_buffer->get_cursor())};
             byte_buffer->increment_position(INT_SIZE);
             String str = String::utf8(reinterpret_cast<const char*>(byte_buffer->get_cursor()), size);
             byte_buffer->increment_position(size);
-            return Variant(str);
+            return str;
         }
     }
 
@@ -227,13 +227,13 @@ class BufferToVariant {
     }
 
     static Variant read_object(SharedBuffer* byte_buffer) {
-        return Variant(to_godot_object(byte_buffer));
+        return to_godot_object(byte_buffer);
     }
 
     static Variant read_signal(SharedBuffer* byte_buffer) {
         const Object* object {to_godot_object(byte_buffer)};
         const StringName name {*read_pointer<StringName>(byte_buffer)};
-        return Variant(Signal(object, name));
+        return Signal(object, name);
     }
 
     static Variant read_callable(SharedBuffer* byte_buffer) {
