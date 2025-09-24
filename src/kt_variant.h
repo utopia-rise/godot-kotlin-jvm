@@ -185,7 +185,7 @@ class BufferToVariant {
 
     template<class T>
     static inline T* read_pointer(SharedBuffer* byte_buffer) {
-        uintptr_t ptr {decode_uint64(byte_buffer->get_cursor())};
+        auto ptr {static_cast<uintptr_t>(decode_uint64(byte_buffer->get_cursor()))};
         byte_buffer->increment_position(PTR_SIZE);
         return reinterpret_cast<T*>(ptr);
     }
