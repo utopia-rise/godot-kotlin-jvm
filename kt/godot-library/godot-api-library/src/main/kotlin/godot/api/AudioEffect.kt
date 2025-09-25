@@ -24,7 +24,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class AudioEffect : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(45, scriptIndex)
+    createNativeObject(46, scriptIndex)
   }
 
   /**
@@ -37,10 +37,10 @@ public abstract class AudioEffect : Resource() {
    * @export var strength = 4.0
    *
    * func _instantiate():
-   *     var effect = CustomAudioEffectInstance.new()
-   *     effect.base = self
+   * var effect = CustomAudioEffectInstance.new()
+   * effect.base = self
    *
-   *     return effect
+   * return effect
    * ```
    *
    * **Note:** It is recommended to keep a reference to the original [AudioEffect] in the new

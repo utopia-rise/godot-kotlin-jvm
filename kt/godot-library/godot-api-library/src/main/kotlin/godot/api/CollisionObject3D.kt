@@ -44,7 +44,7 @@ import kotlin.jvm.JvmName
  * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
 @GodotBaseType
-public open class CollisionObject3D internal constructor() : Node3D() {
+public abstract class CollisionObject3D : Node3D() {
   /**
    * Emitted when the object receives an unhandled [InputEvent]. [eventPosition] is the location in
    * world space of the mouse pointer on the surface of the shape with index [shapeIdx] and [normal] is
@@ -76,7 +76,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
-   * See [DisableMode] for more details about the different modes.
    */
   public final inline var disableMode: DisableMode
     @JvmName("disableModeProperty")
@@ -159,7 +158,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(155, scriptIndex)
+    createNativeObject(157, scriptIndex)
   }
 
   /**

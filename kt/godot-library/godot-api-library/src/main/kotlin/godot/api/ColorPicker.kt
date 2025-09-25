@@ -83,7 +83,19 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * The currently selected color mode. See [ColorModeType].
+   * If `true`, shows an intensity slider. The intensity is applied as follows: multiply the color
+   * by `2 ** intensity` in linear RGB space, and then convert it back to sRGB.
+   */
+  public final inline var editIntensity: Boolean
+    @JvmName("editIntensityProperty")
+    get() = isEditingIntensity()
+    @JvmName("editIntensityProperty")
+    set(`value`) {
+      setEditIntensity(value)
+    }
+
+  /**
+   * The currently selected color mode.
    */
   public final inline var colorMode: ColorModeType
     @JvmName("colorModeProperty")
@@ -106,7 +118,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   /**
-   * The shape of the color space view. See [PickerShapeType].
+   * The shape of the color space view.
    */
   public final inline var pickerShape: PickerShapeType
     @JvmName("pickerShapeProperty")
@@ -184,7 +196,7 @@ public open class ColorPicker : VBoxContainer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(161, scriptIndex)
+    createNativeObject(163, scriptIndex)
   }
 
   /**
@@ -247,6 +259,17 @@ public open class ColorPicker : VBoxContainer() {
   public final fun isEditingAlpha(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isEditingAlphaPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEditIntensity(show: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to show)
+    TransferContext.callMethod(ptr, MethodBindings.setEditIntensityPtr, NIL)
+  }
+
+  public final fun isEditingIntensity(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEditingIntensityPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -388,18 +411,18 @@ public open class ColorPicker : VBoxContainer() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Allows editing the color with Red/Green/Blue sliders.
+     * Allows editing the color with Red/Green/Blue sliders in sRGB color space.
      */
     MODE_RGB(0),
     /**
      * Allows editing the color with Hue/Saturation/Value sliders.
      */
     MODE_HSV(1),
-    /**
-     * Allows the color R, G, B component values to go beyond 1.0, which can be used for certain
-     * special operations that require it (like tinting without darkening or rendering sprites in HDR).
-     */
     MODE_RAW(2),
+    /**
+     * Allows editing the color with Red/Green/Blue sliders in linear color space.
+     */
+    MODE_LINEAR(2),
     /**
      * Allows editing the color with Hue/Saturation/Lightness sliders.
      *
@@ -446,6 +469,14 @@ public open class ColorPicker : VBoxContainer() {
      * shapes popup.
      */
     SHAPE_NONE(4),
+    /**
+     * OKHSL Color Model rectangle with constant lightness.
+     */
+    SHAPE_OK_HS_RECTANGLE(5),
+    /**
+     * OKHSL Color Model rectangle with constant saturation.
+     */
+    SHAPE_OK_HL_RECTANGLE(6),
     ;
 
     public override val `value`: Long
@@ -484,6 +515,12 @@ public open class ColorPicker : VBoxContainer() {
 
     internal val isEditingAlphaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ColorPicker", "is_editing_alpha", 36873697)
+
+    internal val setEditIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "set_edit_intensity", 2586408642)
+
+    internal val isEditingIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPicker", "is_editing_intensity", 36873697)
 
     internal val setCanAddSwatchesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ColorPicker", "set_can_add_swatches", 2586408642)

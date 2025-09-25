@@ -137,8 +137,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for horizontal stretching/tiling. See [NinePatchRect.AxisStretchMode]
-   * for possible values.
+   * The stretch mode to use for horizontal stretching/tiling.
    */
   public final inline var axisStretchHorizontal: AxisStretchMode
     @JvmName("axisStretchHorizontalProperty")
@@ -149,8 +148,7 @@ public open class NinePatchRect : Control() {
     }
 
   /**
-   * The stretch mode to use for vertical stretching/tiling. See [NinePatchRect.AxisStretchMode] for
-   * possible values.
+   * The stretch mode to use for vertical stretching/tiling.
    */
   public final inline var axisStretchVertical: AxisStretchMode
     @JvmName("axisStretchVerticalProperty")
@@ -161,7 +159,7 @@ public open class NinePatchRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(393, scriptIndex)
+    createNativeObject(402, scriptIndex)
   }
 
   /**

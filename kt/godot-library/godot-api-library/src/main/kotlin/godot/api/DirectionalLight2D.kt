@@ -24,6 +24,10 @@ import kotlin.jvm.JvmName
  * covering the entire scene. It is used for lights with strong intensity that are located far away
  * from the scene (for example: to model sunlight or moonlight).
  *
+ * Light is emitted in the +Y direction of the node's global basis. For an unrotated light, this
+ * means that the light is emitted downwards. The position of the node is ignored; only the basis is
+ * used to determine light direction.
+ *
  * **Note:** [DirectionalLight2D] does not support light cull masks (but it supports shadow cull
  * masks). It will always light up 2D nodes, regardless of the 2D node's [CanvasItem.lightMask].
  */
@@ -57,7 +61,7 @@ public open class DirectionalLight2D : Light2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(196, scriptIndex)
+    createNativeObject(201, scriptIndex)
   }
 
   public final fun setMaxDistance(pixels: Float): Unit {

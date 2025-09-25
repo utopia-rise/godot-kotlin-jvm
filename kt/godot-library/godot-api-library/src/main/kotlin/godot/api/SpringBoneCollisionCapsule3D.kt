@@ -28,6 +28,10 @@ import kotlin.jvm.JvmName
 public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
   /**
    * The capsule's radius.
+   *
+   * **Note:** The [radius] of a capsule cannot be greater than half of its [height]. Otherwise, the
+   * capsule becomes a sphere. If the [radius] is greater than half of the [height], the properties
+   * adjust to a valid value.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -38,7 +42,11 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     }
 
   /**
-   * The capsule's height.
+   * The capsule's full height, including the hemispheres.
+   *
+   * **Note:** The [height] of a capsule must be at least twice its [radius]. Otherwise, the capsule
+   * becomes a sphere. If the [height] is less than twice the [radius], the properties adjust to a
+   * valid value.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -46,6 +54,19 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     @JvmName("heightProperty")
     set(`value`) {
       setHeight(value)
+    }
+
+  /**
+   * The capsule's height, excluding the hemispheres. This is the height of the central cylindrical
+   * part in the middle of the capsule, and is the distance between the centers of the two hemispheres.
+   * This is a wrapper for [height].
+   */
+  public final inline var midHeight: Float
+    @JvmName("midHeightProperty")
+    get() = getMidHeight()
+    @JvmName("midHeightProperty")
+    set(`value`) {
+      setMidHeight(value)
     }
 
   /**
@@ -60,7 +81,7 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(622, scriptIndex)
+    createNativeObject(638, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {
@@ -82,6 +103,17 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
   public final fun getHeight(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getHeightPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setMidHeight(midHeight: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to midHeight.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setMidHeightPtr, NIL)
+  }
+
+  public final fun getMidHeight(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getMidHeightPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -110,6 +142,12 @@ public open class SpringBoneCollisionCapsule3D : SpringBoneCollision3D() {
 
     internal val getHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_height", 1740695150)
+
+    internal val setMidHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_mid_height", 373806689)
+
+    internal val getMidHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "get_mid_height", 1740695150)
 
     internal val setInsidePtr: VoidPtr =
         TypeManager.getMethodBindPtr("SpringBoneCollisionCapsule3D", "set_inside", 2586408642)

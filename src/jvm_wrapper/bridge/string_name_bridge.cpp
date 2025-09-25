@@ -25,7 +25,7 @@ uintptr_t StringNameBridge::engine_call_constructor_string(JNIEnv* p_raw_env, jo
 
 void StringNameBridge::engine_call_operator_string(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant result {from_uint_to_ptr<StringName>(p_raw_ptr)->operator String()};
+    Variant result = from_uint_to_ptr<StringName>(p_raw_ptr)->operator String();
     TransferContext::get_instance().write_return_value(env, result);
 }
 

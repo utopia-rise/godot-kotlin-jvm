@@ -53,102 +53,90 @@ void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const
     p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
 }
 
-void KotlinLanguage::get_reserved_words(List<String>* p_words) const {
-    static const char* _reserved_words[] = {// RESERVED KEYWORDS
-                                            "as",
-                                            "as?",
-                                            "break",
-                                            "class",
-                                            "continue",
-                                            "do",
-                                            "else",
-                                            "false",
-                                            "for",
-                                            "fun",
-                                            "if",
-                                            "in",
-                                            "!in",
-                                            "interface",
-                                            "is",
-                                            "!is",
-                                            "null",
-                                            "object",
-                                            "package",
-                                            "return",
-                                            "super",
-                                            "this",
-                                            "throw",
-                                            "true",
-                                            "try",
-                                            "typealias",
-                                            "typeof",
-                                            "val",
-                                            "var",
-                                            "when",
-                                            "while",
-
-                                            // SOFT KEYWORDS
-                                            "by",
-                                            "catch",
-                                            "constructor",
-                                            "delegate",
-                                            "dynamic",
-                                            "field",
-                                            "file",
-                                            "finally",
-                                            "get",
-                                            "import",
-                                            "init",
-                                            "param",
-                                            "property",
-                                            "receiveris",
-                                            "set",
-                                            "setparam",
-                                            "where",
-
-                                            // MODIFIERS KEYWORDS
-                                            "actual",
-                                            "abstract",
-                                            "annotation",
-                                            "companion",
-                                            "const",
-                                            "crossinline",
-                                            "data",
-                                            "enum",
-                                            "expect",
-                                            "external",
-                                            "final",
-                                            "infix",
-                                            "inline",
-                                            "inner",
-                                            "internal",
-                                            "lateinit",
-                                            "noinline",
-                                            "open",
-                                            "operator",
-                                            "out",
-                                            "override",
-                                            "private",
-                                            "protected",
-                                            "public",
-                                            "reified",
-                                            "sealed",
-                                            "suspend",
-                                            "tailrec",
-                                            "vararg",
-
-                                            // SPECIAL IDENTIFIERS
-                                            "it",
-
-                                            nullptr
+Vector<String> KotlinLanguage::get_reserved_words() const {
+    return {// RESERVED KEYWORDS
+        "as",
+        "as?",
+        "break",
+        "class",
+        "continue",
+        "do",
+        "else",
+        "false",
+        "for",
+        "fun",
+        "if",
+        "in",
+        "!in",
+        "interface",
+        "is",
+        "!is",
+        "null",
+        "object",
+        "package",
+        "return",
+        "super",
+        "this",
+        "throw",
+        "true",
+        "try",
+        "typealias",
+        "typeof",
+        "val",
+        "var",
+        "when",
+        "while",
+        // SOFT KEYWORDS
+        "by",
+        "catch",
+        "constructor",
+        "delegate",
+        "dynamic",
+        "field",
+        "file",
+        "finally",
+        "get",
+        "import",
+        "init",
+        "param",
+        "property",
+        "receiveris",
+        "set",
+        "setparam",
+        "where",
+        // MODIFIERS KEYWORDS
+        "actual",
+        "abstract",
+        "annotation",
+        "companion",
+        "const",
+        "crossinline",
+        "data",
+        "enum",
+        "expect",
+        "external",
+        "final",
+        "infix",
+        "inline",
+        "inner",
+        "internal",
+        "lateinit",
+        "noinline",
+        "open",
+        "operator",
+        "out",
+        "override",
+        "private",
+        "protected",
+        "public",
+        "reified",
+        "sealed",
+        "suspend",
+        "tailrec",
+        "vararg",
+        // SPECIAL IDENTIFIERS
+        "it",
     };
-
-    const char** w = _reserved_words;
-
-    while (*w) {
-        p_words->push_back(*w);
-        w++;
-    }
 }
 
 bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -157,18 +145,16 @@ bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
 }
 
-void KotlinLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("//");
-    p_delimiters->push_back("/* */");
+Vector<String> KotlinLanguage::get_comment_delimiters() const {
+    return {"//", "/* */"};
 }
 
-void KotlinLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("/** */");
+Vector<String> KotlinLanguage::get_doc_comment_delimiters() const {
+    return {"/** */"};
 }
 
-void KotlinLanguage::get_string_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("' '");
-    p_delimiters->push_back("\" \"");
+Vector<String> KotlinLanguage::get_string_delimiters() const {
+    return {"' '", "\" \""};
 }
 
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {

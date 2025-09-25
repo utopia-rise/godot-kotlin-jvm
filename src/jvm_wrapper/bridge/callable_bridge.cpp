@@ -47,7 +47,7 @@ void CallableBridge::engine_call_bind(JNIEnv* p_raw_env, jobject p_instance, jlo
         args_ptr[i] = &args[i];
     }
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->bindp(args_ptr, args_size)};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->bindp(args_ptr, args_size);
     TransferContext::get_instance().write_return_value(env, result);
 }
 
@@ -56,7 +56,7 @@ void CallableBridge::engine_call_bindv(JNIEnv* p_raw_env, jobject p_instance, jl
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->bindv(args[0])};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->bindv(args[0]);
     TransferContext::get_instance().write_return_value(env, result);
 }
 
@@ -96,77 +96,77 @@ void CallableBridge::engine_call_callv(JNIEnv* p_raw_env, jobject p_instance, jl
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->callv(args[0])};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->callv(args[0]);
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_bound_arguments(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->get_bound_arguments()};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->get_bound_arguments();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_bound_arguments_count(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->get_bound_arguments_count()};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->get_bound_arguments_count();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_method(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->get_method()};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->get_method();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_object(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->get_object()};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->get_object();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_get_object_id(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->get_object_id()};
+    Variant result = from_uint_to_ptr<Callable>(p_raw_ptr)->get_object_id();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_hash(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->hash()};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->hash();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_is_custom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->is_custom()};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->is_custom();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_is_null(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->is_null()};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->is_null();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_is_standard(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->is_standard()};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->is_standard();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
 void CallableBridge::engine_call_is_valid(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->is_valid()};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->is_valid();
     TransferContext::get_instance().write_return_value(env, result);
 }
 
@@ -180,7 +180,7 @@ void CallableBridge::engine_call_rpc(JNIEnv* p_raw_env, jobject p_instance, jlon
     for (uint32_t i = 0; i < args_size; ++i) {
         args_ptr[i] = &args[i];
     }
-    Variant instance {*from_uint_to_ptr<Callable>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<Callable>(p_raw_ptr);
     instance.call(SNAME("rpc"), args_ptr);
 }
 
@@ -195,7 +195,7 @@ void CallableBridge::engine_call_rpc_id(JNIEnv* p_raw_env, jobject p_instance, j
         args_ptr[i] = &args[i];
     }
 
-    Variant instance {*from_uint_to_ptr<Callable>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<Callable>(p_raw_ptr);
     instance.call(SNAME("rpc_id"), args_ptr);
 }
 
@@ -204,7 +204,7 @@ void CallableBridge::engine_call_unbind(JNIEnv* p_raw_env, jobject p_instance, j
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant result {from_uint_to_ptr<Callable>(p_raw_ptr)->unbind(args[0])};
+    Variant result =from_uint_to_ptr<Callable>(p_raw_ptr)->unbind(args[0]);
     TransferContext::get_instance().write_return_value(env, result);
 }
 

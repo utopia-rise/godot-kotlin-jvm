@@ -48,7 +48,7 @@ public open class QuadOccluder3D : Occluder3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(512, scriptIndex)
+    createNativeObject(527, scriptIndex)
   }
 
   /**

@@ -40,7 +40,8 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventAction : InputEvent() {
   /**
-   * The action's name. Actions are accessed via this [String].
+   * The action's name. This is usually the name of an existing action in the [InputMap] which you
+   * want this custom event to match.
    */
   public final inline var action: StringName
     @JvmName("actionProperty")
@@ -88,7 +89,7 @@ public open class InputEventAction : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(293, scriptIndex)
+    createNativeObject(300, scriptIndex)
   }
 
   public final fun setAction(action: StringName): Unit {

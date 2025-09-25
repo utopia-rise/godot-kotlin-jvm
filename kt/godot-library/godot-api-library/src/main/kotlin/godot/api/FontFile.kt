@@ -170,7 +170,7 @@ public open class FontFile : Font() {
     }
 
   /**
-   * Font style flags, see [TextServer.FontStyle].
+   * Font style flags.
    */
   public final inline var fontStyle: TextServer.FontStyle
     @JvmName("fontStyleProperty")
@@ -308,6 +308,18 @@ public open class FontFile : Font() {
     }
 
   /**
+   * If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's
+   * applied to the monochrome glyphs only.
+   */
+  public final inline var modulateColorGlyphs: Boolean
+    @JvmName("modulateColorGlyphsProperty")
+    get() = isModulateColorGlyphs()
+    @JvmName("modulateColorGlyphsProperty")
+    set(`value`) {
+      setModulateColorGlyphs(value)
+    }
+
+  /**
    * Font hinting mode. Used by dynamic fonts only.
    */
   public final inline var hinting: TextServer.Hinting
@@ -316,18 +328,6 @@ public open class FontFile : Font() {
     @JvmName("hintingProperty")
     set(`value`) {
       setHinting(value)
-    }
-
-  /**
-   * Font oversampling factor. If set to `0.0`, the global oversampling factor is used instead. Used
-   * by dynamic fonts only (MSDF fonts ignore oversampling).
-   */
-  public final inline var oversampling: Float
-    @JvmName("oversamplingProperty")
-    get() = getOversampling()
-    @JvmName("oversamplingProperty")
-    set(`value`) {
-      setOversampling(value)
     }
 
   /**
@@ -363,8 +363,21 @@ public open class FontFile : Font() {
       setOpentypeFeatureOverrides(value)
     }
 
+  /**
+   * If set to a positive value, overrides the oversampling factor of the viewport this font is used
+   * in. See [Viewport.oversampling]. This value doesn't override the [code
+   * skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code] methods.
+   */
+  public final inline var oversampling: Float
+    @JvmName("oversamplingProperty")
+    get() = getOversampling()
+    @JvmName("oversamplingProperty")
+    set(`value`) {
+      setOversampling(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+    createNativeObject(225, scriptIndex)
   }
 
   /**
@@ -574,6 +587,17 @@ public open class FontFile : Font() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setModulateColorGlyphs(modulate: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to modulate)
+    TransferContext.callMethod(ptr, MethodBindings.setModulateColorGlyphsPtr, NIL)
+  }
+
+  public final fun isModulateColorGlyphs(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isModulateColorGlyphsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setHinting(hinting: TextServer.Hinting): Unit {
     TransferContext.writeArguments(LONG to hinting.value)
     TransferContext.callMethod(ptr, MethodBindings.setHintingPtr, NIL)
@@ -729,8 +753,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] to [value] in pixels (not relative to the font size).
    */
   public final fun setExtraSpacing(
     cacheIndex: Int,
@@ -742,8 +765,7 @@ public open class FontFile : Font() {
   }
 
   /**
-   * Returns spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
-   * font size).
+   * Returns spacing for [spacing] in pixels (not relative to the font size).
    */
   public final fun getExtraSpacing(cacheIndex: Int, spacing: TextServer.SpacingType): Long {
     TransferContext.writeArguments(LONG to cacheIndex.toLong(), LONG to spacing.value)
@@ -1419,6 +1441,12 @@ public open class FontFile : Font() {
 
     internal val isForceAutohinterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "is_force_autohinter", 36873697)
+
+    internal val setModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "set_modulate_color_glyphs", 2586408642)
+
+    internal val isModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FontFile", "is_modulate_color_glyphs", 36873697)
 
     internal val setHintingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FontFile", "set_hinting", 1827459492)

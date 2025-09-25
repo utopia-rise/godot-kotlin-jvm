@@ -76,7 +76,7 @@ public open class TabContainer : Container() {
   public val prePopupPressed: Signal0 by Signal0
 
   /**
-   * Sets the position at which tabs will be placed. See [TabBar.AlignmentMode] for details.
+   * The position at which tabs will be placed.
    */
   public final inline var tabAlignment: TabBar.AlignmentMode
     @JvmName("tabAlignmentProperty")
@@ -101,7 +101,7 @@ public open class TabContainer : Container() {
     }
 
   /**
-   * Sets the position of the tab bar. See [TabPosition] for details.
+   * The position of the tab bar.
    */
   public final inline var tabsPosition: TabPosition
     @JvmName("tabsPositionProperty")
@@ -209,7 +209,7 @@ public open class TabContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(654, scriptIndex)
+    createNativeObject(670, scriptIndex)
   }
 
   /**

@@ -47,7 +47,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShader : Shader() {
   /**
-   * The offset vector of the whole graph.
+   * Deprecated.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -66,7 +66,7 @@ public open class VisualShader : Shader() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(726, scriptIndex)
+    createNativeObject(742, scriptIndex)
   }
 
   /**
@@ -80,7 +80,7 @@ public open class VisualShader : Shader() {
    * visualshader.graphOffset = myCoreType
    * ``````
    *
-   * The offset vector of the whole graph.
+   * Deprecated.
    */
   @CoreTypeHelper
   public final fun graphOffsetMutate(block: Vector2.() -> Unit): Vector2 = graphOffset.apply {
@@ -260,17 +260,6 @@ public open class VisualShader : Shader() {
     return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
-  public final fun setGraphOffset(offset: Vector2): Unit {
-    TransferContext.writeArguments(VECTOR2 to offset)
-    TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
-  }
-
-  public final fun getGraphOffset(): Vector2 {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
-    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
-  }
-
   /**
    * Attaches the given node to the given frame.
    */
@@ -319,6 +308,17 @@ public open class VisualShader : Shader() {
     TransferContext.writeArguments(STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.hasVaryingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setGraphOffset(offset: Vector2): Unit {
+    TransferContext.writeArguments(VECTOR2 to offset)
+    TransferContext.callMethod(ptr, MethodBindings.setGraphOffsetPtr, NIL)
+  }
+
+  public final fun getGraphOffset(): Vector2 {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getGraphOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
   /**
@@ -525,12 +525,6 @@ public open class VisualShader : Shader() {
     internal val getNodeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShader", "get_node_connections", 1441964831)
 
-    internal val setGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset", 743155724)
-
-    internal val getGraphOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset", 3341600327)
-
     internal val attachNodeToFramePtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShader", "attach_node_to_frame", 2479945279)
 
@@ -545,5 +539,11 @@ public open class VisualShader : Shader() {
 
     internal val hasVaryingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisualShader", "has_varying", 3927539163)
+
+    internal val setGraphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "set_graph_offset", 743155724)
+
+    internal val getGraphOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisualShader", "get_graph_offset", 3341600327)
   }
 }

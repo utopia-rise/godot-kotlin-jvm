@@ -39,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(743, scriptIndex)
+    createNativeObject(759, scriptIndex)
   }
 
   /**
@@ -95,7 +95,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to define the returned type of each input port of the associated custom
-   * node (see [VisualShaderNode.PortType] for possible types).
+   * node.
    *
    * Defining this method is **optional**, but recommended. If not overridden, input ports will
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
@@ -150,7 +150,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to define the returned type of each output port of the associated custom
-   * node (see [VisualShaderNode.PortType] for possible types).
+   * node.
    *
    * Defining this method is **optional**, but recommended. If not overridden, output ports will
    * return the [VisualShaderNode.PORT_TYPE_SCALAR] type.
@@ -219,8 +219,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * The output ports can be assigned values in the shader code. For example, `return
    * output_vars[0] + " = " + input_vars[0] + ";"`.
    *
-   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]) and/or
-   * [type] (see [VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] and/or [type].
    *
    * Defining this method is **required**.
    */
@@ -241,8 +240,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * If there are multiple custom nodes of different types which use this feature the order of each
    * insertion is undefined.
    *
-   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]) and/or
-   * [type] (see [VisualShader.Type]).
+   * You can customize the generated code based on the shader [mode] and/or [type].
    *
    * Defining this method is **optional**.
    */
@@ -259,7 +257,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
    * Be careful with this functionality as it can cause name conflicts with other custom nodes, so
    * be sure to give the defined entities unique names.
    *
-   * You can customize the generated code based on the shader [mode] (see [Shader.Mode]).
+   * You can customize the generated code based on the shader [mode].
    *
    * Defining this method is **optional**.
    */
@@ -278,7 +276,7 @@ public open class VisualShaderNodeCustom : VisualShaderNode() {
 
   /**
    * Override this method to prevent the node to be visible in the member dialog for the certain
-   * [mode] (see [Shader.Mode]) and/or [type] (see [VisualShader.Type]).
+   * [mode] and/or [type].
    *
    * Defining this method is **optional**. If not overridden, it's `true`.
    */

@@ -126,8 +126,7 @@ public open class TextLine : RefCounted() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the text line's set width. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * The clipping behavior when the text exceeds the text line's set width.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -149,7 +148,7 @@ public open class TextLine : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(656, scriptIndex)
+    createNativeObject(672, scriptIndex)
   }
 
   /**
@@ -168,6 +167,15 @@ public open class TextLine : RefCounted() {
   public final fun getDirection(): TextServer.Direction {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDirectionPtr, LONG)
+    return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the text writing direction inferred by the BiDi algorithm.
+   */
+  public final fun getInferredDirection(): TextServer.Direction {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInferredDirectionPtr, LONG)
     return TextServer.Direction.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -411,21 +419,24 @@ public open class TextLine : RefCounted() {
 
   /**
    * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
-   * corner of the bounding box.
+   * corner of the bounding box. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun draw(
     canvas: RID,
     pos: Vector2,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawPtr, NIL)
   }
 
   /**
    * Draw text into a canvas item at a given position, with [color]. [pos] specifies the top left
-   * corner of the bounding box.
+   * corner of the bounding box. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawOutline(
@@ -433,8 +444,9 @@ public open class TextLine : RefCounted() {
     pos: Vector2,
     outlineSize: Int = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color)
+    TransferContext.writeArguments(_RID to canvas, VECTOR2 to pos, LONG to outlineSize.toLong(), COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawOutlinePtr, NIL)
   }
 
@@ -458,6 +470,9 @@ public open class TextLine : RefCounted() {
 
     internal val getDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "get_direction", 2516697328)
+
+    internal val getInferredDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextLine", "get_inferred_direction", 2516697328)
 
     internal val setOrientationPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "set_orientation", 42823726)
@@ -549,10 +564,10 @@ public open class TextLine : RefCounted() {
     internal val getLineUnderlineThicknessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "get_line_underline_thickness", 1740695150)
 
-    internal val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "draw", 856975658)
+    internal val drawPtr: VoidPtr = TypeManager.getMethodBindPtr("TextLine", "draw", 3625105422)
 
     internal val drawOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextLine", "draw_outline", 1343401456)
+        TypeManager.getMethodBindPtr("TextLine", "draw_outline", 2592177763)
 
     internal val hitTestPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextLine", "hit_test", 2401831903)

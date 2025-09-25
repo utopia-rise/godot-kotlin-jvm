@@ -44,7 +44,8 @@ public open class CollisionShape3D : Node3D() {
     }
 
   /**
-   * A disabled collision shape has no effect in the world.
+   * A disabled collision shape has no effect in the world. This property should be changed with
+   * [Object.setDeferred].
    */
   public final inline var disabled: Boolean
     @JvmName("disabledProperty")
@@ -91,7 +92,7 @@ public open class CollisionShape3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(159, scriptIndex)
+    createNativeObject(161, scriptIndex)
   }
 
   /**

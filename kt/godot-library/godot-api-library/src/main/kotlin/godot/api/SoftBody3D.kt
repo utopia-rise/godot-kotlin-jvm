@@ -43,8 +43,9 @@ import kotlin.jvm.JvmOverloads
  * Additionally, [SoftBody3D] is subject to wind forces defined in [Area3D] (see
  * [Area3D.windSourcePath], [Area3D.windForceMagnitude], and [Area3D.windAttenuationFactor]).
  *
- * **Note:** There are many known bugs in [SoftBody3D]. Therefore, it's not recommended to use them
- * for things that can affect gameplay (such as trampolines).
+ * **Note:** It's recommended to use Jolt Physics when using [SoftBody3D] instead of the default
+ * GodotPhysics3D, as Jolt Physics' soft body implementation is faster and more reliable. You can
+ * switch the physics engine using the [ProjectSettings.physics/3d/physicsEngine] project setting.
  */
 @GodotBaseType
 public open class SoftBody3D : MeshInstance3D() {
@@ -129,6 +130,21 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   /**
+   * Scales the rest lengths of [SoftBody3D]'s edge constraints. Positive values shrink the mesh,
+   * while negative values expand it. For example, a value of `0.1` shortens the edges of the mesh by
+   * 10&#37;, while `-0.1` expands the edges by 10&#37;.
+   *
+   * **Note:** [shrinkingFactor] is best used on surface meshes with pinned points.
+   */
+  public final inline var shrinkingFactor: Float
+    @JvmName("shrinkingFactorProperty")
+    get() = getShrinkingFactor()
+    @JvmName("shrinkingFactorProperty")
+    set(`value`) {
+      setShrinkingFactor(value)
+    }
+
+  /**
    * The pressure coefficient of this soft body. Simulate pressure build-up from inside this body.
    * Higher values increase the strength of this effect.
    */
@@ -178,7 +194,6 @@ public open class SoftBody3D : MeshInstance3D() {
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
-   * See [DisableMode] for more details about the different modes.
    */
   public final inline var disableMode: DisableMode
     @JvmName("disableModeProperty")
@@ -189,7 +204,7 @@ public open class SoftBody3D : MeshInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(613, scriptIndex)
+    createNativeObject(629, scriptIndex)
   }
 
   /**
@@ -341,6 +356,17 @@ public open class SoftBody3D : MeshInstance3D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setShrinkingFactor(shrinkingFactor: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to shrinkingFactor.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setShrinkingFactorPtr, NIL)
+  }
+
+  public final fun getShrinkingFactor(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getShrinkingFactorPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setPressureCoefficient(pressureCoefficient: Float): Unit {
     TransferContext.writeArguments(DOUBLE to pressureCoefficient.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setPressureCoefficientPtr, NIL)
@@ -381,6 +407,48 @@ public open class SoftBody3D : MeshInstance3D() {
     TransferContext.writeArguments(LONG to pointIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getPointTransformPtr, VECTOR3)
     return (TransferContext.readReturnValue(VECTOR3) as Vector3)
+  }
+
+  /**
+   * Applies an impulse to a point.
+   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
+   */
+  public final fun applyImpulse(pointIndex: Int, impulse: Vector3): Unit {
+    TransferContext.writeArguments(LONG to pointIndex.toLong(), VECTOR3 to impulse)
+    TransferContext.callMethod(ptr, MethodBindings.applyImpulsePtr, NIL)
+  }
+
+  /**
+   * Applies a force to a point. A force is time dependent and meant to be applied every physics
+   * update.
+   */
+  public final fun applyForce(pointIndex: Int, force: Vector3): Unit {
+    TransferContext.writeArguments(LONG to pointIndex.toLong(), VECTOR3 to force)
+    TransferContext.callMethod(ptr, MethodBindings.applyForcePtr, NIL)
+  }
+
+  /**
+   * Distributes and applies an impulse to all points.
+   *
+   * An impulse is time-independent! Applying an impulse every frame would result in a
+   * framerate-dependent force. For this reason, it should only be used when simulating one-time
+   * impacts (use the "_force" functions otherwise).
+   */
+  public final fun applyCentralImpulse(impulse: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to impulse)
+    TransferContext.callMethod(ptr, MethodBindings.applyCentralImpulsePtr, NIL)
+  }
+
+  /**
+   * Distributes and applies a force to all points. A force is time dependent and meant to be
+   * applied every physics update.
+   */
+  public final fun applyCentralForce(force: Vector3): Unit {
+    TransferContext.writeArguments(VECTOR3 to force)
+    TransferContext.callMethod(ptr, MethodBindings.applyCentralForcePtr, NIL)
   }
 
   /**
@@ -529,6 +597,12 @@ public open class SoftBody3D : MeshInstance3D() {
     internal val getLinearStiffnessPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SoftBody3D", "get_linear_stiffness", 191475506)
 
+    internal val setShrinkingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "set_shrinking_factor", 373806689)
+
+    internal val getShrinkingFactorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "get_shrinking_factor", 191475506)
+
     internal val setPressureCoefficientPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SoftBody3D", "set_pressure_coefficient", 373806689)
 
@@ -549,6 +623,18 @@ public open class SoftBody3D : MeshInstance3D() {
 
     internal val getPointTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SoftBody3D", "get_point_transform", 871989493)
+
+    internal val applyImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "apply_impulse", 1530502735)
+
+    internal val applyForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "apply_force", 1530502735)
+
+    internal val applyCentralImpulsePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "apply_central_impulse", 3460891852)
+
+    internal val applyCentralForcePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SoftBody3D", "apply_central_force", 3460891852)
 
     internal val setPointPinnedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SoftBody3D", "set_point_pinned", 528784402)

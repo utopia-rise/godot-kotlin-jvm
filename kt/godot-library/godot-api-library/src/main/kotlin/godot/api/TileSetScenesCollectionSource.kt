@@ -22,12 +22,13 @@ import kotlin.Unit
 import kotlin.jvm.JvmOverloads
 
 /**
- * When placed on a [TileMap], tiles from [TileSetScenesCollectionSource] will automatically
- * instantiate an associated scene at the cell's position in the TileMap.
+ * When placed on a [TileMapLayer], tiles from [TileSetScenesCollectionSource] will automatically
+ * instantiate an associated scene at the cell's position in the TileMapLayer.
  *
- * Scenes are instantiated as children of the [TileMap] when it enters the tree. If you add/remove a
- * scene tile in the [TileMap] that is already inside the tree, the [TileMap] will automatically
- * instantiate/free the scene accordingly.
+ * Scenes are instantiated as children of the [TileMapLayer] after it enters the tree, at the end of
+ * the frame (their creation is deferred). If you add/remove a scene tile in the [TileMapLayer] that is
+ * already inside the tree, the [TileMapLayer] will automatically instantiate/free the scene
+ * accordingly.
  *
  * **Note:** Scene tiles all occupy one tile slot and instead use alternate tile ID to identify
  * scene index. [TileSetSource.getTilesCount] will always return `1`. Use [getSceneTilesCount] to get a
@@ -39,11 +40,11 @@ import kotlin.jvm.JvmOverloads
  * //gdscript
  * var source_id = tile_map_layer.get_cell_source_id(Vector2i(x, y))
  * if source_id > -1:
- *     var scene_source = tile_map_layer.tile_set.get_source(source_id)
- *     if scene_source is TileSetScenesCollectionSource:
- *         var alt_id = tile_map_layer.get_cell_alternative_tile(Vector2i(x, y))
- *         # The assigned PackedScene.
- *         var scene = scene_source.get_scene_tile_scene(alt_id)
+ * var scene_source = tile_map_layer.tile_set.get_source(source_id)
+ * if scene_source is TileSetScenesCollectionSource:
+ * var alt_id = tile_map_layer.get_cell_alternative_tile(Vector2i(x, y))
+ * # The assigned PackedScene.
+ * var scene = scene_source.get_scene_tile_scene(alt_id)
  * ```
  *
  * ```csharp
@@ -51,20 +52,20 @@ import kotlin.jvm.JvmOverloads
  * int sourceId = tileMapLayer.GetCellSourceId(new Vector2I(x, y));
  * if (sourceId > -1)
  * {
- *     TileSetSource source = tileMapLayer.TileSet.GetSource(sourceId);
- *     if (source is TileSetScenesCollectionSource sceneSource)
- *     {
- *         int altId = tileMapLayer.GetCellAlternativeTile(new Vector2I(x, y));
- *         // The assigned PackedScene.
- *         PackedScene scene = sceneSource.GetSceneTileScene(altId);
- *     }
+ * TileSetSource source = tileMapLayer.TileSet.GetSource(sourceId);
+ * if (source is TileSetScenesCollectionSource sceneSource)
+ * {
+ * int altId = tileMapLayer.GetCellAlternativeTile(new Vector2I(x, y));
+ * // The assigned PackedScene.
+ * PackedScene scene = sceneSource.GetSceneTileScene(altId);
+ * }
  * }
  * ```
  */
 @GodotBaseType
 public open class TileSetScenesCollectionSource : TileSetSource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(687, scriptIndex)
+    createNativeObject(703, scriptIndex)
   }
 
   /**
@@ -117,7 +118,8 @@ public open class TileSetScenesCollectionSource : TileSetSource() {
 
   /**
    * Assigns a [PackedScene] resource to the scene tile with [id]. This will fail if the scene does
-   * not extend CanvasItem, as positioning properties are needed to place the scene on the TileMap.
+   * not extend [CanvasItem], as positioning properties are needed to place the scene on the
+   * [TileMapLayer].
    */
   public final fun setSceneTileScene(id: Int, packedScene: PackedScene?): Unit {
     TransferContext.writeArguments(LONG to id.toLong(), OBJECT to packedScene)

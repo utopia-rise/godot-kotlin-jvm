@@ -44,31 +44,32 @@ import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
- * Most basic 3D game object, with a [Transform3D] and visibility settings. All other 3D game
- * objects inherit from [Node3D]. Use [Node3D] as a parent node to move, scale, rotate and show/hide
- * children in a 3D project.
+ * The [Node3D] node is the base representation of a node in 3D space. All other 3D nodes inherit
+ * from this class.
  *
- * Affine operations (rotate, scale, translate) happen in parent's local coordinate system, unless
- * the [Node3D] object is set as top-level. Affine operations in this coordinate system correspond to
- * direct affine operations on the [Node3D]'s transform. The word local below refers to this coordinate
- * system. The coordinate system that is attached to the [Node3D] object itself is referred to as
- * object-local coordinate system.
+ * Affine operations (translation, rotation, scale) are calculated in the coordinate system relative
+ * to the parent, unless the [Node3D]'s [topLevel] is `true`. In this coordinate system, affine
+ * operations correspond to direct affine operations on the [Node3D]'s [transform]. The term *parent
+ * space* refers to this coordinate system. The coordinate system that is attached to the [Node3D]
+ * itself is referred to as object-local coordinate system, or *local space*.
  *
- * **Note:** Unless otherwise specified, all methods that have angle parameters must have angles
- * specified as *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
+ * **Note:** Unless otherwise specified, all methods that need angle parameters must receive angles
+ * in *radians*. To convert degrees to radians, use [@GlobalScope.degToRad].
  *
- * **Note:** Be aware that "Spatial" nodes are now called "Node3D" starting with Godot 4. Any Godot
- * 3.x references to "Spatial" nodes refer to "Node3D" in Godot 4.
+ * **Note:** In Godot 3 and older, [Node3D] was named *Spatial*.
  */
 @GodotBaseType
 public open class Node3D : Node() {
   /**
-   * Emitted when node visibility changes.
+   * Emitted when this node's visibility changes (see [visible] and [isVisibleInTree]).
+   *
+   * This signal is emitted *after* the related [NOTIFICATION_VISIBILITY_CHANGED] notification.
    */
   public val visibilityChanged: Signal0 by Signal0
 
   /**
-   * Local space [Transform3D] of this node, with respect to the parent node.
+   * The local transformation of this node, in parent space (relative to the parent node). Contains
+   * and represents this node's [position], [rotation], and [scale].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -87,7 +88,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * World3D space (global) [Transform3D] of this node.
+   * The transformation of this node, in global space (relative to the world). Contains and
+   * represents this node's [globalPosition], [globalRotation], and global scale.
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Transform3D.IDENTITY].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -106,8 +111,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Local position or translation of this node relative to the parent. This is equivalent to
-   * `transform.origin`.
+   * Position (translation) of this node in parent space (relative to the parent node). This is
+   * equivalent to the [transform]'s [Transform3D.origin].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -126,16 +131,20 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
-   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * Rotation of this node as [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in
+   * radians and in parent space (relative to the parent node). This value is obtained from [basis]'s
+   * rotation.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * - The [Vector3.x] is the angle around the local X axis (pitch);
    *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * - The [Vector3.y] is the angle around the local Y axis (yaw);
+   *
+   * - The [Vector3.z] is the angle around the local Z axis (roll).
+   *
+   * The order of each consecutive rotation can be changed with [rotationOrder] (see [EulerOrder]
+   * constants). By default, the YXZ convention is used ([EULER_ORDER_YXZ]).
+   *
+   * **Note:** This property is edited in degrees in the inspector. If you want to use degrees in a
    * script, use [rotationDegrees].
    *
    * **Warning:**
@@ -155,7 +164,9 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Helper property to access [rotation] in degrees instead of radians.
+   * The [rotation] of this node, in degrees instead of radians.
+   *
+   * **Note:** This is **not** the property available in the Inspector dock.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -174,8 +185,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
-   * rotations.
+   * Rotation of this node represented as a [Quaternion] in parent space (relative to the parent
+   * node). This value is obtained from [basis]'s rotation.
+   *
+   * **Note:** Quaternions are much more suitable for 3D math but are less intuitive. Setting this
+   * property can be useful for interpolation (see [Quaternion.slerp]).
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -194,7 +208,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
+   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node in
+   * parent space (relative to the parent node).
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -213,14 +228,16 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Scale part of the local transformation.
+   * Scale of this node in local space (relative to this node). This value is obtained from
+   * [basis]'s scale.
    *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
-   * to the way scale is represented with transformation matrices in Godot, the scale values will
-   * either be all positive or all negative.
+   * **Note:** The behavior of some 3D node types is not affected by this property. These include
+   * [Light3D], [Camera3D], [AudioStreamPlayer3D], and more.
    *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
-   * are not visually affected by [scale].
+   * **Warning:** The scale's components must either be all positive or all negative, and **not**
+   * exactly `0.0`. Otherwise, it won't be possible to obtain the scale from the [basis]. This may
+   * cause the intended scale to be lost when reloaded from disk, and potentially other unstable
+   * behavior.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -239,7 +256,7 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Specify how rotation (and scale) will be presented in the editor.
+   * How this node's rotation and scale are displayed in the Inspector dock.
    */
   public final inline var rotationEditMode: RotationEditMode
     @JvmName("rotationEditModeProperty")
@@ -250,8 +267,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Specify the axis rotation order of the [rotation] property. The final orientation is
-   * constructed by rotating the Euler angles in the order specified by this property.
+   * The axis rotation order of the [rotation] property. The final orientation is calculated by
+   * rotating around the local X, Y, and Z axis in this order.
    */
   public final inline var rotationOrder: EulerOrder
     @JvmName("rotationOrderProperty")
@@ -262,8 +279,9 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, the node will not inherit its transformations from its parent. Node transformations
-   * are only in global space.
+   * If `true`, the node does not inherit its transformations from its parent. As such, node
+   * transformations will only be in global space, which also means that [globalTransform] and
+   * [transform] will be identical.
    */
   public final inline var topLevel: Boolean
     @JvmName("topLevelProperty")
@@ -274,7 +292,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Global position of this node. This is equivalent to `global_transform.origin`.
+   * Global position (translation) of this node in global space (relative to the world). This is
+   * equivalent to the [globalTransform]'s [Transform3D.origin].
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -293,7 +315,11 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Global basis of this node. This is equivalent to `global_transform.basis`.
+   * Basis of the [globalTransform] property. Represents the rotation, scale, and shear of this node
+   * in global space (relative to the world).
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Basis.IDENTITY].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -312,14 +338,21 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
-   * in the format (X angle, Y angle, Z angle).
+   * Global rotation of this node as [url=https://en.wikipedia.org/wiki/Euler_angles]Euler
+   * angles[/url], in radians and in global space (relative to the world). This value is obtained from
+   * [globalBasis]'s rotation.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * - The [Vector3.x] is the angle around the global X axis (pitch);
+   *
+   * - The [Vector3.y] is the angle around the global Y axis (yaw);
+   *
+   * - The [Vector3.z] is the angle around the global Z axis (roll).
+   *
+   * **Note:** Unlike [rotation], this property always follows the YXZ convention
+   * ([EULER_ORDER_YXZ]).
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -338,7 +371,10 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Helper property to access [globalRotation] in degrees instead of radians.
+   * The [globalRotation] of this node, in degrees instead of radians.
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -357,8 +393,8 @@ public open class Node3D : Node() {
     }
 
   /**
-   * If `true`, this node is drawn. The node is only visible if all of its ancestors are visible as
-   * well (in other words, [isVisibleInTree] must return `true`).
+   * If `true`, this node can be visible. The node is only rendered when all of its ancestors are
+   * visible, as well. That means [isVisibleInTree] must return `true`.
    */
   public final inline var visible: Boolean
     @JvmName("visibleProperty")
@@ -369,12 +405,14 @@ public open class Node3D : Node() {
     }
 
   /**
-   * Defines the visibility range parent for this node and its subtree. The visibility parent must
-   * be a GeometryInstance3D. Any visual instance will only be visible if the visibility parent (and
-   * all of its visibility ancestors) is hidden by being closer to the camera than its own
+   * Path to the visibility range parent for this node and its descendants. The visibility parent
+   * must be a [GeometryInstance3D].
+   *
+   * Any visual instance will only be visible if the visibility parent (and all of its visibility
+   * ancestors) is hidden by being closer to the camera than its own
    * [GeometryInstance3D.visibilityRangeBegin]. Nodes hidden via the [Node3D.visible] property are
    * essentially removed from the visibility dependency tree, so dependent instances will not take the
-   * hidden node or its ancestors into account.
+   * hidden node or its descendants into account.
    */
   public final inline var visibilityParent: NodePath
     @JvmName("visibilityParentProperty")
@@ -385,7 +423,7 @@ public open class Node3D : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(396, scriptIndex)
+    createNativeObject(405, scriptIndex)
   }
 
   /**
@@ -399,7 +437,8 @@ public open class Node3D : Node() {
    * node3d.transform = myCoreType
    * ``````
    *
-   * Local space [Transform3D] of this node, with respect to the parent node.
+   * The local transformation of this node, in parent space (relative to the parent node). Contains
+   * and represents this node's [position], [rotation], and [scale].
    */
   @CoreTypeHelper
   public final fun transformMutate(block: Transform3D.() -> Unit): Transform3D = transform.apply {
@@ -418,7 +457,11 @@ public open class Node3D : Node() {
    * node3d.globalTransform = myCoreType
    * ``````
    *
-   * World3D space (global) [Transform3D] of this node.
+   * The transformation of this node, in global space (relative to the world). Contains and
+   * represents this node's [globalPosition], [globalRotation], and global scale.
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Transform3D.IDENTITY].
    */
   @CoreTypeHelper
   public final fun globalTransformMutate(block: Transform3D.() -> Unit): Transform3D =
@@ -438,8 +481,8 @@ public open class Node3D : Node() {
    * node3d.position = myCoreType
    * ``````
    *
-   * Local position or translation of this node relative to the parent. This is equivalent to
-   * `transform.origin`.
+   * Position (translation) of this node in parent space (relative to the parent node). This is
+   * equivalent to the [transform]'s [Transform3D.origin].
    */
   @CoreTypeHelper
   public final fun positionMutate(block: Vector3.() -> Unit): Vector3 = position.apply {
@@ -458,16 +501,20 @@ public open class Node3D : Node() {
    * node3d.rotation = myCoreType
    * ``````
    *
-   * Rotation part of the local transformation in radians, specified in terms of Euler angles. The
-   * angles construct a rotation in the order specified by the [rotationOrder] property.
+   * Rotation of this node as [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url], in
+   * radians and in parent space (relative to the parent node). This value is obtained from [basis]'s
+   * rotation.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * - The [Vector3.x] is the angle around the local X axis (pitch);
    *
-   * **Note:** This property is edited in the inspector in degrees. If you want to use degrees in a
+   * - The [Vector3.y] is the angle around the local Y axis (yaw);
+   *
+   * - The [Vector3.z] is the angle around the local Z axis (roll).
+   *
+   * The order of each consecutive rotation can be changed with [rotationOrder] (see [EulerOrder]
+   * constants). By default, the YXZ convention is used ([EULER_ORDER_YXZ]).
+   *
+   * **Note:** This property is edited in degrees in the inspector. If you want to use degrees in a
    * script, use [rotationDegrees].
    */
   @CoreTypeHelper
@@ -487,7 +534,9 @@ public open class Node3D : Node() {
    * node3d.rotationDegrees = myCoreType
    * ``````
    *
-   * Helper property to access [rotation] in degrees instead of radians.
+   * The [rotation] of this node, in degrees instead of radians.
+   *
+   * **Note:** This is **not** the property available in the Inspector dock.
    */
   @CoreTypeHelper
   public final fun rotationDegreesMutate(block: Vector3.() -> Unit): Vector3 =
@@ -507,8 +556,11 @@ public open class Node3D : Node() {
    * node3d.quaternion = myCoreType
    * ``````
    *
-   * Access to the node rotation as a [Quaternion]. This property is ideal for tweening complex
-   * rotations.
+   * Rotation of this node represented as a [Quaternion] in parent space (relative to the parent
+   * node). This value is obtained from [basis]'s rotation.
+   *
+   * **Note:** Quaternions are much more suitable for 3D math but are less intuitive. Setting this
+   * property can be useful for interpolation (see [Quaternion.slerp]).
    */
   @CoreTypeHelper
   public final fun quaternionMutate(block: Quaternion.() -> Unit): Quaternion = quaternion.apply {
@@ -527,7 +579,8 @@ public open class Node3D : Node() {
    * node3d.basis = myCoreType
    * ``````
    *
-   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node.
+   * Basis of the [transform] property. Represents the rotation, scale, and shear of this node in
+   * parent space (relative to the parent node).
    */
   @CoreTypeHelper
   public final fun basisMutate(block: Basis.() -> Unit): Basis = basis.apply {
@@ -546,14 +599,16 @@ public open class Node3D : Node() {
    * node3d.scale = myCoreType
    * ``````
    *
-   * Scale part of the local transformation.
+   * Scale of this node in local space (relative to this node). This value is obtained from
+   * [basis]'s scale.
    *
-   * **Note:** Mixed negative scales in 3D are not decomposable from the transformation matrix. Due
-   * to the way scale is represented with transformation matrices in Godot, the scale values will
-   * either be all positive or all negative.
+   * **Note:** The behavior of some 3D node types is not affected by this property. These include
+   * [Light3D], [Camera3D], [AudioStreamPlayer3D], and more.
    *
-   * **Note:** Not all nodes are visually scaled by the [scale] property. For example, [Light3D]s
-   * are not visually affected by [scale].
+   * **Warning:** The scale's components must either be all positive or all negative, and **not**
+   * exactly `0.0`. Otherwise, it won't be possible to obtain the scale from the [basis]. This may
+   * cause the intended scale to be lost when reloaded from disk, and potentially other unstable
+   * behavior.
    */
   @CoreTypeHelper
   public final fun scaleMutate(block: Vector3.() -> Unit): Vector3 = scale.apply {
@@ -572,7 +627,11 @@ public open class Node3D : Node() {
    * node3d.globalPosition = myCoreType
    * ``````
    *
-   * Global position of this node. This is equivalent to `global_transform.origin`.
+   * Global position (translation) of this node in global space (relative to the world). This is
+   * equivalent to the [globalTransform]'s [Transform3D.origin].
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    */
   @CoreTypeHelper
   public final fun globalPositionMutate(block: Vector3.() -> Unit): Vector3 = globalPosition.apply {
@@ -591,7 +650,11 @@ public open class Node3D : Node() {
    * node3d.globalBasis = myCoreType
    * ``````
    *
-   * Global basis of this node. This is equivalent to `global_transform.basis`.
+   * Basis of the [globalTransform] property. Represents the rotation, scale, and shear of this node
+   * in global space (relative to the world).
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Basis.IDENTITY].
    */
   @CoreTypeHelper
   public final fun globalBasisMutate(block: Basis.() -> Unit): Basis = globalBasis.apply {
@@ -610,14 +673,21 @@ public open class Node3D : Node() {
    * node3d.globalRotation = myCoreType
    * ``````
    *
-   * Rotation part of the global transformation in radians, specified in terms of YXZ-Euler angles
-   * in the format (X angle, Y angle, Z angle).
+   * Global rotation of this node as [url=https://en.wikipedia.org/wiki/Euler_angles]Euler
+   * angles[/url], in radians and in global space (relative to the world). This value is obtained from
+   * [globalBasis]'s rotation.
    *
-   * **Note:** In the mathematical sense, rotation is a matrix and not a vector. The three Euler
-   * angles, which are the three independent parameters of the Euler-angle parametrization of the
-   * rotation matrix, are stored in a [Vector3] data structure not because the rotation is a vector,
-   * but only because [Vector3] exists as a convenient data-structure to store 3 floating-point
-   * numbers. Therefore, applying affine operations on the rotation "vector" is not meaningful.
+   * - The [Vector3.x] is the angle around the global X axis (pitch);
+   *
+   * - The [Vector3.y] is the angle around the global Y axis (yaw);
+   *
+   * - The [Vector3.z] is the angle around the global Z axis (roll).
+   *
+   * **Note:** Unlike [rotation], this property always follows the YXZ convention
+   * ([EULER_ORDER_YXZ]).
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    */
   @CoreTypeHelper
   public final fun globalRotationMutate(block: Vector3.() -> Unit): Vector3 = globalRotation.apply {
@@ -636,7 +706,10 @@ public open class Node3D : Node() {
    * node3d.globalRotationDegrees = myCoreType
    * ``````
    *
-   * Helper property to access [globalRotation] in degrees instead of radians.
+   * The [globalRotation] of this node, in degrees instead of radians.
+   *
+   * **Note:** If the node is not inside the tree, getting this property fails and returns
+   * [Vector3.ZERO].
    */
   @CoreTypeHelper
   public final fun globalRotationDegreesMutate(block: Vector3.() -> Unit): Vector3 =
@@ -820,11 +893,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns the parent [Node3D], or `null` if no parent exists, the parent is not of type [Node3D],
-   * or [topLevel] is `true`.
+   * Returns the parent [Node3D] that directly affects this node's [globalTransform]. Returns `null`
+   * if no parent exists, the parent is not a [Node3D], or [topLevel] is `true`.
    *
-   * **Note:** Calling this method is not equivalent to `get_parent() as Node3D`, which does not
-   * take [topLevel] into account.
+   * **Note:** This method is not always equivalent to [Node.getParent], which does not take
+   * [topLevel] into account.
    */
   public final fun getParentNode3d(): Node3D? {
     TransferContext.writeArguments()
@@ -833,7 +906,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node ignores notification that its transformation (global or local) changed.
+   * If `true`, the node will not receive [NOTIFICATION_TRANSFORM_CHANGED] or
+   * [NOTIFICATION_LOCAL_TRANSFORM_CHANGED].
+   *
+   * It may useful to call this method when handling these notifications to prevent infinite
+   * recursion.
    */
   public final fun setIgnoreTransformNotification(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
@@ -852,8 +929,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node uses a scale of `(1, 1, 1)` or its local transformation scale. Changes to
-   * the local transformation scale are preserved.
+   * If `true`, this node's [globalTransform] is automatically orthonormalized. This results in this
+   * node not appearing distorted, as if its global scale were set to [Vector3.ONE] (or its negative
+   * counterpart). See also [isScaleDisabled] and [orthonormalize].
+   *
+   * **Note:** [transform] is not affected by this setting.
    */
   public final fun setDisableScale(disable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to disable)
@@ -861,7 +941,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns whether this node uses a scale of `(1, 1, 1)` or its local transformation scale.
+   * Returns `true` if this node's [globalTransform] is automatically orthonormalized. This results
+   * in this node not appearing distorted, as if its global scale were set to [Vector3.ONE] (or its
+   * negative counterpart). See also [setDisableScale] and [orthonormalize].
+   *
+   * **Note:** [transform] is not affected by this setting.
    */
   public final fun isScaleDisabled(): Boolean {
     TransferContext.writeArguments()
@@ -870,7 +954,10 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns the current [World3D] resource this [Node3D] node is registered to.
+   * Returns the [World3D] this node is registered to.
+   *
+   * Usually, this is the same as the world used by this node's viewport (see [Node.getViewport] and
+   * [Viewport.findWorld3d]).
    */
   public final fun getWorld3d(): World3D? {
     TransferContext.writeArguments()
@@ -879,9 +966,12 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Forces the transform to update. Transform changes in physics are not instant for performance
-   * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
-   * when doing physics operations.
+   * Forces the node's [globalTransform] to update, by sending [NOTIFICATION_TRANSFORM_CHANGED].
+   * Fails if the node is not inside the tree.
+   *
+   * **Note:** For performance reasons, transform changes are usually accumulated and applied *once*
+   * at the end of the frame. The update propagates through [Node3D] children, as well. Therefore, use
+   * this method only when you need an up-to-date transform (such as during physics operations).
    */
   public final fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
@@ -900,7 +990,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Updates all the [Node3D] gizmos attached to this node.
+   * Updates all the [EditorNode3DGizmo] objects attached to this node. Only works in the editor.
    */
   public final fun updateGizmos(): Unit {
     TransferContext.writeArguments()
@@ -908,10 +998,10 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Attach an editor gizmo to this [Node3D].
+   * Attaches the given [gizmo] to this node. Only works in the editor.
    *
-   * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
-   * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
+   * **Note:** [gizmo] should be an [EditorNode3DGizmo]. The argument type is [Node3DGizmo] to avoid
+   * depending on editor classes in [Node3D].
    */
   public final fun addGizmo(gizmo: Node3DGizmo?): Unit {
     TransferContext.writeArguments(OBJECT to gizmo)
@@ -919,7 +1009,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns all the gizmos attached to this [Node3D].
+   * Returns all the [EditorNode3DGizmo] objects attached to this node. Only works in the editor.
    */
   public final fun getGizmos(): VariantArray<Node3DGizmo> {
     TransferContext.writeArguments()
@@ -928,7 +1018,7 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Clear all gizmos attached to this [Node3D].
+   * Clears all [EditorNode3DGizmo] objects attached to this node. Only works in the editor.
    */
   public final fun clearGizmos(): Unit {
     TransferContext.writeArguments()
@@ -936,7 +1026,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Set subgizmo selection for this node in the editor.
+   * Selects the [gizmo]'s subgizmo with the given [id] and sets its transform. Only works in the
+   * editor.
    *
    * **Note:** The gizmo object would typically be an instance of [EditorNode3DGizmo], but the
    * argument type is kept generic to avoid creating a dependency on editor classes in [Node3D].
@@ -951,8 +1042,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Clears subgizmo selection for this node in the editor. Useful when subgizmo IDs become invalid
-   * after a property change.
+   * Deselects all subgizmos for this node. Useful to call when the selected subgizmo may no longer
+   * exist after a property change. Only works in the editor.
    */
   public final fun clearSubgizmoSelection(): Unit {
     TransferContext.writeArguments()
@@ -971,15 +1062,12 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns `true` if the node is present in the [SceneTree], its [visible] property is `true` and
-   * all its ancestors are also visible. If any ancestor is hidden, this node will not be visible in
-   * the scene tree.
+   * Returns `true` if this node is inside the scene tree and the [visible] property is `true` for
+   * this node and all of its [Node3D] ancestors *in sequence*. An ancestor of any other type (such as
+   * [Node] or [Node2D]) breaks the sequence. See also [Node.getParent].
    *
-   * Visibility is checked only in parent nodes that inherit from [Node3D]. If the parent is of any
-   * other type (such as [Node], [AnimationPlayer], or [Node2D]), it is assumed to be visible.
-   *
-   * **Note:** This method does not take [VisualInstance3D.layers] into account, so even if this
-   * method returns `true`, the node might end up not being rendered.
+   * **Note:** This method cannot take [VisualInstance3D.layers] into account, so even if this
+   * method returns `true`, the node may not be rendered.
    */
   public final fun isVisibleInTree(): Boolean {
     TransferContext.writeArguments()
@@ -988,7 +1076,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Enables rendering of this node. Changes [visible] to `true`.
+   * Allows this node to be rendered. Equivalent to setting [visible] to `true`. This is the
+   * opposite of [hide].
    */
   public final fun show(): Unit {
     TransferContext.writeArguments()
@@ -996,7 +1085,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Disables rendering of this node. Changes [visible] to `false`.
+   * Prevents this node from being rendered. Equivalent to setting [visible] to `false`. This is the
+   * opposite of [show].
    */
   public final fun hide(): Unit {
     TransferContext.writeArguments()
@@ -1004,8 +1094,11 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its local transformation changes. [Node3D] will not
-   * propagate this by default.
+   * If `true`, the node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] whenever [transform]
+   * changes.
+   *
+   * **Note:** Some 3D nodes such as [CSGShape3D] or [CollisionShape3D] automatically enable this to
+   * function correctly.
    */
   public final fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1013,8 +1106,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns whether node notifies about its local transformation changes. [Node3D] will not
-   * propagate this by default.
+   * Returns `true` if the node receives [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] whenever [transform]
+   * changes. This is enabled with [setNotifyLocalTransform].
    */
   public final fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1023,8 +1116,14 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Sets whether the node notifies about its global and local transformation changes. [Node3D] will
-   * not propagate this by default, unless it is in the editor context and it has a valid gizmo.
+   * If `true`, the node will receive [NOTIFICATION_TRANSFORM_CHANGED] whenever [globalTransform]
+   * changes.
+   *
+   * **Note:** Most 3D nodes such as [VisualInstance3D] or [CollisionObject3D] automatically enable
+   * this to function correctly.
+   *
+   * **Note:** In the editor, nodes will propagate this notification to their children if a gizmo is
+   * attached (see [addGizmo]).
    */
   public final fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1032,8 +1131,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Returns whether the node notifies about its global and local transformation changes. [Node3D]
-   * will not propagate this by default.
+   * Returns `true` if the node receives [NOTIFICATION_TRANSFORM_CHANGED] whenever [globalTransform]
+   * changes. This is enabled with [setNotifyTransform].
    */
   public final fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1042,7 +1141,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
+   * Rotates this node's [basis] around the [axis] by the given [angle], in radians. This operation
+   * is calculated in parent space (relative to the parent) and preserves the [position].
    */
   public final fun rotate(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -1050,8 +1150,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the global (world) transformation around axis, a unit [Vector3], by specified angle in
-   * radians. The rotation axis is in global coordinate system.
+   * Rotates this node's [globalBasis] around the global [axis] by the given [angle], in radians.
+   * This operation is calculated in global space (relative to the world) and preserves the
+   * [globalPosition].
    */
   public final fun globalRotate(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -1059,7 +1160,10 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Scales the global (world) transformation by the given [Vector3] scale factors.
+   * Scales this node's [globalBasis] by the given [scale] factor. This operation is calculated in
+   * global space (relative to the world) and preserves the [globalPosition].
+   *
+   * **Note:** This method is not to be confused with the [scale] property.
    */
   public final fun globalScale(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
@@ -1067,8 +1171,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the global (world) transformation by [Vector3] offset. The offset is in global coordinate
-   * system.
+   * Adds the given translation [offset] to the node's [globalPosition] in global space (relative to
+   * the world).
    */
   public final fun globalTranslate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -1076,8 +1180,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around axis, a unit [Vector3], by specified angle in radians.
-   * The rotation axis is in object-local coordinate system.
+   * Rotates this node's [basis] around the [axis] by the given [angle], in radians. This operation
+   * is calculated in local space (relative to this node) and preserves the [position].
    */
   public final fun rotateObjectLocal(axis: Vector3, angle: Float): Unit {
     TransferContext.writeArguments(VECTOR3 to axis, DOUBLE to angle.toDouble())
@@ -1085,7 +1189,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Scales the local transformation by given 3D scale factors in object-local coordinate system.
+   * Scales this node's [basis] by the given [scale] factor. This operation is calculated in local
+   * space (relative to this node) and preserves the [position].
    */
   public final fun scaleObjectLocal(scale: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to scale)
@@ -1093,7 +1198,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Changes the node's position by the given offset [Vector3] in local space.
+   * Adds the given translation [offset] to the node's position, in local space (relative to this
+   * node).
    */
   public final fun translateObjectLocal(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -1101,7 +1207,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around the X axis by angle in radians.
+   * Rotates this node's [basis] around the X axis by the given [angle], in radians. This operation
+   * is calculated in parent space (relative to the parent) and preserves the [position].
    */
   public final fun rotateX(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
@@ -1109,7 +1216,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around the Y axis by angle in radians.
+   * Rotates this node's [basis] around the Y axis by the given [angle], in radians. This operation
+   * is calculated in parent space (relative to the parent) and preserves the [position].
    */
   public final fun rotateY(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
@@ -1117,7 +1225,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Rotates the local transformation around the Z axis by angle in radians.
+   * Rotates this node's [basis] around the Z axis by the given [angle], in radians. This operation
+   * is calculated in parent space (relative to the parent) and preserves the [position].
    */
   public final fun rotateZ(angle: Float): Unit {
     TransferContext.writeArguments(DOUBLE to angle.toDouble())
@@ -1125,11 +1234,15 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Changes the node's position by the given offset [Vector3].
+   * Adds the given translation [offset] to the node's position, in local space (relative to this
+   * node).
    *
-   * Note that the translation [offset] is affected by the node's scale, so if scaled by e.g. `(10,
-   * 1, 1)`, a translation by an offset of `(2, 0, 0)` would actually add 20 (`2 * 10`) to the X
-   * coordinate.
+   * **Note:** Prefer using [translateObjectLocal], instead, as this method may be changed in a
+   * future release.
+   *
+   * **Note:** Despite the naming convention, this operation is **not** calculated in parent space
+   * for compatibility reasons. To translate in parent space, add [offset] to the [position]
+   * (`node_3d.position += offset`).
    */
   public final fun translate(offset: Vector3): Unit {
     TransferContext.writeArguments(VECTOR3 to offset)
@@ -1137,8 +1250,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Resets this node's transformations (like scale, skew and taper) preserving its rotation and
-   * translation by performing Gram-Schmidt orthonormalization on this node's [Transform3D].
+   * Orthonormalizes this node's [basis]. This method sets this node's [scale] to [Vector3.ONE] (or
+   * its negative counterpart), but preserves the [position] and [rotation]. See also
+   * [Transform3D.orthonormalized].
    */
   public final fun orthonormalize(): Unit {
     TransferContext.writeArguments()
@@ -1146,7 +1260,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Reset all transformations for this node (sets its [Transform3D] to the identity matrix).
+   * Sets this node's [transform] to [Transform3D.IDENTITY], which resets all transformations in
+   * parent space ([position], [rotation], and [scale]).
    */
   public final fun setIdentity(): Unit {
     TransferContext.writeArguments()
@@ -1155,23 +1270,22 @@ public open class Node3D : Node() {
 
   /**
    * Rotates the node so that the local forward axis (-Z, [Vector3.FORWARD]) points toward the
-   * [target] position.
+   * [target] position. This operation is calculated in global space (relative to the world).
    *
    * The local up axis (+Y) points as close to the [up] vector as possible while staying
    * perpendicular to the local forward axis. The resulting transform is orthogonal, and the scale is
    * preserved. Non-uniform scaling may not work correctly.
    *
    * The [target] position cannot be the same as the node's position, the [up] vector cannot be
-   * zero.
-   *
-   * The [target] and the [up] cannot be [Vector3.ZERO], and shouldn't be colinear to avoid
-   * unintended rotation around local Z axis.
-   *
-   * Operations take place in global space, which means that the node must be in the scene tree.
+   * [Vector3.ZERO]. Furthermore, the direction from the node's position to the [target] position
+   * cannot be parallel to the [up] vector, to avoid an unintended rotation around the local Z axis.
    *
    * If [useModelFront] is `true`, the +Z axis (asset front) is treated as forward (implies +X is
    * left) and points toward the [target] position. By default, the -Z axis (camera forward) is treated
    * as forward (implies +X is right).
+   *
+   * **Note:** This method fails if the node is not in the scene tree. If necessary, use
+   * [lookAtFromPosition] instead.
    */
   @JvmOverloads
   public final fun lookAt(
@@ -1184,8 +1298,9 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Moves the node to the specified [position], and then rotates the node to point toward the
-   * [target] as per [lookAt]. Operations take place in global space.
+   * Moves the node to the specified [position], then rotates the node to point toward the [target]
+   * position, similar to [lookAt]. This operation is calculated in global space (relative to the
+   * world).
    */
   @JvmOverloads
   public final fun lookAtFromPosition(
@@ -1199,7 +1314,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms [globalPoint] from world space to this node's local space.
+   * Returns the [globalPoint] converted from global space to this node's local space. This is the
+   * opposite of [toGlobal].
    */
   public final fun toLocal(globalPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to globalPoint)
@@ -1208,7 +1324,8 @@ public open class Node3D : Node() {
   }
 
   /**
-   * Transforms [localPoint] from this node's local space to world space.
+   * Returns the [localPoint] converted from this node's local space to global space. This is the
+   * opposite of [toLocal].
    */
   public final fun toGlobal(localPoint: Vector3): Vector3 {
     TransferContext.writeArguments(VECTOR3 to localPoint)
@@ -1222,7 +1339,8 @@ public open class Node3D : Node() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * The rotation is edited using [Vector3] Euler angles.
+     * The rotation is edited using a [Vector3] in
+     * [url=https://en.wikipedia.org/wiki/Euler_angles]Euler angles[/url].
      */
     EULER(0),
     /**
@@ -1230,7 +1348,8 @@ public open class Node3D : Node() {
      */
     QUATERNION(1),
     /**
-     * The rotation is edited using a [Basis]. In this mode, [scale] can't be edited separately.
+     * The rotation is edited using a [Basis]. In this mode, the raw [basis]'s axes can be freely
+     * modified, but the [scale] property is not available.
      */
     BASIS(2),
     ;
@@ -1247,37 +1366,43 @@ public open class Node3D : Node() {
 
   public companion object {
     /**
-     * [Node3D] nodes receive this notification when their global transform changes. This means that
-     * either the current or a parent node changed its transform.
+     * Notification received when this node's [globalTransform] changes, if
+     * [isTransformNotificationEnabled] is `true`. See also [setNotifyTransform].
      *
-     * In order for [NOTIFICATION_TRANSFORM_CHANGED] to work, users first need to ask for it, with
-     * [setNotifyTransform]. The notification is also sent if the node is in the editor context and it
-     * has at least one valid gizmo.
+     * **Note:** Most 3D nodes such as [VisualInstance3D] or [CollisionObject3D] automatically
+     * enable this to function correctly.
+     *
+     * **Note:** In the editor, nodes will propagate this notification to their children if a gizmo
+     * is attached (see [addGizmo]).
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
-     * [Node3D] nodes receive this notification when they are registered to new [World3D] resource.
+     * Notification received when this node is registered to a new [World3D] (see [getWorld3d]).
      */
     public final const val NOTIFICATION_ENTER_WORLD: Long = 41
 
     /**
-     * [Node3D] nodes receive this notification when they are unregistered from current [World3D]
-     * resource.
+     * Notification received when this node is unregistered from the current [World3D] (see
+     * [getWorld3d]).
      */
     public final const val NOTIFICATION_EXIT_WORLD: Long = 42
 
     /**
-     * [Node3D] nodes receive this notification when their visibility changes.
+     * Notification received when this node's visibility changes (see [visible] and
+     * [isVisibleInTree]).
+     *
+     * This notification is received *before* the related [signal visibility_changed] signal.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 43
 
     /**
-     * [Node3D] nodes receive this notification when their local transform changes. This is not
-     * received when the transform of a parent node is changed.
+     * Notification received when this node's [transform] changes, if
+     * [isLocalTransformNotificationEnabled] is `true`. This is not received when a parent [Node3D]'s
+     * [transform] changes. See also [setNotifyLocalTransform].
      *
-     * In order for [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] to work, users first need to ask for it,
-     * with [setNotifyLocalTransform].
+     * **Note:** Some 3D nodes such as [CSGShape3D] or [CollisionShape3D] automatically enable this
+     * to function correctly.
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 44
   }

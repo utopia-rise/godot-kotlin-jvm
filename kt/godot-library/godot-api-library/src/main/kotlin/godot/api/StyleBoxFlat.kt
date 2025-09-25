@@ -399,7 +399,7 @@ public open class StyleBoxFlat : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(642, scriptIndex)
+    createNativeObject(658, scriptIndex)
   }
 
   /**
@@ -581,8 +581,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Sets the corner radius to [radius] pixels for the given [corner]. See [Corner] for possible
-   * values.
+   * Sets the corner radius to [radius] pixels for the given [corner].
    */
   public final fun setCornerRadius(corner: Corner, radius: Int): Unit {
     TransferContext.writeArguments(LONG to corner.value, LONG to radius.toLong())
@@ -590,7 +589,7 @@ public open class StyleBoxFlat : StyleBox() {
   }
 
   /**
-   * Returns the given [corner]'s radius. See [Corner] for possible values.
+   * Returns the given [corner]'s radius.
    */
   public final fun getCornerRadius(corner: Corner): Int {
     TransferContext.writeArguments(LONG to corner.value)

@@ -26,7 +26,7 @@ import kotlin.Unit
  *
  * This node is mapped to one of the anchors through its unique ID. When you receive a signal that a
  * new anchor is available, you should add this node to your scene for that anchor. You can predefine
- * nodes and set the ID; the nodes will simply remain on 0,0,0 until a plane is recognized.
+ * nodes and set the ID; the nodes will simply remain on `(0, 0, 0)` until a plane is recognized.
  *
  * Keep in mind that, as long as plane detection is enabled, the size, placing and orientation of an
  * anchor will be updated as the detection logic learns more about the real world out there especially
@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(858, scriptIndex)
+    createNativeObject(874, scriptIndex)
   }
 
   /**

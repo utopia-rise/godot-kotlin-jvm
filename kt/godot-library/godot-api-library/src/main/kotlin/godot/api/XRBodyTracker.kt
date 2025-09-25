@@ -68,7 +68,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(860, scriptIndex)
+    createNativeObject(876, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -102,8 +102,7 @@ public open class XRBodyTracker : XRPositionalTracker() {
   }
 
   /**
-   * Returns flags about the validity of the tracking data for the given body joint (see
-   * [XRBodyTracker.JointFlags]).
+   * Returns flags about the validity of the tracking data for the given body joint.
    */
   public final fun getJointFlags(joint: Joint): JointFlags {
     TransferContext.writeArguments(LONG to joint.value)
@@ -484,9 +483,53 @@ public open class XRBodyTracker : XRPositionalTracker() {
      */
     RIGHT_PINKY_FINGER_TIP(75),
     /**
+     * Lower chest joint.
+     */
+    LOWER_CHEST(76),
+    /**
+     * Left scapula joint.
+     */
+    LEFT_SCAPULA(77),
+    /**
+     * Left wrist twist joint.
+     */
+    LEFT_WRIST_TWIST(78),
+    /**
+     * Right scapula joint.
+     */
+    RIGHT_SCAPULA(79),
+    /**
+     * Right wrist twist joint.
+     */
+    RIGHT_WRIST_TWIST(80),
+    /**
+     * Left foot twist joint.
+     */
+    LEFT_FOOT_TWIST(81),
+    /**
+     * Left heel joint.
+     */
+    LEFT_HEEL(82),
+    /**
+     * Left middle foot joint.
+     */
+    LEFT_MIDDLE_FOOT(83),
+    /**
+     * Right foot twist joint.
+     */
+    RIGHT_FOOT_TWIST(84),
+    /**
+     * Right heel joint.
+     */
+    RIGHT_HEEL(85),
+    /**
+     * Right middle foot joint.
+     */
+    RIGHT_MIDDLE_FOOT(86),
+    /**
      * Represents the size of the [Joint] enum.
      */
-    MAX(76),
+    MAX(87),
     ;
 
     public override val `value`: Long

@@ -198,8 +198,17 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   /**
    * Scales the panning strength for this node by multiplying the base
-   * [ProjectSettings.audio/general/3dPanningStrength] with this factor. Higher values will pan audio
-   * from left to right more dramatically than lower values.
+   * [ProjectSettings.audio/general/3dPanningStrength] by this factor. If the product is `0.0` then
+   * stereo panning is disabled and the volume is the same for all channels. If the product is `1.0`
+   * then one of the channels will be muted when the sound is located exactly to the left (or right) of
+   * the listener.
+   *
+   * Two speaker stereo arrangements implement the
+   * [url=https://webaudio.github.io/web-audio-api/#stereopanner-algorithm]WebAudio standard for
+   * StereoPannerNode Panning[/url] where the volume is cosine of half the azimuth angle to the ear.
+   *
+   * For other speaker arrangements such as the 5.1 and 7.1 the SPCAP (Speaker-Placement Correction
+   * Amplitude) algorithm is implemented.
    */
   public final inline var panningStrength: Float
     @JvmName("panningStrengthProperty")
@@ -311,6 +320,12 @@ public open class AudioStreamPlayer3D : Node3D() {
 
   /**
    * Decides in which step the Doppler effect should be calculated.
+   *
+   * **Note:** If [dopplerTracking] is not [DOPPLER_TRACKING_DISABLED] but the current
+   * [Camera3D]/[AudioListener3D] has doppler tracking disabled, the Doppler effect will be heard but
+   * will not take the movement of the current listener into account. If accurate Doppler effect is
+   * desired, doppler tracking should be enabled on both the [AudioStreamPlayer3D] and the current
+   * [Camera3D]/[AudioListener3D].
    */
   public final inline var dopplerTracking: DopplerTracking
     @JvmName("dopplerTrackingProperty")
@@ -321,7 +336,7 @@ public open class AudioStreamPlayer3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(96, scriptIndex)
+    createNativeObject(97, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

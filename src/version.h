@@ -1,6 +1,6 @@
 #ifndef GODOT_JVM_VERSION_H
 #define GODOT_JVM_VERSION_H
 
-constexpr const char* GODOT_KOTLIN_VERSION = "0.13.1-4.4.1";
+constexpr const char* GODOT_KOTLIN_VERSION = "0.14.0-4.5";
 
 #endif// GODOT_JVM_VERSION_H

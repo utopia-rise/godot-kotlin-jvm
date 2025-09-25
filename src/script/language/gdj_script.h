@@ -4,7 +4,7 @@
 #include "script/jvm_script.h"
 
 class GdjScript : public NamedScript {
-    GDCLASS(GdjScript, JvmScript);
+    GDCLASS(GdjScript, NamedScript);
 
 public:
     GdjScript() = default;

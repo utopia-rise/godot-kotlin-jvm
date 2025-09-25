@@ -39,9 +39,9 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class ENetPacketPeer internal constructor() : PacketPeer() {
+public abstract class ENetPacketPeer : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(201, scriptIndex)
+    createNativeObject(206, scriptIndex)
   }
 
   /**
@@ -199,7 +199,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the requested [statistic] for this peer. See [PeerStatistic].
+   * Returns the requested [statistic] for this peer.
    */
   public final fun getStatistic(statistic: PeerStatistic): Double {
     TransferContext.writeArguments(LONG to statistic.value)
@@ -208,7 +208,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current peer state. See [PeerState].
+   * Returns the current peer state.
    */
   public final fun getState(): PeerState {
     TransferContext.writeArguments()
@@ -264,7 +264,7 @@ public open class ENetPacketPeer internal constructor() : PacketPeer() {
      */
     STATE_CONNECTED(5),
     /**
-     * The peer is slated to disconnect after it has no more outgoing packets to send.
+     * The peer is expected to disconnect after it has no more outgoing packets to send.
      */
     STATE_DISCONNECT_LATER(6),
     /**

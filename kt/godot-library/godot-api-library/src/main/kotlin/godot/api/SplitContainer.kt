@@ -82,8 +82,8 @@ public open class SplitContainer : Container() {
     }
 
   /**
-   * Determines the dragger's visibility. See [DraggerVisibility] for details. This property does
-   * not determine whether dragging is enabled or not. Use [draggingEnabled] for that.
+   * Determines the dragger's visibility. This property does not determine whether dragging is
+   * enabled or not. Use [draggingEnabled] for that.
    */
   public final inline var draggerVisibility: DraggerVisibility
     @JvmName("draggerVisibilityProperty")
@@ -104,6 +104,20 @@ public open class SplitContainer : Container() {
     @JvmName("verticalProperty")
     set(`value`) {
       setVertical(value)
+    }
+
+  /**
+   * If `true`, a touch-friendly drag handle will be enabled for better usability on smaller
+   * screens. Unlike the standard grabber, this drag handle overlaps the [SplitContainer]'s children
+   * and does not affect their minimum separation. The standard grabber will no longer be drawn when
+   * this option is enabled.
+   */
+  public final inline var touchDraggerEnabled: Boolean
+    @JvmName("touchDraggerEnabledProperty")
+    get() = isTouchDraggerEnabled()
+    @JvmName("touchDraggerEnabledProperty")
+    set(`value`) {
+      setTouchDraggerEnabled(value)
     }
 
   /**
@@ -155,7 +169,7 @@ public open class SplitContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(618, scriptIndex)
+    createNativeObject(634, scriptIndex)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {
@@ -288,6 +302,17 @@ public open class SplitContainer : Container() {
     return (TransferContext.readReturnValue(OBJECT) as Control?)
   }
 
+  public final fun setTouchDraggerEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setTouchDraggerEnabledPtr, NIL)
+  }
+
+  public final fun isTouchDraggerEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isTouchDraggerEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public enum class DraggerVisibility(
     `value`: Long,
   ) : GodotEnum {
@@ -385,5 +410,11 @@ public open class SplitContainer : Container() {
 
     internal val getDragAreaControlPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SplitContainer", "get_drag_area_control", 829782337)
+
+    internal val setTouchDraggerEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "set_touch_dragger_enabled", 2586408642)
+
+    internal val isTouchDraggerEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SplitContainer", "is_touch_dragger_enabled", 36873697)
   }
 }

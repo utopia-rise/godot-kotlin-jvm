@@ -76,6 +76,17 @@ public object ResourceUID : Object() {
   }
 
   /**
+   * Like [createId], but the UID is seeded with the provided [path] and project name. UIDs
+   * generated for that path will be always the same within the current project.
+   */
+  @JvmStatic
+  public final fun createIdForPath(path: String): Long {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.createIdForPathPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Returns whether the given UID value is known to the cache.
    */
   @JvmStatic
@@ -132,6 +143,38 @@ public object ResourceUID : Object() {
     TransferContext.callMethod(ptr, MethodBindings.removeIdPtr, NIL)
   }
 
+  /**
+   * Converts the provided [uid] to a path. Prints an error if the UID is invalid.
+   */
+  @JvmStatic
+  public final fun uidToPath(uid: String): String {
+    TransferContext.writeArguments(STRING to uid)
+    TransferContext.callMethod(0, MethodBindings.uidToPathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Converts the provided resource [path] to a UID. Returns the unchanged path if it has no
+   * associated UID.
+   */
+  @JvmStatic
+  public final fun pathToUid(path: String): String {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(0, MethodBindings.pathToUidPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns a path, converting [pathOrUid] if necessary. Prints an error if provided an invalid
+   * UID.
+   */
+  @JvmStatic
+  public final fun ensurePath(pathOrUid: String): String {
+    TransferContext.writeArguments(STRING to pathOrUid)
+    TransferContext.callMethod(0, MethodBindings.ensurePathPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
   public object MethodBindings {
     internal val idToTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceUID", "id_to_text", 844755477)
@@ -141,6 +184,9 @@ public object ResourceUID : Object() {
 
     internal val createIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceUID", "create_id", 2455072627)
+
+    internal val createIdForPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceUID", "create_id_for_path", 1597066294)
 
     internal val hasIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceUID", "has_id", 1116898809)
@@ -156,5 +202,14 @@ public object ResourceUID : Object() {
 
     internal val removeIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceUID", "remove_id", 1286410249)
+
+    internal val uidToPathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceUID", "uid_to_path", 1703090593)
+
+    internal val pathToUidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceUID", "path_to_uid", 1703090593)
+
+    internal val ensurePathPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceUID", "ensure_path", 1703090593)
   }
 }

@@ -14,6 +14,7 @@ import godot.core.GodotEnum
 import godot.core.Quaternion
 import godot.core.Signal0
 import godot.core.Signal1
+import godot.core.Signal3
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
@@ -65,12 +66,19 @@ public open class OpenXRInterface : XRInterface() {
   public val sessionStopping: Signal0 by Signal0
 
   /**
-   * Informs our OpenXR session now has focus.
+   * Informs our OpenXR session has been synchronized.
+   */
+  public val sessionSynchronized: Signal0 by Signal0
+
+  /**
+   * Informs our OpenXR session now has focus, for example output is sent to the HMD and we're
+   * receiving XR input.
    */
   public val sessionFocussed: Signal0 by Signal0
 
   /**
-   * Informs our OpenXR session is now visible (output is being sent to the HMD).
+   * Informs our OpenXR session is now visible, for example output is sent to the HMD but we don't
+   * receive XR input.
    */
   public val sessionVisible: Signal0 by Signal0
 
@@ -95,6 +103,16 @@ public open class OpenXRInterface : XRInterface() {
    * **Note:** Only emitted if XR runtime supports the refresh rate extension.
    */
   public val refreshRateChanged: Signal1<Double> by Signal1
+
+  /**
+   * Informs the device CPU performance level has changed in the specified subdomain.
+   */
+  public val cpuLevelChanged: Signal3<Long, Long, Long> by Signal3
+
+  /**
+   * Informs the device GPU performance level has changed in the specified subdomain.
+   */
+  public val gpuLevelChanged: Signal3<Long, Long, Long> by Signal3
 
   /**
    * The display refresh rate for the current HMD. Only functional if this feature is supported by
@@ -124,7 +142,7 @@ public open class OpenXRInterface : XRInterface() {
    * Set foveation level from 0 (off) to 3 (high), the interface must be initialized before this is
    * accessible.
    *
-   * **Note:** Only works on compatibility renderer.
+   * **Note:** Only works on the Compatibility renderer.
    */
   public final inline var foveationLevel: Int
     @JvmName("foveationLevelProperty")
@@ -138,7 +156,7 @@ public open class OpenXRInterface : XRInterface() {
    * Enable dynamic foveation adjustment, the interface must be initialized before this is
    * accessible. If enabled foveation will automatically adjusted between low and [foveationLevel].
    *
-   * **Note:** Only works on compatibility renderer.
+   * **Note:** Only works on the Compatibility renderer.
    */
   public final inline var foveationDynamic: Boolean
     @JvmName("foveationDynamicProperty")
@@ -179,7 +197,16 @@ public open class OpenXRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(430, scriptIndex)
+    createNativeObject(442, scriptIndex)
+  }
+
+  /**
+   * Returns the current state of our OpenXR session.
+   */
+  public final fun getSessionState(): SessionState {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSessionStatePtr, LONG)
+    return SessionState.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun getDisplayRefreshRate(): Float {
@@ -208,7 +235,7 @@ public open class OpenXRInterface : XRInterface() {
    * Returns `true` if OpenXR's foveation extension is supported, the interface must be initialized
    * before this returns a valid value.
    *
-   * **Note:** This feature is only available on the compatibility renderer and currently only
+   * **Note:** This feature is only available on the Compatibility renderer and currently only
    * available on some stand alone headsets. For Vulkan set [Viewport.vrsMode] to `VRS_XR` on desktop.
    */
   public final fun isFoveationSupported(): Boolean {
@@ -418,6 +445,88 @@ public open class OpenXRInterface : XRInterface() {
     TransferContext.callMethod(ptr, MethodBindings.setVrsStrengthPtr, NIL)
   }
 
+  /**
+   * Sets the CPU performance level of the OpenXR device.
+   */
+  public final fun setCpuLevel(level: PerfSettingsLevel): Unit {
+    TransferContext.writeArguments(LONG to level.value)
+    TransferContext.callMethod(ptr, MethodBindings.setCpuLevelPtr, NIL)
+  }
+
+  /**
+   * Sets the GPU performance level of the OpenXR device.
+   */
+  public final fun setGpuLevel(level: PerfSettingsLevel): Unit {
+    TransferContext.writeArguments(LONG to level.value)
+    TransferContext.callMethod(ptr, MethodBindings.setGpuLevelPtr, NIL)
+  }
+
+  public enum class SessionState(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The state of the session is unknown, we haven't tried setting up OpenXR yet.
+     */
+    UNKNOWN(0),
+    /**
+     * The initial state after the OpenXR session is created or after the session is destroyed.
+     */
+    IDLE(1),
+    /**
+     * OpenXR is ready to begin our session. [signal session_begun] is emitted when we change to
+     * this state.
+     */
+    READY(2),
+    /**
+     * The application has synched its frame loop with the runtime but we're not rendering anything.
+     * [signal session_synchronized] is emitted when we change to this state.
+     */
+    SYNCHRONIZED(3),
+    /**
+     * The application has synched its frame loop with the runtime and we're rendering output to the
+     * user, however we receive no user input. [signal session_visible] is emitted when we change to
+     * this state.
+     *
+     * **Note:** This is the current state just before we get the focused state, whenever the user
+     * opens a system menu, switches to another application, or takes off their headset.
+     */
+    VISIBLE(4),
+    /**
+     * The application has synched its frame loop with the runtime, we're rendering output to the
+     * user and we're receiving XR input. [signal session_focussed] is emitted when we change to this
+     * state.
+     *
+     * **Note:** This is the state OpenXR will be in when the user can fully interact with your
+     * game.
+     */
+    FOCUSED(5),
+    /**
+     * Our session is being stopped. [signal session_stopping] is emitted when we change to this
+     * state.
+     */
+    STOPPING(6),
+    /**
+     * The session is about to be lost. [signal session_loss_pending] is emitted when we change to
+     * this state.
+     */
+    LOSS_PENDING(7),
+    /**
+     * The OpenXR instance is about to be destroyed and we're existing. [signal instance_exiting] is
+     * emitted when we change to this state.
+     */
+    EXITING(8),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): SessionState = entries.single { it.`value` == `value` }
+    }
+  }
+
   public enum class Hand(
     `value`: Long,
   ) : GodotEnum {
@@ -491,7 +600,7 @@ public open class OpenXRInterface : XRInterface() {
      */
     CONTROLLER(2),
     /**
-     * Maximum value for the hand tracked source enum.
+     * Represents the size of the [HandTrackedSource] enum.
      */
     MAX(3),
     ;
@@ -534,87 +643,87 @@ public open class OpenXRInterface : XRInterface() {
      */
     THUMB_TIP(5),
     /**
-     * Index metacarpal joint.
+     * Index finger metacarpal joint.
      */
     INDEX_METACARPAL(6),
     /**
-     * Index proximal joint.
+     * Index finger phalanx proximal joint.
      */
     INDEX_PROXIMAL(7),
     /**
-     * Index intermediate joint.
+     * Index finger phalanx intermediate joint.
      */
     INDEX_INTERMEDIATE(8),
     /**
-     * Index distal joint.
+     * Index finger phalanx distal joint.
      */
     INDEX_DISTAL(9),
     /**
-     * Index tip joint.
+     * Index finger tip joint.
      */
     INDEX_TIP(10),
     /**
-     * Middle metacarpal joint.
+     * Middle finger metacarpal joint.
      */
     MIDDLE_METACARPAL(11),
     /**
-     * Middle proximal joint.
+     * Middle finger phalanx proximal joint.
      */
     MIDDLE_PROXIMAL(12),
     /**
-     * Middle intermediate joint.
+     * Middle finger phalanx intermediate joint.
      */
     MIDDLE_INTERMEDIATE(13),
     /**
-     * Middle distal joint.
+     * Middle finger phalanx distal joint.
      */
     MIDDLE_DISTAL(14),
     /**
-     * Middle tip joint.
+     * Middle finger tip joint.
      */
     MIDDLE_TIP(15),
     /**
-     * Ring metacarpal joint.
+     * Ring finger metacarpal joint.
      */
     RING_METACARPAL(16),
     /**
-     * Ring proximal joint.
+     * Ring finger phalanx proximal joint.
      */
     RING_PROXIMAL(17),
     /**
-     * Ring intermediate joint.
+     * Ring finger phalanx intermediate joint.
      */
     RING_INTERMEDIATE(18),
     /**
-     * Ring distal joint.
+     * Ring finger phalanx distal joint.
      */
     RING_DISTAL(19),
     /**
-     * Ring tip joint.
+     * Ring finger tip joint.
      */
     RING_TIP(20),
     /**
-     * Little metacarpal joint.
+     * Pinky finger metacarpal joint.
      */
     LITTLE_METACARPAL(21),
     /**
-     * Little proximal joint.
+     * Pinky finger phalanx proximal joint.
      */
     LITTLE_PROXIMAL(22),
     /**
-     * Little intermediate joint.
+     * Pinky finger phalanx intermediate joint.
      */
     LITTLE_INTERMEDIATE(23),
     /**
-     * Little distal joint.
+     * Pinky finger phalanx distal joint.
      */
     LITTLE_DISTAL(24),
     /**
-     * Little tip joint.
+     * Pinky finger tip joint.
      */
     LITTLE_TIP(25),
     /**
-     * Maximum value for the hand joint enum.
+     * Represents the size of the [HandJoints] enum.
      */
     MAX(26),
     ;
@@ -626,6 +735,100 @@ public open class OpenXRInterface : XRInterface() {
 
     public companion object {
       public fun from(`value`: Long): HandJoints = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class PerfSettingsLevel(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The application has entered a non-XR section (head-locked / static screen), during which
+     * power savings are to be prioritized.
+     */
+    POWER_SAVINGS(0),
+    /**
+     * The application has entered a low and stable complexity section, during which reducing power
+     * is more important than occasional late rendering frames.
+     */
+    SUSTAINED_LOW(1),
+    /**
+     * The application has entered a high or dynamic complexity section, during which the XR Runtime
+     * strives for consistent XR compositing and frame rendering within a thermally sustainable range.
+     */
+    SUSTAINED_HIGH(2),
+    /**
+     * The application has entered a section with very high complexity, during which the XR Runtime
+     * is allowed to step up beyond the thermally sustainable range.
+     */
+    BOOST(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): PerfSettingsLevel = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class PerfSettingsSubDomain(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The compositing performance within the runtime has reached a new level.
+     */
+    COMPOSITING(0),
+    /**
+     * The application rendering performance has reached a new level.
+     */
+    RENDERING(1),
+    /**
+     * The temperature of the device has reached a new level.
+     */
+    THERMAL(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): PerfSettingsSubDomain =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class PerfSettingsNotificationLevel(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The sub-domain has reached a level where no further actions other than currently applied are
+     * necessary.
+     */
+    NORMAL(0),
+    /**
+     * The sub-domain has reached an early warning level where the application should start
+     * proactive mitigation actions.
+     */
+    WARNING(1),
+    /**
+     * The sub-domain has reached a critical level where the application should start drastic
+     * mitigation actions.
+     */
+    IMPAIRED(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): PerfSettingsNotificationLevel =
+          entries.single { it.`value` == `value` }
     }
   }
 
@@ -712,6 +915,9 @@ public open class OpenXRInterface : XRInterface() {
   public companion object
 
   public object MethodBindings {
+    internal val getSessionStatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "get_session_state", 896364779)
+
     internal val getDisplayRefreshRatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "get_display_refresh_rate", 1740695150)
 
@@ -798,5 +1004,11 @@ public open class OpenXRInterface : XRInterface() {
 
     internal val setVrsStrengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRInterface", "set_vrs_strength", 373806689)
+
+    internal val setCpuLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_cpu_level", 2940842095)
+
+    internal val setGpuLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRInterface", "set_gpu_level", 2940842095)
   }
 }

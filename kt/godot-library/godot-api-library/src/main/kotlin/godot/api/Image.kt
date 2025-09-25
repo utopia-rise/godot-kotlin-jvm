@@ -54,7 +54,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class Image : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(282, scriptIndex)
+    createNativeObject(289, scriptIndex)
   }
 
   /**
@@ -94,7 +94,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the image's format. See [Format] constants.
+   * Returns this image's format.
    */
   public final fun getFormat(): Format {
     TransferContext.writeArguments()
@@ -121,7 +121,7 @@ public open class Image : Resource() {
   }
 
   /**
-   * Converts the image's format. See [Format] constants.
+   * Converts this image's format to the given [format].
    */
   public final fun convert(format: Format): Unit {
     TransferContext.writeArguments(LONG to format.value)
@@ -150,8 +150,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true`
-   * then set width and height to be the same. New pixels are calculated using the [interpolation] mode
+   * Resizes the image to the nearest power of 2 for the width and height. If [square] is `true`,
+   * sets width and height to be the same. New pixels are calculated using the [interpolation] mode
    * defined via [Interpolation] constants.
    */
   @JvmOverloads
@@ -345,13 +345,41 @@ public open class Image : Resource() {
    * one channel, it will be saved explicitly as monochrome rather than one red channel. This function
    * will return an empty byte array if Godot was compiled without the TinyEXR module.
    *
-   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExr] will
-   * return an empty byte array when it is called from an exported project.
+   * **Note:** The TinyEXR module is disabled in non-editor builds, which means [saveExrToBuffer]
+   * will return an empty byte array when it is called from an exported project.
    */
   @JvmOverloads
   public final fun saveExrToBuffer(grayscale: Boolean = false): PackedByteArray {
     TransferContext.writeArguments(BOOL to grayscale)
     TransferContext.callMethod(ptr, MethodBindings.saveExrToBufferPtr, PACKED_BYTE_ARRAY)
+    return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
+  }
+
+  /**
+   * Saves the image as a DDS (DirectDraw Surface) file to [path]. DDS is a container format that
+   * can store textures in various compression formats, such as DXT1, DXT5, or BC7. This function will
+   * return [ERR_UNAVAILABLE] if Godot was compiled without the DDS module.
+   *
+   * **Note:** The DDS module may be disabled in certain builds, which means [saveDds] will return
+   * [ERR_UNAVAILABLE] when it is called from an exported project.
+   */
+  public final fun saveDds(path: String): Error {
+    TransferContext.writeArguments(STRING to path)
+    TransferContext.callMethod(ptr, MethodBindings.saveDdsPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Saves the image as a DDS (DirectDraw Surface) file to a byte array. DDS is a container format
+   * that can store textures in various compression formats, such as DXT1, DXT5, or BC7. This function
+   * will return an empty byte array if Godot was compiled without the DDS module.
+   *
+   * **Note:** The DDS module may be disabled in certain builds, which means [saveDdsToBuffer] will
+   * return an empty byte array when it is called from an exported project.
+   */
+  public final fun saveDdsToBuffer(): PackedByteArray {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.saveDdsToBufferPtr, PACKED_BYTE_ARRAY)
     return (TransferContext.readReturnValue(PACKED_BYTE_ARRAY) as PackedByteArray)
   }
 
@@ -412,8 +440,8 @@ public open class Image : Resource() {
   }
 
   /**
-   * Returns the color channels used by this image, as one of the [UsedChannels] constants. If the
-   * image is compressed, the original [source] must be specified.
+   * Returns the color channels used by this image. If the image is compressed, the original
+   * [source] must be specified.
    */
   @JvmOverloads
   public final fun detectUsedChannels(source: CompressSource = Image.CompressSource.GENERIC):
@@ -858,6 +886,19 @@ public open class Image : Resource() {
   public final fun loadKtxFromBuffer(buffer: PackedByteArray): Error {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
     TransferContext.callMethod(ptr, MethodBindings.loadKtxFromBufferPtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Loads an image from the binary contents of a DDS file.
+   *
+   * **Note:** This method is only available in engine builds with the DDS module enabled. By
+   * default, the DDS module is enabled, but it can be disabled at build-time using the
+   * `module_dds_enabled=no` SCons option.
+   */
+  public final fun loadDdsFromBuffer(buffer: PackedByteArray): Error {
+    TransferContext.writeArguments(PACKED_BYTE_ARRAY to buffer)
+    TransferContext.callMethod(ptr, MethodBindings.loadDdsFromBufferPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -1362,8 +1403,8 @@ public open class Image : Resource() {
     public final const val MAX_HEIGHT: Long = 16777216
 
     /**
-     * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
-     * `true`, then generate mipmaps for this image. See the [generateMipmaps].
+     * Creates an empty image of the given size and format. If [useMipmaps] is `true`, generates
+     * mipmaps for this image. See the [generateMipmaps].
      */
     @JvmStatic
     public final fun create(
@@ -1378,8 +1419,8 @@ public open class Image : Resource() {
     }
 
     /**
-     * Creates an empty image of given size and format. See [Format] constants. If [useMipmaps] is
-     * `true`, then generate mipmaps for this image. See the [generateMipmaps].
+     * Creates an empty image of the given size and format. If [useMipmaps] is `true`, generates
+     * mipmaps for this image. See the [generateMipmaps].
      */
     @JvmStatic
     public final fun createEmpty(
@@ -1394,9 +1435,8 @@ public open class Image : Resource() {
     }
 
     /**
-     * Creates a new image of given size and format. See [Format] constants. Fills the image with
-     * the given raw data. If [useMipmaps] is `true` then loads mipmaps for this image from [data]. See
-     * [generateMipmaps].
+     * Creates a new image of the given size and format. Fills the image with the given raw data. If
+     * [useMipmaps] is `true`, loads the mipmaps for this image from [data]. See [generateMipmaps].
      */
     @JvmStatic
     public final fun createFromData(
@@ -1501,6 +1541,11 @@ public open class Image : Resource() {
 
     internal val saveExrToBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "save_exr_to_buffer", 3178917920)
+
+    internal val saveDdsPtr: VoidPtr = TypeManager.getMethodBindPtr("Image", "save_dds", 2113323047)
+
+    internal val saveDdsToBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "save_dds_to_buffer", 2362200018)
 
     internal val saveWebpPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "save_webp", 2781156876)
@@ -1617,6 +1662,9 @@ public open class Image : Resource() {
 
     internal val loadKtxFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_ktx_from_buffer", 680677267)
+
+    internal val loadDdsFromBufferPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Image", "load_dds_from_buffer", 680677267)
 
     internal val loadSvgFromBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Image", "load_svg_from_buffer", 311853421)

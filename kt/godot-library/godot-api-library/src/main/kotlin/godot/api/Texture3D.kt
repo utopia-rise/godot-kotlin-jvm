@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(669, scriptIndex)
+    createNativeObject(685, scriptIndex)
   }
 
   /**
@@ -68,7 +68,7 @@ public abstract class Texture3D : Texture() {
   public abstract fun _getData(): VariantArray<Image>
 
   /**
-   * Returns the current format being used by this texture. See [Image.Format] for details.
+   * Returns the current format being used by this texture.
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()

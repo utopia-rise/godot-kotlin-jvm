@@ -4,7 +4,7 @@
 #include "script/jvm_script.h"
 
 class KotlinScript : public PathScript {
-    GDCLASS(KotlinScript, JvmScript);
+    GDCLASS(KotlinScript, PathScript);
 
 public:
     KotlinScript() = default;

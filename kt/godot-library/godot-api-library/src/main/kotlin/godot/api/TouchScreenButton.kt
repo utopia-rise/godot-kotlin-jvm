@@ -145,7 +145,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   /**
-   * The button's visibility mode. See [VisibilityMode] for possible values.
+   * The button's visibility mode.
    */
   public final inline var visibilityMode: VisibilityMode
     @JvmName("visibilityModeProperty")
@@ -156,7 +156,7 @@ public open class TouchScreenButton : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(692, scriptIndex)
+    createNativeObject(708, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

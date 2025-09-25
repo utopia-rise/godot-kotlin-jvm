@@ -18,9 +18,9 @@ import kotlin.Unit
  * runtime processes inputs.
  */
 @GodotBaseType
-public abstract class OpenXRBindingModifier internal constructor() : Resource() {
+public abstract class OpenXRBindingModifier : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(416, scriptIndex)
+    createNativeObject(425, scriptIndex)
   }
 
   /**
@@ -33,7 +33,7 @@ public abstract class OpenXRBindingModifier internal constructor() : Resource() 
    * Returns the data that is sent to OpenXR when submitting the suggested interacting bindings this
    * modifier is a part of.
    *
-   * **Note:** This must be data compatible with a `XrBindingModificationBaseHeaderKHR` structure.
+   * **Note:** This must be data compatible with an `XrBindingModificationBaseHeaderKHR` structure.
    */
   public abstract fun _getIpModification(): PackedByteArray
 

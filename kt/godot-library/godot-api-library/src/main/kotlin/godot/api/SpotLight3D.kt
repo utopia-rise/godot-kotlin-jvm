@@ -18,6 +18,10 @@ import kotlin.jvm.JvmName
  * of a cone. The light is attenuated through the distance. This attenuation can be configured by
  * changing the energy, radius and attenuation parameters of [Light3D].
  *
+ * Light is emitted in the -Z direction of the node's global basis. For an unrotated light, this
+ * means that the light is emitted forwards, illuminating the front side of a 3D model (see
+ * [Vector3.FORWARD] and [Vector3.MODEL_FRONT]).
+ *
  * **Note:** When using the Mobile rendering method, only 8 spot lights can be displayed on each
  * mesh resource. Attempting to display more than 8 spot lights on a single mesh resource will result
  * in spot lights flickering in and out as the camera moves. When using the Compatibility rendering
@@ -70,7 +74,9 @@ public open class SpotLight3D : Light3D() {
     }
 
   /**
-   * The spotlight's angle in degrees.
+   * The spotlight's angle in degrees. This is the angular radius, meaning the angle from the -Z
+   * axis, the cone's center, to the edge of the cone. The default angular radius of 45 degrees
+   * corresponds to a cone with an angular diameter of 90 degrees.
    *
    * **Note:** [spotAngle] is not affected by [Node3D.scale] (the light's scale or its parent's
    * scale).
@@ -95,7 +101,7 @@ public open class SpotLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(619, scriptIndex)
+    createNativeObject(635, scriptIndex)
   }
 
   public companion object

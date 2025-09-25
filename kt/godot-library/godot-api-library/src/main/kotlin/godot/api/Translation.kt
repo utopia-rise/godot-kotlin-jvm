@@ -45,7 +45,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(693, scriptIndex)
+    createNativeObject(709, scriptIndex)
   }
 
   /**
@@ -98,6 +98,10 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
+   *
+   * **Note:** Plurals are only supported in
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
+   * (PO)[/url], not CSV.
    */
   public final fun addPluralMessage(
     srcMessage: StringName,
@@ -123,6 +127,10 @@ public open class Translation : Resource() {
    *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   *
+   * **Note:** Plurals are only supported in
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
+   * (PO)[/url], not CSV.
    */
   public final fun getPluralMessage(
     srcMessage: StringName,
@@ -189,6 +197,10 @@ public open class Translation : Resource() {
    *
    * An additional context could be used to specify the translation context or differentiate
    * polysemic words.
+   *
+   * **Note:** Plurals are only supported in
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
+   * (PO)[/url], not CSV.
    */
   public final fun addPluralMessage(
     srcMessage: String,
@@ -208,6 +220,10 @@ public open class Translation : Resource() {
    *
    * The number [n] is the number or quantity of the plural object. It will be used to guide the
    * translation system to fetch the correct plural form for the selected language.
+   *
+   * **Note:** Plurals are only supported in
+   * [url=$DOCS_URL/tutorials/i18n/localization_using_gettext.html]gettext-based translations
+   * (PO)[/url], not CSV.
    */
   public final fun getPluralMessage(
     srcMessage: String,

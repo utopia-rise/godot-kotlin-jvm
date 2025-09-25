@@ -53,6 +53,21 @@ import kotlin.jvm.JvmOverloads
  * A multiline text editor. It also has limited facilities for editing code, such as syntax
  * highlighting support. For more advanced facilities for editing code, see [CodeEdit].
  *
+ * While entering text, it is possible to insert special characters using Unicode, OEM or Windows
+ * alt codes:
+ *
+ * - To enter Unicode codepoints, hold [kbd]Alt[/kbd] and type the codepoint on the numpad. For
+ * example, to enter the character `á` (U+00E1), hold [kbd]Alt[/kbd] and type [kbd]+E1[/kbd] on the
+ * numpad (the leading zeroes can be omitted).
+ *
+ * - To enter OEM codepoints, hold [kbd]Alt[/kbd] and type the code on the numpad. For example, to
+ * enter the character `á` (OEM 160), hold [kbd]Alt[/kbd] and type `160` on the numpad.
+ *
+ * - To enter Windows codepoints, hold [kbd]Alt[/kbd] and type the code on the numpad. For example,
+ * to enter the character `á` (Windows 0225), hold [kbd]Alt[/kbd] and type [kbd]0[/kbd], [kbd]2[/kbd],
+ * [kbd]2[/kbd], [kbd]5[/kbd] on the numpad. The leading zero here must **not** be omitted, as this is
+ * how Windows codepoints are distinguished from OEM codepoints.
+ *
  * **Note:** Most viewport, caret, and edit methods contain a `caret_index` argument for
  * [caretMultiple] support. The argument should be one of the following: `-1` for all carets, `0` for
  * the main caret, or greater than `0` for secondary carets in the order they were created.
@@ -157,6 +172,18 @@ public open class TextEdit : Control() {
     }
 
   /**
+   * If `true` and [caretMidGrapheme] is `false`, backspace deletes an entire composite character
+   * such as ❤️‍🩹, instead of deleting part of the composite character.
+   */
+  public final inline var backspaceDeletesCompositeCharacterEnabled: Boolean
+    @JvmName("backspaceDeletesCompositeCharacterEnabledProperty")
+    get() = isBackspaceDeletesCompositeCharacterEnabled()
+    @JvmName("backspaceDeletesCompositeCharacterEnabledProperty")
+    set(`value`) {
+      setBackspaceDeletesCompositeCharacterEnabled(value)
+    }
+
+  /**
    * If `true`, shortcut keys for context menu items are enabled, even if the context menu is
    * disabled.
    */
@@ -204,7 +231,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If `true`, the native virtual keyboard is shown when focused on platforms that support it.
+   * If `true`, the native virtual keyboard is enabled on platforms that support it.
    */
   public final inline var virtualKeyboardEnabled: Boolean
     @JvmName("virtualKeyboardEnabledProperty")
@@ -212,6 +239,17 @@ public open class TextEdit : Control() {
     @JvmName("virtualKeyboardEnabledProperty")
     set(`value`) {
       setVirtualKeyboardEnabled(value)
+    }
+
+  /**
+   * If `true`, the native virtual keyboard is shown on focus events on platforms that support it.
+   */
+  public final inline var virtualKeyboardShowOnFocus: Boolean
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    get() = getVirtualKeyboardShowOnFocus()
+    @JvmName("virtualKeyboardShowOnFocusProperty")
+    set(`value`) {
+      setVirtualKeyboardShowOnFocus(value)
     }
 
   /**
@@ -251,8 +289,7 @@ public open class TextEdit : Control() {
     }
 
   /**
-   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode. To see how each mode
-   * behaves, see [TextServer.AutowrapMode].
+   * If [wrapMode] is set to [LINE_WRAPPING_BOUNDARY], sets text wrapping mode.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -271,6 +308,18 @@ public open class TextEdit : Control() {
     @JvmName("indentWrappedLinesProperty")
     set(`value`) {
       setIndentWrappedLines(value)
+    }
+
+  /**
+   * If `true`, [ProjectSettings.input/uiTextIndent] input `Tab` character, otherwise it moves
+   * keyboard focus to the next [Control] in the scene.
+   */
+  public final inline var tabInputMode: Boolean
+    @JvmName("tabInputModeProperty")
+    get() = getTabInputMode()
+    @JvmName("tabInputModeProperty")
+    set(`value`) {
+      setTabInputMode(value)
     }
 
   /**
@@ -618,7 +667,7 @@ public open class TextEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(655, scriptIndex)
+    createNativeObject(671, scriptIndex)
   }
 
   /**
@@ -778,6 +827,17 @@ public open class TextEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setTabInputMode(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setTabInputModePtr, NIL)
+  }
+
+  public final fun getTabInputMode(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTabInputModePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * If `true`, enables overtype mode. In this mode, typing overrides existing text instead of
    * inserting text. The [ProjectSettings.input/uiTextToggleInsertMode] action toggles overtype mode.
@@ -819,6 +879,19 @@ public open class TextEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setBackspaceDeletesCompositeCharacterEnabled(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setBackspaceDeletesCompositeCharacterEnabledPtr,
+        NIL)
+  }
+
+  public final fun isBackspaceDeletesCompositeCharacterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isBackspaceDeletesCompositeCharacterEnabledPtr,
+        BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setShortcutKeysEnabled(enabled: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setShortcutKeysEnabledPtr, NIL)
@@ -838,6 +911,17 @@ public open class TextEdit : Control() {
   public final fun isVirtualKeyboardEnabled(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isVirtualKeyboardEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setVirtualKeyboardShowOnFocus(showOnFocus: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to showOnFocus)
+    TransferContext.callMethod(ptr, MethodBindings.setVirtualKeyboardShowOnFocusPtr, NIL)
+  }
+
+  public final fun getVirtualKeyboardShowOnFocus(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVirtualKeyboardShowOnFocusPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1258,9 +1342,9 @@ public open class TextEdit : Control() {
    * //gdscript
    * var result = search("print", SEARCH_WHOLE_WORDS, 0, 0)
    * if result.x != -1:
-   *     # Result found.
-   *     var line_number = result.y
-   *     var column_number = result.x
+   * # Result found.
+   * var line_number = result.y
+   * var column_number = result.x
    * ```
    *
    * ```csharp
@@ -1268,9 +1352,9 @@ public open class TextEdit : Control() {
    * Vector2I result = Search("print", (uint)TextEdit.SearchFlags.WholeWords, 0, 0);
    * if (result.X != -1)
    * {
-   *     // Result found.
-   *     int lineNumber = result.Y;
-   *     int columnNumber = result.X;
+   * // Result found.
+   * int lineNumber = result.Y;
+   * int columnNumber = result.X;
    * }
    * ```
    */
@@ -1571,9 +1655,9 @@ public open class TextEdit : Control() {
    * begin_complex_operation()
    * begin_multicaret_edit()
    * for i in range(get_caret_count()):
-   *     if multicaret_edit_ignore_caret(i):
-   *         continue
-   *     # Logic here.
+   * if multicaret_edit_ignore_caret(i):
+   * continue
+   * # Logic here.
    * end_multicaret_edit()
    * end_complex_operation()
    * ```
@@ -1708,6 +1792,36 @@ public open class TextEdit : Control() {
   public final fun getCaretColumn(caretIndex: Int = 0): Int {
     TransferContext.writeArguments(LONG to caretIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getCaretColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the correct column at the end of a composite character like ❤️‍🩹 (mending heart;
+   * Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point,
+   * if the caret is at the start of the composite character. Also returns the correct column with the
+   * caret at mid grapheme and for non-composite characters.
+   *
+   * **Note:** To check at caret location use `get_next_composite_character_column(get_caret_line(),
+   * get_caret_column())`
+   */
+  public final fun getNextCompositeCharacterColumn(line: Int, column: Int): Int {
+    TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getNextCompositeCharacterColumnPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the correct column at the start of a composite character like ❤️‍🩹 (mending heart;
+   * Unicode: `U+2764 U+FE0F U+200D U+1FA79`) which is comprised of more than one Unicode code point,
+   * if the caret is at the end of the composite character. Also returns the correct column with the
+   * caret at mid grapheme and for non-composite characters.
+   *
+   * **Note:** To check at caret location use
+   * `get_previous_composite_character_column(get_caret_line(), get_caret_column())`
+   */
+  public final fun getPreviousCompositeCharacterColumn(line: Int, column: Int): Int {
+    TransferContext.writeArguments(LONG to line.toLong(), LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getPreviousCompositeCharacterColumnPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
@@ -2398,7 +2512,6 @@ public open class TextEdit : Control() {
 
   /**
    * Sets the type of gutter at the given index. Gutters can contain icons, text, or custom visuals.
-   * See [TextEdit.GutterType] for options.
    */
   public final fun setGutterType(gutter: Int, type: GutterType): Unit {
     TransferContext.writeArguments(LONG to gutter.toLong(), LONG to type.value)
@@ -2407,7 +2520,7 @@ public open class TextEdit : Control() {
 
   /**
    * Returns the type of the gutter at the given index. Gutters can contain icons, text, or custom
-   * visuals. See [TextEdit.GutterType] for options.
+   * visuals.
    */
   public final fun getGutterType(gutter: Int): GutterType {
     TransferContext.writeArguments(LONG to gutter.toLong())
@@ -2723,40 +2836,40 @@ public open class TextEdit : Control() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var menu = get_menu()
-   *     # Remove all items after "Redo".
-   *     menu.item_count = menu.get_item_index(MENU_REDO) + 1
-   *     # Add custom items.
-   *     menu.add_separator()
-   *     menu.add_item("Insert Date", MENU_MAX + 1)
-   *     # Connect callback.
-   *     menu.id_pressed.connect(_on_item_pressed)
+   * var menu = get_menu()
+   * # Remove all items after "Redo".
+   * menu.item_count = menu.get_item_index(MENU_REDO) + 1
+   * # Add custom items.
+   * menu.add_separator()
+   * menu.add_item("Insert Date", MENU_MAX + 1)
+   * # Connect callback.
+   * menu.id_pressed.connect(_on_item_pressed)
    *
    * func _on_item_pressed(id):
-   *     if id == MENU_MAX + 1:
-   *         insert_text_at_caret(Time.get_date_string_from_system())
+   * if id == MENU_MAX + 1:
+   * insert_text_at_caret(Time.get_date_string_from_system())
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     var menu = GetMenu();
-   *     // Remove all items after "Redo".
-   *     menu.ItemCount = menu.GetItemIndex(TextEdit.MenuItems.Redo) + 1;
-   *     // Add custom items.
-   *     menu.AddSeparator();
-   *     menu.AddItem("Insert Date", TextEdit.MenuItems.Max + 1);
-   *     // Add event handler.
-   *     menu.IdPressed += OnItemPressed;
+   * var menu = GetMenu();
+   * // Remove all items after "Redo".
+   * menu.ItemCount = menu.GetItemIndex(TextEdit.MenuItems.Redo) + 1;
+   * // Add custom items.
+   * menu.AddSeparator();
+   * menu.AddItem("Insert Date", TextEdit.MenuItems.Max + 1);
+   * // Add event handler.
+   * menu.IdPressed += OnItemPressed;
    * }
    *
    * public void OnItemPressed(int id)
    * {
-   *     if (id == TextEdit.MenuItems.Max + 1)
-   *     {
-   *         InsertTextAtCaret(Time.GetDateStringFromSystem());
-   *     }
+   * if (id == TextEdit.MenuItems.Max + 1)
+   * {
+   * InsertTextAtCaret(Time.GetDateStringFromSystem());
+   * }
    * }
    * ```
    *
@@ -3197,6 +3310,12 @@ public open class TextEdit : Control() {
     internal val isIndentWrappedLinesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_indent_wrapped_lines", 36873697)
 
+    internal val setTabInputModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_tab_input_mode", 2586408642)
+
+    internal val getTabInputModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_tab_input_mode", 36873697)
+
     internal val setOvertypeModeEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_overtype_mode_enabled", 2586408642)
 
@@ -3215,6 +3334,12 @@ public open class TextEdit : Control() {
     internal val isEmojiMenuEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_emoji_menu_enabled", 36873697)
 
+    internal val setBackspaceDeletesCompositeCharacterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_backspace_deletes_composite_character_enabled", 2586408642)
+
+    internal val isBackspaceDeletesCompositeCharacterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "is_backspace_deletes_composite_character_enabled", 36873697)
+
     internal val setShortcutKeysEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_shortcut_keys_enabled", 2586408642)
 
@@ -3226,6 +3351,12 @@ public open class TextEdit : Control() {
 
     internal val isVirtualKeyboardEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "is_virtual_keyboard_enabled", 36873697)
+
+    internal val setVirtualKeyboardShowOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "set_virtual_keyboard_show_on_focus", 2586408642)
+
+    internal val getVirtualKeyboardShowOnFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_virtual_keyboard_show_on_focus", 36873697)
 
     internal val setMiddleMousePasteEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "set_middle_mouse_paste_enabled", 2586408642)
@@ -3480,6 +3611,12 @@ public open class TextEdit : Control() {
 
     internal val getCaretColumnPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_caret_column", 1591665591)
+
+    internal val getNextCompositeCharacterColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_next_composite_character_column", 3175239445)
+
+    internal val getPreviousCompositeCharacterColumnPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextEdit", "get_previous_composite_character_column", 3175239445)
 
     internal val getCaretWrapIndexPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextEdit", "get_caret_wrap_index", 1591665591)

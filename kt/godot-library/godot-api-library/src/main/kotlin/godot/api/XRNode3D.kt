@@ -28,7 +28,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node can be bound to a specific pose of a [XRPositionalTracker] and will automatically have
+ * This node can be bound to a specific pose of an [XRPositionalTracker] and will automatically have
  * its [Node3D.transform] updated by the [XRServer]. Nodes of this type must be added as children of
  * the [XROrigin3D] node.
  */
@@ -82,7 +82,7 @@ public open class XRNode3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(870, scriptIndex)
+    createNativeObject(886, scriptIndex)
   }
 
   public final fun setTracker(trackerName: StringName): Unit {

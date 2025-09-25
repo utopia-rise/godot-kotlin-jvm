@@ -38,8 +38,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class AudioEffectRecord : AudioEffect() {
   /**
-   * Specifies the format in which the sample will be recorded. See [AudioStreamWAV.Format] for
-   * available formats.
+   * Specifies the format in which the sample will be recorded.
    */
   public final inline var format: AudioStreamWAV.Format
     @JvmName("formatProperty")
@@ -50,7 +49,7 @@ public open class AudioEffectRecord : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(70, scriptIndex)
+    createNativeObject(71, scriptIndex)
   }
 
   /**

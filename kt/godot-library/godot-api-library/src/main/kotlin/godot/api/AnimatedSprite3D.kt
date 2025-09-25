@@ -143,7 +143,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(10, scriptIndex)
+    createNativeObject(11, scriptIndex)
   }
 
   public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {
@@ -261,7 +261,7 @@ public open class AnimatedSprite3D : SpriteBase3D() {
   }
 
   /**
-   * Sets [frame] the [frameProgress] to the given values. Unlike setting [frame], this method does
+   * Sets [frame] and [frameProgress] to the given values. Unlike setting [frame], this method does
    * not reset the [frameProgress] to `0.0` implicitly.
    *
    * **Example:** Change the animation while keeping the same [frame] and [frameProgress]:

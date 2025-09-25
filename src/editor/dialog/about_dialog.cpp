@@ -7,7 +7,9 @@
 #include "editor/strings.h"
 
 #include <editor/editor_interface.h>
+#include <editor/settings/editor_settings.h>
 #include <editor/themes/editor_scale.h>
+#include <scene/gui/check_box.h>
 #include <scene/gui/rich_text_label.h>
 #include <scene/gui/texture_rect.h>
 
@@ -29,7 +31,6 @@ void AboutDialog::_notification(int notification) {
     // Main VBoxContainer (icon + label on top, checkbox at bottom)
     VBoxContainer* about_vbox {memnew(VBoxContainer)};
     add_child(about_vbox);
-
 
     RichTextLabel* about_label {memnew(RichTextLabel)};
     about_label->set_custom_minimum_size(Size2 {600, 150} * EDSCALE);
@@ -58,4 +59,4 @@ void AboutDialog::_notification(int notification) {
     }
 }
 
-#endif// TOOLS_ENABLED
+#endif // TOOLS_ENABLED

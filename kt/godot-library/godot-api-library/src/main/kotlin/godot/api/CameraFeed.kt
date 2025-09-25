@@ -43,8 +43,8 @@ import kotlin.jvm.JvmName
  * combined in a shader. Godot does this automatically for you if you set the environment to show the
  * camera image in the background.
  *
- * **Note:** This class is currently only implemented on Linux, macOS, and iOS. On other platforms
- * no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
+ * **Note:** This class is currently only implemented on Linux, Android, macOS, and iOS. On other
+ * platforms no [CameraFeed]s will be available. To get a [CameraFeed] on iOS, the camera plugin from
  * [url=https://github.com/godotengine/godot-ios-plugins]godot-ios-plugins[/url] is required.
  */
 @GodotBaseType
@@ -97,7 +97,7 @@ public open class CameraFeed : RefCounted() {
     get() = getFormats()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(132, scriptIndex)
+    createNativeObject(134, scriptIndex)
   }
 
   /**
@@ -249,15 +249,15 @@ public open class CameraFeed : RefCounted() {
   }
 
   /**
-   * Sets the feed format parameters for the given index in the [formats] array. Returns `true` on
-   * success. By default YUYV encoded stream is transformed to FEED_RGB. YUYV encoded stream output
-   * format can be changed with [parameters].output value:
+   * Sets the feed format parameters for the given [index] in the [formats] array. Returns `true` on
+   * success. By default, the YUYV encoded stream is transformed to [FEED_RGB]. The YUYV encoded stream
+   * output format can be changed by setting [parameters]'s `output` entry to one of the following:
    *
-   * `separate` will result in FEED_YCBCR_SEP
+   * - `"separate"` will result in [FEED_YCBCR_SEP];
    *
-   * `grayscale` will result in desaturated FEED_RGB
+   * - `"grayscale"` will result in desaturated [FEED_RGB];
    *
-   * `copy` will result in FEED_YCBCR
+   * - `"copy"` will result in [FEED_YCBCR].
    */
   public final fun setFormat(index: Int, parameters: Dictionary<Any?, Any?>): Boolean {
     TransferContext.writeArguments(LONG to index.toLong(), DICTIONARY to parameters)

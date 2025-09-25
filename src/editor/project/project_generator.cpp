@@ -18,7 +18,7 @@ void ProjectGenerator::generate_jvm_files(bool erase_existing) {
 
     String root = String("res://");
     Ref<DirAccess> root_directory = DirAccess::open(root);
-    core_bind::Marshalls* marshall = memnew(core_bind::Marshalls);
+    CoreBind::Marshalls* marshall = memnew(CoreBind::Marshalls);
 
     for (int i = 0; i < number_of_files; ++i) {
         String file_location = String(file_names[i]);

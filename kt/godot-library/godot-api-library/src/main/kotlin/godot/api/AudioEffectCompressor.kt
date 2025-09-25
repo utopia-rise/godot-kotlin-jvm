@@ -31,8 +31,8 @@ import kotlin.jvm.JvmName
  *
  * Compressor has many uses in the mix:
  *
- * - In the Master bus to compress the whole output (although an [AudioEffectLimiter] is probably
- * better).
+ * - In the Master bus to compress the whole output (although an [AudioEffectHardLimiter] is
+ * probably better).
  *
  * - In voice channels to ensure they sound as balanced as possible.
  *
@@ -126,7 +126,7 @@ public open class AudioEffectCompressor : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(51, scriptIndex)
+    createNativeObject(52, scriptIndex)
   }
 
   public final fun setThreshold(threshold: Float): Unit {

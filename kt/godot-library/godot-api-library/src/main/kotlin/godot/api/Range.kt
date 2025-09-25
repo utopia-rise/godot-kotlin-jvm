@@ -70,9 +70,10 @@ public open class Range : Control() {
     }
 
   /**
-   * If greater than 0, [value] will always be rounded to a multiple of this property's value. If
-   * [rounded] is also `true`, [value] will first be rounded to a multiple of this property's value,
-   * then rounded to the nearest integer.
+   * If greater than 0, [value] will always be rounded to a multiple of this property's value above
+   * [minValue]. For example, if [minValue] is `0.1` and step is 0.2, then [value] is limited to `0.1`,
+   * `0.3`, `0.5`, and so on. If [rounded] is also `true`, [value] will first be rounded to a multiple
+   * of this property's value, then rounded to the nearest integer.
    */
   public final inline var step: Double
     @JvmName("stepProperty")
@@ -118,8 +119,8 @@ public open class Range : Control() {
     }
 
   /**
-   * If `true`, and [minValue] is greater than 0, [value] will be represented exponentially rather
-   * than linearly.
+   * If `true`, and [minValue] is greater or equal to `0`, [value] will be represented exponentially
+   * rather than linearly.
    */
   public final inline var expEdit: Boolean
     @JvmName("expEditProperty")
@@ -163,7 +164,7 @@ public open class Range : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(530, scriptIndex)
+    createNativeObject(545, scriptIndex)
   }
 
   /**

@@ -30,7 +30,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class SceneReplicationConfig : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(568, scriptIndex)
+    createNativeObject(583, scriptIndex)
   }
 
   /**
@@ -101,8 +101,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Returns the replication mode for the property identified by the given [path]. See
-   * [ReplicationMode].
+   * Returns the replication mode for the property identified by the given [path].
    */
   public final fun propertyGetReplicationMode(path: NodePath): ReplicationMode {
     TransferContext.writeArguments(NODE_PATH to path)
@@ -111,8 +110,7 @@ public open class SceneReplicationConfig : Resource() {
   }
 
   /**
-   * Sets the synchronization mode for the property identified by the given [path]. See
-   * [ReplicationMode].
+   * Sets the synchronization mode for the property identified by the given [path].
    */
   public final fun propertySetReplicationMode(path: NodePath, mode: ReplicationMode): Unit {
     TransferContext.writeArguments(NODE_PATH to path, LONG to mode.value)
@@ -198,15 +196,13 @@ public open class SceneReplicationConfig : Resource() {
       propertySetSpawn(path.asCachedNodePath(), enabled)
 
   /**
-   * Returns the replication mode for the property identified by the given [path]. See
-   * [ReplicationMode].
+   * Returns the replication mode for the property identified by the given [path].
    */
   public final fun propertyGetReplicationMode(path: String): ReplicationMode =
       propertyGetReplicationMode(path.asCachedNodePath())
 
   /**
-   * Sets the synchronization mode for the property identified by the given [path]. See
-   * [ReplicationMode].
+   * Sets the synchronization mode for the property identified by the given [path].
    */
   public final fun propertySetReplicationMode(path: String, mode: ReplicationMode) =
       propertySetReplicationMode(path.asCachedNodePath(), mode)

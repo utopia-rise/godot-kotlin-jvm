@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PopupPanel : Popup() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(503, scriptIndex)
+    createNativeObject(518, scriptIndex)
   }
 
   public companion object

@@ -25,31 +25,31 @@ jobs:
             cache-name: editor_release_windows_x86_64
             target: editor
             should-clean: true
-            sconsflags: ''
+            scons-flags: ''
 
           - name: Build editor debug (target=editor, debug_symbols=true )
             cache-name: editor_debug_windows_x86_64
             target: editor
             should-clean: false
-            sconsflags: debug_symbols=true
+            scons-flags: debug_symbols=true
 
           - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_dev_windows_x86_64
             target: editor
             should-clean: false
-            sconsflags: dev_build=yes debug_symbols=true
+            scons-flags: dev_build=yes debug_symbols=true
 
           - name: Build release template
             cache-name: export_template_release_windows_x86_64
             target: template_release
             should-clean: true
-            sconsflags: ''
+            scons-flags: ''
 
           - name: Build debug template
             cache-name: export_template_debug_windows_x86_64
             target: template_debug
             should-clean: false
-            sconsflags: ''
+            scons-flags: ''
 
     steps:
       - name: Clone Godot Engine
@@ -78,7 +78,7 @@ jobs:
       - name: Compilation
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ matrix.sconsflags }}
+          scons-flags: ${{ matrix.scons-flags }}
           platform: windows
           target: ${{ matrix.target }}
 

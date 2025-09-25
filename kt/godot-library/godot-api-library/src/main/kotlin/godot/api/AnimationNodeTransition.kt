@@ -116,7 +116,7 @@ public open class AnimationNodeTransition : AnimationNodeSync() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(34, scriptIndex)
+    createNativeObject(35, scriptIndex)
   }
 
   public final fun setInputCount(inputCount: Int): Unit {

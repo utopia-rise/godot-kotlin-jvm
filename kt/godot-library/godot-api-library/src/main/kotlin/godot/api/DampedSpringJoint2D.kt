@@ -20,7 +20,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * A physics joint that connects two 2D physics bodies with a spring-like force. This resembles a
+ * A physics joint that connects two 2D physics bodies with a spring-like force. This behaves like a
  * spring that always wants to stretch to a given length.
  */
 @GodotBaseType
@@ -75,7 +75,7 @@ public open class DampedSpringJoint2D : Joint2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(193, scriptIndex)
+    createNativeObject(198, scriptIndex)
   }
 
   public final fun setLength(length: Float): Unit {

@@ -36,7 +36,7 @@ import kotlin.jvm.JvmName
 
 /**
  * By changing various properties of this object, such as the shape, you can configure the
- * parameters for [PhysicsDirectSpaceState2D.intersectShape].
+ * parameters for [PhysicsDirectSpaceState2D]'s methods.
  */
 @GodotBaseType
 public open class PhysicsShapeQueryParameters2D : RefCounted() {
@@ -197,7 +197,7 @@ public open class PhysicsShapeQueryParameters2D : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(479, scriptIndex)
+    createNativeObject(494, scriptIndex)
   }
 
   /**

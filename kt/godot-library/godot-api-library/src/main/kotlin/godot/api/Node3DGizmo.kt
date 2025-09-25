@@ -19,9 +19,9 @@ import kotlin.Unit
  * [EditorNode3DGizmo] instance.
  */
 @GodotBaseType
-public open class Node3DGizmo internal constructor() : RefCounted() {
+public abstract class Node3DGizmo : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(397, scriptIndex)
+    createNativeObject(406, scriptIndex)
   }
 
   public companion object

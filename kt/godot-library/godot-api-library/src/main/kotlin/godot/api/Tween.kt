@@ -59,8 +59,8 @@ import kotlin.jvm.JvmStatic
  * ```gdscript
  * //gdscript
  * var tween = get_tree().create_tween()
- * tween.tween_property($Sprite, "modulate", Color.RED, 1)
- * tween.tween_property($Sprite, "scale", Vector2(), 1)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1.0)
+ * tween.tween_property($Sprite, "scale", Vector2(), 1.0)
  * tween.tween_callback($Sprite.queue_free)
  * ```
  *
@@ -83,8 +83,8 @@ import kotlin.jvm.JvmStatic
  * ```gdscript
  * //gdscript
  * var tween = get_tree().create_tween()
- * tween.tween_property($Sprite, "modulate", Color.RED, 1).set_trans(Tween.TRANS_SINE)
- * tween.tween_property($Sprite, "scale", Vector2(), 1).set_trans(Tween.TRANS_BOUNCE)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1.0).set_trans(Tween.TRANS_SINE)
+ * tween.tween_property($Sprite, "scale", Vector2(), 1.0).set_trans(Tween.TRANS_BOUNCE)
  * tween.tween_callback($Sprite.queue_free)
  * ```
  *
@@ -104,8 +104,8 @@ import kotlin.jvm.JvmStatic
  * ```gdscript
  * //gdscript
  * var tween = get_tree().create_tween().bind_node(self).set_trans(Tween.TRANS_ELASTIC)
- * tween.tween_property($Sprite, "modulate", Color.RED, 1)
- * tween.tween_property($Sprite, "scale", Vector2(), 1)
+ * tween.tween_property($Sprite, "modulate", Color.RED, 1.0)
+ * tween.tween_property($Sprite, "scale", Vector2(), 1.0)
  * tween.tween_callback($Sprite.queue_free)
  * ```
  *
@@ -123,17 +123,17 @@ import kotlin.jvm.JvmStatic
  * //gdscript
  * var tween = create_tween()
  * for sprite in get_children():
- *     tween.tween_property(sprite, "position", Vector2(0, 0), 1)
+ * tween.tween_property(sprite, "position", Vector2(0, 0), 1.0)
  * ```
  *
  * ```csharp
  * //csharp
  * Tween tween = CreateTween();
  * foreach (Node sprite in GetChildren())
- *     tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
+ * tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
  * ```
  *
- * In the example above, all children of a node are moved one after another to position (0, 0).
+ * In the example above, all children of a node are moved one after another to position `(0, 0)`.
  *
  * You should avoid using more than one [Tween] per object's property. If two or more tweens animate
  * one property at the same time, the last one created will take priority and assign the final value.
@@ -143,9 +143,9 @@ import kotlin.jvm.JvmStatic
  * //gdscript
  * var tween
  * func animate():
- *     if tween:
- *         tween.kill() # Abort the previous animation.
- *     tween = create_tween()
+ * if tween:
+ * tween.kill() # Abort the previous animation.
+ * tween = create_tween()
  * ```
  *
  * ```csharp
@@ -154,9 +154,9 @@ import kotlin.jvm.JvmStatic
  *
  * public void Animate()
  * {
- *     if (_tween != null)
- *         _tween.Kill(); // Abort the previous animation
- *     _tween = CreateTween();
+ * if (_tween != null)
+ * _tween.Kill(); // Abort the previous animation
+ * _tween = CreateTween();
  * }
  * ```
  *
@@ -199,7 +199,7 @@ public open class Tween : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(700, scriptIndex)
+    createNativeObject(716, scriptIndex)
   }
 
   /**
@@ -210,8 +210,8 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
-   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
+   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1.0)
+   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1.0)
    * ```
    *
    * ```csharp
@@ -236,9 +236,9 @@ public open class Tween : RefCounted() {
    * //gdscript
    * var tween = create_tween()
    * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * 1.0).as_relative().set_trans(Tween.TRANS_SINE)
    * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * 1.0).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * ```
    *
    * ```csharp
@@ -287,10 +287,10 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * var tween = create_tween().set_loops()
-   * tween.tween_property($Sprite, "position:x", 200.0, 1).as_relative()
+   * tween.tween_property($Sprite, "position:x", 200.0, 1.0).as_relative()
    * tween.tween_callback(jump)
    * tween.tween_interval(2)
-   * tween.tween_property($Sprite, "position:x", -200.0, 1).as_relative()
+   * tween.tween_property($Sprite, "position:x", -200.0, 1.0).as_relative()
    * tween.tween_callback(jump)
    * tween.tween_interval(2)
    * ```
@@ -321,7 +321,7 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * var tween = get_tree().create_tween().set_loops()
-   * tween.tween_callback(shoot).set_delay(1)
+   * tween.tween_callback(shoot).set_delay(1.0)
    * ```
    *
    * ```csharp
@@ -366,7 +366,7 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1) # The
+   * tween.tween_method(look_at.bind(Vector3.UP), Vector3(-1, 0, -1), Vector3(1, 0, -1), 1.0) # The
    * look_at() method takes up vector as second argument.
    * ```
    *
@@ -383,26 +383,26 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var tween = create_tween()
-   *     tween.tween_method(set_label_text, 0, 10, 1).set_delay(1)
+   * var tween = create_tween()
+   * tween.tween_method(set_label_text, 0, 10, 1.0).set_delay(1.0)
    *
    * func set_label_text(value: int):
-   *     $Label.text = "Counting " + str(value)
+   * $Label.text = "Counting " + str(value)
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     base._Ready();
+   * base._Ready();
    *
-   *     Tween tween = CreateTween();
-   *     tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
+   * Tween tween = CreateTween();
+   * tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
    * }
    *
    * private void SetLabelText(int value)
    * {
-   *     GetNode<Label>("Label").Text = $"Counting {value}";
+   * GetNode<Label>("Label").Text = $"Counting {value}";
    * }
    * ```
    */
@@ -582,8 +582,7 @@ public open class Tween : RefCounted() {
   }
 
   /**
-   * Determines the behavior of the [Tween] when the [SceneTree] is paused. Check [TweenPauseMode]
-   * for options.
+   * Determines the behavior of the [Tween] when the [SceneTree] is paused.
    *
    * Default value is [TWEEN_PAUSE_BOUND].
    */
@@ -765,8 +764,8 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * var tween = create_tween()
-   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1)
-   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1)
+   * tween.tween_property($Sprite, "position", Vector2(100, 200), 1.0)
+   * tween.tween_property($Sprite, "position", Vector2(200, 300), 1.0)
    * ```
    *
    * ```csharp
@@ -791,9 +790,9 @@ public open class Tween : RefCounted() {
    * //gdscript
    * var tween = create_tween()
    * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().set_trans(Tween.TRANS_SINE)
+   * 1.0).as_relative().set_trans(Tween.TRANS_SINE)
    * tween.tween_property($Sprite, "position", Vector2.RIGHT * 300,
-   * 1).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
+   * 1.0).as_relative().from_current().set_trans(Tween.TRANS_EXPO)
    * ```
    *
    * ```csharp

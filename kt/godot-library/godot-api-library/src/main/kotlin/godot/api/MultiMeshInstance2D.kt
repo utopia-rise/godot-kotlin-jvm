@@ -54,7 +54,7 @@ public open class MultiMeshInstance2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(364, scriptIndex)
+    createNativeObject(373, scriptIndex)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

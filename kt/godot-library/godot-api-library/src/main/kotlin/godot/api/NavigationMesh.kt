@@ -64,8 +64,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
-   * possible values.
+   * Partitioning algorithm for creating the navigation mesh polys.
    */
   public final inline var samplePartitionType: SamplePartitionType
     @JvmName("samplePartitionTypeProperty")
@@ -76,8 +75,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
-   * possible values.
+   * Determines which type of nodes will be parsed as geometry.
    */
   public final inline var geometryParsedGeometryType: ParsedGeometryType
     @JvmName("geometryParsedGeometryTypeProperty")
@@ -102,7 +100,7 @@ public open class NavigationMesh : Resource() {
     }
 
   /**
-   * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
+   * The source of the geometry used when baking.
    */
   public final inline var geometrySourceGeometryMode: SourceGeometryMode
     @JvmName("geometrySourceGeometryModeProperty")
@@ -157,8 +155,8 @@ public open class NavigationMesh : Resource() {
    * border size can be used to bake tile aligned navigation meshes without the tile edges being shrunk
    * by [agentRadius].
    *
-   * **Note:** While baking and not zero, this value will be rounded up to the nearest multiple of
-   * [cellSize].
+   * **Note:** If this value is not `0.0`, it will be rounded up to the nearest multiple of
+   * [cellSize] during baking.
    */
   public final inline var borderSize: Float
     @JvmName("borderSizeProperty")
@@ -186,6 +184,11 @@ public open class NavigationMesh : Resource() {
    * The distance to erode/shrink the walkable area of the heightfield away from obstructions.
    *
    * **Note:** While baking, this value will be rounded up to the nearest multiple of [cellSize].
+   *
+   * **Note:** The radius must be equal or higher than `0.0`. If the radius is `0.0`, it won't be
+   * possible to fix invalid outline overlaps and other precision errors during the baking process. As
+   * a result, some obstacles may be excluded incorrectly from the final navigation mesh, or may delete
+   * the navigation mesh's polygons.
    */
   public final inline var agentRadius: Float
     @JvmName("agentRadiusProperty")
@@ -383,7 +386,7 @@ public open class NavigationMesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(378, scriptIndex)
+    createNativeObject(387, scriptIndex)
   }
 
   /**

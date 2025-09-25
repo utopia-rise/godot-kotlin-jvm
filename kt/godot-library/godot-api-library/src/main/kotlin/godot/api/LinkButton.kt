@@ -44,7 +44,7 @@ public open class LinkButton : BaseButton() {
     }
 
   /**
-   * The underline mode to use for the text. See [LinkButton.UnderlineMode] for the available modes.
+   * The underline mode to use for the text.
    */
   public final inline var underline: UnderlineMode
     @JvmName("underlineProperty")
@@ -128,7 +128,7 @@ public open class LinkButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(341, scriptIndex)
+    createNativeObject(348, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {

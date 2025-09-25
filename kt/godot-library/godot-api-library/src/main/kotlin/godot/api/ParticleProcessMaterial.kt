@@ -150,7 +150,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   /**
-   * Particles will be emitted inside this region. Use [EmissionShape] constants for values.
+   * Particles will be emitted inside this region.
    */
   public final inline var emissionShape: EmissionShape
     @JvmName("emissionShapeProperty")
@@ -1684,7 +1684,7 @@ public open class ParticleProcessMaterial : Material() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(449, scriptIndex)
+    createNativeObject(464, scriptIndex)
   }
 
   /**
@@ -2357,7 +2357,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   /**
-   * If `true`, enables the specified particle flag. See [ParticleFlags] for options.
+   * Sets the [particleFlag] to [enable].
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.value, BOOL to enable)
@@ -2365,7 +2365,7 @@ public open class ParticleProcessMaterial : Material() {
   }
 
   /**
-   * Returns `true` if the specified particle flag is enabled. See [ParticleFlags] for options.
+   * Returns `true` if the specified particle flag is enabled.
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.value)

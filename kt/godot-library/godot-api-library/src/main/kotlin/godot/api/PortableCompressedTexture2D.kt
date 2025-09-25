@@ -72,6 +72,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
    *
    * This flag allows to keep the compressed data in memory if you intend it to persist after
    * loading.
+   *
+   * **Note:** This must be set before [createFromImage] to take effect.
    */
   public final inline var keepCompressedBuffer: Boolean
     @JvmName("keepCompressedBufferProperty")
@@ -82,7 +84,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(504, scriptIndex)
+    createNativeObject(519, scriptIndex)
   }
 
   /**
@@ -165,6 +167,17 @@ public open class PortableCompressedTexture2D : Texture2D() {
   }
 
   /**
+   * Sets the compressor parameters for Basis Universal compression. See also the settings in
+   * [ResourceImporterTexture].
+   *
+   * **Note:** This must be set before [createFromImage] to take effect.
+   */
+  public final fun setBasisuCompressorParams(uastcLevel: Int, rdoQualityLoss: Float): Unit {
+    TransferContext.writeArguments(LONG to uastcLevel.toLong(), DOUBLE to rdoQualityLoss.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setBasisuCompressorParamsPtr, NIL)
+  }
+
+  /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
   public override fun _getWidth(): Int {
@@ -187,6 +200,7 @@ public open class PortableCompressedTexture2D : Texture2D() {
     S3TC(3),
     ETC2(4),
     BPTC(5),
+    ASTC(6),
     ;
 
     public override val `value`: Long
@@ -242,6 +256,9 @@ public open class PortableCompressedTexture2D : Texture2D() {
 
     internal val isKeepingCompressedBufferPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "is_keeping_compressed_buffer", 36873697)
+
+    internal val setBasisuCompressorParamsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_basisu_compressor_params", 1602489585)
 
     internal val setKeepAllCompressedBuffersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PortableCompressedTexture2D", "set_keep_all_compressed_buffers", 2586408642)

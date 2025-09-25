@@ -151,7 +151,7 @@ public open class RDTextureFormat : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(525, scriptIndex)
+    createNativeObject(540, scriptIndex)
   }
 
   public final fun setFormat(pMember: RenderingDevice.DataFormat): Unit {

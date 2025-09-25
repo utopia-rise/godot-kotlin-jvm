@@ -205,7 +205,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the shape's type (see [ShapeType]).
+   * Returns the shape's type.
    */
   @JvmStatic
   public final fun shapeGetType(shape: RID): ShapeType {
@@ -259,8 +259,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given space parameter. See [SpaceParameter] for the list of available
-   * parameters.
+   * Sets the value of the given space parameter.
    */
   @JvmStatic
   public final fun spaceSetParam(
@@ -273,8 +272,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given space parameter. See [SpaceParameter] for the list of available
-   * parameters.
+   * Returns the value of the given space parameter.
    */
   @JvmStatic
   public final fun spaceGetParam(space: RID, `param`: SpaceParameter): Float {
@@ -484,8 +482,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given area parameter. See [AreaParameter] for the list of available
-   * parameters.
+   * Sets the value of the given area parameter.
    */
   @JvmStatic
   public final fun areaSetParam(
@@ -507,8 +504,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given area parameter. See [AreaParameter] for the list of available
-   * parameters.
+   * Returns the value of the given area parameter.
    */
   @JvmStatic
   public final fun areaGetParam(area: RID, `param`: AreaParameter): Any? {
@@ -678,7 +674,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the body's mode. See [BodyMode] for the list of available modes.
+   * Sets the body's mode.
    */
   @JvmStatic
   public final fun bodySetMode(body: RID, mode: BodyMode): Unit {
@@ -687,7 +683,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the body's mode (see [BodyMode]).
+   * Returns the body's mode.
    */
   @JvmStatic
   public final fun bodyGetMode(body: RID): BodyMode {
@@ -867,7 +863,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the continuous collision detection mode using one of the [CCDMode] constants.
+   * Sets the continuous collision detection mode.
    *
    * Continuous collision detection tries to predict where a moving body would collide in between
    * physics updates, instead of moving it and correcting its movement if it collided.
@@ -879,7 +875,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the body's continuous collision detection mode (see [CCDMode]).
+   * Returns the body's continuous collision detection mode.
    */
   @JvmStatic
   public final fun bodyGetContinuousCollisionDetectionMode(body: RID): CCDMode {
@@ -948,8 +944,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given body parameter. See [BodyParameter] for the list of available
-   * parameters.
+   * Sets the value of the given body parameter.
    */
   @JvmStatic
   public final fun bodySetParam(
@@ -962,8 +957,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given body parameter. See [BodyParameter] for the list of available
-   * parameters.
+   * Returns the value of the given body parameter.
    */
   @JvmStatic
   public final fun bodyGetParam(body: RID, `param`: BodyParameter): Any? {
@@ -983,7 +977,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of a body's state. See [BodyState] for the list of available states.
+   * Sets the value of a body's state.
    *
    * **Note:** The state change doesn't take effect immediately. The state will change on the next
    * physics frame.
@@ -999,8 +993,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given state of the body. See [BodyState] for the list of available
-   * states.
+   * Returns the value of the given state of the body.
    */
   @JvmStatic
   public final fun bodyGetState(body: RID, state: BodyState): Any? {
@@ -1361,8 +1354,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given joint parameter. See [JointParam] for the list of available
-   * parameters.
+   * Sets the value of the given joint parameter.
    */
   @JvmStatic
   public final fun jointSetParam(
@@ -1375,8 +1367,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given joint parameter. See [JointParam] for the list of available
-   * parameters.
+   * Returns the value of the given joint parameter.
    */
   @JvmStatic
   public final fun jointGetParam(joint: RID, `param`: JointParam): Float {
@@ -1459,7 +1450,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets a pin joint flag (see [PinJointFlag] constants).
+   * Sets a pin joint flag.
    */
   @JvmStatic
   public final fun pinJointSetFlag(
@@ -1472,7 +1463,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Gets a pin joint flag (see [PinJointFlag] constants).
+   * Gets a pin joint flag.
    */
   @JvmStatic
   public final fun pinJointGetFlag(joint: RID, flag: PinJointFlag): Boolean {
@@ -1482,7 +1473,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets a pin joint parameter. See [PinJointParam] for a list of available parameters.
+   * Sets a pin joint parameter.
    */
   @JvmStatic
   public final fun pinJointSetParam(
@@ -1495,8 +1486,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of a pin joint parameter. See [PinJointParam] for a list of available
-   * parameters.
+   * Returns the value of a pin joint parameter.
    */
   @JvmStatic
   public final fun pinJointGetParam(joint: RID, `param`: PinJointParam): Float {
@@ -1506,8 +1496,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Sets the value of the given damped spring joint parameter. See [DampedSpringParam] for the list
-   * of available parameters.
+   * Sets the value of the given damped spring joint parameter.
    */
   @JvmStatic
   public final fun dampedSpringJointSetParam(
@@ -1520,8 +1509,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the value of the given damped spring joint parameter. See [DampedSpringParam] for the
-   * list of available parameters.
+   * Returns the value of the given damped spring joint parameter.
    */
   @JvmStatic
   public final fun dampedSpringJointGetParam(joint: RID, `param`: DampedSpringParam): Float {
@@ -1531,7 +1519,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns the joint's type (see [JointType]).
+   * Returns the joint's type.
    */
   @JvmStatic
   public final fun jointGetType(joint: RID): JointType {
@@ -1561,8 +1549,7 @@ public object PhysicsServer2D : Object() {
   }
 
   /**
-   * Returns information about the current state of the 2D physics engine. See [ProcessInfo] for the
-   * list of available states.
+   * Returns the value of a physics engine state specified by [processInfo].
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
@@ -1885,7 +1872,7 @@ public object PhysicsServer2D : Object() {
     INERTIA(3),
     /**
      * Constant to set/get a body's center of mass position in the body's local coordinate system.
-     * The default value of this parameter is `Vector2(0,0)`. If this parameter is never set
+     * The default value of this parameter is `Vector2(0, 0)`. If this parameter is never set
      * explicitly, then it is recalculated based on the body's shapes when setting the parameter
      * [BODY_PARAM_MASS] or when calling [bodySetSpace].
      */

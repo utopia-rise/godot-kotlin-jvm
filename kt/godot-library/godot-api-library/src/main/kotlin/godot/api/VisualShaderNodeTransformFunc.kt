@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
   /**
-   * The function to be computed. See [Function] for options.
+   * The function to be computed.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeTransformFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(810, scriptIndex)
+    createNativeObject(826, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

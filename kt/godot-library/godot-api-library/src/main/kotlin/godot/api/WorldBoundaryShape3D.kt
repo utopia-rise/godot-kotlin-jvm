@@ -53,7 +53,7 @@ public open class WorldBoundaryShape3D : Shape3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(854, scriptIndex)
+    createNativeObject(870, scriptIndex)
   }
 
   /**

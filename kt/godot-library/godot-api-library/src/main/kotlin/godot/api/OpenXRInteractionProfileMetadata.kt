@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(429, scriptIndex)
+    createNativeObject(441, scriptIndex)
   }
 
   /**
@@ -48,8 +48,8 @@ public open class OpenXRInteractionProfileMetadata : Object() {
    * registered. [openxrExtensionName] is optional and ensures the top level path is only used if the
    * specified extension is available/enabled.
    *
-   * When a top level path ends up being bound by OpenXR, a [XRPositionalTracker] is instantiated to
-   * manage the state of the device.
+   * When a top level path ends up being bound by OpenXR, an [XRPositionalTracker] is instantiated
+   * to manage the state of the device.
    */
   public final fun registerTopLevelPath(
     displayName: String,

@@ -27,7 +27,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(462, scriptIndex)
+    createNativeObject(477, scriptIndex)
   }
 
   /**
@@ -189,6 +189,14 @@ public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState
    * getter.
    */
   public abstract fun _isSleeping(): Boolean
+
+  public abstract fun _setCollisionLayer(layer: Long): Unit
+
+  public abstract fun _getCollisionLayer(): Long
+
+  public abstract fun _setCollisionMask(mask: Long): Unit
+
+  public abstract fun _getCollisionMask(): Long
 
   /**
    * Overridable version of [PhysicsDirectBodyState2D.getContactCount].

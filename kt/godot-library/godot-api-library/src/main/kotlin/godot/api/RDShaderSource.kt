@@ -96,7 +96,7 @@ public open class RDShaderSource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(524, scriptIndex)
+    createNativeObject(539, scriptIndex)
   }
 
   /**

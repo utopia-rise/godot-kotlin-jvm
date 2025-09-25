@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
  * from the Inspector or from a script.
  */
 @GodotBaseType
-public open class VisualShaderNodeParameter internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeParameter : VisualShaderNode() {
   /**
    * Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties.
    */
@@ -51,7 +51,7 @@ public open class VisualShaderNodeParameter internal constructor() : VisualShade
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(770, scriptIndex)
+    createNativeObject(786, scriptIndex)
   }
 
   public final fun setParameterName(name: String): Unit {

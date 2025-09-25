@@ -86,7 +86,7 @@ public open class SphereMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(614, scriptIndex)
+    createNativeObject(630, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

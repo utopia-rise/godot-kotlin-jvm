@@ -65,11 +65,11 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class ImageTexture : Texture2D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(285, scriptIndex)
+    createNativeObject(292, scriptIndex)
   }
 
   /**
-   * Returns the format of the texture, one of [Image.Format].
+   * Returns the format of the texture.
    */
   public final fun getFormat(): Image.Format {
     TransferContext.writeArguments()

@@ -122,7 +122,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   /**
-   * Specifies when visibility filters are updated (see [VisibilityUpdateMode] for options).
+   * Specifies when visibility filters are updated.
    */
   public final inline var visibilityUpdateMode: VisibilityUpdateMode
     @JvmName("visibilityUpdateModeProperty")
@@ -145,7 +145,7 @@ public open class MultiplayerSynchronizer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(371, scriptIndex)
+    createNativeObject(380, scriptIndex)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

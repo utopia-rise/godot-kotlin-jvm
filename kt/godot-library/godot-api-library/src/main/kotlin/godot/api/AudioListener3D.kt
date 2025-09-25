@@ -10,14 +10,18 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Transform3D
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 
 /**
  * Once added to the scene tree and enabled using [makeCurrent], this node will override the
@@ -26,8 +30,25 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioListener3D : Node3D() {
+  /**
+   * If not [DOPPLER_TRACKING_DISABLED], this listener will simulate the
+   * [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in
+   * particular `_process` methods.
+   *
+   * **Note:** The Doppler effect will only be heard on [AudioStreamPlayer3D]s if
+   * [AudioStreamPlayer3D.dopplerTracking] is not set to
+   * [AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED].
+   */
+  public final inline var dopplerTracking: DopplerTracking
+    @JvmName("dopplerTrackingProperty")
+    get() = getDopplerTracking()
+    @JvmName("dopplerTrackingProperty")
+    set(`value`) {
+      setDopplerTracking(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(76, scriptIndex)
+    createNativeObject(77, scriptIndex)
   }
 
   /**
@@ -67,6 +88,51 @@ public open class AudioListener3D : Node3D() {
     return (TransferContext.readReturnValue(TRANSFORM3D) as Transform3D)
   }
 
+  public final fun setDopplerTracking(mode: DopplerTracking): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setDopplerTrackingPtr, NIL)
+  }
+
+  public final fun getDopplerTracking(): DopplerTracking {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDopplerTrackingPtr, LONG)
+    return DopplerTracking.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public enum class DopplerTracking(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Disables [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] simulation
+     * (default).
+     */
+    DISABLED(0),
+    /**
+     * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
+     * positions of objects that are changed in `_process`. Changes in the relative velocity of this
+     * listener compared to those objects affect how audio is perceived (changing the audio's
+     * [AudioStreamPlayer3D.pitchScale]).
+     */
+    IDLE_STEP(1),
+    /**
+     * Simulate [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] by tracking
+     * positions of objects that are changed in `_physics_process`. Changes in the relative velocity of
+     * this listener compared to those objects affect how audio is perceived (changing the audio's
+     * [AudioStreamPlayer3D.pitchScale]).
+     */
+    PHYSICS_STEP(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): DopplerTracking = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -81,5 +147,11 @@ public open class AudioListener3D : Node3D() {
 
     internal val getListenerTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioListener3D", "get_listener_transform", 3229777777)
+
+    internal val setDopplerTrackingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioListener3D", "set_doppler_tracking", 2365921740)
+
+    internal val getDopplerTrackingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioListener3D", "get_doppler_tracking", 550229039)
   }
 }

@@ -65,7 +65,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
 
   /**
    * When our input value is equal or larger than this value, our dpad in that direction becomes
-   * true. It stays true until it falls under the [thresholdReleased] value.
+   * `true`. It stays `true` until it falls under the [thresholdReleased] value.
    */
   public final inline var threshold: Float
     @JvmName("thresholdProperty")
@@ -76,7 +76,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     }
 
   /**
-   * When our input value falls below this, our output becomes false.
+   * When our input value falls below this, our output becomes `false`.
    */
   public final inline var thresholdReleased: Float
     @JvmName("thresholdReleasedProperty")
@@ -109,10 +109,10 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     }
 
   /**
-   * If `false`, when the joystick enters a new dpad zone this becomes true.
+   * If `false`, when the joystick enters a new dpad zone this becomes `true`.
    *
-   * If `true`, when the joystick remains in active dpad zone, this remains true even if we overlap
-   * with another zone.
+   * If `true`, when the joystick remains in active dpad zone, this remains `true` even if we
+   * overlap with another zone.
    */
   public final inline var isSticky: Boolean
     @JvmName("isStickyProperty")
@@ -145,7 +145,7 @@ public open class OpenXRDpadBindingModifier : OpenXRIPBindingModifier() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(421, scriptIndex)
+    createNativeObject(430, scriptIndex)
   }
 
   public final fun setActionSet(actionSet: OpenXRActionSet?): Unit {

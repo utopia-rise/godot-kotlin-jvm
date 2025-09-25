@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  * A virtual class, use the descendants instead.
  */
 @GodotBaseType
-public open class VisualShaderNodeSample3D internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeSample3D : VisualShaderNode() {
   /**
    * An input source type.
    */
@@ -36,7 +36,7 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(791, scriptIndex)
+    createNativeObject(807, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

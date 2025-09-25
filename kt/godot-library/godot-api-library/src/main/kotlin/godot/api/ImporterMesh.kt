@@ -46,7 +46,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class ImporterMesh : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(289, scriptIndex)
+    createNativeObject(296, scriptIndex)
   }
 
   /**
@@ -77,7 +77,7 @@ public open class ImporterMesh : Resource() {
   }
 
   /**
-   * Sets the blend shape mode to one of [Mesh.BlendShapeMode].
+   * Sets the blend shape mode.
    */
   public final fun setBlendShapeMode(mode: Mesh.BlendShapeMode): Unit {
     TransferContext.writeArguments(LONG to mode.value)

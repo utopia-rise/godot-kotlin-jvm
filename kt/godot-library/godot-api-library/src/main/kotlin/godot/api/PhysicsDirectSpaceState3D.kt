@@ -28,11 +28,14 @@ import kotlin.jvm.JvmOverloads
 /**
  * Provides direct access to a physics space in the [PhysicsServer3D]. It's used mainly to do
  * queries against objects and areas residing in a given space.
+ *
+ * **Note:** This class is not meant to be instantiated directly. Use [World3D.directSpaceState] to
+ * get the world's physics 3D space state.
  */
 @GodotBaseType
-public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
+public abstract class PhysicsDirectSpaceState3D : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(467, scriptIndex)
+    createNativeObject(482, scriptIndex)
   }
 
   /**
@@ -117,7 +120,7 @@ public open class PhysicsDirectSpaceState3D internal constructor() : Object() {
 
   /**
    * Checks how far a [Shape3D] can move without colliding. All the parameters for the query,
-   * including the shape, are supplied through a [PhysicsShapeQueryParameters3D] object.
+   * including the shape and the motion, are supplied through a [PhysicsShapeQueryParameters3D] object.
    *
    * Returns an array with the safe and unsafe proportions (between 0 and 1) of the motion. The safe
    * proportion is the maximum fraction of the motion that can be made without a collision. The unsafe

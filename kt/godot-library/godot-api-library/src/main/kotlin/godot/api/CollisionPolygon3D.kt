@@ -51,7 +51,8 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   /**
-   * If `true`, no collision will be produced.
+   * If `true`, no collision will be produced. This property should be changed with
+   * [Object.setDeferred].
    */
   public final inline var disabled: Boolean
     @JvmName("disabledProperty")
@@ -128,7 +129,7 @@ public open class CollisionPolygon3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(157, scriptIndex)
+    createNativeObject(159, scriptIndex)
   }
 
   /**

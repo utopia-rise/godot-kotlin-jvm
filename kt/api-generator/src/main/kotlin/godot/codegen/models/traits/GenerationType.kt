@@ -88,8 +88,7 @@ interface TypeGenerationTrait {
     fun isBitField() = nature == Nature.BITFIELD
     fun isTypedArray() = nature == Nature.TYPED_ARRAY
     fun isObjectSubClass() = nature == Nature.CLASS
-    fun isVariant() = isCoreType() && identifier == GodotTypes.variant
-    fun isCoreClass() = identifier == GodotTypes.godotObject || identifier == GodotTypes.refCounted
+    fun isNullable() = isObjectSubClass() || identifier == GodotTypes.variant
 }
 
 fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
@@ -120,20 +119,25 @@ fun ClassName.Companion.from(type: TypeGenerationTrait) = when {
     else -> ClassName(godotApiPackage, type.identifier)
 }
 
-fun TypeName.Companion.from(type: TypeGenerationTrait, nullable: Boolean = false, genericParameters: List<TypeName> = emptyList()): TypeName {
+fun TypeName.Companion.from(type: TypeGenerationTrait, genericParameters: List<TypeName> = emptyList()): TypeName {
     val className = type.className
-    return when {
-        type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> className.parameterizedBy(genericParameters)
+
+        return when {
+        type.identifier.startsWith("Signal") && !type.identifier.endsWith("0") -> {
+            val nonNullableGenericParameters = genericParameters.map { it.copy(nullable = false)} // We assume generic parameters are always non-nullable
+            className.parameterizedBy(nonNullableGenericParameters)
+        }
+
         type.isTypedArray() -> {
             val genericType = type.identifier.removePrefix("${GodotTypes.typedArray}::")
             val subType = GenerationType(genericType)
-            className.parameterizedBy(from(subType))
+            className.parameterizedBy(from(subType).copy(nullable = false))
         }
 
         type.identifier == GodotTypes.array -> className.parameterizedBy(ANY.copy(nullable = true))
         type.identifier == GodotTypes.dictionary -> className.parameterizedBy(ANY.copy(nullable = true), ANY.copy(nullable = true))
         else -> className
-    }.copy(nullable = nullable)
+    }.copy(nullable = type.isNullable())
 }
 
 const val enumPrefix = "enum::"
@@ -155,7 +159,7 @@ class GenerationType(rawIdentifier: String) : TypeGenerationTrait {
         GodotTypes.coreTypes.find { s -> s == identifier } != null -> Nature.CORE
         identifier.startsWith(enumPrefix) -> Nature.ENUM
         identifier.startsWith(bitfieldPrefix) -> Nature.BITFIELD
-        identifier.startsWith(GodotTypes.typedArray) == true -> Nature.TYPED_ARRAY
+        identifier.startsWith(GodotTypes.typedArray) -> Nature.TYPED_ARRAY
         else -> Nature.CLASS
     }
 }

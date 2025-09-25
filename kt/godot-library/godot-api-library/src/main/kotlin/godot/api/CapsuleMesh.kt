@@ -28,6 +28,10 @@ import kotlin.jvm.JvmName
 public open class CapsuleMesh : PrimitiveMesh() {
   /**
    * Radius of the capsule mesh.
+   *
+   * **Note:** The [radius] of a capsule cannot be greater than half of its [height]. Otherwise, the
+   * capsule becomes a circle. If the [radius] is greater than half of the [height], the properties
+   * adjust to a valid value.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -39,6 +43,10 @@ public open class CapsuleMesh : PrimitiveMesh() {
 
   /**
    * Total height of the capsule mesh (including the hemispherical ends).
+   *
+   * **Note:** The [height] of a capsule must be at least twice its [radius]. Otherwise, the capsule
+   * becomes a circle. If the [height] is less than twice the [radius], the properties adjust to a
+   * valid value.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -71,7 +79,7 @@ public open class CapsuleMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(141, scriptIndex)
+    createNativeObject(143, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

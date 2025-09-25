@@ -42,10 +42,14 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class GLTFPhysicsBody : Resource() {
   /**
-   * The type of the body. When importing, this controls what type of [CollisionObject3D] node Godot
-   * should generate. Valid values are "static", "animatable", "character", "rigid", "vehicle", and
-   * "trigger". When exporting, this will be squashed down to one of "static", "kinematic", or
-   * "dynamic" motion types, or the "trigger" property.
+   * The type of the body.
+   *
+   * When importing, this controls what type of [CollisionObject3D] node Godot should generate.
+   * Valid values are `"static"`, `"animatable"`, `"character"`, `"rigid"`, `"vehicle"`, and
+   * `"trigger"`.
+   *
+   * When exporting, this will be squashed down to one of `"static"`, `"kinematic"`, or `"dynamic"`
+   * motion types, or the `"trigger"` property.
    */
   public final inline var bodyType: String
     @JvmName("bodyTypeProperty")
@@ -196,7 +200,7 @@ public open class GLTFPhysicsBody : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+    createNativeObject(242, scriptIndex)
   }
 
   /**

@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(432, scriptIndex)
+    createNativeObject(447, scriptIndex)
   }
 
   /**

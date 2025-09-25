@@ -224,7 +224,7 @@ public open class GridMap : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(267, scriptIndex)
+    createNativeObject(274, scriptIndex)
   }
 
   /**
@@ -567,7 +567,8 @@ public open class GridMap : Node3D() {
 
   /**
    * Returns an array of [Transform3D] and [Mesh] references corresponding to the non-empty cells in
-   * the grid. The transforms are specified in local space.
+   * the grid. The transforms are specified in local space. Even indices contain [Transform3D]s, while
+   * odd indices contain [Mesh]es related to the [Transform3D] in the index preceding it.
    */
   public final fun getMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -577,7 +578,12 @@ public open class GridMap : Node3D() {
 
   /**
    * Returns an array of [ArrayMesh]es and [Transform3D] references of all bake meshes that exist
-   * within the current GridMap.
+   * within the current GridMap. Even indices contain [ArrayMesh]es, while odd indices contain
+   * [Transform3D]s that are always equal to [Transform3D.IDENTITY].
+   *
+   * This method relies on the output of [makeBakedMeshes], which will be called with
+   * `gen_lightmap_uv` set to `true` and `lightmap_uv_texel_size` set to `0.1` if it hasn't been called
+   * yet.
    */
   public final fun getBakeMeshes(): VariantArray<Any?> {
     TransferContext.writeArguments()
@@ -603,7 +609,16 @@ public open class GridMap : Node3D() {
   }
 
   /**
-   * Bakes lightmap data for all meshes in the assigned [MeshLibrary].
+   * Generates a baked mesh that represents all meshes in the assigned [MeshLibrary] for use with
+   * [LightmapGI]. If [genLightmapUv] is `true`, UV2 data will be generated for each mesh currently
+   * used in the [GridMap]. Otherwise, only meshes that already have UV2 data present will be able to
+   * use baked lightmaps. When generating UV2, [lightmapUvTexelSize] controls the texel density for
+   * lightmaps, with lower values resulting in more detailed lightmaps. [lightmapUvTexelSize] is
+   * ignored if [genLightmapUv] is `false`. See also [getBakeMeshes], which relies on the output of
+   * this method.
+   *
+   * **Note:** Calling this method will not actually bake lightmaps, as lightmap baking is performed
+   * using the [LightmapGI] node.
    */
   @JvmOverloads
   public final fun makeBakedMeshes(genLightmapUv: Boolean = false, lightmapUvTexelSize: Float =

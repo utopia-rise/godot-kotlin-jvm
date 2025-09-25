@@ -146,9 +146,11 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * The mouse velocity in pixels per second.
    *
    * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles mouse aiming with the
-   * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
+   * defined by the project's stretch mode settings. That means mouse sensitivity may appear different
+   * depending on resolution.
+   *
+   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
+   * mode.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -168,9 +170,10 @@ public open class InputEventMouseMotion : InputEventMouse() {
 
   /**
    * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
-   * regardless of the project's stretch mode.
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy].
+   *
+   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
+   * mode.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -189,7 +192,7 @@ public open class InputEventMouseMotion : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(303, scriptIndex)
+    createNativeObject(310, scriptIndex)
   }
 
   /**
@@ -283,9 +286,11 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * The mouse velocity in pixels per second.
    *
    * **Note:** [velocity] is automatically scaled according to the content scale factor, which is
-   * defined by the project's stretch mode settings. This means mouse sensitivity will appear different
-   * depending on resolution when using [velocity] in a script that handles mouse aiming with the
-   * [Input.MOUSE_MODE_CAPTURED] mouse mode. To avoid this, use [screenVelocity] instead.
+   * defined by the project's stretch mode settings. That means mouse sensitivity may appear different
+   * depending on resolution.
+   *
+   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
+   * mode.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -305,9 +310,10 @@ public open class InputEventMouseMotion : InputEventMouse() {
    * ``````
    *
    * The unscaled mouse velocity in pixels per second in screen coordinates. This velocity is *not*
-   * scaled according to the content scale factor or calls to [InputEvent.xformedBy]. This should be
-   * preferred over [velocity] for mouse aiming when using the [Input.MOUSE_MODE_CAPTURED] mouse mode,
-   * regardless of the project's stretch mode.
+   * scaled according to the content scale factor or calls to [InputEvent.xformedBy].
+   *
+   * **Note:** Use [screenRelative] for mouse aiming using the [Input.MOUSE_MODE_CAPTURED] mouse
+   * mode.
    */
   @CoreTypeHelper
   public final fun screenVelocityMutate(block: Vector2.() -> Unit): Vector2 = screenVelocity.apply {

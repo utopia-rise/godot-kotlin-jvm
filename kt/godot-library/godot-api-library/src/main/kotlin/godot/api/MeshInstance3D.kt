@@ -34,10 +34,10 @@ import kotlin.jvm.JvmOverloads
 
 /**
  * MeshInstance3D is a node that takes a [Mesh] resource and adds it to the current scenario by
- * creating an instance of it. This is the class most often used render 3D geometry and can be used to
- * instance a single [Mesh] in many places. This allows reusing geometry, which can save on resources.
- * When a [Mesh] has to be instantiated more than thousands of times at close proximity, consider using
- * a [MultiMesh] in a [MultiMeshInstance3D] instead.
+ * creating an instance of it. This is the class most often used to render 3D geometry and can be used
+ * to instance a single [Mesh] in many places. This allows reusing geometry, which can save on
+ * resources. When a [Mesh] has to be instantiated more than thousands of times at close proximity,
+ * consider using a [MultiMesh] in a [MultiMeshInstance3D] instead.
  */
 @GodotBaseType
 public open class MeshInstance3D : GeometryInstance3D() {
@@ -75,7 +75,7 @@ public open class MeshInstance3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(355, scriptIndex)
+    createNativeObject(363, scriptIndex)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

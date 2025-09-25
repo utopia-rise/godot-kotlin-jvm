@@ -160,7 +160,7 @@ public open class TextureButton : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(671, scriptIndex)
+    createNativeObject(687, scriptIndex)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {
