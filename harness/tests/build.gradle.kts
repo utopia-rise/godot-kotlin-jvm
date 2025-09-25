@@ -74,13 +74,13 @@ tasks {
             commandLine(
                 "cmd",
                 "/c",
-                "$editorExecutable --headless --import",
+                "$editorExecutable --headless --import --quiet",
             )
         } else {
             commandLine(
                 "bash",
                 "-c",
-                "$editorExecutable --headless --import",
+                "$editorExecutable --headless --import --quiet",
             )
         }
     }
@@ -130,7 +130,7 @@ tasks {
             target,
         )
     }
-    register<Exec>("runGutTests") {
+    register<Exec>("runGDTests") {
         group = "verification"
 
         dependsOn(importResources)
@@ -139,7 +139,7 @@ tasks {
             provideEditorExecutable().absolutePath
         }
     }
-    register<Exec>("runExportedGutTests") {
+    register<Exec>("runExportedGDTests") {
         group = "verification"
 
         val executable = projectDir
@@ -181,7 +181,7 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
 
         outputLines.forEach { line ->
             when {
-                line.contains("All tests passed") -> {
+                line.contains("Exit code: 101") or line.contains("Exit code: 0") -> {
                     didAllTestsPass = true
                 }
 
@@ -209,13 +209,13 @@ fun Exec.setupTestExecution(executableProvider: () -> String) {
             this@setupTestExecution.commandLine(
                 "cmd",
                 "/c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
             )
         } else {
             this@setupTestExecution.commandLine(
                 "bash",
                 "-c",
-                "${executableProvider().replace(" ", "\\ ")} -s --headless --path $projectDir addons/gut/gut_cmdln.gd",
+                "${executableProvider().replace(" ", "\\ ")} --path $projectDir -s -d addons/gdUnit4/bin/GdUnitCmdTool.gd  -a test",
             )
         }
     }

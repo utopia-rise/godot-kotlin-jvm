@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Kotlin Tests"
-run/main_scene="res://test/GutTests.tscn"
+run/main_scene="uid://cnqp52df0ln8e"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.png"
 
@@ -21,7 +21,14 @@ settings/stdout/verbose_stdout=true
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
+[gdunit4]
+
+settings/test/test_suite_naming_convention=1
+settings/test/test_discovery=true
+ui/inspector/tree_view_mode=1
+ui/toolbar/run_overall=true
 
 [rendering]
 
