@@ -46,7 +46,6 @@ public:
     bool get_property_default_value(const StringName& p_property, Variant& r_value) const override;
     void get_script_method_list(List<MethodInfo>* p_list) const override;
     void get_script_property_list(List<PropertyInfo>* p_list) const override;
-    void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
     void get_constants(HashMap<StringName, Variant> *p_constants) override;
     void get_members(HashSet<StringName> *p_members) override;
     const Variant get_rpc_config() const override;
@@ -70,9 +69,9 @@ public:
     PlaceHolderScriptInstance* placeholder_instance_create(Object* p_this) override;
     uint64_t get_last_time_source_modified();
     void set_last_time_source_modified(uint64_t p_time);
+    void get_script_exported_property_list(List<PropertyInfo>* p_list) const;
 
     Vector<DocData::ClassDoc> get_documentation() const override;
-    PropertyInfo get_class_category() const override;
     String get_class_icon_path() const override;
     StringName get_doc_class_name() const override;
 
