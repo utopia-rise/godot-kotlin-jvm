@@ -52,7 +52,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the buffer view in bytes.
    */
-  public final inline var byteOffset: Int
+  public final inline var byteOffset: Long
     @JvmName("byteOffsetProperty")
     get() = getByteOffset()
     @JvmName("byteOffsetProperty")
@@ -65,7 +65,7 @@ public open class GLTFAccessor : Resource() {
    * core glTF specification, a value of 5125 or "UNSIGNED_INT" must not be used for any accessor that
    * is not referenced by mesh.primitive.indices.
    */
-  public final inline var componentType: Int
+  public final inline var componentType: GLTFComponentType
     @JvmName("componentTypeProperty")
     get() = getComponentType()
     @JvmName("componentTypeProperty")
@@ -87,7 +87,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The number of elements referenced by this accessor.
    */
-  public final inline var count: Int
+  public final inline var count: Long
     @JvmName("countProperty")
     get() = getCount()
     @JvmName("countProperty")
@@ -96,8 +96,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The glTF accessor type as an enum. Possible values are 0 for "SCALAR", 1 for "VEC2", 2 for
-   * "VEC3", 3 for "VEC4", 4 for "MAT2", 5 for "MAT3", and 6 for "MAT4".
+   * The glTF accessor type, as an enum.
    */
   public final inline var accessorType: GLTFAccessorType
     @JvmName("accessorTypeProperty")
@@ -108,7 +107,8 @@ public open class GLTFAccessor : Resource() {
     }
 
   /**
-   * The glTF accessor type as an enum. Use [accessorType] instead.
+   * The glTF accessor type, as an [int]. Possible values are `0` for "SCALAR", `1` for "VEC2", `2`
+   * for "VEC3", `3` for "VEC4", `4` for "MAT2", `5` for "MAT3", and `6` for "MAT4".
    */
   public final inline var type: Int
     @JvmName("typeProperty")
@@ -159,7 +159,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * Number of deviating accessor values stored in the sparse array.
    */
-  public final inline var sparseCount: Int
+  public final inline var sparseCount: Long
     @JvmName("sparseCountProperty")
     get() = getSparseCount()
     @JvmName("sparseCountProperty")
@@ -183,7 +183,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the buffer view in bytes.
    */
-  public final inline var sparseIndicesByteOffset: Int
+  public final inline var sparseIndicesByteOffset: Long
     @JvmName("sparseIndicesByteOffsetProperty")
     get() = getSparseIndicesByteOffset()
     @JvmName("sparseIndicesByteOffsetProperty")
@@ -195,7 +195,7 @@ public open class GLTFAccessor : Resource() {
    * The indices component data type as an enum. Possible values are 5121 for "UNSIGNED_BYTE", 5123
    * for "UNSIGNED_SHORT", and 5125 for "UNSIGNED_INT".
    */
-  public final inline var sparseIndicesComponentType: Int
+  public final inline var sparseIndicesComponentType: GLTFComponentType
     @JvmName("sparseIndicesComponentTypeProperty")
     get() = getSparseIndicesComponentType()
     @JvmName("sparseIndicesComponentTypeProperty")
@@ -218,7 +218,7 @@ public open class GLTFAccessor : Resource() {
   /**
    * The offset relative to the start of the bufferView in bytes.
    */
-  public final inline var sparseValuesByteOffset: Int
+  public final inline var sparseValuesByteOffset: Long
     @JvmName("sparseValuesByteOffsetProperty")
     get() = getSparseValuesByteOffset()
     @JvmName("sparseValuesByteOffsetProperty")
@@ -227,7 +227,7 @@ public open class GLTFAccessor : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(224, scriptIndex)
+    createNativeObject(231, scriptIndex)
   }
 
   /**
@@ -313,25 +313,25 @@ public open class GLTFAccessor : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setBufferViewPtr, NIL)
   }
 
-  public final fun getByteOffset(): Int {
+  public final fun getByteOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setByteOffset(byteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to byteOffset.toLong())
+  public final fun setByteOffset(byteOffset: Long): Unit {
+    TransferContext.writeArguments(LONG to byteOffset)
     TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
-  public final fun getComponentType(): Int {
+  public final fun getComponentType(): GLTFComponentType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getComponentTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return GLTFComponentType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setComponentType(componentType: Int): Unit {
-    TransferContext.writeArguments(LONG to componentType.toLong())
+  public final fun setComponentType(componentType: GLTFComponentType): Unit {
+    TransferContext.writeArguments(LONG to componentType.value)
     TransferContext.callMethod(ptr, MethodBindings.setComponentTypePtr, NIL)
   }
 
@@ -346,14 +346,14 @@ public open class GLTFAccessor : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setNormalizedPtr, NIL)
   }
 
-  public final fun getCount(): Int {
+  public final fun getCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setCount(count: Int): Unit {
-    TransferContext.writeArguments(LONG to count.toLong())
+  public final fun setCount(count: Long): Unit {
+    TransferContext.writeArguments(LONG to count)
     TransferContext.callMethod(ptr, MethodBindings.setCountPtr, NIL)
   }
 
@@ -401,14 +401,14 @@ public open class GLTFAccessor : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setMaxPtr, NIL)
   }
 
-  public final fun getSparseCount(): Int {
+  public final fun getSparseCount(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseCountPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSparseCount(sparseCount: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseCount.toLong())
+  public final fun setSparseCount(sparseCount: Long): Unit {
+    TransferContext.writeArguments(LONG to sparseCount)
     TransferContext.callMethod(ptr, MethodBindings.setSparseCountPtr, NIL)
   }
 
@@ -423,25 +423,26 @@ public open class GLTFAccessor : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesBufferViewPtr, NIL)
   }
 
-  public final fun getSparseIndicesByteOffset(): Int {
+  public final fun getSparseIndicesByteOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesByteOffset.toLong())
+  public final fun setSparseIndicesByteOffset(sparseIndicesByteOffset: Long): Unit {
+    TransferContext.writeArguments(LONG to sparseIndicesByteOffset)
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesByteOffsetPtr, NIL)
   }
 
-  public final fun getSparseIndicesComponentType(): Int {
+  public final fun getSparseIndicesComponentType(): GLTFComponentType {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseIndicesComponentTypePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return GLTFComponentType.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSparseIndicesComponentType(sparseIndicesComponentType: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseIndicesComponentType.toLong())
+  public final fun setSparseIndicesComponentType(sparseIndicesComponentType: GLTFComponentType):
+      Unit {
+    TransferContext.writeArguments(LONG to sparseIndicesComponentType.value)
     TransferContext.callMethod(ptr, MethodBindings.setSparseIndicesComponentTypePtr, NIL)
   }
 
@@ -456,14 +457,14 @@ public open class GLTFAccessor : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setSparseValuesBufferViewPtr, NIL)
   }
 
-  public final fun getSparseValuesByteOffset(): Int {
+  public final fun getSparseValuesByteOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSparseValuesByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to sparseValuesByteOffset.toLong())
+  public final fun setSparseValuesByteOffset(sparseValuesByteOffset: Long): Unit {
+    TransferContext.writeArguments(LONG to sparseValuesByteOffset)
     TransferContext.callMethod(ptr, MethodBindings.setSparseValuesByteOffsetPtr, NIL)
   }
 
@@ -610,91 +611,91 @@ public open class GLTFAccessor : Resource() {
 
   public object MethodBindings {
     internal val getBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_buffer_view", 3905245786)
 
     internal val setBufferViewPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_buffer_view", 1286410249)
 
     internal val getByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_byte_offset", 3905245786)
 
     internal val setByteOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_byte_offset", 1286410249)
 
     internal val getComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_component_type", 852227802)
 
     internal val setComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_component_type", 1780020221)
 
     internal val getNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 2240911060)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_normalized", 36873697)
 
     internal val setNormalizedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_normalized", 2586408642)
 
     internal val getCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_count", 3905245786)
 
     internal val setCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_count", 1286410249)
 
     internal val getAccessorTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 679305214)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_accessor_type", 1998183368)
 
     internal val setAccessorTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_accessor_type", 2347728198)
 
     internal val getTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_type", 3905245786)
 
     internal val setTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_type", 1286410249)
 
     internal val getMinPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 148677866)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_min", 547233126)
 
     internal val setMinPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_min", 2576592201)
 
     internal val getMaxPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 148677866)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_max", 547233126)
 
     internal val setMaxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_max", 2576592201)
 
     internal val getSparseCountPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_count", 3905245786)
 
     internal val setSparseCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_count", 1286410249)
 
     internal val getSparseIndicesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_buffer_view", 3905245786)
 
     internal val setSparseIndicesBufferViewPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_buffer_view", 1286410249)
 
     internal val getSparseIndicesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_byte_offset", 3905245786)
 
     internal val setSparseIndicesByteOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_byte_offset", 1286410249)
 
     internal val getSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_indices_component_type", 852227802)
 
     internal val setSparseIndicesComponentTypePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1286410249)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_indices_component_type", 1780020221)
 
     internal val getSparseValuesBufferViewPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_buffer_view", 3905245786)
 
     internal val setSparseValuesBufferViewPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_buffer_view", 1286410249)
 
     internal val getSparseValuesByteOffsetPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 2455072627)
+        TypeManager.getMethodBindPtr("GLTFAccessor", "get_sparse_values_byte_offset", 3905245786)
 
     internal val setSparseValuesByteOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFAccessor", "set_sparse_values_byte_offset", 1286410249)

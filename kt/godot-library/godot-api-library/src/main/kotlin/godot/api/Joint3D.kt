@@ -32,7 +32,7 @@ import kotlin.jvm.JvmName
  * [StaticBody3D] without collision shapes.
  */
 @GodotBaseType
-public open class Joint3D internal constructor() : Node3D() {
+public abstract class Joint3D : Node3D() {
   /**
    * Path to the first node (A) attached to the joint. The node must inherit [PhysicsBody3D].
    *
@@ -85,7 +85,7 @@ public open class Joint3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(323, scriptIndex)
+    createNativeObject(330, scriptIndex)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

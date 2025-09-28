@@ -73,8 +73,8 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   /**
-   * Governs how high the filter frequencies sweep. Low value will primarily affect bass
-   * frequencies. High value can sweep high into the treble. Value can range from 0.1 to 4.
+   * Determines how high the filter frequencies sweep. Low value will primarily affect bass
+   * frequencies. High value can sweep high into the treble. Value can range from `0.1` to `4.0`.
    */
   public final inline var depth: Float
     @JvmName("depthProperty")
@@ -85,7 +85,7 @@ public open class AudioEffectPhaser : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(68, scriptIndex)
+    createNativeObject(69, scriptIndex)
   }
 
   public final fun setRangeMinHz(hz: Float): Unit {

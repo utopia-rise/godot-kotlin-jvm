@@ -57,7 +57,7 @@ import kotlin.jvm.JvmStatic
  * regex.compile("\\w-(\\d+)")
  * var result = regex.search("abc n-0123")
  * if result:
- *     print(result.get_string()) # Would print n-0123
+ * print(result.get_string()) # Prints "n-0123"
  * ```
  *
  * The results of capturing groups `()` can be retrieved by passing the group number to the various
@@ -73,16 +73,16 @@ import kotlin.jvm.JvmStatic
  * regex.compile("d(?<digit>[0-9]+)|x(?<digit>[0-9a-f]+)")
  * var result = regex.search("the number is x2f")
  * if result:
- *     print(result.get_string("digit")) # Would print 2f
+ * print(result.get_string("digit")) # Prints "2f"
  * ```
  *
  * If you need to process multiple results, [searchAll] generates a list of all non-overlapping
  * results. This can be combined with a `for` loop for convenience.
  *
  * ```
+ * # Prints "01 03 0 3f 42"
  * for result in regex.search_all("d01, d03, d0c, x3f and x42"):
- *     print(result.get_string("digit"))
- * # Would print 01 03 0 3f 42
+ * print(result.get_string("digit"))
  * ```
  *
  * **Example:** Split a string using a RegEx:
@@ -92,8 +92,8 @@ import kotlin.jvm.JvmStatic
  * regex.compile("\\S+") # Negated whitespace character class.
  * var results = []
  * for result in regex.search_all("One  Two \n\tThree"):
- *     results.push_back(result.get_string())
- * # The `results` array now contains "One", "Two", and "Three".
+ * results.push_back(result.get_string())
+ * print(results) # Prints ["One", "Two", "Three"]
  * ```
  *
  * **Note:** Godot's regex implementation is based on the [url=https://www.pcre.org/]PCRE2[/url]
@@ -105,7 +105,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class RegEx : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(536, scriptIndex)
+    createNativeObject(551, scriptIndex)
   }
 
   /**

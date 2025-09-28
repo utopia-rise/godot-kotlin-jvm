@@ -51,7 +51,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PCKPacker : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(434, scriptIndex)
+    createNativeObject(449, scriptIndex)
   }
 
   /**
@@ -72,7 +72,8 @@ public open class PCKPacker : RefCounted() {
 
   /**
    * Adds the [sourcePath] file to the current PCK package at the [targetPath] internal path. The
-   * `res://` prefix for [targetPath] is optional and stripped internally.
+   * `res://` prefix for [targetPath] is optional and stripped internally. File content is immediately
+   * written to the PCK.
    */
   @JvmOverloads
   public final fun addFile(
@@ -97,8 +98,12 @@ public open class PCKPacker : RefCounted() {
   }
 
   /**
-   * Writes the files specified using all [addFile] calls since the last flush. If [verbose] is
-   * `true`, a list of files added will be printed to the console for easier debugging.
+   * Writes the file directory and closes the PCK. If [verbose] is `true`, a list of files added
+   * will be printed to the console for easier debugging.
+   *
+   * **Note:** [PCKPacker] will automatically flush when it's freed, which happens when it goes out
+   * of scope or when it gets assigned with `null`. In C# the reference must be disposed after use,
+   * either with the `using` statement or by calling the `Dispose` method directly.
    */
   @JvmOverloads
   public final fun flush(verbose: Boolean = false): Error {

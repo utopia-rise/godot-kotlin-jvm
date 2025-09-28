@@ -33,8 +33,8 @@ import kotlin.jvm.JvmOverloads
  *
  * See also [BaseButton] which contains common properties and methods associated with this node.
  *
- * **Note:** The ID values used for items are limited to 32 bits, not full 64 bits of [int]. This
- * has a range of `-2^32` to `2^32 - 1`, i.e. `-2147483648` to `2147483647`.
+ * **Note:** The IDs used for items are limited to signed 32-bit integers, not the full 64 bits of
+ * [int]. These have a range of `-2^31` to `2^31 - 1`, that is, `-2147483648` to `2147483647`.
  *
  * **Note:** The [Button.text] and [Button.icon] properties are set automatically based on the
  * selected item. They shouldn't be changed manually.
@@ -101,12 +101,14 @@ public open class OptionButton : Button() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(433, scriptIndex)
+    createNativeObject(448, scriptIndex)
   }
 
   /**
    * Adds an item, with text [label] and (optionally) [id]. If no [id] is passed, the item index
    * will be used as the item's ID. New items are appended at the end.
+   *
+   * **Note:** The item will be selected if there are no other items.
    */
   @JvmOverloads
   public final fun addItem(label: String, id: Int = -1): Unit {
@@ -117,6 +119,8 @@ public open class OptionButton : Button() {
   /**
    * Adds an item, with a [texture] icon, text [label] and (optionally) [id]. If no [id] is passed,
    * the item index will be used as the item's ID. New items are appended at the end.
+   *
+   * **Note:** The item will be selected if there are no other items.
    */
   @JvmOverloads
   public final fun addIconItem(
@@ -181,6 +185,17 @@ public open class OptionButton : Button() {
   }
 
   /**
+   * Sets the auto translate mode of the item at index [idx].
+   *
+   * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate
+   * mode as the [OptionButton] itself.
+   */
+  public final fun setItemAutoTranslateMode(idx: Int, mode: Node.AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to idx.toLong(), LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
+  }
+
+  /**
    * Returns the text of the item at index [idx].
    */
   public final fun getItemText(idx: Int): String {
@@ -233,6 +248,15 @@ public open class OptionButton : Button() {
     TransferContext.writeArguments(LONG to idx.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getItemTooltipPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the auto translate mode of the item at index [idx].
+   */
+  public final fun getItemAutoTranslateMode(idx: Int): Node.AutoTranslateMode {
+    TransferContext.writeArguments(LONG to idx.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getItemAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -427,6 +451,9 @@ public open class OptionButton : Button() {
     internal val setItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "set_item_tooltip", 501894301)
 
+    internal val setItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "set_item_auto_translate_mode", 287402019)
+
     internal val getItemTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "get_item_text", 844755477)
 
@@ -444,6 +471,9 @@ public open class OptionButton : Button() {
 
     internal val getItemTooltipPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "get_item_tooltip", 844755477)
+
+    internal val getItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OptionButton", "get_item_auto_translate_mode", 906302372)
 
     internal val isItemDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OptionButton", "is_item_disabled", 1116898809)

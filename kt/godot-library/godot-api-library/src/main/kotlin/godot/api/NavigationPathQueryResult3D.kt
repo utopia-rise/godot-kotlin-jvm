@@ -19,11 +19,14 @@ import godot.core.PackedVector3Array
 import godot.core.RID
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
+import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_INT_64_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
 import godot.core.Vector3
+import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -106,8 +109,19 @@ public open class NavigationPathQueryResult3D : RefCounted() {
       setPathOwnerIds(value)
     }
 
+  /**
+   * Returns the length of the path.
+   */
+  public final inline var pathLength: Float
+    @JvmName("pathLengthProperty")
+    get() = getPathLength()
+    @JvmName("pathLengthProperty")
+    set(`value`) {
+      setPathLength(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(387, scriptIndex)
+    createNativeObject(396, scriptIndex)
   }
 
   /**
@@ -271,6 +285,17 @@ public open class NavigationPathQueryResult3D : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
+  public final fun setPathLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setPathLengthPtr, NIL)
+  }
+
+  public final fun getPathLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   /**
    * Reset the result object to its initial state. This is useful to reuse the object across
    * multiple queries.
@@ -329,6 +354,12 @@ public open class NavigationPathQueryResult3D : RefCounted() {
 
     internal val getPathOwnerIdsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_owner_ids", 235988956)
+
+    internal val setPathLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "set_path_length", 373806689)
+
+    internal val getPathLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "get_path_length", 1740695150)
 
     internal val resetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPathQueryResult3D", "reset", 3218959716)

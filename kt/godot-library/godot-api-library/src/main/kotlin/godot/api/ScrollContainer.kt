@@ -87,7 +87,7 @@ public open class ScrollContainer : Container() {
    *
    * ```
    * func _ready():
-   *     set_deferred("scroll_horizontal", 600)
+   * set_deferred("scroll_horizontal", 600)
    * ```
    */
   public final inline var scrollHorizontal: Int
@@ -105,7 +105,7 @@ public open class ScrollContainer : Container() {
    *
    * ```
    * func _ready():
-   *     set_deferred("scroll_vertical", 600)
+   * set_deferred("scroll_vertical", 600)
    * ```
    */
   public final inline var scrollVertical: Int
@@ -141,8 +141,7 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * Controls whether horizontal scrollbar can be used and when it should be visible. See
-   * [ScrollMode] for options.
+   * Controls whether horizontal scrollbar can be used and when it should be visible.
    */
   public final inline var horizontalScrollMode: ScrollMode
     @JvmName("horizontalScrollModeProperty")
@@ -153,8 +152,7 @@ public open class ScrollContainer : Container() {
     }
 
   /**
-   * Controls whether vertical scrollbar can be used and when it should be visible. See [ScrollMode]
-   * for options.
+   * Controls whether vertical scrollbar can be used and when it should be visible.
    */
   public final inline var verticalScrollMode: ScrollMode
     @JvmName("verticalScrollModeProperty")
@@ -176,7 +174,7 @@ public open class ScrollContainer : Container() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(577, scriptIndex)
+    createNativeObject(593, scriptIndex)
   }
 
   public final fun setHScroll(`value`: Int): Unit {

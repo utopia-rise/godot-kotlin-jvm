@@ -17,6 +17,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
+import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Boolean
@@ -79,6 +80,16 @@ public object InputMap : Object() {
   public final fun eraseAction(action: StringName): Unit {
     TransferContext.writeArguments(STRING_NAME to action)
     TransferContext.callMethod(ptr, MethodBindings.eraseActionPtr, NIL)
+  }
+
+  /**
+   * Returns the human-readable description of the given action.
+   */
+  @JvmStatic
+  public final fun getActionDescription(action: StringName): String {
+    TransferContext.writeArguments(STRING_NAME to action)
+    TransferContext.callMethod(ptr, MethodBindings.getActionDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
   }
 
   /**
@@ -203,6 +214,13 @@ public object InputMap : Object() {
   public final fun eraseAction(action: String) = eraseAction(action.asCachedStringName())
 
   /**
+   * Returns the human-readable description of the given action.
+   */
+  @JvmStatic
+  public final fun getActionDescription(action: String): String =
+      getActionDescription(action.asCachedStringName())
+
+  /**
    * Sets a deadzone value for the action.
    */
   @JvmStatic
@@ -283,6 +301,9 @@ public object InputMap : Object() {
 
     internal val eraseActionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputMap", "erase_action", 3304788590)
+
+    internal val getActionDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("InputMap", "get_action_description", 957595536)
 
     internal val actionSetDeadzonePtr: VoidPtr =
         TypeManager.getMethodBindPtr("InputMap", "action_set_deadzone", 4135858297)

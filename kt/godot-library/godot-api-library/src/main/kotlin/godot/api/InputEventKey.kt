@@ -56,13 +56,13 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * [codeblock lang=text]
    *
-   *     +-----+ +-----+
+   * +-----+ +-----+
    *
-   *     | Q   | | Q   | - "Q" - keycode
+   * | Q   | | Q   | - "Q" - keycode
    *
-   *     |   Й | |  ض | - "Й" and "ض" - key_label
+   * |   Й | |  ض | - "Й" and "ض" - key_label
    *
-   *     +-----+ +-----+
+   * +-----+ +-----+
    *
    * ```
    */
@@ -84,21 +84,20 @@ public open class InputEventKey : InputEventWithModifiers() {
    * ```gdscript
    * //gdscript
    * func _input(event):
-   *     if event is InputEventKey:
-   *         var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
-   *         print(OS.get_keycode_string(keycode))
+   * if event is InputEventKey:
+   * var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
+   * print(OS.get_keycode_string(keycode))
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Input(InputEvent @event)
    * {
-   *     if (@event is InputEventKey inputEventKey)
-   *     {
-   *         var keycode =
-   * DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
-   *         GD.Print(OS.GetKeycodeString(keycode));
-   *     }
+   * if (@event is InputEventKey inputEventKey)
+   * {
+   * var keycode = DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
+   * GD.Print(OS.GetKeycodeString(keycode));
+   * }
    * }
    * ```
    */
@@ -121,13 +120,13 @@ public open class InputEventKey : InputEventWithModifiers() {
    *
    * [codeblock lang=text]
    *
-   *     +-----+ +-----+
+   * +-----+ +-----+
    *
-   *     | Q   | | Q   | - "Q" - keycode
+   * | Q   | | Q   | - "Q" - keycode
    *
-   *     |   Й | |  ض | - "Й" and "ض" - key_label
+   * |   Й | |  ض | - "Й" and "ض" - key_label
    *
-   *     +-----+ +-----+
+   * +-----+ +-----+
    *
    * ```
    */
@@ -183,7 +182,7 @@ public open class InputEventKey : InputEventWithModifiers() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(298, scriptIndex)
+    createNativeObject(305, scriptIndex)
   }
 
   public final fun setPressed(pressed: Boolean): Unit {

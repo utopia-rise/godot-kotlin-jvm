@@ -14,6 +14,7 @@ import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.NodePath
 import godot.core.PackedStringArray
+import godot.core.RID
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.StringName
@@ -28,6 +29,7 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
+import godot.core.VariantParser._RID
 import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import godot.core.toGodotName
@@ -207,9 +209,13 @@ public open class Node : Object() {
    * (`.` `:` `@` `/` `"` `&#37;`). In particular, the `@` character is reserved for auto-generated
    * names. See also [String.validateNodeName].
    */
-  public final inline val name: StringName
+  public final inline var name: StringName
     @JvmName("nameProperty")
     get() = getName()
+    @JvmName("nameProperty")
+    set(`value`) {
+      setName(value)
+    }
 
   /**
    * If `true`, the node can be accessed from any node sharing the same [owner] or from the [owner]
@@ -265,8 +271,8 @@ public open class Node : Object() {
     get() = getMultiplayer()
 
   /**
-   * The node's processing behavior (see [ProcessMode]). To check if the node can process in its
-   * current mode, use [canProcess].
+   * The node's processing behavior. To check if the node can process in its current mode, use
+   * [canProcess].
    */
   public final inline var processMode: ProcessMode
     @JvmName("processModeProperty")
@@ -360,13 +366,20 @@ public open class Node : Object() {
     }
 
   /**
-   * Allows enabling or disabling physics interpolation per node, offering a finer grain of control
-   * than turning physics interpolation on and off globally. See
-   * [ProjectSettings.physics/common/physicsInterpolation] and [SceneTree.physicsInterpolation] for the
-   * global setting.
+   * The physics interpolation mode to use for this node. Only effective if
+   * [ProjectSettings.physics/common/physicsInterpolation] or [SceneTree.physicsInterpolation] is
+   * `true`.
    *
-   * **Note:** When teleporting a node to a distant position you should temporarily disable
-   * interpolation with [Node.resetPhysicsInterpolation].
+   * By default, nodes inherit the physics interpolation mode from their parent. This property can
+   * enable or disable physics interpolation individually for each node, regardless of their parents'
+   * physics interpolation mode.
+   *
+   * **Note:** Some node types like [VehicleWheel3D] have physics interpolation disabled by default,
+   * as they rely on their own custom solution.
+   *
+   * **Note:** When teleporting a node to a distant position, it's recommended to temporarily
+   * disable interpolation with [Node.resetPhysicsInterpolation] *after* moving the node. This avoids
+   * creating a visual streak between the old and new positions.
    */
   public final inline var physicsInterpolationMode: PhysicsInterpolationMode
     @JvmName("physicsInterpolationModeProperty")
@@ -626,16 +639,15 @@ public open class Node : Object() {
       arg8, arg9)
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(394, scriptIndex)
+    createNativeObject(403, scriptIndex)
   }
 
   /**
-   * Called during the processing step of the main loop. Processing happens at every frame and as
-   * fast as possible, so the [delta] time since the previous frame is not constant. [delta] is in
-   * seconds.
+   * Called on each idle frame, prior to rendering, and after physics ticks have been processed.
+   * [delta] is the time between frames in seconds.
    *
-   * It is only called if processing is enabled, which is done automatically if this method is
-   * overridden, and can be toggled with [setProcess].
+   * It is only called if processing is enabled for this Node, which is done automatically if this
+   * method is overridden, and can be toggled with [setProcess].
    *
    * Processing happens in order of [processPriority], lower priority values are called first. Nodes
    * with the same priority are processed in tree order, or top to bottom as seen in the editor (also
@@ -646,24 +658,29 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** When the engine is struggling and the frame rate is lowered, [delta] will increase.
+   * When [delta] is increased, it's capped at a maximum of [Engine.timeScale] *
+   * [Engine.maxPhysicsStepsPerFrame] / [Engine.physicsTicksPerSecond]. As a result, accumulated
+   * [delta] may not represent real world time.
+   *
+   * **Note:** When `--fixed-fps` is enabled or the engine is running in Movie Maker mode (see
+   * [MovieWriter]), process [delta] will always be the same for every frame, regardless of how much
+   * time the frame took to render.
+   *
+   * **Note:** Frame delta may be post-processed by [OS.deltaSmoothing] if this is enabled for the
+   * project.
    */
   public open fun _process(delta: Double): Unit {
     throw NotImplementedError("Node::_process is not implemented.")
   }
 
   /**
-   * Called during the physics processing step of the main loop. Physics processing means that the
-   * frame rate is synced to the physics, i.e. the [delta] parameter will *generally* be constant (see
-   * exceptions below). [delta] is in seconds.
+   * Called once on each physics tick, and allows Nodes to synchronize their logic with physics
+   * ticks. [delta] is the logical time between physics ticks in seconds and is equal to
+   * [Engine.timeScale] / [Engine.physicsTicksPerSecond].
    *
-   * It is only called if physics processing is enabled, which is done automatically if this method
-   * is overridden, and can be toggled with [setPhysicsProcess].
+   * It is only called if physics processing is enabled for this Node, which is done automatically
+   * if this method is overridden, and can be toggled with [setPhysicsProcess].
    *
    * Processing happens in order of [processPhysicsPriority], lower priority values are called
    * first. Nodes with the same priority are processed in tree order, or top to bottom as seen in the
@@ -674,12 +691,7 @@ public open class Node : Object() {
    * **Note:** This method is only called if the node is present in the scene tree (i.e. if it's not
    * an orphan).
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** Accumulated [delta] may diverge from real world seconds.
    */
   public open fun _physicsProcess(delta: Double): Unit {
     throw NotImplementedError("Node::_physicsProcess is not implemented.")
@@ -739,19 +751,30 @@ public open class Node : Object() {
    *
    * ```
    * @export var energy = 0:
-   *     set(value):
-   *         energy = value
-   *         update_configuration_warnings()
+   * set(value):
+   * energy = value
+   * update_configuration_warnings()
    *
    * func _get_configuration_warnings():
-   *     if energy < 0:
-   *         return ["Energy must be 0 or greater."]
-   *     else:
-   *         return []
+   * if energy < 0:
+   * return ["Energy must be 0 or greater."]
+   * else:
+   * return []
    * ```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
     throw NotImplementedError("Node::_getConfigurationWarnings is not implemented.")
+  }
+
+  /**
+   * The elements in the array returned from this method are displayed as warnings in the Scene dock
+   * if the script that overrides it is a `tool` script, and accessibility warnings are enabled in the
+   * editor settings.
+   *
+   * Returning an empty array produces no warnings.
+   */
+  public open fun _getAccessibilityConfigurationWarnings(): PackedStringArray {
+    throw NotImplementedError("Node::_getAccessibilityConfigurationWarnings is not implemented.")
   }
 
   /**
@@ -845,6 +868,14 @@ public open class Node : Object() {
   }
 
   /**
+   * Called during accessibility information updates to determine the currently focused sub-element,
+   * should return a sub-element RID or the value returned by [getAccessibilityElement].
+   */
+  public open fun _getFocusedAccessibilityElement(): RID {
+    throw NotImplementedError("Node::_getFocusedAccessibilityElement is not implemented.")
+  }
+
+  /**
    * Adds a [sibling] node to this node's parent, and moves the added sibling right below this node.
    *
    * If [forceReadableName] is `true`, improves the readability of the added [sibling]. If not
@@ -864,8 +895,8 @@ public open class Node : Object() {
     TransferContext.callMethod(ptr, MethodBindings.addSiblingPtr, NIL)
   }
 
-  public final fun setName(name: String): Unit {
-    TransferContext.writeArguments(STRING to name)
+  public final fun setName(name: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.setNamePtr, NIL)
   }
 
@@ -887,9 +918,9 @@ public open class Node : Object() {
    *
    * If [internal] is different than [INTERNAL_MODE_DISABLED], the child will be added as internal
    * node. These nodes are ignored by methods like [getChildren], unless their parameter
-   * `include_internal` is `true`. The intended usage is to hide the internal nodes from the user, so
-   * the user won't accidentally delete or modify them. Used by some GUI nodes, e.g. [ColorPicker]. See
-   * [InternalMode] for available modes.
+   * `include_internal` is `true`. It also prevents these nodes being duplicated with their parent. The
+   * intended usage is to hide the internal nodes from the user, so the user won't accidentally delete
+   * or modify them. Used by some GUI nodes, e.g. [ColorPicker].
    *
    * **Note:** If [node] already has a parent, this method will fail. Use [removeChild] first to
    * remove [node] from its current parent. For example:
@@ -898,7 +929,7 @@ public open class Node : Object() {
    * //gdscript
    * var child_node = get_child(0)
    * if child_node.get_parent():
-   *     child_node.get_parent().remove_child(child_node)
+   * child_node.get_parent().remove_child(child_node)
    * add_child(child_node)
    * ```
    *
@@ -907,7 +938,7 @@ public open class Node : Object() {
    * Node childNode = GetChild(0);
    * if (childNode.GetParent() != null)
    * {
-   *     childNode.GetParent().RemoveChild(childNode);
+   * childNode.GetParent().RemoveChild(childNode);
    * }
    * AddChild(childNode);
    * ```
@@ -985,7 +1016,7 @@ public open class Node : Object() {
   }
 
   /**
-   * Fetches a child node by its index. Each child node has an index relative its siblings (see
+   * Fetches a child node by its index. Each child node has an index relative to its siblings (see
    * [getIndex]). The first child is at index 0. Negative values can also be used to start from the end
    * of the list. This method can be used in combination with [getChildCount] to iterate over this
    * node's children. If no child exists at the given index, this method returns `null` and an error is
@@ -1210,7 +1241,7 @@ public open class Node : Object() {
    * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
    * (see [Object.getIndexed]).
    *
-   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
+   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned an [AtlasTexture]:
    *
    * ```gdscript
    * //gdscript
@@ -1387,8 +1418,8 @@ public open class Node : Object() {
    * # Stores the node's non-internal groups only (as an array of StringNames).
    * var non_internal_groups = []
    * for group in get_groups():
-   *     if not str(group).begins_with("_"):
-   *         non_internal_groups.push_back(group)
+   * if not str(group).begins_with("_"):
+   * non_internal_groups.push_back(group)
    * ```
    *
    * ```csharp
@@ -1397,8 +1428,8 @@ public open class Node : Object() {
    * List<string> nonInternalGroups = new List<string>();
    * foreach (string group in GetGroups())
    * {
-   *     if (!group.BeginsWith("_"))
-   *         nonInternalGroups.Add(group);
+   * if (!group.BeginsWith("_"))
+   * nonInternalGroups.Add(group);
    * }
    * ```
    */
@@ -1845,6 +1876,26 @@ public open class Node : Object() {
   }
 
   /**
+   * Queues an accessibility information update for this node.
+   */
+  public final fun queueAccessibilityUpdate(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.queueAccessibilityUpdatePtr, NIL)
+  }
+
+  /**
+   * Returns main accessibility element RID.
+   *
+   * **Note:** This method should be called only during accessibility information updates
+   * ([NOTIFICATION_ACCESSIBILITY_UPDATE]).
+   */
+  public final fun getAccessibilityElement(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityElementPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
    * If set to `true`, the node appears folded in the Scene dock. As a result, all of its children
    * are hidden. This method is intended to be used in editor plugins and tools, but it also works in
    * release builds. See also [isDisplayedFolded].
@@ -1980,6 +2031,16 @@ public open class Node : Object() {
   }
 
   /**
+   * Returns `true` if this node can automatically translate messages depending on the current
+   * locale. See [autoTranslateMode], [atr], and [atrN].
+   */
+  public final fun canAutoTranslate(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.canAutoTranslatePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * Makes this node inherit the translation domain from its parent node. If this node has no
    * parent, the main translation domain will be used.
    *
@@ -2051,7 +2112,7 @@ public open class Node : Object() {
   /**
    * Duplicates the node, returning a new node with all of its properties, signals, groups, and
    * children copied from the original. The behavior can be tweaked through the [flags] (see
-   * [DuplicateFlags]).
+   * [DuplicateFlags]). Internal nodes are not duplicated.
    *
    * **Note:** For nodes with a [Script] attached, if [Object.Init] has been defined with required
    * parameters, the duplicated node will not have a [Script].
@@ -2079,7 +2140,7 @@ public open class Node : Object() {
   }
 
   /**
-   * If set to `true`, the node becomes a [InstancePlaceholder] when packed and instantiated from a
+   * If set to `true`, the node becomes an [InstancePlaceholder] when packed and instantiated from a
    * [PackedScene]. See also [getSceneInstanceLoadPlaceholder].
    */
   public final fun setSceneInstanceLoadPlaceholder(loadPlaceholder: Boolean): Unit {
@@ -2236,10 +2297,13 @@ public open class Node : Object() {
   /**
    * Returns a [Dictionary] mapping method names to their RPC configuration defined for this node
    * using [rpcConfig].
+   *
+   * **Note:** This method only returns the RPC configuration assigned via [rpcConfig]. See
+   * [Script.getRpcConfig] to retrieve the RPCs defined by the [Script].
    */
-  public final fun getRpcConfig(): Any? {
+  public final fun getNodeRpcConfig(): Any? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getRpcConfigPtr, ANY)
+    TransferContext.callMethod(ptr, MethodBindings.getNodeRpcConfigPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
@@ -2423,6 +2487,8 @@ public open class Node : Object() {
     TransferContext.callMethod(ptr, MethodBindings.notifyThreadSafePtr, NIL)
   }
 
+  public final fun setName(name: String) = setName(name.asCachedStringName())
+
   /**
    * Returns `true` if the [path] points to a valid node. See also [getNode].
    */
@@ -2518,7 +2584,7 @@ public open class Node : Object() {
    * - Element `2` is the remaining [NodePath], referring to an existing, non-[Resource] property
    * (see [Object.getIndexed]).
    *
-   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned a [AtlasTexture]:
+   * **Example:** Assume that the child's [Sprite2D.texture] has been assigned an [AtlasTexture]:
    *
    * ```gdscript
    * //gdscript
@@ -2893,7 +2959,8 @@ public open class Node : Object() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Duplicate the node's signal connections.
+     * Duplicate the node's signal connections that are connected with the [Object.CONNECT_PERSIST]
+     * flag.
      */
     SIGNALS(1),
     /**
@@ -3227,10 +3294,10 @@ public open class Node : Object() {
      *
      * ```
      * func _notification(what):
-     *     if what == NOTIFICATION_TRANSLATION_CHANGED:
-     *         if not is_node_ready():
-     *             await ready # Wait until ready signal.
-     *         $Label.text = atr("&#37;d Bananas") &#37; banana_counter
+     * if what == NOTIFICATION_TRANSLATION_CHANGED:
+     * if not is_node_ready():
+     * await ready # Wait until ready signal.
+     * $Label.text = atr("&#37;d Bananas") &#37; banana_counter
      * ```
      */
     public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010
@@ -3296,6 +3363,18 @@ public open class Node : Object() {
     public final const val NOTIFICATION_TEXT_SERVER_CHANGED: Long = 2018
 
     /**
+     * Notification received when an accessibility information update is required.
+     */
+    public final const val NOTIFICATION_ACCESSIBILITY_UPDATE: Long = 3000
+
+    /**
+     * Notification received when accessibility elements are invalidated. All node accessibility
+     * elements are automatically deleted after receiving this message, therefore all existing
+     * references to such elements should be discarded.
+     */
+    public final const val NOTIFICATION_ACCESSIBILITY_INVALIDATE: Long = 3001
+
+    /**
      * Prints all orphan nodes (nodes outside the [SceneTree]). Useful for debugging.
      *
      * **Note:** This method only works in debug builds. Does nothing in a project exported in
@@ -3306,16 +3385,32 @@ public open class Node : Object() {
       TransferContext.writeArguments()
       TransferContext.callMethod(0, MethodBindings.printOrphanNodesPtr, NIL)
     }
+
+    /**
+     * Returns object IDs of all orphan nodes (nodes outside the [SceneTree]). Used for debugging.
+     *
+     * **Note:** [getOrphanNodeIds] only works in debug builds. When called in a project exported in
+     * release mode, [getOrphanNodeIds] will return an empty array.
+     */
+    @JvmStatic
+    public final fun getOrphanNodeIds(): VariantArray<Long> {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.getOrphanNodeIdsPtr, ARRAY)
+      return (TransferContext.readReturnValue(ARRAY) as VariantArray<Long>)
+    }
   }
 
   public object MethodBindings {
     internal val printOrphanNodesPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "print_orphan_nodes", 3218959716)
 
+    internal val getOrphanNodeIdsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_orphan_node_ids", 2915620761)
+
     internal val addSiblingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "add_sibling", 2570952461)
 
-    internal val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "set_name", 83702148)
+    internal val setNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "set_name", 3304788590)
 
     internal val getNamePtr: VoidPtr = TypeManager.getMethodBindPtr("Node", "get_name", 2002593661)
 
@@ -3505,6 +3600,12 @@ public open class Node : Object() {
     internal val getProcessThreadGroupOrderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "get_process_thread_group_order", 3905245786)
 
+    internal val queueAccessibilityUpdatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "queue_accessibility_update", 3218959716)
+
+    internal val getAccessibilityElementPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_accessibility_element", 2944877500)
+
     internal val setDisplayFoldedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_display_folded", 2586408642)
 
@@ -3543,6 +3644,9 @@ public open class Node : Object() {
 
     internal val getAutoTranslateModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "get_auto_translate_mode", 2498906432)
+
+    internal val canAutoTranslatePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "can_auto_translate", 36873697)
 
     internal val setTranslationDomainInheritedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_translation_domain_inherited", 3218959716)
@@ -3603,8 +3707,8 @@ public open class Node : Object() {
     internal val rpcConfigPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "rpc_config", 3776071444)
 
-    internal val getRpcConfigPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Node", "get_rpc_config", 1214101251)
+    internal val getNodeRpcConfigPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Node", "get_node_rpc_config", 1214101251)
 
     internal val setEditorDescriptionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Node", "set_editor_description", 83702148)

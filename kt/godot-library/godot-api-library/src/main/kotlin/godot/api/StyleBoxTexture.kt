@@ -165,8 +165,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled horizontally. See
-   * [AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled horizontally.
    */
   public final inline var axisStretchHorizontal: AxisStretchMode
     @JvmName("axisStretchHorizontalProperty")
@@ -177,8 +176,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   /**
-   * Controls how the stylebox's texture will be stretched or tiled vertically. See
-   * [AxisStretchMode] for possible values.
+   * Controls how the stylebox's texture will be stretched or tiled vertically.
    */
   public final inline var axisStretchVertical: AxisStretchMode
     @JvmName("axisStretchVerticalProperty")
@@ -242,7 +240,7 @@ public open class StyleBoxTexture : StyleBox() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(644, scriptIndex)
+    createNativeObject(660, scriptIndex)
   }
 
   /**

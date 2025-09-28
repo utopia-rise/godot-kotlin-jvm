@@ -20,7 +20,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeGlobalExpression : VisualShaderNodeExpression() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(756, scriptIndex)
+    createNativeObject(772, scriptIndex)
   }
 
   public companion object

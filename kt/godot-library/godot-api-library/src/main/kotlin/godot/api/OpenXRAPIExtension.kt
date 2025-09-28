@@ -47,7 +47,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(410, scriptIndex)
+    createNativeObject(419, scriptIndex)
   }
 
   /**
@@ -62,7 +62,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   }
 
   /**
-   * Returns the id of the system, which is a
+   * Returns the id of the system, which is an
    * [url=https://registry.khronos.org/OpenXR/specs/1.0/man/html/XrSystemId.html]XrSystemId[/url] cast
    * to an integer.
    */
@@ -262,8 +262,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a composition layer provider.
    */
-  public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun registerCompositionLayerProvider(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.registerCompositionLayerProviderPtr, NIL)
   }
@@ -271,8 +270,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Unregisters the given extension as a composition layer provider.
    */
-  public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun unregisterCompositionLayerProvider(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.unregisterCompositionLayerProviderPtr, NIL)
   }
@@ -280,8 +278,7 @@ public open class OpenXRAPIExtension : RefCounted() {
   /**
    * Registers the given extension as a provider of additional data structures to projections views.
    */
-  public final fun registerProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun registerProjectionViewsExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.registerProjectionViewsExtensionPtr, NIL)
   }
@@ -290,10 +287,28 @@ public open class OpenXRAPIExtension : RefCounted() {
    * Unregisters the given extension as a provider of additional data structures to projections
    * views.
    */
-  public final fun unregisterProjectionViewsExtension(extension: OpenXRExtensionWrapperExtension?):
-      Unit {
+  public final fun unregisterProjectionViewsExtension(extension: OpenXRExtensionWrapper?): Unit {
     TransferContext.writeArguments(OBJECT to extension)
     TransferContext.callMethod(ptr, MethodBindings.unregisterProjectionViewsExtensionPtr, NIL)
+  }
+
+  /**
+   * Registers the given extension as modifying frame info via the
+   * [OpenXRExtensionWrapper.SetFrameWaitInfoAndGetNextPointer],
+   * [OpenXRExtensionWrapper.SetViewLocateInfoAndGetNextPointer], or
+   * [OpenXRExtensionWrapper.SetFrameEndInfoAndGetNextPointer] virtual methods.
+   */
+  public final fun registerFrameInfoExtension(extension: OpenXRExtensionWrapper?): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(ptr, MethodBindings.registerFrameInfoExtensionPtr, NIL)
+  }
+
+  /**
+   * Unregisters the given extension as modifying frame info.
+   */
+  public final fun unregisterFrameInfoExtension(extension: OpenXRExtensionWrapper?): Unit {
+    TransferContext.writeArguments(OBJECT to extension)
+    TransferContext.callMethod(ptr, MethodBindings.unregisterFrameInfoExtensionPtr, NIL)
   }
 
   /**
@@ -535,6 +550,9 @@ public open class OpenXRAPIExtension : RefCounted() {
     internal val isRunningPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "is_running", 2240911060)
 
+    internal val setCustomPlaySpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "set_custom_play_space", 1286410249)
+
     internal val getPlaySpacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_play_space", 2455072627)
 
@@ -557,16 +575,22 @@ public open class OpenXRAPIExtension : RefCounted() {
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_hand_tracker", 3744713108)
 
     internal val registerCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_composition_layer_provider", 1477360496)
 
     internal val unregisterCompositionLayerProviderPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_composition_layer_provider", 1477360496)
 
     internal val registerProjectionViewsExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_projection_views_extension", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_projection_views_extension", 1477360496)
 
     internal val unregisterProjectionViewsExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_projection_views_extension", 1997997368)
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_projection_views_extension", 1477360496)
+
+    internal val registerFrameInfoExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "register_frame_info_extension", 1477360496)
+
+    internal val unregisterFrameInfoExtensionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("OpenXRAPIExtension", "unregister_frame_info_extension", 1477360496)
 
     internal val getRenderStateZNearPtr: VoidPtr =
         TypeManager.getMethodBindPtr("OpenXRAPIExtension", "get_render_state_z_near", 191475506)

@@ -137,13 +137,13 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
         _generate_export_configuration_file(jni::JvmType::GRAAL_NATIVE_IMAGE);
 
-        add_ios_project_static_lib(
+        add_apple_embedded_platform_project_static_lib(
           ProjectSettings::get_singleton()->globalize_path(base_ios_jdk_dir.path_join("libjava-release.a"))
         );
-        add_ios_project_static_lib(
+        add_apple_embedded_platform_project_static_lib(
           ProjectSettings::get_singleton()->globalize_path(base_ios_jdk_dir.path_join("libjvm-release.a"))
         );
-        add_ios_project_static_lib(ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE)));
+        add_apple_embedded_platform_project_static_lib(ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE)));
     } else {
         JVM_ERR_FAIL_MSG("Godot Kotlin/JVM doesn't handle this platform");
     }

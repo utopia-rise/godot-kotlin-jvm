@@ -585,7 +585,7 @@ public open class AudioStreamPlaylist : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(97, scriptIndex)
+    createNativeObject(98, scriptIndex)
   }
 
   public final fun setStreamCount(streamCount: Int): Unit {

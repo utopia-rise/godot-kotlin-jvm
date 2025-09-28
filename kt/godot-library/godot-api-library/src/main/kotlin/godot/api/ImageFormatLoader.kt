@@ -25,9 +25,9 @@ public infix fun Long.and(other: ImageFormatLoader.LoaderFlags): Long = this.and
  * [ImageFormatLoaderExtension].
  */
 @GodotBaseType
-public open class ImageFormatLoader internal constructor() : RefCounted() {
+public abstract class ImageFormatLoader : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(283, scriptIndex)
+    createNativeObject(290, scriptIndex)
   }
 
   public class LoaderFlags(

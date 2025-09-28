@@ -27,13 +27,13 @@ import kotlin.jvm.JvmOverloads
 /**
  * This resource holds a set of cells to help bulk manipulations of [TileMap].
  *
- * A pattern always start at the `(0,0)` coordinates and cannot have cells with negative
+ * A pattern always starts at the `(0, 0)` coordinates and cannot have cells with negative
  * coordinates.
  */
 @GodotBaseType
 public open class TileMapPattern : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(684, scriptIndex)
+    createNativeObject(700, scriptIndex)
   }
 
   /**

@@ -40,7 +40,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class CollisionPolygon2D : Node2D() {
   /**
-   * Collision build mode. Use one of the [BuildMode] constants.
+   * Collision build mode.
    */
   public final inline var buildMode: BuildMode
     @JvmName("buildModeProperty")
@@ -74,7 +74,8 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   /**
-   * If `true`, no collisions will be detected.
+   * If `true`, no collisions will be detected. This property should be changed with
+   * [Object.setDeferred].
    */
   public final inline var disabled: Boolean
     @JvmName("disabledProperty")
@@ -112,7 +113,7 @@ public open class CollisionPolygon2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(156, scriptIndex)
+    createNativeObject(158, scriptIndex)
   }
 
   /**

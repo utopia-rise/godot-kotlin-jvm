@@ -67,7 +67,7 @@ public open class ConvexPolygonShape2D : Shape2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(179, scriptIndex)
+    createNativeObject(182, scriptIndex)
   }
 
   /**

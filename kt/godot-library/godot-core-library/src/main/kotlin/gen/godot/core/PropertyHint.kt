@@ -101,7 +101,9 @@ public enum class PropertyHint(
   LAYERS_AVOIDANCE(37),
   /**
    * Hints that a [String] property is a path to a file. Editing it will show a file dialog for
-   * picking the path. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`.
+   * picking the path. The hint string can be a set of filters with wildcards like `"*.png,*.jpg"`. By
+   * default the file will be stored as UID whenever available. You can use [ResourceUID] methods to
+   * convert it back to path. For storing a raw path, use [PROPERTY_HINT_FILE_PATH].
    */
   FILE(13),
   /**
@@ -157,6 +159,9 @@ public enum class PropertyHint(
    *
    * If a property is [Array], hints the editor how to show elements. The `hint_string` must encode
    * nested types using `":"` and `"/"`.
+   *
+   * If a property is [Dictionary], hints the editor how to show elements. The `hint_string` is the
+   * same as [Array], with a `";"` separating the key and value.
    *
    * ```gdscript
    * //gdscript
@@ -269,11 +274,19 @@ public enum class PropertyHint(
    */
   INT_IS_POINTER(30),
   /**
-   * Hints that a property is an [Array] with the stored type specified in the hint string.
+   * Hints that a property is an [Array] with the stored type specified in the hint string. The hint
+   * string contains the type of the array (e.g. `"String"`).
+   *
+   * Use the hint string format from [PROPERTY_HINT_TYPE_STRING] for more control over the stored
+   * type.
    */
   ARRAY_TYPE(31),
   /**
-   * Hints that a property is a [Dictionary] with the stored types specified in the hint string.
+   * Hints that a property is a [Dictionary] with the stored types specified in the hint string. The
+   * hint string contains the key and value types separated by a semicolon (e.g. `"int;String"`).
+   *
+   * Use the hint string format from [PROPERTY_HINT_TYPE_STRING] for more control over the stored
+   * types.
    */
   DICTIONARY_TYPE(38),
   /**
@@ -323,9 +336,34 @@ public enum class PropertyHint(
    */
   ONESHOT(40),
   /**
+   * Hints that a boolean property will enable the feature associated with the group that it occurs
+   * in. The property will be displayed as a checkbox on the group header. Only works within a group or
+   * subgroup.
+   *
+   * By default, disabling the property hides all properties in the group. Use the optional hint
+   * string `"checkbox_only"` to disable this behavior.
+   */
+  GROUP_ENABLE(42),
+  /**
+   * Hints that a [String] or [StringName] property is the name of an input action. This allows the
+   * selection of any action name from the Input Map in the Project Settings. The hint string may
+   * contain two options separated by commas:
+   *
+   * - If it contains `"show_builtin"`, built-in input actions are included in the selection.
+   *
+   * - If it contains `"loose_mode"`, loose mode is enabled. This allows inserting any action name
+   * even if it's not present in the input map.
+   */
+  INPUT_NAME(43),
+  /**
+   * Like [PROPERTY_HINT_FILE], but the property is stored as a raw path, not UID. That means the
+   * reference will be broken if you move the file. Consider using [PROPERTY_HINT_FILE] when possible.
+   */
+  FILE_PATH(44),
+  /**
    * Represents the size of the [PropertyHint] enum.
    */
-  MAX(42),
+  MAX(45),
   ;
 
   public override val `value`: Long

@@ -82,8 +82,19 @@ public open class ColorPickerButton : Button() {
       setEditAlpha(value)
     }
 
+  /**
+   * If `true`, the intensity slider in the displayed [ColorPicker] will be visible.
+   */
+  public final inline var editIntensity: Boolean
+    @JvmName("editIntensityProperty")
+    get() = isEditingIntensity()
+    @JvmName("editIntensityProperty")
+    set(`value`) {
+      setEditIntensity(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(162, scriptIndex)
+    createNativeObject(164, scriptIndex)
   }
 
   /**
@@ -152,6 +163,17 @@ public open class ColorPickerButton : Button() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setEditIntensity(show: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to show)
+    TransferContext.callMethod(ptr, MethodBindings.setEditIntensityPtr, NIL)
+  }
+
+  public final fun isEditingIntensity(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEditingIntensityPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -172,5 +194,11 @@ public open class ColorPickerButton : Button() {
 
     internal val isEditingAlphaPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_alpha", 36873697)
+
+    internal val setEditIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "set_edit_intensity", 2586408642)
+
+    internal val isEditingIntensityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ColorPickerButton", "is_editing_intensity", 36873697)
   }
 }

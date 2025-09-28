@@ -13,11 +13,11 @@ class RegistrationRule() : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
         val coreTypes = context
             .classList
-            .filter { it.isCoreClass() }
+            .filter { it.isCoreModule() }
 
         val apiTypes = context
             .classList
-            .filter { !it.isCoreClass() }
+            .filter { !it.isCoreModule() }
 
 
         val registrationTask = RegistrationTask()

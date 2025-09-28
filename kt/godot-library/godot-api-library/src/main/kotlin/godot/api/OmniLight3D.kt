@@ -76,9 +76,6 @@ public open class OmniLight3D : Light3D() {
       setParam(Light3D.Param.ATTENUATION, value)
     }
 
-  /**
-   * See [ShadowMode].
-   */
   public final inline var omniShadowMode: ShadowMode
     @JvmName("omniShadowModeProperty")
     get() = getShadowMode()
@@ -88,7 +85,7 @@ public open class OmniLight3D : Light3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(409, scriptIndex)
+    createNativeObject(418, scriptIndex)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

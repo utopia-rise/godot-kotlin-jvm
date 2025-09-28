@@ -65,7 +65,7 @@ public open class MissingNode : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(359, scriptIndex)
+    createNativeObject(367, scriptIndex)
   }
 
   public final fun setOriginalClass(name: String): Unit {

@@ -12,6 +12,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -91,7 +93,7 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(27, scriptIndex)
+    createNativeObject(28, scriptIndex)
   }
 
   /**
@@ -156,6 +158,15 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
     TransferContext.writeArguments(OBJECT to node)
     TransferContext.callMethod(ptr, MethodBindings.getNodeNamePtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns a list containing the names of all animation nodes in this state machine.
+   */
+  public final fun getNodeList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNodeListPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -423,6 +434,9 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
 
     internal val getNodeNamePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachine", "get_node_name", 739213945)
+
+    internal val getNodeListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeStateMachine", "get_node_list", 3995934104)
 
     internal val setNodePositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeStateMachine", "set_node_position", 1999414630)

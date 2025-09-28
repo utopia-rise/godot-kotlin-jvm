@@ -28,7 +28,14 @@ import kotlin.jvm.JvmName
 
 /**
  * [SpinBox] is a numerical input text field. It allows entering integers and floating-point
- * numbers.
+ * numbers. The [SpinBox] also has up and down buttons that can be clicked increase or decrease the
+ * value. The value can also be changed by dragging the mouse up or down over the [SpinBox]'s arrows.
+ *
+ * Additionally, mathematical expressions can be entered. These are evaluated when the user presses
+ * [kbd]Enter[/kbd] while editing the [SpinBox]'s text field. This uses the [Expression] class to parse
+ * and evaluate the expression. The result of the expression is then set as the value of the [SpinBox].
+ * Some examples of valid expressions are `5 + 2 * 3`, `pow(2, 4)`, and `PI + sin(0.5)`. Expressions
+ * are case-sensitive.
  *
  * **Example:** Create a [SpinBox], disable its context menu and set its text alignment to right.
  *
@@ -90,6 +97,10 @@ public open class SpinBox : Range() {
   /**
    * Sets the value of the [Range] for this [SpinBox] when the [LineEdit] text is *changed* instead
    * of *submitted*. See [signal LineEdit.text_changed] and [signal LineEdit.text_submitted].
+   *
+   * **Note:** If set to `true`, this will interfere with entering mathematical expressions in the
+   * [SpinBox]. The [SpinBox] will try to evaluate the expression as you type, which means symbols like
+   * a trailing `+` are removed immediately by the expression being evaluated.
    */
   public final inline var updateOnTextChanged: Boolean
     @JvmName("updateOnTextChangedProperty")
@@ -122,8 +133,9 @@ public open class SpinBox : Range() {
     }
 
   /**
-   * If not `0`, [Range.value] will always be rounded to a multiple of [customArrowStep] when
-   * interacting with the arrow buttons of the [SpinBox].
+   * If not `0`, sets the step when interacting with the arrow buttons of the [SpinBox].
+   *
+   * **Note:** [Range.value] will still be rounded to a multiple of [Range.step].
    */
   public final inline var customArrowStep: Double
     @JvmName("customArrowStepProperty")
@@ -146,7 +158,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(617, scriptIndex)
+    createNativeObject(633, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {
@@ -227,7 +239,9 @@ public open class SpinBox : Range() {
   }
 
   /**
-   * Applies the current value of this [SpinBox].
+   * Applies the current value of this [SpinBox]. This is equivalent to pressing [kbd]Enter[/kbd]
+   * while editing the [LineEdit] used by the [SpinBox]. This will cause [signal
+   * LineEdit.text_submitted] to be emitted and its currently contained expression to be evaluated.
    */
   public final fun apply(): Unit {
     TransferContext.writeArguments()

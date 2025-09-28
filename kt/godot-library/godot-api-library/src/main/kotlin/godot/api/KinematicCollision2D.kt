@@ -36,7 +36,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class KinematicCollision2D : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(325, scriptIndex)
+    createNativeObject(332, scriptIndex)
   }
 
   /**

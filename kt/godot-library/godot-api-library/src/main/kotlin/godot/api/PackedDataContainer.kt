@@ -38,7 +38,7 @@ import kotlin.Unit
  * ```
  * var container = load("packed_data.res")
  * for key in container:
- *     prints(key, container[key])
+ * prints(key, container[key])
  * ```
  *
  * Prints:
@@ -59,7 +59,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PackedDataContainer : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(435, scriptIndex)
+    createNativeObject(450, scriptIndex)
   }
 
   /**

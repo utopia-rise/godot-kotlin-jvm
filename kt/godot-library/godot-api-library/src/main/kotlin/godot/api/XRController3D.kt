@@ -44,7 +44,8 @@ import kotlin.Unit
  * The position of the controller node is automatically updated by the [XRServer]. This makes this
  * node ideal to add child nodes to visualize the controller.
  *
- * As many XR runtimes now use a configurable action map all inputs are named.
+ * The current [XRInterface] defines the names of inputs. In the case of OpenXR, these are the names
+ * of actions in the current action set from the OpenXR action map.
  */
 @GodotBaseType
 public open class XRController3D : XRNode3D() {
@@ -74,11 +75,14 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(862, scriptIndex)
+    createNativeObject(878, scriptIndex)
   }
 
   /**
    * Returns `true` if the button with the given [name] is pressed.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun isButtonPressed(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -89,6 +93,9 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a [Variant] for the input with the given [name]. This works for any input type, the
    * variant will be typed according to the actions configuration.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getInput(name: StringName): Any? {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -99,6 +106,9 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
    * sensors.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getFloat(name: StringName): Float {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -109,6 +119,9 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
    * thumbpads found on many controllers.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getVector2(name: StringName): Vector2 {
     TransferContext.writeArguments(STRING_NAME to name)
@@ -117,7 +130,7 @@ public open class XRController3D : XRNode3D() {
   }
 
   /**
-   * Returns the hand holding this controller, if known. See [XRPositionalTracker.TrackerHand].
+   * Returns the hand holding this controller, if known.
    */
   public final fun getTrackerHand(): XRPositionalTracker.TrackerHand {
     TransferContext.writeArguments()
@@ -127,6 +140,9 @@ public open class XRController3D : XRNode3D() {
 
   /**
    * Returns `true` if the button with the given [name] is pressed.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun isButtonPressed(name: String): Boolean =
       isButtonPressed(name.asCachedStringName())
@@ -134,18 +150,27 @@ public open class XRController3D : XRNode3D() {
   /**
    * Returns a [Variant] for the input with the given [name]. This works for any input type, the
    * variant will be typed according to the actions configuration.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getInput(name: String): Any? = getInput(name.asCachedStringName())
 
   /**
    * Returns a numeric value for the input with the given [name]. This is used for triggers and grip
    * sensors.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getFloat(name: String): Float = getFloat(name.asCachedStringName())
 
   /**
    * Returns a [Vector2] for the input with the given [name]. This is used for thumbsticks and
    * thumbpads found on many controllers.
+   *
+   * **Note:** The current [XRInterface] defines the [name] for each input. In the case of OpenXR,
+   * these are the names of actions in the current action set.
    */
   public final fun getVector2(name: String): Vector2 = getVector2(name.asCachedStringName())
 

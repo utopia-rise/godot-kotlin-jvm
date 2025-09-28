@@ -20,27 +20,27 @@ jobs:
           - name: Build editor release x86_64 (target=editor)
             cache-name: editor_release_linux_x86_64
             target: editor
-            sconsflags: ''
+            scons-flags: ''
 
           - name: Build editor debug (target=editor, debug_symbols=true )
             cache-name: editor_debug_linux_x86_64
             target: editor
-            sconsflags: debug_symbols=true
+            scons-flags: debug_symbols=true
 
           - name: Build editor dev (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_dev_linux_x86_64
             target: editor
-            sconsflags: dev_build=yes debug_symbols=true
+            scons-flags: dev_build=yes debug_symbols=true
 
           - name: Build release template x86_64
             cache-name: export_template_release_linux_x86_64
             target: template_release
-            sconsflags: ''
+            scons-flags: ''
 
           - name: Build debug template x86_64
             cache-name: export_template_debug_linux_x86_64
             target: template_debug
-            sconsflags: ''
+            scons-flags: ''
 
     steps:
       - name: Maximize build space
@@ -78,7 +78,7 @@ jobs:
       - name: Compilation
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ matrix.sconsflags }}
+          scons-flags: ${{ matrix.scons-flags }}
           platform: linuxbsd
           target: ${{ matrix.target }}
 

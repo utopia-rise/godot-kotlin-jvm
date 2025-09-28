@@ -37,7 +37,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class BackBufferCopy : Node2D() {
   /**
-   * Buffer mode. See [CopyMode] constants.
+   * Buffer mode.
    */
   public final inline var copyMode: CopyMode
     @JvmName("copyModeProperty")
@@ -67,7 +67,7 @@ public open class BackBufferCopy : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(102, scriptIndex)
+    createNativeObject(103, scriptIndex)
   }
 
   /**

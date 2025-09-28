@@ -79,7 +79,7 @@ public open class XRVRS : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(876, scriptIndex)
+    createNativeObject(892, scriptIndex)
   }
 
   /**

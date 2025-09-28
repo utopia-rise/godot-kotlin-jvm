@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class InputEventJoypadMotion : InputEvent() {
   /**
-   * Axis identifier. Use one of the [JoyAxis] axis constants.
+   * Axis identifier.
    */
   public final inline var axis: JoyAxis
     @JvmName("axisProperty")
@@ -52,7 +52,7 @@ public open class InputEventJoypadMotion : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(297, scriptIndex)
+    createNativeObject(304, scriptIndex)
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {

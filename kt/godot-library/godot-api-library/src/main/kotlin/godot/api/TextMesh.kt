@@ -36,7 +36,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * Generate an [PrimitiveMesh] from the text.
+ * Generate a [PrimitiveMesh] from the text.
  *
  * TextMesh can be generated only when using dynamic fonts with vector glyph contours. Bitmap fonts
  * (including bitmap data in the TrueType/OpenType containers, like color emoji fonts) are not
@@ -86,7 +86,6 @@ public open class TextMesh : PrimitiveMesh() {
 
   /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -97,8 +96,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
-   * [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, and bottom.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -134,7 +132,7 @@ public open class TextMesh : PrimitiveMesh() {
   /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
-   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * all the text.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -145,7 +143,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   /**
-   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   * Line fill alignment rules.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -264,7 +262,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(657, scriptIndex)
+    createNativeObject(673, scriptIndex)
   }
 
   /**

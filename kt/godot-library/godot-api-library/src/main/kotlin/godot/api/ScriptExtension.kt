@@ -22,7 +22,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class ScriptExtension : Script() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(573, scriptIndex)
+    createNativeObject(589, scriptIndex)
   }
 
   public abstract fun _editorCanReloadFromFile(): Boolean
@@ -74,8 +74,10 @@ public abstract class ScriptExtension : Script() {
   public abstract fun _isValid(): Boolean
 
   /**
-   * Returns `true` if the script is an abstract script. An abstract script does not have a
-   * constructor and cannot be instantiated.
+   * Returns `true` if the script is an abstract script. Abstract scripts cannot be instantiated
+   * directly, instead other scripts should inherit them. Abstract scripts will be either unselectable
+   * or hidden in the Create New Node dialog (unselectable if there are non-abstract classes inheriting
+   * it, otherwise hidden).
    */
   public open fun _isAbstract(): Boolean {
     throw NotImplementedError("ScriptExtension::_isAbstract is not implemented.")

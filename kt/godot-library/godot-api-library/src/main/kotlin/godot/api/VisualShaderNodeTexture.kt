@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeTexture : VisualShaderNode() {
   /**
-   * Determines the source for the lookup. See [Source] for options.
+   * Determines the source for the lookup.
    */
   public final inline var source: Source
     @JvmName("sourceProperty")
@@ -49,8 +49,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   /**
-   * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE]. See [TextureType] for
-   * options.
+   * Specifies the type of the texture if [source] is set to [SOURCE_TEXTURE].
    */
   public final inline var textureType: TextureType
     @JvmName("textureTypeProperty")
@@ -61,7 +60,7 @@ public open class VisualShaderNodeTexture : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(797, scriptIndex)
+    createNativeObject(813, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

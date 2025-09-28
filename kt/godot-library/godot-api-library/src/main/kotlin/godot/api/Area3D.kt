@@ -181,8 +181,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * Override mode for gravity calculations within this area. See [SpaceOverride] for possible
-   * values.
+   * Override mode for gravity calculations within this area.
    */
   public final inline var gravitySpaceOverride: SpaceOverride
     @JvmName("gravitySpaceOverrideProperty")
@@ -273,8 +272,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * Override mode for linear damping calculations within this area. See [SpaceOverride] for
-   * possible values.
+   * Override mode for linear damping calculations within this area.
    */
   public final inline var linearDampSpaceOverride: SpaceOverride
     @JvmName("linearDampSpaceOverrideProperty")
@@ -299,8 +297,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   /**
-   * Override mode for angular damping calculations within this area. See [SpaceOverride] for
-   * possible values.
+   * Override mode for angular damping calculations within this area.
    */
   public final inline var angularDampSpaceOverride: SpaceOverride
     @JvmName("angularDampSpaceOverrideProperty")
@@ -437,7 +434,7 @@ public open class Area3D : CollisionObject3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(39, scriptIndex)
+    createNativeObject(40, scriptIndex)
   }
 
   /**

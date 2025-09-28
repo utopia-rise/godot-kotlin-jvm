@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerGZIP : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(637, scriptIndex)
+    createNativeObject(653, scriptIndex)
   }
 
   /**
@@ -63,7 +63,9 @@ public open class StreamPeerGZIP : StreamPeer() {
   }
 
   /**
-   * Finalizes the stream, compressing or decompressing any buffered chunk left.
+   * Finalizes the stream, compressing any buffered chunk left.
+   *
+   * You must call it only when you are compressing.
    */
   public final fun finish(): Error {
     TransferContext.writeArguments()

@@ -43,14 +43,14 @@ import kotlin.jvm.JvmStatic
  * var enemies = [] # An array to be filled with enemies.
  *
  * func process_enemy_ai(enemy_index):
- *     var processed_enemy = enemies[enemy_index]
- *     # Expensive logic...
+ * var processed_enemy = enemies[enemy_index]
+ * # Expensive logic...
  *
  * func _process(delta):
- *     var task_id = WorkerThreadPool.add_group_task(process_enemy_ai, enemies.size())
- *     # Other code...
- *     WorkerThreadPool.wait_for_group_task_completion(task_id)
- *     # Other code that depends on the enemy AI already being processed.
+ * var task_id = WorkerThreadPool.add_group_task(process_enemy_ai, enemies.size())
+ * # Other code...
+ * WorkerThreadPool.wait_for_group_task_completion(task_id)
+ * # Other code that depends on the enemy AI already being processed.
  * ```
  *
  * ```csharp
@@ -59,17 +59,16 @@ import kotlin.jvm.JvmStatic
  *
  * private void ProcessEnemyAI(int enemyIndex)
  * {
- *     Node processedEnemy = _enemies[enemyIndex];
- *     // Expensive logic here.
+ * Node processedEnemy = _enemies[enemyIndex];
+ * // Expensive logic here.
  * }
  *
  * public override void _Process(double delta)
  * {
- *     long taskId = WorkerThreadPool.AddGroupTask(Callable.From<int>(ProcessEnemyAI),
- * _enemies.Count);
- *     // Other code...
- *     WorkerThreadPool.WaitForGroupTaskCompletion(taskId);
- *     // Other code that depends on the enemy AI already being processed.
+ * long taskId = WorkerThreadPool.AddGroupTask(Callable.From<int>(ProcessEnemyAI), _enemies.Count);
+ * // Other code...
+ * WorkerThreadPool.WaitForGroupTaskCompletion(taskId);
+ * // Other code that depends on the enemy AI already being processed.
  * }
  * ```
  *
@@ -142,6 +141,22 @@ public object WorkerThreadPool : Object() {
   }
 
   /**
+   * Returns the task ID of the current thread calling this method, or `-1` if the task is a group
+   * task, invalid or the current thread is not part of the thread pool (e.g. the main thread).
+   *
+   * Can be used by a task to get its own task ID, or to determine whether the current code is
+   * running inside the worker thread pool.
+   *
+   * **Note:** Group tasks have their own IDs, so this method will return `-1` for group tasks.
+   */
+  @JvmStatic
+  public final fun getCallerTaskId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCallerTaskIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Adds [action] as a group task to be executed by the worker threads. The [Callable] will be
    * called a number of times based on [elements], with the first thread calling it with the value `0`
    * as a parameter, and each consecutive execution incrementing this value by 1 until it reaches
@@ -208,6 +223,17 @@ public object WorkerThreadPool : Object() {
     TransferContext.callMethod(ptr, MethodBindings.waitForGroupTaskCompletionPtr, NIL)
   }
 
+  /**
+   * Returns the task group ID of the current thread calling this method, or `-1` if invalid or the
+   * current thread is not part of a task group.
+   */
+  @JvmStatic
+  public final fun getCallerGroupId(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCallerGroupIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public object MethodBindings {
     internal val addTaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WorkerThreadPool", "add_task", 3745067146)
@@ -217,6 +243,9 @@ public object WorkerThreadPool : Object() {
 
     internal val waitForTaskCompletionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_task_completion", 844576869)
+
+    internal val getCallerTaskIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "get_caller_task_id", 3905245786)
 
     internal val addGroupTaskPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WorkerThreadPool", "add_group_task", 1801953219)
@@ -229,5 +258,8 @@ public object WorkerThreadPool : Object() {
 
     internal val waitForGroupTaskCompletionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("WorkerThreadPool", "wait_for_group_task_completion", 1286410249)
+
+    internal val getCallerGroupIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("WorkerThreadPool", "get_caller_group_id", 3905245786)
   }
 }

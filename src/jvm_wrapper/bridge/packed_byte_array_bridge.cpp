@@ -9,7 +9,7 @@ void PackedByteArrayBridge::engine_call_compress(JNIEnv* p_raw_env, jobject p_in
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     Variant ret = pool.call(SNAME("compress"), args[0]);
 
@@ -21,9 +21,9 @@ void PackedByteArrayBridge::engine_call_decode_double(JNIEnv* p_raw_env, jobject
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_double"), args[0])};
+    Variant ret = instance.call(SNAME("decode_double"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -32,9 +32,9 @@ void PackedByteArrayBridge::engine_call_decode_float(JNIEnv* p_raw_env, jobject 
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_float"), args[0])};
+    Variant ret = instance.call(SNAME("decode_float"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -43,9 +43,9 @@ void PackedByteArrayBridge::engine_call_decode_half(JNIEnv* p_raw_env, jobject p
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_half"), args[0])};
+    Variant ret = instance.call(SNAME("decode_half"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -54,9 +54,9 @@ void PackedByteArrayBridge::engine_call_decode_s16(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_s16"), args[0])};
+    Variant ret = instance.call(SNAME("decode_s16"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -65,9 +65,9 @@ void PackedByteArrayBridge::engine_call_decode_s32(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_s32"), args[0])};
+    Variant ret = instance.call(SNAME("decode_s32"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -76,9 +76,9 @@ void PackedByteArrayBridge::engine_call_decode_s64(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_s64"), args[0])};
+    Variant ret = instance.call(SNAME("decode_s64"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -87,9 +87,9 @@ void PackedByteArrayBridge::engine_call_decode_s8(JNIEnv* p_raw_env, jobject p_i
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_s8"), args[0])};
+    Variant ret = instance.call(SNAME("decode_s8"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -98,9 +98,9 @@ void PackedByteArrayBridge::engine_call_decode_u16(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_u16"), args[0])};
+    Variant ret = instance.call(SNAME("decode_u16"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -109,9 +109,9 @@ void PackedByteArrayBridge::engine_call_decode_u32(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_u32"), args[0])};
+    Variant ret = instance.call(SNAME("decode_u32"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -120,9 +120,9 @@ void PackedByteArrayBridge::engine_call_decode_u64(JNIEnv* p_raw_env, jobject p_
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_u64"), args[0])};
+    Variant ret = instance.call(SNAME("decode_u64"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -131,9 +131,9 @@ void PackedByteArrayBridge::engine_call_decode_u8(JNIEnv* p_raw_env, jobject p_i
     Variant args[1] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_u8"), args[0])};
+    Variant ret = instance.call(SNAME("decode_u8"), args[0]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -142,9 +142,9 @@ void PackedByteArrayBridge::engine_call_decode_var(JNIEnv* p_raw_env, jobject p_
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_var"), args[0], args[1])};
+    Variant ret = instance.call(SNAME("decode_var"), args[0], args[1]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -153,9 +153,9 @@ void PackedByteArrayBridge::engine_call_decode_var_size(JNIEnv* p_raw_env, jobje
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
-    Variant ret {instance.call(SNAME("decode_var_size"), args[0], args[1])};
+    Variant ret = instance.call(SNAME("decode_var_size"), args[0], args[1]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
@@ -164,7 +164,7 @@ void PackedByteArrayBridge::engine_call_decompress(JNIEnv* p_raw_env, jobject p_
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     Variant ret = pool.call(SNAME("decompress"), args[0], args[1]);
 
@@ -176,7 +176,7 @@ void PackedByteArrayBridge::engine_call_decompress_dynamic(JNIEnv* p_raw_env, jo
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     auto t = args[0];
 
@@ -189,7 +189,7 @@ void PackedByteArrayBridge::engine_call_encode_double(JNIEnv* p_raw_env, jobject
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_double"), args[0], args[1]);
 }
 
@@ -197,7 +197,7 @@ void PackedByteArrayBridge::engine_call_encode_float(JNIEnv* p_raw_env, jobject 
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_float"), args[0], args[1]);
 }
 
@@ -205,7 +205,7 @@ void PackedByteArrayBridge::engine_call_encode_half(JNIEnv* p_raw_env, jobject p
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_half"), args[0], args[1]);
 }
 
@@ -213,7 +213,7 @@ void PackedByteArrayBridge::engine_call_encode_s16(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_s16"), args[0], args[1]);
 }
 
@@ -221,7 +221,7 @@ void PackedByteArrayBridge::engine_call_encode_s32(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_s32"), args[0], args[1]);
 }
 
@@ -229,7 +229,7 @@ void PackedByteArrayBridge::engine_call_encode_s64(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_s64"), args[0], args[1]);
 }
 
@@ -237,7 +237,7 @@ void PackedByteArrayBridge::engine_call_encode_s8(JNIEnv* p_raw_env, jobject p_i
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_s8"), args[0], args[1]);
 }
 
@@ -245,7 +245,7 @@ void PackedByteArrayBridge::engine_call_encode_u16(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_u16"), args[0], args[1]);
 }
 
@@ -253,7 +253,7 @@ void PackedByteArrayBridge::engine_call_encode_u32(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_u32"), args[0], args[1]);
 }
 
@@ -261,7 +261,7 @@ void PackedByteArrayBridge::engine_call_encode_u64(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_u64"), args[0], args[1]);
 }
 
@@ -269,7 +269,7 @@ void PackedByteArrayBridge::engine_call_encode_u8(JNIEnv* p_raw_env, jobject p_i
     jni::Env env {p_raw_env};
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_u8"), args[0], args[1]);
 }
 
@@ -277,14 +277,14 @@ void PackedByteArrayBridge::engine_call_encode_var(JNIEnv* p_raw_env, jobject p_
     jni::Env env {p_raw_env};
     Variant args[3] = {};
     TransferContext::get_instance().read_args(env, args);
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
     instance.call(SNAME("encode_u8"), args[0], args[1], args[2]);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     Variant ret = pool.call(SNAME("get_string_from_ascii"));
 
@@ -293,29 +293,29 @@ void PackedByteArrayBridge::engine_call_get_string_from_ascii(JNIEnv* p_raw_env,
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf16(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("get_string_from_utf16"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("get_string_from_utf16"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf32(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("get_string_from_utf32"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("get_string_from_utf32"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_wchar(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("get_string_from_wchar"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("get_string_from_wchar"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_get_string_from_utf8(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     Variant ret = pool.call(SNAME("get_string_from_utf8"));
 
@@ -327,15 +327,15 @@ void PackedByteArrayBridge::engine_call_has_encoded_var(JNIEnv* p_raw_env, jobje
     Variant args[2] = {};
     TransferContext::get_instance().read_args(env, args);
 
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("has_encoded_var"), args[0], args[1])};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("has_encoded_var"), args[0], args[1]);
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
 
-    Variant pool {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
+    Variant pool = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
 
     Variant ret = pool.call(SNAME("hex_encode"));
 
@@ -344,29 +344,29 @@ void PackedByteArrayBridge::engine_call_hex_encode(JNIEnv* p_raw_env, jobject p_
 
 void PackedByteArrayBridge::engine_call_to_float32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("to_float32_array"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("to_float32_array"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_float64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("to_float64_array"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("to_float64_array"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_int32_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("to_int32_array"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("to_int32_array"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 
 void PackedByteArrayBridge::engine_call_to_int64_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
     jni::Env env {p_raw_env};
-    Variant instance {*from_uint_to_ptr<PackedByteArray>(p_raw_ptr)};
-    Variant ret {instance.call(SNAME("to_int64_array"))};
+    Variant instance = *from_uint_to_ptr<PackedByteArray>(p_raw_ptr);
+    Variant ret = instance.call(SNAME("to_int64_array"));
     TransferContext::get_instance().write_return_value(env, ret);
 }
 

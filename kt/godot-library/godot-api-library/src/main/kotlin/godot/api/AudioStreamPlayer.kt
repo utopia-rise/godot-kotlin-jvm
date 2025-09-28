@@ -140,8 +140,8 @@ public open class AudioStreamPlayer : Node() {
     }
 
   /**
-   * The mix target channels, as one of the [MixTarget] constants. Has no effect when two speakers
-   * or less are detected (see [AudioServer.SpeakerMode]).
+   * The mix target channels. Has no effect when two speakers or less are detected (see
+   * [AudioServer.SpeakerMode]).
    */
   public final inline var mixTarget: MixTarget
     @JvmName("mixTargetProperty")
@@ -190,7 +190,7 @@ public open class AudioStreamPlayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(94, scriptIndex)
+    createNativeObject(95, scriptIndex)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

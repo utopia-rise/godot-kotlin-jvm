@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * shader to Fragment shader.
  */
 @GodotBaseType
-public open class VisualShaderNodeVarying internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeVarying : VisualShaderNode() {
   /**
    * Name of the variable. Must be unique.
    */
@@ -49,7 +49,7 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(820, scriptIndex)
+    createNativeObject(836, scriptIndex)
   }
 
   public final fun setVaryingName(name: String): Unit {

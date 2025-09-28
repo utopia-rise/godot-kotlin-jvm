@@ -95,6 +95,7 @@ object GodotTypes {
     const val nodePath = "NodePath"
     const val godotObject = "Object"
     const val refCounted = "RefCounted"
+    const val resource = "Resource"
     const val node = "Node"
     const val plane = "Plane"
     const val coreType = "CoreType"

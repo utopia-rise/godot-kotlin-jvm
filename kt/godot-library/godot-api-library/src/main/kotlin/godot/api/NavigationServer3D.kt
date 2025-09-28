@@ -502,6 +502,41 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Returns the current iteration ID of the navigation region. Every time the navigation region
+   * changes and synchronizes, the iteration ID increases. An iteration ID of `0` means the navigation
+   * region has never synchronized.
+   *
+   * **Note:** The iteration ID will wrap around to `1` after reaching its range limit.
+   */
+  @JvmStatic
+  public final fun regionGetIterationId(region: RID): Long {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetIterationIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If [enabled] is `true` the [region] uses an async synchronization process that runs on a
+   * background thread.
+   */
+  @JvmStatic
+  public final fun regionSetUseAsyncIterations(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.regionSetUseAsyncIterationsPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [region] uses an async synchronization process that runs on a background
+   * thread.
+   */
+  @JvmStatic
+  public final fun regionGetUseAsyncIterations(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetUseAsyncIterationsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
    * If [enabled] is `true`, the specified [region] will contribute to its current navigation map.
    */
   @JvmStatic
@@ -811,6 +846,20 @@ public object NavigationServer3D : Object() {
   }
 
   /**
+   * Returns the current iteration ID of the navigation link. Every time the navigation link changes
+   * and synchronizes, the iteration ID increases. An iteration ID of `0` means the navigation link has
+   * never synchronized.
+   *
+   * **Note:** The iteration ID will wrap around to `1` after reaching its range limit.
+   */
+  @JvmStatic
+  public final fun linkGetIterationId(link: RID): Long {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(ptr, MethodBindings.linkGetIterationIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Sets the navigation map [RID] for the link.
    */
   @JvmStatic
@@ -1063,8 +1112,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [paused] is `true` the specified [agent] will not be processed, e.g. calculate avoidance
-   * velocities or receive avoidance callbacks.
+   * If [paused] is `true` the specified [agent] will not be processed. For example, it will not
+   * calculate avoidance velocities or receive avoidance callbacks.
    */
   @JvmStatic
   public final fun agentSetPaused(agent: RID, paused: Boolean): Unit {
@@ -1448,8 +1497,8 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * If [paused] is `true` the specified [obstacle] will not be processed, e.g. affect avoidance
-   * velocities.
+   * If [paused] is `true` the specified [obstacle] will not be processed. For example, it will no
+   * longer affect avoidance velocities.
    */
   @JvmStatic
   public final fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
@@ -1735,8 +1784,7 @@ public object NavigationServer3D : Object() {
   }
 
   /**
-   * Returns information about the current state of the NavigationServer. See [ProcessInfo] for a
-   * list of available states.
+   * Returns information about the current state of the NavigationServer.
    */
   @JvmStatic
   public final fun getProcessInfo(processInfo: ProcessInfo): Int {
@@ -1906,6 +1954,15 @@ public object NavigationServer3D : Object() {
     internal val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_create", 529393457)
 
+    internal val regionGetIterationIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_iteration_id", 2198884583)
+
+    internal val regionSetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_use_async_iterations", 1265174801)
+
+    internal val regionGetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "region_get_use_async_iterations", 4155700596)
+
     internal val regionSetEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "region_set_enabled", 1265174801)
 
@@ -1989,6 +2046,9 @@ public object NavigationServer3D : Object() {
 
     internal val linkCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_create", 529393457)
+
+    internal val linkGetIterationIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer3D", "link_get_iteration_id", 2198884583)
 
     internal val linkSetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer3D", "link_set_map", 395945892)

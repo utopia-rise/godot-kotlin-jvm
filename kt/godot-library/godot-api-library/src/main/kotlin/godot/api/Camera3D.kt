@@ -144,7 +144,11 @@ public open class Camera3D : Node3D() {
   /**
    * If not [DOPPLER_TRACKING_DISABLED], this camera will simulate the
    * [url=https://en.wikipedia.org/wiki/Doppler_effect]Doppler effect[/url] for objects changed in
-   * particular `_process` methods. See [DopplerTracking] for possible values.
+   * particular `_process` methods.
+   *
+   * **Note:** The Doppler effect will only be heard on [AudioStreamPlayer3D]s if
+   * [AudioStreamPlayer3D.dopplerTracking] is not set to
+   * [AudioStreamPlayer3D.DOPPLER_TRACKING_DISABLED].
    */
   public final inline var dopplerTracking: DopplerTracking
     @JvmName("dopplerTrackingProperty")
@@ -265,7 +269,7 @@ public open class Camera3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(128, scriptIndex)
+    createNativeObject(130, scriptIndex)
   }
 
   /**
@@ -383,8 +387,9 @@ public open class Camera3D : Node3D() {
 
   /**
    * Sets the camera projection to orthogonal mode (see [PROJECTION_ORTHOGONAL]), by specifying a
-   * [size], and the [zNear] and [zFar] clip planes in world space units. (As a hint, 2D games often
-   * use this projection, with values specified in pixels.)
+   * [size], and the [zNear] and [zFar] clip planes in world space units.
+   *
+   * As a hint, 3D games that look 2D often use this projection, with [size] specified in pixels.
    */
   public final fun setOrthogonal(
     size: Float,

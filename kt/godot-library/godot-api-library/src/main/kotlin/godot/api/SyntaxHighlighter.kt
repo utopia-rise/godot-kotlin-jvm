@@ -30,7 +30,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(649, scriptIndex)
+    createNativeObject(665, scriptIndex)
   }
 
   /**
@@ -70,12 +70,12 @@ public open class SyntaxHighlighter : Resource() {
    *
    * ```
    * {
-   *     0: {
-   *         "color": Color(1, 0, 0)
-   *     },
-   *     5: {
-   *         "color": Color(0, 1, 0)
-   *     }
+   * 0: {
+   * "color": Color(1, 0, 0)
+   * },
+   * 5: {
+   * "color": Color(0, 1, 0)
+   * }
    * }
    * ```
    */

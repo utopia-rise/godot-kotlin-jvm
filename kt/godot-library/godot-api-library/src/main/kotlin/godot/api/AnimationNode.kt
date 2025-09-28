@@ -56,9 +56,9 @@ import kotlin.jvm.JvmOverloads
  * precedence depends on the type of [AnimationNode].
  *
  * ```
- * var current_length = $AnimationTree[parameters/AnimationNodeName/current_length]
- * var current_position = $AnimationTree[parameters/AnimationNodeName/current_position]
- * var current_delta = $AnimationTree[parameters/AnimationNodeName/current_delta]
+ * var current_length = $AnimationTree["parameters/AnimationNodeName/current_length"]
+ * var current_position = $AnimationTree["parameters/AnimationNodeName/current_position"]
+ * var current_delta = $AnimationTree["parameters/AnimationNodeName/current_delta"]
  * ```
  */
 @GodotBaseType
@@ -99,7 +99,7 @@ public open class AnimationNode : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(15, scriptIndex)
+    createNativeObject(16, scriptIndex)
   }
 
   /**
@@ -286,11 +286,10 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
+   * Blends an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
    *
-   * A [loopedFlag] is used by internal processing immediately after the loop. See also
-   * [Animation.LoopedFlag].
+   * A [loopedFlag] is used by internal processing immediately after the loop.
    */
   @JvmOverloads
   public final fun blendAnimation(
@@ -329,10 +328,9 @@ public open class AnimationNode : Resource() {
   }
 
   /**
-   * Blend an input. This is only useful for animation nodes created for an
+   * Blends an input. This is only useful for animation nodes created for an
    * [AnimationNodeBlendTree]. The [time] parameter is a relative delta, unless [seek] is `true`, in
-   * which case it is absolute. A filter mode may be optionally passed (see [FilterAction] for
-   * options).
+   * which case it is absolute. A filter mode may be optionally passed.
    */
   @JvmOverloads
   public final fun blendInput(
@@ -381,11 +379,10 @@ public open class AnimationNode : Resource() {
   public final fun isPathFiltered(path: String): Boolean = isPathFiltered(path.asCachedNodePath())
 
   /**
-   * Blend an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
+   * Blends an animation by [blend] amount (name must be valid in the linked [AnimationPlayer]). A
    * [time] and [delta] may be passed, as well as whether [seeked] happened.
    *
-   * A [loopedFlag] is used by internal processing immediately after the loop. See also
-   * [Animation.LoopedFlag].
+   * A [loopedFlag] is used by internal processing immediately after the loop.
    */
   @JvmOverloads
   public final fun blendAnimation(

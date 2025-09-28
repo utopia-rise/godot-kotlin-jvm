@@ -78,7 +78,7 @@ import kotlin.jvm.JvmOverloads
  * chain. See also [topLevel].
  */
 @GodotBaseType
-public open class CanvasItem internal constructor() : Node() {
+public abstract class CanvasItem : Node() {
   /**
    * Emitted when the [CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW]
    * notification, and *before* [_draw] is called.
@@ -90,11 +90,13 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Emitted when the [CanvasItem]'s visibility changes, either because its own [visible] property
    * changed or because its visibility in the tree changed (see [isVisibleInTree]).
+   *
+   * This signal is emitted *after* the related [NOTIFICATION_VISIBILITY_CHANGED] notification.
    */
   public val visibilityChanged: Signal0 by Signal0
 
   /**
-   * Emitted when the [CanvasItem] is hidden, i.e. it's no longer visible in the tree (see
+   * Emitted when this node becomes hidden, i.e. it's no longer visible in the tree (see
    * [isVisibleInTree]).
    */
   public val hidden: Signal0 by Signal0
@@ -146,9 +148,9 @@ public open class CanvasItem internal constructor() : Node() {
    * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
    * unlike [modulate] which affects both the node itself and its children.
    *
-   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
-   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
-   * similar methods).
+   * **Note:** Internal children are also not affected by this property (see the `include_internal`
+   * parameter in [Node.addChild]). For built-in nodes this includes sliders in [ColorPicker], and the
+   * tab bar in [TabContainer].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -167,7 +169,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the object draws behind its parent.
+   * If `true`, this node draws behind its parent.
    */
   public final inline var showBehindParent: Boolean
     @JvmName("showBehindParentProperty")
@@ -192,9 +194,9 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * Allows the current node to clip child nodes, essentially acting as a mask.
+   * The mode in which this node clips its children, acting as a mask.
    *
-   * **Note:** Clipping nodes cannot be nested or placed within [CanvasGroup]s. If an ancestor of
+   * **Note:** Clipping nodes cannot be nested or placed within a [CanvasGroup]. If an ancestor of
    * this node clips its children or is a [CanvasGroup], then this node's clip mode should be set to
    * [CLIP_CHILDREN_DISABLED] to avoid unexpected behavior.
    */
@@ -231,13 +233,13 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * Controls the order in which the nodes render. A node with a higher Z index will display in
-   * front of others. Must be between [RenderingServer.CANVAS_ITEM_Z_MIN] and
+   * The order in which this node is drawn. A node with a higher Z index will display in front of
+   * others. Must be between [RenderingServer.CANVAS_ITEM_Z_MIN] and
    * [RenderingServer.CANVAS_ITEM_Z_MAX] (inclusive).
    *
-   * **Note:** Changing the Z index of a [Control] only affects the drawing order, not the order in
-   * which input events are handled. This can be useful to implement certain UI animations, e.g. a menu
-   * where hovered items are scaled and should overlap others.
+   * **Note:** The Z index does **not** affect the order in which [CanvasItem] nodes are processed
+   * or the way input events are handled. This is especially important to keep in mind for [Control]
+   * nodes.
    */
   public final inline var zIndex: Int
     @JvmName("zIndexProperty")
@@ -248,8 +250,10 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the node's Z index is relative to its parent's Z index. If this node's Z index is 2
-   * and its parent's effective Z index is 3, then this node's effective Z index will be 2 + 3 = 5.
+   * If `true`, this node's final Z index is relative to its parent's Z index.
+   *
+   * For example, if [zIndex] is `2` and its parent's final Z index is `3`, then this node's final Z
+   * index will be `5` (`2 + 3`).
    */
   public final inline var zAsRelative: Boolean
     @JvmName("zAsRelativeProperty")
@@ -280,7 +284,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The texture filtering mode to use on this [CanvasItem].
+   * The filtering mode used to render this [CanvasItem]'s texture(s).
    */
   public final inline var textureFilter: TextureFilter
     @JvmName("textureFilterProperty")
@@ -291,7 +295,12 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * The texture repeating mode to use on this [CanvasItem].
+   * The repeating mode used to render this [CanvasItem]'s texture(s). It affects what happens when
+   * the texture is sampled outside its extents, for example by setting a [Sprite2D.regionRect] that is
+   * larger than the texture or assigning [Polygon2D] UV points outside the texture.
+   *
+   * **Note:** [TextureRect] is not affected by [textureRepeat], as it uses its own texture
+   * repeating implementation.
    */
   public final inline var textureRepeat: TextureRepeat
     @JvmName("textureRepeatProperty")
@@ -313,7 +322,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   /**
-   * If `true`, the parent [CanvasItem]'s [material] property is used as this one's material.
+   * If `true`, the parent [CanvasItem]'s [material] is used as this node's material.
    */
   public final inline var useParentMaterial: Boolean
     @JvmName("useParentMaterialProperty")
@@ -324,7 +333,7 @@ public open class CanvasItem internal constructor() : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(136, scriptIndex)
+    createNativeObject(138, scriptIndex)
   }
 
   /**
@@ -361,9 +370,9 @@ public open class CanvasItem internal constructor() : Node() {
    * The color applied to this [CanvasItem]. This property does **not** affect child [CanvasItem]s,
    * unlike [modulate] which affects both the node itself and its children.
    *
-   * **Note:** Internal children (e.g. sliders in [ColorPicker] or tab bar in [TabContainer]) are
-   * also not affected by this property (see `include_internal` parameter of [Node.getChild] and other
-   * similar methods).
+   * **Note:** Internal children are also not affected by this property (see the `include_internal`
+   * parameter in [Node.addChild]). For built-in nodes this includes sliders in [ColorPicker], and the
+   * tab bar in [TabContainer].
    */
   @CoreTypeHelper
   public final fun selfModulateMutate(block: Color.() -> Unit): Color = selfModulate.apply {
@@ -382,7 +391,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the canvas item RID used by [RenderingServer] for this item.
+   * Returns the internal canvas item [RID] used by the [RenderingServer] for this node.
    */
   public final fun getCanvasItem(): RID {
     TransferContext.writeArguments()
@@ -421,8 +430,10 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Show the [CanvasItem] if it's currently hidden. This is equivalent to setting [visible] to
-   * `true`. For controls that inherit [Popup], the correct way to make them visible is to call one of
-   * the multiple `popup*()` functions instead.
+   * `true`.
+   *
+   * **Note:** For controls that inherit [Popup], the correct way to make them visible is to call
+   * one of the multiple `popup*()` functions instead.
    */
   public final fun show(): Unit {
     TransferContext.writeArguments()
@@ -449,10 +460,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Moves this node to display on top of its siblings.
-   *
-   * Internally, the node is moved to the bottom of parent's child list. The method has no effect on
-   * nodes without a parent.
+   * Moves this node below its siblings, usually causing the node to draw on top of its siblings.
+   * Does nothing if this node does not have a parent. See also [Node.moveChild].
    */
   public final fun moveToFront(): Unit {
     TransferContext.writeArguments()
@@ -549,7 +558,8 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a line from a 2D point to another, with a given color and width. It can be optionally
-   * antialiased. See also [drawDashedLine], [drawMultiline], and [drawPolyline].
+   * antialiased. The [from] and [to] positions are defined in local space. See also [drawDashedLine],
+   * [drawMultiline], and [drawPolyline].
    *
    * If [width] is negative, then a two-point primitive will be drawn instead of a four-point one.
    * This means that when the CanvasItem is scaled, the line will remain thin. If this behavior is not
@@ -568,8 +578,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a dashed line from a 2D point to another, with a given color and width. See also
-   * [drawLine], [drawMultiline], and [drawPolyline].
+   * Draws a dashed line from a 2D point to another, with a given color and width. The [from] and
+   * [to] positions are defined in local space. See also [drawLine], [drawMultiline], and
+   * [drawPolyline].
    *
    * If [width] is negative, then a two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the line parts will remain thin. If this behavior
@@ -603,9 +614,9 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws interconnected line segments with a uniform [color] and [width] and optional antialiasing
-   * (supported only for positive [width]). When drawing large amounts of lines, this is faster than
-   * using individual [drawLine] calls. To draw disconnected lines, use [drawMultiline] instead. See
-   * also [drawPolygon].
+   * (supported only for positive [width]). The [points] array is defined in local space. When drawing
+   * large amounts of lines, this is faster than using individual [drawLine] calls. To draw
+   * disconnected lines, use [drawMultiline] instead. See also [drawPolygon].
    *
    * If [width] is negative, it will be ignored and the polyline will be drawn using
    * [RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the
@@ -627,9 +638,9 @@ public open class CanvasItem internal constructor() : Node() {
    * Draws interconnected line segments with a uniform [width], point-by-point coloring, and
    * optional antialiasing (supported only for positive [width]). Colors assigned to line points match
    * by index between [points] and [colors], i.e. each line segment is filled with a gradient between
-   * the colors of the endpoints. When drawing large amounts of lines, this is faster than using
-   * individual [drawLine] calls. To draw disconnected lines, use [drawMultilineColors] instead. See
-   * also [drawPolygon].
+   * the colors of the endpoints. The [points] array is defined in local space. When drawing large
+   * amounts of lines, this is faster than using individual [drawLine] calls. To draw disconnected
+   * lines, use [drawMultilineColors] instead. See also [drawPolygon].
    *
    * If [width] is negative, it will be ignored and the polyline will be drawn using
    * [RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the
@@ -650,7 +661,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws an unfilled arc between the given angles with a uniform [color] and [width] and optional
    * antialiasing (supported only for positive [width]). The larger the value of [pointCount], the
-   * smoother the curve. See also [drawCircle].
+   * smoother the curve. [center] is defined in local space. See also [drawCircle].
    *
    * If [width] is negative, it will be ignored and the arc will be drawn using
    * [RenderingServer.PRIMITIVE_LINE_STRIP]. This means that when the CanvasItem is scaled, the arc
@@ -678,9 +689,9 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws multiple disconnected lines with a uniform [width] and [color]. Each line is defined by
-   * two consecutive points from [points] array, i.e. i-th segment consists of `points[2 * i]`,
-   * `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than using
-   * individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
+   * two consecutive points from [points] array in local space, i.e. i-th segment consists of `points[2
+   * * i]`, `points[2 * i + 1]` endpoints. When drawing large amounts of lines, this is faster than
+   * using individual [drawLine] calls. To draw interconnected lines, use [drawPolyline] instead.
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
@@ -701,10 +712,11 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws multiple disconnected lines with a uniform [width] and segment-by-segment coloring. Each
-   * segment is defined by two consecutive points from [points] array and a corresponding color from
-   * [colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2 * i + 1]` endpoints and
-   * has `colors[i]` color. When drawing large amounts of lines, this is faster than using individual
-   * [drawLine] calls. To draw interconnected lines, use [drawPolylineColors] instead.
+   * segment is defined by two consecutive points from [points] array in local space and a
+   * corresponding color from [colors] array, i.e. i-th segment consists of `points[2 * i]`, `points[2
+   * * i + 1]` endpoints and has `colors[i]` color. When drawing large amounts of lines, this is faster
+   * than using individual [drawLine] calls. To draw interconnected lines, use [drawPolylineColors]
+   * instead.
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
@@ -726,7 +738,7 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a rectangle. If [filled] is `true`, the rectangle will be filled with the [color]
    * specified. If [filled] is `false`, the rectangle will be drawn as a stroke with the [color] and
-   * [width] specified. See also [drawTextureRect].
+   * [width] specified. The [rect] is specified in local space. See also [drawTextureRect].
    *
    * If [width] is negative, then two-point primitives will be drawn instead of a four-point ones.
    * This means that when the CanvasItem is scaled, the lines will remain thin. If this behavior is not
@@ -753,7 +765,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a circle. See also [drawArc], [drawPolyline], and [drawPolygon].
+   * Draws a circle, with [position] defined in local space. See also [drawArc], [drawPolyline], and
+   * [drawPolygon].
    *
    * If [filled] is `true`, the circle will be filled with the [color] specified. If [filled] is
    * `false`, the circle will be drawn as a stroke with the [color] and [width] specified.
@@ -781,7 +794,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a texture at a given position.
+   * Draws a texture at a given position. The [position] is defined in local space.
    */
   @JvmOverloads
   public final fun drawTexture(
@@ -794,9 +807,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle at a given position, optionally modulated by a color. If [transpose]
-   * is `true`, the texture will have its X and Y coordinates swapped. See also [drawRect] and
-   * [drawTextureRectRegion].
+   * Draws a textured rectangle at a given position, optionally modulated by a color. The [rect] is
+   * defined in local space. If [transpose] is `true`, the texture will have its X and Y coordinates
+   * swapped. See also [drawRect] and [drawTextureRectRegion].
    */
   @JvmOverloads
   public final fun drawTextureRect(
@@ -811,9 +824,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given
-   * position, optionally modulated by a color. If [transpose] is `true`, the texture will have its X
-   * and Y coordinates swapped. See also [drawTextureRect].
+   * Draws a textured rectangle from a texture's region (specified by [srcRect]) at a given position
+   * in local space, optionally modulated by a color. If [transpose] is `true`, the texture will have
+   * its X and Y coordinates swapped. See also [drawTextureRect].
    */
   @JvmOverloads
   public final fun drawTextureRectRegion(
@@ -829,9 +842,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a textured rectangle region of the multi-channel signed distance field texture at a given
-   * position, optionally modulated by a color. See [FontFile.multichannelSignedDistanceField] for more
-   * information and caveats about MSDF font rendering.
+   * Draws a textured rectangle region of the multichannel signed distance field texture at a given
+   * position, optionally modulated by a color. The [rect] is defined in local space. See
+   * [FontFile.multichannelSignedDistanceField] for more information and caveats about MSDF font
+   * rendering.
    *
    * If [outline] is positive, each alpha channel value of pixel in region is set to maximum value
    * of true distance in the [outline] radius.
@@ -855,7 +869,7 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a textured rectangle region of the font texture with LCD subpixel anti-aliasing at a
-   * given position, optionally modulated by a color.
+   * given position, optionally modulated by a color. The [rect] is defined in local space.
    *
    * Texture is drawn using the following blend operation, blend mode of the [CanvasItemMaterial] is
    * ignored:
@@ -879,7 +893,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a styled rectangle.
+   * Draws a styled rectangle. The [rect] is defined in local space.
    */
   public final fun drawStyleBox(styleBox: StyleBox?, rect: Rect2): Unit {
     TransferContext.writeArguments(OBJECT to styleBox, RECT2 to rect)
@@ -889,8 +903,8 @@ public open class CanvasItem internal constructor() : Node() {
   /**
    * Draws a custom primitive. 1 point for a point, 2 points for a line, 3 points for a triangle,
    * and 4 points for a quad. If 0 points or more than 4 points are specified, nothing will be drawn
-   * and an error message will be printed. See also [drawLine], [drawPolyline], [drawPolygon], and
-   * [drawRect].
+   * and an error message will be printed. The [points] array is defined in local space. See also
+   * [drawLine], [drawPolyline], [drawPolygon], and [drawRect].
    */
   @JvmOverloads
   public final fun drawPrimitive(
@@ -905,9 +919,9 @@ public open class CanvasItem internal constructor() : Node() {
 
   /**
    * Draws a solid polygon of any number of points, convex or concave. Unlike [drawColoredPolygon],
-   * each point's color can be changed individually. See also [drawPolyline] and [drawPolylineColors].
-   * If you need more flexibility (such as being able to use bones), use
-   * [RenderingServer.canvasItemAddTriangleArray] instead.
+   * each point's color can be changed individually. The [points] array is defined in local space. See
+   * also [drawPolyline] and [drawPolylineColors]. If you need more flexibility (such as being able to
+   * use bones), use [RenderingServer.canvasItemAddTriangleArray] instead.
    *
    * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
    * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
@@ -925,8 +939,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws a colored polygon of any number of points, convex or concave. Unlike [drawPolygon], a
-   * single color must be specified for the whole polygon.
+   * Draws a colored polygon of any number of points, convex or concave. The points in the [points]
+   * array are defined in local space. Unlike [drawPolygon], a single color must be specified for the
+   * whole polygon.
    *
    * **Note:** If you frequently redraw the same polygon with a large number of vertices, consider
    * pre-calculating the triangulation with [Geometry2D.triangulatePolygon] and using [drawMesh],
@@ -944,9 +959,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Draws [text] using the specified [font] at the [pos] (bottom-left corner using the baseline of
-   * the font). The text will have its color multiplied by [modulate]. If [width] is greater than or
-   * equal to 0, the text will be clipped if it exceeds the specified width.
+   * Draws [text] using the specified [font] at the [pos] in local space (bottom-left corner using
+   * the baseline of the font). The text will have its color multiplied by [modulate]. If [width] is
+   * greater than or equal to 0, the text will be clipped if it exceeds the specified width. If
+   * [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    *
    * **Example:** Draw "Hello world", using the project's default font:
    *
@@ -986,15 +1003,18 @@ public open class CanvasItem internal constructor() : Node() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawStringPtr, NIL)
   }
 
   /**
-   * Breaks [text] into lines and draws it using the specified [font] at the [pos] (top-left
-   * corner). The text will have its color multiplied by [modulate]. If [width] is greater than or
-   * equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [text] into lines and draws it using the specified [font] at the [pos] in local space
+   * (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater
+   * than or equal to 0, the text will be clipped if it exceeds the specified width. If [oversampling]
+   * is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling
+   * settings are used.
    */
   @JvmOverloads
   public final fun drawMultilineString(
@@ -1010,15 +1030,18 @@ public open class CanvasItem internal constructor() : Node() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringPtr, NIL)
   }
 
   /**
-   * Draws [text] outline using the specified [font] at the [pos] (bottom-left corner using the
-   * baseline of the font). The text will have its color multiplied by [modulate]. If [width] is
-   * greater than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Draws [text] outline using the specified [font] at the [pos] in local space (bottom-left corner
+   * using the baseline of the font). The text will have its color multiplied by [modulate]. If [width]
+   * is greater than or equal to 0, the text will be clipped if it exceeds the specified width. If
+   * [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawStringOutline(
@@ -1033,15 +1056,18 @@ public open class CanvasItem internal constructor() : Node() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawStringOutlinePtr, NIL)
   }
 
   /**
-   * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos]
-   * (top-left corner). The text will have its color multiplied by [modulate]. If [width] is greater
-   * than or equal to 0, the text will be clipped if it exceeds the specified width.
+   * Breaks [text] to the lines and draws text outline using the specified [font] at the [pos] in
+   * local space (top-left corner). The text will have its color multiplied by [modulate]. If [width]
+   * is greater than or equal to 0, the text will be clipped if it exceeds the specified width. If
+   * [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    */
   @JvmOverloads
   public final fun drawMultilineStringOutline(
@@ -1058,13 +1084,16 @@ public open class CanvasItem internal constructor() : Node() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringOutlinePtr, NIL)
   }
 
   /**
-   * Draws a string first character using a custom font.
+   * Draws a string first character using a custom font. If [oversampling] is greater than zero, it
+   * is used as font oversampling factor, otherwise viewport oversampling settings are used. [pos] is
+   * defined in local space.
    */
   @JvmOverloads
   public final fun drawChar(
@@ -1073,13 +1102,16 @@ public open class CanvasItem internal constructor() : Node() {
     char: String,
     fontSize: Int = 16,
     modulate: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize.toLong(), COLOR to modulate)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize.toLong(), COLOR to modulate, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawCharPtr, NIL)
   }
 
   /**
-   * Draws a string first character outline using a custom font.
+   * Draws a string first character outline using a custom font. If [oversampling] is greater than
+   * zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
+   * [pos] is defined in local space.
    */
   @JvmOverloads
   public final fun drawCharOutline(
@@ -1089,14 +1121,15 @@ public open class CanvasItem internal constructor() : Node() {
     fontSize: Int = 16,
     size: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate)
+    TransferContext.writeArguments(OBJECT to font, VECTOR2 to pos, STRING to char, LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawCharOutlinePtr, NIL)
   }
 
   /**
    * Draws a [Mesh] in 2D, using the provided texture. See [MeshInstance2D] for related
-   * documentation.
+   * documentation. The [transform] is defined in local space.
    */
   @JvmOverloads
   public final fun drawMesh(
@@ -1119,7 +1152,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Sets a custom transform for drawing via components. Anything drawn afterwards will be
+   * Sets a custom local transform for drawing via components. Anything drawn afterwards will be
    * transformed by this.
    *
    * **Note:** [FontFile.oversampling] does *not* take [scale] into account. This means that scaling
@@ -1141,8 +1174,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Sets a custom transform for drawing via matrix. Anything drawn afterwards will be transformed
-   * by this.
+   * Sets a custom local transform for drawing via matrix. Anything drawn afterwards will be
+   * transformed by this.
    */
   public final fun drawSetTransformMatrix(xform: Transform2D): Unit {
     TransferContext.writeArguments(TRANSFORM2D to xform)
@@ -1177,7 +1210,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform matrix of this item.
+   * Returns the transform matrix of this [CanvasItem].
    */
   public final fun getTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -1207,8 +1240,9 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the coordinate system of the canvas, this item is in, to the
-   * [Viewport]s embedders coordinate system.
+   * Returns the transform of this node, converted from its registered canvas's coordinate system to
+   * its viewport embedder's coordinate system. See also [Viewport.getFinalTransform] and
+   * [Node.getViewport].
    */
   public final fun getViewportTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -1217,7 +1251,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the viewport's boundaries as a [Rect2].
+   * Returns this node's viewport boundaries as a [Rect2]. See also [Node.getViewport].
    */
   public final fun getViewportRect(): Rect2 {
     TransferContext.writeArguments()
@@ -1226,8 +1260,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the transform from the coordinate system of the canvas, this item is in, to the
-   * [Viewport]s coordinate system.
+   * Returns the transform of this node, converted from its registered canvas's coordinate system to
+   * its viewport's coordinate system. See also [Node.getViewport].
    */
   public final fun getCanvasTransform(): Transform2D {
     TransferContext.writeArguments()
@@ -1258,8 +1292,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the mouse's position in the [CanvasLayer] that this [CanvasItem] is in using the
-   * coordinate system of the [CanvasLayer].
+   * Returns mouse cursor's global position relative to the [CanvasLayer] that contains this node.
    *
    * **Note:** For screen-space coordinates (e.g. when using a non-embedded [Popup]), you can use
    * [DisplayServer.mouseGetPosition].
@@ -1271,7 +1304,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the [RID] of the [World2D] canvas where this item is in.
+   * Returns the [RID] of the [World2D] canvas where this node is registered to, used by the
+   * [RenderingServer].
    */
   public final fun getCanvas(): RID {
     TransferContext.writeArguments()
@@ -1290,7 +1324,10 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns the [World2D] where this item is in.
+   * Returns the [World2D] this node is registered to.
+   *
+   * Usually, this is the same as this node's viewport (see [Node.getViewport] and
+   * [Viewport.findWorld2d]).
    */
   public final fun getWorld2d(): World2D? {
     TransferContext.writeArguments()
@@ -1347,8 +1384,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [enable] is `true`, this node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] when its
-   * local transform changes.
+   * If `true`, the node will receive [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] whenever its local
+   * transform changes.
+   *
+   * **Note:** Many canvas items such as [Bone2D] or [CollisionShape2D] automatically enable this in
+   * order to function correctly.
    */
   public final fun setNotifyLocalTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1356,7 +1396,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if local transform notifications are communicated to children.
+   * Returns `true` if the node receives [NOTIFICATION_LOCAL_TRANSFORM_CHANGED] whenever its local
+   * transform changes. This is enabled with [setNotifyLocalTransform].
    */
   public final fun isLocalTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1365,8 +1406,11 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * If [enable] is `true`, this node will receive [NOTIFICATION_TRANSFORM_CHANGED] when its global
-   * transform changes.
+   * If `true`, the node will receive [NOTIFICATION_TRANSFORM_CHANGED] whenever global transform
+   * changes.
+   *
+   * **Note:** Many canvas items such as [Camera2D] or [Light2D] automatically enable this in order
+   * to function correctly.
    */
   public final fun setNotifyTransform(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
@@ -1374,7 +1418,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns `true` if global transform notifications are communicated to children.
+   * Returns `true` if the node receives [NOTIFICATION_TRANSFORM_CHANGED] whenever its global
+   * transform changes. This is enabled with [setNotifyTransform].
    */
   public final fun isTransformNotificationEnabled(): Boolean {
     TransferContext.writeArguments()
@@ -1383,9 +1428,12 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Forces the transform to update. Transform changes in physics are not instant for performance
-   * reasons. Transforms are accumulated and then set. Use this if you need an up-to-date transform
-   * when doing physics operations.
+   * Forces the node's transform to update. Fails if the node is not inside the tree. See also
+   * [getTransform].
+   *
+   * **Note:** For performance reasons, transform changes are usually accumulated and applied *once*
+   * at the end of the frame. The update propagates through [CanvasItem] children, as well. Therefore,
+   * use this method only when you need an up-to-date transform (such as during physics operations).
    */
   public final fun forceUpdateTransform(): Unit {
     TransferContext.writeArguments()
@@ -1408,7 +1456,8 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Transformations issued by [event]'s inputs are applied in local space instead of global space.
+   * Returns a copy of the given [event] with its coordinates converted from global space to this
+   * [CanvasItem]'s local space. If not possible, returns the same [InputEvent] unchanged.
    */
   public final fun makeInputLocal(event: InputEvent?): InputEvent? {
     TransferContext.writeArguments(OBJECT to event)
@@ -1437,7 +1486,7 @@ public open class CanvasItem internal constructor() : Node() {
   }
 
   /**
-   * Returns an individual bit on the rendering visibility layer.
+   * Returns `true` if the layer at the given index is set in [visibilityLayer].
    */
   public final fun getVisibilityLayerBit(layer: Long): Boolean {
     TransferContext.writeArguments(LONG to layer)
@@ -1588,15 +1637,18 @@ public open class CanvasItem internal constructor() : Node() {
      */
     PARENT_NODE(0),
     /**
-     * Texture will not repeat.
+     * The texture does not repeat. Sampling the texture outside its extents will result in
+     * "stretching" of the edge pixels. You can avoid this by ensuring a 1-pixel fully transparent
+     * border on each side of the texture.
      */
     DISABLED(1),
     /**
-     * Texture will repeat normally.
+     * The texture repeats when exceeding the texture's size.
      */
     ENABLED(2),
     /**
-     * Texture will repeat in a 2×2 tiled mode, where elements at even positions are mirrored.
+     * The texture repeats when the exceeding the texture's size in a "2×2 tiled mode". Repeated
+     * textures at even positions are mirrored.
      */
     MIRROR(3),
     /**
@@ -1619,17 +1671,19 @@ public open class CanvasItem internal constructor() : Node() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Child draws over parent and is not clipped.
+     * Children are drawn over this node and are not clipped.
      */
     DISABLED(0),
     /**
-     * Parent is used for the purposes of clipping only. Child is clipped to the parent's visible
-     * area, parent is not drawn.
+     * This node is used as a mask and is **not** drawn. The mask is based on this node's alpha
+     * channel: Opaque pixels are kept, transparent pixels are discarded, and semi-transparent pixels
+     * are blended in according to their opacity. Children are clipped to this node's drawn area.
      */
     ONLY(1),
     /**
-     * Parent is used for clipping child, but parent is also drawn underneath child as normal before
-     * clipping child to its visible area.
+     * This node is used as a mask and is also drawn. The mask is based on this node's alpha
+     * channel: Opaque pixels are kept, transparent pixels are discarded, and semi-transparent pixels
+     * are blended in according to their opacity. Children are clipped to the parent's drawn area.
      */
     AND_DRAW(2),
     /**
@@ -1650,14 +1704,21 @@ public open class CanvasItem internal constructor() : Node() {
 
   public companion object {
     /**
-     * The [CanvasItem]'s global transform has changed. This notification is only received if
-     * enabled by [setNotifyTransform].
+     * Notification received when this node's global transform changes, if
+     * [isTransformNotificationEnabled] is `true`. See also [setNotifyTransform] and [getTransform].
+     *
+     * **Note:** Many canvas items such as [Camera2D] or [CollisionObject2D] automatically enable
+     * this in order to function correctly.
      */
     public final const val NOTIFICATION_TRANSFORM_CHANGED: Long = 2000
 
     /**
-     * The [CanvasItem]'s local transform has changed. This notification is only received if enabled
-     * by [setNotifyLocalTransform].
+     * Notification received when this node's transform changes, if
+     * [isLocalTransformNotificationEnabled] is `true`. This is not received when a parent [Node2D]'s
+     * transform changes. See also [setNotifyLocalTransform].
+     *
+     * **Note:** Many canvas items such as [Camera2D] or [CollisionShape2D] automatically enable
+     * this in order to function correctly.
      */
     public final const val NOTIFICATION_LOCAL_TRANSFORM_CHANGED: Long = 35
 
@@ -1667,7 +1728,10 @@ public open class CanvasItem internal constructor() : Node() {
     public final const val NOTIFICATION_DRAW: Long = 30
 
     /**
-     * The [CanvasItem]'s visibility has changed.
+     * Notification received when this node's visibility changes (see [visible] and
+     * [isVisibleInTree]).
+     *
+     * This notification is received *before* the related [signal visibility_changed] signal.
      */
     public final const val NOTIFICATION_VISIBILITY_CHANGED: Long = 31
 
@@ -1682,7 +1746,8 @@ public open class CanvasItem internal constructor() : Node() {
     public final const val NOTIFICATION_EXIT_CANVAS: Long = 33
 
     /**
-     * The [CanvasItem]'s active [World2D] changed.
+     * Notification received when this [CanvasItem] is registered to a new [World2D] (see
+     * [getWorld2d]).
      */
     public final const val NOTIFICATION_WORLD_2D_CHANGED: Long = 36
   }
@@ -1813,22 +1878,22 @@ public open class CanvasItem internal constructor() : Node() {
         TypeManager.getMethodBindPtr("CanvasItem", "draw_colored_polygon", 15245644)
 
     internal val drawStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_string", 728290553)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_string", 719605945)
 
     internal val drawMultilineStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_multiline_string", 1927038192)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_multiline_string", 2341488182)
 
     internal val drawStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_string_outline", 340562381)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_string_outline", 707403449)
 
     internal val drawMultilineStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_multiline_string_outline", 1912318525)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_multiline_string_outline", 3050414441)
 
     internal val drawCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_char", 3339793283)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_char", 1336210142)
 
     internal val drawCharOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("CanvasItem", "draw_char_outline", 3302344391)
+        TypeManager.getMethodBindPtr("CanvasItem", "draw_char_outline", 1846384149)
 
     internal val drawMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("CanvasItem", "draw_mesh", 153818295)

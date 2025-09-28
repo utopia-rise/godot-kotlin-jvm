@@ -154,7 +154,7 @@ namespace bridges {
         jni::Env env {p_raw_env};
         Variant args[2] = {};
         TransferContext::get_instance().read_args(env, args);
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->bsearch(args[0].operator T(), args[1].operator bool())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->bsearch(args[0].operator T(), args[1].operator bool());
         TransferContext::get_instance().write_return_value(env, ret);
     }
 
@@ -169,14 +169,14 @@ namespace bridges {
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->count(args[0].operator T())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->count(args[0].operator T());
         TransferContext::get_instance().write_return_value(env, ret);
     }
 
     template<class Derived, class T, const char* fq_name>
     void PackedArrayBridge<Derived, T, fq_name>::engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
         jni::Env env {p_raw_env};
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->duplicate()};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->duplicate();
         TransferContext::get_instance().write_return_value(env, ret);
     }
 
@@ -193,7 +193,7 @@ namespace bridges {
         jni::Env env {p_raw_env};
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->find(args[0].operator T())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->find(args[0].operator T());
         TransferContext::get_instance().write_return_value(env, ret);
     }
 
@@ -202,7 +202,7 @@ namespace bridges {
         jni::Env env {p_raw_env};
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
-        Variant variant {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->operator[](args[0].operator unsigned int())};
+        Variant variant = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->operator[](args[0].operator unsigned int());
         TransferContext::get_instance().write_return_value(env, variant);
     }
 
@@ -211,7 +211,7 @@ namespace bridges {
         jni::Env env {p_raw_env};
         Variant args[1] = {};
         TransferContext::get_instance().read_args(env, args);
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->has(args[0].operator T())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->has(args[0].operator T());
         TransferContext::get_instance().read_return_value(env, ret);
     }
 
@@ -226,7 +226,7 @@ namespace bridges {
     template<class Derived, class T, const char* fq_name>
     void PackedArrayBridge<Derived, T, fq_name>::engine_call_is_empty(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
         jni::Env env {p_raw_env};
-        Variant variant {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->is_empty()};
+        Variant variant = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->is_empty();
         TransferContext::get_instance().write_return_value(env, variant);
     }
 
@@ -241,7 +241,7 @@ namespace bridges {
         Variant args[2] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->rfind(args[0].operator T(), args->operator int())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->rfind(args[0].operator T(), args->operator int());
     }
 
     template<class Derived, class T, const char* fq_name>
@@ -279,7 +279,7 @@ namespace bridges {
     template<class Derived, class T, const char* fq_name>
     void PackedArrayBridge<Derived, T, fq_name>::engine_call_size(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
         jni::Env env {p_raw_env};
-        Variant variant {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->size()};
+        Variant variant = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->size();
         TransferContext::get_instance().write_return_value(env, variant);
     }
 
@@ -289,7 +289,7 @@ namespace bridges {
         Variant args[2] = {};
         TransferContext::get_instance().read_args(env, args);
 
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int())};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->slice(args[0].operator int(), args[1].operator int());
         TransferContext::get_instance().write_return_value(env, ret);
     }
 
@@ -302,7 +302,7 @@ namespace bridges {
     void
     PackedArrayBridge<Derived, T, fq_name>::engine_call_to_byte_array(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr) {
         jni::Env env {p_raw_env};
-        Variant ret {from_uint_to_ptr<Vector<T>>(p_raw_ptr)->to_byte_array()};
+        Variant ret = from_uint_to_ptr<Vector<T>>(p_raw_ptr)->to_byte_array();
         TransferContext::get_instance().write_return_value(env, ret);
     }
 

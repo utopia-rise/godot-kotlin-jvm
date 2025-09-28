@@ -43,7 +43,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class PhysicalBone3D : PhysicsBody3D() {
   /**
-   * Sets the joint type. See [JointType] for possible values.
+   * Sets the joint type.
    */
   public final inline var jointType: JointType
     @JvmName("jointTypeProperty")
@@ -178,7 +178,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
+   * Defines how [linearDamp] is applied.
    */
   public final inline var linearDampMode: DampMode
     @JvmName("linearDampModeProperty")
@@ -205,7 +205,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
+   * Defines how [angularDamp] is applied.
    */
   public final inline var angularDampMode: DampMode
     @JvmName("angularDampModeProperty")
@@ -284,7 +284,7 @@ public open class PhysicalBone3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(456, scriptIndex)
+    createNativeObject(471, scriptIndex)
   }
 
   /**

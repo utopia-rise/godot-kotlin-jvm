@@ -23,7 +23,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class MultiplayerPeerExtension : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(369, scriptIndex)
+    createNativeObject(378, scriptIndex)
   }
 
   /**

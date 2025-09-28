@@ -20,52 +20,52 @@ jobs:
           - name: Build editor release x86_64 (target=editor)
             cache-name: editor_release_macos_x86_64
             target: editor
-            sconsflags: arch=x86_64
+            scons-flags: arch=x86_64
 
           - name: Build editor debug x86_64 (target=editor, debug_symbols=true )
             cache-name: editor_debug_macos_x86_64
             target: editor
-            sconsflags: arch=x86_64 debug_symbols=true
+            scons-flags: arch=x86_64 debug_symbols=true
 
           - name: Build editor dev x86_64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_dev_macos_x86_64
             target: editor
-            sconsflags: arch=x86_64 dev_build=yes debug_symbols=true
+            scons-flags: arch=x86_64 dev_build=yes debug_symbols=true
 
           - name: Build release template x86_64
             cache-name: export_template_release_macos_x86_64
             target: template_release
-            sconsflags: arch=x86_64
+            scons-flags: arch=x86_64
 
           - name: Build debug template x86_64
             cache-name: export_template_debug_macos_x86_64
             target: template_debug
-            sconsflags: arch=x86_64
+            scons-flags: arch=x86_64
 
           - name: Build editor release arm64 (target=editor)
             cache-name: editor_release_macos_arm64
             target: editor
-            sconsflags: arch=arm64
+            scons-flags: arch=arm64
 
           - name: Build editor debug arm64 (target=editor, debug_symbols=true )
             cache-name: editor_debug_macos_arm64
             target: editor
-            sconsflags: arch=arm64 debug_symbols=true
+            scons-flags: arch=arm64 debug_symbols=true
 
           - name: Build editor dev arm64 (target=editor, dev_build=yes, debug_symbols=true )
             cache-name: editor_dev_macos_arm64
             target: editor
-            sconsflags: arch=arm64 dev_build=yes debug_symbols=true
+            scons-flags: arch=arm64 dev_build=yes debug_symbols=true
 
           - name: Build release template arm64
             cache-name: export_template_release_macos_arm64
             target: template_release
-            sconsflags: arch=arm64
+            scons-flags: arch=arm64
 
           - name: Build debug template arm64
             cache-name: export_template_debug_macos_arm64
             target: template_debug
-            sconsflags: arch=arm64
+            scons-flags: arch=arm64
 
     steps:
       - name: Clone Godot Engine
@@ -99,7 +99,7 @@ jobs:
       - name: Compilation
         uses: ./.github/actions/godot-build
         with:
-          sconsflags: ${{ matrix.sconsflags }}
+          scons-flags: ${{ matrix.scons-flags }}
           platform: macos
           target: ${{ matrix.target }}
 

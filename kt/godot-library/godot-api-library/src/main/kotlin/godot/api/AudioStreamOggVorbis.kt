@@ -10,14 +10,17 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Dictionary
 import godot.core.PackedByteArray
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
+import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Int
@@ -72,6 +75,23 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   /**
+   * Contains user-defined tags if found in the Ogg Vorbis data.
+   *
+   * Commonly used tags include `title`, `artist`, `album`, `tracknumber`, and `date` (`date` does
+   * not have a standard date format).
+   *
+   * **Note:** No tag is *guaranteed* to be present in every file, so make sure to account for the
+   * keys not always existing.
+   */
+  public final inline var tags: Dictionary<Any?, Any?>
+    @JvmName("tagsProperty")
+    get() = getTags()
+    @JvmName("tagsProperty")
+    set(`value`) {
+      setTags(value)
+    }
+
+  /**
    * If `true`, the audio will play again from the specified [loopOffset] once it is done playing.
    * Useful for ambient sounds and background music.
    */
@@ -95,7 +115,7 @@ public open class AudioStreamOggVorbis : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(86, scriptIndex)
+    createNativeObject(87, scriptIndex)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {
@@ -164,6 +184,17 @@ public open class AudioStreamOggVorbis : AudioStream() {
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
+  public final fun setTags(tags: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to tags)
+    TransferContext.callMethod(ptr, MethodBindings.setTagsPtr, NIL)
+  }
+
+  public final fun getTags(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTagsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
   public companion object {
     /**
      * Creates a new [AudioStreamOggVorbis] instance from the given buffer. The buffer must contain
@@ -230,5 +261,11 @@ public open class AudioStreamOggVorbis : AudioStream() {
 
     internal val getBarBeatsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_bar_beats", 3905245786)
+
+    internal val setTagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "set_tags", 4155329257)
+
+    internal val getTagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamOggVorbis", "get_tags", 3102165223)
   }
 }

@@ -34,9 +34,9 @@ import kotlin.Unit
  * skeleton [RID]s).
  */
 @GodotBaseType
-public open class SkinReference internal constructor() : RefCounted() {
+public abstract class SkinReference : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(609, scriptIndex)
+    createNativeObject(625, scriptIndex)
   }
 
   /**

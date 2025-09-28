@@ -525,8 +525,8 @@ public open class Object : KtObject() {
    * ```gdscript
    * //gdscript
    * add_user_signal("hurt", [
-   *     { "name": "damage", "type": TYPE_INT },
-   *     { "name": "source", "type": TYPE_OBJECT }
+   * { "name": "damage", "type": TYPE_INT },
+   * { "name": "source", "type": TYPE_OBJECT }
    * ])
    * ```
    *
@@ -534,16 +534,16 @@ public open class Object : KtObject() {
    * //csharp
    * AddUserSignal("Hurt",
    * [
-   *     new Godot.Collections.Dictionary()
-   *     {
-   *         { "name", "damage" },
-   *         { "type", (int)Variant.Type.Int },
-   *     },
-   *     new Godot.Collections.Dictionary()
-   *     {
-   *         { "name", "source" },
-   *         { "type", (int)Variant.Type.Object },
-   *     },
+   * new Godot.Collections.Dictionary()
+   * {
+   * { "name", "damage" },
+   * { "type", (int)Variant.Type.Int },
+   * },
+   * new Godot.Collections.Dictionary()
+   * {
+   * { "name", "source" },
+   * { "type", (int)Variant.Type.Object },
+   * },
    * ]);
    * ```
    */
@@ -831,166 +831,16 @@ public open class Object : KtObject() {
    * the connection's behavior (see [ConnectFlags] constants).
    *
    * A signal can only be connected once to the same [Callable]. If the signal is already connected,
-   * this method returns [ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is
-   * connected with [CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected] first to check for
-   * existing connections.
+   * this method returns [ERR_INVALID_PARAMETER] and generates an error, unless the signal is connected
+   * with [CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected] first to check for existing
+   * connections.
    *
-   * If the [callable]'s object is freed, the connection will be lost.
+   * **Note:** If the [callable]'s object is freed, the connection will be lost.
    *
-   * **Examples with recommended syntax:**
+   * **Note:** In GDScript, it is generally recommended to connect signals with [Signal.connect]
+   * instead.
    *
-   * Connecting signals is one of the most common operations in Godot and the API gives many options
-   * to do so, which are described further down. The code block below shows the recommended approach.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     var button = Button.new()
-   *     # `button_down` here is a Signal variant type, and we thus call the Signal.connect()
-   * method, not Object.connect().
-   *     # See discussion below for a more in-depth overview of the API.
-   *     button.button_down.connect(_on_button_down)
-   *
-   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
-   *     var player = Player.new()
-   *     # We use Signal.connect() again, and we also use the Callable.bind() method,
-   *     # which returns a new Callable with the parameter binds.
-   *     player.hit.connect(_on_player_hit.bind("sword", 100))
-   *
-   * func _on_button_down():
-   *     print("Button down!")
-   *
-   * func _on_player_hit(weapon_type, damage):
-   *     print("Hit with weapon &#37;s for &#37;d damage." &#37; [weapon_type, damage])
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     var button = new Button();
-   *     // C# supports passing signals as events, so we can use this idiomatic construct:
-   *     button.ButtonDown += OnButtonDown;
-   *
-   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
-   *     var player = new Player();
-   *     // We can use lambdas when we need to bind additional parameters.
-   *     player.Hit += () => OnPlayerHit("sword", 100);
-   * }
-   *
-   * private void OnButtonDown()
-   * {
-   *     GD.Print("Button down!");
-   * }
-   *
-   * private void OnPlayerHit(string weaponType, int damage)
-   * {
-   *     GD.Print($"Hit with weapon {weaponType} for {damage} damage.");
-   * }
-   * ```
-   *
-   * **[code skip-lint]Object.connect()[/code] or [code skip-lint]Signal.connect()[/code]?**
-   *
-   * As seen above, the recommended method to connect signals is not [Object.connect]. The code
-   * block below shows the four options for connecting signals, using either this legacy method or the
-   * recommended [Signal.connect], and using either an implicit [Callable] or a manually defined one.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     var button = Button.new()
-   *     # Option 1: Object.connect() with an implicit Callable for the defined function.
-   *     button.connect("button_down", _on_button_down)
-   *     # Option 2: Object.connect() with a constructed Callable using a target object and method
-   * name.
-   *     button.connect("button_down", Callable(self, "_on_button_down"))
-   *     # Option 3: Signal.connect() with an implicit Callable for the defined function.
-   *     button.button_down.connect(_on_button_down)
-   *     # Option 4: Signal.connect() with a constructed Callable using a target object and method
-   * name.
-   *     button.button_down.connect(Callable(self, "_on_button_down"))
-   *
-   * func _on_button_down():
-   *     print("Button down!")
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     var button = new Button();
-   *     // Option 1: In C#, we can use signals as events and connect with this idiomatic syntax:
-   *     button.ButtonDown += OnButtonDown;
-   *     // Option 2: GodotObject.Connect() with a constructed Callable from a method group.
-   *     button.Connect(Button.SignalName.ButtonDown, Callable.From(OnButtonDown));
-   *     // Option 3: GodotObject.Connect() with a constructed Callable using a target object and
-   * method name.
-   *     button.Connect(Button.SignalName.ButtonDown, new Callable(this, MethodName.OnButtonDown));
-   * }
-   *
-   * private void OnButtonDown()
-   * {
-   *     GD.Print("Button down!");
-   * }
-   * ```
-   *
-   * While all options have the same outcome (`button`'s [signal BaseButton.button_down] signal will
-   * be connected to `_on_button_down`), **option 3** offers the best validation: it will print a
-   * compile-time error if either the `button_down` [Signal] or the `_on_button_down` [Callable] are
-   * not defined. On the other hand, **option 2** only relies on string names and will only be able to
-   * validate either names at runtime: it will print a runtime error if `"button_down"` doesn't
-   * correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`.
-   * The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to
-   * connect signals programmatically based on strings read from a configuration file). Otherwise,
-   * option 3 is the recommended (and fastest) method.
-   *
-   * **Binding and passing parameters:**
-   *
-   * The syntax to bind parameters is through [Callable.bind], which returns a copy of the
-   * [Callable] with its parameters bound.
-   *
-   * When calling [emitSignal] or [Signal.emit], the signal parameters can be also passed. The
-   * examples below show the relationship between these signal parameters and bound parameters.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
-   *     var player = Player.new()
-   *     # Using Callable.bind().
-   *     player.hit.connect(_on_player_hit.bind("sword", 100))
-   *
-   *     # Parameters added when emitting the signal are passed first.
-   *     player.hit.emit("Dark lord", 5)
-   *
-   * # We pass two arguments when emitting (`hit_by`, `level`),
-   * # and bind two more arguments when connecting (`weapon_type`, `damage`).
-   * func _on_player_hit(hit_by, level, weapon_type, damage):
-   *     print("Hit by &#37;s (level &#37;d) with weapon &#37;s for &#37;d damage." &#37; [hit_by,
-   * level, weapon_type, damage])
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
-   *     var player = new Player();
-   *     // Using lambda expressions that create a closure that captures the additional parameters.
-   *     // The lambda only receives the parameters defined by the signal's delegate.
-   *     player.Hit += (hitBy, level) => OnPlayerHit(hitBy, level, "sword", 100);
-   *
-   *     // Parameters added when emitting the signal are passed first.
-   *     player.EmitSignal(SignalName.Hit, "Dark lord", 5);
-   * }
-   *
-   * // We pass two arguments when emitting (`hit_by`, `level`),
-   * // and bind two more arguments when connecting (`weapon_type`, `damage`).
-   * private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
-   * {
-   *     GD.Print($"Hit by {hitBy} (level {level}) with weapon {weaponType} for {damage} damage.");
-   * }
-   * ```
+   * **Note:** This operation (and all other signal related operations) is thread-safe.
    */
   @JvmOverloads
   public final fun connect(
@@ -1576,166 +1426,16 @@ public open class Object : KtObject() {
    * the connection's behavior (see [ConnectFlags] constants).
    *
    * A signal can only be connected once to the same [Callable]. If the signal is already connected,
-   * this method returns [ERR_INVALID_PARAMETER] and pushes an error message, unless the signal is
-   * connected with [CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected] first to check for
-   * existing connections.
+   * this method returns [ERR_INVALID_PARAMETER] and generates an error, unless the signal is connected
+   * with [CONNECT_REFERENCE_COUNTED]. To prevent this, use [isConnected] first to check for existing
+   * connections.
    *
-   * If the [callable]'s object is freed, the connection will be lost.
+   * **Note:** If the [callable]'s object is freed, the connection will be lost.
    *
-   * **Examples with recommended syntax:**
+   * **Note:** In GDScript, it is generally recommended to connect signals with [Signal.connect]
+   * instead.
    *
-   * Connecting signals is one of the most common operations in Godot and the API gives many options
-   * to do so, which are described further down. The code block below shows the recommended approach.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     var button = Button.new()
-   *     # `button_down` here is a Signal variant type, and we thus call the Signal.connect()
-   * method, not Object.connect().
-   *     # See discussion below for a more in-depth overview of the API.
-   *     button.button_down.connect(_on_button_down)
-   *
-   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
-   *     var player = Player.new()
-   *     # We use Signal.connect() again, and we also use the Callable.bind() method,
-   *     # which returns a new Callable with the parameter binds.
-   *     player.hit.connect(_on_player_hit.bind("sword", 100))
-   *
-   * func _on_button_down():
-   *     print("Button down!")
-   *
-   * func _on_player_hit(weapon_type, damage):
-   *     print("Hit with weapon &#37;s for &#37;d damage." &#37; [weapon_type, damage])
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     var button = new Button();
-   *     // C# supports passing signals as events, so we can use this idiomatic construct:
-   *     button.ButtonDown += OnButtonDown;
-   *
-   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
-   *     var player = new Player();
-   *     // We can use lambdas when we need to bind additional parameters.
-   *     player.Hit += () => OnPlayerHit("sword", 100);
-   * }
-   *
-   * private void OnButtonDown()
-   * {
-   *     GD.Print("Button down!");
-   * }
-   *
-   * private void OnPlayerHit(string weaponType, int damage)
-   * {
-   *     GD.Print($"Hit with weapon {weaponType} for {damage} damage.");
-   * }
-   * ```
-   *
-   * **[code skip-lint]Object.connect()[/code] or [code skip-lint]Signal.connect()[/code]?**
-   *
-   * As seen above, the recommended method to connect signals is not [Object.connect]. The code
-   * block below shows the four options for connecting signals, using either this legacy method or the
-   * recommended [Signal.connect], and using either an implicit [Callable] or a manually defined one.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     var button = Button.new()
-   *     # Option 1: Object.connect() with an implicit Callable for the defined function.
-   *     button.connect("button_down", _on_button_down)
-   *     # Option 2: Object.connect() with a constructed Callable using a target object and method
-   * name.
-   *     button.connect("button_down", Callable(self, "_on_button_down"))
-   *     # Option 3: Signal.connect() with an implicit Callable for the defined function.
-   *     button.button_down.connect(_on_button_down)
-   *     # Option 4: Signal.connect() with a constructed Callable using a target object and method
-   * name.
-   *     button.button_down.connect(Callable(self, "_on_button_down"))
-   *
-   * func _on_button_down():
-   *     print("Button down!")
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     var button = new Button();
-   *     // Option 1: In C#, we can use signals as events and connect with this idiomatic syntax:
-   *     button.ButtonDown += OnButtonDown;
-   *     // Option 2: GodotObject.Connect() with a constructed Callable from a method group.
-   *     button.Connect(Button.SignalName.ButtonDown, Callable.From(OnButtonDown));
-   *     // Option 3: GodotObject.Connect() with a constructed Callable using a target object and
-   * method name.
-   *     button.Connect(Button.SignalName.ButtonDown, new Callable(this, MethodName.OnButtonDown));
-   * }
-   *
-   * private void OnButtonDown()
-   * {
-   *     GD.Print("Button down!");
-   * }
-   * ```
-   *
-   * While all options have the same outcome (`button`'s [signal BaseButton.button_down] signal will
-   * be connected to `_on_button_down`), **option 3** offers the best validation: it will print a
-   * compile-time error if either the `button_down` [Signal] or the `_on_button_down` [Callable] are
-   * not defined. On the other hand, **option 2** only relies on string names and will only be able to
-   * validate either names at runtime: it will print a runtime error if `"button_down"` doesn't
-   * correspond to a signal, or if `"_on_button_down"` is not a registered method in the object `self`.
-   * The main reason for using options 1, 2, or 4 would be if you actually need to use strings (e.g. to
-   * connect signals programmatically based on strings read from a configuration file). Otherwise,
-   * option 3 is the recommended (and fastest) method.
-   *
-   * **Binding and passing parameters:**
-   *
-   * The syntax to bind parameters is through [Callable.bind], which returns a copy of the
-   * [Callable] with its parameters bound.
-   *
-   * When calling [emitSignal] or [Signal.emit], the signal parameters can be also passed. The
-   * examples below show the relationship between these signal parameters and bound parameters.
-   *
-   * ```gdscript
-   * //gdscript
-   * func _ready():
-   *     # This assumes that a `Player` class exists, which defines a `hit` signal.
-   *     var player = Player.new()
-   *     # Using Callable.bind().
-   *     player.hit.connect(_on_player_hit.bind("sword", 100))
-   *
-   *     # Parameters added when emitting the signal are passed first.
-   *     player.hit.emit("Dark lord", 5)
-   *
-   * # We pass two arguments when emitting (`hit_by`, `level`),
-   * # and bind two more arguments when connecting (`weapon_type`, `damage`).
-   * func _on_player_hit(hit_by, level, weapon_type, damage):
-   *     print("Hit by &#37;s (level &#37;d) with weapon &#37;s for &#37;d damage." &#37; [hit_by,
-   * level, weapon_type, damage])
-   * ```
-   *
-   * ```csharp
-   * //csharp
-   * public override void _Ready()
-   * {
-   *     // This assumes that a `Player` class exists, which defines a `Hit` signal.
-   *     var player = new Player();
-   *     // Using lambda expressions that create a closure that captures the additional parameters.
-   *     // The lambda only receives the parameters defined by the signal's delegate.
-   *     player.Hit += (hitBy, level) => OnPlayerHit(hitBy, level, "sword", 100);
-   *
-   *     // Parameters added when emitting the signal are passed first.
-   *     player.EmitSignal(SignalName.Hit, "Dark lord", 5);
-   * }
-   *
-   * // We pass two arguments when emitting (`hit_by`, `level`),
-   * // and bind two more arguments when connecting (`weapon_type`, `damage`).
-   * private void OnPlayerHit(string hitBy, int level, string weaponType, int damage)
-   * {
-   *     GD.Print($"Hit by {hitBy} (level {level}) with weapon {weaponType} for {damage} damage.");
-   * }
-   * ```
+   * **Note:** This operation (and all other signal related operations) is thread-safe.
    */
   @JvmOverloads
   public final fun connect(
@@ -1848,6 +1548,12 @@ public open class Object : KtObject() {
      * reaches 0.
      */
     REFERENCE_COUNTED(8),
+    /**
+     * The source object is automatically bound when a [PackedScene] is instantiated. If this flag
+     * bit is enabled, the source object will be appended right after the original arguments of the
+     * signal.
+     */
+    APPEND_SOURCE_OBJECT(16),
     ;
 
     public override val `value`: Long

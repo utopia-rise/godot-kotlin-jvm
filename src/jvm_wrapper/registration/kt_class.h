@@ -42,6 +42,7 @@ JVM_INSTANCE_WRAPPER(KtClass, "godot.core.KtClass") {
         INIT_JNI_METHOD(DO_NOTIFICATION, "doNotification", "(Lgodot/core/KtObject;)V")
     )
 
+    friend class JvmScript;
     // clang-format on
 public:
     StringName registered_class_name;

@@ -27,6 +27,7 @@ namespace bridges {
             INIT_NATIVE_METHOD("engine_call_bsearchCustom","(J)V", VariantArrayBridge::engine_call_bsearchCustom)
             INIT_NATIVE_METHOD("engine_call_count","(J)V", VariantArrayBridge::engine_call_count)
             INIT_NATIVE_METHOD("engine_call_duplicate","(J)V", VariantArrayBridge::engine_call_duplicate)
+            INIT_NATIVE_METHOD("engine_call_duplicate_deep","(J)V", VariantArrayBridge::engine_call_duplicate_deep)
             INIT_NATIVE_METHOD("engine_call_erase","(J)V", VariantArrayBridge::engine_call_erase)
             INIT_NATIVE_METHOD("engine_call_find","(J)V", VariantArrayBridge::engine_call_find)
             INIT_NATIVE_METHOD("engine_call_front","(J)V", VariantArrayBridge::engine_call_front)
@@ -78,6 +79,7 @@ namespace bridges {
         static void engine_call_bsearchCustom(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_count(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_duplicate(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
+        static void engine_call_duplicate_deep(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_erase(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_find(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);
         static void engine_call_front(JNIEnv* p_raw_env, jobject p_instance, jlong p_raw_ptr);

@@ -38,7 +38,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class FastNoiseLite : Noise() {
   /**
-   * The noise algorithm used. See [NoiseType].
+   * The noise algorithm used.
    */
   public final inline var noiseType: NoiseType
     @JvmName("noiseTypeProperty")
@@ -91,7 +91,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The method for combining octaves into a fractal. See [FractalType].
+   * The method for combining octaves into a fractal.
    */
   public final inline var fractalType: FractalType
     @JvmName("fractalTypeProperty")
@@ -161,8 +161,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Determines how the distance to the nearest/second-nearest point is computed. See
-   * [CellularDistanceFunction] for options.
+   * Determines how the distance to the nearest/second-nearest point is computed.
    */
   public final inline var cellularDistanceFunction: CellularDistanceFunction
     @JvmName("cellularDistanceFunctionProperty")
@@ -184,7 +183,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Return type from cellular noise calculations. See [CellularReturnType].
+   * Return type from cellular noise calculations.
    */
   public final inline var cellularReturnType: CellularReturnType
     @JvmName("cellularReturnTypeProperty")
@@ -207,7 +206,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Sets the warp algorithm. See [DomainWarpType].
+   * The warp algorithm.
    */
   public final inline var domainWarpType: DomainWarpType
     @JvmName("domainWarpTypeProperty")
@@ -241,8 +240,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * The method for combining octaves into a fractal which is used to warp the space. See
-   * [DomainWarpFractalType].
+   * The method for combining octaves into a fractal which is used to warp the space.
    */
   public final inline var domainWarpFractalType: DomainWarpFractalType
     @JvmName("domainWarpFractalTypeProperty")
@@ -265,8 +263,9 @@ public open class FastNoiseLite : Noise() {
     }
 
   /**
-   * Octave lacunarity of the fractal noise which warps the space. Increasing this value results in
-   * higher octaves producing noise with finer details and a rougher appearance.
+   * The change in frequency between octaves, also known as "lacunarity", of the fractal noise which
+   * warps the space. Increasing this value results in higher octaves, producing noise with finer
+   * details and a rougher appearance.
    */
   public final inline var domainWarpFractalLacunarity: Float
     @JvmName("domainWarpFractalLacunarityProperty")
@@ -291,7 +290,7 @@ public open class FastNoiseLite : Noise() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(211, scriptIndex)
+    createNativeObject(216, scriptIndex)
   }
 
   /**
@@ -552,7 +551,7 @@ public open class FastNoiseLite : Noise() {
      */
     TYPE_VALUE(5),
     /**
-     * Similar to Value noise, but slower. Has more variance in peaks and valleys.
+     * Similar to value noise ([TYPE_VALUE]), but slower. Has more variance in peaks and valleys.
      *
      * Cubic noise can be used to avoid certain artifacts when using value noise to create a
      * bumpmap. In general, you should always use this mode if the value noise is being used for a

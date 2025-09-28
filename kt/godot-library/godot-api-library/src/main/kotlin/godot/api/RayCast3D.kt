@@ -58,7 +58,9 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * If `true`, collisions will be ignored for this RayCast3D's immediate parent.
+   * If `true`, this raycast will not report collisions with its parent node. This property only has
+   * an effect if the parent node is a [CollisionObject3D]. See also [Node.getParent] and
+   * [addException].
    */
   public final inline var excludeParent: Boolean
     @JvmName("excludeParentProperty")
@@ -69,7 +71,7 @@ public open class RayCast3D : Node3D() {
     }
 
   /**
-   * The ray's destination point, relative to the RayCast's `position`.
+   * The ray's destination point, relative to this raycast's [Node3D.position].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -186,7 +188,7 @@ public open class RayCast3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(532, scriptIndex)
+    createNativeObject(547, scriptIndex)
   }
 
   /**
@@ -200,7 +202,7 @@ public open class RayCast3D : Node3D() {
    * raycast3d.targetPosition = myCoreType
    * ``````
    *
-   * The ray's destination point, relative to the RayCast's `position`.
+   * The ray's destination point, relative to this raycast's [Node3D.position].
    */
   @CoreTypeHelper
   public final fun targetPositionMutate(block: Vector3.() -> Unit): Vector3 = targetPosition.apply {
@@ -375,8 +377,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Adds a collision exception so the ray does not report collisions with the specified
-   * [CollisionObject3D] node.
+   * Adds a collision exception so the ray does not report collisions with the specified [node].
    */
   public final fun addException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)
@@ -384,7 +385,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified [RID].
+   * Removes a collision exception so the ray can report collisions with the specified [RID].
    */
   public final fun removeExceptionRid(rid: RID): Unit {
     TransferContext.writeArguments(_RID to rid)
@@ -392,8 +393,7 @@ public open class RayCast3D : Node3D() {
   }
 
   /**
-   * Removes a collision exception so the ray does report collisions with the specified
-   * [CollisionObject3D] node.
+   * Removes a collision exception so the ray can report collisions with the specified [node].
    */
   public final fun removeException(node: CollisionObject3D?): Unit {
     TransferContext.writeArguments(OBJECT to node)

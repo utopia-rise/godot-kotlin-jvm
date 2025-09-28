@@ -75,7 +75,7 @@ public open class AudioStreamRandomizer : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(99, scriptIndex)
+    createNativeObject(100, scriptIndex)
   }
 
   /**

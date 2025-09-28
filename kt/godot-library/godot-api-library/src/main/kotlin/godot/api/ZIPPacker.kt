@@ -14,6 +14,7 @@ import godot.core.Error
 import godot.core.GodotEnum
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
+import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Int
@@ -21,6 +22,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -30,22 +32,34 @@ import kotlin.jvm.JvmOverloads
  * ```
  * # Create a ZIP archive with a single file at its root.
  * func write_zip_file():
- *     var writer = ZIPPacker.new()
- *     var err = writer.open("user://archive.zip")
- *     if err != OK:
- *         return err
- *     writer.start_file("hello.txt")
- *     writer.write_file("Hello World".to_utf8_buffer())
- *     writer.close_file()
+ * var writer = ZIPPacker.new()
+ * var err = writer.open("user://archive.zip")
+ * if err != OK:
+ * return err
+ * writer.start_file("hello.txt")
+ * writer.write_file("Hello World".to_utf8_buffer())
+ * writer.close_file()
  *
- *     writer.close()
- *     return OK
+ * writer.close()
+ * return OK
  * ```
  */
 @GodotBaseType
 public open class ZIPPacker : RefCounted() {
+  /**
+   * The compression level used when [startFile] is called. Use [ZIPPacker.CompressionLevel] as a
+   * reference.
+   */
+  public final inline var compressionLevel: Int
+    @JvmName("compressionLevelProperty")
+    get() = getCompressionLevel()
+    @JvmName("compressionLevelProperty")
+    set(`value`) {
+      setCompressionLevel(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(877, scriptIndex)
+    createNativeObject(893, scriptIndex)
   }
 
   /**
@@ -59,6 +73,17 @@ public open class ZIPPacker : RefCounted() {
     TransferContext.writeArguments(STRING to path, LONG to append.value)
     TransferContext.callMethod(ptr, MethodBindings.openPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setCompressionLevel(compressionLevel: Int): Unit {
+    TransferContext.writeArguments(LONG to compressionLevel.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setCompressionLevelPtr, NIL)
+  }
+
+  public final fun getCompressionLevel(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCompressionLevelPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   /**
@@ -130,10 +155,54 @@ public open class ZIPPacker : RefCounted() {
     }
   }
 
+  public enum class CompressionLevel(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Start a file with the default Deflate compression level (`6`). This is a good compromise
+     * between speed and file size.
+     */
+    DEFAULT(-1),
+    /**
+     * Start a file with no compression. This is also known as the "Store" compression mode and is
+     * the fastest method of packing files inside a ZIP archive. Consider using this mode for files
+     * that are already compressed (such as JPEG, PNG, MP3, or Ogg Vorbis files).
+     */
+    NONE(0),
+    /**
+     * Start a file with the fastest Deflate compression level (`1`). This is fast to compress, but
+     * results in larger file sizes than [COMPRESSION_DEFAULT]. Decompression speed is generally
+     * unaffected by the chosen compression level.
+     */
+    FAST(1),
+    /**
+     * Start a file with the best Deflate compression level (`9`). This is slow to compress, but
+     * results in smaller file sizes than [COMPRESSION_DEFAULT]. Decompression speed is generally
+     * unaffected by the chosen compression level.
+     */
+    BEST(9),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): CompressionLevel = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
     internal val openPtr: VoidPtr = TypeManager.getMethodBindPtr("ZIPPacker", "open", 1936816515)
+
+    internal val setCompressionLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ZIPPacker", "set_compression_level", 1286410249)
+
+    internal val getCompressionLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ZIPPacker", "get_compression_level", 3905245786)
 
     internal val startFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ZIPPacker", "start_file", 166001499)

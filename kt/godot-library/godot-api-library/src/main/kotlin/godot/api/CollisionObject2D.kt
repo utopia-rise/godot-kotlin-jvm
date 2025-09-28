@@ -45,7 +45,7 @@ import kotlin.jvm.JvmName
  * undefined.
  */
 @GodotBaseType
-public open class CollisionObject2D internal constructor() : Node2D() {
+public abstract class CollisionObject2D : Node2D() {
   /**
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.
@@ -92,7 +92,6 @@ public open class CollisionObject2D internal constructor() : Node2D() {
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
-   * See [DisableMode] for more details about the different modes.
    */
   public final inline var disableMode: DisableMode
     @JvmName("disableModeProperty")
@@ -163,7 +162,7 @@ public open class CollisionObject2D internal constructor() : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(154, scriptIndex)
+    createNativeObject(156, scriptIndex)
   }
 
   /**

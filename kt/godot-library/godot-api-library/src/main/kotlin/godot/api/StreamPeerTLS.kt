@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class StreamPeerTLS : StreamPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(639, scriptIndex)
+    createNativeObject(655, scriptIndex)
   }
 
   /**
@@ -73,7 +73,7 @@ public open class StreamPeerTLS : StreamPeer() {
   }
 
   /**
-   * Returns the status of the connection. See [Status] for values.
+   * Returns the status of the connection.
    */
   public final fun getStatus(): Status {
     TransferContext.writeArguments()

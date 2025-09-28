@@ -78,8 +78,8 @@ bool GDKotlin::load_dynamic_lib() {
 
     if (OS::get_singleton()->open_dynamic_library(path_to_jvm_lib, jvm_dynamic_library_handle) != OK) {
         DISPLAY_ERROR(
-          "Failed to load the jvm dynamic library from path " + path_to_jvm_lib,
-          "Make sure you have built your JVM project with Graal native image enabled in your gradle build."
+          "Failed to load the jvm dynamic library from path: " + path_to_jvm_lib,
+          "Make sure you use a valid JVM 11+ with proper read access."
         );
     }
     return true;
@@ -426,8 +426,8 @@ void GDKotlin::display_initialization_error_hint(String cause, String hint) {
 
 void GDKotlin::validate_state() {
     // Don't invalidate the state because everything is either loaded or the Kotlin project has simply not be built.
-    if (state == State::CORE_LIBRARY_INITIALIZED || state == State::JVM_SCRIPTS_INITIALIZED) { return; }
+    if (state >= State::JVM_STARTED) { return; }
 
     finalize_down_to(NOT_STARTED);
-    JVM_LOG_WARNING("JVM Module not properly started, you won't be able to use Java or Kotlin scripts.");
+    JVM_LOG_WARNING("JVM not properly started, you won't be able to use Java or Kotlin scripts.");
 }

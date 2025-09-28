@@ -89,7 +89,8 @@ public class MethodFlags(
     public val OBJECT_CORE: MethodFlags = MethodFlags(64)
 
     /**
-     * Flag for a virtual method that is required.
+     * Flag for a virtual method that is required. In GDScript, this flag is set for abstract
+     * functions.
      */
     @JvmField
     public val VIRTUAL_REQUIRED: MethodFlags = MethodFlags(128)

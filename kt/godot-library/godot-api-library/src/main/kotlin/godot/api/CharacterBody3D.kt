@@ -45,8 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CharacterBody3D : PhysicsBody3D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
-   * for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide].
    */
   public final inline var motionMode: MotionMode
     @JvmName("motionModeProperty")
@@ -112,7 +111,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Maximum number of times the body can change direction before it stops when calling
-   * [moveAndSlide].
+   * [moveAndSlide]. Must be greater than zero.
    */
   public final inline var maxSlides: Int
     @JvmName("maxSlidesProperty")
@@ -123,7 +122,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
+   * Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The
    * default value equals 15 degrees. When [motionMode] is [MOTION_MODE_GROUNDED], it only affects
    * movement if [floorBlockOnWall] is `true`.
    */
@@ -209,8 +208,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
-   * for available behavior.
+   * accurate, when you leave the last platform velocity is applied.
    */
   public final inline var platformOnLeave: PlatformOnLeave
     @JvmName("platformOnLeaveProperty")
@@ -267,7 +265,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(147, scriptIndex)
+    createNativeObject(149, scriptIndex)
   }
 
   /**

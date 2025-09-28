@@ -12,7 +12,6 @@ import godot.common.extensions.convertToCamelCase
 
 class EnrichedSignal(model: Signal) : HasTypeGenerationTrait, DocumentedGenerationTrait {
     override val type = GenerationType("Signal${model.arguments?.size ?: 0}")
-    override val nullable = false     // We assume signals parameters can't be null
     override val genericParameters = model.arguments?.map { TypeName.from(GenerationType(it.type)) } ?: listOf()
     override var description = model.description
 

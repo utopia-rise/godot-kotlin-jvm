@@ -29,11 +29,11 @@ import kotlin.Unit
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(612, scriptIndex)
+    createNativeObject(628, scriptIndex)
   }
 
   /**
-   * Assigns [value] to the given parameter (see [Param] constants).
+   * Assigns [value] to the given parameter.
    */
   public final fun setParam(`param`: Param, `value`: Float): Unit {
     TransferContext.writeArguments(LONG to param.value, DOUBLE to value.toDouble())
@@ -41,7 +41,7 @@ public open class SliderJoint3D : Joint3D() {
   }
 
   /**
-   * Returns the value of the given parameter (see [Param] constants).
+   * Returns the value of the given parameter.
    */
   public final fun getParam(`param`: Param): Float {
     TransferContext.writeArguments(LONG to param.value)

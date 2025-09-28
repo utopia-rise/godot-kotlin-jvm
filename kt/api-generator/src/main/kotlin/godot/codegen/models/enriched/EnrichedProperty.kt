@@ -11,8 +11,6 @@ import godot.common.extensions.convertToCamelCase
 class EnrichedProperty(model: Property) : MetaGenerationTrait, DocumentedGenerationTrait {
     override val type
         get() = getterMethod?.type ?: originalType
-    override val nullable: Boolean
-        get() = type.isObjectSubClass() || type.isVariant()
     override val genericParameters: List<ClassName>
         get() = getterMethod?.genericParameters ?: emptyList()
     override val meta: String?

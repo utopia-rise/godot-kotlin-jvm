@@ -71,7 +71,6 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
             classMap[it.type]?.makeSingleton()
         }
 
-
         classList = classList
             .filter { clazz ->// Remove class extending singletons
                 val parent = clazz.parent
@@ -81,6 +80,11 @@ class EnrichedClassRule : GodotApiRule<ApiTask>() {
 
         context.classMap += classMap
         context.classList += classList
+
+        val coreSeeds = setOf(GodotTypes.godotObject, GodotTypes.refCounted)
+        coreSeeds.forEach { name ->
+            classMap[name]?.setAsCoreModule()
+        }
 
         initializeProperties(context)
     }
@@ -140,7 +144,7 @@ class CoreRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
         val classes = context
             .classList
-            .filter { it.isCoreClass() }
+            .filter { it.isCoreModule() }
 
 
         for (clazz in classes) {
@@ -157,10 +161,10 @@ class ApiRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
         val classes = context
             .classList
-            .filter { !it.isCoreClass() }
+            .filter { !it.isCoreModule() }
             .filter {  //Remove class extending singletons
                 val parent = it.parent
-                parent == null || parent.isSingleton == false
+                parent == null || !parent.isSingleton
             }
 
         for (clazz in classes) {

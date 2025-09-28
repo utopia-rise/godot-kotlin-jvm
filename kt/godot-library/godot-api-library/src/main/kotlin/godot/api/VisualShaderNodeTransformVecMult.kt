@@ -26,7 +26,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
   /**
-   * The multiplication type to be performed. See [Operator] for options.
+   * The multiplication type to be performed.
    */
   public final inline var `operator`: Operator
     @JvmName("operatorProperty")
@@ -37,7 +37,7 @@ public open class VisualShaderNodeTransformVecMult : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(813, scriptIndex)
+    createNativeObject(829, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

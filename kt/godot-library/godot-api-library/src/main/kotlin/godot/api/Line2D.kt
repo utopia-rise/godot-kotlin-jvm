@@ -151,7 +151,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style to render the [texture] of the polyline. Use [LineTextureMode] constants.
+   * The style to render the [texture] of the polyline.
    */
   public final inline var textureMode: LineTextureMode
     @JvmName("textureModeProperty")
@@ -162,7 +162,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the connections between segments of the polyline. Use [LineJointMode] constants.
+   * The style of the connections between segments of the polyline.
    */
   public final inline var jointMode: LineJointMode
     @JvmName("jointModeProperty")
@@ -173,8 +173,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the beginning of the polyline, if [closed] is `false`. Use [LineCapMode]
-   * constants.
+   * The style of the beginning of the polyline, if [closed] is `false`.
    */
   public final inline var beginCapMode: LineCapMode
     @JvmName("beginCapModeProperty")
@@ -185,7 +184,7 @@ public open class Line2D : Node2D() {
     }
 
   /**
-   * The style of the end of the polyline, if [closed] is `false`. Use [LineCapMode] constants.
+   * The style of the end of the polyline, if [closed] is `false`.
    */
   public final inline var endCapMode: LineCapMode
     @JvmName("endCapModeProperty")
@@ -235,7 +234,7 @@ public open class Line2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(339, scriptIndex)
+    createNativeObject(346, scriptIndex)
   }
 
   /**

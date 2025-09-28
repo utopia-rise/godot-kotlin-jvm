@@ -60,7 +60,8 @@ public open class TabBar : Control() {
   public val tabRmbClicked: Signal1<Long> by Signal1
 
   /**
-   * Emitted when a tab's close button is pressed.
+   * Emitted when a tab's close button is pressed or when middle-clicking on a tab, if
+   * [closeWithMiddleMouse] is enabled.
    *
    * **Note:** Tabs are not removed automatically once the close button is pressed, this behavior
    * needs to be programmed manually. For example:
@@ -105,7 +106,7 @@ public open class TabBar : Control() {
     }
 
   /**
-   * Sets the position at which tabs will be placed. See [AlignmentMode] for details.
+   * The position at which tabs will be placed.
    */
   public final inline var tabAlignment: AlignmentMode
     @JvmName("tabAlignmentProperty")
@@ -128,7 +129,18 @@ public open class TabBar : Control() {
     }
 
   /**
-   * Sets when the close button will appear on the tabs. See [CloseButtonDisplayPolicy] for details.
+   * If `true`, middle clicking on the mouse will fire the [signal tab_close_pressed] signal.
+   */
+  public final inline var closeWithMiddleMouse: Boolean
+    @JvmName("closeWithMiddleMouseProperty")
+    get() = getCloseWithMiddleMouse()
+    @JvmName("closeWithMiddleMouseProperty")
+    set(`value`) {
+      setCloseWithMiddleMouse(value)
+    }
+
+  /**
+   * When the close button will appear on the tabs.
    */
   public final inline var tabCloseDisplayPolicy: CloseButtonDisplayPolicy
     @JvmName("tabCloseDisplayPolicyProperty")
@@ -231,7 +243,7 @@ public open class TabBar : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(653, scriptIndex)
+    createNativeObject(669, scriptIndex)
   }
 
   public final fun setTabCount(count: Int): Unit {
@@ -560,6 +572,17 @@ public open class TabBar : Control() {
     TransferContext.callMethod(ptr, MethodBindings.moveTabPtr, NIL)
   }
 
+  public final fun setCloseWithMiddleMouse(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setCloseWithMiddleMousePtr, NIL)
+  }
+
+  public final fun getCloseWithMiddleMouse(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCloseWithMiddleMousePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   public final fun setTabCloseDisplayPolicy(policy: CloseButtonDisplayPolicy): Unit {
     TransferContext.writeArguments(LONG to policy.value)
     TransferContext.callMethod(ptr, MethodBindings.setTabCloseDisplayPolicyPtr, NIL)
@@ -837,6 +860,12 @@ public open class TabBar : Control() {
 
     internal val moveTabPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "move_tab", 3937882851)
+
+    internal val setCloseWithMiddleMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "set_close_with_middle_mouse", 2586408642)
+
+    internal val getCloseWithMiddleMousePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TabBar", "get_close_with_middle_mouse", 36873697)
 
     internal val setTabCloseDisplayPolicyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TabBar", "set_tab_close_display_policy", 2212906737)

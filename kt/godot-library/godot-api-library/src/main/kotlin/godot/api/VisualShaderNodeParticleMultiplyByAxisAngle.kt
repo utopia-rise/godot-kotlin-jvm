@@ -36,7 +36,7 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(778, scriptIndex)
+    createNativeObject(794, scriptIndex)
   }
 
   public final fun setDegreesMode(enabled: Boolean): Unit {

@@ -67,7 +67,7 @@ public open class XRHandTracker : XRPositionalTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(867, scriptIndex)
+    createNativeObject(883, scriptIndex)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {
@@ -101,8 +101,7 @@ public open class XRHandTracker : XRPositionalTracker() {
   }
 
   /**
-   * Returns flags about the validity of the tracking data for the given hand joint (see
-   * [XRHandTracker.HandJointFlags]).
+   * Returns flags about the validity of the tracking data for the given hand joint.
    */
   public final fun getHandJointFlags(joint: HandJoint): HandJointFlags {
     TransferContext.writeArguments(LONG to joint.value)

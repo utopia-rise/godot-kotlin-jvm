@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
@@ -27,7 +28,7 @@ import kotlin.jvm.JvmName
  * vertical axis. Sliders are [Range]-based controls.
  */
 @GodotBaseType
-public open class Slider internal constructor() : Range() {
+public abstract class Slider : Range() {
   /**
    * Emitted when the grabber starts being dragged. This is emitted before the corresponding [signal
    * Range.value_changed] signal.
@@ -86,8 +87,19 @@ public open class Slider internal constructor() : Range() {
       setTicksOnBorders(value)
     }
 
+  /**
+   * Sets the position of the ticks. See [TickPosition] for details.
+   */
+  public final inline var ticksPosition: TickPosition
+    @JvmName("ticksPositionProperty")
+    get() = getTicksPosition()
+    @JvmName("ticksPositionProperty")
+    set(`value`) {
+      setTicksPosition(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(611, scriptIndex)
+    createNativeObject(627, scriptIndex)
   }
 
   public final fun setTicks(count: Int): Unit {
@@ -112,6 +124,17 @@ public open class Slider internal constructor() : Range() {
     TransferContext.callMethod(ptr, MethodBindings.setTicksOnBordersPtr, NIL)
   }
 
+  public final fun getTicksPosition(): TickPosition {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTicksPositionPtr, LONG)
+    return TickPosition.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setTicksPosition(ticksOnBorder: TickPosition): Unit {
+    TransferContext.writeArguments(LONG to ticksOnBorder.value)
+    TransferContext.callMethod(ptr, MethodBindings.setTicksPositionPtr, NIL)
+  }
+
   public final fun setEditable(editable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to editable)
     TransferContext.callMethod(ptr, MethodBindings.setEditablePtr, NIL)
@@ -134,6 +157,37 @@ public open class Slider internal constructor() : Range() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public enum class TickPosition(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Places the ticks at the bottom of the [HSlider], or right of the [VSlider].
+     */
+    BOTTOM_RIGHT(0),
+    /**
+     * Places the ticks at the top of the [HSlider], or left of the [VSlider].
+     */
+    TOP_LEFT(1),
+    /**
+     * Places the ticks at the both sides of the slider.
+     */
+    BOTH(2),
+    /**
+     * Places the ticks at the center of the slider.
+     */
+    CENTER(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): TickPosition = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -148,6 +202,12 @@ public open class Slider internal constructor() : Range() {
 
     internal val setTicksOnBordersPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Slider", "set_ticks_on_borders", 2586408642)
+
+    internal val getTicksPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "get_ticks_position", 3567635531)
+
+    internal val setTicksPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Slider", "set_ticks_position", 2952822224)
 
     internal val setEditablePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Slider", "set_editable", 2586408642)

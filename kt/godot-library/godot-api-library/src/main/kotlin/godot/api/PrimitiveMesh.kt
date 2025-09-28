@@ -70,7 +70,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   /**
-   * If set, the order of the vertices in each triangle are reversed resulting in the backside of
+   * If `true`, the order of the vertices in each triangle is reversed, resulting in the backside of
    * the mesh being drawn.
    *
    * This gives the same result as using [BaseMaterial3D.CULL_FRONT] in [BaseMaterial3D.cullMode].
@@ -112,7 +112,7 @@ public open class PrimitiveMesh : Mesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(505, scriptIndex)
+    createNativeObject(520, scriptIndex)
   }
 
   /**

@@ -144,7 +144,7 @@ public open class XRPose : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(872, scriptIndex)
+    createNativeObject(888, scriptIndex)
   }
 
   /**

@@ -73,7 +73,7 @@ public open class TileSet : Resource() {
 
   /**
    * For all half-offset shapes (Isometric, Hexagonal and Half-Offset square), changes the way tiles
-   * are indexed in the TileMap grid.
+   * are indexed in the [TileMapLayer] grid.
    */
   public final inline var tileLayout: TileLayout
     @JvmName("tileLayoutProperty")
@@ -127,7 +127,7 @@ public open class TileSet : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(685, scriptIndex)
+    createNativeObject(701, scriptIndex)
   }
 
   /**
@@ -781,10 +781,7 @@ public open class TileSet : Resource() {
    * to another set of identifiers. Both the atlas coordinates ID and the alternative tile ID are kept
    * the same when using source-level proxies.
    *
-   * This can be used to replace a source in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target source when one is available.
-   *
-   * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
+   * Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
    */
   public final fun setSourceLevelTileProxy(sourceFrom: Int, sourceTo: Int): Unit {
     TransferContext.writeArguments(LONG to sourceFrom.toLong(), LONG to sourceTo.toLong())
@@ -824,10 +821,7 @@ public open class TileSet : Resource() {
    * identifiers to another set of identifiers. The alternative tile ID is kept the same when using
    * coordinates-level proxies.
    *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target tile when one is available.
-   *
-   * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
+   * Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
    */
   public final fun setCoordsLevelTileProxy(
     pSourceFrom: Int,
@@ -873,10 +867,7 @@ public open class TileSet : Resource() {
    * Create an alternative-level proxy for the given identifiers. A proxy will map set of tile
    * identifiers to another set of identifiers.
    *
-   * This can be used to replace a tile in all TileMaps using this TileSet, as TileMap nodes will
-   * find and use the proxy's target tile when one is available.
-   *
-   * Proxied tiles can be automatically replaced in TileMap nodes using the editor.
+   * Proxied tiles can be automatically replaced in TileMapLayer nodes using the editor.
    */
   public final fun setAlternativeLevelTileProxy(
     sourceFrom: Int,
@@ -1015,7 +1006,8 @@ public open class TileSet : Resource() {
     /**
      * Diamond tile shape (for isometric look).
      *
-     * **Note:** Isometric [TileSet] works best if [TileMap] and all its layers have Y-sort enabled.
+     * **Note:** Isometric [TileSet] works best if all sibling [TileMapLayer]s and their parent
+     * inheriting from [Node2D] have Y-sort enabled.
      */
     ISOMETRIC(1),
     /**

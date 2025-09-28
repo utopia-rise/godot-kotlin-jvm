@@ -15,7 +15,7 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
         val defaultValueString = defaultValue ?: return null
         val identifier = type.identifier
         return when {
-            nullable && defaultValue == "null" -> defaultValueString to arrayOf()
+            type.isNullable() && defaultValue == "null" -> defaultValueString to arrayOf()
             identifier == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)" to arrayOf()
             identifier == GodotTypes.variant -> defaultValueString to arrayOf()
             identifier == GodotTypes.bool -> defaultValueString.lowercase(Locale.US) to arrayOf()

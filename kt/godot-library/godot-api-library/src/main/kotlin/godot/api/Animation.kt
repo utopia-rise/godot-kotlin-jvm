@@ -102,8 +102,8 @@ public open class Animation : Resource() {
 
   /**
    * Determines the behavior of both ends of the animation timeline during animation playback. This
-   * is used for correct interpolation of animation cycles, and for hinting the player that it must
-   * restart the animation.
+   * indicates whether and how the animation should be restarted, and is also used to correctly
+   * interpolate animation cycles.
    */
   public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
@@ -133,7 +133,7 @@ public open class Animation : Resource() {
     get() = isCaptureIncluded()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(12, scriptIndex)
+    createNativeObject(13, scriptIndex)
   }
 
   /**
@@ -557,7 +557,7 @@ public open class Animation : Resource() {
   }
 
   /**
-   * Sets the update mode (see [UpdateMode]) of a value track.
+   * Sets the update mode of a value track.
    */
   public final fun valueTrackSetUpdateMode(trackIdx: Int, mode: UpdateMode): Unit {
     TransferContext.writeArguments(LONG to trackIdx.toLong(), LONG to mode.value)

@@ -231,5 +231,6 @@ fun provideEditorExecutable(): File = (
             .also {
                 println("[${it.joinToString()}]")
             }
-            .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") }
+            .firstOrNull { it.name.startsWith("godot.") && it.name.contains("editor") && !it.name.contains("console") }
+            .also{ println("Godot executable selected: $it")}
             ?: throw Exception("Could not find editor executable"))
