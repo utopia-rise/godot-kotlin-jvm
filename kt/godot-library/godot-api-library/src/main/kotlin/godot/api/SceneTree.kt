@@ -764,7 +764,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     method: String,
     vararg args: Any?,
-  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), )
+  ) = callGroupFlags(flags, group.asCachedStringName(), method.asCachedStringName(), *args)
 
   /**
    * Calls [Object.notification] with the given [notification] to all nodes inside this tree added
@@ -809,7 +809,7 @@ public open class SceneTree : MainLoop() {
     group: String,
     method: String,
     vararg args: Any?,
-  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), )
+  ) = callGroup(group.asCachedStringName(), method.asCachedStringName(), *args)
 
   /**
    * Calls [Object.notification] with the given [notification] to all nodes inside this tree added

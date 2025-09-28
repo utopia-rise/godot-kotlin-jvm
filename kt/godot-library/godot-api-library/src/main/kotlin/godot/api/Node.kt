@@ -2686,7 +2686,7 @@ public open class Node : Object() {
    * (`get_multiplayer().peer.get_connection_status() == CONNECTION_CONNECTED`).
    */
   public final fun rpc(method: String, vararg args: Any?): Error =
-      rpc(method.asCachedStringName(), )
+      rpc(method.asCachedStringName(), *args)
 
   /**
    * Sends a [rpc] to a specific peer identified by [peerId] (see [MultiplayerPeer.setTargetPeer]).
@@ -2700,7 +2700,7 @@ public open class Node : Object() {
     peerId: Long,
     method: String,
     vararg args: Any?,
-  ): Error = rpcId(peerId, method.asCachedStringName(), )
+  ): Error = rpcId(peerId, method.asCachedStringName(), *args)
 
   /**
    * This function is similar to [Object.callDeferred] except that the call will take place when the
@@ -2710,7 +2710,7 @@ public open class Node : Object() {
    * called.
    */
   public final fun callDeferredThreadGroup(method: String, vararg args: Any?): Any? =
-      callDeferredThreadGroup(method.asCachedStringName(), )
+      callDeferredThreadGroup(method.asCachedStringName(), *args)
 
   /**
    * Similar to [callDeferredThreadGroup], but for setting properties.
@@ -2724,7 +2724,7 @@ public open class Node : Object() {
    * the call will become deferred. Otherwise, the call will go through directly.
    */
   public final fun callThreadSafe(method: String, vararg args: Any?): Any? =
-      callThreadSafe(method.asCachedStringName(), )
+      callThreadSafe(method.asCachedStringName(), *args)
 
   /**
    * Similar to [callThreadSafe], but for setting properties.
