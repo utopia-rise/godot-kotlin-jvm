@@ -270,8 +270,8 @@ public open class HTTPClient : RefCounted() {
    *
    * ```
    * {
-   * "content-length": 12,
-   * "Content-Type": "application/json; charset=UTF-8",
+   * 	"content-length": 12,
+   * 	"Content-Type": "application/json; charset=UTF-8",
    * }
    * ```
    */
@@ -397,9 +397,9 @@ public open class HTTPClient : RefCounted() {
    * //csharp
    * var fields = new Godot.Collections.Dictionary
    * {
-   * { "single", 123 },
-   * { "notValued", default },
-   * { "multiple", new Godot.Collections.Array { 22, 33, 44 } },
+   * 	{ "single", 123 },
+   * 	{ "notValued", default },
+   * 	{ "multiple", new Godot.Collections.Array { 22, 33, 44 } },
    * };
    * string queryString = httpClient.QueryStringFromDict(fields);
    * // Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"

@@ -221,7 +221,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   * return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
+   * 	return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
    * ```
    *
    * ```csharp
@@ -230,12 +230,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * public override void _Ready()
    * {
-   * _ball = GetNode<RigidBody2D>("Ball");
+   * 	_ball = GetNode<RigidBody2D>("Ball");
    * }
    *
    * private float GetBallInertia()
    * {
-   * return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
+   * 	return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
    * }
    * ```
    */

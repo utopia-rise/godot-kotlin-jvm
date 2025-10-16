@@ -46,26 +46,26 @@ import kotlin.jvm.JvmOverloads
  * ```gdscript
  * //gdscript
  * func _ready():
- * var tree = Tree.new()
- * var root = tree.create_item()
- * tree.hide_root = true
- * var child1 = tree.create_item(root)
- * var child2 = tree.create_item(root)
- * var subchild1 = tree.create_item(child1)
- * subchild1.set_text(0, "Subchild1")
+ * 	var tree = Tree.new()
+ * 	var root = tree.create_item()
+ * 	tree.hide_root = true
+ * 	var child1 = tree.create_item(root)
+ * 	var child2 = tree.create_item(root)
+ * 	var subchild1 = tree.create_item(child1)
+ * 	subchild1.set_text(0, "Subchild1")
  * ```
  *
  * ```csharp
  * //csharp
  * public override void _Ready()
  * {
- * var tree = new Tree();
- * TreeItem root = tree.CreateItem();
- * tree.HideRoot = true;
- * TreeItem child1 = tree.CreateItem(root);
- * TreeItem child2 = tree.CreateItem(root);
- * TreeItem subchild1 = tree.CreateItem(child1);
- * subchild1.SetText(0, "Subchild1");
+ * 	var tree = new Tree();
+ * 	TreeItem root = tree.CreateItem();
+ * 	tree.HideRoot = true;
+ * 	TreeItem child1 = tree.CreateItem(root);
+ * 	TreeItem child2 = tree.CreateItem(root);
+ * 	TreeItem subchild1 = tree.CreateItem(child1);
+ * 	subchild1.SetText(0, "Subchild1");
  * }
  * ```
  *
@@ -535,22 +535,22 @@ public open class Tree : Control() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * $Tree.item_edited.connect(on_Tree_item_edited)
+   * 	$Tree.item_edited.connect(on_Tree_item_edited)
    *
    * func on_Tree_item_edited():
-   * print($Tree.get_edited()) # This item just got edited (e.g. checked).
+   * 	print($Tree.get_edited()) # This item just got edited (e.g. checked).
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
+   * 	GetNode<Tree>("Tree").ItemEdited += OnTreeItemEdited;
    * }
    *
    * public void OnTreeItemEdited()
    * {
-   * GD.Print(GetNode<Tree>("Tree").GetEdited()); // This item just got edited (e.g. checked).
+   * 	GD.Print(GetNode<Tree>("Tree").GetEdited()); // This item just got edited (e.g. checked).
    * }
    * ```
    */

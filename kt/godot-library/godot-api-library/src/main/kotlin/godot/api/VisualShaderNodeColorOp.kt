@@ -90,13 +90,13 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *
      * ```
      * for (int i = 0; i < 3; i++) {
-     * float base = a[i];
-     * float blend = b[i];
-     * if (base < 0.5) {
-     * result[i] = 2.0 * base * blend;
-     * } else {
-     * result[i] = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
-     * }
+     * 	float base = a[i];
+     * 	float blend = b[i];
+     * 	if (base < 0.5) {
+     * 		result[i] = 2.0 * base * blend;
+     * 	} else {
+     * 		result[i] = 1.0 - 2.0 * (1.0 - blend) * (1.0 - base);
+     * 	}
      * }
      * ```
      */
@@ -122,13 +122,13 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *
      * ```
      * for (int i = 0; i < 3; i++) {
-     * float base = a[i];
-     * float blend = b[i];
-     * if (base < 0.5) {
-     * result[i] = base * (blend + 0.5);
-     * } else {
-     * result[i] = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
-     * }
+     * 	float base = a[i];
+     * 	float blend = b[i];
+     * 	if (base < 0.5) {
+     * 		result[i] = base * (blend + 0.5);
+     * 	} else {
+     * 		result[i] = 1.0 - (1.0 - base) * (1.0 - (blend - 0.5));
+     * 	}
      * }
      * ```
      */
@@ -138,13 +138,13 @@ public open class VisualShaderNodeColorOp : VisualShaderNode() {
      *
      * ```
      * for (int i = 0; i < 3; i++) {
-     * float base = a[i];
-     * float blend = b[i];
-     * if (base < 0.5) {
-     * result[i] = base * (2.0 * blend);
-     * } else {
-     * result[i] = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
-     * }
+     * 	float base = a[i];
+     * 	float blend = b[i];
+     * 	if (base < 0.5) {
+     * 		result[i] = base * (2.0 * blend);
+     * 	} else {
+     * 		result[i] = 1.0 - (1.0 - base) * (1.0 - 2.0 * (blend - 0.5));
+     * 	}
      * }
      * ```
      */

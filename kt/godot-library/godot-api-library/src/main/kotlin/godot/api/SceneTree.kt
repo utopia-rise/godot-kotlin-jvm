@@ -410,18 +410,18 @@ public open class SceneTree : MainLoop() {
    * ```gdscript
    * //gdscript
    * func some_function():
-   * print("start")
-   * await get_tree().create_timer(1.0).timeout
-   * print("end")
+   * 	print("start")
+   * 	await get_tree().create_timer(1.0).timeout
+   * 	print("end")
    * ```
    *
    * ```csharp
    * //csharp
    * public async Task SomeFunction()
    * {
-   * GD.Print("start");
-   * await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
-   * GD.Print("end");
+   * 	GD.Print("start");
+   * 	await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
+   * 	GD.Print("end");
    * }
    * ```
    *
@@ -530,8 +530,8 @@ public open class SceneTree : MainLoop() {
    * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
    * order.
    * get_tree().call_group_flags(
-   * SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
-   * "enemies", "hide")
+   * 		SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   * 		"enemies", "hide")
    * ```
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -794,8 +794,8 @@ public open class SceneTree : MainLoop() {
    * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
    * order.
    * get_tree().call_group_flags(
-   * SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
-   * "enemies", "hide")
+   * 		SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   * 		"enemies", "hide")
    * ```
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.

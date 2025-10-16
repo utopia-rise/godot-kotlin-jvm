@@ -87,7 +87,7 @@ public open class ScrollContainer : Container() {
    *
    * ```
    * func _ready():
-   * set_deferred("scroll_horizontal", 600)
+   * 	set_deferred("scroll_horizontal", 600)
    * ```
    */
   public final inline var scrollHorizontal: Int
@@ -105,7 +105,7 @@ public open class ScrollContainer : Container() {
    *
    * ```
    * func _ready():
-   * set_deferred("scroll_vertical", 600)
+   * 	set_deferred("scroll_vertical", 600)
    * ```
    */
   public final inline var scrollVertical: Int

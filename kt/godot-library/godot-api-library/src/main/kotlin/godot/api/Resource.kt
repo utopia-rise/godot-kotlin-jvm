@@ -152,7 +152,7 @@ public open class Resource : RefCounted() {
    * var damage = 0
    *
    * func _setup_local_to_scene():
-   * damage = randi_range(10, 40)
+   * 	damage = randi_range(10, 40)
    * ```
    */
   public open fun _setupLocalToScene(): Unit {
@@ -334,10 +334,10 @@ public open class Resource : RefCounted() {
    *
    * ```
    * var damage:
-   * set(new_value):
-   * if damage != new_value:
-   * damage = new_value
-   * emit_changed()
+   * 	set(new_value):
+   * 		if damage != new_value:
+   * 			damage = new_value
+   * 			emit_changed()
    * ```
    */
   public final fun emitChanged(): Unit {

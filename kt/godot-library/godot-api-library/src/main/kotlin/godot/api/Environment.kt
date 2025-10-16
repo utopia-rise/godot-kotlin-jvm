@@ -288,6 +288,9 @@ public open class Environment : Resource() {
    * occluded by others.
    *
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+   *
+   * **Note:** SSR is not supported on viewports that have a transparent background (where
+   * [Viewport.transparentBg] is `true`).
    */
   public final inline var ssrEnabled: Boolean
     @JvmName("ssrEnabledProperty")

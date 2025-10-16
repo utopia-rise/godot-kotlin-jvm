@@ -54,9 +54,9 @@ public open class PolygonPathFinder : Resource() {
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [
-   * new Vector2(0.0f, 0.0f),
-   * new Vector2(1.0f, 0.0f),
-   * new Vector2(0.0f, 1.0f)
+   * 	new Vector2(0.0f, 0.0f),
+   * 	new Vector2(1.0f, 0.0f),
+   * 	new Vector2(0.0f, 1.0f)
    * ];
    * int[] connections = [0, 1, 1, 2, 2, 0];
    * polygonPathFinder.Setup(points, connections);
@@ -103,9 +103,9 @@ public open class PolygonPathFinder : Resource() {
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [
-   * new Vector2(0.0f, 0.0f),
-   * new Vector2(1.0f, 0.0f),
-   * new Vector2(0.0f, 1.0f)
+   * 	new Vector2(0.0f, 0.0f),
+   * 	new Vector2(1.0f, 0.0f),
+   * 	new Vector2(0.0f, 1.0f)
    * ];
    * int[] connections = [0, 1, 1, 2, 2, 0];
    * polygonPathFinder.Setup(points, connections);

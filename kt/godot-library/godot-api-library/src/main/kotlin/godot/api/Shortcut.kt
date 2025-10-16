@@ -39,16 +39,16 @@ import kotlin.jvm.JvmName
  *
  * var save_shortcut = Shortcut.new()
  * func _ready():
- * var key_event = InputEventKey.new()
- * key_event.keycode = KEY_S
- * key_event.ctrl_pressed = true
- * key_event.command_or_control_autoremap = true # Swaps Ctrl for Command on Mac.
- * save_shortcut.events = [key_event]
+ * 	var key_event = InputEventKey.new()
+ * 	key_event.keycode = KEY_S
+ * 	key_event.ctrl_pressed = true
+ * 	key_event.command_or_control_autoremap = true # Swaps Ctrl for Command on Mac.
+ * 	save_shortcut.events = [key_event]
  *
  * func _input(event):
- * if save_shortcut.matches_event(event) and event.is_pressed() and not event.is_echo():
- * print("Save shortcut pressed!")
- * get_viewport().set_input_as_handled()
+ * 	if save_shortcut.matches_event(event) and event.is_pressed() and not event.is_echo():
+ * 		print("Save shortcut pressed!")
+ * 		get_viewport().set_input_as_handled()
  * ```
  *
  * ```csharp
@@ -57,30 +57,30 @@ import kotlin.jvm.JvmName
  *
  * public partial class MyNode : Node
  * {
- * private readonly Shortcut _saveShortcut = new Shortcut();
+ * 	private readonly Shortcut _saveShortcut = new Shortcut();
  *
- * public override void _Ready()
- * {
- * InputEventKey keyEvent = new InputEventKey
- * {
- * Keycode = Key.S,
- * CtrlPressed = true,
- * CommandOrControlAutoremap = true, // Swaps Ctrl for Command on Mac.
- * };
+ * 	public override void _Ready()
+ * 	{
+ * 		InputEventKey keyEvent = new InputEventKey
+ * 		{
+ * 			Keycode = Key.S,
+ * 			CtrlPressed = true,
+ * 			CommandOrControlAutoremap = true, // Swaps Ctrl for Command on Mac.
+ * 		};
  *
- * _saveShortcut.Events = [keyEvent];
- * }
+ * 		_saveShortcut.Events = [keyEvent];
+ * 	}
  *
- * public override void _Input(InputEvent @event)
- * {
- * if (@event is InputEventKey keyEvent &&
- * _saveShortcut.MatchesEvent(@event) &&
- * keyEvent.Pressed && !keyEvent.Echo)
- * {
- * GD.Print("Save shortcut pressed!");
- * GetViewport().SetInputAsHandled();
- * }
- * }
+ * 	public override void _Input(InputEvent @event)
+ * 	{
+ * 		if (@event is InputEventKey keyEvent &&
+ * 			_saveShortcut.MatchesEvent(@event) &&
+ * 			keyEvent.Pressed && !keyEvent.Echo)
+ * 		{
+ * 			GD.Print("Save shortcut pressed!");
+ * 			GetViewport().SetInputAsHandled();
+ * 		}
+ * 	}
  * }
  * ```
  */

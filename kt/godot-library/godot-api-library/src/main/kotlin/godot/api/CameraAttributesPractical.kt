@@ -37,6 +37,9 @@ public open class CameraAttributesPractical : CameraAttributes() {
    *
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
+   *
+   * **Note:** Depth of field blur is not supported on viewports that have a transparent background
+   * (where [Viewport.transparentBg] is `true`).
    */
   public final inline var dofBlurFarEnabled: Boolean
     @JvmName("dofBlurFarEnabledProperty")
@@ -78,6 +81,9 @@ public open class CameraAttributesPractical : CameraAttributes() {
    *
    * **Note:** Depth of field blur is only supported in the Forward+ and Mobile rendering methods,
    * not Compatibility.
+   *
+   * **Note:** Depth of field blur is not supported on viewports that have a transparent background
+   * (where [Viewport.transparentBg] is `true`).
    */
   public final inline var dofBlurNearEnabled: Boolean
     @JvmName("dofBlurNearEnabledProperty")

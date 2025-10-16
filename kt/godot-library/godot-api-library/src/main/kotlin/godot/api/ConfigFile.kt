@@ -113,19 +113,19 @@ import kotlin.jvm.JvmOverloads
  *
  * if err != OK:
  *
- * return
+ * 	return
  *
  * # Iterate over all sections.
  *
  * for player in config.get_sections():
  *
- * # Fetch the data for each section.
+ * 	# Fetch the data for each section.
  *
- * var player_name = config.get_value(player, "player_name")
+ * 	var player_name = config.get_value(player, "player_name")
  *
- * var player_score = config.get_value(player, "best_score")
+ * 	var player_score = config.get_value(player, "best_score")
  *
- * score_data[player_name] = player_score
+ * 	score_data[player_name] = player_score
  *
  * ```
  * ```csharp
@@ -146,7 +146,7 @@ import kotlin.jvm.JvmOverloads
  *
  * {
  *
- * return;
+ * 	return;
  *
  * }
  *
@@ -156,13 +156,13 @@ import kotlin.jvm.JvmOverloads
  *
  * {
  *
- * // Fetch the data for each section.
+ * 	// Fetch the data for each section.
  *
- * var player_name = (String)config.GetValue(player, "player_name");
+ * 	var player_name = (String)config.GetValue(player, "player_name");
  *
- * var player_score = (int)config.GetValue(player, "best_score");
+ * 	var player_score = (int)config.GetValue(player, "best_score");
  *
- * score_data[player_name] = player_score;
+ * 	score_data[player_name] = player_score;
  *
  * }
  *

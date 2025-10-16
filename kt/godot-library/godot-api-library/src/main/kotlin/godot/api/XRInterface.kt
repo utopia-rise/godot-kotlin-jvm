@@ -393,17 +393,17 @@ public abstract class XRInterface : RefCounted() {
    *
    * ```
    * func _ready():
-   * var xr_interface = XRServer.find_interface("OpenXR")
-   * if xr_interface and xr_interface.is_initialized():
-   * var vp = get_viewport()
-   * vp.use_xr = true
-   * var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
+   * 	var xr_interface = XRServer.find_interface("OpenXR")
+   * 	if xr_interface and xr_interface.is_initialized():
+   * 		var vp = get_viewport()
+   * 		vp.use_xr = true
+   * 		var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
    * XRInterface.XR_ENV_BLEND_MODE_ADDITIVE]
-   * var modes = xr_interface.get_supported_environment_blend_modes()
-   * for mode in acceptable_modes:
-   * if mode in modes:
-   * xr_interface.set_environment_blend_mode(mode)
-   * break
+   * 		var modes = xr_interface.get_supported_environment_blend_modes()
+   * 		for mode in acceptable_modes:
+   * 			if mode in modes:
+   * 				xr_interface.set_environment_blend_mode(mode)
+   * 				break
    * ```
    */
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {

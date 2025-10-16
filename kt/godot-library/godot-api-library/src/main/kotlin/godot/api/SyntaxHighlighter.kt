@@ -70,12 +70,12 @@ public open class SyntaxHighlighter : Resource() {
    *
    * ```
    * {
-   * 0: {
-   * "color": Color(1, 0, 0)
-   * },
-   * 5: {
-   * "color": Color(0, 1, 0)
-   * }
+   * 	0: {
+   * 		"color": Color(1, 0, 0)
+   * 	},
+   * 	5: {
+   * 		"color": Color(0, 1, 0)
+   * 	}
    * }
    * ```
    */

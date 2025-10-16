@@ -104,8 +104,8 @@ public open class RichTextLabel : Control() {
    * # This assumes RichTextLabel's `meta_clicked` signal was connected to
    * # the function below using the signal connection dialog.
    * func _richtextlabel_on_meta_clicked(meta):
-   * # `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
-   * OS.shell_open(str(meta))
+   * 	# `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
+   * 	OS.shell_open(str(meta))
    * ```
    */
   public val metaClicked: Signal1<Any> by Signal1
@@ -1677,24 +1677,24 @@ public open class RichTextLabel : Control() {
    * @export var background_panel: Panel
    *
    * func _ready():
-   * await draw
-   * background_panel.position = get_visible_content_rect().position
-   * background_panel.size = get_visible_content_rect().size
+   * 	await draw
+   * 	background_panel.position = get_visible_content_rect().position
+   * 	background_panel.size = get_visible_content_rect().size
    * ```
    *
    * ```csharp
    * //csharp
    * public partial class TestLabel : RichTextLabel
    * {
-   * [Export]
-   * public Panel BackgroundPanel { get; set; }
+   * 	[Export]
+   * 	public Panel BackgroundPanel { get; set; }
    *
-   * public override async void _Ready()
-   * {
-   * await ToSignal(this, Control.SignalName.Draw);
-   * BackgroundGPanel.Position = GetVisibleContentRect().Position;
-   * BackgroundPanel.Size = GetVisibleContentRect().Size;
-   * }
+   * 	public override async void _Ready()
+   * 	{
+   * 		await ToSignal(this, Control.SignalName.Draw);
+   * 		BackgroundGPanel.Position = GetVisibleContentRect().Position;
+   * 		BackgroundPanel.Size = GetVisibleContentRect().Size;
+   * 	}
    * }
    * ```
    */
@@ -1772,10 +1772,10 @@ public open class RichTextLabel : Control() {
    * extends RichTextLabel
    *
    * func _ready():
-   * install_effect(MyCustomEffect.new())
+   * 	install_effect(MyCustomEffect.new())
    *
-   * # Alternatively, if not using `class_name` in the script that extends RichTextEffect:
-   * install_effect(preload("res://effect.gd").new())
+   * 	# Alternatively, if not using `class_name` in the script that extends RichTextEffect:
+   * 	install_effect(preload("res://effect.gd").new())
    * ```
    */
   public final fun installEffect(effect: Any?): Unit {
@@ -1801,40 +1801,40 @@ public open class RichTextLabel : Control() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * var menu = get_menu()
-   * # Remove "Select All" item.
-   * menu.remove_item(MENU_SELECT_ALL)
-   * # Add custom items.
-   * menu.add_separator()
-   * menu.add_item("Duplicate Text", MENU_MAX + 1)
-   * # Connect callback.
-   * menu.id_pressed.connect(_on_item_pressed)
+   * 	var menu = get_menu()
+   * 	# Remove "Select All" item.
+   * 	menu.remove_item(MENU_SELECT_ALL)
+   * 	# Add custom items.
+   * 	menu.add_separator()
+   * 	menu.add_item("Duplicate Text", MENU_MAX + 1)
+   * 	# Connect callback.
+   * 	menu.id_pressed.connect(_on_item_pressed)
    *
    * func _on_item_pressed(id):
-   * if id == MENU_MAX + 1:
-   * add_text("\n" + get_parsed_text())
+   * 	if id == MENU_MAX + 1:
+   * 		add_text("\n" + get_parsed_text())
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * var menu = GetMenu();
-   * // Remove "Select All" item.
-   * menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
-   * // Add custom items.
-   * menu.AddSeparator();
-   * menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
-   * // Add event handler.
-   * menu.IdPressed += OnItemPressed;
+   * 	var menu = GetMenu();
+   * 	// Remove "Select All" item.
+   * 	menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
+   * 	// Add custom items.
+   * 	menu.AddSeparator();
+   * 	menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
+   * 	// Add event handler.
+   * 	menu.IdPressed += OnItemPressed;
    * }
    *
    * public void OnItemPressed(int id)
    * {
-   * if (id == TextEdit.MenuItems.Max + 1)
-   * {
-   * AddText("\n" + GetParsedText());
-   * }
+   * 	if (id == TextEdit.MenuItems.Max + 1)
+   * 	{
+   * 		AddText("\n" + GetParsedText());
+   * 	}
    * }
    * ```
    *

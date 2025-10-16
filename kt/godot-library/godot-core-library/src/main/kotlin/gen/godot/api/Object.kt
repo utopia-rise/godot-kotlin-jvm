@@ -525,8 +525,8 @@ public open class Object : KtObject() {
    * ```gdscript
    * //gdscript
    * add_user_signal("hurt", [
-   * { "name": "damage", "type": TYPE_INT },
-   * { "name": "source", "type": TYPE_OBJECT }
+   * 	{ "name": "damage", "type": TYPE_INT },
+   * 	{ "name": "source", "type": TYPE_OBJECT }
    * ])
    * ```
    *
@@ -534,16 +534,16 @@ public open class Object : KtObject() {
    * //csharp
    * AddUserSignal("Hurt",
    * [
-   * new Godot.Collections.Dictionary()
-   * {
-   * { "name", "damage" },
-   * { "type", (int)Variant.Type.Int },
-   * },
-   * new Godot.Collections.Dictionary()
-   * {
-   * { "name", "source" },
-   * { "type", (int)Variant.Type.Object },
-   * },
+   * 	new Godot.Collections.Dictionary()
+   * 	{
+   * 		{ "name", "damage" },
+   * 		{ "type", (int)Variant.Type.Int },
+   * 	},
+   * 	new Godot.Collections.Dictionary()
+   * 	{
+   * 		{ "name", "source" },
+   * 		{ "type", (int)Variant.Type.Object },
+   * 	},
    * ]);
    * ```
    */

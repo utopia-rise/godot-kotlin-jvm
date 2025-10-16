@@ -123,14 +123,14 @@ import kotlin.jvm.JvmStatic
  * //gdscript
  * var tween = create_tween()
  * for sprite in get_children():
- * tween.tween_property(sprite, "position", Vector2(0, 0), 1.0)
+ * 	tween.tween_property(sprite, "position", Vector2(0, 0), 1.0)
  * ```
  *
  * ```csharp
  * //csharp
  * Tween tween = CreateTween();
  * foreach (Node sprite in GetChildren())
- * tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
+ * 	tween.TweenProperty(sprite, "position", Vector2.Zero, 1.0f);
  * ```
  *
  * In the example above, all children of a node are moved one after another to position `(0, 0)`.
@@ -143,9 +143,9 @@ import kotlin.jvm.JvmStatic
  * //gdscript
  * var tween
  * func animate():
- * if tween:
- * tween.kill() # Abort the previous animation.
- * tween = create_tween()
+ * 	if tween:
+ * 		tween.kill() # Abort the previous animation.
+ * 	tween = create_tween()
  * ```
  *
  * ```csharp
@@ -154,9 +154,9 @@ import kotlin.jvm.JvmStatic
  *
  * public void Animate()
  * {
- * if (_tween != null)
- * _tween.Kill(); // Abort the previous animation
- * _tween = CreateTween();
+ * 	if (_tween != null)
+ * 		_tween.Kill(); // Abort the previous animation
+ * 	_tween = CreateTween();
  * }
  * ```
  *
@@ -383,26 +383,26 @@ public open class Tween : RefCounted() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * var tween = create_tween()
-   * tween.tween_method(set_label_text, 0, 10, 1.0).set_delay(1.0)
+   * 	var tween = create_tween()
+   * 	tween.tween_method(set_label_text, 0, 10, 1.0).set_delay(1.0)
    *
    * func set_label_text(value: int):
-   * $Label.text = "Counting " + str(value)
+   * 	$Label.text = "Counting " + str(value)
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * base._Ready();
+   * 	base._Ready();
    *
-   * Tween tween = CreateTween();
-   * tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
+   * 	Tween tween = CreateTween();
+   * 	tween.TweenMethod(Callable.From<int>(SetLabelText), 0.0f, 10.0f, 1.0f).SetDelay(1.0f);
    * }
    *
    * private void SetLabelText(int value)
    * {
-   * GetNode<Label>("Label").Text = $"Counting {value}";
+   * 	GetNode<Label>("Label").Text = $"Counting {value}";
    * }
    * ```
    */

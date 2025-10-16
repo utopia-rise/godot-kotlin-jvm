@@ -70,10 +70,10 @@ public open class Window : Viewport() {
    *
    * ```
    * func _ready():
-   * get_window().files_dropped.connect(on_files_dropped)
+   * 	get_window().files_dropped.connect(on_files_dropped)
    *
    * func on_files_dropped(files):
-   * print(files)
+   * 	print(files)
    * ```
    *
    * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived

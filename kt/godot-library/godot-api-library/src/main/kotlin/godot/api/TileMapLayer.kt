@@ -429,12 +429,12 @@ public open class TileMapLayer : Node2D() {
    *
    * ```
    * func get_clicked_tile_power():
-   * var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
-   * var data = tile_map_layer.get_cell_tile_data(clicked_cell)
-   * if data:
-   * return data.get_custom_data("power")
-   * else:
-   * return 0
+   * 	var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
+   * 	var data = tile_map_layer.get_cell_tile_data(clicked_cell)
+   * 	if data:
+   * 		return data.get_custom_data("power")
+   * 	else:
+   * 		return 0
    * ```
    */
   public final fun getCellTileData(coords: Vector2i): TileData? {

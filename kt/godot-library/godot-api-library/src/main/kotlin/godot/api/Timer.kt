@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
  *
  * ```
  * func _on_timer_timeout():
- * print("Time to attack!")
+ * 	print("Time to attack!")
  * ```
  *
  * **Note:** To create a one-shot timer without instantiating a node, use [SceneTree.createTimer].

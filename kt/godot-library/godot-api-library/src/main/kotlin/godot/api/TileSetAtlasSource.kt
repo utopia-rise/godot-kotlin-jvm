@@ -629,8 +629,8 @@ public open class TileSetAtlasSource : TileSetSource() {
      * ```
      * var alternate_id = $TileMapLayer.get_cell_alternative_tile(Vector2i(2, 2))
      * if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
-     * # If tile is not already flipped, flip it.
-     * $TileMapLayer.set_cell(Vector2i(2, 2), source_id, atlas_coords, alternate_id |
+     * 	# If tile is not already flipped, flip it.
+     * 	$TileMapLayer.set_cell(Vector2i(2, 2), source_id, atlas_coords, alternate_id |
      * TileSetAtlasSource.TRANSFORM_FLIP_H)
      * ```
      *
@@ -639,10 +639,10 @@ public open class TileSetAtlasSource : TileSetSource() {
      *
      * ```
      * enum TileTransform {
-     * ROTATE_0 = 0,
-     * ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
-     * ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
-     * ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_V,
+     * 	ROTATE_0 = 0,
+     * 	ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
+     * 	ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
+     * 	ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_V,
      * }
      * ```
      */

@@ -319,11 +319,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   * from_node: StringName,
-   * from_port: int,
-   * to_node: StringName,
-   * to_port: int,
-   * keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -546,13 +546,13 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   * var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * 	var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   * var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size /
+   * 	var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size /
    * 2
-   * var rect = Rect2(port_pos, port_size)
+   * 	var rect = Rect2(port_pos, port_size)
    *
-   * return rect.has_point(mouse_position)
+   * 	return rect.has_point(mouse_position)
    * ```
    */
   public open fun _isInInputHotzone(
@@ -571,13 +571,13 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   * var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * 	var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   * var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size /
-   * 2
-   * var rect = Rect2(port_pos, port_size)
+   * 	var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size
+   * / 2
+   * 	var rect = Rect2(port_pos, port_size)
    *
-   * return rect.has_point(mouse_position)
+   * 	return rect.has_point(mouse_position)
    * ```
    */
   public open fun _isInOutputHotzone(
@@ -609,7 +609,7 @@ public open class GraphEdit : Control() {
    * ```gdscript
    * //gdscript
    * func _is_node_hover_valid(from, from_port, to, to_port):
-   * return from != to
+   * 	return from != to
    * ```
    *
    * ```csharp
@@ -617,7 +617,7 @@ public open class GraphEdit : Control() {
    * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode,
    * int toPort)
    * {
-   * return fromNode != toNode;
+   * 	return fromNode != toNode;
    * }
    * ```
    */
@@ -723,11 +723,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   * from_node: StringName,
-   * from_port: int,
-   * to_node: StringName,
-   * to_port: int,
-   * keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -753,11 +753,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   * from_node: StringName,
-   * from_port: int,
-   * to_node: StringName,
-   * to_port: int,
-   * keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -765,21 +765,21 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func get_connection_list_from_port(node, port):
-   * var connections = get_connection_list_from_node(node)
-   * var result = []
-   * for connection in connections:
-   * var dict = {}
-   * if connection["from_node"] == node and connection["from_port"] == port:
-   * dict["node"] = connection["to_node"]
-   * dict["port"] = connection["to_port"]
-   * dict["type"] = "left"
-   * result.push_back(dict)
-   * elif connection["to_node"] == node and connection["to_port"] == port:
-   * dict["node"] = connection["from_node"]
-   * dict["port"] = connection["from_port"]
-   * dict["type"] = "right"
-   * result.push_back(dict)
-   * return result
+   * 	var connections = get_connection_list_from_node(node)
+   * 	var result = []
+   * 	for connection in connections:
+   * 		var dict = {}
+   * 		if connection["from_node"] == node and connection["from_port"] == port:
+   * 			dict["node"] = connection["to_node"]
+   * 			dict["port"] = connection["to_port"]
+   * 			dict["type"] = "left"
+   * 			result.push_back(dict)
+   * 		elif connection["to_node"] == node and connection["to_port"] == port:
+   * 			dict["node"] = connection["from_node"]
+   * 			dict["port"] = connection["from_port"]
+   * 			dict["type"] = "right"
+   * 			result.push_back(dict)
+   * 	return result
    * ```
    */
   public final fun getConnectionListFromNode(node: StringName):
@@ -796,11 +796,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   * from_node: StringName,
-   * from_port: int,
-   * to_node: StringName,
-   * to_port: int,
-   * keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    */
@@ -1313,11 +1313,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   * from_node: StringName,
-   * from_port: int,
-   * to_node: StringName,
-   * to_port: int,
-   * keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -1325,21 +1325,21 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func get_connection_list_from_port(node, port):
-   * var connections = get_connection_list_from_node(node)
-   * var result = []
-   * for connection in connections:
-   * var dict = {}
-   * if connection["from_node"] == node and connection["from_port"] == port:
-   * dict["node"] = connection["to_node"]
-   * dict["port"] = connection["to_port"]
-   * dict["type"] = "left"
-   * result.push_back(dict)
-   * elif connection["to_node"] == node and connection["to_port"] == port:
-   * dict["node"] = connection["from_node"]
-   * dict["port"] = connection["from_port"]
-   * dict["type"] = "right"
-   * result.push_back(dict)
-   * return result
+   * 	var connections = get_connection_list_from_node(node)
+   * 	var result = []
+   * 	for connection in connections:
+   * 		var dict = {}
+   * 		if connection["from_node"] == node and connection["from_port"] == port:
+   * 			dict["node"] = connection["to_node"]
+   * 			dict["port"] = connection["to_port"]
+   * 			dict["type"] = "left"
+   * 			result.push_back(dict)
+   * 		elif connection["to_node"] == node and connection["to_port"] == port:
+   * 			dict["node"] = connection["from_node"]
+   * 			dict["port"] = connection["from_port"]
+   * 			dict["type"] = "right"
+   * 			result.push_back(dict)
+   * 	return result
    * ```
    */
   public final fun getConnectionListFromNode(node: String): VariantArray<Dictionary<Any?, Any?>> =

@@ -84,20 +84,20 @@ public open class InputEventKey : InputEventWithModifiers() {
    * ```gdscript
    * //gdscript
    * func _input(event):
-   * if event is InputEventKey:
-   * var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
-   * print(OS.get_keycode_string(keycode))
+   * 	if event is InputEventKey:
+   * 		var keycode = DisplayServer.keyboard_get_keycode_from_physical(event.physical_keycode)
+   * 		print(OS.get_keycode_string(keycode))
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Input(InputEvent @event)
    * {
-   * if (@event is InputEventKey inputEventKey)
-   * {
-   * var keycode = DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
-   * GD.Print(OS.GetKeycodeString(keycode));
-   * }
+   * 	if (@event is InputEventKey inputEventKey)
+   * 	{
+   * 		var keycode = DisplayServer.KeyboardGetKeycodeFromPhysical(inputEventKey.PhysicalKeycode);
+   * 		GD.Print(OS.GetKeycodeString(keycode));
+   * 	}
    * }
    * ```
    */

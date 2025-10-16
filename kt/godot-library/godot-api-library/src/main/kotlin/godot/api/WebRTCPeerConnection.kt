@@ -87,16 +87,16 @@ public open class WebRTCPeerConnection : RefCounted() {
    *
    * ```
    * {
-   * "iceServers": [
-   * {
-   * "urls": [ "stun:stun.example.com:3478" ], # One or more STUN servers.
-   * },
-   * {
-   * "urls": [ "turn:turn.example.com:3478" ], # One or more TURN servers.
-   * "username": "a_username", # Optional username for the TURN server.
-   * "credential": "a_password", # Optional password for the TURN server.
-   * }
-   * ]
+   * 	"iceServers": [
+   * 		{
+   * 			"urls": [ "stun:stun.example.com:3478" ], # One or more STUN servers.
+   * 		},
+   * 		{
+   * 			"urls": [ "turn:turn.example.com:3478" ], # One or more TURN servers.
+   * 			"username": "a_username", # Optional username for the TURN server.
+   * 			"credential": "a_password", # Optional password for the TURN server.
+   * 		}
+   * 	]
    * }
    * ```
    */
@@ -121,21 +121,22 @@ public open class WebRTCPeerConnection : RefCounted() {
    *
    * ```
    * {
-   * "negotiated": true, # When set to true (default off), means the channel is negotiated out of
+   * 	"negotiated": true, # When set to true (default off), means the channel is negotiated out of
    * band. "id" must be set too. "data_channel_received" will not be called.
-   * "id": 1, # When "negotiated" is true this value must also be set to the same value on both
+   * 	"id": 1, # When "negotiated" is true this value must also be set to the same value on both
    * peer.
    *
-   * # Only one of maxRetransmits and maxPacketLifeTime can be specified, not both. They make the
+   * 	# Only one of maxRetransmits and maxPacketLifeTime can be specified, not both. They make the
    * channel unreliable (but also better at real time).
-   * "maxRetransmits": 1, # Specify the maximum number of attempt the peer will make to retransmits
+   * 	"maxRetransmits": 1, # Specify the maximum number of attempt the peer will make to retransmits
    * packets if they are not acknowledged.
-   * "maxPacketLifeTime": 100, # Specify the maximum amount of time before giving up retransmitions
+   * 	"maxPacketLifeTime": 100, # Specify the maximum amount of time before giving up retransmitions
    * of unacknowledged packets (in milliseconds).
-   * "ordered": true, # When in unreliable mode (i.e. either "maxRetransmits" or "maxPacketLifetime"
-   * is set), "ordered" (true by default) specify if packet ordering is to be enforced.
+   * 	"ordered": true, # When in unreliable mode (i.e. either "maxRetransmits" or
+   * "maxPacketLifetime" is set), "ordered" (true by default) specify if packet ordering is to be
+   * enforced.
    *
-   * "protocol": "my-custom-protocol", # A custom sub-protocol string for this channel.
+   * 	"protocol": "my-custom-protocol", # A custom sub-protocol string for this channel.
    * }
    * ```
    *

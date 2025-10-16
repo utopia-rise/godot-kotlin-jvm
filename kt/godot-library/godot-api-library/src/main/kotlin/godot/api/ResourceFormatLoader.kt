@@ -114,12 +114,12 @@ public open class ResourceFormatLoader : RefCounted() {
    *
    * ```
    * func _get_dependencies(path, add_types):
-   * return [
-   * "uid://fqgvuwrkuixh::Script::res://script.gd",
-   * "uid://fqgvuwrkuixh::::res://script.gd",
-   * "res://script.gd::Script",
-   * "res://script.gd",
-   * ]
+   * 	return [
+   * 		"uid://fqgvuwrkuixh::Script::res://script.gd",
+   * 		"uid://fqgvuwrkuixh::::res://script.gd",
+   * 		"res://script.gd::Script",
+   * 		"res://script.gd",
+   * 	]
    * ```
    *
    * **Note:** Custom resource types defined by scripts aren't known by the [ClassDB], so

@@ -3121,8 +3121,8 @@ public object RenderingServer : Object() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
-   * RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600, 600))
+   * 	RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
+   * 	RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600, 600))
    * ```
    *
    * Using this can result in significant optimization, especially on lower-end devices. However, it
@@ -3641,14 +3641,14 @@ public object RenderingServer : Object() {
    *
    * ```
    * func _ready():
-   * for _i in 2:
-   * await get_tree().process_frame
+   * 	for _i in 2:
+   * 		await get_tree().process_frame
    *
-   * print(
-   * RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
-   * RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
-   * RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
-   * )
+   * 	print(
+   * 			RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
+   * 			RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
+   * 			RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
+   * 	)
    * ```
    */
   @JvmStatic
@@ -4435,7 +4435,7 @@ public object RenderingServer : Object() {
    *
    * ```
    * func get_exposure_normalization(ev100: float):
-   * return 1.0 / (pow(2.0, ev100) * 1.2)
+   * 	return 1.0 / (pow(2.0, ev100) * 1.2)
    * ```
    *
    * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds),
@@ -4443,7 +4443,7 @@ public object RenderingServer : Object() {
    *
    * ```
    * func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
-   * return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
+   * 	return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
    * ```
    */
   @JvmStatic
@@ -6328,10 +6328,10 @@ public object RenderingServer : Object() {
    *
    * ```
    * func _ready():
-   * for _i in 2:
-   * await get_tree().process_frame
+   * 	for _i in 2:
+   * 		await get_tree().process_frame
    *
-   * print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
+   * 	print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
    * ```
    */
   @JvmStatic

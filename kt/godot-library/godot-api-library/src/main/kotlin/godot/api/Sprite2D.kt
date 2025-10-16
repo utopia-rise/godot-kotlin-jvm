@@ -442,26 +442,26 @@ public open class Sprite2D : Node2D() {
    * ```gdscript
    * //gdscript
    * func _input(event):
-   * if event is InputEventMouseButton and event.pressed and event.button_index ==
+   * 	if event is InputEventMouseButton and event.pressed and event.button_index ==
    * MOUSE_BUTTON_LEFT:
-   * if get_rect().has_point(to_local(event.position)):
-   * print("A click!")
+   * 		if get_rect().has_point(to_local(event.position)):
+   * 			print("A click!")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Input(InputEvent @event)
    * {
-   * if (@event is InputEventMouseButton inputEventMouse)
-   * {
-   * if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
-   * {
-   * if (GetRect().HasPoint(ToLocal(inputEventMouse.Position)))
-   * {
-   * GD.Print("A click!");
-   * }
-   * }
-   * }
+   * 	if (@event is InputEventMouseButton inputEventMouse)
+   * 	{
+   * 		if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
+   * 		{
+   * 			if (GetRect().HasPoint(ToLocal(inputEventMouse.Position)))
+   * 			{
+   * 				GD.Print("A click!");
+   * 			}
+   * 		}
+   * 	}
    * }
    * ```
    */

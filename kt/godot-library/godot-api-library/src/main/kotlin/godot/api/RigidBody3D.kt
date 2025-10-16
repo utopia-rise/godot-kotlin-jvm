@@ -223,7 +223,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   * return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   * 	return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
    * ```
    *
    * ```csharp
@@ -232,12 +232,12 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * public override void _Ready()
    * {
-   * _ball = GetNode<RigidBody3D>("Ball");
+   * 	_ball = GetNode<RigidBody3D>("Ball");
    * }
    *
    * private Vector3 GetBallInertia()
    * {
-   * return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   * 	return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
    * }
    * ```
    *
@@ -574,7 +574,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   * return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   * 	return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
    * ```
    *
    * ```csharp
@@ -583,12 +583,12 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * public override void _Ready()
    * {
-   * _ball = GetNode<RigidBody3D>("Ball");
+   * 	_ball = GetNode<RigidBody3D>("Ball");
    * }
    *
    * private Vector3 GetBallInertia()
    * {
-   * return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   * 	return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
    * }
    * ```
    */

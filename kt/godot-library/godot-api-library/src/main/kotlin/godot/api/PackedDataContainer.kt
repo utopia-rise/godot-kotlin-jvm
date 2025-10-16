@@ -38,7 +38,7 @@ import kotlin.Unit
  * ```
  * var container = load("packed_data.res")
  * for key in container:
- * prints(key, container[key])
+ * 	prints(key, container[key])
  * ```
  *
  * Prints:

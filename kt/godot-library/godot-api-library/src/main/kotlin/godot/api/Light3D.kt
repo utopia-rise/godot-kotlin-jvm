@@ -259,6 +259,10 @@ public abstract class Light3D : VisualInstance3D() {
 
   /**
    * The light will affect objects in the selected layers.
+   *
+   * **Note:** The light cull mask is ignored by [VoxelGI], SDFGI, [LightmapGI], and volumetric fog.
+   * These will always render lights in a way that ignores the cull mask. See also
+   * [VisualInstance3D.layers].
    */
   public final inline var lightCullMask: Long
     @JvmName("lightCullMaskProperty")

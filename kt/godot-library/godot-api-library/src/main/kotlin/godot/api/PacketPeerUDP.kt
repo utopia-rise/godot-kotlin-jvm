@@ -44,15 +44,15 @@ import kotlin.jvm.JvmOverloads
  * var peer
  *
  * func _ready():
- * peer = PacketPeerUDP.new()
- * peer.bind(4433)
+ * 	peer = PacketPeerUDP.new()
+ * 	peer.bind(4433)
  *
  *
  * func _process(_delta):
- * if peer.get_available_packet_count() > 0:
- * var array_bytes = peer.get_packet()
- * var packet_string = array_bytes.get_string_from_ascii()
- * print("Received message: ", packet_string)
+ * 	if peer.get_available_packet_count() > 0:
+ * 		var array_bytes = peer.get_packet()
+ * 		var packet_string = array_bytes.get_string_from_ascii()
+ * 		print("Received message: ", packet_string)
  * ```
  *
  * **Note:** When exporting to Android, make sure to enable the `INTERNET` permission in the Android
@@ -113,9 +113,9 @@ public open class PacketPeerUDP : PacketPeer() {
    *
    * # Client
    * while socket.wait() == OK:
-   * var data = socket.get_packet().get_string_from_ascii()
-   * if data == "Time to stop":
-   * return
+   * 	var data = socket.get_packet().get_string_from_ascii()
+   * 	if data == "Time to stop":
+   * 		return
    * ```
    *
    * ```csharp
@@ -128,11 +128,11 @@ public open class PacketPeerUDP : PacketPeer() {
    * // Client
    * while (socket.Wait() == OK)
    * {
-   * string data = socket.GetPacket().GetStringFromASCII();
-   * if (data == "Time to stop")
-   * {
-   * return;
-   * }
+   * 	string data = socket.GetPacket().GetStringFromASCII();
+   * 	if (data == "Time to stop")
+   * 	{
+   * 		return;
+   * 	}
    * }
    * ```
    */

@@ -751,15 +751,15 @@ public open class Node : Object() {
    *
    * ```
    * @export var energy = 0:
-   * set(value):
-   * energy = value
-   * update_configuration_warnings()
+   * 	set(value):
+   * 		energy = value
+   * 		update_configuration_warnings()
    *
    * func _get_configuration_warnings():
-   * if energy < 0:
-   * return ["Energy must be 0 or greater."]
-   * else:
-   * return []
+   * 	if energy < 0:
+   * 		return ["Energy must be 0 or greater."]
+   * 	else:
+   * 		return []
    * ```
    */
   public open fun _getConfigurationWarnings(): PackedStringArray {
@@ -929,7 +929,7 @@ public open class Node : Object() {
    * //gdscript
    * var child_node = get_child(0)
    * if child_node.get_parent():
-   * child_node.get_parent().remove_child(child_node)
+   * 	child_node.get_parent().remove_child(child_node)
    * add_child(child_node)
    * ```
    *
@@ -938,7 +938,7 @@ public open class Node : Object() {
    * Node childNode = GetChild(0);
    * if (childNode.GetParent() != null)
    * {
-   * childNode.GetParent().RemoveChild(childNode);
+   * 	childNode.GetParent().RemoveChild(childNode);
    * }
    * AddChild(childNode);
    * ```
@@ -1418,8 +1418,8 @@ public open class Node : Object() {
    * # Stores the node's non-internal groups only (as an array of StringNames).
    * var non_internal_groups = []
    * for group in get_groups():
-   * if not str(group).begins_with("_"):
-   * non_internal_groups.push_back(group)
+   * 	if not str(group).begins_with("_"):
+   * 		non_internal_groups.push_back(group)
    * ```
    *
    * ```csharp
@@ -1428,8 +1428,8 @@ public open class Node : Object() {
    * List<string> nonInternalGroups = new List<string>();
    * foreach (string group in GetGroups())
    * {
-   * if (!group.BeginsWith("_"))
-   * nonInternalGroups.Add(group);
+   * 	if (!group.BeginsWith("_"))
+   * 		nonInternalGroups.Add(group);
    * }
    * ```
    */
@@ -3294,10 +3294,10 @@ public open class Node : Object() {
      *
      * ```
      * func _notification(what):
-     * if what == NOTIFICATION_TRANSLATION_CHANGED:
-     * if not is_node_ready():
-     * await ready # Wait until ready signal.
-     * $Label.text = atr("&#37;d Bananas") &#37; banana_counter
+     * 	if what == NOTIFICATION_TRANSLATION_CHANGED:
+     * 		if not is_node_ready():
+     * 			await ready # Wait until ready signal.
+     * 		$Label.text = atr("&#37;d Bananas") &#37; banana_counter
      * ```
      */
     public final const val NOTIFICATION_TRANSLATION_CHANGED: Long = 2010

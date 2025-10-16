@@ -37,12 +37,12 @@ import kotlin.Unit
  * ```
  * var dummy_text_server = TextServerManager.find_interface("Dummy")
  * if dummy_text_server != null:
- * TextServerManager.set_primary_interface(dummy_text_server)
- * # If the other text servers are unneeded, they can be removed:
- * for i in TextServerManager.get_interface_count():
- * var text_server = TextServerManager.get_interface(i)
- * if text_server != dummy_text_server:
- * TextServerManager.remove_interface(text_server)
+ * 	TextServerManager.set_primary_interface(dummy_text_server)
+ * 	# If the other text servers are unneeded, they can be removed:
+ * 	for i in TextServerManager.get_interface_count():
+ * 		var text_server = TextServerManager.get_interface(i)
+ * 		if text_server != dummy_text_server:
+ * 			TextServerManager.remove_interface(text_server)
  * ```
  *
  * The command line argument `--text-driver Dummy` (case-sensitive) can be used to force the "Dummy"

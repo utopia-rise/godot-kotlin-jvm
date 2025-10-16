@@ -200,11 +200,11 @@ public object ResourceLoader : Object() {
    *
    * ```
    * for dependency in ResourceLoader.get_dependencies(path):
-   * if dependency.contains("::"):
-   * print(dependency.get_slice("::", 0)) # Prints the UID.
-   * print(dependency.get_slice("::", 2)) # Prints the fallback path.
-   * else:
-   * print(dependency) # Prints the path.
+   * 	if dependency.contains("::"):
+   * 		print(dependency.get_slice("::", 0)) # Prints the UID.
+   * 		print(dependency.get_slice("::", 2)) # Prints the fallback path.
+   * 	else:
+   * 		print(dependency) # Prints the path.
    * ```
    */
   @JvmStatic

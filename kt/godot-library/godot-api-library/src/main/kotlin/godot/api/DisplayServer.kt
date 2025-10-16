@@ -1801,7 +1801,7 @@ public object DisplayServer : Object() {
    * ```
    * var refresh_rate = DisplayServer.screen_get_refresh_rate()
    * if refresh_rate < 0:
-   * refresh_rate = 60.0
+   * 	refresh_rate = 60.0
    * ```
    *
    * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],

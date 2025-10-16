@@ -61,14 +61,14 @@ import kotlin.Unit
  *
  * void sky() {
  *
- * // If importing a cubemap from another engine, you may need to flip one of the `EYEDIR`
+ * 	// If importing a cubemap from another engine, you may need to flip one of the `EYEDIR`
  * components below
  *
- * // by replacing it with `-EYEDIR`.
+ * 	// by replacing it with `-EYEDIR`.
  *
- * vec3 eyedir = vec3(EYEDIR.x, EYEDIR.y, EYEDIR.z);
+ * 	vec3 eyedir = vec3(EYEDIR.x, EYEDIR.y, EYEDIR.z);
  *
- * COLOR = texture(source_panorama, eyedir).rgb * exposure;
+ * 	COLOR = texture(source_panorama, eyedir).rgb * exposure;
  *
  * }
  *

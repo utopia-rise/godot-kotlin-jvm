@@ -136,8 +136,8 @@ public open class Control : CanvasItem() {
    *
    * ```
    * func _on_mouse_exited():
-   * if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
-   * # Not hovering over area.
+   * 	if not Rect2(Vector2(), size).has_point(get_local_mouse_position()):
+   * 		# Not hovering over area.
    * ```
    */
   public val mouseExited: Signal0 by Signal0
@@ -1030,20 +1030,20 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _get_drag_data(position):
-   * var mydata = make_data() # This is your custom method generating the drag data.
-   * set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview of
+   * 	var mydata = make_data() # This is your custom method generating the drag data.
+   * 	set_drag_preview(make_preview(mydata)) # This is your custom method generating the preview of
    * the drag data.
-   * return mydata
+   * 	return mydata
    * ```
    *
    * ```csharp
    * //csharp
    * public override Variant _GetDragData(Vector2 atPosition)
    * {
-   * var myData = MakeData(); // This is your custom method generating the drag data.
-   * SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview of
+   * 	var myData = MakeData(); // This is your custom method generating the drag data.
+   * 	SetDragPreview(MakePreview(myData)); // This is your custom method generating the preview of
    * the drag data.
-   * return myData;
+   * 	return myData;
    * }
    * ```
    */
@@ -1064,18 +1064,18 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _can_drop_data(position, data):
-   * # Check position if it is relevant to you
-   * # Otherwise, just check data
-   * return typeof(data) == TYPE_DICTIONARY and data.has("expected")
+   * 	# Check position if it is relevant to you
+   * 	# Otherwise, just check data
+   * 	return typeof(data) == TYPE_DICTIONARY and data.has("expected")
    * ```
    *
    * ```csharp
    * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
-   * // Check position if it is relevant to you
-   * // Otherwise, just check data
-   * return data.VariantType == Variant.Type.Dictionary &&
+   * 	// Check position if it is relevant to you
+   * 	// Otherwise, just check data
+   * 	return data.VariantType == Variant.Type.Dictionary &&
    * data.AsGodotDictionary().ContainsKey("expected");
    * }
    * ```
@@ -1096,23 +1096,23 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _can_drop_data(position, data):
-   * return typeof(data) == TYPE_DICTIONARY and data.has("color")
+   * 	return typeof(data) == TYPE_DICTIONARY and data.has("color")
    *
    * func _drop_data(position, data):
-   * var color = data["color"]
+   * 	var color = data["color"]
    * ```
    *
    * ```csharp
    * //csharp
    * public override bool _CanDropData(Vector2 atPosition, Variant data)
    * {
-   * return data.VariantType == Variant.Type.Dictionary &&
+   * 	return data.VariantType == Variant.Type.Dictionary &&
    * data.AsGodotDictionary().ContainsKey("color");
    * }
    *
    * public override void _DropData(Vector2 atPosition, Variant data)
    * {
-   * Color color = data.AsGodotDictionary()["color"].AsColor();
+   * 	Color color = data.AsGodotDictionary()["color"].AsColor();
    * }
    * ```
    */
@@ -1150,18 +1150,18 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _make_custom_tooltip(for_text):
-   * var label = Label.new()
-   * label.text = for_text
-   * return label
+   * 	var label = Label.new()
+   * 	label.text = for_text
+   * 	return label
    * ```
    *
    * ```csharp
    * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
-   * var label = new Label();
-   * label.Text = forText;
-   * return label;
+   * 	var label = new Label();
+   * 	label.Text = forText;
+   * 	return label;
    * }
    * ```
    *
@@ -1170,18 +1170,19 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _make_custom_tooltip(for_text):
-   * var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
-   * tooltip.get_node("Label").text = for_text
-   * return tooltip
+   * 	var tooltip = preload("res://some_tooltip_scene.tscn").instantiate()
+   * 	tooltip.get_node("Label").text = for_text
+   * 	return tooltip
    * ```
    *
    * ```csharp
    * //csharp
    * public override Control _MakeCustomTooltip(string forText)
    * {
-   * Node tooltip = ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
-   * tooltip.GetNode<Label>("Label").Text = forText;
-   * return tooltip;
+   * 	Node tooltip =
+   * ResourceLoader.Load<PackedScene>("res://some_tooltip_scene.tscn").Instantiate();
+   * 	tooltip.GetNode<Label>("Label").Text = forText;
+   * 	return tooltip;
    * }
    * ```
    */
@@ -1213,22 +1214,22 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _gui_input(event):
-   * if event is InputEventMouseButton:
-   * if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-   * print("I've been clicked D:")
+   * 	if event is InputEventMouseButton:
+   * 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+   * 			print("I've been clicked D:")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _GuiInput(InputEvent @event)
    * {
-   * if (@event is InputEventMouseButton mb)
-   * {
-   * if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
-   * {
-   * GD.Print("I've been clicked D:");
-   * }
-   * }
+   * 	if (@event is InputEventMouseButton mb)
+   * 	{
+   * 		if (mb.ButtonIndex == MouseButton.Left && mb.Pressed)
+   * 		{
+   * 			GD.Print("I've been clicked D:");
+   * 		}
+   * 	}
    * }
    * ```
    *
@@ -2010,20 +2011,20 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * # Get the font color defined for the current Control's class, if it exists.
-   * modulate = get_theme_color("font_color")
-   * # Get the font color defined for the Button class.
-   * modulate = get_theme_color("font_color", "Button")
+   * 	# Get the font color defined for the current Control's class, if it exists.
+   * 	modulate = get_theme_color("font_color")
+   * 	# Get the font color defined for the Button class.
+   * 	modulate = get_theme_color("font_color", "Button")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * // Get the font color defined for the current Control's class, if it exists.
-   * Modulate = GetThemeColor("font_color");
-   * // Get the font color defined for the Button class.
-   * Modulate = GetThemeColor("font_color", "Button");
+   * 	// Get the font color defined for the current Control's class, if it exists.
+   * 	Modulate = GetThemeColor("font_color");
+   * 	// Get the font color defined for the Button class.
+   * 	Modulate = GetThemeColor("font_color", "Button");
    * }
    * ```
    */
@@ -2535,14 +2536,14 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _process(delta):
-   * grab_click_focus() # When clicking another Control node, this node will be clicked instead.
+   * 	grab_click_focus() # When clicking another Control node, this node will be clicked instead.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Process(double delta)
    * {
-   * GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
+   * 	GrabClickFocus(); // When clicking another Control node, this node will be clicked instead.
    * }
    * ```
    */
@@ -2584,12 +2585,12 @@ public open class Control : CanvasItem() {
    * @export var color = Color(1, 0, 0, 1)
    *
    * func _get_drag_data(position):
-   * # Use a control that is not in the tree
-   * var cpb = ColorPickerButton.new()
-   * cpb.color = color
-   * cpb.size = Vector2(50, 50)
-   * set_drag_preview(cpb)
-   * return color
+   * 	# Use a control that is not in the tree
+   * 	var cpb = ColorPickerButton.new()
+   * 	cpb.color = color
+   * 	cpb.size = Vector2(50, 50)
+   * 	set_drag_preview(cpb)
+   * 	return color
    * ```
    *
    * ```csharp
@@ -2599,12 +2600,12 @@ public open class Control : CanvasItem() {
    *
    * public override Variant _GetDragData(Vector2 atPosition)
    * {
-   * // Use a control that is not in the tree
-   * var cpb = new ColorPickerButton();
-   * cpb.Color = _color;
-   * cpb.Size = new Vector2(50, 50);
-   * SetDragPreview(cpb);
-   * return _color;
+   * 	// Use a control that is not in the tree
+   * 	var cpb = new ColorPickerButton();
+   * 	cpb.Color = _color;
+   * 	cpb.Size = new Vector2(50, 50);
+   * 	SetDragPreview(cpb);
+   * 	return _color;
    * }
    * ```
    */
@@ -2909,20 +2910,20 @@ public open class Control : CanvasItem() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * # Get the font color defined for the current Control's class, if it exists.
-   * modulate = get_theme_color("font_color")
-   * # Get the font color defined for the Button class.
-   * modulate = get_theme_color("font_color", "Button")
+   * 	# Get the font color defined for the current Control's class, if it exists.
+   * 	modulate = get_theme_color("font_color")
+   * 	# Get the font color defined for the Button class.
+   * 	modulate = get_theme_color("font_color", "Button")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * // Get the font color defined for the current Control's class, if it exists.
-   * Modulate = GetThemeColor("font_color");
-   * // Get the font color defined for the Button class.
-   * Modulate = GetThemeColor("font_color", "Button");
+   * 	// Get the font color defined for the current Control's class, if it exists.
+   * 	Modulate = GetThemeColor("font_color");
+   * 	// Get the font color defined for the Button class.
+   * 	Modulate = GetThemeColor("font_color", "Button");
    * }
    * ```
    */
@@ -3736,10 +3737,10 @@ public open class Control : CanvasItem() {
      *
      * ```
      * func _notification(what):
-     * if what == NOTIFICATION_THEME_CHANGED:
-     * if not is_node_ready():
-     * await ready # Wait until ready signal.
-     * $Label.add_theme_color_override("font_color", Color.YELLOW)
+     * 	if what == NOTIFICATION_THEME_CHANGED:
+     * 		if not is_node_ready():
+     * 			await ready # Wait until ready signal.
+     * 		$Label.add_theme_color_override("font_color", Color.YELLOW)
      * ```
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 45

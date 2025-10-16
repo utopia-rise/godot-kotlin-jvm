@@ -47,13 +47,13 @@ import kotlin.jvm.JvmStatic
  * var json = JSON.new()
  * var error = json.parse(json_string)
  * if error == OK:
- * var data_received = json.data
- * if typeof(data_received) == TYPE_ARRAY:
- * print(data_received) # Prints the array.
+ * 	var data_received = json.data
+ * 	if typeof(data_received) == TYPE_ARRAY:
+ * 		print(data_received) # Prints the array.
+ * 	else:
+ * 		print("Unexpected data")
  * else:
- * print("Unexpected data")
- * else:
- * print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
+ * 	print("JSON Parse Error: ", json.get_error_message(), " in ", json_string, " at line ",
  * json.get_error_line())
  * ```
  *
@@ -178,18 +178,18 @@ public open class JSON : Resource() {
      *
      * ## JSON.stringify(my_dictionary, "\t")
      * {
-     * "name": "my_dictionary",
-     * "version": "1.0.0",
-     * "entities": [
-     * {
-     * "name": "entity_0",
-     * "value": "value_0"
-     * },
-     * {
-     * "name": "entity_1",
-     * "value": "value_1"
-     * }
-     * ]
+     * 	"name": "my_dictionary",
+     * 	"version": "1.0.0",
+     * 	"entities": [
+     * 		{
+     * 			"name": "entity_0",
+     * 			"value": "value_0"
+     * 		},
+     * 		{
+     * 			"name": "entity_1",
+     * 			"value": "value_1"
+     * 		}
+     * 	]
      * }
      *
      * ## JSON.stringify(my_dictionary, "...")
@@ -242,7 +242,7 @@ public open class JSON : Resource() {
      *
      * ```
      * func encode_data(value, full_objects = false):
-     * return JSON.stringify(JSON.from_native(value, full_objects))
+     * 	return JSON.stringify(JSON.from_native(value, full_objects))
      * ```
      */
     @JvmOverloads
@@ -263,7 +263,7 @@ public open class JSON : Resource() {
      *
      * ```
      * func decode_data(string, allow_objects = false):
-     * return JSON.to_native(JSON.parse_string(string), allow_objects)
+     * 	return JSON.to_native(JSON.parse_string(string), allow_objects)
      * ```
      */
     @JvmOverloads

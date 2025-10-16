@@ -563,9 +563,10 @@ public abstract class Font : Resource() {
    * fv.base_font = load("res://RobotoFlex.ttf")
    * var variation_list = fv.get_supported_variation_list()
    * for tag in variation_list:
-   * var name = TextServerManager.get_primary_interface().tag_to_name(tag)
-   * var values = variation_list[tag]
-   * print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag, values])
+   * 	var name = TextServerManager.get_primary_interface().tag_to_name(tag)
+   * 	var values = variation_list[tag]
+   * 	print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
+   * values])
    * ```
    *
    * **Note:** To set and get variation coordinates of a [FontVariation], use

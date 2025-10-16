@@ -467,8 +467,8 @@ public object Geometry2D : Object() {
    *
    * ```
    * func _draw():
-   * for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
-   * draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
+   * 	for pixel in Geometry2D.bresenham_line($MarkerA.position, $MarkerB.position):
+   * 		draw_rect(Rect2(pixel, Vector2.ONE), Color.WHITE)
    * ```
    */
   @JvmStatic

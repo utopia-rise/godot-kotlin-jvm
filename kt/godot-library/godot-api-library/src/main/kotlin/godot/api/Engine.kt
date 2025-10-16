@@ -318,20 +318,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * func _physics_process(_delta):
-   * if Engine.get_physics_frames() &#37; 2 == 0:
-   * pass # Run expensive logic only once every 2 physics frames here.
+   * 	if Engine.get_physics_frames() &#37; 2 == 0:
+   * 		pass # Run expensive logic only once every 2 physics frames here.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _PhysicsProcess(double delta)
    * {
-   * base._PhysicsProcess(delta);
+   * 	base._PhysicsProcess(delta);
    *
-   * if (Engine.GetPhysicsFrames() &#37; 2 == 0)
-   * {
-   * // Run expensive logic only once every 2 physics frames here.
-   * }
+   * 	if (Engine.GetPhysicsFrames() &#37; 2 == 0)
+   * 	{
+   * 		// Run expensive logic only once every 2 physics frames here.
+   * 	}
    * }
    * ```
    */
@@ -352,20 +352,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * func _process(_delta):
-   * if Engine.get_process_frames() &#37; 5 == 0:
-   * pass # Run expensive logic only once every 5 process (render) frames here.
+   * 	if Engine.get_process_frames() &#37; 5 == 0:
+   * 		pass # Run expensive logic only once every 5 process (render) frames here.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Process(double delta)
    * {
-   * base._Process(delta);
+   * 	base._Process(delta);
    *
-   * if (Engine.GetProcessFrames() &#37; 5 == 0)
-   * {
-   * // Run expensive logic only once every 5 process (render) frames here.
-   * }
+   * 	if (Engine.GetProcessFrames() &#37; 5 == 0)
+   * 	{
+   * 		// Run expensive logic only once every 5 process (render) frames here.
+   * 	}
    * }
    * ```
    */
@@ -424,20 +424,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * if Engine.get_version_info().hex >= 0x040100:
-   * pass # Do things specific to version 4.1 or later.
+   * 	pass # Do things specific to version 4.1 or later.
    * else:
-   * pass # Do things specific to versions before 4.1.
+   * 	pass # Do things specific to versions before 4.1.
    * ```
    *
    * ```csharp
    * //csharp
    * if ((int)Engine.GetVersionInfo()["hex"] >= 0x040100)
    * {
-   * // Do things specific to version 4.1 or later.
+   * 	// Do things specific to version 4.1 or later.
    * }
    * else
    * {
-   * // Do things specific to versions before 4.1.
+   * 	// Do things specific to versions before 4.1.
    * }
    * ```
    */
@@ -544,15 +544,15 @@ public object Engine : Object() {
    *
    * ```
    * func _enter_tree():
-   * # Depending on when the node is added to the tree,
-   * # prints either "true" or "false".
-   * print(Engine.is_in_physics_frame())
+   * 	# Depending on when the node is added to the tree,
+   * 	# prints either "true" or "false".
+   * 	print(Engine.is_in_physics_frame())
    *
    * func _process(delta):
-   * print(Engine.is_in_physics_frame()) # Prints false
+   * 	print(Engine.is_in_physics_frame()) # Prints false
    *
    * func _physics_process(delta):
-   * print(Engine.is_in_physics_frame()) # Prints true
+   * 	print(Engine.is_in_physics_frame()) # Prints true
    * ```
    */
   @JvmStatic
@@ -728,17 +728,17 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * if Engine.is_editor_hint():
-   * draw_gizmos()
+   * 	draw_gizmos()
    * else:
-   * simulate_physics()
+   * 	simulate_physics()
    * ```
    *
    * ```csharp
    * //csharp
    * if (Engine.IsEditorHint())
-   * DrawGizmos();
+   * 	DrawGizmos();
    * else
-   * SimulatePhysics();
+   * 	SimulatePhysics();
    * ```
    *
    * See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the

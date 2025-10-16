@@ -50,12 +50,12 @@ import kotlin.jvm.JvmOverloads
  * var mdt = MeshDataTool.new()
  * mdt.create_from_surface(mesh, 0)
  * for i in range(mdt.get_vertex_count()):
- * var vertex = mdt.get_vertex(i)
- * # In this example we extend the mesh by one unit, which results in separated faces as it is flat
+ * 	var vertex = mdt.get_vertex(i)
+ * 	# In this example we extend the mesh by one unit, which results in separated faces as it is flat
  * shaded.
- * vertex += mdt.get_vertex_normal(i)
- * # Save your change.
- * mdt.set_vertex(i, vertex)
+ * 	vertex += mdt.get_vertex_normal(i)
+ * 	# Save your change.
+ * 	mdt.set_vertex(i, vertex)
  * mesh.clear_surfaces()
  * mdt.commit_to_surface(mesh)
  * var mi = MeshInstance.new()
@@ -71,12 +71,12 @@ import kotlin.jvm.JvmOverloads
  * mdt.CreateFromSurface(mesh, 0);
  * for (var i = 0; i < mdt.GetVertexCount(); i++)
  * {
- * Vector3 vertex = mdt.GetVertex(i);
- * // In this example we extend the mesh by one unit, which results in separated faces as it is flat
- * shaded.
- * vertex += mdt.GetVertexNormal(i);
- * // Save your change.
- * mdt.SetVertex(i, vertex);
+ * 	Vector3 vertex = mdt.GetVertex(i);
+ * 	// In this example we extend the mesh by one unit, which results in separated faces as it is
+ * flat shaded.
+ * 	vertex += mdt.GetVertexNormal(i);
+ * 	// Save your change.
+ * 	mdt.SetVertex(i, vertex);
  * }
  * mesh.ClearSurfaces();
  * mdt.CommitToSurface(mesh);

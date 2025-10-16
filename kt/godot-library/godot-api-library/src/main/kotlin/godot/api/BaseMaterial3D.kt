@@ -976,6 +976,9 @@ public abstract class BaseMaterial3D : Material() {
    * If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's
    * surface, is scattered, and then emerges. Subsurface scattering quality is controlled by
    * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
+   *
+   * **Note:** Subsurface scattering is not supported on viewports that have a transparent
+   * background (where [Viewport.transparentBg] is `true`).
    */
   public final inline var subsurfScatterEnabled: Boolean
     @JvmName("subsurfScatterEnabledProperty")

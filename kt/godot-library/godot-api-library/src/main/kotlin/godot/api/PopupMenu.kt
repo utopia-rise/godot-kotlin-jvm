@@ -354,18 +354,18 @@ public open class PopupMenu : Popup() {
    *
    * ```
    * func _ready():
-   * add_multistate_item("Item", 3, 0)
+   * 	add_multistate_item("Item", 3, 0)
    *
-   * index_pressed.connect(func(index: int):
-   * toggle_item_multistate(index)
-   * match get_item_multistate(index):
-   * 0:
-   * print("First state")
-   * 1:
-   * print("Second state")
-   * 2:
-   * print("Third state")
-   * )
+   * 	index_pressed.connect(func(index: int):
+   * 			toggle_item_multistate(index)
+   * 			match get_item_multistate(index):
+   * 				0:
+   * 					print("First state")
+   * 				1:
+   * 					print("Second state")
+   * 				2:
+   * 					print("Third state")
+   * 		)
    * ```
    *
    * **Note:** Multistate items don't update their state automatically and must be done manually.

@@ -132,6 +132,10 @@ public abstract class Viewport : Node() {
 
   /**
    * If `true`, the viewport should render its background as transparent.
+   *
+   * **Note:** Due to technical limitations, certain rendering features are disabled when a viewport
+   * has a transparent background. This currently applies to screen-space reflections, subsurface
+   * scattering, and depth of field.
    */
   public final inline var transparentBg: Boolean
     @JvmName("transparentBgProperty")

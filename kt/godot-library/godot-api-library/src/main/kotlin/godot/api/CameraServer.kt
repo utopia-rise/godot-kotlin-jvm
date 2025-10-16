@@ -69,24 +69,24 @@ public object CameraServer : Object() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   * CameraServer.camera_feeds_updated.connect(_on_camera_feeds_updated)
-   * CameraServer.monitoring_feeds = true
+   * 	CameraServer.camera_feeds_updated.connect(_on_camera_feeds_updated)
+   * 	CameraServer.monitoring_feeds = true
    *
    * func _on_camera_feeds_updated():
-   * var feeds = CameraServer.feeds()
+   * 	var feeds = CameraServer.feeds()
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   * CameraServer.CameraFeedsUpdated += OnCameraFeedsUpdated;
-   * CameraServer.MonitoringFeeds = true;
+   * 	CameraServer.CameraFeedsUpdated += OnCameraFeedsUpdated;
+   * 	CameraServer.MonitoringFeeds = true;
    * }
    *
    * void OnCameraFeedsUpdated()
    * {
-   * var feeds = CameraServer.Feeds();
+   * 	var feeds = CameraServer.Feeds();
    * }
    * ```
    */

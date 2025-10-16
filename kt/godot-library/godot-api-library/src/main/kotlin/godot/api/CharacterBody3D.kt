@@ -93,6 +93,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
    *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -303,6 +306,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    *
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
+   *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
@@ -315,6 +321,10 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * other body rather than stop immediately. If the other body is a [CharacterBody3D] or
    * [RigidBody3D], it will also be affected by the motion of the other body. You can use this to make
    * moving and rotating platforms, or to make nodes push other nodes.
+   *
+   * This method should be used in [Node.PhysicsProcess] (or in a method called by
+   * [Node.PhysicsProcess]), as it uses the physics step's `delta` value automatically in calculations.
+   * Otherwise, the simulation will run at an incorrect speed.
    *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call
    * [getLastSlideCollision], for more detailed information about collisions that occurred, use

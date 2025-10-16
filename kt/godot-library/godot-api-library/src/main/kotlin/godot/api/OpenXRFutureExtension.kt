@@ -58,8 +58,8 @@ public open class OpenXRFutureExtension : OpenXRExtensionWrapper() {
    * var future_result = OpenXRFutureExtension.register_future(future)
    * await future_result.completed
    * if future_result.get_status() == OpenXRFutureResult.RESULT_FINISHED:
-   * # Handle your success
-   * pass
+   * 	# Handle your success
+   * 	pass
    * ```
    */
   @JvmOverloads

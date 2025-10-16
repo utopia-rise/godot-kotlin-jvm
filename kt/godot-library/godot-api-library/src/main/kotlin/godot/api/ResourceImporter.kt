@@ -35,13 +35,13 @@ public abstract class ResourceImporter : RefCounted() {
    *
    * ```
    * func _get_build_dependencies(path):
-   * var resource = load(path)
-   * var dependencies = PackedStringArray()
+   * 	var resource = load(path)
+   * 	var dependencies = PackedStringArray()
    *
-   * if resource.multichannel_signed_distance_field:
-   * dependencies.push_back("module_msdfgen_enabled")
+   * 	if resource.multichannel_signed_distance_field:
+   * 		dependencies.push_back("module_msdfgen_enabled")
    *
-   * return dependencies
+   * 	return dependencies
    * ```
    */
   public open fun _getBuildDependencies(path: String): PackedStringArray {

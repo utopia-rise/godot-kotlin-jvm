@@ -139,13 +139,13 @@ public open class PropertyTweener : Tweener() {
    * @export var curve: Curve
    *
    * func _ready():
-   * var tween = create_tween()
-   * # Interpolate the value using a custom curve.
-   * tween.tween_property(self, "position:x", 300,
+   * 	var tween = create_tween()
+   * 	# Interpolate the value using a custom curve.
+   * 	tween.tween_property(self, "position:x", 300,
    * 1).as_relative().set_custom_interpolator(tween_curve)
    *
    * func tween_curve(v):
-   * return curve.sample_baked(v)
+   * 	return curve.sample_baked(v)
    * ```
    *
    * ```csharp
@@ -155,16 +155,16 @@ public open class PropertyTweener : Tweener() {
    *
    * public override void _Ready()
    * {
-   * Tween tween = CreateTween();
-   * // Interpolate the value using a custom curve.
-   * Callable tweenCurveCallable = Callable.From<float, float>(TweenCurve);
-   * tween.TweenProperty(this, "position:x", 300.0f,
+   * 	Tween tween = CreateTween();
+   * 	// Interpolate the value using a custom curve.
+   * 	Callable tweenCurveCallable = Callable.From<float, float>(TweenCurve);
+   * 	tween.TweenProperty(this, "position:x", 300.0f,
    * 1.0f).AsRelative().SetCustomInterpolator(tweenCurveCallable);
    * }
    *
    * private float TweenCurve(float value)
    * {
-   * return Curve.SampleBaked(value);
+   * 	return Curve.SampleBaked(value);
    * }
    * ```
    */

@@ -42,12 +42,12 @@ import kotlin.Unit
  * var parser = XMLParser.new()
  * parser.open("path/to/file.svg")
  * while parser.read() != ERR_FILE_EOF:
- * if parser.get_node_type() == XMLParser.NODE_ELEMENT:
- * var node_name = parser.get_node_name()
- * var attributes_dict = {}
- * for idx in range(parser.get_attribute_count()):
- * attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
- * print("The ", node_name, " element has the following attributes: ", attributes_dict)
+ * 	if parser.get_node_type() == XMLParser.NODE_ELEMENT:
+ * 		var node_name = parser.get_node_name()
+ * 		var attributes_dict = {}
+ * 		for idx in range(parser.get_attribute_count()):
+ * 			attributes_dict[parser.get_attribute_name(idx)] = parser.get_attribute_value(idx)
+ * 		print("The ", node_name, " element has the following attributes: ", attributes_dict)
  * ```
  *
  * ```csharp
@@ -56,16 +56,16 @@ import kotlin.Unit
  * parser.Open("path/to/file.svg");
  * while (parser.Read() != Error.FileEof)
  * {
- * if (parser.GetNodeType() == XmlParser.NodeType.Element)
- * {
- * var nodeName = parser.GetNodeName();
- * var attributesDict = new Godot.Collections.Dictionary();
- * for (int idx = 0; idx < parser.GetAttributeCount(); idx++)
- * {
- * attributesDict[parser.GetAttributeName(idx)] = parser.GetAttributeValue(idx);
- * }
- * GD.Print($"The {nodeName} element has the following attributes: {attributesDict}");
- * }
+ * 	if (parser.GetNodeType() == XmlParser.NodeType.Element)
+ * 	{
+ * 		var nodeName = parser.GetNodeName();
+ * 		var attributesDict = new Godot.Collections.Dictionary();
+ * 		for (int idx = 0; idx < parser.GetAttributeCount(); idx++)
+ * 		{
+ * 			attributesDict[parser.GetAttributeName(idx)] = parser.GetAttributeValue(idx);
+ * 		}
+ * 		GD.Print($"The {nodeName} element has the following attributes: {attributesDict}");
+ * 	}
  * }
  * ```
  */

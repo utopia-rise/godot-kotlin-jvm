@@ -262,7 +262,7 @@ public abstract class RenderingDevice : Object() {
    *
    * ```
    * func _texture_get_data_callback(array):
-   * value = array.decode_u32(0)
+   * 	value = array.decode_u32(0)
    *
    * ...
    *
@@ -942,7 +942,7 @@ public abstract class RenderingDevice : Object() {
    *
    * ```
    * func _buffer_get_data_callback(array):
-   * value = array.decode_u32(0)
+   * 	value = array.decode_u32(0)
    *
    * ...
    *
@@ -1347,9 +1347,9 @@ public abstract class RenderingDevice : Object() {
    * rd.compute_list_bind_uniform_set(compute_list, dilate_uniform_set, 1)
    *
    * for i in atlas_slices:
-   * rd.compute_list_set_push_constant(compute_list, push_constant, push_constant.size())
-   * rd.compute_list_dispatch(compute_list, group_size.x, group_size.y, group_size.z)
-   * # No barrier, let them run all together.
+   * 	rd.compute_list_set_push_constant(compute_list, push_constant, push_constant.size())
+   * 	rd.compute_list_dispatch(compute_list, group_size.x, group_size.y, group_size.z)
+   * 	# No barrier, let them run all together.
    *
    * rd.compute_list_end()
    * ```
@@ -3894,9 +3894,9 @@ public abstract class RenderingDevice : Object() {
        * rd = RenderingServer.get_rendering_device()
        *
        * if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
-       * storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
+       * 	storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
        * RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS)
-       * storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+       * 	storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
        * ```
        */
       @JvmField

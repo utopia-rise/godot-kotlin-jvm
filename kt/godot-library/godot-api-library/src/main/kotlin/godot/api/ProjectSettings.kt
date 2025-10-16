@@ -226,10 +226,10 @@ public object ProjectSettings : Object() {
    * const SETTING_DEFAULT = 10.0
    *
    * func _enter_tree():
-   * if not ProjectSettings.has_setting(SETTING_NAME):
-   * ProjectSettings.set_setting(SETTING_NAME, SETTING_DEFAULT)
+   * 	if not ProjectSettings.has_setting(SETTING_NAME):
+   * 		ProjectSettings.set_setting(SETTING_NAME, SETTING_DEFAULT)
    *
-   * ProjectSettings.set_initial_value(SETTING_NAME, SETTING_DEFAULT)
+   * 	ProjectSettings.set_initial_value(SETTING_NAME, SETTING_DEFAULT)
    * ```
    *
    * If you have a project setting defined by an [EditorPlugin], but want to use it in a running
@@ -277,10 +277,10 @@ public object ProjectSettings : Object() {
    * ProjectSettings.set("category/property_name", 0)
    *
    * var property_info = {
-   * "name": "category/property_name",
-   * "type": TYPE_INT,
-   * "hint": PROPERTY_HINT_ENUM,
-   * "hint_string": "one,two,three"
+   * 	"name": "category/property_name",
+   * 	"type": TYPE_INT,
+   * 	"hint": PROPERTY_HINT_ENUM,
+   * 	"hint_string": "one,two,three"
    * }
    *
    * ProjectSettings.add_property_info(property_info)
@@ -292,10 +292,10 @@ public object ProjectSettings : Object() {
    *
    * var propertyInfo = new Godot.Collections.Dictionary
    * {
-   * { "name", "category/propertyName" },
-   * { "type", (int)Variant.Type.Int },
-   * { "hint", (int)PropertyHint.Enum },
-   * { "hint_string", "one,two,three" },
+   * 	{ "name", "category/propertyName" },
+   * 	{ "type", (int)Variant.Type.Int },
+   * 	{ "hint", (int)PropertyHint.Enum },
+   * 	{ "hint_string", "one,two,three" },
    * };
    *
    * ProjectSettings.AddPropertyInfo(propertyInfo);
@@ -355,15 +355,15 @@ public object ProjectSettings : Object() {
    * ```
    * var path = ""
    * if OS.has_feature("editor"):
-   * # Running from an editor binary.
-   * # `path` will contain the absolute path to `hello.txt` located in the project root.
-   * path = ProjectSettings.globalize_path("res://hello.txt")
+   * 	# Running from an editor binary.
+   * 	# `path` will contain the absolute path to `hello.txt` located in the project root.
+   * 	path = ProjectSettings.globalize_path("res://hello.txt")
    * else:
-   * # Running from an exported project.
-   * # `path` will contain the absolute path to `hello.txt` next to the executable.
-   * # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
-   * # but is close enough in spirit.
-   * path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
+   * 	# Running from an exported project.
+   * 	# `path` will contain the absolute path to `hello.txt` next to the executable.
+   * 	# This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+   * 	# but is close enough in spirit.
+   * 	path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
    * ```
    */
   @JvmStatic

@@ -54,14 +54,14 @@ import kotlin.jvm.JvmOverloads
  * extends AStar3D
  *
  * func _compute_cost(u, v):
- * var u_pos = get_point_position(u)
- * var v_pos = get_point_position(v)
- * return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
+ * 	var u_pos = get_point_position(u)
+ * 	var v_pos = get_point_position(v)
+ * 	return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  *
  * func _estimate_cost(u, v):
- * var u_pos = get_point_position(u)
- * var v_pos = get_point_position(v)
- * return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
+ * 	var u_pos = get_point_position(u)
+ * 	var v_pos = get_point_position(v)
+ * 	return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  * ```
  *
  * ```csharp
@@ -71,22 +71,22 @@ import kotlin.jvm.JvmOverloads
  * [GlobalClass]
  * public partial class MyAStar3D : AStar3D
  * {
- * public override float _ComputeCost(long fromId, long toId)
- * {
- * Vector3 fromPoint = GetPointPosition(fromId);
- * Vector3 toPoint = GetPointPosition(toId);
+ * 	public override float _ComputeCost(long fromId, long toId)
+ * 	{
+ * 		Vector3 fromPoint = GetPointPosition(fromId);
+ * 		Vector3 toPoint = GetPointPosition(toId);
  *
- * return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * 		return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
  * Mathf.Abs(fromPoint.Z - toPoint.Z);
- * }
+ * 	}
  *
- * public override float _EstimateCost(long fromId, long toId)
- * {
- * Vector3 fromPoint = GetPointPosition(fromId);
- * Vector3 toPoint = GetPointPosition(toId);
- * return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * 	public override float _EstimateCost(long fromId, long toId)
+ * 	{
+ * 		Vector3 fromPoint = GetPointPosition(fromId);
+ * 		Vector3 toPoint = GetPointPosition(toId);
+ * 		return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
  * Mathf.Abs(fromPoint.Z - toPoint.Z);
- * }
+ * 	}
  * }
  * ```
  *
