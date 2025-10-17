@@ -50,20 +50,20 @@ public open class AudioStreamMP3 : AudioStream() {
    * ```gdscript
    * //gdscript
    * func load_mp3(path):
-   *     var file = FileAccess.open(path, FileAccess.READ)
-   *     var sound = AudioStreamMP3.new()
-   *     sound.data = file.get_buffer(file.get_length())
-   *     return sound
+   * 	var file = FileAccess.open(path, FileAccess.READ)
+   * 	var sound = AudioStreamMP3.new()
+   * 	sound.data = file.get_buffer(file.get_length())
+   * 	return sound
    * ```
    *
    * ```csharp
    * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
-   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
-   *     var sound = new AudioStreamMP3();
-   *     sound.Data = file.GetBuffer(file.GetLength());
-   *     return sound;
+   * 	using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   * 	var sound = new AudioStreamMP3();
+   * 	sound.Data = file.GetBuffer(file.GetLength());
+   * 	return sound;
    * }
    * ```
    *
@@ -132,7 +132,7 @@ public open class AudioStreamMP3 : AudioStream() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(84, scriptIndex)
+    createNativeObject(85, scriptIndex)
   }
 
   /**
@@ -155,20 +155,20 @@ public open class AudioStreamMP3 : AudioStream() {
    * ```gdscript
    * //gdscript
    * func load_mp3(path):
-   *     var file = FileAccess.open(path, FileAccess.READ)
-   *     var sound = AudioStreamMP3.new()
-   *     sound.data = file.get_buffer(file.get_length())
-   *     return sound
+   * 	var file = FileAccess.open(path, FileAccess.READ)
+   * 	var sound = AudioStreamMP3.new()
+   * 	sound.data = file.get_buffer(file.get_length())
+   * 	return sound
    * ```
    *
    * ```csharp
    * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
-   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
-   *     var sound = new AudioStreamMP3();
-   *     sound.Data = file.GetBuffer(file.GetLength());
-   *     return sound;
+   * 	using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   * 	var sound = new AudioStreamMP3();
+   * 	sound.Data = file.GetBuffer(file.GetLength());
+   * 	return sound;
    * }
    * ```
    */
@@ -192,20 +192,20 @@ public open class AudioStreamMP3 : AudioStream() {
    * ```gdscript
    * //gdscript
    * func load_mp3(path):
-   *     var file = FileAccess.open(path, FileAccess.READ)
-   *     var sound = AudioStreamMP3.new()
-   *     sound.data = file.get_buffer(file.get_length())
-   *     return sound
+   * 	var file = FileAccess.open(path, FileAccess.READ)
+   * 	var sound = AudioStreamMP3.new()
+   * 	sound.data = file.get_buffer(file.get_length())
+   * 	return sound
    * ```
    *
    * ```csharp
    * //csharp
    * public AudioStreamMP3 LoadMP3(string path)
    * {
-   *     using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
-   *     var sound = new AudioStreamMP3();
-   *     sound.Data = file.GetBuffer(file.GetLength());
-   *     return sound;
+   * 	using var file = FileAccess.Open(path, FileAccess.ModeFlags.Read);
+   * 	var sound = new AudioStreamMP3();
+   * 	sound.Data = file.GetBuffer(file.GetLength());
+   * 	return sound;
    * }
    * ```
    */

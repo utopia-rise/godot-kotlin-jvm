@@ -19,6 +19,7 @@ import godot.core.Vector2i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
@@ -34,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerAdvanced : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(660, scriptIndex)
+    createNativeObject(676, scriptIndex)
   }
 
   /**
@@ -483,6 +484,7 @@ public open class TextServerAdvanced : TextServerExtension() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerAdvanced::_fontDrawGlyph can't be called from the JVM.")
   }
@@ -498,6 +500,7 @@ public open class TextServerAdvanced : TextServerExtension() {
     pos: Vector2,
     index: Long,
     color: Color,
+    oversampling: Float,
   ): Unit {
     throw NotImplementedError("TextServerAdvanced::_fontDrawGlyphOutline can't be called from the JVM.")
   }
@@ -562,6 +565,13 @@ public open class TextServerAdvanced : TextServerExtension() {
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
+  public override fun _shapedGetText(shaped: RID): String {
+    throw NotImplementedError("TextServerAdvanced::_shapedGetText can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
   public override fun _shapedGetSpanCount(shaped: RID): Long {
     throw NotImplementedError("TextServerAdvanced::_shapedGetSpanCount can't be called from the JVM.")
   }
@@ -578,6 +588,20 @@ public open class TextServerAdvanced : TextServerExtension() {
    */
   public override fun _shapedGetSpanEmbeddedObject(shaped: RID, index: Long): Any? {
     throw NotImplementedError("TextServerAdvanced::_shapedGetSpanEmbeddedObject can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedGetSpanText(shaped: RID, index: Long): String {
+    throw NotImplementedError("TextServerAdvanced::_shapedGetSpanText can't be called from the JVM.")
+  }
+
+  /**
+   * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
+   */
+  public override fun _shapedGetSpanObject(shaped: RID, index: Long): Any? {
+    throw NotImplementedError("TextServerAdvanced::_shapedGetSpanObject can't be called from the JVM.")
   }
 
   /**

@@ -91,6 +91,19 @@ public open class VideoStreamPlayer : Control() {
     }
 
   /**
+   * The stream's current speed scale. `1.0` is the normal speed, while `2.0` is double speed and
+   * `0.5` is half speed. A speed scale of `0.0` pauses the video, similar to setting [paused] to
+   * `true`.
+   */
+  public final inline var speedScale: Float
+    @JvmName("speedScaleProperty")
+    get() = getSpeedScale()
+    @JvmName("speedScaleProperty")
+    set(`value`) {
+      setSpeedScale(value)
+    }
+
+  /**
    * If `true`, playback starts when the scene loads.
    */
   public final inline var autoplay: Boolean
@@ -148,9 +161,6 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The current position of the stream, in seconds.
-   *
-   * **Note:** Changing this value won't have any effect as seeking is not implemented yet, except
-   * in video formats implemented by a GDExtension add-on.
    */
   public final inline var streamPosition: Double
     @JvmName("streamPositionProperty")
@@ -172,7 +182,7 @@ public open class VideoStreamPlayer : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(717, scriptIndex)
+    createNativeObject(733, scriptIndex)
   }
 
   public final fun setStream(stream: VideoStream?): Unit {
@@ -261,6 +271,17 @@ public open class VideoStreamPlayer : Control() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setSpeedScale(speedScale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to speedScale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setSpeedScalePtr, NIL)
+  }
+
+  public final fun getSpeedScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSpeedScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setAudioTrack(track: Int): Unit {
     TransferContext.writeArguments(LONG to track.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setAudioTrackPtr, NIL)
@@ -283,10 +304,6 @@ public open class VideoStreamPlayer : Control() {
 
   /**
    * The length of the current stream, in seconds.
-   *
-   * **Note:** For [VideoStreamTheora] streams (the built-in format supported by Godot), this value
-   * will always be zero, as getting the stream length is not implemented yet. The feature may be
-   * supported by video formats implemented by a GDExtension add-on.
    */
   public final fun getStreamLength(): Double {
     TransferContext.writeArguments()
@@ -401,6 +418,12 @@ public open class VideoStreamPlayer : Control() {
 
     internal val getVolumeDbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_volume_db", 1740695150)
+
+    internal val setSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_speed_scale", 373806689)
+
+    internal val getSpeedScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VideoStreamPlayer", "get_speed_scale", 1740695150)
 
     internal val setAudioTrackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VideoStreamPlayer", "set_audio_track", 1286410249)

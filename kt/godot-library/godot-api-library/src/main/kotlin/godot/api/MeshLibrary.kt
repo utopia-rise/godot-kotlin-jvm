@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class MeshLibrary : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(356, scriptIndex)
+    createNativeObject(364, scriptIndex)
   }
 
   /**
@@ -75,8 +75,7 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
-   * Sets the item's shadow casting mode. See [RenderingServer.ShadowCastingSetting] for possible
-   * values.
+   * Sets the item's shadow casting mode to [shadowCastingSetting].
    */
   public final fun setItemMeshCastShadow(id: Int,
       shadowCastingSetting: RenderingServer.ShadowCastingSetting): Unit {
@@ -155,8 +154,7 @@ public open class MeshLibrary : Resource() {
   }
 
   /**
-   * Returns the item's shadow casting mode. See [RenderingServer.ShadowCastingSetting] for possible
-   * values.
+   * Returns the item's shadow casting mode.
    */
   public final fun getItemMeshCastShadow(id: Int): RenderingServer.ShadowCastingSetting {
     TransferContext.writeArguments(LONG to id.toLong())

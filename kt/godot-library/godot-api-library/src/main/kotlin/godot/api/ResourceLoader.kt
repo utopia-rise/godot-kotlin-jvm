@@ -56,8 +56,8 @@ public object ResourceLoader : Object() {
    * to load the resource, which makes loading faster, but may affect the main thread (and thus cause
    * game slowdowns).
    *
-   * The [cacheMode] property defines whether and how the cache should be used or updated when
-   * loading the resource. See [CacheMode] for details.
+   * The [cacheMode] parameter defines whether and how the cache should be used or updated when
+   * loading the resource.
    */
   @JvmOverloads
   @JvmStatic
@@ -74,7 +74,7 @@ public object ResourceLoader : Object() {
 
   /**
    * Returns the status of a threaded loading operation started with [loadThreadedRequest] for the
-   * resource at [path]. See [ThreadLoadStatus] for possible return values.
+   * resource at [path].
    *
    * An array variable can optionally be passed via [progress], and will return a one-element array
    * containing the ratio of completion of the threaded loading (between `0.0` and `1.0`).
@@ -118,7 +118,7 @@ public object ResourceLoader : Object() {
    * type hint, for example [Image].
    *
    * The [cacheMode] property defines whether and how the cache should be used or updated when
-   * loading the resource. See [CacheMode] for details.
+   * loading the resource.
    *
    * Returns an empty resource if no [ResourceFormatLoader] could handle the file, and prints an
    * error if no file is found at the specified path.
@@ -193,13 +193,18 @@ public object ResourceLoader : Object() {
   /**
    * Returns the dependencies for the resource at the given [path].
    *
-   * **Note:** The dependencies are returned with slices separated by `::`. You can use
-   * [String.getSlice] to get their components.
+   * Each dependency is a string that can be divided into sections by `::`. There can be either one
+   * section or three sections, with the second section always being empty. When there is one section,
+   * it contains the file path. When there are three sections, the first section contains the UID and
+   * the third section contains the fallback path.
    *
    * ```
    * for dependency in ResourceLoader.get_dependencies(path):
-   *     print(dependency.get_slice("::", 0)) # Prints the UID.
-   *     print(dependency.get_slice("::", 2)) # Prints the path.
+   * 	if dependency.contains("::"):
+   * 		print(dependency.get_slice("::", 0)) # Prints the UID.
+   * 		print(dependency.get_slice("::", 2)) # Prints the fallback path.
+   * 	else:
+   * 		print(dependency) # Prints the path.
    * ```
    */
   @JvmStatic
@@ -264,8 +269,19 @@ public object ResourceLoader : Object() {
   }
 
   /**
-   * Lists a directory (as example: "res://assets/enemies"), returning all resources contained
-   * within. The resource files are the original file names as visible in the editor before exporting.
+   * Lists a directory, returning all resources and subdirectories contained within. The resource
+   * files have the original file names as visible in the editor before exporting. The directories have
+   * `"/"` appended.
+   *
+   * ```
+   * # Prints ["extra_data/", "model.gltf", "model.tscn", "model_slime.png"]
+   * print(ResourceLoader.list_directory("res://assets/enemies/slime"))
+   * ```
+   *
+   * **Note:** The order of files and directories returned by this method is not deterministic, and
+   * can vary between operating systems.
+   *
+   * **Note:** To normally traverse the filesystem, see [DirAccess].
    */
   @JvmStatic
   public final fun listDirectory(directoryPath: String): PackedStringArray {

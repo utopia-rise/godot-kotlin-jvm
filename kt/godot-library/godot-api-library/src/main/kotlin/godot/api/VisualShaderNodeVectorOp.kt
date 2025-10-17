@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
   /**
-   * The operator to be used. See [Operator] for options.
+   * The operator to be used.
    */
   public final inline var `operator`: Operator
     @JvmName("operatorProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeVectorOp : VisualShaderNodeVectorBase() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(835, scriptIndex)
+    createNativeObject(851, scriptIndex)
   }
 
   public final fun setOperator(op: Operator): Unit {

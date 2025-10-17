@@ -12,6 +12,7 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Dictionary
 import godot.core.Error
+import godot.core.PackedStringArray
 import godot.core.Signal0
 import godot.core.StringName
 import godot.core.VariantArray
@@ -21,6 +22,7 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
+import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
@@ -67,6 +69,10 @@ public object ProjectSettings : Object() {
 
   /**
    * Returns `true` if a configuration value is present.
+   *
+   * **Note:** In order to be be detected, custom settings have to be either defined with
+   * [setSetting], or exist in the `project.godot` file. This is especially relevant when using
+   * [setInitialValue].
    */
   @JvmStatic
   public final fun hasSetting(name: String): Boolean {
@@ -118,6 +124,8 @@ public object ProjectSettings : Object() {
    *
    * **Note:** This method doesn't take potential feature overrides into account automatically. Use
    * [getSettingWithOverride] to handle seamlessly.
+   *
+   * See also [hasSetting] to check whether a setting exists.
    */
   @JvmOverloads
   @JvmStatic
@@ -176,6 +184,18 @@ public object ProjectSettings : Object() {
   }
 
   /**
+   * Similar to [getSettingWithOverride], but applies feature tag overrides instead of current OS
+   * features.
+   */
+  @JvmStatic
+  public final fun getSettingWithOverrideAndCustomFeatures(name: StringName,
+      features: PackedStringArray): Any? {
+    TransferContext.writeArguments(STRING_NAME to name, PACKED_STRING_ARRAY to features)
+    TransferContext.callMethod(ptr, MethodBindings.getSettingWithOverrideAndCustomFeaturesPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
    * Sets the order of a configuration value (influences when saved to the config file).
    */
   @JvmStatic
@@ -195,7 +215,25 @@ public object ProjectSettings : Object() {
   }
 
   /**
-   * Sets the specified setting's initial value. This is the value the setting reverts to.
+   * Sets the specified setting's initial value. This is the value the setting reverts to. The
+   * setting should already exist before calling this method. Note that project settings equal to their
+   * default value are not saved, so your code needs to account for that.
+   *
+   * ```
+   * extends EditorPlugin
+   *
+   * const SETTING_NAME = "addons/my_setting"
+   * const SETTING_DEFAULT = 10.0
+   *
+   * func _enter_tree():
+   * 	if not ProjectSettings.has_setting(SETTING_NAME):
+   * 		ProjectSettings.set_setting(SETTING_NAME, SETTING_DEFAULT)
+   *
+   * 	ProjectSettings.set_initial_value(SETTING_NAME, SETTING_DEFAULT)
+   * ```
+   *
+   * If you have a project setting defined by an [EditorPlugin], but want to use it in a running
+   * project, you will need a similar code at runtime.
    */
   @JvmStatic
   public final fun setInitialValue(name: String, `value`: Any?): Unit {
@@ -239,10 +277,10 @@ public object ProjectSettings : Object() {
    * ProjectSettings.set("category/property_name", 0)
    *
    * var property_info = {
-   *     "name": "category/property_name",
-   *     "type": TYPE_INT,
-   *     "hint": PROPERTY_HINT_ENUM,
-   *     "hint_string": "one,two,three"
+   * 	"name": "category/property_name",
+   * 	"type": TYPE_INT,
+   * 	"hint": PROPERTY_HINT_ENUM,
+   * 	"hint_string": "one,two,three"
    * }
    *
    * ProjectSettings.add_property_info(property_info)
@@ -254,14 +292,17 @@ public object ProjectSettings : Object() {
    *
    * var propertyInfo = new Godot.Collections.Dictionary
    * {
-   *     {"name", "category/propertyName"},
-   *     {"type", (int)Variant.Type.Int},
-   *     {"hint", (int)PropertyHint.Enum},
-   *     {"hint_string", "one,two,three"},
+   * 	{ "name", "category/propertyName" },
+   * 	{ "type", (int)Variant.Type.Int },
+   * 	{ "hint", (int)PropertyHint.Enum },
+   * 	{ "hint_string", "one,two,three" },
    * };
    *
    * ProjectSettings.AddPropertyInfo(propertyInfo);
    * ```
+   *
+   * **Note:** Setting `"usage"` for the property is not supported. Use [setAsBasic],
+   * [setRestartIfChanged], and [setAsInternal] to modify usage flags.
    */
   @JvmStatic
   public final fun addPropertyInfo(hint: Dictionary<Any?, Any?>): Unit {
@@ -314,15 +355,15 @@ public object ProjectSettings : Object() {
    * ```
    * var path = ""
    * if OS.has_feature("editor"):
-   *     # Running from an editor binary.
-   *     # `path` will contain the absolute path to `hello.txt` located in the project root.
-   *     path = ProjectSettings.globalize_path("res://hello.txt")
+   * 	# Running from an editor binary.
+   * 	# `path` will contain the absolute path to `hello.txt` located in the project root.
+   * 	path = ProjectSettings.globalize_path("res://hello.txt")
    * else:
-   *     # Running from an exported project.
-   *     # `path` will contain the absolute path to `hello.txt` next to the executable.
-   *     # This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
-   *     # but is close enough in spirit.
-   *     path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
+   * 	# Running from an exported project.
+   * 	# `path` will contain the absolute path to `hello.txt` next to the executable.
+   * 	# This is *not* identical to using `ProjectSettings.globalize_path()` with a `res://` path,
+   * 	# but is close enough in spirit.
+   * 	path = OS.get_executable_path().get_base_dir().path_join("hello.txt")
    * ```
    */
   @JvmStatic
@@ -406,6 +447,15 @@ public object ProjectSettings : Object() {
   public final fun getSettingWithOverride(name: String): Any? =
       getSettingWithOverride(name.asCachedStringName())
 
+  /**
+   * Similar to [getSettingWithOverride], but applies feature tag overrides instead of current OS
+   * features.
+   */
+  @JvmStatic
+  public final fun getSettingWithOverrideAndCustomFeatures(name: String,
+      features: PackedStringArray): Any? =
+      getSettingWithOverrideAndCustomFeatures(name.asCachedStringName(), features)
+
   public object MethodBindings {
     internal val hasSettingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProjectSettings", "has_setting", 3927539163)
@@ -421,6 +471,9 @@ public object ProjectSettings : Object() {
 
     internal val getGlobalClassListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProjectSettings", "get_global_class_list", 2915620761)
+
+    internal val getSettingWithOverrideAndCustomFeaturesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ProjectSettings", "get_setting_with_override_and_custom_features", 2434817427)
 
     internal val setOrderPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ProjectSettings", "set_order", 2956805083)

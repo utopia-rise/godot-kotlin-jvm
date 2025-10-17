@@ -36,27 +36,26 @@ import kotlin.Unit
  * var peers = []
  *
  * func _ready():
- *     server.listen(4242)
- *     var key = load("key.key") # Your private key.
- *     var cert = load("cert.crt") # Your X509 certificate.
- *     dtls.setup(TlsOptions.server(key, cert))
+ * 	server.listen(4242)
+ * 	var key = load("key.key") # Your private key.
+ * 	var cert = load("cert.crt") # Your X509 certificate.
+ * 	dtls.setup(TlsOptions.server(key, cert))
  *
  * func _process(delta):
- *     while server.is_connection_available():
- *         var peer = server.take_connection()
- *         var dtls_peer = dtls.take_connection(peer)
- *         if dtls_peer.get_status() != PacketPeerDTLS.STATUS_HANDSHAKING:
- *             continue # It is normal that 50&#37; of the connections fails due to cookie exchange.
- *         print("Peer connected!")
- *         peers.append(dtls_peer)
+ * 	while server.is_connection_available():
+ * 		var peer = server.take_connection()
+ * 		var dtls_peer = dtls.take_connection(peer)
+ * 		if dtls_peer.get_status() != PacketPeerDTLS.STATUS_HANDSHAKING:
+ * 			continue # It is normal that 50&#37; of the connections fails due to cookie exchange.
+ * 		print("Peer connected!")
+ * 		peers.append(dtls_peer)
  *
- *     for p in peers:
- *         p.poll() # Must poll to update the state.
- *         if p.get_status() == PacketPeerDTLS.STATUS_CONNECTED:
- *             while p.get_available_packet_count() > 0:
- *                 print("Received message from client: &#37;s" &#37;
- * p.get_packet().get_string_from_utf8())
- *                 p.put_packet("Hello DTLS client".to_utf8_buffer())
+ * 	for p in peers:
+ * 		p.poll() # Must poll to update the state.
+ * 		if p.get_status() == PacketPeerDTLS.STATUS_CONNECTED:
+ * 			while p.get_available_packet_count() > 0:
+ * 				print("Received message from client: &#37;s" &#37; p.get_packet().get_string_from_utf8())
+ * 				p.put_packet("Hello DTLS client".to_utf8_buffer())
  * ```
  *
  * ```csharp
@@ -66,47 +65,45 @@ import kotlin.Unit
  *
  * public partial class ServerNode : Node
  * {
- *     private DtlsServer _dtls = new DtlsServer();
- *     private UdpServer _server = new UdpServer();
- *     private Godot.Collections.Array<PacketPeerDtls> _peers = [];
+ * 	private DtlsServer _dtls = new DtlsServer();
+ * 	private UdpServer _server = new UdpServer();
+ * 	private Godot.Collections.Array<PacketPeerDtls> _peers = [];
  *
- *     public override void _Ready()
- *     {
- *         _server.Listen(4242);
- *         var key = GD.Load<CryptoKey>("key.key"); // Your private key.
- *         var cert = GD.Load<X509Certificate>("cert.crt"); // Your X509 certificate.
- *         _dtls.Setup(TlsOptions.Server(key, cert));
- *     }
+ * 	public override void _Ready()
+ * 	{
+ * 		_server.Listen(4242);
+ * 		var key = GD.Load<CryptoKey>("key.key"); // Your private key.
+ * 		var cert = GD.Load<X509Certificate>("cert.crt"); // Your X509 certificate.
+ * 		_dtls.Setup(TlsOptions.Server(key, cert));
+ * 	}
  *
- *     public override void _Process(double delta)
- *     {
- *         while (_server.IsConnectionAvailable())
- *         {
- *             PacketPeerUdp peer = _server.TakeConnection();
- *             PacketPeerDtls dtlsPeer = _dtls.TakeConnection(peer);
- *             if (dtlsPeer.GetStatus() != PacketPeerDtls.Status.Handshaking)
- *             {
- *                 continue; // It is normal that 50&#37; of the connections fails due to cookie
- * exchange.
- *             }
- *             GD.Print("Peer connected!");
- *             _peers.Add(dtlsPeer);
- *         }
+ * 	public override void _Process(double delta)
+ * 	{
+ * 		while (_server.IsConnectionAvailable())
+ * 		{
+ * 			PacketPeerUdp peer = _server.TakeConnection();
+ * 			PacketPeerDtls dtlsPeer = _dtls.TakeConnection(peer);
+ * 			if (dtlsPeer.GetStatus() != PacketPeerDtls.Status.Handshaking)
+ * 			{
+ * 				continue; // It is normal that 50&#37; of the connections fails due to cookie exchange.
+ * 			}
+ * 			GD.Print("Peer connected!");
+ * 			_peers.Add(dtlsPeer);
+ * 		}
  *
- *         foreach (var p in _peers)
- *         {
- *             p.Poll(); // Must poll to update the state.
- *             if (p.GetStatus() == PacketPeerDtls.Status.Connected)
- *             {
- *                 while (p.GetAvailablePacketCount() > 0)
- *                 {
- *                     GD.Print($"Received Message From Client:
- * {p.GetPacket().GetStringFromUtf8()}");
- *                     p.PutPacket("Hello DTLS Client".ToUtf8Buffer());
- *                 }
- *             }
- *         }
- *     }
+ * 		foreach (var p in _peers)
+ * 		{
+ * 			p.Poll(); // Must poll to update the state.
+ * 			if (p.GetStatus() == PacketPeerDtls.Status.Connected)
+ * 			{
+ * 				while (p.GetAvailablePacketCount() > 0)
+ * 				{
+ * 					GD.Print($"Received Message From Client: {p.GetPacket().GetStringFromUtf8()}");
+ * 					p.PutPacket("Hello DTLS Client".ToUtf8Buffer());
+ * 				}
+ * 			}
+ * 		}
+ * 	}
  * }
  * ```
  *
@@ -121,18 +118,18 @@ import kotlin.Unit
  * var connected = false
  *
  * func _ready():
- *     udp.connect_to_host("127.0.0.1", 4242)
- *     dtls.connect_to_peer(udp, false) # Use true in production for certificate validation!
+ * 	udp.connect_to_host("127.0.0.1", 4242)
+ * 	dtls.connect_to_peer(udp, false) # Use true in production for certificate validation!
  *
  * func _process(delta):
- *     dtls.poll()
- *     if dtls.get_status() == PacketPeerDTLS.STATUS_CONNECTED:
- *         if !connected:
- *             # Try to contact server
- *             dtls.put_packet("The answer is... 42!".to_utf8_buffer())
- *         while dtls.get_available_packet_count() > 0:
- *             print("Connected: &#37;s" &#37; dtls.get_packet().get_string_from_utf8())
- *             connected = true
+ * 	dtls.poll()
+ * 	if dtls.get_status() == PacketPeerDTLS.STATUS_CONNECTED:
+ * 		if !connected:
+ * 			# Try to contact server
+ * 			dtls.put_packet("The answer is... 42!".to_utf8_buffer())
+ * 		while dtls.get_available_packet_count() > 0:
+ * 			print("Connected: &#37;s" &#37; dtls.get_packet().get_string_from_utf8())
+ * 			connected = true
  * ```
  *
  * ```csharp
@@ -143,41 +140,41 @@ import kotlin.Unit
  *
  * public partial class ClientNode : Node
  * {
- *     private PacketPeerDtls _dtls = new PacketPeerDtls();
- *     private PacketPeerUdp _udp = new PacketPeerUdp();
- *     private bool _connected = false;
+ * 	private PacketPeerDtls _dtls = new PacketPeerDtls();
+ * 	private PacketPeerUdp _udp = new PacketPeerUdp();
+ * 	private bool _connected = false;
  *
- *     public override void _Ready()
- *     {
- *         _udp.ConnectToHost("127.0.0.1", 4242);
- *         _dtls.ConnectToPeer(_udp, validateCerts: false); // Use true in production for
- * certificate validation!
- *     }
+ * 	public override void _Ready()
+ * 	{
+ * 		_udp.ConnectToHost("127.0.0.1", 4242);
+ * 		_dtls.ConnectToPeer(_udp, validateCerts: false); // Use true in production for certificate
+ * validation!
+ * 	}
  *
- *     public override void _Process(double delta)
- *     {
- *         _dtls.Poll();
- *         if (_dtls.GetStatus() == PacketPeerDtls.Status.Connected)
- *         {
- *             if (!_connected)
- *             {
- *                 // Try to contact server
- *                 _dtls.PutPacket("The Answer Is..42!".ToUtf8Buffer());
- *             }
- *             while (_dtls.GetAvailablePacketCount() > 0)
- *             {
- *                 GD.Print($"Connected: {_dtls.GetPacket().GetStringFromUtf8()}");
- *                 _connected = true;
- *             }
- *         }
- *     }
+ * 	public override void _Process(double delta)
+ * 	{
+ * 		_dtls.Poll();
+ * 		if (_dtls.GetStatus() == PacketPeerDtls.Status.Connected)
+ * 		{
+ * 			if (!_connected)
+ * 			{
+ * 				// Try to contact server
+ * 				_dtls.PutPacket("The Answer Is..42!".ToUtf8Buffer());
+ * 			}
+ * 			while (_dtls.GetAvailablePacketCount() > 0)
+ * 			{
+ * 				GD.Print($"Connected: {_dtls.GetPacket().GetStringFromUtf8()}");
+ * 				_connected = true;
+ * 			}
+ * 		}
+ * 	}
  * }
  * ```
  */
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(192, scriptIndex)
+    createNativeObject(197, scriptIndex)
   }
 
   /**

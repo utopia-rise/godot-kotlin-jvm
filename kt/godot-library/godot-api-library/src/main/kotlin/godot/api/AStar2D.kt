@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -39,8 +40,29 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AStar2D : RefCounted() {
+  /**
+   * If `true` enables the filtering of neighbors via [_filterNeighbor].
+   */
+  public final inline var neighborFilterEnabled: Boolean
+    @JvmName("neighborFilterEnabledProperty")
+    get() = isNeighborFilterEnabled()
+    @JvmName("neighborFilterEnabledProperty")
+    set(`value`) {
+      setNeighborFilterEnabled(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(3, scriptIndex)
+  }
+
+  /**
+   * Called when neighboring enters processing and if [neighborFilterEnabled] is `true`. If `true`
+   * is returned the point will not be processed.
+   *
+   * Note that this function is hidden in the default [AStar2D] class.
+   */
+  public open fun _filterNeighbor(fromId: Long, neighborId: Long): Boolean {
+    throw NotImplementedError("AStar2D::_filterNeighbor is not implemented.")
   }
 
   /**
@@ -202,6 +224,17 @@ public open class AStar2D : RefCounted() {
     return (TransferContext.readReturnValue(PACKED_INT_64_ARRAY) as PackedInt64Array)
   }
 
+  public final fun setNeighborFilterEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setNeighborFilterEnabledPtr, NIL)
+  }
+
+  public final fun isNeighborFilterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isNeighborFilterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Disables or enables the specified point for pathfinding. Useful for making a temporary
    * obstacle.
@@ -301,8 +334,7 @@ public open class AStar2D : RefCounted() {
 
   /**
    * Reserves space internally for [numNodes] points. Useful if you're adding a known large number
-   * of points at once, such as points on a grid. The new capacity must be greater or equal to the old
-   * capacity.
+   * of points at once, such as points on a grid.
    */
   public final fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
@@ -369,8 +401,8 @@ public open class AStar2D : RefCounted() {
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
    *
-   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * array and will print an error message.
+   * **Note:** This method is not thread-safe; it can only be used from a single [Thread] at a given
+   * time. Consider using [Mutex] to ensure exclusive access to one thread to avoid race conditions.
    *
    * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
@@ -473,6 +505,12 @@ public open class AStar2D : RefCounted() {
 
     internal val getPointIdsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStar2D", "get_point_ids", 3851388692)
+
+    internal val setNeighborFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStar2D", "set_neighbor_filter_enabled", 2586408642)
+
+    internal val isNeighborFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStar2D", "is_neighbor_filter_enabled", 36873697)
 
     internal val setPointDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStar2D", "set_point_disabled", 972357352)

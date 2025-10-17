@@ -28,7 +28,7 @@ import kotlin.jvm.JvmName
  * the slowest.
  */
 @GodotBaseType
-public open class Shape3D internal constructor() : Resource() {
+public abstract class Shape3D : Resource() {
   /**
    * The shape's custom solver bias. Defines how much bodies react to enforce contact separation
    * when this shape is involved.
@@ -61,7 +61,7 @@ public open class Shape3D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(589, scriptIndex)
+    createNativeObject(605, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

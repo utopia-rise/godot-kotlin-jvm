@@ -20,6 +20,7 @@ import godot.core.InlineAlignment
 import godot.core.PackedFloat32Array
 import godot.core.PackedStringArray
 import godot.core.Rect2
+import godot.core.Rect2i
 import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantArray
@@ -35,6 +36,7 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.RECT2
+import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
@@ -80,11 +82,9 @@ public infix fun Long.and(other: RichTextLabel.ImageUpdateMask): Long = this.and
  *
  * **Note:** `push_*&#92;pop_*` functions won't affect BBCode.
  *
- * **Note:** Unlike [Label], [RichTextLabel] doesn't have a *property* to horizontally align text to
- * the center. Instead, enable [bbcodeEnabled] and surround the text in a [code
- * skip-lint][center][/code] tag as follows: [code skip-lint][center]Example[/center][/code]. There is
- * currently no built-in way to vertically align text either, but this can be emulated by relying on
- * anchors/containers and the [fitContent] property.
+ * **Note:** While [bbcodeEnabled] is enabled, alignment tags such as [code
+ * skip-lint][center][/code] will take priority over the [horizontalAlignment] setting which determines
+ * the default text alignment.
  */
 @GodotBaseType
 public open class RichTextLabel : Control() {
@@ -104,8 +104,8 @@ public open class RichTextLabel : Control() {
    * # This assumes RichTextLabel's `meta_clicked` signal was connected to
    * # the function below using the signal connection dialog.
    * func _richtextlabel_on_meta_clicked(meta):
-   *     # `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
-   *     OS.shell_open(str(meta))
+   * 	# `meta` is of Variant type, so convert it to a String to avoid script errors at run-time.
+   * 	OS.shell_open(str(meta))
    * ```
    */
   public val metaClicked: Signal1<Any> by Signal1
@@ -194,8 +194,20 @@ public open class RichTextLabel : Control() {
     }
 
   /**
+   * If `true`, the window scrolls to display the last visible line when [visibleCharacters] or
+   * [visibleRatio] is changed.
+   */
+  public final inline var scrollFollowingVisibleCharacters: Boolean
+    @JvmName("scrollFollowingVisibleCharactersProperty")
+    get() = isScrollFollowingVisibleCharacters()
+    @JvmName("scrollFollowingVisibleCharactersProperty")
+    set(`value`) {
+      setScrollFollowVisibleCharacters(value)
+    }
+
+  /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
-   * node's bounding rectangle. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * node's bounding rectangle.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -203,6 +215,18 @@ public open class RichTextLabel : Control() {
     @JvmName("autowrapModeProperty")
     set(`value`) {
       setAutowrapMode(value)
+    }
+
+  /**
+   * Autowrap space trimming flags. See [TextServer.BREAK_TRIM_START_EDGE_SPACES] and
+   * [TextServer.BREAK_TRIM_END_EDGE_SPACES] for more info.
+   */
+  public final inline var autowrapTrimFlags: TextServer.LineBreakFlag
+    @JvmName("autowrapTrimFlagsProperty")
+    get() = getAutowrapTrimFlags()
+    @JvmName("autowrapTrimFlagsProperty")
+    set(`value`) {
+      setAutowrapTrimFlags(value)
     }
 
   /**
@@ -242,7 +266,6 @@ public open class RichTextLabel : Control() {
 
   /**
    * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -253,8 +276,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom, and fill. Set it to one
-   * of the [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, bottom, and fill.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -265,7 +287,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   * Line fill alignment rules.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -394,6 +416,10 @@ public open class RichTextLabel : Control() {
    * useful when animating the text appearing in a dialog box.
    *
    * **Note:** Setting this property updates [visibleRatio] accordingly.
+   *
+   * **Note:** Characters are counted as Unicode codepoints. A single visible grapheme may contain
+   * multiple codepoints (e.g. certain emoji use three codepoints). A single codepoint may contain two
+   * UTF-16 characters, which are used in C# strings.
    */
   public final inline var visibleCharacters: Int
     @JvmName("visibleCharactersProperty")
@@ -404,8 +430,7 @@ public open class RichTextLabel : Control() {
     }
 
   /**
-   * Sets the clipping behavior when [visibleCharacters] or [visibleRatio] is set. See
-   * [TextServer.VisibleCharactersBehavior] for more info.
+   * The clipping behavior when [visibleCharacters] or [visibleRatio] is set.
    */
   public final inline var visibleCharactersBehavior: TextServer.VisibleCharactersBehavior
     @JvmName("visibleCharactersBehaviorProperty")
@@ -477,7 +502,7 @@ public open class RichTextLabel : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(563, scriptIndex)
+    createNativeObject(578, scriptIndex)
   }
 
   /**
@@ -540,6 +565,28 @@ public open class RichTextLabel : Control() {
   }
 
   /**
+   * Adds a horizontal rule that can be used to separate content.
+   *
+   * If [widthInPercent] is set, [width] values are percentages of the control width instead of
+   * pixels.
+   *
+   * If [heightInPercent] is set, [height] values are percentages of the control width instead of
+   * pixels.
+   */
+  @JvmOverloads
+  public final fun addHr(
+    width: Int = 90,
+    height: Int = 2,
+    color: Color = Color(Color(1, 1, 1, 1)),
+    alignment: HorizontalAlignment = HorizontalAlignment.CENTER,
+    widthInPercent: Boolean = true,
+    heightInPercent: Boolean = false,
+  ): Unit {
+    TransferContext.writeArguments(LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to alignment.value, BOOL to widthInPercent, BOOL to heightInPercent)
+    TransferContext.callMethod(ptr, MethodBindings.addHrPtr, NIL)
+  }
+
+  /**
    * Adds an image's opening and closing tags to the tag stack, optionally providing a [width] and
    * [height] to resize the image, a [color] to tint the image and a [region] to only use parts of the
    * image.
@@ -554,8 +601,13 @@ public open class RichTextLabel : Control() {
    * If [pad] is set, and the image is smaller than the size specified by [width] and [height], the
    * image padding is added to match the size instead of upscaling.
    *
-   * If [sizeInPercent] is set, [width] and [height] values are percentages of the control width
-   * instead of pixels.
+   * If [widthInPercent] is set, [width] values are percentages of the control width instead of
+   * pixels.
+   *
+   * If [heightInPercent] is set, [height] values are percentages of the control width instead of
+   * pixels.
+   *
+   * [altText] is used as the image description for assistive apps.
    */
   @JvmOverloads
   public final fun addImage(
@@ -568,9 +620,11 @@ public open class RichTextLabel : Control() {
     key: Any? = null,
     pad: Boolean = false,
     tooltip: String = "",
-    sizeInPercent: Boolean = false,
+    widthInPercent: Boolean = false,
+    heightInPercent: Boolean = false,
+    altText: String = "",
   ): Unit {
-    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    TransferContext.writeArguments(OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, ANY to key, BOOL to pad, STRING to tooltip, BOOL to widthInPercent, BOOL to heightInPercent, STRING to altText)
     TransferContext.callMethod(ptr, MethodBindings.addImagePtr, NIL)
   }
 
@@ -590,9 +644,10 @@ public open class RichTextLabel : Control() {
     region: Rect2 = Rect2(0.0, 0.0, 0.0, 0.0),
     pad: Boolean = false,
     tooltip: String = "",
-    sizeInPercent: Boolean = false,
+    widthInPercent: Boolean = false,
+    heightInPercent: Boolean = false,
   ): Unit {
-    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to sizeInPercent)
+    TransferContext.writeArguments(ANY to key, LONG to mask.flag, OBJECT to image, LONG to width.toLong(), LONG to height.toLong(), COLOR to color, LONG to inlineAlign.value, RECT2 to region, BOOL to pad, STRING to tooltip, BOOL to widthInPercent, BOOL to heightInPercent)
     TransferContext.callMethod(ptr, MethodBindings.updateImagePtr, NIL)
   }
 
@@ -799,32 +854,38 @@ public open class RichTextLabel : Control() {
   }
 
   /**
-   * Adds a [code skip-lint][u][/code] tag to the tag stack.
+   * Adds a [code skip-lint][u][/code] tag to the tag stack. If [color] alpha value is zero, current
+   * font color with alpha multiplied by [theme_item underline_alpha] is used.
    */
-  public final fun pushUnderline(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun pushUnderline(color: Color = Color(Color(0, 0, 0, 0))): Unit {
+    TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.pushUnderlinePtr, NIL)
   }
 
   /**
-   * Adds a [code skip-lint][s][/code] tag to the tag stack.
+   * Adds a [code skip-lint][s][/code] tag to the tag stack. If [color] alpha value is zero, current
+   * font color with alpha multiplied by [theme_item strikethrough_alpha] is used.
    */
-  public final fun pushStrikethrough(): Unit {
-    TransferContext.writeArguments()
+  @JvmOverloads
+  public final fun pushStrikethrough(color: Color = Color(Color(0, 0, 0, 0))): Unit {
+    TransferContext.writeArguments(COLOR to color)
     TransferContext.callMethod(ptr, MethodBindings.pushStrikethroughPtr, NIL)
   }
 
   /**
    * Adds a [code skip-lint][table=columns,inline_align][/code] tag to the tag stack. Use
-   * [setTableColumnExpand] to set column expansion ratio. Use [pushCell] to add cells.
+   * [setTableColumnExpand] to set column expansion ratio. Use [pushCell] to add cells. [name] is used
+   * as the table name for assistive apps.
    */
   @JvmOverloads
   public final fun pushTable(
     columns: Int,
     inlineAlign: InlineAlignment = InlineAlignment.TOP_TO,
     alignToRow: Int = -1,
+    name: String = "",
   ): Unit {
-    TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.value, LONG to alignToRow.toLong())
+    TransferContext.writeArguments(LONG to columns.toLong(), LONG to inlineAlign.value, LONG to alignToRow.toLong(), STRING to name)
     TransferContext.callMethod(ptr, MethodBindings.pushTablePtr, NIL)
   }
 
@@ -864,6 +925,14 @@ public open class RichTextLabel : Control() {
   ): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), BOOL to expand, LONG to ratio.toLong(), BOOL to shrink)
     TransferContext.callMethod(ptr, MethodBindings.setTableColumnExpandPtr, NIL)
+  }
+
+  /**
+   * Sets table column name for assistive apps.
+   */
+  public final fun setTableColumnName(column: Int, name: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.setTableColumnNamePtr, NIL)
   }
 
   /**
@@ -912,6 +981,11 @@ public open class RichTextLabel : Control() {
 
   /**
    * Adds a [code skip-lint][fgcolor][/code] tag to the tag stack.
+   *
+   * **Note:** The foreground color has padding applied by default, which is controlled using
+   * [theme_item text_highlight_h_padding] and [theme_item text_highlight_v_padding]. This can lead to
+   * overlapping highlights if foreground colors are placed on neighboring lines/columns, so consider
+   * setting those theme items to `0` if you want to avoid this.
    */
   public final fun pushFgcolor(fgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to fgcolor)
@@ -920,6 +994,11 @@ public open class RichTextLabel : Control() {
 
   /**
    * Adds a [code skip-lint][bgcolor][/code] tag to the tag stack.
+   *
+   * **Note:** The background color has padding applied by default, which is controlled using
+   * [theme_item text_highlight_h_padding] and [theme_item text_highlight_v_padding]. This can lead to
+   * overlapping highlights if background colors are placed on neighboring lines/columns, so consider
+   * setting those theme items to `0` if you want to avoid this.
    */
   public final fun pushBgcolor(bgcolor: Color): Unit {
     TransferContext.writeArguments(COLOR to bgcolor)
@@ -1079,6 +1158,17 @@ public open class RichTextLabel : Control() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setAutowrapTrimFlags(autowrapTrimFlags: TextServer.LineBreakFlag): Unit {
+    TransferContext.writeArguments(LONG to autowrapTrimFlags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapTrimFlagsPtr, NIL)
+  }
+
+  public final fun getAutowrapTrimFlags(): TextServer.LineBreakFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapTrimFlagsPtr, LONG)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setMetaUnderline(enable: Boolean): Unit {
     TransferContext.writeArguments(BOOL to enable)
     TransferContext.callMethod(ptr, MethodBindings.setMetaUnderlinePtr, NIL)
@@ -1109,6 +1199,17 @@ public open class RichTextLabel : Control() {
   public final fun isScrollActive(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isScrollActivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setScrollFollowVisibleCharacters(follow: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to follow)
+    TransferContext.callMethod(ptr, MethodBindings.setScrollFollowVisibleCharactersPtr, NIL)
+  }
+
+  public final fun isScrollFollowingVisibleCharacters(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isScrollFollowingVisibleCharactersPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -1444,9 +1545,6 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the total number of lines in the text. Wrapped text is counted as multiple lines.
    *
-   * **Note:** If [visibleCharactersBehavior] is set to [TextServer.VC_CHARS_BEFORE_SHAPING] only
-   * visible wrapped lines are counted.
-   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1475,6 +1573,8 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the number of visible lines.
    *
+   * **Note:** This method returns a correct value only after the label has been drawn.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1498,6 +1598,8 @@ public open class RichTextLabel : Control() {
    * Returns the number of visible paragraphs. A paragraph is considered visible if at least one of
    * its lines is visible.
    *
+   * **Note:** This method returns a correct value only after the label has been drawn.
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1509,6 +1611,10 @@ public open class RichTextLabel : Control() {
 
   /**
    * Returns the height of the content.
+   *
+   * **Note:** This method always returns the full content size, and is not affected by
+   * [visibleRatio] and [visibleCharacters]. To get the visible content size, use
+   * [getVisibleContentRect].
    *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
@@ -1522,6 +1628,10 @@ public open class RichTextLabel : Control() {
   /**
    * Returns the width of the content.
    *
+   * **Note:** This method always returns the full content size, and is not affected by
+   * [visibleRatio] and [visibleCharacters]. To get the visible content size, use
+   * [getVisibleContentRect].
+   *
    * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
    * document. Use [isFinished] or [signal finished] to determine whether document is fully loaded.
    */
@@ -1529,6 +1639,69 @@ public open class RichTextLabel : Control() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentWidthPtr, LONG)
     return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the height of the line found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isFinished] or [signal finished] to determine whether the document is fully loaded.
+   */
+  public final fun getLineHeight(line: Int): Int {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getLineHeightPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the width of the line found at the provided index.
+   *
+   * **Note:** If [threaded] is enabled, this method returns a value for the loaded part of the
+   * document. Use [isFinished] or [signal finished] to determine whether the document is fully loaded.
+   */
+  public final fun getLineWidth(line: Int): Int {
+    TransferContext.writeArguments(LONG to line.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getLineWidthPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the bounding rectangle of the visible content.
+   *
+   * **Note:** This method returns a correct value only after the label has been drawn.
+   *
+   * ```gdscript
+   * //gdscript
+   * extends RichTextLabel
+   *
+   * @export var background_panel: Panel
+   *
+   * func _ready():
+   * 	await draw
+   * 	background_panel.position = get_visible_content_rect().position
+   * 	background_panel.size = get_visible_content_rect().size
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public partial class TestLabel : RichTextLabel
+   * {
+   * 	[Export]
+   * 	public Panel BackgroundPanel { get; set; }
+   *
+   * 	public override async void _Ready()
+   * 	{
+   * 		await ToSignal(this, Control.SignalName.Draw);
+   * 		BackgroundGPanel.Position = GetVisibleContentRect().Position;
+   * 		BackgroundPanel.Size = GetVisibleContentRect().Size;
+   * 	}
+   * }
+   * ```
+   */
+  public final fun getVisibleContentRect(): Rect2i {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVisibleContentRectPtr, RECT2I)
+    return (TransferContext.readReturnValue(RECT2I) as Rect2i)
   }
 
   /**
@@ -1599,15 +1772,23 @@ public open class RichTextLabel : Control() {
    * extends RichTextLabel
    *
    * func _ready():
-   *     install_effect(MyCustomEffect.new())
+   * 	install_effect(MyCustomEffect.new())
    *
-   *     # Alternatively, if not using `class_name` in the script that extends RichTextEffect:
-   *     install_effect(preload("res://effect.gd").new())
+   * 	# Alternatively, if not using `class_name` in the script that extends RichTextEffect:
+   * 	install_effect(preload("res://effect.gd").new())
    * ```
    */
   public final fun installEffect(effect: Any?): Unit {
     TransferContext.writeArguments(ANY to effect)
     TransferContext.callMethod(ptr, MethodBindings.installEffectPtr, NIL)
+  }
+
+  /**
+   * Reloads custom effects. Useful when [customEffects] is modified manually.
+   */
+  public final fun reloadEffects(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.reloadEffectsPtr, NIL)
   }
 
   /**
@@ -1620,40 +1801,40 @@ public open class RichTextLabel : Control() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var menu = get_menu()
-   *     # Remove "Select All" item.
-   *     menu.remove_item(MENU_SELECT_ALL)
-   *     # Add custom items.
-   *     menu.add_separator()
-   *     menu.add_item("Duplicate Text", MENU_MAX + 1)
-   *     # Connect callback.
-   *     menu.id_pressed.connect(_on_item_pressed)
+   * 	var menu = get_menu()
+   * 	# Remove "Select All" item.
+   * 	menu.remove_item(MENU_SELECT_ALL)
+   * 	# Add custom items.
+   * 	menu.add_separator()
+   * 	menu.add_item("Duplicate Text", MENU_MAX + 1)
+   * 	# Connect callback.
+   * 	menu.id_pressed.connect(_on_item_pressed)
    *
    * func _on_item_pressed(id):
-   *     if id == MENU_MAX + 1:
-   *         add_text("\n" + get_parsed_text())
+   * 	if id == MENU_MAX + 1:
+   * 		add_text("\n" + get_parsed_text())
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     var menu = GetMenu();
-   *     // Remove "Select All" item.
-   *     menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
-   *     // Add custom items.
-   *     menu.AddSeparator();
-   *     menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
-   *     // Add event handler.
-   *     menu.IdPressed += OnItemPressed;
+   * 	var menu = GetMenu();
+   * 	// Remove "Select All" item.
+   * 	menu.RemoveItem(RichTextLabel.MenuItems.SelectAll);
+   * 	// Add custom items.
+   * 	menu.AddSeparator();
+   * 	menu.AddItem("Duplicate Text", RichTextLabel.MenuItems.Max + 1);
+   * 	// Add event handler.
+   * 	menu.IdPressed += OnItemPressed;
    * }
    *
    * public void OnItemPressed(int id)
    * {
-   *     if (id == TextEdit.MenuItems.Max + 1)
-   *     {
-   *         AddText("\n" + GetParsedText());
-   *     }
+   * 	if (id == TextEdit.MenuItems.Max + 1)
+   * 	{
+   * 		AddText("\n" + GetParsedText());
+   * 	}
    * }
    * ```
    *
@@ -1863,11 +2044,14 @@ public open class RichTextLabel : Control() {
     internal val setTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_text", 83702148)
 
+    internal val addHrPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "add_hr", 16816895)
+
     internal val addImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 3017663154)
+        TypeManager.getMethodBindPtr("RichTextLabel", "add_image", 1390915033)
 
     internal val updateImagePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 815048486)
+        TypeManager.getMethodBindPtr("RichTextLabel", "update_image", 6389170)
 
     internal val newlinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "newline", 3218959716)
@@ -1927,19 +2111,22 @@ public open class RichTextLabel : Control() {
         TypeManager.getMethodBindPtr("RichTextLabel", "push_language", 83702148)
 
     internal val pushUnderlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_underline", 3218959716)
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_underline", 1458098034)
 
     internal val pushStrikethroughPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_strikethrough", 3218959716)
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_strikethrough", 1458098034)
 
     internal val pushTablePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RichTextLabel", "push_table", 2623499273)
+        TypeManager.getMethodBindPtr("RichTextLabel", "push_table", 3426862026)
 
     internal val pushDropcapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "push_dropcap", 4061635501)
 
     internal val setTableColumnExpandPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_expand", 117236061)
+
+    internal val setTableColumnNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_table_column_name", 501894301)
 
     internal val setCellRowBackgroundColorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_cell_row_background_color", 3465483165)
@@ -2033,6 +2220,12 @@ public open class RichTextLabel : Control() {
     internal val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_autowrap_mode", 1549071663)
 
+    internal val setAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_autowrap_trim_flags", 2809697122)
+
+    internal val getAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_autowrap_trim_flags", 2340632602)
+
     internal val setMetaUnderlinePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_meta_underline", 2586408642)
 
@@ -2050,6 +2243,12 @@ public open class RichTextLabel : Control() {
 
     internal val isScrollActivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_active", 36873697)
+
+    internal val setScrollFollowVisibleCharactersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_follow_visible_characters", 2586408642)
+
+    internal val isScrollFollowingVisibleCharactersPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "is_scroll_following_visible_characters", 36873697)
 
     internal val setScrollFollowPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "set_scroll_follow", 2586408642)
@@ -2210,6 +2409,15 @@ public open class RichTextLabel : Control() {
     internal val getContentWidthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_content_width", 3905245786)
 
+    internal val getLineHeightPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_height", 923996154)
+
+    internal val getLineWidthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_line_width", 923996154)
+
+    internal val getVisibleContentRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "get_visible_content_rect", 410525958)
+
     internal val getLineOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_line_offset", 4025615559)
 
@@ -2227,6 +2435,9 @@ public open class RichTextLabel : Control() {
 
     internal val installEffectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "install_effect", 1114965689)
+
+    internal val reloadEffectsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RichTextLabel", "reload_effects", 3218959716)
 
     internal val getMenuPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RichTextLabel", "get_menu", 229722558)

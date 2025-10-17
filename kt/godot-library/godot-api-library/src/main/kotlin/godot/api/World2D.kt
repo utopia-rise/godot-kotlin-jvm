@@ -32,19 +32,19 @@ public open class World2D : Resource() {
     get() = getCanvas()
 
   /**
+   * The [RID] of this world's navigation map. Used by the [NavigationServer2D].
+   */
+  public final inline val navigationMap: RID
+    @JvmName("navigationMapProperty")
+    get() = getNavigationMap()
+
+  /**
    * The [RID] of this world's physics space resource. Used by the [PhysicsServer2D] for 2D physics,
    * treating it as both a space and an area.
    */
   public final inline val space: RID
     @JvmName("spaceProperty")
     get() = getSpace()
-
-  /**
-   * The [RID] of this world's navigation map. Used by the [NavigationServer2D].
-   */
-  public final inline val navigationMap: RID
-    @JvmName("navigationMapProperty")
-    get() = getNavigationMap()
 
   /**
    * Direct access to the world's physics 2D space state. Used for querying current and potential
@@ -56,7 +56,7 @@ public open class World2D : Resource() {
     get() = getDirectSpaceState()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(851, scriptIndex)
+    createNativeObject(867, scriptIndex)
   }
 
   public final fun getCanvas(): RID {
@@ -65,15 +65,15 @@ public open class World2D : Resource() {
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
-  public final fun getSpace(): RID {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSpacePtr, _RID)
-    return (TransferContext.readReturnValue(_RID) as RID)
-  }
-
   public final fun getNavigationMap(): RID {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getNavigationMapPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  public final fun getSpace(): RID {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSpacePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
 
@@ -89,11 +89,11 @@ public open class World2D : Resource() {
     internal val getCanvasPtr: VoidPtr =
         TypeManager.getMethodBindPtr("World2D", "get_canvas", 2944877500)
 
-    internal val getSpacePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("World2D", "get_space", 2944877500)
-
     internal val getNavigationMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("World2D", "get_navigation_map", 2944877500)
+
+    internal val getSpacePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("World2D", "get_space", 2944877500)
 
     internal val getDirectSpaceStatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("World2D", "get_direct_space_state", 2506717822)

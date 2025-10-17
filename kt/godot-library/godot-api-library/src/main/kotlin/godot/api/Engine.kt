@@ -35,6 +35,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
@@ -317,20 +318,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * func _physics_process(_delta):
-   *     if Engine.get_physics_frames() &#37; 2 == 0:
-   *         pass # Run expensive logic only once every 2 physics frames here.
+   * 	if Engine.get_physics_frames() &#37; 2 == 0:
+   * 		pass # Run expensive logic only once every 2 physics frames here.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _PhysicsProcess(double delta)
    * {
-   *     base._PhysicsProcess(delta);
+   * 	base._PhysicsProcess(delta);
    *
-   *     if (Engine.GetPhysicsFrames() &#37; 2 == 0)
-   *     {
-   *         // Run expensive logic only once every 2 physics frames here.
-   *     }
+   * 	if (Engine.GetPhysicsFrames() &#37; 2 == 0)
+   * 	{
+   * 		// Run expensive logic only once every 2 physics frames here.
+   * 	}
    * }
    * ```
    */
@@ -351,20 +352,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * func _process(_delta):
-   *     if Engine.get_process_frames() &#37; 5 == 0:
-   *         pass # Run expensive logic only once every 5 process (render) frames here.
+   * 	if Engine.get_process_frames() &#37; 5 == 0:
+   * 		pass # Run expensive logic only once every 5 process (render) frames here.
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Process(double delta)
    * {
-   *     base._Process(delta);
+   * 	base._Process(delta);
    *
-   *     if (Engine.GetProcessFrames() &#37; 5 == 0)
-   *     {
-   *         // Run expensive logic only once every 5 process (render) frames here.
-   *     }
+   * 	if (Engine.GetProcessFrames() &#37; 5 == 0)
+   * 	{
+   * 		// Run expensive logic only once every 5 process (render) frames here.
+   * 	}
    * }
    * ```
    */
@@ -423,20 +424,20 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * if Engine.get_version_info().hex >= 0x040100:
-   *     pass # Do things specific to version 4.1 or later.
+   * 	pass # Do things specific to version 4.1 or later.
    * else:
-   *     pass # Do things specific to versions before 4.1.
+   * 	pass # Do things specific to versions before 4.1.
    * ```
    *
    * ```csharp
    * //csharp
    * if ((int)Engine.GetVersionInfo()["hex"] >= 0x040100)
    * {
-   *     // Do things specific to version 4.1 or later.
+   * 	// Do things specific to version 4.1 or later.
    * }
    * else
    * {
-   *     // Do things specific to versions before 4.1.
+   * 	// Do things specific to versions before 4.1.
    * }
    * ```
    */
@@ -519,7 +520,7 @@ public object Engine : Object() {
 
   /**
    * Returns the name of the CPU architecture the Godot binary was built for. Possible return values
-   * include `"x86_64"`, `"x86_32"`, `"arm64"`, `"arm32"`, `"rv64"`, `"riscv"`, `"ppc64"`, `"ppc"`,
+   * include `"x86_64"`, `"x86_32"`, `"arm64"`, `"arm32"`, `"rv64"`, `"ppc64"`, `"loongarch64"`,
    * `"wasm64"`, and `"wasm32"`.
    *
    * To detect whether the current build is 64-bit, or the type of architecture, don't use the
@@ -543,15 +544,15 @@ public object Engine : Object() {
    *
    * ```
    * func _enter_tree():
-   *     # Depending on when the node is added to the tree,
-   *     # prints either "true" or "false".
-   *     print(Engine.is_in_physics_frame())
+   * 	# Depending on when the node is added to the tree,
+   * 	# prints either "true" or "false".
+   * 	print(Engine.is_in_physics_frame())
    *
    * func _process(delta):
-   *     print(Engine.is_in_physics_frame()) # Prints false
+   * 	print(Engine.is_in_physics_frame()) # Prints false
    *
    * func _physics_process(delta):
-   *     print(Engine.is_in_physics_frame()) # Prints true
+   * 	print(Engine.is_in_physics_frame()) # Prints true
    * ```
    */
   @JvmStatic
@@ -692,6 +693,34 @@ public object Engine : Object() {
   }
 
   /**
+   * Captures and returns backtraces from all registered script languages.
+   *
+   * By default, the returned [ScriptBacktrace] will only contain stack frames in editor builds and
+   * debug builds. To enable them for release builds as well, you need to enable
+   * [ProjectSettings.debug/settings/gdscript/alwaysTrackCallStacks].
+   *
+   * If [includeVariables] is `true`, the backtrace will also include the names and values of any
+   * global variables (e.g. autoload singletons) at the point of the capture, as well as local
+   * variables and class member variables at each stack frame. This will however will only be respected
+   * when running the game with a debugger attached, like when running the game from the editor. To
+   * enable it for export builds as well, you need to enable
+   * [ProjectSettings.debug/settings/gdscript/alwaysTrackLocalVariables].
+   *
+   * **Warning:** When [includeVariables] is `true`, any captured variables can potentially (e.g.
+   * with GDScript backtraces) be their actual values, including any object references. This means that
+   * storing such a [ScriptBacktrace] will prevent those objects from being deallocated, so it's
+   * generally recommended not to do so.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun captureScriptBacktraces(includeVariables: Boolean = false):
+      VariantArray<ScriptBacktrace> {
+    TransferContext.writeArguments(BOOL to includeVariables)
+    TransferContext.callMethod(ptr, MethodBindings.captureScriptBacktracesPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<ScriptBacktrace>)
+  }
+
+  /**
    * Returns `true` if the script is currently running inside the editor, otherwise returns `false`.
    * This is useful for `@tool` scripts to conditionally draw editor helpers, or prevent accidentally
    * running "game" code that would affect the scene state while in the editor:
@@ -699,17 +728,17 @@ public object Engine : Object() {
    * ```gdscript
    * //gdscript
    * if Engine.is_editor_hint():
-   *     draw_gizmos()
+   * 	draw_gizmos()
    * else:
-   *     simulate_physics()
+   * 	simulate_physics()
    * ```
    *
    * ```csharp
    * //csharp
    * if (Engine.IsEditorHint())
-   *     DrawGizmos();
+   * 	DrawGizmos();
    * else
-   *     SimulatePhysics();
+   * 	SimulatePhysics();
    * ```
    *
    * See [url=$DOCS_URL/tutorials/plugins/running_code_in_the_editor.html]Running code in the
@@ -928,6 +957,9 @@ public object Engine : Object() {
 
     internal val getScriptLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Engine", "get_script_language", 2151255799)
+
+    internal val captureScriptBacktracesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Engine", "capture_script_backtraces", 873284517)
 
     internal val isEditorHintPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Engine", "is_editor_hint", 36873697)

@@ -46,7 +46,7 @@ public open class CanvasModulate : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(139, scriptIndex)
+    createNativeObject(141, scriptIndex)
   }
 
   /**

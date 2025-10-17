@@ -65,7 +65,7 @@ public object Input : Object() {
   public val joyConnectionChanged: Signal2<Long, Boolean> by Signal2
 
   /**
-   * Controls the mouse mode. See [MouseMode] for more information.
+   * Controls the mouse mode.
    */
   @JvmStatic
   public final inline var mouseMode: MouseMode
@@ -203,7 +203,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns `true` if you are pressing the joypad button (see [JoyButton]).
+   * Returns `true` if you are pressing the joypad button at index [button].
    */
   @JvmStatic
   public final fun isJoyButtonPressed(device: Int, button: JoyButton): Boolean {
@@ -251,7 +251,7 @@ public object Input : Object() {
    * documentation for more information.
    *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionPressed] instead
-   * to query the action state of the current event.
+   * to query the action state of the current event. See also [isActionJustPressedByEvent].
    */
   @JvmOverloads
   @JvmStatic
@@ -272,13 +272,70 @@ public object Input : Object() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
-   * to query the action state of the current event.
+   * to query the action state of the current event. See also [isActionJustReleasedByEvent].
    */
   @JvmOverloads
   @JvmStatic
   public final fun isActionJustReleased(action: StringName, exactMatch: Boolean = false): Boolean {
     TransferContext.writeArguments(STRING_NAME to action, BOOL to exactMatch)
     TransferContext.callMethod(ptr, MethodBindings.isActionJustReleasedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` when the user has *started* pressing the action event in the current frame or
+   * physics tick, and the first event that triggered action press in the current frame/physics tick
+   * was [event]. It will only return `true` on the frame or tick that the user pressed down the
+   * button.
+   *
+   * This is useful for code that needs to run only once when an action is pressed, and the action
+   * is processed during input handling (e.g. [Node.Input]).
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
+   * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustPressedByEvent(
+    action: StringName,
+    event: InputEvent?,
+    exactMatch: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(STRING_NAME to action, OBJECT to event, BOOL to exactMatch)
+    TransferContext.callMethod(ptr, MethodBindings.isActionJustPressedByEventPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics
+   * tick, and the first event that triggered action release in the current frame/physics tick was
+   * [event]. It will only return `true` on the frame or tick that the user releases the button.
+   *
+   * This is useful when an action is processed during input handling (e.g. [Node.Input]).
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
+   * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustReleasedByEvent(
+    action: StringName,
+    event: InputEvent?,
+    exactMatch: Boolean = false,
+  ): Boolean {
+    TransferContext.writeArguments(STRING_NAME to action, OBJECT to event, BOOL to exactMatch)
+    TransferContext.callMethod(ptr, MethodBindings.isActionJustReleasedByEventPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -387,7 +444,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the current value of the joypad axis at given index (see [JoyAxis]).
+   * Returns the current value of the joypad axis at index [axis].
    */
   @JvmStatic
   public final fun getJoyAxis(device: Int, axis: JoyAxis): Float {
@@ -428,19 +485,10 @@ public object Input : Object() {
    * Returns a dictionary with extra platform-specific information about the device, e.g. the raw
    * gamepad name from the OS or the Steam Input index.
    *
-   * On Windows, the dictionary contains the following fields:
-   *
-   * `xinput_index`: The index of the controller in the XInput system. Undefined for DirectInput
-   * devices.
-   *
-   * `vendor_id`: The USB vendor ID of the device.
-   *
-   * `product_id`: The USB product ID of the device.
-   *
-   * On Linux:
+   * On Windows, Linux, and macOS, the dictionary contains the following fields:
    *
    * `raw_name`: The name of the controller as it came from the OS, before getting renamed by the
-   * godot controller database.
+   * controller database.
    *
    * `vendor_id`: The USB vendor ID of the device.
    *
@@ -449,7 +497,12 @@ public object Input : Object() {
    * `steam_input_index`: The Steam Input gamepad index, if the device is not a Steam Input device
    * this key won't be present.
    *
-   * **Note:** The returned dictionary is always empty on Web, iOS, Android, and macOS.
+   * On Windows, the dictionary can have an additional field:
+   *
+   * `xinput_index`: The index of the controller in the XInput system. This key won't be present for
+   * devices not handled by XInput.
+   *
+   * **Note:** The returned dictionary is always empty on Android, iOS, visionOS, and Web.
    */
   @JvmStatic
   public final fun getJoyInfo(device: Int): Dictionary<Any?, Any?> {
@@ -791,7 +844,7 @@ public object Input : Object() {
   }
 
   /**
-   * Returns the currently assigned cursor shape (see [CursorShape]).
+   * Returns the currently assigned cursor shape.
    */
   @JvmStatic
   public final fun getCurrentCursorShape(): CursorShape {
@@ -801,9 +854,9 @@ public object Input : Object() {
   }
 
   /**
-   * Sets a custom mouse cursor image, which is only visible inside the game window. The hotspot can
-   * also be specified. Passing `null` to the image parameter resets to the system cursor. See
-   * [CursorShape] for the list of shapes.
+   * Sets a custom mouse cursor image, which is only visible inside the game window, for the given
+   * mouse [shape]. The hotspot can also be specified. Passing `null` to the image parameter resets to
+   * the system cursor.
    *
    * [image] can be either [Texture2D] or [Image] and its size must be lower than or equal to
    * 256×256. To avoid rendering issues, sizes lower than or equal to 128×128 are recommended.
@@ -953,7 +1006,7 @@ public object Input : Object() {
    * documentation for more information.
    *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionPressed] instead
-   * to query the action state of the current event.
+   * to query the action state of the current event. See also [isActionJustPressedByEvent].
    */
   @JvmOverloads
   @JvmStatic
@@ -971,12 +1024,61 @@ public object Input : Object() {
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    *
    * **Note:** During input handling (e.g. [Node.Input]), use [InputEvent.isActionReleased] instead
-   * to query the action state of the current event.
+   * to query the action state of the current event. See also [isActionJustReleasedByEvent].
    */
   @JvmOverloads
   @JvmStatic
   public final fun isActionJustReleased(action: String, exactMatch: Boolean = false): Boolean =
       isActionJustReleased(action.asCachedStringName(), exactMatch)
+
+  /**
+   * Returns `true` when the user has *started* pressing the action event in the current frame or
+   * physics tick, and the first event that triggered action press in the current frame/physics tick
+   * was [event]. It will only return `true` on the frame or tick that the user pressed down the
+   * button.
+   *
+   * This is useful for code that needs to run only once when an action is pressed, and the action
+   * is processed during input handling (e.g. [Node.Input]).
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* pressed. An action can be
+   * pressed and released again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * **Note:** Due to keyboard ghosting, [isActionJustPressed] may return `false` even if one of the
+   * action's keys is pressed. See
+   * [url=$DOCS_URL/tutorials/inputs/input_examples.html#keyboard-events]Input examples[/url] in the
+   * documentation for more information.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustPressedByEvent(
+    action: String,
+    event: InputEvent?,
+    exactMatch: Boolean = false,
+  ): Boolean = isActionJustPressedByEvent(action.asCachedStringName(), event, exactMatch)
+
+  /**
+   * Returns `true` when the user *stops* pressing the action event in the current frame or physics
+   * tick, and the first event that triggered action release in the current frame/physics tick was
+   * [event]. It will only return `true` on the frame or tick that the user releases the button.
+   *
+   * This is useful when an action is processed during input handling (e.g. [Node.Input]).
+   *
+   * **Note:** Returning `true` does not imply that the action is *still* not pressed. An action can
+   * be released and pressed again rapidly, and `true` will still be returned so as not to miss input.
+   *
+   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
+   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun isActionJustReleasedByEvent(
+    action: String,
+    event: InputEvent?,
+    exactMatch: Boolean = false,
+  ): Boolean = isActionJustReleasedByEvent(action.asCachedStringName(), event, exactMatch)
 
   /**
    * Returns a value between 0 and 1 representing the intensity of the given action. In a joypad,
@@ -1225,6 +1327,12 @@ public object Input : Object() {
 
     internal val isActionJustReleasedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "is_action_just_released", 1558498928)
+
+    internal val isActionJustPressedByEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_action_just_pressed_by_event", 551972873)
+
+    internal val isActionJustReleasedByEventPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Input", "is_action_just_released_by_event", 551972873)
 
     internal val getActionStrengthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Input", "get_action_strength", 801543509)

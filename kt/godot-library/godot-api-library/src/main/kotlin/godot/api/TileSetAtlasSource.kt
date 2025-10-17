@@ -140,7 +140,7 @@ public open class TileSetAtlasSource : TileSetSource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(686, scriptIndex)
+    createNativeObject(702, scriptIndex)
   }
 
   /**
@@ -623,14 +623,14 @@ public open class TileSetAtlasSource : TileSetSource() {
 
   public companion object {
     /**
-     * Represents cell's horizontal flip flag. Should be used directly with [TileMap] to flip placed
-     * tiles by altering their alternative IDs.
+     * Represents cell's horizontal flip flag. Should be used directly with [TileMapLayer] to flip
+     * placed tiles by altering their alternative IDs.
      *
      * ```
-     * var alternate_id = $TileMap.get_cell_alternative_tile(0, Vector2i(2, 2))
+     * var alternate_id = $TileMapLayer.get_cell_alternative_tile(Vector2i(2, 2))
      * if not alternate_id & TileSetAtlasSource.TRANSFORM_FLIP_H:
-     *     # If tile is not already flipped, flip it.
-     *     $TileMap.set_cell(0, Vector2i(2, 2), source_id, atlas_coords, alternate_id |
+     * 	# If tile is not already flipped, flip it.
+     * 	$TileMapLayer.set_cell(Vector2i(2, 2), source_id, atlas_coords, alternate_id |
      * TileSetAtlasSource.TRANSFORM_FLIP_H)
      * ```
      *
@@ -639,11 +639,10 @@ public open class TileSetAtlasSource : TileSetSource() {
      *
      * ```
      * enum TileTransform {
-     *     ROTATE_0 = 0,
-     *     ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
-     *     ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
-     *     ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE |
-     * TileSetAtlasSource.TRANSFORM_FLIP_V,
+     * 	ROTATE_0 = 0,
+     * 	ROTATE_90 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_H,
+     * 	ROTATE_180 = TileSetAtlasSource.TRANSFORM_FLIP_H | TileSetAtlasSource.TRANSFORM_FLIP_V,
+     * 	ROTATE_270 = TileSetAtlasSource.TRANSFORM_TRANSPOSE | TileSetAtlasSource.TRANSFORM_FLIP_V,
      * }
      * ```
      */

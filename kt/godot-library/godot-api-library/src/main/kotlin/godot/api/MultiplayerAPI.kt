@@ -52,7 +52,7 @@ import kotlin.jvm.JvmStatic
  * details about the default implementation.
  */
 @GodotBaseType
-public open class MultiplayerAPI internal constructor() : RefCounted() {
+public abstract class MultiplayerAPI : RefCounted() {
   /**
    * Emitted when this MultiplayerAPI's [multiplayerPeer] connects with a new peer. ID is the peer
    * ID of the new peer. Clients get notified when other clients connect to the same server. Upon
@@ -100,7 +100,7 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(366, scriptIndex)
+    createNativeObject(375, scriptIndex)
   }
 
   /**

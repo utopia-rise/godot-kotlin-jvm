@@ -90,53 +90,53 @@ public object Performance : Object() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var monitor_value = Callable(self, "get_monitor_value")
+   * 	var monitor_value = Callable(self, "get_monitor_value")
    *
-   *     # Adds monitor with name "MyName" to category "MyCategory".
-   *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "MyCategory".
+   * 	Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the
-   * code is valid.
-   *     Performance.add_custom_monitor("MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "Custom".
+   * 	# Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the code
+   * is valid.
+   * 	Performance.add_custom_monitor("MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * IDs, so the code is valid.
-   *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "Custom".
+   * 	# Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different IDs,
+   * so the code is valid.
+   * 	Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
-   *     Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   * 	Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
    *
    * func get_monitor_value():
-   *     return randi() &#37; 25
+   * 	return randi() &#37; 25
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     var monitorValue = new Callable(this, MethodName.GetMonitorValue);
+   * 	var monitorValue = new Callable(this, MethodName.GetMonitorValue);
    *
-   *     // Adds monitor with name "MyName" to category "MyCategory".
-   *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
-   *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the
-   * code is valid.
-   *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "MyCategory".
+   * 	Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "Custom".
+   * 	// Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code
+   * is valid.
+   * 	Performance.AddCustomMonitor("MyMonitor", monitorValue);
    *
-   *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * ids so the code is valid.
-   *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "Custom".
+   * 	// Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids
+   * so the code is valid.
+   * 	Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
    *
-   *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
-   *     Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   * 	Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
    * }
    *
    * public int GetMonitorValue()
    * {
-   *     return GD.Randi() &#37; 25;
+   * 	return GD.Randi() &#37; 25;
    * }
    * ```
    *
@@ -217,53 +217,53 @@ public object Performance : Object() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     var monitor_value = Callable(self, "get_monitor_value")
+   * 	var monitor_value = Callable(self, "get_monitor_value")
    *
-   *     # Adds monitor with name "MyName" to category "MyCategory".
-   *     Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "MyCategory".
+   * 	Performance.add_custom_monitor("MyCategory/MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the
-   * code is valid.
-   *     Performance.add_custom_monitor("MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "Custom".
+   * 	# Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different IDs, so the code
+   * is valid.
+   * 	Performance.add_custom_monitor("MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyName" to category "Custom".
-   *     # Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * IDs, so the code is valid.
-   *     Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyName" to category "Custom".
+   * 	# Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different IDs,
+   * so the code is valid.
+   * 	Performance.add_custom_monitor("Custom/MyMonitor", monitor_value)
    *
-   *     # Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
-   *     Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
+   * 	# Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   * 	Performance.add_custom_monitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitor_value)
    *
    * func get_monitor_value():
-   *     return randi() &#37; 25
+   * 	return randi() &#37; 25
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Ready()
    * {
-   *     var monitorValue = new Callable(this, MethodName.GetMonitorValue);
+   * 	var monitorValue = new Callable(this, MethodName.GetMonitorValue);
    *
-   *     // Adds monitor with name "MyName" to category "MyCategory".
-   *     Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
-   *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the
-   * code is valid.
-   *     Performance.AddCustomMonitor("MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "MyCategory".
+   * 	Performance.AddCustomMonitor("MyCategory/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "Custom".
+   * 	// Note: "MyCategory/MyMonitor" and "MyMonitor" have same name but different ids so the code
+   * is valid.
+   * 	Performance.AddCustomMonitor("MyMonitor", monitorValue);
    *
-   *     // Adds monitor with name "MyName" to category "Custom".
-   *     // Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different
-   * ids so the code is valid.
-   *     Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyName" to category "Custom".
+   * 	// Note: "MyMonitor" and "Custom/MyMonitor" have same name and same category but different ids
+   * so the code is valid.
+   * 	Performance.AddCustomMonitor("Custom/MyMonitor", monitorValue);
    *
-   *     // Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
-   *     Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
+   * 	// Adds monitor with name "MyCategoryOne/MyCategoryTwo/MyMonitor" to category "Custom".
+   * 	Performance.AddCustomMonitor("MyCategoryOne/MyCategoryTwo/MyMonitor", monitorValue);
    * }
    *
    * public int GetMonitorValue()
    * {
-   *     return GD.Randi() &#37; 25;
+   * 	return GD.Randi() &#37; 25;
    * }
    * ```
    *
@@ -415,46 +415,48 @@ public object Performance : Object() {
      */
     AUDIO_OUTPUT_LATENCY(23),
     /**
-     * Number of active navigation maps in the [NavigationServer3D]. This also includes the two
-     * empty default navigation maps created by World2D and World3D.
+     * Number of active navigation maps in [NavigationServer2D] and [NavigationServer3D]. This also
+     * includes the two empty default navigation maps created by World2D and World3D.
      */
     NAVIGATION_ACTIVE_MAPS(24),
     /**
-     * Number of active navigation regions in the [NavigationServer3D].
+     * Number of active navigation regions in [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_REGION_COUNT(25),
     /**
-     * Number of active navigation agents processing avoidance in the [NavigationServer3D].
+     * Number of active navigation agents processing avoidance in [NavigationServer2D] and
+     * [NavigationServer3D].
      */
     NAVIGATION_AGENT_COUNT(26),
     /**
-     * Number of active navigation links in the [NavigationServer3D].
+     * Number of active navigation links in [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_LINK_COUNT(27),
     /**
-     * Number of navigation mesh polygons in the [NavigationServer3D].
+     * Number of navigation mesh polygons in [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_POLYGON_COUNT(28),
     /**
-     * Number of navigation mesh polygon edges in the [NavigationServer3D].
+     * Number of navigation mesh polygon edges in [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_EDGE_COUNT(29),
     /**
-     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the
-     * [NavigationServer3D].
+     * Number of navigation mesh polygon edges that were merged due to edge key overlap in
+     * [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_EDGE_MERGE_COUNT(30),
     /**
-     * Number of polygon edges that are considered connected by edge proximity [NavigationServer3D].
+     * Number of polygon edges that are considered connected by edge proximity [NavigationServer2D]
+     * and [NavigationServer3D].
      */
     NAVIGATION_EDGE_CONNECTION_COUNT(31),
     /**
-     * Number of navigation mesh polygon edges that could not be merged in the [NavigationServer3D].
-     * The edges still may be connected by edge proximity or with links.
+     * Number of navigation mesh polygon edges that could not be merged in [NavigationServer2D] and
+     * [NavigationServer3D]. The edges still may be connected by edge proximity or with links.
      */
     NAVIGATION_EDGE_FREE_COUNT(32),
     /**
-     * Number of active navigation obstacles in the [NavigationServer3D].
+     * Number of active navigation obstacles in the [NavigationServer2D] and [NavigationServer3D].
      */
     NAVIGATION_OBSTACLE_COUNT(33),
     /**
@@ -469,8 +471,8 @@ public object Performance : Object() {
     PIPELINE_COMPILATIONS_MESH(35),
     /**
      * Number of pipeline compilations that were triggered by building the surface cache before
-     * rendering the scene. These compilations will show up as a stutter when loading an scene the
-     * first time a user runs the game and the pipeline is required.
+     * rendering the scene. These compilations will show up as a stutter when loading a scene the first
+     * time a user runs the game and the pipeline is required.
      */
     PIPELINE_COMPILATIONS_SURFACE(36),
     /**
@@ -485,9 +487,95 @@ public object Performance : Object() {
      */
     PIPELINE_COMPILATIONS_SPECIALIZATION(38),
     /**
+     * Number of active navigation maps in the [NavigationServer2D]. This also includes the two
+     * empty default navigation maps created by World2D.
+     */
+    NAVIGATION_2D_ACTIVE_MAPS(39),
+    /**
+     * Number of active navigation regions in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_REGION_COUNT(40),
+    /**
+     * Number of active navigation agents processing avoidance in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_AGENT_COUNT(41),
+    /**
+     * Number of active navigation links in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_LINK_COUNT(42),
+    /**
+     * Number of navigation mesh polygons in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_POLYGON_COUNT(43),
+    /**
+     * Number of navigation mesh polygon edges in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_EDGE_COUNT(44),
+    /**
+     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the
+     * [NavigationServer2D].
+     */
+    NAVIGATION_2D_EDGE_MERGE_COUNT(45),
+    /**
+     * Number of polygon edges that are considered connected by edge proximity [NavigationServer2D].
+     */
+    NAVIGATION_2D_EDGE_CONNECTION_COUNT(46),
+    /**
+     * Number of navigation mesh polygon edges that could not be merged in the [NavigationServer2D].
+     * The edges still may be connected by edge proximity or with links.
+     */
+    NAVIGATION_2D_EDGE_FREE_COUNT(47),
+    /**
+     * Number of active navigation obstacles in the [NavigationServer2D].
+     */
+    NAVIGATION_2D_OBSTACLE_COUNT(48),
+    /**
+     * Number of active navigation maps in the [NavigationServer3D]. This also includes the two
+     * empty default navigation maps created by World3D.
+     */
+    NAVIGATION_3D_ACTIVE_MAPS(49),
+    /**
+     * Number of active navigation regions in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_REGION_COUNT(50),
+    /**
+     * Number of active navigation agents processing avoidance in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_AGENT_COUNT(51),
+    /**
+     * Number of active navigation links in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_LINK_COUNT(52),
+    /**
+     * Number of navigation mesh polygons in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_POLYGON_COUNT(53),
+    /**
+     * Number of navigation mesh polygon edges in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_EDGE_COUNT(54),
+    /**
+     * Number of navigation mesh polygon edges that were merged due to edge key overlap in the
+     * [NavigationServer3D].
+     */
+    NAVIGATION_3D_EDGE_MERGE_COUNT(55),
+    /**
+     * Number of polygon edges that are considered connected by edge proximity [NavigationServer3D].
+     */
+    NAVIGATION_3D_EDGE_CONNECTION_COUNT(56),
+    /**
+     * Number of navigation mesh polygon edges that could not be merged in the [NavigationServer3D].
+     * The edges still may be connected by edge proximity or with links.
+     */
+    NAVIGATION_3D_EDGE_FREE_COUNT(57),
+    /**
+     * Number of active navigation obstacles in the [NavigationServer3D].
+     */
+    NAVIGATION_3D_OBSTACLE_COUNT(58),
+    /**
      * Represents the size of the [Monitor] enum.
      */
-    MAX(39),
+    MAX(59),
     ;
 
     public override val `value`: Long

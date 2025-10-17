@@ -51,7 +51,7 @@ import kotlin.Unit
  * cubemap template[/url]
  *
  * Multiple layers are stacked on top of each other when using the default vertical import option
- * (with the first layer at the top). Alternatively, you can choose an horizontal layout in the import
+ * (with the first layer at the top). Alternatively, you can choose a horizontal layout in the import
  * options (with the first layer at the left).
  *
  * **Note:** [CubemapArray] is not supported in the Compatibility renderer due to graphics API
@@ -60,7 +60,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class CubemapArray : ImageTextureLayered() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(184, scriptIndex)
+    createNativeObject(188, scriptIndex)
   }
 
   /**

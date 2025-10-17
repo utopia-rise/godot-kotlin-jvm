@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  * of the full URL, as the client is already connected to a host. See [request] for a full example and
  * to get started.
  *
- * A [HTTPClient] should be reused between multiple requests or to connect to different hosts
+ * An [HTTPClient] should be reused between multiple requests or to connect to different hosts
  * instead of creating one client per request. Supports Transport Layer Security (TLS), including
  * server certificate verification. HTTP status codes in the 2xx range indicate success, 3xx
  * redirection (i.e. "try again, but over here"), 4xx something was wrong with the request, and 5xx
@@ -113,7 +113,7 @@ public open class HTTPClient : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(276, scriptIndex)
+    createNativeObject(283, scriptIndex)
   }
 
   /**
@@ -147,7 +147,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   /**
-   * Sends a raw request to the connected host.
+   * Sends a raw HTTP request to the connected host with the given [method].
    *
    * The URL parameter is usually just the part after the host, so for
    * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
@@ -155,7 +155,7 @@ public open class HTTPClient : RefCounted() {
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
    *
-   * Headers are HTTP request headers. For available HTTP methods, see [Method].
+   * [headers] are HTTP request headers.
    *
    * Sends the body data raw, as a byte array and does not encode it in any way.
    */
@@ -171,7 +171,7 @@ public open class HTTPClient : RefCounted() {
   }
 
   /**
-   * Sends a request to the connected host.
+   * Sends an HTTP request to the connected host with the given [method].
    *
    * The URL parameter is usually just the part after the host, so for
    * `https://example.com/index.php`, it is `/index.php`. When sending requests to an HTTP proxy
@@ -179,13 +179,13 @@ public open class HTTPClient : RefCounted() {
    * allowed. For [HTTPClient.METHOD_CONNECT] requests, it should be the authority component
    * (`host:port`).
    *
-   * Headers are HTTP request headers. For available HTTP methods, see [Method].
+   * [headers] are HTTP request headers.
    *
    * To create a POST request with query strings to push to the server, do:
    *
    * ```gdscript
    * //gdscript
-   * var fields = {"username" : "user", "password" : "pass"}
+   * var fields = { "username": "user", "password": "pass" }
    * var query_string = http_client.query_string_from_dict(fields)
    * var headers = ["Content-Type: application/x-www-form-urlencoded", "Content-Length: " +
    * str(query_string.length())]
@@ -270,8 +270,8 @@ public open class HTTPClient : RefCounted() {
    *
    * ```
    * {
-   *     "content-length": 12,
-   *     "Content-Type": "application/json; charset=UTF-8",
+   * 	"content-length": 12,
+   * 	"Content-Type": "application/json; charset=UTF-8",
    * }
    * ```
    */
@@ -370,7 +370,7 @@ public open class HTTPClient : RefCounted() {
    *
    * ```gdscript
    * //gdscript
-   * var fields = {"username": "user", "password": "pass"}
+   * var fields = { "username": "user", "password": "pass" }
    * var query_string = http_client.query_string_from_dict(fields)
    * # Returns "username=user&password=pass"
    * ```
@@ -388,7 +388,7 @@ public open class HTTPClient : RefCounted() {
    *
    * ```gdscript
    * //gdscript
-   * var fields = {"single": 123, "not_valued": null, "multiple": [22, 33, 44]}
+   * var fields = { "single": 123, "not_valued": null, "multiple": [22, 33, 44] }
    * var query_string = http_client.query_string_from_dict(fields)
    * # Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"
    * ```
@@ -397,9 +397,9 @@ public open class HTTPClient : RefCounted() {
    * //csharp
    * var fields = new Godot.Collections.Dictionary
    * {
-   *     { "single", 123 },
-   *     { "notValued", default },
-   *     { "multiple", new Godot.Collections.Array { 22, 33, 44 } },
+   * 	{ "single", 123 },
+   * 	{ "notValued", default },
+   * 	{ "multiple", new Godot.Collections.Array { 22, 33, 44 } },
    * };
    * string queryString = httpClient.QueryStringFromDict(fields);
    * // Returns "single=123&not_valued&multiple=22&multiple=33&multiple=44"

@@ -39,8 +39,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Gradient : Resource() {
   /**
-   * The algorithm used to interpolate between points of the gradient. See [InterpolationMode] for
-   * available modes.
+   * The algorithm used to interpolate between points of the gradient.
    */
   public final inline var interpolationMode: InterpolationMode
     @JvmName("interpolationModeProperty")
@@ -52,7 +51,7 @@ public open class Gradient : Resource() {
 
   /**
    * The color space used to interpolate between points of the gradient. It does not affect the
-   * returned colors, which will always be in sRGB space. See [ColorSpace] for available modes.
+   * returned colors, which will always be in sRGB space.
    *
    * **Note:** This setting has no effect when [interpolationMode] is set to
    * [GRADIENT_INTERPOLATE_CONSTANT].
@@ -102,7 +101,7 @@ public open class Gradient : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(259, scriptIndex)
+    createNativeObject(266, scriptIndex)
   }
 
   /**
@@ -210,7 +209,11 @@ public open class Gradient : Resource() {
   }
 
   /**
-   * Returns the interpolated color specified by [offset].
+   * Returns the interpolated color specified by [offset]. [offset] should be between `0.0` and
+   * `1.0` (inclusive). Using a value lower than `0.0` will return the same color as `0.0`, and using a
+   * value higher than `1.0` will return the same color as `1.0`. If your input value is not within
+   * this range, consider using [@GlobalScope.remap] on the input value with output values set to `0.0`
+   * and `1.0`.
    */
   public final fun sample(offset: Float): Color {
     TransferContext.writeArguments(DOUBLE to offset.toDouble())

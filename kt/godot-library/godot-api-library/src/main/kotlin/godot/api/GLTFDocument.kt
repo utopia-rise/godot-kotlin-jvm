@@ -58,7 +58,9 @@ public open class GLTFDocument : Resource() {
    * including writing to a file and writing to a byte array.
    *
    * By default, Godot allows the following options: "None", "PNG", "JPEG", "Lossless WebP", and
-   * "Lossy WebP". Support for more image formats can be added in [GLTFDocumentExtension] classes.
+   * "Lossy WebP". Support for more image formats can be added in [GLTFDocumentExtension] classes. A
+   * single extension class can provide multiple options for the specific format to use, or even an
+   * option that uses multiple formats at once.
    */
   public final inline var imageFormat: String
     @JvmName("imageFormatProperty")
@@ -82,8 +84,39 @@ public open class GLTFDocument : Resource() {
     }
 
   /**
-   * How to process the root node during export. See [RootNodeMode] for details. The default and
-   * recommended value is [ROOT_NODE_MODE_SINGLE_ROOT].
+   * The user-friendly name of the fallback image format. This is used when exporting the glTF file,
+   * including writing to a file and writing to a byte array.
+   *
+   * This property may only be one of "None", "PNG", or "JPEG", and is only used when the
+   * [imageFormat] is not one of "None", "PNG", or "JPEG". If having multiple extension image formats
+   * is desired, that can be done using a [GLTFDocumentExtension] class - this property only covers the
+   * use case of providing a base glTF fallback image when using a custom image format.
+   */
+  public final inline var fallbackImageFormat: String
+    @JvmName("fallbackImageFormatProperty")
+    get() = getFallbackImageFormat()
+    @JvmName("fallbackImageFormatProperty")
+    set(`value`) {
+      setFallbackImageFormat(value)
+    }
+
+  /**
+   * The quality of the fallback image, if any. For PNG files, this downscales the image on both
+   * dimensions by this factor. For JPEG files, this is the lossy quality of the image. A low value is
+   * recommended, since including multiple high quality images in a glTF file defeats the file size
+   * gains of using a more efficient image format.
+   */
+  public final inline var fallbackImageQuality: Float
+    @JvmName("fallbackImageQualityProperty")
+    get() = getFallbackImageQuality()
+    @JvmName("fallbackImageQualityProperty")
+    set(`value`) {
+      setFallbackImageQuality(value)
+    }
+
+  /**
+   * How to process the root node during export. The default and recommended value is
+   * [ROOT_NODE_MODE_SINGLE_ROOT].
    *
    * **Note:** Regardless of how the glTF file is exported, when importing, the root node type and
    * name can be overridden in the scene import settings tab.
@@ -96,8 +129,21 @@ public open class GLTFDocument : Resource() {
       setRootNodeMode(value)
     }
 
+  /**
+   * How to deal with node visibility during export. This setting does nothing if all nodes are
+   * visible. The default and recommended value is [VISIBILITY_MODE_INCLUDE_REQUIRED], which uses the
+   * `KHR_node_visibility` extension.
+   */
+  public final inline var visibilityMode: VisibilityMode
+    @JvmName("visibilityModeProperty")
+    get() = getVisibilityMode()
+    @JvmName("visibilityModeProperty")
+    set(`value`) {
+      setVisibilityMode(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(228, scriptIndex)
+    createNativeObject(235, scriptIndex)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {
@@ -122,6 +168,28 @@ public open class GLTFDocument : Resource() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setFallbackImageFormat(fallbackImageFormat: String): Unit {
+    TransferContext.writeArguments(STRING to fallbackImageFormat)
+    TransferContext.callMethod(ptr, MethodBindings.setFallbackImageFormatPtr, NIL)
+  }
+
+  public final fun getFallbackImageFormat(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFallbackImageFormatPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setFallbackImageQuality(fallbackImageQuality: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to fallbackImageQuality.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setFallbackImageQualityPtr, NIL)
+  }
+
+  public final fun getFallbackImageQuality(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFallbackImageQualityPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setRootNodeMode(rootNodeMode: RootNodeMode): Unit {
     TransferContext.writeArguments(LONG to rootNodeMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setRootNodeModePtr, NIL)
@@ -131,6 +199,17 @@ public open class GLTFDocument : Resource() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getRootNodeModePtr, LONG)
     return RootNodeMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setVisibilityMode(visibilityMode: VisibilityMode): Unit {
+    TransferContext.writeArguments(LONG to visibilityMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setVisibilityModePtr, NIL)
+  }
+
+  public final fun getVisibilityMode(): VisibilityMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVisibilityModePtr, LONG)
+    return VisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -257,6 +336,39 @@ public open class GLTFDocument : Resource() {
     }
   }
 
+  public enum class VisibilityMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * If the scene contains any non-visible nodes, include them, mark them as non-visible with
+     * `KHR_node_visibility`, and require that importers respect their non-visibility. Downside: If the
+     * importer does not support `KHR_node_visibility`, the file cannot be imported.
+     */
+    INCLUDE_REQUIRED(0),
+    /**
+     * If the scene contains any non-visible nodes, include them, mark them as non-visible with
+     * `KHR_node_visibility`, and do not impose any requirements on importers. Downside: If the
+     * importer does not support `KHR_node_visibility`, invisible objects will be visible.
+     */
+    INCLUDE_OPTIONAL(1),
+    /**
+     * If the scene contains any non-visible nodes, do not include them in the export. This is the
+     * same as the behavior in Godot 4.4 and earlier. Downside: Invisible nodes will not exist in the
+     * exported file.
+     */
+    EXCLUDE(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): VisibilityMode = entries.single { it.`value` == `value` }
+    }
+  }
+
   public companion object {
     /**
      * Determines a mapping between the given glTF Object Model [jsonPointer] and the corresponding
@@ -361,11 +473,29 @@ public open class GLTFDocument : Resource() {
     internal val getLossyQualityPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "get_lossy_quality", 1740695150)
 
+    internal val setFallbackImageFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_fallback_image_format", 83702148)
+
+    internal val getFallbackImageFormatPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_fallback_image_format", 201670096)
+
+    internal val setFallbackImageQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_fallback_image_quality", 373806689)
+
+    internal val getFallbackImageQualityPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_fallback_image_quality", 1740695150)
+
     internal val setRootNodeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "set_root_node_mode", 463633402)
 
     internal val getRootNodeModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "get_root_node_mode", 948057992)
+
+    internal val setVisibilityModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "set_visibility_mode", 2803579218)
+
+    internal val getVisibilityModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFDocument", "get_visibility_mode", 3885445962)
 
     internal val appendFromFilePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFDocument", "append_from_file", 866380864)

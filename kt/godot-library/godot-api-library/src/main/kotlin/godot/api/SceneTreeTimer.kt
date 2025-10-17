@@ -29,18 +29,18 @@ import kotlin.jvm.JvmName
  * ```gdscript
  * //gdscript
  * func some_function():
- *     print("Timer started.")
- *     await get_tree().create_timer(1.0).timeout
- *     print("Timer ended.")
+ * 	print("Timer started.")
+ * 	await get_tree().create_timer(1.0).timeout
+ * 	print("Timer ended.")
  * ```
  *
  * ```csharp
  * //csharp
  * public async Task SomeFunction()
  * {
- *     GD.Print("Timer started.");
- *     await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
- *     GD.Print("Timer ended.");
+ * 	GD.Print("Timer started.");
+ * 	await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
+ * 	GD.Print("Timer ended.");
  * }
  * ```
  *
@@ -52,7 +52,7 @@ import kotlin.jvm.JvmName
  * `process_in_physics` in [SceneTree.createTimer] has been set to `true`).
  */
 @GodotBaseType
-public open class SceneTreeTimer internal constructor() : RefCounted() {
+public abstract class SceneTreeTimer : RefCounted() {
   /**
    * Emitted when the timer reaches 0.
    */
@@ -70,7 +70,7 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(571, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   public final fun setTimeLeft(time: Double): Unit {

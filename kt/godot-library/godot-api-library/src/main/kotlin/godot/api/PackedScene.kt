@@ -72,9 +72,9 @@ import kotlin.jvm.JvmOverloads
  * # Only `node` and `body` are now packed.
  * var result = scene.pack(node)
  * if result == OK:
- *     var error = ResourceSaver.save(scene, "res://path/name.tscn")  # Or "user://..."
- *     if error != OK:
- *         push_error("An error occurred while saving the scene to disk.")
+ * 	var error = ResourceSaver.save(scene, "res://path/name.tscn")  # Or "user://..."
+ * 	if error != OK:
+ * 		push_error("An error occurred while saving the scene to disk.")
  * ```
  *
  * ```csharp
@@ -96,18 +96,18 @@ import kotlin.jvm.JvmOverloads
  * Error result = scene.Pack(node);
  * if (result == Error.Ok)
  * {
- *     Error error = ResourceSaver.Save(scene, "res://path/name.tscn"); // Or "user://..."
- *     if (error != Error.Ok)
- *     {
- *         GD.PushError("An error occurred while saving the scene to disk.");
- *     }
+ * 	Error error = ResourceSaver.Save(scene, "res://path/name.tscn"); // Or "user://..."
+ * 	if (error != Error.Ok)
+ * 	{
+ * 		GD.PushError("An error occurred while saving the scene to disk.");
+ * 	}
  * }
  * ```
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(437, scriptIndex)
+    createNativeObject(452, scriptIndex)
   }
 
   /**

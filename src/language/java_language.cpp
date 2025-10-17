@@ -55,66 +55,58 @@ void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
     p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
 }
 
-void JavaLanguage::get_reserved_words(List<String>* p_words) const {
-    static const char* _reserved_words[] = {
-                                            "abstract",
-                                            "assert",
-                                            "boolean",
-                                            "break",
-                                            "byte",
-                                            "case",
-                                            "catch",
-                                            "char",
-                                            "class",
-                                            "const",
-                                            "continue",
-                                            "default",
-                                            "do",
-                                            "double",
-                                            "else",
-                                            "enum",
-                                            "extends",
-                                            "final",
-                                            "finally",
-                                            "float",
-                                            "for",
-                                            "if",
-                                            "implements",
-                                            "import",
-                                            "instanceof",
-                                            "int",
-                                            "interface",
-                                            "long",
-                                            "native",
-                                            "new",
-                                            "package",
-                                            "private",
-                                            "protected",
-                                            "public",
-                                            "return",
-                                            "short",
-                                            "static",
-                                            "strictfp",
-                                            "super",
-                                            "switch",
-                                            "synchronized",
-                                            "this",
-                                            "throw",
-                                            "throws",
-                                            "transient",
-                                            "try",
-                                            "void",
-                                            "volatile",
-                                            "while",
-                                            nullptr
+Vector<String> JavaLanguage::get_reserved_words() const {
+    return {
+        "abstract",
+        "assert",
+        "boolean",
+        "break",
+        "byte",
+        "case",
+        "catch",
+        "char",
+        "class",
+        "const",
+        "continue",
+        "default",
+        "do",
+        "double",
+        "else",
+        "enum",
+        "extends",
+        "final",
+        "finally",
+        "float",
+        "for",
+        "if",
+        "implements",
+        "import",
+        "instanceof",
+        "int",
+        "interface",
+        "long",
+        "native",
+        "new",
+        "package",
+        "private",
+        "protected",
+        "public",
+        "return",
+        "short",
+        "static",
+        "strictfp",
+        "super",
+        "switch",
+        "synchronized",
+        "this",
+        "throw",
+        "throws",
+        "transient",
+        "try",
+        "void",
+        "volatile",
+        "while"
     };
-
-    const char** w = _reserved_words;
-
-    while (*w) {
-        p_words->push_back(*w);
-        w++;
-    }
 }
 
 bool JavaLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -123,18 +115,16 @@ bool JavaLanguage::is_control_flow_keyword(const String& p_keyword) const {
         || p_keyword == "when" || p_keyword == "throw" || p_keyword == "try" || p_keyword == "while";
 }
 
-void JavaLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("//");
-    p_delimiters->push_back("/* */");
+Vector<String> JavaLanguage::get_comment_delimiters() const {
+    return {"//", "/* */"};
 }
 
-void JavaLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("/** */");
+Vector<String> JavaLanguage::get_doc_comment_delimiters() const {
+    return {"/** */"};
 }
 
-void JavaLanguage::get_string_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("' '");
-    p_delimiters->push_back("\" \"");
+Vector<String> JavaLanguage::get_string_delimiters() const {
+    return {"' '", "\" \""};
 }
 
 Ref<Script> JavaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {

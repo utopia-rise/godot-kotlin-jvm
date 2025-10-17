@@ -87,7 +87,7 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(381, scriptIndex)
+    createNativeObject(390, scriptIndex)
   }
 
   /**
@@ -267,9 +267,9 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
 
   /**
    * Adds a projected obstruction shape to the source geometry. The [vertices] are considered
-   * projected on a xz-axes plane, placed at the global y-axis [elevation] and extruded by [height]. If
-   * [carve] is `true` the carved shape will not be affected by additional offsets (e.g. agent radius)
-   * of the navigation mesh baking process.
+   * projected on an xz-axes plane, placed at the global y-axis [elevation] and extruded by [height].
+   * If [carve] is `true` the carved shape will not be affected by additional offsets (e.g. agent
+   * radius) of the navigation mesh baking process.
    */
   public final fun addProjectedObstruction(
     vertices: PackedVector3Array,

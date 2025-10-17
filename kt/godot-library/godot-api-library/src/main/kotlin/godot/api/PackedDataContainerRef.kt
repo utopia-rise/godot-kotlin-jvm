@@ -26,11 +26,11 @@ import kotlin.Unit
  * packed.pack([1, 2, 3, ["nested1", "nested2"], 4, 5, 6])
  *
  * for element in packed:
- *     if element is PackedDataContainerRef:
- *         for subelement in element:
- *             print("::", subelement)
- *     else:
- *         print(element)
+ * 	if element is PackedDataContainerRef:
+ * 		for subelement in element:
+ * 			print("::", subelement)
+ * 	else:
+ * 		print(element)
  * ```
  *
  * Prints:
@@ -56,9 +56,9 @@ import kotlin.Unit
  * ```
  */
 @GodotBaseType
-public open class PackedDataContainerRef internal constructor() : RefCounted() {
+public abstract class PackedDataContainerRef : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(436, scriptIndex)
+    createNativeObject(451, scriptIndex)
   }
 
   /**

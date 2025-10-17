@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
-public open class WebRTCDataChannel internal constructor() : PacketPeer() {
+public abstract class WebRTCDataChannel : PacketPeer() {
   /**
    * The transfer mode to use when sending outgoing packet. Either text or binary.
    */
@@ -38,7 +38,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(841, scriptIndex)
+    createNativeObject(857, scriptIndex)
   }
 
   /**
@@ -79,7 +79,7 @@ public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current state of this channel, see [ChannelState].
+   * Returns the current state of this channel.
    */
   public final fun getReadyState(): ChannelState {
     TransferContext.writeArguments()

@@ -18,7 +18,7 @@ import kotlin.Unit
  * method from [Tween].
  */
 @GodotBaseType
-public open class Tweener internal constructor() : RefCounted() {
+public abstract class Tweener : RefCounted() {
   /**
    * Emitted when the [Tweener] has just finished its job or became invalid (e.g. due to a freed
    * object).
@@ -26,7 +26,7 @@ public open class Tweener internal constructor() : RefCounted() {
   public val finished: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(701, scriptIndex)
+    createNativeObject(717, scriptIndex)
   }
 
   public companion object

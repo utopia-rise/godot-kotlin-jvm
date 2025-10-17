@@ -180,7 +180,7 @@ public open class PopupMenu : Popup() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(502, scriptIndex)
+    createNativeObject(517, scriptIndex)
   }
 
   /**
@@ -354,18 +354,18 @@ public open class PopupMenu : Popup() {
    *
    * ```
    * func _ready():
-   *     add_multistate_item("Item", 3, 0)
+   * 	add_multistate_item("Item", 3, 0)
    *
-   *     index_pressed.connect(func(index: int):
-   *             toggle_item_multistate(index)
-   *             match get_item_multistate(index):
-   *                 0:
-   *                     print("First state")
-   *                 1:
-   *                     print("Second state")
-   *                 2:
-   *                     print("Third state")
-   *         )
+   * 	index_pressed.connect(func(index: int):
+   * 			toggle_item_multistate(index)
+   * 			match get_item_multistate(index):
+   * 				0:
+   * 					print("First state")
+   * 				1:
+   * 					print("Second state")
+   * 				2:
+   * 					print("Third state")
+   * 		)
    * ```
    *
    * **Note:** Multistate items don't update their state automatically and must be done manually.
@@ -559,6 +559,17 @@ public open class PopupMenu : Popup() {
   public final fun setItemLanguage(index: Int, language: String): Unit {
     TransferContext.writeArguments(LONG to index.toLong(), STRING to language)
     TransferContext.callMethod(ptr, MethodBindings.setItemLanguagePtr, NIL)
+  }
+
+  /**
+   * Sets the auto translate mode of the item at the given [index].
+   *
+   * Items use [Node.AUTO_TRANSLATE_MODE_INHERIT] by default, which uses the same auto translate
+   * mode as the [PopupMenu] itself.
+   */
+  public final fun setItemAutoTranslateMode(index: Int, mode: Node.AutoTranslateMode): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setItemAutoTranslateModePtr, NIL)
   }
 
   /**
@@ -778,6 +789,15 @@ public open class PopupMenu : Popup() {
     TransferContext.writeArguments(LONG to index.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getItemLanguagePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the auto translate mode of the item at the given [index].
+   */
+  public final fun getItemAutoTranslateMode(index: Int): Node.AutoTranslateMode {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getItemAutoTranslateModePtr, LONG)
+    return Node.AutoTranslateMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
   /**
@@ -1194,6 +1214,9 @@ public open class PopupMenu : Popup() {
     internal val setItemLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_language", 501894301)
 
+    internal val setItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "set_item_auto_translate_mode", 287402019)
+
     internal val setItemIconPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "set_item_icon", 666127730)
 
@@ -1265,6 +1288,9 @@ public open class PopupMenu : Popup() {
 
     internal val getItemLanguagePtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_item_language", 844755477)
+
+    internal val getItemAutoTranslateModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PopupMenu", "get_item_auto_translate_mode", 906302372)
 
     internal val getItemIconPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PopupMenu", "get_item_icon", 3536238170)

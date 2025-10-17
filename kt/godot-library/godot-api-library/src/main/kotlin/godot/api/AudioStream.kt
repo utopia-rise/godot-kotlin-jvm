@@ -37,7 +37,7 @@ public open class AudioStream : Resource() {
   public val parameterListChanged: Signal0 by Signal0
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(80, scriptIndex)
+    createNativeObject(81, scriptIndex)
   }
 
   /**
@@ -94,6 +94,16 @@ public open class AudioStream : Resource() {
   }
 
   /**
+   * Override this method to customize the tags for this audio stream. Should return a [Dictionary]
+   * of strings with the tag as the key and its content as the value.
+   *
+   * Commonly used tags include `title`, `artist`, `album`, `tracknumber`, and `date`.
+   */
+  public open fun _getTags(): Dictionary<Any?, Any?> {
+    throw NotImplementedError("AudioStream::_getTags is not implemented.")
+  }
+
+  /**
    * Return the controllable parameters of this stream. This array contains dictionaries with a
    * property info description format (see [Object.getPropertyList]). Additionally, the default value
    * for this parameter must be added tho each dictionary in "default_value" field.
@@ -117,7 +127,9 @@ public open class AudioStream : Resource() {
   }
 
   /**
-   * Returns the length of the audio stream in seconds.
+   * Returns the length of the audio stream in seconds. If this stream is an
+   * [AudioStreamRandomizer], returns the length of the last played stream. If this stream has an
+   * indefinite length (such as for [AudioStreamGenerator] and [AudioStreamMicrophone]), returns `0.0`.
    */
   public final fun getLength(): Double {
     TransferContext.writeArguments()

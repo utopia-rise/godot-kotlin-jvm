@@ -10,15 +10,18 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.GodotEnum
 import godot.core.RID
 import godot.core.Signal0
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Int
+import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -112,7 +115,7 @@ public open class Resource : RefCounted() {
     }
 
   /**
-   * An unique identifier relative to the this resource's scene. If left empty, the ID is
+   * A unique identifier relative to the this resource's scene. If left empty, the ID is
    * automatically generated when this resource is saved inside a [PackedScene]. If the resource is not
    * inside a scene, this property is empty by default.
    *
@@ -134,7 +137,7 @@ public open class Resource : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(552, scriptIndex)
+    createNativeObject(567, scriptIndex)
   }
 
   /**
@@ -149,7 +152,7 @@ public open class Resource : RefCounted() {
    * var damage = 0
    *
    * func _setup_local_to_scene():
-   *     damage = randi_range(10, 40)
+   * 	damage = randi_range(10, 40)
    * ```
    */
   public open fun _setupLocalToScene(): Unit {
@@ -164,16 +167,16 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * For resources that use a variable number of properties, either via [Object.ValidateProperty] or
-   * [Object.GetPropertyList], this method should be implemented to correctly clear the resource's
-   * state.
+   * For resources that store state in non-exported properties, such as via
+   * [Object.ValidateProperty] or [Object.GetPropertyList], this method must be implemented to clear
+   * them.
    */
   public open fun _resetState(): Unit {
     throw NotImplementedError("Resource::_resetState is not implemented.")
   }
 
   /**
-   * Sets the resource's path to [path] without involving the resource cache.
+   * Override this method to execute additional logic after [setPathCache] is called on this object.
    */
   public open fun _setPathCache(path: String): Unit {
     throw NotImplementedError("Resource::_setPathCache is not implemented.")
@@ -200,7 +203,9 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Sets the resource's path to [path] without involving the resource cache.
+   * Sets the resource's path to [path] without involving the resource cache. Useful for handling
+   * [ResourceFormatLoader.CacheMode] values when implementing a custom resource format by extending
+   * [ResourceFormatLoader] and [ResourceFormatSaver].
    */
   public final fun setPathCache(path: String): Unit {
     TransferContext.writeArguments(STRING to path)
@@ -262,8 +267,9 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * For resources that use a variable number of properties, either via [Object.ValidateProperty] or
-   * [Object.GetPropertyList], override [_resetState] to correctly clear the resource's state.
+   * Makes the resource clear its non-exported properties. See also [_resetState]. Useful when
+   * implementing a custom resource format by extending [ResourceFormatLoader] and
+   * [ResourceFormatSaver].
    */
   public final fun resetState(): Unit {
     TransferContext.writeArguments()
@@ -271,8 +277,10 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Sets the unique identifier to [id] for the resource with the given [path] in the resource
-   * cache. If the unique identifier is empty, the cache entry using [path] is removed if it exists.
+   * In the internal cache for scene-unique IDs, sets the ID of this resource to [id] for the scene
+   * at [path]. If [id] is empty, the cache entry for [path] is cleared. Useful to keep scene-unique
+   * IDs the same when implementing a VCS-friendly custom resource format by extending
+   * [ResourceFormatLoader] and [ResourceFormatSaver].
    *
    * **Note:** This method is only implemented when running in an editor context.
    */
@@ -282,8 +290,10 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Returns the unique identifier for the resource with the given [path] from the resource cache.
-   * If the resource is not loaded and cached, an empty string is returned.
+   * From the internal cache for scene-unique IDs, returns the ID of this resource for the scene at
+   * [path]. If there is no entry, an empty string is returned. Useful to keep scene-unique IDs the
+   * same when implementing a VCS-friendly custom resource format by extending [ResourceFormatLoader]
+   * and [ResourceFormatSaver].
    *
    * **Note:** This method is only implemented when running in an editor context. At runtime, it
    * returns an empty string.
@@ -295,7 +305,7 @@ public open class Resource : RefCounted() {
   }
 
   /**
-   * Returns `true` if the resource is built-in (from the engine) or `false` if it is user-defined.
+   * Returns `true` if the resource is saved on disk as a part of another resource's file.
    */
   public final fun isBuiltIn(): Boolean {
     TransferContext.writeArguments()
@@ -324,10 +334,10 @@ public open class Resource : RefCounted() {
    *
    * ```
    * var damage:
-   *     set(new_value):
-   *         if damage != new_value:
-   *             damage = new_value
-   *             emit_changed()
+   * 	set(new_value):
+   * 		if damage != new_value:
+   * 			damage = new_value
+   * 			emit_changed()
    * ```
    */
   public final fun emitChanged(): Unit {
@@ -339,27 +349,76 @@ public open class Resource : RefCounted() {
    * Duplicates this resource, returning a new resource with its `export`ed or
    * [PROPERTY_USAGE_STORAGE] properties copied from the original.
    *
-   * If [subresources] is `false`, a shallow copy is returned; nested resources within subresources
-   * are not duplicated and are shared with the original resource (with one exception; see below). If
-   * [subresources] is `true`, a deep copy is returned; nested subresources will be duplicated and are
-   * not shared (with two exceptions; see below).
+   * If [deep] is `false`, a **shallow** copy is returned: nested [Array], [Dictionary], and
+   * [Resource] properties are not duplicated and are shared with the original resource.
    *
-   * [subresources] is usually respected, with the following exceptions:
+   * If [deep] is `true`, a **deep** copy is returned: all nested arrays, dictionaries, and packed
+   * arrays are also duplicated (recursively). Any [Resource] found inside will only be duplicated if
+   * it's local, like [DEEP_DUPLICATE_INTERNAL] used with [duplicateDeep].
    *
-   * - Subresource properties with the [PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated.
+   * The following exceptions apply:
+   *
+   * - Subresource properties with the [PROPERTY_USAGE_ALWAYS_DUPLICATE] flag are always duplicated
+   * (recursively or not, depending on [deep]).
    *
    * - Subresource properties with the [PROPERTY_USAGE_NEVER_DUPLICATE] flag are never duplicated.
    *
-   * - Subresources inside [Array] and [Dictionary] properties are never duplicated.
-   *
    * **Note:** For custom resources, this method will fail if [Object.Init] has been defined with
    * required parameters.
+   *
+   * **Note:** When duplicating with [deep] set to `true`, each resource found, including the one on
+   * which this method is called, will be only duplicated once and referenced as many times as needed
+   * in the duplicate. For instance, if you are duplicating resource A that happens to have resource B
+   * referenced twice, you'll get a new resource A' referencing a new resource B' twice.
    */
   @JvmOverloads
-  public final fun duplicate(subresources: Boolean = false): Resource? {
-    TransferContext.writeArguments(BOOL to subresources)
+  public final fun duplicate(deep: Boolean = false): Resource? {
+    TransferContext.writeArguments(BOOL to deep)
     TransferContext.callMethod(ptr, MethodBindings.duplicatePtr, OBJECT)
     return (TransferContext.readReturnValue(OBJECT) as Resource?)
+  }
+
+  /**
+   * Duplicates this resource, deeply, like [duplicate]`(true)`, with extra control over how
+   * subresources are handled.
+   *
+   * [deepSubresourcesMode] must be one of the values from [DeepDuplicateMode].
+   */
+  @JvmOverloads
+  public final fun duplicateDeep(deepSubresourcesMode: DeepDuplicateMode =
+      Resource.DeepDuplicateMode.INTERNAL): Resource? {
+    TransferContext.writeArguments(LONG to deepSubresourcesMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.duplicateDeepPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Resource?)
+  }
+
+  public enum class DeepDuplicateMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * No subresorces at all are duplicated. This is useful even in a deep duplication to have all
+     * the arrays and dictionaries duplicated but still pointing to the original resources.
+     */
+    NONE(0),
+    /**
+     * Only subresources without a path or with a scene-local path will be duplicated.
+     */
+    INTERNAL(1),
+    /**
+     * Every subresource found will be duplicated, even if it has a non-local path. In other words,
+     * even potentially big resources stored separately will be duplicated.
+     */
+    ALL(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): DeepDuplicateMode = entries.single { it.`value` == `value` }
+    }
   }
 
   public companion object {
@@ -436,5 +495,8 @@ public open class Resource : RefCounted() {
 
     internal val duplicatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Resource", "duplicate", 482882304)
+
+    internal val duplicateDeepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Resource", "duplicate_deep", 905779109)
   }
 }

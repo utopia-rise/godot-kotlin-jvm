@@ -1,16 +1,36 @@
 {
-  "dirs":["res://test/unit/"],
-  "double_strategy":"partial",
-  "ignore_pause":false,
-  "include_subdirs":true,
-  "inner_class":"",
-  "log_level":3,
-  "opacity":100,
-  "prefix":"test_",
-  "selected":"",
-  "should_exit":true,
-  "should_maximize":true,
-  "suffix":".gd",
-  "tests":[],
-  "unit_test_name":""
+ "background_color": "262626ff",
+ "compact_mode": false,
+ "configured_dirs": [
+  "res://test/unit"
+ ],
+ "dirs": [
+  "res://test/unit"
+ ],
+ "disable_colors": false,
+ "double_strategy": 1,
+ "failure_error_types": [
+  "gut"
+ ],
+ "font_color": "ccccccff",
+ "font_name": "CourierPrime",
+ "font_size": 16.0,
+ "gut_on_top": true,
+ "hide_orphans": false,
+ "ignore_pause": false,
+ "include_subdirs": false,
+ "junit_xml_file": "user://gut_report.xml",
+ "junit_xml_timestamp": false,
+ "log_level": 1.0,
+ "no_error_tracking": false,
+ "opacity": 100.0,
+ "paint_after": 0.1,
+ "post_run_script": "",
+ "pre_run_script": "",
+ "prefix": "test_",
+ "should_exit": true,
+ "should_exit_on_success": false,
+ "should_maximize": false,
+ "suffix": ".gd",
+ "wait_log_delay": 0.5
 }

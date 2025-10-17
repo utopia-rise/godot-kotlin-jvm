@@ -46,6 +46,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
+import kotlin.jvm.JvmStatic
 
 /**
  * A node that creates a window. The window can either be a native system window or embedded inside
@@ -69,10 +70,10 @@ public open class Window : Viewport() {
    *
    * ```
    * func _ready():
-   *     get_window().files_dropped.connect(on_files_dropped)
+   * 	get_window().files_dropped.connect(on_files_dropped)
    *
    * func on_files_dropped(files):
-   *     print(files)
+   * 	print(files)
    * ```
    *
    * **Note:** This signal only works with native windows, i.e. the main window and [Window]-derived
@@ -137,7 +138,7 @@ public open class Window : Viewport() {
    * Emitted when the [Window]'s DPI changes as a result of OS-level changes (e.g. moving the window
    * from a Retina display to a lower resolution one).
    *
-   * **Note:** Only implemented on macOS.
+   * **Note:** Only implemented on macOS and Linux (Wayland).
    */
   public val dpiChanged: Signal0 by Signal0
 
@@ -180,7 +181,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Specifies the initial type of position for the [Window]. See [WindowInitialPosition] constants.
+   * Specifies the initial type of position for the [Window].
    */
   public final inline var initialPosition: WindowInitialPosition
     @JvmName("initialPositionProperty")
@@ -371,7 +372,7 @@ public open class Window : Viewport() {
     }
 
   /**
-   * If `true`, the window can't be resized. Minimize and maximize buttons are disabled.
+   * If `true`, the window can't be resized.
    */
   public final inline var unresizable: Boolean
     @JvmName("unresizableProperty")
@@ -494,8 +495,14 @@ public open class Window : Viewport() {
     }
 
   /**
-   * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
+   * If `true`, the [Window] is excluded from screenshots taken by [DisplayServer.screenGetImage],
    * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
+   *
+   * **Note:** This property is implemented on macOS and Windows.
+   *
+   * **Note:** Enabling this setting will prevent standard screenshot methods from capturing a
+   * window image, but does **NOT** guarantee that other apps won't be able to capture an image. It
+   * should not be used as a DRM or security measure.
    */
   public final inline var excludeFromCapture: Boolean
     @JvmName("excludeFromCaptureProperty")
@@ -503,6 +510,51 @@ public open class Window : Viewport() {
     @JvmName("excludeFromCaptureProperty")
     set(`value`) {
       setFlag(Window.Flags.EXCLUDE_FROM_CAPTURE, value)
+    }
+
+  /**
+   * If `true`, the [Window] will signal to the window manager that it is supposed to be an
+   * implementation-defined "popup" (usually a floating, borderless, untileable and immovable child
+   * window).
+   */
+  public final inline var popupWmHint: Boolean
+    @JvmName("popupWmHintProperty")
+    get() = getFlag(Window.Flags.POPUP_WM_HINT)
+    @JvmName("popupWmHintProperty")
+    set(`value`) {
+      setFlag(Window.Flags.POPUP_WM_HINT, value)
+    }
+
+  /**
+   * If `true`, the [Window]'s minimize button is disabled.
+   *
+   * **Note:** If both minimize and maximize buttons are disabled, buttons are fully hidden, and
+   * only close button is visible.
+   *
+   * **Note:** This property is implemented only on macOS and Windows.
+   */
+  public final inline var minimizeDisabled: Boolean
+    @JvmName("minimizeDisabledProperty")
+    get() = getFlag(Window.Flags.MINIMIZE_DISABLED)
+    @JvmName("minimizeDisabledProperty")
+    set(`value`) {
+      setFlag(Window.Flags.MINIMIZE_DISABLED, value)
+    }
+
+  /**
+   * If `true`, the [Window]'s maximize button is disabled.
+   *
+   * **Note:** If both minimize and maximize buttons are disabled, buttons are fully hidden, and
+   * only close button is visible.
+   *
+   * **Note:** This property is implemented only on macOS and Windows.
+   */
+  public final inline var maximizeDisabled: Boolean
+    @JvmName("maximizeDisabledProperty")
+    get() = getFlag(Window.Flags.MAXIMIZE_DISABLED)
+    @JvmName("maximizeDisabledProperty")
+    set(`value`) {
+      setFlag(Window.Flags.MAXIMIZE_DISABLED, value)
     }
 
   /**
@@ -651,6 +703,28 @@ public open class Window : Viewport() {
     }
 
   /**
+   * The human-readable node name that is reported to assistive apps.
+   */
+  public final inline var accessibilityName: String
+    @JvmName("accessibilityNameProperty")
+    get() = getAccessibilityName()
+    @JvmName("accessibilityNameProperty")
+    set(`value`) {
+      setAccessibilityName(value)
+    }
+
+  /**
+   * The human-readable node description that is reported to assistive apps.
+   */
+  public final inline var accessibilityDescription: String
+    @JvmName("accessibilityDescriptionProperty")
+    get() = getAccessibilityDescription()
+    @JvmName("accessibilityDescriptionProperty")
+    set(`value`) {
+      setAccessibilityDescription(value)
+    }
+
+  /**
    * The [Theme] resource this node and all its [Control] and [Window] children use. If a child node
    * has its own [Theme] resource set, theme items are merged with child's definitions having higher
    * priority.
@@ -678,7 +752,7 @@ public open class Window : Viewport() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(849, scriptIndex)
+    createNativeObject(865, scriptIndex)
   }
 
   /**
@@ -918,15 +992,6 @@ public open class Window : Viewport() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getTitlePtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
-  }
-
-  /**
-   * Returns the ID of the window.
-   */
-  public final fun getWindowId(): Int {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setInitialPosition(initialPosition: WindowInitialPosition): Unit {
@@ -1322,23 +1387,6 @@ public open class Window : Viewport() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getContentScaleFactorPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
-  }
-
-  /**
-   * Enables font oversampling. This makes fonts look better when they are scaled up.
-   */
-  public final fun setUseFontOversampling(enable: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to enable)
-    TransferContext.callMethod(ptr, MethodBindings.setUseFontOversamplingPtr, NIL)
-  }
-
-  /**
-   * Returns `true` if font oversampling is enabled. See [setUseFontOversampling].
-   */
-  public final fun isUsingFontOversampling(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isUsingFontOversamplingPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setMousePassthroughPolygon(polygon: PackedVector2Array): Unit {
@@ -1796,6 +1844,37 @@ public open class Window : Viewport() {
   }
 
   /**
+   * Returns the ID of the window.
+   */
+  public final fun getWindowId(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getWindowIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setAccessibilityName(name: String): Unit {
+    TransferContext.writeArguments(STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityNamePtr, NIL)
+  }
+
+  public final fun getAccessibilityName(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityNamePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  public final fun setAccessibilityDescription(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.setAccessibilityDescriptionPtr, NIL)
+  }
+
+  public final fun getAccessibilityDescription(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAccessibilityDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Sets layout direction and text writing direction. Right-to-left layouts are necessary for
    * certain languages (e.g. Arabic and Hebrew).
    */
@@ -1814,7 +1893,7 @@ public open class Window : Viewport() {
   }
 
   /**
-   * Returns `true` if layout is right-to-left.
+   * Returns `true` if the layout is right-to-left.
    */
   public final fun isLayoutRtl(): Boolean {
     TransferContext.writeArguments()
@@ -1830,6 +1909,23 @@ public open class Window : Viewport() {
   public final fun isAutoTranslating(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isAutoTranslatingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Enables font oversampling. This makes fonts look better when they are scaled up.
+   */
+  public final fun setUseFontOversampling(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setUseFontOversamplingPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if font oversampling is enabled. See [setUseFontOversampling].
+   */
+  public final fun isUsingFontOversampling(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUsingFontOversamplingPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -2265,9 +2361,6 @@ public open class Window : Viewport() {
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Multi-window full-screen mode has a 1px border of the
-     * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
-     *
      * **On macOS:** A new desktop is used to display the running project.
      *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
@@ -2284,6 +2377,8 @@ public open class Window : Viewport() {
      * Full screen window covers the entire display area of a screen and has no border or
      * decorations. The display's video mode is not changed.
      *
+     * **Note:** This mode might not work with screen recording software.
+     *
      * **On Android:** This enables immersive mode.
      *
      * **On Windows:** Depending on video driver, full screen transition might cause screens to go
@@ -2294,6 +2389,8 @@ public open class Window : Viewport() {
      * screen.
      *
      * **On Linux (X11):** Exclusive full screen mode bypasses compositor.
+     *
+     * **On Linux (Wayland):** Equivalent to [MODE_FULLSCREEN].
      *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
      * match the monitor's size. Therefore, make sure your project supports
@@ -2381,16 +2478,36 @@ public open class Window : Viewport() {
      * Windows is excluded from screenshots taken by [DisplayServer.screenGetImage],
      * [DisplayServer.screenGetImageRect], and [DisplayServer.screenGetPixel].
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag has no effect in embedded windows.
      *
-     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
-     * should not be used as a security measure.
+     * **Note:** This flag is implemented on macOS and Windows (10, 20H1).
+     *
+     * **Note:** Setting this flag will prevent standard screenshot methods from capturing a window
+     * image, but does **NOT** guarantee that other apps won't be able to capture an image. It should
+     * not be used as a DRM or security measure.
      */
     EXCLUDE_FROM_CAPTURE(9),
     /**
+     * Signals the window manager that this window is supposed to be an implementation-defined
+     * "popup" (usually a floating, borderless, untileable and immovable child window).
+     */
+    POPUP_WM_HINT(10),
+    /**
+     * Window minimize button is disabled.
+     *
+     * **Note:** This flag is implemented on macOS and Windows.
+     */
+    MINIMIZE_DISABLED(11),
+    /**
+     * Window maximize button is disabled.
+     *
+     * **Note:** This flag is implemented on macOS and Windows.
+     */
+    MAXIMIZE_DISABLED(12),
+    /**
      * Max value of the [Flags].
      */
-    MAX(10),
+    MAX(13),
     ;
 
     public override val `value`: Long
@@ -2599,6 +2716,16 @@ public open class Window : Viewport() {
      * once when the node enters the scene tree.
      */
     public final const val NOTIFICATION_THEME_CHANGED: Long = 32
+
+    /**
+     * Returns the focused window.
+     */
+    @JvmStatic
+    public final fun getFocusedWindow(): Window? {
+      TransferContext.writeArguments()
+      TransferContext.callMethod(0, MethodBindings.getFocusedWindowPtr, OBJECT)
+      return (TransferContext.readReturnValue(OBJECT) as Window?)
+    }
   }
 
   public object MethodBindings {
@@ -2607,9 +2734,6 @@ public open class Window : Viewport() {
 
     internal val getTitlePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_title", 201670096)
-
-    internal val getWindowIdPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "get_window_id", 3905245786)
 
     internal val setInitialPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_initial_position", 4084468099)
@@ -2779,12 +2903,6 @@ public open class Window : Viewport() {
     internal val getContentScaleFactorPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_content_scale_factor", 1740695150)
 
-    internal val setUseFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling", 2586408642)
-
-    internal val isUsingFontOversamplingPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling", 36873697)
-
     internal val setMousePassthroughPolygonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_mouse_passthrough_polygon", 1509147220)
 
@@ -2917,6 +3035,24 @@ public open class Window : Viewport() {
     internal val getThemeDefaultFontSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "get_theme_default_font_size", 3905245786)
 
+    internal val getWindowIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_window_id", 3905245786)
+
+    internal val setAccessibilityNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_accessibility_name", 83702148)
+
+    internal val getAccessibilityNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_accessibility_name", 201670096)
+
+    internal val setAccessibilityDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_accessibility_description", 83702148)
+
+    internal val getAccessibilityDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_accessibility_description", 201670096)
+
+    internal val getFocusedWindowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "get_focused_window", 1835468782)
+
     internal val setLayoutDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "set_layout_direction", 3094704184)
 
@@ -2931,6 +3067,12 @@ public open class Window : Viewport() {
 
     internal val isAutoTranslatingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Window", "is_auto_translating", 36873697)
+
+    internal val setUseFontOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "set_use_font_oversampling", 2586408642)
+
+    internal val isUsingFontOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Window", "is_using_font_oversampling", 36873697)
 
     internal val popupPtr: VoidPtr = TypeManager.getMethodBindPtr("Window", "popup", 1680304321)
 

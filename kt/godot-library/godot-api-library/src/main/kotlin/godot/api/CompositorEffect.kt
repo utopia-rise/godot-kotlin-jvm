@@ -129,12 +129,12 @@ public open class CompositorEffect : Resource() {
    *
    * ```
    * vec4 normal_roughness_compatibility(vec4 p_normal_roughness) {
-   *     float roughness = p_normal_roughness.w;
-   *     if (roughness > 0.5) {
-   *         roughness = 1.0 - roughness;
-   *     }
-   *     roughness /= (127.0 / 255.0);
-   *     return vec4(normalize(p_normal_roughness.xyz * 2.0 - 1.0) * 0.5 + 0.5, roughness);
+   * 	float roughness = p_normal_roughness.w;
+   * 	if (roughness > 0.5) {
+   * 		roughness = 1.0 - roughness;
+   * 	}
+   * 	roughness /= (127.0 / 255.0);
+   * 	return vec4(normalize(p_normal_roughness.xyz * 2.0 - 1.0) * 0.5 + 0.5, roughness);
    * }
    * ```
    */
@@ -159,7 +159,7 @@ public open class CompositorEffect : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(165, scriptIndex)
+    createNativeObject(167, scriptIndex)
   }
 
   /**

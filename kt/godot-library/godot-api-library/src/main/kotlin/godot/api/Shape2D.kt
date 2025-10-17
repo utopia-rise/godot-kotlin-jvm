@@ -41,7 +41,7 @@ import kotlin.jvm.JvmName
  * against. [ConvexPolygonShape2D] is slower, and [ConcavePolygonShape2D] is the slowest.
  */
 @GodotBaseType
-public open class Shape2D internal constructor() : Resource() {
+public abstract class Shape2D : Resource() {
   /**
    * The shape's custom solver bias. Defines how much bodies react to enforce contact separation
    * when this shape is involved.
@@ -58,7 +58,7 @@ public open class Shape2D internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(588, scriptIndex)
+    createNativeObject(604, scriptIndex)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

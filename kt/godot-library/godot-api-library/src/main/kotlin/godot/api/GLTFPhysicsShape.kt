@@ -43,8 +43,8 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class GLTFPhysicsShape : Resource() {
   /**
-   * The type of shape this shape represents. Valid values are "box", "capsule", "cylinder",
-   * "sphere", "hull", and "trimesh".
+   * The type of shape this shape represents. Valid values are `"box"`, `"capsule"`, `"cylinder"`,
+   * `"sphere"`, `"hull"`, and `"trimesh"`.
    */
   public final inline var shapeType: String
     @JvmName("shapeTypeProperty")
@@ -55,8 +55,8 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The size of the shape, in meters. This is only used when the shape type is "box", and it
-   * represents the "diameter" of the box. This value should not be negative.
+   * The size of the shape, in meters. This is only used when the shape type is `"box"`, and it
+   * represents the `"diameter"` of the box. This value should not be negative.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -75,8 +75,8 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The radius of the shape, in meters. This is only used when the shape type is "capsule",
-   * "cylinder", or "sphere". This value should not be negative.
+   * The radius of the shape, in meters. This is only used when the shape type is `"capsule"`,
+   * `"cylinder"`, or `"sphere"`. This value should not be negative.
    */
   public final inline var radius: Float
     @JvmName("radiusProperty")
@@ -87,9 +87,9 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The height of the shape, in meters. This is only used when the shape type is "capsule" or
-   * "cylinder". This value should not be negative, and for "capsule" it should be at least twice the
-   * radius.
+   * The height of the shape, in meters. This is only used when the shape type is `"capsule"` or
+   * `"cylinder"`. This value should not be negative, and for `"capsule"` it should be at least twice
+   * the radius.
    */
   public final inline var height: Float
     @JvmName("heightProperty")
@@ -101,7 +101,7 @@ public open class GLTFPhysicsShape : Resource() {
 
   /**
    * If `true`, indicates that this shape is a trigger. For Godot, this means that the shape should
-   * be a child of an Area3D node.
+   * be a child of an [Area3D] node.
    *
    * This is the only variable not used in the [toNode] method, it's intended to be used alongside
    * when deciding where to add the generated node as a child.
@@ -115,8 +115,8 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The index of the shape's mesh in the glTF file. This is only used when the shape type is "hull"
-   * (convex hull) or "trimesh" (concave trimesh).
+   * The index of the shape's mesh in the glTF file. This is only used when the shape type is
+   * `"hull"` (convex hull) or `"trimesh"` (concave trimesh).
    */
   public final inline var meshIndex: Int
     @JvmName("meshIndexProperty")
@@ -127,8 +127,8 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   /**
-   * The [ImporterMesh] resource of the shape. This is only used when the shape type is "hull"
-   * (convex hull) or "trimesh" (concave trimesh).
+   * The [ImporterMesh] resource of the shape. This is only used when the shape type is `"hull"`
+   * (convex hull) or `"trimesh"` (concave trimesh).
    */
   public final inline var importerMesh: ImporterMesh?
     @JvmName("importerMeshProperty")
@@ -139,7 +139,7 @@ public open class GLTFPhysicsShape : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(236, scriptIndex)
+    createNativeObject(243, scriptIndex)
   }
 
   /**
@@ -153,8 +153,8 @@ public open class GLTFPhysicsShape : Resource() {
    * gltfphysicsshape.size = myCoreType
    * ``````
    *
-   * The size of the shape, in meters. This is only used when the shape type is "box", and it
-   * represents the "diameter" of the box. This value should not be negative.
+   * The size of the shape, in meters. This is only used when the shape type is `"box"`, and it
+   * represents the `"diameter"` of the box. This value should not be negative.
    */
   @CoreTypeHelper
   public final fun sizeMutate(block: Vector3.() -> Unit): Vector3 = size.apply {

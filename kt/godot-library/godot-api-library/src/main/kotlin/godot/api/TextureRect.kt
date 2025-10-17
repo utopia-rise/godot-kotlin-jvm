@@ -41,8 +41,7 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Defines how minimum size is determined based on the texture's size. See [ExpandMode] for
-   * options.
+   * Defines how minimum size is determined based on the texture's size.
    */
   public final inline var expandMode: ExpandMode
     @JvmName("expandModeProperty")
@@ -53,7 +52,7 @@ public open class TextureRect : Control() {
     }
 
   /**
-   * Controls the texture's behavior when resizing the node's bounding rectangle. See [StretchMode].
+   * Controls the texture's behavior when resizing the node's bounding rectangle.
    */
   public final inline var stretchMode: StretchMode
     @JvmName("stretchModeProperty")
@@ -86,7 +85,7 @@ public open class TextureRect : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(677, scriptIndex)
+    createNativeObject(693, scriptIndex)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

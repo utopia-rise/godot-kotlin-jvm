@@ -29,21 +29,22 @@ import kotlin.jvm.JvmOverloads
  * The [Timer] node is a countdown timer and is the simplest way to handle time-based logic in the
  * engine. When a timer reaches the end of its [waitTime], it will emit the [signal timeout] signal.
  *
- * After a timer enters the tree, it can be manually started with [start]. A timer node is also
- * started automatically if [autostart] is `true`.
+ * After a timer enters the scene tree, it can be manually started with [start]. A timer node is
+ * also started automatically if [autostart] is `true`.
  *
  * Without requiring much code, a timer node can be added and configured in the editor. The [signal
  * timeout] signal it emits can also be connected through the Node dock in the editor:
  *
  * ```
  * func _on_timer_timeout():
- *     print("Time to attack!")
+ * 	print("Time to attack!")
  * ```
  *
  * **Note:** To create a one-shot timer without instantiating a node, use [SceneTree.createTimer].
  *
- * **Note:** Timers are affected by [Engine.timeScale]. The higher the time scale, the sooner timers
- * will end. How often a timer processes may depend on the framerate or [Engine.physicsTicksPerSecond].
+ * **Note:** Timers are affected by [Engine.timeScale] unless [ignoreTimeScale] is `true`. The
+ * higher the time scale, the sooner timers will end. How often a timer processes may depend on the
+ * framerate or [Engine.physicsTicksPerSecond].
  */
 @GodotBaseType
 public open class Timer : Node() {
@@ -53,7 +54,7 @@ public open class Timer : Node() {
   public val timeout: Signal0 by Signal0
 
   /**
-   * Specifies when the timer is updated during the main loop (see [TimerProcessCallback]).
+   * Specifies when the timer is updated during the main loop.
    */
   public final inline var processCallback: TimerProcessCallback
     @JvmName("processCallbackProperty")
@@ -110,7 +111,7 @@ public open class Timer : Node() {
 
   /**
    * If `true`, the timer is paused. A paused timer does not process until this property is set back
-   * to `false`, even when [start] is called.
+   * to `false`, even when [start] is called. See also [stop].
    */
   public final inline var paused: Boolean
     @JvmName("pausedProperty")
@@ -141,7 +142,7 @@ public open class Timer : Node() {
     get() = getTimeLeft()
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(690, scriptIndex)
+    createNativeObject(706, scriptIndex)
   }
 
   public final fun setWaitTime(timeSec: Double): Unit {
@@ -179,7 +180,7 @@ public open class Timer : Node() {
 
   /**
    * Starts the timer, or resets the timer if it was started already. Fails if the timer is not
-   * inside the tree. If [timeSec] is greater than `0`, this value is used for the [waitTime].
+   * inside the scene tree. If [timeSec] is greater than `0`, this value is used for the [waitTime].
    *
    * **Note:** This method does not resume a paused timer. See [paused].
    */
@@ -190,7 +191,12 @@ public open class Timer : Node() {
   }
 
   /**
-   * Stops the timer.
+   * Stops the timer. See also [paused]. Unlike [start], this can safely be called if the timer is
+   * not inside the scene tree.
+   *
+   * **Note:** Calling [stop] does not emit the [signal timeout] signal, as the timer is not
+   * considered to have timed out. If this is desired, use `$Timer.timeout.emit()` after calling [stop]
+   * to manually emit the signal.
    */
   public final fun stop(): Unit {
     TransferContext.writeArguments()

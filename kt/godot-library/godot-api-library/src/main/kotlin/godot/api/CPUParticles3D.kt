@@ -244,7 +244,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particle draw order. Uses [DrawOrder] values.
+   * Particle draw order.
    */
   public final inline var drawOrder: DrawOrder
     @JvmName("drawOrderProperty")
@@ -266,7 +266,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   /**
-   * Particles will be emitted inside this region. See [EmissionShape] for possible values.
+   * Particles will be emitted inside this region.
    */
   public final inline var emissionShape: EmissionShape
     @JvmName("emissionShapeProperty")
@@ -1015,7 +1015,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(116, scriptIndex)
+    createNativeObject(118, scriptIndex)
   }
 
   /**
@@ -1560,7 +1560,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Enables or disables the given particle flag (see [ParticleFlags] for options).
+   * Enables or disables the given particle flag.
    */
   public final fun setParticleFlag(particleFlag: ParticleFlags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to particleFlag.value, BOOL to enable)
@@ -1568,7 +1568,7 @@ public open class CPUParticles3D : GeometryInstance3D() {
   }
 
   /**
-   * Returns the enabled state of the given particle flag (see [ParticleFlags] for options).
+   * Returns the enabled state of the given particle flag.
    */
   public final fun getParticleFlag(particleFlag: ParticleFlags): Boolean {
     TransferContext.writeArguments(LONG to particleFlag.value)

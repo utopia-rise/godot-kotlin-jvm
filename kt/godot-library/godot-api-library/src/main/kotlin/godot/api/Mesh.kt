@@ -73,7 +73,7 @@ public abstract class Mesh : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(351, scriptIndex)
+    createNativeObject(359, scriptIndex)
   }
 
   /**
@@ -674,7 +674,7 @@ public abstract class Mesh : Resource() {
       public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
       /**
-       * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
+       * Flag used to mark that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
        */
       @JvmField
       public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)

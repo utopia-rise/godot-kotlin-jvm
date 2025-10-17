@@ -15,9 +15,9 @@ import kotlin.Unit
  * This is an abstract class. See the derived types for descriptions of the possible values.
  */
 @GodotBaseType
-public open class VisualShaderNodeConstant internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeConstant : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(738, scriptIndex)
+    createNativeObject(754, scriptIndex)
   }
 
   public companion object

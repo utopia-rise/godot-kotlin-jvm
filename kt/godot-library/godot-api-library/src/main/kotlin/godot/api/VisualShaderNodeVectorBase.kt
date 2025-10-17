@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  * This is an abstract class. See the derived types for descriptions of the possible operations.
  */
 @GodotBaseType
-public open class VisualShaderNodeVectorBase internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeVectorBase : VisualShaderNode() {
   /**
    * A vector type that this operation is performed on.
    */
@@ -36,7 +36,7 @@ public open class VisualShaderNodeVectorBase internal constructor() : VisualShad
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(829, scriptIndex)
+    createNativeObject(845, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

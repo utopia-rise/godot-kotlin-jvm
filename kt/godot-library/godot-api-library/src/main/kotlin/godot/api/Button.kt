@@ -34,28 +34,28 @@ import kotlin.jvm.JvmName
  * ```gdscript
  * //gdscript
  * func _ready():
- *     var button = Button.new()
- *     button.text = "Click me"
- *     button.pressed.connect(_button_pressed)
- *     add_child(button)
+ * 	var button = Button.new()
+ * 	button.text = "Click me"
+ * 	button.pressed.connect(_button_pressed)
+ * 	add_child(button)
  *
  * func _button_pressed():
- *     print("Hello world!")
+ * 	print("Hello world!")
  * ```
  *
  * ```csharp
  * //csharp
  * public override void _Ready()
  * {
- *     var button = new Button();
- *     button.Text = "Click me";
- *     button.Pressed += ButtonPressed;
- *     AddChild(button);
+ * 	var button = new Button();
+ * 	button.Text = "Click me";
+ * 	button.Pressed += ButtonPressed;
+ * 	AddChild(button);
  * }
  *
  * private void ButtonPressed()
  * {
- *     GD.Print("Hello world!");
+ * 	GD.Print("Hello world!");
  * }
  * ```
  *
@@ -104,7 +104,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Text alignment policy for the button's text, use one of the [HorizontalAlignment] constants.
+   * Text alignment policy for the button's text.
    */
   public final inline var alignment: HorizontalAlignment
     @JvmName("alignmentProperty")
@@ -115,8 +115,7 @@ public open class Button : BaseButton() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds the node's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * Sets the clipping behavior when the text exceeds the node's bounding rectangle.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -136,6 +135,18 @@ public open class Button : BaseButton() {
     @JvmName("autowrapModeProperty")
     set(`value`) {
       setAutowrapMode(value)
+    }
+
+  /**
+   * Autowrap space trimming flags. See [TextServer.BREAK_TRIM_START_EDGE_SPACES] and
+   * [TextServer.BREAK_TRIM_END_EDGE_SPACES] for more info.
+   */
+  public final inline var autowrapTrimFlags: TextServer.LineBreakFlag
+    @JvmName("autowrapTrimFlagsProperty")
+    get() = getAutowrapTrimFlags()
+    @JvmName("autowrapTrimFlagsProperty")
+    set(`value`) {
+      setAutowrapTrimFlags(value)
     }
 
   /**
@@ -213,7 +224,7 @@ public open class Button : BaseButton() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(113, scriptIndex)
+    createNativeObject(115, scriptIndex)
   }
 
   public final fun setText(text: String): Unit {
@@ -247,6 +258,17 @@ public open class Button : BaseButton() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getAutowrapModePtr, LONG)
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setAutowrapTrimFlags(autowrapTrimFlags: TextServer.LineBreakFlag): Unit {
+    TransferContext.writeArguments(LONG to autowrapTrimFlags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapTrimFlagsPtr, NIL)
+  }
+
+  public final fun getAutowrapTrimFlags(): TextServer.LineBreakFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapTrimFlagsPtr, LONG)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
   }
 
   public final fun setTextDirection(direction: Control.TextDirection): Unit {
@@ -366,6 +388,12 @@ public open class Button : BaseButton() {
 
     internal val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Button", "get_autowrap_mode", 1549071663)
+
+    internal val setAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "set_autowrap_trim_flags", 2809697122)
+
+    internal val getAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Button", "get_autowrap_trim_flags", 2340632602)
 
     internal val setTextDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Button", "set_text_direction", 119160795)

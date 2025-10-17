@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class PacketPeer internal constructor() : RefCounted() {
+public abstract class PacketPeer : RefCounted() {
   /**
    * Maximum buffer size allowed when encoding [Variant]s. Raise this value to support heavier
    * memory allocations.
@@ -55,7 +55,7 @@ public open class PacketPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(438, scriptIndex)
+    createNativeObject(453, scriptIndex)
   }
 
   /**

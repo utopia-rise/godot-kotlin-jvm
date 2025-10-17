@@ -347,7 +347,7 @@ public open class GLTFState : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(240, scriptIndex)
+    createNativeObject(247, scriptIndex)
   }
 
   /**
@@ -442,9 +442,9 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Appends the given byte array data to the buffers and creates a [GLTFBufferView] for it. The
+   * Appends the given byte array [data] to the buffers and creates a [GLTFBufferView] for it. The
    * index of the destination [GLTFBufferView] is returned. If [deduplication] is `true`, the buffers
-   * will first be searched for duplicate data, otherwise new bytes will always be appended.
+   * are first searched for duplicate data, otherwise new bytes are always appended.
    */
   public final fun appendDataToBuffers(`data`: PackedByteArray, deduplication: Boolean): Int {
     TransferContext.writeArguments(PACKED_BYTE_ARRAY to data, BOOL to deduplication)
@@ -453,10 +453,10 @@ public open class GLTFState : Resource() {
   }
 
   /**
-   * Append the given [GLTFNode] to the state, and return its new index. This can be used to export
-   * one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import, this
-   * must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node. On
-   * export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
+   * Appends the given [GLTFNode] to the state, and returns its new index. This can be used to
+   * export one Godot node as multiple glTF nodes, or inject new glTF nodes at import time. On import,
+   * this must be called before [GLTFDocumentExtension.GenerateSceneNode] finishes for the parent node.
+   * On export, this must be called before [GLTFDocumentExtension.ExportNode] runs for the parent node.
    *
    * The [godotSceneNode] parameter is the Godot scene node that corresponds to this glTF node. This
    * is highly recommended to be set to a valid node, but may be `null` if there is no corresponding

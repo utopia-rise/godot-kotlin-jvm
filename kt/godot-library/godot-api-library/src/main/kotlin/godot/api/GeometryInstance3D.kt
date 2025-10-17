@@ -93,7 +93,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * The selected shadow casting flag. See [ShadowCastingSetting] for possible values.
+   * The selected shadow casting flag.
    */
   public final inline var castShadow: ShadowCastingSetting
     @JvmName("castShadowProperty")
@@ -277,8 +277,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   /**
-   * Controls which instances will be faded when approaching the limits of the visibility range. See
-   * [VisibilityRangeFadeMode] for possible values.
+   * Controls which instances will be faded when approaching the limits of the visibility range.
    */
   public final inline var visibilityRangeFadeMode: VisibilityRangeFadeMode
     @JvmName("visibilityRangeFadeModeProperty")
@@ -289,7 +288,7 @@ public open class GeometryInstance3D : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(258, scriptIndex)
+    createNativeObject(265, scriptIndex)
   }
 
   /**

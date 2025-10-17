@@ -14,9 +14,9 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public open class ScriptLanguage internal constructor() : Object() {
+public abstract class ScriptLanguage : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(574, scriptIndex)
+    createNativeObject(590, scriptIndex)
   }
 
   public enum class ScriptNameCasing(
@@ -26,6 +26,7 @@ public open class ScriptLanguage internal constructor() : Object() {
     PASCAL_CASE(1),
     SNAKE_CASE(2),
     KEBAB_CASE(3),
+    CAMEL_CASE(4),
     ;
 
     public override val `value`: Long

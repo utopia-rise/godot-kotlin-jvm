@@ -38,7 +38,7 @@ import kotlin.jvm.JvmName
  * without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType
-public open class BaseMaterial3D internal constructor() : Material() {
+public abstract class BaseMaterial3D : Material() {
   /**
    * The material's transparency mode. Some transparency modes will disable shadow casting. Any
    * transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to
@@ -78,7 +78,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply.
    */
   public final inline var alphaAntialiasingMode: AlphaAntiAliasing
     @JvmName("alphaAntialiasingModeProperty")
@@ -102,8 +102,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's blend mode.
    *
-   * **Note:** Values other than `Mix` force the object into the transparent pipeline. See
-   * [BlendMode].
+   * **Note:** Values other than `Mix` force the object into the transparent pipeline.
    */
   public final inline var blendMode: BlendMode
     @JvmName("blendModeProperty")
@@ -115,7 +114,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
   /**
    * Determines which side of the triangle to cull depending on whether the triangle faces towards
-   * or away from the camera. See [CullMode].
+   * or away from the camera.
    */
   public final inline var cullMode: CullMode
     @JvmName("cullModeProperty")
@@ -126,7 +125,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Determines when depth rendering takes place. See [DepthDrawMode]. See also [transparency].
+   * Determines when depth rendering takes place. See also [transparency].
    */
   public final inline var depthDrawMode: DepthDrawMode
     @JvmName("depthDrawModeProperty")
@@ -148,6 +147,20 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
+   * Determines which comparison operator is used when testing depth. See [DepthTest].
+   *
+   * **Note:** Changing [depthTest] to a non-default value only has a visible effect when used on a
+   * transparent material, or a material that has [depthDrawMode] set to [DEPTH_DRAW_DISABLED].
+   */
+  public final inline var depthTest: DepthTest
+    @JvmName("depthTestProperty")
+    get() = getDepthTest()
+    @JvmName("depthTestProperty")
+    set(`value`) {
+      setDepthTest(value)
+    }
+
+  /**
    * Sets whether the shading takes place, per-pixel, per-vertex or unshaded. Per-vertex lighting is
    * faster, making it the best choice for mobile applications, however it looks considerably worse
    * than per-pixel. Unshaded rendering is the fastest, but disables all interactions with lights.
@@ -161,7 +174,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The algorithm used for diffuse light scattering. See [DiffuseMode].
+   * The algorithm used for diffuse light scattering.
    */
   public final inline var diffuseMode: DiffuseMode
     @JvmName("diffuseModeProperty")
@@ -172,7 +185,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * The method for rendering the specular blob. See [SpecularMode].
+   * The method for rendering the specular blob.
    *
    * **Note:** [specularMode] only applies to the specular blob. It does not affect specular
    * reflections from the sky, screen-space reflections, [VoxelGI], SDFGI or [ReflectionProbe]s. To
@@ -208,6 +221,18 @@ public open class BaseMaterial3D internal constructor() : Material() {
     @JvmName("disableFogProperty")
     set(`value`) {
       setFlag(BaseMaterial3D.Flags.DISABLE_FOG, value)
+    }
+
+  /**
+   * If `true`, disables specular occlusion even if
+   * [ProjectSettings.rendering/reflections/specularOcclusion/enabled] is `false`.
+   */
+  public final inline var disableSpecularOcclusion: Boolean
+    @JvmName("disableSpecularOcclusionProperty")
+    get() = getFlag(BaseMaterial3D.Flags.DISABLE_SPECULAR_OCCLUSION)
+    @JvmName("disableSpecularOcclusionProperty")
+    set(`value`) {
+      setFlag(BaseMaterial3D.Flags.DISABLE_SPECULAR_OCCLUSION, value)
     }
 
   /**
@@ -469,8 +494,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply. See
-   * [EmissionOperator] for options.
+   * Sets how [emission] interacts with [emissionTexture]. Can either add or multiply.
    */
   public final inline var emissionOperator: EmissionOperator
     @JvmName("emissionOperatorProperty")
@@ -549,6 +573,44 @@ public open class BaseMaterial3D internal constructor() : Material() {
     @JvmName("normalTextureProperty")
     set(`value`) {
       setTexture(BaseMaterial3D.TextureParam.NORMAL, value)
+    }
+
+  /**
+   * If `true`, the bent normal map is enabled. This allows for more accurate indirect lighting and
+   * specular occlusion.
+   */
+  public final inline var bentNormalEnabled: Boolean
+    @JvmName("bentNormalEnabledProperty")
+    get() = getFeature(BaseMaterial3D.Feature.BENT_NORMAL_MAPPING)
+    @JvmName("bentNormalEnabledProperty")
+    set(`value`) {
+      setFeature(BaseMaterial3D.Feature.BENT_NORMAL_MAPPING, value)
+    }
+
+  /**
+   * Texture that specifies the average direction of incoming ambient light at a given pixel. The
+   * [bentNormalTexture] only uses the red and green channels; the blue and alpha channels are ignored.
+   * The normal read from [bentNormalTexture] is oriented around the surface normal provided by the
+   * [Mesh].
+   *
+   * **Note:** A bent normal map is different from a regular normal map. When baking a bent normal
+   * map make sure to use **a cosine distribution** for the bent normal map to work correctly.
+   *
+   * **Note:** The mesh must have both normals and tangents defined in its vertex data. Otherwise,
+   * the shading produced by the bent normal map will not look correct. If creating geometry with
+   * [SurfaceTool], you can use [SurfaceTool.generateNormals] and [SurfaceTool.generateTangents] to
+   * automatically generate normals and tangents respectively.
+   *
+   * **Note:** Godot expects the bent normal map to use X+, Y+, and Z+ coordinates. See
+   * [url=http://wiki.polycount.com/wiki/Normal_Map_Technical_Details#Common_Swizzle_Coordinates]this
+   * page[/url] for a comparison of normal map coordinates expected by popular engines.
+   */
+  public final inline var bentNormalTexture: Texture2D?
+    @JvmName("bentNormalTextureProperty")
+    get() = getTexture(BaseMaterial3D.TextureParam.BENT_NORMAL)
+    @JvmName("bentNormalTextureProperty")
+    set(`value`) {
+      setTexture(BaseMaterial3D.TextureParam.BENT_NORMAL, value)
     }
 
   /**
@@ -914,6 +976,9 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, subsurface scattering is enabled. Emulates light that penetrates an object's
    * surface, is scattered, and then emerges. Subsurface scattering quality is controlled by
    * [ProjectSettings.rendering/environment/subsurfaceScattering/subsurfaceScatteringQuality].
+   *
+   * **Note:** Subsurface scattering is not supported on viewports that have a transparent
+   * background (where [Viewport.transparentBg] is `true`).
    */
   public final inline var subsurfScatterEnabled: Boolean
     @JvmName("subsurfScatterEnabledProperty")
@@ -1145,8 +1210,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`. See [BlendMode] for
-   * options.
+   * Specifies how the [detailAlbedo] should blend with the current `ALBEDO`.
    */
   public final inline var detailBlendMode: BlendMode
     @JvmName("detailBlendModeProperty")
@@ -1157,7 +1221,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Specifies whether to use `UV` or `UV2` for the detail layer. See [DetailUV] for options.
+   * Specifies whether to use `UV` or `UV2` for the detail layer.
    */
   public final inline var detailUvLayer: DetailUV
     @JvmName("detailUvLayerProperty")
@@ -1372,7 +1436,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Filter flags for the texture. See [TextureFilter] for options.
+   * Filter flags for the texture.
    *
    * **Note:** [heightmapTexture] is always sampled with linear filtering, even if nearest-neighbor
    * filtering is selected here. This is to ensure the heightmap effect looks as intended. If you need
@@ -1388,7 +1452,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Repeat flags for the texture. See [TextureFilter] for options.
+   * If `true`, the texture repeats when exceeding the texture's size. See
+   * [FLAG_USE_TEXTURE_REPEAT].
    */
   public final inline var textureRepeat: Boolean
     @JvmName("textureRepeatProperty")
@@ -1423,7 +1488,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * Controls how the object faces the camera. See [BillboardMode].
+   * Controls how the object faces the camera.
    *
    * **Note:** Billboard mode is not suitable for VR because the left-right vector of the camera is
    * not horizontal when the screen is attached to your head instead of on the table. See
@@ -1515,7 +1580,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
     }
 
   /**
-   * If `true`, the object is rendered at the same size regardless of distance.
+   * If `true`, the object is rendered at the same size regardless of distance. The object's size on
+   * screen is the same as if the camera was `1.0` units away from the object's origin, regardless of
+   * the actual distance from the camera. The [Camera3D]'s field of view (or [Camera3D.size] when in
+   * orthogonal/frustum mode) still affects the size the object is drawn at.
    */
   public final inline var fixedSize: Boolean
     @JvmName("fixedSizeProperty")
@@ -1562,6 +1630,59 @@ public open class BaseMaterial3D internal constructor() : Material() {
     @JvmName("useParticleTrailsProperty")
     set(`value`) {
       setFlag(BaseMaterial3D.Flags.PARTICLE_TRAILS_MODE, value)
+    }
+
+  /**
+   * If `true` use [zClipScale] to scale the object being rendered towards the camera to avoid
+   * clipping into things like walls.
+   */
+  public final inline var useZClipScale: Boolean
+    @JvmName("useZClipScaleProperty")
+    get() = getFlag(BaseMaterial3D.Flags.USE_Z_CLIP_SCALE)
+    @JvmName("useZClipScaleProperty")
+    set(`value`) {
+      setFlag(BaseMaterial3D.Flags.USE_Z_CLIP_SCALE, value)
+    }
+
+  /**
+   * Scales the object being rendered towards the camera to avoid clipping into things like walls.
+   * This is intended to be used for objects that are fixed with respect to the camera like player
+   * arms, tools, etc. Lighting and shadows will continue to work correctly when this setting is
+   * adjusted, but screen-space effects like SSAO and SSR may break with lower scales. Therefore, try
+   * to keep this setting as close to `1.0` as possible.
+   */
+  public final inline var zClipScale: Float
+    @JvmName("zClipScaleProperty")
+    get() = getZClipScale()
+    @JvmName("zClipScaleProperty")
+    set(`value`) {
+      setZClipScale(value)
+    }
+
+  /**
+   * If `true` use [fovOverride] to override the [Camera3D]'s field of view angle.
+   */
+  public final inline var useFovOverride: Boolean
+    @JvmName("useFovOverrideProperty")
+    get() = getFlag(BaseMaterial3D.Flags.USE_FOV_OVERRIDE)
+    @JvmName("useFovOverrideProperty")
+    set(`value`) {
+      setFlag(BaseMaterial3D.Flags.USE_FOV_OVERRIDE, value)
+    }
+
+  /**
+   * Overrides the [Camera3D]'s field of view angle (in degrees).
+   *
+   * **Note:** This behaves as if the field of view is set on a [Camera3D] with
+   * [Camera3D.keepAspect] set to [Camera3D.KEEP_HEIGHT]. Additionally, it may not look correct on a
+   * non-perspective camera where the field of view setting is ignored.
+   */
+  public final inline var fovOverride: Float
+    @JvmName("fovOverrideProperty")
+    get() = getFovOverride()
+    @JvmName("fovOverrideProperty")
+    set(`value`) {
+      setFovOverride(value)
     }
 
   /**
@@ -1653,8 +1774,82 @@ public open class BaseMaterial3D internal constructor() : Material() {
       setDistanceFadeMaxDistance(value)
     }
 
+  /**
+   * The stencil effect mode. See [StencilMode].
+   */
+  public final inline var stencilMode: StencilMode
+    @JvmName("stencilModeProperty")
+    get() = getStencilMode()
+    @JvmName("stencilModeProperty")
+    set(`value`) {
+      setStencilMode(value)
+    }
+
+  /**
+   * The flags dictating how the stencil operation behaves. See [StencilFlags].
+   */
+  public final inline var stencilFlags: Int
+    @JvmName("stencilFlagsProperty")
+    get() = getStencilFlags()
+    @JvmName("stencilFlagsProperty")
+    set(`value`) {
+      setStencilFlags(value)
+    }
+
+  /**
+   * The comparison operator to use for stencil masking operations. See [StencilCompare].
+   */
+  public final inline var stencilCompare: StencilCompare
+    @JvmName("stencilCompareProperty")
+    get() = getStencilCompare()
+    @JvmName("stencilCompareProperty")
+    set(`value`) {
+      setStencilCompare(value)
+    }
+
+  /**
+   * The stencil reference value (0-255). Typically a power of 2.
+   */
+  public final inline var stencilReference: Int
+    @JvmName("stencilReferenceProperty")
+    get() = getStencilReference()
+    @JvmName("stencilReferenceProperty")
+    set(`value`) {
+      setStencilReference(value)
+    }
+
+  /**
+   * The primary color of the stencil effect.
+   *
+   * **Warning:**
+   * Be careful when trying to modify a local
+   * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
+   * getter.
+   * Mutating it alone won't have any effect on the actual property, it has to be reassigned again
+   * afterward.
+   */
+  @CoreTypeLocalCopy
+  public final inline var stencilColor: Color
+    @JvmName("stencilColorProperty")
+    get() = getStencilEffectColor()
+    @JvmName("stencilColorProperty")
+    set(`value`) {
+      setStencilEffectColor(value)
+    }
+
+  /**
+   * The outline thickness for [STENCIL_MODE_OUTLINE].
+   */
+  public final inline var stencilOutlineThickness: Float
+    @JvmName("stencilOutlineThicknessProperty")
+    get() = getStencilEffectOutlineThickness()
+    @JvmName("stencilOutlineThicknessProperty")
+    set(`value`) {
+      setStencilEffectOutlineThickness(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(104, scriptIndex)
+    createNativeObject(105, scriptIndex)
   }
 
   /**
@@ -1820,6 +2015,25 @@ public open class BaseMaterial3D internal constructor() : Material() {
   public final fun uv2OffsetMutate(block: Vector3.() -> Unit): Vector3 = uv2Offset.apply {
      block(this)
      uv2Offset = this
+  }
+
+  /**
+   * This is a helper function for [stencilColor] to make dealing with local copies easier.
+   * Allow to directly modify the local copy of the property and assign it back to the Object.
+   *
+   * Prefer that over writing:
+   * ``````
+   * val myCoreType = basematerial3d.stencilColor
+   * //Your changes
+   * basematerial3d.stencilColor = myCoreType
+   * ``````
+   *
+   * The primary color of the stencil effect.
+   */
+  @CoreTypeHelper
+  public final fun stencilColorMutate(block: Color.() -> Unit): Color = stencilColor.apply {
+     block(this)
+     stencilColor = this
   }
 
   public final fun setAlbedo(albedo: Color): Unit {
@@ -2130,6 +2344,17 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return DepthDrawMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setDepthTest(depthTest: DepthTest): Unit {
+    TransferContext.writeArguments(LONG to depthTest.value)
+    TransferContext.callMethod(ptr, MethodBindings.setDepthTestPtr, NIL)
+  }
+
+  public final fun getDepthTest(): DepthTest {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDepthTestPtr, LONG)
+    return DepthTest.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setCullMode(cullMode: CullMode): Unit {
     TransferContext.writeArguments(LONG to cullMode.value)
     TransferContext.callMethod(ptr, MethodBindings.setCullModePtr, NIL)
@@ -2167,7 +2392,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
    * If `true`, enables the specified flag. Flags are optional behavior that can be turned on and
    * off. Only one flag can be enabled at a time with this function, the flag enumerators cannot be
    * bit-masked together to enable or disable multiple flags at once. Flags can also be enabled by
-   * setting the corresponding member to `true`. See [Flags] enumerator for options.
+   * setting the corresponding member to `true`.
    */
   public final fun setFlag(flag: Flags, enable: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.value, BOOL to enable)
@@ -2175,7 +2400,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Returns `true`, if the specified flag is enabled. See [Flags] enumerator for options.
+   * Returns `true` if the specified flag is enabled.
    */
   public final fun getFlag(flag: Flags): Boolean {
     TransferContext.writeArguments(LONG to flag.value)
@@ -2215,7 +2440,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
   }
 
   /**
-   * Sets the texture for the slot specified by [param]. See [TextureParam] for available slots.
+   * Sets the texture for the slot specified by [param].
    */
   public final fun setTexture(`param`: TextureParam, texture: Texture2D?): Unit {
     TransferContext.writeArguments(LONG to param.value, OBJECT to texture)
@@ -2594,6 +2819,94 @@ public open class BaseMaterial3D internal constructor() : Material() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
+  public final fun setZClipScale(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setZClipScalePtr, NIL)
+  }
+
+  public final fun getZClipScale(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getZClipScalePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setFovOverride(scale: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to scale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setFovOverridePtr, NIL)
+  }
+
+  public final fun getFovOverride(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFovOverridePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setStencilMode(stencilMode: StencilMode): Unit {
+    TransferContext.writeArguments(LONG to stencilMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setStencilModePtr, NIL)
+  }
+
+  public final fun getStencilMode(): StencilMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilModePtr, LONG)
+    return StencilMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setStencilFlags(stencilFlags: Int): Unit {
+    TransferContext.writeArguments(LONG to stencilFlags.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStencilFlagsPtr, NIL)
+  }
+
+  public final fun getStencilFlags(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilFlagsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setStencilCompare(stencilCompare: StencilCompare): Unit {
+    TransferContext.writeArguments(LONG to stencilCompare.value)
+    TransferContext.callMethod(ptr, MethodBindings.setStencilComparePtr, NIL)
+  }
+
+  public final fun getStencilCompare(): StencilCompare {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilComparePtr, LONG)
+    return StencilCompare.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setStencilReference(stencilReference: Int): Unit {
+    TransferContext.writeArguments(LONG to stencilReference.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStencilReferencePtr, NIL)
+  }
+
+  public final fun getStencilReference(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilReferencePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setStencilEffectColor(stencilColor: Color): Unit {
+    TransferContext.writeArguments(COLOR to stencilColor)
+    TransferContext.callMethod(ptr, MethodBindings.setStencilEffectColorPtr, NIL)
+  }
+
+  public final fun getStencilEffectColor(): Color {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilEffectColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  public final fun setStencilEffectOutlineThickness(stencilOutlineThickness: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to stencilOutlineThickness.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setStencilEffectOutlineThicknessPtr, NIL)
+  }
+
+  public final fun getStencilEffectOutlineThickness(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStencilEffectOutlineThicknessPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   /**
    * Virtual method inherited from base class implemented in non-JVM code. Don't call it.
    */
@@ -2631,6 +2944,10 @@ public open class BaseMaterial3D internal constructor() : Material() {
      * Texture specifying per-pixel normal vector.
      */
     NORMAL(4),
+    /**
+     * Texture specifying per-pixel bent normal vector.
+     */
+    BENT_NORMAL(18),
     /**
      * Texture specifying per-pixel rim value.
      */
@@ -2686,7 +3003,7 @@ public open class BaseMaterial3D internal constructor() : Material() {
     /**
      * Represents the size of the [TextureParam] enum.
      */
-    MAX(18),
+    MAX(19),
     ;
 
     public override val `value`: Long
@@ -2916,9 +3233,13 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     DETAIL(11),
     /**
+     * Constant for setting [bentNormalEnabled].
+     */
+    BENT_NORMAL_MAPPING(12),
+    /**
      * Represents the size of the [Feature] enum.
      */
-    MAX(12),
+    MAX(13),
     ;
 
     public override val `value`: Long
@@ -3030,6 +3351,30 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
     public companion object {
       public fun from(`value`: Long): DepthDrawMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class DepthTest(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Depth test will discard the pixel if it is behind other pixels.
+     */
+    DEFAULT(0),
+    /**
+     * Depth test will discard the pixel if it is in front of other pixels. Useful for stencil
+     * effects.
+     */
+    INVERTED(1),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): DepthTest = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3170,9 +3515,21 @@ public open class BaseMaterial3D internal constructor() : Material() {
      */
     DISABLE_FOG(21),
     /**
+     * Disables specular occlusion.
+     */
+    DISABLE_SPECULAR_OCCLUSION(22),
+    /**
+     * Enables using [zClipScale].
+     */
+    USE_Z_CLIP_SCALE(23),
+    /**
+     * Enables using [fovOverride].
+     */
+    USE_FOV_OVERRIDE(24),
+    /**
      * Represents the size of the [Flags] enum.
      */
-    MAX(22),
+    MAX(25),
     ;
 
     public override val `value`: Long
@@ -3221,6 +3578,14 @@ public open class BaseMaterial3D internal constructor() : Material() {
   ) : GodotEnum {
     /**
      * Default specular blob.
+     *
+     * **Note:** Forward+ uses multiscattering for more accurate reflections, although the impact of
+     * multiscattering is more noticeable on rough metallic surfaces than on smooth, non-metallic
+     * surfaces.
+     *
+     * **Note:** Mobile and Compatibility don't perform multiscattering for performance reasons.
+     * Instead, they perform single scattering, which means rough metallic surfaces may look slightly
+     * darker than intended.
      */
     SCHLICK_GGX(0),
     /**
@@ -3371,6 +3736,122 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
     public companion object {
       public fun from(`value`: Long): DistanceFadeMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class StencilMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Disables stencil operations.
+     */
+    DISABLED(0),
+    /**
+     * Stencil preset which applies an outline to the object.
+     *
+     * **Note:** Requires a [Material.nextPass] material which will be automatically applied. Any
+     * manual changes made to [Material.nextPass] will be lost when the stencil properties are modified
+     * or the scene is reloaded. To safely apply a [Material.nextPass] material on a material that uses
+     * stencil presets, use [GeometryInstance3D.materialOverlay] instead.
+     */
+    OUTLINE(1),
+    /**
+     * Stencil preset which shows a silhouette of the object behind walls.
+     *
+     * **Note:** Requires a [Material.nextPass] material which will be automatically applied. Any
+     * manual changes made to [Material.nextPass] will be lost when the stencil properties are modified
+     * or the scene is reloaded. To safely apply a [Material.nextPass] material on a material that uses
+     * stencil presets, use [GeometryInstance3D.materialOverlay] instead.
+     */
+    XRAY(2),
+    /**
+     * Enables stencil operations without a preset.
+     */
+    CUSTOM(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): StencilMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class StencilFlags(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The material will only be rendered where it passes a stencil comparison with existing stencil
+     * buffer values. See [StencilCompare].
+     */
+    READ(1),
+    /**
+     * The material will write the reference value to the stencil buffer where it passes the depth
+     * test.
+     */
+    WRITE(2),
+    /**
+     * The material will write the reference value to the stencil buffer where it fails the depth
+     * test.
+     */
+    WRITE_DEPTH_FAIL(4),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): StencilFlags = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class StencilCompare(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Always passes the stencil test.
+     */
+    ALWAYS(0),
+    /**
+     * Passes the stencil test when the reference value is less than the existing stencil value.
+     */
+    LESS(1),
+    /**
+     * Passes the stencil test when the reference value is equal to the existing stencil value.
+     */
+    EQUAL(2),
+    /**
+     * Passes the stencil test when the reference value is less than or equal to the existing
+     * stencil value.
+     */
+    LESS_OR_EQUAL(3),
+    /**
+     * Passes the stencil test when the reference value is greater than the existing stencil value.
+     */
+    GREATER(4),
+    /**
+     * Passes the stencil test when the reference value is not equal to the existing stencil value.
+     */
+    NOT_EQUAL(5),
+    /**
+     * Passes the stencil test when the reference value is greater than or equal to the existing
+     * stencil value.
+     */
+    GREATER_OR_EQUAL(6),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): StencilCompare = entries.single { it.`value` == `value` }
     }
   }
 
@@ -3544,6 +4025,12 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
     internal val getDepthDrawModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_draw_mode", 2578197639)
+
+    internal val setDepthTestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_depth_test", 3918692338)
+
+    internal val getDepthTestPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_depth_test", 3434785811)
 
     internal val setCullModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BaseMaterial3D", "set_cull_mode", 2338909218)
@@ -3784,5 +4271,53 @@ public open class BaseMaterial3D internal constructor() : Material() {
 
     internal val getDistanceFadeMinDistancePtr: VoidPtr =
         TypeManager.getMethodBindPtr("BaseMaterial3D", "get_distance_fade_min_distance", 1740695150)
+
+    internal val setZClipScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_z_clip_scale", 373806689)
+
+    internal val getZClipScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_z_clip_scale", 1740695150)
+
+    internal val setFovOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_fov_override", 373806689)
+
+    internal val getFovOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_fov_override", 1740695150)
+
+    internal val setStencilModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_mode", 2272367200)
+
+    internal val getStencilModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_mode", 2908443456)
+
+    internal val setStencilFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_flags", 1286410249)
+
+    internal val getStencilFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_flags", 3905245786)
+
+    internal val setStencilComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_compare", 3741726481)
+
+    internal val getStencilComparePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_compare", 2824600492)
+
+    internal val setStencilReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_reference", 1286410249)
+
+    internal val getStencilReferencePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_reference", 3905245786)
+
+    internal val setStencilEffectColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_effect_color", 2920490490)
+
+    internal val getStencilEffectColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_effect_color", 3444240500)
+
+    internal val setStencilEffectOutlineThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "set_stencil_effect_outline_thickness", 373806689)
+
+    internal val getStencilEffectOutlineThicknessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("BaseMaterial3D", "get_stencil_effect_outline_thickness", 1740695150)
   }
 }

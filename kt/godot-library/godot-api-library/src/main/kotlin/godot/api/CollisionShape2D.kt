@@ -106,7 +106,7 @@ public open class CollisionShape2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(158, scriptIndex)
+    createNativeObject(160, scriptIndex)
   }
 
   /**

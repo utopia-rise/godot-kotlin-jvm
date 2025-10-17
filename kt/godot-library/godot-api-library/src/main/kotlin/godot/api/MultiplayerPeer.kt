@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public open class MultiplayerPeer internal constructor() : PacketPeer() {
+public abstract class MultiplayerPeer : PacketPeer() {
   /**
    * Emitted when a remote peer connects.
    */
@@ -58,8 +58,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   /**
-   * The manner in which to send packets to the target peer. See [TransferMode], and the
-   * [setTargetPeer] method.
+   * The manner in which to send packets to the target peer. See the [setTargetPeer] method.
    */
   public final inline var transferMode: TransferMode
     @JvmName("transferModeProperty")
@@ -91,7 +90,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(368, scriptIndex)
+    createNativeObject(377, scriptIndex)
   }
 
   public final fun setTransferChannel(channel: Int): Unit {
@@ -187,7 +186,7 @@ public open class MultiplayerPeer internal constructor() : PacketPeer() {
   }
 
   /**
-   * Returns the current state of the connection. See [ConnectionStatus].
+   * Returns the current state of the connection.
    */
   public final fun getConnectionStatus(): ConnectionStatus {
     TransferContext.writeArguments()

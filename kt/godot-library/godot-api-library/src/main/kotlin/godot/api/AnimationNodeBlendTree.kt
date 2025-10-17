@@ -14,6 +14,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Signal1
 import godot.core.StringName
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
@@ -65,7 +67,7 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(23, scriptIndex)
+    createNativeObject(24, scriptIndex)
   }
 
   /**
@@ -154,6 +156,15 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
   public final fun disconnectNode(inputNode: StringName, inputIndex: Int): Unit {
     TransferContext.writeArguments(STRING_NAME to inputNode, LONG to inputIndex.toLong())
     TransferContext.callMethod(ptr, MethodBindings.disconnectNodePtr, NIL)
+  }
+
+  /**
+   * Returns a list containing the names of all sub animation nodes in this blend tree.
+   */
+  public final fun getNodeList(): VariantArray<StringName> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNodeListPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<StringName>)
   }
 
   /**
@@ -297,6 +308,9 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
 
     internal val disconnectNodePtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "disconnect_node", 2415702435)
+
+    internal val getNodeListPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "get_node_list", 3995934104)
 
     internal val setNodePositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AnimationNodeBlendTree", "set_node_position", 1999414630)

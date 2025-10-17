@@ -9,9 +9,9 @@ import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.MapIterator
 import godot.common.util.isNullable
+import godot.core.bridge.DeepDuplicateMode
 import godot.internal.reflection.TypeManager
 import kotlincompile.definitions.GodotJvmBuildConfig
-import kotlin.collections.forEachIndexed
 import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
@@ -216,6 +216,19 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
     }
 
     /**
+     * Duplicates this dictionary, deeply, like duplicate()(true), with extra control over how subresources are handled.
+     * deepSubresourceMode must be one of the values from DeepDuplicateMode. By default, only internal resources will be duplicated (recursively).
+     */
+    fun duplicateDeep(deepSubresourceMode: DeepDuplicateMode): Dictionary<K,V> {
+        TransferContext.writeArguments(VariantParser.LONG to deepSubresourceMode.value)
+        Bridge.engine_call_duplicate_deep(ptr)
+        return (TransferContext.readReturnValue(VariantParser.DICTIONARY) as Dictionary<K, V>).also {
+            it.keyVariantConverter = keyVariantConverter
+            it.valueVariantConverter = valueVariantConverter
+        }
+    }
+
+    /**
      * Erase a dictionary key/value pair by key. Doesn't return a Boolean like the GDScript version because the GDNative function doesn't return anything
      */
     fun erase(key: K) {
@@ -395,6 +408,7 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
 
         external fun engine_call_clear(_handle: VoidPtr)
         external fun engine_call_duplicate(_handle: VoidPtr)
+        external fun engine_call_duplicate_deep(_handle: VoidPtr)
         external fun engine_call_erase(_handle: VoidPtr)
         external fun engine_call_find_key(_handle: VoidPtr)
         external fun engine_call_get(_handle: VoidPtr)

@@ -36,7 +36,7 @@ import kotlin.jvm.JvmName
  * ```
  * var interface = XRServer.find_interface("Native mobile")
  * if interface and interface.initialize():
- *     get_viewport().use_xr = true
+ * 	get_viewport().use_xr = true
  * ```
  *
  * **Note:** For Android, [ProjectSettings.inputDevices/sensors/enableAccelerometer],
@@ -178,7 +178,7 @@ public open class MobileVRInterface : XRInterface() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(361, scriptIndex)
+    createNativeObject(369, scriptIndex)
   }
 
   /**

@@ -13,10 +13,10 @@ Variant JvmScript::_new(const Variant** p_args, int p_arg_count, Callable::CallE
     Object* obj = _object_create(p_args, p_arg_count);
     if (obj) {
         r_error.error = Callable::CallError::CALL_OK;
-        return {obj};
+        return Variant(obj);
     }
     r_error.error = Callable::CallError::CALL_ERROR_INVALID_ARGUMENT;
-    return {};
+    return Variant();
 }
 
 Object* JvmScript::_object_create(const Variant** p_args, int p_arg_count) {
@@ -173,29 +173,40 @@ void JvmScript::get_script_property_list(List<PropertyInfo>* p_list) const {
     if (is_valid()) { kotlin_class->get_property_list(p_list); }
 }
 
-void JvmScript::get_script_exported_property_list(List<PropertyInfo>* p_list) const {
-    List<PropertyInfo> all_properties;
-    get_script_property_list(&all_properties);
+void JvmScript::get_constants(HashMap<StringName, Variant> *p_constants) {}
 
-    for (const PropertyInfo& property_info : all_properties) {
-        if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) { p_list->push_back(property_info); }
+void JvmScript::get_members(HashSet<StringName> *p_members){
+#ifdef TOOLS_ENABLED
+    List<PropertyInfo> exported_properties;
+    get_script_exported_property_list(&exported_properties);
+    if (p_members) {
+        for (const PropertyInfo &E : exported_properties) {
+            p_members->insert(E.name);
+        }
     }
+#endif // TOOLS_ENABLED
 }
 
 // Variant is of type Dictionary
-Variant JvmScript::get_rpc_config() const {
+const Variant JvmScript::get_rpc_config() const {
     if (is_valid()) { kotlin_class->get_rpc_config(); }
     return Dictionary();
 }
 
 #ifdef TOOLS_ENABLED
-Vector<DocData::ClassDoc> JvmScript::get_documentation() const {
-    // TODO: Add ability to register documentation to Godot
-    return {};
+
+void JvmScript::get_script_exported_property_list(List<PropertyInfo>* p_list) const {
+    List<PropertyInfo> all_properties;
+    get_script_property_list(&all_properties);
+
+    p_list->push_back(get_class_category());
+    for (const PropertyInfo& property_info : all_properties) {
+        if (property_info.usage & PropertyUsageFlags::PROPERTY_USAGE_EDITOR) { p_list->push_back(property_info); }
+    }
 }
 
-PropertyInfo JvmScript::get_class_category() const {
-    // TODO: Investigate what it's supposed to do.
+Vector<DocData::ClassDoc> JvmScript::get_documentation() const {
+    // TODO: Add ability to register documentation to Godot
     return {};
 }
 
@@ -205,19 +216,21 @@ String JvmScript::get_class_icon_path() const {
 }
 
 StringName JvmScript::get_doc_class_name() const {
-    // TODO: Add ability to register documentation to Godot
-    return {};
+    String class_name = get_global_name();
+    if (class_name.is_empty()) {
+        return get_path().get_file();
+    }
+    return class_name;
 }
 
 PlaceHolderScriptInstance* JvmScript::placeholder_instance_create(Object* p_this) {
     PlaceHolderScriptInstance* placeholder {memnew(JvmPlaceHolderInstance(GdjLanguage::get_instance(), Ref<Script>(this), p_this))};
 
+    update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
+
     List<PropertyInfo> exported_properties;
     get_script_exported_property_list(&exported_properties);
-
-    update_script_exports();// Update in case this method is called between the (re)loading and the delayed update_script_exports().
     placeholder->update(exported_properties, exported_members_default_value_cache);
-
     placeholders.insert(placeholder);
     return placeholder;
 }

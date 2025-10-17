@@ -35,7 +35,7 @@ public abstract class Material : Resource() {
   /**
    * Sets the render priority for objects in 3D scenes. Higher priority objects will be sorted in
    * front of lower priority objects. In other words, all objects with [renderPriority] `1` will render
-   * before all objects with [renderPriority] `0`.
+   * on top of all objects with [renderPriority] `0`.
    *
    * **Note:** This only applies to [StandardMaterial3D]s and [ShaderMaterial]s with type "Spatial".
    *
@@ -71,7 +71,7 @@ public abstract class Material : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(348, scriptIndex)
+    createNativeObject(356, scriptIndex)
   }
 
   /**

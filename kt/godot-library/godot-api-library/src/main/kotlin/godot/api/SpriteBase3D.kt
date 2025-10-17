@@ -39,7 +39,7 @@ import kotlin.jvm.JvmName
  * other properties are defined.
  */
 @GodotBaseType
-public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
+public abstract class SpriteBase3D : GeometryInstance3D() {
   /**
    * If `true`, texture will be centered.
    */
@@ -53,6 +53,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
 
   /**
    * The texture's drawing offset.
+   *
+   * **Note:** When you increase [offset].y in Sprite3D, the sprite moves upward in world space
+   * (i.e., +Y is up).
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -144,8 +147,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The billboard mode to use for the sprite. See [BaseMaterial3D.BillboardMode] for possible
-   * values.
+   * The billboard mode to use for the sprite.
    *
    * **Note:** When billboarding is enabled and the material also casts shadows, billboards will
    * face **the** camera in the scene when rendering shadows. In scenes with multiple cameras, the
@@ -207,7 +209,10 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, the label is rendered at the same size regardless of distance.
+   * If `true`, the texture is rendered at the same size regardless of distance. The texture's size
+   * on screen is the same as if the camera was `1.0` units away from the texture's origin, regardless
+   * of the actual distance from the camera. The [Camera3D]'s field of view (or [Camera3D.size] when in
+   * orthogonal/frustum mode) still affects the size the sprite is drawn at.
    */
   public final inline var fixedSize: Boolean
     @JvmName("fixedSizeProperty")
@@ -218,7 +223,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
+   * The alpha cutting mode to use for the sprite.
    */
   public final inline var alphaCut: AlphaCutMode
     @JvmName("alphaCutProperty")
@@ -251,7 +256,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply.
    */
   public final inline var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     @JvmName("alphaAntialiasingModeProperty")
@@ -273,7 +278,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   /**
-   * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
+   * Filter flags for the texture.
    *
    * **Note:** Linear filtering may cause artifacts around the edges, which are especially
    * noticeable on opaque textures. To prevent this, use textures with transparent or identical colors
@@ -306,7 +311,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(628, scriptIndex)
+    createNativeObject(644, scriptIndex)
   }
 
   /**
@@ -321,6 +326,9 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
    * ``````
    *
    * The texture's drawing offset.
+   *
+   * **Note:** When you increase [offset].y in Sprite3D, the sprite moves upward in world space
+   * (i.e., +Y is up).
    */
   @CoreTypeHelper
   public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
@@ -446,8 +454,7 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
   }
 
   /**
-   * If `true`, the specified flag will be enabled. See [SpriteBase3D.DrawFlags] for a list of
-   * flags.
+   * If `true`, the specified flag will be enabled.
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)

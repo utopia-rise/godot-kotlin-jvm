@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Color
+import godot.core.Signal0
 import godot.core.Signal1
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.COLOR
@@ -60,6 +61,11 @@ public open class GraphNode : GraphElement() {
   public val slotUpdated: Signal1<Long> by Signal1
 
   /**
+   * Emitted when any slot's size might have changed.
+   */
+  public val slotSizesChanged: Signal0 by Signal0
+
+  /**
    * The text displayed in the GraphNode's title bar.
    */
   public final inline var title: String
@@ -82,8 +88,28 @@ public open class GraphNode : GraphElement() {
       setIgnoreInvalidConnectionType(value)
     }
 
+  /**
+   * Determines how connection slots can be focused.
+   *
+   * - If set to [Control.FOCUS_CLICK], connections can only be made with the mouse.
+   *
+   * - If set to [Control.FOCUS_ALL], slots can also be focused using the
+   * [ProjectSettings.input/uiUp] and [ProjectSettings.input/uiDown] and connected using
+   * [ProjectSettings.input/uiLeft] and [ProjectSettings.input/uiRight] input actions.
+   *
+   * - If set to [Control.FOCUS_ACCESSIBILITY], slot input actions are only enabled when the screen
+   * reader is active.
+   */
+  public final inline var slotsFocusMode: Control.FocusMode
+    @JvmName("slotsFocusModeProperty")
+    get() = getSlotsFocusMode()
+    @JvmName("slotsFocusModeProperty")
+    set(`value`) {
+      setSlotsFocusMode(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(265, scriptIndex)
+    createNativeObject(272, scriptIndex)
   }
 
   public open fun _drawPort(
@@ -346,6 +372,17 @@ public open class GraphNode : GraphElement() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setSlotsFocusMode(focusMode: Control.FocusMode): Unit {
+    TransferContext.writeArguments(LONG to focusMode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setSlotsFocusModePtr, NIL)
+  }
+
+  public final fun getSlotsFocusMode(): Control.FocusMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSlotsFocusModePtr, LONG)
+    return Control.FocusMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the number of slots with an enabled input port.
    */
@@ -516,6 +553,12 @@ public open class GraphNode : GraphElement() {
 
     internal val isIgnoringValidConnectionTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "is_ignoring_valid_connection_type", 36873697)
+
+    internal val setSlotsFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "set_slots_focus_mode", 3232914922)
+
+    internal val getSlotsFocusModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphNode", "get_slots_focus_mode", 2132829277)
 
     internal val getInputPortCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphNode", "get_input_port_count", 2455072627)

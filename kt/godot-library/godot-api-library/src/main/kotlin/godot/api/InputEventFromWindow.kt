@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  * events, keyboard events in focused windows or touch screen actions.
  */
 @GodotBaseType
-public open class InputEventFromWindow internal constructor() : InputEvent() {
+public abstract class InputEventFromWindow : InputEvent() {
   /**
    * The ID of a [Window] that received this event.
    */
@@ -36,7 +36,7 @@ public open class InputEventFromWindow internal constructor() : InputEvent() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(294, scriptIndex)
+    createNativeObject(301, scriptIndex)
   }
 
   public final fun setWindowId(id: Long): Unit {

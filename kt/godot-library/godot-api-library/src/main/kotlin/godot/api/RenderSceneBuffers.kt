@@ -24,13 +24,13 @@ import kotlin.Unit
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
-public open class RenderSceneBuffers internal constructor() : RefCounted() {
+public abstract class RenderSceneBuffers : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(543, scriptIndex)
+    createNativeObject(558, scriptIndex)
   }
 
   /**
-   * This method is called by the rendering server when the associated viewports configuration is
+   * This method is called by the rendering server when the associated viewport's configuration is
    * changed. It will discard the old buffers and recreate the internal buffers used.
    */
   public final fun configure(config: RenderSceneBuffersConfiguration?): Unit {

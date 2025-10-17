@@ -49,19 +49,19 @@ import kotlin.jvm.JvmOverloads
  * var undo_redo = UndoRedo.new()
  *
  * func do_something():
- *     pass # Put your code here.
+ * 	pass # Put your code here.
  *
  * func undo_something():
- *     pass # Put here the code that reverts what's done by "do_something()".
+ * 	pass # Put here the code that reverts what's done by "do_something()".
  *
  * func _on_my_button_pressed():
- *     var node = get_node("MyNode2D")
- *     undo_redo.create_action("Move the node")
- *     undo_redo.add_do_method(do_something)
- *     undo_redo.add_undo_method(undo_something)
- *     undo_redo.add_do_property(node, "position", Vector2(100,100))
- *     undo_redo.add_undo_property(node, "position", node.position)
- *     undo_redo.commit_action()
+ * 	var node = get_node("MyNode2D")
+ * 	undo_redo.create_action("Move the node")
+ * 	undo_redo.add_do_method(do_something)
+ * 	undo_redo.add_undo_method(undo_something)
+ * 	undo_redo.add_do_property(node, "position", Vector2(100, 100))
+ * 	undo_redo.add_undo_property(node, "position", node.position)
+ * 	undo_redo.commit_action()
  * ```
  *
  * ```csharp
@@ -70,28 +70,28 @@ import kotlin.jvm.JvmOverloads
  *
  * public override void _Ready()
  * {
- *     _undoRedo = new UndoRedo();
+ * 	_undoRedo = new UndoRedo();
  * }
  *
  * public void DoSomething()
  * {
- *     // Put your code here.
+ * 	// Put your code here.
  * }
  *
  * public void UndoSomething()
  * {
- *     // Put here the code that reverts what's done by "DoSomething()".
+ * 	// Put here the code that reverts what's done by "DoSomething()".
  * }
  *
  * private void OnMyButtonPressed()
  * {
- *     var node = GetNode<Node2D>("MyNode2D");
- *     _undoRedo.CreateAction("Move the node");
- *     _undoRedo.AddDoMethod(new Callable(this, MethodName.DoSomething));
- *     _undoRedo.AddUndoMethod(new Callable(this, MethodName.UndoSomething));
- *     _undoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
- *     _undoRedo.AddUndoProperty(node, "position", node.Position);
- *     _undoRedo.CommitAction();
+ * 	var node = GetNode<Node2D>("MyNode2D");
+ * 	_undoRedo.CreateAction("Move the node");
+ * 	_undoRedo.AddDoMethod(new Callable(this, MethodName.DoSomething));
+ * 	_undoRedo.AddUndoMethod(new Callable(this, MethodName.UndoSomething));
+ * 	_undoRedo.AddDoProperty(node, "position", new Vector2(100, 100));
+ * 	_undoRedo.AddUndoProperty(node, "position", node.Position);
+ * 	_undoRedo.CommitAction();
  * }
  * ```
  *
@@ -160,14 +160,14 @@ public open class UndoRedo : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(705, scriptIndex)
+    createNativeObject(721, scriptIndex)
   }
 
   /**
    * Create a new action. After this is called, do all your calls to [addDoMethod], [addUndoMethod],
    * [addDoProperty], and [addUndoProperty], then commit the action with [commitAction].
    *
-   * The way actions are merged is dictated by [mergeMode]. See [MergeMode] for details.
+   * The way actions are merged is dictated by [mergeMode].
    *
    * The way undo operation are ordered in actions is dictated by [backwardUndoOps]. When
    * [backwardUndoOps] is `false` undo option are ordered in the same order they were added. Which

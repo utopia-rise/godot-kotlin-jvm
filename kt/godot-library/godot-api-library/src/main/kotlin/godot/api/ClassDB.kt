@@ -36,7 +36,11 @@ import kotlin.jvm.JvmOverloads
 import kotlin.jvm.JvmStatic
 
 /**
- * Provides access to metadata stored for every available class.
+ * Provides access to metadata stored for every available engine class.
+ *
+ * **Note:** Script-defined classes with `class_name` are not part of [ClassDB], so they will not
+ * return reflection data such as a method or property list. However, [GDExtension]-defined classes
+ * *are* part of [ClassDB], so they will return reflection data.
  */
 @GodotBaseType
 public object ClassDB : Object() {
@@ -45,7 +49,10 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the names of all the classes available.
+   * Returns the names of all engine classes available.
+   *
+   * **Note:** Script-defined classes with `class_name` are not included in this list. Use
+   * [ProjectSettings.getGlobalClassList] to get a list of script-defined classes instead.
    */
   @JvmStatic
   public final fun getClassList(): PackedStringArray {
@@ -55,7 +62,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the names of all the classes that directly or indirectly inherit from [class].
+   * Returns the names of all engine classes that directly or indirectly inherit from [class].
    */
   @JvmStatic
   public final fun getInheritersFromClass(`class`: StringName): PackedStringArray {
@@ -116,7 +123,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the API type of [class]. See [APIType].
+   * Returns the API type of the specified [class].
    */
   @JvmStatic
   public final fun classGetApiType(`class`: StringName): APIType {
@@ -408,7 +415,7 @@ public object ClassDB : Object() {
   }
 
   /**
-   * Returns the names of all the classes that directly or indirectly inherit from [class].
+   * Returns the names of all engine classes that directly or indirectly inherit from [class].
    */
   @JvmStatic
   public final fun getInheritersFromClass(`class`: String): PackedStringArray =
@@ -449,7 +456,7 @@ public object ClassDB : Object() {
   public final fun instantiate(`class`: String): Any? = instantiate(`class`.asCachedStringName())
 
   /**
-   * Returns the API type of [class]. See [APIType].
+   * Returns the API type of the specified [class].
    */
   @JvmStatic
   public final fun classGetApiType(`class`: String): APIType =

@@ -60,6 +60,19 @@ public open class SceneTree : MainLoop() {
   public val treeChanged: Signal0 by Signal0
 
   /**
+   * Emitted after the new scene is added to scene tree and initialized. Can be used to reliably
+   * access [currentScene] when changing scenes.
+   *
+   * ```
+   * # This code should be inside an autoload.
+   * get_tree().change_scene_to_file(other_scene_path)
+   * await get_tree().scene_changed
+   * print(get_tree().current_scene) # Prints the new scene.
+   * ```
+   */
+  public val sceneChanged: Signal0 by Signal0
+
+  /**
    * Emitted when the [Node.processMode] of any node inside the tree is changed. Only emitted in the
    * editor, to update the visibility of disabled nodes.
    */
@@ -245,12 +258,15 @@ public open class SceneTree : MainLoop() {
     }
 
   /**
-   * If `true`, the renderer will interpolate the transforms of physics objects between the last two
-   * transforms, so that smooth motion is seen even when physics ticks do not coincide with rendered
-   * frames.
+   * If `true`, the renderer will interpolate the transforms of objects (both physics and
+   * non-physics) between the last two transforms, so that smooth motion is seen even when physics
+   * ticks do not coincide with rendered frames.
    *
    * The default value of this property is controlled by
    * [ProjectSettings.physics/common/physicsInterpolation].
+   *
+   * **Note:** Although this is a global setting, finer control of individual branches of the
+   * [SceneTree] is possible using [Node.physicsInterpolationMode].
    */
   public final inline var physicsInterpolation: Boolean
     @JvmName("physicsInterpolationProperty")
@@ -261,7 +277,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(570, scriptIndex)
+    createNativeObject(585, scriptIndex)
   }
 
   public final fun getRoot(): Window? {
@@ -276,6 +292,26 @@ public open class SceneTree : MainLoop() {
   public final fun hasGroup(name: StringName): Boolean {
     TransferContext.writeArguments(STRING_NAME to name)
     TransferContext.callMethod(ptr, MethodBindings.hasGroupPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if accessibility features are enabled, and accessibility information updates are
+   * actively processed.
+   */
+  public final fun isAccessibilityEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAccessibilityEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if accessibility features are supported by the OS and enabled in project
+   * settings.
+   */
+  public final fun isAccessibilitySupported(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isAccessibilitySupportedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -374,18 +410,18 @@ public open class SceneTree : MainLoop() {
    * ```gdscript
    * //gdscript
    * func some_function():
-   *     print("start")
-   *     await get_tree().create_timer(1.0).timeout
-   *     print("end")
+   * 	print("start")
+   * 	await get_tree().create_timer(1.0).timeout
+   * 	print("end")
    * ```
    *
    * ```csharp
    * //csharp
    * public async Task SomeFunction()
    * {
-   *     GD.Print("start");
-   *     await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
-   *     GD.Print("end");
+   * 	GD.Print("start");
+   * 	await ToSignal(GetTree().CreateTimer(1.0f), SceneTreeTimer.SignalName.Timeout);
+   * 	GD.Print("end");
    * }
    * ```
    *
@@ -438,8 +474,9 @@ public open class SceneTree : MainLoop() {
   }
 
   /**
-   * Returns how many frames have been processed, since the application started. This is *not* a
-   * measurement of elapsed time.
+   * Returns how many physics process steps have been processed, since the application started. This
+   * is *not* a measurement of elapsed time. See also [signal physics_frame]. For the number of frames
+   * rendered, see [Engine.getProcessFrames].
    */
   public final fun getFrame(): Long {
     TransferContext.writeArguments()
@@ -493,8 +530,8 @@ public open class SceneTree : MainLoop() {
    * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
    * order.
    * get_tree().call_group_flags(
-   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
-   *         "enemies", "hide")
+   * 		SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   * 		"enemies", "hide")
    * ```
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -671,6 +708,8 @@ public open class SceneTree : MainLoop() {
    *
    * This ensures that both scenes aren't running at the same time, while still freeing the previous
    * scene in a safe way similar to [Node.queueFree].
+   *
+   * If you want to reliably access the new scene, await the [signal scene_changed] signal.
    */
   public final fun changeSceneToPacked(packedScene: PackedScene?): Error {
     TransferContext.writeArguments(OBJECT to packedScene)
@@ -707,6 +746,10 @@ public open class SceneTree : MainLoop() {
    * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
+   *
+   * **Note:** [setMultiplayer] should be called *before* the child nodes are ready at the given
+   * [rootPath]. If multiplayer nodes like [MultiplayerSpawner] or [MultiplayerSynchronizer] are added
+   * to the tree before the custom multiplayer API is set, they will not work.
    */
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: NodePath = NodePath("")):
       Unit {
@@ -751,8 +794,8 @@ public open class SceneTree : MainLoop() {
    * # Calls "hide" to all nodes of the "enemies" group, at the end of the frame and in reverse tree
    * order.
    * get_tree().call_group_flags(
-   *         SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
-   *         "enemies", "hide")
+   * 		SceneTree.GROUP_CALL_DEFERRED | SceneTree.GROUP_CALL_REVERSE,
+   * 		"enemies", "hide")
    * ```
    *
    * **Note:** In C#, [method] must be in snake_case when referring to built-in Godot methods.
@@ -866,6 +909,10 @@ public open class SceneTree : MainLoop() {
    * **Note:** No [MultiplayerAPI] must be configured for the subpath containing [rootPath], nested
    * custom multiplayers are not allowed. I.e. if one is configured for `"/root/Foo"` setting one for
    * `"/root/Foo/Bar"` will cause an error.
+   *
+   * **Note:** [setMultiplayer] should be called *before* the child nodes are ready at the given
+   * [rootPath]. If multiplayer nodes like [MultiplayerSpawner] or [MultiplayerSynchronizer] are added
+   * to the tree before the custom multiplayer API is set, they will not work.
    */
   public final fun setMultiplayer(multiplayer: MultiplayerAPI?, rootPath: String) =
       setMultiplayer(multiplayer, rootPath.asCachedNodePath())
@@ -923,6 +970,12 @@ public open class SceneTree : MainLoop() {
 
     internal val hasGroupPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "has_group", 2619796661)
+
+    internal val isAccessibilityEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "is_accessibility_enabled", 36873697)
+
+    internal val isAccessibilitySupportedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("SceneTree", "is_accessibility_supported", 36873697)
 
     internal val isAutoAcceptQuitPtr: VoidPtr =
         TypeManager.getMethodBindPtr("SceneTree", "is_auto_accept_quit", 36873697)

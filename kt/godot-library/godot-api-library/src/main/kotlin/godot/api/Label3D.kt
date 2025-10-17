@@ -76,8 +76,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The billboard mode to use for the label. See [BaseMaterial3D.BillboardMode] for possible
-   * values.
+   * The billboard mode to use for the label.
    */
   public final inline var billboard: BaseMaterial3D.BillboardMode
     @JvmName("billboardProperty")
@@ -122,7 +121,10 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * If `true`, the label is rendered at the same size regardless of distance.
+   * If `true`, the label is rendered at the same size regardless of distance. The label's size on
+   * screen is the same as if the camera was `1.0` units away from the label's origin, regardless of
+   * the actual distance from the camera. The [Camera3D]'s field of view (or [Camera3D.size] when in
+   * orthogonal/frustum mode) still affects the size the label is drawn at.
    */
   public final inline var fixedSize: Boolean
     @JvmName("fixedSizeProperty")
@@ -133,7 +135,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The alpha cutting mode to use for the sprite. See [AlphaCutMode] for possible values.
+   * The alpha cutting mode to use for the sprite.
    */
   public final inline var alphaCut: AlphaCutMode
     @JvmName("alphaCutProperty")
@@ -166,7 +168,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * The type of alpha antialiasing to apply. See [BaseMaterial3D.AlphaAntiAliasing].
+   * The type of alpha antialiasing to apply.
    */
   public final inline var alphaAntialiasingMode: BaseMaterial3D.AlphaAntiAliasing
     @JvmName("alphaAntialiasingModeProperty")
@@ -188,7 +190,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Filter flags for the texture. See [BaseMaterial3D.TextureFilter] for options.
+   * Filter flags for the texture.
    */
   public final inline var textureFilter: BaseMaterial3D.TextureFilter
     @JvmName("textureFilterProperty")
@@ -321,8 +323,8 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Controls the text's horizontal alignment. Supports left, center, right, and fill, or justify.
-   * Set it to one of the [HorizontalAlignment] constants.
+   * Controls the text's horizontal alignment. Supports left, center, right, and fill (also known as
+   * justify).
    */
   public final inline var horizontalAlignment: HorizontalAlignment
     @JvmName("horizontalAlignmentProperty")
@@ -333,8 +335,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Controls the text's vertical alignment. Supports top, center, bottom. Set it to one of the
-   * [VerticalAlignment] constants.
+   * Controls the text's vertical alignment. Supports top, center, and bottom.
    */
   public final inline var verticalAlignment: VerticalAlignment
     @JvmName("verticalAlignmentProperty")
@@ -370,7 +371,7 @@ public open class Label3D : GeometryInstance3D() {
   /**
    * If set to something other than [TextServer.AUTOWRAP_OFF], the text gets wrapped inside the
    * node's bounding rectangle. If you resize the node, it will change its height automatically to show
-   * all the text. To see how each mode behaves, see [TextServer.AutowrapMode].
+   * all the text.
    */
   public final inline var autowrapMode: TextServer.AutowrapMode
     @JvmName("autowrapModeProperty")
@@ -381,7 +382,19 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   /**
-   * Line fill alignment rules. See [TextServer.JustificationFlag] for more information.
+   * Autowrap space trimming flags. See [TextServer.BREAK_TRIM_START_EDGE_SPACES] and
+   * [TextServer.BREAK_TRIM_END_EDGE_SPACES] for more info.
+   */
+  public final inline var autowrapTrimFlags: TextServer.LineBreakFlag
+    @JvmName("autowrapTrimFlagsProperty")
+    get() = getAutowrapTrimFlags()
+    @JvmName("autowrapTrimFlagsProperty")
+    set(`value`) {
+      setAutowrapTrimFlags(value)
+    }
+
+  /**
+   * Line fill alignment rules.
    */
   public final inline var justificationFlags: TextServer.JustificationFlag
     @JvmName("justificationFlagsProperty")
@@ -448,7 +461,7 @@ public open class Label3D : GeometryInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(329, scriptIndex)
+    createNativeObject(336, scriptIndex)
   }
 
   /**
@@ -695,6 +708,17 @@ public open class Label3D : GeometryInstance3D() {
     return TextServer.AutowrapMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setAutowrapTrimFlags(autowrapTrimFlags: TextServer.LineBreakFlag): Unit {
+    TransferContext.writeArguments(LONG to autowrapTrimFlags.flag)
+    TransferContext.callMethod(ptr, MethodBindings.setAutowrapTrimFlagsPtr, NIL)
+  }
+
+  public final fun getAutowrapTrimFlags(): TextServer.LineBreakFlag {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getAutowrapTrimFlagsPtr, LONG)
+    return TextServer.LineBreakFlag(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   public final fun setJustificationFlags(justificationFlags: TextServer.JustificationFlag): Unit {
     TransferContext.writeArguments(LONG to justificationFlags.flag)
     TransferContext.callMethod(ptr, MethodBindings.setJustificationFlagsPtr, NIL)
@@ -740,7 +764,7 @@ public open class Label3D : GeometryInstance3D() {
   }
 
   /**
-   * If `true`, the specified flag will be enabled. See [Label3D.DrawFlags] for a list of flags.
+   * If `true`, the specified [flag] will be enabled.
    */
   public final fun setDrawFlag(flag: DrawFlags, enabled: Boolean): Unit {
     TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
@@ -1032,6 +1056,12 @@ public open class Label3D : GeometryInstance3D() {
 
     internal val getAutowrapModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label3D", "get_autowrap_mode", 1549071663)
+
+    internal val setAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "set_autowrap_trim_flags", 2809697122)
+
+    internal val getAutowrapTrimFlagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Label3D", "get_autowrap_trim_flags", 2340632602)
 
     internal val setJustificationFlagsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Label3D", "set_justification_flags", 2877345813)

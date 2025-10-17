@@ -27,6 +27,8 @@ import kotlin.jvm.JvmName
  * not include meshes for the wheels. You can control the vehicle by using the [brake], [engineForce],
  * and [steering] properties. The position or orientation of this node shouldn't be changed directly.
  *
+ * **Note:** The local forward for this node is [Vector3.MODEL_FRONT].
+ *
  * **Note:** The origin point of your VehicleBody3D will determine the center of gravity of your
  * vehicle. To make the vehicle more grounded, the origin point is usually kept low, moving the
  * [CollisionShape3D] and [MeshInstance3D] upwards.
@@ -87,7 +89,7 @@ public open class VehicleBody3D : RigidBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(713, scriptIndex)
+    createNativeObject(729, scriptIndex)
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {

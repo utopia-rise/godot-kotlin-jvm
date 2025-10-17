@@ -37,9 +37,9 @@ import kotlin.Unit
  * [TileSet.addSource] on a second [TileSet] will remove the source from the first one.
  */
 @GodotBaseType
-public open class TileSetSource internal constructor() : Resource() {
+public abstract class TileSetSource : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(688, scriptIndex)
+    createNativeObject(704, scriptIndex)
   }
 
   /**

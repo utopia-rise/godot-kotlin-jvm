@@ -236,7 +236,7 @@ public open class Node2D : CanvasItem() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(395, scriptIndex)
+    createNativeObject(404, scriptIndex)
   }
 
   /**
@@ -423,8 +423,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's X axis based on the [Node.Process]'s [delta]. If
-   * [scaled] is `false`, normalizes the movement.
+   * Applies a local translation on the node's X axis with the amount specified in [delta]. If
+   * [scaled] is `false`, normalizes the movement to occur independently of the node's [scale].
    */
   @JvmOverloads
   public final fun moveLocalX(delta: Float, scaled: Boolean = false): Unit {
@@ -433,8 +433,8 @@ public open class Node2D : CanvasItem() {
   }
 
   /**
-   * Applies a local translation on the node's Y axis based on the [Node.Process]'s [delta]. If
-   * [scaled] is `false`, normalizes the movement.
+   * Applies a local translation on the node's Y axis with the amount specified in [delta]. If
+   * [scaled] is `false`, normalizes the movement to occur independently of the node's [scale].
    */
   @JvmOverloads
   public final fun moveLocalY(delta: Float, scaled: Boolean = false): Unit {

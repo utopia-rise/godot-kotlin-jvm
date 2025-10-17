@@ -65,28 +65,6 @@ public open class NoiseTexture2D : Texture2D() {
     }
 
   /**
-   * If `true`, inverts the noise texture. White becomes black, black becomes white.
-   */
-  public final inline var invert: Boolean
-    @JvmName("invertProperty")
-    get() = getInvert()
-    @JvmName("invertProperty")
-    set(`value`) {
-      setInvert(value)
-    }
-
-  /**
-   * Determines whether the noise image is calculated in 3D space. May result in reduced contrast.
-   */
-  public final inline var in3dSpace: Boolean
-    @JvmName("in3dSpaceProperty")
-    get() = isIn3dSpace()
-    @JvmName("in3dSpaceProperty")
-    set(`value`) {
-      setIn3dSpace(value)
-    }
-
-  /**
    * Determines whether mipmaps are generated for this texture. Enabling this results in less
    * texture aliasing in the distance, at the cost of increasing memory usage by roughly 33&#37; and
    * making the noise texture generation take longer.
@@ -100,6 +78,28 @@ public open class NoiseTexture2D : Texture2D() {
     @JvmName("generateMipmapsProperty")
     set(`value`) {
       setGenerateMipmaps(value)
+    }
+
+  /**
+   * The instance of the [Noise] object.
+   */
+  public final inline var noise: Noise?
+    @JvmName("noiseProperty")
+    get() = getNoise()
+    @JvmName("noiseProperty")
+    set(`value`) {
+      setNoise(value)
+    }
+
+  /**
+   * A [Gradient] which is used to map the luminance of each pixel to a color value.
+   */
+  public final inline var colorRamp: Gradient?
+    @JvmName("colorRampProperty")
+    get() = getColorRamp()
+    @JvmName("colorRampProperty")
+    set(`value`) {
+      setColorRamp(value)
     }
 
   /**
@@ -122,19 +122,25 @@ public open class NoiseTexture2D : Texture2D() {
     }
 
   /**
-   * Used for the default/fallback implementation of the seamless texture generation. It determines
-   * the distance over which the seams are blended. High values may result in less details and
-   * contrast. See [Noise] for further details.
-   *
-   * **Note:** If using a [width] or [height] lower than the default, you may need to increase
-   * [seamlessBlendSkirt] to make seamless blending more effective.
+   * If `true`, inverts the noise texture. White becomes black, black becomes white.
    */
-  public final inline var seamlessBlendSkirt: Float
-    @JvmName("seamlessBlendSkirtProperty")
-    get() = getSeamlessBlendSkirt()
-    @JvmName("seamlessBlendSkirtProperty")
+  public final inline var invert: Boolean
+    @JvmName("invertProperty")
+    get() = getInvert()
+    @JvmName("invertProperty")
     set(`value`) {
-      setSeamlessBlendSkirt(value)
+      setInvert(value)
+    }
+
+  /**
+   * Determines whether the noise image is calculated in 3D space. May result in reduced contrast.
+   */
+  public final inline var in3dSpace: Boolean
+    @JvmName("in3dSpaceProperty")
+    get() = isIn3dSpace()
+    @JvmName("in3dSpaceProperty")
+    set(`value`) {
+      setIn3dSpace(value)
     }
 
   /**
@@ -147,18 +153,6 @@ public open class NoiseTexture2D : Texture2D() {
     @JvmName("asNormalMapProperty")
     set(`value`) {
       setAsNormalMap(value)
-    }
-
-  /**
-   * Strength of the bump maps used in this texture. A higher value will make the bump maps appear
-   * larger while a lower value will make them appear softer.
-   */
-  public final inline var bumpStrength: Float
-    @JvmName("bumpStrengthProperty")
-    get() = getBumpStrength()
-    @JvmName("bumpStrengthProperty")
-    set(`value`) {
-      setBumpStrength(value)
     }
 
   /**
@@ -177,29 +171,35 @@ public open class NoiseTexture2D : Texture2D() {
     }
 
   /**
-   * A [Gradient] which is used to map the luminance of each pixel to a color value.
+   * Used for the default/fallback implementation of the seamless texture generation. It determines
+   * the distance over which the seams are blended. High values may result in less details and
+   * contrast. See [Noise] for further details.
+   *
+   * **Note:** If using a [width] or [height] lower than the default, you may need to increase
+   * [seamlessBlendSkirt] to make seamless blending more effective.
    */
-  public final inline var colorRamp: Gradient?
-    @JvmName("colorRampProperty")
-    get() = getColorRamp()
-    @JvmName("colorRampProperty")
+  public final inline var seamlessBlendSkirt: Float
+    @JvmName("seamlessBlendSkirtProperty")
+    get() = getSeamlessBlendSkirt()
+    @JvmName("seamlessBlendSkirtProperty")
     set(`value`) {
-      setColorRamp(value)
+      setSeamlessBlendSkirt(value)
     }
 
   /**
-   * The instance of the [Noise] object.
+   * Strength of the bump maps used in this texture. A higher value will make the bump maps appear
+   * larger while a lower value will make them appear softer.
    */
-  public final inline var noise: Noise?
-    @JvmName("noiseProperty")
-    get() = getNoise()
-    @JvmName("noiseProperty")
+  public final inline var bumpStrength: Float
+    @JvmName("bumpStrengthProperty")
+    get() = getBumpStrength()
+    @JvmName("bumpStrengthProperty")
     set(`value`) {
-      setNoise(value)
+      setBumpStrength(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(399, scriptIndex)
+    createNativeObject(408, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {
@@ -210,6 +210,50 @@ public open class NoiseTexture2D : Texture2D() {
   public final fun setHeight(height: Int): Unit {
     TransferContext.writeArguments(LONG to height.toLong())
     TransferContext.callMethod(ptr, MethodBindings.setHeightPtr, NIL)
+  }
+
+  public final fun setGenerateMipmaps(invert: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to invert)
+    TransferContext.callMethod(ptr, MethodBindings.setGenerateMipmapsPtr, NIL)
+  }
+
+  public final fun isGeneratingMipmaps(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isGeneratingMipmapsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setNoise(noise: Noise?): Unit {
+    TransferContext.writeArguments(OBJECT to noise)
+    TransferContext.callMethod(ptr, MethodBindings.setNoisePtr, NIL)
+  }
+
+  public final fun getNoise(): Noise? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Noise?)
+  }
+
+  public final fun setColorRamp(gradient: Gradient?): Unit {
+    TransferContext.writeArguments(OBJECT to gradient)
+    TransferContext.callMethod(ptr, MethodBindings.setColorRampPtr, NIL)
+  }
+
+  public final fun getColorRamp(): Gradient? {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getColorRampPtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
+  }
+
+  public final fun setSeamless(seamless: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to seamless)
+    TransferContext.callMethod(ptr, MethodBindings.setSeamlessPtr, NIL)
+  }
+
+  public final fun getSeamless(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeamlessPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   public final fun setInvert(invert: Boolean): Unit {
@@ -234,25 +278,25 @@ public open class NoiseTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setGenerateMipmaps(invert: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to invert)
-    TransferContext.callMethod(ptr, MethodBindings.setGenerateMipmapsPtr, NIL)
+  public final fun setAsNormalMap(asNormalMap: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to asNormalMap)
+    TransferContext.callMethod(ptr, MethodBindings.setAsNormalMapPtr, NIL)
   }
 
-  public final fun isGeneratingMipmaps(): Boolean {
+  public final fun isNormalMap(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isGeneratingMipmapsPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isNormalMapPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
-  public final fun setSeamless(seamless: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to seamless)
-    TransferContext.callMethod(ptr, MethodBindings.setSeamlessPtr, NIL)
+  public final fun setNormalize(normalize: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to normalize)
+    TransferContext.callMethod(ptr, MethodBindings.setNormalizePtr, NIL)
   }
 
-  public final fun getSeamless(): Boolean {
+  public final fun isNormalized(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSeamlessPtr, BOOL)
+    TransferContext.callMethod(ptr, MethodBindings.isNormalizedPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -267,17 +311,6 @@ public open class NoiseTexture2D : Texture2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setAsNormalMap(asNormalMap: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to asNormalMap)
-    TransferContext.callMethod(ptr, MethodBindings.setAsNormalMapPtr, NIL)
-  }
-
-  public final fun isNormalMap(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isNormalMapPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
   public final fun setBumpStrength(bumpStrength: Float): Unit {
     TransferContext.writeArguments(DOUBLE to bumpStrength.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.setBumpStrengthPtr, NIL)
@@ -287,39 +320,6 @@ public open class NoiseTexture2D : Texture2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getBumpStrengthPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
-  }
-
-  public final fun setNormalize(normalize: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalize)
-    TransferContext.callMethod(ptr, MethodBindings.setNormalizePtr, NIL)
-  }
-
-  public final fun isNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  public final fun setColorRamp(gradient: Gradient?): Unit {
-    TransferContext.writeArguments(OBJECT to gradient)
-    TransferContext.callMethod(ptr, MethodBindings.setColorRampPtr, NIL)
-  }
-
-  public final fun getColorRamp(): Gradient? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getColorRampPtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Gradient?)
-  }
-
-  public final fun setNoise(noise: Noise?): Unit {
-    TransferContext.writeArguments(OBJECT to noise)
-    TransferContext.callMethod(ptr, MethodBindings.setNoisePtr, NIL)
-  }
-
-  public final fun getNoise(): Noise? {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Noise?)
   }
 
   /**
@@ -345,6 +345,30 @@ public open class NoiseTexture2D : Texture2D() {
     internal val setHeightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "set_height", 1286410249)
 
+    internal val setGenerateMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_generate_mipmaps", 2586408642)
+
+    internal val isGeneratingMipmapsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_generating_mipmaps", 36873697)
+
+    internal val setNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_noise", 4135492439)
+
+    internal val getNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_noise", 185851837)
+
+    internal val setColorRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_color_ramp", 2756054477)
+
+    internal val getColorRampPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_color_ramp", 132272999)
+
+    internal val setSeamlessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless", 2586408642)
+
+    internal val getSeamlessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless", 2240911060)
+
     internal val setInvertPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "set_invert", 2586408642)
 
@@ -357,35 +381,11 @@ public open class NoiseTexture2D : Texture2D() {
     internal val isIn3dSpacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "is_in_3d_space", 36873697)
 
-    internal val setGenerateMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_generate_mipmaps", 2586408642)
-
-    internal val isGeneratingMipmapsPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "is_generating_mipmaps", 36873697)
-
-    internal val setSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless", 2586408642)
-
-    internal val getSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless", 2240911060)
-
-    internal val setSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless_blend_skirt", 373806689)
-
-    internal val getSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless_blend_skirt", 191475506)
-
     internal val setAsNormalMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "set_as_normal_map", 2586408642)
 
     internal val isNormalMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normal_map", 2240911060)
-
-    internal val setBumpStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_bump_strength", 373806689)
-
-    internal val getBumpStrengthPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_bump_strength", 191475506)
 
     internal val setNormalizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "set_normalize", 2586408642)
@@ -393,16 +393,16 @@ public open class NoiseTexture2D : Texture2D() {
     internal val isNormalizedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture2D", "is_normalized", 36873697)
 
-    internal val setColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_color_ramp", 2756054477)
+    internal val setSeamlessBlendSkirtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_seamless_blend_skirt", 373806689)
 
-    internal val getColorRampPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_color_ramp", 132272999)
+    internal val getSeamlessBlendSkirtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_seamless_blend_skirt", 191475506)
 
-    internal val setNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_noise", 4135492439)
+    internal val setBumpStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "set_bump_strength", 373806689)
 
-    internal val getNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_noise", 185851837)
+    internal val getBumpStrengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture2D", "get_bump_strength", 191475506)
   }
 }

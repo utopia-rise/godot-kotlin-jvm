@@ -26,7 +26,7 @@ import kotlin.jvm.JvmName
  * directly, but contains all the functions necessary for accessing the derived resource types.
  */
 @GodotBaseType
-public open class TextureLayeredRD internal constructor() : TextureLayered() {
+public abstract class TextureLayeredRD : TextureLayered() {
   /**
    * The RID of the texture object created on the [RenderingDevice].
    */
@@ -39,7 +39,7 @@ public open class TextureLayeredRD internal constructor() : TextureLayered() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(675, scriptIndex)
+    createNativeObject(691, scriptIndex)
   }
 
   public final fun setTextureRdRid(textureRdRid: RID): Unit {

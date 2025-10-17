@@ -15,7 +15,7 @@
 #define GODOT_JAVA_SCRIPT_NAME "JavaScript"
 #define GODOT_JAVA_LANGUAGE_NAME "Java"
 
-#define GODOT_KOTLIN_PACKAGE "godot"
+#define GODOT_KOTLIN_PACKAGE "godot.api"
 
 #define PACKAGE_TEMPLATE "%PACKAGE%"
 #define BASE_TEMPLATE "%BASE%"

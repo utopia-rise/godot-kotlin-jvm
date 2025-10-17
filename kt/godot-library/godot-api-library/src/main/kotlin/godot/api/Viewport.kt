@@ -60,7 +60,7 @@ import kotlin.jvm.JvmOverloads
  * unless the associated texture is used to draw.
  */
 @GodotBaseType
-public open class Viewport internal constructor() : Node() {
+public abstract class Viewport : Node() {
   /**
    * Emitted when the size of the viewport is changed, whether by resizing of window, or some other
    * means.
@@ -132,6 +132,10 @@ public open class Viewport internal constructor() : Node() {
 
   /**
    * If `true`, the viewport should render its background as transparent.
+   *
+   * **Note:** Due to technical limitations, certain rendering features are disabled when a viewport
+   * has a transparent background. This currently applies to screen-space reflections, subsurface
+   * scattering, and depth of field.
    */
   public final inline var transparentBg: Boolean
     @JvmName("transparentBgProperty")
@@ -256,9 +260,11 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, uses a fast post-processing filter to make banding significantly less visible in 3D.
-   * 2D rendering is *not* affected by debanding unless the [Environment.backgroundMode] is
-   * [Environment.BG_CANVAS].
+   * If `true`, uses a fast post-processing filter to make banding significantly less visible. If
+   * [useHdr2d] is `false`, 2D rendering is *not* affected by debanding unless the
+   * [Environment.backgroundMode] is [Environment.BG_CANVAS]. If [useHdr2d] is `true`, debanding will
+   * only be applied if this is the root [Viewport] and will affect all 2D and 3D rendering, including
+   * canvas items.
    *
    * In some cases, debanding may introduce a slightly noticeable dithering pattern. It's
    * recommended to enable debanding only when actually needed since the dithering pattern will make
@@ -331,18 +337,17 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * If `true`, 2D rendering will use an high dynamic range (HDR) format framebuffer matching the
-   * bit depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16`
-   * framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer.
+   * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
+   * depth of the 3D framebuffer. When using the Forward+ or Compatibility renderer, this will be an
+   * `RGBA16` framebuffer. When using the Mobile renderer, it will be an `RGB10_A2` framebuffer.
+   *
    * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
    * space immediately before blitting to the screen (if the Viewport is attached to the screen).
-   * Practically speaking, this means that the end result of the Viewport will not be clamped into the
+   *
+   * Practically speaking, this means that the end result of the Viewport will not be clamped to the
    * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients.
-   *
-   * **Note:** This setting will have no effect when using the Compatibility renderer, which always
-   * renders in low dynamic range for performance reasons.
    */
   public final inline var useHdr2d: Boolean
     @JvmName("useHdr2dProperty")
@@ -529,8 +534,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default filter mode used by [CanvasItem]s in this Viewport. See
-   * [DefaultCanvasItemTextureFilter] for options.
+   * Sets the default filter mode used by [CanvasItem]s in this Viewport.
    */
   public final inline var canvasItemDefaultTextureFilter: DefaultCanvasItemTextureFilter
     @JvmName("canvasItemDefaultTextureFilterProperty")
@@ -541,8 +545,7 @@ public open class Viewport internal constructor() : Node() {
     }
 
   /**
-   * Sets the default repeat mode used by [CanvasItem]s in this Viewport. See
-   * [DefaultCanvasItemTextureRepeat] for options.
+   * Sets the default repeat mode used by [CanvasItem]s in this Viewport.
    */
   public final inline var canvasItemDefaultTextureRepeat: DefaultCanvasItemTextureRepeat
     @JvmName("canvasItemDefaultTextureRepeatProperty")
@@ -813,8 +816,33 @@ public open class Viewport internal constructor() : Node() {
       setCanvasCullMask(value)
     }
 
+  /**
+   * If `true` and one of the following conditions are true: [SubViewport.size2dOverrideStretch] and
+   * [SubViewport.size2dOverride] are set, [Window.contentScaleFactor] is set and scaling is enabled,
+   * [oversamplingOverride] is set, font and [DPITexture] oversampling are enabled.
+   */
+  public final inline var oversampling: Boolean
+    @JvmName("oversamplingProperty")
+    get() = isUsingOversampling()
+    @JvmName("oversamplingProperty")
+    set(`value`) {
+      setUseOversampling(value)
+    }
+
+  /**
+   * If greater than zero, this value is used as the font oversampling factor, otherwise
+   * oversampling is equal to viewport scale.
+   */
+  public final inline var oversamplingOverride: Float
+    @JvmName("oversamplingOverrideProperty")
+    get() = getOversamplingOverride()
+    @JvmName("oversamplingOverrideProperty")
+    set(`value`) {
+      setOversamplingOverride(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(719, scriptIndex)
+    createNativeObject(735, scriptIndex)
   }
 
   /**
@@ -1049,9 +1077,39 @@ public open class Viewport internal constructor() : Node() {
     return DebugDraw.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setUseOversampling(enable: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enable)
+    TransferContext.callMethod(ptr, MethodBindings.setUseOversamplingPtr, NIL)
+  }
+
+  public final fun isUsingOversampling(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isUsingOversamplingPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setOversamplingOverride(oversampling: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to oversampling.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setOversamplingOverridePtr, NIL)
+  }
+
+  public final fun getOversamplingOverride(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOversamplingOverridePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   /**
-   * Returns rendering statistics of the given type. See [RenderInfoType] and [RenderInfo] for
-   * options.
+   * Returns viewport oversampling factor.
+   */
+  public final fun getOversampling(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getOversamplingPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Returns rendering statistics of the given type.
    */
   public final fun getRenderInfo(type: RenderInfoType, info: RenderInfo): Int {
     TransferContext.writeArguments(LONG to type.value, LONG to info.value)
@@ -1066,10 +1124,21 @@ public open class Viewport internal constructor() : Node() {
    * black or outdated if used too early, especially when used in e.g. [Node.Ready]. To make sure the
    * texture you get is correct, you can await [signal RenderingServer.frame_post_draw] signal.
    *
-   * ```
+   * ```gdscript
+   * //gdscript
    * func _ready():
    *     await RenderingServer.frame_post_draw
    *     $Viewport.get_texture().get_image().save_png("user://Screenshot.png")
+   * ```
+   *
+   * ```csharp
+   * //csharp
+   * public async override void _Ready()
+   * {
+   *     await ToSignal(RenderingServer.Singleton, RenderingServer.SignalName.FramePostDraw);
+   *     var viewport = GetNode<Viewport>("Viewport");
+   *     viewport.GetTexture().GetImage().SavePng("user://Screenshot.png");
+   * }
    * ```
    *
    * **Note:** When [useHdr2d] is `true` the returned texture will be an HDR image encoded in linear
@@ -1278,6 +1347,23 @@ public open class Viewport internal constructor() : Node() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.guiGetDragDataPtr, ANY)
     return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Returns the drag data human-readable description.
+   */
+  public final fun guiGetDragDescription(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.guiGetDragDescriptionPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the drag data human-readable description.
+   */
+  public final fun guiSetDragDescription(description: String): Unit {
+    TransferContext.writeArguments(STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.guiSetDragDescriptionPtr, NIL)
   }
 
   /**
@@ -1832,14 +1918,14 @@ public open class Viewport internal constructor() : Node() {
     SCALING_3D_MODE_BILINEAR(0),
     /**
      * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [scaling3dScale]. Values less than `1.0` will be result in the viewport
+     * scaling can be set using [scaling3dScale]. Values less than `1.0` will result in the viewport
      * being upscaled using FSR. Values greater than `1.0` are not supported and bilinear downsampling
      * will be used instead. A value of `1.0` disables scaling.
      */
     SCALING_3D_MODE_FSR(1),
     /**
      * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will result in the
      * viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear
      * downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA
      * solution.
@@ -1852,7 +1938,7 @@ public open class Viewport internal constructor() : Node() {
      *
      * The amount of scaling can be set using [scaling3dScale].
      *
-     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
+     * Values less than `1.0` will result in the viewport being upscaled using MetalFX. Values
      * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
      * `1.0` disables scaling.
      *
@@ -1871,7 +1957,7 @@ public open class Viewport internal constructor() : Node() {
      * scale, use the [RenderingDevice.limitGet] method with
      * [RenderingDevice.LIMIT_METALFX_TEMPORAL_SCALER_MIN_SCALE].
      *
-     * Values less than `1.0` will be result in the viewport being upscaled using MetalFX. Values
+     * Values less than `1.0` will result in the viewport being upscaled using MetalFX. Values
      * greater than `1.0` are not supported and bilinear downsampling will be used instead. A value of
      * `1.0` will use MetalFX at native resolution as a TAA solution.
      *
@@ -1991,9 +2077,14 @@ public open class Viewport internal constructor() : Node() {
      */
     FXAA(1),
     /**
+     * Use subpixel morphological antialiasing. SMAA may produce clearer results than FXAA, but at a
+     * slightly higher performance cost.
+     */
+    SMAA(2),
+    /**
      * Represents the size of the [ScreenSpaceAA] enum.
      */
-    MAX(2),
+    MAX(3),
     ;
 
     public override val `value`: Long
@@ -2082,12 +2173,20 @@ public open class Viewport internal constructor() : Node() {
     UNSHADED(1),
     /**
      * Objects are displayed without textures and only with lighting information.
+     *
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
      */
     LIGHTING(2),
     /**
      * Objects are displayed semi-transparent with additive blending so you can see where they are
      * drawing over top of one another. A higher overdraw means you are wasting performance on drawing
      * pixels that are being hidden behind others.
+     *
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
      */
     OVERDRAW(3),
     /**
@@ -2100,18 +2199,29 @@ public open class Viewport internal constructor() : Node() {
     /**
      * Objects are displayed without lighting information and their textures replaced by normal
      * mapping.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     NORMAL_BUFFER(5),
     /**
-     * Objects are displayed with only the albedo value from [VoxelGI]s.
+     * Objects are displayed with only the albedo value from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_ALBEDO(6),
     /**
-     * Objects are displayed with only the lighting value from [VoxelGI]s.
+     * Objects are displayed with only the lighting value from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_LIGHTING(7),
     /**
-     * Objects are displayed with only the emission color from [VoxelGI]s.
+     * Objects are displayed with only the emission color from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_EMISSION(8),
     /**
@@ -2126,78 +2236,115 @@ public open class Viewport internal constructor() : Node() {
     DIRECTIONAL_SHADOW_ATLAS(10),
     /**
      * Draws the scene luminance buffer (if available) in the upper left quadrant of the [Viewport].
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     SCENE_LUMINANCE(11),
     /**
      * Draws the screen-space ambient occlusion texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssaoEnabled] set in your [WorldEnvironment].
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SSAO(12),
     /**
      * Draws the screen-space indirect lighting texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssilEnabled] set in your [WorldEnvironment].
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SSIL(13),
     /**
      * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
-     * can see where the splits are. In order, they will be colored red, green, blue, and yellow.
+     * can see where the splits are. In order (from closest to furthest from the camera), they are
+     * colored red, green, blue, and yellow.
+     *
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     PSSM_SPLITS(14),
     /**
      * Draws the decal atlas used by [Decal]s and light projector textures in the upper left
      * quadrant of the [Viewport].
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     DECAL_ATLAS(15),
     /**
      * Draws the cascades used to render signed distance field global illumination (SDFGI).
      *
-     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
-     * not supported on the platform.
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false`.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SDFGI(16),
     /**
      * Draws the probes used for signed distance field global illumination (SDFGI).
      *
-     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false` or SDFGI is
-     * not supported on the platform.
+     * Does nothing if the current environment's [Environment.sdfgiEnabled] is `false`.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SDFGI_PROBES(17),
     /**
-     * Draws the buffer used for global illumination (GI).
+     * Draws the buffer used for global illumination from [VoxelGI] or SDFGI. Requires [VoxelGI] (at
+     * least one visible baked VoxelGI node) or SDFGI ([Environment.sdfgiEnabled]) to be enabled to
+     * have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     GI_BUFFER(18),
     /**
-     * Draws all of the objects at their highest polycount, without low level of detail (LOD).
+     * Draws all of the objects at their highest polycount regardless of their distance from the
+     * camera. No low level of detail (LOD) is applied.
      */
     DISABLE_LOD(19),
     /**
      * Draws the cluster used by [OmniLight3D] nodes to optimize light rendering.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_OMNI_LIGHTS(20),
     /**
      * Draws the cluster used by [SpotLight3D] nodes to optimize light rendering.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_SPOT_LIGHTS(21),
     /**
      * Draws the cluster used by [Decal] nodes to optimize decal rendering.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_DECALS(22),
     /**
-     * Draws the cluster used by [ReflectionProbe] nodes to optimize decal rendering.
+     * Draws the cluster used by [ReflectionProbe] nodes to optimize reflection probes.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_REFLECTION_PROBES(23),
     /**
      * Draws the buffer used for occlusion culling.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     OCCLUDERS(24),
     /**
      * Draws vector lines over the viewport to indicate the movement of pixels between frames.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     MOTION_VECTORS(25),
     /**
-     * Draws the internal resolution buffer of the scene before post-processing is applied.
+     * Draws the internal resolution buffer of the scene in linear colorspace before tonemapping or
+     * post-processing is applied.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     INTERNAL_BUFFER(26),
     ;
@@ -2522,6 +2669,21 @@ public open class Viewport internal constructor() : Node() {
     internal val getDebugDrawPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_debug_draw", 579191299)
 
+    internal val setUseOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_use_oversampling", 2586408642)
+
+    internal val isUsingOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "is_using_oversampling", 36873697)
+
+    internal val setOversamplingOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "set_oversampling_override", 373806689)
+
+    internal val getOversamplingOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_oversampling_override", 1740695150)
+
+    internal val getOversamplingPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "get_oversampling", 1740695150)
+
     internal val getRenderInfoPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "get_render_info", 481977019)
 
@@ -2578,6 +2740,12 @@ public open class Viewport internal constructor() : Node() {
 
     internal val guiGetDragDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_data", 1214101251)
+
+    internal val guiGetDragDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "gui_get_drag_description", 201670096)
+
+    internal val guiSetDragDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Viewport", "gui_set_drag_description", 83702148)
 
     internal val guiIsDraggingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Viewport", "gui_is_dragging", 36873697)

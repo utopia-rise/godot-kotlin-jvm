@@ -13,6 +13,7 @@ import java.util.*
 
 internal class Bootstrap {
     private lateinit var serviceLoader: ServiceLoader<Entry>
+    private var engineTypeInitialized = false
 
 
     fun initJar(loader: ClassLoader) {
@@ -70,7 +71,10 @@ internal class Bootstrap {
             with(entry) {
                 if (isMainEntry) {
                     mainContext = context
-                    context.initEngineTypes()
+                    if(!engineTypeInitialized) {
+                        context.initEngineTypes()
+                        engineTypeInitialized = true
+                    }
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
                         TypeManager.engineSingletonsNames.toTypedArray()

@@ -28,6 +28,7 @@ import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
+import kotlin.jvm.JvmName
 import kotlin.jvm.JvmOverloads
 
 /**
@@ -53,14 +54,14 @@ import kotlin.jvm.JvmOverloads
  * extends AStar3D
  *
  * func _compute_cost(u, v):
- *     var u_pos = get_point_position(u)
- *     var v_pos = get_point_position(v)
- *     return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
+ * 	var u_pos = get_point_position(u)
+ * 	var v_pos = get_point_position(v)
+ * 	return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  *
  * func _estimate_cost(u, v):
- *     var u_pos = get_point_position(u)
- *     var v_pos = get_point_position(v)
- *     return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
+ * 	var u_pos = get_point_position(u)
+ * 	var v_pos = get_point_position(v)
+ * 	return abs(u_pos.x - v_pos.x) + abs(u_pos.y - v_pos.y) + abs(u_pos.z - v_pos.z)
  * ```
  *
  * ```csharp
@@ -70,22 +71,22 @@ import kotlin.jvm.JvmOverloads
  * [GlobalClass]
  * public partial class MyAStar3D : AStar3D
  * {
- *     public override float _ComputeCost(long fromId, long toId)
- *     {
- *         Vector3 fromPoint = GetPointPosition(fromId);
- *         Vector3 toPoint = GetPointPosition(toId);
+ * 	public override float _ComputeCost(long fromId, long toId)
+ * 	{
+ * 		Vector3 fromPoint = GetPointPosition(fromId);
+ * 		Vector3 toPoint = GetPointPosition(toId);
  *
- *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * 		return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
  * Mathf.Abs(fromPoint.Z - toPoint.Z);
- *     }
+ * 	}
  *
- *     public override float _EstimateCost(long fromId, long toId)
- *     {
- *         Vector3 fromPoint = GetPointPosition(fromId);
- *         Vector3 toPoint = GetPointPosition(toId);
- *         return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
+ * 	public override float _EstimateCost(long fromId, long toId)
+ * 	{
+ * 		Vector3 fromPoint = GetPointPosition(fromId);
+ * 		Vector3 toPoint = GetPointPosition(toId);
+ * 		return Mathf.Abs(fromPoint.X - toPoint.X) + Mathf.Abs(fromPoint.Y - toPoint.Y) +
  * Mathf.Abs(fromPoint.Z - toPoint.Z);
- *     }
+ * 	}
  * }
  * ```
  *
@@ -103,8 +104,29 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AStar3D : RefCounted() {
+  /**
+   * If `true` enables the filtering of neighbors via [_filterNeighbor].
+   */
+  public final inline var neighborFilterEnabled: Boolean
+    @JvmName("neighborFilterEnabledProperty")
+    get() = isNeighborFilterEnabled()
+    @JvmName("neighborFilterEnabledProperty")
+    set(`value`) {
+      setNeighborFilterEnabled(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(4, scriptIndex)
+  }
+
+  /**
+   * Called when neighboring point enters processing and if [neighborFilterEnabled] is `true`. If
+   * `true` is returned the point will not be processed.
+   *
+   * Note that this function is hidden in the default [AStar3D] class.
+   */
+  public open fun _filterNeighbor(fromId: Long, neighborId: Long): Boolean {
+    throw NotImplementedError("AStar3D::_filterNeighbor is not implemented.")
   }
 
   /**
@@ -285,6 +307,17 @@ public open class AStar3D : RefCounted() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setNeighborFilterEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setNeighborFilterEnabledPtr, NIL)
+  }
+
+  public final fun isNeighborFilterEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isNeighborFilterEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * Creates a segment between the given points. If [bidirectional] is `false`, only movement from
    * [id] to [toId] is allowed, not the reverse direction.
@@ -365,8 +398,7 @@ public open class AStar3D : RefCounted() {
 
   /**
    * Reserves space internally for [numNodes] points. Useful if you're adding a known large number
-   * of points at once, such as points on a grid. New capacity must be greater or equals to old
-   * capacity.
+   * of points at once, such as points on a grid.
    */
   public final fun reserveSpace(numNodes: Long): Unit {
     TransferContext.writeArguments(LONG to numNodes)
@@ -433,8 +465,8 @@ public open class AStar3D : RefCounted() {
    * If there is no valid path to the target, and [allowPartialPath] is `true`, returns a path to
    * the point closest to the target that can be reached.
    *
-   * **Note:** This method is not thread-safe. If called from a [Thread], it will return an empty
-   * array and will print an error message.
+   * **Note:** This method is not thread-safe; it can only be used from a single [Thread] at a given
+   * time. Consider using [Mutex] to ensure exclusive access to one thread to avoid race conditions.
    *
    * Additionally, when [allowPartialPath] is `true` and [toId] is disabled the search may take an
    * unusually long time to finish.
@@ -542,6 +574,12 @@ public open class AStar3D : RefCounted() {
 
     internal val isPointDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStar3D", "is_point_disabled", 1116898809)
+
+    internal val setNeighborFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStar3D", "set_neighbor_filter_enabled", 2586408642)
+
+    internal val isNeighborFilterEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AStar3D", "is_neighbor_filter_enabled", 36873697)
 
     internal val connectPointsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AStar3D", "connect_points", 3710494224)

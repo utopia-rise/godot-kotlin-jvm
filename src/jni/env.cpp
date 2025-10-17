@@ -28,7 +28,7 @@ namespace jni {
 
     //Support fully qualified class names with "a/b/c" and "a.b.c" format
     JClass Env::find_class(const char* name) {
-        jclass cls = env->FindClass(String(name).replace(".", "/").utf8());
+        jclass cls = env->FindClass(String(name).replace(".", "/").utf8().get_data());
         JVM_DEV_ASSERT(cls, "Class not found: %s", name);
         handle_exception();
         return JClass(cls);

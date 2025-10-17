@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeRandomRange : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(784, scriptIndex)
+    createNativeObject(800, scriptIndex)
   }
 
   public companion object

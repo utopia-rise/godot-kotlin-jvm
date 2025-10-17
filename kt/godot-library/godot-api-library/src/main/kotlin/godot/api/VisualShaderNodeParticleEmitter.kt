@@ -23,7 +23,7 @@ import kotlin.jvm.JvmName
  * starting position of the particles. Connect them to the Position output port.
  */
 @GodotBaseType
-public open class VisualShaderNodeParticleEmitter internal constructor() : VisualShaderNode() {
+public abstract class VisualShaderNodeParticleEmitter : VisualShaderNode() {
   /**
    * If `true`, the result of this emitter is projected to 2D space. By default it is `false` and
    * meant for use in 3D space.
@@ -37,7 +37,7 @@ public open class VisualShaderNodeParticleEmitter internal constructor() : Visua
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(776, scriptIndex)
+    createNativeObject(792, scriptIndex)
   }
 
   public final fun setMode2d(enabled: Boolean): Unit {

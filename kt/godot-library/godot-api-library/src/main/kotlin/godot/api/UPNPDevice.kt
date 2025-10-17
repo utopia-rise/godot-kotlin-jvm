@@ -88,7 +88,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   /**
-   * IGD status. See [IGDStatus].
+   * IGD status.
    */
   public final inline var igdStatus: IGDStatus
     @JvmName("igdStatusProperty")
@@ -99,7 +99,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(704, scriptIndex)
+    createNativeObject(720, scriptIndex)
   }
 
   /**

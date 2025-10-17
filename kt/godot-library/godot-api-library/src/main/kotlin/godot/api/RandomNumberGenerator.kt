@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
  * ```
  * var rng = RandomNumberGenerator.new()
  * func _ready():
- *     var my_random_number = rng.randf_range(-10.0, 10.0)
+ * 	var my_random_number = rng.randf_range(-10.0, 10.0)
  * ```
  */
 @GodotBaseType
@@ -87,7 +87,7 @@ public open class RandomNumberGenerator : RefCounted() {
    * [seed] instead.
    *
    * **Note:** The default value of this property is pseudo-random, and changes when calling
-   * [randomize]. The `0` value documented here is a placeholder, and not the actual default seed.
+   * [randomize]. The `0` value documented here is a placeholder, and not the actual default state.
    */
   public final inline var state: Long
     @JvmName("stateProperty")
@@ -98,7 +98,7 @@ public open class RandomNumberGenerator : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(529, scriptIndex)
+    createNativeObject(544, scriptIndex)
   }
 
   public final fun setSeed(seed: Long): Unit {

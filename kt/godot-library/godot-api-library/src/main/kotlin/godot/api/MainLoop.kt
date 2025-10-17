@@ -37,17 +37,17 @@ import kotlin.Unit
  * var time_elapsed = 0
  *
  * func _initialize():
- *     print("Initialized:")
- *     print("  Starting time: &#37;s" &#37; str(time_elapsed))
+ * 	print("Initialized:")
+ * 	print("  Starting time: &#37;s" &#37; str(time_elapsed))
  *
  * func _process(delta):
- *     time_elapsed += delta
- *     # Return true to end the main loop.
- *     return Input.get_mouse_button_mask() != 0 || Input.is_key_pressed(KEY_ESCAPE)
+ * 	time_elapsed += delta
+ * 	# Return true to end the main loop.
+ * 	return Input.get_mouse_button_mask() != 0 || Input.is_key_pressed(KEY_ESCAPE)
  *
  * func _finalize():
- *     print("Finalized:")
- *     print("  End time: &#37;s" &#37; str(time_elapsed))
+ * 	print("Finalized:")
+ * 	print("  End time: &#37;s" &#37; str(time_elapsed))
  * ```
  *
  * ```csharp
@@ -57,26 +57,26 @@ import kotlin.Unit
  * [GlobalClass]
  * public partial class CustomMainLoop : MainLoop
  * {
- *     private double _timeElapsed = 0;
+ * 	private double _timeElapsed = 0;
  *
- *     public override void _Initialize()
- *     {
- *         GD.Print("Initialized:");
- *         GD.Print($"  Starting Time: {_timeElapsed}");
- *     }
+ * 	public override void _Initialize()
+ * 	{
+ * 		GD.Print("Initialized:");
+ * 		GD.Print($"  Starting Time: {_timeElapsed}");
+ * 	}
  *
- *     public override bool _Process(double delta)
- *     {
- *         _timeElapsed += delta;
- *         // Return true to end the main loop.
- *         return Input.GetMouseButtonMask() != 0 || Input.IsKeyPressed(Key.Escape);
- *     }
+ * 	public override bool _Process(double delta)
+ * 	{
+ * 		_timeElapsed += delta;
+ * 		// Return true to end the main loop.
+ * 		return Input.GetMouseButtonMask() != 0 || Input.IsKeyPressed(Key.Escape);
+ * 	}
  *
- *     private void _Finalize()
- *     {
- *         GD.Print("Finalized:");
- *         GD.Print($"  End Time: {_timeElapsed}");
- *     }
+ * 	private void _Finalize()
+ * 	{
+ * 		GD.Print("Finalized:");
+ * 		GD.Print($"  End Time: {_timeElapsed}");
+ * 	}
  * }
  * ```
  */
@@ -88,7 +88,7 @@ public open class MainLoop : Object() {
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(343, scriptIndex)
+    createNativeObject(351, scriptIndex)
   }
 
   /**
@@ -99,36 +99,39 @@ public open class MainLoop : Object() {
   }
 
   /**
-   * Called each physics frame with the time since the last physics frame as argument ([delta], in
-   * seconds). Equivalent to [Node.PhysicsProcess].
+   * Called each physics tick. [delta] is the logical time between physics ticks in seconds and is
+   * equal to [Engine.timeScale] / [Engine.physicsTicksPerSecond]. Equivalent to [Node.PhysicsProcess].
    *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
-   * `false` lets it proceed to the next frame.
+   * `false` lets it proceed to the next step.
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** [_physicsProcess] may be called up to [Engine.maxPhysicsStepsPerFrame] times per
+   * (idle) frame. This step limit may be reached when the engine is suffering performance issues.
+   *
+   * **Note:** Accumulated [delta] may diverge from real world seconds.
    */
   public open fun _physicsProcess(delta: Double): Boolean {
     throw NotImplementedError("MainLoop::_physicsProcess is not implemented.")
   }
 
   /**
-   * Called each process (idle) frame with the time since the last process frame as argument (in
-   * seconds). Equivalent to [Node.Process].
+   * Called on each idle frame, prior to rendering, and after physics ticks have been processed.
+   * [delta] is the time between frames in seconds. Equivalent to [Node.Process].
    *
    * If implemented, the method must return a boolean value. `true` ends the main loop, while
    * `false` lets it proceed to the next frame.
    *
-   * **Note:** [delta] will be larger than expected if running at a framerate lower than
-   * [Engine.physicsTicksPerSecond] / [Engine.maxPhysicsStepsPerFrame] FPS. This is done to avoid
-   * "spiral of death" scenarios where performance would plummet due to an ever-increasing number of
-   * physics steps per frame. This behavior affects both [_process] and [_physicsProcess]. As a result,
-   * avoid using [delta] for time measurements in real-world seconds. Use the [Time] singleton's
-   * methods for this purpose instead, such as [Time.getTicksUsec].
+   * **Note:** When the engine is struggling and the frame rate is lowered, [delta] will increase.
+   * When [delta] is increased, it's capped at a maximum of [Engine.timeScale] *
+   * [Engine.maxPhysicsStepsPerFrame] / [Engine.physicsTicksPerSecond]. As a result, accumulated
+   * [delta] may not represent real world time.
+   *
+   * **Note:** When `--fixed-fps` is enabled or the engine is running in Movie Maker mode (see
+   * [MovieWriter]), process [delta] will always be the same for every frame, regardless of how much
+   * time the frame took to render.
+   *
+   * **Note:** Frame delta may be post-processed by [OS.deltaSmoothing] if this is enabled for the
+   * project.
    */
   public open fun _process(delta: Double): Boolean {
     throw NotImplementedError("MainLoop::_process is not implemented.")

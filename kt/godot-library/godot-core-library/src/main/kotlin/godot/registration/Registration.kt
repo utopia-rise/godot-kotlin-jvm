@@ -150,20 +150,14 @@ class ClassBuilderDsl<T : KtObject>(
             ),
             kProperty,
             { enumList: Collection<P>? ->
-                println("GET: $enumList")
                 (enumList
                     ?.map { it.godotOrdinal.toInt() }
                     ?.toVariantArray()
-                    ?: variantArrayOf()).also {
-                    println("RESULTING: $it")
-                }
+                    ?: variantArrayOf())
             },
             { enumOrdinalVariantArray ->
-                println("SET: $enumOrdinalVariantArray")
                 @Suppress("UNCHECKED_CAST")
-                (enumOrdinalVariantArray.map { enumFromGodotOrdinal<P>(it) } as L).also {
-                    println("RESULTING: $it")
-                }
+                (enumOrdinalVariantArray.map { enumFromGodotOrdinal<P>(it) } as L)
             }
         )
     }

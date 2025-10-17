@@ -8,8 +8,9 @@
 #include "strings.h"
 
 #include <core/config/project_settings.h>
+#include <editor/settings/editor_settings.h>
 #include <editor/editor_interface.h>
-#include <editor/filesystem_dock.h>
+#include <editor/file_system/editor_file_system.h>
 #include <gd_kotlin.h>
 
 void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
@@ -20,6 +21,7 @@ void GodotKotlinJvmEditor::on_menu_option_pressed(int option_id) {
         case ABOUT:
             about_dialog->popup_centered();
             break;
+        default:;
     }
 }
 
@@ -155,6 +157,7 @@ void GodotKotlinJvmEditor::_notification(int notification) {
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_choice);
             remove_control_from_container(CustomControlContainer::CONTAINER_TOOLBAR, tool_bar_gradle_task_button);
             break;
+        default:;
     }
 }
 

@@ -120,6 +120,7 @@
       { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
       { "name" : "engine_call_count", "parameterTypes" : ["long"] },
       { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_duplicate_deep", "parameterTypes" : ["long"] },
       { "name" : "engine_call_erase", "parameterTypes" : ["long"] },
       { "name" : "engine_call_fill", "parameterTypes" : ["long"] },
       { "name" : "engine_call_filter", "parameterTypes" : ["long"] },
@@ -207,6 +208,7 @@
 
       { "name" : "engine_call_clear", "parameterTypes" : ["long"] },
       { "name" : "engine_call_duplicate", "parameterTypes" : ["long"] },
+      { "name" : "engine_call_duplicate_deep", "parameterTypes" : ["long"] },
       { "name" : "engine_call_is_empty", "parameterTypes" : ["long"] },
       { "name" : "engine_call_erase", "parameterTypes" : ["long"] },
       { "name" : "engine_call_find_key", "parameterTypes" : ["long"] },

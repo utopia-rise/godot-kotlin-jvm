@@ -100,7 +100,7 @@ public open class Theme : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(678, scriptIndex)
+    createNativeObject(694, scriptIndex)
   }
 
   /**
@@ -857,6 +857,19 @@ public open class Theme : Resource() {
   }
 
   /**
+   * Renames the theme type [oldThemeType] to [themeType], if the old type exists and the new one
+   * doesn't exist.
+   *
+   * **Note:** Renaming a theme type to an empty name or a variation to a type associated with a
+   * built-in class removes type variation connections in a way that cannot be undone by reversing the
+   * rename alone.
+   */
+  public final fun renameType(oldThemeType: StringName, themeType: StringName): Unit {
+    TransferContext.writeArguments(STRING_NAME to oldThemeType, STRING_NAME to themeType)
+    TransferContext.callMethod(ptr, MethodBindings.renameTypePtr, NIL)
+  }
+
+  /**
    * Returns a list of all unique theme type names. Use the appropriate `get_*_type_list` method to
    * get a list of unique theme types for a single data type.
    */
@@ -1313,6 +1326,17 @@ public open class Theme : Resource() {
    */
   public final fun removeType(themeType: String) = removeType(themeType.asCachedStringName())
 
+  /**
+   * Renames the theme type [oldThemeType] to [themeType], if the old type exists and the new one
+   * doesn't exist.
+   *
+   * **Note:** Renaming a theme type to an empty name or a variation to a type associated with a
+   * built-in class removes type variation connections in a way that cannot be undone by reversing the
+   * rename alone.
+   */
+  public final fun renameType(oldThemeType: String, themeType: String) =
+      renameType(oldThemeType.asCachedStringName(), themeType.asCachedStringName())
+
   public enum class DataType(
     `value`: Long,
   ) : GodotEnum {
@@ -1546,6 +1570,9 @@ public open class Theme : Resource() {
 
     internal val removeTypePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Theme", "remove_type", 3304788590)
+
+    internal val renameTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Theme", "rename_type", 3740211285)
 
     internal val getTypeListPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Theme", "get_type_list", 1139954409)

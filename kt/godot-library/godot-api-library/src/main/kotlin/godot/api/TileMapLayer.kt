@@ -47,7 +47,7 @@ import kotlin.jvm.JvmOverloads
  * result as a [TileMap] node.
  *
  * For performance reasons, all TileMap updates are batched at the end of a frame. Notably, this
- * means that scene tiles from a [TileSetScenesCollectionSource] may be initialized after their parent.
+ * means that scene tiles from a [TileSetScenesCollectionSource] are initialized after their parent.
  * This is only queued when inside the scene tree.
  *
  * To force an update earlier on, call [updateInternals].
@@ -147,10 +147,10 @@ public open class TileMapLayer : Node2D() {
     }
 
   /**
-   * The [TileMapLayer]'s quadrant size. A quadrant is a group of tiles to be drawn together on a
-   * single canvas item, for optimization purposes. [renderingQuadrantSize] defines the length of a
-   * square's side, in the map's coordinate system, that forms the quadrant. Thus, the default quadrant
-   * size groups together `16 * 16 = 256` tiles.
+   * The [TileMapLayer]'s rendering quadrant size. A quadrant is a group of tiles to be drawn
+   * together on a single canvas item, for optimization purposes. [renderingQuadrantSize] defines the
+   * length of a square's side, in the map's coordinate system, that forms the quadrant. Thus, the
+   * default quadrant size groups together `16 * 16 = 256` tiles.
    *
    * The quadrant size does not apply on a Y-sorted [TileMapLayer], as tiles are grouped by Y
    * position instead in that case.
@@ -202,6 +202,25 @@ public open class TileMapLayer : Node2D() {
     }
 
   /**
+   * The [TileMapLayer]'s physics quadrant size. Within a physics quadrant, cells with similar
+   * physics properties are grouped together and their collision shapes get merged.
+   * [physicsQuadrantSize] defines the length of a square's side, in the map's coordinate system, that
+   * forms the quadrant. Thus, the default quadrant size groups together `16 * 16 = 256` tiles.
+   *
+   * **Note:** As quadrants are created according to the map's coordinate system, the quadrant's
+   * "square shape" might not look like square in the [TileMapLayer]'s local coordinate system.
+   *
+   * **Note:** This impacts the value returned by [getCoordsForBodyRid].
+   */
+  public final inline var physicsQuadrantSize: Int
+    @JvmName("physicsQuadrantSizeProperty")
+    get() = getPhysicsQuadrantSize()
+    @JvmName("physicsQuadrantSizeProperty")
+    set(`value`) {
+      setPhysicsQuadrantSize(value)
+    }
+
+  /**
    * If `true`, navigation regions are enabled.
    */
   public final inline var navigationEnabled: Boolean
@@ -225,7 +244,7 @@ public open class TileMapLayer : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(683, scriptIndex)
+    createNativeObject(699, scriptIndex)
   }
 
   /**
@@ -410,12 +429,12 @@ public open class TileMapLayer : Node2D() {
    *
    * ```
    * func get_clicked_tile_power():
-   *     var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
-   *     var data = tile_map_layer.get_cell_tile_data(clicked_cell)
-   *     if data:
-   *         return data.get_custom_data("power")
-   *     else:
-   *         return 0
+   * 	var clicked_cell = tile_map_layer.local_to_map(tile_map_layer.get_local_mouse_position())
+   * 	var data = tile_map_layer.get_cell_tile_data(clicked_cell)
+   * 	if data:
+   * 		return data.get_custom_data("power")
+   * 	else:
+   * 		return 0
    * ```
    */
   public final fun getCellTileData(coords: Vector2i): TileData? {
@@ -571,8 +590,9 @@ public open class TileMapLayer : Node2D() {
   }
 
   /**
-   * Returns the coordinates of the tile for given physics body [RID]. Such an [RID] can be
-   * retrieved from [KinematicCollision2D.getColliderRid], when colliding with a tile.
+   * Returns the coordinates of the physics quadrant (see [physicsQuadrantSize]) for given physics
+   * body [RID]. Such an [RID] can be retrieved from [KinematicCollision2D.getColliderRid], when
+   * colliding with a tile.
    */
   public final fun getCoordsForBodyRid(body: RID): Vector2i {
     TransferContext.writeArguments(_RID to body)
@@ -769,6 +789,17 @@ public open class TileMapLayer : Node2D() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getCollisionVisibilityModePtr, LONG)
     return DebugVisibilityMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setPhysicsQuadrantSize(size: Int): Unit {
+    TransferContext.writeArguments(LONG to size.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setPhysicsQuadrantSizePtr, NIL)
+  }
+
+  public final fun getPhysicsQuadrantSize(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPhysicsQuadrantSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
   }
 
   public final fun setOcclusionEnabled(enabled: Boolean): Unit {
@@ -991,6 +1022,12 @@ public open class TileMapLayer : Node2D() {
 
     internal val getCollisionVisibilityModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "get_collision_visibility_mode", 338220793)
+
+    internal val setPhysicsQuadrantSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "set_physics_quadrant_size", 1286410249)
+
+    internal val getPhysicsQuadrantSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TileMapLayer", "get_physics_quadrant_size", 3905245786)
 
     internal val setOcclusionEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TileMapLayer", "set_occlusion_enabled", 2586408642)

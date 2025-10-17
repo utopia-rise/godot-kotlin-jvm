@@ -34,12 +34,12 @@ import kotlin.Unit
 @GodotBaseType
 public open class ImageTexture3D : Texture3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(286, scriptIndex)
+    createNativeObject(293, scriptIndex)
   }
 
   /**
-   * Creates the [ImageTexture3D] with specified [width], [height], and [depth]. See [Image.Format]
-   * for [format] options. If [useMipmaps] is `true`, then generate mipmaps for the [ImageTexture3D].
+   * Creates the [ImageTexture3D] with specified [format], [width], [height], and [depth]. If
+   * [useMipmaps] is `true`, generates mipmaps for the [ImageTexture3D].
    */
   public final fun create(
     format: Image.Format,

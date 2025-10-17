@@ -76,6 +76,9 @@ public open class Sprite2D : Node2D() {
   /**
    * The texture's drawing offset.
    *
+   * **Note:** When you increase [offset].y in Sprite2D, the sprite moves downward on screen
+   * (i.e., +Y is down).
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -175,6 +178,12 @@ public open class Sprite2D : Node2D() {
 
   /**
    * If `true`, texture is cut from a larger atlas texture. See [regionRect].
+   *
+   * **Note:** When using a custom [Shader] on a [Sprite2D], the `UV` shader built-in will refer to
+   * the entire texture space. Use the `REGION_RECT` built-in to get the currently visible region
+   * defined in [regionRect] instead. See
+   * [url=$DOCS_URL/tutorials/shaders/shader_reference/canvas_item_shader.html]CanvasItem shaders[/url]
+   * for details.
    */
   public final inline var regionEnabled: Boolean
     @JvmName("regionEnabledProperty")
@@ -216,7 +225,7 @@ public open class Sprite2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(626, scriptIndex)
+    createNativeObject(642, scriptIndex)
   }
 
   /**
@@ -231,6 +240,9 @@ public open class Sprite2D : Node2D() {
    * ``````
    *
    * The texture's drawing offset.
+   *
+   * **Note:** When you increase [offset].y in Sprite2D, the sprite moves downward on screen
+   * (i.e., +Y is down).
    */
   @CoreTypeHelper
   public final fun offsetMutate(block: Vector2.() -> Unit): Vector2 = offset.apply {
@@ -430,26 +442,26 @@ public open class Sprite2D : Node2D() {
    * ```gdscript
    * //gdscript
    * func _input(event):
-   *     if event is InputEventMouseButton and event.pressed and event.button_index ==
+   * 	if event is InputEventMouseButton and event.pressed and event.button_index ==
    * MOUSE_BUTTON_LEFT:
-   *         if get_rect().has_point(to_local(event.position)):
-   *             print("A click!")
+   * 		if get_rect().has_point(to_local(event.position)):
+   * 			print("A click!")
    * ```
    *
    * ```csharp
    * //csharp
    * public override void _Input(InputEvent @event)
    * {
-   *     if (@event is InputEventMouseButton inputEventMouse)
-   *     {
-   *         if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
-   *         {
-   *             if (GetRect().HasPoint(ToLocal(inputEventMouse.Position)))
-   *             {
-   *                 GD.Print("A click!");
-   *             }
-   *         }
-   *     }
+   * 	if (@event is InputEventMouseButton inputEventMouse)
+   * 	{
+   * 		if (inputEventMouse.Pressed && inputEventMouse.ButtonIndex == MouseButton.Left)
+   * 		{
+   * 			if (GetRect().HasPoint(ToLocal(inputEventMouse.Position)))
+   * 			{
+   * 				GD.Print("A click!");
+   * 			}
+   * 		}
+   * 	}
    * }
    * ```
    */

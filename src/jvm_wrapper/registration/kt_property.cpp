@@ -30,7 +30,7 @@ PropertyInfo KtPropertyInfo::toPropertyInfo() const {
     info.class_name = class_name;
     info.hint = hint;
     info.hint_string = hint_string;
-    info.usage = usage;
+    info.usage = usage | PropertyUsageFlags::PROPERTY_USAGE_SCRIPT_VARIABLE;
     return info;
 }
 
