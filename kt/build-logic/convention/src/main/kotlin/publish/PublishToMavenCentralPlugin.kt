@@ -17,11 +17,6 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
         target.plugins.apply(org.gradle.api.publish.maven.plugins.MavenPublishPlugin::class.java)
 
         target.afterEvaluate { evaluatedProject ->
-            target.extensions.getByType(JavaPluginExtension::class.java).apply {
-                withSourcesJar()
-                withJavadocJar()
-            }
-
             val mavenCentralUser = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralUsername") ?: target.propOrEnv("mavenCentralUsername")
             val mavenCentralPassword = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralPassword") ?: target.propOrEnv("mavenCentralPassword")
             val gpgInMemoryKey = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKey") ?: target.propOrEnv("signingInMemoryKey")
