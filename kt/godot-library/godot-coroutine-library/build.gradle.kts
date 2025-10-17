@@ -18,6 +18,11 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
@@ -51,6 +56,8 @@ publishing {
             }
             artifactId = "godot-coroutine-library-$targetSuffix"
             description = "Godot library extension allowing the use of coroutines in a Godot context."
+
+            from(components["java"])
         }
     }
 }
