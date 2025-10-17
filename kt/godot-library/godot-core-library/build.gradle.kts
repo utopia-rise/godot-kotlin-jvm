@@ -18,6 +18,11 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 dependencies {
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-internal-library"))
@@ -50,6 +55,8 @@ publishing {
             }
             artifactId = "godot-core-library-$targetSuffix"
             description = "Contains godot api as kotlin classes and jvm cpp interaction code."
+
+            from(components["java"])
         }
     }
 }
