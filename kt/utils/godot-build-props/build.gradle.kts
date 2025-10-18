@@ -11,6 +11,11 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 tasks {
     @Suppress("UNUSED_VARIABLE")
     val processResources by getting(Copy::class) {

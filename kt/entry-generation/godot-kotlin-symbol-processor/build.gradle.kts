@@ -11,6 +11,11 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
     implementation(project(":godot-core-library"))

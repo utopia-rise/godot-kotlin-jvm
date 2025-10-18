@@ -16,6 +16,11 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 dependencies {
     implementation(libs.kotlinPoet)
     api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
