@@ -29,12 +29,14 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                 signAllPublications()
             }
 
-            target
-                .tasks
-                .filter { task -> task.name.startsWith("publish") }
-                .forEach { task ->
-                    task.dependsOn(target.tasks.withType(Sign::class.java))
-                }
+            target.afterEvaluate { evaluatedProject ->
+                evaluatedProject
+                    .tasks
+                    .filter { task -> task.name.startsWith("publish") }
+                    .forEach { task ->
+                        task.dependsOn(target.tasks.withType(Sign::class.java))
+                    }
+            }
         } else {
             target.logger.warn("Cannot sign project \"${target.name}\" as credentials are missing. Will not setup signing and remote publishing credentials. Publishing will only work to maven local!")
         }
