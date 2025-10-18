@@ -13,6 +13,8 @@ import org.gradle.plugins.signing.Sign
 @Suppress("unused") // false positive
 class PublishToMavenCentralPlugin : Plugin<Project> {
     override fun apply(target: Project) {
+        target.pluginManager.apply(MavenPublishBasePlugin::class.java)
+
         val mavenCentralUser = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralUsername") ?: target.propOrEnv("mavenCentralUsername")
         val mavenCentralPassword = target.propOrEnv("ORG_GRADLE_PROJECT_mavenCentralPassword") ?: target.propOrEnv("mavenCentralPassword")
         val gpgInMemoryKey = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKey") ?: target.propOrEnv("signingInMemoryKey")
@@ -23,7 +25,6 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
         if (canSign) {
             target.logger.info("Will sign artifact for project \"${target.name}\" and setup publishing")
 
-            target.pluginManager.apply(MavenPublishBasePlugin::class.java)
             target.extensions.getByType(MavenPublishBaseExtension::class.java).apply {
                 publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
                 signAllPublications()
