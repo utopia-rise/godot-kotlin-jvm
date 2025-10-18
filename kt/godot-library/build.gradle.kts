@@ -30,11 +30,6 @@ kotlin {
     jvmToolchain(libs.versions.toolchain.jvm.get().toInt())
 }
 
-java {
-    withSourcesJar()
-    withJavadocJar()
-}
-
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
