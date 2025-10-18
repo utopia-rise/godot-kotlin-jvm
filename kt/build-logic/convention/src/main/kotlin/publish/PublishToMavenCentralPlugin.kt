@@ -5,9 +5,11 @@ import com.vanniktech.maven.publish.MavenPublishBasePlugin
 import com.vanniktech.maven.publish.SonatypeHost
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.plugins.JavaPluginExtension
 import org.gradle.api.publish.PublishingExtension
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.plugins.signing.Sign
+import org.jetbrains.kotlin.gradle.dsl.kotlinExtension
 
 @Suppress("unused") // false positive
 class PublishToMavenCentralPlugin : Plugin<Project> {
@@ -20,6 +22,11 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
         val gpgPassword = target.propOrEnv("ORG_GRADLE_PROJECT_signingInMemoryKeyPassword") ?: target.propOrEnv("signingInMemoryKeyPassword")
 
         val canSign = mavenCentralUser != null && mavenCentralPassword != null && gpgInMemoryKey != null && gpgPassword != null
+
+        target.extensions.getByType(JavaPluginExtension::class.java).apply {
+            withSourcesJar()
+            withJavadocJar()
+        }
 
         if (canSign) {
             target.logger.info("Will sign artifact for project \"${target.name}\" and setup publishing")
