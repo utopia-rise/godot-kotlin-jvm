@@ -41,7 +41,7 @@ import kotlin.jvm.JvmOverloads
  * intended for changing the direct state of that body. See [RigidBody3D.IntegrateForces].
  */
 @GodotBaseType
-public abstract class PhysicsDirectBodyState3D : Object() {
+public open class PhysicsDirectBodyState3D internal constructor() : Object() {
   /**
    * The timestep (delta) used for the simulation.
    */

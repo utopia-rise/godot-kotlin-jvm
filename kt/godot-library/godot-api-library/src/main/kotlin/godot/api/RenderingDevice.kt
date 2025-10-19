@@ -114,7 +114,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
  * Compatibility rendering method.
  */
 @GodotBaseType
-public abstract class RenderingDevice : Object() {
+public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(565, scriptIndex)
   }

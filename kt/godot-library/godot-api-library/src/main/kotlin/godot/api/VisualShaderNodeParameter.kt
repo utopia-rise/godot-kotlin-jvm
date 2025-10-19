@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
  * from the Inspector or from a script.
  */
 @GodotBaseType
-public abstract class VisualShaderNodeParameter : VisualShaderNode() {
+public open class VisualShaderNodeParameter internal constructor() : VisualShaderNode() {
   /**
    * Name of the parameter, by which it can be accessed through the [ShaderMaterial] properties.
    */

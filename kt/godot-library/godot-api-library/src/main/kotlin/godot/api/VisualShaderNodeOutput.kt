@@ -16,7 +16,7 @@ import kotlin.Unit
  * output value ports.
  */
 @GodotBaseType
-public abstract class VisualShaderNodeOutput : VisualShaderNode() {
+public open class VisualShaderNodeOutput internal constructor() : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(785, scriptIndex)
   }

@@ -47,7 +47,7 @@ import kotlin.Unit
  * **Note:** Only available in the Web platform.
  */
 @GodotBaseType
-public abstract class JavaScriptObject : RefCounted() {
+public open class JavaScriptObject internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(328, scriptIndex)
   }

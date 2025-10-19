@@ -15,7 +15,7 @@ import kotlin.Unit
  * This is a base class for haptic feedback resources.
  */
 @GodotBaseType
-public abstract class OpenXRHapticBase : Resource() {
+public open class OpenXRHapticBase internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(436, scriptIndex)
   }

@@ -31,7 +31,7 @@ import kotlin.jvm.JvmName
  * key is pressed on its own.
  */
 @GodotBaseType
-public abstract class InputEventWithModifiers : InputEventFromWindow() {
+public open class InputEventWithModifiers internal constructor() : InputEventFromWindow() {
   /**
    * Automatically use [kbd]Meta[/kbd] ([kbd]Cmd[/kbd]) on macOS and [kbd]Ctrl[/kbd] on other
    * platforms. If `true`, [ctrlPressed] and [metaPressed] cannot be set.

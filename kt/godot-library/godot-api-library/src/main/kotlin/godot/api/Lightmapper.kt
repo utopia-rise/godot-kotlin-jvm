@@ -19,7 +19,7 @@ import kotlin.Unit
  * custom lightmappers can be implemented by C++ modules.
  */
 @GodotBaseType
-public abstract class Lightmapper : RefCounted() {
+public open class Lightmapper internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(344, scriptIndex)
   }

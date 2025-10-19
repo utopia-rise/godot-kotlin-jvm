@@ -102,7 +102,7 @@ import kotlin.jvm.JvmStatic
  * actual resource file list as it appears in the editor, use [ResourceLoader.listDirectory] instead.
  */
 @GodotBaseType
-public abstract class DirAccess : RefCounted() {
+public open class DirAccess internal constructor() : RefCounted() {
   /**
    * If `true`, `.` and `..` are included when navigating the directory.
    *

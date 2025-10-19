@@ -26,7 +26,7 @@ import kotlin.Unit
  * object to track the result status.
  */
 @GodotBaseType
-public abstract class OpenXRFutureResult : RefCounted() {
+public open class OpenXRFutureResult internal constructor() : RefCounted() {
   /**
    * Emitted when the asynchronous function is finished or has been cancelled.
    */

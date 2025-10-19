@@ -34,7 +34,7 @@ import kotlin.jvm.JvmOverloads
  * or [AudioStreamPlayer3D.getStreamPlayback] methods.
  */
 @GodotBaseType
-public abstract class AudioStreamPlaybackPolyphonic : AudioStreamPlayback() {
+public open class AudioStreamPlaybackPolyphonic internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(92, scriptIndex)
   }

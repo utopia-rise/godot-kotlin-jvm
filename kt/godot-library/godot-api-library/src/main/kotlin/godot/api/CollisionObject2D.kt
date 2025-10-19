@@ -45,7 +45,7 @@ import kotlin.jvm.JvmName
  * undefined.
  */
 @GodotBaseType
-public abstract class CollisionObject2D : Node2D() {
+public open class CollisionObject2D internal constructor() : Node2D() {
   /**
    * Emitted when an input event occurs. Requires [inputPickable] to be `true` and at least one
    * [collisionLayer] bit to be set. See [_inputEvent] for details.

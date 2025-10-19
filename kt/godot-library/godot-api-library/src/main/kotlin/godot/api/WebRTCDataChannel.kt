@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 @GodotBaseType
-public abstract class WebRTCDataChannel : PacketPeer() {
+public open class WebRTCDataChannel internal constructor() : PacketPeer() {
   /**
    * The transfer mode to use when sending outgoing packet. Either text or binary.
    */

@@ -35,7 +35,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public abstract class MultiplayerPeer : PacketPeer() {
+public open class MultiplayerPeer internal constructor() : PacketPeer() {
   /**
    * Emitted when a remote peer connects.
    */

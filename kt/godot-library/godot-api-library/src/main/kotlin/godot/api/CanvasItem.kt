@@ -78,7 +78,7 @@ import kotlin.jvm.JvmOverloads
  * chain. See also [topLevel].
  */
 @GodotBaseType
-public abstract class CanvasItem : Node() {
+public open class CanvasItem internal constructor() : Node() {
   /**
    * Emitted when the [CanvasItem] must redraw, *after* the related [NOTIFICATION_DRAW]
    * notification, and *before* [_draw] is called.

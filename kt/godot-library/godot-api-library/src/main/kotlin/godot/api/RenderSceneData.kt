@@ -30,7 +30,7 @@ import kotlin.Unit
  * **Note:** This is an internal rendering server object, do not instantiate this from script.
  */
 @GodotBaseType
-public abstract class RenderSceneData : Object() {
+public open class RenderSceneData internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(562, scriptIndex)
   }

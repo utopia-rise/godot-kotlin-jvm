@@ -16,7 +16,7 @@ import kotlin.Unit
  * visual and normally drawn as a [StyleBoxLine].
  */
 @GodotBaseType
-public abstract class Separator : Control() {
+public open class Separator internal constructor() : Control() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(598, scriptIndex)
   }

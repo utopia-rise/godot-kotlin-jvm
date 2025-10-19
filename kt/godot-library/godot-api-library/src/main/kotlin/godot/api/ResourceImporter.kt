@@ -21,7 +21,7 @@ import kotlin.Unit
  * using editor plugins, see [EditorImportPlugin].
  */
 @GodotBaseType
-public abstract class ResourceImporter : RefCounted() {
+public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(570, scriptIndex)
   }

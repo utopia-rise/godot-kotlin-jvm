@@ -30,7 +30,7 @@ import kotlin.jvm.JvmOverloads
  * connection ports that allow to connect it to another nodes and control the flow of the shader.
  */
 @GodotBaseType
-public abstract class VisualShaderNode : Resource() {
+public open class VisualShaderNode internal constructor() : Resource() {
   /**
    * Sets the output port index which will be showed for preview. If set to `-1` no port will be
    * open for preview.
