@@ -33,7 +33,7 @@ import kotlin.jvm.JvmName
  * constants), and various other parameters (range and shadows-related).
  */
 @GodotBaseType
-public abstract class Light2D : Node2D() {
+public open class Light2D internal constructor() : Node2D() {
   /**
    * If `true`, Light2D will emit light.
    */

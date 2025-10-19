@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  * introspection.
  */
 @GodotBaseType
-public abstract class Font : Resource() {
+public open class Font internal constructor() : Resource() {
   /**
    * Array of fallback [Font]s to use as a substitute if a glyph is not found in this current
    * [Font].

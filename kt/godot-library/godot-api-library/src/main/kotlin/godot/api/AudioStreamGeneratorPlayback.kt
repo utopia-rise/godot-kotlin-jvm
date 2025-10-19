@@ -30,7 +30,8 @@ import kotlin.Unit
  * real-time.
  */
 @GodotBaseType
-public abstract class AudioStreamGeneratorPlayback : AudioStreamPlaybackResampled() {
+public open class AudioStreamGeneratorPlayback internal constructor() :
+    AudioStreamPlaybackResampled() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(83, scriptIndex)
   }

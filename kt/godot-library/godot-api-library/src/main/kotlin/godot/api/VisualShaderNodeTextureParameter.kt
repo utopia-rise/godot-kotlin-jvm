@@ -23,7 +23,8 @@ import kotlin.jvm.JvmName
  * Performs a lookup operation on the texture provided as a uniform for the shader.
  */
 @GodotBaseType
-public abstract class VisualShaderNodeTextureParameter : VisualShaderNodeParameter() {
+public open class VisualShaderNodeTextureParameter internal constructor() :
+    VisualShaderNodeParameter() {
   /**
    * Defines the type of data provided by the source texture.
    */

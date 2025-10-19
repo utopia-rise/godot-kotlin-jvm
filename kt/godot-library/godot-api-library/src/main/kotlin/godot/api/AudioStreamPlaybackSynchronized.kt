@@ -12,7 +12,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public abstract class AudioStreamPlaybackSynchronized : AudioStreamPlayback() {
+public open class AudioStreamPlaybackSynchronized internal constructor() : AudioStreamPlayback() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(94, scriptIndex)
   }

@@ -45,7 +45,7 @@ import kotlin.jvm.JvmOverloads
  * existing object, if that object's class matches one of the script's base classes.
  */
 @GodotBaseType
-public abstract class Script : Resource() {
+public open class Script internal constructor() : Resource() {
   /**
    * The script source code or an empty string if source code is not available. When set, does not
    * reload the class implementation automatically.

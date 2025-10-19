@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
  * beyond the visible area of a control. Scrollbars are [Range]-based controls.
  */
 @GodotBaseType
-public abstract class ScrollBar : Range() {
+public open class ScrollBar internal constructor() : Range() {
   /**
    * Emitted when the scrollbar is being scrolled.
    */

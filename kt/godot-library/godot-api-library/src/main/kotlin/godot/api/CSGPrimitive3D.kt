@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
  * gameplay.
  */
 @GodotBaseType
-public abstract class CSGPrimitive3D : CSGShape3D() {
+public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
   /**
    * If set, the order of the vertices in each triangle are reversed resulting in the backside of
    * the mesh being drawn.

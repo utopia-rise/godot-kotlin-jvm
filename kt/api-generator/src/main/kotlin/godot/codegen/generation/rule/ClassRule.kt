@@ -60,9 +60,17 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         } else {
             if (clazz.isAbstract) {
                 addModifiers(KModifier.ABSTRACT)
+            } else if (!clazz.isInstantiable){
+                primaryConstructor(
+                    FunSpec.constructorBuilder()
+                        .addModifiers(KModifier.INTERNAL)
+                        .build()
+                ).build()
+                addModifiers(KModifier.OPEN)
             } else {
                 addModifiers(KModifier.OPEN)
             }
+
             generateClassConstructor(context)
         }
 

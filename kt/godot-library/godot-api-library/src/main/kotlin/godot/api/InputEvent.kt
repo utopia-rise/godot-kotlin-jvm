@@ -38,7 +38,7 @@ import kotlin.jvm.JvmOverloads
  * Abstract base class of all types of input events. See [Node.Input].
  */
 @GodotBaseType
-public abstract class InputEvent : Resource() {
+public open class InputEvent internal constructor() : Resource() {
   /**
    * The event's device ID.
    *

@@ -33,7 +33,7 @@ import kotlin.jvm.JvmName
  * **Note:** Particle attractors only affect [GPUParticles3D], not [CPUParticles3D].
  */
 @GodotBaseType
-public abstract class GPUParticlesAttractor3D : VisualInstance3D() {
+public open class GPUParticlesAttractor3D internal constructor() : VisualInstance3D() {
   /**
    * Adjusts the strength of the attractor. If [strength] is negative, particles will be pushed in
    * the opposite direction. Particles will be pushed *away* from the attractor's origin if

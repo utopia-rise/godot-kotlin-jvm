@@ -38,7 +38,7 @@ import kotlin.jvm.JvmName
  * guaranteed to work like one in shaders or materials (for example when calculating UV).
  */
 @GodotBaseType
-public abstract class PlaceholderTextureLayered : TextureLayered() {
+public open class PlaceholderTextureLayered internal constructor() : TextureLayered() {
   /**
    * The size of each texture layer (in pixels).
    *

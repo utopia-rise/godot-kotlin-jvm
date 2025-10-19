@@ -17,7 +17,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public abstract class JvmScript : Script() {
+public open class JvmScript internal constructor() : Script() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(331, scriptIndex)
   }

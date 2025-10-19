@@ -42,7 +42,7 @@ import kotlin.jvm.JvmOverloads
  * [PackedScene.getState].
  */
 @GodotBaseType
-public abstract class SceneState : RefCounted() {
+public open class SceneState internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(584, scriptIndex)
   }

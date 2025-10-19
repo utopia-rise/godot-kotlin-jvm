@@ -38,7 +38,7 @@ import kotlin.jvm.JvmName
  * without the need to write shader code. See the tutorial below for details.
  */
 @GodotBaseType
-public abstract class BaseMaterial3D : Material() {
+public open class BaseMaterial3D internal constructor() : Material() {
   /**
    * The material's transparency mode. Some transparency modes will disable shadow casting. Any
    * transparency mode other than [TRANSPARENCY_DISABLED] has a greater performance impact compared to

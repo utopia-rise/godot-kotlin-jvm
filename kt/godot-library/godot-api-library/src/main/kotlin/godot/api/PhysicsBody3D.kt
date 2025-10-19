@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
  * advised to keep its scale the same on all axes and adjust its collision shape(s) instead.
  */
 @GodotBaseType
-public abstract class PhysicsBody3D : CollisionObject3D() {
+public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
   /**
    * Lock the body's linear movement in the X axis.
    */

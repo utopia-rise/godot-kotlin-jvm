@@ -28,7 +28,7 @@ import kotlin.jvm.JvmName
  * [TextureLayered].
  */
 @GodotBaseType
-public abstract class CompressedTextureLayered : TextureLayered() {
+public open class CompressedTextureLayered internal constructor() : TextureLayered() {
   /**
    * The path the texture should be loaded from.
    */

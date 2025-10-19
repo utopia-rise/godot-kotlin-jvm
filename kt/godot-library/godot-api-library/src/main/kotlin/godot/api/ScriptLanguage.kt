@@ -14,7 +14,7 @@ import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
-public abstract class ScriptLanguage : Object() {
+public open class ScriptLanguage internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(590, scriptIndex)
   }

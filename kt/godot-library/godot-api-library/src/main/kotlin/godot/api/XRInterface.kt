@@ -51,7 +51,7 @@ import kotlin.jvm.JvmName
  * setup. You can query the available interfaces through [XRServer].
  */
 @GodotBaseType
-public abstract class XRInterface : RefCounted() {
+public open class XRInterface internal constructor() : RefCounted() {
   /**
    * Emitted when the play area is changed. This can be a result of the player resetting the
    * boundary or entering a new play area, the player changing the play area mode, the world scale

@@ -32,7 +32,7 @@ import kotlin.jvm.JvmOverloads
  * bodies inherit from it.
  */
 @GodotBaseType
-public abstract class PhysicsBody2D : CollisionObject2D() {
+public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(474, scriptIndex)
   }

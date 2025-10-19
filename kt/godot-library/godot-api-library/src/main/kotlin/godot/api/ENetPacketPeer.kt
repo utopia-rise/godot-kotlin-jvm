@@ -39,7 +39,7 @@ import kotlin.jvm.JvmOverloads
  * communication of any kind will be blocked by Android.
  */
 @GodotBaseType
-public abstract class ENetPacketPeer : PacketPeer() {
+public open class ENetPacketPeer internal constructor() : PacketPeer() {
   public override fun new(scriptIndex: Int): Unit {
     createNativeObject(206, scriptIndex)
   }

@@ -30,7 +30,8 @@ class EnrichedClass(model: Class) : TypeGenerationTrait, DocumentedGenerationTra
     val properties = model.properties?.toEnriched() ?: listOf()
     val methods = model.methods?.toEnriched() ?: listOf()
 
-    val isAbstract = methods.any { it.isAbstract } || !model.isInstantiable
+    val isAbstract = methods.any { it.isAbstract }
+    val isInstantiable = model.isInstantiable
 
     override var description = model.description
     val additionalImports = mutableSetOf<ClassName>()
