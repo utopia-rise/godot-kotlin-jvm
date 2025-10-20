@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
   /**
-   * A type of operands and returned value. See [OpType] for options.
+   * A type of operands and returned value.
    */
   public final inline var opType: OpType
     @JvmName("opTypeProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * A derivative function type. See [Function] for options.
+   * A derivative function type.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -47,8 +47,8 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   /**
-   * Sets the level of precision to use for the derivative function. See [Precision] for options.
-   * When using the Compatibility renderer, this setting has no effect.
+   * Sets the level of precision to use for the derivative function. When using the Compatibility
+   * renderer, this setting has no effect.
    */
   public final inline var precision: Precision
     @JvmName("precisionProperty")
@@ -59,7 +59,7 @@ public open class VisualShaderNodeDerivativeFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(744, scriptIndex)
+    createNativeObject(760, scriptIndex)
   }
 
   public final fun setOpType(type: OpType): Unit {

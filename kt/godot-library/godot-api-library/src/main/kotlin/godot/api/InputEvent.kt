@@ -54,7 +54,7 @@ public open class InputEvent internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(292, scriptIndex)
+    createNativeObject(299, scriptIndex)
   }
 
   public final fun setDevice(device: Int): Unit {
@@ -82,8 +82,8 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the given action is being pressed (and is not an echo event for
-   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
+   * Returns `true` if the given action matches this event and is being pressed (and is not an echo
+   * event for [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
@@ -106,8 +106,8 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
-   * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   * Returns `true` if the given action matches this event and is released (i.e. not pressed). Not
+   * relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
@@ -193,15 +193,15 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if the specified [event] matches this event. Only valid for action events i.e
-   * key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
-   * [InputEventJoypadMotion] or action ([InputEventAction]) events.
+   * Returns `true` if the specified [event] matches this event. Only valid for action events, which
+   * include key ([InputEventKey]), button ([InputEventMouseButton] or [InputEventJoypadButton]), axis
+   * [InputEventJoypadMotion], and action ([InputEventAction]) events.
    *
-   * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
-   * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
+   * If [exactMatch] is `false`, the check ignores additional input modifiers for [InputEventKey]
+   * and [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.
    *
-   * **Note:** Only considers the event configuration (such as the keyboard key or joypad axis), not
-   * state information like [isPressed], [isReleased], [isEcho], or [isCanceled].
+   * **Note:** This method only considers the event configuration (such as the keyboard key or the
+   * joypad axis), not state information like [isPressed], [isReleased], [isEcho], or [isCanceled].
    */
   @JvmOverloads
   public final fun isMatch(event: InputEvent?, exactMatch: Boolean = true): Boolean {
@@ -211,7 +211,9 @@ public open class InputEvent internal constructor() : Resource() {
   }
 
   /**
-   * Returns `true` if this input event's type is one that can be assigned to an input action.
+   * Returns `true` if this input event's type is one that can be assigned to an input action:
+   * [InputEventKey], [InputEventMouseButton], [InputEventJoypadButton], [InputEventJoypadMotion],
+   * [InputEventAction]. Returns `false` for all other input event types.
    */
   public final fun isActionType(): Boolean {
     TransferContext.writeArguments()
@@ -256,8 +258,8 @@ public open class InputEvent internal constructor() : Resource() {
       isAction(action.asCachedStringName(), exactMatch)
 
   /**
-   * Returns `true` if the given action is being pressed (and is not an echo event for
-   * [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
+   * Returns `true` if the given action matches this event and is being pressed (and is not an echo
+   * event for [InputEventKey] events, unless [allowEcho] is `true`). Not relevant for events of type
    * [InputEventMouseMotion] or [InputEventScreenDrag].
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
@@ -276,8 +278,8 @@ public open class InputEvent internal constructor() : Resource() {
   ): Boolean = isActionPressed(action.asCachedStringName(), allowEcho, exactMatch)
 
   /**
-   * Returns `true` if the given action is released (i.e. not pressed). Not relevant for events of
-   * type [InputEventMouseMotion] or [InputEventScreenDrag].
+   * Returns `true` if the given action matches this event and is released (i.e. not pressed). Not
+   * relevant for events of type [InputEventMouseMotion] or [InputEventScreenDrag].
    *
    * If [exactMatch] is `false`, it ignores additional input modifiers for [InputEventKey] and
    * [InputEventMouseButton] events, and the direction for [InputEventJoypadMotion] events.

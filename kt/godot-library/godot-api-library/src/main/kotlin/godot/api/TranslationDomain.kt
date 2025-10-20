@@ -38,6 +38,18 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class TranslationDomain : RefCounted() {
   /**
+   * If `true`, translation is enabled. Otherwise, [translate] and [translatePlural] will return the
+   * input message unchanged regardless of the current locale.
+   */
+  public final inline var enabled: Boolean
+    @JvmName("enabledProperty")
+    get() = isEnabled()
+    @JvmName("enabledProperty")
+    set(`value`) {
+      setEnabled(value)
+    }
+
+  /**
    * If `true`, enables pseudolocalization for the project. This can be used to spot untranslatable
    * strings or layout issues that may occur once the project is localized to languages that have
    * longer strings than the source language.
@@ -180,7 +192,7 @@ public open class TranslationDomain : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(694, scriptIndex)
+    createNativeObject(710, scriptIndex)
   }
 
   /**
@@ -242,6 +254,41 @@ public open class TranslationDomain : RefCounted() {
     TransferContext.writeArguments(STRING_NAME to message, STRING_NAME to messagePlural, LONG to n.toLong(), STRING_NAME to context)
     TransferContext.callMethod(ptr, MethodBindings.translatePluralPtr, STRING_NAME)
     return (TransferContext.readReturnValue(STRING_NAME) as StringName)
+  }
+
+  /**
+   * Returns the locale override of the domain. Returns an empty string if locale override is
+   * disabled.
+   */
+  public final fun getLocaleOverride(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getLocaleOverridePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the locale override of the domain.
+   *
+   * If [locale] is an empty string, locale override is disabled. Otherwise, [locale] will be
+   * standardized to match known locales (e.g. `en-US` would be matched to `en_US`).
+   *
+   * **Note:** Calling this method does not automatically update texts in the scene tree. Please
+   * propagate the [MainLoop.NOTIFICATION_TRANSLATION_CHANGED] signal manually.
+   */
+  public final fun setLocaleOverride(locale: String): Unit {
+    TransferContext.writeArguments(STRING to locale)
+    TransferContext.callMethod(ptr, MethodBindings.setLocaleOverridePtr, NIL)
+  }
+
+  public final fun isEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isEnabledPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setEnabledPtr, NIL)
   }
 
   public final fun isPseudolocalizationEnabled(): Boolean {
@@ -400,6 +447,18 @@ public open class TranslationDomain : RefCounted() {
 
     internal val translatePluralPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationDomain", "translate_plural", 229954002)
+
+    internal val getLocaleOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "get_locale_override", 201670096)
+
+    internal val setLocaleOverridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "set_locale_override", 83702148)
+
+    internal val isEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "is_enabled", 36873697)
+
+    internal val setEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TranslationDomain", "set_enabled", 2586408642)
 
     internal val isPseudolocalizationEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TranslationDomain", "is_pseudolocalization_enabled", 36873697)

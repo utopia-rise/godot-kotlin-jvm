@@ -59,7 +59,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(572, scriptIndex)
+    createNativeObject(587, scriptIndex)
   }
 
   /**
@@ -173,6 +173,9 @@ public open class Script internal constructor() : Resource() {
 
   /**
    * Returns the list of properties in this [Script].
+   *
+   * **Note:** The dictionaries returned by this method are formatted identically to those returned
+   * by [Object.getPropertyList].
    */
   public final fun getScriptPropertyList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -182,6 +185,9 @@ public open class Script internal constructor() : Resource() {
 
   /**
    * Returns the list of methods in this [Script].
+   *
+   * **Note:** The dictionaries returned by this method are formatted identically to those returned
+   * by [Object.getMethodList].
    */
   public final fun getScriptMethodList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()
@@ -191,6 +197,9 @@ public open class Script internal constructor() : Resource() {
 
   /**
    * Returns the list of user signals defined in this [Script].
+   *
+   * **Note:** The dictionaries returned by this method are formatted identically to those returned
+   * by [Object.getSignalList].
    */
   public final fun getScriptSignalList(): VariantArray<Dictionary<Any?, Any?>> {
     TransferContext.writeArguments()

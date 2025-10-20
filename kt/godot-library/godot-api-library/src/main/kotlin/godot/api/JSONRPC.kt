@@ -10,14 +10,15 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Callable
 import godot.core.Dictionary
 import godot.core.GodotEnum
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.BOOL
+import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.DICTIONARY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
@@ -38,12 +39,19 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class JSONRPC : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(315, scriptIndex)
+    createNativeObject(322, scriptIndex)
   }
 
-  public final fun setScope(scope: String, target: Object?): Unit {
-    TransferContext.writeArguments(STRING to scope, OBJECT to target)
-    TransferContext.callMethod(ptr, MethodBindings.setScopePtr, NIL)
+  /**
+   * Registers a callback for the given method name.
+   *
+   * - [name] The name that clients can use to access the callback.
+   *
+   * - [callback] The callback which will handle the specific method.
+   */
+  public final fun setMethod(name: String, callback: Callable): Unit {
+    TransferContext.writeArguments(STRING to name, CALLABLE to callback)
+    TransferContext.callMethod(ptr, MethodBindings.setMethodPtr, NIL)
   }
 
   /**
@@ -180,8 +188,8 @@ public open class JSONRPC : Object() {
   public companion object
 
   public object MethodBindings {
-    internal val setScopePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("JSONRPC", "set_scope", 2572618360)
+    internal val setMethodPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("JSONRPC", "set_method", 2137474292)
 
     internal val processActionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("JSONRPC", "process_action", 2963479484)

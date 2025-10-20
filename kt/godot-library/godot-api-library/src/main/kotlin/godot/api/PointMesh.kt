@@ -12,22 +12,22 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * The PointMesh is made from a single point. Instead of relying on triangles, points are rendered
- * as a single rectangle on the screen with a constant size. They are intended to be used with Particle
- * systems, but can be used as a cheap way to render constant size billboarded sprites (for example in
- * a point cloud).
+ * A [PointMesh] is a primitive mesh composed of a single point. Instead of relying on triangles,
+ * points are rendered as a single rectangle on the screen with a constant size. They are intended to
+ * be used with particle systems, but can also be used as a cheap way to render billboarded sprites
+ * (for example in a point cloud).
  *
- * PointMeshes, must be used with a material that has a point size. Point size can be accessed in a
- * shader with `POINT_SIZE`, or in a [BaseMaterial3D] by setting [BaseMaterial3D.usePointSize] and the
- * variable [BaseMaterial3D.pointSize].
+ * In order to be displayed, point meshes must be used with a material that has a point size. The
+ * point size can be accessed in a shader with the `POINT_SIZE` built-in, or in a [BaseMaterial3D] by
+ * setting the [BaseMaterial3D.usePointSize] and [BaseMaterial3D.pointSize] properties.
  *
- * When using PointMeshes, properties that normally alter vertices will be ignored, including
- * billboard mode, grow, and cull face.
+ * **Note:** When using point meshes, properties that normally affect vertices will be ignored,
+ * including [BaseMaterial3D.billboardMode], [BaseMaterial3D.grow], and [BaseMaterial3D.cullMode].
  */
 @GodotBaseType
 public open class PointMesh : PrimitiveMesh() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(497, scriptIndex)
+    createNativeObject(512, scriptIndex)
   }
 
   public companion object

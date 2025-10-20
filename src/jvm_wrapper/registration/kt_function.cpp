@@ -80,7 +80,7 @@ KtFunctionInfo::~KtFunctionInfo() {
 MethodInfo KtFunctionInfo::to_method_info() const {
     MethodInfo methodInfo;
     methodInfo.name = name;
-    List<PropertyInfo> pInfoList;
+    Vector<PropertyInfo> pInfoList;
     for (auto argument : arguments) {
         pInfoList.push_back(argument->toPropertyInfo());
     }

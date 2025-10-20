@@ -49,6 +49,8 @@ publishing {
             }
             artifactId = "godot-extension-library-$targetSuffix"
             description = "Godot library extension build on top of the base Godot API."
+
+            from(components["java"])
         }
     }
 }

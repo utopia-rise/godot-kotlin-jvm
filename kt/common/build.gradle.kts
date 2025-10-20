@@ -18,7 +18,7 @@ kotlin {
 
 publishing {
     publications {
-        @Suppress("UNUSED_VARIABLE")
+        @Suppress("UNUSED_VARIABLE", "unused")
         val godotCommonGenerator by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
@@ -26,7 +26,8 @@ publishing {
             }
             artifactId = project.name
             description = "Godot common module other libraries."
-            from(components.getByName("java"))
+
+            from(components["java"])
         }
     }
 }

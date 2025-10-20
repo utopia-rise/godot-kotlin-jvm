@@ -12,13 +12,13 @@ import kotlin.Suppress
 import kotlin.Unit
 
 /**
- * A infinite plane collision that interacts with [SpringBoneSimulator3D]. It is an infinite size XZ
- * plane, and the +Y direction is treated as normal.
+ * An infinite plane collision that interacts with [SpringBoneSimulator3D]. It is an infinite size
+ * XZ plane, and the +Y direction is treated as normal.
  */
 @GodotBaseType
 public open class SpringBoneCollisionPlane3D : SpringBoneCollision3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(623, scriptIndex)
+    createNativeObject(639, scriptIndex)
   }
 
   public companion object

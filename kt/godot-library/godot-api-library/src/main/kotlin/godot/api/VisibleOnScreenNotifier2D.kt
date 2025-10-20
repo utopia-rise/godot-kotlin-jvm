@@ -65,8 +65,21 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
       setRect(value)
     }
 
+  /**
+   * If `true`, shows the rectangle area of [rect] in the editor with a translucent magenta fill.
+   * Unlike changing the visibility of the VisibleOnScreenNotifier2D, this does not affect the screen
+   * culling detection.
+   */
+  public final inline var showRect: Boolean
+    @JvmName("showRectProperty")
+    get() = isShowingRect()
+    @JvmName("showRectProperty")
+    set(`value`) {
+      setShowRect(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(723, scriptIndex)
+    createNativeObject(739, scriptIndex)
   }
 
   /**
@@ -99,6 +112,17 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
     return (TransferContext.readReturnValue(RECT2) as Rect2)
   }
 
+  public final fun setShowRect(showRect: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to showRect)
+    TransferContext.callMethod(ptr, MethodBindings.setShowRectPtr, NIL)
+  }
+
+  public final fun isShowingRect(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isShowingRectPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
   /**
    * If `true`, the bounding rectangle is on the screen.
    *
@@ -120,6 +144,12 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
 
     internal val getRectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "get_rect", 1639390495)
+
+    internal val setShowRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "set_show_rect", 2586408642)
+
+    internal val isShowingRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_showing_rect", 36873697)
 
     internal val isOnScreenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("VisibleOnScreenNotifier2D", "is_on_screen", 36873697)

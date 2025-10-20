@@ -49,7 +49,7 @@ public open class GLTFBufferView : Resource() {
   /**
    * The offset, in bytes, from the start of the buffer to the start of this buffer view.
    */
-  public final inline var byteOffset: Int
+  public final inline var byteOffset: Long
     @JvmName("byteOffsetProperty")
     get() = getByteOffset()
     @JvmName("byteOffsetProperty")
@@ -60,7 +60,7 @@ public open class GLTFBufferView : Resource() {
   /**
    * The length, in bytes, of this buffer view. If `0`, this buffer view is empty.
    */
-  public final inline var byteLength: Int
+  public final inline var byteLength: Long
     @JvmName("byteLengthProperty")
     get() = getByteLength()
     @JvmName("byteLengthProperty")
@@ -71,7 +71,7 @@ public open class GLTFBufferView : Resource() {
   /**
    * The stride, in bytes, between interleaved data. If `-1`, this buffer view is not interleaved.
    */
-  public final inline var byteStride: Int
+  public final inline var byteStride: Long
     @JvmName("byteStrideProperty")
     get() = getByteStride()
     @JvmName("byteStrideProperty")
@@ -110,7 +110,7 @@ public open class GLTFBufferView : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(226, scriptIndex)
+    createNativeObject(233, scriptIndex)
   }
 
   /**
@@ -135,36 +135,36 @@ public open class GLTFBufferView : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setBufferPtr, NIL)
   }
 
-  public final fun getByteOffset(): Int {
+  public final fun getByteOffset(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteOffsetPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setByteOffset(byteOffset: Int): Unit {
-    TransferContext.writeArguments(LONG to byteOffset.toLong())
+  public final fun setByteOffset(byteOffset: Long): Unit {
+    TransferContext.writeArguments(LONG to byteOffset)
     TransferContext.callMethod(ptr, MethodBindings.setByteOffsetPtr, NIL)
   }
 
-  public final fun getByteLength(): Int {
+  public final fun getByteLength(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteLengthPtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setByteLength(byteLength: Int): Unit {
-    TransferContext.writeArguments(LONG to byteLength.toLong())
+  public final fun setByteLength(byteLength: Long): Unit {
+    TransferContext.writeArguments(LONG to byteLength)
     TransferContext.callMethod(ptr, MethodBindings.setByteLengthPtr, NIL)
   }
 
-  public final fun getByteStride(): Int {
+  public final fun getByteStride(): Long {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getByteStridePtr, LONG)
-    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+    return (TransferContext.readReturnValue(LONG) as Long)
   }
 
-  public final fun setByteStride(byteStride: Int): Unit {
-    TransferContext.writeArguments(LONG to byteStride.toLong())
+  public final fun setByteStride(byteStride: Long): Unit {
+    TransferContext.writeArguments(LONG to byteStride)
     TransferContext.callMethod(ptr, MethodBindings.setByteStridePtr, NIL)
   }
 

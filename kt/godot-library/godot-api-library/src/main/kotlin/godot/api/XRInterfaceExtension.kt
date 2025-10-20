@@ -44,7 +44,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRInterfaceExtension : XRInterface() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(869, scriptIndex)
+    createNativeObject(885, scriptIndex)
   }
 
   /**
@@ -163,6 +163,13 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
+   * Returns the format of the texture returned by [_getVrsTexture].
+   */
+  public open fun _getVrsTextureFormat(): XRInterface.VRSTextureFormat {
+    throw NotImplementedError("XRInterfaceExtension::_getVrsTextureFormat is not implemented.")
+  }
+
+  /**
    * Called if this [XRInterfaceExtension] is active before our physics and game process is called.
    * Most XR interfaces will update its [XRPositionalTracker]s at this point in time.
    */
@@ -218,7 +225,7 @@ public open class XRInterfaceExtension : XRInterface() {
   }
 
   /**
-   * Returns a [XRInterface.TrackingStatus] specifying the current status of our tracking.
+   * Returns an [XRInterface.TrackingStatus] specifying the current status of our tracking.
    */
   public open fun _getTrackingStatus(): XRInterface.TrackingStatus {
     throw NotImplementedError("XRInterfaceExtension::_getTrackingStatus is not implemented.")

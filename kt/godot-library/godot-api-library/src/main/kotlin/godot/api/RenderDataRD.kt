@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class RenderDataRD : RenderData() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(542, scriptIndex)
+    createNativeObject(557, scriptIndex)
   }
 
   public companion object

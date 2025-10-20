@@ -95,7 +95,7 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(306, scriptIndex)
+    createNativeObject(313, scriptIndex)
   }
 
   /**

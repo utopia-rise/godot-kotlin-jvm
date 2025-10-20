@@ -20,7 +20,6 @@ class EnrichedMethod(private val model: Method, override: Boolean = false) : Cal
     }
 
     override val type = GenerationType(model.returnValue?.type?.sanitizeApiType() ?: "void")
-    override val nullable = type.isObjectSubClass() || type.isVariant()
     override val genericParameters = emptyList<ClassName>()
     override val meta: String? = model.returnValue?.meta
 

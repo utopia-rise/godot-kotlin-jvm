@@ -62,7 +62,7 @@ public open class Font internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(217, scriptIndex)
+    createNativeObject(224, scriptIndex)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {
@@ -202,7 +202,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns font style flags, see [TextServer.FontStyle].
+   * Returns font style flags.
    */
   public final fun getFontStyle(): TextServer.FontStyle {
     TransferContext.writeArguments()
@@ -231,7 +231,7 @@ public open class Font internal constructor() : Resource() {
   }
 
   /**
-   * Returns the spacing for the given `type` (see [TextServer.SpacingType]).
+   * Returns the amount of spacing for the given [spacing] type.
    */
   public final fun getSpacing(spacing: TextServer.SpacingType): Int {
     TransferContext.writeArguments(LONG to spacing.value)
@@ -326,7 +326,8 @@ public open class Font internal constructor() : Resource() {
   /**
    * Draw [text] into a canvas item using the font, at a given position, with [modulate] color,
    * optionally clipping the width and aligning horizontally. [pos] specifies the baseline, not the
-   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * top. To draw from the top, *ascent* must be added to the Y axis. If [oversampling] is greater than
+   * zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
    *
    * See also [CanvasItem.drawString].
    */
@@ -342,8 +343,9 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawStringPtr, NIL)
   }
 
@@ -351,7 +353,8 @@ public open class Font internal constructor() : Resource() {
    * Breaks [text] into lines using rules specified by [brkFlags] and draws it into a canvas item
    * using the font, at a given position, with [modulate] color, optionally clipping the width and
    * aligning horizontally. [pos] specifies the baseline of the first line, not the top. To draw from
-   * the top, *ascent* must be added to the Y axis.
+   * the top, *ascent* must be added to the Y axis. If [oversampling] is greater than zero, it is used
+   * as font oversampling factor, otherwise viewport oversampling settings are used.
    *
    * See also [CanvasItem.drawMultilineString].
    */
@@ -369,8 +372,9 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringPtr, NIL)
   }
 
@@ -378,6 +382,8 @@ public open class Font internal constructor() : Resource() {
    * Draw [text] outline into a canvas item using the font, at a given position, with [modulate]
    * color and [size] outline size, optionally clipping the width and aligning horizontally. [pos]
    * specifies the baseline, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * If [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    *
    * See also [CanvasItem.drawStringOutline].
    */
@@ -394,8 +400,9 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawStringOutlinePtr, NIL)
   }
 
@@ -403,7 +410,9 @@ public open class Font internal constructor() : Resource() {
    * Breaks [text] to the lines using rules specified by [brkFlags] and draws text outline into a
    * canvas item using the font, at a given position, with [modulate] color and [size] outline size,
    * optionally clipping the width and aligning horizontally. [pos] specifies the baseline of the first
-   * line, not the top. To draw from the top, *ascent* must be added to the Y axis.
+   * line, not the top. To draw from the top, *ascent* must be added to the Y axis. If [oversampling]
+   * is greater than zero, it is used as font oversampling factor, otherwise viewport oversampling
+   * settings are used.
    *
    * See also [CanvasItem.drawMultilineStringOutline].
    */
@@ -422,8 +431,9 @@ public open class Font internal constructor() : Resource() {
     justificationFlags: TextServer.JustificationFlag = TextServer.JustificationFlag(3),
     direction: TextServer.Direction = TextServer.Direction.AUTO,
     orientation: TextServer.Orientation = TextServer.Orientation.HORIZONTAL,
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, STRING to text, LONG to alignment.value, DOUBLE to width.toDouble(), LONG to fontSize.toLong(), LONG to maxLines.toLong(), LONG to size.toLong(), COLOR to modulate, LONG to brkFlags.flag, LONG to justificationFlags.flag, LONG to direction.value, LONG to orientation.value, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawMultilineStringOutlinePtr, NIL)
   }
 
@@ -443,7 +453,8 @@ public open class Font internal constructor() : Resource() {
   /**
    * Draw a single Unicode character [char] into a canvas item using the font, at a given position,
    * with [modulate] color. [pos] specifies the baseline, not the top. To draw from the top, *ascent*
-   * must be added to the Y axis.
+   * must be added to the Y axis. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
@@ -455,8 +466,9 @@ public open class Font internal constructor() : Resource() {
     char: Long,
     fontSize: Int,
     modulate: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Float {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize.toLong(), COLOR to modulate)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize.toLong(), COLOR to modulate, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawCharPtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -464,7 +476,8 @@ public open class Font internal constructor() : Resource() {
   /**
    * Draw a single Unicode character [char] outline into a canvas item using the font, at a given
    * position, with [modulate] color and [size] outline size. [pos] specifies the baseline, not the
-   * top. To draw from the top, *ascent* must be added to the Y axis.
+   * top. To draw from the top, *ascent* must be added to the Y axis. If [oversampling] is greater than
+   * zero, it is used as font oversampling factor, otherwise viewport oversampling settings are used.
    *
    * **Note:** Do not use this function to draw strings character by character, use [drawString] or
    * [TextLine] instead.
@@ -477,8 +490,9 @@ public open class Font internal constructor() : Resource() {
     fontSize: Int,
     size: Int = -1,
     modulate: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Float {
-    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate)
+    TransferContext.writeArguments(_RID to canvasItem, VECTOR2 to pos, LONG to char, LONG to fontSize.toLong(), LONG to size.toLong(), COLOR to modulate, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.drawCharOutlinePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
@@ -549,9 +563,9 @@ public open class Font internal constructor() : Resource() {
    * fv.base_font = load("res://RobotoFlex.ttf")
    * var variation_list = fv.get_supported_variation_list()
    * for tag in variation_list:
-   *     var name = TextServerManager.get_primary_interface().tag_to_name(tag)
-   *     var values = variation_list[tag]
-   *     print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
+   * 	var name = TextServerManager.get_primary_interface().tag_to_name(tag)
+   * 	var values = variation_list[tag]
+   * 	print("variation axis: &#37;s (&#37;d)\n\tmin, max, default: &#37;s" &#37; [name, tag,
    * values])
    * ```
    *
@@ -636,25 +650,25 @@ public open class Font internal constructor() : Resource() {
         TypeManager.getMethodBindPtr("Font", "get_multiline_string_size", 519636710)
 
     internal val drawStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_string", 1983721962)
+        TypeManager.getMethodBindPtr("Font", "draw_string", 1976686372)
 
     internal val drawMultilineStringPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string", 1171506176)
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string", 2686601589)
 
     internal val drawStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_string_outline", 623754045)
+        TypeManager.getMethodBindPtr("Font", "draw_string_outline", 701417663)
 
     internal val drawMultilineStringOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline", 3206388178)
+        TypeManager.getMethodBindPtr("Font", "draw_multiline_string_outline", 4147839237)
 
     internal val getCharSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("Font", "get_char_size", 3016396712)
 
     internal val drawCharPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_char", 3815617597)
+        TypeManager.getMethodBindPtr("Font", "draw_char", 3500170256)
 
     internal val drawCharOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("Font", "draw_char_outline", 209525354)
+        TypeManager.getMethodBindPtr("Font", "draw_char_outline", 1684114874)
 
     internal val hasCharPtr: VoidPtr = TypeManager.getMethodBindPtr("Font", "has_char", 1116898809)
 

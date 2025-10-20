@@ -114,8 +114,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * Partitioning algorithm for creating the navigation mesh polys. See [SamplePartitionType] for
-   * possible values.
+   * Partitioning algorithm for creating the navigation mesh polys.
    */
   public final inline var samplePartitionType: SamplePartitionType
     @JvmName("samplePartitionTypeProperty")
@@ -126,8 +125,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * Determines which type of nodes will be parsed as geometry. See [ParsedGeometryType] for
-   * possible values.
+   * Determines which type of nodes will be parsed as geometry.
    */
   public final inline var parsedGeometryType: ParsedGeometryType
     @JvmName("parsedGeometryTypeProperty")
@@ -152,7 +150,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   /**
-   * The source of the geometry used when baking. See [SourceGeometryMode] for possible values.
+   * The source of the geometry used when baking.
    */
   public final inline var sourceGeometryMode: SourceGeometryMode
     @JvmName("sourceGeometryModeProperty")
@@ -205,6 +203,11 @@ public open class NavigationPolygon : Resource() {
 
   /**
    * The distance to erode/shrink the walkable surface when baking the navigation mesh.
+   *
+   * **Note:** The radius must be equal or higher than `0.0`. If the radius is `0.0`, it won't be
+   * possible to fix invalid outline overlaps and other precision errors during the baking process. As
+   * a result, some obstacles may be excluded incorrectly from the final navigation mesh, or may delete
+   * the navigation mesh's polygons.
    */
   public final inline var agentRadius: Float
     @JvmName("agentRadiusProperty")
@@ -254,7 +257,7 @@ public open class NavigationPolygon : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(388, scriptIndex)
+    createNativeObject(397, scriptIndex)
   }
 
   /**
@@ -384,8 +387,7 @@ public open class NavigationPolygon : Resource() {
   /**
    * Returns the [NavigationMesh] resulting from this navigation polygon. This navigation mesh can
    * be used to update the navigation mesh of a region with the
-   * [NavigationServer3D.regionSetNavigationMesh] API directly (as 2D uses the 3D server behind the
-   * scene).
+   * [NavigationServer3D.regionSetNavigationMesh] API directly.
    */
   public final fun getNavigationMesh(): NavigationMesh? {
     TransferContext.writeArguments()

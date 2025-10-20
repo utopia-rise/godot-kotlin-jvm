@@ -173,6 +173,16 @@ public object RenderingServer : Object() {
   public final const val CANVAS_ITEM_Z_MAX: Long = 4096
 
   /**
+   * The minimum canvas layer.
+   */
+  public final const val CANVAS_LAYER_MIN: Long = -2147483648
+
+  /**
+   * The maximum canvas layer.
+   */
+  public final const val CANVAS_LAYER_MAX: Long = 2147483647
+
+  /**
    * The maximum number of glow levels that can be used with the glow post-processing effect.
    */
   public final const val MAX_GLOW_LEVELS: Long = 7
@@ -778,6 +788,16 @@ public object RenderingServer : Object() {
     return (TransferContext.readReturnValue(LONG) as Long)
   }
 
+  /**
+   * Returns the stride of the index buffer for a mesh with the given [format].
+   */
+  @JvmStatic
+  public final fun meshSurfaceGetFormatIndexStride(format: ArrayFormat, vertexCount: Int): Long {
+    TransferContext.writeArguments(LONG to format.flag, LONG to vertexCount.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceGetFormatIndexStridePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   @JvmStatic
   public final fun meshAddSurface(mesh: RID, surface: Dictionary<Any?, Any?>): Unit {
     TransferContext.writeArguments(_RID to mesh, DICTIONARY to surface)
@@ -958,6 +978,21 @@ public object RenderingServer : Object() {
   ): Unit {
     TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
     TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateSkinRegionPtr, NIL)
+  }
+
+  /**
+   * Updates the index buffer of the mesh surface with the given [data]. The expected data are 16 or
+   * 32-bit unsigned integers, which can be determined with [meshSurfaceGetFormatIndexStride].
+   */
+  @JvmStatic
+  public final fun meshSurfaceUpdateIndexRegion(
+    mesh: RID,
+    surface: Int,
+    offset: Int,
+    `data`: PackedByteArray,
+  ): Unit {
+    TransferContext.writeArguments(_RID to mesh, LONG to surface.toLong(), LONG to offset.toLong(), PACKED_BYTE_ARRAY to data)
+    TransferContext.callMethod(ptr, MethodBindings.meshSurfaceUpdateIndexRegionPtr, NIL)
   }
 
   @JvmStatic
@@ -1497,8 +1532,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the specified 3D light parameter. See [LightParam] for options. Equivalent to
-   * [Light3D.setParam].
+   * Sets the specified 3D light parameter. Equivalent to [Light3D.setParam].
    */
   @JvmStatic
   public final fun lightSetParam(
@@ -1619,7 +1653,7 @@ public object RenderingServer : Object() {
 
   /**
    * Sets the shadow mode for this directional light. Equivalent to
-   * [DirectionalLight3D.directionalShadowMode]. See [LightDirectionalShadowMode] for options.
+   * [DirectionalLight3D.directionalShadowMode].
    */
   @JvmStatic
   public final fun lightDirectionalSetShadowMode(light: RID, mode: LightDirectionalShadowMode):
@@ -1722,8 +1756,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets how often the reflection probe updates. Can either be once or every frame. See
-   * [ReflectionProbeUpdateMode] for options.
+   * Sets how often the reflection probe updates. Can either be once or every frame.
    */
   @JvmStatic
   public final fun reflectionProbeSetUpdateMode(probe: RID, mode: ReflectionProbeUpdateMode): Unit {
@@ -2594,8 +2627,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the draw order of the particles to one of the named enums from [ParticlesDrawOrder]. See
-   * [ParticlesDrawOrder] for options. Equivalent to [GPUParticles3D.drawOrder].
+   * Sets the draw order of the particles. Equivalent to [GPUParticles3D.drawOrder].
    */
   @JvmStatic
   public final fun particlesSetDrawOrder(particles: RID, order: ParticlesDrawOrder): Unit {
@@ -3089,9 +3121,8 @@ public object RenderingServer : Object() {
    * ```gdscript
    * //gdscript
    * func _ready():
-   *     RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
-   *     RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600,
-   * 600))
+   * 	RenderingServer.viewport_attach_to_screen(get_viewport().get_viewport_rid(), Rect2())
+   * 	RenderingServer.viewport_attach_to_screen($Viewport.get_viewport_rid(), Rect2(0, 0, 600, 600))
    * ```
    *
    * Using this can result in significant optimization, especially on lower-end devices. However, it
@@ -3226,7 +3257,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets when the viewport should be updated. See [ViewportUpdateMode] constants for options.
+   * Sets when the viewport should be updated.
    */
   @JvmStatic
   public final fun viewportSetUpdateMode(viewport: RID, updateMode: ViewportUpdateMode): Unit {
@@ -3235,7 +3266,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Returns the viewport's update mode. See [ViewportUpdateMode] constants for options.
+   * Returns the viewport's update mode.
    *
    * **Warning:** Calling this from any thread other than the rendering thread will be detrimental
    * to performance.
@@ -3248,7 +3279,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the clear mode of a viewport. See [ViewportClearMode] for options.
+   * Sets the clear mode of a viewport.
    */
   @JvmStatic
   public final fun viewportSetClearMode(viewport: RID, clearMode: ViewportClearMode): Unit {
@@ -3370,8 +3401,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture filtering mode for the specified [viewport] RID. See
-   * [CanvasItemTextureFilter] for options.
+   * Sets the default texture filtering mode for the specified [viewport] RID.
    */
   @JvmStatic
   public final fun viewportSetDefaultCanvasItemTextureFilter(viewport: RID,
@@ -3382,8 +3412,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the default texture repeat mode for the specified [viewport] RID. See
-   * [CanvasItemTextureRepeat] for options.
+   * Sets the default texture repeat mode for the specified [viewport] RID.
    */
   @JvmStatic
   public final fun viewportSetDefaultCanvasItemTextureRepeat(viewport: RID,
@@ -3411,6 +3440,9 @@ public object RenderingServer : Object() {
    *
    * [layer] is the actual canvas layer, while [sublayer] specifies the stacking order of the canvas
    * among those in the same layer.
+   *
+   * **Note:** [layer] should be between [CANVAS_LAYER_MIN] and [CANVAS_LAYER_MAX] (inclusive). Any
+   * other value will wrap around.
    */
   @JvmStatic
   public final fun viewportSetCanvasStacking(
@@ -3495,9 +3527,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample antialiasing mode for 3D on the specified [viewport] RID. See
-   * [ViewportMSAA] for options. Equivalent to [ProjectSettings.rendering/antiAliasing/quality/msaa3d]
-   * or [Viewport.msaa3d].
+   * Sets the multisample antialiasing mode for 3D on the specified [viewport] RID. Equivalent to
+   * [ProjectSettings.rendering/antiAliasing/quality/msaa3d] or [Viewport.msaa3d].
    */
   @JvmStatic
   public final fun viewportSetMsaa3d(viewport: RID, msaa: ViewportMSAA): Unit {
@@ -3506,9 +3537,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the multisample antialiasing mode for 2D/Canvas on the specified [viewport] RID. See
-   * [ViewportMSAA] for options. Equivalent to [ProjectSettings.rendering/antiAliasing/quality/msaa2d]
-   * or [Viewport.msaa2d].
+   * Sets the multisample antialiasing mode for 2D/Canvas on the specified [viewport] RID.
+   * Equivalent to [ProjectSettings.rendering/antiAliasing/quality/msaa2d] or [Viewport.msaa2d].
    */
   @JvmStatic
   public final fun viewportSetMsaa2d(viewport: RID, msaa: ViewportMSAA): Unit {
@@ -3518,18 +3548,17 @@ public object RenderingServer : Object() {
 
   /**
    * If `true`, 2D rendering will use a high dynamic range (HDR) format framebuffer matching the bit
-   * depth of the 3D framebuffer. When using the Forward+ renderer this will be an `RGBA16`
-   * framebuffer, while when using the Mobile renderer it will be an `RGB10_A2` framebuffer.
+   * depth of the 3D framebuffer. When using the Forward+ or Compatibility renderer, this will be an
+   * `RGBA16` framebuffer. When using the Mobile renderer, it will be an `RGB10_A2` framebuffer.
+   *
    * Additionally, 2D rendering will take place in linear color space and will be converted to sRGB
    * space immediately before blitting to the screen (if the Viewport is attached to the screen).
-   * Practically speaking, this means that the end result of the Viewport will not be clamped into the
+   *
+   * Practically speaking, this means that the end result of the Viewport will not be clamped to the
    * `0-1` range and can be used in 3D rendering without color space adjustments. This allows 2D
    * rendering to take advantage of effects requiring high dynamic range (e.g. 2D glow) as well as
    * substantially improves the appearance of effects requiring highly detailed gradients. This setting
    * has the same effect as [Viewport.useHdr2d].
-   *
-   * **Note:** This setting will have no effect when using the Compatibility renderer, which always
-   * renders in low dynamic range for performance reasons.
    */
   @JvmStatic
   public final fun viewportSetUseHdr2d(viewport: RID, enabled: Boolean): Unit {
@@ -3558,8 +3587,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * If `true`, enables debanding on the specified viewport. Equivalent to
-   * [ProjectSettings.rendering/antiAliasing/quality/useDebanding] or [Viewport.useDebanding].
+   * Equivalent to [Viewport.useDebanding]. See also
+   * [ProjectSettings.rendering/antiAliasing/quality/useDebanding].
    */
   @JvmStatic
   public final fun viewportSetUseDebanding(viewport: RID, enable: Boolean): Unit {
@@ -3602,9 +3631,7 @@ public object RenderingServer : Object() {
   /**
    * Returns a statistic about the rendering engine which can be used for performance profiling.
    * This is separated into render pass [type]s, each of them having the same [info]s you can query
-   * (different passes will return different values). See [RenderingServer.ViewportRenderInfoType] for
-   * a list of render pass types and [RenderingServer.ViewportRenderInfo] for a list of information
-   * that can be queried.
+   * (different passes will return different values).
    *
    * See also [getRenderingInfo], which returns global information across all viewports.
    *
@@ -3614,14 +3641,14 @@ public object RenderingServer : Object() {
    *
    * ```
    * func _ready():
-   *     for _i in 2:
-   *         await get_tree().process_frame
+   * 	for _i in 2:
+   * 		await get_tree().process_frame
    *
-   *     print(
-   *             RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
-   *             RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
-   *             RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
-   *     )
+   * 	print(
+   * 			RenderingServer.viewport_get_render_info(get_viewport().get_viewport_rid(),
+   * 			RenderingServer.VIEWPORT_RENDER_INFO_TYPE_VISIBLE,
+   * 			RenderingServer.VIEWPORT_RENDER_INFO_DRAW_CALLS_IN_FRAME)
+   * 	)
    * ```
    */
   @JvmStatic
@@ -3636,7 +3663,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the debug draw mode of a viewport. See [ViewportDebugDraw] for options.
+   * Sets the debug draw mode of a viewport.
    */
   @JvmStatic
   public final fun viewportSetDebugDraw(viewport: RID, draw: ViewportDebugDraw): Unit {
@@ -4107,6 +4134,22 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Configures fog depth for the specified environment RID. Only has an effect when the fog mode of
+   * the environment is [ENV_FOG_MODE_DEPTH]. See `fog_depth_*` properties in [Environment] for more
+   * information.
+   */
+  @JvmStatic
+  public final fun environmentSetFogDepth(
+    env: RID,
+    curve: Float,
+    begin: Float,
+    end: Float,
+  ): Unit {
+    TransferContext.writeArguments(_RID to env, DOUBLE to curve.toDouble(), DOUBLE to begin.toDouble(), DOUBLE to end.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.environmentSetFogDepthPtr, NIL)
+  }
+
+  /**
    * Configures signed distance field global illumination for the specified environment RID. See
    * `sdfgi_*` properties in [Environment] for more information.
    */
@@ -4156,6 +4199,9 @@ public object RenderingServer : Object() {
   /**
    * If [enable] is `true`, enables bicubic upscaling for glow which improves quality at the cost of
    * performance. Equivalent to [ProjectSettings.rendering/environment/glow/upscaleMode].
+   *
+   * **Note:** This setting is only effective when using the Forward+ or Mobile rendering methods,
+   * as Compatibility uses a different glow implementation.
    */
   @JvmStatic
   public final fun environmentGlowSetUseBicubicUpscale(enable: Boolean): Unit {
@@ -4341,9 +4387,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the quality level of the DOF blur effect to one of the options in [DOFBlurQuality].
-   * [useJitter] can be used to jitter samples taken during the blur pass to hide artifacts at the cost
-   * of looking more fuzzy.
+   * Sets the quality level of the DOF blur effect to [quality]. [useJitter] can be used to jitter
+   * samples taken during the blur pass to hide artifacts at the cost of looking more fuzzy.
    */
   @JvmStatic
   public final fun cameraAttributesSetDofBlurQuality(quality: DOFBlurQuality, useJitter: Boolean):
@@ -4353,8 +4398,8 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shape of the DOF bokeh pattern. Different shapes may be used to achieve artistic
-   * effect, or to meet performance targets. For more detail on available options see [DOFBokehShape].
+   * Sets the shape of the DOF bokeh pattern to [shape]. Different shapes may be used to achieve
+   * artistic effect, or to meet performance targets.
    */
   @JvmStatic
   public final fun cameraAttributesSetDofBlurBokehShape(shape: DOFBokehShape): Unit {
@@ -4390,7 +4435,7 @@ public object RenderingServer : Object() {
    *
    * ```
    * func get_exposure_normalization(ev100: float):
-   *     return 1.0 / (pow(2.0, ev100) * 1.2)
+   * 	return 1.0 / (pow(2.0, ev100) * 1.2)
    * ```
    *
    * The exposure value can be calculated from aperture (in f-stops), shutter speed (in seconds),
@@ -4398,7 +4443,7 @@ public object RenderingServer : Object() {
    *
    * ```
    * func get_exposure(aperture: float, shutter_speed: float, sensitivity: float):
-   *     return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
+   * 	return log((aperture * aperture) / shutter_speed * (100.0 / sensitivity)) / log(2)
    * ```
    */
   @JvmStatic
@@ -4574,27 +4619,6 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Turns on and off physics interpolation for the instance.
-   */
-  @JvmStatic
-  public final fun instanceSetInterpolated(instance: RID, interpolated: Boolean): Unit {
-    TransferContext.writeArguments(_RID to instance, BOOL to interpolated)
-    TransferContext.callMethod(ptr, MethodBindings.instanceSetInterpolatedPtr, NIL)
-  }
-
-  /**
-   * Prevents physics interpolation for the current physics tick.
-   *
-   * This is useful when moving an instance to a new location, to give an instantaneous change
-   * rather than interpolation from the previous location.
-   */
-  @JvmStatic
-  public final fun instanceResetPhysicsInterpolation(instance: RID): Unit {
-    TransferContext.writeArguments(_RID to instance)
-    TransferContext.callMethod(ptr, MethodBindings.instanceResetPhysicsInterpolationPtr, NIL)
-  }
-
-  /**
    * Attaches a unique Object ID to instance. Object ID must be attached to instance for proper
    * culling with [instancesCullAabb], [instancesCullConvex], and [instancesCullRay].
    */
@@ -4662,6 +4686,16 @@ public object RenderingServer : Object() {
   }
 
   /**
+   * Resets motion vectors and other interpolated values. Use this *after* teleporting a mesh from
+   * one position to another to avoid ghosting artifacts.
+   */
+  @JvmStatic
+  public final fun instanceTeleport(instance: RID): Unit {
+    TransferContext.writeArguments(_RID to instance)
+    TransferContext.callMethod(ptr, MethodBindings.instanceTeleportPtr, NIL)
+  }
+
+  /**
    * Sets a custom AABB to use when culling objects from the view frustum. Equivalent to setting
    * [GeometryInstance3D.customAabb].
    */
@@ -4712,7 +4746,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the flag for a given [InstanceFlags]. See [InstanceFlags] for more details.
+   * Sets the [flag] for a given [instance] to [enabled].
    */
   @JvmStatic
   public final fun instanceGeometrySetFlag(
@@ -4725,8 +4759,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the shadow casting setting to one of [ShadowCastingSetting]. Equivalent to
-   * [GeometryInstance3D.castShadow].
+   * Sets the shadow casting setting. Equivalent to [GeometryInstance3D.castShadow].
    */
   @JvmStatic
   public final fun instanceGeometrySetCastShadowsSetting(instance: RID,
@@ -5474,7 +5507,9 @@ public object RenderingServer : Object() {
    * used by [Line2D] and [StyleBoxFlat] for rendering. [canvasItemAddTriangleArray] is highly
    * flexible, but more complex to use than [canvasItemAddPolygon].
    *
-   * **Note:** [count] is unused and can be left unspecified.
+   * **Note:** If [count] is set to a non-negative value, only the first `count * 3` indices
+   * (corresponding to [code skip-lint]count[/code] triangles) will be drawn. Otherwise, all indices
+   * are drawn.
    */
   @JvmOverloads
   @JvmStatic
@@ -5917,7 +5952,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * The mode of the light, see [CanvasLightMode] constants.
+   * Sets the mode of the canvas light.
    */
   @JvmStatic
   public final fun canvasLightSetMode(light: RID, mode: CanvasLightMode): Unit {
@@ -5935,7 +5970,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the canvas light's shadow's filter, see [CanvasLightShadowFilter] constants.
+   * Sets the canvas light's shadow's filter.
    */
   @JvmStatic
   public final fun canvasLightSetShadowFilter(light: RID, filter: CanvasLightShadowFilter): Unit {
@@ -5962,8 +5997,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets the blend mode for the given canvas light. See [CanvasLightBlendMode] for options.
-   * Equivalent to [Light2D.blendMode].
+   * Sets the blend mode for the given canvas light to [mode]. Equivalent to [Light2D.blendMode].
    */
   @JvmStatic
   public final fun canvasLightSetBlendMode(light: RID, mode: CanvasLightBlendMode): Unit {
@@ -6140,7 +6174,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * Sets an occluder polygons cull mode. See [CanvasOccluderPolygonCullMode] constants.
+   * Sets an occluder polygon's cull mode.
    */
   @JvmStatic
   public final fun canvasOccluderPolygonSetCullMode(occluderPolygon: RID,
@@ -6283,8 +6317,7 @@ public object RenderingServer : Object() {
 
   /**
    * Returns a statistic about the rendering engine which can be used for performance profiling. See
-   * [RenderingServer.RenderingInfo] for a list of values that can be queried. See also
-   * [viewportGetRenderInfo], which returns information specific to a viewport.
+   * also [viewportGetRenderInfo], which returns information specific to a viewport.
    *
    * **Note:** Only 3D rendering is currently taken into account by some of these values, such as
    * the number of draw calls.
@@ -6295,10 +6328,10 @@ public object RenderingServer : Object() {
    *
    * ```
    * func _ready():
-   *     for _i in 2:
-   *         await get_tree().process_frame
+   * 	for _i in 2:
+   * 		await get_tree().process_frame
    *
-   *     print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
+   * 	print(RenderingServer.get_rendering_info(RENDERING_INFO_TOTAL_DRAW_CALLS_IN_FRAME))
    * ```
    */
   @JvmStatic
@@ -6371,9 +6404,15 @@ public object RenderingServer : Object() {
    * Returns the name of the current rendering driver. This can be `vulkan`, `d3d12`, `metal`,
    * `opengl3`, `opengl3_es`, or `opengl3_angle`. See also [getCurrentRenderingMethod].
    *
-   * The rendering driver is determined by [ProjectSettings.rendering/renderingDevice/driver], the
-   * `--rendering-driver` command line argument that overrides this project setting, or an automatic
-   * fallback that is applied depending on the hardware.
+   * When [ProjectSettings.rendering/renderer/renderingMethod] is `forward_plus` or `mobile`, the
+   * rendering driver is determined by [ProjectSettings.rendering/renderingDevice/driver].
+   *
+   * When [ProjectSettings.rendering/renderer/renderingMethod] is `gl_compatibility`, the rendering
+   * driver is determined by [ProjectSettings.rendering/glCompatibility/driver].
+   *
+   * The rendering driver is also determined by the `--rendering-driver` command line argument that
+   * overrides this project setting, or an automatic fallback that is applied depending on the
+   * hardware.
    */
   @JvmStatic
   public final fun getCurrentRenderingDriverName(): String {
@@ -6610,7 +6649,7 @@ public object RenderingServer : Object() {
   }
 
   /**
-   * As the RenderingServer actual logic may run on an separate thread, accessing its internals from
+   * As the RenderingServer actual logic may run on a separate thread, accessing its internals from
    * the main (or any other) thread will result in errors. To make it easier to run code that can
    * safely access the rendering internals (such as [RenderingDevice] and similar RD classes), push a
    * callable via this function so it will be executed on the render thread.
@@ -7232,7 +7271,7 @@ public object RenderingServer : Object() {
       public val FLAG_USE_2D_VERTICES: ArrayFormat = ArrayFormat(33554432)
 
       /**
-       * Flag indices that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
+       * Flag used to mark that the mesh data will use `GL_DYNAMIC_DRAW` on GLES. Unused on Vulkan.
        */
       @JvmField
       public val FLAG_USE_DYNAMIC_UPDATE: ArrayFormat = ArrayFormat(67108864)
@@ -7571,7 +7610,7 @@ public object RenderingServer : Object() {
      */
     SHADOW_NORMAL_BIAS(14),
     /**
-     * Bias the shadow lookup to fix self-shadowing artifacts.
+     * Bias for the shadow lookup to fix self-shadowing artifacts.
      */
     SHADOW_BIAS(15),
     /**
@@ -8140,14 +8179,14 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_BILINEAR(0),
     /**
      * Use AMD FidelityFX Super Resolution 1.0 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will result in the
      * viewport being upscaled using FSR. Values greater than `1.0` are not supported and bilinear
      * downsampling will be used instead. A value of `1.0` disables scaling.
      */
     VIEWPORT_SCALING_3D_MODE_FSR(1),
     /**
      * Use AMD FidelityFX Super Resolution 2.2 upscaling for the viewport's 3D buffer. The amount of
-     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the
+     * scaling can be set using [Viewport.scaling3dScale]. Values less than `1.0` will result in the
      * viewport being upscaled using FSR2. Values greater than `1.0` are not supported and bilinear
      * downsampling will be used instead. A value of `1.0` will use FSR2 at native resolution as a TAA
      * solution.
@@ -8155,7 +8194,7 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_FSR2(2),
     /**
      * Use MetalFX spatial upscaling for the viewport's 3D buffer. The amount of scaling can be set
-     * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
+     * using [Viewport.scaling3dScale]. Values less than `1.0` will result in the viewport being
      * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
      * will be used instead. A value of `1.0` disables scaling.
      *
@@ -8165,7 +8204,7 @@ public object RenderingServer : Object() {
     VIEWPORT_SCALING_3D_MODE_METALFX_SPATIAL(3),
     /**
      * Use MetalFX temporal upscaling for the viewport's 3D buffer. The amount of scaling can be set
-     * using [Viewport.scaling3dScale]. Values less than `1.0` will be result in the viewport being
+     * using [Viewport.scaling3dScale]. Values less than `1.0` will result in the viewport being
      * upscaled using MetalFX. Values greater than `1.0` are not supported and bilinear downsampling
      * will be used instead. A value of `1.0` will use MetalFX at native resolution as a TAA solution.
      *
@@ -8452,9 +8491,14 @@ public object RenderingServer : Object() {
      */
     FXAA(1),
     /**
+     * Use subpixel morphological antialiasing. SMAA may produce clearer results than FXAA, but at a
+     * slightly higher performance cost.
+     */
+    SMAA(2),
+    /**
      * Represents the size of the [ViewportScreenSpaceAA] enum.
      */
-    MAX(2),
+    MAX(3),
     ;
 
     public override val `value`: Long
@@ -8575,6 +8619,10 @@ public object RenderingServer : Object() {
     UNSHADED(1),
     /**
      * Objects are displayed with only light information.
+     *
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
      */
     LIGHTING(2),
     /**
@@ -8582,8 +8630,9 @@ public object RenderingServer : Object() {
      * drawing over top of one another. A higher overdraw (represented by brighter colors) means you
      * are wasting performance on drawing pixels that are being hidden behind others.
      *
-     * **Note:** When using this debug draw mode, custom shaders will be ignored. This means vertex
-     * displacement won't be visible anymore.
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
      */
     OVERDRAW(3),
     /**
@@ -8599,15 +8648,24 @@ public object RenderingServer : Object() {
      */
     NORMAL_BUFFER(5),
     /**
-     * Objects are displayed with only the albedo value from [VoxelGI]s.
+     * Objects are displayed with only the albedo value from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_ALBEDO(6),
     /**
-     * Objects are displayed with only the lighting value from [VoxelGI]s.
+     * Objects are displayed with only the lighting value from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_LIGHTING(7),
     /**
-     * Objects are displayed with only the emission color from [VoxelGI]s.
+     * Objects are displayed with only the emission color from [VoxelGI]s. Requires at least one
+     * visible [VoxelGI] node that has been baked to have a visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     VOXEL_GI_EMISSION(8),
     /**
@@ -8630,41 +8688,64 @@ public object RenderingServer : Object() {
     /**
      * Draws the estimated scene luminance. This is a 1×1 texture that is generated when
      * autoexposure is enabled to control the scene's exposure.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     SCENE_LUMINANCE(11),
     /**
      * Draws the screen space ambient occlusion texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssaoEnabled] set in your [WorldEnvironment].
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SSAO(12),
     /**
      * Draws the screen space indirect lighting texture instead of the scene so that you can clearly
      * see how it is affecting objects. In order for this display mode to work, you must have
      * [Environment.ssilEnabled] set in your [WorldEnvironment].
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SSIL(13),
     /**
      * Colors each PSSM split for the [DirectionalLight3D]s in the scene a different color so you
-     * can see where the splits are. In order they will be colored red, green, blue, yellow.
+     * can see where the splits are. In order (from closest to furthest from the camera), they are
+     * colored red, green, blue, and yellow.
+     *
+     * **Note:** When using this debug draw mode, custom shaders are ignored since all materials in
+     * the scene temporarily use a debug material. This means the result from custom shader functions
+     * (such as vertex displacement) won't be visible anymore when using this debug draw mode.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     PSSM_SPLITS(14),
     /**
      * Draws the decal atlas that stores decal textures from [Decal]s.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     DECAL_ATLAS(15),
     /**
      * Draws SDFGI cascade data. This is the data structure that is used to bounce lighting against
      * and create reflections.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SDFGI(16),
     /**
      * Draws SDFGI probe data. This is the data structure that is used to give indirect lighting
      * dynamic objects moving within the scene.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     SDFGI_PROBES(17),
     /**
-     * Draws the global illumination buffer ([VoxelGI] or SDFGI).
+     * Draws the global illumination buffer from [VoxelGI] or SDFGI. Requires [VoxelGI] (at least
+     * one visible baked VoxelGI node) or SDFGI ([Environment.sdfgiEnabled]) to be enabled to have a
+     * visible effect.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     GI_BUFFER(18),
     /**
@@ -8675,37 +8756,51 @@ public object RenderingServer : Object() {
     /**
      * Draws the [OmniLight3D] cluster. Clustering determines where lights are positioned in
      * screen-space, which allows the engine to only process these portions of the screen for lighting.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_OMNI_LIGHTS(20),
     /**
      * Draws the [SpotLight3D] cluster. Clustering determines where lights are positioned in
      * screen-space, which allows the engine to only process these portions of the screen for lighting.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_SPOT_LIGHTS(21),
     /**
      * Draws the [Decal] cluster. Clustering determines where decals are positioned in screen-space,
      * which allows the engine to only process these portions of the screen for decals.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_DECALS(22),
     /**
      * Draws the [ReflectionProbe] cluster. Clustering determines where reflection probes are
      * positioned in screen-space, which allows the engine to only process these portions of the screen
      * for reflection probes.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     CLUSTER_REFLECTION_PROBES(23),
     /**
      * Draws the occlusion culling buffer. This low-resolution occlusion culling buffer is
      * rasterized on the CPU and is used to check whether instances are occluded by other objects.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     OCCLUDERS(24),
     /**
      * Draws the motion vectors buffer. This is used by temporal antialiasing to correct for motion
      * that occurs during gameplay.
+     *
+     * **Note:** Only supported when using the Forward+ rendering method.
      */
     MOTION_VECTORS(25),
     /**
      * Internal buffer is drawn instead of regular scene so you can see the per-pixel output that
      * will be used by post-processing effects.
+     *
+     * **Note:** Only supported when using the Forward+ or Mobile rendering methods.
      */
     INTERNAL_BUFFER(26),
     ;
@@ -10165,7 +10260,7 @@ public object RenderingServer : Object() {
     VAR_TYPE_SAMPLERCUBE(27),
     /**
      * External sampler global shader parameter (`global uniform samplerExternalOES ...`). Exposed
-     * as a [ExternalTexture] in the editor UI.
+     * as an [ExternalTexture] in the editor UI.
      */
     VAR_TYPE_SAMPLEREXT(28),
     /**
@@ -10232,8 +10327,8 @@ public object RenderingServer : Object() {
     PIPELINE_COMPILATIONS_MESH(7),
     /**
      * Number of pipeline compilations that were triggered by building the surface cache before
-     * rendering the scene. These compilations will show up as a stutter when loading an scene the
-     * first time a user runs the game and the pipeline is required.
+     * rendering the scene. These compilations will show up as a stutter when loading a scene the first
+     * time a user runs the game and the pipeline is required.
      */
     PIPELINE_COMPILATIONS_SURFACE(8),
     /**
@@ -10449,6 +10544,9 @@ public object RenderingServer : Object() {
     internal val meshSurfaceGetFormatSkinStridePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_skin_stride", 3188363337)
 
+    internal val meshSurfaceGetFormatIndexStridePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_get_format_index_stride", 3188363337)
+
     internal val meshAddSurfacePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_add_surface", 1217542888)
 
@@ -10502,6 +10600,9 @@ public object RenderingServer : Object() {
 
     internal val meshSurfaceUpdateSkinRegionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_skin_region", 2900195149)
+
+    internal val meshSurfaceUpdateIndexRegionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "mesh_surface_update_index_region", 2900195149)
 
     internal val meshSetShadowMeshPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "mesh_set_shadow_mesh", 395945892)
@@ -11286,6 +11387,9 @@ public object RenderingServer : Object() {
     internal val environmentSetFogPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_fog", 105051629)
 
+    internal val environmentSetFogDepthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "environment_set_fog_depth", 157498339)
+
     internal val environmentSetSdfgiPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "environment_set_sdfgi", 3519144388)
 
@@ -11385,12 +11489,6 @@ public object RenderingServer : Object() {
     internal val instanceSetTransformPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_set_transform", 3935195649)
 
-    internal val instanceSetInterpolatedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_set_interpolated", 1265174801)
-
-    internal val instanceResetPhysicsInterpolationPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingServer", "instance_reset_physics_interpolation", 2722037293)
-
     internal val instanceAttachObjectInstanceIdPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_attach_object_instance_id", 3411492887)
 
@@ -11405,6 +11503,9 @@ public object RenderingServer : Object() {
 
     internal val instanceGeometrySetTransparencyPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_geometry_set_transparency", 1794382983)
+
+    internal val instanceTeleportPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("RenderingServer", "instance_teleport", 2722037293)
 
     internal val instanceSetCustomAabbPtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingServer", "instance_set_custom_aabb", 3696536120)

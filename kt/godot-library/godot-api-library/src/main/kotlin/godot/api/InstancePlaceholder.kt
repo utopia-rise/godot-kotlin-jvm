@@ -30,15 +30,15 @@ import kotlin.jvm.JvmOverloads
  * [createInstance]. This is useful to avoid loading large scenes all at once by loading parts of it
  * selectively.
  *
- * The [InstancePlaceholder] does not have a transform. This causes any child nodes to be positioned
- * relatively to the [Viewport] from point (0,0), rather than their parent as displayed in the editor.
- * Replacing the placeholder with a scene with a transform will transform children relatively to their
- * parent again.
+ * **Note:** Like [Node], [InstancePlaceholder] does not have a transform. This causes any child
+ * nodes to be positioned relatively to the [Viewport] origin, rather than their parent as displayed in
+ * the editor. Replacing the placeholder with a scene with a transform will transform children
+ * relatively to their parent again.
  */
 @GodotBaseType
 public open class InstancePlaceholder internal constructor() : Node() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(310, scriptIndex)
+    createNativeObject(317, scriptIndex)
   }
 
   /**

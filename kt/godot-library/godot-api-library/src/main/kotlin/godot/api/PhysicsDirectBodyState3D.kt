@@ -160,6 +160,28 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   /**
+   * The body's collision layer.
+   */
+  public final inline var collisionLayer: Long
+    @JvmName("collisionLayerProperty")
+    get() = getCollisionLayer()
+    @JvmName("collisionLayerProperty")
+    set(`value`) {
+      setCollisionLayer(value)
+    }
+
+  /**
+   * The body's collision mask.
+   */
+  public final inline var collisionMask: Long
+    @JvmName("collisionMaskProperty")
+    get() = getCollisionMask()
+    @JvmName("collisionMaskProperty")
+    set(`value`) {
+      setCollisionMask(value)
+    }
+
+  /**
    * The body's transformation matrix.
    *
    * **Warning:**
@@ -179,7 +201,7 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(463, scriptIndex)
+    createNativeObject(478, scriptIndex)
   }
 
   /**
@@ -504,6 +526,28 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setCollisionLayer(layer: Long): Unit {
+    TransferContext.writeArguments(LONG to layer)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionLayerPtr, NIL)
+  }
+
+  public final fun getCollisionLayer(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionLayerPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  public final fun setCollisionMask(mask: Long): Unit {
+    TransferContext.writeArguments(LONG to mask)
+    TransferContext.callMethod(ptr, MethodBindings.setCollisionMaskPtr, NIL)
+  }
+
+  public final fun getCollisionMask(): Long {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getCollisionMaskPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the number of contacts this body has with other bodies.
    *
@@ -734,6 +778,18 @@ public open class PhysicsDirectBodyState3D internal constructor() : Object() {
 
     internal val isSleepingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "is_sleeping", 36873697)
+
+    internal val setCollisionLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "set_collision_layer", 1286410249)
+
+    internal val getCollisionLayerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "get_collision_layer", 3905245786)
+
+    internal val setCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "set_collision_mask", 1286410249)
+
+    internal val getCollisionMaskPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "get_collision_mask", 3905245786)
 
     internal val getContactCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("PhysicsDirectBodyState3D", "get_contact_count", 3905245786)

@@ -62,7 +62,7 @@ public open class AudioEffectStereoEnhance : AudioEffect() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(74, scriptIndex)
+    createNativeObject(75, scriptIndex)
   }
 
   public final fun setPanPullout(amount: Float): Unit {

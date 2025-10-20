@@ -29,7 +29,7 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class UniformSetCacheRD : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(706, scriptIndex)
+    createNativeObject(722, scriptIndex)
   }
 
   public companion object {

@@ -116,7 +116,7 @@ public infix fun Long.and(other: RenderingDevice.DrawFlags): Long = this.and(oth
 @GodotBaseType
 public open class RenderingDevice internal constructor() : Object() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(550, scriptIndex)
+    createNativeObject(565, scriptIndex)
   }
 
   /**
@@ -124,6 +124,11 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
+   *
+   * **Note:** [data] takes an [Array] of [PackedByteArray]s. For [TEXTURE_TYPE_1D],
+   * [TEXTURE_TYPE_2D], and [TEXTURE_TYPE_3D] types, this array should only have one element, a
+   * [PackedByteArray] containing all the data for the texture. For `_ARRAY` and `_CUBE` types, the
+   * length should be the same as the number of [RDTextureFormat.arrayLayers] in [format].
    *
    * **Note:** Not to be confused with [RenderingServer.texture2dCreate], which creates the
    * Godot-specific [Texture2D] resource as opposed to the graphics API's own texture type.
@@ -175,9 +180,10 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns an RID for an existing [image] (`VkImage`) with the given [type], [format], [samples],
-   * [usageFlags], [width], [height], [depth], and [layers]. This can be used to allow Godot to render
-   * onto foreign images.
+   * [usageFlags], [width], [height], [depth], [layers], and [mipmaps]. This can be used to allow Godot
+   * to render onto foreign images.
    */
+  @JvmOverloads
   public final fun textureCreateFromExtension(
     type: TextureType,
     format: DataFormat,
@@ -188,8 +194,9 @@ public open class RenderingDevice internal constructor() : Object() {
     height: Long,
     depth: Long,
     layers: Long,
+    mipmaps: Long = 1,
   ): RID {
-    TransferContext.writeArguments(LONG to type.value, LONG to format.value, LONG to samples.value, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers)
+    TransferContext.writeArguments(LONG to type.value, LONG to format.value, LONG to samples.value, LONG to usageFlags.flag, LONG to image, LONG to width, LONG to height, LONG to depth, LONG to layers, LONG to mipmaps)
     TransferContext.callMethod(ptr, MethodBindings.textureCreateFromExtensionPtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
   }
@@ -224,11 +231,11 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * **Note:** [texture] can't be retrieved while a draw list that uses it as part of a framebuffer
    * is being created. Ensure the draw list is finalized (and that the color/depth texture using it is
-   * not set to [FINAL_ACTION_CONTINUE]) to retrieve this texture. Otherwise, an error is printed and a
-   * empty [PackedByteArray] is returned.
+   * not set to [FINAL_ACTION_CONTINUE]) to retrieve this texture. Otherwise, an error is printed and
+   * an empty [PackedByteArray] is returned.
    *
    * **Note:** [texture] requires the [TEXTURE_USAGE_CAN_COPY_FROM_BIT] to be retrieved. Otherwise,
-   * an error is printed and a empty [PackedByteArray] is returned.
+   * an error is printed and an empty [PackedByteArray] is returned.
    *
    * **Note:** This method will block the GPU from working until the data is retrieved. Refer to
    * [textureGetDataAsync] for an alternative that returns the data in more performant way.
@@ -255,7 +262,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * ```
    * func _texture_get_data_callback(array):
-   *     value = array.decode_u32(0)
+   * 	value = array.decode_u32(0)
    *
    * ...
    *
@@ -591,7 +598,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * It can be accessed with the RID that is returned.
+   * Creates a new vertex buffer. It can be accessed with the RID that is returned.
    *
    * Once finished with your RID, you will want to free the RID using the RenderingDevice's
    * [freeRid] method.
@@ -669,7 +676,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Compiles a SPIR-V from the shader source code in [shaderSource] and returns the SPIR-V as a
+   * Compiles a SPIR-V from the shader source code in [shaderSource] and returns the SPIR-V as an
    * [RDShaderSPIRV]. This intermediate language shader is portable across different GPU models and
    * driver versions, but cannot be run directly by GPUs until compiled into a binary shader using
    * [shaderCompileBinaryFromSpirv].
@@ -935,7 +942,7 @@ public open class RenderingDevice internal constructor() : Object() {
    *
    * ```
    * func _buffer_get_data_callback(array):
-   *     value = array.decode_u32(0)
+   * 	value = array.decode_u32(0)
    *
    * ...
    *
@@ -1340,9 +1347,9 @@ public open class RenderingDevice internal constructor() : Object() {
    * rd.compute_list_bind_uniform_set(compute_list, dilate_uniform_set, 1)
    *
    * for i in atlas_slices:
-   *     rd.compute_list_set_push_constant(compute_list, push_constant, push_constant.size())
-   *     rd.compute_list_dispatch(compute_list, group_size.x, group_size.y, group_size.z)
-   *     # No barrier, let them run all together.
+   * 	rd.compute_list_set_push_constant(compute_list, push_constant, push_constant.size())
+   * 	rd.compute_list_dispatch(compute_list, group_size.x, group_size.y, group_size.z)
+   * 	# No barrier, let them run all together.
    *
    * rd.compute_list_end()
    * ```
@@ -1685,8 +1692,7 @@ public open class RenderingDevice internal constructor() : Object() {
 
   /**
    * Returns the unique identifier of the driver [resource] for the specified [rid]. Some driver
-   * resource types ignore the specified [rid] (see [DriverResource] descriptions). [index] is always
-   * ignored but must be specified anyway.
+   * resource types ignore the specified [rid]. [index] is always ignored but must be specified anyway.
    */
   public final fun getDriverResource(
     resource: DriverResource,
@@ -1771,7 +1777,7 @@ public open class RenderingDevice internal constructor() : Object() {
   }
 
   /**
-   * Returns how many types of trackable objects are.
+   * Returns how many types of trackable objects there are.
    *
    * This is only used by Vulkan in debug builds. Godot must also be started with the
    * `--extra-gpu-memory-tracking` [url=$DOCS_URL/tutorials/editor/command_line_tutorial.html]command
@@ -1943,33 +1949,41 @@ public open class RenderingDevice internal constructor() : Object() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Specific device object based on a physical device.
+     * Specific device object based on a physical device (`rid` parameter is ignored).
      *
-     * - Vulkan: Vulkan device driver resource (`VkDevice`). (`rid` argument doesn't apply.)
+     * - Vulkan: Vulkan device driver resource (`VkDevice`).
+     *
+     * - D3D12: D3D12 device driver resource (`ID3D12Device`).
+     *
+     * - Metal: Metal device driver resource (`MTLDevice`).
      */
     LOGICAL_DEVICE(0),
     /**
-     * Physical device the specific logical device is based on.
+     * Physical device the specific logical device is based on (`rid` parameter is ignored).
      *
-     * - Vulkan: `VkDevice`. (`rid` argument doesn't apply.)
+     * - Vulkan: `VkPhysicalDevice`.
+     *
+     * - D3D12: `IDXGIAdapter`.
      */
     PHYSICAL_DEVICE(1),
     /**
-     * Top-most graphics API entry object.
+     * Top-most graphics API entry object (`rid` parameter is ignored).
      *
-     * - Vulkan: `VkInstance`. (`rid` argument doesn't apply.)
+     * - Vulkan: `VkInstance`.
      */
     TOPMOST_OBJECT(2),
     /**
-     * The main graphics-compute command queue.
+     * The main graphics-compute command queue (`rid` parameter is ignored).
      *
-     * - Vulkan: `VkQueue`. (`rid` argument doesn't apply.)
+     * - Vulkan: `VkQueue`.
+     *
+     * - Metal: `MTLCommandQueue`.
      */
     COMMAND_QUEUE(3),
     /**
-     * The specific family the main queue belongs to.
+     * The specific family the main queue belongs to (`rid` parameter is ignored).
      *
-     * - Vulkan: the queue family index, an `uint32_t`. (`rid` argument doesn't apply.)
+     * - Vulkan: The queue family index, a `uint32_t`.
      */
     QUEUE_FAMILY(4),
     /**
@@ -1980,12 +1994,16 @@ public open class RenderingDevice internal constructor() : Object() {
      * The view of an owned or shared texture.
      *
      * - Vulkan: `VkImageView`.
+     *
+     * - D3D12: `ID3D12Resource`.
      */
     TEXTURE_VIEW(6),
     /**
      * The native id of the data format of the texture.
      *
      * - Vulkan: `VkFormat`.
+     *
+     * - D3D12: `DXGI_FORMAT`.
      */
     TEXTURE_DATA_FORMAT(7),
     /**
@@ -2000,14 +2018,20 @@ public open class RenderingDevice internal constructor() : Object() {
      * Buffer of any kind of (storage, vertex, etc.).
      *
      * - Vulkan: `VkBuffer`.
+     *
+     * - D3D12: `ID3D12Resource`.
      */
     BUFFER(10),
     /**
      * - Vulkan: `VkPipeline`.
+     *
+     * - Metal: `MTLComputePipelineState`.
      */
     COMPUTE_PIPELINE(11),
     /**
      * - Vulkan: `VkPipeline`.
+     *
+     * - Metal: `MTLRenderPipelineState`.
      */
     RENDER_PIPELINE(12),
     VULKAN_DEVICE(0),
@@ -2185,8 +2209,8 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     R8G8B8_SINT(27),
     /**
-     * 8-bit-per-channel unsigned floating-point red/green/blue/blue channel data format with
-     * normalized value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
+     * 8-bit-per-channel unsigned floating-point red/green/blue channel data format with normalized
+     * value and non-linear sRGB encoding. Values are in the `[0.0, 1.0]` range.
      */
     R8G8B8_SRGB(28),
     /**
@@ -3704,7 +3728,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     FLOAT_TRANSPARENT_BLACK(0),
     /**
-     * Return a integer transparent black color when sampling outside the `[0.0, 1.0]` range. Only
+     * Return an integer transparent black color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
     INT_TRANSPARENT_BLACK(1),
@@ -3714,7 +3738,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     FLOAT_OPAQUE_BLACK(2),
     /**
-     * Return a integer opaque black color when sampling outside the `[0.0, 1.0]` range. Only
+     * Return an integer opaque black color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
     INT_OPAQUE_BLACK(3),
@@ -3724,7 +3748,7 @@ public open class RenderingDevice internal constructor() : Object() {
      */
     FLOAT_OPAQUE_WHITE(4),
     /**
-     * Return a integer opaque white color when sampling outside the `[0.0, 1.0]` range. Only
+     * Return an integer opaque white color when sampling outside the `[0.0, 1.0]` range. Only
      * effective if the sampler repeat mode is [SAMPLER_REPEAT_MODE_CLAMP_TO_BORDER].
      */
     INT_OPAQUE_WHITE(5),
@@ -3870,9 +3894,9 @@ public open class RenderingDevice internal constructor() : Object() {
        * rd = RenderingServer.get_rendering_device()
        *
        * if rd.has_feature(RenderingDevice.SUPPORTS_BUFFER_DEVICE_ADDRESS):
-       *       storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
-       * RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS):
-       *       storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
+       * 	storage_buffer = rd.storage_buffer_create(bytes.size(), bytes,
+       * RenderingDevice.STORAGE_BUFFER_USAGE_SHADER_DEVICE_ADDRESS)
+       * 	storage_buffer_address = rd.buffer_get_device_address(storage_buffer)
        * ```
        */
       @JvmField
@@ -3985,7 +4009,7 @@ public open class RenderingDevice internal constructor() : Object() {
      * [url=https://registry.khronos.org/vulkan/specs/1.3-extensions/html/vkspec.html#drawing-triangle-lists-with-adjacency]Triangle
      * list rendering primitive with adjacency.[/url]
      *
-     *  **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
+     * **Note:** Adjacency is only useful with geometry shaders, which Godot does not expose.
      */
     TRIANGLES_WITH_ADJACENCY(6),
     /**
@@ -4674,9 +4698,21 @@ public open class RenderingDevice internal constructor() : Object() {
     `value`: Long,
   ) : GodotEnum {
     /**
+     * Support for MetalFX spatial upscaling.
+     */
+    SUPPORTS_METALFX_SPATIAL(3),
+    /**
+     * Support for MetalFX temporal upscaling.
+     */
+    SUPPORTS_METALFX_TEMPORAL(4),
+    /**
      * Features support for buffer device address extension.
      */
     SUPPORTS_BUFFER_DEVICE_ADDRESS(6),
+    /**
+     * Support for 32-bit image atomic operations.
+     */
+    SUPPORTS_IMAGE_ATOMIC_32_BIT(7),
     ;
 
     public override val `value`: Long
@@ -4903,18 +4939,69 @@ public open class RenderingDevice internal constructor() : Object() {
   public enum class BreadcrumbMarker(
     `value`: Long,
   ) : GodotEnum {
+    /**
+     * No breadcrumb marker will be added.
+     */
     NONE(0),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"REFLECTION_PROBES"` for added context as to when the crash occurred.
+     */
     REFLECTION_PROBES(65536),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"SKY_PASS"` for
+     * added context as to when the crash occurred.
+     */
     SKY_PASS(131072),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"LIGHTMAPPER_PASS"` for added context as to when the crash occurred.
+     */
     LIGHTMAPPER_PASS(196608),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"SHADOW_PASS_DIRECTIONAL"` for added context as to when the crash occurred.
+     */
     SHADOW_PASS_DIRECTIONAL(262144),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"SHADOW_PASS_CUBE"` for added context as to when the crash occurred.
+     */
     SHADOW_PASS_CUBE(327680),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"OPAQUE_PASS"`
+     * for added context as to when the crash occurred.
+     */
     OPAQUE_PASS(393216),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"ALPHA_PASS"`
+     * for added context as to when the crash occurred.
+     */
     ALPHA_PASS(458752),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"TRANSPARENT_PASS"` for added context as to when the crash occurred.
+     */
     TRANSPARENT_PASS(524288),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include
+     * `"POST_PROCESSING_PASS"` for added context as to when the crash occurred.
+     */
     POST_PROCESSING_PASS(589824),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"BLIT_PASS"` for
+     * added context as to when the crash occurred.
+     */
     BLIT_PASS(655360),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"UI_PASS"` for
+     * added context as to when the crash occurred.
+     */
     UI_PASS(720896),
+    /**
+     * During a GPU crash in dev or debug mode, Godot's error message will include `"DEBUG_PASS"`
+     * for added context as to when the crash occurred.
+     */
     DEBUG_PASS(786432),
     ;
 
@@ -5143,7 +5230,7 @@ public open class RenderingDevice internal constructor() : Object() {
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_shared_from_slice", 1808971279)
 
     internal val textureCreateFromExtensionPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_from_extension", 1397171480)
+        TypeManager.getMethodBindPtr("RenderingDevice", "texture_create_from_extension", 3732868568)
 
     internal val textureUpdatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("RenderingDevice", "texture_update", 1349464008)

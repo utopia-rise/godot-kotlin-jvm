@@ -15,6 +15,7 @@ import godot.core.Color
 import godot.core.Dictionary
 import godot.core.Error
 import godot.core.GodotEnum
+import godot.core.HorizontalAlignment
 import godot.core.Key
 import godot.core.MouseButtonMask
 import godot.core.PackedInt32Array
@@ -23,6 +24,7 @@ import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
 import godot.core.Rect2i
+import godot.core.Transform2D
 import godot.core.VariantArray
 import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.ARRAY
@@ -40,6 +42,7 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
 import godot.core.VariantParser.RECT2I
 import godot.core.VariantParser.STRING
+import godot.core.VariantParser.TRANSFORM2D
 import godot.core.VariantParser.VECTOR2
 import godot.core.VariantParser.VECTOR2I
 import godot.core.VariantParser.VECTOR3I
@@ -71,23 +74,32 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public object DisplayServer : Object() {
   /**
+   * The ID that refers to a screen that does not exist. This is returned by some [DisplayServer]
+   * methods if no screen matches the requested result.
+   */
+  public final const val INVALID_SCREEN: Long = -1
+
+  /**
    * Represents the screen containing the mouse pointer.
    *
-   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
+   * **Note:** On Android, iOS, Web, and Linux (Wayland), this constant always represents the screen
+   * at index `0`.
    */
   public final const val SCREEN_WITH_MOUSE_FOCUS: Long = -4
 
   /**
    * Represents the screen containing the window with the keyboard focus.
    *
-   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
+   * **Note:** On Android, iOS, Web, and Linux (Wayland), this constant always represents the screen
+   * at index `0`.
    */
   public final const val SCREEN_WITH_KEYBOARD_FOCUS: Long = -3
 
   /**
    * Represents the primary screen.
    *
-   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
+   * **Note:** On Android, iOS, Web, and Linux (Wayland), this constant always represents the screen
+   * at index `0`.
    */
   public final const val SCREEN_PRIMARY: Long = -2
 
@@ -95,7 +107,8 @@ public object DisplayServer : Object() {
    * Represents the screen where the main window is located. This is usually the default value in
    * functions that allow specifying one of several screens.
    *
-   * **Note:** On Linux (Wayland), this constant always represents the screen at index `0`.
+   * **Note:** On Android, iOS, Web, and Linux (Wayland), this constant always represents the screen
+   * at index `0`.
    */
   public final const val SCREEN_OF_MAIN_WINDOW: Long = -1
 
@@ -1180,8 +1193,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsIsSpeaking(): Boolean {
@@ -1195,8 +1206,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsIsPaused(): Boolean {
@@ -1225,8 +1234,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsGetVoices(): VariantArray<Dictionary<Any?, Any?>> {
@@ -1236,12 +1243,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns an [PackedStringArray] of voice identifiers for the [language].
+   * Returns a [PackedStringArray] of voice identifiers for the [language].
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsGetVoicesForLanguage(language: String): PackedStringArray {
@@ -1275,8 +1280,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmOverloads
   @JvmStatic
@@ -1298,8 +1301,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsPause(): Unit {
@@ -1312,8 +1313,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsResume(): Unit {
@@ -1324,10 +1323,8 @@ public object DisplayServer : Object() {
   /**
    * Stops synthesis in progress and removes all utterances from the queue.
    *
-   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Linux), macOS, and
+   * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsStop(): Unit {
@@ -1349,8 +1346,6 @@ public object DisplayServer : Object() {
    *
    * **Note:** This method is implemented on Android, iOS, Web, Linux (X11/Wayland), macOS, and
    * Windows.
-   *
-   * **Note:** [ProjectSettings.audio/general/textToSpeech] should be `true` to use text-to-speech.
    */
   @JvmStatic
   public final fun ttsSetUtteranceCallback(event: TTSUtteranceEvent, callable: Callable): Unit {
@@ -1385,7 +1380,7 @@ public object DisplayServer : Object() {
   /**
    * Returns OS theme accent color. Returns `Color(0, 0, 0, 0)`, if accent color is unknown.
    *
-   * **Note:** This method is implemented on macOS, Windows, and Android.
+   * **Note:** This method is implemented on macOS, Windows, Android, and Linux (X11/Wayland).
    */
   @JvmStatic
   public final fun getAccentColor(): Color {
@@ -1495,7 +1490,7 @@ public object DisplayServer : Object() {
   /**
    * Returns the user's clipboard as an image if possible.
    *
-   * **Note:** This method uses the copied pixel data, e.g. from a image editing software or a web
+   * **Note:** This method uses the copied pixel data, e.g. from an image editing software or a web
    * browser, not an image file copied from file explorer.
    */
   @JvmStatic
@@ -1590,6 +1585,9 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the number of displays available.
+   *
+   * **Note:** This method is implemented on Linux (X11 and Wayland), macOS, and Windows. On other
+   * platforms, this method always returns `1`.
    */
   @JvmStatic
   public final fun getScreenCount(): Int {
@@ -1600,6 +1598,9 @@ public object DisplayServer : Object() {
 
   /**
    * Returns index of the primary screen.
+   *
+   * **Note:** This method is implemented on Linux/X11, macOS, and Windows. On other platforms, this
+   * method always returns `0`.
    */
   @JvmStatic
   public final fun getPrimaryScreen(): Int {
@@ -1611,6 +1612,9 @@ public object DisplayServer : Object() {
   /**
    * Returns the index of the screen containing the window with the keyboard focus, or the primary
    * screen if there's no focused window.
+   *
+   * **Note:** This method is implemented on Linux/X11, macOS, and Windows. On other platforms, this
+   * method always returns the primary screen.
    */
   @JvmStatic
   public final fun getKeyboardFocusScreen(): Int {
@@ -1620,8 +1624,8 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the index of the screen that overlaps the most with the given rectangle. Returns `-1`
-   * if the rectangle doesn't overlap with any screen or has no area.
+   * Returns the index of the screen that overlaps the most with the given rectangle. Returns
+   * [INVALID_SCREEN] if the rectangle doesn't overlap with any screen or has no area.
    */
   @JvmStatic
   public final fun getScreenFromRect(rect: Rect2): Int {
@@ -1631,9 +1635,10 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the screen's top-left corner position in pixels. On multi-monitor setups, the screen
-   * position is relative to the virtual desktop area. On multi-monitor setups with different screen
-   * resolutions or orientations, the origin may be located outside any display like this:
+   * Returns the screen's top-left corner position in pixels. Returns [Vector2i.ZERO] if [screen] is
+   * invalid. On multi-monitor setups, the screen position is relative to the virtual desktop area. On
+   * multi-monitor setups with different screen resolutions or orientations, the origin might be
+   * located outside any display like this:
    *
    * [codeblock lang=text]
    *
@@ -1653,7 +1658,8 @@ public object DisplayServer : Object() {
    *
    * See also [screenGetSize].
    *
-   * **Note:** On Linux (Wayland) this method always returns `(0, 0)`.
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
    */
   @JvmOverloads
   @JvmStatic
@@ -1665,6 +1671,10 @@ public object DisplayServer : Object() {
 
   /**
    * Returns the screen's size in pixels. See also [screenGetPosition] and [screenGetUsableRect].
+   * Returns [Vector2i.ZERO] if [screen] is invalid.
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
    */
   @JvmOverloads
   @JvmStatic
@@ -1677,6 +1687,12 @@ public object DisplayServer : Object() {
   /**
    * Returns the portion of the screen that is not obstructed by a status bar in pixels. See also
    * [screenGetSize].
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
+   *
+   * **Note:** This method is implemented on Linux/X11, macOS, and Windows. On other platforms, this
+   * method always returns `Rect2i(screen_get_position(screen), screen_get_size(screen))`.
    */
   @JvmOverloads
   @JvmStatic
@@ -1687,8 +1703,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the dots per inch density of the specified screen. If [screen] is
-   * [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
+   * Returns the dots per inch density of the specified screen. Returns platform specific default
+   * value if [screen] is invalid.
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
    *
    * **Note:** On macOS, returned value is inaccurate if fractional display scaling mode is used.
    *
@@ -1711,8 +1730,8 @@ public object DisplayServer : Object() {
    *
    * ```
    *
-   * **Note:** This method is implemented on Android, Linux (X11/Wayland), macOS and Windows.
-   * Returns `72` on unsupported platforms.
+   * **Note:** This method is implemented on Android, iOS, Linux (X11/Wayland), macOS, Web, and
+   * Windows. On other platforms, this method always returns `72`.
    */
   @JvmOverloads
   @JvmStatic
@@ -1723,7 +1742,11 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the scale factor of the specified screen by index.
+   * Returns the scale factor of the specified screen by index. Returns `1.0` if [screen] is
+   * invalid.
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
    *
    * **Note:** On macOS, the returned value is `2.0` for hiDPI (Retina) screens, and `1.0` for all
    * other cases.
@@ -1732,7 +1755,8 @@ public object DisplayServer : Object() {
    * [SCREEN_OF_MAIN_WINDOW]. Due to API limitations, passing a direct index will return a rounded-up
    * integer, if the screen has a fractional scale (e.g. `1.25` would get rounded up to `2.0`).
    *
-   * **Note:** This method is implemented on Android, iOS, Web, macOS, and Linux (Wayland).
+   * **Note:** This method is implemented on Android, iOS, Web, macOS, and Linux (Wayland). On other
+   * platforms, this method always returns `1.0`.
    */
   @JvmOverloads
   @JvmStatic
@@ -1769,20 +1793,22 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the current refresh rate of the specified screen. If [screen] is
-   * [SCREEN_OF_MAIN_WINDOW] (the default value), a screen with the main window will be used.
-   *
-   * **Note:** Returns `-1.0` if the DisplayServer fails to find the refresh rate for the specified
-   * screen. On Web, [screenGetRefreshRate] will always return `-1.0` as there is no way to retrieve
-   * the refresh rate on that platform.
+   * Returns the current refresh rate of the specified screen. Returns `-1.0` if [screen] is invalid
+   * or the [DisplayServer] fails to find the refresh rate for the specified screen.
    *
    * To fallback to a default refresh rate if the method fails, try:
    *
    * ```
    * var refresh_rate = DisplayServer.screen_get_refresh_rate()
    * if refresh_rate < 0:
-   *     refresh_rate = 60.0
+   * 	refresh_rate = 60.0
    * ```
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
+   *
+   * **Note:** This method is implemented on Android, iOS, macOS, Linux (X11 and Wayland), and
+   * Windows. On other platforms, this method always returns `-1.0`.
    */
   @JvmOverloads
   @JvmStatic
@@ -1795,10 +1821,12 @@ public object DisplayServer : Object() {
   /**
    * Returns color of the display pixel at the [position].
    *
-   * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
+   * **Note:** This method is implemented on Linux (X11, excluding XWayland), macOS, and Windows. On
+   * other platforms, this method always returns [Color].
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** On macOS, this method requires the "Screen Recording" permission. If permission is
+   * not granted, this method returns a screenshot that will only contain the desktop wallpaper, the
+   * current application's window, and other related UI elements.
    */
   @JvmStatic
   public final fun screenGetPixel(position: Vector2i): Color {
@@ -1808,12 +1836,18 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns screenshot of the [screen].
+   * Returns a screenshot of the [screen]. Returns `null` if [screen] is invalid or the
+   * [DisplayServer] fails to capture screenshot.
    *
-   * **Note:** This method is implemented on Linux (X11), macOS, and Windows.
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** This method is implemented on Linux (X11, excluding XWayland), macOS, and Windows. On
+   * other platforms, this method always returns `null`.
+   *
+   * **Note:** On macOS, this method requires the "Screen Recording" permission. If permission is
+   * not granted, this method returns a screenshot that will not include other application windows or
+   * OS elements not related to the application.
    */
   @JvmOverloads
   @JvmStatic
@@ -1824,12 +1858,15 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns screenshot of the screen [rect].
+   * Returns a screenshot of the screen region defined by [rect]. Returns `null` if [rect] is
+   * outside screen bounds or the [DisplayServer] fails to capture screenshot.
    *
-   * **Note:** This method is implemented on macOS and Windows.
+   * **Note:** This method is implemented on macOS and Windows. On other platforms, this method
+   * always returns `null`.
    *
-   * **Note:** On macOS, this method requires "Screen Recording" permission, if permission is not
-   * granted it will return desktop wallpaper color.
+   * **Note:** On macOS, this method requires the "Screen Recording" permission. If permission is
+   * not granted, this method returns a screenshot that will not include other application windows or
+   * OS elements not related to the application.
    */
   @JvmStatic
   public final fun screenGetImageRect(rect: Rect2i): Image? {
@@ -1840,6 +1877,11 @@ public object DisplayServer : Object() {
 
   /**
    * Sets the [screen]'s [orientation]. See also [screenGetOrientation].
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
+   *
+   * **Note:** This method is implemented on Android and iOS.
    *
    * **Note:** On iOS, this method has no effect if
    * [ProjectSettings.display/window/handheld/orientation] is not set to [SCREEN_SENSOR].
@@ -1852,9 +1894,14 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns the [screen]'s current orientation. See also [screenSetOrientation].
+   * Returns the [screen]'s current orientation. See also [screenSetOrientation]. Returns
+   * [SCREEN_LANDSCAPE] if [screen] is invalid.
    *
-   * **Note:** This method is implemented on Android and iOS.
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
+   *
+   * **Note:** This method is implemented on Android and iOS. On other platforms, this method always
+   * returns [SCREEN_LANDSCAPE].
    */
   @JvmOverloads
   @JvmStatic
@@ -2045,7 +2092,10 @@ public object DisplayServer : Object() {
   /**
    * Returns the screen the window specified by [windowId] is currently positioned on. If the screen
    * overlaps multiple displays, the screen where the window's center is located is returned. See also
-   * [windowSetCurrentScreen].
+   * [windowSetCurrentScreen]. Returns [INVALID_SCREEN] if [windowId] is invalid.
+   *
+   * **Note:** This method is implemented on Linux/X11, macOS, and Windows. On other platforms, this
+   * method always returns `0`.
    */
   @JvmOverloads
   @JvmStatic
@@ -2058,6 +2108,11 @@ public object DisplayServer : Object() {
   /**
    * Moves the window specified by [windowId] to the specified [screen]. See also
    * [windowGetCurrentScreen].
+   *
+   * **Note:** One of the following constants can be used as [screen]: [SCREEN_OF_MAIN_WINDOW],
+   * [SCREEN_PRIMARY], [SCREEN_WITH_MOUSE_FOCUS], or [SCREEN_WITH_KEYBOARD_FOCUS].
+   *
+   * **Note:** This method is implemented on Linux/X11, macOS, and Windows.
    */
   @JvmOverloads
   @JvmStatic
@@ -2316,8 +2371,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Sets window mode for the given window to [mode]. See [WindowMode] for possible values and how
-   * each mode behaves.
+   * Sets window mode for the given window to [mode].
    *
    * **Note:** On Android, setting it to [WINDOW_MODE_FULLSCREEN] or
    * [WINDOW_MODE_EXCLUSIVE_FULLSCREEN] will enable immersive mode.
@@ -2333,8 +2387,7 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Enables or disables the given window's given [flag]. See [WindowFlags] for possible values and
-   * their behavior.
+   * Enables or disables the given window's given [flag].
    */
   @JvmOverloads
   @JvmStatic
@@ -2487,9 +2540,6 @@ public object DisplayServer : Object() {
    * Sets the V-Sync mode of the given window. See also
    * [ProjectSettings.display/window/vsync/vsyncMode].
    *
-   * See [DisplayServer.VSyncMode] for possible values and how they affect the behavior of your
-   * application.
-   *
    * Depending on the platform and used renderer, the engine will fall back to [VSYNC_ENABLED] if
    * the desired mode is not supported.
    *
@@ -2579,6 +2629,803 @@ public object DisplayServer : Object() {
   }
 
   /**
+   * Returns `1` if a high-contrast user interface theme should be used, `0` otherwise. Returns `-1`
+   * if status is unknown.
+   *
+   * **Note:** This method is implemented on Linux (X11/Wayland, GNOME), macOS, and Windows.
+   */
+  @JvmStatic
+  public final fun accessibilityShouldIncreaseContrast(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityShouldIncreaseContrastPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns `1` if flashing, blinking, and other moving content that can cause seizures in users
+   * with photosensitive epilepsy should be disabled, `0` otherwise. Returns `-1` if status is unknown.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmStatic
+  public final fun accessibilityShouldReduceAnimation(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityShouldReduceAnimationPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns `1` if background images, transparency, and other features that can reduce the contrast
+   * between the foreground and background should be disabled, `0` otherwise. Returns `-1` if status is
+   * unknown.
+   *
+   * **Note:** This method is implemented on macOS and Windows.
+   */
+  @JvmStatic
+  public final fun accessibilityShouldReduceTransparency(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityShouldReduceTransparencyPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns `1` if a screen reader, Braille display or other assistive app is active, `0`
+   * otherwise. Returns `-1` if status is unknown.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
+   *
+   * **Note:** Accessibility debugging tools, such as Accessibility Insights for Windows, macOS
+   * Accessibility Inspector, or AT-SPI Browser do not count as assistive apps and will not affect this
+   * value. To test your app with these tools, set
+   * [ProjectSettings.accessibility/general/accessibilitySupport] to `1`.
+   */
+  @JvmStatic
+  public final fun accessibilityScreenReaderActive(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityScreenReaderActivePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Creates a new, empty accessibility element resource.
+   *
+   * **Note:** An accessibility element is created and freed automatically for each [Node]. In
+   * general, this function should not be called manually.
+   */
+  @JvmStatic
+  public final fun accessibilityCreateElement(windowId: Int, role: AccessibilityRole): RID {
+    TransferContext.writeArguments(LONG to windowId.toLong(), LONG to role.value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityCreateElementPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Creates a new, empty accessibility sub-element resource. Sub-elements can be used to provide
+   * accessibility information for objects which are not [Node]s, such as list items, table cells, or
+   * menu items. Sub-elements are freed automatically when the parent element is freed, or can be freed
+   * early using the [accessibilityFreeElement] method.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun accessibilityCreateSubElement(
+    parentRid: RID,
+    role: AccessibilityRole,
+    insertPos: Int = -1,
+  ): RID {
+    TransferContext.writeArguments(_RID to parentRid, LONG to role.value, LONG to insertPos.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityCreateSubElementPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Creates a new, empty accessibility sub-element from the shaped text buffer. Sub-elements are
+   * freed automatically when the parent element is freed, or can be freed early using the
+   * [accessibilityFreeElement] method.
+   */
+  @JvmOverloads
+  @JvmStatic
+  public final fun accessibilityCreateSubTextEditElements(
+    parentRid: RID,
+    shapedText: RID,
+    minHeight: Float,
+    insertPos: Int = -1,
+  ): RID {
+    TransferContext.writeArguments(_RID to parentRid, _RID to shapedText, DOUBLE to minHeight.toDouble(), LONG to insertPos.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityCreateSubTextEditElementsPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Returns `true` if [id] is a valid accessibility element.
+   */
+  @JvmStatic
+  public final fun accessibilityHasElement(id: RID): Boolean {
+    TransferContext.writeArguments(_RID to id)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityHasElementPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Frees an object created by [accessibilityCreateElement], [accessibilityCreateSubElement], or
+   * [accessibilityCreateSubTextEditElements].
+   */
+  @JvmStatic
+  public final fun accessibilityFreeElement(id: RID): Unit {
+    TransferContext.writeArguments(_RID to id)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityFreeElementPtr, NIL)
+  }
+
+  /**
+   * Sets the metadata of the accessibility element.
+   */
+  @JvmStatic
+  public final fun accessibilityElementSetMeta(id: RID, meta: Any?): Unit {
+    TransferContext.writeArguments(_RID to id, ANY to meta)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityElementSetMetaPtr, NIL)
+  }
+
+  /**
+   * Returns the metadata of the accessibility element.
+   */
+  @JvmStatic
+  public final fun accessibilityElementGetMeta(id: RID): Any? {
+    TransferContext.writeArguments(_RID to id)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityElementGetMetaPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
+   * Sets window outer (with decorations) and inner (without decorations) bounds for assistive apps.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
+   *
+   * **Note:** Advanced users only! [Window] objects call this method automatically.
+   */
+  @JvmStatic
+  public final fun accessibilitySetWindowRect(
+    windowId: Int,
+    rectOut: Rect2,
+    rectIn: Rect2,
+  ): Unit {
+    TransferContext.writeArguments(LONG to windowId.toLong(), RECT2 to rectOut, RECT2 to rectIn)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilitySetWindowRectPtr, NIL)
+  }
+
+  /**
+   * Sets the window focused state for assistive apps.
+   *
+   * **Note:** This method is implemented on Linux, macOS, and Windows.
+   *
+   * **Note:** Advanced users only! [Window] objects call this method automatically.
+   */
+  @JvmStatic
+  public final fun accessibilitySetWindowFocused(windowId: Int, focused: Boolean): Unit {
+    TransferContext.writeArguments(LONG to windowId.toLong(), BOOL to focused)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilitySetWindowFocusedPtr, NIL)
+  }
+
+  /**
+   * Sets currently focused element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetFocus(id: RID): Unit {
+    TransferContext.writeArguments(_RID to id)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetFocusPtr, NIL)
+  }
+
+  /**
+   * Returns the main accessibility element of the OS native window.
+   */
+  @JvmStatic
+  public final fun accessibilityGetWindowRoot(windowId: Int): RID {
+    TransferContext.writeArguments(LONG to windowId.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityGetWindowRootPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Sets element accessibility role.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetRole(id: RID, role: AccessibilityRole): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to role.value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetRolePtr, NIL)
+  }
+
+  /**
+   * Sets element accessibility name.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetName(id: RID, name: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNamePtr, NIL)
+  }
+
+  /**
+   * Sets element accessibility extra information added to the element name.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetExtraInfo(id: RID, name: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to name)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetExtraInfoPtr, NIL)
+  }
+
+  /**
+   * Sets element accessibility description.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetDescription(id: RID, description: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetDescriptionPtr, NIL)
+  }
+
+  /**
+   * Sets element text value.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetValue(id: RID, `value`: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetValuePtr, NIL)
+  }
+
+  /**
+   * Sets tooltip text.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTooltip(id: RID, tooltip: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to tooltip)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTooltipPtr, NIL)
+  }
+
+  /**
+   * Sets element bounding box, relative to the node position.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetBounds(id: RID, pRect: Rect2): Unit {
+    TransferContext.writeArguments(_RID to id, RECT2 to pRect)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetBoundsPtr, NIL)
+  }
+
+  /**
+   * Sets element 2D transform.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTransform(id: RID, transform: Transform2D): Unit {
+    TransferContext.writeArguments(_RID to id, TRANSFORM2D to transform)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTransformPtr, NIL)
+  }
+
+  /**
+   * Adds a child accessibility element.
+   *
+   * **Note:** [Node] children and sub-elements are added to the child list automatically.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddChild(id: RID, childId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to childId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddChildPtr, NIL)
+  }
+
+  /**
+   * Adds an element that is controlled by this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedControls(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedControlsPtr, NIL)
+  }
+
+  /**
+   * Adds an element that details this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedDetails(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedDetailsPtr, NIL)
+  }
+
+  /**
+   * Adds an element that describes this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedDescribedBy(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedDescribedByPtr, NIL)
+  }
+
+  /**
+   * Adds an element that this element flow into.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedFlowTo(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedFlowToPtr, NIL)
+  }
+
+  /**
+   * Adds an element that labels this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedLabeledBy(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedLabeledByPtr, NIL)
+  }
+
+  /**
+   * Adds an element that is part of the same radio group.
+   *
+   * **Note:** This method should be called on each element of the group, using all other elements
+   * as [relatedId].
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddRelatedRadioGroup(id: RID, relatedId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to relatedId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddRelatedRadioGroupPtr, NIL)
+  }
+
+  /**
+   * Adds an element that is an active descendant of this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetActiveDescendant(id: RID, otherId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to otherId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetActiveDescendantPtr, NIL)
+  }
+
+  /**
+   * Sets next element on the line.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetNextOnLine(id: RID, otherId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to otherId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNextOnLinePtr, NIL)
+  }
+
+  /**
+   * Sets previous element on the line.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetPreviousOnLine(id: RID, otherId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to otherId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetPreviousOnLinePtr, NIL)
+  }
+
+  /**
+   * Sets the element to be a member of the group.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetMemberOf(id: RID, groupId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to groupId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetMemberOfPtr, NIL)
+  }
+
+  /**
+   * Sets target element for the link.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetInPageLinkTarget(id: RID, otherId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to otherId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetInPageLinkTargetPtr, NIL)
+  }
+
+  /**
+   * Sets an element which contains an error message for this element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetErrorMessage(id: RID, otherId: RID): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to otherId)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetErrorMessagePtr, NIL)
+  }
+
+  /**
+   * Sets the priority of the live region updates.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetLive(id: RID, live: AccessibilityLiveMode): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to live.value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetLivePtr, NIL)
+  }
+
+  /**
+   * Adds a callback for the accessibility action (action which can be performed by using a special
+   * screen reader command or buttons on the Braille display), and marks this action as supported. The
+   * action callback receives one [Variant] argument, which value depends on action type.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddAction(
+    id: RID,
+    action: AccessibilityAction,
+    callable: Callable,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to action.value, CALLABLE to callable)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddActionPtr, NIL)
+  }
+
+  /**
+   * Adds support for a custom accessibility action. [actionId] is passed as an argument to the
+   * callback of [ACTION_CUSTOM] action.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateAddCustomAction(
+    id: RID,
+    actionId: Int,
+    actionDescription: String,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to actionId.toLong(), STRING to actionDescription)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateAddCustomActionPtr, NIL)
+  }
+
+  /**
+   * Sets number of rows in the table.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableRowCount(id: RID, count: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableRowCountPtr, NIL)
+  }
+
+  /**
+   * Sets number of columns in the table.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableColumnCount(id: RID, count: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableColumnCountPtr, NIL)
+  }
+
+  /**
+   * Sets position of the row in the table.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableRowIndex(id: RID, index: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableRowIndexPtr, NIL)
+  }
+
+  /**
+   * Sets position of the column.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableColumnIndex(id: RID, index: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableColumnIndexPtr, NIL)
+  }
+
+  /**
+   * Sets cell position in the table.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableCellPosition(
+    id: RID,
+    rowIndex: Int,
+    columnIndex: Int,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to rowIndex.toLong(), LONG to columnIndex.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableCellPositionPtr, NIL)
+  }
+
+  /**
+   * Sets cell row/column span.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTableCellSpan(
+    id: RID,
+    rowSpan: Int,
+    columnSpan: Int,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to rowSpan.toLong(), LONG to columnSpan.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTableCellSpanPtr, NIL)
+  }
+
+  /**
+   * Sets number of items in the list.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListItemCount(id: RID, size: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to size.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListItemCountPtr, NIL)
+  }
+
+  /**
+   * Sets the position of the element in the list.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListItemIndex(id: RID, index: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListItemIndexPtr, NIL)
+  }
+
+  /**
+   * Sets the hierarchical level of the element in the list.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListItemLevel(id: RID, level: Int): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to level.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListItemLevelPtr, NIL)
+  }
+
+  /**
+   * Sets list/tree item selected status.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListItemSelected(id: RID, selected: Boolean): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to selected)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListItemSelectedPtr, NIL)
+  }
+
+  /**
+   * Sets list/tree item expanded status.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListItemExpanded(id: RID, expanded: Boolean): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to expanded)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListItemExpandedPtr, NIL)
+  }
+
+  /**
+   * Sets popup type for popup buttons.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetPopupType(id: RID, popup: AccessibilityPopupType): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to popup.value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetPopupTypePtr, NIL)
+  }
+
+  /**
+   * Sets element checked state.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetChecked(id: RID, checekd: Boolean): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to checekd)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetCheckedPtr, NIL)
+  }
+
+  /**
+   * Sets numeric value.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetNumValue(id: RID, position: Double): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to position)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNumValuePtr, NIL)
+  }
+
+  /**
+   * Sets numeric value range.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetNumRange(
+    id: RID,
+    min: Double,
+    max: Double,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to min, DOUBLE to max)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNumRangePtr, NIL)
+  }
+
+  /**
+   * Sets numeric value step.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetNumStep(id: RID, step: Double): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to step)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNumStepPtr, NIL)
+  }
+
+  /**
+   * Sets numeric value jump.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetNumJump(id: RID, jump: Double): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to jump)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetNumJumpPtr, NIL)
+  }
+
+  /**
+   * Sets scroll bar x position.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetScrollX(id: RID, position: Double): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to position)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetScrollXPtr, NIL)
+  }
+
+  /**
+   * Sets scroll bar x range.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetScrollXRange(
+    id: RID,
+    min: Double,
+    max: Double,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to min, DOUBLE to max)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetScrollXRangePtr, NIL)
+  }
+
+  /**
+   * Sets scroll bar y position.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetScrollY(id: RID, position: Double): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to position)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetScrollYPtr, NIL)
+  }
+
+  /**
+   * Sets scroll bar y range.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetScrollYRange(
+    id: RID,
+    min: Double,
+    max: Double,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, DOUBLE to min, DOUBLE to max)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetScrollYRangePtr, NIL)
+  }
+
+  /**
+   * Sets text underline/overline/strikethrough.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTextDecorations(
+    id: RID,
+    underline: Boolean,
+    strikethrough: Boolean,
+    overline: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to underline, BOOL to strikethrough, BOOL to overline)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTextDecorationsPtr, NIL)
+  }
+
+  /**
+   * Sets element text alignment.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTextAlign(id: RID, align: HorizontalAlignment): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to align.value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTextAlignPtr, NIL)
+  }
+
+  /**
+   * Sets text selection to the text field. [textStartId] and [textEndId] should be elements created
+   * by [accessibilityCreateSubTextEditElements]. Character offsets are relative to the corresponding
+   * element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTextSelection(
+    id: RID,
+    textStartId: RID,
+    startChar: Int,
+    textEndId: RID,
+    endChar: Int,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, _RID to textStartId, LONG to startChar.toLong(), _RID to textEndId, LONG to endChar.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTextSelectionPtr, NIL)
+  }
+
+  /**
+   * Sets element flag.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetFlag(
+    id: RID,
+    flag: AccessibilityFlags,
+    `value`: Boolean,
+  ): Unit {
+    TransferContext.writeArguments(_RID to id, LONG to flag.value, BOOL to value)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetFlagPtr, NIL)
+  }
+
+  /**
+   * Sets element class name.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetClassname(id: RID, classname: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to classname)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetClassnamePtr, NIL)
+  }
+
+  /**
+   * Sets placeholder text.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetPlaceholder(id: RID, placeholder: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to placeholder)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetPlaceholderPtr, NIL)
+  }
+
+  /**
+   * Sets element text language.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetLanguage(id: RID, language: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to language)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetLanguagePtr, NIL)
+  }
+
+  /**
+   * Sets text orientation.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetTextOrientation(id: RID, vertical: Boolean): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to vertical)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetTextOrientationPtr, NIL)
+  }
+
+  /**
+   * Sets the orientation of the list elements.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetListOrientation(id: RID, vertical: Boolean): Unit {
+    TransferContext.writeArguments(_RID to id, BOOL to vertical)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetListOrientationPtr, NIL)
+  }
+
+  /**
+   * Sets the list of keyboard shortcuts used by element.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetShortcut(id: RID, shortcut: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to shortcut)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetShortcutPtr, NIL)
+  }
+
+  /**
+   * Sets link URL.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetUrl(id: RID, url: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to url)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetUrlPtr, NIL)
+  }
+
+  /**
+   * Sets element accessibility role description text.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetRoleDescription(id: RID, description: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetRoleDescriptionPtr, NIL)
+  }
+
+  /**
+   * Sets human-readable description of the current checked state.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetStateDescription(id: RID, description: String): Unit {
+    TransferContext.writeArguments(_RID to id, STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetStateDescriptionPtr, NIL)
+  }
+
+  /**
+   * Sets element color value.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetColorValue(id: RID, color: Color): Unit {
+    TransferContext.writeArguments(_RID to id, COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetColorValuePtr, NIL)
+  }
+
+  /**
+   * Sets element background color.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetBackgroundColor(id: RID, color: Color): Unit {
+    TransferContext.writeArguments(_RID to id, COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetBackgroundColorPtr, NIL)
+  }
+
+  /**
+   * Sets element foreground color.
+   */
+  @JvmStatic
+  public final fun accessibilityUpdateSetForegroundColor(id: RID, color: Color): Unit {
+    TransferContext.writeArguments(_RID to id, COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.accessibilityUpdateSetForegroundColorPtr, NIL)
+  }
+
+  /**
    * Returns the text selection in the [url=https://en.wikipedia.org/wiki/Input_method]Input Method
    * Editor[/url] composition string, with the [Vector2i]'s `x` component being the caret position and
    * `y` being the length of the selection.
@@ -2650,6 +3497,9 @@ public object DisplayServer : Object() {
   /**
    * Returns the on-screen keyboard's height in pixels. Returns 0 if there is no keyboard or if it
    * is currently hidden.
+   *
+   * **Note:** On Android 7 and 8, the keyboard height may return 0 the first time the keyboard is
+   * opened in non-immersive mode. This behavior does not occur in immersive mode.
    */
   @JvmStatic
   public final fun virtualKeyboardGetHeight(): Int {
@@ -2659,9 +3509,9 @@ public object DisplayServer : Object() {
   }
 
   /**
-   * Returns `true` if hardware keyboard is connected.
+   * Returns `true` if a hardware keyboard is connected.
    *
-   * **Note:** This method is implemented on Android and iOS, on other platforms this method always
+   * **Note:** This method is implemented on Android and iOS. On other platforms, this method always
    * returns `true`.
    */
   @JvmStatic
@@ -2669,6 +3519,20 @@ public object DisplayServer : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.hasHardwareKeyboardPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Sets the [callable] that should be called when hardware keyboard is connected/disconnected.
+   * [callable] should accept a single [bool] parameter indicating whether the keyboard is connected
+   * (true) or disconnected (false).
+   *
+   * **Note:** This method is only implemented on Android.
+   */
+  @JvmStatic
+  public final fun setHardwareKeyboardConnectionChangeCallback(callable: Callable): Unit {
+    TransferContext.writeArguments(CALLABLE to callable)
+    TransferContext.callMethod(ptr, MethodBindings.setHardwareKeyboardConnectionChangeCallbackPtr,
+        NIL)
   }
 
   /**
@@ -2785,11 +3649,12 @@ public object DisplayServer : Object() {
    * [FileDialog.filters].
    *
    * Callbacks have the following arguments: `status: bool, selected_paths: PackedStringArray,
-   * selected_filter_index: int`. **On Android,** callback argument `selected_filter_index` is always
-   * zero.
+   * selected_filter_index: int`. **On Android,** the third callback argument (`selected_filter_index`)
+   * is always `0`.
    *
    * **Note:** This method is implemented if the display server has the [FEATURE_NATIVE_DIALOG_FILE]
-   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android.
+   * feature. Supported platforms include Linux (X11/Wayland), Windows, macOS, and Android (API level
+   * 29+).
    *
    * **Note:** [currentDirectory] might be ignored.
    *
@@ -2804,6 +3669,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
+  @JvmOverloads
   @JvmStatic
   public final fun fileDialogShow(
     title: String,
@@ -2813,8 +3679,9 @@ public object DisplayServer : Object() {
     mode: FileDialogMode,
     filters: PackedStringArray,
     callback: Callable,
+    parentWindowId: Int = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, CALLABLE to callback, LONG to parentWindowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.fileDialogShowPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2856,6 +3723,7 @@ public object DisplayServer : Object() {
    * opened folders across multiple sessions. Use [OS.getGrantedPermissions] to get a list of saved
    * bookmarks.
    */
+  @JvmOverloads
   @JvmStatic
   public final fun fileDialogWithOptionsShow(
     title: String,
@@ -2867,8 +3735,9 @@ public object DisplayServer : Object() {
     filters: PackedStringArray,
     options: VariantArray<Dictionary<Any?, Any?>>,
     callback: Callable,
+    parentWindowId: Int = 0,
   ): Error {
-    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback)
+    TransferContext.writeArguments(STRING to title, STRING to currentDirectory, STRING to root, STRING to filename, BOOL to showHidden, LONG to mode.value, PACKED_STRING_ARRAY to filters, ARRAY to options, CALLABLE to callback, LONG to parentWindowId.toLong())
     TransferContext.callMethod(ptr, MethodBindings.fileDialogWithOptionsShowPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -2979,6 +3848,23 @@ public object DisplayServer : Object() {
   public final fun showEmojiAndSymbolPicker(): Unit {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.showEmojiAndSymbolPickerPtr, NIL)
+  }
+
+  /**
+   * Displays OS native color picker.
+   *
+   * Callbacks have the following arguments: `status: bool, color: Color`.
+   *
+   * **Note:** This method is implemented if the display server has the
+   * [FEATURE_NATIVE_COLOR_PICKER] feature.
+   *
+   * **Note:** This method is only implemented on Linux (X11/Wayland).
+   */
+  @JvmStatic
+  public final fun colorPicker(callback: Callable): Boolean {
+    TransferContext.writeArguments(CALLABLE to callback)
+    TransferContext.callMethod(ptr, MethodBindings.colorPickerPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -3165,7 +4051,7 @@ public object DisplayServer : Object() {
    *
    * Supported drivers:
    *
-   * - `winink`: Windows Ink API, default (Windows 8.1+ required).
+   * - `winink`: Windows Ink API, default.
    *
    * - `wintab`: Wacom Wintab API (compatible device driver required).
    *
@@ -3283,14 +4169,14 @@ public object DisplayServer : Object() {
     IME(10),
     /**
      * Display server supports windows can use per-pixel transparency to make windows behind them
-     * partially or fully visible. **Windows, macOS, Linux (X11/Wayland)**
+     * partially or fully visible. **Windows, macOS, Linux (X11/Wayland), Android**
      */
     WINDOW_TRANSPARENCY(11),
     /**
-     * Display server supports querying the operating system's display scale factor. This allows for
-     * *reliable* automatic hiDPI display detection, as opposed to guessing based on the screen
-     * resolution and reported display DPI (which can be unreliable due to broken monitor EDID).
-     * **Windows, Linux (Wayland), macOS**
+     * Display server supports querying the operating system's display scale factor. This allows
+     * automatically detecting the hiDPI display *reliably*, instead of guessing based on the screen
+     * resolution and the display's reported DPI (which might be unreliable due to broken monitor
+     * EDID). **Windows, Linux (Wayland), macOS**
      */
     HIDPI(12),
     /**
@@ -3362,11 +4248,12 @@ public object DisplayServer : Object() {
      */
     WINDOW_DRAG(27),
     /**
-     * Display server supports [WINDOW_FLAG_EXCLUDE_FROM_CAPTURE] window flag.
+     * Display server supports [WINDOW_FLAG_EXCLUDE_FROM_CAPTURE] window flag. **Windows, macOS**
      */
     SCREEN_EXCLUDE_FROM_CAPTURE(28),
     /**
-     * Display server supports embedding a window from another process. **Windows, Linux (X11)**
+     * Display server supports embedding a window from another process. **Windows, Linux (X11),
+     * macOS**
      */
     WINDOW_EMBEDDING(29),
     /**
@@ -3377,6 +4264,20 @@ public object DisplayServer : Object() {
      * Display server supports system emoji and symbol picker. **Windows, macOS**
      */
     EMOJI_AND_SYMBOL_PICKER(31),
+    /**
+     * Display server supports native color picker. **Linux (X11/Wayland)**
+     */
+    NATIVE_COLOR_PICKER(32),
+    /**
+     * Display server automatically fits popups according to the screen boundaries. Window nodes
+     * should not attempt to do that themselves.
+     */
+    SELF_FITTING_WINDOWS(33),
+    /**
+     * Display server supports interaction with screen reader or Braille display. **Linux
+     * (X11/Wayland), macOS, Windows**
+     */
+    ACCESSIBILITY_SCREEN_READER(34),
     ;
 
     public override val `value`: Long
@@ -3386,6 +4287,506 @@ public object DisplayServer : Object() {
 
     public companion object {
       public fun from(`value`: Long): Feature = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityRole(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Unknown or custom role.
+     */
+    ROLE_UNKNOWN(0),
+    /**
+     * Default dialog button element.
+     */
+    ROLE_DEFAULT_BUTTON(1),
+    /**
+     * Audio player element.
+     */
+    ROLE_AUDIO(2),
+    /**
+     * Video player element.
+     */
+    ROLE_VIDEO(3),
+    /**
+     * Non-editable text label.
+     */
+    ROLE_STATIC_TEXT(4),
+    /**
+     * Container element. Elements with this role are used for internal structure and ignored by
+     * screen readers.
+     */
+    ROLE_CONTAINER(5),
+    /**
+     * Panel container element.
+     */
+    ROLE_PANEL(6),
+    /**
+     * Button element.
+     */
+    ROLE_BUTTON(7),
+    /**
+     * Link element.
+     */
+    ROLE_LINK(8),
+    /**
+     * Check box element.
+     */
+    ROLE_CHECK_BOX(9),
+    /**
+     * Radio button element.
+     */
+    ROLE_RADIO_BUTTON(10),
+    /**
+     * Check button element.
+     */
+    ROLE_CHECK_BUTTON(11),
+    /**
+     * Scroll bar element.
+     */
+    ROLE_SCROLL_BAR(12),
+    /**
+     * Scroll container element.
+     */
+    ROLE_SCROLL_VIEW(13),
+    /**
+     * Container splitter handle element.
+     */
+    ROLE_SPLITTER(14),
+    /**
+     * Slider element.
+     */
+    ROLE_SLIDER(15),
+    /**
+     * Spin box element.
+     */
+    ROLE_SPIN_BUTTON(16),
+    /**
+     * Progress indicator element.
+     */
+    ROLE_PROGRESS_INDICATOR(17),
+    /**
+     * Editable text field element.
+     */
+    ROLE_TEXT_FIELD(18),
+    /**
+     * Multiline editable text field element.
+     */
+    ROLE_MULTILINE_TEXT_FIELD(19),
+    /**
+     * Color picker element.
+     */
+    ROLE_COLOR_PICKER(20),
+    /**
+     * Table element.
+     */
+    ROLE_TABLE(21),
+    /**
+     * Table/tree cell element.
+     */
+    ROLE_CELL(22),
+    /**
+     * Table/tree row element.
+     */
+    ROLE_ROW(23),
+    /**
+     * Table/tree row group element.
+     */
+    ROLE_ROW_GROUP(24),
+    /**
+     * Table/tree row header element.
+     */
+    ROLE_ROW_HEADER(25),
+    /**
+     * Table/tree column header element.
+     */
+    ROLE_COLUMN_HEADER(26),
+    /**
+     * Tree view element.
+     */
+    ROLE_TREE(27),
+    /**
+     * Tree view item element.
+     */
+    ROLE_TREE_ITEM(28),
+    /**
+     * List element.
+     */
+    ROLE_LIST(29),
+    /**
+     * List item element.
+     */
+    ROLE_LIST_ITEM(30),
+    /**
+     * List view element.
+     */
+    ROLE_LIST_BOX(31),
+    /**
+     * List view item element.
+     */
+    ROLE_LIST_BOX_OPTION(32),
+    /**
+     * Tab bar element.
+     */
+    ROLE_TAB_BAR(33),
+    /**
+     * Tab bar item element.
+     */
+    ROLE_TAB(34),
+    /**
+     * Tab panel element.
+     */
+    ROLE_TAB_PANEL(35),
+    /**
+     * Menu bar element.
+     */
+    ROLE_MENU_BAR(36),
+    /**
+     * Popup menu element.
+     */
+    ROLE_MENU(37),
+    /**
+     * Popup menu item element.
+     */
+    ROLE_MENU_ITEM(38),
+    /**
+     * Popup menu check button item element.
+     */
+    ROLE_MENU_ITEM_CHECK_BOX(39),
+    /**
+     * Popup menu radio button item element.
+     */
+    ROLE_MENU_ITEM_RADIO(40),
+    /**
+     * Image element.
+     */
+    ROLE_IMAGE(41),
+    /**
+     * Window element.
+     */
+    ROLE_WINDOW(42),
+    /**
+     * Embedded window title bar element.
+     */
+    ROLE_TITLE_BAR(43),
+    /**
+     * Dialog window element.
+     */
+    ROLE_DIALOG(44),
+    /**
+     * Tooltip element.
+     */
+    ROLE_TOOLTIP(45),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityRole = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityPopupType(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Popup menu.
+     */
+    POPUP_MENU(0),
+    /**
+     * Popup list.
+     */
+    POPUP_LIST(1),
+    /**
+     * Popup tree view.
+     */
+    POPUP_TREE(2),
+    /**
+     * Popup dialog.
+     */
+    POPUP_DIALOG(3),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityPopupType =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityFlags(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Element is hidden for accessibility tools.
+     */
+    FLAG_HIDDEN(0),
+    /**
+     * Element is support multiple item selection.
+     */
+    FLAG_MULTISELECTABLE(1),
+    /**
+     * Element require user input.
+     */
+    FLAG_REQUIRED(2),
+    /**
+     * Element is a visited link.
+     */
+    FLAG_VISITED(3),
+    /**
+     * Element content is not ready (e.g. loading).
+     */
+    FLAG_BUSY(4),
+    /**
+     * Element is modal window.
+     */
+    FLAG_MODAL(5),
+    /**
+     * Element allows touches to be passed through when a screen reader is in touch exploration
+     * mode.
+     */
+    FLAG_TOUCH_PASSTHROUGH(6),
+    /**
+     * Element is text field with selectable but read-only text.
+     */
+    FLAG_READONLY(7),
+    /**
+     * Element is disabled.
+     */
+    FLAG_DISABLED(8),
+    /**
+     * Element clips children.
+     */
+    FLAG_CLIPS_CHILDREN(9),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityFlags = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityAction(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Single click action, callback argument is not set.
+     */
+    ACTION_CLICK(0),
+    /**
+     * Focus action, callback argument is not set.
+     */
+    ACTION_FOCUS(1),
+    /**
+     * Blur action, callback argument is not set.
+     */
+    ACTION_BLUR(2),
+    /**
+     * Collapse action, callback argument is not set.
+     */
+    ACTION_COLLAPSE(3),
+    /**
+     * Expand action, callback argument is not set.
+     */
+    ACTION_EXPAND(4),
+    /**
+     * Decrement action, callback argument is not set.
+     */
+    ACTION_DECREMENT(5),
+    /**
+     * Increment action, callback argument is not set.
+     */
+    ACTION_INCREMENT(6),
+    /**
+     * Hide tooltip action, callback argument is not set.
+     */
+    ACTION_HIDE_TOOLTIP(7),
+    /**
+     * Show tooltip action, callback argument is not set.
+     */
+    ACTION_SHOW_TOOLTIP(8),
+    /**
+     * Set text selection action, callback argument is set to [Dictionary] with the following keys:
+     *
+     * - `"start_element"` accessibility element of the selection start.
+     *
+     * - `"start_char"` character offset relative to the accessibility element of the selection
+     * start.
+     *
+     * - `"end_element"` accessibility element of the selection end.
+     *
+     * - `"end_char"` character offset relative to the accessibility element of the selection end.
+     */
+    ACTION_SET_TEXT_SELECTION(9),
+    /**
+     * Replace text action, callback argument is set to [String] with the replacement text.
+     */
+    ACTION_REPLACE_SELECTED_TEXT(10),
+    /**
+     * Scroll backward action, callback argument is not set.
+     */
+    ACTION_SCROLL_BACKWARD(11),
+    /**
+     * Scroll down action, callback argument is set to [AccessibilityScrollUnit].
+     */
+    ACTION_SCROLL_DOWN(12),
+    /**
+     * Scroll forward action, callback argument is not set.
+     */
+    ACTION_SCROLL_FORWARD(13),
+    /**
+     * Scroll left action, callback argument is set to [AccessibilityScrollUnit].
+     */
+    ACTION_SCROLL_LEFT(14),
+    /**
+     * Scroll right action, callback argument is set to [AccessibilityScrollUnit].
+     */
+    ACTION_SCROLL_RIGHT(15),
+    /**
+     * Scroll up action, callback argument is set to [AccessibilityScrollUnit].
+     */
+    ACTION_SCROLL_UP(16),
+    /**
+     * Scroll into view action, callback argument is set to [AccessibilityScrollHint].
+     */
+    ACTION_SCROLL_INTO_VIEW(17),
+    /**
+     * Scroll to point action, callback argument is set to [Vector2] with the relative point
+     * coordinates.
+     */
+    ACTION_SCROLL_TO_POINT(18),
+    /**
+     * Set scroll offset action, callback argument is set to [Vector2] with the scroll offset.
+     */
+    ACTION_SET_SCROLL_OFFSET(19),
+    /**
+     * Set value action, callback argument is set to [String] or number with the new value.
+     */
+    ACTION_SET_VALUE(20),
+    /**
+     * Show context menu action, callback argument is not set.
+     */
+    ACTION_SHOW_CONTEXT_MENU(21),
+    /**
+     * Custom action, callback argument is set to the integer action ID.
+     */
+    ACTION_CUSTOM(22),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityAction = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityLiveMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Indicates that updates to the live region should not be presented.
+     */
+    LIVE_OFF(0),
+    /**
+     * Indicates that updates to the live region should be presented at the next opportunity (for
+     * example at the end of speaking the current sentence).
+     */
+    LIVE_POLITE(1),
+    /**
+     * Indicates that updates to the live region have the highest priority and should be presented
+     * immediately.
+     */
+    LIVE_ASSERTIVE(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityLiveMode =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityScrollUnit(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The amount by which to scroll. A single item of a list, line of text.
+     */
+    SCROLL_UNIT_ITEM(0),
+    /**
+     * The amount by which to scroll. A single page.
+     */
+    SCROLL_UNIT_PAGE(1),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityScrollUnit =
+          entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class AccessibilityScrollHint(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * A preferred position for the node scrolled into view. Top-left edge of the scroll container.
+     */
+    SCROLL_HINT_TOP_LEFT(0),
+    /**
+     * A preferred position for the node scrolled into view. Bottom-right edge of the scroll
+     * container.
+     */
+    SCROLL_HINT_BOTTOM_RIGHT(1),
+    /**
+     * A preferred position for the node scrolled into view. Top edge of the scroll container.
+     */
+    SCROLL_HINT_TOP_EDGE(2),
+    /**
+     * A preferred position for the node scrolled into view. Bottom edge of the scroll container.
+     */
+    SCROLL_HINT_BOTTOM_EDGE(3),
+    /**
+     * A preferred position for the node scrolled into view. Left edge of the scroll container.
+     */
+    SCROLL_HINT_LEFT_EDGE(4),
+    /**
+     * A preferred position for the node scrolled into view. Right edge of the scroll container.
+     */
+    SCROLL_HINT_RIGHT_EDGE(5),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): AccessibilityScrollHint =
+          entries.single { it.`value` == `value` }
     }
   }
 
@@ -3698,9 +5099,6 @@ public object DisplayServer : Object() {
      *
      * **On Android:** This enables immersive mode.
      *
-     * **On Windows:** Multi-window full-screen mode has a 1px border of the
-     * [ProjectSettings.rendering/environment/defaults/defaultClearColor] color.
-     *
      * **On macOS:** A new desktop is used to display the running project.
      *
      * **Note:** Regardless of the platform, enabling full screen will change the window size to
@@ -3716,6 +5114,8 @@ public object DisplayServer : Object() {
      *
      * Full screen window covers the entire display area of a screen and has no border or
      * decorations. The display's video mode is not changed.
+     *
+     * **Note:** This mode might not work with screen recording software.
      *
      * **On Android:** This enables immersive mode.
      *
@@ -3773,6 +5173,10 @@ public object DisplayServer : Object() {
      *
      * **Note:** Transparency support is implemented on Linux (X11/Wayland), macOS, and Windows, but
      * availability might vary depending on GPU driver, display manager, and compositor capabilities.
+     *
+     * **Note:** Transparency support is implemented on Android, but can only be enabled via
+     * [ProjectSettings.display/window/perPixelTransparency/allowed]. This flag has no effect on
+     * Android.
      */
     TRANSPARENT(3),
     /**
@@ -3810,19 +5214,37 @@ public object DisplayServer : Object() {
      */
     SHARP_CORNERS(8),
     /**
-     * Windows is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and
+     * Window is excluded from screenshots taken by [screenGetImage], [screenGetImageRect], and
      * [screenGetPixel].
      *
-     * **Note:** This flag is implemented on macOS and Windows.
+     * **Note:** This flag is implemented on macOS and Windows (10, 20H1).
      *
-     * **Note:** Setting this flag will **NOT** prevent other apps from capturing an image, it
-     * should not be used as a security measure.
+     * **Note:** Setting this flag will prevent standard screenshot methods from capturing a window
+     * image, but does **NOT** guarantee that other apps won't be able to capture an image. It should
+     * not be used as a DRM or security measure.
      */
     EXCLUDE_FROM_CAPTURE(9),
     /**
+     * Signals the window manager that this window is supposed to be an implementation-defined
+     * "popup" (usually a floating, borderless, untileable and immovable child window).
+     */
+    POPUP_WM_HINT(10),
+    /**
+     * Window minimize button is disabled.
+     *
+     * **Note:** This flag is implemented on macOS and Windows.
+     */
+    MINIMIZE_DISABLED(11),
+    /**
+     * Window maximize button is disabled.
+     *
+     * **Note:** This flag is implemented on macOS and Windows.
+     */
+    MAXIMIZE_DISABLED(12),
+    /**
      * Max value of the [WindowFlags].
      */
-    MAX(10),
+    MAX(13),
     ;
 
     public override val `value`: Long
@@ -3867,7 +5289,7 @@ public object DisplayServer : Object() {
     /**
      * Sent when the window is moved to the display with different DPI, or display DPI is changed.
      *
-     * **Note:** This flag is implemented only on macOS.
+     * **Note:** This flag is implemented only on macOS and Linux (Wayland).
      */
     DPI_CHANGE(6),
     /**
@@ -3877,6 +5299,13 @@ public object DisplayServer : Object() {
      * **Note:** This flag is implemented only on macOS.
      */
     TITLEBAR_CHANGE(7),
+    /**
+     * Sent when the window has been forcibly closed by the Display Server. The window shall
+     * immediately hide and clean any internal rendering references.
+     *
+     * **Note:** This flag is implemented only on Linux (Wayland).
+     */
+    FORCE_CLOSE(8),
     ;
 
     public override val `value`: Long
@@ -4539,6 +5968,234 @@ public object DisplayServer : Object() {
     internal val windowStartResizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "window_start_resize", 4009722312)
 
+    internal val accessibilityShouldIncreaseContrastPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_should_increase_contrast", 3905245786)
+
+    internal val accessibilityShouldReduceAnimationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_should_reduce_animation", 3905245786)
+
+    internal val accessibilityShouldReduceTransparencyPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_should_reduce_transparency", 3905245786)
+
+    internal val accessibilityScreenReaderActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_screen_reader_active", 3905245786)
+
+    internal val accessibilityCreateElementPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_element", 2968347744)
+
+    internal val accessibilityCreateSubElementPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_sub_element", 1949948826)
+
+    internal val accessibilityCreateSubTextEditElementsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_create_sub_text_edit_elements", 3328635351)
+
+    internal val accessibilityHasElementPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_has_element", 4155700596)
+
+    internal val accessibilityFreeElementPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_free_element", 2722037293)
+
+    internal val accessibilityElementSetMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_element_set_meta", 3175752987)
+
+    internal val accessibilityElementGetMetaPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_element_get_meta", 4171304767)
+
+    internal val accessibilitySetWindowRectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_set_window_rect", 2386961724)
+
+    internal val accessibilitySetWindowFocusedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_set_window_focused", 300928843)
+
+    internal val accessibilityUpdateSetFocusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_focus", 2722037293)
+
+    internal val accessibilityGetWindowRootPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_get_window_root", 495598643)
+
+    internal val accessibilityUpdateSetRolePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_role", 3352768215)
+
+    internal val accessibilityUpdateSetNamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_name", 2726140452)
+
+    internal val accessibilityUpdateSetExtraInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_extra_info", 2726140452)
+
+    internal val accessibilityUpdateSetDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_description", 2726140452)
+
+    internal val accessibilityUpdateSetValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_value", 2726140452)
+
+    internal val accessibilityUpdateSetTooltipPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_tooltip", 2726140452)
+
+    internal val accessibilityUpdateSetBoundsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_bounds", 1378122625)
+
+    internal val accessibilityUpdateSetTransformPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_transform", 1246044741)
+
+    internal val accessibilityUpdateAddChildPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_child", 395945892)
+
+    internal val accessibilityUpdateAddRelatedControlsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_controls", 395945892)
+
+    internal val accessibilityUpdateAddRelatedDetailsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_details", 395945892)
+
+    internal val accessibilityUpdateAddRelatedDescribedByPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_described_by", 395945892)
+
+    internal val accessibilityUpdateAddRelatedFlowToPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_flow_to", 395945892)
+
+    internal val accessibilityUpdateAddRelatedLabeledByPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_labeled_by", 395945892)
+
+    internal val accessibilityUpdateAddRelatedRadioGroupPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_related_radio_group", 395945892)
+
+    internal val accessibilityUpdateSetActiveDescendantPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_active_descendant", 395945892)
+
+    internal val accessibilityUpdateSetNextOnLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_next_on_line", 395945892)
+
+    internal val accessibilityUpdateSetPreviousOnLinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_previous_on_line", 395945892)
+
+    internal val accessibilityUpdateSetMemberOfPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_member_of", 395945892)
+
+    internal val accessibilityUpdateSetInPageLinkTargetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_in_page_link_target", 395945892)
+
+    internal val accessibilityUpdateSetErrorMessagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_error_message", 395945892)
+
+    internal val accessibilityUpdateSetLivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_live", 2683302212)
+
+    internal val accessibilityUpdateAddActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_action", 2898696987)
+
+    internal val accessibilityUpdateAddCustomActionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_add_custom_action", 4153150897)
+
+    internal val accessibilityUpdateSetTableRowCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_row_count", 3411492887)
+
+    internal val accessibilityUpdateSetTableColumnCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_column_count", 3411492887)
+
+    internal val accessibilityUpdateSetTableRowIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_row_index", 3411492887)
+
+    internal val accessibilityUpdateSetTableColumnIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_column_index", 3411492887)
+
+    internal val accessibilityUpdateSetTableCellPositionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_cell_position", 4288446313)
+
+    internal val accessibilityUpdateSetTableCellSpanPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_table_cell_span", 4288446313)
+
+    internal val accessibilityUpdateSetListItemCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_item_count", 3411492887)
+
+    internal val accessibilityUpdateSetListItemIndexPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_item_index", 3411492887)
+
+    internal val accessibilityUpdateSetListItemLevelPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_item_level", 3411492887)
+
+    internal val accessibilityUpdateSetListItemSelectedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_item_selected", 1265174801)
+
+    internal val accessibilityUpdateSetListItemExpandedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_item_expanded", 1265174801)
+
+    internal val accessibilityUpdateSetPopupTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_popup_type", 2040885448)
+
+    internal val accessibilityUpdateSetCheckedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_checked", 1265174801)
+
+    internal val accessibilityUpdateSetNumValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_num_value", 1794382983)
+
+    internal val accessibilityUpdateSetNumRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_num_range", 2513314492)
+
+    internal val accessibilityUpdateSetNumStepPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_num_step", 1794382983)
+
+    internal val accessibilityUpdateSetNumJumpPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_num_jump", 1794382983)
+
+    internal val accessibilityUpdateSetScrollXPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_scroll_x", 1794382983)
+
+    internal val accessibilityUpdateSetScrollXRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_scroll_x_range", 2513314492)
+
+    internal val accessibilityUpdateSetScrollYPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_scroll_y", 1794382983)
+
+    internal val accessibilityUpdateSetScrollYRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_scroll_y_range", 2513314492)
+
+    internal val accessibilityUpdateSetTextDecorationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_text_decorations", 1672422386)
+
+    internal val accessibilityUpdateSetTextAlignPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_text_align", 3725995085)
+
+    internal val accessibilityUpdateSetTextSelectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_text_selection", 3119144029)
+
+    internal val accessibilityUpdateSetFlagPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_flag", 3758675396)
+
+    internal val accessibilityUpdateSetClassnamePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_classname", 2726140452)
+
+    internal val accessibilityUpdateSetPlaceholderPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_placeholder", 2726140452)
+
+    internal val accessibilityUpdateSetLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_language", 2726140452)
+
+    internal val accessibilityUpdateSetTextOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_text_orientation", 1265174801)
+
+    internal val accessibilityUpdateSetListOrientationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_list_orientation", 1265174801)
+
+    internal val accessibilityUpdateSetShortcutPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_shortcut", 2726140452)
+
+    internal val accessibilityUpdateSetUrlPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_url", 2726140452)
+
+    internal val accessibilityUpdateSetRoleDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_role_description", 2726140452)
+
+    internal val accessibilityUpdateSetStateDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_state_description", 2726140452)
+
+    internal val accessibilityUpdateSetColorValuePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_color_value", 2948539648)
+
+    internal val accessibilityUpdateSetBackgroundColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_background_color", 2948539648)
+
+    internal val accessibilityUpdateSetForegroundColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "accessibility_update_set_foreground_color", 2948539648)
+
     internal val imeGetSelectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "ime_get_selection", 3690982128)
 
@@ -4556,6 +6213,9 @@ public object DisplayServer : Object() {
 
     internal val hasHardwareKeyboardPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "has_hardware_keyboard", 36873697)
+
+    internal val setHardwareKeyboardConnectionChangeCallbackPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "set_hardware_keyboard_connection_change_callback", 1611583062)
 
     internal val cursorSetShapePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "cursor_set_shape", 2026291549)
@@ -4579,10 +6239,10 @@ public object DisplayServer : Object() {
         TypeManager.getMethodBindPtr("DisplayServer", "dialog_input_text", 3088703427)
 
     internal val fileDialogShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1531299078)
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_show", 1386825884)
 
     internal val fileDialogWithOptionsShowPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1305318754)
+        TypeManager.getMethodBindPtr("DisplayServer", "file_dialog_with_options_show", 1448789813)
 
     internal val beepPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "beep", 4051624405)
@@ -4610,6 +6270,9 @@ public object DisplayServer : Object() {
 
     internal val showEmojiAndSymbolPickerPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "show_emoji_and_symbol_picker", 4051624405)
+
+    internal val colorPickerPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DisplayServer", "color_picker", 151643214)
 
     internal val processEventsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DisplayServer", "process_events", 3218959716)

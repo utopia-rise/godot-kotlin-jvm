@@ -55,46 +55,46 @@ import kotlin.jvm.JvmStatic
  * ```gdscript
  * //gdscript
  * func dir_contents(path):
- *     var dir = DirAccess.open(path)
- *     if dir:
- *         dir.list_dir_begin()
- *         var file_name = dir.get_next()
- *         while file_name != "":
- *             if dir.current_is_dir():
- *                 print("Found directory: " + file_name)
- *             else:
- *                 print("Found file: " + file_name)
- *             file_name = dir.get_next()
- *     else:
- *         print("An error occurred when trying to access the path.")
+ * 	var dir = DirAccess.open(path)
+ * 	if dir:
+ * 		dir.list_dir_begin()
+ * 		var file_name = dir.get_next()
+ * 		while file_name != "":
+ * 			if dir.current_is_dir():
+ * 				print("Found directory: " + file_name)
+ * 			else:
+ * 				print("Found file: " + file_name)
+ * 			file_name = dir.get_next()
+ * 	else:
+ * 		print("An error occurred when trying to access the path.")
  * ```
  *
  * ```csharp
  * //csharp
  * public void DirContents(string path)
  * {
- *     using var dir = DirAccess.Open(path);
- *     if (dir != null)
- *     {
- *         dir.ListDirBegin();
- *         string fileName = dir.GetNext();
- *         while (fileName != "")
- *         {
- *             if (dir.CurrentIsDir())
- *             {
- *                 GD.Print($"Found directory: {fileName}");
- *             }
- *             else
- *             {
- *                 GD.Print($"Found file: {fileName}");
- *             }
- *             fileName = dir.GetNext();
- *         }
- *     }
- *     else
- *     {
- *         GD.Print("An error occurred when trying to access the path.");
- *     }
+ * 	using var dir = DirAccess.Open(path);
+ * 	if (dir != null)
+ * 	{
+ * 		dir.ListDirBegin();
+ * 		string fileName = dir.GetNext();
+ * 		while (fileName != "")
+ * 		{
+ * 			if (dir.CurrentIsDir())
+ * 			{
+ * 				GD.Print($"Found directory: {fileName}");
+ * 			}
+ * 			else
+ * 			{
+ * 				GD.Print($"Found file: {fileName}");
+ * 			}
+ * 			fileName = dir.GetNext();
+ * 		}
+ * 	}
+ * 	else
+ * 	{
+ * 		GD.Print("An error occurred when trying to access the path.");
+ * 	}
  * }
  * ```
  *
@@ -130,7 +130,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(195, scriptIndex)
+    createNativeObject(200, scriptIndex)
   }
 
   /**
@@ -439,6 +439,18 @@ public open class DirAccess internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns file system type name of the current directory's disk. Returned values are uppercase
+   * strings like `NTFS`, `FAT32`, `EXFAT`, `APFS`, `EXT4`, `BTRFS`, and so on.
+   *
+   * **Note:** This method is implemented on macOS, Linux, Windows and for PCK virtual file system.
+   */
+  public final fun getFilesystemType(): String {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getFilesystemTypePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns `true` if the file system or directory use case sensitive file names.
    *
    * **Note:** This method is implemented on macOS, Linux (for EXT4 and F2FS filesystems only) and
@@ -447,6 +459,17 @@ public open class DirAccess internal constructor() : RefCounted() {
   public final fun isCaseSensitive(path: String): Boolean {
     TransferContext.writeArguments(STRING to path)
     TransferContext.callMethod(ptr, MethodBindings.isCaseSensitivePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns `true` if paths [pathA] and [pathB] resolve to the same file system object. Returns
+   * `false` otherwise, even if the files are bit-for-bit identical (e.g., identical copies of the file
+   * that are not symbolic links).
+   */
+  public final fun isEquivalent(pathA: String, pathB: String): Boolean {
+    TransferContext.writeArguments(STRING to pathA, STRING to pathB)
+    TransferContext.callMethod(ptr, MethodBindings.isEquivalentPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -535,7 +558,7 @@ public open class DirAccess internal constructor() : RefCounted() {
     /**
      * On Windows, returns the number of drives (partitions) mounted on the current filesystem.
      *
-     * On macOS, returns the number of mounted volumes.
+     * On macOS and Android, returns the number of mounted volumes.
      *
      * On Linux, returns the number of mounted volumes and GTK 3 bookmarks.
      *
@@ -554,6 +577,8 @@ public open class DirAccess internal constructor() : RefCounted() {
      * On macOS, returns the path to the mounted volume passed as an argument.
      *
      * On Linux, returns the path to the mounted volume or GTK 3 bookmark passed as an argument.
+     *
+     * On Android (API level 30+), returns the path to the mounted volume as an argument.
      *
      * On other platforms, or if the requested drive does not exist, the method returns an empty
      * String.
@@ -746,7 +771,13 @@ public open class DirAccess internal constructor() : RefCounted() {
     internal val getIncludeHiddenPtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "get_include_hidden", 36873697)
 
+    internal val getFilesystemTypePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "get_filesystem_type", 201670096)
+
     internal val isCaseSensitivePtr: VoidPtr =
         TypeManager.getMethodBindPtr("DirAccess", "is_case_sensitive", 3927539163)
+
+    internal val isEquivalentPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("DirAccess", "is_equivalent", 820780508)
   }
 }

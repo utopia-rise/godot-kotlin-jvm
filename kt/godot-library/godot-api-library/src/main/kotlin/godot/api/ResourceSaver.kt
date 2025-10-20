@@ -51,7 +51,7 @@ public object ResourceSaver : Object() {
    * Saves a resource to disk to the given path, using a [ResourceFormatSaver] that recognizes the
    * resource object. If [path] is empty, [ResourceSaver] will try to use [Resource.resourcePath].
    *
-   * The [flags] bitmask can be specified to customize the save behavior using [SaverFlags] flags.
+   * The [flags] bitmask can be specified to customize the save behavior.
    *
    * Returns [OK] on success.
    *
@@ -67,6 +67,20 @@ public object ResourceSaver : Object() {
   ): Error {
     TransferContext.writeArguments(OBJECT to resource, STRING to path, LONG to flags.flag)
     TransferContext.callMethod(ptr, MethodBindings.savePtr, LONG)
+    return Error.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Sets the UID of the given [resource] path to [uid]. You can generate a new UID using
+   * [ResourceUID.createId].
+   *
+   * Since resources will normally get a UID automatically, this method is only useful in very
+   * specific cases.
+   */
+  @JvmStatic
+  public final fun setUid(resource: String, uid: Long): Error {
+    TransferContext.writeArguments(STRING to resource, LONG to uid)
+    TransferContext.callMethod(ptr, MethodBindings.setUidPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
@@ -199,6 +213,9 @@ public object ResourceSaver : Object() {
   public object MethodBindings {
     internal val savePtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceSaver", "save", 2983274697)
+
+    internal val setUidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("ResourceSaver", "set_uid", 993915709)
 
     internal val getRecognizedExtensionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("ResourceSaver", "get_recognized_extensions", 4223597960)

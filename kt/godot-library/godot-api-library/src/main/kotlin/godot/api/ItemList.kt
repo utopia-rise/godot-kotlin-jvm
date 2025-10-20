@@ -188,8 +188,7 @@ public open class ItemList : Control() {
     }
 
   /**
-   * Sets the clipping behavior when the text exceeds an item's bounding rectangle. See
-   * [TextServer.OverrunBehavior] for a description of all modes.
+   * The clipping behavior when the text exceeds an item's bounding rectangle.
    */
   public final inline var textOverrunBehavior: TextServer.OverrunBehavior
     @JvmName("textOverrunBehaviorProperty")
@@ -310,7 +309,7 @@ public open class ItemList : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(312, scriptIndex)
+    createNativeObject(319, scriptIndex)
   }
 
   /**

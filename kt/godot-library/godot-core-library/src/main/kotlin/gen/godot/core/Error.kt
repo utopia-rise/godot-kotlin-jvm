@@ -21,11 +21,11 @@ public enum class Error(
    * ```
    * var error = method_that_returns_error()
    * if error != OK:
-   *     printerr("Failure!")
+   * 	printerr("Failure!")
    *
    * # Or, alternatively:
    * if error:
-   *     printerr("Still failing!")
+   * 	printerr("Still failing!")
    * ```
    *
    * **Note:** Many functions do not return an error code, but will print error messages to standard

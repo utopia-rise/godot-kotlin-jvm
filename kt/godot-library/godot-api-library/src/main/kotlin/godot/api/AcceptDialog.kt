@@ -43,12 +43,12 @@ public open class AcceptDialog : Window() {
   public val canceled: Signal0 by Signal0
 
   /**
-   * Emitted when a custom button is pressed. See [addButton].
+   * Emitted when a custom button with an action is pressed. See [addButton].
    */
   public val customAction: Signal1<StringName> by Signal1
 
   /**
-   * The text displayed by the OK button (see [getOkButton]).
+   * The text displayed by the OK button (see [getOkButton]). If empty, a default text will be used.
    */
   public final inline var okButtonText: String
     @JvmName("okButtonTextProperty")
@@ -89,7 +89,8 @@ public open class AcceptDialog : Window() {
     }
 
   /**
-   * If `true`, the dialog will be hidden when the escape key ([KEY_ESCAPE]) is pressed.
+   * If `true`, the dialog will be hidden when the `ui_cancel` action is pressed (by default, this
+   * action is bound to [KEY_ESCAPE]).
    */
   public final inline var dialogCloseOnEscape: Boolean
     @JvmName("dialogCloseOnEscapeProperty")
@@ -162,7 +163,10 @@ public open class AcceptDialog : Window() {
 
   /**
    * Adds a button with label [text] and a custom [action] to the dialog and returns the created
-   * button. [action] will be passed to the [signal custom_action] signal when pressed.
+   * button.
+   *
+   * If [action] is not empty, pressing the button will emit the [signal custom_action] signal with
+   * the specified action string.
    *
    * If `true`, [right] will place the button to the right of any sibling buttons.
    *

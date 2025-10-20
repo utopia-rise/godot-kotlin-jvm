@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeParticleConeVelocity : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(774, scriptIndex)
+    createNativeObject(790, scriptIndex)
   }
 
   public companion object

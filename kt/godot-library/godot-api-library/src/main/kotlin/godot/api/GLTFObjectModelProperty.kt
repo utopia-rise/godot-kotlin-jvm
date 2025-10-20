@@ -99,8 +99,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
 
   /**
    * The type of data stored in the glTF file as defined by the object model. This is a superset of
-   * the available accessor types, and determines the accessor type. See [GLTFObjectModelType] for
-   * possible values.
+   * the available accessor types, and determines the accessor type.
    */
   public final inline var objectModelType: GLTFObjectModelType
     @JvmName("objectModelTypeProperty")
@@ -112,7 +111,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
 
   /**
    * The glTF object model JSON pointers used to identify the property in the glTF object model. In
-   * most cases, there will be only one item in this array, but niche cases may require multiple
+   * most cases, there will be only one item in this array, but specific cases may require multiple
    * pointers. The items are themselves arrays which represent the JSON pointer split into its
    * components.
    */
@@ -137,7 +136,7 @@ public open class GLTFObjectModelProperty : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(234, scriptIndex)
+    createNativeObject(241, scriptIndex)
   }
 
   /**

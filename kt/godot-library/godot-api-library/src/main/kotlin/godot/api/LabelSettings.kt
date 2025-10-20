@@ -27,6 +27,7 @@ import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
+import kotlin.jvm.JvmOverloads
 
 /**
  * [LabelSettings] is a resource that provides common settings to customize the text in a [Label].
@@ -179,8 +180,30 @@ public open class LabelSettings : Resource() {
       setShadowOffset(value)
     }
 
+  /**
+   * The number of stacked outlines.
+   */
+  public final inline var stackedOutlineCount: Int
+    @JvmName("stackedOutlineCountProperty")
+    get() = getStackedOutlineCount()
+    @JvmName("stackedOutlineCountProperty")
+    set(`value`) {
+      setStackedOutlineCount(value)
+    }
+
+  /**
+   * The number of stacked shadows.
+   */
+  public final inline var stackedShadowCount: Int
+    @JvmName("stackedShadowCountProperty")
+    get() = getStackedShadowCount()
+    @JvmName("stackedShadowCountProperty")
+    set(`value`) {
+      setStackedShadowCount(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(330, scriptIndex)
+    createNativeObject(337, scriptIndex)
   }
 
   /**
@@ -369,6 +392,165 @@ public open class LabelSettings : Resource() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
+  public final fun getStackedOutlineCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStackedOutlineCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setStackedOutlineCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStackedOutlineCountPtr, NIL)
+  }
+
+  /**
+   * Adds a new stacked outline to the label at the given [index]. If [index] is `-1`, the new
+   * stacked outline will be added at the end of the list.
+   */
+  @JvmOverloads
+  public final fun addStackedOutline(index: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.addStackedOutlinePtr, NIL)
+  }
+
+  /**
+   * Moves the stacked outline at index [fromIndex] to the given position [toPosition] in the array.
+   */
+  public final fun moveStackedOutline(fromIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to fromIndex.toLong(), LONG to toPosition.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.moveStackedOutlinePtr, NIL)
+  }
+
+  /**
+   * Removes the stacked outline at index [index].
+   */
+  public final fun removeStackedOutline(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.removeStackedOutlinePtr, NIL)
+  }
+
+  /**
+   * Sets the size of the stacked outline identified by the given [index] to [size].
+   */
+  public final fun setStackedOutlineSize(index: Int, size: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to size.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStackedOutlineSizePtr, NIL)
+  }
+
+  /**
+   * Returns the size of the stacked outline at [index].
+   */
+  public final fun getStackedOutlineSize(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getStackedOutlineSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Sets the color of the stacked outline identified by the given [index] to [color].
+   */
+  public final fun setStackedOutlineColor(index: Int, color: Color): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setStackedOutlineColorPtr, NIL)
+  }
+
+  /**
+   * Returns the color of the stacked outline at [index].
+   */
+  public final fun getStackedOutlineColor(index: Int): Color {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getStackedOutlineColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  public final fun getStackedShadowCount(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getStackedShadowCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setStackedShadowCount(count: Int): Unit {
+    TransferContext.writeArguments(LONG to count.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStackedShadowCountPtr, NIL)
+  }
+
+  /**
+   * Adds a new stacked shadow to the label at the given [index]. If [index] is `-1`, the new
+   * stacked shadow will be added at the end of the list.
+   */
+  @JvmOverloads
+  public final fun addStackedShadow(index: Int = -1): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.addStackedShadowPtr, NIL)
+  }
+
+  /**
+   * Moves the stacked shadow at index [fromIndex] to the given position [toPosition] in the array.
+   */
+  public final fun moveStackedShadow(fromIndex: Int, toPosition: Int): Unit {
+    TransferContext.writeArguments(LONG to fromIndex.toLong(), LONG to toPosition.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.moveStackedShadowPtr, NIL)
+  }
+
+  /**
+   * Removes the stacked shadow at index [index].
+   */
+  public final fun removeStackedShadow(index: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.removeStackedShadowPtr, NIL)
+  }
+
+  /**
+   * Sets the offset of the stacked shadow identified by the given [index] to [offset].
+   */
+  public final fun setStackedShadowOffset(index: Int, offset: Vector2): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), VECTOR2 to offset)
+    TransferContext.callMethod(ptr, MethodBindings.setStackedShadowOffsetPtr, NIL)
+  }
+
+  /**
+   * Returns the offset of the stacked shadow at [index].
+   */
+  public final fun getStackedShadowOffset(index: Int): Vector2 {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getStackedShadowOffsetPtr, VECTOR2)
+    return (TransferContext.readReturnValue(VECTOR2) as Vector2)
+  }
+
+  /**
+   * Sets the color of the stacked shadow identified by the given [index] to [color].
+   */
+  public final fun setStackedShadowColor(index: Int, color: Color): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), COLOR to color)
+    TransferContext.callMethod(ptr, MethodBindings.setStackedShadowColorPtr, NIL)
+  }
+
+  /**
+   * Returns the color of the stacked shadow at [index].
+   */
+  public final fun getStackedShadowColor(index: Int): Color {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getStackedShadowColorPtr, COLOR)
+    return (TransferContext.readReturnValue(COLOR) as Color)
+  }
+
+  /**
+   * Sets the outline size of the stacked shadow identified by the given [index] to [size].
+   */
+  public final fun setStackedShadowOutlineSize(index: Int, size: Int): Unit {
+    TransferContext.writeArguments(LONG to index.toLong(), LONG to size.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setStackedShadowOutlineSizePtr, NIL)
+  }
+
+  /**
+   * Returns the outline size of the stacked shadow at [index].
+   */
+  public final fun getStackedShadowOutlineSize(index: Int): Int {
+    TransferContext.writeArguments(LONG to index.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getStackedShadowOutlineSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
   public companion object
 
   public object MethodBindings {
@@ -431,5 +613,65 @@ public open class LabelSettings : Resource() {
 
     internal val getShadowOffsetPtr: VoidPtr =
         TypeManager.getMethodBindPtr("LabelSettings", "get_shadow_offset", 3341600327)
+
+    internal val getStackedOutlineCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_outline_count", 3905245786)
+
+    internal val setStackedOutlineCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_outline_count", 1286410249)
+
+    internal val addStackedOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "add_stacked_outline", 1025054187)
+
+    internal val moveStackedOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "move_stacked_outline", 3937882851)
+
+    internal val removeStackedOutlinePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "remove_stacked_outline", 1286410249)
+
+    internal val setStackedOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_outline_size", 3937882851)
+
+    internal val getStackedOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_outline_size", 923996154)
+
+    internal val setStackedOutlineColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_outline_color", 2878471219)
+
+    internal val getStackedOutlineColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_outline_color", 3457211756)
+
+    internal val getStackedShadowCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_shadow_count", 3905245786)
+
+    internal val setStackedShadowCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_shadow_count", 1286410249)
+
+    internal val addStackedShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "add_stacked_shadow", 1025054187)
+
+    internal val moveStackedShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "move_stacked_shadow", 3937882851)
+
+    internal val removeStackedShadowPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "remove_stacked_shadow", 1286410249)
+
+    internal val setStackedShadowOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_shadow_offset", 163021252)
+
+    internal val getStackedShadowOffsetPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_shadow_offset", 2299179447)
+
+    internal val setStackedShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_shadow_color", 2878471219)
+
+    internal val getStackedShadowColorPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_shadow_color", 3457211756)
+
+    internal val setStackedShadowOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "set_stacked_shadow_outline_size", 3937882851)
+
+    internal val getStackedShadowOutlineSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("LabelSettings", "get_stacked_shadow_outline_size", 923996154)
   }
 }

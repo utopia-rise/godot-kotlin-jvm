@@ -97,7 +97,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   /**
-   * Direction that the [PlaneMesh] is facing. See [Orientation] for options.
+   * Direction that the [PlaneMesh] is facing.
    */
   public final inline var orientation: Orientation
     @JvmName("orientationProperty")
@@ -108,7 +108,7 @@ public open class PlaneMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(495, scriptIndex)
+    createNativeObject(510, scriptIndex)
   }
 
   /**

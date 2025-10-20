@@ -44,19 +44,19 @@ public open class XRTracker internal constructor() : RefCounted() {
    * runtimes and can often be configured by the user. Godot maintains a number of reserved names that
    * it expects the [XRInterface] to implement if applicable:
    *
-   * - `head` identifies the [XRPositionalTracker] of the players head
+   * - `"head"` identifies the [XRPositionalTracker] of the player's head
    *
-   * - `left_hand` identifies the [XRControllerTracker] in the players left hand
+   * - `"left_hand"` identifies the [XRControllerTracker] in the player's left hand
    *
-   * - `right_hand` identifies the [XRControllerTracker] in the players right hand
+   * - `"right_hand"` identifies the [XRControllerTracker] in the player's right hand
    *
-   * - `/user/hand_tracker/left` identifies the [XRHandTracker] for the players left hand
+   * - `"/user/hand_tracker/left"` identifies the [XRHandTracker] for the player's left hand
    *
-   * - `/user/hand_tracker/right` identifies the [XRHandTracker] for the players right hand
+   * - `"/user/hand_tracker/right"` identifies the [XRHandTracker] for the player's right hand
    *
-   * - `/user/body_tracker` identifies the [XRBodyTracker] for the players body
+   * - `"/user/body_tracker"` identifies the [XRBodyTracker] for the player's body
    *
-   * - `/user/face_tracker` identifies the [XRFaceTracker] for the players face
+   * - `"/user/face_tracker"` identifies the [XRFaceTracker] for the player's face
    */
   public final inline var name: StringName
     @JvmName("nameProperty")
@@ -78,7 +78,7 @@ public open class XRTracker internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(875, scriptIndex)
+    createNativeObject(891, scriptIndex)
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {

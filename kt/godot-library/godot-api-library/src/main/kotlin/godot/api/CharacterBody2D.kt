@@ -45,8 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CharacterBody2D : PhysicsBody2D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
-   * for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide].
    */
   public final inline var motionMode: MotionMode
     @JvmName("motionModeProperty")
@@ -81,6 +80,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
   /**
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
    *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -111,7 +113,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Maximum number of times the body can change direction before it stops when calling
-   * [moveAndSlide].
+   * [moveAndSlide]. Must be greater than zero.
    */
   public final inline var maxSlides: Int
     @JvmName("maxSlidesProperty")
@@ -122,7 +124,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
+   * Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The
    * default value equals 15 degrees. This property only affects movement when [motionMode] is
    * [MOTION_MODE_FLOATING].
    */
@@ -208,8 +210,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
 
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
-   * for available behavior.
+   * accurate, when you leave the last platform velocity is applied.
    */
   public final inline var platformOnLeave: PlatformOnLeave
     @JvmName("platformOnLeaveProperty")
@@ -266,7 +267,7 @@ public open class CharacterBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(146, scriptIndex)
+    createNativeObject(148, scriptIndex)
   }
 
   /**
@@ -303,6 +304,9 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ``````
    *
    * Current velocity vector in pixels per second, used and modified during calls to [moveAndSlide].
+   *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector2.() -> Unit): Vector2 = velocity.apply {
@@ -315,6 +319,10 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * other body (by default only on floor) rather than stop immediately. If the other body is a
    * [CharacterBody2D] or [RigidBody2D], it will also be affected by the motion of the other body. You
    * can use this to make moving and rotating platforms, or to make nodes push other nodes.
+   *
+   * This method should be used in [Node.PhysicsProcess] (or in a method called by
+   * [Node.PhysicsProcess]), as it uses the physics step's `delta` value automatically in calculations.
+   * Otherwise, the simulation will run at an incorrect speed.
    *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call
    * [getLastSlideCollision], for detailed information about collisions that occurred, use
@@ -672,16 +680,16 @@ public open class CharacterBody2D : PhysicsBody2D() {
    * ```gdscript
    * //gdscript
    * for i in get_slide_collision_count():
-   *     var collision = get_slide_collision(i)
-   *     print("Collided with: ", collision.get_collider().name)
+   * 	var collision = get_slide_collision(i)
+   * 	print("Collided with: ", collision.get_collider().name)
    * ```
    *
    * ```csharp
    * //csharp
    * for (int i = 0; i < GetSlideCollisionCount(); i++)
    * {
-   *     KinematicCollision2D collision = GetSlideCollision(i);
-   *     GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
+   * 	KinematicCollision2D collision = GetSlideCollision(i);
+   * 	GD.Print("Collided with: ", (collision.GetCollider() as Node).Name);
    * }
    * ```
    */

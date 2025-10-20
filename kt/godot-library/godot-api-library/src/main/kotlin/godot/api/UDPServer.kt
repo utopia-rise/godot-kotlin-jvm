@@ -45,23 +45,22 @@ import kotlin.jvm.JvmOverloads
  * var peers = []
  *
  * func _ready():
- *     server.listen(4242)
+ * 	server.listen(4242)
  *
  * func _process(delta):
- *     server.poll() # Important!
- *     if server.is_connection_available():
- *         var peer = server.take_connection()
- *         var packet = peer.get_packet()
- *         print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(),
- * peer.get_packet_port()])
- *         print("Received data: &#37;s" &#37; [packet.get_string_from_utf8()])
- *         # Reply so it knows we received the message.
- *         peer.put_packet(packet)
- *         # Keep a reference so we can keep contacting the remote peer.
- *         peers.append(peer)
+ * 	server.poll() # Important!
+ * 	if server.is_connection_available():
+ * 		var peer = server.take_connection()
+ * 		var packet = peer.get_packet()
+ * 		print("Accepted peer: &#37;s:&#37;s" &#37; [peer.get_packet_ip(), peer.get_packet_port()])
+ * 		print("Received data: &#37;s" &#37; [packet.get_string_from_utf8()])
+ * 		# Reply so it knows we received the message.
+ * 		peer.put_packet(packet)
+ * 		# Keep a reference so we can keep contacting the remote peer.
+ * 		peers.append(peer)
  *
- *     for i in range(0, peers.size()):
- *         pass # Do something with the connected peers.
+ * 	for i in range(0, peers.size()):
+ * 		pass # Do something with the connected peers.
  * ```
  *
  * ```csharp
@@ -72,33 +71,33 @@ import kotlin.jvm.JvmOverloads
  *
  * public partial class ServerNode : Node
  * {
- *     private UdpServer _server = new UdpServer();
- *     private List<PacketPeerUdp> _peers  = new List<PacketPeerUdp>();
+ * 	private UdpServer _server = new UdpServer();
+ * 	private List<PacketPeerUdp> _peers  = new List<PacketPeerUdp>();
  *
- *     public override void _Ready()
- *     {
- *         _server.Listen(4242);
- *     }
+ * 	public override void _Ready()
+ * 	{
+ * 		_server.Listen(4242);
+ * 	}
  *
- *     public override void _Process(double delta)
- *     {
- *         _server.Poll(); // Important!
- *         if (_server.IsConnectionAvailable())
- *         {
- *             PacketPeerUdp peer = _server.TakeConnection();
- *             byte[] packet = peer.GetPacket();
- *             GD.Print($"Accepted Peer: {peer.GetPacketIP()}:{peer.GetPacketPort()}");
- *             GD.Print($"Received Data: {packet.GetStringFromUtf8()}");
- *             // Reply so it knows we received the message.
- *             peer.PutPacket(packet);
- *             // Keep a reference so we can keep contacting the remote peer.
- *             _peers.Add(peer);
- *         }
- *         foreach (var peer in _peers)
- *         {
- *             // Do something with the peers.
- *         }
- *     }
+ * 	public override void _Process(double delta)
+ * 	{
+ * 		_server.Poll(); // Important!
+ * 		if (_server.IsConnectionAvailable())
+ * 		{
+ * 			PacketPeerUdp peer = _server.TakeConnection();
+ * 			byte[] packet = peer.GetPacket();
+ * 			GD.Print($"Accepted Peer: {peer.GetPacketIP()}:{peer.GetPacketPort()}");
+ * 			GD.Print($"Received Data: {packet.GetStringFromUtf8()}");
+ * 			// Reply so it knows we received the message.
+ * 			peer.PutPacket(packet);
+ * 			// Keep a reference so we can keep contacting the remote peer.
+ * 			_peers.Add(peer);
+ * 		}
+ * 		foreach (var peer in _peers)
+ * 		{
+ * 			// Do something with the peers.
+ * 		}
+ * 	}
  * }
  * ```
  *
@@ -113,15 +112,15 @@ import kotlin.jvm.JvmOverloads
  * var connected = false
  *
  * func _ready():
- *     udp.connect_to_host("127.0.0.1", 4242)
+ * 	udp.connect_to_host("127.0.0.1", 4242)
  *
  * func _process(delta):
- *     if !connected:
- *         # Try to contact server
- *         udp.put_packet("The answer is... 42!".to_utf8_buffer())
- *     if udp.get_available_packet_count() > 0:
- *         print("Connected: &#37;s" &#37; udp.get_packet().get_string_from_utf8())
- *         connected = true
+ * 	if !connected:
+ * 		# Try to contact server
+ * 		udp.put_packet("The answer is... 42!".to_utf8_buffer())
+ * 	if udp.get_available_packet_count() > 0:
+ * 		print("Connected: &#37;s" &#37; udp.get_packet().get_string_from_utf8())
+ * 		connected = true
  * ```
  *
  * ```csharp
@@ -131,27 +130,27 @@ import kotlin.jvm.JvmOverloads
  *
  * public partial class ClientNode : Node
  * {
- *     private PacketPeerUdp _udp = new PacketPeerUdp();
- *     private bool _connected = false;
+ * 	private PacketPeerUdp _udp = new PacketPeerUdp();
+ * 	private bool _connected = false;
  *
- *     public override void _Ready()
- *     {
- *         _udp.ConnectToHost("127.0.0.1", 4242);
- *     }
+ * 	public override void _Ready()
+ * 	{
+ * 		_udp.ConnectToHost("127.0.0.1", 4242);
+ * 	}
  *
- *     public override void _Process(double delta)
- *     {
- *         if (!_connected)
- *         {
- *             // Try to contact server
- *             _udp.PutPacket("The Answer Is..42!".ToUtf8Buffer());
- *         }
- *         if (_udp.GetAvailablePacketCount() > 0)
- *         {
- *             GD.Print($"Connected: {_udp.GetPacket().GetStringFromUtf8()}");
- *             _connected = true;
- *         }
- *     }
+ * 	public override void _Process(double delta)
+ * 	{
+ * 		if (!_connected)
+ * 		{
+ * 			// Try to contact server
+ * 			_udp.PutPacket("The Answer Is..42!".ToUtf8Buffer());
+ * 		}
+ * 		if (_udp.GetAvailablePacketCount() > 0)
+ * 		{
+ * 			GD.Print($"Connected: {_udp.GetPacket().GetStringFromUtf8()}");
+ * 			_connected = true;
+ * 		}
+ * 	}
  * }
  * ```
  */
@@ -171,7 +170,7 @@ public open class UDPServer : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(702, scriptIndex)
+    createNativeObject(718, scriptIndex)
   }
 
   /**
@@ -187,11 +186,11 @@ public open class UDPServer : RefCounted() {
   }
 
   /**
-   * Call this method at regular intervals (e.g. inside [Node.Process]) to process new packets. And
-   * packet from known address/port pair will be delivered to the appropriate [PacketPeerUDP], any
-   * packet received from an unknown address/port pair will be added as a pending connection (see
-   * [isConnectionAvailable], [takeConnection]). The maximum number of pending connection is defined
-   * via [maxPendingConnections].
+   * Call this method at regular intervals (e.g. inside [Node.Process]) to process new packets. Any
+   * packet from a known address/port pair will be delivered to the appropriate [PacketPeerUDP], while
+   * any packet received from an unknown address/port pair will be added as a pending connection (see
+   * [isConnectionAvailable] and [takeConnection]). The maximum number of pending connections is
+   * defined via [maxPendingConnections].
    */
   public final fun poll(): Error {
     TransferContext.writeArguments()

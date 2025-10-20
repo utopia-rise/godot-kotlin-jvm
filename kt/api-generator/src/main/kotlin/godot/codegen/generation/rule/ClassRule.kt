@@ -60,10 +60,18 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         } else {
             if (clazz.isAbstract) {
                 addModifiers(KModifier.ABSTRACT)
+            } else if (!clazz.isInstantiable){
+                primaryConstructor(
+                    FunSpec.constructorBuilder()
+                        .addModifiers(KModifier.INTERNAL)
+                        .build()
+                ).build()
+                addModifiers(KModifier.OPEN)
             } else {
                 addModifiers(KModifier.OPEN)
             }
-            generateClassConstructor(clazz.isInstantiable,  context)
+
+            generateClassConstructor(context)
         }
 
         addKdoc(clazz)
@@ -90,17 +98,8 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
     }
 
     private fun TypeSpec.Builder.generateClassConstructor(
-        isInstantiable: Boolean,
         context: GenerationContext
     ): TypeSpec.Builder {
-
-        if (!isInstantiable) {
-            primaryConstructor(
-                FunSpec.constructorBuilder()
-                    .addModifiers(KModifier.INTERNAL)
-                    .build()
-            )
-        }
 
         addFunction(
             FunSpec.builder("new")

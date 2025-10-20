@@ -47,7 +47,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class Environment : Resource() {
   /**
-   * The background mode. See [BGMode] for possible values.
+   * The background mode.
    */
   public final inline var backgroundMode: BGMode
     @JvmName("backgroundModeProperty")
@@ -288,6 +288,9 @@ public open class Environment : Resource() {
    * occluded by others.
    *
    * **Note:** SSR is only supported in the Forward+ rendering method, not Mobile or Compatibility.
+   *
+   * **Note:** SSR is not supported on viewports that have a transparent background (where
+   * [Viewport.transparentBg] is `true`).
    */
   public final inline var ssrEnabled: Boolean
     @JvmName("ssrEnabledProperty")
@@ -908,7 +911,7 @@ public open class Environment : Resource() {
     }
 
   /**
-   * The fog mode. See [FogMode] for possible values.
+   * The fog mode.
    */
   public final inline var fogMode: FogMode
     @JvmName("fogModeProperty")
@@ -1353,7 +1356,7 @@ public open class Environment : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(206, scriptIndex)
+    createNativeObject(211, scriptIndex)
   }
 
   /**

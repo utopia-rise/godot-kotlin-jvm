@@ -70,7 +70,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * Audio format. See [Format] constants for values.
+   * Audio format.
    */
   public final inline var format: Format
     @JvmName("formatProperty")
@@ -81,7 +81,7 @@ public open class AudioStreamWAV : AudioStream() {
     }
 
   /**
-   * The loop mode. See [LoopMode] constants for values.
+   * The loop mode.
    */
   public final inline var loopMode: LoopMode
     @JvmName("loopModeProperty")
@@ -146,8 +146,28 @@ public open class AudioStreamWAV : AudioStream() {
       setStereo(value)
     }
 
+  /**
+   * Contains user-defined tags if found in the WAV data.
+   *
+   * Commonly used tags include `title`, `artist`, `album`, `tracknumber`, and `date` (`date` does
+   * not have a standard date format).
+   *
+   * **Note:** No tag is *guaranteed* to be present in every file, so make sure to account for the
+   * keys not always existing.
+   *
+   * **Note:** Only WAV files using a `LIST` chunk with an identifier of `INFO` to encode the tags
+   * are currently supported.
+   */
+  public final inline var tags: Dictionary<Any?, Any?>
+    @JvmName("tagsProperty")
+    get() = getTags()
+    @JvmName("tagsProperty")
+    set(`value`) {
+      setTags(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(101, scriptIndex)
+    createNativeObject(102, scriptIndex)
   }
 
   /**
@@ -273,6 +293,17 @@ public open class AudioStreamWAV : AudioStream() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setTags(tags: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to tags)
+    TransferContext.callMethod(ptr, MethodBindings.setTagsPtr, NIL)
+  }
+
+  public final fun getTags(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTagsPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
   /**
    * Saves the AudioStreamWAV as a WAV file to [path]. Samples with IMA ADPCM or Quite OK Audio
    * formats can't be saved.
@@ -376,15 +407,15 @@ public open class AudioStreamWAV : AudioStream() {
      * @onready var audio_player = $AudioStreamPlayer
      *
      * func _ready():
-     *     get_window().files_dropped.connect(_on_files_dropped)
+     * 	get_window().files_dropped.connect(_on_files_dropped)
      *
      * func _on_files_dropped(files):
-     *     if files[0].get_extension() == "wav":
-     *         audio_player.stream = AudioStreamWAV.load_from_file(files[0], {
-     *                 "force/max_rate": true,
-     *                 "force/max_rate_hz": 11025
-     *             })
-     *         audio_player.play()
+     * 	if files[0].get_extension() == "wav":
+     * 		audio_player.stream = AudioStreamWAV.load_from_file(files[0], {
+     * 				"force/max_rate": true,
+     * 				"force/max_rate_hz": 11025
+     * 			})
+     * 		audio_player.play()
      * ```
      */
     @JvmOverloads
@@ -445,6 +476,12 @@ public open class AudioStreamWAV : AudioStream() {
 
     internal val isStereoPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "is_stereo", 36873697)
+
+    internal val setTagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "set_tags", 4155329257)
+
+    internal val getTagsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("AudioStreamWAV", "get_tags", 3102165223)
 
     internal val saveToWavPtr: VoidPtr =
         TypeManager.getMethodBindPtr("AudioStreamWAV", "save_to_wav", 166001499)

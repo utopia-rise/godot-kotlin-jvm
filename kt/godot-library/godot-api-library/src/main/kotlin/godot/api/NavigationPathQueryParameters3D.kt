@@ -14,6 +14,8 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
 import godot.core.RID
+import godot.core.VariantArray
+import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
@@ -167,8 +169,102 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
       setSimplifyEpsilon(value)
     }
 
+  /**
+   * The list of region [RID]s that will be excluded from the path query. Use
+   * [NavigationRegion3D.getRid] to get the [RID] associated with a [NavigationRegion3D] node.
+   *
+   * **Note:** The returned array is copied and any changes to it will not update the original
+   * property value. To update the value you need to modify the returned array, and then set it to the
+   * property again.
+   */
+  public final inline var excludedRegions: VariantArray<RID>
+    @JvmName("excludedRegionsProperty")
+    get() = getExcludedRegions()
+    @JvmName("excludedRegionsProperty")
+    set(`value`) {
+      setExcludedRegions(value)
+    }
+
+  /**
+   * The list of region [RID]s that will be included by the path query. Use
+   * [NavigationRegion3D.getRid] to get the [RID] associated with a [NavigationRegion3D] node. If left
+   * empty all regions are included. If a region ends up being both included and excluded at the same
+   * time it will be excluded.
+   *
+   * **Note:** The returned array is copied and any changes to it will not update the original
+   * property value. To update the value you need to modify the returned array, and then set it to the
+   * property again.
+   */
+  public final inline var includedRegions: VariantArray<RID>
+    @JvmName("includedRegionsProperty")
+    get() = getIncludedRegions()
+    @JvmName("includedRegionsProperty")
+    set(`value`) {
+      setIncludedRegions(value)
+    }
+
+  /**
+   * The maximum allowed length of the returned path in world units. A path will be clipped when
+   * going over this length. A value of `0` or below counts as disabled.
+   */
+  public final inline var pathReturnMaxLength: Float
+    @JvmName("pathReturnMaxLengthProperty")
+    get() = getPathReturnMaxLength()
+    @JvmName("pathReturnMaxLengthProperty")
+    set(`value`) {
+      setPathReturnMaxLength(value)
+    }
+
+  /**
+   * The maximum allowed radius in world units that the returned path can be from the path start.
+   * The path will be clipped when going over this radius. A value of `0` or below counts as disabled.
+   *
+   * **Note:** This will perform a sphere shaped clip operation on the path with the first path
+   * position being the sphere's center position.
+   */
+  public final inline var pathReturnMaxRadius: Float
+    @JvmName("pathReturnMaxRadiusProperty")
+    get() = getPathReturnMaxRadius()
+    @JvmName("pathReturnMaxRadiusProperty")
+    set(`value`) {
+      setPathReturnMaxRadius(value)
+    }
+
+  /**
+   * The maximum number of polygons that are searched before the pathfinding cancels the search for
+   * a path to the (possibly unreachable or very far away) target position polygon. In this case the
+   * pathfinding resets and builds a path from the start polygon to the polygon that was found closest
+   * to the target position so far. A value of `0` or below counts as unlimited. In case of unlimited
+   * the pathfinding will search all polygons connected with the start polygon until either the target
+   * position polygon is found or all available polygon search options are exhausted.
+   */
+  public final inline var pathSearchMaxPolygons: Int
+    @JvmName("pathSearchMaxPolygonsProperty")
+    get() = getPathSearchMaxPolygons()
+    @JvmName("pathSearchMaxPolygonsProperty")
+    set(`value`) {
+      setPathSearchMaxPolygons(value)
+    }
+
+  /**
+   * The maximum distance a searched polygon can be away from the start polygon before the
+   * pathfinding cancels the search for a path to the (possibly unreachable or very far away) target
+   * position polygon. In this case the pathfinding resets and builds a path from the start polygon to
+   * the polygon that was found closest to the target position so far. A value of `0` or below counts
+   * as unlimited. In case of unlimited the pathfinding will search all polygons connected with the
+   * start polygon until either the target position polygon is found or all available polygon search
+   * options are exhausted.
+   */
+  public final inline var pathSearchMaxDistance: Float
+    @JvmName("pathSearchMaxDistanceProperty")
+    get() = getPathSearchMaxDistance()
+    @JvmName("pathSearchMaxDistanceProperty")
+    set(`value`) {
+      setPathSearchMaxDistance(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(385, scriptIndex)
+    createNativeObject(394, scriptIndex)
   }
 
   /**
@@ -305,6 +401,72 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
   public final fun getSimplifyEpsilon(): Float {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getSimplifyEpsilonPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setIncludedRegions(regions: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(ARRAY to regions)
+    TransferContext.callMethod(ptr, MethodBindings.setIncludedRegionsPtr, NIL)
+  }
+
+  public final fun getIncludedRegions(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getIncludedRegionsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+  }
+
+  public final fun setExcludedRegions(regions: VariantArray<RID>): Unit {
+    TransferContext.writeArguments(ARRAY to regions)
+    TransferContext.callMethod(ptr, MethodBindings.setExcludedRegionsPtr, NIL)
+  }
+
+  public final fun getExcludedRegions(): VariantArray<RID> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getExcludedRegionsPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<RID>)
+  }
+
+  public final fun setPathReturnMaxLength(length: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to length.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setPathReturnMaxLengthPtr, NIL)
+  }
+
+  public final fun getPathReturnMaxLength(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathReturnMaxLengthPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setPathReturnMaxRadius(radius: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to radius.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setPathReturnMaxRadiusPtr, NIL)
+  }
+
+  public final fun getPathReturnMaxRadius(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathReturnMaxRadiusPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  public final fun setPathSearchMaxPolygons(maxPolygons: Int): Unit {
+    TransferContext.writeArguments(LONG to maxPolygons.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.setPathSearchMaxPolygonsPtr, NIL)
+  }
+
+  public final fun getPathSearchMaxPolygons(): Int {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathSearchMaxPolygonsPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public final fun setPathSearchMaxDistance(distance: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to distance.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setPathSearchMaxDistancePtr, NIL)
+  }
+
+  public final fun getPathSearchMaxDistance(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getPathSearchMaxDistancePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -483,5 +645,41 @@ public open class NavigationPathQueryParameters3D : RefCounted() {
 
     internal val getSimplifyEpsilonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_simplify_epsilon", 1740695150)
+
+    internal val setIncludedRegionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_included_regions", 381264803)
+
+    internal val getIncludedRegionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_included_regions", 3995934104)
+
+    internal val setExcludedRegionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_excluded_regions", 381264803)
+
+    internal val getExcludedRegionsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_excluded_regions", 3995934104)
+
+    internal val setPathReturnMaxLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_return_max_length", 373806689)
+
+    internal val getPathReturnMaxLengthPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_return_max_length", 1740695150)
+
+    internal val setPathReturnMaxRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_return_max_radius", 373806689)
+
+    internal val getPathReturnMaxRadiusPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_return_max_radius", 1740695150)
+
+    internal val setPathSearchMaxPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_search_max_polygons", 1286410249)
+
+    internal val getPathSearchMaxPolygonsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_search_max_polygons", 3905245786)
+
+    internal val setPathSearchMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "set_path_search_max_distance", 373806689)
+
+    internal val getPathSearchMaxDistancePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationPathQueryParameters3D", "get_path_search_max_distance", 1740695150)
   }
 }

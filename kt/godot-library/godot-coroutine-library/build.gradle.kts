@@ -51,6 +51,8 @@ publishing {
             }
             artifactId = "godot-coroutine-library-$targetSuffix"
             description = "Godot library extension allowing the use of coroutines in a Godot context."
+
+            from(components["java"])
         }
     }
 }

@@ -308,7 +308,7 @@ public open class Decal : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(194, scriptIndex)
+    createNativeObject(199, scriptIndex)
   }
 
   /**
@@ -382,14 +382,14 @@ public open class Decal : VisualInstance3D() {
    * ```gdscript
    * //gdscript
    * for i in Decal.TEXTURE_MAX:
-   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
+   * 	$NewDecal.set_texture(i, $OldDecal.get_texture(i))
    * ```
    *
    * ```csharp
    * //csharp
    * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
    * {
-   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
+   * 	GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
    * }
    * ```
    */
@@ -411,14 +411,14 @@ public open class Decal : VisualInstance3D() {
    * ```gdscript
    * //gdscript
    * for i in Decal.TEXTURE_MAX:
-   *     $NewDecal.set_texture(i, $OldDecal.get_texture(i))
+   * 	$NewDecal.set_texture(i, $OldDecal.get_texture(i))
    * ```
    *
    * ```csharp
    * //csharp
    * for (int i = 0; i < (int)Decal.DecalTexture.Max; i++)
    * {
-   *     GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
+   * 	GetNode<Decal>("NewDecal").SetTexture(i, GetNode<Decal>("OldDecal").GetTexture(i));
    * }
    * ```
    */

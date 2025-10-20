@@ -269,6 +269,17 @@ public open class GraphEdit : Control() {
     }
 
   /**
+   * [Dictionary] of human readable port type names.
+   */
+  public final inline var typeNames: Dictionary<Any?, Any?>
+    @JvmName("typeNamesProperty")
+    get() = getTypeNames()
+    @JvmName("typeNamesProperty")
+    set(`value`) {
+      setTypeNames(value)
+    }
+
+  /**
    * The curvature of the lines between the nodes. 0 results in straight lines.
    */
   public final inline var connectionLinesCurvature: Float
@@ -308,11 +319,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   *     from_node: StringName,
-   *     from_port: int,
-   *     to_node: StringName,
-   *     to_port: int,
-   *     keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -481,7 +492,7 @@ public open class GraphEdit : Control() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(262, scriptIndex)
+    createNativeObject(269, scriptIndex)
   }
 
   /**
@@ -535,13 +546,13 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func _is_in_input_hotzone(in_node, in_port, mouse_position):
-   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * 	var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) -
-   * port_size / 2
-   *     var rect = Rect2(port_pos, port_size)
+   * 	var port_pos = in_node.get_position() + in_node.get_input_port_position(in_port) - port_size /
+   * 2
+   * 	var rect = Rect2(port_pos, port_size)
    *
-   *     return rect.has_point(mouse_position)
+   * 	return rect.has_point(mouse_position)
    * ```
    */
   public open fun _isInInputHotzone(
@@ -560,13 +571,13 @@ public open class GraphEdit : Control() {
    *
    * ```
    * func _is_in_output_hotzone(in_node, in_port, mouse_position):
-   *     var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
+   * 	var port_size = Vector2(get_theme_constant("port_grab_distance_horizontal"),
    * get_theme_constant("port_grab_distance_vertical"))
-   *     var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) -
-   * port_size / 2
-   *     var rect = Rect2(port_pos, port_size)
+   * 	var port_pos = in_node.get_position() + in_node.get_output_port_position(in_port) - port_size
+   * / 2
+   * 	var rect = Rect2(port_pos, port_size)
    *
-   *     return rect.has_point(mouse_position)
+   * 	return rect.has_point(mouse_position)
    * ```
    */
   public open fun _isInOutputHotzone(
@@ -598,7 +609,7 @@ public open class GraphEdit : Control() {
    * ```gdscript
    * //gdscript
    * func _is_node_hover_valid(from, from_port, to, to_port):
-   *     return from != to
+   * 	return from != to
    * ```
    *
    * ```csharp
@@ -606,7 +617,7 @@ public open class GraphEdit : Control() {
    * public override bool _IsNodeHoverValid(StringName fromNode, int fromPort, StringName toNode,
    * int toPort)
    * {
-   *     return fromNode != toNode;
+   * 	return fromNode != toNode;
    * }
    * ```
    */
@@ -712,11 +723,11 @@ public open class GraphEdit : Control() {
    *
    * ```
    * {
-   *     from_node: StringName,
-   *     from_port: int,
-   *     to_node: StringName,
-   *     to_port: int,
-   *     keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    *
@@ -736,17 +747,60 @@ public open class GraphEdit : Control() {
   }
 
   /**
+   * Returns an [Array] containing a list of all connections for [node].
+   *
+   * A connection is represented as a [Dictionary] in the form of:
+   *
+   * ```
+   * {
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
+   * }
+   * ```
+   *
+   * **Example:** Get all connections on a specific port:
+   *
+   * ```
+   * func get_connection_list_from_port(node, port):
+   * 	var connections = get_connection_list_from_node(node)
+   * 	var result = []
+   * 	for connection in connections:
+   * 		var dict = {}
+   * 		if connection["from_node"] == node and connection["from_port"] == port:
+   * 			dict["node"] = connection["to_node"]
+   * 			dict["port"] = connection["to_port"]
+   * 			dict["type"] = "left"
+   * 			result.push_back(dict)
+   * 		elif connection["to_node"] == node and connection["to_port"] == port:
+   * 			dict["node"] = connection["from_node"]
+   * 			dict["port"] = connection["from_port"]
+   * 			dict["type"] = "right"
+   * 			result.push_back(dict)
+   * 	return result
+   * ```
+   */
+  public final fun getConnectionListFromNode(node: StringName):
+      VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(STRING_NAME to node)
+    TransferContext.callMethod(ptr, MethodBindings.getConnectionListFromNodePtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
+  }
+
+  /**
    * Returns an [Array] containing the list of connections that intersect with the given [Rect2].
    *
    * A connection is represented as a [Dictionary] in the form of:
    *
    * ```
    * {
-   *     from_node: StringName,
-   *     from_port: int,
-   *     to_node: StringName,
-   *     to_port: int,
-   *     keep_alive: bool
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
    * }
    * ```
    */
@@ -1150,6 +1204,17 @@ public open class GraphEdit : Control() {
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
+  public final fun setTypeNames(typeNames: Dictionary<Any?, Any?>): Unit {
+    TransferContext.writeArguments(DICTIONARY to typeNames)
+    TransferContext.callMethod(ptr, MethodBindings.setTypeNamesPtr, NIL)
+  }
+
+  public final fun getTypeNames(): Dictionary<Any?, Any?> {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getTypeNamesPtr, DICTIONARY)
+    return (TransferContext.readReturnValue(DICTIONARY) as Dictionary<Any?, Any?>)
+  }
+
   /**
    * Gets the [HBoxContainer] that contains the zooming and grid snap controls in the top left of
    * the graph. You can use this method to reposition the toolbar or to add your own custom controls to
@@ -1240,6 +1305,45 @@ public open class GraphEdit : Control() {
    */
   public final fun getConnectionCount(fromNode: String, fromPort: Int): Int =
       getConnectionCount(fromNode.asCachedStringName(), fromPort)
+
+  /**
+   * Returns an [Array] containing a list of all connections for [node].
+   *
+   * A connection is represented as a [Dictionary] in the form of:
+   *
+   * ```
+   * {
+   * 	from_node: StringName,
+   * 	from_port: int,
+   * 	to_node: StringName,
+   * 	to_port: int,
+   * 	keep_alive: bool
+   * }
+   * ```
+   *
+   * **Example:** Get all connections on a specific port:
+   *
+   * ```
+   * func get_connection_list_from_port(node, port):
+   * 	var connections = get_connection_list_from_node(node)
+   * 	var result = []
+   * 	for connection in connections:
+   * 		var dict = {}
+   * 		if connection["from_node"] == node and connection["from_port"] == port:
+   * 			dict["node"] = connection["to_node"]
+   * 			dict["port"] = connection["to_port"]
+   * 			dict["type"] = "left"
+   * 			result.push_back(dict)
+   * 		elif connection["to_node"] == node and connection["to_port"] == port:
+   * 			dict["node"] = connection["from_node"]
+   * 			dict["port"] = connection["from_port"]
+   * 			dict["type"] = "right"
+   * 			result.push_back(dict)
+   * 	return result
+   * ```
+   */
+  public final fun getConnectionListFromNode(node: String): VariantArray<Dictionary<Any?, Any?>> =
+      getConnectionListFromNode(node.asCachedStringName())
 
   /**
    * Attaches the [element] [GraphElement] to the [frame] [GraphFrame].
@@ -1337,6 +1441,9 @@ public open class GraphEdit : Control() {
 
     internal val getClosestConnectionAtPointPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_closest_connection_at_point", 453879819)
+
+    internal val getConnectionListFromNodePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_connection_list_from_node", 3147814860)
 
     internal val getConnectionsIntersectingWithRectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_connections_intersecting_with_rect", 2709748719)
@@ -1520,6 +1627,12 @@ public open class GraphEdit : Control() {
 
     internal val isRightDisconnectsEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "is_right_disconnects_enabled", 36873697)
+
+    internal val setTypeNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "set_type_names", 4155329257)
+
+    internal val getTypeNamesPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GraphEdit", "get_type_names", 3102165223)
 
     internal val getMenuHboxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GraphEdit", "get_menu_hbox", 3590609951)

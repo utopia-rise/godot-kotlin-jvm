@@ -47,10 +47,12 @@ import kotlin.jvm.JvmName
  * be ignored by the [ReflectionProbe]. This can lead to incorrect lighting within the
  * [ReflectionProbe].
  *
- * **Note:** Reflection probes are only supported in the Forward+ and Mobile rendering methods, not
- * Compatibility. When using the Mobile rendering method, only 8 reflection probes can be displayed on
- * each mesh resource. Attempting to display more than 8 reflection probes on a single mesh resource
- * will result in reflection probes flickering in and out as the camera moves.
+ * **Note:** When using the Mobile rendering method, only `8` reflection probes can be displayed on
+ * each mesh resource, while the Compatibility rendering method only supports up to `2` reflection
+ * probes on each mesh. Attempting to display more than `8` reflection probes on a single mesh resource
+ * using the Mobile renderer will result in reflection probes flickering in and out as the camera
+ * moves, while the Compatibility renderer will not render any additional probes if more than `2`
+ * reflection probes are being used.
  *
  * **Note:** When using the Mobile rendering method, reflection probes will only correctly affect
  * meshes whose visibility AABB intersects with the reflection probe's AABB. If using a shader to
@@ -286,7 +288,7 @@ public open class ReflectionProbe : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(535, scriptIndex)
+    createNativeObject(550, scriptIndex)
   }
 
   /**

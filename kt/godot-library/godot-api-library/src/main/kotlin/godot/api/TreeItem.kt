@@ -104,12 +104,12 @@ public open class TreeItem internal constructor() : Object() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(697, scriptIndex)
+    createNativeObject(713, scriptIndex)
   }
 
   /**
    * Sets the given column's cell mode to [mode]. This determines how the cell is displayed and
-   * edited. See [TreeCellMode] constants for details.
+   * edited.
    */
   public final fun setCellMode(column: Int, mode: TreeCellMode): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to mode.value)
@@ -229,6 +229,23 @@ public open class TreeItem internal constructor() : Object() {
   public final fun getText(column: Int): String {
     TransferContext.writeArguments(LONG to column.toLong())
     TransferContext.callMethod(ptr, MethodBindings.getTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Sets the given column's description for assistive apps.
+   */
+  public final fun setDescription(column: Int, description: String): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.setDescriptionPtr, NIL)
+  }
+
+  /**
+   * Returns the given column's description for assistive apps.
+   */
+  public final fun getDescription(column: Int): String {
+    TransferContext.writeArguments(LONG to column.toLong())
+    TransferContext.callMethod(ptr, MethodBindings.getDescriptionPtr, STRING)
     return (TransferContext.readReturnValue(STRING) as String)
   }
 
@@ -798,7 +815,8 @@ public open class TreeItem internal constructor() : Object() {
    * used to identify the button in the according [signal Tree.button_clicked] signal and can be
    * different from the buttons index. If not specified, the next available index is used, which may be
    * retrieved by calling [getButtonCount] immediately before this method. Optionally, the button can
-   * be [disabled] and have a [tooltipText].
+   * be [disabled] and have a [tooltipText]. [description] is used as the button description for
+   * assistive apps.
    */
   @JvmOverloads
   public final fun addButton(
@@ -807,8 +825,9 @@ public open class TreeItem internal constructor() : Object() {
     id: Int = -1,
     disabled: Boolean = false,
     tooltipText: String = "",
+    description: String = "",
   ): Unit {
-    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to button, LONG to id.toLong(), BOOL to disabled, STRING to tooltipText)
+    TransferContext.writeArguments(LONG to column.toLong(), OBJECT to button, LONG to id.toLong(), BOOL to disabled, STRING to tooltipText, STRING to description)
     TransferContext.callMethod(ptr, MethodBindings.addButtonPtr, NIL)
   }
 
@@ -901,6 +920,18 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
+   * Sets the given column's button description at index [buttonIndex] for assistive apps.
+   */
+  public final fun setButtonDescription(
+    column: Int,
+    buttonIndex: Int,
+    description: String,
+  ): Unit {
+    TransferContext.writeArguments(LONG to column.toLong(), LONG to buttonIndex.toLong(), STRING to description)
+    TransferContext.callMethod(ptr, MethodBindings.setButtonDescriptionPtr, NIL)
+  }
+
+  /**
    * If `true`, disables the button at index [buttonIndex] in the given [column].
    */
   public final fun setButtonDisabled(
@@ -951,7 +982,7 @@ public open class TreeItem internal constructor() : Object() {
   }
 
   /**
-   * Sets the given column's text alignment. See [HorizontalAlignment] for possible values.
+   * Sets the given column's text alignment to [textAlignment].
    */
   public final fun setTextAlignment(column: Int, textAlignment: HorizontalAlignment): Unit {
     TransferContext.writeArguments(LONG to column.toLong(), LONG to textAlignment.value)
@@ -1217,7 +1248,7 @@ public open class TreeItem internal constructor() : Object() {
    * comma separated list.
    */
   public final fun callRecursive(method: String, vararg args: Any?) =
-      callRecursive(method.asCachedStringName(), )
+      callRecursive(method.asCachedStringName(), *args)
 
   public enum class TreeCellMode(
     `value`: Long,
@@ -1308,6 +1339,12 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val getTextPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_text", 844755477)
+
+    internal val setDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_description", 501894301)
+
+    internal val getDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "get_description", 844755477)
 
     internal val setTextDirectionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_text_direction", 1707680378)
@@ -1498,7 +1535,7 @@ public open class TreeItem internal constructor() : Object() {
         TypeManager.getMethodBindPtr("TreeItem", "clear_buttons", 3218959716)
 
     internal val addButtonPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TreeItem", "add_button", 1688223362)
+        TypeManager.getMethodBindPtr("TreeItem", "add_button", 973481897)
 
     internal val getButtonCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "get_button_count", 923996154)
@@ -1526,6 +1563,9 @@ public open class TreeItem internal constructor() : Object() {
 
     internal val eraseButtonPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "erase_button", 3937882851)
+
+    internal val setButtonDescriptionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TreeItem", "set_button_description", 2285447957)
 
     internal val setButtonDisabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TreeItem", "set_button_disabled", 1383440665)

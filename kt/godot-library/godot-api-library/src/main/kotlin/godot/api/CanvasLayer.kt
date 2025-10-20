@@ -49,8 +49,8 @@ import kotlin.jvm.JvmName
  *
  * **Note:** Each [CanvasLayer] is drawn on one specific [Viewport] and cannot be shared between
  * multiple [Viewport]s, see [customViewport]. When using multiple [Viewport]s, for example in a
- * split-screen game, you need create an individual [CanvasLayer] for each [Viewport] you want it to be
- * drawn on.
+ * split-screen game, you need to create an individual [CanvasLayer] for each [Viewport] you want it to
+ * be drawn on.
  */
 @GodotBaseType
 public open class CanvasLayer : Node() {
@@ -65,6 +65,9 @@ public open class CanvasLayer : Node() {
    * **Note:** If multiple CanvasLayers have the same layer index, [CanvasItem] children of one
    * CanvasLayer are drawn behind the [CanvasItem] children of the other CanvasLayer. Which CanvasLayer
    * is drawn in front is non-deterministic.
+   *
+   * **Note:** The layer index should be between [RenderingServer.CANVAS_LAYER_MIN] and
+   * [RenderingServer.CANVAS_LAYER_MAX] (inclusive). Any other value will wrap around.
    */
   public final inline var layer: Int
     @JvmName("layerProperty")
@@ -169,8 +172,8 @@ public open class CanvasLayer : Node() {
     }
 
   /**
-   * If enabled, the [CanvasLayer] stays in a fixed position on the screen. If disabled, the
-   * [CanvasLayer] maintains its position in world space.
+   * If enabled, the [CanvasLayer] maintains its position in world space. If disabled, the
+   * [CanvasLayer] stays in a fixed position on the screen.
    *
    * Together with [followViewportScale], this can be used for a pseudo-3D effect.
    */
@@ -195,7 +198,7 @@ public open class CanvasLayer : Node() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+    createNativeObject(140, scriptIndex)
   }
 
   /**

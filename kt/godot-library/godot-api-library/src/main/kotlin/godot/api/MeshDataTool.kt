@@ -50,12 +50,12 @@ import kotlin.jvm.JvmOverloads
  * var mdt = MeshDataTool.new()
  * mdt.create_from_surface(mesh, 0)
  * for i in range(mdt.get_vertex_count()):
- *     var vertex = mdt.get_vertex(i)
- *     # In this example we extend the mesh by one unit, which results in separated faces as it is
- * flat shaded.
- *     vertex += mdt.get_vertex_normal(i)
- *     # Save your change.
- *     mdt.set_vertex(i, vertex)
+ * 	var vertex = mdt.get_vertex(i)
+ * 	# In this example we extend the mesh by one unit, which results in separated faces as it is flat
+ * shaded.
+ * 	vertex += mdt.get_vertex_normal(i)
+ * 	# Save your change.
+ * 	mdt.set_vertex(i, vertex)
  * mesh.clear_surfaces()
  * mdt.commit_to_surface(mesh)
  * var mi = MeshInstance.new()
@@ -71,12 +71,12 @@ import kotlin.jvm.JvmOverloads
  * mdt.CreateFromSurface(mesh, 0);
  * for (var i = 0; i < mdt.GetVertexCount(); i++)
  * {
- *     Vector3 vertex = mdt.GetVertex(i);
- *     // In this example we extend the mesh by one unit, which results in separated faces as it is
+ * 	Vector3 vertex = mdt.GetVertex(i);
+ * 	// In this example we extend the mesh by one unit, which results in separated faces as it is
  * flat shaded.
- *     vertex += mdt.GetVertexNormal(i);
- *     // Save your change.
- *     mdt.SetVertex(i, vertex);
+ * 	vertex += mdt.GetVertexNormal(i);
+ * 	// Save your change.
+ * 	mdt.SetVertex(i, vertex);
  * }
  * mesh.ClearSurfaces();
  * mdt.CommitToSurface(mesh);
@@ -93,7 +93,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class MeshDataTool : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(353, scriptIndex)
+    createNativeObject(361, scriptIndex)
   }
 
   /**
@@ -335,9 +335,9 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns index of specified vertex connected to given edge.
+   * Returns the index of the specified [vertex] connected to the edge at index [idx].
    *
-   * Vertex argument can only be 0 or 1 because edges are comprised of two vertices.
+   * [vertex] can only be `0` or `1`, as edges are composed of two vertices.
    */
   public final fun getEdgeVertex(idx: Int, vertex: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to vertex.toLong())
@@ -399,9 +399,9 @@ public open class MeshDataTool : RefCounted() {
   }
 
   /**
-   * Returns specified edge associated with given face.
+   * Returns the edge associated with the face at index [idx].
    *
-   * Edge argument must be either 0, 1, or 2 because a face only has three edges.
+   * [edge] argument must be either `0`, `1`, or `2` because a face only has three edges.
    */
   public final fun getFaceEdge(idx: Int, edge: Int): Int {
     TransferContext.writeArguments(LONG to idx.toLong(), LONG to edge.toLong())

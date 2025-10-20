@@ -76,14 +76,25 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   /**
-   * If `true`, inverts the noise texture. White becomes black, black becomes white.
+   * The instance of the [Noise] object.
    */
-  public final inline var invert: Boolean
-    @JvmName("invertProperty")
-    get() = getInvert()
-    @JvmName("invertProperty")
+  public final inline var noise: Noise?
+    @JvmName("noiseProperty")
+    get() = getNoise()
+    @JvmName("noiseProperty")
     set(`value`) {
-      setInvert(value)
+      setNoise(value)
+    }
+
+  /**
+   * A [Gradient] which is used to map the luminance of each pixel to a color value.
+   */
+  public final inline var colorRamp: Gradient?
+    @JvmName("colorRampProperty")
+    get() = getColorRamp()
+    @JvmName("colorRampProperty")
+    set(`value`) {
+      setColorRamp(value)
     }
 
   /**
@@ -106,19 +117,14 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   /**
-   * Used for the default/fallback implementation of the seamless texture generation. It determines
-   * the distance over which the seams are blended. High values may result in less details and
-   * contrast. See [Noise] for further details.
-   *
-   * **Note:** If using a [width], [height] or [depth] lower than the default, you may need to
-   * increase [seamlessBlendSkirt] to make seamless blending more effective.
+   * If `true`, inverts the noise texture. White becomes black, black becomes white.
    */
-  public final inline var seamlessBlendSkirt: Float
-    @JvmName("seamlessBlendSkirtProperty")
-    get() = getSeamlessBlendSkirt()
-    @JvmName("seamlessBlendSkirtProperty")
+  public final inline var invert: Boolean
+    @JvmName("invertProperty")
+    get() = getInvert()
+    @JvmName("invertProperty")
     set(`value`) {
-      setSeamlessBlendSkirt(value)
+      setInvert(value)
     }
 
   /**
@@ -137,29 +143,23 @@ public open class NoiseTexture3D : Texture3D() {
     }
 
   /**
-   * A [Gradient] which is used to map the luminance of each pixel to a color value.
+   * Used for the default/fallback implementation of the seamless texture generation. It determines
+   * the distance over which the seams are blended. High values may result in less details and
+   * contrast. See [Noise] for further details.
+   *
+   * **Note:** If using a [width], [height] or [depth] lower than the default, you may need to
+   * increase [seamlessBlendSkirt] to make seamless blending more effective.
    */
-  public final inline var colorRamp: Gradient?
-    @JvmName("colorRampProperty")
-    get() = getColorRamp()
-    @JvmName("colorRampProperty")
+  public final inline var seamlessBlendSkirt: Float
+    @JvmName("seamlessBlendSkirtProperty")
+    get() = getSeamlessBlendSkirt()
+    @JvmName("seamlessBlendSkirtProperty")
     set(`value`) {
-      setColorRamp(value)
-    }
-
-  /**
-   * The instance of the [Noise] object.
-   */
-  public final inline var noise: Noise?
-    @JvmName("noiseProperty")
-    get() = getNoise()
-    @JvmName("noiseProperty")
-    set(`value`) {
-      setNoise(value)
+      setSeamlessBlendSkirt(value)
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(400, scriptIndex)
+    createNativeObject(409, scriptIndex)
   }
 
   public final fun setWidth(width: Int): Unit {
@@ -177,48 +177,15 @@ public open class NoiseTexture3D : Texture3D() {
     TransferContext.callMethod(ptr, MethodBindings.setDepthPtr, NIL)
   }
 
-  public final fun setInvert(invert: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to invert)
-    TransferContext.callMethod(ptr, MethodBindings.setInvertPtr, NIL)
+  public final fun setNoise(noise: Noise?): Unit {
+    TransferContext.writeArguments(OBJECT to noise)
+    TransferContext.callMethod(ptr, MethodBindings.setNoisePtr, NIL)
   }
 
-  public final fun getInvert(): Boolean {
+  public final fun getNoise(): Noise? {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getInvertPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  public final fun setSeamless(seamless: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to seamless)
-    TransferContext.callMethod(ptr, MethodBindings.setSeamlessPtr, NIL)
-  }
-
-  public final fun getSeamless(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSeamlessPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
-  }
-
-  public final fun setSeamlessBlendSkirt(seamlessBlendSkirt: Float): Unit {
-    TransferContext.writeArguments(DOUBLE to seamlessBlendSkirt.toDouble())
-    TransferContext.callMethod(ptr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
-  }
-
-  public final fun getSeamlessBlendSkirt(): Float {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
-    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
-  }
-
-  public final fun setNormalize(normalize: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to normalize)
-    TransferContext.callMethod(ptr, MethodBindings.setNormalizePtr, NIL)
-  }
-
-  public final fun isNormalized(): Boolean {
-    TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.isNormalizedPtr, BOOL)
-    return (TransferContext.readReturnValue(BOOL) as Boolean)
+    TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
+    return (TransferContext.readReturnValue(OBJECT) as Noise?)
   }
 
   public final fun setColorRamp(gradient: Gradient?): Unit {
@@ -232,15 +199,48 @@ public open class NoiseTexture3D : Texture3D() {
     return (TransferContext.readReturnValue(OBJECT) as Gradient?)
   }
 
-  public final fun setNoise(noise: Noise?): Unit {
-    TransferContext.writeArguments(OBJECT to noise)
-    TransferContext.callMethod(ptr, MethodBindings.setNoisePtr, NIL)
+  public final fun setSeamless(seamless: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to seamless)
+    TransferContext.callMethod(ptr, MethodBindings.setSeamlessPtr, NIL)
   }
 
-  public final fun getNoise(): Noise? {
+  public final fun getSeamless(): Boolean {
     TransferContext.writeArguments()
-    TransferContext.callMethod(ptr, MethodBindings.getNoisePtr, OBJECT)
-    return (TransferContext.readReturnValue(OBJECT) as Noise?)
+    TransferContext.callMethod(ptr, MethodBindings.getSeamlessPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setInvert(invert: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to invert)
+    TransferContext.callMethod(ptr, MethodBindings.setInvertPtr, NIL)
+  }
+
+  public final fun getInvert(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getInvertPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setNormalize(normalize: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to normalize)
+    TransferContext.callMethod(ptr, MethodBindings.setNormalizePtr, NIL)
+  }
+
+  public final fun isNormalized(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isNormalizedPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setSeamlessBlendSkirt(seamlessBlendSkirt: Float): Unit {
+    TransferContext.writeArguments(DOUBLE to seamlessBlendSkirt.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.setSeamlessBlendSkirtPtr, NIL)
+  }
+
+  public final fun getSeamlessBlendSkirt(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getSeamlessBlendSkirtPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
   /**
@@ -297,29 +297,11 @@ public open class NoiseTexture3D : Texture3D() {
     internal val setDepthPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture3D", "set_depth", 1286410249)
 
-    internal val setInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_invert", 2586408642)
+    internal val setNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_noise", 4135492439)
 
-    internal val getInvertPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_invert", 36873697)
-
-    internal val setSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless", 2586408642)
-
-    internal val getSeamlessPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless", 2240911060)
-
-    internal val setSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless_blend_skirt", 373806689)
-
-    internal val getSeamlessBlendSkirtPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless_blend_skirt", 191475506)
-
-    internal val setNormalizePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_normalize", 2586408642)
-
-    internal val isNormalizedPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "is_normalized", 36873697)
+    internal val getNoisePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_noise", 185851837)
 
     internal val setColorRampPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture3D", "set_color_ramp", 2756054477)
@@ -327,10 +309,28 @@ public open class NoiseTexture3D : Texture3D() {
     internal val getColorRampPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NoiseTexture3D", "get_color_ramp", 132272999)
 
-    internal val setNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_noise", 4135492439)
+    internal val setSeamlessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless", 2586408642)
 
-    internal val getNoisePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_noise", 185851837)
+    internal val getSeamlessPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless", 2240911060)
+
+    internal val setInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_invert", 2586408642)
+
+    internal val getInvertPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_invert", 36873697)
+
+    internal val setNormalizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_normalize", 2586408642)
+
+    internal val isNormalizedPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "is_normalized", 36873697)
+
+    internal val setSeamlessBlendSkirtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "set_seamless_blend_skirt", 373806689)
+
+    internal val getSeamlessBlendSkirtPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NoiseTexture3D", "get_seamless_blend_skirt", 191475506)
   }
 }

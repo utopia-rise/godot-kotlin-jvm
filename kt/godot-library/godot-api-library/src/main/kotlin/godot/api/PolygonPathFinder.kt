@@ -32,7 +32,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class PolygonPathFinder : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(500, scriptIndex)
+    createNativeObject(515, scriptIndex)
   }
 
   /**
@@ -54,9 +54,9 @@ public open class PolygonPathFinder : Resource() {
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [
-   *     new Vector2(0.0f, 0.0f),
-   *     new Vector2(1.0f, 0.0f),
-   *     new Vector2(0.0f, 1.0f)
+   * 	new Vector2(0.0f, 0.0f),
+   * 	new Vector2(1.0f, 0.0f),
+   * 	new Vector2(0.0f, 1.0f)
    * ];
    * int[] connections = [0, 1, 1, 2, 2, 0];
    * polygonPathFinder.Setup(points, connections);
@@ -103,9 +103,9 @@ public open class PolygonPathFinder : Resource() {
    * var polygonPathFinder = new PolygonPathFinder();
    * Vector2[] points =
    * [
-   *     new Vector2(0.0f, 0.0f),
-   *     new Vector2(1.0f, 0.0f),
-   *     new Vector2(0.0f, 1.0f)
+   * 	new Vector2(0.0f, 0.0f),
+   * 	new Vector2(1.0f, 0.0f),
+   * 	new Vector2(0.0f, 1.0f)
    * ];
    * int[] connections = [0, 1, 1, 2, 2, 0];
    * polygonPathFinder.Setup(points, connections);

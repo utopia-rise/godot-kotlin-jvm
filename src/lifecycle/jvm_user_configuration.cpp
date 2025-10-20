@@ -5,8 +5,8 @@
 bool JvmUserConfiguration::parse_configuration_json(const String& json_string, JvmUserConfiguration& json_config) {
     bool is_invalid = false;
     JSON json;
-    Error error {json.parse(json_string)};
-    Variant result {json.get_data()};
+    Error error = json.parse(json_string);
+    Variant result = json.get_data();
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
         JVM_ERR_FAIL_V_MSG(true, "Error parsing Godot Kotlin configuration file! Falling back to default configuration");

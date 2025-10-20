@@ -29,7 +29,7 @@ import kotlin.jvm.JvmName
 /**
  * [SkeletonModifier3D] retrieves a target [Skeleton3D] by having a [Skeleton3D] parent.
  *
- * If there is [AnimationMixer], modification always performs after playback process of the
+ * If there is an [AnimationMixer], a modification always performs after playback process of the
  * [AnimationMixer].
  *
  * This node should be used to implement custom IK solvers, constraints, or skeleton physics.
@@ -70,7 +70,20 @@ public open class SkeletonModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(605, scriptIndex)
+    createNativeObject(621, scriptIndex)
+  }
+
+  /**
+   * Override this virtual method to implement a custom skeleton modifier. You should do things like
+   * get the [Skeleton3D]'s current pose and apply the pose here.
+   *
+   * [_processModificationWithDelta] must not apply [influence] to bone poses because the
+   * [Skeleton3D] automatically applies influence to all bone poses set by the modifier.
+   *
+   * [delta] is passed from parent [Skeleton3D]. See also [Skeleton3D.advance].
+   */
+  public open fun _processModificationWithDelta(delta: Double): Unit {
+    throw NotImplementedError("SkeletonModifier3D::_processModificationWithDelta is not implemented.")
   }
 
   /**
@@ -82,6 +95,21 @@ public open class SkeletonModifier3D : Node3D() {
    */
   public open fun _processModification(): Unit {
     throw NotImplementedError("SkeletonModifier3D::_processModification is not implemented.")
+  }
+
+  /**
+   * Called when the skeleton is changed.
+   */
+  public open fun _skeletonChanged(oldSkeleton: Skeleton3D?, newSkeleton: Skeleton3D?): Unit {
+    throw NotImplementedError("SkeletonModifier3D::_skeletonChanged is not implemented.")
+  }
+
+  /**
+   * Called when bone name and index need to be validated such as the timing of the entering tree or
+   * changing skeleton.
+   */
+  public open fun _validateBoneNames(): Unit {
+    throw NotImplementedError("SkeletonModifier3D::_validateBoneNames is not implemented.")
   }
 
   /**

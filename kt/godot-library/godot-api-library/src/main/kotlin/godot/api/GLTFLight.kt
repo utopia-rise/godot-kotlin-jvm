@@ -40,7 +40,11 @@ import kotlin.jvm.JvmStatic
 @GodotBaseType
 public open class GLTFLight : Resource() {
   /**
-   * The [Color] of the light. Defaults to white. A black color causes the light to have no effect.
+   * The [Color] of the light in linear space. Defaults to white. A black color causes the light to
+   * have no effect.
+   *
+   * This value is linear to match glTF, but will be converted to nonlinear sRGB when creating a
+   * Godot [Light3D] node upon import, or converted to linear when exporting a Godot [Light3D] to glTF.
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -86,7 +90,7 @@ public open class GLTFLight : Resource() {
   /**
    * The range of the light, beyond which the light has no effect. glTF lights with no range defined
    * behave like physical lights (which have infinite range). When creating a Godot light, the range is
-   * clamped to 4096.
+   * clamped to `4096.0`.
    */
   public final inline var range: Float
     @JvmName("rangeProperty")
@@ -129,7 +133,7 @@ public open class GLTFLight : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(231, scriptIndex)
+    createNativeObject(238, scriptIndex)
   }
 
   /**
@@ -143,7 +147,11 @@ public open class GLTFLight : Resource() {
    * gltflight.color = myCoreType
    * ``````
    *
-   * The [Color] of the light. Defaults to white. A black color causes the light to have no effect.
+   * The [Color] of the light in linear space. Defaults to white. A black color causes the light to
+   * have no effect.
+   *
+   * This value is linear to match glTF, but will be converted to nonlinear sRGB when creating a
+   * Godot [Light3D] node upon import, or converted to linear when exporting a Godot [Light3D] to glTF.
    */
   @CoreTypeHelper
   public final fun colorMutate(block: Color.() -> Unit): Color = color.apply {

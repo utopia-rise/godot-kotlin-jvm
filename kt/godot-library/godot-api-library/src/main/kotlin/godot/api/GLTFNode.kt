@@ -119,7 +119,7 @@ public open class GLTFNode : Resource() {
 
   /**
    * If this glTF node is a camera, the index of the [GLTFCamera] in the [GLTFState] that describes
-   * the camera's properties. If -1, this node is not a camera.
+   * the camera's properties. If `-1`, this node is not a camera.
    */
   public final inline var camera: Int
     @JvmName("cameraProperty")
@@ -242,8 +242,21 @@ public open class GLTFNode : Resource() {
       setLight(value)
     }
 
+  /**
+   * If `true`, the GLTF node is visible. If `false`, the GLTF node is not visible. This is
+   * translated to the [Node3D.visible] property in the Godot scene, and is exported to
+   * `KHR_node_visibility` when `false`.
+   */
+  public final inline var visible: Boolean
+    @JvmName("visibleProperty")
+    get() = getVisible()
+    @JvmName("visibleProperty")
+    set(`value`) {
+      setVisible(value)
+    }
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(233, scriptIndex)
+    createNativeObject(240, scriptIndex)
   }
 
   /**
@@ -513,6 +526,17 @@ public open class GLTFNode : Resource() {
     TransferContext.callMethod(ptr, MethodBindings.setLightPtr, NIL)
   }
 
+  public final fun getVisible(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getVisiblePtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setVisible(visible: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to visible)
+    TransferContext.callMethod(ptr, MethodBindings.setVisiblePtr, NIL)
+  }
+
   /**
    * Gets additional arbitrary data in this [GLTFNode] instance. This can be used to keep per-node
    * state data in [GLTFDocumentExtension] classes, which is important because they are stateless.
@@ -660,6 +684,12 @@ public open class GLTFNode : Resource() {
 
     internal val setLightPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFNode", "set_light", 1286410249)
+
+    internal val getVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "get_visible", 2240911060)
+
+    internal val setVisiblePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("GLTFNode", "set_visible", 2586408642)
 
     internal val getAdditionalDataPtr: VoidPtr =
         TypeManager.getMethodBindPtr("GLTFNode", "get_additional_data", 2138907829)

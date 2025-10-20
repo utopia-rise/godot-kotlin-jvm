@@ -112,36 +112,30 @@ String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_t
     return {};
 }
 
-void GdjLanguage::get_reserved_words(List<String>* p_words) const {
-    static const char* _reserved_words[] = {// RESERVED KEYWORDS
-                                            "registeredName",
-                                            "fqName",
-                                            "relativeSourcePath ",
-                                            "baseType ",
-                                            "supertypes",
-                                            "signals",
-                                            "properties",
-                                            "functions",
-                                            nullptr
+Vector<String> GdjLanguage::get_reserved_words() const {
+    return {
+        "registeredName",
+        "fqName",
+        "relativeSourcePath ",
+        "baseType ",
+        "supertypes",
+        "signals",
+        "properties",
+        "functions"
     };
-    const char** w = _reserved_words;
-    while (*w) {
-        p_words->push_back(*w);
-        w++;
-    }
 }
 
 bool GdjLanguage::is_control_flow_keyword(const String& p_keyword) const {
     return false;
 }
 
-void GdjLanguage::get_comment_delimiters(List<String>* p_delimiters) const {
-    p_delimiters->push_back("//");
+Vector<String> GdjLanguage::get_comment_delimiters() const {
+    return {"//"};
 }
 
-void GdjLanguage::get_doc_comment_delimiters(List<String>* p_delimiters) const {}
+Vector<String> GdjLanguage::get_doc_comment_delimiters() const {return {};}
 
-void GdjLanguage::get_string_delimiters(List<String>* p_delimiters) const {}
+Vector<String> GdjLanguage::get_string_delimiters() const {return {};}
 
 Ref<Script> GdjLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {
     Ref<GdjScript> gdj_script;

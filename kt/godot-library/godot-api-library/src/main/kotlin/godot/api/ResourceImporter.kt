@@ -8,8 +8,11 @@ package godot.api
 
 import godot.`annotation`.GodotBaseType
 import godot.core.GodotEnum
+import godot.core.PackedStringArray
 import kotlin.Int
 import kotlin.Long
+import kotlin.NotImplementedError
+import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -20,7 +23,29 @@ import kotlin.Unit
 @GodotBaseType
 public open class ResourceImporter internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(555, scriptIndex)
+    createNativeObject(570, scriptIndex)
+  }
+
+  /**
+   * Called when the engine compilation profile editor wants to check what build options an imported
+   * resource needs. For example, [ResourceImporterDynamicFont] has a property called
+   * [ResourceImporterDynamicFont.multichannelSignedDistanceField], that depends on the engine to be
+   * build with the "msdfgen" module. If that resource happened to be a custom one, it would be handled
+   * like this:
+   *
+   * ```
+   * func _get_build_dependencies(path):
+   * 	var resource = load(path)
+   * 	var dependencies = PackedStringArray()
+   *
+   * 	if resource.multichannel_signed_distance_field:
+   * 		dependencies.push_back("module_msdfgen_enabled")
+   *
+   * 	return dependencies
+   * ```
+   */
+  public open fun _getBuildDependencies(path: String): PackedStringArray {
+    throw NotImplementedError("ResourceImporter::_getBuildDependencies is not implemented.")
   }
 
   public enum class ImportOrder(

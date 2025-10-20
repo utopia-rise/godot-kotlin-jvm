@@ -45,8 +45,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CharacterBody3D : PhysicsBody3D() {
   /**
-   * Sets the motion mode which defines the behavior of [moveAndSlide]. See [MotionMode] constants
-   * for available modes.
+   * Sets the motion mode which defines the behavior of [moveAndSlide].
    */
   public final inline var motionMode: MotionMode
     @JvmName("motionModeProperty")
@@ -94,6 +93,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
    *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
+   *
    * **Warning:**
    * Be careful when trying to modify a local
    * [copy](https://godot-kotl.in/en/stable/user-guide/api-differences/#core-types) obtained from this
@@ -112,7 +114,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Maximum number of times the body can change direction before it stops when calling
-   * [moveAndSlide].
+   * [moveAndSlide]. Must be greater than zero.
    */
   public final inline var maxSlides: Int
     @JvmName("maxSlidesProperty")
@@ -123,7 +125,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Minimum angle (in radians) where the body is allowed to slide when it encounters a slope. The
+   * Minimum angle (in radians) where the body is allowed to slide when it encounters a wall. The
    * default value equals 15 degrees. When [motionMode] is [MOTION_MODE_GROUNDED], it only affects
    * movement if [floorBlockOnWall] is `true`.
    */
@@ -209,8 +211,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
 
   /**
    * Sets the behavior to apply when you leave a moving platform. By default, to be physically
-   * accurate, when you leave the last platform velocity is applied. See [PlatformOnLeave] constants
-   * for available behavior.
+   * accurate, when you leave the last platform velocity is applied.
    */
   public final inline var platformOnLeave: PlatformOnLeave
     @JvmName("platformOnLeaveProperty")
@@ -267,7 +268,7 @@ public open class CharacterBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(147, scriptIndex)
+    createNativeObject(149, scriptIndex)
   }
 
   /**
@@ -305,6 +306,9 @@ public open class CharacterBody3D : PhysicsBody3D() {
    *
    * Current velocity vector (typically meters per second), used and modified during calls to
    * [moveAndSlide].
+   *
+   * This property should not be set to a value multiplied by `delta`, because this happens
+   * internally in [moveAndSlide]. Otherwise, the simulation will run at an incorrect speed.
    */
   @CoreTypeHelper
   public final fun velocityMutate(block: Vector3.() -> Unit): Vector3 = velocity.apply {
@@ -317,6 +321,10 @@ public open class CharacterBody3D : PhysicsBody3D() {
    * other body rather than stop immediately. If the other body is a [CharacterBody3D] or
    * [RigidBody3D], it will also be affected by the motion of the other body. You can use this to make
    * moving and rotating platforms, or to make nodes push other nodes.
+   *
+   * This method should be used in [Node.PhysicsProcess] (or in a method called by
+   * [Node.PhysicsProcess]), as it uses the physics step's `delta` value automatically in calculations.
+   * Otherwise, the simulation will run at an incorrect speed.
    *
    * Modifies [velocity] if a slide collision occurred. To get the latest collision call
    * [getLastSlideCollision], for more detailed information about collisions that occurred, use

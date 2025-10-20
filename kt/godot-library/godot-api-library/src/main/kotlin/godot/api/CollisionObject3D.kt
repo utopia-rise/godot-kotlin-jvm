@@ -76,7 +76,6 @@ public open class CollisionObject3D internal constructor() : Node3D() {
 
   /**
    * Defines the behavior in physics when [Node.processMode] is set to [Node.PROCESS_MODE_DISABLED].
-   * See [DisableMode] for more details about the different modes.
    */
   public final inline var disableMode: DisableMode
     @JvmName("disableModeProperty")
@@ -159,7 +158,7 @@ public open class CollisionObject3D internal constructor() : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(155, scriptIndex)
+    createNativeObject(157, scriptIndex)
   }
 
   /**

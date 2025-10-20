@@ -25,7 +25,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * [RDShaderSPIRV] represents a [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
+ * [RDShaderSPIRV] represents an [RDShaderFile]'s [url=https://www.khronos.org/spir/]SPIR-V[/url]
  * code for various shader stages, as well as possible compilation error messages. SPIR-V is a
  * low-level intermediate shader representation. This intermediate representation is not used directly
  * by GPUs for rendering, but it can be compiled into binary shaders that GPUs can understand. Unlike
@@ -191,7 +191,7 @@ public open class RDShaderSPIRV : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(523, scriptIndex)
+    createNativeObject(538, scriptIndex)
   }
 
   /**

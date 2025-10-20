@@ -84,7 +84,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   /**
-   * Controls the interpolation between animations. See [BlendMode] constants.
+   * Controls the interpolation between animations.
    */
   public final inline var blendMode: BlendMode
     @JvmName("blendModeProperty")
@@ -108,7 +108,7 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(21, scriptIndex)
+    createNativeObject(22, scriptIndex)
   }
 
   /**

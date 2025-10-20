@@ -50,12 +50,16 @@ import kotlin.jvm.JvmOverloads
  * useful for objects that can be interacted with in an environment, such as a tree that can be knocked
  * over or a stack of crates that can be pushed around.
  *
+ * If you need to directly affect the body, prefer [_integrateForces] as it allows you to directly
+ * access the physics state.
+ *
  * If you need to override the default physics behavior, you can write a custom force integration
  * function. See [customIntegrator].
  *
  * **Note:** Changing the 2D transform or [linearVelocity] of a [RigidBody2D] very often may lead to
- * some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as
- * it allows you to directly access the physics state.
+ * some unpredictable behaviors. This also happens when a [RigidBody2D] is the descendant of a
+ * constantly moving node, like another [RigidBody2D], as that will cause its global transform to be
+ * set whenever its ancestor moves.
  */
 @GodotBaseType
 public open class RigidBody2D : PhysicsBody2D() {
@@ -167,7 +171,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines the way the body's center of mass is set. See [CenterOfMassMode] for possible values.
+   * Defines the way the body's center of mass is set.
    */
   public final inline var centerOfMassMode: CenterOfMassMode
     @JvmName("centerOfMassModeProperty")
@@ -184,7 +188,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * causes angular acceleration.
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * mass is automatically determined, but this does not update the value of [centerOfMass].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -217,7 +221,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   *     return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
+   * 	return 1.0 / PhysicsServer2D.body_get_direct_state(ball.get_rid()).inverse_inertia
    * ```
    *
    * ```csharp
@@ -226,12 +230,12 @@ public open class RigidBody2D : PhysicsBody2D() {
    *
    * public override void _Ready()
    * {
-   *     _ball = GetNode<RigidBody2D>("Ball");
+   * 	_ball = GetNode<RigidBody2D>("Ball");
    * }
    *
    * private float GetBallInertia()
    * {
-   *     return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
+   * 	return 1.0f / PhysicsServer2D.BodyGetDirectState(_ball.GetRid()).InverseInertia;
    * }
    * ```
    */
@@ -293,8 +297,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See
-   * [FreezeMode] for possible values.
+   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled.
    *
    * For a body that is always frozen, use [StaticBody2D] or [AnimatableBody2D] instead.
    */
@@ -328,7 +331,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * Continuous collision detection tries to predict where a moving body will collide instead of
    * moving it and correcting its movement after collision. Continuous collision detection is slower,
    * but more precise and misses fewer collisions with small, fast-moving objects. Raycasting and
-   * shapecasting methods are available. See [CCDMode] for details.
+   * shapecasting methods are available.
    */
   public final inline var continuousCd: CCDMode
     @JvmName("continuousCdProperty")
@@ -391,7 +394,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
+   * Defines how [linearDamp] is applied.
    */
   public final inline var linearDampMode: DampMode
     @JvmName("linearDampModeProperty")
@@ -429,7 +432,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
+   * Defines how [angularDamp] is applied.
    */
   public final inline var angularDampMode: DampMode
     @JvmName("angularDampModeProperty")
@@ -490,7 +493,7 @@ public open class RigidBody2D : PhysicsBody2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(564, scriptIndex)
+    createNativeObject(579, scriptIndex)
   }
 
   /**
@@ -510,7 +513,7 @@ public open class RigidBody2D : PhysicsBody2D() {
    * causes angular acceleration.
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * mass is automatically determined, but this does not update the value of [centerOfMass].
    */
   @CoreTypeHelper
   public final fun centerOfMassMutate(block: Vector2.() -> Unit): Vector2 = centerOfMass.apply {

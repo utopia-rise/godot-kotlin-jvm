@@ -24,7 +24,7 @@ import kotlin.Unit
 import kotlin.jvm.JvmName
 
 /**
- * This node applies weights from a [XRFaceTracker] to a mesh with supporting face blend shapes.
+ * This node applies weights from an [XRFaceTracker] to a mesh with supporting face blend shapes.
  *
  * The
  * [url=https://docs.vrcft.io/docs/tutorial-avatars/tutorial-avatars-extras/unified-blendshapes]Unified
@@ -60,7 +60,7 @@ public open class XRFaceModifier3D : Node3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(864, scriptIndex)
+    createNativeObject(880, scriptIndex)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

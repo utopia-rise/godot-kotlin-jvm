@@ -30,8 +30,11 @@ import kotlin.jvm.JvmName
 /**
  * A 2D texture that obtains colors from a [Gradient] to fill the texture data. This texture is able
  * to transform a color transition into different patterns such as a linear or a radial gradient. The
- * gradient is sampled individually for each pixel so it does not necessarily represent an exact copy
- * of the gradient(see [width] and [height]). See also [GradientTexture1D], [CurveTexture] and
+ * texture is filled by interpolating colors starting from [fillFrom] to [fillTo] offsets by default,
+ * but the gradient fill can be repeated to cover the entire texture.
+ *
+ * The gradient is sampled individually for each pixel so it does not necessarily represent an exact
+ * copy of the gradient (see [width] and [height]). See also [GradientTexture1D], [CurveTexture] and
  * [CurveXYZTexture].
  */
 @GodotBaseType
@@ -86,8 +89,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient fill type, one of the [Fill] values. The texture is filled by interpolating colors
-   * starting from [fillFrom] to [fillTo] offsets.
+   * The gradient's fill type.
    */
   public final inline var fill: Fill
     @JvmName("fillProperty")
@@ -136,9 +138,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   /**
-   * The gradient repeat type, one of the [Repeat] values. The texture is filled starting from
-   * [fillFrom] to [fillTo] offsets by default, but the gradient fill can be repeated to cover the
-   * entire texture.
+   * The gradient's repeat type.
    */
   public final inline var repeat: Repeat
     @JvmName("repeatProperty")
@@ -149,7 +149,7 @@ public open class GradientTexture2D : Texture2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(261, scriptIndex)
+    createNativeObject(268, scriptIndex)
   }
 
   /**

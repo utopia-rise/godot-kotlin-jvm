@@ -216,7 +216,7 @@ public open class AnimationPlayer : AnimationMixer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(35, scriptIndex)
+    createNativeObject(36, scriptIndex)
   }
 
   /**
@@ -636,7 +636,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Resets the current section if section is set.
+   * Resets the current section. Does nothing if a section has not been set.
    */
   public final fun resetSection(): Unit {
     TransferContext.writeArguments()
@@ -662,7 +662,7 @@ public open class AnimationPlayer : AnimationMixer() {
   }
 
   /**
-   * Returns `true` if an animation is currently playing with section.
+   * Returns `true` if an animation is currently playing with a section.
    */
   public final fun hasSection(): Boolean {
     TransferContext.writeArguments()

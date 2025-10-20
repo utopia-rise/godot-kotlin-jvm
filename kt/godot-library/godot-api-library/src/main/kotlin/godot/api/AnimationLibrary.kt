@@ -59,7 +59,7 @@ public open class AnimationLibrary : Resource() {
   public val animationChanged: Signal1<StringName> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(13, scriptIndex)
+    createNativeObject(14, scriptIndex)
   }
 
   /**

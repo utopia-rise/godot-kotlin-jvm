@@ -91,8 +91,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   /**
-   * The light's color. An *overbright* color can be used to achieve a result equivalent to
-   * increasing the light's [lightEnergy].
+   * The light's color in the nonlinear sRGB color space. An *overbright* color can be used to
+   * achieve a result equivalent to increasing the light's [lightEnergy].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -244,7 +244,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   /**
    * The light's bake mode. This will affect the global illumination techniques that have an effect
-   * on the light's rendering. See [BakeMode].
+   * on the light's rendering.
    *
    * **Note:** Meshes' global illumination mode will also affect the global illumination rendering.
    * See [GeometryInstance3D.giMode].
@@ -259,6 +259,10 @@ public open class Light3D internal constructor() : VisualInstance3D() {
 
   /**
    * The light will affect objects in the selected layers.
+   *
+   * **Note:** The light cull mask is ignored by [VoxelGI], SDFGI, [LightmapGI], and volumetric fog.
+   * These will always render lights in a way that ignores the cull mask. See also
+   * [VisualInstance3D.layers].
    */
   public final inline var lightCullMask: Long
     @JvmName("lightCullMaskProperty")
@@ -438,7 +442,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(332, scriptIndex)
+    createNativeObject(339, scriptIndex)
   }
 
   /**
@@ -452,8 +456,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
    * light3d.lightColor = myCoreType
    * ``````
    *
-   * The light's color. An *overbright* color can be used to achieve a result equivalent to
-   * increasing the light's [lightEnergy].
+   * The light's color in the nonlinear sRGB color space. An *overbright* color can be used to
+   * achieve a result equivalent to increasing the light's [lightEnergy].
    */
   @CoreTypeHelper
   public final fun lightColorMutate(block: Color.() -> Unit): Color = lightColor.apply {
@@ -751,7 +755,7 @@ public open class Light3D internal constructor() : VisualInstance3D() {
     `value`: Long,
   ) : GodotEnum {
     /**
-     * Light is ignored when baking. This is the fastest mode, but the light will be taken into
+     * Light is ignored when baking. This is the fastest mode, but the light will not be taken into
      * account when baking global illumination. This mode should generally be used for dynamic lights
      * that change quickly, as the effect of global illumination is less noticeable on those lights.
      *

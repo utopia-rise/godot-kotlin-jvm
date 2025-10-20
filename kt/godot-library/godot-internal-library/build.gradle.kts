@@ -36,6 +36,8 @@ publishing {
             }
             artifactId = "godot-internal-library-$targetSuffix"
             description = "Contains internal utilities for the Godot kotlin libraries"
+
+            from(components["java"])
         }
     }
 }

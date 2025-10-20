@@ -27,7 +27,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeCubemap : VisualShaderNode() {
   /**
-   * Defines which source should be used for the sampling. See [Source] for options.
+   * Defines which source should be used for the sampling.
    */
   public final inline var source: Source
     @JvmName("sourceProperty")
@@ -49,7 +49,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   /**
-   * Defines the type of data provided by the source texture. See [TextureType] for options.
+   * Defines the type of data provided by the source texture.
    */
   public final inline var textureType: TextureType
     @JvmName("textureTypeProperty")
@@ -60,7 +60,7 @@ public open class VisualShaderNodeCubemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(739, scriptIndex)
+    createNativeObject(755, scriptIndex)
   }
 
   public final fun setSource(`value`: Source): Unit {

@@ -52,8 +52,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class CodeEdit : TextEdit() {
   /**
-   * Emitted when a breakpoint is added or removed from a line. If the line is moved via backspace a
-   * removed is emitted at the old line.
+   * Emitted when a breakpoint is added or removed from a line. If the line is removed via
+   * backspace, a signal is emitted at the old line.
    */
   public val breakpointToggled: Signal1<Long> by Signal1
 
@@ -98,7 +98,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   /**
-   * Set when a word is hovered, the [signal symbol_hovered] should be emitted.
+   * If `true`, the [signal symbol_hovered] signal is emitted when hovering over a word.
    */
   public final inline var symbolTooltipOnHover: Boolean
     @JvmName("symbolTooltipOnHoverProperty")
@@ -122,7 +122,7 @@ public open class CodeEdit : TextEdit() {
 
   /**
    * Draws vertical lines at the provided columns. The first entry is considered a main hard
-   * guideline and is draw more prominently.
+   * guideline and is drawn more prominently.
    */
   public final inline var lineLengthGuidelines: VariantArray<Long>
     @JvmName("lineLengthGuidelinesProperty")
@@ -340,7 +340,7 @@ public open class CodeEdit : TextEdit() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(152, scriptIndex)
+    createNativeObject(154, scriptIndex)
   }
 
   /**
@@ -362,7 +362,7 @@ public open class CodeEdit : TextEdit() {
   /**
    * Override this method to define what items in [candidates] should be displayed.
    *
-   * Both [candidates] and the return is a [Array] of [Dictionary], see [getCodeCompletionOption]
+   * Both [candidates] and the return is an [Array] of [Dictionary], see [getCodeCompletionOption]
    * for [Dictionary] content.
    */
   public open fun _filterCodeCompletionCandidates(candidates: VariantArray<Dictionary<Any?, Any?>>):

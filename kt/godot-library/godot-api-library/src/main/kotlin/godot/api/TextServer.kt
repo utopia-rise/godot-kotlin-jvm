@@ -49,6 +49,7 @@ import godot.core.Vector3i
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
+import kotlin.Float
 import kotlin.Int
 import kotlin.Long
 import kotlin.String
@@ -109,7 +110,7 @@ public infix fun Long.and(other: TextServer.FontStyle): Long = this.and(other.fl
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(659, scriptIndex)
+    createNativeObject(675, scriptIndex)
   }
 
   /**
@@ -288,7 +289,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the font style flags, see [FontStyle].
+   * Sets the font style flags.
    *
    * **Note:** This value is used for font matching only and will not affect font rendering. Use
    * [fontSetFaceIndex], [fontSetVariationCoordinates], [fontSetEmbolden], or [fontSetTransform]
@@ -300,7 +301,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font style flags, see [FontStyle].
+   * Returns font style flags.
    */
   public final fun fontGetStyle(fontRid: RID): FontStyle {
     TransferContext.writeArguments(_RID to fontRid)
@@ -568,6 +569,14 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Frees all automatically loaded system fonts.
+   */
+  public final fun fontClearSystemFallbackCache(): Unit {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.fontClearSystemFallbackCachePtr, NIL)
+  }
+
+  /**
    * If set to `true` auto-hinting is preferred over font built-in hinting.
    */
   public final fun fontSetForceAutohinter(fontRid: RID, forceAutohinter: Boolean): Unit {
@@ -582,6 +591,24 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontIsForceAutohinter(fontRid: RID): Boolean {
     TransferContext.writeArguments(_RID to fontRid)
     TransferContext.callMethod(ptr, MethodBindings.fontIsForceAutohinterPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * If set to `true`, color modulation is applied when drawing colored glyphs, otherwise it's
+   * applied to the monochrome glyphs only.
+   */
+  public final fun fontSetModulateColorGlyphs(fontRid: RID, forceAutohinter: Boolean): Unit {
+    TransferContext.writeArguments(_RID to fontRid, BOOL to forceAutohinter)
+    TransferContext.callMethod(ptr, MethodBindings.fontSetModulateColorGlyphsPtr, NIL)
+  }
+
+  /**
+   * Returns `true`, if color modulation is applied when drawing colored glyphs.
+   */
+  public final fun fontIsModulateColorGlyphs(fontRid: RID): Boolean {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontIsModulateColorGlyphsPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -661,8 +688,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets the spacing for [spacing] (see [TextServer.SpacingType]) to [value] in pixels (not
-   * relative to the font size).
+   * Sets the spacing for [spacing] to [value] in pixels (not relative to the font size).
    */
   public final fun fontSetSpacing(
     fontRid: RID,
@@ -674,8 +700,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the spacing for [spacing] (see [TextServer.SpacingType]) in pixels (not relative to the
-   * font size).
+   * Returns the spacing for [spacing] in pixels (not relative to the font size).
    */
   public final fun fontGetSpacing(fontRid: RID, spacing: SpacingType): Long {
     TransferContext.writeArguments(_RID to fontRid, LONG to spacing.value)
@@ -742,8 +767,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets font oversampling factor, if set to `0.0` global oversampling factor is used instead. Used
-   * by dynamic fonts only.
+   * If set to a positive value, overrides the oversampling factor of the viewport this font is used
+   * in. See [Viewport.oversampling]. This value doesn't override the [code
+   * skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code] methods. Used by dynamic
+   * fonts only.
    */
   public final fun fontSetOversampling(fontRid: RID, oversampling: Double): Unit {
     TransferContext.writeArguments(_RID to fontRid, DOUBLE to oversampling)
@@ -751,8 +778,10 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns font oversampling factor, if set to `0.0` global oversampling factor is used instead.
-   * Used by dynamic fonts only.
+   * Returns oversampling factor override. If set to a positive value, overrides the oversampling
+   * factor of the viewport this font is used in. See [Viewport.oversampling]. This value doesn't
+   * override the [code skip-lint]oversampling[/code] parameter of [code skip-lint]draw_*[/code]
+   * methods. Used by dynamic fonts only.
    */
   public final fun fontGetOversampling(fontRid: RID): Double {
     TransferContext.writeArguments(_RID to fontRid)
@@ -784,6 +813,18 @@ public open class TextServer internal constructor() : RefCounted() {
   public final fun fontRemoveSizeCache(fontRid: RID, size: Vector2i): Unit {
     TransferContext.writeArguments(_RID to fontRid, VECTOR2I to size)
     TransferContext.callMethod(ptr, MethodBindings.fontRemoveSizeCachePtr, NIL)
+  }
+
+  /**
+   * Returns font cache information, each entry contains the following fields: `Vector2i size_px` -
+   * font size in pixels, `float viewport_oversampling` - viewport oversampling factor, `int glyphs` -
+   * number of rendered glyphs, `int textures` - number of used textures, `int textures_size` - size of
+   * texture data in bytes.
+   */
+  public final fun fontGetSizeCacheInfo(fontRid: RID): VariantArray<Dictionary<Any?, Any?>> {
+    TransferContext.writeArguments(_RID to fontRid)
+    TransferContext.callMethod(ptr, MethodBindings.fontGetSizeCacheInfoPtr, ARRAY)
+    return (TransferContext.readReturnValue(ARRAY) as VariantArray<Dictionary<Any?, Any?>>)
   }
 
   /**
@@ -1350,7 +1391,9 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size].
+   * Draws single glyph into a canvas item at the position, using [fontRid] at the size [size]. If
+   * [oversampling] is greater than zero, it is used as font oversampling factor, otherwise viewport
+   * oversampling settings are used.
    *
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by
    * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
@@ -1366,14 +1409,16 @@ public open class TextServer internal constructor() : RefCounted() {
     pos: Vector2,
     index: Long,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color)
+    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, VECTOR2 to pos, LONG to index, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.fontDrawGlyphPtr, NIL)
   }
 
   /**
    * Draws single glyph outline of size [outlineSize] into a canvas item at the position, using
-   * [fontRid] at the size [size].
+   * [fontRid] at the size [size]. If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
    *
    * **Note:** Glyph index is specific to the font, use glyphs indices returned by
    * [shapedTextGetGlyphs] or [fontGetGlyphIndex].
@@ -1390,8 +1435,9 @@ public open class TextServer internal constructor() : RefCounted() {
     pos: Vector2,
     index: Long,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, LONG to outlineSize, VECTOR2 to pos, LONG to index, COLOR to color)
+    TransferContext.writeArguments(_RID to fontRid, _RID to canvas, LONG to size, LONG to outlineSize, VECTOR2 to pos, LONG to index, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.fontDrawGlyphOutlinePtr, NIL)
   }
 
@@ -1529,7 +1575,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Returns the font oversampling factor, shared by all fonts in the TextServer.
+   * Deprecated. This method always returns `1.0`.
    */
   public final fun fontGetGlobalOversampling(): Double {
     TransferContext.writeArguments()
@@ -1538,9 +1584,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Sets oversampling factor, shared by all font in the TextServer.
-   *
-   * **Note:** This value can be automatically changed by display server.
+   * Deprecated. This method does nothing.
    */
   public final fun fontSetGlobalOversampling(oversampling: Double): Unit {
     TransferContext.writeArguments(DOUBLE to oversampling)
@@ -1810,6 +1854,15 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns the text buffer source text, including object replacement characters.
+   */
+  public final fun shapedGetText(shaped: RID): String {
+    TransferContext.writeArguments(_RID to shaped)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
    * Returns number of text spans added using [shapedTextAddString] or [shapedTextAddObject].
    */
   public final fun shapedGetSpanCount(shaped: RID): Long {
@@ -1837,6 +1890,24 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
+   * Returns the text span source text.
+   */
+  public final fun shapedGetSpanText(shaped: RID, index: Long): String {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetSpanTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the text span embedded object key.
+   */
+  public final fun shapedGetSpanObject(shaped: RID, index: Long): Any? {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetSpanObjectPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
+  }
+
+  /**
    * Changes text span font, font size, and OpenType features, without changing the text.
    */
   @JvmOverloads
@@ -1849,6 +1920,78 @@ public open class TextServer internal constructor() : RefCounted() {
   ): Unit {
     TransferContext.writeArguments(_RID to shaped, LONG to index, ARRAY to fonts, LONG to size, DICTIONARY to opentypeFeatures)
     TransferContext.callMethod(ptr, MethodBindings.shapedSetSpanUpdateFontPtr, NIL)
+  }
+
+  /**
+   * Returns the number of uniform text runs in the buffer.
+   */
+  public final fun shapedGetRunCount(shaped: RID): Long {
+    TransferContext.writeArguments(_RID to shaped)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunCountPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the source text of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunText(shaped: RID, index: Long): String {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunTextPtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the source text range of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunRange(shaped: RID, index: Long): Vector2i {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunRangePtr, VECTOR2I)
+    return (TransferContext.readReturnValue(VECTOR2I) as Vector2i)
+  }
+
+  /**
+   * Returns the font RID of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunFontRid(shaped: RID, index: Long): RID {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunFontRidPtr, _RID)
+    return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Returns the font size of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunFontSize(shaped: RID, index: Long): Int {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunFontSizePtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  /**
+   * Returns the language of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunLanguage(shaped: RID, index: Long): String {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunLanguagePtr, STRING)
+    return (TransferContext.readReturnValue(STRING) as String)
+  }
+
+  /**
+   * Returns the direction of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunDirection(shaped: RID, index: Long): Direction {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunDirectionPtr, LONG)
+    return Direction.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * Returns the embedded object of the [index] text run (in visual order).
+   */
+  public final fun shapedGetRunObject(shaped: RID, index: Long): Any? {
+    TransferContext.writeArguments(_RID to shaped, LONG to index)
+    TransferContext.callMethod(ptr, MethodBindings.shapedGetRunObjectPtr, ANY)
+    return (TransferContext.readReturnValue(ANY) as Any?)
   }
 
   /**
@@ -1997,7 +2140,7 @@ public open class TextServer internal constructor() : RefCounted() {
 
   /**
    * Breaks text into words and returns array of character ranges. Use [graphemeFlags] to set what
-   * characters are used for breaking (see [GraphemeFlag]).
+   * characters are used for breaking.
    */
   @JvmOverloads
   public final fun shapedTextGetWordBreaks(
@@ -2266,7 +2409,12 @@ public open class TextServer internal constructor() : RefCounted() {
   /**
    * Draw shaped text into a canvas item at a given position, with [color]. [pos] specifies the
    * leftmost point of the baseline (for horizontal layout) or topmost point of the baseline (for
-   * vertical layout).
+   * vertical layout). If [oversampling] is greater than zero, it is used as font oversampling factor,
+   * otherwise viewport oversampling settings are used.
+   *
+   * [clipL] and [clipR] are offsets relative to [pos], going to the right in horizontal layout and
+   * downward in vertical layout. If [clipL] is not negative, glyphs starting before the offset are
+   * clipped. If [clipR] is not negative, glyphs ending after the offset are clipped.
    */
   @JvmOverloads
   public final fun shapedTextDraw(
@@ -2276,15 +2424,21 @@ public open class TextServer internal constructor() : RefCounted() {
     clipL: Double = -1.0,
     clipR: Double = -1.0,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, COLOR to color)
+    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.shapedTextDrawPtr, NIL)
   }
 
   /**
    * Draw the outline of the shaped text into a canvas item at a given position, with [color]. [pos]
    * specifies the leftmost point of the baseline (for horizontal layout) or topmost point of the
-   * baseline (for vertical layout).
+   * baseline (for vertical layout). If [oversampling] is greater than zero, it is used as font
+   * oversampling factor, otherwise viewport oversampling settings are used.
+   *
+   * [clipL] and [clipR] are offsets relative to [pos], going to the right in horizontal layout and
+   * downward in vertical layout. If [clipL] is not negative, glyphs starting before the offset are
+   * clipped. If [clipR] is not negative, glyphs ending after the offset are clipped.
    */
   @JvmOverloads
   public final fun shapedTextDrawOutline(
@@ -2295,8 +2449,9 @@ public open class TextServer internal constructor() : RefCounted() {
     clipR: Double = -1.0,
     outlineSize: Long = 1,
     color: Color = Color(Color(1, 1, 1, 1)),
+    oversampling: Float = 0.0f,
   ): Unit {
-    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, LONG to outlineSize, COLOR to color)
+    TransferContext.writeArguments(_RID to shaped, _RID to canvas, VECTOR2 to pos, DOUBLE to clipL, DOUBLE to clipR, LONG to outlineSize, COLOR to color, DOUBLE to oversampling.toDouble())
     TransferContext.callMethod(ptr, MethodBindings.shapedTextDrawOutlinePtr, NIL)
   }
 
@@ -2510,8 +2665,7 @@ public open class TextServer internal constructor() : RefCounted() {
   }
 
   /**
-   * Default implementation of the BiDi algorithm override function. See [StructuredTextParser] for
-   * more info.
+   * Default implementation of the BiDi algorithm override function.
    */
   public final fun parseStructuredText(
     parserType: StructuredTextParser,
@@ -2537,8 +2691,8 @@ public open class TextServer internal constructor() : RefCounted() {
     /**
      * Font glyphs are rasterized for LCD screens.
      *
-     * LCD subpixel layout is determined by the value of `gui/theme/lcd_subpixel_layout` project
-     * settings.
+     * LCD subpixel layout is determined by the value of the
+     * [ProjectSettings.gui/theme/lcdSubpixelLayout] setting.
      *
      * LCD subpixel anti-aliasing mode is suitable only for rendering horizontal, unscaled text in
      * 2D.
@@ -2846,6 +3000,24 @@ public open class TextServer internal constructor() : RefCounted() {
        */
       @JvmField
       public val BREAK_TRIM_INDENT: LineBreakFlag = LineBreakFlag(32)
+
+      /**
+       * Remove spaces and line break characters from the start of broken line segments.
+       *
+       * E.g, after line breaking, the second segment of the following text `test  \n  next`, is
+       * `next` if the flag is set, and `  next` if it is not.
+       */
+      @JvmField
+      public val BREAK_TRIM_START_EDGE_SPACES: LineBreakFlag = LineBreakFlag(64)
+
+      /**
+       * Remove spaces and line break characters from the end of broken line segments.
+       *
+       * E.g, after line breaking, the first segment of the following text `test  \n  next`, is
+       * `test` if the flag is set, and `test  \n` if it is not.
+       */
+      @JvmField
+      public val BREAK_TRIM_END_EDGE_SPACES: LineBreakFlag = LineBreakFlag(128)
     }
   }
 
@@ -2908,13 +3080,25 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     TRIM_WORD(2),
     /**
-     * Trims the text per character and adds an ellipsis to indicate that parts are hidden.
+     * Trims the text per character and adds an ellipsis to indicate that parts are hidden if
+     * trimmed text is 6 characters or longer.
      */
     TRIM_ELLIPSIS(3),
     /**
-     * Trims the text per word and adds an ellipsis to indicate that parts are hidden.
+     * Trims the text per word and adds an ellipsis to indicate that parts are hidden if trimmed
+     * text is 6 characters or longer.
      */
     TRIM_WORD_ELLIPSIS(4),
+    /**
+     * Trims the text per character and adds an ellipsis to indicate that parts are hidden
+     * regardless of trimmed text length.
+     */
+    TRIM_ELLIPSIS_FORCE(5),
+    /**
+     * Trims the text per word and adds an ellipsis to indicate that parts are hidden regardless of
+     * trimmed text length.
+     */
+    TRIM_WORD_ELLIPSIS_FORCE(6),
     ;
 
     public override val `value`: Long
@@ -3172,12 +3356,12 @@ public open class TextServer internal constructor() : RefCounted() {
      */
     ONE_QUARTER(3),
     /**
-     * Maximum font size which will use one half of the pixel subpixel positioning in
+     * Maximum font size which will use "one half of the pixel" subpixel positioning in
      * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
     ONE_HALF_MAX_SIZE(20),
     /**
-     * Maximum font size which will use one quarter of the pixel subpixel positioning in
+     * Maximum font size which will use "one quarter of the pixel" subpixel positioning in
      * [SUBPIXEL_POSITIONING_AUTO] mode.
      */
     ONE_QUARTER_MAX_SIZE(16),
@@ -3374,7 +3558,7 @@ public open class TextServer internal constructor() : RefCounted() {
       public val ITALIC: FontStyle = FontStyle(2)
 
       /**
-       * Font have fixed-width characters.
+       * Font has fixed-width characters (also known as monospace).
        */
       @JvmField
       public val FIXED_WIDTH: FontStyle = FontStyle(4)
@@ -3600,11 +3784,20 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val fontIsAllowSystemFallbackPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_is_allow_system_fallback", 4155700596)
 
+    internal val fontClearSystemFallbackCachePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_clear_system_fallback_cache", 3218959716)
+
     internal val fontSetForceAutohinterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_force_autohinter", 1265174801)
 
     internal val fontIsForceAutohinterPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_is_force_autohinter", 4155700596)
+
+    internal val fontSetModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_set_modulate_color_glyphs", 1265174801)
+
+    internal val fontIsModulateColorGlyphsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_is_modulate_color_glyphs", 4155700596)
 
     internal val fontSetHintingPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_hinting", 1520010864)
@@ -3668,6 +3861,9 @@ public open class TextServer internal constructor() : RefCounted() {
 
     internal val fontRemoveSizeCachePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_remove_size_cache", 2450610377)
+
+    internal val fontGetSizeCacheInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "font_get_size_cache_info", 2684255073)
 
     internal val fontSetAscentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_set_ascent", 1892459533)
@@ -3805,10 +4001,10 @@ public open class TextServer internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("TextServer", "font_render_glyph", 3810512262)
 
     internal val fontDrawGlyphPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServer", "font_draw_glyph", 1339057948)
+        TypeManager.getMethodBindPtr("TextServer", "font_draw_glyph", 3103234926)
 
     internal val fontDrawGlyphOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServer", "font_draw_glyph_outline", 2626165733)
+        TypeManager.getMethodBindPtr("TextServer", "font_draw_glyph_outline", 1976041553)
 
     internal val fontIsLanguageSupportedPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "font_is_language_supported", 3199320846)
@@ -3927,6 +4123,9 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val shapedTextResizeObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_resize_object", 790361552)
 
+    internal val shapedGetTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_text", 642473191)
+
     internal val shapedGetSpanCountPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_count", 2198884583)
 
@@ -3936,8 +4135,38 @@ public open class TextServer internal constructor() : RefCounted() {
     internal val shapedGetSpanEmbeddedObjectPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_embedded_object", 4069510997)
 
+    internal val shapedGetSpanTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_text", 1464764419)
+
+    internal val shapedGetSpanObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_span_object", 4069510997)
+
     internal val shapedSetSpanUpdateFontPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_set_span_update_font", 2022725822)
+
+    internal val shapedGetRunCountPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_count", 2198884583)
+
+    internal val shapedGetRunTextPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_text", 1464764419)
+
+    internal val shapedGetRunRangePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_range", 4069534484)
+
+    internal val shapedGetRunFontRidPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_font_rid", 1066463050)
+
+    internal val shapedGetRunFontSizePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_font_size", 1120910005)
+
+    internal val shapedGetRunLanguagePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_language", 1464764419)
+
+    internal val shapedGetRunDirectionPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_direction", 2413896864)
+
+    internal val shapedGetRunObjectPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("TextServer", "shaped_get_run_object", 4069510997)
 
     internal val shapedTextSubstrPtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_substr", 1937682086)
@@ -4060,10 +4289,10 @@ public open class TextServer internal constructor() : RefCounted() {
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_closest_character_pos", 1120910005)
 
     internal val shapedTextDrawPtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServer", "shaped_text_draw", 880389142)
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_draw", 1647687596)
 
     internal val shapedTextDrawOutlinePtr: VoidPtr =
-        TypeManager.getMethodBindPtr("TextServer", "shaped_text_draw_outline", 2559184194)
+        TypeManager.getMethodBindPtr("TextServer", "shaped_text_draw_outline", 1217146601)
 
     internal val shapedTextGetDominantDirectionInRangePtr: VoidPtr =
         TypeManager.getMethodBindPtr("TextServer", "shaped_text_get_dominant_direction_in_range", 3326907668)

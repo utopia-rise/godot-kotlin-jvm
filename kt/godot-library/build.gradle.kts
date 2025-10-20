@@ -64,6 +64,8 @@ publishing {
             }
             artifactId = "godot-library-$targetSuffix"
             description = "A library allowing to define scripts for the Godot Engine."
+
+            from(components["java"])
         }
     }
 }

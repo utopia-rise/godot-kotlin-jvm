@@ -73,7 +73,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The dialog's open or save mode, which affects the selection behavior. See [FileMode].
+   * The dialog's open or save mode, which affects the selection behavior.
    */
   public final inline var fileMode: FileMode
     @JvmName("fileModeProperty")
@@ -84,7 +84,18 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The file system access scope. See [Access] constants.
+   * Display mode of the dialog's file list.
+   */
+  public final inline var displayMode: DisplayMode
+    @JvmName("displayModeProperty")
+    get() = getDisplayMode()
+    @JvmName("displayModeProperty")
+    set(`value`) {
+      setDisplayMode(value)
+    }
+
+  /**
+   * The file system access scope.
    *
    * **Warning:** In Web builds, FileDialog cannot access the host file system. In sandboxed Linux
    * and macOS environments, [useNativeDialog] is automatically used to allow limited access to host
@@ -153,17 +164,6 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   /**
-   * The number of additional [OptionButton]s and [CheckBox]es in the dialog.
-   */
-  public final inline var optionCount: Int
-    @JvmName("optionCountProperty")
-    get() = getOptionCount()
-    @JvmName("optionCountProperty")
-    set(`value`) {
-      setOptionCount(value)
-    }
-
-  /**
    * If `true`, the dialog will show hidden files.
    *
    * **Note:** This property is ignored by native file dialogs on Android and Linux.
@@ -180,8 +180,9 @@ public open class FileDialog : ConfirmationDialog() {
    * If `true`, and if supported by the current [DisplayServer], OS native dialog will be used
    * instead of custom one.
    *
-   * **Note:** On Android, it is only supported when using [ACCESS_FILESYSTEM]. For access mode
-   * [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will fall back to custom FileDialog.
+   * **Note:** On Android, it is only supported for Android 10+ devices and when using
+   * [ACCESS_FILESYSTEM]. For access mode [ACCESS_RESOURCES] and [ACCESS_USERDATA], the system will
+   * fall back to custom FileDialog.
    *
    * **Note:** On Linux and macOS, sandboxed apps always use native dialogs to access the host file
    * system.
@@ -199,6 +200,95 @@ public open class FileDialog : ConfirmationDialog() {
     @JvmName("useNativeDialogProperty")
     set(`value`) {
       setUseNativeDialog(value)
+    }
+
+  /**
+   * The number of additional [OptionButton]s and [CheckBox]es in the dialog.
+   */
+  public final inline var optionCount: Int
+    @JvmName("optionCountProperty")
+    get() = getOptionCount()
+    @JvmName("optionCountProperty")
+    set(`value`) {
+      setOptionCount(value)
+    }
+
+  /**
+   * If `true`, shows the toggle hidden files button.
+   */
+  public final inline var hiddenFilesToggleEnabled: Boolean
+    @JvmName("hiddenFilesToggleEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.HIDDEN_FILES)
+    @JvmName("hiddenFilesToggleEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.HIDDEN_FILES, value)
+    }
+
+  /**
+   * If `true`, shows the toggle file filter button.
+   */
+  public final inline var fileFilterToggleEnabled: Boolean
+    @JvmName("fileFilterToggleEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.FILE_FILTER)
+    @JvmName("fileFilterToggleEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.FILE_FILTER, value)
+    }
+
+  /**
+   * If `true`, shows the file sorting options button.
+   */
+  public final inline var fileSortOptionsEnabled: Boolean
+    @JvmName("fileSortOptionsEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.FILE_SORT)
+    @JvmName("fileSortOptionsEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.FILE_SORT, value)
+    }
+
+  /**
+   * If `true`, shows the button for creating new directories (when using [FILE_MODE_OPEN_DIR],
+   * [FILE_MODE_OPEN_ANY], or [FILE_MODE_SAVE_FILE]).
+   */
+  public final inline var folderCreationEnabled: Boolean
+    @JvmName("folderCreationEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.CREATE_FOLDER)
+    @JvmName("folderCreationEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.CREATE_FOLDER, value)
+    }
+
+  /**
+   * If `true`, shows the toggle favorite button and favorite list on the left side of the dialog.
+   */
+  public final inline var favoritesEnabled: Boolean
+    @JvmName("favoritesEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.FAVORITES)
+    @JvmName("favoritesEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.FAVORITES, value)
+    }
+
+  /**
+   * If `true`, shows the recent directories list on the left side of the dialog.
+   */
+  public final inline var recentListEnabled: Boolean
+    @JvmName("recentListEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.RECENT)
+    @JvmName("recentListEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.RECENT, value)
+    }
+
+  /**
+   * If `true`, shows the layout switch buttons (list/thumbnails).
+   */
+  public final inline var layoutToggleEnabled: Boolean
+    @JvmName("layoutToggleEnabledProperty")
+    get() = isCustomizationFlagEnabled(FileDialog.Customization.LAYOUT)
+    @JvmName("layoutToggleEnabledProperty")
+    set(`value`) {
+      setCustomizationFlagEnabled(FileDialog.Customization.LAYOUT, value)
     }
 
   /**
@@ -238,7 +328,7 @@ public open class FileDialog : ConfirmationDialog() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(213, scriptIndex)
+    createNativeObject(218, scriptIndex)
   }
 
   /**
@@ -297,7 +387,7 @@ public open class FileDialog : ConfirmationDialog() {
   }
 
   /**
-   * Adds a comma-delimited file name [filter] option to the [FileDialog] with an optional
+   * Adds a comma-separated file name [filter] option to the [FileDialog] with an optional
    * [description], which restricts what files can be picked.
    *
    * A [filter] should be of the form `"filename.extension"`, where filename and extension can be
@@ -485,6 +575,17 @@ public open class FileDialog : ConfirmationDialog() {
     return FileMode.from(TransferContext.readReturnValue(LONG) as Long)
   }
 
+  public final fun setDisplayMode(mode: DisplayMode): Unit {
+    TransferContext.writeArguments(LONG to mode.value)
+    TransferContext.callMethod(ptr, MethodBindings.setDisplayModePtr, NIL)
+  }
+
+  public final fun getDisplayMode(): DisplayMode {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getDisplayModePtr, LONG)
+    return DisplayMode.from(TransferContext.readReturnValue(LONG) as Long)
+  }
+
   /**
    * Returns the vertical box container of the dialog, custom controls can be added to it.
    *
@@ -553,6 +654,24 @@ public open class FileDialog : ConfirmationDialog() {
   public final fun getUseNativeDialog(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getUseNativeDialogPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Toggles the specified customization [flag], allowing to customize features available in this
+   * [FileDialog]. See [Customization] for options.
+   */
+  public final fun setCustomizationFlagEnabled(flag: Customization, enabled: Boolean): Unit {
+    TransferContext.writeArguments(LONG to flag.value, BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.setCustomizationFlagEnabledPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the provided [flag] is enabled.
+   */
+  public final fun isCustomizationFlagEnabled(flag: Customization): Boolean {
+    TransferContext.writeArguments(LONG to flag.value)
+    TransferContext.callMethod(ptr, MethodBindings.isCustomizationFlagEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -633,6 +752,90 @@ public open class FileDialog : ConfirmationDialog() {
 
     public companion object {
       public fun from(`value`: Long): Access = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class DisplayMode(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The dialog displays files as a grid of thumbnails. Use [theme_item thumbnail_size] to adjust
+     * their size.
+     */
+    THUMBNAILS(0),
+    /**
+     * The dialog displays files as a list of filenames.
+     */
+    LIST(1),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): DisplayMode = entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class Customization(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Toggles visibility of the favorite button, and the favorite list on the left side of the
+     * dialog.
+     *
+     * Equivalent to [hiddenFilesToggleEnabled].
+     */
+    HIDDEN_FILES(0),
+    /**
+     * If enabled, shows the button for creating new directories (when using [FILE_MODE_OPEN_DIR],
+     * [FILE_MODE_OPEN_ANY], or [FILE_MODE_SAVE_FILE]).
+     *
+     * Equivalent to [folderCreationEnabled].
+     */
+    CREATE_FOLDER(1),
+    /**
+     * If enabled, shows the toggle file filter button.
+     *
+     * Equivalent to [fileFilterToggleEnabled].
+     */
+    FILE_FILTER(2),
+    /**
+     * If enabled, shows the file sorting options button.
+     *
+     * Equivalent to [fileSortOptionsEnabled].
+     */
+    FILE_SORT(3),
+    /**
+     * If enabled, shows the toggle favorite button and favorite list on the left side of the
+     * dialog.
+     *
+     * Equivalent to [favoritesEnabled].
+     */
+    FAVORITES(4),
+    /**
+     * If enabled, shows the recent directories list on the left side of the dialog.
+     *
+     * Equivalent to [recentListEnabled].
+     */
+    RECENT(5),
+    /**
+     * If enabled, shows the layout switch buttons (list/thumbnails).
+     *
+     * Equivalent to [layoutToggleEnabled].
+     */
+    LAYOUT(6),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): Customization = entries.single { it.`value` == `value` }
     }
   }
 
@@ -720,6 +923,12 @@ public open class FileDialog : ConfirmationDialog() {
     internal val getFileModePtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_file_mode", 4074825319)
 
+    internal val setDisplayModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_display_mode", 2692197101)
+
+    internal val getDisplayModePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "get_display_mode", 1092104624)
+
     internal val getVboxPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_vbox", 915758477)
 
@@ -749,6 +958,12 @@ public open class FileDialog : ConfirmationDialog() {
 
     internal val getUseNativeDialogPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "get_use_native_dialog", 36873697)
+
+    internal val setCustomizationFlagEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "set_customization_flag_enabled", 3849177100)
+
+    internal val isCustomizationFlagEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("FileDialog", "is_customization_flag_enabled", 3722277863)
 
     internal val deselectAllPtr: VoidPtr =
         TypeManager.getMethodBindPtr("FileDialog", "deselect_all", 3218959716)

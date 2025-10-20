@@ -43,16 +43,16 @@ import kotlin.jvm.JvmOverloads
  * var expression = Expression.new()
  *
  * func _ready():
- *     $LineEdit.text_submitted.connect(self._on_text_submitted)
+ * 	$LineEdit.text_submitted.connect(self._on_text_submitted)
  *
  * func _on_text_submitted(command):
- *     var error = expression.parse(command)
- *     if error != OK:
- *         print(expression.get_error_text())
- *         return
- *     var result = expression.execute()
- *     if not expression.has_execute_failed():
- *         $LineEdit.text = str(result)
+ * 	var error = expression.parse(command)
+ * 	if error != OK:
+ * 		print(expression.get_error_text())
+ * 		return
+ * 	var result = expression.execute()
+ * 	if not expression.has_execute_failed():
+ * 		$LineEdit.text = str(result)
  * ```
  *
  * ```csharp
@@ -61,29 +61,29 @@ import kotlin.jvm.JvmOverloads
  *
  * public override void _Ready()
  * {
- *     GetNode<LineEdit>("LineEdit").TextSubmitted += OnTextEntered;
+ * 	GetNode<LineEdit>("LineEdit").TextSubmitted += OnTextEntered;
  * }
  *
  * private void OnTextEntered(string command)
  * {
- *     Error error = _expression.Parse(command);
- *     if (error != Error.Ok)
- *     {
- *         GD.Print(_expression.GetErrorText());
- *         return;
- *     }
- *     Variant result = _expression.Execute();
- *     if (!_expression.HasExecuteFailed())
- *     {
- *         GetNode<LineEdit>("LineEdit").Text = result.ToString();
- *     }
+ * 	Error error = _expression.Parse(command);
+ * 	if (error != Error.Ok)
+ * 	{
+ * 		GD.Print(_expression.GetErrorText());
+ * 		return;
+ * 	}
+ * 	Variant result = _expression.Execute();
+ * 	if (!_expression.HasExecuteFailed())
+ * 	{
+ * 		GetNode<LineEdit>("LineEdit").Text = result.ToString();
+ * 	}
  * }
  * ```
  */
 @GodotBaseType
 public open class Expression : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(207, scriptIndex)
+    createNativeObject(212, scriptIndex)
   }
 
   /**

@@ -44,9 +44,11 @@ import kotlin.jvm.JvmName
  * [Node2D] and change the transform of the canvas by setting [Viewport.canvasTransform] in [Viewport]
  * (you can obtain the current [Viewport] by using [Node.getViewport]).
  *
- * Note that the [Camera2D] node's `position` doesn't represent the actual position of the screen,
- * which may differ due to applied smoothing or limits. You can use [getScreenCenterPosition] to get
- * the real position.
+ * Note that the [Camera2D] node's [Node2D.globalPosition] doesn't represent the actual position of
+ * the screen, which may differ due to applied smoothing or limits. You can use
+ * [getScreenCenterPosition] to get the real position. Same for the node's [Node2D.globalRotation]
+ * which may be different due to applied rotation smoothing. You can use [getScreenRotation] to get the
+ * current rotation of the screen.
  */
 @GodotBaseType
 public open class Camera2D : Node2D() {
@@ -72,7 +74,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The Camera2D's anchor point. See [AnchorMode] constants.
+   * The Camera2D's anchor point.
    */
   public final inline var anchorMode: AnchorMode
     @JvmName("anchorModeProperty")
@@ -111,8 +113,11 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
-   * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   * The camera's zoom. Higher values are more zoomed in. For example, a zoom of `Vector2(2.0, 2.0)`
+   * will be twice as zoomed in on each axis (the view covers an area four times smaller). In contrast,
+   * a zoom of `Vector2(0.5, 0.5)` will be twice as zoomed out on each axis (the view covers an area
+   * four times larger). The X and Y components should generally always be set to the same value,
+   * unless you wish to stretch the camera view.
    *
    * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
    * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
@@ -152,7 +157,7 @@ public open class Camera2D : Node2D() {
     }
 
   /**
-   * The camera's process callback. See [Camera2DProcessCallback].
+   * The camera's process callback.
    */
   public final inline var processCallback: Camera2DProcessCallback
     @JvmName("processCallbackProperty")
@@ -160,6 +165,18 @@ public open class Camera2D : Node2D() {
     @JvmName("processCallbackProperty")
     set(`value`) {
       setProcessCallback(value)
+    }
+
+  /**
+   * If `true`, the limits will be enabled. Disabling this will allow the camera to focus anywhere,
+   * when the four `limit_*` properties will not work.
+   */
+  public final inline var limitEnabled: Boolean
+    @JvmName("limitEnabledProperty")
+    get() = isLimitEnabled()
+    @JvmName("limitEnabledProperty")
+    set(`value`) {
+      setLimitEnabled(value)
     }
 
   /**
@@ -414,7 +431,7 @@ public open class Camera2D : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(127, scriptIndex)
+    createNativeObject(129, scriptIndex)
   }
 
   /**
@@ -449,8 +466,11 @@ public open class Camera2D : Node2D() {
    * camera2d.zoom = myCoreType
    * ``````
    *
-   * The camera's zoom. A zoom of `Vector(2, 2)` doubles the size seen in the viewport. A zoom of
-   * `Vector(0.5, 0.5)` halves the size seen in the viewport.
+   * The camera's zoom. Higher values are more zoomed in. For example, a zoom of `Vector2(2.0, 2.0)`
+   * will be twice as zoomed in on each axis (the view covers an area four times smaller). In contrast,
+   * a zoom of `Vector2(0.5, 0.5)` will be twice as zoomed out on each axis (the view covers an area
+   * four times larger). The X and Y components should generally always be set to the same value,
+   * unless you wish to stretch the camera view.
    *
    * **Note:** [FontFile.oversampling] does *not* take [Camera2D] zoom into account. This means that
    * zooming in/out will cause bitmap fonts and rasterized (non-MSDF) dynamic fonts to appear blurry or
@@ -536,6 +556,17 @@ public open class Camera2D : Node2D() {
   public final fun isCurrent(): Boolean {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.isCurrentPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  public final fun setLimitEnabled(limitEnabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to limitEnabled)
+    TransferContext.callMethod(ptr, MethodBindings.setLimitEnabledPtr, NIL)
+  }
+
+  public final fun isLimitEnabled(): Boolean {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.isLimitEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
@@ -656,6 +687,18 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(VECTOR2) as Vector2)
   }
 
+  /**
+   * Returns the current screen rotation from this camera's point of view.
+   *
+   * **Note:** The screen rotation can be different from [Node2D.globalRotation] if the camera is
+   * rotating smoothly due to [rotationSmoothingEnabled].
+   */
+  public final fun getScreenRotation(): Float {
+    TransferContext.writeArguments()
+    TransferContext.callMethod(ptr, MethodBindings.getScreenRotationPtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
   public final fun setZoom(zoom: Vector2): Unit {
     TransferContext.writeArguments(VECTOR2 to zoom)
     TransferContext.callMethod(ptr, MethodBindings.setZoomPtr, NIL)
@@ -689,8 +732,8 @@ public open class Camera2D : Node2D() {
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
-  public final fun setPositionSmoothingEnabled(positionSmoothingSpeed: Boolean): Unit {
-    TransferContext.writeArguments(BOOL to positionSmoothingSpeed)
+  public final fun setPositionSmoothingEnabled(enabled: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to enabled)
     TransferContext.callMethod(ptr, MethodBindings.setPositionSmoothingEnabledPtr, NIL)
   }
 
@@ -867,6 +910,12 @@ public open class Camera2D : Node2D() {
     internal val isCurrentPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera2D", "is_current", 36873697)
 
+    internal val setLimitEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "set_limit_enabled", 2586408642)
+
+    internal val isLimitEnabledPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "is_limit_enabled", 36873697)
+
     internal val setLimitPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera2D", "set_limit", 437707142)
 
@@ -914,6 +963,9 @@ public open class Camera2D : Node2D() {
 
     internal val getScreenCenterPositionPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera2D", "get_screen_center_position", 3341600327)
+
+    internal val getScreenRotationPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("Camera2D", "get_screen_rotation", 1740695150)
 
     internal val setZoomPtr: VoidPtr =
         TypeManager.getMethodBindPtr("Camera2D", "set_zoom", 743155724)

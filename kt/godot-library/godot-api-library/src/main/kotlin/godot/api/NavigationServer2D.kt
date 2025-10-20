@@ -11,6 +11,7 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.Callable
+import godot.core.GodotEnum
 import godot.core.PackedVector2Array
 import godot.core.RID
 import godot.core.Rect2
@@ -84,6 +85,12 @@ public object NavigationServer2D : Object() {
   @JvmStatic
   public val navigationDebugChanged: Signal0 by Signal0
 
+  /**
+   * Emitted when avoidance debug settings are changed. Only available in debug builds.
+   */
+  @JvmStatic
+  public val avoidanceDebugChanged: Signal0 by Signal0
+
   public override fun new(scriptIndex: Int): Unit {
     getSingleton(17)
   }
@@ -145,6 +152,25 @@ public object NavigationServer2D : Object() {
   public final fun mapGetCellSize(map: RID): Float {
     TransferContext.writeArguments(_RID to map)
     TransferContext.callMethod(ptr, MethodBindings.mapGetCellSizePtr, DOUBLE)
+    return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
+  }
+
+  /**
+   * Set the map's internal merge rasterizer cell scale used to control merging sensitivity.
+   */
+  @JvmStatic
+  public final fun mapSetMergeRasterizerCellScale(map: RID, scale: Float): Unit {
+    TransferContext.writeArguments(_RID to map, DOUBLE to scale.toDouble())
+    TransferContext.callMethod(ptr, MethodBindings.mapSetMergeRasterizerCellScalePtr, NIL)
+  }
+
+  /**
+   * Returns map's internal merge rasterizer cell scale.
+   */
+  @JvmStatic
+  public final fun mapGetMergeRasterizerCellScale(map: RID): Float {
+    TransferContext.writeArguments(_RID to map)
+    TransferContext.callMethod(ptr, MethodBindings.mapGetMergeRasterizerCellScalePtr, DOUBLE)
     return (TransferContext.readReturnValue(DOUBLE) as Double).toFloat()
   }
 
@@ -404,6 +430,41 @@ public object NavigationServer2D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.regionCreatePtr, _RID)
     return (TransferContext.readReturnValue(_RID) as RID)
+  }
+
+  /**
+   * Returns the current iteration ID of the navigation region. Every time the navigation region
+   * changes and synchronizes, the iteration ID increases. An iteration ID of `0` means the navigation
+   * region has never synchronized.
+   *
+   * **Note:** The iteration ID will wrap around to `1` after reaching its range limit.
+   */
+  @JvmStatic
+  public final fun regionGetIterationId(region: RID): Long {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetIterationIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
+   * If [enabled] is `true` the [region] uses an async synchronization process that runs on a
+   * background thread.
+   */
+  @JvmStatic
+  public final fun regionSetUseAsyncIterations(region: RID, enabled: Boolean): Unit {
+    TransferContext.writeArguments(_RID to region, BOOL to enabled)
+    TransferContext.callMethod(ptr, MethodBindings.regionSetUseAsyncIterationsPtr, NIL)
+  }
+
+  /**
+   * Returns `true` if the [region] uses an async synchronization process that runs on a background
+   * thread.
+   */
+  @JvmStatic
+  public final fun regionGetUseAsyncIterations(region: RID): Boolean {
+    TransferContext.writeArguments(_RID to region)
+    TransferContext.callMethod(ptr, MethodBindings.regionGetUseAsyncIterationsPtr, BOOL)
+    return (TransferContext.readReturnValue(BOOL) as Boolean)
   }
 
   /**
@@ -675,6 +736,20 @@ public object NavigationServer2D : Object() {
   }
 
   /**
+   * Returns the current iteration ID of the navigation link. Every time the navigation link changes
+   * and synchronizes, the iteration ID increases. An iteration ID of `0` means the navigation link has
+   * never synchronized.
+   *
+   * **Note:** The iteration ID will wrap around to `1` after reaching its range limit.
+   */
+  @JvmStatic
+  public final fun linkGetIterationId(link: RID): Long {
+    TransferContext.writeArguments(_RID to link)
+    TransferContext.callMethod(ptr, MethodBindings.linkGetIterationIdPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long)
+  }
+
+  /**
    * Sets the navigation map [RID] for the link.
    */
   @JvmStatic
@@ -895,8 +970,8 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [paused] is `true` the specified [agent] will not be processed, e.g. calculate avoidance
-   * velocities or receive avoidance callbacks.
+   * If [paused] is `true` the specified [agent] will not be processed. For example, it will not
+   * calculate avoidance velocities or receive avoidance callbacks.
    */
   @JvmStatic
   public final fun agentSetPaused(agent: RID, paused: Boolean): Unit {
@@ -1241,8 +1316,8 @@ public object NavigationServer2D : Object() {
   }
 
   /**
-   * If [paused] is `true` the specified [obstacle] will not be processed, e.g. affect avoidance
-   * velocities.
+   * If [paused] is `true` the specified [obstacle] will not be processed. For example, it will no
+   * longer affect avoidance velocities.
    */
   @JvmStatic
   public final fun obstacleSetPaused(obstacle: RID, paused: Boolean): Unit {
@@ -1480,6 +1555,15 @@ public object NavigationServer2D : Object() {
   }
 
   /**
+   * Control activation of this server.
+   */
+  @JvmStatic
+  public final fun setActive(active: Boolean): Unit {
+    TransferContext.writeArguments(BOOL to active)
+    TransferContext.callMethod(ptr, MethodBindings.setActivePtr, NIL)
+  }
+
+  /**
    * If `true` enables debug mode on the NavigationServer.
    */
   @JvmStatic
@@ -1496,6 +1580,74 @@ public object NavigationServer2D : Object() {
     TransferContext.writeArguments()
     TransferContext.callMethod(ptr, MethodBindings.getDebugEnabledPtr, BOOL)
     return (TransferContext.readReturnValue(BOOL) as Boolean)
+  }
+
+  /**
+   * Returns information about the current state of the NavigationServer.
+   */
+  @JvmStatic
+  public final fun getProcessInfo(processInfo: ProcessInfo): Int {
+    TransferContext.writeArguments(LONG to processInfo.value)
+    TransferContext.callMethod(ptr, MethodBindings.getProcessInfoPtr, LONG)
+    return (TransferContext.readReturnValue(LONG) as Long).toInt()
+  }
+
+  public enum class ProcessInfo(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * Constant to get the number of active navigation maps.
+     */
+    INFO_ACTIVE_MAPS(0),
+    /**
+     * Constant to get the number of active navigation regions.
+     */
+    INFO_REGION_COUNT(1),
+    /**
+     * Constant to get the number of active navigation agents processing avoidance.
+     */
+    INFO_AGENT_COUNT(2),
+    /**
+     * Constant to get the number of active navigation links.
+     */
+    INFO_LINK_COUNT(3),
+    /**
+     * Constant to get the number of navigation mesh polygons.
+     */
+    INFO_POLYGON_COUNT(4),
+    /**
+     * Constant to get the number of navigation mesh polygon edges.
+     */
+    INFO_EDGE_COUNT(5),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that were merged due to edge key
+     * overlap.
+     */
+    INFO_EDGE_MERGE_COUNT(6),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that are considered connected by
+     * edge proximity.
+     */
+    INFO_EDGE_CONNECTION_COUNT(7),
+    /**
+     * Constant to get the number of navigation mesh polygon edges that could not be merged but may
+     * be still connected by edge proximity or with links.
+     */
+    INFO_EDGE_FREE_COUNT(8),
+    /**
+     * Constant to get the number of active navigation obstacles.
+     */
+    INFO_OBSTACLE_COUNT(9),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): ProcessInfo = entries.single { it.`value` == `value` }
+    }
   }
 
   public object MethodBindings {
@@ -1516,6 +1668,12 @@ public object NavigationServer2D : Object() {
 
     internal val mapGetCellSizePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_cell_size", 866169185)
+
+    internal val mapSetMergeRasterizerCellScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "map_set_merge_rasterizer_cell_scale", 1794382983)
+
+    internal val mapGetMergeRasterizerCellScalePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "map_get_merge_rasterizer_cell_scale", 866169185)
 
     internal val mapSetUseEdgeConnectionsPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "map_set_use_edge_connections", 1265174801)
@@ -1576,6 +1734,15 @@ public object NavigationServer2D : Object() {
 
     internal val regionCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_create", 529393457)
+
+    internal val regionGetIterationIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_iteration_id", 2198884583)
+
+    internal val regionSetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_use_async_iterations", 1265174801)
+
+    internal val regionGetUseAsyncIterationsPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "region_get_use_async_iterations", 4155700596)
 
     internal val regionSetEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "region_set_enabled", 1265174801)
@@ -1651,6 +1818,9 @@ public object NavigationServer2D : Object() {
 
     internal val linkCreatePtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_create", 529393457)
+
+    internal val linkGetIterationIdPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "link_get_iteration_id", 2198884583)
 
     internal val linkSetMapPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "link_set_map", 395945892)
@@ -1880,10 +2050,16 @@ public object NavigationServer2D : Object() {
     internal val freeRidPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "free_rid", 2722037293)
 
+    internal val setActivePtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "set_active", 2586408642)
+
     internal val setDebugEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "set_debug_enabled", 2586408642)
 
     internal val getDebugEnabledPtr: VoidPtr =
         TypeManager.getMethodBindPtr("NavigationServer2D", "get_debug_enabled", 36873697)
+
+    internal val getProcessInfoPtr: VoidPtr =
+        TypeManager.getMethodBindPtr("NavigationServer2D", "get_process_info", 1640219858)
   }
 }

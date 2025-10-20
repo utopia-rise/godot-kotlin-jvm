@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeColorFunc : VisualShaderNode() {
   /**
-   * A function to be applied to the input color. See [Function] for options.
+   * A function to be applied to the input color.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeColorFunc : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(733, scriptIndex)
+    createNativeObject(749, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

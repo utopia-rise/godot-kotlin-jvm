@@ -133,7 +133,7 @@ public open class TileMap : Node2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(682, scriptIndex)
+    createNativeObject(698, scriptIndex)
   }
 
   /**
@@ -586,12 +586,12 @@ public open class TileMap : Node2D() {
    *
    * ```
    * func get_clicked_tile_power():
-   *     var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
-   *     var data = tile_map.get_cell_tile_data(0, clicked_cell)
-   *     if data:
-   *         return data.get_custom_data("power")
-   *     else:
-   *         return 0
+   * 	var clicked_cell = tile_map.local_to_map(tile_map.get_local_mouse_position())
+   * 	var data = tile_map.get_cell_tile_data(0, clicked_cell)
+   * 	if data:
+   * 		return data.get_custom_data("power")
+   * 	else:
+   * 		return 0
    * ```
    *
    * If [useProxies] is `false`, ignores the [TileSet]'s tile proxies. See [TileSet.mapTileProxy].

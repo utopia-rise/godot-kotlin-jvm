@@ -25,7 +25,7 @@ import kotlin.jvm.JvmName
 @GodotBaseType
 public open class VisualShaderNodeIs : VisualShaderNode() {
   /**
-   * The comparison function. See [Function] for options.
+   * The comparison function.
    */
   public final inline var function: Function
     @JvmName("functionProperty")
@@ -36,7 +36,7 @@ public open class VisualShaderNodeIs : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(764, scriptIndex)
+    createNativeObject(780, scriptIndex)
   }
 
   public final fun setFunction(func: Function): Unit {

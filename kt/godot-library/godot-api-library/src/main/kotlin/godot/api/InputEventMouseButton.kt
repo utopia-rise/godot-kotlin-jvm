@@ -93,7 +93,7 @@ public open class InputEventMouseButton : InputEventMouse() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(302, scriptIndex)
+    createNativeObject(309, scriptIndex)
   }
 
   public final fun setFactor(factor: Float): Unit {

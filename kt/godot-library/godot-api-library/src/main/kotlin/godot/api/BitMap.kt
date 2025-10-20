@@ -37,7 +37,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class BitMap : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+    createNativeObject(106, scriptIndex)
   }
 
   /**
@@ -143,7 +143,7 @@ public open class BitMap : Resource() {
   }
 
   /**
-   * Returns an image of the same size as the bitmap and with a [Image.Format] of type
+   * Returns an image of the same size as the bitmap and with an [Image.Format] of type
    * [Image.FORMAT_L8]. `true` bits of the bitmap are being converted into white pixels, and `false`
    * bits into black.
    */

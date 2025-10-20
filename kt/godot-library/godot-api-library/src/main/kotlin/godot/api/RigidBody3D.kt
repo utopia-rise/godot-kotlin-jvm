@@ -52,12 +52,16 @@ import kotlin.jvm.JvmOverloads
  * useful for objects that can be interacted with in an environment, such as a tree that can be knocked
  * over or a stack of crates that can be pushed around.
  *
+ * If you need to directly affect the body, prefer [_integrateForces] as it allows you to directly
+ * access the physics state.
+ *
  * If you need to override the default physics behavior, you can write a custom force integration
  * function. See [customIntegrator].
  *
  * **Note:** Changing the 3D transform or [linearVelocity] of a [RigidBody3D] very often may lead to
- * some unpredictable behaviors. If you need to directly affect the body, prefer [_integrateForces] as
- * it allows you to directly access the physics state.
+ * some unpredictable behaviors. This also happens when a [RigidBody3D] is the descendant of a
+ * constantly moving node, like another [RigidBody3D], as that will cause its global transform to be
+ * set whenever its ancestor moves.
  */
 @GodotBaseType
 public open class RigidBody3D : PhysicsBody3D() {
@@ -169,7 +173,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines the way the body's center of mass is set. See [CenterOfMassMode] for possible values.
+   * Defines the way the body's center of mass is set.
    */
   public final inline var centerOfMassMode: CenterOfMassMode
     @JvmName("centerOfMassModeProperty")
@@ -186,7 +190,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * causes angular acceleration.
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * mass is automatically determined, but this does not update the value of [centerOfMass].
    *
    * **Warning:**
    * Be careful when trying to modify a local
@@ -219,7 +223,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   *     return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   * 	return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
    * ```
    *
    * ```csharp
@@ -228,12 +232,12 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * public override void _Ready()
    * {
-   *     _ball = GetNode<RigidBody3D>("Ball");
+   * 	_ball = GetNode<RigidBody3D>("Ball");
    * }
    *
    * private Vector3 GetBallInertia()
    * {
-   *     return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   * 	return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
    * }
    * ```
    *
@@ -305,8 +309,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled. See
-   * [FreezeMode] for possible values.
+   * The body's freeze mode. Can be used to set the body's behavior when [freeze] is enabled.
    *
    * For a body that is always frozen, use [StaticBody3D] or [AnimatableBody3D] instead.
    */
@@ -403,7 +406,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [linearDamp] is applied. See [DampMode] for possible values.
+   * Defines how [linearDamp] is applied.
    */
   public final inline var linearDampMode: DampMode
     @JvmName("linearDampModeProperty")
@@ -449,7 +452,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   /**
-   * Defines how [angularDamp] is applied. See [DampMode] for possible values.
+   * Defines how [angularDamp] is applied.
    */
   public final inline var angularDampMode: DampMode
     @JvmName("angularDampModeProperty")
@@ -518,7 +521,7 @@ public open class RigidBody3D : PhysicsBody3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(565, scriptIndex)
+    createNativeObject(580, scriptIndex)
   }
 
   /**
@@ -538,7 +541,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * causes angular acceleration.
    *
    * When [centerOfMassMode] is set to [CENTER_OF_MASS_MODE_AUTO] (default value), the center of
-   * mass is automatically computed.
+   * mass is automatically determined, but this does not update the value of [centerOfMass].
    */
   @CoreTypeHelper
   public final fun centerOfMassMutate(block: Vector3.() -> Unit): Vector3 = centerOfMass.apply {
@@ -571,7 +574,7 @@ public open class RigidBody3D : PhysicsBody3D() {
    * @onready var ball = $Ball
    *
    * func get_ball_inertia():
-   *     return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
+   * 	return PhysicsServer3D.body_get_direct_state(ball.get_rid()).inverse_inertia.inverse()
    * ```
    *
    * ```csharp
@@ -580,12 +583,12 @@ public open class RigidBody3D : PhysicsBody3D() {
    *
    * public override void _Ready()
    * {
-   *     _ball = GetNode<RigidBody3D>("Ball");
+   * 	_ball = GetNode<RigidBody3D>("Ball");
    * }
    *
    * private Vector3 GetBallInertia()
    * {
-   *     return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
+   * 	return PhysicsServer3D.BodyGetDirectState(_ball.GetRid()).InverseInertia.Inverse();
    * }
    * ```
    */

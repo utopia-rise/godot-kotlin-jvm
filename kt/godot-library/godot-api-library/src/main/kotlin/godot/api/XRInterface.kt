@@ -97,7 +97,7 @@ public open class XRInterface internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(868, scriptIndex)
+    createNativeObject(884, scriptIndex)
   }
 
   /**
@@ -393,17 +393,17 @@ public open class XRInterface internal constructor() : RefCounted() {
    *
    * ```
    * func _ready():
-   *     var xr_interface = XRServer.find_interface("OpenXR")
-   *     if xr_interface and xr_interface.is_initialized():
-   *         var vp = get_viewport()
-   *         vp.use_xr = true
-   *         var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
+   * 	var xr_interface = XRServer.find_interface("OpenXR")
+   * 	if xr_interface and xr_interface.is_initialized():
+   * 		var vp = get_viewport()
+   * 		vp.use_xr = true
+   * 		var acceptable_modes = [XRInterface.XR_ENV_BLEND_MODE_OPAQUE,
    * XRInterface.XR_ENV_BLEND_MODE_ADDITIVE]
-   *         var modes = xr_interface.get_supported_environment_blend_modes()
-   *         for mode in acceptable_modes:
-   *             if mode in modes:
-   *                 xr_interface.set_environment_blend_mode(mode)
-   *                 break
+   * 		var modes = xr_interface.get_supported_environment_blend_modes()
+   * 		for mode in acceptable_modes:
+   * 			if mode in modes:
+   * 				xr_interface.set_environment_blend_mode(mode)
+   * 				break
    * ```
    */
   public final fun setEnvironmentBlendMode(mode: EnvironmentBlendMode): Boolean {
@@ -554,6 +554,10 @@ public open class XRInterface internal constructor() : RefCounted() {
      * [XRServer.centerOnHmd].
      */
     XR_PLAY_AREA_STAGE(4),
+    /**
+     * Custom play area set by a GDExtension.
+     */
+    XR_PLAY_AREA_CUSTOM(2147483647),
     ;
 
     public override val `value`: Long
@@ -594,6 +598,35 @@ public open class XRInterface internal constructor() : RefCounted() {
     public companion object {
       public fun from(`value`: Long): EnvironmentBlendMode =
           entries.single { it.`value` == `value` }
+    }
+  }
+
+  public enum class VRSTextureFormat(
+    `value`: Long,
+  ) : GodotEnum {
+    /**
+     * The texture format is the same as returned by [XRVRS.makeVrsTexture].
+     */
+    XR_UNIFIED(0),
+    /**
+     * The texture format is the same as expected by the Vulkan `VK_KHR_fragment_shading_rate`
+     * extension.
+     */
+    XR_FRAGMENT_SHADING_RATE(1),
+    /**
+     * The texture format is the same as expected by the Vulkan `VK_EXT_fragment_density_map`
+     * extension.
+     */
+    XR_FRAGMENT_DENSITY_MAP(2),
+    ;
+
+    public override val `value`: Long
+    init {
+      this.`value` = `value`
+    }
+
+    public companion object {
+      public fun from(`value`: Long): VRSTextureFormat = entries.single { it.`value` == `value` }
     }
   }
 

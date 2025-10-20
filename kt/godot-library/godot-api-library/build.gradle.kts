@@ -47,6 +47,8 @@ publishing {
             }
             artifactId = "godot-api-library-$targetSuffix"
             description = "Contains godot generated api as kotlin classes and jvm cpp interaction code."
+
+            from(components["java"])
         }
     }
 }

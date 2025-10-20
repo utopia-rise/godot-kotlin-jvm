@@ -55,7 +55,7 @@ public open class StreamPeer internal constructor() : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(634, scriptIndex)
+    createNativeObject(650, scriptIndex)
   }
 
   /**
@@ -93,8 +93,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
 
   /**
    * Returns a chunk data with the received bytes. The number of bytes to be received can be
-   * requested in the "bytes" argument. If not enough bytes are available, the function will return how
-   * many were actually received. This function returns two values, an [Error] code, and a data array.
+   * requested in the [bytes] argument. If not enough bytes are available, the function will return how
+   * many were actually received. This function returns two values: an [Error] code and a data array.
    */
   public final fun getPartialData(bytes: Int): VariantArray<Any?> {
     TransferContext.writeArguments(LONG to bytes.toLong())

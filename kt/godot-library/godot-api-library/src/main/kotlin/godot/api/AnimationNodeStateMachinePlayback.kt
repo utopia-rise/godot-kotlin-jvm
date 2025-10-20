@@ -10,6 +10,7 @@ import godot.`annotation`.GodotBaseType
 import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
+import godot.core.Signal1
 import godot.core.StringName
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
@@ -46,8 +47,23 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AnimationNodeStateMachinePlayback : Resource() {
+  /**
+   * Emitted when the [state] starts playback. If [state] is a state machine set to grouped mode,
+   * its signals are passed through with its name prefixed.
+   */
+  public val stateStarted: Signal1<StringName> by Signal1
+
+  /**
+   * Emitted when the [state] finishes playback. If [state] is a state machine set to grouped mode,
+   * its signals are passed through with its name prefixed.
+   *
+   * If there is a crossfade, this will be fired when the influence of the [getFadingFromNode]
+   * animation is no longer present.
+   */
+  public val stateFinished: Signal1<StringName> by Signal1
+
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(28, scriptIndex)
+    createNativeObject(29, scriptIndex)
   }
 
   /**
