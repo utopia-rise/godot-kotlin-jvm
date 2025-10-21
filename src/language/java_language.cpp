@@ -56,7 +56,7 @@ void JavaLanguage::get_recognized_extensions(List<String>* p_extensions) const {
 }
 
 Vector<String> JavaLanguage::get_reserved_words() const {
-    return {
+    static const Vector<String> ret = {
         "abstract",
         "assert",
         "boolean",
@@ -107,6 +107,8 @@ Vector<String> JavaLanguage::get_reserved_words() const {
         "volatile",
         "while"
     };
+
+    return ret;
 }
 
 bool JavaLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -116,15 +118,18 @@ bool JavaLanguage::is_control_flow_keyword(const String& p_keyword) const {
 }
 
 Vector<String> JavaLanguage::get_comment_delimiters() const {
-    return {"//", "/* */"};
+    static const Vector<String> ret = {"//", "/* */"};
+    return ret;
 }
 
 Vector<String> JavaLanguage::get_doc_comment_delimiters() const {
-    return {"/** */"};
+    static const Vector<String> ret = {"/** */"};
+    return ret;
 }
 
 Vector<String> JavaLanguage::get_string_delimiters() const {
-    return {"' '", "\" \""};
+    static const Vector<String> ret = {"' '", "\" \""};
+    return ret;
 }
 
 Ref<Script> JavaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {

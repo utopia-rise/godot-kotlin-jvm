@@ -53,7 +53,7 @@ void ScalaLanguage::get_recognized_extensions(List<String>* p_extensions) const 
 }
 
 Vector<String>  ScalaLanguage::get_reserved_words() const {
-    return {
+    static const Vector<String> ret = {
             "abstract",
             "case",
             "catch",
@@ -94,6 +94,8 @@ Vector<String>  ScalaLanguage::get_reserved_words() const {
             "with",
             "yield"
     };
+
+    return ret;
 }
 
 bool ScalaLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -103,15 +105,18 @@ bool ScalaLanguage::is_control_flow_keyword(const String& p_keyword) const {
 }
 
 Vector<String>  ScalaLanguage::get_comment_delimiters() const {
-    return {"//", "/* */"};
+    static const Vector<String> ret = {"//", "/* */"};
+    return ret;
 }
 
 Vector<String>  ScalaLanguage::get_doc_comment_delimiters() const {
-    return {"/** */"};
+    static const Vector<String> ret = {"/** */"};
+    return ret;
 }
 
 Vector<String>  ScalaLanguage::get_string_delimiters() const {
-    return {"' '", "\" \"", "\"\"\" \"\"\""};
+    static const Vector<String> ret = {"' '", "\" \"", "\"\"\" \"\"\""};
+    return ret;
 }
 
 Ref<Script> ScalaLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {

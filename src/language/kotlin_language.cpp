@@ -54,7 +54,7 @@ void KotlinLanguage::get_recognized_extensions(List<String>* p_extensions) const
 }
 
 Vector<String> KotlinLanguage::get_reserved_words() const {
-    return {// RESERVED KEYWORDS
+    static const Vector<String> ret = {// RESERVED KEYWORDS
         "as",
         "as?",
         "break",
@@ -137,6 +137,8 @@ Vector<String> KotlinLanguage::get_reserved_words() const {
         // SPECIAL IDENTIFIERS
         "it",
     };
+
+    return ret;
 }
 
 bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -146,15 +148,18 @@ bool KotlinLanguage::is_control_flow_keyword(const String& p_keyword) const {
 }
 
 Vector<String> KotlinLanguage::get_comment_delimiters() const {
-    return {"//", "/* */"};
+    static const Vector<String> ret = {"//", "/* */"};
+    return ret;
 }
 
 Vector<String> KotlinLanguage::get_doc_comment_delimiters() const {
-    return {"/** */"};
+    static const Vector<String> ret = {"/** */"};
+    return ret;
 }
 
 Vector<String> KotlinLanguage::get_string_delimiters() const {
-    return {"' '", "\" \""};
+    static const Vector<String> ret = {"' '", "\" \""};
+    return ret;
 }
 
 Ref<Script> KotlinLanguage::make_template(const String& p_template, const String& p_class_name, const String& p_base_class_name) const {

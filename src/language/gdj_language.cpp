@@ -113,7 +113,7 @@ String GdjLanguage::get_global_class_name(const String& p_path, String* r_base_t
 }
 
 Vector<String> GdjLanguage::get_reserved_words() const {
-    return {
+    static const Vector<String> ret = {
         "registeredName",
         "fqName",
         "relativeSourcePath ",
@@ -123,6 +123,8 @@ Vector<String> GdjLanguage::get_reserved_words() const {
         "properties",
         "functions"
     };
+
+    return ret;
 }
 
 bool GdjLanguage::is_control_flow_keyword(const String& p_keyword) const {
@@ -130,7 +132,8 @@ bool GdjLanguage::is_control_flow_keyword(const String& p_keyword) const {
 }
 
 Vector<String> GdjLanguage::get_comment_delimiters() const {
-    return {"//"};
+    static const Vector<String> ret = {"//"};
+    return ret;
 }
 
 Vector<String> GdjLanguage::get_doc_comment_delimiters() const {return {};}

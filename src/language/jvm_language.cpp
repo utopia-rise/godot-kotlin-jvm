@@ -19,7 +19,7 @@ bool JvmLanguage::validate(
 
 String JvmLanguage::validate_path(const String& p_path) const {
     Vector <String> keywords = get_reserved_words();
-    if (keywords.find(p_path.get_file().get_basename())) {
+    if (keywords.find(p_path.get_file().get_basename()) != -1) {
         String alert {"Please don't use reserved keywords as file name."};
         return
 #ifdef TOOLS_ENABLED
