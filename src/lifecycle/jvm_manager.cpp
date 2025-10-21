@@ -170,6 +170,7 @@ void JvmManager::finalize_jvm_wrappers(jni::Env& p_env, ClassLoader* class_loade
 void JvmManager::close_jvm() {
 #if defined DYNAMIC_JVM || defined STATIC_JVM
     JVM_LOG_VERBOSE("Shutting down JVM ...");
+    return;
     jni::Jvm::destroy();
 #endif
 }
