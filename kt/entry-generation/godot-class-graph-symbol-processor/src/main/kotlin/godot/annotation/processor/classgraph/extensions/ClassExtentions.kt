@@ -166,7 +166,7 @@ internal fun ClassInfo.mapToType(typeArguments: List<TypeArgument>, settings: Se
         .toList()
 
     return Type(
-        fqName = name,
+        fqName = name.replace("$", "."),
         kind = typeKind,
         supertypes = superTypes,
         arguments = { typeArguments.map { it.getType(settings) } },

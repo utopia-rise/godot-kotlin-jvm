@@ -146,45 +146,6 @@ class ClassBuilderDsl<T : KtObject>(
         )
     }
 
-    inline fun <reified P : Enum<P>> enumProperty(
-        name: String,
-        noinline getter: (T) -> P,
-        noinline setter: (T, P) -> Unit,
-        usage: Long,
-        hintString: String
-    ) {
-        require(!properties.contains(name)) {
-            "Found two properties with name $name for class $registeredName"
-        }
-
-        properties[name] = KtEnumProperty(
-            KtPropertyInfo(
-                VariantParser.LONG,
-                name,
-                "Int",
-                PropertyHint.ENUM,
-                hintString,
-                usage,
-            ),
-            getter,
-            setter,
-            { enum: P? -> enum?.ordinal ?: 1 },
-            { i -> enumValues<P>()[i] }
-        )
-    }
-
-    inline fun <reified P : Enum<P>> enumProperty(
-        kProperty: KMutableProperty1<T, P>,
-        usage: Long,
-        hintString: String
-    ) = enumProperty(
-        kProperty.name.convertToSnakeCase(),
-        { instance: T -> kProperty.get(instance) },
-        { instance: T, p: P -> kProperty.set(instance, p) },
-        usage,
-        hintString
-    )
-
     inline fun <reified P : Enum<P>, L : Collection<P>> enumListProperty(
         name: String,
         noinline getter: (T) -> L,
