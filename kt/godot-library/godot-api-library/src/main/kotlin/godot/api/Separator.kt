@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class Separator internal constructor() : Control() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(598, scriptIndex)
+    createNativeObject(599, scriptIndex)
   }
 
   public companion object

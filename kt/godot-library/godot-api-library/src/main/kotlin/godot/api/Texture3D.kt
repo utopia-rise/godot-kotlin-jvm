@@ -34,7 +34,7 @@ import kotlin.Unit
 @GodotBaseType
 public abstract class Texture3D : Texture() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(685, scriptIndex)
+    createNativeObject(686, scriptIndex)
   }
 
   /**

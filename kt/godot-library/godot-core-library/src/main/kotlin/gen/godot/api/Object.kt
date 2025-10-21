@@ -848,7 +848,7 @@ public open class Object : KtObject() {
     callable: Callable,
     flags: ConnectFlags = Object.ConnectFlags.DEFAULT,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.id)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.value)
     TransferContext.callMethod(ptr, MethodBindings.connectPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }

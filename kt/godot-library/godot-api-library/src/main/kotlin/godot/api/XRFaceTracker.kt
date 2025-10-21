@@ -60,7 +60,7 @@ public open class XRFaceTracker : XRTracker() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(881, scriptIndex)
+    createNativeObject(882, scriptIndex)
   }
 
   /**

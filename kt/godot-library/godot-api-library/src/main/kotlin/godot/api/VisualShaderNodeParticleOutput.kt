@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeParticleOutput : VisualShaderNodeOutput() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(795, scriptIndex)
+    createNativeObject(796, scriptIndex)
   }
 
   public companion object

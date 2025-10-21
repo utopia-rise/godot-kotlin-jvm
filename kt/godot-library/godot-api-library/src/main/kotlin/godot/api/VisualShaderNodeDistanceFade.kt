@@ -17,7 +17,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeDistanceFade : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(762, scriptIndex)
+    createNativeObject(763, scriptIndex)
   }
 
   public companion object

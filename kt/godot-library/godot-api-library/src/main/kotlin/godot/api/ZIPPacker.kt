@@ -59,7 +59,7 @@ public open class ZIPPacker : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(893, scriptIndex)
+    createNativeObject(894, scriptIndex)
   }
 
   /**

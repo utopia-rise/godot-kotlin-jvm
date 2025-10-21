@@ -49,7 +49,7 @@ public open class SpringBoneCollisionSphere3D : SpringBoneCollision3D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(640, scriptIndex)
+    createNativeObject(641, scriptIndex)
   }
 
   public final fun setRadius(radius: Float): Unit {

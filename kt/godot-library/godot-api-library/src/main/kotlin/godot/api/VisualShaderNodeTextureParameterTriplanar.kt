@@ -18,7 +18,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeTextureParameterTriplanar : VisualShaderNodeTextureParameter() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(820, scriptIndex)
+    createNativeObject(821, scriptIndex)
   }
 
   public companion object

@@ -127,7 +127,7 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(862, scriptIndex)
+    createNativeObject(863, scriptIndex)
   }
 
   /**

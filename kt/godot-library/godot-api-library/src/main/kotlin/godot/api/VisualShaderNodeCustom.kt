@@ -39,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeCustom : VisualShaderNode() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(759, scriptIndex)
+    createNativeObject(760, scriptIndex)
   }
 
   /**

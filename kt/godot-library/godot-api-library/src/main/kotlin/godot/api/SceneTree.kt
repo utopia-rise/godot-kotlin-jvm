@@ -277,7 +277,7 @@ public open class SceneTree : MainLoop() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(585, scriptIndex)
+    createNativeObject(586, scriptIndex)
   }
 
   public final fun getRoot(): Window? {

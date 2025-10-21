@@ -262,7 +262,7 @@ public open class TextMesh : PrimitiveMesh() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(673, scriptIndex)
+    createNativeObject(674, scriptIndex)
   }
 
   /**

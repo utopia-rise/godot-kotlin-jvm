@@ -51,7 +51,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(677, scriptIndex)
+    createNativeObject(678, scriptIndex)
   }
 
   /**
