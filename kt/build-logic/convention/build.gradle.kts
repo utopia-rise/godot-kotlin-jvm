@@ -25,7 +25,7 @@ gradlePlugin {
     plugins {
         create("godotPublishPlugin") {
             id = "com.utopia-rise.godot-publish"
-            displayName = "Gradle plugin for publishing godot kotlin jvm to maven central"
+            displayName = "Gradle plugin for publishing Godot-JVM to maven central"
             implementationClass = "publish.PublishToMavenCentralPlugin"
         }
     }

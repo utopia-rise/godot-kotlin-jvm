@@ -22,10 +22,10 @@ publishing {
         val godotEntryGenerator by creating(MavenPublication::class) {
             pom {
                 name.set(project.name)
-                description.set("Godot Kotlin entry code generator.")
+                description.set("Godot-JVM entry code generator.")
             }
             artifactId = project.name
-            description = "Godot Kotlin entry code generator."
+            description = "Godot-JVM entry code generator."
             from(components.getByName("java"))
         }
     }

@@ -10,7 +10,7 @@ import java.net.URL
 fun Project.downloadIOSJdkStaticLibraries(): TaskProvider<out Task> = tasks
     .register("downloadIOSJdkStaticLibraries") {
         with(it) {
-            group = "godot-kotlin-jvm-internal"
+            group = "godot-jvm-internal"
             description = "INTERNAL TASK ! Downloads ios static JDK libraries."
 
             doLast {

@@ -1,7 +1,7 @@
 #ifdef TOOLS_ENABLED
 
-#ifndef GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
-#define GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
+#ifndef GODOT_JVM_GODOT_JVM_EDITOR_H
+#define GODOT_JVM_GODOT_JVM_EDITOR_H
 
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
@@ -47,6 +47,6 @@ public:
     void _notification(int notification);
 };
 
-#endif // GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
+#endif // GODOT_JVM_GODOT_JVM_EDITOR_H
 
 #endif // TOOLS_ENABLED

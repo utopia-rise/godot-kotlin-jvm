@@ -56,7 +56,7 @@ abstract class GodotPlugin : Plugin<Project> {
 
 
     /**
-     * The PropertiesModelBuilder class is responsible for building the tooling model for the Godot Kotlin-JVM properties file.
+     * The PropertiesModelBuilder class is responsible for building the tooling model for the Godot-JVM properties file.
      *
      * This file is only virtually present and is then loaded by `FetchProjectModelsBuildAction` in the IDE plugin to load the users gradle configuration of our gradle plugin.
      *

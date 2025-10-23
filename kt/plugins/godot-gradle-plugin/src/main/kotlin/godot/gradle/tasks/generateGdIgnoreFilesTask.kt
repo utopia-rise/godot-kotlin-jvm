@@ -7,13 +7,13 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.generateGdIgnoreFilesTask(): TaskProvider<Task> {
     return tasks.register("generateGdIgnoreFiles") {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Generates .gdignore files to hide gradle files, kotlin build files and jre files from the godot editor."
 
             doFirst {
 
                 // safety check: make sure that the target project has our plugin
-                if (!this.project.pluginManager.hasPlugin("com.utopia-rise.godot-kotlin-jvm")) {
+                if (!this.project.pluginManager.hasPlugin("com.utopia-rise.godot-jvm")) {
                     // the target project doesn't seem to have our plugin; skip.
                     return@doFirst
                 }

@@ -4,9 +4,9 @@ hide:
 ---
 
 
-[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-kotlin-jvm?style=flat-square)](LICENSE)
+[![GitHub](https://img.shields.io/github/license/utopia-rise/godot-jvm?style=flat-square)](LICENSE)
 
-**Godot Kotlin/JVM** is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
+**Godot-JVM** is a Godot module which allows you to write your game or application logic in Kotlin on the JVM.
 
 If you are looking for the documentation for Godot Kotlin/Native; you can find it [here](https://godot-kotlin.readthedocs.io/en/latest/).
 
@@ -16,7 +16,7 @@ This project is in Beta. While you can fully use the binding, please note that t
 
 ## Project templates and demos
 
-This is a minimal list to start off with a new Godot Kotlin/JVM project:
+This is a minimal list to start off with a new Godot-JVM project:
 
 - [Minimal project template](https://github.com/utopia-rise/godot-kotlin-project-template)
 - [GDQuest 3D demo converted to Kotlin](https://github.com/utopia-rise/godot-kotlin-3d-demo)
@@ -38,12 +38,12 @@ and limitations which will not be or cannot be adressed in the near forseable fu
 
 - Only a default no arg constructor can be registered.
 - No tool mode (you can set it already in the `@RegisterClass` annotation but it has no effect yet).
-- No addon support, you cannot use Godot Kotlin/JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
+- No addon support, you cannot use Godot-JVM to write plugins and addons yet (you can however [write libraries](develop-libraries/introduction.md) with godot specific code).
 - Web is currently not supported. See [Supported platforms](#supported-platforms) to see what platforms we currently support
 
 ### Bug reporting and questions
 
-If you find bugs, please report an [issue on GitHub](https://github.com/utopia-rise/godot-kotlin-jvm/issues) - but check for duplicates first. If you have questions or need help, you can ask on [Discord](https://discord.gg/zpb5Ru7v9x) in the `questions` and `help` channels respectively.
+If you find bugs, please report an [issue on GitHub](https://github.com/utopia-rise/godot-jvm/issues) - but check for duplicates first. If you have questions or need help, you can ask on [Discord](https://discord.gg/zpb5Ru7v9x) in the `questions` and `help` channels respectively.
 If you don't have Discord or you don't want to use it, please file an issue on GitHub.
 
 ## Supported languages
@@ -79,7 +79,7 @@ The current latest release is compatible with Kotlin version `2.0.21`.
 
 ## Custom engine builds
 
-Get our pre-built engine builds and export templates from the latest [GitHub releases](https://github.com/utopia-rise/godot-kotlin-jvm/releases).
+Get our pre-built engine builds and export templates from the latest [GitHub releases](https://github.com/utopia-rise/godot-jvm/releases).
 
 Contrary to the official binaries, there are two builds of the editor per Platform: debug and release.
 `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports. 
