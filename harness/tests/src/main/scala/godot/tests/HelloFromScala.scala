@@ -7,8 +7,8 @@ import godot.core.Signal2
 @RegisterClass
 class HelloFromScala extends Node {
 
-  @RegisterSignal(parameters = Array("param1", "param2"))
-  val mySignal: Signal2[String, String] = Signal2.create(this, "test_signal_2")
+  //@RegisterSignal(parameters = Array("param1", "param2"))
+  //val mySignal: Signal2[String, String] = Signal2.create(this, "test_signal_2")
 
   @RegisterProperty
   var myInt: Int = 0

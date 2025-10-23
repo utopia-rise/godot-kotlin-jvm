@@ -38,7 +38,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(714, scriptIndex)
+    createNativeObject(715, scriptIndex)
   }
 
   /**

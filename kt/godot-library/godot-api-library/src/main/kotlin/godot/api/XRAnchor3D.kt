@@ -35,7 +35,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class XRAnchor3D : XRNode3D() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(874, scriptIndex)
+    createNativeObject(875, scriptIndex)
   }
 
   /**

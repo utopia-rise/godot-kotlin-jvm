@@ -4,14 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class ApiDescription @JsonCreator constructor(
-    @JsonProperty("header") val header: Header,
-    @JsonProperty("builtin_class_sizes") val builtinClassSizes: List<BuiltinClassSizes>,
-    @JsonProperty("builtin_class_member_offsets") val builtinClassMemberOffsets: List<BuiltinClassMemberOffsets>,
-    @JsonProperty("global_constants") val globalConstants: List<Constant>,
-    @JsonProperty("global_enums") val globalEnums: List<Enum>,
-    @JsonProperty("utility_functions") val utilityFunctions: List<UtilityFunction>,
-    @JsonProperty("builtin_classes") val builtinClasses: List<BuiltinClass>,
-    @JsonProperty("classes") val classes: List<Class>,
-    @JsonProperty("singletons") val singletons: List<Singleton>,
-    @JsonProperty("native_structures") val nativeStructures: List<NativeStructure>
+    @JsonProperty("header") var header: Header,
+    @JsonProperty("builtin_class_sizes") var builtinClassSizes: MutableList<BuiltinClassSizes>,
+    @JsonProperty("builtin_class_member_offsets") var builtinClassMemberOffsets: MutableList<BuiltinClassMemberOffsets>,
+    @JsonProperty("global_constants") var globalConstants: MutableList<Constant>,
+    @JsonProperty("global_enums") var globalEnums: MutableList<Enum>,
+    @JsonProperty("utility_functions") var utilityFunctions: MutableList<UtilityFunction>,
+    @JsonProperty("builtin_classes") val builtinClasses: MutableList<BuiltinClass>,
+    @JsonProperty("classes") var classes: MutableList<Class>,
+    @JsonProperty("singletons") var singletons: MutableList<Singleton>,
+    @JsonProperty("native_structures") var nativeStructures: MutableList<NativeStructure>
 )

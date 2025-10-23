@@ -1,5 +1,6 @@
 @file:JvmName("PackedSceneUtils")
-package godot.extension
+
+package godot.extension.api
 
 import godot.api.Node
 import godot.api.PackedScene

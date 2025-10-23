@@ -59,7 +59,7 @@ public open class Script internal constructor() : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(587, scriptIndex)
+    createNativeObject(588, scriptIndex)
   }
 
   /**

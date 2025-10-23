@@ -39,7 +39,7 @@ public open class ShaderInclude : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(601, scriptIndex)
+    createNativeObject(602, scriptIndex)
   }
 
   public final fun setCode(code: String): Unit {

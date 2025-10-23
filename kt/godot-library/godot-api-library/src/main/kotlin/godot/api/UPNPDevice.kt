@@ -99,7 +99,7 @@ public open class UPNPDevice : RefCounted() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(720, scriptIndex)
+    createNativeObject(721, scriptIndex)
   }
 
   /**

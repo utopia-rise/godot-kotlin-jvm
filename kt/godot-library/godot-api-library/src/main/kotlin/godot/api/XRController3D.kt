@@ -75,7 +75,7 @@ public open class XRController3D : XRNode3D() {
   public val profileChanged: Signal1<String> by Signal1
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(878, scriptIndex)
+    createNativeObject(879, scriptIndex)
   }
 
   /**

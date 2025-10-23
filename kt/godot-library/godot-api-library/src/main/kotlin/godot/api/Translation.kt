@@ -45,7 +45,7 @@ public open class Translation : Resource() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(709, scriptIndex)
+    createNativeObject(710, scriptIndex)
   }
 
   /**

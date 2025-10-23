@@ -19,7 +19,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class VScrollBar : ScrollBar() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(725, scriptIndex)
+    createNativeObject(726, scriptIndex)
   }
 
   public companion object

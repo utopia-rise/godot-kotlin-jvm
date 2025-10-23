@@ -39,7 +39,7 @@ import kotlin.Unit
 @GodotBaseType
 public open class TileSetSource internal constructor() : Resource() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(704, scriptIndex)
+    createNativeObject(705, scriptIndex)
   }
 
   /**

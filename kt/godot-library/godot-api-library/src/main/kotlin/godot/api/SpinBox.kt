@@ -158,7 +158,7 @@ public open class SpinBox : Range() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(633, scriptIndex)
+    createNativeObject(634, scriptIndex)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

@@ -97,8 +97,8 @@ void TransferContext::icall(JNIEnv* rawEnv, jobject instance, jlong j_ptr, jlong
         }
 
         const Variant& ret_value {method_bind->call(ptr, args_ptr, args_size, r_error)};
-
         buffer->rewind();
+
         VariantToBuffer::write_variant(ret_value, buffer);
     } else {
         Variant* args {variant_args + stack_offset};

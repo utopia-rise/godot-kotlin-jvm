@@ -13,10 +13,12 @@ object GodotKotlinJvmTypes {
     const val stringName = "StringName"
     const val array = "VariantArray"
     const val callable = "Callable"
-    const val callableBase = "Callable"
+    const val methodCallable = "MethodCallable"
+    const val lambdaCallable = "LambdaCallable"
     const val dictionary = "Dictionary"
     const val godotEnum = "GodotEnum"
     const val error = "Error"
+    const val connector = "SignalConnector"
     const val nodePath = "NodePath"
     const val variant = "Any"
     const val refCounted = "RefCounted"
@@ -245,13 +247,16 @@ object GodotTypes {
     )
 }
 
+val GODOT_SIGNAL_CONNECTOR = ClassName(godotExtensionPackage, GodotKotlinJvmTypes.connector)
 val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
 val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
 val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
-val GODOT_CALLABLE_BASE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callableBase)
+val GODOT_METHOD_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.methodCallable)
+val GODOT_LAMBDA_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.lambdaCallable)
 val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
 val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
 val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
+val STRING_NAME = ClassName(godotCorePackage, GodotKotlinJvmTypes.stringName)
 
 val VARIANT_PARSER_NIL = ClassName(variantParserPackage, "NIL")
 val VARIANT_PARSER_BOOL = ClassName(variantParserPackage, "BOOL")

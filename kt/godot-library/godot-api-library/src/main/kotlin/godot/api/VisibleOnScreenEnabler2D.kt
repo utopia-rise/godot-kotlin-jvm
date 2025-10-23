@@ -64,7 +64,7 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(737, scriptIndex)
+    createNativeObject(738, scriptIndex)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {

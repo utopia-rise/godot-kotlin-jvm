@@ -34,7 +34,7 @@ public open class VisualShaderNodeRemap : VisualShaderNode() {
     }
 
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(801, scriptIndex)
+    createNativeObject(802, scriptIndex)
   }
 
   public final fun setOpType(opType: OpType): Unit {

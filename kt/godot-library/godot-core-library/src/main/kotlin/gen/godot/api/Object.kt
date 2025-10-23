@@ -846,9 +846,9 @@ public open class Object : KtObject() {
   public final fun connect(
     signal: StringName,
     callable: Callable,
-    flags: Long = 0,
+    flags: ConnectFlags = Object.ConnectFlags.DEFAULT,
   ): Error {
-    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags)
+    TransferContext.writeArguments(STRING_NAME to signal, CALLABLE to callable, LONG to flags.value)
     TransferContext.callMethod(ptr, MethodBindings.connectPtr, LONG)
     return Error.from(TransferContext.readReturnValue(LONG) as Long)
   }
@@ -1441,7 +1441,7 @@ public open class Object : KtObject() {
   public final fun connect(
     signal: String,
     callable: Callable,
-    flags: Long = 0,
+    flags: ConnectFlags = Object.ConnectFlags.DEFAULT,
   ): Error = connect(signal.asCachedStringName(), callable, flags)
 
   /**
@@ -1527,6 +1527,10 @@ public open class Object : KtObject() {
   public enum class ConnectFlags(
     `value`: Long,
   ) : GodotEnum {
+    /**
+     * Default connections that are immediately emitted
+     */
+    DEFAULT(0),
     /**
      * Deferred connections trigger their [Callable]s on idle time (at the end of the frame), rather
      * than instantly.

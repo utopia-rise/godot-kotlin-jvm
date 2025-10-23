@@ -4,8 +4,12 @@ import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
 import godot.annotation.RegisterProperty
-import godot.core.NativeCallable
+import godot.core.Callable0
+import godot.core.Callable1
+import godot.core.Callable2
+import godot.core.Callable3
 import godot.core.VariantArray
+import godot.core.callable3
 import godot.core.variantArrayOf
 import godot.global.GD
 
@@ -16,22 +20,28 @@ class CallableMethodBindTest: Node() {
 
     @RegisterFunction
     fun callWithMethodWithAllBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(1, 2, 3).call()
+        val unboundCallable: Callable3<Unit, Int, Int, Int> = callable3(CallableMethodBindTest::readySignalMethodBindTest)
+        val boundCallable: Callable0<Unit> = unboundCallable.bind(1, 2, 3)
+        boundCallable.call()
     }
 
     @RegisterFunction
     fun callWithMethodWithTwoBinds() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(2, 3).call(0)
+        val unboundCallable: Callable3<Unit, Int, Int, Int> = callable3(CallableMethodBindTest::readySignalMethodBindTest)
+        val boundCallable: Callable1<Unit, Int> = unboundCallable.bind(5, 6)
+        boundCallable.call(4)
     }
 
     @RegisterFunction
     fun callWithMethodWithOneBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind(3).call(0, 0)
+        val unboundCallable: Callable3<Unit, Int, Int, Int> = callable3(CallableMethodBindTest::readySignalMethodBindTest)
+        val boundCallable: Callable2<Unit, Int, Int> = unboundCallable.bind(9)
+        boundCallable.call(7, 8)
     }
 
     @RegisterFunction
     fun callWithMethodWithNoBind() {
-        NativeCallable(this, CallableMethodBindTest::readySignalMethodBindTest).bind().call(0, 0, 0)
+        callable3(CallableMethodBindTest::readySignalMethodBindTest).call(10, 11, 12)
     }
 
     @RegisterFunction

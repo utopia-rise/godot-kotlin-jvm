@@ -47,7 +47,7 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class WebRTCMultiplayerPeer : MultiplayerPeer() {
   public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(859, scriptIndex)
+    createNativeObject(860, scriptIndex)
   }
 
   /**
