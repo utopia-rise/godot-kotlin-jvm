@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(GODOT_ROOT_DIR ../../)
 
 # Uncomment to pass auto completion in TOOLS mode
 #add_compile_definitions(MONO_GLUE_ENABLED)
@@ -20,17 +19,26 @@ add_compile_definitions(X11_ENABLED)
 #add_compile_definitions(IOS_ENABLED)
 #add_compile_definitions(__ANDROID__)
 
-# Get sources
+
+# Project
 file(GLOB_RECURSE SOURCES src/*.c**)
 file(GLOB_RECURSE HEADERS src/*.h**)
 
-# JNI
+add_library(${PROJECT_NAME} SHARED ${SOURCES} ${HEADERS})
+
+include_directories(src)
+include_directories(
+        SYSTEM
+        godot-cpp/include
+        godot-cpp/include/godot_cpp
+        godot-cpp/gen/include
+        godot-cpp/gen/include/godot_cpp
+        godot-cpp/gdextension
+)
+
 find_package(JNI REQUIRED)
+include_directories(
+        SYSTEM
+        ${JNI_INCLUDE_DIRS}
+)
 
-# Includes
-include_directories(./src)
-include_directories(${GODOT_ROOT_DIR})
-include_directories(${JNI_INCLUDE_DIRS})
-
-# Target
-add_library(${PROJECT_NAME} SHARED register_types.h register_types.cpp ${SOURCES} ${HEADERS})

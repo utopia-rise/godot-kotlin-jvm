@@ -1,17 +1,14 @@
-
-#ifdef TOOLS_ENABLED
-
-#include "../godot_kotlin_jvm_editor.h"
 #include "editor/strings.h"
 #include "gradle_task_runner.h"
 #include "logging.h"
 
-#include <core/config/project_settings.h>
+#include <classes/project_settings.hpp>
 
-Mutex build_mutex {};
+using namespace godot;
 
 String get_build_gradle_path() {
-    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    ProjectSettings* project_settings = ProjectSettings::get_singleton();
+    String gradle_wrapper_path {project_settings->globalize_path(project_settings->get_setting(GRADLE_DIR))};
     return gradle_wrapper_path.path_join("build.gradle.kts");
 }
 
@@ -21,19 +18,15 @@ String get_gradlew_path() {
 #else
     String gradle_wrapper {"gradlew"};
 #endif
-
-    String gradle_wrapper_path {ProjectSettings::get_singleton()->globalize_path(GLOBAL_GET(gradle_dir))};
+    ProjectSettings* project_settings = ProjectSettings::get_singleton();
+    String gradle_wrapper_path {project_settings->globalize_path(project_settings->get_setting(GRADLE_DIR))};
     return gradle_wrapper_path.path_join(gradle_wrapper);
 }
 
 Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
-    JVM_ERR_FAIL_COND_V_MSG(
-      !FileAccess::create(FileAccess::AccessType::ACCESS_RESOURCES)->file_exists(get_build_gradle_path()),
-      Error::ERR_FILE_NOT_FOUND,
-      missing_gradle_project
-    );
+    JVM_ERR_FAIL_COND_V_MSG(!FileAccess::file_exists(get_build_gradle_path()), Error::ERR_FILE_NOT_FOUND, missing_gradle_project);
 
-    List<String> args {};
+    PackedStringArray args {};
     switch (task_id) {
         case Task::BUILD_DEBUG:
             args.push_back("build");
@@ -52,20 +45,22 @@ Error GradleTaskRunner::run_task(int task_id, String& log, bool blocking) {
     String gradlew_path = get_gradlew_path();
 
     if (blocking) {
-        int exit_code;
-        Error result = OS::get_singleton()->execute(gradlew_path, args, &log, &exit_code, true, &build_mutex, false);
-        return result;
-    } else {
-        Dictionary info = OS::get_singleton()->execute_with_pipe(gradlew_path, args, /*blocking=*/false);
-
-        if (info.is_empty()) { JVM_ERR_FAIL_V_MSG(Error::ERR_CANT_CREATE, "Failed to start process"); }
-
-        log = vformat("Running gradle task: %s", args.get(0));
-        stdio = info["stdio"];
-        stderr_io = info["stderr"];
-        pid = info["pid"];
+        Array output;
+        int exit_code = OS::get_singleton()->execute(gradlew_path, args, output, true, false);
+        for (int i = 0; i < output.size(); ++i) {
+            String line = output[i];
+            log += line + "\n";
+        }
+        if (exit_code == -1) { return Error::ERR_BUG; }
+        return Error::OK;
     }
 
+    Dictionary info = OS::get_singleton()->execute_with_pipe(gradlew_path, args, /*blocking=*/false);
+    if (info.is_empty()) { JVM_ERR_FAIL_V_MSG(Error::ERR_CANT_CREATE, "Failed to start process"); }
+    log = vformat("Running gradle task: %s", args.get(0));
+    stdio = info["stdio"];
+    stderr_io = info["stderr"];
+    pid = info["pid"];
     return Error::OK;
 }
 
@@ -107,13 +102,11 @@ void GradleTaskRunner::get_task_output(String& log, String& error) {
 }
 
 void GradleTaskRunner::reset() {
-    stdio = {};
-    stderr_io = {};
+    stdio.unref();
+    stderr_io.unref();
     pid = -1;
 }
 
 void GradleTaskRunner::cleanup() {
     reset();
 }
-
-#endif // TOOLS_ENABLED
