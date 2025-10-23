@@ -1,6 +1,6 @@
 <idea-plugin require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
-    <name>Godot Kotlin/Jvm</name>
+    <name>Godot-JVM</name>
     <!-- The vendor of the plugin.
        The optional "url" attribute specifies the URL of the vendor homepage.
        The optional "email" attribute specifies the e-mail address of the vendor.

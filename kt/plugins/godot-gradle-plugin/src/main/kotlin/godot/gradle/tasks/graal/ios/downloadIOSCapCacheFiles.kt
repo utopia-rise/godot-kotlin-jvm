@@ -9,7 +9,7 @@ import java.net.URL
 fun Project.downloadIOSCapCacheFiles(): TaskProvider<out Task> = tasks
     .register("downloadIOSCapCacheFiles") { task ->
         with(task) {
-            group = "godot-kotlin-jvm-internal"
+            group = "godot-jvm-internal"
             description = "INTERNAL TASK ! Downloads CAP cache needed for iOS compilation using GraalVM native-image."
 
             doLast { _ ->
