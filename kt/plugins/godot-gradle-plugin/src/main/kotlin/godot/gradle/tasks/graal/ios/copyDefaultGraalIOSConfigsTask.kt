@@ -10,7 +10,7 @@ fun Project.copyDefaultGraalIOSConfigsTask(
     checkPresenceOfDefaultGraalJniConfigTask: TaskProvider<out Task>,
 ): TaskProvider<out Task> = tasks.register("copyDefaultGraalIOSJniConfig") {
     with(it) {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
         description =
             "Checks if the default configs for ios graalVM native image are present and creates them if they're not"
 

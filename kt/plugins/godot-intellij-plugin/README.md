@@ -24,7 +24,7 @@ Features:
   - Adds code insight checks for basic `rpc` and `call` usage
   - Adds gutter icons and dialogs for in editor connected signals throughout the whole project (not only the currently opened scene)
   - Adds refactor support for scene files (when classes are moved/renamed)
-  - Adds project wizard to create new godot kotlin jvm projects
+  - Adds project wizard to create new Godot-JVM projects
 <!-- Plugin description end -->
 
 ## Installation

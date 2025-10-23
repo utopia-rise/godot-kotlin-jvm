@@ -16,7 +16,7 @@ fun Project.createGraalNativeImageTask(
 ): TaskProvider<out Task> {
     return tasks.register("createGraalNativeImage", Exec::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Converts main.jar and bootstrap.jar into a GraalVM native image."
 
             dependsOn(

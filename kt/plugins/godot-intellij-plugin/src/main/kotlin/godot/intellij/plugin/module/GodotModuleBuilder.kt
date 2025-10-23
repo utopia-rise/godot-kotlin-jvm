@@ -222,8 +222,8 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     outFile
                         .readText()
                         .replace(
-                            "GODOT_KOTLIN_JVM_VERSION",
-                            GodotBuildProperties.assembledGodotKotlinJvmVersion
+                            "GODOT_JVM_VERSION",
+                            GodotBuildProperties.assembledGodotJvmVersion
                         )
                         .replace(
                             "ANDROID_ENABLED",
@@ -319,7 +319,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.assembledGodotKotlinJvmVersion}\""
+                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.assembledGodotJvmVersion}\""
                                 )
                             }
                         }

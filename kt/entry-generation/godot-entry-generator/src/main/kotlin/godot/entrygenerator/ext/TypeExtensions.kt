@@ -7,7 +7,7 @@ import godot.common.extensions.convertToCamelCase
 import godot.core.CoreType
 import godot.entrygenerator.model.Type
 import godot.entrygenerator.model.TypeKind
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.VARIANT_CASTER_BYTE
@@ -51,16 +51,16 @@ fun Type?.toKtVariantType(): TypeName = when {
     this.kind == TypeKind.ENUM_CLASS -> VARIANT_CASTER_ENUM.parameterizedBy(ClassName(fqName.substringBeforeLast("."), fqName.substringAfterLast(".")))
     fqName == Byte::class.qualifiedName -> VARIANT_CASTER_BYTE
     fqName == Int::class.qualifiedName -> VARIANT_CASTER_INT
-    fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
+    fqName == "$godotUtilPackage.${GodotJvmTypes.naturalT}" ||
         fqName == Long::class.qualifiedName -> VARIANT_PARSER_LONG
 
     fqName == Float::class.qualifiedName -> VARIANT_CASTER_FLOAT
-    fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
+    fqName == "$godotUtilPackage.${GodotJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> VARIANT_PARSER_DOUBLE
 
     fqName == String::class.qualifiedName -> VARIANT_PARSER_STRING
     fqName == Boolean::class.qualifiedName -> VARIANT_PARSER_BOOL
-    fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> VARIANT_PARSER_ARRAY
+    fqName == "$godotCorePackage.${GodotJvmTypes.variantArray}" -> VARIANT_PARSER_ARRAY
     fqName == "$godotCorePackage.${GodotTypes.stringName}" -> VARIANT_PARSER_STRING_NAME
     fqName == "$godotCorePackage.${GodotTypes.rid}" -> VARIANT_PARSER__RID
     fqName == "$godotCorePackage.${GodotTypes.aabb}" -> VARIANT_PARSER_AABB
@@ -122,13 +122,13 @@ fun Type.toTypeName(): TypeName = ClassName(
 )
 
 fun Type.isCompatibleList(): Boolean = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> true
-    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" }
+    "$godotCorePackage.${GodotJvmTypes.variantArray}" -> true
+    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotJvmTypes.variantArray}" }
 }
 
 fun Type.isDictionary(): Boolean = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" -> true
-    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotKotlinJvmTypes.dictionary}" }
+    "$godotCorePackage.${GodotJvmTypes.dictionary}" -> true
+    else -> allSuperTypes.any { it.fqName == "$godotCorePackage.${GodotJvmTypes.dictionary}" }
 }
 
 fun Type.isKotlinCollection(): Boolean = fqName.contains(kotlinCollectionsPackage)
@@ -163,20 +163,20 @@ fun String.isJavaCollection(): Boolean = javaCollection.contains(this)
 
 fun Type.isEnum(): Boolean = kind == TypeKind.ENUM_CLASS
 
-fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" || this
+fun Type.isRefCounted(): Boolean = fqName == "$godotApiPackage.${GodotJvmTypes.refCounted}" || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.refCounted}" }
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotJvmTypes.refCounted}" }
 
-fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" || this
+fun Type.isResource(): Boolean = fqName == "$godotApiPackage.${GodotJvmTypes.resource}" || this
     .allSuperTypes
-    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotKotlinJvmTypes.resource}" }
+    .any { supertype -> supertype.fqName == "$godotApiPackage.${GodotJvmTypes.resource}" }
 
 fun Type.isGodotPrimitive(): Boolean = when (fqName) {
     Int::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
+    "$godotUtilPackage.${GodotJvmTypes.naturalT}",
     Long::class.qualifiedName,
     Float::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.realT}",
+    "$godotUtilPackage.${GodotJvmTypes.realT}",
     Double::class.qualifiedName,
     Boolean::class.qualifiedName,
     Byte::class.qualifiedName,
@@ -190,14 +190,14 @@ fun Type.isGodotPrimitive(): Boolean = when (fqName) {
 fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     Boolean::class.qualifiedName -> 1
     Int::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}",
+    "$godotUtilPackage.${GodotJvmTypes.naturalT}",
     Long::class.qualifiedName,
     Byte::class.qualifiedName,
     Short::class.qualifiedName,
     Enum::class.qualifiedName -> 2
 
     Float::class.qualifiedName,
-    "$godotUtilPackage.${GodotKotlinJvmTypes.realT}",
+    "$godotUtilPackage.${GodotJvmTypes.realT}",
     Double::class.qualifiedName -> 3
 
     String::class.qualifiedName -> 4
@@ -220,7 +220,7 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
     "$godotCorePackage.${GodotTypes.stringName}" -> 21
     "$godotCorePackage.${GodotTypes.nodePath}" -> 22
     "$godotCorePackage.${GodotTypes.rid}" -> 23
-    "$godotCorePackage.${GodotKotlinJvmTypes.obj}" -> 24
+    "$godotCorePackage.${GodotJvmTypes.obj}" -> 24
     "$godotCorePackage.${GodotTypes.callable}" -> 25
     "$godotCorePackage.${GodotTypes.signal}" -> 26
     "$godotCorePackage.${GodotTypes.dictionary}" -> 27
@@ -245,14 +245,14 @@ fun Type.getAsVariantTypeOrdinal(): Int? = when (fqName) {
 fun Type.getAsGodotClassName(): String = when {
     fqName == Boolean::class.qualifiedName -> "bool"
     fqName == Int::class.qualifiedName ||
-        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}" ||
+        fqName == "$godotUtilPackage.${GodotJvmTypes.naturalT}" ||
         fqName == Long::class.qualifiedName ||
         fqName == Byte::class.qualifiedName ||
         fqName == Short::class.qualifiedName ||
         fqName == Enum::class.qualifiedName -> "int"
 
     fqName == Float::class.qualifiedName ||
-        fqName == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}" ||
+        fqName == "$godotUtilPackage.${GodotJvmTypes.realT}" ||
         fqName == Double::class.qualifiedName -> "float"
 
     fqName == String::class.qualifiedName -> "String"
@@ -266,6 +266,6 @@ fun Type.isCompatibleListType(): Boolean {
 
 // TODO: 4.0: fix ordinals: https://github.com/godotengine/godot/blob/0810ecaafdbee3ea747219e6ab3a8de5d2216a09/editor/editor_properties_array_dict.cpp
 fun Type.getCompatibleListType() = when (fqName) {
-    "$godotCorePackage.${GodotKotlinJvmTypes.variantArray}" -> "17"
+    "$godotCorePackage.${GodotJvmTypes.variantArray}" -> "17"
     else -> ""
 }

@@ -15,7 +15,7 @@ static constexpr const char* all_jvm_feature {"export-all-jvm"};
 static constexpr const char* ios_jdk_version {"21"};
 
 void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, bool p_debug, const String& p_path, int p_flags) {
-    JVM_LOG_INFO("Beginning Godot-Jvm specific exports.");
+    JVM_LOG_INFO("Beginning Godot-JVM specific exports.");
 
     // Add mandatory jars to pck
     Vector<String> files_to_add;
@@ -57,7 +57,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
                 if (!is_arm64 && !is_x64) {
                     JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
-                                     "supported by Godot Kotlin/JVM!");
+                                     "supported by Godot-JVM!");
                 }
             } else if (is_linux_export || is_windows_export) {
                 // on windows and linux the embedded jre can be added as a normal export dir
@@ -86,7 +86,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                 }
                 if (!is_arm64 && !is_x64) {
                     JVM_ERR_FAIL_MSG("This desktop architecture is not supported for export. Only arm64 and x86_64 are "
-                                     "supported by Godot Kotlin/JVM!");
+                                     "supported by Godot-JVM!");
                 }
                 if (jre_dir.is_empty() || target_dir.is_empty()) {
                     JVM_ERR_FAIL_MSG("Could not find a jre directory for the current export configuration");
@@ -104,7 +104,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
                     );
                 }
             } else {
-                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot Kotlin/JVM! Only "
+                JVM_ERR_FAIL_MSG("Current desktop export target platform is not supported by Godot-JVM! Only "
                                  "supported desktop targets are linux, macos and windows");
             }
         }
@@ -122,7 +122,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
             }
         }
 
-        // add Godot Kotlin/JVM configuration file based on export targets
+        // add Godot-JVM configuration file based on export targets
         if (export_all) {
             _generate_export_configuration_file(GDKotlin::get_instance().get_configuration().vm_type);
         } else if (export_jvm) {
@@ -146,7 +146,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
         );
         add_apple_embedded_platform_project_static_lib(ProjectSettings::get_singleton()->globalize_path(base_ios_build_dir.path_join(IOS_GRAAL_NATIVE_IMAGE_FILE)));
     } else {
-        JVM_ERR_FAIL_MSG("Godot Kotlin/JVM doesn't handle this platform");
+        JVM_ERR_FAIL_MSG("Godot-JVM doesn't handle this platform");
     }
 
     for (const String& file_to_add : files_to_add) {
@@ -159,7 +159,7 @@ void KotlinEditorExportPlugin::_export_begin(const HashSet<String>& p_features, 
 
     _add_exclude_filter_preset();
 
-    JVM_LOG_INFO("Finished Godot-Jvm specific exports.");
+    JVM_LOG_INFO("Finished Godot-JVM specific exports.");
 }
 
 void KotlinEditorExportPlugin::_generate_export_configuration_file(jni::JvmType vm_type) {
@@ -196,7 +196,7 @@ void KotlinEditorExportPlugin::_add_exclude_filter_preset() {
 }
 
 String KotlinEditorExportPlugin::get_name() const {
-    return "Godot Kotlin/Jvm";
+    return "Godot-JVM";
 }
 
 void KotlinEditorExportPlugin::_export_file(const String& p_path, const String& p_type, const HashSet<String>& p_features) {

@@ -10,7 +10,7 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionHasNoRpcAnnotationQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.TargetFunctionsRpcAnnotationHasRpcModeDisabled
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotPackage
@@ -86,7 +86,7 @@ object RpcFunctionReferenceChecker {
                             ?.mainReference
                             ?.resolve()
                             ?.kotlinFqName
-                            ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.rpcMode}.DISABLED"
+                            ?.asString() == "$godotAnnotationPackage.${GodotJvmTypes.rpcMode}.DISABLED"
                     ) {
                         holder.registerProblem(
                             GodotPluginBundle.message("problem.rpc.calledFunctionNotAccessible"),

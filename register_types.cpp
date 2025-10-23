@@ -1,6 +1,6 @@
 #ifdef TOOLS_ENABLED
 #include "kotlin_editor_export_plugin.h"
-#include "src/editor/godot_kotlin_jvm_editor.h"
+#include "src/editor/godot_jvm_editor.h"
 
 #include <editor/editor_node.h>
 #include <editor/export/editor_export.h>
@@ -34,12 +34,12 @@ static void export_plugin_init() {
     EditorExport::get_singleton()->add_export_plugin(export_plugin);
 }
 
-static EditorPlugin* godot_kotlin_jvm_editor_plugin_creator_func() {
-    return GodotKotlinJvmEditor::get_instance();
+static EditorPlugin* godot_jvm_editor_plugin_creator_func() {
+    return GodotJvmEditor::get_instance();
 }
 #endif
 
-void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+void initialize_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif
@@ -68,12 +68,12 @@ void initialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (p_level == MODULE_INITIALIZATION_LEVEL_EDITOR) {
         EditorNode::add_init_callback(export_plugin_init);
-        EditorPlugins::add_create_func(godot_kotlin_jvm_editor_plugin_creator_func);
+        EditorPlugins::add_create_func(godot_jvm_editor_plugin_creator_func);
     }
 #endif
 }
 
-void uninitialize_kotlin_jvm_module(ModuleInitializationLevel p_level) {
+void uninitialize_jvm_module(ModuleInitializationLevel p_level) {
 #ifdef TOOLS_ENABLED
     if (Engine::get_singleton()->is_project_manager_hint()) { return; }
 #endif

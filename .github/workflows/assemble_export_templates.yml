@@ -2,7 +2,7 @@ name: 🤖+🍏+🐧+🍎+🪟 Assemble export templates
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
       godot-version:
         type: string
@@ -105,11 +105,11 @@ jobs:
       - name: Compress templates folder to tpz
         run: |
           cd templates
-          zip -r godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz *
+          zip -r godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz *
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
-          path: templates/godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          name: godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz
+          path: templates/godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz

@@ -14,7 +14,7 @@ import godot.codegen.generation.task.EnrichedEnumTask
 import godot.codegen.generation.task.FileTask
 import godot.codegen.models.enriched.EnrichedEnum
 import godot.codegen.models.traits.addKdoc
-import godot.tools.common.constants.GodotKotlinJvmTypes.godotEnum
+import godot.tools.common.constants.GodotJvmTypes.godotEnum
 import godot.tools.common.constants.godotCorePackage
 
 private const val BIT_FLAG_VALUE_MEMBER = "flag"

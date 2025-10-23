@@ -1,4 +1,4 @@
-site_name: Godot Kotlin/JVM
+site_name: Godot-JVM
 docs_dir: src/doc
 
 repo_name: 'utopia-rise/godot-kotlin-jvm'

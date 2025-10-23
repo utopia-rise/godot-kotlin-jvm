@@ -16,7 +16,7 @@ fun File.provideExistingRegistrationFiles(): Map<String, File> {
                 && !directory.name.startsWith(".")
         }
         .filter { file ->
-            file.extension == FileExtensions.GodotKotlinJvm.registrationFile
+            file.extension == FileExtensions.GodotJvm.registrationFile
         }
         .associateBy { file ->
             file.name

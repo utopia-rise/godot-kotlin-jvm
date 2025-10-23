@@ -9,7 +9,7 @@ import godot.entrygenerator.ext.toKtVariantType
 import godot.entrygenerator.model.JvmType
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.model.RegisteredSignal
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.VARIANT_CASTER_ANY
 import godot.tools.common.constants.godotRegistrationPackage
 
@@ -47,7 +47,7 @@ object SignalRegistrationGenerator {
             //a KtFunctionArgument per signal argument
             registeredSignal.parameterTypes.forEachIndexed { index, argumentType ->
                 val argumentName = registeredSignal.parameterNames.getOrNull(index) ?: "p$index"
-                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
+                add(ClassName(godotRegistrationPackage, GodotJvmTypes.ktFunctionArgument))
                 add(argumentType.toKtVariantType())
                 add(argumentType.fqName)
                 add(argumentName)
@@ -57,7 +57,7 @@ object SignalRegistrationGenerator {
                 val argumentTypeVariantType = registeredSignal.parameterTypes.getOrNull(index)?.toKtVariantType() ?: VARIANT_CASTER_ANY
                 val argumentTypeFqName = registeredSignal.parameterTypes.getOrNull(index)?.fqName ?: EntryGenerator.jvmTypeFqNamesProvider(JvmType.ANY).first()
 
-                add(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument))
+                add(ClassName(godotRegistrationPackage, GodotJvmTypes.ktFunctionArgument))
                 add(argumentTypeVariantType)
                 add(argumentTypeFqName)
                 add(argumentName)

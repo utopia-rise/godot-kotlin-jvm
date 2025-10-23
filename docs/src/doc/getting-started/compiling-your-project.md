@@ -7,7 +7,7 @@ Using the Godot editor:
 !!! warning
     On Linux or macOS you may receive an error when trying to build the project from the Godot editor (This can happen if you created your project via the IntelliJ template). 
     ```shell
-    ERROR: Godot-JVM: Could not create child process: /Users/username/projectname/gradlew 
+ERROR: Godot-JVM: Could not create child process: /Users/username/projectname/gradlew
     ERROR:  at: execute_with_pipe (drivers/unix/os_unix.cpp:659)
     ```
     

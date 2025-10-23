@@ -12,7 +12,7 @@
 class GDKotlin {
     friend class GdjLanguage;
 #ifdef TOOLS_ENABLED
-    friend class GodotKotlinJvmEditor;
+    friend class GodotJvmEditor;
 #endif
 
 public:

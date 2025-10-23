@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -21,7 +21,7 @@ gradlePlugin {
             id = "com.utopia-rise.godot-kotlin-jvm"
             displayName = "Gradle plugin for godot-kotlin-jvm"
             implementationClass = "godot.gradle.GodotPlugin"
-            description = "Automatically setup of godot kotlin jvm specific project configurations"
+            description = "Automatically setup of Godot-JVM specific project configurations"
 
             tags.set(listOf("kotlin", "godot", "gamedev"))
         }
@@ -37,7 +37,7 @@ dependencies {
 
     implementation(project(":godot-build-props"))
     implementation(project(":godot-plugins-common"))
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullGodotJvmVersion")
 
     implementation(project(":godot-class-graph-symbol-processor"))
 }

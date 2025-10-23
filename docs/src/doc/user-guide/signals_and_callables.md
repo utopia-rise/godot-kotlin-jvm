@@ -1,4 +1,4 @@
-Unlike GDScript, Signals and Callables in Godot-Kotlin are typed and numbered generic classes. 
+Unlike GDScript, Signals and Callables in Godot-JVM are typed and numbered generic classes. 
 Instead of taking a vararg of any kind of arguments, type Safety is enforced here. 
 The classic vararg Signal::emit() and Callable::call() are still implemented but seen as unsafe, we need them because it's not always possible to know their exact types (e.g. when obtained from Godot).
 It means that Signals must be connected to Callable that perfectly matches their signatures.

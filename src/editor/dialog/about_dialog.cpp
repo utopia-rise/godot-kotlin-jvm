@@ -3,7 +3,7 @@
 
 #include "about_dialog.h"
 
-#include "editor/godot_kotlin_jvm_editor.h"
+#include "editor/godot_jvm_editor.h"
 #include "editor/strings.h"
 
 #include <editor/editor_interface.h>
@@ -14,11 +14,11 @@
 #include <scene/gui/texture_rect.h>
 
 AboutDialog::AboutDialog() {
-    set_title("About Godot Kotlin JVM");
+    set_title("About Godot-JVM");
 }
 
 void AboutDialog::on_checkbox_toggled(bool is_selected) {
-    GodotKotlinJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->set_setting(show_info_on_start, is_selected);
+    GodotJvmEditor::get_instance()->get_editor_interface()->get_editor_settings()->set_setting(show_info_on_start, is_selected);
 }
 
 void AboutDialog::on_url_clicked(const String& url) {
@@ -52,7 +52,7 @@ void AboutDialog::_notification(int notification) {
     about_vbox->add_child(about_dialog_check_box);
 
     if (show_on_start) {
-        // Once shown a first time, it can be seen again via the Kotlin JVM menu - it doesn't have to be exclusive from that time on.
+        // Once shown a first time, it can be seen again via the JVM menu - it doesn't have to be exclusive from that time on.
         set_exclusive(true);
         popup_centered();
         set_exclusive(false);

@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -20,8 +20,8 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:common:$fullGodotJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullGodotJvmVersion")
     implementation(libs.kotlinPoet)
     implementation(libs.jacksonDataBind)
     implementation(libs.jacksonDataFormatXml)

@@ -17,7 +17,7 @@ fun Project.createIOSGraalNativeImageTask(
     packageBootstrapJarTask: TaskProvider<out Task>
 ): TaskProvider<out Task> = tasks.register("createIOSGraalNativeImage", Exec::class.java) {
     with(it) {
-        group = "godot-kotlin-jvm-internal"
+        group = "godot-jvm-internal"
         description = "INTERNAL TASK ! Converts main.jar and bootstrap.jar into a GraalVM ios native image."
 
         dependsOn(

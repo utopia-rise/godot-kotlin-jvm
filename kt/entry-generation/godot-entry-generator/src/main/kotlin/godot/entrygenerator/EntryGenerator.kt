@@ -129,7 +129,7 @@ object EntryGenerator {
         val registrationFiles = generatedRegistrationFilesBaseDir
             .walkTopDown()
             .filter { file ->
-                file.extension == FileExtensions.GodotKotlinJvm.registrationFile
+                file.extension == FileExtensions.GodotJvm.registrationFile
             }
             .associateBy { file ->
                 file.name

@@ -25,7 +25,7 @@ gradlePlugin {
     plugins {
         create("godotPublishPlugin") {
             id = "com.utopia-rise.godot-publish"
-            displayName = "Gradle plugin for publishing godot kotlin jvm to maven central"
+            displayName = "Gradle plugin for publishing Godot-JVM to maven central"
             implementationClass = "publish.PublishToMavenCentralPlugin"
         }
     }
@@ -36,7 +36,7 @@ tasks {
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
-            "godot.kotlin.jvm.version" to libs.versions.godotKotlinJvm.get(),
+            "godot.jvm.version" to libs.versions.godotKotlinJvm.get(),
             "godot.version" to libs.versions.godot.get(),
             "kotlin.version" to libs.versions.kotlin.get(),
         )

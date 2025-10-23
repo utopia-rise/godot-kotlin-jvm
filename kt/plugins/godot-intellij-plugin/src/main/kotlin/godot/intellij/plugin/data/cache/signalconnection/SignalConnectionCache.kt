@@ -37,10 +37,10 @@ class SignalConnectionCache {
     fun updateSignalConnections(module: Module, path: String, newSignalConnections: List<SignalConnection>) {
         newSignalConnections
             .filter { signalConnection ->
-                signalConnection.to.script?.endsWith(FileExtensions.GodotKotlinJvm.registrationFile) == true
+                signalConnection.to.script?.endsWith(FileExtensions.GodotJvm.registrationFile) == true
             }
             .mapNotNull { signalConnection ->
-                val signalName = if (signalConnection.from.script?.endsWith(FileExtensions.GodotKotlinJvm.registrationFile) == true) {
+                val signalName = if (signalConnection.from.script?.endsWith(FileExtensions.GodotJvm.registrationFile) == true) {
                     signalConnection.signal.convertToCamelCase()
                 } else {
                     signalConnection.signal
@@ -73,12 +73,12 @@ class SignalConnectionCache {
 
         newSignalConnections
             .filter { signalConnection ->
-                signalConnection.from.script?.endsWith(FileExtensions.GodotKotlinJvm.registrationFile) == true
+                signalConnection.from.script?.endsWith(FileExtensions.GodotJvm.registrationFile) == true
             }
             .mapNotNull { signalConnection ->
-                val toScriptIsAlsoGodotKotlinJvm = signalConnection.to.script?.endsWith(FileExtensions.GodotKotlinJvm.registrationFile) == true
+                val toScriptIsAlsoGodotJvm = signalConnection.to.script?.endsWith(FileExtensions.GodotJvm.registrationFile) == true
                 val signalName = signalConnection.signal.convertToCamelCase()
-                val toMethodName = if (toScriptIsAlsoGodotKotlinJvm) {
+                val toMethodName = if (toScriptIsAlsoGodotJvm) {
                     signalConnection.method.convertToCamelCase()
                 } else {
                     signalConnection.method

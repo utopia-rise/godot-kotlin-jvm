@@ -2,7 +2,7 @@ package godot.intellij.plugin.extension
 
 import com.intellij.psi.PsiClass
 import godot.intellij.plugin.data.model.REGISTER_CLASS_ANNOTATION
-import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
+import godot.intellij.plugin.gradle.GodotJvmSettings
 import godot.tools.common.constants.FileExtensions
 import org.jetbrains.kotlin.asJava.toLightClass
 import org.jetbrains.kotlin.idea.base.util.module
@@ -20,7 +20,7 @@ fun KtClass.getRegisteredClassName(): Pair<String, String>? = this.toLightClass(
 
 fun PsiClass.getRegisteredClassName(): Pair<String, String>? {
     val fqName = qualifiedName ?: return null
-    val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
+    val isFqNameRegistrationEnabled = GodotJvmSettings[module].isFqNameRegistrationEnabled
 
     // if `isFqNameRegistrationEnabled` is true we take the fqName, otherwise we'll use the simpleName
     val defaultRegistrationName = if (isFqNameRegistrationEnabled) {
@@ -47,7 +47,7 @@ fun PsiClass.getRegistrationFilePath(): String? {
         val fqName = qualifiedName ?: return null
         val registeredName = getRegisteredClassName()?.second ?: return null
 
-        val isRegistrationFileHierarchyEnabled = GodotKotlinJvmSettings[module].isRegistrationFileHierarchyEnabled
+        val isRegistrationFileHierarchyEnabled = GodotJvmSettings[module].isRegistrationFileHierarchyEnabled
 
         if (isRegistrationFileHierarchyEnabled) {
             registeredName
@@ -60,7 +60,7 @@ fun PsiClass.getRegistrationFilePath(): String? {
                 .suffix(".")
         }
             .prefixIfNot("res://")
-            .suffix(FileExtensions.GodotKotlinJvm.registrationFile)
+            .suffix(FileExtensions.GodotJvm.registrationFile)
     } else {
         null
     }

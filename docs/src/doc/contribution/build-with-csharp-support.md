@@ -1,4 +1,4 @@
-## Build engine for C# and Kotlin/JVM
+## Build engine for C# and Godot-JVM
 
 1. Fulfill requirements mentioned [here](https://docs.godotengine.org/en/stable/development/compiling/compiling_with_mono.html).
 2. `scons p=<platform> tools=yes module_mono_enabled=yes mono_glue=no`.

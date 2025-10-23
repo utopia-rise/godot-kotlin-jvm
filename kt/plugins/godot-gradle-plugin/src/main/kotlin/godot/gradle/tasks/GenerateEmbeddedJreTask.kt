@@ -20,7 +20,7 @@ open class GenerateEmbeddedJreTask @Inject constructor(
     )
 
     @Input
-    var outputDir: String = "${Paths.GODOT_KOTLIN_JVM_DIR}/jre-${getArch()}-${getOs()}"
+    var outputDir: String = "${Paths.GODOT_JVM_DIR}/jre-${getArch()}-${getOs()}"
 
     @Input
     var arguments: Array<String> = arrayOf(

@@ -23,13 +23,13 @@ import godot.codegen.models.enriched.EnrichedProperty
 import godot.codegen.models.enriched.toEnriched
 import godot.codegen.rpc.RpcFunctionMode
 import godot.tools.common.constants.GODOT_ERROR
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 
 class UseConnectFlagRule : GodotApiRule<ApiTask>() {
     override fun apply(task: ApiTask, context: GenerationContext) {
-        val objectClassIndex = context.api.classes.indexOfFirst { it.name == GodotKotlinJvmTypes.obj }
+        val objectClassIndex = context.api.classes.indexOfFirst { it.name == GodotJvmTypes.obj }
         val objectRawClass = context.api.classes[objectClassIndex]
 
         val connectEnumIndex = objectRawClass.enums!!.indexOfFirst { it.name == "ConnectFlags" }
@@ -225,7 +225,7 @@ class ObjectRule : GodotApiRule<EnrichedClassTask>() {
         if (type.identifier == GodotTypes.node) {
             generateTypesafeRpc()
         }
-        if (type.identifier == GodotKotlinJvmTypes.refCounted) {
+        if (type.identifier == GodotJvmTypes.refCounted) {
             preventOnDestroyUsage()
         }
     }

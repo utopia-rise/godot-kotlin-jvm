@@ -2,7 +2,7 @@ name: 🍏 Assemble iOS
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
       godot-version:
         type: string

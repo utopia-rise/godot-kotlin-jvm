@@ -11,7 +11,7 @@ import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.isInGodotRoot
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TransferModeIgnoresChannelQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import org.jetbrains.kotlin.idea.base.psi.kotlinFqName
 import org.jetbrains.kotlin.idea.references.mainReference
@@ -42,7 +42,7 @@ class RpcAnnotator : Annotator {
                 ?.mainReference
                 ?.resolve()
                 ?.kotlinFqName
-                ?.asString() == "$godotAnnotationPackage.${GodotKotlinJvmTypes.transferMode}.UNRELIABLE_ORDERED"
+                ?.asString() == "$godotAnnotationPackage.${GodotJvmTypes.transferMode}.UNRELIABLE_ORDERED"
 
             val channelElement = valueArgumentList
                 .arguments

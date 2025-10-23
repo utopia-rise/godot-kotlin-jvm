@@ -8,7 +8,7 @@ import com.squareup.kotlinpoet.INT
 import com.squareup.kotlinpoet.LONG
 import com.squareup.kotlinpoet.STRING
 
-object GodotKotlinJvmTypes {
+object GodotJvmTypes {
     const val color = "Color"
     const val stringName = "StringName"
     const val array = "VariantArray"
@@ -246,16 +246,16 @@ object GodotTypes {
     )
 }
 
-val GODOT_SIGNAL_CONNECTOR = ClassName(godotExtensionPackage, GodotKotlinJvmTypes.connector)
-val GODOT_ERROR = ClassName(godotCorePackage, GodotKotlinJvmTypes.error)
-val GODOT_ARRAY = ClassName(godotCorePackage, GodotKotlinJvmTypes.array)
-val GODOT_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.callable)
-val GODOT_METHOD_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.methodCallable)
-val GODOT_LAMBDA_CALLABLE = ClassName(godotCorePackage, GodotKotlinJvmTypes.lambdaCallable)
-val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotKotlinJvmTypes.dictionary)
-val GODOT_OBJECT = ClassName(godotApiPackage, GodotKotlinJvmTypes.obj)
-val KT_OBJECT = ClassName(godotCorePackage, GodotKotlinJvmTypes.ktObject)
-val STRING_NAME = ClassName(godotCorePackage, GodotKotlinJvmTypes.stringName)
+val GODOT_SIGNAL_CONNECTOR = ClassName(godotExtensionPackage, GodotJvmTypes.connector)
+val GODOT_ERROR = ClassName(godotCorePackage, GodotJvmTypes.error)
+val GODOT_ARRAY = ClassName(godotCorePackage, GodotJvmTypes.array)
+val GODOT_CALLABLE = ClassName(godotCorePackage, GodotJvmTypes.callable)
+val GODOT_METHOD_CALLABLE = ClassName(godotCorePackage, GodotJvmTypes.methodCallable)
+val GODOT_LAMBDA_CALLABLE = ClassName(godotCorePackage, GodotJvmTypes.lambdaCallable)
+val GODOT_DICTIONARY = ClassName(godotCorePackage, GodotJvmTypes.dictionary)
+val GODOT_OBJECT = ClassName(godotApiPackage, GodotJvmTypes.obj)
+val KT_OBJECT = ClassName(godotCorePackage, GodotJvmTypes.ktObject)
+val STRING_NAME = ClassName(godotCorePackage, GodotJvmTypes.stringName)
 
 val VARIANT_PARSER_NIL = ClassName(variantParserPackage, "NIL")
 val VARIANT_PARSER_BOOL = ClassName(variantParserPackage, "BOOL")
@@ -288,12 +288,12 @@ val VARIANT_CASTER_FLOAT = ClassName(variantCasterPackage, "FLOAT")
 val VARIANT_CASTER_ANY = ClassName(variantCasterPackage, "ANY")
 val VARIANT_CASTER_ENUM = ClassName(variantCasterPackage, "ENUM")
 
-val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.godotBaseType)
-val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeHelper)
-val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotKotlinJvmTypes.Annotations.coreTypeLocalCopy)
+val GODOT_BASE_TYPE = ClassName(godotAnnotationPackage, GodotJvmTypes.Annotations.godotBaseType)
+val CORE_TYPE_HELPER = ClassName(godotAnnotationPackage, GodotJvmTypes.Annotations.coreTypeHelper)
+val CORE_TYPE_LOCAL_COPY = ClassName(godotAnnotationPackage, GodotJvmTypes.Annotations.coreTypeLocalCopy)
 
-val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.transferContext)
-val MEMORY_MANAGER = ClassName(godotMemoryPackage, GodotKotlinJvmTypes.memoryManager)
-val TYPE_MANAGER = ClassName(godotReflectionPackage, GodotKotlinJvmTypes.typeManager)
-val OBJECT_ID = ClassName(godotInteropPackage, GodotKotlinJvmTypes.objectID)
+val TRANSFER_CONTEXT = ClassName(godotMemoryPackage, GodotJvmTypes.transferContext)
+val MEMORY_MANAGER = ClassName(godotMemoryPackage, GodotJvmTypes.memoryManager)
+val TYPE_MANAGER = ClassName(godotReflectionPackage, GodotJvmTypes.typeManager)
+val OBJECT_ID = ClassName(godotInteropPackage, GodotJvmTypes.objectID)
 val VOID_PTR = ClassName(godotInteropPackage, "VoidPtr")

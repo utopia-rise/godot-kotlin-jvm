@@ -4,7 +4,7 @@ import com.intellij.openapi.module.Module
 import com.intellij.psi.PsiClass
 import godot.intellij.plugin.extension.godotRoot
 import godot.intellij.plugin.extension.registeredClassNameCache
-import godot.intellij.plugin.gradle.GodotKotlinJvmSettings
+import godot.intellij.plugin.gradle.GodotJvmSettings
 import godot.tools.common.constants.FileExtensions
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.util.suffixIfNot
@@ -14,14 +14,14 @@ import java.io.File
 value class ResPath(private val path: String) {
 
     fun scriptClassFqName(module: Module): String? {
-        val registrationFileBaseDir = GodotKotlinJvmSettings[module]
+        val registrationFileBaseDir = GodotJvmSettings[module]
             .registrationFileBaseDir
             .suffixIfNot("/")
 
         val registeredName = path
             .removePrefix("res://$registrationFileBaseDir")
             .replace("/", ".")
-            .removeSuffix(FileExtensions.GodotKotlinJvm.registrationFile)
+            .removeSuffix(FileExtensions.GodotJvm.registrationFile)
 
         return module
             .registeredClassNameCache
@@ -44,9 +44,9 @@ value class ResPath(private val path: String) {
         }
 
         fun scriptClassFqName(fqName: String, module: Module?): ResPath {
-            val isFqNameRegistrationEnabled = GodotKotlinJvmSettings[module].isFqNameRegistrationEnabled
-            val isRegistrationFileHierarchyEnabled = GodotKotlinJvmSettings[module].isRegistrationFileHierarchyEnabled
-            val registrationFileBaseDir = GodotKotlinJvmSettings[module].registrationFileBaseDir
+            val isFqNameRegistrationEnabled = GodotJvmSettings[module].isFqNameRegistrationEnabled
+            val isRegistrationFileHierarchyEnabled = GodotJvmSettings[module].isRegistrationFileHierarchyEnabled
+            val registrationFileBaseDir = GodotJvmSettings[module].registrationFileBaseDir
 
             return if (isFqNameRegistrationEnabled || isRegistrationFileHierarchyEnabled) {
                 val path = if (isRegistrationFileHierarchyEnabled) {
@@ -61,10 +61,10 @@ value class ResPath(private val path: String) {
                     fqName.substringAfterLast(".")
                 }
 
-                ResPath(path = "res://${path}/${name}.${FileExtensions.GodotKotlinJvm.registrationFile}")
+                ResPath(path = "res://${path}/${name}.${FileExtensions.GodotJvm.registrationFile}")
             } else {
                 val simpleName = fqName.substringAfterLast(".")
-                ResPath(path = "res://${registrationFileBaseDir}/${simpleName}.${FileExtensions.GodotKotlinJvm.registrationFile}")
+                ResPath(path = "res://${registrationFileBaseDir}/${simpleName}.${FileExtensions.GodotJvm.registrationFile}")
             }
         }
     }

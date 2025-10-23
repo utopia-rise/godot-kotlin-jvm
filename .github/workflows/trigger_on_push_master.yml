@@ -19,7 +19,7 @@ jobs:
       - run: |
           echo "Setup done"
     outputs: # defined here explicitly, so it only needs to be defined here. All other workflows can just reference it
-      godot-kotlin-jvm-version: "0.16.0-4.6.2"
+      godot-jvm-version: "0.16.0-4.6.2"
       godot-version: "4.6.2-stable"
       build-version: "0.16.0"
       jvm-version: "17"
@@ -93,7 +93,7 @@ jobs:
       - build-jvm
       - build-macos
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -104,7 +104,7 @@ jobs:
       - setup-build-variables
       - build-ios
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -116,7 +116,7 @@ jobs:
       - build-jvm
       - build-linux
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -128,7 +128,7 @@ jobs:
       - build-jvm
       - build-windows
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}
 
@@ -143,6 +143,6 @@ jobs:
       - assemble-macos # export templates need to be packed into app
       - build-windows # uploads finished export template directly
     with:
-      godot-kotlin-jvm-version: ${{ needs.setup-build-variables.outputs['godot-kotlin-jvm-version'] }}
+      godot-jvm-version: ${{ needs.setup-build-variables.outputs['godot-jvm-version'] }}
       godot-version: ${{ needs.setup-build-variables.outputs['godot-version'] }}
       build-version: ${{ needs.setup-build-variables.outputs['build-version'] }}

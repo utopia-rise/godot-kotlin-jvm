@@ -1,4 +1,4 @@
-The basic project setup is the same as for regular Godot Kotlin/JVM projects.
+The basic project setup is the same as for regular Godot-JVM projects.
 Head over to the corresponding [getting started](../getting-started/requirements.md) guide to set up the basics of the project.
 
 ## Library specific setup

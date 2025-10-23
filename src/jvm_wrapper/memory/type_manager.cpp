@@ -61,8 +61,8 @@ uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance
 
     MethodBind* bind {ClassDB::get_method(class_name, method_name)};
 
-    JVM_ERR_FAIL_COND_V_MSG(!bind, 0, "Method %s from Class %s doesn't exist. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name);
-    JVM_ERR_FAIL_COND_V_MSG(bind->get_hash() != hash, 0, "Hash mismatch for Method %s from Class %s. Check that your JVM Godot-Kotlin library matches this Godot version.", method_name, class_name);
+    JVM_ERR_FAIL_COND_V_MSG(!bind, 0, "Method %s from Class %s doesn't exist. Check that your Godot-JVM library matches this Godot version.", method_name, class_name);
+    JVM_ERR_FAIL_COND_V_MSG(bind->get_hash() != hash, 0, "Hash mismatch for Method %s from Class %s. Check that your Godot-JVM library matches this Godot version.", method_name, class_name);
 
     return reinterpret_cast<uintptr_t>(bind);
 

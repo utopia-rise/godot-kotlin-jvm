@@ -12,7 +12,7 @@ import godot.intellij.plugin.extension.isOrInheritsType
 import godot.intellij.plugin.extension.signalConnectionCache
 import godot.intellij.plugin.ui.dialog.IncomingSignalConnectionsDialog
 import godot.intellij.plugin.ui.dialog.OutgoingSignalConnectionsDialog
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.base.util.module
 import org.jetbrains.kotlin.lexer.KtTokens
@@ -32,7 +32,7 @@ class SignalConnectionLineMarker : LineMarkerProvider {
         val signalConnectionHandler = element.module?.signalConnectionCache ?: return null
 
         val parent = element.parent
-        if (parent is KtProperty && parent.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.signal}"))) {
+        if (parent is KtProperty && parent.isOrInheritsType(asClassId("$godotCorePackage.${GodotJvmTypes.signal}"))) {
             val containingClassFqName = parent.containingClass()?.fqName?.asString() ?: return null
             val propertyName = parent.name ?: return null
 

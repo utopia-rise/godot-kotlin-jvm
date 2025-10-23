@@ -61,7 +61,7 @@ fun generateEntryUsingClassGraph(
                 logger = LoggerWrapper(logger),
                 jvmTypeFqNamesProvider = DefaultJvmTypeProvider(),
                 compilationTimeRelativeRegistrationFilePathProvider = {registeredClass ->
-                        val registrationFile = existingRegistrationFiles["${registeredClass.registeredName}.${FileExtensions.GodotKotlinJvm.registrationFile}"]
+                        val registrationFile = existingRegistrationFiles["${registeredClass.registeredName}.${FileExtensions.GodotJvm.registrationFile}"]
                         ?.relativeTo(settings.projectBaseDir)
                         ?: File(
                             registeredClass.provideRegistrationFilePathForInitialGeneration(

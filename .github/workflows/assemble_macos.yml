@@ -2,7 +2,7 @@ name: 🍎 Assemble macOS
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
       godot-version:
         type: string
@@ -98,14 +98,14 @@ jobs:
           mkdir -p Godot.app/Contents/MacOS
           cp godot.macos.editor.${{ matrix.target }}.universal Godot.app/Contents/MacOS/Godot
           chmod +x Godot.app/Contents/MacOS/Godot
-          zip -q -9 -r godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip Godot.app
+          zip -q -9 -r godot-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip Godot.app
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
+          path: godot-jvm_editor_macos_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
 
 
   create-macos-export-template-universal:

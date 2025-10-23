@@ -57,10 +57,10 @@ jobs:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
         with:
-          path: modules/kotlin_jvm
+          path: modules/jvm
 
       - name: Setup Godot build cache
-        uses: ./modules/kotlin_jvm/.github/actions/scons-cache
+        uses: ./modules/jvm/.github/actions/scons-cache
         with:
           cache-name: ${{ matrix.cache-name }}
         continue-on-error: true

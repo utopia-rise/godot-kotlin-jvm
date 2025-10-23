@@ -20,7 +20,7 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GODOT_METHOD_CALLABLE
 import godot.tools.common.constants.GODOT_OBJECT
 import godot.tools.common.constants.GodotFunctions
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.STRING_NAME
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.VARIANT_PARSER_NIL
@@ -51,7 +51,7 @@ object CallableGenerationService : ICallableGenerationService {
     private val METHOD_CALLABLE_CLASS_NAME = ClassName(godotCorePackage, METHOD_CALLABLE_NAME)
 
     private val returnTypeParameter = TypeVariableName("R", ANY.copy(nullable = true))
-    private val variantConverterClassName = ClassName(godotInteropPackage, GodotKotlinJvmTypes.variantConverter)
+    private val variantConverterClassName = ClassName(godotInteropPackage, GodotJvmTypes.variantConverter)
 
     override fun generate(outputDir: File) {
         val callableFileSpec = FileSpec.builder(godotCorePackage, CALLABLE_NAME + "s")

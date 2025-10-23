@@ -5,13 +5,13 @@ import com.intellij.openapi.module.Module
 import godot.intellij.plugin.data.cache.classname.RegisteredClassNameCache
 import godot.intellij.plugin.data.cache.signalconnection.SignalConnectionCache
 import godot.intellij.plugin.data.model.GodotRoot
-import godot.intellij.plugin.project.GodotKotlinJvmProjectService
+import godot.intellij.plugin.project.GodotJvmProjectService
 
 val Module.registeredClassNameCache: RegisteredClassNameCache
-    get() = project.service<GodotKotlinJvmProjectService>().provideRegisteredClassNameCache(this)
+    get() = project.service<GodotJvmProjectService>().provideRegisteredClassNameCache(this)
 
 val Module.signalConnectionCache: SignalConnectionCache
-    get() = project.service<GodotKotlinJvmProjectService>().provideSignalConnectionCache(this)
+    get() = project.service<GodotJvmProjectService>().provideSignalConnectionCache(this)
 
 val Module.godotRoot: GodotRoot?
-    get() = project.service<GodotKotlinJvmProjectService>().provideGodotRoot(this)
+    get() = project.service<GodotJvmProjectService>().provideGodotRoot(this)

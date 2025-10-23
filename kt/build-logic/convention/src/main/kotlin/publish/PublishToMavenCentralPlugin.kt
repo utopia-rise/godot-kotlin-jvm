@@ -65,7 +65,7 @@ class PublishToMavenCentralPlugin : Plugin<Project> {
                                     mavenPom.name.set(evaluatedProject.name)
                                 }
                                 if (mavenPom.description.getOrElse("").isNullOrEmpty()) {
-                                    mavenPom.description.set(evaluatedProject.description ?: "Godot kotlin jvm module")
+                                    mavenPom.description.set(evaluatedProject.description ?: "Godot-JVM module")
                                 }
 
                                 mavenPom.scm { mavenPomScm ->

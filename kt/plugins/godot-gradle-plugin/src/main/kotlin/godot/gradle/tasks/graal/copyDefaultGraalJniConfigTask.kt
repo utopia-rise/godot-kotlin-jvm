@@ -7,7 +7,7 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.copyDefaultGraalJniConfigTask(): TaskProvider<out Task> {
     return tasks.register("createDefaultGraalJniConfig") {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description =
                 "Checks if the default jni config for graalVM native image is present and creates it if it's not"
 

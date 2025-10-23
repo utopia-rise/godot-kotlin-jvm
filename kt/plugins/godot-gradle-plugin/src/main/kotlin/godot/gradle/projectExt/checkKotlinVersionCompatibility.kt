@@ -21,10 +21,10 @@ fun Project.checkKotlinVersionCompatibility() {
 
         when {
             kotlinPlugin != null && kotlinPluginVersion != null && kotlinPluginVersion != GodotBuildProperties.supportedKotlinVersion -> throw IllegalArgumentException(
-                "Detected that a kotlin plugin with version $kotlinPluginVersion is already applied. But Godot-Kotlin is only compatible with kotlin ${GodotBuildProperties.supportedKotlinVersion}, please change the version to ${GodotBuildProperties.supportedKotlinVersion}"
+        "Detected that a kotlin plugin with version $kotlinPluginVersion is already applied. But Godot-JVM is only compatible with kotlin ${GodotBuildProperties.supportedKotlinVersion}, please change the version to ${GodotBuildProperties.supportedKotlinVersion}"
             )
             kotlinPlugin == null && kotlinPluginVersion != null && kotlinPluginVersion != GodotBuildProperties.supportedKotlinVersion -> throw IllegalArgumentException(
-                "Detected that kotlin plugin version $kotlinPluginVersion is already defined. But Godot-Kotlin is only compatible with kotlin ${GodotBuildProperties.supportedKotlinVersion}, please change the version to ${GodotBuildProperties.supportedKotlinVersion}"
+        "Detected that kotlin plugin version $kotlinPluginVersion is already defined. But Godot-JVM is only compatible with kotlin ${GodotBuildProperties.supportedKotlinVersion}, please change the version to ${GodotBuildProperties.supportedKotlinVersion}"
             )
             kotlinPlugin == null && kotlinPluginVersion == null || kotlinPluginVersion == GodotBuildProperties.supportedKotlinVersion -> {
                 pluginManager.apply(KotlinPluginWrapper::class.java) // the version will be the one with which this plugin was built

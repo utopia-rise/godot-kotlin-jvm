@@ -9,7 +9,7 @@ import godot.intellij.plugin.extension.asClassId
 import godot.intellij.plugin.extension.isOrInheritsType
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.TargetFunctionNotRegisteredQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.references.KtSimpleNameReference
 import org.jetbrains.kotlin.idea.references.mainReference
@@ -33,7 +33,7 @@ object SignalFunctionReferenceChecker {
             ?.firstIsInstanceOrNull<KtSimpleNameReference>()
             ?.resolve() as? KtProperty
 
-        val isSignal = signalElement?.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) == true
+        val isSignal = signalElement?.isOrInheritsType(asClassId("$godotCorePackage.${GodotJvmTypes.signal}")) == true
 
         if (isSignal) {
             val targetFunction = element

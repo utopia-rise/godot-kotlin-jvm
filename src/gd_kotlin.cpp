@@ -426,11 +426,11 @@ Object* GDKotlin::get_callable_middleman() const {
 }
 
 void GDKotlin::display_initialization_error_hint(String cause, String hint) {
-    String warning {"Godot Kotlin/JVM module couldn't be fully initialized.\n"
+    String warning {"Godot-JVM module couldn't be fully initialized.\n"
                     "Java and Kotlin scripts will still appear in the editor but won't be functional.\n"
                     "The cause was:\n"};
     String pre_hint {"\nOne possible solution is:\n"};
-    OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Kotlin/JVM module initialization error");
+    OS::get_singleton()->alert(warning + cause + pre_hint + hint, "Godot-JVM module initialization error");
 }
 
 void GDKotlin::validate_state() {

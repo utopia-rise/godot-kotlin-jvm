@@ -1,6 +1,6 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 import versioninfo.isSnapshot
 
 plugins {
@@ -28,7 +28,7 @@ repositories {
     }
 }
 
-version = fullGodotKotlinJvmVersion
+version = fullGodotJvmVersion
 group = "com.utopia-rise"
 
 val intellijVersion: String = project.properties["godot.plugins.intellij.version"]?.toString() ?: libs.versions.ideaPluginDefaultIntellijVersion.get()
@@ -38,7 +38,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullGodotJvmVersion")
     implementation("com.utopia-rise:jvm-godot-resource-serialization:0.1.0")
     implementation(project(":godot-build-props"))
     implementation(project(":godot-plugins-common"))

@@ -1,7 +1,7 @@
 #ifdef TOOLS_ENABLED
 
-#ifndef GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
-#define GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
+#ifndef GODOT_JVM_GODOT_JVM_EDITOR_H
+#define GODOT_JVM_GODOT_JVM_EDITOR_H
 
 #include "dialog/about_dialog.h"
 #include "dialog/build_dialog.h"
@@ -10,8 +10,8 @@
 
 #include <editor/plugins/editor_plugin.h>
 
-class GodotKotlinJvmEditor : public EditorPlugin {
-    GDCLASS(GodotKotlinJvmEditor, EditorPlugin)
+class GodotJvmEditor : public EditorPlugin {
+    GDCLASS(GodotJvmEditor, EditorPlugin)
     friend class GradleTaskRunner;
 
     enum KOTLIN_JVM_MENU_OPTIONS {
@@ -29,8 +29,8 @@ class GodotKotlinJvmEditor : public EditorPlugin {
     Button* tool_bar_gradle_task_button;
     OptionButton* tool_bar_gradle_task_choice;
 
-    GodotKotlinJvmEditor();
-    ~GodotKotlinJvmEditor();
+    GodotJvmEditor();
+    ~GodotJvmEditor();
 
     void on_gradle_task_pressed();
     void on_menu_option_pressed(int option_id);
@@ -41,12 +41,12 @@ protected:
     bool build() override;
 
 public:
-    static GodotKotlinJvmEditor* get_instance();
+    static GodotJvmEditor* get_instance();
 
-    GodotKotlinJvmEditor(const GodotKotlinJvmEditor&) = delete;
+    GodotJvmEditor(const GodotJvmEditor&) = delete;
     void _notification(int notification);
 };
 
-#endif // GODOT_JVM_GODOT_KOTLIN_JVM_EDITOR_H
+#endif // GODOT_JVM_GODOT_JVM_EDITOR_H
 
 #endif // TOOLS_ENABLED

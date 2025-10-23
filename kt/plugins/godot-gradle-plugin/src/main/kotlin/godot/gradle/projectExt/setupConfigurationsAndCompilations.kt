@@ -18,13 +18,13 @@ fun Project.setupConfigurationsAndCompilations() {
     //add our dependencies to the main compilation -> convenience for the user
     kotlinJvmExtension.target.compilations.getByName("main").apply {
         dependencies {
-            compileOnly("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
-            compileOnly("com.utopia-rise:godot-class-graph-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:common:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}")
+            compileOnly("com.utopia-rise:godot-class-graph-symbol-processor:${GodotBuildProperties.assembledGodotJvmVersion}")
 
             implementation("org.scala-lang:scala3-library_3:${godotJvmExtension.scalaVersion.get()}")
         }
@@ -35,13 +35,13 @@ fun Project.setupConfigurationsAndCompilations() {
     val bootstrapConfiguration = configurations.create("bootstrap") {
         with(it.dependencies) {
             add(dependencies.create("org.jetbrains.kotlin:kotlin-stdlib:${kotlinJvmExtension.coreLibrariesVersion}"))
-            add(dependencies.create("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotInternalArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
-            add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:common:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotInternalArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotJvmVersion}"))
             // add reflection explicitly so it's usable in exported projects as well. See: GH-571
             add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:${GodotBuildProperties.supportedKotlinVersion}"))
         }

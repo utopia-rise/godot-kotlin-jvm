@@ -2,7 +2,7 @@ package godot.codegen.models.traits
 
 import godot.codegen.constants.GodotMeta
 import godot.tools.common.constants.GODOT_CALLABLE
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
 import java.util.*
@@ -16,12 +16,12 @@ interface WithDefaultValueTrait : MetaGenerationTrait {
         val identifier = type.identifier
         return when {
             type.isNullable() && defaultValue == "null" -> defaultValueString to arrayOf()
-            identifier == GodotTypes.color -> "${GodotKotlinJvmTypes.color}($defaultValueString)" to arrayOf()
+            identifier == GodotTypes.color -> "${GodotJvmTypes.color}($defaultValueString)" to arrayOf()
             identifier == GodotTypes.variant -> defaultValueString to arrayOf()
             identifier == GodotTypes.bool -> defaultValueString.lowercase(Locale.US) to arrayOf()
             identifier == GodotTypes.float && meta == GodotMeta.Float.float -> "${intToFloat(defaultValueString)}f" to arrayOf()
             identifier == GodotTypes.float -> intToFloat(defaultValueString) to arrayOf()
-            identifier == GodotTypes.stringName -> "${GodotKotlinJvmTypes.stringName}(".plus(defaultValueString.replace("&", ""))
+            identifier == GodotTypes.stringName -> "${GodotJvmTypes.stringName}(".plus(defaultValueString.replace("&", ""))
                 .plus(")") to arrayOf()
 
             identifier == GodotTypes.array || type.isTypedArray() ->

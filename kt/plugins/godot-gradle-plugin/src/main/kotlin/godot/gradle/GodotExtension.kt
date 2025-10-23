@@ -204,7 +204,7 @@ open class GodotExtension(objects: ObjectFactory) {
             ?.listFiles()
             ?.last { it.isDirectory }
 
-        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotKotlinJvm.registrationFile))
+        registrationFileBaseDir.set(target.projectDir.resolve(FileExtensions.GodotJvm.registrationFile))
         isRegistrationFileHierarchyEnabled.set(true)
         isFqNameRegistrationEnabled.set(false)
 

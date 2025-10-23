@@ -14,7 +14,7 @@ import com.squareup.kotlinpoet.TypeVariableName
 import com.squareup.kotlinpoet.UNIT
 import godot.codegen.services.IAwaitGenerationService
 import godot.common.constants.Constraints
-import godot.tools.common.constants.GodotKotlinJvmTypes.signal
+import godot.tools.common.constants.GodotJvmTypes.signal
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotCoroutinePackage
 import godot.tools.common.constants.godotExtensionPackage

@@ -22,13 +22,13 @@ private enum class PrintColor(baseCode: Int) {
 }
 
 object GodotLogging {
-    fun info(message: String) = GodotPrint.print("Godot-JVM: $message")
-    fun warning(message: String) = GodotPrint.pushWarning("Godot-JVM: $message")
-    fun error(message: String) = GodotPrint.printErr("Godot-JVM: $message")
+fun info(message: String) = GodotPrint.print("Godot-JVM: $message")
+fun warning(message: String) = GodotPrint.pushWarning("Godot-JVM: $message")
+fun error(message: String) = GodotPrint.printErr("Godot-JVM: $message")
 }
 
 object JVMLogging {
-    fun info(message: String) = println("Godot-JVM: $message")
+fun info(message: String) = println("Godot-JVM: $message")
     fun warning(message: String) = println("${PrintColor.YELLOW.foreground}$message$RESET")
-    fun error(message: String) = System.err.println("Godot-JVM:  $message")
+fun error(message: String) = System.err.println("Godot-JVM:  $message")
 }

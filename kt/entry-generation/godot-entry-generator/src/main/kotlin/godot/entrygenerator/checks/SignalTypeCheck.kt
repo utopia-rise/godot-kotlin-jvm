@@ -3,7 +3,7 @@ package godot.entrygenerator.checks
 import godot.core.Signal
 import godot.entrygenerator.model.RegisteredClass
 import godot.entrygenerator.utils.Logger
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotCorePackage
 
 class SignalTypeCheck(logger: Logger, registeredClasses: List<RegisteredClass>): BaseCheck(logger, registeredClasses) {
@@ -12,7 +12,7 @@ class SignalTypeCheck(logger: Logger, registeredClasses: List<RegisteredClass>):
         registeredClasses
             .flatMap { it.signals }
             .forEach { registeredSignal ->
-                if (!registeredSignal.type.fqName.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.signal}")) {
+                if (!registeredSignal.type.fqName.startsWith("$godotCorePackage.${GodotJvmTypes.signal}")) {
                     hasIssue = true
                     logger.error(
                         "RegisteredSignal is not of type godot.signals.Signal! Resolved type: ${registeredSignal.type.fqName}",

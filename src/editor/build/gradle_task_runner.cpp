@@ -1,7 +1,7 @@
 
 #ifdef TOOLS_ENABLED
 
-#include "../godot_kotlin_jvm_editor.h"
+#include "../godot_jvm_editor.h"
 #include "editor/strings.h"
 #include "gradle_task_runner.h"
 #include "logging.h"

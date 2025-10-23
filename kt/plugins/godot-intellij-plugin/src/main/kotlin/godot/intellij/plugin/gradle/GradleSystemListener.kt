@@ -14,7 +14,7 @@ class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter(null)
         if (id.projectSystemId == GRADLE_SYSTEM_ID && id.type == RESOLVE_PROJECT) {
             // Gradle sync just started, pause our existing import if one is happening.
             id.findProject()?.let { project ->
-                GodotKotlinJvmSettings.close()
+                GodotJvmSettings.close()
                 SettingsFetchingNotification.getInstance(project).unconfiguredReason =
                     SettingsFetchingNotification.UnconfiguredReason.GradleSyncing
             }
@@ -25,7 +25,7 @@ class GradleSystemListener : ExternalSystemTaskNotificationListenerAdapter(null)
         if (id.projectSystemId == GRADLE_SYSTEM_ID && id.type == RESOLVE_PROJECT) {
             // Gradle sync failed, pause our existing import if one is happening and hide our message banner
             id.findProject()?.let { project ->
-                GodotKotlinJvmSettings.close()
+                GodotJvmSettings.close()
                 SettingsFetchingNotification.getInstance(project).hide()
             }
         }

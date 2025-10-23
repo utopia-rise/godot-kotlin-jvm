@@ -1,5 +1,5 @@
-# Godot Kotlin/JVM
-## Kotlin/JVM binding for the Godot Game Engine
+# Godot-JVM
+## JVM binding for the Godot Game Engine
 
 <p align="center">
 <img src=".README/logo.png" width="30%" height="30%">

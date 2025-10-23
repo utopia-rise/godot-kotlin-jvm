@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -19,7 +19,7 @@ kotlin {
 }
 
 dependencies {
-    api("com.utopia-rise:common:${fullGodotKotlinJvmVersion}")
+    api("com.utopia-rise:common:${fullGodotJvmVersion}")
     api(project(":godot-api-library"))
     implementation(project(":godot-internal-library"))
 }

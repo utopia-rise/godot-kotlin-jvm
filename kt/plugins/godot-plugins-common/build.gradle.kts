@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -37,7 +37,7 @@ val intellijVersion: String = project.properties["godot.plugins.intellij.version
 
 dependencies {
     implementation(project(":godot-build-props"))
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullGodotJvmVersion")
 
     // needed for gradle plugin dependency
     // https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
@@ -54,10 +54,10 @@ publishing {
         val godotPluginsCommon by registering(MavenPublication::class) {
             pom {
                 this.name.set(project.name)
-                this.description.set("Common module for godot kotlin jvm plugins.")
+                this.description.set("Common module for Godot-JVM plugins.")
             }
             artifactId = project.name
-            description = "Common module for godot kotlin jvm plugins."
+            description = "Common module for Godot-JVM plugins."
             from(components.getByName("java"))
         }
     }

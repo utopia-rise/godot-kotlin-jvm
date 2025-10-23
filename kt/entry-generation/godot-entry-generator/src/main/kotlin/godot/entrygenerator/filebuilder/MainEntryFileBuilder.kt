@@ -12,7 +12,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
 import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.GENERATED_COMMENT
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
 import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotPackage
@@ -23,12 +23,12 @@ import kotlin.reflect.KClass
 class MainEntryFileBuilder {
     private val initFunctionSpec = FunSpec
         .builder("init")
-        .receiver(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
+        .receiver(ClassName(godotRegistrationPackage, GodotJvmTypes.classRegistry))
         .addModifiers(KModifier.OVERRIDE)
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
-        .receiver(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
+        .receiver(ClassName(godotRegistrationPackage, GodotJvmTypes.classRegistry))
         .addModifiers(KModifier.OVERRIDE)
         .returns(
             List::class
@@ -54,8 +54,8 @@ class MainEntryFileBuilder {
 
         entryFileSpec.addType(
             TypeSpec
-                .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", GodotKotlinJvmTypes.entry))
-                .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
+                .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", GodotJvmTypes.entry))
+                .superclass(ClassName(godotRegistrationPackage, GodotJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
                 .addProperty(classRegistrarCountPropertySpec.build())

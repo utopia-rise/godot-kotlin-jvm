@@ -48,7 +48,7 @@ fun provideRegistrationFilePathForInitialGeneration(
         "${registrationFileOutDir}/dependencies/${classProjectName}/$localResourcePath"
     }
 
-    return "$pathWithoutExtension.${FileExtensions.GodotKotlinJvm.registrationFile}"
+    return "$pathWithoutExtension.${FileExtensions.GodotJvm.registrationFile}"
 }
 
 val RegisteredClass.shouldGenerateGdjFile: Boolean

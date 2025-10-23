@@ -34,7 +34,7 @@ jobs:
       - name: Clone Godot JVM module.
         uses: actions/checkout@v4
         with:
-          path: modules/kotlin_jvm
+          path: modules/jvm
 
       - uses: actions/setup-java@v4
         with:

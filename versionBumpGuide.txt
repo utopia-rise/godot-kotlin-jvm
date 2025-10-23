@@ -16,7 +16,7 @@ Also update the GitHub workflow output variables used by CI/release jobs:
 - `.github/workflows/trigger_on_tag.yml`
 
 For each of those workflow files, update:
-- `godot-kotlin-jvm-version`
+- `godot-jvm-version`
 - `godot-version`
 - `build-version`
 

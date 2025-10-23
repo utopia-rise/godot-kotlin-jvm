@@ -1,6 +1,6 @@
 package godot.intellij.plugin.extension
 
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.godotCorePackage
 import godot.tools.common.constants.godotUtilPackage
@@ -70,10 +70,10 @@ private fun KaType.isGodotPrimitive(session: KaSession): Boolean {
     return with(session) {
         isIntType
             || isLongType
-            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotKotlinJvmTypes.naturalT}"
+            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotJvmTypes.naturalT}"
             || isFloatType
             || isDoubleType
-            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotKotlinJvmTypes.realT}"
+            || symbol?.classId?.asFqNameString()?.removeSuffix("?") == "$godotUtilPackage.${GodotJvmTypes.realT}"
             || isBooleanType
             || isShortType
             || isStringType

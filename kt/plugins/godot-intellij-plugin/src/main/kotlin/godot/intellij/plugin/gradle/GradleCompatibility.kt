@@ -1,14 +1,14 @@
 package godot.intellij.plugin.gradle
 
 import godot.intellij.plugin.GodotPluginBundle
-import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.plugins.common.GodotJvmPropertiesFile
 import godot.utils.GodotBuildProperties
 
 /**
- * Validates that the gradle plugin and the ide plugin are compatible with each other. Defined by [GodotKotlinJvmSettings]
+ * Validates that the gradle plugin and the ide plugin are compatible with each other. Defined by [GodotJvmSettings]
  */
 object GradleCompatibility {
-    fun validate(propertiesFile: GodotKotlinJvmPropertiesFile): CompatibilityReport {
+    fun validate(propertiesFile: GodotJvmPropertiesFile): CompatibilityReport {
         val (minimumIdeVersion, currentGradleVersion) = try {
             SemVer(propertiesFile.minimumIdePluginVersion) to SemVer(propertiesFile.currentGradlePluginVersion)
         } catch (e: Throwable) {
@@ -18,7 +18,7 @@ object GradleCompatibility {
             )
         }
 
-        val currentVersion = SemVer(GodotBuildProperties.godotKotlinJvmVersion)
+        val currentVersion = SemVer(GodotBuildProperties.godotJvmVersion)
 
         if (currentVersion < minimumIdeVersion) {
             return CompatibilityReport.Incompatible(
@@ -26,7 +26,7 @@ object GradleCompatibility {
             )
         }
 
-        val minimumGradleVersion = SemVer(GodotBuildProperties.godotKotlinJvmVersion)
+        val minimumGradleVersion = SemVer(GodotBuildProperties.godotJvmVersion)
 
         if (currentGradleVersion < minimumGradleVersion) {
             return CompatibilityReport.Incompatible(

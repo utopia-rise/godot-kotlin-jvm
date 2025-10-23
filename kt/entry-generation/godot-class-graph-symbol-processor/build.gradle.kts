@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -11,7 +11,7 @@ kotlin {
 }
 
 dependencies {
-    implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
+    implementation("com.utopia-rise:tools-common:$fullGodotJvmVersion")
     implementation(project(":godot-bootstrap-library"))
     implementation(project(":godot-entry-generator"))
 

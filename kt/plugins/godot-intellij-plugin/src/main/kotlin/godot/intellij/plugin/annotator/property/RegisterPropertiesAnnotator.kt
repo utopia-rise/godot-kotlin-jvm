@@ -17,7 +17,7 @@ import godot.intellij.plugin.extension.isSupportedJvmType
 import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.quickfix.PropertyNotRegisteredQuickFix
 import godot.intellij.plugin.quickfix.RegisterPropertyMutabilityQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotAnnotationPackage
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
@@ -85,7 +85,7 @@ class RegisterPropertiesAnnotator : Annotator {
         // enum flag is the only case where registering a kotlin collection is allowed
         if (
             isEnumCollection &&
-            ktProperty.findAnnotation(asClassId("$godotAnnotationPackage.${GodotKotlinJvmTypes.Annotations.enumFlag}")) == null
+            ktProperty.findAnnotation(asClassId("$godotAnnotationPackage.${GodotJvmTypes.Annotations.enumFlag}")) == null
         ) {
             // TODO: add quick fix
             holder.registerProblem(
@@ -95,7 +95,7 @@ class RegisterPropertiesAnnotator : Annotator {
         }
 
         val isEnumVariantArray = analyze(ktProperty) {
-            ktProperty.returnType.symbol?.classId?.asFqNameString()?.startsWith("$godotCorePackage.${GodotKotlinJvmTypes.variantArray}") == true
+            ktProperty.returnType.symbol?.classId?.asFqNameString()?.startsWith("$godotCorePackage.${GodotJvmTypes.variantArray}") == true
                 && ktProperty.returnType.symbol?.typeParameters?.firstOrNull()?.defaultType?.isEnum() == true
         }
         if (isEnumVariantArray) {
@@ -106,7 +106,7 @@ class RegisterPropertiesAnnotator : Annotator {
             )
         }
 
-        val isInheritingObject = ktProperty.isOrInheritsType(asClassId("$godotApiPackage.${GodotKotlinJvmTypes.obj}"))
+        val isInheritingObject = ktProperty.isOrInheritsType(asClassId("$godotApiPackage.${GodotJvmTypes.obj}"))
         val isCoreType = ktProperty.isCoreType()
         val isSupportedJvmType = ktProperty.isSupportedJvmType()
 

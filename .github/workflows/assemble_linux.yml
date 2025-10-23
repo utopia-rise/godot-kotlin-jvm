@@ -2,7 +2,7 @@ name: 🐧 Assemble Linux
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
       godot-version:
         type: string
@@ -33,16 +33,16 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: editor_${{ matrix.target }}_linux_${{ matrix.arch }}
-          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
+          path: godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
 
       - name: Create linux editor zip
         run: |
-          cd godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}
-          zip -r godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip *
+          cd godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}
+          zip -r godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip *
         shell: bash
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          path: godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}/godot-kotlin-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
+          path: godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}/godot-jvm_editor_linuxbsd_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip

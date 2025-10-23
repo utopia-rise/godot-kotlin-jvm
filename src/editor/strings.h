@@ -9,7 +9,7 @@ constexpr const char* show_info_on_start = "kotlin_jvm/editor/show_info_on_start
 
 constexpr const char* start_build = "Building JVM project...";
 
-constexpr const char* VERSION_TEMPLATE = "GODOT_KOTLIN_JVM_VERSION";
+constexpr const char* VERSION_TEMPLATE = "GODOT_JVM_VERSION";
 constexpr const char* PROJECT_NAME_TEMPLATE = "PROJECT_NAME";
 
 constexpr const char* generate_project = "This will generate the files necessary to build a JVM project.\n"
@@ -22,10 +22,10 @@ constexpr const char* generate_nothing = "Don't generate anything";
 
 constexpr const char* missing_gradle_project =
   "Gradle project can't be found. Make sure to create one before building.\n"
-  "You can use Project/Tools/Kotlin/JVM/Generate JVM project in the Godot editor or use our Intellij plugin.";
+  "You can use Project/Tools/JVM/Generate JVM project in the Godot editor or use our Intellij plugin.";
 
 constexpr const char* about_text =
-  "Godot Kotlin JVM is a community project and is in no way related to Godot or Jetbrains.\n\n"
+  "Godot-JVM is a community project and is in no way related to Godot or Jetbrains.\n\n"
   "The project is in alpha stage and, while already usable, it is not meant for use in "
   "production.\n"
   "Future updates might still include breaking changes.\n\n"

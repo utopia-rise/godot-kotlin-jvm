@@ -1,6 +1,6 @@
 <idea-plugin require-restart="false">
     <id>com.utopia-rise.godotjvmideaplugin</id>
-    <name>Godot Kotlin/Jvm</name>
+    <name>Godot-JVM</name>
     <!-- The vendor of the plugin.
        The optional "url" attribute specifies the URL of the vendor homepage.
        The optional "email" attribute specifies the e-mail address of the vendor.
@@ -12,8 +12,8 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotKotlinJvmStartupActivity"/>
-        <projectService serviceInterface="godot.intellij.plugin.project.GodotKotlinJvmProjectService" serviceImplementation="godot.intellij.plugin.project.GodotKotlinJvmProjectServiceImpl"/>
+        <postStartupActivity implementation="godot.intellij.plugin.listener.GodotJvmStartupActivity"/>
+        <projectService serviceInterface="godot.intellij.plugin.project.GodotJvmProjectService" serviceImplementation="godot.intellij.plugin.project.GodotJvmProjectServiceImpl"/>
         <moduleBuilder builderClass="godot.intellij.plugin.module.GodotModuleBuilder"/>
         <notificationGroup id="Error message" displayType="STICKY_BALLOON" key="notification.group.error" isLogByDefault="true"/>
         <annotator implementationClass="godot.intellij.plugin.annotator.clazz.RegisterClassAnnotator" language="JVM"/>
@@ -30,11 +30,11 @@
             language="godotScene"
             extensions="tscn"
             implementationClass="godot.intellij.plugin.language.scene.filetype.GodotSceneFileType"/>
-        <fileType name="GodotKotlinJvmRegistrationFile"
+        <fileType name="GodotJvmRegistrationFile"
             fieldName="INSTANCE"
-            language="godotKotlinJvmRegistrationFile"
+            language="godotJvmRegistrationFile"
             extensions="gdj"
-            implementationClass="godot.intellij.plugin.language.registrationfile.filetype.GodotKotlinJvmRegistrationFileFileType"/>
+            implementationClass="godot.intellij.plugin.language.registrationfile.filetype.GodotJvmRegistrationFileFileType"/>
         <editorNotificationProvider
             implementation="godot.intellij.plugin.notification.SettingsFetchingNotification" />
         <externalSystemTaskNotificationListener

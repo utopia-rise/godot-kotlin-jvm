@@ -6,8 +6,8 @@ import godot.gradle.projectExt.godotCoroutineLibraryArtifactName
 import godot.gradle.projectExt.godotJvmExtension
 import godot.gradle.projectExt.setupConfigurationsAndCompilations
 import godot.gradle.projectExt.setupTasks
-import godot.gradle.properties.GodotKotlinJvmPropertiesFileImpl
-import godot.plugins.common.GodotKotlinJvmPropertiesFile
+import godot.gradle.properties.GodotJvmPropertiesFileImpl
+import godot.plugins.common.GodotJvmPropertiesFile
 import godot.utils.GodotBuildProperties
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -37,7 +37,7 @@ abstract class GodotPlugin : Plugin<Project> {
             if (godotJvmExtension.isGodotCoroutinesEnabled.get()) {
                 dependencies.add(
                     "implementation",
-                    dependencies.create("com.utopia-rise:${godotCoroutineLibraryArtifactName}:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+                    dependencies.create("com.utopia-rise:${godotCoroutineLibraryArtifactName}:${GodotBuildProperties.assembledGodotJvmVersion}")
                 )
                 dependencies.add(
                     "implementation",
@@ -56,7 +56,7 @@ abstract class GodotPlugin : Plugin<Project> {
 
 
     /**
-     * The PropertiesModelBuilder class is responsible for building the tooling model for the Godot Kotlin-JVM properties file.
+     * The PropertiesModelBuilder class is responsible for building the tooling model for the Godot-JVM properties file.
      *
      * This file is only virtually present and is then loaded by `FetchProjectModelsBuildAction` in the IDE plugin to load the users gradle configuration of our gradle plugin.
      *
@@ -70,11 +70,11 @@ abstract class GodotPlugin : Plugin<Project> {
         private val registrationFileBaseDir: String,
     ) : ToolingModelBuilder {
         override fun canBuild(modelName: String): Boolean {
-            return modelName == GodotKotlinJvmPropertiesFile::class.java.name
+            return modelName == GodotJvmPropertiesFile::class.java.name
         }
 
         override fun buildAll(modelName: String, project: Project): Any {
-            return GodotKotlinJvmPropertiesFileImpl(
+            return GodotJvmPropertiesFileImpl(
                 isFqNameRegistrationEnabled = isFqNameRegistrationEnabled,
                 isRegistrationFileHierarchyEnabled = isRegistrationFileHierarchyEnabled,
                 registrationFileBaseDir = registrationFileBaseDir,

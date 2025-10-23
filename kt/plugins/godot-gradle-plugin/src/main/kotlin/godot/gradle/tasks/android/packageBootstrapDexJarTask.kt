@@ -12,7 +12,7 @@ fun Project.packageBootstrapDexJarTask(
 ): TaskProvider<out Task> {
     return tasks.register("packageBootstrapDexJar", Exec::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Packages needed resources into godot-bootstrap-dex.jar. Needed for android builds only"
 
             dependsOn(createBootstrapDexJarTask)

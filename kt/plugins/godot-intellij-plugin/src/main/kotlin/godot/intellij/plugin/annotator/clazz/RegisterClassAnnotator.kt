@@ -22,7 +22,7 @@ import godot.intellij.plugin.extension.registerProblem
 import godot.intellij.plugin.extension.registeredClassNameCache
 import godot.intellij.plugin.quickfix.ClassAlreadyRegisteredQuickFix
 import godot.intellij.plugin.quickfix.ClassNotRegisteredQuickFix
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotCorePackage
 import org.jetbrains.kotlin.idea.base.util.module
 
@@ -73,7 +73,7 @@ class RegisterClassAnnotator : BaseAnnotator {
     }
 
     private fun checkExtendsGodotType(psiClass: PsiClass, holder: AnnotationHolder) {
-        if (!psiClass.isOrInheritsType(asClassId("$godotCorePackage.${GodotKotlinJvmTypes.ktObject}"))) {
+        if (!psiClass.isOrInheritsType(asClassId("$godotCorePackage.${GodotJvmTypes.ktObject}"))) {
             holder.registerProblem(
                 GodotPluginBundle.message("problem.class.inheritance.notInheritingGodotObject"),
                 psiClass.nameIdentifier

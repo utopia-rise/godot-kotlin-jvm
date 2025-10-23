@@ -18,7 +18,7 @@ import godot.common.constants.Constraints
 import godot.tools.common.constants.GODOT_METHOD_CALLABLE
 import godot.tools.common.constants.GODOT_SIGNAL_CONNECTOR
 import godot.tools.common.constants.GODOT_OBJECT
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.TO_GODOT_NAME_UTIL_FUNCTION
 import godot.tools.common.constants.godotApiPackage
 import godot.tools.common.constants.godotCorePackage
@@ -38,7 +38,7 @@ object ConnectorGenerationService : IConnectorGenerationService {
     private const val TARGET_PARAMETER_NAME = "target"
     private val godotObjectBoundTypeVariable = TypeVariableName("T", GODOT_OBJECT)
     private val connectFlagClassName = ClassName(godotApiPackage, "Object.ConnectFlags")
-    private val variantConverterClassName = ClassName(godotCorePackage, GodotKotlinJvmTypes.variantParser)
+    private val variantConverterClassName = ClassName(godotCorePackage, GodotJvmTypes.variantParser)
     private val variantMapperMember = MemberName(godotCorePackage, "variantMapper")
     private val asCallableMember= MemberName(godotCorePackage, "asCallable")
 

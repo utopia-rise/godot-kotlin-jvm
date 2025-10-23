@@ -8,7 +8,7 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.checkAndroidJarAccessibleTask(): TaskProvider<Task> {
     return tasks.register("checkAndroidJarAccessible") {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description =
                 "Checks if the android.jar is present in the provided androidCompileSdkDir. Needed for android builds only"
 

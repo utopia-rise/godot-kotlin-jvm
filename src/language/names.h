@@ -1,7 +1,7 @@
 #ifndef GODOT_JVM_NAMES_H
 #define GODOT_JVM_NAMES_H
 
-// keep in sync with godot.tools.common.constants.FileExtensions.GodotKotlinJvm.registrationFile
+// keep in sync with godot.tools.common.constants.FileExtensions.GodotJvm.registrationFile
 
 #define GODOT_JVM_REGISTRATION_FILE_EXTENSION "gdj"
 #define GODOT_JVM_SCRIPT_NAME "GdjScript"

@@ -39,7 +39,7 @@ fun Project.classGraphSymbolsProcess(
                                 .orNull
                                 ?.asFile
                                 ?: projectDir
-                                    .resolve(FileExtensions.GodotKotlinJvm.registrationFile)
+                                    .resolve(FileExtensions.GodotJvm.registrationFile)
                                     .apply {
                                         if (godotJvmExtension.isRegistrationFileGenerationEnabled.getOrElse(true)) {
                                             mkdirs()

@@ -3,7 +3,7 @@ name: 🚀 Deploy Godot artifacts
 on:
   workflow_call:
     inputs:
-      godot-kotlin-jvm-version:
+      godot-jvm-version:
         type: string
 
 jobs:
@@ -50,7 +50,7 @@ jobs:
       - name: Download ${{ matrix.platform }} ${{ matrix.target }} editor for ${{ matrix.arch }}
         uses: actions/download-artifact@v4
         with:
-          name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          name: godot-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
           path: '.'
 
       - name: Upload editor to github release
@@ -59,8 +59,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release_url.outputs.release_url }}
-          asset_path: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
-          asset_name: godot-kotlin-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-kotlin-jvm-version }}.zip
+          asset_path: godot-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
+          asset_name: godot-jvm_editor_${{ matrix.platform }}_${{ matrix.arch }}_${{ matrix.target }}_${{ inputs.godot-jvm-version }}.zip
           asset_content_type: application/octet-stream
 
   deploy-export_templates:
@@ -80,7 +80,7 @@ jobs:
       - name: Download export templates
         uses: actions/download-artifact@v4
         with:
-          name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          name: godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz
           path: '.'
 
       - name: Upload export templates to github release
@@ -89,6 +89,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release_url.outputs.release_url }}
-          asset_path: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
-          asset_name: godot-kotlin-jvm_export_templates_${{ inputs.godot-kotlin-jvm-version }}.tpz
+          asset_path: godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz
+          asset_name: godot-jvm_export_templates_${{ inputs.godot-jvm-version }}.tpz
           asset_content_type: application/octet-stream

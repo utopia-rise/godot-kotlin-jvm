@@ -16,7 +16,7 @@ import godot.entrygenerator.generator.SignalRegistrationGenerator
 import godot.entrygenerator.model.RegisteredClass
 import godot.tools.common.constants.GENERATED_COMMENT
 import godot.tools.common.constants.GodotFunctions
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.godotEntryBasePackage
 import godot.tools.common.constants.godotRegistrationPackage
 import java.io.BufferedWriter
@@ -61,7 +61,7 @@ class ClassRegistrarFileBuilder(
     private val registerClassControlFlow = FunSpec
         .builder("register")
         .addModifiers(KModifier.OVERRIDE)
-        .addParameter("registry", ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
+        .addParameter("registry", ClassName(godotRegistrationPackage, GodotJvmTypes.classRegistry))
         .beginControlFlow("with(registry)") //START: with registry
         .let { funSpecBuilder ->
             if (!registeredClass.isAbstract) {
@@ -92,7 +92,7 @@ class ClassRegistrarFileBuilder(
 
     fun build(): Pair<String, Array<Any>> {
         classRegistrarBuilder.addSuperinterface(
-            ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistrar)
+            ClassName(godotRegistrationPackage, GodotJvmTypes.classRegistrar)
         )
 
         if (!registeredClass.isAbstract) {

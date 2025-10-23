@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -20,7 +20,7 @@ kotlin {
 
 dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:${libs.versions.kotlinCoroutine.get()}")
-    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullGodotJvmVersion")
     implementation(project(":godot-internal-library"))
     api(project(":godot-core-library"))
     api(project(":godot-api-library"))

@@ -1,5 +1,5 @@
 import org.apache.tools.ant.filters.ReplaceTokens
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -16,8 +16,8 @@ tasks {
     val processResources by getting(Copy::class) {
         outputs.upToDateWhen { false }
         val tokens = mapOf(
-            "godot.kotlin.jvm.assembled.version" to fullGodotKotlinJvmVersion,
-            "godot.kotlin.jvm.version" to libs.versions.godotKotlinJvm.get(),
+            "godot.jvm.assembled.version" to fullGodotJvmVersion,
+            "godot.jvm.version" to libs.versions.godotKotlinJvm.get(),
             "godot.kotlinx.coroutine.version" to libs.versions.kotlinCoroutine.get(),
             "godot.version" to libs.versions.godot.get(),
             "kotlin.version" to libs.versions.kotlin.get(),
@@ -43,10 +43,10 @@ publishing {
         val buildProps by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
-                description.set("Properties for Godot Kotlin building.")
+                description.set("Properties for Godot-JVM building.")
             }
             artifactId = project.name
-            description = "Properties for Godot Kotlin building."
+            description = "Properties for Godot-JVM building."
             from(components.getByName("java"))
         }
     }

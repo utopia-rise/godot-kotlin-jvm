@@ -15,7 +15,7 @@ import godot.entrygenerator.model.Sync
 import godot.entrygenerator.model.TransferMode
 import godot.entrygenerator.model.TypeKind
 import godot.tools.common.constants.GodotFunctions
-import godot.tools.common.constants.GodotKotlinJvmTypes
+import godot.tools.common.constants.GodotJvmTypes
 import godot.tools.common.constants.GodotTypes
 import godot.tools.common.constants.KOTLIN_LIST_OF
 import godot.tools.common.constants.VARIANT_PARSER_NIL
@@ -103,7 +103,7 @@ object FunctionRegistrationGenerator {
     }
 
     private fun getTemplateArgs(registeredFunction: RegisteredFunction, className: ClassName): List<Any> {
-        val ktFunctionArgumentClassName = ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.ktFunctionArgument)
+        val ktFunctionArgumentClassName = ClassName(godotRegistrationPackage, GodotJvmTypes.ktFunctionArgument)
 
         val returnType = if (registeredFunction.returnType?.kind == TypeKind.ENUM_CLASS) {
             "Int"
@@ -150,7 +150,7 @@ object FunctionRegistrationGenerator {
             }
 
             add(returnType)
-            add(ClassName(godotCorePackage, GodotKotlinJvmTypes.ktRpcConfig))
+            add(ClassName(godotCorePackage, GodotJvmTypes.ktRpcConfig))
             add(getRpcModeEnum(registeredFunction))
             add(getRpcCallLocal(registeredFunction))
             add(getRpcTransferModeEnum(registeredFunction))

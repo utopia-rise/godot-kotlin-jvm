@@ -1,4 +1,4 @@
-import versioninfo.fullGodotKotlinJvmVersion
+import versioninfo.fullGodotJvmVersion
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -21,7 +21,7 @@ kotlin {
 dependencies {
     // added here as a transitive dependency so the user can use reflection
     // we need to add it here so reflection is available where the code is loaded (Bootstrap.kt) otherwise it will not work
-    api("com.utopia-rise:common:$fullGodotKotlinJvmVersion")
+    api("com.utopia-rise:common:$fullGodotJvmVersion")
 }
 
 val targetSuffix = if (isRelease) "release" else "debug"
@@ -32,10 +32,10 @@ publishing {
         val godotInternalLibraryPublication by creating(MavenPublication::class) {
             pom {
                 name.set("${project.name}-$targetSuffix")
-                description.set("Contains internal utilities for the Godot kotlin libraries")
+                description.set("Contains internal utilities for the Godot-JVM libraries")
             }
             artifactId = "godot-internal-library-$targetSuffix"
-            description = "Contains internal utilities for the Godot kotlin libraries"
+            description = "Contains internal utilities for the Godot-JVM libraries"
 
             from(components["java"])
         }

@@ -31,7 +31,7 @@ import org.gradle.api.Project
 
 fun Project.setupTasks() {
     tasks.register("generateEmbeddedJre", GenerateEmbeddedJreTask::class.java) { task ->
-        task.group = "godot-kotlin-jvm"
+        task.group = "godot-jvm"
         task.description = "Generates an embedded jre using jlink"
     }
 
