@@ -14,6 +14,8 @@ includeBuild("../../kt") {
         substitute(module("com.utopia-rise:godot-core-library-release")).using(project(":godot-core-library"))
         substitute(module("com.utopia-rise:godot-api-library-debug")).using(project(":godot-api-library"))
         substitute(module("com.utopia-rise:godot-api-library-release")).using(project(":godot-api-library"))
+        substitute(module("com.utopia-rise:godot-bootstrap-library-debug")).using(project(":godot-bootstrap-library"))
+        substitute(module("com.utopia-rise:godot-bootstrap-library-release")).using(project(":godot-bootstrap-library"))
         substitute(module("com.utopia-rise:godot-extension-library-debug")).using(project(":godot-extension-library"))
         substitute(module("com.utopia-rise:godot-extension-library-release")).using(project(":godot-extension-library"))
         substitute(module("com.utopia-rise:godot-coroutine-library-debug")).using(project(":godot-coroutine-library"))

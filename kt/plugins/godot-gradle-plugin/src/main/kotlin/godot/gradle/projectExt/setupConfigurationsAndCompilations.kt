@@ -22,6 +22,7 @@ fun Project.setupConfigurationsAndCompilations() {
             compileOnly("com.utopia-rise:godot-build-props:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
+            compileOnly("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
             compileOnly("com.utopia-rise:godot-class-graph-symbol-processor:${GodotBuildProperties.assembledGodotKotlinJvmVersion}")
 
@@ -39,6 +40,7 @@ fun Project.setupConfigurationsAndCompilations() {
             add(dependencies.create("com.utopia-rise:$godotInternalArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotCoreArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotApiArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
+            add(dependencies.create("com.utopia-rise:$godotBootstrapArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             add(dependencies.create("com.utopia-rise:$godotExtensionArtifactName:${GodotBuildProperties.assembledGodotKotlinJvmVersion}"))
             // add reflection explicitly so it's usable in exported projects as well. See: GH-571
             add(dependencies.create("org.jetbrains.kotlin:kotlin-reflect:${GodotBuildProperties.supportedKotlinVersion}"))

@@ -35,6 +35,9 @@ val Project.godotCoreArtifactName: String
 val Project.godotApiArtifactName: String
     get() = "godot-api-library-${if (isRelease) "release" else "debug"}"
 
+val Project.godotBootstrapArtifactName: String
+    get() = "godot-bootstrap-library-${if (isRelease) "release" else "debug"}"
+
 val Project.godotExtensionArtifactName: String
     get() = "godot-extension-library-${if (isRelease) "release" else "debug"}"
 

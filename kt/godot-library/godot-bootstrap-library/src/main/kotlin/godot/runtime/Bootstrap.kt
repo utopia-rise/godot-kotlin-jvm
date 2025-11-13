@@ -8,8 +8,7 @@ import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import java.util.*
-
+import java.util.ServiceLoader
 
 internal class Bootstrap {
     private lateinit var serviceLoader: ServiceLoader<Entry>
