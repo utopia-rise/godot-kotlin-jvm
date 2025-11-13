@@ -3,7 +3,6 @@ package godot.tests.coretypes
 import godot.api.Node
 import godot.annotation.RegisterClass
 import godot.annotation.RegisterFunction
-import godot.core.StringName
 import godot.core.asStringName
 import godot.core.Vector2
 

@@ -1,6 +1,5 @@
 package godot.annotation
 
-
 /**
  * Mark a class as tool class.
  *

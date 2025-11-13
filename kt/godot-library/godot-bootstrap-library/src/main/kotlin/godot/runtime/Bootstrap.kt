@@ -6,22 +6,25 @@ import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
+import godot.registerEngineTypeMethods
+import godot.registerEngineTypes
+import godot.registerVariantMapping
 import godot.registration.ClassRegistry
 import godot.registration.Entry
 import java.util.ServiceLoader
 
 internal class Bootstrap {
     private lateinit var serviceLoader: ServiceLoader<Entry>
-    private var engineTypeInitialized = false
-
 
     fun initJar(loader: ClassLoader) {
         serviceLoader = ServiceLoader.load(Entry::class.java, loader)
+        initializeEngineTypes()
         initializeUsingEntry()
     }
 
     fun initNativeImage() {
         serviceLoader = ServiceLoader.load(Entry::class.java)
+        initializeEngineTypes()
         initializeUsingEntry()
     }
 
@@ -37,6 +40,11 @@ internal class Bootstrap {
         serviceLoader.reload()
     }
 
+    private fun initializeEngineTypes() {
+        registerVariantMapping()
+        registerEngineTypes()
+        registerEngineTypeMethods()
+    }
 
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
@@ -70,10 +78,10 @@ internal class Bootstrap {
             with(entry) {
                 if (isMainEntry) {
                     mainContext = context
-                    if(!engineTypeInitialized) {
-                        context.initEngineTypes()
-                        engineTypeInitialized = true
-                    }
+//                    if(!engineTypeInitialized) {
+//                        context.initEngineTypes()
+//                        engineTypeInitialized = true
+//                    }
                     registerManagedEngineTypes(
                         TypeManager.engineTypeNames.toTypedArray(),
                         TypeManager.engineSingletonsNames.toTypedArray()
