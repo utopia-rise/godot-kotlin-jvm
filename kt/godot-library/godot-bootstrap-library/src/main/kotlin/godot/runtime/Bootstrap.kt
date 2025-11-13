@@ -18,13 +18,11 @@ internal class Bootstrap {
 
     fun initJar(loader: ClassLoader) {
         serviceLoader = ServiceLoader.load(Entry::class.java, loader)
-        initializeEngineTypes()
         initializeUsingEntry()
     }
 
     fun initNativeImage() {
         serviceLoader = ServiceLoader.load(Entry::class.java)
-        initializeEngineTypes()
         initializeUsingEntry()
     }
 
@@ -40,10 +38,15 @@ internal class Bootstrap {
         serviceLoader.reload()
     }
 
-    private fun initializeEngineTypes() {
+    fun initializeEngineTypes() {
         registerVariantMapping()
         registerEngineTypes()
         registerEngineTypeMethods()
+
+        registerManagedEngineTypes(
+            TypeManager.engineTypeNames.toTypedArray(),
+            TypeManager.engineSingletonsNames.toTypedArray()
+        )
     }
 
     private fun initializeUsingEntry() {
@@ -78,14 +81,6 @@ internal class Bootstrap {
             with(entry) {
                 if (isMainEntry) {
                     mainContext = context
-//                    if(!engineTypeInitialized) {
-//                        context.initEngineTypes()
-//                        engineTypeInitialized = true
-//                    }
-                    registerManagedEngineTypes(
-                        TypeManager.engineTypeNames.toTypedArray(),
-                        TypeManager.engineSingletonsNames.toTypedArray()
-                    )
                 }
                 for (clazz in context.getRegisteredClasses()) {
                     variantMapper[clazz] = VariantParser.OBJECT

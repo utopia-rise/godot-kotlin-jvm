@@ -45,6 +45,10 @@ void Bootstrap::register_engine_type(JNIEnv* p_env, jobject p_this, jobjectArray
 
 Bootstrap::Bootstrap(jni::Env& p_env, jni::JObject p_wrapped) : JvmInstanceWrapper(p_env, p_wrapped) {}
 
+void Bootstrap::initialize_engine_types(jni::Env& p_env) {
+    wrapped.call_void_method(p_env, INITIALIZE_ENGINE_TYPES);
+}
+
 void Bootstrap::init_jar(jni::Env& p_env, const jni::JObject& p_class_loader) {
     jvalue args[1] = {jni::to_jni_arg(p_class_loader)};
     wrapped.call_void_method(p_env, INIT_JAR, args);

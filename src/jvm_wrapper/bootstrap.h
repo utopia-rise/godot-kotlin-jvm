@@ -7,12 +7,14 @@ JVM_INSTANCE_WRAPPER(Bootstrap, "godot.runtime.Bootstrap") {
     JVM_CLASS(Bootstrap)
 
     // clang-format off
+    JNI_VOID_METHOD(INITIALIZE_ENGINE_TYPES)
     JNI_VOID_METHOD(INIT_JAR)
     JNI_VOID_METHOD(INIT_NATIVE_IMAGE)
     JNI_VOID_METHOD(FINISH)
     JNI_OBJECT_METHOD(GET_VERSION)
 
     INIT_JNI_BINDINGS(
+        INIT_JNI_METHOD(INITIALIZE_ENGINE_TYPES, "initializeEngineTypes", "()V")
         INIT_JNI_METHOD(INIT_JAR, "initJar", "(Ljava/lang/ClassLoader;)V")
         INIT_JNI_METHOD(INIT_NATIVE_IMAGE, "initNativeImage", "()V")
         INIT_JNI_METHOD(GET_VERSION, "getVersion", "()Ljava/lang/String;")
@@ -33,6 +35,7 @@ public:
     Bootstrap(jni::Env& p_env, jni::JObject p_wrapped);
     ~Bootstrap() = default;
 
+    void initialize_engine_types(jni::Env& p_env);
     void init_jar(jni::Env& p_env, const jni::JObject& p_class_loader);
     void init_native_image(jni::Env& p_env);
     String get_version(jni::Env& p_env);

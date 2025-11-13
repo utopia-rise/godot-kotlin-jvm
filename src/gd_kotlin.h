@@ -23,7 +23,8 @@ public:
         JVM_STARTED = 2,// Or retrieved in the case of Android
         BOOTSTRAP_LOADED = 3,
         CORE_LIBRARY_INITIALIZED = 4,
-        JVM_SCRIPTS_INITIALIZED = 5,
+        ENGINE_TYPES_INITIALIZED = 5,
+        JVM_SCRIPTS_INITIALIZED = 6,
     };
 
 private:
@@ -60,6 +61,8 @@ private:
 
     bool initialize_core_library();
     void finalize_core_library();
+
+    bool initialize_engine_types() const;
 
     bool load_user_code();
     void unload_user_code();

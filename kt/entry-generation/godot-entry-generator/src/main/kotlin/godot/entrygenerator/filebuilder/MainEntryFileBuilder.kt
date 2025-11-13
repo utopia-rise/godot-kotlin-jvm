@@ -26,14 +26,6 @@ class MainEntryFileBuilder {
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
         .addModifiers(KModifier.OVERRIDE)
 
-    private val initEngineTypesFunSpec = FunSpec
-        .builder("initEngineTypes")
-        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
-        .addModifiers(KModifier.OVERRIDE)
-        .addStatement("%M()", MemberName(godotPackage, "registerVariantMapping"))
-        .addStatement("%M()", MemberName(godotPackage, "registerEngineTypes"))
-        .addStatement("%M()", MemberName(godotPackage, "registerEngineTypeMethods"))
-
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
         .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
@@ -65,7 +57,6 @@ class MainEntryFileBuilder {
                 .classBuilder(ClassName("$godotEntryBasePackage.$randomPackageForEntryFile", GodotKotlinJvmTypes.entry))
                 .superclass(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.entry))
                 .addFunction(initFunctionSpec.build())
-                .addFunction(initEngineTypesFunSpec.build())
                 .addFunction(registerUserTypesVariantMappingsFunSpec.build())
                 .addProperty(classRegistrarCountPropertySpec.build())
                 .addProperty(projectNamePropertySpec.build())

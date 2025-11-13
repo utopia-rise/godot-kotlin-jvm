@@ -352,6 +352,12 @@ void GDKotlin::finalize_core_library() {
     callable_middleman = nullptr;
 }
 
+bool GDKotlin::initialize_engine_types() const {
+    jni::Env env = jni::Jvm::current_env();
+    bootstrap->initialize_engine_types(env);
+    return true;
+}
+
 void GDKotlin::unload_boostrap() {
     jni::Env env {jni::Jvm::current_env()};
     Bootstrap::finalize(env, bootstrap_class_loader);
@@ -382,6 +388,7 @@ void GDKotlin::initialize_up_to(State target_state) {
 #endif
     SET_LOADING_STATE(load_bootstrap(), BOOTSTRAP_LOADED, target_state)
     SET_LOADING_STATE(initialize_core_library(), CORE_LIBRARY_INITIALIZED, target_state)
+    SET_LOADING_STATE(initialize_engine_types(), ENGINE_TYPES_INITIALIZED, target_state)
     SET_LOADING_STATE(load_user_code(), JVM_SCRIPTS_INITIALIZED, target_state)
 }
 
