@@ -35,7 +35,6 @@ import godot.internal.reflection.TypeManager
 import godot.core.VariantParser
 import godot.core.toVariantArray
 import godot.core.variantArrayOf
-import godot.common.constants.Constraints
 import godot.core.VariantCaster
 import godot.core.enumFromGodotOrdinal
 import godot.core.godotOrdinal

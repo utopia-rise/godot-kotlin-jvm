@@ -1,6 +1,5 @@
 package godot.annotation
 
-
 /**
  * Mark a registered property as exported and thus visible in the inspector.
  *

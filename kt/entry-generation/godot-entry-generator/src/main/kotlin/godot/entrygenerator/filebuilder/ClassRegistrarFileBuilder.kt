@@ -122,7 +122,7 @@ class ClassRegistrarFileBuilder(
                 .writeTo(bufferedWriter)
         }
 
-        return "%T().register(registry)" to arrayOf(
+        return "%T().register(this)" to arrayOf(
             ClassName(
                 godotEntryBasePackage,
                 "${registeredClass.registeredName}Registrar"

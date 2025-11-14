@@ -47,6 +47,7 @@ subdir("godot-library") {
     include("godot-internal-library")
     include("godot-core-library")
     include("godot-api-library")
+    include("godot-bootstrap-library")
     include("godot-extension-library")
     include("godot-coroutine-library")
 }

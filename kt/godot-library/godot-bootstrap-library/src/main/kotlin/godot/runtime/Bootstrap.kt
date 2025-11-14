@@ -6,15 +6,15 @@ import godot.core.VariantParser
 import godot.core.variantMapper
 import godot.internal.logging.JVMLogging
 import godot.internal.reflection.TypeManager
+import godot.registerEngineTypeMethods
+import godot.registerEngineTypes
+import godot.registerVariantMapping
 import godot.registration.ClassRegistry
 import godot.registration.Entry
-import java.util.*
-
+import java.util.ServiceLoader
 
 internal class Bootstrap {
     private lateinit var serviceLoader: ServiceLoader<Entry>
-    private var engineTypeInitialized = false
-
 
     fun initJar(loader: ClassLoader) {
         serviceLoader = ServiceLoader.load(Entry::class.java, loader)
@@ -38,6 +38,16 @@ internal class Bootstrap {
         serviceLoader.reload()
     }
 
+    fun initializeEngineTypes() {
+        registerVariantMapping()
+        registerEngineTypes()
+        registerEngineTypeMethods()
+
+        registerManagedEngineTypes(
+            TypeManager.engineTypeNames.toTypedArray(),
+            TypeManager.engineSingletonsNames.toTypedArray()
+        )
+    }
 
     private fun initializeUsingEntry() {
         val entryIterator = serviceLoader.iterator()
@@ -56,7 +66,7 @@ internal class Bootstrap {
         val mainEntry = entries.maxBy { entry -> entry.classRegistrarCount }
         val classRegistries = mutableListOf<ClassRegistry>()
 
-        var mainContext: Entry.Context? = null
+        var mainRegistry: ClassRegistry? = null
         entries.forEach { entry ->
             val isMainEntry = entry == mainEntry
 
@@ -66,24 +76,15 @@ internal class Bootstrap {
             )
 
             classRegistries.add(registry)
-            val context = Entry.Context(registry)
 
             with(entry) {
                 if (isMainEntry) {
-                    mainContext = context
-                    if(!engineTypeInitialized) {
-                        context.initEngineTypes()
-                        engineTypeInitialized = true
-                    }
-                    registerManagedEngineTypes(
-                        TypeManager.engineTypeNames.toTypedArray(),
-                        TypeManager.engineSingletonsNames.toTypedArray()
-                    )
+                    mainRegistry = registry
                 }
-                for (clazz in context.getRegisteredClasses()) {
+                for (clazz in registry.getRegisteredClasses()) {
                     variantMapper[clazz] = VariantParser.OBJECT
                 }
-                context.init()
+                registry.init()
             }
         }
 
@@ -99,12 +100,12 @@ internal class Bootstrap {
         fun forceJvmInitializationOfScripts() {
             // Ugly but it will have to wait for when you rework Registration and Bootstrap
             // Has to run after all classes are initialized in case a static block needs a Godot type
-            if (mainContext == null) {
+            if (mainRegistry == null) {
                 return
             }
 
             with(mainEntry) {
-                mainContext.getRegisteredClasses().forEach { clazz ->
+                mainRegistry.getRegisteredClasses().forEach { clazz ->
                     // Force init of the class so any static block runs.
                     Class.forName(clazz.java.name, true, clazz.java.classLoader)
                 }

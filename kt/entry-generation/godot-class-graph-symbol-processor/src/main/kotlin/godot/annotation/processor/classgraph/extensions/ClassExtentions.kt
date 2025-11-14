@@ -78,11 +78,15 @@ private fun ClassInfo.shouldBeRegistered(
     registeredFunctions: List<RegisteredFunction>,
     registeredProperties: List<RegisteredProperty>,
     registeredSignals: List<RegisteredSignal>
-) = hasAnnotation(RegisterClass::class.java) || isAbstractAndContainsRegisteredMembers(
-    registeredFunctions,
-    registeredProperties,
-    registeredSignals
-) || isAbstractAndInheritsGodotObject
+) = !isInterface && (
+        hasAnnotation(RegisterClass::class.java) ||
+                isAbstractAndContainsRegisteredMembers(
+                    registeredFunctions,
+                    registeredProperties,
+                    registeredSignals
+                ) ||
+                isAbstractAndInheritsGodotObject
+        )
 
 private fun ClassInfo.isAbstractAndContainsRegisteredMembers(
     registeredFunctions: List<RegisteredFunction>,

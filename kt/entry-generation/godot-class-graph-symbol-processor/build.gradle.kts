@@ -12,7 +12,7 @@ kotlin {
 
 dependencies {
     implementation("com.utopia-rise:tools-common:$fullGodotKotlinJvmVersion")
-    implementation(project(":godot-core-library"))
+    implementation(project(":godot-bootstrap-library"))
     implementation(project(":godot-entry-generator"))
 
     implementation(libs.classGraph)
