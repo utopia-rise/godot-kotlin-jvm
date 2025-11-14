@@ -66,7 +66,7 @@ internal class Bootstrap {
         val mainEntry = entries.maxBy { entry -> entry.classRegistrarCount }
         val classRegistries = mutableListOf<ClassRegistry>()
 
-        var mainContext: Entry.Context? = null
+        var mainRegistry: ClassRegistry? = null
         entries.forEach { entry ->
             val isMainEntry = entry == mainEntry
 
@@ -76,16 +76,15 @@ internal class Bootstrap {
             )
 
             classRegistries.add(registry)
-            val context = Entry.Context(registry)
 
             with(entry) {
                 if (isMainEntry) {
-                    mainContext = context
+                    mainRegistry = registry
                 }
-                for (clazz in context.getRegisteredClasses()) {
+                for (clazz in registry.getRegisteredClasses()) {
                     variantMapper[clazz] = VariantParser.OBJECT
                 }
-                context.init()
+                registry.init()
             }
         }
 
@@ -101,12 +100,12 @@ internal class Bootstrap {
         fun forceJvmInitializationOfScripts() {
             // Ugly but it will have to wait for when you rework Registration and Bootstrap
             // Has to run after all classes are initialized in case a static block needs a Godot type
-            if (mainContext == null) {
+            if (mainRegistry == null) {
                 return
             }
 
             with(mainEntry) {
-                mainContext.getRegisteredClasses().forEach { clazz ->
+                mainRegistry.getRegisteredClasses().forEach { clazz ->
                     // Force init of the class so any static block runs.
                     Class.forName(clazz.java.name, true, clazz.java.classLoader)
                 }

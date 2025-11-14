@@ -43,7 +43,6 @@ object GodotKotlinJvmTypes {
     const val classRegistry = "ClassRegistry"
     const val classRegistrar = "ClassRegistrar"
     const val entry = "Entry"
-    const val context = "Context"
 
     const val naturalT = "NaturalT"
     const val realT = "RealT"

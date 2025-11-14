@@ -23,12 +23,12 @@ import kotlin.reflect.KClass
 class MainEntryFileBuilder {
     private val initFunctionSpec = FunSpec
         .builder("init")
-        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
+        .receiver(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
         .addModifiers(KModifier.OVERRIDE)
 
     private val registerUserTypesVariantMappingsFunSpec = FunSpec
         .builder("getRegisteredClasses")
-        .receiver(ClassName("$godotRegistrationPackage.${GodotKotlinJvmTypes.entry}", GodotKotlinJvmTypes.context))
+        .receiver(ClassName(godotRegistrationPackage, GodotKotlinJvmTypes.classRegistry))
         .addModifiers(KModifier.OVERRIDE)
         .returns(
             List::class
