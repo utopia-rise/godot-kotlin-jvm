@@ -102,6 +102,16 @@ jobs:
         run: |
           modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-api-library:publish -Prelease
 
+      - name: Publish godot-bootstrap-library debug
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-bootstrap-library:publish -Pdebug
+
+      - name: Publish godot-bootstrap-library release
+        shell: sh
+        run: |
+          modules/kotlin_jvm/kt/gradlew -p modules/kotlin_jvm/kt/ :godot-bootstrap-library:publish -Prelease
+
       - name: Publish godot-extension-library debug
         shell: sh
         run: |
