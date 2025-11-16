@@ -1,6 +1,6 @@
 # Registration files and attaching scripts
 
-Godot Kotlin/JVM offers two different ways to attach scripts: 
+Godot-JVM offers two different ways to attach scripts: 
 
 - Source files
 - Registration files.

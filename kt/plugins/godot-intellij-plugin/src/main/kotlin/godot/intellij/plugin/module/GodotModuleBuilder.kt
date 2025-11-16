@@ -222,7 +222,7 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                     outFile
                         .readText()
                         .replace(
-                            "GODOT_KOTLIN_JVM_VERSION",
+                            "GODOT_JVM_VERSION",
                             GodotBuildProperties.assembledGodotKotlinJvmVersion
                         )
                         .replace(
@@ -314,12 +314,12 @@ class GodotModuleBuilder : ModuleBuilder(), ModuleBuilderListener {
                             if (module.parentProjectAlreadyContainsDependency(wizardContext, "godot-core-library")) {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\")"
+                                    "id(\"com.utopia-rise.godot-jvm\")"
                                 )
                             } else {
                                 content.replace(
                                     "GODOT_KOTLIN_DEPENDENCY",
-                                    "id(\"com.utopia-rise.godot-kotlin-jvm\") version \"${GodotBuildProperties.assembledGodotKotlinJvmVersion}\""
+                                    "id(\"com.utopia-rise.godot-jvm\") version \"${GodotBuildProperties.assembledGodotKotlinJvmVersion}\""
                                 )
                             }
                         }

@@ -141,7 +141,7 @@ This also works for any type you define.
 
 Godot requires you to have a default constructor on your classes. These are automatically registered for you.  
 Registering constructor with arguments is currently not supported. But you can freely use them from Kotlin/Java/Scala
-just not from GDScript or any other non Godot Kotlin/JVM language.
+just not from GDScript or any other non Godot-JVM language.
 
 ### Instantiate Kotlin script classes in GDScript
 
