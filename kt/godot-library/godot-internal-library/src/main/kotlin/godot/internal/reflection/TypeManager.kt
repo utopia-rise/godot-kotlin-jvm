@@ -7,7 +7,7 @@ import kotlin.reflect.KClass
 object TypeManager {
     val engineTypeToId = mutableMapOf<KClass<out NativeWrapper>, Int>()
 
-    val scriptClassCache = mutableListOf<KClass<out NativeWrapper>>()
+    private val scriptClassCache = mutableListOf<KClass<out NativeWrapper>>()
     val userClassToScriptPtr = mutableMapOf<KClass<out NativeWrapper>, VoidPtr>()
 
     val userTypes = LinkedHashSet<String>()
@@ -37,6 +37,10 @@ object TypeManager {
         scriptClassCache.clear()
         userClassToScriptPtr.clear()
         userTypes.clear()
+    }
+
+    fun clearScriptClassCache() {
+        scriptClassCache.clear()
     }
 
     fun assignScriptToClass(index: Int, scriptPtr: VoidPtr) {
