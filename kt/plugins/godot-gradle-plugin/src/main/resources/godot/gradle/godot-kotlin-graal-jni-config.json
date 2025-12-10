@@ -59,7 +59,8 @@
       { "name" : "INSTANCE" }
     ],
     "methods" : [
-      { "name" : "getMethodBindPtr", "parameterTypes" : ["java.lang.String", "java.lang.String", "long"] }
+      { "name" : "getMethodBindPtr", "parameterTypes" : ["java.lang.String", "java.lang.String", "long"] },
+      { "name" : "assignScriptToClass", "parameterTypes" : ["int", "long"] }
     ]
   },
   {
@@ -795,7 +796,7 @@
     "name":"godot.core.KtObject",
     "methods":[
       {"name":"_onDestroy","parameterTypes":[] },
-      {"name" : "createNativeObject", "parameterTypes" : ["int", "int"] },
+      {"name" : "createNativeObject", "parameterTypes" : ["int", "long"] },
       {"name" : "getSingleton", "parameterTypes" : ["int"] },
       {"name" : "freeObject", "parameterTypes" : ["long"] },
       {"name" : "removeScript", "parameterTypes" : ["int"] }
