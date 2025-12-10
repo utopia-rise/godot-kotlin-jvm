@@ -95,7 +95,8 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     ;
 
 #ifdef TOOLS_ENABLED
-    for (const Ref<WeakRef>& weak_ref: source_scripts) {
+    for (const KeyValue<StringName, Ref<WeakRef>>& key_value: source_scripts_map) {
+        Ref<WeakRef> weak_ref = key_value.value;
         if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
             source_script->kotlin_class = nullptr;
         }
@@ -161,7 +162,8 @@ void JvmScriptManager::update_all_scripts(uint64_t update_time) {
         ptr->set_last_time_source_modified(update_time);
     }
 
-    for (const Ref<WeakRef>& weak_ref: source_scripts) {
+    for (const KeyValue<StringName, Ref<WeakRef>>& key_value: source_scripts_map) {
+        Ref<WeakRef> weak_ref = key_value.value;
         if (auto* source_script {Object::cast_to<SourceScript>(weak_ref->get_ref()) }) {
             source_script->update_script_exports();
             source_script->set_last_time_source_modified(update_time);
@@ -193,7 +195,6 @@ void JvmScriptManager::finalize() {
     singleton->named_scripts_map.clear();
     singleton->name_to_fqdn_map.clear();
     singleton->fqdn_to_name_map.clear();
-    singleton->source_scripts.clear();
     singleton->source_scripts_map.clear();
 
     singleton->fqdn_to_kt_class.clear();

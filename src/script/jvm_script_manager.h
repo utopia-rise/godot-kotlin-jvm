@@ -13,7 +13,6 @@ class JvmScriptManager: public Object {
     HashMap<String, StringName> fqdn_to_name_map;
     HashMap<StringName, String> name_to_fqdn_map;
 
-    Vector<Ref<WeakRef>> source_scripts;
     HashMap<StringName, Ref<WeakRef>> source_scripts_map;
 
     HashMap<StringName, KtClass*> fqdn_to_kt_class;
@@ -96,7 +95,6 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_path, 
         weak_ref->set_ref(jvm_script);
 
         source_scripts_map[jvm_script->get_functional_name()] = weak_ref;
-        source_scripts.push_back(weak_ref);
     }
     return jvm_script;
 }
