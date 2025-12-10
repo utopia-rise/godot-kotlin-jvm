@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -53,8 +52,8 @@ public open class MeshInstance2D : Node2D() {
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(362, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(362, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

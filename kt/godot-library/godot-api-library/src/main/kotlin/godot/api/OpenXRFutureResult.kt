@@ -16,7 +16,6 @@ import godot.core.VariantCaster.ANY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Any
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -32,8 +31,8 @@ public open class OpenXRFutureResult internal constructor() : RefCounted() {
    */
   public val completed: Signal1<OpenXRFutureResult> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(434, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(434, scriptPtr)
   }
 
   /**

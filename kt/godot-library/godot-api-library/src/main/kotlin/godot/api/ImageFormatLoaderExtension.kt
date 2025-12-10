@@ -14,7 +14,6 @@ import godot.core.Error
 import godot.core.PackedStringArray
 import godot.core.VariantParser.NIL
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ImageFormatLoaderExtension : ImageFormatLoader() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(291, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(291, scriptPtr)
   }
 
   /**

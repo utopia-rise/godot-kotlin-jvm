@@ -44,8 +44,8 @@ public open class Translation : Resource() {
       setLocale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(710, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(710, scriptPtr)
   }
 
   /**

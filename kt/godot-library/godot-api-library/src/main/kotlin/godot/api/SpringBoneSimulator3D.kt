@@ -92,8 +92,8 @@ public open class SpringBoneSimulator3D : SkeletonModifier3D() {
       setSettingCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(642, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(642, scriptPtr)
   }
 
   /**

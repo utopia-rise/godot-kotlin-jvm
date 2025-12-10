@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -71,8 +70,8 @@ public open class PanoramaSkyMaterial : Material() {
       setEnergyMultiplier(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(460, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(460, scriptPtr)
   }
 
   public final fun setPanorama(texture: Texture2D?): Unit {

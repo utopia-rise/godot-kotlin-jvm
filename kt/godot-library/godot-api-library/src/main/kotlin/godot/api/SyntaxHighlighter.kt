@@ -29,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SyntaxHighlighter : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(666, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(666, scriptPtr)
   }
 
   /**

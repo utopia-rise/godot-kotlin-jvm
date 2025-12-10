@@ -23,7 +23,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -47,7 +46,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object ResourceLoader : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(27)
   }
 

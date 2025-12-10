@@ -77,8 +77,8 @@ public open class LightmapGIData : Resource() {
       setLightTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(342, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(342, scriptPtr)
   }
 
   public final fun setLightmapTextures(lightTextures: VariantArray<TextureLayered>): Unit {

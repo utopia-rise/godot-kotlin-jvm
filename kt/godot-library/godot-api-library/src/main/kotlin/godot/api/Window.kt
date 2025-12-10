@@ -751,8 +751,8 @@ public open class Window : Viewport() {
       setThemeTypeVariation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(866, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(866, scriptPtr)
   }
 
   /**

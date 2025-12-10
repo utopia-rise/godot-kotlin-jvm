@@ -17,7 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -47,8 +46,8 @@ public open class AudioListener3D : Node3D() {
       setDopplerTracking(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(77, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(77, scriptPtr)
   }
 
   /**

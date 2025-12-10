@@ -27,8 +27,8 @@ import kotlin.Unit
 @GodotBaseType
 public open class VisualShaderNodeGroupBase internal constructor() : VisualShaderNodeResizableBase()
     {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(774, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(774, scriptPtr)
   }
 
   /**

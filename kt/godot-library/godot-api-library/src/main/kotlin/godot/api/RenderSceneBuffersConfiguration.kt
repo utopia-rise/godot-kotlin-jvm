@@ -21,7 +21,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2i
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -160,8 +159,8 @@ public open class RenderSceneBuffersConfiguration : RefCounted() {
       setAnisotropicFilteringLevel(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(559, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(559, scriptPtr)
   }
 
   /**

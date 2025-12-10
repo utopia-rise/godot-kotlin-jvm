@@ -32,8 +32,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class TileMapPattern : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(701, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(701, scriptPtr)
   }
 
   /**

@@ -85,8 +85,8 @@ public open class SphereMesh : PrimitiveMesh() {
       setIsHemisphere(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(631, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(631, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

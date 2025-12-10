@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -100,8 +99,8 @@ public open class Shortcut : Resource() {
       setEvents(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(609, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(609, scriptPtr)
   }
 
   public final fun setEvents(events: VariantArray<Any?>): Unit {

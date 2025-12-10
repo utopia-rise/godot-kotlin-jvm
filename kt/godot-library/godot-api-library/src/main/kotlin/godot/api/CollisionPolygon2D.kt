@@ -112,8 +112,8 @@ public open class CollisionPolygon2D : Node2D() {
       setOneWayCollisionMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(158, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(158, scriptPtr)
   }
 
   /**

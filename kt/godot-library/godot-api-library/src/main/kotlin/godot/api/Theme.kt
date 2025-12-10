@@ -99,8 +99,8 @@ public open class Theme : Resource() {
       setDefaultFontSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(695, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(695, scriptPtr)
   }
 
   /**

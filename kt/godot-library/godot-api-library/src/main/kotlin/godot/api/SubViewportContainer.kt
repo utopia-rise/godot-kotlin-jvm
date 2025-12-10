@@ -81,8 +81,8 @@ public open class SubViewportContainer : Container() {
       setMouseTarget(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(663, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(663, scriptPtr)
   }
 
   /**

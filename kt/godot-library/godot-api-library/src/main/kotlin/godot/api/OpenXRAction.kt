@@ -86,8 +86,8 @@ public open class OpenXRAction : Resource() {
       setToplevelPaths(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(420, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(420, scriptPtr)
   }
 
   /**

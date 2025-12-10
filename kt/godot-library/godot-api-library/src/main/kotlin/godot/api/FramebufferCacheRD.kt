@@ -15,7 +15,6 @@ import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser._RID
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,8 +27,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class FramebufferCacheRD : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(227, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(227, scriptPtr)
   }
 
   public companion object {

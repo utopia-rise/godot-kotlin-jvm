@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -36,8 +35,8 @@ public open class VisualShaderNodeComment : VisualShaderNodeFrame() {
       setDescription(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(753, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(753, scriptPtr)
   }
 
   public final fun setDescription(description: String): Unit {

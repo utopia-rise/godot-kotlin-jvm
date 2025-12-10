@@ -310,8 +310,8 @@ public open class SpriteBase3D internal constructor() : GeometryInstance3D() {
       setRenderPriority(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(645, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(645, scriptPtr)
   }
 
   /**

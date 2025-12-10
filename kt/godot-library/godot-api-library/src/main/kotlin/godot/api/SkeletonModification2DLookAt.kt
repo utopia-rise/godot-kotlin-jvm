@@ -68,8 +68,8 @@ public open class SkeletonModification2DLookAt : SkeletonModification2D() {
       setTargetNode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(617, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(617, scriptPtr)
   }
 
   public final fun setBone2dNode(bone2dNodepath: NodePath): Unit {

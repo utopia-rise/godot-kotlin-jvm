@@ -22,7 +22,6 @@ import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -62,8 +61,8 @@ public open class AnimationNodeStateMachinePlayback : Resource() {
    */
   public val stateFinished: Signal1<StringName> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(29, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(29, scriptPtr)
   }
 
   /**

@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -38,8 +37,8 @@ public open class MultiMeshInstance3D : GeometryInstance3D() {
       setMultimesh(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(374, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(374, scriptPtr)
   }
 
   public final fun setMultimesh(multimesh: MultiMesh?): Unit {

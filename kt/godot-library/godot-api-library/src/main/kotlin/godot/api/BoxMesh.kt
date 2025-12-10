@@ -87,8 +87,8 @@ public open class BoxMesh : PrimitiveMesh() {
       setSubdivideDepth(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(112, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(112, scriptPtr)
   }
 
   /**

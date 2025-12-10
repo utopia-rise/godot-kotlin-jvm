@@ -1014,8 +1014,8 @@ public open class CPUParticles3D : GeometryInstance3D() {
       setParamCurve(CPUParticles3D.Parameter.ANIM_OFFSET, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(118, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(118, scriptPtr)
   }
 
   /**

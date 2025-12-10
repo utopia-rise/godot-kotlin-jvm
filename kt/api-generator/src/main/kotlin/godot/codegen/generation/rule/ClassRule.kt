@@ -104,10 +104,10 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
-                .addParameter("scriptIndex", Int::class)
+                .addParameter("scriptPtr", VOID_PTR)
                 .returns(Unit::class)
                 .addStatement(
-                    "createNativeObject(${context.getNextEngineClassIndex()}, scriptIndex)"
+                    "createNativeObject(${context.getNextEngineClassIndex()}, scriptPtr)"
                 )
                 .build()
         )
@@ -118,7 +118,7 @@ class MemberRule : GodotApiRule<EnrichedClassTask>() {
         addFunction(
             FunSpec.builder("new")
                 .addModifiers(KModifier.OVERRIDE)
-                .addParameter("scriptIndex", Int::class)
+                .addParameter("scriptPtr", VOID_PTR)
                 .returns(Unit::class)
                 .addStatement(
                     "getSingleton(${context.getNextSingletonIndex()})"

@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
@@ -26,8 +27,8 @@ public infix fun Long.and(other: ImageFormatLoader.LoaderFlags): Long = this.and
  */
 @GodotBaseType
 public open class ImageFormatLoader internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(290, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(290, scriptPtr)
   }
 
   public class LoaderFlags(

@@ -385,8 +385,8 @@ public open class NavigationMesh : Resource() {
       setFilterBakingAabbOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(387, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(387, scriptPtr)
   }
 
   /**

@@ -19,7 +19,6 @@ import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -225,8 +224,8 @@ public open class VehicleWheel3D : Node3D() {
       setDampingRelaxation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(731, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(731, scriptPtr)
   }
 
   public final fun setRadius(length: Float): Unit {

@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -29,8 +28,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class X509Certificate : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(873, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(873, scriptPtr)
   }
 
   /**

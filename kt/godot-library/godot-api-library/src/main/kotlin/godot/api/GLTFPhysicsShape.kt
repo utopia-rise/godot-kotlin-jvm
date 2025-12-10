@@ -138,8 +138,8 @@ public open class GLTFPhysicsShape : Resource() {
       setImporterMesh(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(243, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(243, scriptPtr)
   }
 
   /**

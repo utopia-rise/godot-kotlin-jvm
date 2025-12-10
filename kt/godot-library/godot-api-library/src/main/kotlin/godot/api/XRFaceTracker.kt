@@ -59,8 +59,8 @@ public open class XRFaceTracker : XRTracker() {
       setBlendShapes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(882, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(882, scriptPtr)
   }
 
   /**

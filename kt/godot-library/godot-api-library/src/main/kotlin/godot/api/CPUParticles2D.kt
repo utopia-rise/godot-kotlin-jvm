@@ -870,8 +870,8 @@ public open class CPUParticles2D : Node2D() {
       setParamCurve(CPUParticles2D.Parameter.ANIM_OFFSET, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(117, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(117, scriptPtr)
   }
 
   /**

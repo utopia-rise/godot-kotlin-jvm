@@ -22,7 +22,6 @@ import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -33,8 +32,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicsBody2D internal constructor() : CollisionObject2D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(474, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(474, scriptPtr)
   }
 
   /**

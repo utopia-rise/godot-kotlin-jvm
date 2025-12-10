@@ -339,8 +339,8 @@ public open class CodeEdit : TextEdit() {
       setAutoBraceCompletionPairs(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(154, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(154, scriptPtr)
   }
 
   /**

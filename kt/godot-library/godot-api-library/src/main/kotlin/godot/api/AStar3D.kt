@@ -23,7 +23,6 @@ import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -115,8 +114,8 @@ public open class AStar3D : RefCounted() {
       setNeighborFilterEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(4, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(4, scriptPtr)
   }
 
   /**

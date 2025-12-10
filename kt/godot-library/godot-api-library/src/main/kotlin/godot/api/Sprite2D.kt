@@ -224,8 +224,8 @@ public open class Sprite2D : Node2D() {
       setRegionFilterClipEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(643, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(643, scriptPtr)
   }
 
   /**

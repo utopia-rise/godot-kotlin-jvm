@@ -242,8 +242,8 @@ public open class TabBar : Control() {
       setTabCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(670, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(670, scriptPtr)
   }
 
   public final fun setTabCount(count: Int): Unit {

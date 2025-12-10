@@ -25,7 +25,6 @@ import godot.core.Vector3
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -140,8 +139,8 @@ public open class VoxelGIData : Resource() {
       setInterior(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(856, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(856, scriptPtr)
   }
 
   public final fun allocate(

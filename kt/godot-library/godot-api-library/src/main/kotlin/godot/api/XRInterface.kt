@@ -96,8 +96,8 @@ public open class XRInterface internal constructor() : RefCounted() {
       setAnchorDetectionIsEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(885, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(885, scriptPtr)
   }
 
   /**

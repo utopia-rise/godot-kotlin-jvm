@@ -190,8 +190,8 @@ public open class RDShaderSPIRV : Resource() {
       setStageCompileError(RenderingDevice.ShaderStage.COMPUTE, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(538, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(538, scriptPtr)
   }
 
   /**

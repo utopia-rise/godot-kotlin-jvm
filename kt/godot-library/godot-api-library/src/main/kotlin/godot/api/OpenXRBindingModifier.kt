@@ -7,8 +7,8 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.PackedByteArray
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -19,8 +19,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public abstract class OpenXRBindingModifier : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(425, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(425, scriptPtr)
   }
 
   /**

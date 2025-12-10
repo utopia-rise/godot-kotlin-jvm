@@ -69,8 +69,8 @@ public open class MeshTexture : Texture2D() {
       setImageSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(365, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(365, scriptPtr)
   }
 
   /**

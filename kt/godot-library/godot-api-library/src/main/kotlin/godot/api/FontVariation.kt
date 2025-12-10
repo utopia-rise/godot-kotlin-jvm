@@ -213,8 +213,8 @@ public open class FontVariation : Font() {
       setBaselineOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(226, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(226, scriptPtr)
   }
 
   /**

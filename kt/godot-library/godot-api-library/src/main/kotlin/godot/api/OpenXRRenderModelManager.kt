@@ -15,7 +15,6 @@ import godot.core.Signal1
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -68,8 +67,8 @@ public open class OpenXRRenderModelManager : Node3D() {
       setMakeLocalToPose(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(445, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(445, scriptPtr)
   }
 
   public final fun getTracker(): RenderModelTracker {

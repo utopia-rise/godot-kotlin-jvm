@@ -187,8 +187,8 @@ public open class RayCast3D : Node3D() {
       setDebugShapeThickness(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(547, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(547, scriptPtr)
   }
 
   /**

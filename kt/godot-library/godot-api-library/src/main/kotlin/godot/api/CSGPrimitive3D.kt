@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -42,8 +41,8 @@ public open class CSGPrimitive3D internal constructor() : CSGShape3D() {
       setFlipFaces(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(124, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(124, scriptPtr)
   }
 
   public final fun setFlipFaces(flipFaces: Boolean): Unit {

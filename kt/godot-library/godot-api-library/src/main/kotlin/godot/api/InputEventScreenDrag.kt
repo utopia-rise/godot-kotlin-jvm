@@ -196,8 +196,8 @@ public open class InputEventScreenDrag : InputEventFromWindow() {
       setScreenVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(312, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(312, scriptPtr)
   }
 
   /**

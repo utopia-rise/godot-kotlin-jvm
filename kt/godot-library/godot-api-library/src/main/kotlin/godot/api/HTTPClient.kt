@@ -112,8 +112,8 @@ public open class HTTPClient : RefCounted() {
       setReadChunkSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(283, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(283, scriptPtr)
   }
 
   /**

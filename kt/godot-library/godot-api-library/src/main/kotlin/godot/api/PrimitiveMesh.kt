@@ -111,8 +111,8 @@ public open class PrimitiveMesh : Mesh() {
       setUv2Padding(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(520, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(520, scriptPtr)
   }
 
   /**

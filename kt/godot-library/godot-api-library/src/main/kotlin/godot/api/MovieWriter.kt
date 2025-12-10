@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.Vector2i
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -75,8 +74,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public abstract class MovieWriter : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(371, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(371, scriptPtr)
   }
 
   /**

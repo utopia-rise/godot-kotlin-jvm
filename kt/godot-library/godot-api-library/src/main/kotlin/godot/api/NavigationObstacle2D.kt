@@ -155,8 +155,8 @@ public open class NavigationObstacle2D : Node2D() {
       setAvoidanceLayers(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(391, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(391, scriptPtr)
   }
 
   /**

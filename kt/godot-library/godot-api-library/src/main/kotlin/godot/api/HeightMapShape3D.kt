@@ -95,8 +95,8 @@ public open class HeightMapShape3D : Shape3D() {
       setMapData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(286, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(286, scriptPtr)
   }
 
   /**

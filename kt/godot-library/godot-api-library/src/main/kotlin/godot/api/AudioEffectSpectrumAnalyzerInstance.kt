@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,8 +30,8 @@ import kotlin.jvm.JvmOverloads
 @GodotBaseType
 public open class AudioEffectSpectrumAnalyzerInstance internal constructor() : AudioEffectInstance()
     {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(74, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(74, scriptPtr)
   }
 
   /**

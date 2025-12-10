@@ -560,8 +560,8 @@ public open class LineEdit : Control() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(347, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(347, scriptPtr)
   }
 
   /**

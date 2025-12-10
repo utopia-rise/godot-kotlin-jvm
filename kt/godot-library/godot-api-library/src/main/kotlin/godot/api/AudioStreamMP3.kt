@@ -131,8 +131,8 @@ public open class AudioStreamMP3 : AudioStream() {
       setLoopOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(85, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(85, scriptPtr)
   }
 
   /**

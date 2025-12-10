@@ -75,8 +75,8 @@ public open class XRBodyModifier3D : SkeletonModifier3D() {
       setBoneUpdate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(876, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(876, scriptPtr)
   }
 
   public final fun setBodyTracker(trackerName: StringName): Unit {

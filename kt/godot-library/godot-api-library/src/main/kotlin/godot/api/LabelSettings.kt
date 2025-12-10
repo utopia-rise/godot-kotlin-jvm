@@ -202,8 +202,8 @@ public open class LabelSettings : Resource() {
       setStackedShadowCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(337, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(337, scriptPtr)
   }
 
   /**

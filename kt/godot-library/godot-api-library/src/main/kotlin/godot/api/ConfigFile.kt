@@ -22,7 +22,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -187,8 +186,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ConfigFile : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(177, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(177, scriptPtr)
   }
 
   /**

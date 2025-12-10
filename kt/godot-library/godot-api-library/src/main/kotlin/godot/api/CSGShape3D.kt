@@ -143,8 +143,8 @@ public open class CSGShape3D internal constructor() : GeometryInstance3D() {
       setCollisionPriority(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(125, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(125, scriptPtr)
   }
 
   /**

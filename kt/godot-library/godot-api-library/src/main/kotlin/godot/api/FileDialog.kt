@@ -327,8 +327,8 @@ public open class FileDialog : ConfirmationDialog() {
       setCurrentPath(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(218, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(218, scriptPtr)
   }
 
   /**

@@ -21,29 +21,27 @@ uintptr_t DictionaryBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, job
     auto ret {VariantAllocator::alloc(Dictionary())};
 
     auto key_variant_type = args[0].operator uint32_t();
-    auto key_engine_type_index {args[1].operator int64_t()};
-    auto key_user_type_index {args[2].operator int64_t()};
+    auto key_engine_type_index = args[1].operator int64_t();
+    auto key_user_type_script = Ref(bridges::from_uint_to_ptr<NamedScript>(args[2].operator int64_t()));
 
     auto value_variant_type = args[3].operator uint32_t();
-    auto value_engine_type_index {args[4].operator int64_t()};
-    auto value_user_type_index {args[5].operator int64_t()};
+    auto value_engine_type_index = args[4].operator int64_t();
+    auto value_user_type_script = Ref(bridges::from_uint_to_ptr<NamedScript>(args[5].operator int64_t()));
 
     StringName key_base_class_name;
     Variant key_script;
-    if (key_user_type_index != -1) {
-        Ref<NamedScript> kotlin_script {JvmScriptManager::get_instance()->get_named_script_from_index(key_user_type_index)};
-        key_base_class_name = kotlin_script->get_instance_base_type();
-        key_script = kotlin_script;
+    if (!key_user_type_script.is_null()) {
+        key_base_class_name = key_user_type_script->get_instance_base_type();
+        key_script = key_user_type_script;
     } else if (key_engine_type_index != -1) {
         key_base_class_name = TypeManager::get_instance().get_engine_type_for_index(key_engine_type_index);
     }
 
     StringName value_base_class_name;
     Variant value_script;
-    if (value_user_type_index != -1) {
-        Ref<NamedScript> kotlin_script {JvmScriptManager::get_instance()->get_named_script_from_index(value_user_type_index)};
-        value_base_class_name = kotlin_script->get_instance_base_type();
-        value_script = kotlin_script;
+    if (!value_user_type_script.is_null()) {
+        value_base_class_name = value_user_type_script->get_instance_base_type();
+        value_script = value_user_type_script;
     } else if (value_engine_type_index != -1) {
         value_base_class_name = TypeManager::get_instance().get_engine_type_for_index(value_engine_type_index);
     }

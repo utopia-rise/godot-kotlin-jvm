@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -155,8 +154,8 @@ public open class TouchScreenButton : Node2D() {
       setVisibilityMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(709, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(709, scriptPtr)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

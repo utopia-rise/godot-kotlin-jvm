@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -89,8 +88,8 @@ public open class StaticBody3D : PhysicsBody3D() {
       setConstantAngularVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(649, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(649, scriptPtr)
   }
 
   /**

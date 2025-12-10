@@ -226,8 +226,8 @@ public open class GLTFAccessor : Resource() {
       setSparseValuesByteOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(231, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(231, scriptPtr)
   }
 
   /**

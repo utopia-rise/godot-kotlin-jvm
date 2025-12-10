@@ -59,8 +59,8 @@ public open class MenuButton : Button() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(358, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(358, scriptPtr)
   }
 
   /**

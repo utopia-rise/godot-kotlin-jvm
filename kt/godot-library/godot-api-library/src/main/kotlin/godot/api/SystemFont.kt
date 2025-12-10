@@ -254,8 +254,8 @@ public open class SystemFont : Font() {
       setOversampling(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(667, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(667, scriptPtr)
   }
 
   /**

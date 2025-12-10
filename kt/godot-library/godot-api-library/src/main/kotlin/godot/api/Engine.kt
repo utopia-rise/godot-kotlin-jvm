@@ -206,7 +206,7 @@ public object Engine : Object() {
       setPhysicsJitterFix(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(4)
   }
 

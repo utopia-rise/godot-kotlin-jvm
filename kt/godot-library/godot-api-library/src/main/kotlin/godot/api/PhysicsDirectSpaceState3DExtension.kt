@@ -15,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import godot.core.Vector3
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -29,8 +28,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState3DExtension : PhysicsDirectSpaceState3D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(483, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(483, scriptPtr)
   }
 
   public abstract fun _getClosestPointToObjectVolume(`object`: RID, point: Vector3): Vector3

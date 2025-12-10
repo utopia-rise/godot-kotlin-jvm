@@ -29,7 +29,6 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -57,8 +56,8 @@ public open class Shape2D internal constructor() : Resource() {
       setCustomSolverBias(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(605, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(605, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

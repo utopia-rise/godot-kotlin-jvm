@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -96,8 +95,8 @@ public open class GPUParticlesAttractor3D internal constructor() : VisualInstanc
       setCullMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(252, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(252, scriptPtr)
   }
 
   public final fun setCullMask(mask: Long): Unit {

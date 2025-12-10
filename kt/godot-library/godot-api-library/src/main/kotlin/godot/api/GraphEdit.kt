@@ -491,8 +491,8 @@ public open class GraphEdit : Control() {
       setShowArrangeButton(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(269, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(269, scriptPtr)
   }
 
   /**

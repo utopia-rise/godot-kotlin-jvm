@@ -183,8 +183,8 @@ public open class NavigationObstacle3D : Node3D() {
       setUse3dAvoidance(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(392, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(392, scriptPtr)
   }
 
   /**

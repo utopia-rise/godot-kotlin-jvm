@@ -126,8 +126,8 @@ public open class TileSet : Resource() {
       setUvClipping(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(702, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(702, scriptPtr)
   }
 
   /**

@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.Transform2D
 import godot.core.Vector2
@@ -26,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public abstract class PhysicsDirectBodyState2DExtension : PhysicsDirectBodyState2D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(477, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(477, scriptPtr)
   }
 
   /**

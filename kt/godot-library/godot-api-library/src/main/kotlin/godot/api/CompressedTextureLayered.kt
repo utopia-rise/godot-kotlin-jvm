@@ -36,8 +36,8 @@ public open class CompressedTextureLayered internal constructor() : TextureLayer
     @JvmName("loadPathProperty")
     get() = getLoadPath()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(173, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(173, scriptPtr)
   }
 
   /**

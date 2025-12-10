@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -48,8 +47,8 @@ public open class VisualShaderNodeVarying internal constructor() : VisualShaderN
       setVaryingType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(837, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(837, scriptPtr)
   }
 
   public final fun setVaryingName(name: String): Unit {

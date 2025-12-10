@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -41,8 +40,8 @@ public open class InputEventMagnifyGesture : InputEventGesture() {
       setFactor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(307, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(307, scriptPtr)
   }
 
   public final fun setFactor(factor: Float): Unit {

@@ -14,7 +14,6 @@ import godot.core.Callable
 import godot.core.VariantParser.CALLABLE
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -57,7 +56,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object NavigationMeshGenerator : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(16)
   }
 

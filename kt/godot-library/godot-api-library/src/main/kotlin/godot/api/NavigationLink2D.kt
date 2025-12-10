@@ -145,8 +145,8 @@ public open class NavigationLink2D : Node2D() {
       setTravelCost(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(385, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(385, scriptPtr)
   }
 
   /**

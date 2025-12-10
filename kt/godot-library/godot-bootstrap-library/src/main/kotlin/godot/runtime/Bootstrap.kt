@@ -94,6 +94,7 @@ internal class Bootstrap {
 
         // START: order matters!
         loadClasses(classes)
+        TypeManager.scriptClassCache.clear()
         forceJvmInitializationOfSingletons()
         // END: order matters!
 

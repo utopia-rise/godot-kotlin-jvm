@@ -20,7 +20,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -156,8 +155,8 @@ public open class PathFollow3D : Node3D() {
       setTiltEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(468, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(468, scriptPtr)
   }
 
   public final fun setProgress(progress: Float): Unit {

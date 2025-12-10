@@ -24,7 +24,6 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -53,7 +52,7 @@ public object JavaScriptBridge : Object() {
   @JvmStatic
   public val pwaUpdateAvailable: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(13)
   }
 

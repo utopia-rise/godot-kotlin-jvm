@@ -460,8 +460,8 @@ public open class Label3D : GeometryInstance3D() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(336, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(336, scriptPtr)
   }
 
   /**

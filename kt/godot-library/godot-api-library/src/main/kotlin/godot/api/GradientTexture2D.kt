@@ -148,8 +148,8 @@ public open class GradientTexture2D : Texture2D() {
       setRepeat(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(268, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(268, scriptPtr)
   }
 
   /**

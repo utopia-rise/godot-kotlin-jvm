@@ -143,8 +143,8 @@ public open class ArrayMesh : Mesh() {
       setShadowMesh(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(41, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(41, scriptPtr)
   }
 
   /**

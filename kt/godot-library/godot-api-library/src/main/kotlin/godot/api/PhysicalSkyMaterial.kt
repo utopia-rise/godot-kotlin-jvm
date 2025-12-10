@@ -22,7 +22,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -197,8 +196,8 @@ public open class PhysicalSkyMaterial : Material() {
       setNightSky(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(473, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(473, scriptPtr)
   }
 
   /**

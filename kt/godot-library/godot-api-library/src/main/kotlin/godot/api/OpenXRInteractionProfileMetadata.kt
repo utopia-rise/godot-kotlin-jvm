@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -26,8 +25,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class OpenXRInteractionProfileMetadata : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(441, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(441, scriptPtr)
   }
 
   /**

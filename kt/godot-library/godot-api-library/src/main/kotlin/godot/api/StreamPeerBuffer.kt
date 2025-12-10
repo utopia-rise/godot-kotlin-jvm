@@ -54,8 +54,8 @@ public open class StreamPeerBuffer : StreamPeer() {
       setDataArray(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(652, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(652, scriptPtr)
   }
 
   /**

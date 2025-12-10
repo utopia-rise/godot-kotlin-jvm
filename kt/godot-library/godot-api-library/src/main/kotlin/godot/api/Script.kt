@@ -26,7 +26,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -58,8 +57,8 @@ public open class Script internal constructor() : Resource() {
       setSourceCode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(588, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(588, scriptPtr)
   }
 
   /**

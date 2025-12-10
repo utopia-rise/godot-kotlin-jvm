@@ -17,7 +17,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.PACKED_FLOAT_32_ARRAY
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmStatic
@@ -29,8 +28,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public abstract class AnimationNodeExtension : AnimationNode() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(25, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(25, scriptPtr)
   }
 
   /**

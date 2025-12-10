@@ -38,7 +38,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object EngineDebugger : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(5)
   }
 

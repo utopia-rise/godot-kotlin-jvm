@@ -103,8 +103,8 @@ public open class TreeItem internal constructor() : Object() {
       setCustomMinimumHeight(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(714, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(714, scriptPtr)
   }
 
   /**

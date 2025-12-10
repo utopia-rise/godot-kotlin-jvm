@@ -61,8 +61,8 @@ public open class VisualShaderNodeParticleMeshEmitter : VisualShaderNodeParticle
       setSurfaceIndex(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(794, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(794, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

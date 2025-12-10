@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -95,8 +94,8 @@ public open class RDShaderSource : RefCounted() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(539, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(539, scriptPtr)
   }
 
   /**

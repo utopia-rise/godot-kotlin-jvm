@@ -187,8 +187,8 @@ public open class MultiMesh : Resource() {
       setPhysicsInterpolationQuality(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(372, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(372, scriptPtr)
   }
 
   /**

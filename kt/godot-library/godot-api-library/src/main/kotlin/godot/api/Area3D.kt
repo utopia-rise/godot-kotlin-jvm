@@ -433,8 +433,8 @@ public open class Area3D : CollisionObject3D() {
       setReverbUniformity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(40, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(40, scriptPtr)
   }
 
   /**

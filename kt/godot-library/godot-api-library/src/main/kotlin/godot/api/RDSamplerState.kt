@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -213,8 +212,8 @@ public open class RDSamplerState : RefCounted() {
       setUnnormalizedUvw(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(536, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(536, scriptPtr)
   }
 
   public final fun setMagFilter(pMember: RenderingDevice.SamplerFilter): Unit {

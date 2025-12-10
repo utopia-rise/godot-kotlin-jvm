@@ -16,7 +16,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -106,8 +105,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PackedScene : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(452, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(452, scriptPtr)
   }
 
   /**

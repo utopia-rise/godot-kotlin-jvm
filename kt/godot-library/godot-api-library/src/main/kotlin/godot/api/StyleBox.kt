@@ -25,7 +25,6 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -106,8 +105,8 @@ public abstract class StyleBox : Resource() {
       setContentMargin(Side.BOTTOM, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(657, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(657, scriptPtr)
   }
 
   public abstract fun _draw(toCanvasItem: RID, rect: Rect2): Unit

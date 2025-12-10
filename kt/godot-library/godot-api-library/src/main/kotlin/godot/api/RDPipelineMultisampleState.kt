@@ -19,7 +19,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -110,8 +109,8 @@ public open class RDPipelineMultisampleState : RefCounted() {
       setSampleMasks(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(533, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(533, scriptPtr)
   }
 
   public final fun setSampleCount(pMember: RenderingDevice.TextureSamples): Unit {

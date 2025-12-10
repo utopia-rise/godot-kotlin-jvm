@@ -97,8 +97,8 @@ public open class RandomNumberGenerator : RefCounted() {
       setState(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(544, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(544, scriptPtr)
   }
 
   public final fun setSeed(seed: Long): Unit {

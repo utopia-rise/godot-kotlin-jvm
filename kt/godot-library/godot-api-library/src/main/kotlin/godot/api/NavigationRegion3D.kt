@@ -134,8 +134,8 @@ public open class NavigationRegion3D : Node3D() {
       setTravelCost(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(399, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(399, scriptPtr)
   }
 
   /**

@@ -1848,8 +1848,8 @@ public open class BaseMaterial3D internal constructor() : Material() {
       setStencilEffectOutlineThickness(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(105, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(105, scriptPtr)
   }
 
   /**

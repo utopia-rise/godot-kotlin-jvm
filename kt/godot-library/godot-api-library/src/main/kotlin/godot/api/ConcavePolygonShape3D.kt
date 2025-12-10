@@ -80,8 +80,8 @@ public open class ConcavePolygonShape3D : Shape3D() {
       setBackfaceCollisionEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(175, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(175, scriptPtr)
   }
 
   /**

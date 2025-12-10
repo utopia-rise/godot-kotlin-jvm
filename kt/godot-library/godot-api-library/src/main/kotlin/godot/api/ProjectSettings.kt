@@ -63,7 +63,7 @@ public object ProjectSettings : Object() {
   @JvmStatic
   public val settingsChanged: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(25)
   }
 

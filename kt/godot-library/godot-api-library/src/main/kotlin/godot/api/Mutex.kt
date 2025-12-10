@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -38,8 +37,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Mutex : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(381, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(381, scriptPtr)
   }
 
   /**

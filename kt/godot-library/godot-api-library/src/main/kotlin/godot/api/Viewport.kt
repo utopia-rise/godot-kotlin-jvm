@@ -841,8 +841,8 @@ public open class Viewport internal constructor() : Node() {
       setOversamplingOverride(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(736, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(736, scriptPtr)
   }
 
   /**

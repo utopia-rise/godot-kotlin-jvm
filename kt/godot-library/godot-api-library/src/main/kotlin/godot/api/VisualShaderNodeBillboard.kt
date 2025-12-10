@@ -15,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -50,8 +49,8 @@ public open class VisualShaderNodeBillboard : VisualShaderNode() {
       setKeepScaleEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(745, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(745, scriptPtr)
   }
 
   public final fun setBillboardType(billboardType: BillboardType): Unit {

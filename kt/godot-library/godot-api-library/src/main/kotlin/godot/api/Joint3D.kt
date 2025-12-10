@@ -84,8 +84,8 @@ public open class Joint3D internal constructor() : Node3D() {
       setExcludeNodesFromCollision(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(330, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(330, scriptPtr)
   }
 
   public final fun setNodeA(node: NodePath): Unit {

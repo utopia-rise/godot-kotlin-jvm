@@ -5,8 +5,10 @@ import godot.common.interop.VoidPtr
 import kotlin.reflect.KClass
 
 object TypeManager {
-    val userTypeToId = mutableMapOf<KClass<out NativeWrapper>, Int>()
     val engineTypeToId = mutableMapOf<KClass<out NativeWrapper>, Int>()
+
+    val scriptClassCache = mutableListOf<KClass<out NativeWrapper>>()
+    val userClassToScriptPtr = mutableMapOf<KClass<out NativeWrapper>, VoidPtr>()
 
     val userTypes = LinkedHashSet<String>()
     val engineTypeNames = LinkedHashSet<String>()
@@ -17,7 +19,7 @@ object TypeManager {
 
     fun registerUserType(className: String, kClass: KClass<out NativeWrapper>) {
         userTypes.add(className)
-        userTypeToId[kClass] = userTypes.size - 1
+        scriptClassCache.add(kClass)
     }
 
     fun registerEngineType(className: String, clazz: KClass<out NativeWrapper>, invoke: (() -> NativeWrapper)?) {
@@ -32,8 +34,13 @@ object TypeManager {
     }
 
     fun clearUserTypes() {
-        userTypeToId.clear()
+        scriptClassCache.clear()
+        userClassToScriptPtr.clear()
         userTypes.clear()
+    }
+
+    fun assignScriptToClass(index: Int, scriptPtr: VoidPtr) {
+        userClassToScriptPtr[scriptClassCache[index]] = scriptPtr
     }
 
     external fun getMethodBindPtr(className: String, methodName: String, hash: Long): VoidPtr

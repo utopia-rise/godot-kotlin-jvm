@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -47,8 +46,8 @@ public open class QuadOccluder3D : Occluder3D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(527, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(527, scriptPtr)
   }
 
   /**

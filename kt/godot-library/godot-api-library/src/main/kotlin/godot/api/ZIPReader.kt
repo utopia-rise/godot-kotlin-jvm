@@ -70,8 +70,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ZIPReader : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(895, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(895, scriptPtr)
   }
 
   /**

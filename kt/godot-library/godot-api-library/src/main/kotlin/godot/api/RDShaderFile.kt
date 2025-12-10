@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,8 +45,8 @@ public open class RDShaderFile : Resource() {
       setBaseError(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(537, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(537, scriptPtr)
   }
 
   /**

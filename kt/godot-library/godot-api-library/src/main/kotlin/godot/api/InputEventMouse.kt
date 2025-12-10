@@ -17,7 +17,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -86,8 +85,8 @@ public open class InputEventMouse internal constructor() : InputEventWithModifie
       setGlobalPosition(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(308, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(308, scriptPtr)
   }
 
   /**

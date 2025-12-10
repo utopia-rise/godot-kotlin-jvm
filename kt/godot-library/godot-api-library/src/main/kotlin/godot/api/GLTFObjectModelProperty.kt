@@ -26,7 +26,6 @@ import godot.core.VariantType
 import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -135,8 +134,8 @@ public open class GLTFObjectModelProperty : RefCounted() {
       setVariantType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(241, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(241, scriptPtr)
   }
 
   /**

@@ -16,7 +16,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.RECT2
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -38,8 +37,8 @@ public open class Container : Control() {
    */
   public val sortChildren: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(179, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(179, scriptPtr)
   }
 
   /**

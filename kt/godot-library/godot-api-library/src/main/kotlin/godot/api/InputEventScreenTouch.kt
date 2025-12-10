@@ -94,8 +94,8 @@ public open class InputEventScreenTouch : InputEventFromWindow() {
       setDoubleTap(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(313, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(313, scriptPtr)
   }
 
   /**

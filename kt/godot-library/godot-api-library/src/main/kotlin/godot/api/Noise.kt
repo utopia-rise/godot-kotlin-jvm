@@ -40,8 +40,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class Noise internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(407, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(407, scriptPtr)
   }
 
   /**

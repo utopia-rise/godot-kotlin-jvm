@@ -409,8 +409,8 @@ public open class LookAtModifier3D : SkeletonModifier3D() {
       setSecondaryNegativeDampThreshold(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(350, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(350, scriptPtr)
   }
 
   /**

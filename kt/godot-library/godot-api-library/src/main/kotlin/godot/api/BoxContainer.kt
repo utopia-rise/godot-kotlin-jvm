@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,8 +52,8 @@ public open class BoxContainer : Container() {
       setVertical(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(111, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(111, scriptPtr)
   }
 
   /**

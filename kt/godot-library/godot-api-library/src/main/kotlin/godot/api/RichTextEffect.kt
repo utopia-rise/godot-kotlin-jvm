@@ -7,8 +7,8 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -38,8 +38,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RichTextEffect : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(577, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(577, scriptPtr)
   }
 
   /**

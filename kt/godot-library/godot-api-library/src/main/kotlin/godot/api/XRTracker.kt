@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -77,8 +76,8 @@ public open class XRTracker internal constructor() : RefCounted() {
       setTrackerDesc(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(892, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(892, scriptPtr)
   }
 
   public final fun getTrackerType(): XRServer.TrackerType {

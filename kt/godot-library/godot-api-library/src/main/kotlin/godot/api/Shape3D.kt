@@ -15,7 +15,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -60,8 +59,8 @@ public open class Shape3D internal constructor() : Resource() {
       setMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(606, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(606, scriptPtr)
   }
 
   public final fun setCustomSolverBias(bias: Float): Unit {

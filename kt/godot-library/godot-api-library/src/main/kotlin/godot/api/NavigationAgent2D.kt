@@ -559,8 +559,8 @@ public open class NavigationAgent2D : Node() {
       setDebugPathCustomLineWidth(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(383, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(383, scriptPtr)
   }
 
   /**

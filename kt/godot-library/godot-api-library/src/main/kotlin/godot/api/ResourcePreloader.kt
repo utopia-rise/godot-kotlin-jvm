@@ -19,7 +19,6 @@ import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -34,8 +33,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ResourcePreloader : Node() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(572, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(572, scriptPtr)
   }
 
   /**

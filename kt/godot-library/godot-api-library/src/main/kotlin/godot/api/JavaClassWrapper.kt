@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -40,7 +39,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object JavaClassWrapper : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(12)
   }
 

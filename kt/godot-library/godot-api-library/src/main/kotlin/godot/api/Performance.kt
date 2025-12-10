@@ -26,7 +26,6 @@ import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -53,7 +52,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Performance : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(20)
   }
 

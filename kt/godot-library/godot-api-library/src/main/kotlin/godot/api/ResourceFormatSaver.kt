@@ -7,10 +7,10 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.PackedStringArray
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -30,8 +30,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class ResourceFormatSaver : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(569, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(569, scriptPtr)
   }
 
   /**

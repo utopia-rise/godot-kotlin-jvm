@@ -21,7 +21,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -81,8 +80,8 @@ public open class XRNode3D : Node3D() {
       setShowWhenTracked(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(887, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(887, scriptPtr)
   }
 
   public final fun setTracker(trackerName: StringName): Unit {

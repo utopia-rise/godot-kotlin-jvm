@@ -7,8 +7,8 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -100,8 +100,8 @@ public open class SpotLight3D : Light3D() {
       setParam(Light3D.Param.SPOT_ATTENUATION, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(636, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(636, scriptPtr)
   }
 
   public companion object

@@ -19,7 +19,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -46,8 +45,8 @@ public open class GLTFAnimation : Resource() {
       setLoop(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(232, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(232, scriptPtr)
   }
 
   public final fun getOriginalName(): String {

@@ -243,8 +243,8 @@ public open class TileMapLayer : Node2D() {
       setNavigationVisibilityMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(700, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(700, scriptPtr)
   }
 
   /**

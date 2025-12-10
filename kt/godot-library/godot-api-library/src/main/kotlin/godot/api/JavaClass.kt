@@ -16,7 +16,6 @@ import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Any
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class JavaClass : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(323, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(323, scriptPtr)
   }
 
   /**

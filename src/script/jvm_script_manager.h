@@ -8,7 +8,6 @@
 class JvmScriptManager: public Object {
     friend class Memory;
 
-    Vector<Ref<NamedScript>> named_scripts;
     HashMap<StringName, Ref<NamedScript>> named_scripts_map;
 
     HashMap<String, StringName> fqdn_to_name_map;
@@ -39,7 +38,6 @@ public:
     void create_and_update_scripts(Vector<KtClass*>& classes);
 
     Ref<NamedScript> get_script_from_name(const StringName& name) const;
-    Ref<NamedScript> get_named_script_from_index(int p_index) const;
     Ref<NamedScript> get_named_script_from_source_script(Ref<SourceScript> p_source_script) const;
     Ref<SourceScript> get_script_from_fqdn(const StringName& p_fqdn) const;
 
@@ -71,7 +69,6 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_named_script(const String& p_path, b
         jvm_script.instantiate();
         *created = true;
         named_scripts_map[script_name] = jvm_script;
-        named_scripts.push_back(jvm_script);
     }
     return jvm_script;
 }

@@ -422,8 +422,8 @@ public open class Node3D : Node() {
       setVisibilityParent(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(405, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(405, scriptPtr)
   }
 
   /**

@@ -223,8 +223,8 @@ public open class Light2D internal constructor() : Node2D() {
       setItemShadowCullMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(338, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(338, scriptPtr)
   }
 
   /**

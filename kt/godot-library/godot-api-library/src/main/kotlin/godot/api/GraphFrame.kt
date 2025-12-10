@@ -119,8 +119,8 @@ public open class GraphFrame : GraphElement() {
       setTintColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(271, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(271, scriptPtr)
   }
 
   /**

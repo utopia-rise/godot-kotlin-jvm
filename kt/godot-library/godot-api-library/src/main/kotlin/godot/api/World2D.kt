@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.RID
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -55,8 +54,8 @@ public open class World2D : Resource() {
     @JvmName("directSpaceStateProperty")
     get() = getDirectSpaceState()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(868, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(868, scriptPtr)
   }
 
   public final fun getCanvas(): RID {

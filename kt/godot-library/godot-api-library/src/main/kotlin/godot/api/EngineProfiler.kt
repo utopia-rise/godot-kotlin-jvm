@@ -7,11 +7,11 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.VariantArray
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -24,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class EngineProfiler : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(210, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(210, scriptPtr)
   }
 
   /**

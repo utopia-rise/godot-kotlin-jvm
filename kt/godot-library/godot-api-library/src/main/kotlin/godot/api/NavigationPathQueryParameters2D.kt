@@ -263,8 +263,8 @@ public open class NavigationPathQueryParameters2D : RefCounted() {
       setPathSearchMaxDistance(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(393, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(393, scriptPtr)
   }
 
   /**

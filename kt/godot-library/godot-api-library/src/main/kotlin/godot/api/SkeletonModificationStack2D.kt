@@ -73,8 +73,8 @@ public open class SkeletonModificationStack2D : Resource() {
       setModificationCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(621, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(621, scriptPtr)
   }
 
   /**

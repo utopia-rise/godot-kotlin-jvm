@@ -203,8 +203,8 @@ public open class SoftBody3D : MeshInstance3D() {
       setDisableMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(630, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(630, scriptPtr)
   }
 
   /**

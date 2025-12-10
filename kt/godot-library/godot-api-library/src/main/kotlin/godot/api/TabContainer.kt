@@ -208,8 +208,8 @@ public open class TabContainer : Container() {
       setDeselectEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(671, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(671, scriptPtr)
   }
 
   /**

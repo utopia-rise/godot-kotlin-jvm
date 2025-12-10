@@ -65,8 +65,8 @@ public open class VisualShader : Shader() {
       setGraphOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(743, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(743, scriptPtr)
   }
 
   /**

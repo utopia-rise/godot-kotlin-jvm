@@ -73,8 +73,8 @@ public open class SkeletonModification2DFABRIK : SkeletonModification2D() {
       setFabrikDataChainLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(615, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(615, scriptPtr)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

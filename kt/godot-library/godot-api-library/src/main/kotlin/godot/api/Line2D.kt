@@ -233,8 +233,8 @@ public open class Line2D : Node2D() {
       setAntialiased(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(346, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(346, scriptPtr)
   }
 
   /**

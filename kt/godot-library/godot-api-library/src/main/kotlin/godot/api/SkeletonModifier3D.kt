@@ -19,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -69,8 +68,8 @@ public open class SkeletonModifier3D : Node3D() {
       setInfluence(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(622, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(622, scriptPtr)
   }
 
   /**

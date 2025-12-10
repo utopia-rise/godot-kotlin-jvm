@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -28,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class SliderJoint3D : Joint3D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(629, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(629, scriptPtr)
   }
 
   /**

@@ -74,8 +74,8 @@ public open class OggPacketSequence : Resource() {
       setSamplingRate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(416, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(416, scriptPtr)
   }
 
   /**

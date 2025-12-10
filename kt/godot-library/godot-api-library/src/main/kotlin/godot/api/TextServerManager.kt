@@ -47,7 +47,7 @@ public object TextServerManager : Object() {
   @JvmStatic
   public val interfaceRemoved: Signal1<StringName> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(30)
   }
 

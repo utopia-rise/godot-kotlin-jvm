@@ -88,8 +88,8 @@ public open class InputEventAction : InputEvent() {
       setEventIndex(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(300, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(300, scriptPtr)
   }
 
   public final fun setAction(action: StringName): Unit {

@@ -124,8 +124,8 @@ public open class RDFramebufferPass : RefCounted() {
       setDepthAttachment(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(529, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(529, scriptPtr)
   }
 
   /**

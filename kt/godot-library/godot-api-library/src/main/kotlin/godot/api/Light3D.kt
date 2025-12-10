@@ -23,7 +23,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -441,8 +440,8 @@ public open class Light3D internal constructor() : VisualInstance3D() {
       setEditorOnly(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(339, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(339, scriptPtr)
   }
 
   /**

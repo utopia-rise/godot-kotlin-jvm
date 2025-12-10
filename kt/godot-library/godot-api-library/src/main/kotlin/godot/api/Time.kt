@@ -20,7 +20,6 @@ import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -53,7 +52,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Time : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(32)
   }
 

@@ -276,8 +276,8 @@ public open class SceneTree : MainLoop() {
       setPhysicsInterpolationEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(586, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(586, scriptPtr)
   }
 
   public final fun getRoot(): Window? {

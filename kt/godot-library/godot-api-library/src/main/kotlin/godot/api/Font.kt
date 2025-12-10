@@ -61,8 +61,8 @@ public open class Font internal constructor() : Resource() {
       setFallbacks(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(224, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(224, scriptPtr)
   }
 
   public final fun setFallbacks(fallbacks: VariantArray<Font>): Unit {

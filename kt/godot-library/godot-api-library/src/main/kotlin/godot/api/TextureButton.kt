@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -159,8 +158,8 @@ public open class TextureButton : BaseButton() {
       setFlipV(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(688, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(688, scriptPtr)
   }
 
   public final fun setTextureNormal(texture: Texture2D?): Unit {

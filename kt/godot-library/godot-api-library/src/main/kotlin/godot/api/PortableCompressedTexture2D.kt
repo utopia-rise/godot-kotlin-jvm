@@ -83,8 +83,8 @@ public open class PortableCompressedTexture2D : Texture2D() {
       setKeepCompressedBuffer(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(519, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(519, scriptPtr)
   }
 
   /**

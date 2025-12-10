@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -90,8 +89,8 @@ public open class AudioEffectDistortion : AudioEffect() {
       setPostGain(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(54, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(54, scriptPtr)
   }
 
   public final fun setMode(mode: Mode): Unit {

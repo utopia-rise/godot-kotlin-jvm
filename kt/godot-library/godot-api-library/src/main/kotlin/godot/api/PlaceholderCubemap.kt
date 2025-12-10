@@ -7,7 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Int
+import godot.common.interop.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -24,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PlaceholderCubemap : PlaceholderTextureLayered() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(502, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(502, scriptPtr)
   }
 
   public companion object

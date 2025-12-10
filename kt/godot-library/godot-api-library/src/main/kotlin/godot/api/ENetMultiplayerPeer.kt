@@ -41,8 +41,8 @@ public open class ENetMultiplayerPeer : MultiplayerPeer() {
     @JvmName("hostProperty")
     get() = getHost()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(205, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(205, scriptPtr)
   }
 
   /**

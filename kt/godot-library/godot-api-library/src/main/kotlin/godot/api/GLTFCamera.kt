@@ -20,7 +20,6 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -94,8 +93,8 @@ public open class GLTFCamera : Resource() {
       setDepthNear(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(234, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(234, scriptPtr)
   }
 
   /**

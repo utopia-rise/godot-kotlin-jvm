@@ -179,8 +179,8 @@ public open class PhysicsDirectBodyState2D internal constructor() : Object() {
       setTransform(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(476, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(476, scriptPtr)
   }
 
   /**

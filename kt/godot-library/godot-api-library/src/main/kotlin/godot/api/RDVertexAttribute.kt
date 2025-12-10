@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -79,8 +78,8 @@ public open class RDVertexAttribute : RefCounted() {
       setFrequency(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(543, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(543, scriptPtr)
   }
 
   public final fun setLocation(pMember: Long): Unit {

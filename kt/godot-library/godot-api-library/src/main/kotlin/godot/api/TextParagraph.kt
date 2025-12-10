@@ -195,8 +195,8 @@ public open class TextParagraph : RefCounted() {
       setLineSpacing(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(675, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(675, scriptPtr)
   }
 
   /**

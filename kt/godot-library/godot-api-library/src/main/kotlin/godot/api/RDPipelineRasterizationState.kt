@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -156,8 +155,8 @@ public open class RDPipelineRasterizationState : RefCounted() {
       setPatchControlPoints(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(534, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(534, scriptPtr)
   }
 
   public final fun setEnableDepthClamp(pMember: Boolean): Unit {

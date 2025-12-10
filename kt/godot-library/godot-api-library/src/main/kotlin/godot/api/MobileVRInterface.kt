@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -177,8 +176,8 @@ public open class MobileVRInterface : XRInterface() {
       setVrsStrength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(369, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(369, scriptPtr)
   }
 
   /**

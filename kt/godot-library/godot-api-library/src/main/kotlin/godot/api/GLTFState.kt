@@ -346,8 +346,8 @@ public open class GLTFState : Resource() {
       setBakeFps(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(247, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(247, scriptPtr)
   }
 
   /**

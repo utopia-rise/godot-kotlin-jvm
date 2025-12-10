@@ -111,7 +111,7 @@ public object ThemeDB : Object() {
       setFallbackStylebox(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(31)
   }
 

@@ -107,8 +107,8 @@ public open class PlaneMesh : PrimitiveMesh() {
       setOrientation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(510, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(510, scriptPtr)
   }
 
   /**

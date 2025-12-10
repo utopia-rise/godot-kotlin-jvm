@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -35,8 +34,8 @@ public open class VisualShaderNodeTexture3D : VisualShaderNodeSample3D() {
       setTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(818, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(818, scriptPtr)
   }
 
   public final fun setTexture(`value`: Texture3D?): Unit {

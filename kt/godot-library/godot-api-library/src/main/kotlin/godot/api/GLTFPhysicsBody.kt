@@ -27,7 +27,6 @@ import godot.core.Vector3
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -199,8 +198,8 @@ public open class GLTFPhysicsBody : Resource() {
       setInertiaTensor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(242, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(242, scriptPtr)
   }
 
   /**

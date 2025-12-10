@@ -25,7 +25,6 @@ import godot.core.VariantParser.STRING
 import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser._RID
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -52,8 +51,8 @@ public open class OpenXRRenderModelExtension : OpenXRExtensionWrapper() {
    */
   public val renderModelTopLevelPathChanged: Signal1<RID> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(444, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(444, scriptPtr)
   }
 
   /**

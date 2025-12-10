@@ -69,8 +69,8 @@ public open class OpenXRActionSet : Resource() {
       setActions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(423, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(423, scriptPtr)
   }
 
   public final fun setLocalizedName(localizedName: String): Unit {

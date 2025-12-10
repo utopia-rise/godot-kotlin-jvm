@@ -128,8 +128,8 @@ public open class CollisionPolygon3D : Node3D() {
       setEnableDebugFill(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(159, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(159, scriptPtr)
   }
 
   /**

@@ -1,13 +1,14 @@
-
 #include "jvm_script_manager.h"
 
 #include "lifecycle/paths.h"
 
 #include <core/io/resource_loader.h>
 
+#include "jvm_wrapper/memory/type_manager.h"
+
 void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #if defined(DEBUG_ENABLED) && !defined(TOOLS_ENABLED)
-    JVM_ERR_FAIL_COND_MSG(named_scripts.size() != 0, "JVM scripts are being initialized more than once.");
+    JVM_ERR_FAIL_COND_MSG(named_scripts_map.size() != 0, "JVM scripts are being initialized more than once.");
 #endif
 
 #ifdef TOOLS_ENABLED
@@ -15,15 +16,17 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
     // Clear all containers and keeping a cache for comparison.
     HashMap<StringName, Ref<NamedScript>> named_script_cache = named_scripts_map;
-    named_scripts.clear();
     named_scripts_map.clear();
 
 #endif
 
     JVM_DEV_LOG("Loading JVM Scripts...");
 
+    jni::Env env {jni::Jvm::current_env()};
+
     // ####NAMED SCRIPT#######
-    for (KtClass* kotlin_class : classes) {
+    for (int i = 0; i < classes.size(); i++) {
+        KtClass* kotlin_class = classes[i];
         String script_name = kotlin_class->registered_class_name;
         String script_path = RES_DIRECTORY + kotlin_class->compilation_time_relative_registration_file_path;
 
@@ -37,7 +40,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
             named_script->kotlin_class = kotlin_class;
 
             named_script_cache.erase(script_name);
-            named_scripts.push_back(named_script);
             named_scripts_map[script_name] = named_script;
 
             named_script->export_dirty_flag = true;
@@ -48,6 +50,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 #endif
             named_script = Ref<NamedScript>(ResourceLoader::load(script_path));
             named_script->kotlin_class = kotlin_class;
+            TypeManager::get_instance().assign_script_to_class(env, i, named_script);
 
             JVM_DEV_VERBOSE("JVM Script created: %s", script_name);
 #ifdef TOOLS_ENABLED
@@ -71,7 +74,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
         // Without that a separate Script instance would be created and nodes not updated.
         // Otherwise, we let the named_script die.
         if (!named_script->placeholders.is_empty()) {
-            named_scripts.push_back(named_script);
             named_scripts_map[name] = named_script;
             named_script->export_dirty_flag = true;
         }
@@ -125,11 +127,6 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
     JVM_DEV_LOG("JVM scripts are now loaded.");
 }
 
-Ref<NamedScript> JvmScriptManager::get_named_script_from_index(int p_index) const {
-    // No check. Meant to be a fast operation
-    return named_scripts[p_index];
-}
-
 Ref<NamedScript> JvmScriptManager::get_named_script_from_source_script(Ref<SourceScript> p_source_script) const {
     String path = p_source_script->get_functional_name();
 
@@ -157,7 +154,8 @@ Ref<SourceScript> JvmScriptManager::get_script_from_fqdn(const StringName& p_fqd
 
 #ifdef TOOLS_ENABLED
 void JvmScriptManager::update_all_scripts(uint64_t update_time) {
-    for (const Ref<NamedScript>& named_script : named_scripts) {
+    for (const KeyValue<StringName, Ref<NamedScript>>& key_value : named_scripts_map) {
+        Ref<NamedScript> named_script = key_value.value;
         JvmScript* ptr = named_script.ptr();
         ptr->update_script_exports();
         ptr->set_last_time_source_modified(update_time);
@@ -192,7 +190,6 @@ int64_t JvmScriptManager::get_last_reload() {
 void JvmScriptManager::finalize() {
     JvmScriptManager* singleton = get_instance();
 
-    singleton->named_scripts.clear();
     singleton->named_scripts_map.clear();
     singleton->name_to_fqdn_map.clear();
     singleton->fqdn_to_name_map.clear();

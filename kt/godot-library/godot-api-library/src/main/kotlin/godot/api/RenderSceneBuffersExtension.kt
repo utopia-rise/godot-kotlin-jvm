@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import kotlin.Boolean
 import kotlin.Float
 import kotlin.Int
@@ -19,8 +20,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderSceneBuffersExtension : RenderSceneBuffers() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(560, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(560, scriptPtr)
   }
 
   /**

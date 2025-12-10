@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -51,8 +50,8 @@ public open class InputEventJoypadMotion : InputEvent() {
       setAxisValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(304, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(304, scriptPtr)
   }
 
   public final fun setAxis(axis: JoyAxis): Unit {

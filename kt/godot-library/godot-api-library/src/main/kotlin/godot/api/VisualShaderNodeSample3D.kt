@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -35,8 +34,8 @@ public open class VisualShaderNodeSample3D internal constructor() : VisualShader
       setSource(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(808, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(808, scriptPtr)
   }
 
   public final fun setSource(`value`: Source): Unit {

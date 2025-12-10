@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VerticalAlignment
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -223,8 +222,8 @@ public open class Button : BaseButton() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(115, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(115, scriptPtr)
   }
 
   public final fun setText(text: String): Unit {

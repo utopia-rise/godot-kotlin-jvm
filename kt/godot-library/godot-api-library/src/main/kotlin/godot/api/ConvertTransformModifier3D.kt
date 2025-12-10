@@ -61,8 +61,8 @@ public open class ConvertTransformModifier3D : BoneConstraint3D() {
       setSettingCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(181, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(181, scriptPtr)
   }
 
   /**

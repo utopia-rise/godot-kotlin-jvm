@@ -90,8 +90,8 @@ public open class JSON : Resource() {
       setData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(321, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(321, scriptPtr)
   }
 
   /**

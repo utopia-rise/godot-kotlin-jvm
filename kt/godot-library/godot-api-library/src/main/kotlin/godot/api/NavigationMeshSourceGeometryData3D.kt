@@ -86,8 +86,8 @@ public open class NavigationMeshSourceGeometryData3D : Resource() {
       setProjectedObstructions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(390, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(390, scriptPtr)
   }
 
   /**

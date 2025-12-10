@@ -73,8 +73,8 @@ public open class DPITexture : Texture2D() {
       setColorMap(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(196, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(196, scriptPtr)
   }
 
   /**

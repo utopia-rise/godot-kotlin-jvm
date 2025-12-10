@@ -18,7 +18,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import kotlin.Any
 import kotlin.Double
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -33,8 +32,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class PropertyTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(525, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(525, scriptPtr)
   }
 
   /**

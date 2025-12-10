@@ -7,7 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Int
+import godot.common.interop.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -17,8 +17,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AudioEffectHighPassFilter : AudioEffectFilter() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(61, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(61, scriptPtr)
   }
 
   public companion object

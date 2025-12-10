@@ -190,8 +190,8 @@ public open class TileData : Object() {
       setProbability(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(698, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(698, scriptPtr)
   }
 
   /**

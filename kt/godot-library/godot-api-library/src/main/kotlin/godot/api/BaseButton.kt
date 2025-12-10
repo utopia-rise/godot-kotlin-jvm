@@ -19,7 +19,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -186,8 +185,8 @@ public open class BaseButton : Control() {
       setShortcutInTooltip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(104, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(104, scriptPtr)
   }
 
   /**

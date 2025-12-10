@@ -210,8 +210,8 @@ public open class SkeletonIK3D : SkeletonModifier3D() {
       setInterpolation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(612, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(612, scriptPtr)
   }
 
   /**

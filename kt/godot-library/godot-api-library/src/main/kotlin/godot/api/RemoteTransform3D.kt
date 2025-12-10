@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.asCachedNodePath
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -86,8 +85,8 @@ public open class RemoteTransform3D : Node3D() {
       setUpdateScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(554, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(554, scriptPtr)
   }
 
   public final fun setRemoteNode(path: NodePath): Unit {
