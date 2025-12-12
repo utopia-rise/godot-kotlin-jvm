@@ -21,6 +21,7 @@ public:
 private:
     void _generate_export_configuration_file(jni::JvmType vm_type);
     void _add_exclude_filter_preset();
+    static Vector<String> _get_files_recursively(const String& path);
 };
 
 #endif// GODOT_JVM_KOTLINEDITOREXPORTPLUGIN_H
