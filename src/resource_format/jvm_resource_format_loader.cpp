@@ -69,6 +69,7 @@ Ref<Resource> JvmResourceFormatLoader::load(const String& p_path, const String& 
         is_source = true;
     } else if (extension == GODOT_SCALA_SCRIPT_EXTENSION) {
         jvm_script = JvmScriptManager::get_instance()->get_or_create_source_script<ScalaScript>(p_path, &script_is_new, r_error);
+        is_source = true;
     } else {
         if (r_error) { *r_error = Error::ERR_FILE_UNRECOGNIZED; }
         return nullptr;

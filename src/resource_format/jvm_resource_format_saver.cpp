@@ -9,6 +9,7 @@ void JvmResourceFormatSaver::get_recognized_extensions(const Ref<Resource>& p_re
         p_extensions->push_back(GODOT_KOTLIN_SCRIPT_EXTENSION);
         p_extensions->push_back(GODOT_JVM_REGISTRATION_FILE_EXTENSION);
         p_extensions->push_back(GODOT_JAVA_SCRIPT_EXTENSION);
+        p_extensions->push_back(GODOT_SCALA_SCRIPT_EXTENSION);
     }
 }
 
@@ -39,7 +40,7 @@ Error JvmResourceFormatSaver::save(const Ref<Resource>& p_resource, const String
     }
 
 #ifdef TOOLS_ENABLED
-    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION) {
+    if (extension == GODOT_KOTLIN_SCRIPT_EXTENSION || extension == GODOT_JAVA_SCRIPT_EXTENSION || extension == GODOT_SCALA_SCRIPT_EXTENSION) {
         MessageQueue::get_singleton()->push_callable(
           callable_mp(JvmScriptManager::get_instance(), &JvmScriptManager::invalidate_source).bind(Ref<SourceScript>(jvm_script))
         );
