@@ -13,15 +13,15 @@ kotlin {
 }
 
 gradlePlugin {
-    website.set("https://github.com/utopia-rise/godot-kotlin-jvm")
-    vcsUrl.set("https://github.com/utopia-rise/godot-kotlin-jvm.git")
+    website.set("https://github.com/utopia-rise/godot-jvm")
+    vcsUrl.set("https://github.com/utopia-rise/godot-jvm.git")
 
     plugins {
         create("godotPlugin") {
-            id = "com.utopia-rise.godot-kotlin-jvm"
-            displayName = "Gradle plugin for godot-kotlin-jvm"
+            id = "com.utopia-rise.godot-jvm"
+            displayName = "Gradle plugin for godot-jvm"
             implementationClass = "godot.gradle.GodotPlugin"
-            description = "Automatically setup of godot kotlin jvm specific project configurations"
+            description = "Automatically setup of Godot-JVM specific project configurations"
 
             tags.set(listOf("kotlin", "godot", "gamedev"))
         }

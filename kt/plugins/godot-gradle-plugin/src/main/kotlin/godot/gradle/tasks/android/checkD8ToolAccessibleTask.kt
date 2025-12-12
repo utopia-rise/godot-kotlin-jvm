@@ -10,7 +10,7 @@ import org.gradle.api.tasks.TaskProvider
 fun Project.checkD8ToolAccessibleTask(): TaskProvider<Task> {
     return tasks.register("checkD8ToolAccessible") {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Checks if the d8 tool is accessible and executable. Needed for android builds only"
 
             doLast {

@@ -9,7 +9,7 @@ bool JvmUserConfiguration::parse_configuration_json(const String& json_string, J
     Variant result = json.get_data();
 
     if (error != OK || result.get_type() != Variant::DICTIONARY) {
-        JVM_ERR_FAIL_V_MSG(true, "Error parsing Godot Kotlin configuration file! Falling back to default configuration");
+        JVM_ERR_FAIL_V_MSG(true, "Error parsing Godot-JVM configuration file! Falling back to default configuration");
     }
 
     Dictionary json_dict = result;

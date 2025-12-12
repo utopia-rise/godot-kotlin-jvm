@@ -43,10 +43,10 @@ publishing {
         val buildProps by registering(MavenPublication::class) {
             pom {
                 name.set(project.name)
-                description.set("Properties for Godot Kotlin building.")
+                description.set("Properties for Godot-JVM building.")
             }
             artifactId = project.name
-            description = "Properties for Godot Kotlin building."
+            description = "Properties for Godot-JVM building."
             from(components.getByName("java"))
         }
     }
