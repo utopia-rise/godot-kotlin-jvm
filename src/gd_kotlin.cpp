@@ -336,7 +336,6 @@ void GDKotlin::unload_user_code() {
     bootstrap_class_loader->set_as_context_loader(env);
 
     bootstrap->finish(env);
-    TypeManager::get_instance().clear();
     jar.unref();
 }
 
@@ -400,7 +399,8 @@ void GDKotlin::initialize_up_to(State target_state) {
     }
 
 void GDKotlin::finalize_down_to(State target_state) {
-    UNSET_LOADING_STATE(unload_user_code(), CORE_LIBRARY_INITIALIZED, target_state)
+    UNSET_LOADING_STATE(unload_user_code(), ENGINE_TYPES_INITIALIZED, target_state)
+    UNSET_LOADING_STATE(TypeManager::get_instance().clear(), CORE_LIBRARY_INITIALIZED, target_state)
     UNSET_LOADING_STATE(finalize_core_library(), BOOTSTRAP_LOADED, target_state)
     UNSET_LOADING_STATE(unload_boostrap(), JVM_STARTED, target_state)
 #ifdef DYNAMIC_JVM
@@ -414,7 +414,7 @@ void GDKotlin::finalize_down_to(State target_state) {
 #ifdef TOOLS_ENABLED
 void GDKotlin::reload_user_code() {
     if (user_configuration.vm_type == jni::JvmType::JVM) {
-        finalize_down_to(BOOTSTRAP_LOADED);
+        finalize_down_to(ENGINE_TYPES_INITIALIZED);
         initialize_up_to(JVM_SCRIPTS_INITIALIZED);
     }
 }

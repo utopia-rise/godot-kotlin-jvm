@@ -102,6 +102,7 @@ void JvmScriptManager::create_and_update_scripts(Vector<KtClass*>& classes) {
 
     for (KtClass* kotlin_class : classes) {
         fqdn_to_kt_class_ref[kotlin_class->fqdn] = kotlin_class;
+        fqdn_to_name_map[kotlin_class->fqdn] = kotlin_class->registered_class_name;
 
 #ifdef TOOLS_ENABLED
 
