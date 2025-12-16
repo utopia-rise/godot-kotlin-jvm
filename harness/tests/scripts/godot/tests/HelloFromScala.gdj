@@ -12,7 +12,7 @@ supertypes = [
 	godot.common.interop.NativePointer
 ]
 signals = [
-    my_signal
+    
 ]
 properties = [
     my_int

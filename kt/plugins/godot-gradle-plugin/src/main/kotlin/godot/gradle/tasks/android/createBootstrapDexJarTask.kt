@@ -16,7 +16,7 @@ fun Project.createBootstrapDexJarTask(
 ): TaskProvider<out Task> {
     return tasks.register("createBootstrapDexJar", Exec::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm"
+            group = "godot-jvm"
             description = "Converts the godot-bootstrap.jar to an android compatible version. Needed for android builds only"
 
             dependsOn(checkD8ToolAccessibleTask, checkAndroidJarAccessibleTask, packageBootstrapJarTask)

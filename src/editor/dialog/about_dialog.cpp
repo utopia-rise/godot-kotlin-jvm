@@ -3,7 +3,7 @@
 
 #include "about_dialog.h"
 
-#include "editor/godot_kotlin_jvm_editor.h"
+#include "editor/godot_jvm_editor.h"
 #include "editor/strings.h"
 
 #include <editor/editor_interface.h>
@@ -14,7 +14,7 @@
 #include <scene/gui/texture_rect.h>
 
 AboutDialog::AboutDialog() {
-    set_title("About Godot Kotlin JVM");
+    set_title("About Godot-JVM");
 }
 
 void AboutDialog::on_checkbox_toggled(bool is_selected) {

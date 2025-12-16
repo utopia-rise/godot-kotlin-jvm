@@ -54,10 +54,10 @@ publishing {
         val godotPluginsCommon by registering(MavenPublication::class) {
             pom {
                 this.name.set(project.name)
-                this.description.set("Common module for godot kotlin jvm plugins.")
+                this.description.set("Common module for Godot-JVM plugins.")
             }
             artifactId = project.name
-            description = "Common module for godot kotlin jvm plugins."
+            description = "Common module for Godot-JVM plugins."
             from(components.getByName("java"))
         }
     }

@@ -10,7 +10,7 @@ dependencies {
 }
 ```
 
-# Godot Kotlin/JVM libraries
+# Godot-JVM libraries
 
 Can also be used the same way as for regular Gradle projects:
 

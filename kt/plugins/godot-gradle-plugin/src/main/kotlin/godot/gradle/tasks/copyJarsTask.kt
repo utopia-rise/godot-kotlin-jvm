@@ -12,7 +12,7 @@ fun Project.createCopyJarsTask(
 ): TaskProvider<Copy> {
     return tasks.register("copyJars", Copy::class.java) {
         with(it) {
-            group = "godot-kotlin-jvm-internal"
+            group = "godot-jvm-internal"
             description =
                 "Internal task! Copies the built jars into the final output dir for the cpp reloading to pick up."
 
@@ -22,7 +22,7 @@ fun Project.createCopyJarsTask(
             )
 
             this.from(layout.buildDirectory.asFile.get().resolve("libs"))
-            this.destinationDir = projectDir.resolve(Paths.GODOT_KOTLIN_JVM_DIR)
+            this.destinationDir = projectDir.resolve(Paths.GODOT_JVM_DIR)
         }
     }
 }

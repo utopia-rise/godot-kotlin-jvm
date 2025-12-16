@@ -21,17 +21,17 @@ subprojects {
 tasks {
     @Suppress("UNUSED_VARIABLE")
     val generateChangelog by registering {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
 
         doLast {
             val tags = grgit.tag.list().reversed().filter { it.name != "stable" }
             val fromTag = tags.getOrNull(1)
             val toTag = tags.getOrNull(0)
             val changeLogPrefix = """
-                The files prefixed with `godot-kotlin-jvm_editor_` are the editors.
+                The files prefixed with `godot-jvm_editor_` are the editors.
                 `release` editors are the editors you use normally. `debug` editors provide debug symbols and are intended to provide better stacktraces in case of crashes of the editor. Please use those when submitting bugreports.
                 
-                `godot-kotlin-jvm_export_templates_$fullGodotKotlinJvmVersion.tpz` is the archive for all export templates . See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use it.
+                `godot-jvm_export_templates_$fullGodotKotlinJvmVersion.tpz` is the archive for all export templates . See [exporting](https://godot-kotl.in/en/latest/user-guide/exporting/) documentation on how to use it.
                 
                 **Changelog:**
                 
@@ -41,7 +41,7 @@ tasks {
                 range(fromTag?.name, toTag?.name)
             }
                 .joinToString(separator = "\n", prefix = changeLogPrefix) { commit ->
-                    val link = "https://github.com/utopia-rise/godot-kotlin-jvm/commit/${commit.id}"
+                    val link = "https://github.com/utopia-rise/godot-jvm/commit/${commit.id}"
                     "- [${commit.abbreviatedId}]($link) ${commit.shortMessage}"
                 }
 
@@ -53,7 +53,7 @@ tasks {
         }
     }
     val buildEngineDebug by registering(Exec::class) {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -73,7 +73,7 @@ tasks {
         }
     }
     val buildEngineReleaseDebug by registering(Exec::class) {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
 
         workingDir = File(rootProject.projectDir, "../../..")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -93,7 +93,7 @@ tasks {
         }
     }
     val runEngineDebug by registering(Exec::class) {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -113,7 +113,7 @@ tasks {
         }
     }
     val runEngineReleaseDebug by registering(Exec::class) {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
 
         workingDir = File(rootProject.projectDir, "../../../bin")
         environment("JAVA_HOME", System.getProperty("java.home"))
@@ -134,13 +134,13 @@ tasks {
     }
     @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineDebug by registering {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
         dependsOn(buildEngineDebug)
         finalizedBy(runEngineDebug)
     }
     @Suppress("UNUSED_VARIABLE")
     val buildAndRunEngineReleaseDebug by registering {
-        group = "godot-kotlin-jvm"
+        group = "godot-jvm"
         dependsOn(buildEngineReleaseDebug)
         finalizedBy(runEngineReleaseDebug)
     }

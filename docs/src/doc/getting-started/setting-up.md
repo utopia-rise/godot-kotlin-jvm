@@ -30,7 +30,7 @@ is running, open the `Settings` and select the `Plugins` entry. From this view, 
 
 Type `godot kotlin` into the search bar, and our plugin will be shown as follows.
 
-![Godot Kotlin Plugin](../assets/img/idea-plugin/plugin-godot-kotlin.png)
+![Godot-JVM Plugin](../assets/img/idea-plugin/plugin-godot-kotlin.png)
 
 Click the `Install` button and wait for the IDE to download the plugin. Once the downloading
 process is complete, press the `OK` button on the bottom-right. The IDE will prompt a new
@@ -43,7 +43,7 @@ To create a new project, please refer to the following instructions:
 
 1. Open IntelliJ IDEA
 2. Create a new project clicking on `New Project`
-3. In the `New Project` window, select `Godot Kotlin JVM`.
+3. In the `New Project` window, select `Godot-JVM JVM`.
 4. Fill out the package fields as necessary
 5. (Optional) Select the builds that your project is interested in, such as Android or iOS.
 
