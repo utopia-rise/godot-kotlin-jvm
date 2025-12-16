@@ -283,8 +283,8 @@ public open class PhysicalBone3D : PhysicsBody3D() {
       setCanSleep(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(471, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(471, scriptPtr)
   }
 
   /**

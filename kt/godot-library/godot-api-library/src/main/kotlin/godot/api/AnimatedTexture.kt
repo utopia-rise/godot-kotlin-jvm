@@ -106,8 +106,8 @@ public open class AnimatedTexture : Texture2D() {
       setSpeedScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(12, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(12, scriptPtr)
   }
 
   public final fun setFrames(frames: Int): Unit {

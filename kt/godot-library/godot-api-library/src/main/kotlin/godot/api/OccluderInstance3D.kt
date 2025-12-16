@@ -122,8 +122,8 @@ public open class OccluderInstance3D : VisualInstance3D() {
       setBakeSimplificationDistance(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(413, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(413, scriptPtr)
   }
 
   public final fun setBakeMask(mask: Long): Unit {

@@ -14,7 +14,6 @@ import godot.core.RID
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser._RID
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public abstract class PhysicsDirectSpaceState2DExtension : PhysicsDirectSpaceState2D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(481, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(481, scriptPtr)
   }
 
   public final fun isBodyExcludedFromQuery(body: RID): Boolean {

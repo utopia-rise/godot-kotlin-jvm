@@ -21,7 +21,6 @@ import godot.core.VariantParser.PACKED_VECTOR2_ARRAY
 import godot.core.VariantParser.RECT2
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -55,8 +54,8 @@ public open class NavigationMeshSourceGeometryData2D : Resource() {
       setProjectedObstructions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(389, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(389, scriptPtr)
   }
 
   /**

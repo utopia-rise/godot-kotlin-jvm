@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -96,8 +95,8 @@ public open class ConeTwistJoint3D : Joint3D() {
       setParam(ConeTwistJoint3D.Param.RELAXATION, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(176, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(176, scriptPtr)
   }
 
   /**

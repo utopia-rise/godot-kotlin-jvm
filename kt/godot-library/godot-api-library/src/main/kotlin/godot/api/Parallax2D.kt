@@ -218,8 +218,8 @@ public open class Parallax2D : Node2D() {
       setScreenOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(461, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(461, scriptPtr)
   }
 
   /**

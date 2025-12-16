@@ -56,8 +56,8 @@ public open class PolygonOccluder3D : Occluder3D() {
       setPolygon(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(514, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(514, scriptPtr)
   }
 
   /**

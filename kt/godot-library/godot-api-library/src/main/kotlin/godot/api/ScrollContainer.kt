@@ -173,8 +173,8 @@ public open class ScrollContainer : Container() {
       setDeadzone(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(594, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(594, scriptPtr)
   }
 
   public final fun setHScroll(`value`: Int): Unit {

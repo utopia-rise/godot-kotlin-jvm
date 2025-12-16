@@ -189,8 +189,8 @@ public open class SceneMultiplayer : MultiplayerAPI() {
       setMaxDeltaPacketSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(583, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(583, scriptPtr)
   }
 
   public final fun setRootPath(path: NodePath): Unit {

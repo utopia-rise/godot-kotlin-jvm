@@ -30,7 +30,6 @@ import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -109,8 +108,8 @@ public open class XRPositionalTracker : XRTracker() {
       setTrackerHand(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(890, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(890, scriptPtr)
   }
 
   public final fun getTrackerProfile(): String {

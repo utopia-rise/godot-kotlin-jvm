@@ -5,6 +5,7 @@ package godot.core
 import godot.annotation.CoreTypeHelper
 import godot.common.interop.VariantConverter
 import godot.common.interop.VoidPtr
+import godot.common.interop.nullptr
 import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.MapIterator
@@ -60,10 +61,10 @@ class Dictionary<K, V> : NativeCoreType, MutableMap<K, V> {
             TransferContext.writeArguments(
                 VariantCaster.INT to keyVariantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[keyClass] ?: -1),
-                VariantCaster.INT to (TypeManager.userTypeToId[keyClass] ?: -1),
+                VariantParser.LONG to (TypeManager.userClassToScriptPtr[keyClass] ?: nullptr),
                 VariantCaster.INT to valueVariantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[valueClass] ?: -1),
-                VariantCaster.INT to (TypeManager.userTypeToId[valueClass] ?: -1)
+                VariantParser.LONG to (TypeManager.userClassToScriptPtr[valueClass] ?: nullptr)
             )
             Bridge.engine_call_constructor_typed()
         } else {

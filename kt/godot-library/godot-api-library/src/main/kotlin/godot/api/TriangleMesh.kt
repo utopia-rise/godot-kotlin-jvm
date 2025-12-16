@@ -19,7 +19,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -37,8 +36,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TriangleMesh : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(715, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(715, scriptPtr)
   }
 
   /**

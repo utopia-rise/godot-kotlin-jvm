@@ -109,8 +109,8 @@ public infix fun Long.and(other: TextServer.FontStyle): Long = this.and(other.fl
  */
 @GodotBaseType
 public open class TextServer internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(676, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(676, scriptPtr)
   }
 
   /**

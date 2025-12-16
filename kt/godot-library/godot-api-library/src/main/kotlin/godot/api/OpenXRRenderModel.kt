@@ -15,7 +15,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -50,8 +49,8 @@ public open class OpenXRRenderModel : Node3D() {
       setRenderModel(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(443, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(443, scriptPtr)
   }
 
   /**

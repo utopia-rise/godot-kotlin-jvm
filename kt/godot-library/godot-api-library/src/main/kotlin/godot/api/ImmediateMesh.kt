@@ -63,8 +63,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class ImmediateMesh : Mesh() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(295, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(295, scriptPtr)
   }
 
   /**

@@ -129,8 +129,8 @@ public open class DirAccess internal constructor() : RefCounted() {
       setIncludeHidden(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(200, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(200, scriptPtr)
   }
 
   /**

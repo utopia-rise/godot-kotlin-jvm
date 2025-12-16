@@ -78,8 +78,8 @@ public open class CapsuleMesh : PrimitiveMesh() {
       setRings(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(143, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(143, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

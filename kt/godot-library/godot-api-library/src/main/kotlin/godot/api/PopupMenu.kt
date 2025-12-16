@@ -179,8 +179,8 @@ public open class PopupMenu : Popup() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(517, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(517, scriptPtr)
   }
 
   /**

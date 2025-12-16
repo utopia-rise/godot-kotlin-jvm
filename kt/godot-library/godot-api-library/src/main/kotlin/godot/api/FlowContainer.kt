@@ -81,8 +81,8 @@ public open class FlowContainer : Container() {
       setReverseFill(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(219, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(219, scriptPtr)
   }
 
   /**

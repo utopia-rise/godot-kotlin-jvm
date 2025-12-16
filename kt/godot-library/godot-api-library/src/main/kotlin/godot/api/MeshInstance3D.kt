@@ -74,8 +74,8 @@ public open class MeshInstance3D : GeometryInstance3D() {
       setSkeletonPath(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(363, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(363, scriptPtr)
   }
 
   public final fun setMesh(mesh: Mesh?): Unit {

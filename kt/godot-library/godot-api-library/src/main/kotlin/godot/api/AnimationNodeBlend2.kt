@@ -7,7 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Int
+import godot.common.interop.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -20,8 +20,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class AnimationNodeBlend2 : AnimationNodeSync() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(20, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(20, scriptPtr)
   }
 
   public companion object

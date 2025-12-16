@@ -367,8 +367,8 @@ public open class WebXRInterface internal constructor() : XRInterface() {
     @JvmName("visibilityStateProperty")
     get() = getVisibilityState()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(865, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(865, scriptPtr)
   }
 
   /**

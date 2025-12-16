@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantArray
 import godot.core.VariantParser.ARRAY
 import godot.core.VariantParser.NIL
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -35,8 +34,8 @@ public open class Compositor : Resource() {
       setCompositorEffects(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(166, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(166, scriptPtr)
   }
 
   public final fun setCompositorEffects(compositorEffects: VariantArray<CompositorEffect>): Unit {

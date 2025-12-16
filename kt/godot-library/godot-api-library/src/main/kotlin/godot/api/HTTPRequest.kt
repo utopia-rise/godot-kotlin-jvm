@@ -305,8 +305,8 @@ public open class HTTPRequest : Node() {
       setTimeout(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(284, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(284, scriptPtr)
   }
 
   /**

@@ -7,16 +7,16 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.GodotEnum
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public open class ScriptLanguage internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(591, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(591, scriptPtr)
   }
 
   public enum class ScriptNameCasing(

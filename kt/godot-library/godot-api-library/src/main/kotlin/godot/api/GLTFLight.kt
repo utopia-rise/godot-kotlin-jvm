@@ -27,7 +27,6 @@ import godot.core.asCachedStringName
 import kotlin.Any
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -132,8 +131,8 @@ public open class GLTFLight : Resource() {
       setOuterConeAngle(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(238, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(238, scriptPtr)
   }
 
   /**

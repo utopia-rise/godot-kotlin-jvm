@@ -90,8 +90,8 @@ public open class SkeletonModification2DTwoBoneIK : SkeletonModification2D() {
       setFlipBendDirection(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(620, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(620, scriptPtr)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

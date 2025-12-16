@@ -20,7 +20,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -93,8 +92,8 @@ public open class ColorPickerButton : Button() {
       setEditIntensity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(164, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(164, scriptPtr)
   }
 
   /**

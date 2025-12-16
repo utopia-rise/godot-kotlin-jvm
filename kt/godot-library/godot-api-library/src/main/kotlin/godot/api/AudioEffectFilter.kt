@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -73,8 +72,8 @@ public open class AudioEffectFilter : AudioEffect() {
       setDb(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(59, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(59, scriptPtr)
   }
 
   public final fun setCutoff(freq: Float): Unit {

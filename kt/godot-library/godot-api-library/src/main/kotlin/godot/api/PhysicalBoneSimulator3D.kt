@@ -18,7 +18,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser._RID
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmOverloads
@@ -29,8 +28,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class PhysicalBoneSimulator3D : SkeletonModifier3D() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(472, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(472, scriptPtr)
   }
 
   /**

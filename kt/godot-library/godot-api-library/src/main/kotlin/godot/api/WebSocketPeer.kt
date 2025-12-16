@@ -165,8 +165,8 @@ public open class WebSocketPeer : PacketPeer() {
       setHeartbeatInterval(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(864, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(864, scriptPtr)
   }
 
   /**

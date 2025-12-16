@@ -19,7 +19,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2I
 import godot.core.Vector2i
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -116,8 +115,8 @@ public open class SubViewport : Viewport() {
       setUpdateMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(662, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(662, scriptPtr)
   }
 
   /**

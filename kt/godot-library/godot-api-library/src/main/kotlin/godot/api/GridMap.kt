@@ -223,8 +223,8 @@ public open class GridMap : Node3D() {
       setBakeNavigation(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(274, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(274, scriptPtr)
   }
 
   /**

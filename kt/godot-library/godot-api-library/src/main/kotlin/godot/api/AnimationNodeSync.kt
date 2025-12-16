@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -37,8 +36,8 @@ public open class AnimationNodeSync : AnimationNode() {
       setUseSync(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(32, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(32, scriptPtr)
   }
 
   public final fun setUseSync(enable: Boolean): Unit {

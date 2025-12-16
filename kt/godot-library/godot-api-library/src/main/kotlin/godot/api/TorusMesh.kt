@@ -70,8 +70,8 @@ public open class TorusMesh : PrimitiveMesh() {
       setRingSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(708, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(708, scriptPtr)
   }
 
   public final fun setInnerRadius(radius: Float): Unit {

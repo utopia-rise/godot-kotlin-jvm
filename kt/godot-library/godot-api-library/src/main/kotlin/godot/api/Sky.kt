@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,8 +65,8 @@ public open class Sky : Resource() {
       setRadianceSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(627, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(627, scriptPtr)
   }
 
   public final fun setRadianceSize(size: RadianceSize): Unit {

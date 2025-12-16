@@ -159,8 +159,8 @@ public open class UndoRedo : Object() {
       setMaxSteps(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(722, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(722, scriptPtr)
   }
 
   /**

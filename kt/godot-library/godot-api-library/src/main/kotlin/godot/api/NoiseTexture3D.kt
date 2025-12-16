@@ -158,8 +158,8 @@ public open class NoiseTexture3D : Texture3D() {
       setSeamlessBlendSkirt(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(409, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(409, scriptPtr)
   }
 
   public final fun setWidth(width: Int): Unit {

@@ -158,8 +158,8 @@ public open class CompositorEffect : Resource() {
       setNeedsSeparateSpecular(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(167, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(167, scriptPtr)
   }
 
   /**

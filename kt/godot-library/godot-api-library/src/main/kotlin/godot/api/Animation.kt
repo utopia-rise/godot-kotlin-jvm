@@ -132,8 +132,8 @@ public open class Animation : Resource() {
     @JvmName("captureIncludedProperty")
     get() = isCaptureIncluded()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(13, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(13, scriptPtr)
   }
 
   /**

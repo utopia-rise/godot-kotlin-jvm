@@ -7,7 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
-import kotlin.Int
+import godot.common.interop.VoidPtr
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,8 +25,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CheckBox : Button() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(150, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(150, scriptPtr)
   }
 
   public companion object

@@ -520,8 +520,8 @@ public open class RigidBody3D : PhysicsBody3D() {
       setConstantTorque(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(580, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(580, scriptPtr)
   }
 
   /**

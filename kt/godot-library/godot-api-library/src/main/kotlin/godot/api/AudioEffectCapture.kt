@@ -52,8 +52,8 @@ public open class AudioEffectCapture : AudioEffect() {
       setBufferLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(50, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(50, scriptPtr)
   }
 
   /**

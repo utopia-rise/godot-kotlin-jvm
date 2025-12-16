@@ -14,7 +14,6 @@ import godot.core.RID
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser._RID
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -88,8 +87,8 @@ public open class World3D : Resource() {
     @JvmName("directSpaceStateProperty")
     get() = getDirectSpaceState()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(869, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(869, scriptPtr)
   }
 
   public final fun getSpace(): RID {

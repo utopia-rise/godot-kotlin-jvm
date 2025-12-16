@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -35,8 +34,8 @@ public open class VisualShaderNodeParticleMultiplyByAxisAngle : VisualShaderNode
       setDegreesMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(795, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(795, scriptPtr)
   }
 
   public final fun setDegreesMode(enabled: Boolean): Unit {

@@ -225,7 +225,7 @@ public object RenderingServer : Object() {
 
   public final const val PARTICLES_EMIT_FLAG_CUSTOM: Long = 16
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(26)
   }
 

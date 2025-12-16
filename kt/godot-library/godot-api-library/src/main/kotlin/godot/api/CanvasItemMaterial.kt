@@ -112,8 +112,8 @@ public open class CanvasItemMaterial : Material() {
       setParticlesAnimLoop(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(139, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(139, scriptPtr)
   }
 
   public final fun setBlendMode(blendMode: BlendMode): Unit {

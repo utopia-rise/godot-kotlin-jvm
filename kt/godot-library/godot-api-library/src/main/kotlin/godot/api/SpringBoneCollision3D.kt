@@ -103,8 +103,8 @@ public open class SpringBoneCollision3D : Node3D() {
       setRotationOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(638, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(638, scriptPtr)
   }
 
   /**

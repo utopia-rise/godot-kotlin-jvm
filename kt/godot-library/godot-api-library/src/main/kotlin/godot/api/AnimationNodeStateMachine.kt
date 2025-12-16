@@ -92,8 +92,8 @@ public open class AnimationNodeStateMachine : AnimationRootNode() {
       setResetEnds(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(28, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(28, scriptPtr)
   }
 
   /**

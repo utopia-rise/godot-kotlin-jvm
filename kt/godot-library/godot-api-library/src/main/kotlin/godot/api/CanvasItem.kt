@@ -332,8 +332,8 @@ public open class CanvasItem internal constructor() : Node() {
       setUseParentMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(138, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(138, scriptPtr)
   }
 
   /**

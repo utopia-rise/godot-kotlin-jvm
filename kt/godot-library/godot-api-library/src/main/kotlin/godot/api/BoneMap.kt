@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -54,8 +53,8 @@ public open class BoneMap : Resource() {
       setProfile(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(110, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(110, scriptPtr)
   }
 
   public final fun getProfile(): SkeletonProfile? {

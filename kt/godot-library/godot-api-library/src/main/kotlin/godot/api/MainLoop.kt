@@ -7,10 +7,10 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal2
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -87,8 +87,8 @@ public open class MainLoop : Object() {
    */
   public val onRequestPermissionsResult: Signal2<String, Boolean> by Signal2
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(351, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(351, scriptPtr)
   }
 
   /**

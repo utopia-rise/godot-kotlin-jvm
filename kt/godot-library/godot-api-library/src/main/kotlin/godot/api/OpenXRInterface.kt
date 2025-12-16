@@ -196,8 +196,8 @@ public open class OpenXRInterface : XRInterface() {
       setVrsStrength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(442, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(442, scriptPtr)
   }
 
   /**

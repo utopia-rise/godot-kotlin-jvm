@@ -18,7 +18,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Any
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -50,8 +49,8 @@ public open class ShaderMaterial : Material() {
       setShader(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(604, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(604, scriptPtr)
   }
 
   public final fun setShader(shader: Shader?): Unit {

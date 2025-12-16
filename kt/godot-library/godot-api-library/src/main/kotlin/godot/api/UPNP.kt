@@ -156,8 +156,8 @@ public open class UPNP : RefCounted() {
       setDiscoverIpv6(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(720, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(720, scriptPtr)
   }
 
   /**

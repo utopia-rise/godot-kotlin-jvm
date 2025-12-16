@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -30,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class MethodTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(366, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(366, scriptPtr)
   }
 
   /**

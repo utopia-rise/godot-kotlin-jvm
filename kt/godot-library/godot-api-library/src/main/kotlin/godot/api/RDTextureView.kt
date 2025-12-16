@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -80,8 +79,8 @@ public open class RDTextureView : RefCounted() {
       setSwizzleA(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(541, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(541, scriptPtr)
   }
 
   public final fun setFormatOverride(pMember: RenderingDevice.DataFormat): Unit {

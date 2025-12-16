@@ -20,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import godot.core.VariantParser._RID
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -136,8 +135,8 @@ public open class Resource : RefCounted() {
       setSceneUniqueId(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(567, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(567, scriptPtr)
   }
 
   /**

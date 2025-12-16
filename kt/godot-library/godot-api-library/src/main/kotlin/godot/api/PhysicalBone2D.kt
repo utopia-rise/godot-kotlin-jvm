@@ -102,8 +102,8 @@ public open class PhysicalBone2D : RigidBody2D() {
       setFollowBoneWhenSimulating(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(470, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(470, scriptPtr)
   }
 
   /**

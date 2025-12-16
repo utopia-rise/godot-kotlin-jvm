@@ -58,8 +58,8 @@ public open class ZIPPacker : RefCounted() {
       setCompressionLevel(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(894, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(894, scriptPtr)
   }
 
   /**

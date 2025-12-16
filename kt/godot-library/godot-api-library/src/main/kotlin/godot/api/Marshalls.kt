@@ -17,7 +17,6 @@ import godot.core.VariantParser.PACKED_BYTE_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -29,7 +28,7 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public object Marshalls : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(14)
   }
 

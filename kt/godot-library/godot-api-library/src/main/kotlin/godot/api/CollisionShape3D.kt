@@ -18,7 +18,6 @@ import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -91,8 +90,8 @@ public open class CollisionShape3D : Node3D() {
       setEnableDebugFill(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(161, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(161, scriptPtr)
   }
 
   /**

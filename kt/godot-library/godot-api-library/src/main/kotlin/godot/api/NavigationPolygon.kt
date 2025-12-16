@@ -256,8 +256,8 @@ public open class NavigationPolygon : Resource() {
       setBakingRectOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(397, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(397, scriptPtr)
   }
 
   /**

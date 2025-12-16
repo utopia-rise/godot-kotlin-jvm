@@ -8,6 +8,7 @@ import godot.internal.memory.MemoryManager
 import godot.internal.memory.TransferContext
 import godot.common.util.IndexedIterator
 import godot.common.interop.VoidPtr
+import godot.common.interop.nullptr
 import godot.common.util.isNullable
 import godot.core.bridge.DeepDuplicateMode
 import godot.internal.reflection.TypeManager
@@ -48,7 +49,7 @@ class VariantArray<T> : NativeCoreType, MutableCollection<T> {
             TransferContext.writeArguments(
                 VariantCaster.INT to variantConverter.id,
                 VariantCaster.INT to (TypeManager.engineTypeToId[parameterClazz] ?: -1),
-                VariantCaster.INT to (TypeManager.userTypeToId[parameterClazz] ?: -1)
+                VariantParser.LONG to (TypeManager.userClassToScriptPtr[parameterClazz] ?: nullptr)
             )
             Bridge.engine_call_constructor_typed()
         } else {

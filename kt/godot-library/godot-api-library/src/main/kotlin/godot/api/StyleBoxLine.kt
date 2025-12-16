@@ -101,8 +101,8 @@ public open class StyleBoxLine : StyleBox() {
       setVertical(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(660, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(660, scriptPtr)
   }
 
   /**

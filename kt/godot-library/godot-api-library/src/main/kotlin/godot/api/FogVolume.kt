@@ -17,7 +17,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -96,8 +95,8 @@ public open class FogVolume : VisualInstance3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(221, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(221, scriptPtr)
   }
 
   /**

@@ -126,8 +126,8 @@ public open class WebSocketMultiplayerPeer : MultiplayerPeer() {
       setMaxQueuedPackets(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(863, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(863, scriptPtr)
   }
 
   /**

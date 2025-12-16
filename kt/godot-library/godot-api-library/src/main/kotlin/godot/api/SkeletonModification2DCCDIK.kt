@@ -81,8 +81,8 @@ public open class SkeletonModification2DCCDIK : SkeletonModification2D() {
       setCcdikDataChainLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(614, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(614, scriptPtr)
   }
 
   public final fun setTargetNode(targetNodepath: NodePath): Unit {

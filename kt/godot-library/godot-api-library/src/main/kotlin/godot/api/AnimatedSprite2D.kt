@@ -202,8 +202,8 @@ public open class AnimatedSprite2D : Node2D() {
       setFlipV(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(10, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(10, scriptPtr)
   }
 
   /**

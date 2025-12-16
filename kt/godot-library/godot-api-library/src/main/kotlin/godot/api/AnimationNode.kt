@@ -98,8 +98,8 @@ public open class AnimationNode : Resource() {
       setFilterEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(16, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(16, scriptPtr)
   }
 
   /**

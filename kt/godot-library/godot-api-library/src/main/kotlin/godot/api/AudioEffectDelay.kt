@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -174,8 +173,8 @@ public open class AudioEffectDelay : AudioEffect() {
       setFeedbackLowpass(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(53, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(53, scriptPtr)
   }
 
   public final fun setDry(amount: Float): Unit {

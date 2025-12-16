@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -48,8 +47,8 @@ public open class AudioEffectRecord : AudioEffect() {
       setFormat(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(71, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(71, scriptPtr)
   }
 
   /**

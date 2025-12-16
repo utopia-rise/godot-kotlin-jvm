@@ -139,8 +139,8 @@ public open class TileSetAtlasSource : TileSetSource() {
       setUseTexturePadding(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(703, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(703, scriptPtr)
   }
 
   /**

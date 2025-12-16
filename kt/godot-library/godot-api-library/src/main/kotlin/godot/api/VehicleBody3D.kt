@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -88,8 +87,8 @@ public open class VehicleBody3D : RigidBody3D() {
       setSteering(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(730, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(730, scriptPtr)
   }
 
   public final fun setEngineForce(engineForce: Float): Unit {

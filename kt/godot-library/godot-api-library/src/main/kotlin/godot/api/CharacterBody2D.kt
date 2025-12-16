@@ -266,8 +266,8 @@ public open class CharacterBody2D : PhysicsBody2D() {
       setSafeMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(148, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(148, scriptPtr)
   }
 
   /**

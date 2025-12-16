@@ -89,8 +89,8 @@ public open class Curve3D : Resource() {
       setUpVectorEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(191, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(191, scriptPtr)
   }
 
   public final fun getPointCount(): Int {

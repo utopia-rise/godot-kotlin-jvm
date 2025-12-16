@@ -21,7 +21,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Any
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -46,8 +45,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class Thread : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(697, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(697, scriptPtr)
   }
 
   /**

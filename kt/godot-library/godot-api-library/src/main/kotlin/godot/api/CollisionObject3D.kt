@@ -157,8 +157,8 @@ public open class CollisionObject3D internal constructor() : Node3D() {
       setCaptureInputOnDrag(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(157, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(157, scriptPtr)
   }
 
   /**

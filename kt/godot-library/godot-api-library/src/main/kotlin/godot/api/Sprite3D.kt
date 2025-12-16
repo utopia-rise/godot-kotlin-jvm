@@ -146,8 +146,8 @@ public open class Sprite3D : SpriteBase3D() {
       setRegionRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(644, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(644, scriptPtr)
   }
 
   /**

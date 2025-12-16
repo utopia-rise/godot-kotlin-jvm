@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -64,8 +63,8 @@ public open class XROrigin3D : Node3D() {
       setCurrent(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(888, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(888, scriptPtr)
   }
 
   public final fun setWorldScale(worldScale: Float): Unit {

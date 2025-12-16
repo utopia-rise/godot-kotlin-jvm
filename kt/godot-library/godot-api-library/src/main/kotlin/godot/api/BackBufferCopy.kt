@@ -17,7 +17,6 @@ import godot.core.Rect2
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -66,8 +65,8 @@ public open class BackBufferCopy : Node2D() {
       setRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(103, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(103, scriptPtr)
   }
 
   /**

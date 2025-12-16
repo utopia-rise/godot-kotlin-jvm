@@ -251,8 +251,8 @@ public open class CharFXTransform : RefCounted() {
       setFont(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(147, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(147, scriptPtr)
   }
 
   /**

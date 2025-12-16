@@ -169,8 +169,8 @@ public open class UDPServer : RefCounted() {
       setMaxPendingConnections(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(719, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(719, scriptPtr)
   }
 
   /**

@@ -66,8 +66,8 @@ public open class AnimationNodeBlendTree : AnimationRootNode() {
       setGraphOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(24, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(24, scriptPtr)
   }
 
   /**

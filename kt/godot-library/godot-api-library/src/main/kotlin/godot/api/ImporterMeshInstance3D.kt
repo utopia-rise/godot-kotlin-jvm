@@ -19,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.asCachedNodePath
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -108,8 +107,8 @@ public open class ImporterMeshInstance3D : Node3D() {
       setVisibilityRangeFadeMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(297, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(297, scriptPtr)
   }
 
   public final fun setMesh(mesh: ImporterMesh?): Unit {

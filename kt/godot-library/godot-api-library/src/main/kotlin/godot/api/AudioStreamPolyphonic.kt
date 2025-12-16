@@ -41,8 +41,8 @@ public open class AudioStreamPolyphonic : AudioStream() {
       setPolyphony(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(99, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(99, scriptPtr)
   }
 
   public final fun setPolyphony(voices: Int): Unit {

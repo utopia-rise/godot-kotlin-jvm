@@ -89,8 +89,8 @@ public open class GLTFMesh : Resource() {
       setInstanceMaterials(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(239, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(239, scriptPtr)
   }
 
   /**

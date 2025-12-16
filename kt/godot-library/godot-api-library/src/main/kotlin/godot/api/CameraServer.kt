@@ -99,7 +99,7 @@ public object CameraServer : Object() {
       setMonitoringFeeds(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(1)
   }
 

@@ -114,7 +114,7 @@ public object AudioServer : Object() {
       setPlaybackSpeedScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(0)
   }
 

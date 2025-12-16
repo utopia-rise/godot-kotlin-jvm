@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -39,8 +38,8 @@ public open class CircleShape2D : Shape2D() {
       setRadius(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(152, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(152, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

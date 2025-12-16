@@ -15,7 +15,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -32,8 +31,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class CryptoKey : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(186, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(186, scriptPtr)
   }
 
   /**

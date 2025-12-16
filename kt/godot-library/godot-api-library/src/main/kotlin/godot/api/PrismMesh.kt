@@ -94,8 +94,8 @@ public open class PrismMesh : PrimitiveMesh() {
       setSubdivideDepth(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(521, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(521, scriptPtr)
   }
 
   /**

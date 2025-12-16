@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -84,8 +83,8 @@ public open class OpenXRCompositionLayerEquirect : OpenXRCompositionLayer() {
       setFallbackSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(428, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(428, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

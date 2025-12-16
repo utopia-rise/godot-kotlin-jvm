@@ -138,8 +138,8 @@ public open class SkeletonModification2DJiggle : SkeletonModification2D() {
       setGravity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(616, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(616, scriptPtr)
   }
 
   /**

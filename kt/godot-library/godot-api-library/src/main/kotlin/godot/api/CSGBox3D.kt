@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -61,8 +60,8 @@ public open class CSGBox3D : CSGPrimitive3D() {
       setMaterial(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(119, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(119, scriptPtr)
   }
 
   /**

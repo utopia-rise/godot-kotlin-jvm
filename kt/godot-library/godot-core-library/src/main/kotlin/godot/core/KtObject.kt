@@ -43,7 +43,7 @@ abstract class KtObject : NativeWrapper {
         } else {
             // Branch used when created directly from user code. The native object is going to be created here.
             // If the class is a script, the ScriptInstance is going to be created at the same time.
-            new(TypeManager.userTypeToId[this::class] ?: -1)
+            new(TypeManager.userClassToScriptPtr[this::class] ?: nullptr)
             TransferContext.unsafeRead { buffer ->
                 ptr = buffer.getLong()
                 objectID = ObjectID(buffer.getLong())
@@ -53,7 +53,7 @@ abstract class KtObject : NativeWrapper {
 
     }
 
-    protected abstract fun new(scriptIndex: Int)
+    protected abstract fun new(scriptPtr: VoidPtr)
 
     open fun _get(property: StringName): Any = throw NotImplementedError("_get is not implemented for Object")
     open fun _getPropertyList(): VariantArray<Dictionary<Any, Any>> = throw NotImplementedError("_getPropertyList is not implemented for Object")
@@ -90,7 +90,7 @@ abstract class KtObject : NativeWrapper {
         createScriptInstance(ptr, objectID, TypeManager.engineTypesConstructors[constructorIndex]!!)
     }
 
-    protected external fun createNativeObject(classIndex: Int, scriptIndex: Int)
+    protected external fun createNativeObject(classIndex: Int, scriptPtr: VoidPtr)
     protected external fun getSingleton(classIndex: Int)
     private external fun freeObject(rawPtr: VoidPtr)
 

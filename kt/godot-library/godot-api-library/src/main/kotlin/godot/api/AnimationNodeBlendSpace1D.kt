@@ -107,8 +107,8 @@ public open class AnimationNodeBlendSpace1D : AnimationRootNode() {
       setUseSync(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(22, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(22, scriptPtr)
   }
 
   /**

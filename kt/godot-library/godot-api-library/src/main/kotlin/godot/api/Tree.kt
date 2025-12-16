@@ -318,8 +318,8 @@ public open class Tree : Control() {
       setAutoTooltip(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(713, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(713, scriptPtr)
   }
 
   /**

@@ -638,8 +638,8 @@ public open class Node : Object() {
   ): Error = rpcId(id, function.name.toGodotName(), arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7,
       arg8, arg9)
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(403, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(403, scriptPtr)
   }
 
   /**

@@ -17,7 +17,6 @@ import godot.core.VariantParser.NODE_PATH
 import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedNodePath
 import godot.core.asCachedStringName
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -59,8 +58,8 @@ public open class XRFaceModifier3D : Node3D() {
       setTarget(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(881, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(881, scriptPtr)
   }
 
   public final fun setFaceTracker(trackerName: StringName): Unit {

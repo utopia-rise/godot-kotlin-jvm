@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -111,8 +110,8 @@ public open class AcceptDialog : Window() {
       setAutowrap(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(6, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(6, scriptPtr)
   }
 
   /**

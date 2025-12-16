@@ -1,5 +1,7 @@
 #include "type_manager.h"
 
+#include "jvm_wrapper/bootstrap.h"
+
 void TypeManager::clear() {
     engine_type_names.clear();
     java_engine_types_constructors.clear();
@@ -42,6 +44,14 @@ void TypeManager::register_engine_singletons(jni::Env& p_env, jni::JObjectArray&
         engine_singleton_names.insert(i, singleton_name);
         name.delete_local_ref(p_env);
     }
+}
+
+void TypeManager::assign_script_to_class(jni::Env& p_env, int p_index, const Ref<NamedScript>& p_script) const {
+    jvalue args[2] = {
+        jni::to_jni_arg(p_index),
+        jni::to_jni_arg(p_script.ptr())
+    };
+    wrapped.call_void_method(p_env, ASSIGN_SCRIPT_TO_CLASS, args);
 }
 
 uintptr_t TypeManager::get_method_bind_ptr(JNIEnv* p_raw_env, jobject j_instance, jstring p_class_name, jstring p_method_name, jlong hash) {

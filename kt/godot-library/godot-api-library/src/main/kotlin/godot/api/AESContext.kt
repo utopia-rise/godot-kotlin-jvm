@@ -16,7 +16,6 @@ import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -101,8 +100,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class AESContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(2, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(2, scriptPtr)
   }
 
   /**

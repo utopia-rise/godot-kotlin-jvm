@@ -55,8 +55,8 @@ public open class ExternalTexture : Texture2D() {
       setSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(213, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(213, scriptPtr)
   }
 
   /**

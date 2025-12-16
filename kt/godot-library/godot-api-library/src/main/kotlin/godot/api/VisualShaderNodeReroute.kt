@@ -11,7 +11,6 @@ import godot.`internal`.memory.TransferContext
 import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.LONG
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -27,8 +26,8 @@ public open class VisualShaderNodeReroute : VisualShaderNode() {
     @JvmName("portTypeProperty")
     get() = getPortType()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(803, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(803, scriptPtr)
   }
 
   /**

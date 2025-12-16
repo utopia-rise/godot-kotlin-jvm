@@ -197,8 +197,8 @@ public open class CanvasLayer : Node() {
       setFollowViewportScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(140, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(140, scriptPtr)
   }
 
   /**

@@ -1683,8 +1683,8 @@ public open class ParticleProcessMaterial : Material() {
       setSubEmitterKeepVelocity(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(464, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(464, scriptPtr)
   }
 
   /**

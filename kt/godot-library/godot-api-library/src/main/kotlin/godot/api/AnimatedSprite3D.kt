@@ -142,8 +142,8 @@ public open class AnimatedSprite3D : SpriteBase3D() {
       setSpeedScale(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(11, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(11, scriptPtr)
   }
 
   public final fun setSpriteFrames(spriteFrames: SpriteFrames?): Unit {

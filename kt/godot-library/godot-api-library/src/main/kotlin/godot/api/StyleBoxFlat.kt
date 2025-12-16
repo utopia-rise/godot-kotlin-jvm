@@ -398,8 +398,8 @@ public open class StyleBoxFlat : StyleBox() {
       setAaSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(659, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(659, scriptPtr)
   }
 
   /**

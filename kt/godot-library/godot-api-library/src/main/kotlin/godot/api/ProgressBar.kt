@@ -73,8 +73,8 @@ public open class ProgressBar : Range() {
       setEditorPreviewIndeterminate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(523, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(523, scriptPtr)
   }
 
   public final fun setFillMode(mode: Int): Unit {

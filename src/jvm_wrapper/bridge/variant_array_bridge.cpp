@@ -17,15 +17,14 @@ uintptr_t VariantArrayBridge::engine_call_constructor_typed(JNIEnv* p_raw_env, j
 
     auto ret {VariantAllocator::alloc(Array())};
 
-    auto engineTypeIndex {args[1].operator int64_t()};
-    auto userTypeIndex {args[2].operator int64_t()};
+    auto engineTypeIndex = args[1].operator int64_t();
+    auto userTypeScript = Ref(bridges::from_uint_to_ptr<NamedScript>(args[2].operator int64_t()));
 
     StringName base_class_name;
     Variant script;
-    if (userTypeIndex != -1) {
-        Ref<NamedScript> kotlin_script {JvmScriptManager::get_instance()->get_named_script_from_index(userTypeIndex)};
-        base_class_name = kotlin_script->get_instance_base_type();
-        script = kotlin_script;
+    if (!userTypeScript.is_null()) {
+        base_class_name = userTypeScript->get_instance_base_type();
+        script = userTypeScript;
     } else if (engineTypeIndex != -1) {
         base_class_name = TypeManager::get_instance().get_engine_type_for_index(engineTypeIndex);
     }

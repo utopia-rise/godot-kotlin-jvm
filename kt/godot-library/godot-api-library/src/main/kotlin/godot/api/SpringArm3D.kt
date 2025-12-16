@@ -20,7 +20,6 @@ import godot.core.VariantParser._RID
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -94,8 +93,8 @@ public open class SpringArm3D : Node3D() {
       setMargin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(637, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(637, scriptPtr)
   }
 
   /**

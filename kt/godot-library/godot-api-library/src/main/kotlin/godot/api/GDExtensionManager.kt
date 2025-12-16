@@ -20,7 +20,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.PACKED_STRING_ARRAY
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -57,7 +56,7 @@ public object GDExtensionManager : Object() {
   @JvmStatic
   public val extensionUnloading: Signal1<GDExtension> by Signal1
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(6)
   }
 

@@ -14,7 +14,6 @@ import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -53,8 +52,8 @@ public open class CylinderShape3D : Shape3D() {
       setRadius(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(195, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(195, scriptPtr)
   }
 
   public final fun setRadius(radius: Float): Unit {

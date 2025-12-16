@@ -396,8 +396,8 @@ public open class LightmapGI : VisualInstance3D() {
       setLightData(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(341, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(341, scriptPtr)
   }
 
   /**

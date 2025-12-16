@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.PackedColorArray
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.PACKED_COLOR_ARRAY
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -37,8 +36,8 @@ public open class ColorPalette : Resource() {
       setColors(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(162, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(162, scriptPtr)
   }
 
   public final fun setColors(colors: PackedColorArray): Unit {

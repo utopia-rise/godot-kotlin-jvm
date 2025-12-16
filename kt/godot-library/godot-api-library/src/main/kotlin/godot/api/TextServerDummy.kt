@@ -7,6 +7,7 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.Dictionary
 import godot.core.InlineAlignment
@@ -20,7 +21,6 @@ import kotlin.Any
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.String
@@ -50,8 +50,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class TextServerDummy : TextServerExtension() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(678, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(678, scriptPtr)
   }
 
   /**

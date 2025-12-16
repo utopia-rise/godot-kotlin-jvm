@@ -607,8 +607,8 @@ public open class NavigationAgent3D : Node() {
       setDebugPathCustomPointSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(384, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(384, scriptPtr)
   }
 
   /**

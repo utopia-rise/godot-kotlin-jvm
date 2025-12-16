@@ -220,8 +220,8 @@ public open class AStarGrid2D : RefCounted() {
       setDiagonalMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(5, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(5, scriptPtr)
   }
 
   /**

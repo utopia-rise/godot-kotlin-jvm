@@ -467,8 +467,8 @@ public open class GPUParticles3D : GeometryInstance3D() {
       setSkin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(251, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(251, scriptPtr)
   }
 
   /**

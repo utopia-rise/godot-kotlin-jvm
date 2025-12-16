@@ -219,8 +219,8 @@ public open class AudioStreamPlayer2D : Node2D() {
       setPlaybackType(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(96, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(96, scriptPtr)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

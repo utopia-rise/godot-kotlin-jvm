@@ -106,8 +106,8 @@ public open class MenuBar : Control() {
       setLanguage(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(357, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(357, scriptPtr)
   }
 
   public final fun setSwitchOnHover(enable: Boolean): Unit {

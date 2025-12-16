@@ -14,7 +14,6 @@ import godot.core.Signal0
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.NIL
 import kotlin.Double
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -69,8 +68,8 @@ public open class SceneTreeTimer internal constructor() : RefCounted() {
       setTimeLeft(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(587, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(587, scriptPtr)
   }
 
   public final fun setTimeLeft(time: Double): Unit {

@@ -147,8 +147,8 @@ public open class TextLine : RefCounted() {
       setEllipsisChar(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(673, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(673, scriptPtr)
   }
 
   /**

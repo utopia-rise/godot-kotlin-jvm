@@ -7,8 +7,8 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import godot.core.Signal0
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -23,8 +23,8 @@ public open class Popup : Window() {
    */
   public val popupHide: Signal0 by Signal0
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(516, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(516, scriptPtr)
   }
 
   public companion object

@@ -22,7 +22,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -138,8 +137,8 @@ public open class PhysicsRayQueryParameters2D : RefCounted() {
       setHitFromInside(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(487, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(487, scriptPtr)
   }
 
   /**

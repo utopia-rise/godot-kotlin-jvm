@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Signal0
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,8 +41,8 @@ public open class VisualShaderNodeInput : VisualShaderNode() {
       setInputName(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(776, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(776, scriptPtr)
   }
 
   public final fun setInputName(name: String): Unit {

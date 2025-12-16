@@ -44,8 +44,8 @@ public open class GLTFTexture : Resource() {
       setSampler(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(248, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(248, scriptPtr)
   }
 
   public final fun getSrcImage(): Int {

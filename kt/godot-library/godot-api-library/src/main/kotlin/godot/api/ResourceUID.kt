@@ -15,7 +15,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -38,7 +37,7 @@ public object ResourceUID : Object() {
    */
   public final const val INVALID_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(29)
   }
 

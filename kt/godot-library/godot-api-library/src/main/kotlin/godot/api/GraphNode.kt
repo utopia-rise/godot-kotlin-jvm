@@ -108,8 +108,8 @@ public open class GraphNode : GraphElement() {
       setSlotsFocusMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(272, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(272, scriptPtr)
   }
 
   public open fun _drawPort(

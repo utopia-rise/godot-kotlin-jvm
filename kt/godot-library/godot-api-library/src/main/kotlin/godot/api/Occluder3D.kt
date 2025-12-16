@@ -14,7 +14,6 @@ import godot.core.PackedInt32Array
 import godot.core.PackedVector3Array
 import godot.core.VariantParser.PACKED_INT_32_ARRAY
 import godot.core.VariantParser.PACKED_VECTOR3_ARRAY
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -25,8 +24,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class Occluder3D internal constructor() : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(412, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(412, scriptPtr)
   }
 
   /**

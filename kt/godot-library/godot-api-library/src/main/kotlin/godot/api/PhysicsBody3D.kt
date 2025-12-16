@@ -104,8 +104,8 @@ public open class PhysicsBody3D internal constructor() : CollisionObject3D() {
       setAxisLock(PhysicsServer3D.BodyAxis.ANGULAR_Z, value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(475, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(475, scriptPtr)
   }
 
   /**

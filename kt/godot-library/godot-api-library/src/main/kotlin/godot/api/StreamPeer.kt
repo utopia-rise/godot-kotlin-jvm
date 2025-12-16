@@ -54,8 +54,8 @@ public open class StreamPeer internal constructor() : RefCounted() {
       setBigEndian(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(651, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(651, scriptPtr)
   }
 
   /**

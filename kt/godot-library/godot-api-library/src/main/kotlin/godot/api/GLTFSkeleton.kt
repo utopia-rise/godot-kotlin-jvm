@@ -85,8 +85,8 @@ public open class GLTFSkeleton : Resource() {
       setGodotBoneNode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(244, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(244, scriptPtr)
   }
 
   /**

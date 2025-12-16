@@ -54,8 +54,8 @@ public open class PacketPeer internal constructor() : RefCounted() {
       setEncodeBufferMaxSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(453, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(453, scriptPtr)
   }
 
   /**

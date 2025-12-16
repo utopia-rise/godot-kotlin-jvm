@@ -21,7 +21,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.VECTOR2
 import godot.core.Vector2
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -118,8 +117,8 @@ public open class PhysicsPointQueryParameters2D : RefCounted() {
       setCollideWithAreas(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(485, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(485, scriptPtr)
   }
 
   /**

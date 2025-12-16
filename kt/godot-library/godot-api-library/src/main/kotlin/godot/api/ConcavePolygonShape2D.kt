@@ -68,8 +68,8 @@ public open class ConcavePolygonShape2D : Shape2D() {
       setSegments(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(174, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(174, scriptPtr)
   }
 
   /**

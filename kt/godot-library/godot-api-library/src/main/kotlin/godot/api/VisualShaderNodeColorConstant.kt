@@ -15,7 +15,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Color
 import godot.core.VariantParser.COLOR
 import godot.core.VariantParser.NIL
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -46,8 +45,8 @@ public open class VisualShaderNodeColorConstant : VisualShaderNodeConstant() {
       setConstant(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(749, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(749, scriptPtr)
   }
 
   /**

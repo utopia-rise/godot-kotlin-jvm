@@ -22,7 +22,6 @@ import godot.core.VariantParser.STRING
 import godot.core.Vector2i
 import godot.core.asCachedNodePath
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -83,8 +82,8 @@ public open class StatusIndicator : Node() {
       setVisible(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(650, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(650, scriptPtr)
   }
 
   public final fun setTooltip(tooltip: String): Unit {

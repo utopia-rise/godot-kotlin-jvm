@@ -25,7 +25,6 @@ import godot.core.Vector2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -141,8 +140,8 @@ public open class PhysicsTestMotionParameters2D : RefCounted() {
       setRecoveryAsCollisionEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(496, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(496, scriptPtr)
   }
 
   /**

@@ -60,8 +60,8 @@ public open class OpenXRActionMap : Resource() {
       setInteractionProfiles(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(422, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(422, scriptPtr)
   }
 
   public final fun setActionSets(actionSets: VariantArray<Any?>): Unit {

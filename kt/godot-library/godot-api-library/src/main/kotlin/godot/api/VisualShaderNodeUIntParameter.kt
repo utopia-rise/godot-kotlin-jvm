@@ -49,8 +49,8 @@ public open class VisualShaderNodeUIntParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(834, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(834, scriptPtr)
   }
 
   public final fun setDefaultValueEnabled(enabled: Boolean): Unit {

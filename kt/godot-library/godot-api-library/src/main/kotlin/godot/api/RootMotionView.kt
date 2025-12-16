@@ -23,7 +23,6 @@ import godot.core.asCachedNodePath
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -106,8 +105,8 @@ public open class RootMotionView : VisualInstance3D() {
       setZeroY(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(581, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(581, scriptPtr)
   }
 
   /**

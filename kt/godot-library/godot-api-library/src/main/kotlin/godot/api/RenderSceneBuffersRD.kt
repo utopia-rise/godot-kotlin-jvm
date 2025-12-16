@@ -25,7 +25,6 @@ import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -46,8 +45,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class RenderSceneBuffersRD : RenderSceneBuffers() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(561, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(561, scriptPtr)
   }
 
   /**

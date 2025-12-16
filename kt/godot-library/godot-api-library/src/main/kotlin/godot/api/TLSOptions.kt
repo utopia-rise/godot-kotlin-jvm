@@ -14,7 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -42,8 +41,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class TLSOptions internal constructor() : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(669, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(669, scriptPtr)
   }
 
   /**

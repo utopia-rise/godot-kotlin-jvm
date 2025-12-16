@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -74,8 +73,8 @@ public open class AspectRatioContainer : Container() {
       setAlignmentVertical(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(43, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(43, scriptPtr)
   }
 
   public final fun setRatio(ratio: Float): Unit {

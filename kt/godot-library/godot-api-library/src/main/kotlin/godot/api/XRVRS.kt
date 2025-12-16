@@ -24,7 +24,6 @@ import godot.core.VariantParser._RID
 import godot.core.Vector2
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -78,8 +77,8 @@ public open class XRVRS : Object() {
       setVrsRenderRegion(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(893, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(893, scriptPtr)
   }
 
   /**

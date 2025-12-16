@@ -122,8 +122,8 @@ public open class FileAccess internal constructor() : RefCounted() {
       setBigEndian(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(217, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(217, scriptPtr)
   }
 
   /**

@@ -161,8 +161,8 @@ public open class CollisionObject2D internal constructor() : Node2D() {
       setPickable(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(156, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(156, scriptPtr)
   }
 
   /**

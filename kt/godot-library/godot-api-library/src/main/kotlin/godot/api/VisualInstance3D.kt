@@ -94,8 +94,8 @@ public open class VisualInstance3D : Node3D() {
       setSortingUseAabbCenter(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(742, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(742, scriptPtr)
   }
 
   public open fun _getAabb(): AABB {

@@ -20,7 +20,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -131,8 +130,8 @@ public open class FogMaterial : Material() {
       setDensityTexture(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(220, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(220, scriptPtr)
   }
 
   /**

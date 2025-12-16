@@ -124,7 +124,7 @@ public object Input : Object() {
       setEmulateTouchFromMouse(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(10)
   }
 

@@ -19,7 +19,6 @@ import godot.core.VariantParser.OBJECT
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -157,8 +156,8 @@ public open class SpinBox : Range() {
       setSelectAllOnFocus(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(634, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(634, scriptPtr)
   }
 
   public final fun setHorizontalAlignment(alignment: HorizontalAlignment): Unit {

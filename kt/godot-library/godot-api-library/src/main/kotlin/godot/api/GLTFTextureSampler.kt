@@ -70,8 +70,8 @@ public open class GLTFTextureSampler : Resource() {
       setWrapT(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(249, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(249, scriptPtr)
   }
 
   public final fun getMagFilter(): Int {

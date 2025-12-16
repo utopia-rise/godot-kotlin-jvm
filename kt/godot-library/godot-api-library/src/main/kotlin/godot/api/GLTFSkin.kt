@@ -155,8 +155,8 @@ public open class GLTFSkin : Resource() {
       setGodotSkin(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(245, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(245, scriptPtr)
   }
 
   /**

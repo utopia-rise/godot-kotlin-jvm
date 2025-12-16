@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -97,8 +96,8 @@ public open class VisualShaderNodeFloatParameter : VisualShaderNodeParameter() {
       setDefaultValue(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(770, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(770, scriptPtr)
   }
 
   public final fun setHint(hint: Hint): Unit {

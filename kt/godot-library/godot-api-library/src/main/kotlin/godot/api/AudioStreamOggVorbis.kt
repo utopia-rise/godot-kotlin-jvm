@@ -114,8 +114,8 @@ public open class AudioStreamOggVorbis : AudioStream() {
       setLoopOffset(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(87, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(87, scriptPtr)
   }
 
   public final fun setPacketSequence(packetSequence: OggPacketSequence?): Unit {

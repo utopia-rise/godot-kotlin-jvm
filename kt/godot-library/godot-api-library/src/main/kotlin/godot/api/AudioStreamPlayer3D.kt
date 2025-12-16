@@ -335,8 +335,8 @@ public open class AudioStreamPlayer3D : Node3D() {
       setDopplerTracking(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(97, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(97, scriptPtr)
   }
 
   public final fun setStream(stream: AudioStream?): Unit {

@@ -27,7 +27,6 @@ import godot.core.VariantParser.RECT2
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.NotImplementedError
 import kotlin.Suppress
@@ -239,8 +238,8 @@ public open class StyleBoxTexture : StyleBox() {
       setDrawCenter(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(661, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(661, scriptPtr)
   }
 
   /**

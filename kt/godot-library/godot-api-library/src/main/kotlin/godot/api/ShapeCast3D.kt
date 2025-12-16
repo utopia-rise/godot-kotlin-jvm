@@ -193,8 +193,8 @@ public open class ShapeCast3D : Node3D() {
       setDebugShapeCustomColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(608, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(608, scriptPtr)
   }
 
   /**

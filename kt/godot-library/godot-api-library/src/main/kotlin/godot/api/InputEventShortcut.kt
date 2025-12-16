@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -36,8 +35,8 @@ public open class InputEventShortcut : InputEvent() {
       setShortcut(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(314, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(314, scriptPtr)
   }
 
   public final fun setShortcut(shortcut: Shortcut?): Unit {

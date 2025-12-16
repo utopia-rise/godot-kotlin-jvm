@@ -14,7 +14,6 @@ import godot.core.GodotEnum
 import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -30,8 +29,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class GDExtension : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(228, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(228, scriptPtr)
   }
 
   /**

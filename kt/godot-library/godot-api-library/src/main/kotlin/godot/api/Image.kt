@@ -53,8 +53,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class Image : Resource() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(289, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(289, scriptPtr)
   }
 
   /**

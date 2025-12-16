@@ -308,8 +308,8 @@ public open class ItemList : Control() {
       setFixedIconSize(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(319, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(319, scriptPtr)
   }
 
   /**

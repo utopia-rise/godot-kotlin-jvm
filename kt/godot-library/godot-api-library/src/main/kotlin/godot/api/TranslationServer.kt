@@ -55,7 +55,7 @@ public object TranslationServer : Object() {
       setPseudolocalizationEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(33)
   }
 

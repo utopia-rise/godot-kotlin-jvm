@@ -142,8 +142,8 @@ public open class GLTFDocument : Resource() {
       setVisibilityMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(235, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(235, scriptPtr)
   }
 
   public final fun setImageFormat(imageFormat: String): Unit {

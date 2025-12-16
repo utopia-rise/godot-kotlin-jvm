@@ -20,7 +20,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -138,8 +137,8 @@ public open class AnimationNodeAnimation : AnimationRootNode() {
       setLoopMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(19, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(19, scriptPtr)
   }
 
   public final fun setAnimation(name: StringName): Unit {

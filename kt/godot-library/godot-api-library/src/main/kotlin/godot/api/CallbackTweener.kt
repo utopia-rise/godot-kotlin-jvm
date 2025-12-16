@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.VariantParser.DOUBLE
 import godot.core.VariantParser.OBJECT
 import kotlin.Double
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -28,8 +27,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class CallbackTweener : Tweener() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(128, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(128, scriptPtr)
   }
 
   /**

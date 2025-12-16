@@ -191,8 +191,8 @@ public open class TranslationDomain : RefCounted() {
       setPseudolocalizationSuffix(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(711, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(711, scriptPtr)
   }
 
   /**

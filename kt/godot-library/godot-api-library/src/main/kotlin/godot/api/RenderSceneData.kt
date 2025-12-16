@@ -19,7 +19,6 @@ import godot.core.VariantParser.TRANSFORM3D
 import godot.core.VariantParser.VECTOR3
 import godot.core.VariantParser._RID
 import godot.core.Vector3
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -31,8 +30,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class RenderSceneData internal constructor() : Object() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(562, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(562, scriptPtr)
   }
 
   /**

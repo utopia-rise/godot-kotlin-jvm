@@ -100,8 +100,8 @@ public open class Gradient : Resource() {
       setColors(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(266, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(266, scriptPtr)
   }
 
   /**

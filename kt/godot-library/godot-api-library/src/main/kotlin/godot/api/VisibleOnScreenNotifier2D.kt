@@ -18,7 +18,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.RECT2
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -78,8 +77,8 @@ public open class VisibleOnScreenNotifier2D : Node2D() {
       setShowRect(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(740, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(740, scriptPtr)
   }
 
   /**

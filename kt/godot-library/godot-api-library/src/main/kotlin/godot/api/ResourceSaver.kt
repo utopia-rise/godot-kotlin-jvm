@@ -43,7 +43,7 @@ public infix fun Long.and(other: ResourceSaver.SaverFlags): Long = this.and(othe
  */
 @GodotBaseType
 public object ResourceSaver : Object() {
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(28)
   }
 

@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -101,8 +100,8 @@ public open class CameraAttributes : Resource() {
       setAutoExposureSpeed(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(131, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(131, scriptPtr)
   }
 
   public final fun setExposureMultiplier(multiplier: Float): Unit {

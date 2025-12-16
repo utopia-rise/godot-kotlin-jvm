@@ -333,8 +333,8 @@ public open class Area2D : CollisionObject2D() {
       setAudioBusName(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(39, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(39, scriptPtr)
   }
 
   /**

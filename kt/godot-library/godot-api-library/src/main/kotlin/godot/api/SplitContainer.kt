@@ -168,8 +168,8 @@ public open class SplitContainer : Container() {
       setDragAreaHighlightInEditor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(635, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(635, scriptPtr)
   }
 
   public final fun setSplitOffset(offset: Int): Unit {

@@ -14,7 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
@@ -53,8 +52,8 @@ public open class MissingResource : Resource() {
       setRecordingProperties(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(368, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(368, scriptPtr)
   }
 
   public final fun setOriginalClass(name: String): Unit {

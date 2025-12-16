@@ -67,8 +67,8 @@ public open class XRBodyTracker : XRPositionalTracker() {
       setBodyFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(877, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(877, scriptPtr)
   }
 
   public final fun setHasTrackingData(hasData: Boolean): Unit {

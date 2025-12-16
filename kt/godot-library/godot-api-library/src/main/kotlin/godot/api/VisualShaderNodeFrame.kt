@@ -109,8 +109,8 @@ public open class VisualShaderNodeFrame : VisualShaderNodeResizableBase() {
       setAttachedNodes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(771, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(771, scriptPtr)
   }
 
   /**

@@ -21,7 +21,6 @@ import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -105,8 +104,8 @@ public open class CollisionShape2D : Node2D() {
       setDebugColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(160, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(160, scriptPtr)
   }
 
   /**

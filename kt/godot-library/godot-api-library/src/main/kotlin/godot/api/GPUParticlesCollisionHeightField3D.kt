@@ -127,8 +127,8 @@ public open class GPUParticlesCollisionHeightField3D : GPUParticlesCollision3D()
       setHeightfieldMask(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(258, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(258, scriptPtr)
   }
 
   /**

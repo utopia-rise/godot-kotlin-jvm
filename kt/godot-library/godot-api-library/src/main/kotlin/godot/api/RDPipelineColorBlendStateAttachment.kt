@@ -14,7 +14,6 @@ import godot.core.VariantParser.BOOL
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -221,8 +220,8 @@ public open class RDPipelineColorBlendStateAttachment : RefCounted() {
       setWriteA(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(531, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(531, scriptPtr)
   }
 
   /**

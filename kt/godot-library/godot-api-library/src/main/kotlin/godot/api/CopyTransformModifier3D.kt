@@ -69,8 +69,8 @@ public open class CopyTransformModifier3D : BoneConstraint3D() {
       setSettingCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(184, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(184, scriptPtr)
   }
 
   /**

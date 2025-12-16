@@ -430,8 +430,8 @@ public open class Camera2D : Node2D() {
       setMarginDrawingEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(129, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(129, scriptPtr)
   }
 
   /**

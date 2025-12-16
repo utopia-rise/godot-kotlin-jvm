@@ -99,8 +99,8 @@ public open class MultiplayerAPI internal constructor() : RefCounted() {
       setMultiplayerPeer(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(375, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(375, scriptPtr)
   }
 
   /**

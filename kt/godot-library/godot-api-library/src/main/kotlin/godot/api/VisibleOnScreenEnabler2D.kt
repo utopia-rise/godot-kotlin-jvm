@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.asCachedNodePath
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -63,8 +62,8 @@ public open class VisibleOnScreenEnabler2D : VisibleOnScreenNotifier2D() {
       setEnableNodePath(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(738, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(738, scriptPtr)
   }
 
   public final fun setEnableMode(mode: EnableMode): Unit {

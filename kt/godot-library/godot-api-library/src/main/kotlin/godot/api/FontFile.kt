@@ -376,8 +376,8 @@ public open class FontFile : Font() {
       setOversampling(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(225, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(225, scriptPtr)
   }
 
   /**

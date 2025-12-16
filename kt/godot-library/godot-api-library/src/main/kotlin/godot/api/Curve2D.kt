@@ -62,8 +62,8 @@ public open class Curve2D : Resource() {
       setPointCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(190, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(190, scriptPtr)
   }
 
   public final fun getPointCount(): Int {

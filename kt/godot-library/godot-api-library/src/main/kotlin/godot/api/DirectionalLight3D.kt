@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Float
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -151,8 +150,8 @@ public open class DirectionalLight3D : Light3D() {
       setSkyMode(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(202, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(202, scriptPtr)
   }
 
   public final fun setShadowMode(mode: ShadowMode): Unit {

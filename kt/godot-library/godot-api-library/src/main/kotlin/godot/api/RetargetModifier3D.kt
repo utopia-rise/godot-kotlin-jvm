@@ -90,8 +90,8 @@ public open class RetargetModifier3D : SkeletonModifier3D() {
       setEnableFlags(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(575, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(575, scriptPtr)
   }
 
   public final fun setProfile(profile: SkeletonProfile?): Unit {

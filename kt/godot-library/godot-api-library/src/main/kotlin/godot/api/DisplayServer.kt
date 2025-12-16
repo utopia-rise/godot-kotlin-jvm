@@ -129,7 +129,7 @@ public object DisplayServer : Object() {
    */
   public final const val INVALID_INDICATOR_ID: Long = -1
 
-  public override fun new(scriptIndex: Int): Unit {
+  public override fun new(scriptPtr: VoidPtr): Unit {
     getSingleton(3)
   }
 

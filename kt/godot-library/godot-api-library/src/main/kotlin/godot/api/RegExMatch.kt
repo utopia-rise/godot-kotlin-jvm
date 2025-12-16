@@ -56,8 +56,8 @@ public open class RegExMatch : RefCounted() {
     @JvmName("stringsProperty")
     get() = getStrings()
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(552, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(552, scriptPtr)
   }
 
   public final fun getSubject(): String {

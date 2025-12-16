@@ -100,8 +100,8 @@ public open class OptionButton : Button() {
       setItemCount(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(448, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(448, scriptPtr)
   }
 
   /**

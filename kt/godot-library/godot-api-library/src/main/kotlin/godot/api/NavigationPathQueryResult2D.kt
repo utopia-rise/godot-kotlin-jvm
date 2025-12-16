@@ -120,8 +120,8 @@ public open class NavigationPathQueryResult2D : RefCounted() {
       setPathLength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(395, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(395, scriptPtr)
   }
 
   /**

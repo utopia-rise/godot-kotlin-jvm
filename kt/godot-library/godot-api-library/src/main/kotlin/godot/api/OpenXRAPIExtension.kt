@@ -46,8 +46,8 @@ import kotlin.jvm.JvmStatic
  */
 @GodotBaseType
 public open class OpenXRAPIExtension : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(419, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(419, scriptPtr)
   }
 
   /**

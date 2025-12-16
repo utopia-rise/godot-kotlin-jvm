@@ -261,8 +261,8 @@ public open class TextMesh : PrimitiveMesh() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(674, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(674, scriptPtr)
   }
 
   /**

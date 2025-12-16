@@ -198,8 +198,8 @@ public open class NoiseTexture2D : Texture2D() {
       setBumpStrength(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(408, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(408, scriptPtr)
   }
 
   public final fun setWidth(width: Int): Unit {

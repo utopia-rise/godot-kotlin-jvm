@@ -315,8 +315,8 @@ public open class Label : Control() {
       setStructuredTextBidiOverrideOptions(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(335, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(335, scriptPtr)
   }
 
   /**

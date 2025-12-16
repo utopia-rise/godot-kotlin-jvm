@@ -14,7 +14,6 @@ import godot.core.Error
 import godot.core.PackedByteArray
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.PACKED_BYTE_ARRAY
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -71,8 +70,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class HMACContext : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(278, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(278, scriptPtr)
   }
 
   /**

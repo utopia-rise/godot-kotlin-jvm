@@ -248,8 +248,8 @@ public open class AnimationMixer internal constructor() : Node() {
       setCallbackModeDiscrete(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(15, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(15, scriptPtr)
   }
 
   /**

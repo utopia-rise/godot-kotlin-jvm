@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.STRING
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -39,8 +38,8 @@ public open class VideoStream : Resource() {
       setFile(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(732, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(732, scriptPtr)
   }
 
   /**

@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -196,8 +195,8 @@ public open class AnimationNodeOneShot : AnimationNodeSync() {
       setAutorestartRandomDelay(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(26, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(26, scriptPtr)
   }
 
   public final fun setFadeinTime(time: Double): Unit {

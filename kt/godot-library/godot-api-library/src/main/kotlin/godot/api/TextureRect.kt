@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -84,8 +83,8 @@ public open class TextureRect : Control() {
       setFlipV(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(694, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(694, scriptPtr)
   }
 
   public final fun setTexture(texture: Texture2D?): Unit {

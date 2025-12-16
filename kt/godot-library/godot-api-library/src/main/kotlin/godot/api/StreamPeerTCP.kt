@@ -34,8 +34,8 @@ import kotlin.jvm.JvmOverloads
  */
 @GodotBaseType
 public open class StreamPeerTCP : StreamPeer() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(655, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(655, scriptPtr)
   }
 
   /**

@@ -7,14 +7,15 @@
 package godot.api
 
 import godot.`annotation`.GodotBaseType
+import godot.common.interop.VoidPtr
 import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
 @GodotBaseType
 public abstract class StreamPeerExtension : StreamPeer() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(653, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(653, scriptPtr)
   }
 
   public abstract fun _getAvailableBytes(): Int

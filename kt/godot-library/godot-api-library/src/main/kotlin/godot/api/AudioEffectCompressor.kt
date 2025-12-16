@@ -17,7 +17,6 @@ import godot.core.VariantParser.STRING_NAME
 import godot.core.asCachedStringName
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.String
 import kotlin.Suppress
@@ -125,8 +124,8 @@ public open class AudioEffectCompressor : AudioEffect() {
       setSidechain(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(52, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(52, scriptPtr)
   }
 
   public final fun setThreshold(threshold: Float): Unit {

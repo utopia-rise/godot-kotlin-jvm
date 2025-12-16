@@ -8,13 +8,11 @@
 class JvmScriptManager: public Object {
     friend class Memory;
 
-    Vector<Ref<NamedScript>> named_scripts;
     HashMap<StringName, Ref<NamedScript>> named_scripts_map;
 
     HashMap<String, StringName> fqdn_to_name_map;
     HashMap<StringName, String> name_to_fqdn_map;
 
-    Vector<Ref<WeakRef>> source_scripts;
     HashMap<StringName, Ref<WeakRef>> source_scripts_map;
 
     HashMap<StringName, KtClass*> fqdn_to_kt_class;
@@ -39,7 +37,6 @@ public:
     void create_and_update_scripts(Vector<KtClass*>& classes);
 
     Ref<NamedScript> get_script_from_name(const StringName& name) const;
-    Ref<NamedScript> get_named_script_from_index(int p_index) const;
     Ref<NamedScript> get_named_script_from_source_script(Ref<SourceScript> p_source_script) const;
     Ref<SourceScript> get_script_from_fqdn(const StringName& p_fqdn) const;
 
@@ -71,7 +68,6 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_named_script(const String& p_path, b
         jvm_script.instantiate();
         *created = true;
         named_scripts_map[script_name] = jvm_script;
-        named_scripts.push_back(jvm_script);
     }
     return jvm_script;
 }
@@ -99,7 +95,6 @@ Ref<SCRIPT> JvmScriptManager::get_or_create_source_script(const String& p_path, 
         weak_ref->set_ref(jvm_script);
 
         source_scripts_map[jvm_script->get_functional_name()] = weak_ref;
-        source_scripts.push_back(weak_ref);
     }
     return jvm_script;
 }

@@ -18,7 +18,6 @@ import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
 import kotlin.Boolean
 import kotlin.Double
-import kotlin.Int
 import kotlin.NotImplementedError
 import kotlin.Suppress
 import kotlin.Unit
@@ -163,8 +162,8 @@ public open class Range : Control() {
       setAllowLesser(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(545, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(545, scriptPtr)
   }
 
   /**

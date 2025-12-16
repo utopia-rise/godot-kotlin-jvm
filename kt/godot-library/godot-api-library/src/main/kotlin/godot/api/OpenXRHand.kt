@@ -16,7 +16,6 @@ import godot.core.VariantParser.LONG
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.NODE_PATH
 import godot.core.asCachedNodePath
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -96,8 +95,8 @@ public open class OpenXRHand : Node3D() {
       setBoneUpdate(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(435, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(435, scriptPtr)
   }
 
   public final fun setHand(hand: Hands): Unit {

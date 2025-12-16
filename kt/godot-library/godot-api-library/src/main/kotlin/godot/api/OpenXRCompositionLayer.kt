@@ -298,8 +298,8 @@ public open class OpenXRCompositionLayer internal constructor() : Node3D() {
       setBorderColor(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(426, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(426, scriptPtr)
   }
 
   /**

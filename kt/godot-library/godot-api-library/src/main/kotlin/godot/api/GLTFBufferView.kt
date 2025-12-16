@@ -109,8 +109,8 @@ public open class GLTFBufferView : Resource() {
       setVertexAttributes(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(233, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(233, scriptPtr)
   }
 
   /**

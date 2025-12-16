@@ -94,8 +94,8 @@ public open class OpenXRIPBinding : Resource() {
       setPaths(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(438, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(438, scriptPtr)
   }
 
   /**

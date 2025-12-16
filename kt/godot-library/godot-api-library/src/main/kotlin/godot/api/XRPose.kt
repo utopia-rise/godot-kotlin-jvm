@@ -24,7 +24,6 @@ import godot.core.VariantParser.VECTOR3
 import godot.core.Vector3
 import godot.core.asCachedStringName
 import kotlin.Boolean
-import kotlin.Int
 import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
@@ -143,8 +142,8 @@ public open class XRPose : RefCounted() {
       setTrackingConfidence(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(889, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(889, scriptPtr)
   }
 
   /**

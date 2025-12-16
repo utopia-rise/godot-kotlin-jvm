@@ -154,8 +154,8 @@ public open class PhysicsTestMotionParameters3D : RefCounted() {
       setRecoveryAsCollisionEnabled(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(497, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(497, scriptPtr)
   }
 
   /**

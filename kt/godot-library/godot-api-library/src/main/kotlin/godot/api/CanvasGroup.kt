@@ -16,7 +16,6 @@ import godot.core.VariantParser.NIL
 import kotlin.Boolean
 import kotlin.Double
 import kotlin.Float
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.jvm.JvmName
@@ -97,8 +96,8 @@ public open class CanvasGroup : Node2D() {
       setUseMipmaps(value)
     }
 
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(137, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(137, scriptPtr)
   }
 
   public final fun setFitMargin(fitMargin: Float): Unit {

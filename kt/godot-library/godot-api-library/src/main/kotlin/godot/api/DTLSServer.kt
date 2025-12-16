@@ -13,7 +13,6 @@ import godot.common.interop.VoidPtr
 import godot.core.Error
 import godot.core.VariantParser.LONG
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Long
 import kotlin.Suppress
 import kotlin.Unit
@@ -173,8 +172,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class DTLSServer : RefCounted() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(197, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(197, scriptPtr)
   }
 
   /**

@@ -12,7 +12,6 @@ import godot.`internal`.reflection.TypeManager
 import godot.common.interop.VoidPtr
 import godot.core.VariantParser.NIL
 import godot.core.VariantParser.OBJECT
-import kotlin.Int
 import kotlin.Suppress
 import kotlin.Unit
 
@@ -22,8 +21,8 @@ import kotlin.Unit
  */
 @GodotBaseType
 public open class OptimizedTranslation : Translation() {
-  public override fun new(scriptIndex: Int): Unit {
-    createNativeObject(447, scriptIndex)
+  public override fun new(scriptPtr: VoidPtr): Unit {
+    createNativeObject(447, scriptPtr)
   }
 
   /**
